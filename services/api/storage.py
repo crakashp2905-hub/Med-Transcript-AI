@@ -110,6 +110,12 @@ MIGRATIONS = (
         id TEXT PRIMARY KEY, encounter TEXT NOT NULL UNIQUE REFERENCES encounters(id),
         status TEXT NOT NULL, created_at TEXT NOT NULL, completed_at TEXT);
     """,
+    """
+    ALTER TABLE uploads ADD COLUMN media_type TEXT NOT NULL DEFAULT 'audio/wav';
+    """,
+    """
+    ALTER TABLE jobs ADD COLUMN expected_transcript_id TEXT;
+    """,
 )
 
 

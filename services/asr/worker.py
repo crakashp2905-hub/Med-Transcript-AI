@@ -92,8 +92,18 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter):
             source = Path(asset_root) / f"{upload['id']}.wav"
             if source.stat().st_size != upload["expected_bytes"] or file_sha256(source) != upload["expected_sha256"]:
                 raise ASRFailure("asset_integrity_failure")
+            with store.transaction() as con:
+                ingest_row = con.execute("SELECT result FROM jobs WHERE upload=? AND stage='audio_ingest' AND status='succeeded'", (upload["id"],)).fetchone()
+                ingest = json.loads(ingest_row["result"]) if ingest_row else {}
+            if ingest.get("working_filename"):
+                # The filename is generated from the upload ID, not trusted from model output.
+                source = Path(asset_root) / f"{upload['id']}.normalized.wav"
+                if file_sha256(source) != ingest["working_sha256"]:
+                    raise ASRFailure("asset_integrity_failure")
             metadata = inspect_pcm_wav(source)
             metadata["sha256"] = upload["expected_sha256"]
+            metadata["working_sha256"] = ingest.get("working_sha256")
+            metadata["timeline_mapping_status"] = ingest.get("timeline_mapping_status", "original_pcm_timeline")
             if metadata["channels"] != 1 or metadata["sample_rate"] != 16000:
                 raise ASRFailure("unsupported_asr_input")
             lease.checkpoint()
@@ -115,7 +125,10 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter):
         if datetime.fromisoformat(current["lease_expires_at"]) <= finished:
             return {"id": job["id"], "status": "running"}
         result = None
-        if not processing_allowed(con, job["encounter"]):
+        current_tx = con.execute("SELECT current_transcript FROM encounters WHERE id=?", (job["encounter"],)).fetchone()[0]
+        if current_tx != job["expected_transcript_id"]:
+            status, error = "cancelled", "transcript_changed"
+        elif not processing_allowed(con, job["encounter"]):
             status, error = "cancelled", "authorization_required"
         else:
             if error is None:

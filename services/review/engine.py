@@ -95,7 +95,10 @@ def render_export(note, approval, format):
              f"Approved: {approval['approved_at']}", f"SHA-256: {approval['note_sha256']}", ""]
     for section in note["sections"]:
         lines.append(("## " if format == "markdown" else "") + section["key"].title())
-        lines.extend(statement["text"] for statement in section["statements"])
+        for statement in section["statements"]:
+            lines.append(statement["text"])
+            if statement["origin"] == "clinician_entered":
+                lines.append("[Clinician-entered addition; not audio-derived.]")
         if not section["statements"]:
             lines.append("Not documented.")
         lines.append("")

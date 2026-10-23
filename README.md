@@ -6,7 +6,7 @@ English-only, clinician-reviewed outpatient documentation, based on the
 This is a **synthetic-data-only development API**: authenticated
 encounters, clinician/tenant isolation, scoped authorization with expiry and
 withdrawal, durable SQLite storage, and transactional metadata audit events.
-It supports idempotent creation, bounded PCM WAV uploads, durable ingest/ASR
+It supports idempotent creation, bounded audio uploads, durable ingest/ASR
 jobs, immutable timestamped transcripts, a clinician review interface, reviewed-fact
 SOAP drafting, blocking verification, exact-version approval, amendments and
 Markdown/text/JSON exports. A pinned
@@ -22,7 +22,11 @@ Windows speech voice is available:
 ./scripts/start.ps1
 ```
 
+You can also double-click `Open Med Transcript.cmd`. The launcher opens your
+browser when the server is ready. Keep its console window open while using the app.
 Open the loopback address printed by the launcher and enter its local access key.
+Do not open `index.html` directly: the interface requires the running API and built
+assets. If port 8000 is occupied, use `./scripts/start.ps1 -Port 8001`.
 Use **Open synthetic example** to explore the complete review workflow. Use
 `-WithAsr` to install speech dependencies and configure a local model profile
 as described below; `-WithPostgres` installs the PostgreSQL driver. Model weights
@@ -32,7 +36,7 @@ ignored `data/`; the key stays in browser memory and is not placed in URLs.
 For an existing installed environment and built frontend:
 
 ```powershell
-python -m services.launch --demo
+.\.venv\Scripts\python.exe -m services.launch --demo --open
 ```
 
 The clinician workflow is source review → reviewed facts → saved SOAP draft →
@@ -56,8 +60,8 @@ $env:MED_TRANSCRIPT_IDENTITIES = $identities | ConvertTo-Json -Compress
 python -m uvicorn services.api.main:app_from_env --factory --host 127.0.0.1 --port 8000
 ```
 
-Open [API documentation](http://127.0.0.1:8000/docs), select Authorize, and use
-the generated token. Keep that token local. Use synthetic UUIDs for patients.
+The API schema is available at `/openapi.json`; the clinician interface is at `/`
+after building the frontend. Keep the token local. Use synthetic UUIDs for patients.
 The database defaults to `data/development.sqlite3` (ignored by Git);
 `MED_TRANSCRIPT_DB` overrides its path. Startup refuses missing/short tokens.
 
@@ -85,9 +89,14 @@ Withdrawal is repeatable and preserves its original timestamp.
 
 ## Upload and inspect synthetic audio
 
-Only 16-bit PCM RIFF/WAV is currently supported: one or two channels,
-8–48 kHz, at most 250 MB and 60 minutes. Other codecs require a future
-sandboxed decoder. Use synthetic recordings only.
+WAV, MP3, M4A/MP4, WebM and Ogg audio uploads are supported: one or two channels,
+8–48 kHz, at most 250 MB and 60 minutes. Install the `media` extra for decoding.
+The worker normalizes supported recordings to mono 16 kHz PCM in a bounded
+separate process and preserves the original checksum. Windows process isolation
+does not provide a kernel-enforced decoder memory sandbox. Use synthetic recordings only.
+See the [operations runbook](docs/runbooks/operations.md) for deployment,
+backup, restore, deletion and reconciliation, and the
+[evaluation protocol](docs/evaluation-protocol.md) for measured model limitations.
 
 1. Create an encounter and record both `recording` and `local_processing` scopes.
 2. `POST /v1/encounters/{id}/audio-uploads` with `Idempotency-Key` and JSON

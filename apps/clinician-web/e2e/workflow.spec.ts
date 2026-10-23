@@ -60,3 +60,22 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.screenshot({path:resolve(dir,'mobile-source.png'),fullPage:true});
   expect(failures).toEqual([]);
 });
+
+test('compressed upload is normalized by the worker and supports manual transcription',async({page})=>{
+  await page.goto('/');
+  await page.getByLabel('Access key').fill(token);
+  await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+  await page.getByRole('button',{name:'New encounter',exact:false}).click();
+  await page.getByLabel('I confirmed the patient and encounter identifiers.').check();
+  await page.getByRole('button',{name:'Create encounter',exact:false}).click();
+  await page.locator('input[type=file]').setInputFiles(resolve(root,'data/synthetic-asr-smoke.mp3'));
+  await page.getByLabel('Recording and local-processing authorization is documented.').check();
+  await page.getByRole('button',{name:'Upload recording',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Manual transcription'})).toBeVisible({timeout:20000});
+  await page.getByLabel('Manual source text').fill('This is a synthetic recording for a transcription software test. No patient information is included.');
+  await page.getByRole('combobox',{name:'Speaker role',exact:true}).selectOption('clinician');
+  await page.getByRole('button',{name:'Save manual transcript',exact:true}).click();
+  await expect(page.getByLabel('Transcript segment 1')).toHaveValue(/synthetic recording/);
+  await expect(page.getByLabel('I confirmed supported English.')).not.toBeChecked();
+  await expect(page.getByLabel('I reviewed source completeness.')).not.toBeChecked();
+});

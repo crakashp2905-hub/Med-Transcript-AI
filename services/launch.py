@@ -6,6 +6,10 @@ import os
 import secrets
 import subprocess
 import sys
+import threading
+import time
+import urllib.request
+import webbrowser
 from pathlib import Path
 from uuid import uuid4
 
@@ -22,6 +26,7 @@ def main():
     parser.add_argument("--host", choices=["127.0.0.1", "0.0.0.0"], default="127.0.0.1")
     parser.add_argument("--no-worker", action="store_true")
     parser.add_argument("--demo", action="store_true")
+    parser.add_argument("--open", action="store_true", help="Open the browser once the workspace is serving")
     args = parser.parse_args()
     root = Path("data")
     root.mkdir(exist_ok=True)
@@ -49,6 +54,19 @@ def main():
         process = subprocess.Popen(command, stdout=log, stderr=log,
             creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0)
     try:
+        if args.open:
+            def open_workspace():
+                url = f"http://127.0.0.1:{args.port}"
+                for _ in range(60):
+                    try:
+                        with urllib.request.urlopen(url, timeout=1) as response:
+                            if response.status == 200:
+                                webbrowser.open(url)
+                                return
+                    except OSError:
+                        pass
+                    time.sleep(0.5)
+            threading.Thread(target=open_workspace, daemon=True).start()
         uvicorn.run(app, host=args.host, port=args.port, access_log=False)
     finally:
         if process:

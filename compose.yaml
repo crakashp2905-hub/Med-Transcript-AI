@@ -18,7 +18,8 @@ services:
     environment: &runtime
       MED_TRANSCRIPT_DB: postgresql://medscribe:${POSTGRES_PASSWORD}@db:5432/medscribe
       MED_TRANSCRIPT_ASSETS: /app/data/assets
-    volumes: [./data:/app/data]
+      MED_TRANSCRIPT_ASR_PROFILES: ${MED_TRANSCRIPT_CONTAINER_ASR_PROFILES:-}
+    volumes: [app-data:/app/data]
     depends_on:
       db: {condition: service_healthy}
     networks: [private]
@@ -30,7 +31,7 @@ services:
     build: .
     command: [python, -m, services.worker_loop]
     environment: *runtime
-    volumes: [./data:/app/data]
+    volumes: [app-data:/app/data]
     depends_on:
       db: {condition: service_healthy}
     networks: [private]
@@ -38,8 +39,12 @@ services:
     tmpfs: [/tmp]
     cap_drop: [ALL]
     security_opt: [no-new-privileges:true]
+    mem_limit: 4g
+    cpus: 2
+    pids_limit: 64
 networks:
   private:
     internal: true
 volumes:
   postgres-data:
+  app-data:

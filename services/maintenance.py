@@ -82,7 +82,8 @@ def restore(source, destination, tombstones_from):
 def purge(db, assets):
     results = []
     with Store(db).transaction() as con:
-        con.execute("PRAGMA secure_delete=ON")
+        if not db.startswith(("postgresql://", "postgres://")):
+            con.execute("PRAGMA secure_delete=ON")
         requests = con.execute("SELECT * FROM deletion_requests WHERE status='pending'").fetchall()
         for request in requests:
             eid = request["encounter"]
@@ -112,11 +113,14 @@ def reconcile(db, assets, apply=False):
     with Store(db).transaction() as con:
         uploads = {row["id"]: row for row in con.execute("SELECT uploads.*,encounters.legal_hold FROM uploads JOIN encounters ON encounters.id=uploads.encounter")}
         for path in root.glob("*"):
-            match = re.fullmatch(r"([a-f0-9-]{36})(?:\.[a-f0-9-]{36}\.part|(?:\.normalized)?\.wav)", path.name)
+            match = re.fullmatch(r"([a-f0-9-]{36})(?:\.[a-f0-9-]{36}(?:\.part|\.normalized\.wav)|(?:\.normalized)?\.wav)", path.name)
             if not match or not path.is_file() or path.is_symlink():
                 continue
             row = uploads.get(match[1])
             safe = row is None or (not row["legal_hold"] and row["status"] != "complete" and row["expires_at"] <= now())
+            if row is not None and not row["legal_hold"] and path.name.endswith(".normalized.wav") and len(path.name) > 52:
+                live = con.execute("SELECT 1 FROM jobs WHERE upload=? AND stage='audio_ingest' AND status='running' AND lease_expires_at>?", (row["id"], now())).fetchone()
+                safe = not live
             if safe:
                 candidates.append(path.name)
                 if apply:

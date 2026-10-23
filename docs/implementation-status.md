@@ -1,6 +1,8 @@
 # Implementation status
 
-Updated 23 October 2026. Blueprint version 2.2 remains the design source.
+Updated 24 October 2026. Blueprint version 2.2 remains the design source.
+The first three sections below record historical milestones; the current state
+and remaining release gates are described in Milestone 4.
 
 ## Milestone 1: synthetic encounter foundation
 
@@ -82,7 +84,7 @@ passed `pip check`; evaluation JSON, Python compilation and whitespace checks
 also passed. Unit tests require no model downloads; real inference is separately
 recorded in the smoke report.
 
-## Next milestones
+## Milestone 4: complete synthetic clinician workflow and operations
 
 Milestone 4 implements the full synthetic clinician workflow: React/TypeScript
 review UI, authenticated audio playback, manual/reference and corrected transcript
@@ -92,24 +94,36 @@ exact-version approvals, amendments and attributed Markdown/text/JSON exports.
 The local launcher starts a separate worker process. Windows can generate its
 own audible example; no patient or model assets are committed.
 
-Validation so far: all 62 core/regression tests passed; the new operations checks
-also passed (4 passed, one PostgreSQL integration test awaiting its service).
-The real headless Chrome workflow passed source review, ambiguity blocking,
-clinical correction, approval, approved download and mobile overflow checks.
-The TypeScript production build and frontend dependency audit passed.
+Validation includes regression tests, a real PostgreSQL encounter-to-approval
+workflow in GitHub CI, and two local Chrome workflows: source review through
+blocking medication clarification, approval and export; and compressed audio
+upload through normalization and manual transcription. Mobile overflow checks,
+the TypeScript production build and frontend dependency audit passed.
 
 Backup/restore helpers preserve post-backup tombstones, verify backup checksums,
 and report primary purging separately from backup expiry. Orphan reconciliation
 defaults to dry run. Approved records and legal holds block generic deletion.
-PostgreSQL support and its isolated CI service test are being verified separately.
+PostgreSQL support and its isolated CI service test passed for the preceding
+release; subsequent migrations are covered by the same required CI job.
 
-1. Add sandboxed codec decoding and upload storage/recovery hardening.
-2. Add PostgreSQL deployment and migration validation.
-3. Evaluate the large-v3 control and eligible challengers on representative audio.
-4. Add React/TypeScript review UI with audio playback and immutable transcript edits.
-5. Add typed facts and constrained SOAP drafting with validated evidence references.
-6. Add blocking findings, exact-version approval, amendments and approved exports.
-7. Run the model registry's staged evaluation and clinical/governance release gates.
+Implemented bounded separate-process media decoding, source/normalized checksums,
+reconciliation, backup/restore and deletion operations, PostgreSQL migrations,
+container configuration and a local evaluation harness. Late ASR publication is
+fenced against a changed clinician transcript. The Windows launcher builds and
+serves the interface and opens a browser; raw HTML files are not standalone apps.
+See the [operations runbook](runbooks/operations.md).
+
+The evaluation harness validates timestamps before scoring. A 23.06-second
+synthetic medical probe was correctly rejected because the tiny model emitted a
+segment beyond the recording duration. This is a failed sample, not evidence of
+clinical suitability. See the [evaluation protocol](evaluation-protocol.md).
+
+Remaining release gates require representative rights-cleared audio, independent
+clinical adjudication, the large-v3 control and eligible challenger comparisons,
+approved model licenses, production identity/security controls, deployment resource
+isolation, retention/backup policies and clinical/governance approval. The model
+registry still marks unexecuted comparisons as planned. Hosted processing and
+real patient use are not enabled by completing the synthetic workflow.
 
 Target hardware, clinical owner, retention policy and deployment approval remain
 undecided. This milestone reports software tests only, with no clinical accuracy

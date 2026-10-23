@@ -71,7 +71,7 @@ class AuthorizationInput(StrictModel):
 class UploadInput(StrictModel):
     bytes: int = Field(gt=0, le=MAX_UPLOAD_BYTES, strict=True)
     sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
-    media_type: Literal["audio/wav"] = "audio/wav"
+    media_type: Literal["audio/wav", "audio/mpeg", "audio/mp4", "audio/webm", "audio/ogg"] = "audio/wav"
 
 
 class TranscriptionInput(StrictModel):
@@ -191,6 +191,8 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
 
     @app.get("/health")
     def health():
+        with database() as con:
+            con.execute("SELECT 1").fetchone()
         return {"status": "ok", "data_mode": "synthetic_only", "inference_enabled": bool(profiles)}
 
     @app.post("/v1/encounters", status_code=201)
@@ -268,8 +270,8 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
                                                    body.model_dump(mode="json"))
             if previous:
                 return previous
-            con.execute("INSERT INTO uploads VALUES (?,?,?,?,?,?,?)", (resource, str(encounter_id),
-                        body.bytes, body.sha256, "open", created, expires))
+            con.execute("INSERT INTO uploads (id,encounter,expected_bytes,expected_sha256,status,created_at,expires_at,media_type) VALUES (?,?,?,?,?,?,?,?)", (resource, str(encounter_id),
+                        body.bytes, body.sha256, "open", created, expires, body.media_type))
             response = {"id": resource, "status": "open", "expires_at": expires,
                         "content_url": f"/v1/encounters/{encounter_id}/audio-uploads/{resource}/content"}
             remember(con, scope, fingerprint, response)
@@ -294,7 +296,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             require_live_upload(row)
             if row["status"] != "open":
                 raise HTTPException(409, "upload_not_open")
-            if request.headers.get("content-type", "").split(";")[0].strip().lower() != "audio/wav":
+            if request.headers.get("content-type", "").split(";")[0].strip().lower() != row["media_type"]:
                 raise HTTPException(415, "unsupported_media")
             con.execute("UPDATE uploads SET status='uploading' WHERE id=?", (str(upload_id),))
 
@@ -390,15 +392,16 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             if ingest is None or ingest["status"] != "succeeded":
                 raise HTTPException(409, "audio_ingest_required")
             metadata = json.loads(ingest["result"])
-            if metadata["sample_rate"] != 16000 or metadata["channels"] != 1:
+            if metadata.get("asr_sample_rate", metadata["sample_rate"]) != 16000 or metadata.get("asr_channels", metadata["channels"]) != 1:
                 raise HTTPException(422, "unsupported_asr_input")
             existing = con.execute("SELECT id FROM jobs WHERE upload=? AND stage='transcription' AND profile_sha256=?",
                                    (upload["id"], profile.sha256)).fetchone()
             job_id, created = existing["id"] if existing else str(uuid4()), now()
             if not existing:
-                con.execute("""INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,profile_sha256)
-                    VALUES (?,?,?,'queued',?,?,'transcription',?)""",
-                    (job_id, upload["id"], str(encounter_id), created, created, profile.sha256))
+                con.execute("""INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,profile_sha256,expected_transcript_id)
+                    VALUES (?,?,?,'queued',?,?,'transcription',?,?)""",
+                    (job_id, upload["id"], str(encounter_id), created, created, profile.sha256,
+                     encounter(con, encounter_id, actor)["current_transcript"]))
                 audit(con, actor, "transcription_queued", job_id)
             response = {"job_id": job_id, "status_url": f"/v1/jobs/{job_id}"}
             remember(con, scope, fingerprint, response)

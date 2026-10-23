@@ -99,29 +99,69 @@ def run_once(db_path: str, asset_root: str):
             (token, (stamp + timedelta(minutes=5)).isoformat(), stamp.isoformat(), job_id))
         upload = con.execute("SELECT * FROM uploads WHERE id=?", (row["upload"],)).fetchone()
 
-    result, error = None, None
+    result, error, working = None, None, None
     try:
         source = Path(asset_root) / f"{upload['id']}.wav"
         if source.stat().st_size != upload["expected_bytes"] or file_sha256(source) != upload["expected_sha256"]:
             raise InvalidAudio("asset_integrity_failure")
-        result = inspect_pcm_wav(source)
+        try:
+            if upload["media_type"] != "audio/wav":
+                raise InvalidAudio("requires_decode")
+            result = inspect_pcm_wav(source)
+            needs_decode = result["sample_rate"] != 16000 or result["channels"] != 1
+        except InvalidAudio as exc:
+            if upload["media_type"] == "audio/wav" and str(exc) != "unsupported_media":
+                raise
+            needs_decode = True
+        if needs_decode:
+            from services.media_decoder import normalize
+            working = Path(asset_root) / f"{upload['id']}.{token}.normalized.wav"
+            decoded = normalize(source, working, upload["media_type"])
+            if decoded.get("error_code"):
+                working.unlink(missing_ok=True)
+                raise InvalidAudio(decoded["error_code"])
+            normalized = inspect_pcm_wav(working)
+            if upload["media_type"] == "audio/wav":
+                try:
+                    result = inspect_pcm_wav(source)
+                except InvalidAudio:
+                    result = {**normalized, "bytes": upload["expected_bytes"]}
+            else:
+                result = {**normalized, "bytes": upload["expected_bytes"]}
+            result.update(working_sha256=file_sha256(working), working_filename=working.name,
+                          asr_sample_rate=16000, asr_channels=1, normalized_duration_ms=normalized["duration_ms"],
+                          original_media_type=upload["media_type"], timeline_mapping_status="decoded_media_requires_review")
         result["sha256"] = upload["expected_sha256"]
     except InvalidAudio as exc:
         error = str(exc)
     except OSError:
         error = "asset_unavailable"
+    if error and working:
+        working.unlink(missing_ok=True)
 
     with store.transaction() as con:
         current = con.execute("SELECT * FROM jobs WHERE id=?", (job_id,)).fetchone()
         finished = datetime.now(timezone.utc)
         if current["status"] != "running" or current["lease_token"] != token:
+            if working:
+                working.unlink(missing_ok=True)
             return {"id": job_id, "status": current["status"]}
         if datetime.fromisoformat(current["lease_expires_at"]) <= finished:
             return {"id": job_id, "status": "running"}  # Later claim recovers the expired lease.
         if not processing_allowed(con, row["encounter"]):
             status, error, result = "cancelled", "authorization_required", None
+            if working:
+                working.unlink(missing_ok=True)
         else:
             status = "failed" if error else "succeeded"
+            if not error and working:
+                destination = Path(asset_root) / f"{upload['id']}.normalized.wav"
+                try:
+                    import os
+                    os.replace(working, destination)
+                    result["working_filename"] = destination.name
+                except OSError:
+                    status, error, result = "failed", "asset_unavailable", None
         con.execute("""UPDATE jobs SET status=?, error_code=?, result=?, lease_token=NULL,
             lease_expires_at=NULL, updated_at=? WHERE id=?""",
             (status, error, json.dumps(result) if result else None, finished.isoformat(), job_id))

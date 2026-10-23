@@ -172,7 +172,7 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
             if not row or not path.is_file():
                 raise HTTPException(404, "audio_unavailable")
             audit(con, actor, "audio_playback", str(upload_id))
-        return FileResponse(path, media_type="audio/wav")
+        return FileResponse(path, media_type=row["media_type"])
 
     @app.post("/v1/encounters/{eid}/manual-transcripts", status_code=201)
     def manual_transcript(eid: UUID, body: ManualTranscript, actor=Depends(identity)):

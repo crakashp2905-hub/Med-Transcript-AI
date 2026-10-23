@@ -208,6 +208,20 @@ def test_superseded_lease_cannot_publish_transcript(environment):
         assert con.execute("SELECT lease_token FROM jobs WHERE stage='transcription'").fetchone()[0] == "new-owner"
 
 
+def test_human_source_change_fences_late_asr_result(environment):
+    env = environment
+    queued = enqueue(env)
+    class HumanEditAdapter(SyntheticAdapter):
+        def transcribe(self, source, metadata, checkpoint):
+            result = super().transcribe(source, metadata, checkpoint)
+            with Store(env.path).transaction() as con:
+                con.execute("UPDATE encounters SET current_transcript=? WHERE id=?", (str(uuid4()), queued.resource))
+            return result
+    assert transcribe_once(env.path, env.assets, HumanEditAdapter)["status"] == "cancelled"
+    job = env.client.get(queued.job["status_url"], headers=headers()).json()
+    assert job["error_code"] == "transcript_changed" and job["result"] is None
+
+
 def test_version_two_migration_preserves_ingest_jobs(tmp_path):
     from services.api.storage import MIGRATIONS
     path = str(tmp_path / "version-two.sqlite3")
