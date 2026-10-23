@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "source": "Master blueprint v2.2, section 24.7",
+  "default_status": "planned",
+  "measured_results": null,
+  "candidates": [
+    {"id": "faster-whisper-large-v3", "batch": "A", "processing": "local", "role": "integration_control"},
+    {"id": "google-medasr-greedy", "batch": "A", "processing": "local", "role": "medical_dictation"},
+    {"id": "google-medasr-approved-decoder", "batch": "A_extension", "processing": "local", "role": "decoder_comparison"},
+    {"id": "eka-parrotlet-a-en-5b", "batch": "A", "processing": "local", "role": "indian_english_medical"},
+    {"id": "eka-parrotlet-a-2.5-pro-english", "batch": "A", "processing": "local", "role": "medical"},
+    {"id": "omi-med-stt-v1", "batch": "A", "processing": "local", "role": "medical_dialogue"},
+    {"id": "multimed-whisper-small-english", "batch": "B", "processing": "local", "role": "research_checkpoint"},
+    {"id": "whisper-small", "batch": "B", "processing": "local", "role": "matched_control"},
+    {"id": "distil-whisper-large-v3", "batch": "B", "processing": "local", "role": "compact_control"},
+    {"id": "parakeet-tdt-0.6b-v2", "batch": "B", "processing": "local", "role": "omi_parent_control"},
+    {"id": "canary-qwen-2.5b", "batch": "B", "processing": "local", "role": "speech_llm_control"},
+    {"id": "amazon-transcribe-medical", "batch": "C", "processing": "hosted_audio", "role": "commercial_comparator"},
+    {"id": "deepgram-nova-3-medical", "batch": "C", "processing": "hosted_audio", "role": "commercial_comparator"}
+  ],
+  "admission_requirements": [
+    "Confirm artifact identity and pin revision/runtime before execution",
+    "Review applicable code, model and dataset licenses and access terms",
+    "Record target hardware, preprocessing and decoder configuration",
+    "Pass coverage, source-timing and synthetic safety checks",
+    "Hosted audio requires separate approved disclosure and cost authorization"
+  ]
+}
