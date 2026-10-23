@@ -2,7 +2,17 @@
   "schema_version": "1.0",
   "source": "Master blueprint v2.2, section 24.7",
   "default_status": "planned",
-  "measured_results": null,
+  "selection_policy": "evaluation/selection-policy.json",
+  "production_model_selected": null,
+  "integration_fixture": {
+    "id": "faster-whisper-tiny.en",
+    "reason": "Small local CPU integration fixture; not selected by a model accuracy comparison",
+    "measured_report": "evaluation/reports/primock57-tiny-en-smoke-2026-10-24.json",
+    "normalized_wer": 0.16417910447761194,
+    "maximum_normalized_wer": 0.03,
+    "decision": "fails_required_wer_limit_not_production_eligible"
+  },
+  "measured_results": ["evaluation/reports/primock57-tiny-en-smoke-2026-10-24.json"],
   "candidates": [
     {"id": "faster-whisper-large-v3", "batch": "A", "processing": "local", "role": "integration_control"},
     {"id": "google-medasr-greedy", "batch": "A", "processing": "local", "role": "medical_dictation"},

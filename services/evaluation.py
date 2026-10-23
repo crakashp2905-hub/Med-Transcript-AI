@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import math
 import re
 import time
 from pathlib import Path
@@ -11,6 +12,9 @@ from services.api.ingest import file_sha256, inspect_pcm_wav
 from services.asr.adapter import ASRFailure, FasterWhisperAdapter
 from services.asr.profiles import load_profiles
 from services.asr.transcripts import build_transcript
+
+
+PROJECT_MAX_NORMALIZED_WER = 0.03
 
 
 def tokens(text, normalized=True):
@@ -40,7 +44,28 @@ def score(reference, hypothesis):
             "raw_reference_words": len(tokens(reference, False))}
 
 
-def run(manifest_path, profile, output_path, retain_hypotheses=False):
+def wer_gate(report, maximum):
+    if not isinstance(maximum, (int, float)) or isinstance(maximum, bool) or not math.isfinite(maximum) or not 0 <= maximum <= 1:
+        raise ValueError("Maximum normalized WER must be a finite fraction between 0 and 1")
+    words, edits = report["reference_words"], report["normalized_edits"]
+    # Compare unrounded counts, never a formatted percentage. Missing references
+    # and processing failures cannot qualify even when the average looks small.
+    reasons = []
+    if words <= 0:
+        reasons.append("no_reference_words")
+    elif edits / words > maximum:
+        reasons.append("normalized_wer_exceeds_maximum")
+    if report["failed_samples"]:
+        reasons.append("processing_failures_present")
+    return {"maximum_normalized_wer": maximum, "scope": "aggregate_evaluation_dataset",
+            "status": "fail" if reasons else "pass", "reasons": reasons,
+            "clinical_approval": "not_established_by_wer"}
+
+
+def run(manifest_path, profile, output_path, retain_hypotheses=False, max_normalized_wer=PROJECT_MAX_NORMALIZED_WER):
+    wer_gate({"reference_words": 1, "normalized_edits": 0, "failed_samples": 0}, max_normalized_wer)
+    if max_normalized_wer > PROJECT_MAX_NORMALIZED_WER:
+        raise ValueError("Project policy forbids a normalized WER maximum above 3%")
     source = Path(manifest_path).resolve()
     manifest = json.loads(source.read_text(encoding="utf-8"))
     if manifest.get("data_class") not in ("synthetic", "approved_public") or not manifest.get("rights_reviewed"):
@@ -88,6 +113,7 @@ def run(manifest_path, profile, output_path, retain_hypotheses=False):
         "raw_wer": raw_edits/raw_words if raw_words else None,
         "failure_policy": "empty_hypothesis_full_reference_deletions", "critical_error_adjudication": "pending_clinician_review",
         "clinical_release_gate": "not_evaluated", "samples": rows}
+    report["wer_gate"] = wer_gate(report, max_normalized_wer)
     output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -101,11 +127,15 @@ def main():
     parser.add_argument("--profile-id", required=True)
     parser.add_argument("--out", default="data/evaluation-results.json")
     parser.add_argument("--retain-hypotheses", action="store_true")
+    parser.add_argument("--max-normalized-wer", type=float, default=PROJECT_MAX_NORMALIZED_WER, help="Maximum aggregate WER fraction, default 0.03 (3%%). May be stricter, never looser than project policy. Failure exits 2.")
     args = parser.parse_args()
     profile = load_profiles(args.profiles).get(args.profile_id)
     if profile is None:
         parser.error("Profile ID not present in the configured file")
-    print(json.dumps(run(args.manifest, profile, args.out, args.retain_hypotheses)))
+    report = run(args.manifest, profile, args.out, args.retain_hypotheses, args.max_normalized_wer)
+    print(json.dumps(report))
+    if report.get("wer_gate", {}).get("status") == "fail":
+        raise SystemExit(2)
 
 
 if __name__ == "__main__":

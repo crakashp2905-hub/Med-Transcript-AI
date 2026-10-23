@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "maximum_normalized_wer": 0.03,
+  "threshold_authority": "User requirement, 24 October 2026",
+  "comparison": "less_than_or_equal_unrounded",
+  "scope": "aggregate_reference_transcribed_evaluation_dataset",
+  "processing_failures_allowed": 0,
+  "clinical_release_requires": [
+    "Independent frozen representative acceptance corpus",
+    "Per-subgroup and per-recording error reports",
+    "Independent drug, dose, unit, allergy and negation adjudication",
+    "No unresolved critical clinical errors",
+    "Source coverage, license, deployment and governance approval"
+  ],
+  "production_model_selected": null,
+  "live_recording_wer": "Cannot be measured without an independently verified reference transcript",
+  "fallback": "Keep candidate in development; no automatic production promotion or weaker-model substitution"
+}

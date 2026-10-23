@@ -1,5 +1,20 @@
 # ASR evaluation and model admission
 
+## Required WER limit
+
+The user set a strict maximum normalized WER of **3%** on 24 October 2026.
+The runner now applies this gate by default, compares unrounded counts, exits
+with status 2 on failure, rejects any processing failure and cannot accept a
+looser threshold. `--max-normalized-wer` may specify a stricter fraction only.
+An empty reference denominator cannot pass. The gate covers the aggregate
+reference-transcribed evaluation dataset; subgroup and per-recording reports,
+independent acceptance material and clinical safety adjudication remain required.
+WER cannot be calculated for a new recording without a verified reference.
+
+The selection policy is recorded in `evaluation/selection-policy.json`.
+The older six-clip tiny.en report predates enforcement and fails the new 3% gate
+at 16.42%. It remains a development fixture. There is no production winner yet.
+
 The benchmark runner is `python -m services.evaluation`. It accepts a local
 manifest with `dataset_id`, `split_role`, `data_class` (`synthetic` or
 `approved_public`), explicit `rights_reviewed: true`, and uniquely identified
