@@ -1,0 +1,91 @@
+{
+  "dataset_id": "primock57-consultation01-six-utterance-smoke-v1",
+  "split_role": "development_smoke_not_acceptance",
+  "data_class": "approved_public",
+  "rights_reviewed": true,
+  "license_id": "CC-BY-4.0",
+  "attribution": "PriMock57: A Dataset Of Primary Care Mock Consultations, Alex Papadopoulos Korfiatis, Francesco Moramarco, Radmila Sarac and Aleksandar Savkov (2022), Babylon Health. CC BY 4.0. Source: https://github.com/babylonhealth/primock57",
+  "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+  "sources": [
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation01_doctor.wav",
+      "audio_sha256": "a93ca69f49da821b2d10b03f3189fd0d82200a697805c18f316719ba328ff96b",
+      "annotation_sha256": "a727b4f53fd0c21750405fa683a0079585d9cf3cf763d3ced51bde9673a3eb04"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation01_patient.wav",
+      "audio_sha256": "12b0c5c12018cff8399cf95b713eba4b7d2bb9d6581281844057ecab2ea3a414",
+      "annotation_sha256": "7082e1abf185b30a82d57d585b999d4f11263e006359249aeffbad1061bfd0bd"
+    }
+  ],
+  "changes": "Normalized to mono 16kHz PCM; first three 4\u201320 second untagged utterances per role, 250ms padding.",
+  "limitations": "One consultation, separate speaker tracks, selected clean utterances; not clinical validation or conversation diarization.",
+  "samples": [
+    {
+      "sample_id": "day1_consultation01_doctor.utterance01",
+      "group_id": "day1_consultation01",
+      "language": "en",
+      "audio": "day1_consultation01_doctor.utterance01.wav",
+      "audio_sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa",
+      "reference": "Okay. And how many times a day are you going, let's say, in the last couple of days?",
+      "speaker_role": "doctor",
+      "source_start_seconds": 43.4486875,
+      "source_end_seconds": 48.2669375
+    },
+    {
+      "sample_id": "day1_consultation01_doctor.utterance02",
+      "group_id": "day1_consultation01",
+      "language": "en",
+      "audio": "day1_consultation01_doctor.utterance02.wav",
+      "audio_sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83",
+      "reference": "Okay. And is the pain, is that, is it there all the time, or does it come and go?",
+      "speaker_role": "doctor",
+      "source_start_seconds": 86.55325,
+      "source_end_seconds": 91.4084375
+    },
+    {
+      "sample_id": "day1_consultation01_doctor.utterance03",
+      "group_id": "day1_consultation01",
+      "language": "en",
+      "audio": "day1_consultation01_doctor.utterance03.wav",
+      "audio_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+      "reference": "Okay, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having, uh have you been feeling feverish, for example?",
+      "speaker_role": "doctor",
+      "source_start_seconds": 98.7959375,
+      "source_end_seconds": 107.1071875
+    },
+    {
+      "sample_id": "day1_consultation01_patient.utterance01",
+      "group_id": "day1_consultation01",
+      "language": "en",
+      "audio": "day1_consultation01_patient.utterance01.wav",
+      "audio_sha256": "5cead8c49715f89f3baa64a23a00e46d0d98fd62dc4741cc9d23e3cb11048030",
+      "reference": "Yeah, so it's like loose and watery stool, going to the toilet quite often, uh and like some pain in my, like, lower stomach?",
+      "speaker_role": "patient",
+      "source_start_seconds": 34.107875,
+      "source_end_seconds": 44.5339375
+    },
+    {
+      "sample_id": "day1_consultation01_patient.utterance02",
+      "group_id": "day1_consultation01",
+      "language": "en",
+      "audio": "day1_consultation01_patient.utterance02.wav",
+      "audio_sha256": "b89446c81ee05a2c23fddb669be6ab614ed8cf21b212bd55c7eb07f57ad8ceec",
+      "reference": "Yeah, it feels, um, like a cramp, like a muscular cramp, and, um, yeah i feel a bit uh weak and shaky.",
+      "speaker_role": "patient",
+      "source_start_seconds": 77.9365625,
+      "source_end_seconds": 87.158875
+    },
+    {
+      "sample_id": "day1_consultation01_patient.utterance03",
+      "group_id": "day1_consultation01",
+      "language": "en",
+      "audio": "day1_consultation01_patient.utterance03.wav",
+      "audio_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+      "reference": "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting.",
+      "speaker_role": "patient",
+      "source_start_seconds": 135.3178125,
+      "source_end_seconds": 142.8961875
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "policy": "Local/public models first; no paid calls; no accepting gated access on the user behalf.",
+  "dataset": "evaluation/datasets/primock57-smoke-v1/manifest.json",
+  "candidates": [
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json",
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
+    },
+    {
+      "candidate_id": "google-medasr-greedy",
+      "status": "access_pending",
+      "reason": "Google model gate requires user approval/login; no HF credentials configured."
+    },
+    {
+      "candidate_id": "google-medasr-approved-decoder",
+      "status": "access_pending",
+      "reason": "Same gated MedASR weights and gated 6-gram decoder; no approved access."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-en-5b",
+      "status": "access_pending",
+      "reason": "Hugging Face model gate requires user approval/login."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-2.5-pro-english",
+      "status": "resource_preflight_blocked",
+      "reason": "Public BF16 weights total about 9.95 GB; reviewed canonical loader defaults to FP32 plus duplicate encoder loading, exceeding this 16 GB host physical RAM. No qualified CPU quantization provisioned."
+    },
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-smoke-v1/omi-med-stt-v1.json",
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter"
+    },
+    {
+      "candidate_id": "multimed-whisper-small-english",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-smoke-v1/multimed-whisper-small-english.json",
+      "runtime_variant": "English source checkpoint converted to CTranslate2 INT8; CPU; two invalid-timestamp outputs counted as failed samples"
+    },
+    {
+      "candidate_id": "whisper-small",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-smoke-v1/whisper-small.json",
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
+    },
+    {
+      "candidate_id": "distil-whisper-large-v3",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-smoke-v1/distil-whisper-large-v3.json",
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-smoke-v1/parakeet-tdt-0.6b-v2.json",
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU"
+    },
+    {
+      "candidate_id": "canary-qwen-2.5b",
+      "status": "resource_preflight_blocked",
+      "reason": "Dependency resolution succeeded. Reviewed NeMo 3.0 SALM initializes FP32; conservative weights + checkpoint + 2 GiB runtime allowance estimate is 17.50 GB versus 16.91 GB physical RAM. Inference not attempted; no qualified lower-memory CPU variant or NVIDIA GPU."
+    },
+    {
+      "candidate_id": "amazon-transcribe-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; AWS credentials not configured."
+    },
+    {
+      "candidate_id": "deepgram-nova-3-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; Deepgram credentials not configured."
+    },
+    {
+      "candidate_id": "faster-whisper-tiny.en",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-smoke-v1/faster-whisper-tiny.en.json",
+      "role": "extra_integration_fixture",
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
+    }
+  ]
+}

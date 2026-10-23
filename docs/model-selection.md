@@ -9,6 +9,9 @@ results: 16.42% normalized WER on six selected PriMock57 clips from one consulta
 Large-v3 has now also been measured on the identical manifest: **7.46%**, ten
 edits across 134 reference words, no processing failures. Both fail the user's
 required **≤3%** maximum. No production model is selected.
+The later complete candidate audit and seven measured configurations are now in
+the [screening leaderboard](../evaluation/leaderboard.md), generated from the
+[frozen recorded dataset](../evaluation/datasets/primock57-smoke-v1/README.md).
 The synthetic demo reference text is separate from measured ASR output.
 
 The local machine is an Intel i5-1135G7, four cores/eight threads, approximately
@@ -18,23 +21,24 @@ combinations must be benchmarked rather than assuming published GPU results appl
 
 ## Complete blueprint candidate list
 
-These are planned candidates, not thirteen completed experiments.
+All thirteen candidates have explicit ledger entries. Six of them plus the
+additional tiny.en integration fixture have measured screening results.
 
 | Candidate/configuration | Intended comparison | Measured here? |
 | --- | --- | --- |
 | Whisper large-v3 / faster-whisper | Large general-ASR control | Six-clip smoke: 7.46%, fails 3% limit |
-| Google MedASR, greedy | Medical dictation challenger | No |
-| Google MedASR, approved external decoder | Decoder variant using the same weights | No |
-| Eka Parrotlet-a-en-5b | Indian-English medical challenger | No |
-| Eka Parrotlet-a-2.5-pro, English | Medical challenger | No |
-| Omi Med STT v1 | Medical dialogue challenger | No |
-| MultiMed Whisper-Small-English | Medical research checkpoint | No |
-| Whisper-small | Matched general control for MultiMed | No |
-| Distil-Whisper distil-large-v3 | Compact quality/latency control | No |
-| NVIDIA Parakeet-TDT-0.6B-v2 | General control for Omi's parent architecture | No |
-| NVIDIA Canary-Qwen-2.5B | Speech-language-model control | No |
-| Amazon Transcribe Medical | Hosted medical comparator | No; authorized account/cost/disclosure required |
-| Deepgram Nova-3 Medical | Hosted medical comparator | No; authorized account/cost/disclosure required |
+| Google MedASR, greedy | Medical dictation challenger | Access gate pending |
+| Google MedASR, approved external decoder | Decoder variant using the same weights | Access gate pending |
+| Eka Parrotlet-a-en-5b | Indian-English medical challenger | Access gate pending |
+| Eka Parrotlet-a-2.5-pro, English | Medical challenger | Conservative host-memory preflight blocked; no inference |
+| Omi Med STT v1 | Medical dialogue challenger | GGUF Q8 CPU: 6.72% |
+| MultiMed Whisper-Small-English | Medical research checkpoint | Converted INT8 CPU: 41.04%, two failed clips |
+| Whisper-small | Matched general control for MultiMed | INT8 CPU: 9.70% |
+| Distil-Whisper distil-large-v3 | Compact quality/latency control | INT8 CPU: 9.70% |
+| NVIDIA Parakeet-TDT-0.6B-v2 | General control for Omi's parent architecture | Third-party ONNX INT8 CPU export: 5.22% |
+| NVIDIA Canary-Qwen-2.5B | Speech-language-model control | Dependency resolution passed; conservative memory preflight blocked |
+| Amazon Transcribe Medical | Hosted medical comparator | User disabled paid calls |
+| Deepgram Nova-3 Medical | Hosted medical comparator | User disabled paid calls |
 
 Model IDs in the registry describe planned configurations; gated access, exact
 artifacts, licenses and runtime adapters must be resolved for each before use.
@@ -47,6 +51,23 @@ is in [the comparison report](../evaluation/reports/primock57-asr-comparison-202
 The large-v3 model file matched upstream SHA-256 before inference. Runtime was
 faster-whisper 1.2.1, CPU INT8, four threads, beam five, forced English. The app's
 active model was left unchanged; a better smoke score does not establish approval.
+
+The source-of-truth ranking has seven measured configurations and seven unranked
+entries. Equal exact WERs share a rank. This is a ranking of these configurations
+on this dataset, not a universal ranking of their model families. All fourteen
+entries include the thirteen requested candidates and the extra tiny.en control.
+See the [resource preflight](../evaluation/resource-preflight.json) for allocation
+assumptions. Memory admission decisions are estimates, not observed inference
+failures or claims that a model cannot run with any other implementation.
+
+Omi and ONNX Parakeet use text-only benchmark adapters: they are not admitted
+clinical transcript publishers and do not provide validated source timestamps.
+Whisper-family runs retain API-equivalent output/timestamp validation; two
+MultiMed outputs were rejected and counted as reference-word deletions under the
+declared failure policy. Its 41.04% is this pipeline's failure-inclusive result,
+not a raw-text-only WER claim. Do not equate the score to standalone model quality.
+Reported elapsed times include loading and some runs overlapped; latency was not
+used for ranking. All configurations still require independent clinical review.
 
 ## How a winner will be selected
 

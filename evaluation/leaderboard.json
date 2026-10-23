@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "primock57-consultation01-six-utterance-smoke-v1",
+  "manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+  "scope": "development_screening_not_acceptance",
+  "ranking_rule": "ascending_unrounded_aggregate_normalized_wer_shared_ranks_for_ties",
+  "maximum_normalized_wer": 0.03,
+  "ranked": [
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "completed",
+      "normalized_wer": 0.05223880597014925,
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU",
+      "normalized_edits": 7,
+      "reference_words": 134,
+      "failed_samples": 0,
+      "sample_count": 6,
+      "profile_sha256": "8385613288709264cef2dcd31a5f3bcc7620c9650b785e1f0ea1c09cc10f10d2",
+      "model_revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+      "report": "evaluation/runs/primock57-smoke-v1/parakeet-tdt-0.6b-v2.json",
+      "report_sha256": "a5fecf5ef78df7956eafc99a7c0453875faf6cd6ac060c6a1dfd37e31fbeae43",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 16.4619,
+      "rank": 1
+    },
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "completed",
+      "normalized_wer": 0.06716417910447761,
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter",
+      "normalized_edits": 9,
+      "reference_words": 134,
+      "failed_samples": 0,
+      "sample_count": 6,
+      "profile_sha256": "bf13378dee7768a3f8bd86b85f52370bb1d7c9fb0c7b0511aa9fb4e3b2582021",
+      "model_revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "report": "evaluation/runs/primock57-smoke-v1/omi-med-stt-v1.json",
+      "report_sha256": "0fa6873aeafe66abeba5990e7502282953ce68c15dffdf99765a45874bdbe61f",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 40.1145,
+      "rank": 2
+    },
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "status": "completed",
+      "normalized_wer": 0.07462686567164178,
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "normalized_edits": 10,
+      "reference_words": 134,
+      "failed_samples": 0,
+      "sample_count": 6,
+      "profile_sha256": "41f08c86824b407aa6bc4aefdfe096da2d060d33e3b2e960c8298c1bd9526659",
+      "model_revision": "edaa852ec7e145841d8ffdb056a99866b5f0a478",
+      "report": "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json",
+      "report_sha256": "aeff2c6fb8637c280229939fd7e3889ec8d8e543b6d3cfa08817ebcf5c9a0ffa",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 170.2814,
+      "rank": 3
+    },
+    {
+      "candidate_id": "distil-whisper-large-v3",
+      "status": "completed",
+      "normalized_wer": 0.09701492537313433,
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "normalized_edits": 13,
+      "reference_words": 134,
+      "failed_samples": 0,
+      "sample_count": 6,
+      "profile_sha256": "f1c9644ef49c78cd62282f3ca1fa182d326cd6866fc3bc183516c5c6c518aa65",
+      "model_revision": "c3058b475261292e64a0412df1d2681c06260fab",
+      "report": "evaluation/runs/primock57-smoke-v1/distil-whisper-large-v3.json",
+      "report_sha256": "ca26b72a0ecf0f8efb1d682d220048e9f33d5205071d14890d4d0a33eb4f6c3e",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 150.1183,
+      "rank": 4
+    },
+    {
+      "candidate_id": "whisper-small",
+      "status": "completed",
+      "normalized_wer": 0.09701492537313433,
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "normalized_edits": 13,
+      "reference_words": 134,
+      "failed_samples": 0,
+      "sample_count": 6,
+      "profile_sha256": "566c3b316045584eb28ce7102c9c05aaef38a47818cd2626ada184f98e82b512",
+      "model_revision": "536b0662742c02347bc0e980a01041f333bce120",
+      "report": "evaluation/runs/primock57-smoke-v1/whisper-small.json",
+      "report_sha256": "624bcabe1bb40c4ae4f429d50e042d61f26eeae43db2ef912652e5120089210b",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 62.0429,
+      "rank": 4
+    },
+    {
+      "candidate_id": "faster-whisper-tiny.en",
+      "status": "completed",
+      "normalized_wer": 0.16417910447761194,
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "normalized_edits": 22,
+      "reference_words": 134,
+      "failed_samples": 0,
+      "sample_count": 6,
+      "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+      "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+      "report": "evaluation/runs/primock57-smoke-v1/faster-whisper-tiny.en.json",
+      "report_sha256": "f2ce3f0172957f05acd3c2c67115ce2fc276f16288194997f02f11c438c9882c",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 68.9355,
+      "rank": 6
+    },
+    {
+      "candidate_id": "multimed-whisper-small-english",
+      "status": "completed",
+      "normalized_wer": 0.41044776119402987,
+      "runtime_variant": "English source checkpoint converted to CTranslate2 INT8; CPU; two invalid-timestamp outputs counted as failed samples",
+      "normalized_edits": 55,
+      "reference_words": 134,
+      "failed_samples": 2,
+      "sample_count": 6,
+      "profile_sha256": "b3b014a163c5968fa5430198ace0ca40b8467459ddcc138eb52269b001623b57",
+      "model_revision": "fb15edd1dfc68810a7d0c75e6cfc73c3e5ed01c1",
+      "report": "evaluation/runs/primock57-smoke-v1/multimed-whisper-small-english.json",
+      "report_sha256": "ea7473ae73bbadffe0a1d90de7ed6d51426692c11ecc5ab53c3218db92209f94",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum",
+          "processing_failures_present"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 36.7488,
+      "rank": 7
+    }
+  ],
+  "unranked": [
+    {
+      "candidate_id": "google-medasr-greedy",
+      "status": "access_pending",
+      "reason": "Google model gate requires user approval/login; no HF credentials configured."
+    },
+    {
+      "candidate_id": "google-medasr-approved-decoder",
+      "status": "access_pending",
+      "reason": "Same gated MedASR weights and gated 6-gram decoder; no approved access."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-en-5b",
+      "status": "access_pending",
+      "reason": "Hugging Face model gate requires user approval/login."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-2.5-pro-english",
+      "status": "resource_preflight_blocked",
+      "reason": "Public BF16 weights total about 9.95 GB; reviewed canonical loader defaults to FP32 plus duplicate encoder loading, exceeding this 16 GB host physical RAM. No qualified CPU quantization provisioned."
+    },
+    {
+      "candidate_id": "canary-qwen-2.5b",
+      "status": "resource_preflight_blocked",
+      "reason": "Dependency resolution succeeded. Reviewed NeMo 3.0 SALM initializes FP32; conservative weights + checkpoint + 2 GiB runtime allowance estimate is 17.50 GB versus 16.91 GB physical RAM. Inference not attempted; no qualified lower-memory CPU variant or NVIDIA GPU."
+    },
+    {
+      "candidate_id": "amazon-transcribe-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; AWS credentials not configured."
+    },
+    {
+      "candidate_id": "deepgram-nova-3-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; Deepgram credentials not configured."
+    }
+  ],
+  "production_model_selected": null,
+  "clinical_release_gate": "not_evaluated",
+  "limitations": "Six clips from one consultation; upstream references are not independently clinically adjudicated. No production winner from this screening set."
+}

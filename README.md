@@ -12,6 +12,25 @@ SOAP drafting, blocking verification, exact-version approval, amendments and
 Markdown/text/JSON exports. A pinned
 tiny English model passed a synthetic smoke test; clinical benchmarking is pending.
 
+## Measured ASR ranking
+
+Open [the standalone comparison page](evaluation/leaderboard.html) in a browser,
+or read [the ranked results](evaluation/leaderboard.md). The page opens directly
+without an API server and includes playable reference recordings. All 13 blueprint
+candidates have an explicit ledger entry; seven configurations including the
+additional tiny.en fixture have measured results. Gated, resource-limited and
+user-disabled hosted candidates remain unranked. No paid calls were made.
+
+The [frozen dataset](evaluation/datasets/primock57-smoke-v1/README.md) includes
+six CC-BY-4.0 mock-consultation recordings, manual reference text, checksums and
+the source revision. It is the source of truth for this **screening** ranking,
+not a clinical acceptance corpus. The strict normalized WER limit is ≤3%; none
+of the tested configurations currently passes. Rebuild the leaderboard with:
+
+```powershell
+.\.venv\Scripts\python.exe -m services.benchmark_ranking
+```
+
 ## Run locally
 
 The quickest Windows start builds the interface and starts the API and its

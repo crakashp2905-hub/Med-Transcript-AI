@@ -14,7 +14,8 @@
   },
   "measured_results": [
     "evaluation/reports/primock57-tiny-en-smoke-2026-10-24.json",
-    "evaluation/reports/primock57-asr-comparison-2026-10-24.json"
+    "evaluation/reports/primock57-asr-comparison-2026-10-24.json",
+    "evaluation/leaderboard.json"
   ],
   "candidates": [
     {
@@ -23,82 +24,140 @@
       "processing": "local",
       "role": "integration_control",
       "status": "completed",
-      "measured_scope": "six_clip_development_smoke_only",
+      "measured_scope": "frozen_six_clip_development_screening",
       "normalized_wer": 0.07462686567164178,
       "decision": "fails_required_3_percent_limit",
-      "report": "evaluation/reports/primock57-asr-comparison-2026-10-24.json"
+      "report": "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
     },
     {
       "id": "google-medasr-greedy",
       "batch": "A",
       "processing": "local",
-      "role": "medical_dictation"
+      "role": "medical_dictation",
+      "status": "access_pending",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "reason": "Google model gate requires user approval/login; no HF credentials configured."
     },
     {
       "id": "google-medasr-approved-decoder",
       "batch": "A_extension",
       "processing": "local",
-      "role": "decoder_comparison"
+      "role": "decoder_comparison",
+      "status": "access_pending",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "reason": "Same gated MedASR weights and gated 6-gram decoder; no approved access."
     },
     {
       "id": "eka-parrotlet-a-en-5b",
       "batch": "A",
       "processing": "local",
-      "role": "indian_english_medical"
+      "role": "indian_english_medical",
+      "status": "access_pending",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "reason": "Hugging Face model gate requires user approval/login."
     },
     {
       "id": "eka-parrotlet-a-2.5-pro-english",
       "batch": "A",
       "processing": "local",
-      "role": "medical"
+      "role": "medical",
+      "status": "resource_preflight_blocked",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "reason": "Public BF16 weights total about 9.95 GB; reviewed canonical loader defaults to FP32 plus duplicate encoder loading, exceeding this 16 GB host physical RAM. No qualified CPU quantization provisioned."
     },
     {
       "id": "omi-med-stt-v1",
       "batch": "A",
       "processing": "local",
-      "role": "medical_dialogue"
+      "role": "medical_dialogue",
+      "status": "completed",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "normalized_wer": 0.06716417910447761,
+      "report": "evaluation/runs/primock57-smoke-v1/omi-med-stt-v1.json",
+      "measured_scope": "frozen_six_clip_development_screening",
+      "decision": "fails_required_3_percent_limit",
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter"
     },
     {
       "id": "multimed-whisper-small-english",
       "batch": "B",
       "processing": "local",
-      "role": "research_checkpoint"
+      "role": "research_checkpoint",
+      "status": "completed",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "normalized_wer": 0.41044776119402987,
+      "report": "evaluation/runs/primock57-smoke-v1/multimed-whisper-small-english.json",
+      "measured_scope": "frozen_six_clip_development_screening",
+      "decision": "fails_required_3_percent_limit",
+      "runtime_variant": "English source checkpoint converted to CTranslate2 INT8; CPU; two invalid-timestamp outputs counted as failed samples"
     },
     {
       "id": "whisper-small",
       "batch": "B",
       "processing": "local",
-      "role": "matched_control"
+      "role": "matched_control",
+      "status": "completed",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "normalized_wer": 0.09701492537313433,
+      "report": "evaluation/runs/primock57-smoke-v1/whisper-small.json",
+      "measured_scope": "frozen_six_clip_development_screening",
+      "decision": "fails_required_3_percent_limit",
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
     },
     {
       "id": "distil-whisper-large-v3",
       "batch": "B",
       "processing": "local",
-      "role": "compact_control"
+      "role": "compact_control",
+      "status": "completed",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "normalized_wer": 0.09701492537313433,
+      "report": "evaluation/runs/primock57-smoke-v1/distil-whisper-large-v3.json",
+      "measured_scope": "frozen_six_clip_development_screening",
+      "decision": "fails_required_3_percent_limit",
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
     },
     {
       "id": "parakeet-tdt-0.6b-v2",
       "batch": "B",
       "processing": "local",
-      "role": "omi_parent_control"
+      "role": "omi_parent_control",
+      "status": "completed",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "normalized_wer": 0.05223880597014925,
+      "report": "evaluation/runs/primock57-smoke-v1/parakeet-tdt-0.6b-v2.json",
+      "measured_scope": "frozen_six_clip_development_screening",
+      "decision": "fails_required_3_percent_limit",
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU"
     },
     {
       "id": "canary-qwen-2.5b",
       "batch": "B",
       "processing": "local",
-      "role": "speech_llm_control"
+      "role": "speech_llm_control",
+      "status": "resource_preflight_blocked",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "reason": "Dependency resolution succeeded. Reviewed NeMo 3.0 SALM initializes FP32; conservative weights + checkpoint + 2 GiB runtime allowance estimate is 17.50 GB versus 16.91 GB physical RAM. Inference not attempted; no qualified lower-memory CPU variant or NVIDIA GPU."
     },
     {
       "id": "amazon-transcribe-medical",
       "batch": "C",
       "processing": "hosted_audio",
-      "role": "commercial_comparator"
+      "role": "commercial_comparator",
+      "status": "disabled_by_user",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "reason": "User authorized no paid calls; AWS credentials not configured."
     },
     {
       "id": "deepgram-nova-3-medical",
       "batch": "C",
       "processing": "hosted_audio",
-      "role": "commercial_comparator"
+      "role": "commercial_comparator",
+      "status": "disabled_by_user",
+      "benchmark_ledger": "evaluation/benchmark-ledger.json",
+      "reason": "User authorized no paid calls; Deepgram credentials not configured."
     }
   ],
   "admission_requirements": [

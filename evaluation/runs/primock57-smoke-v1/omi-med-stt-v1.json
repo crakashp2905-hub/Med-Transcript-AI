@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "primock57-consultation01-six-utterance-smoke-v1",
+  "manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+  "split_role": "development_smoke_not_acceptance",
+  "data_class": "approved_public",
+  "profile_id": "omi-v1-gguf-q8-cpu-v1",
+  "profile_sha256": "bf13378dee7768a3f8bd86b85f52370bb1d7c9fb0c7b0511aa9fb4e3b2582021",
+  "model_revision": "30d74219feead34843fae59e855f740db78ed2bd",
+  "runtime_configuration": {
+    "engine": "omi",
+    "profile_id": "omi-v1-gguf-q8-cpu-v1",
+    "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+    "runtime_version": "0.2.1",
+    "artifacts": {
+      "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+    },
+    "device": "cpu",
+    "threads": 4,
+    "timestamp_support": "not_provided_text_only_evaluation"
+  },
+  "scoring_profile": "lowercase_words_preserve_decimals_units_negation_v1",
+  "sample_count": 6,
+  "reference_words": 134,
+  "normalized_edits": 9,
+  "normalized_wer": 0.06716417910447761,
+  "raw_wer": 0.1865671641791045,
+  "failed_samples": 0,
+  "failure_policy": "empty_hypothesis_full_reference_deletions",
+  "critical_error_adjudication": "pending_clinician_review",
+  "clinical_release_gate": "not_evaluated",
+  "api_integration_gate": "text_only_adapter_not_admitted_for_clinical_publication",
+  "samples": [
+    {
+      "sample_id": "day1_consultation01_doctor.utterance01",
+      "group_id": "day1_consultation01",
+      "status": "completed",
+      "error_code": null,
+      "elapsed_seconds": 11.0353,
+      "reference_words": 18,
+      "hypothesis_words": 18,
+      "normalized_edits": 2,
+      "raw_edits": 3,
+      "raw_reference_words": 18,
+      "reference": "Okay. And how many times a day are you going, let's say, in the last couple of days?",
+      "hypothesis": "OK, and how many times a day are you going, let's say, over the last couple of days?"
+    },
+    {
+      "sample_id": "day1_consultation01_doctor.utterance02",
+      "group_id": "day1_consultation01",
+      "status": "completed",
+      "error_code": null,
+      "elapsed_seconds": 3.0606,
+      "reference_words": 19,
+      "hypothesis_words": 19,
+      "normalized_edits": 2,
+      "raw_edits": 5,
+      "raw_reference_words": 19,
+      "reference": "Okay. And is the pain, is that, is it there all the time, or does it come and go?",
+      "hypothesis": "OK. And does the pain is that is it there all the time or does it come and go?"
+    },
+    {
+      "sample_id": "day1_consultation01_doctor.utterance03",
+      "group_id": "day1_consultation01",
+      "status": "completed",
+      "error_code": null,
+      "elapsed_seconds": 6.4147,
+      "reference_words": 34,
+      "hypothesis_words": 33,
+      "normalized_edits": 2,
+      "raw_edits": 3,
+      "raw_reference_words": 34,
+      "reference": "Okay, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having, uh have you been feeling feverish, for example?",
+      "hypothesis": "OK, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having have you been feeling feverish, for example?"
+    },
+    {
+      "sample_id": "day1_consultation01_patient.utterance01",
+      "group_id": "day1_consultation01",
+      "status": "completed",
+      "error_code": null,
+      "elapsed_seconds": 11.0651,
+      "reference_words": 24,
+      "hypothesis_words": 23,
+      "normalized_edits": 1,
+      "raw_edits": 5,
+      "raw_reference_words": 24,
+      "reference": "Yeah, so it's like loose and watery stool, going to the toilet quite often, uh and like some pain in my, like, lower stomach?",
+      "hypothesis": "Yeah, so it's like loose and watery stool, going to the toilet quite often and like some pain in my like lower stomach."
+    },
+    {
+      "sample_id": "day1_consultation01_patient.utterance02",
+      "group_id": "day1_consultation01",
+      "status": "completed",
+      "error_code": null,
+      "elapsed_seconds": 5.21,
+      "reference_words": 22,
+      "hypothesis_words": 22,
+      "normalized_edits": 2,
+      "raw_edits": 7,
+      "raw_reference_words": 22,
+      "reference": "Yeah, it feels, um, like a cramp, like a muscular cramp, and, um, yeah i feel a bit uh weak and shaky.",
+      "hypothesis": "Yeah, it feels um like a cramp, uh, like a muscular cramp, and um, yeah, I feel a bit weak and shaky."
+    },
+    {
+      "sample_id": "day1_consultation01_patient.utterance03",
+      "group_id": "day1_consultation01",
+      "status": "completed",
+      "error_code": null,
+      "elapsed_seconds": 3.3288,
+      "reference_words": 17,
+      "hypothesis_words": 17,
+      "normalized_edits": 0,
+      "raw_edits": 2,
+      "raw_reference_words": 17,
+      "reference": "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting.",
+      "hypothesis": "Yeah, so um I vomited at the start of the symptoms but now um i've stopped vomiting."
+    }
+  ],
+  "wer_gate": {
+    "maximum_normalized_wer": 0.03,
+    "scope": "aggregate_evaluation_dataset",
+    "status": "fail",
+    "reasons": [
+      "normalized_wer_exceeds_maximum"
+    ],
+    "clinical_approval": "not_established_by_wer"
+  }
+}

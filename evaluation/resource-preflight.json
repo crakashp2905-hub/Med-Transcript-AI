@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-24",
+  "physical_memory_bytes": 16907886592,
+  "gpu": "Intel Iris Xe; no NVIDIA CUDA device",
+  "policy": "Conservative memory admission on the current workstation, not an observed OOM or model-quality verdict. CPU variants may be reconsidered on a qualified larger-memory host or after a separately validated low-memory implementation.",
+  "candidates": [
+    {
+      "candidate_id": "canary-qwen-2.5b",
+      "dependency_resolution": "NeMo 3.0.0 speechlm2 source-capable pip dry-run succeeded",
+      "model_revision": "b1469e1bba1cfe140205529c79c434ca47180960",
+      "checkpoint_bytes": 5119120624,
+      "canonical_precision_evidence": "NeMo 3.0.0 SALM.__init__ calls load_pretrained_hf without a dtype; helper defaults dtype=torch.float32.",
+      "estimated_peak_bytes": 17504845520,
+      "estimate_formula": "approximate BF16 checkpoint * 2 for resident FP32 weights + checkpoint * 1 during load + 2 GiB runtime allowance",
+      "decision": "resource_preflight_blocked_no_inference",
+      "source": "https://pypi.org/project/nemo-toolkit/3.0.0/"
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-2.5-pro-english",
+      "model_revision": "520dad753507b5480cccb3d5f6709c05fc5b2485",
+      "published_artifact_bytes": 9952789565,
+      "canonical_precision_evidence": "Reviewed custom loader calls AutoModel/AutoModelForCausalLM without dtype and reloads encoder tensors; BF16 checkpoint weights default to FP32 model allocations.",
+      "decision": "resource_preflight_blocked_no_inference",
+      "source": "https://huggingface.co/ekacare/parrotlet-a-2.5-pro/blob/520dad753507b5480cccb3d5f6709c05fc5b2485/modelling_speech-llm.py"
+    }
+  ]
+}

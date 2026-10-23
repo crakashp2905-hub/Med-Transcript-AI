@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "primock57-consultation01-six-utterance-smoke-v1",
+  "manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+  "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+  "dataset_license": "CC-BY-4.0",
+  "sample_count": 6,
+  "independent_consultations": 1,
+  "reference_status": "Upstream manual references; not independently clinically adjudicated",
+  "allowed_use": "development_screening_not_acceptance",
+  "audio_root": "evaluation/datasets/primock57-smoke-v1",
+  "scoring_profile": "lowercase_words_preserve_decimals_units_negation_v1",
+  "failure_policy": "empty_hypothesis_full_reference_deletions",
+  "maximum_normalized_wer": 0.03
+}
