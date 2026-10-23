@@ -40,6 +40,35 @@ MIGRATIONS = (
     CREATE INDEX jobs_claim ON jobs(status, created_at);
     CREATE INDEX authorizations_encounter ON authorizations(encounter);
     """,
+    """
+    CREATE TABLE asr_profiles (sha256 TEXT PRIMARY KEY, body TEXT NOT NULL);
+    CREATE TABLE jobs_next (
+        id TEXT PRIMARY KEY, upload TEXT NOT NULL REFERENCES uploads(id),
+        encounter TEXT NOT NULL REFERENCES encounters(id),
+        status TEXT NOT NULL CHECK(status IN ('queued','running','succeeded','failed','cancelled')),
+        attempts INTEGER NOT NULL DEFAULT 0, lease_token TEXT, lease_expires_at TEXT,
+        created_at TEXT NOT NULL, updated_at TEXT NOT NULL, error_code TEXT, result TEXT,
+        stage TEXT NOT NULL DEFAULT 'audio_ingest' CHECK(stage IN ('audio_ingest','transcription')),
+        profile_sha256 TEXT REFERENCES asr_profiles(sha256));
+    INSERT INTO jobs_next (id,upload,encounter,status,attempts,lease_token,lease_expires_at,
+        created_at,updated_at,error_code,result)
+        SELECT id,upload,encounter,status,attempts,lease_token,lease_expires_at,
+        created_at,updated_at,error_code,result FROM jobs;
+    DROP TABLE jobs;
+    ALTER TABLE jobs_next RENAME TO jobs;
+    CREATE INDEX jobs_claim ON jobs(stage,status,created_at);
+    CREATE UNIQUE INDEX jobs_ingest_upload ON jobs(upload) WHERE stage='audio_ingest';
+    CREATE UNIQUE INDEX jobs_transcription_input ON jobs(upload,profile_sha256) WHERE stage='transcription';
+    CREATE TABLE transcript_versions (
+        id TEXT PRIMARY KEY, encounter TEXT NOT NULL REFERENCES encounters(id),
+        upload TEXT NOT NULL REFERENCES uploads(id), job TEXT NOT NULL UNIQUE REFERENCES jobs(id),
+        version INTEGER NOT NULL, sha256 TEXT NOT NULL, body TEXT NOT NULL, created_at TEXT NOT NULL,
+        UNIQUE(encounter,version));
+    CREATE TRIGGER transcript_versions_immutable BEFORE UPDATE ON transcript_versions
+    BEGIN
+        SELECT RAISE(ABORT, 'Transcript versions are immutable');
+    END;
+    """,
 )
 
 
@@ -53,9 +82,12 @@ class Store:
                 raise RuntimeError("Database schema is newer than this application")
             for version, migration in enumerate(MIGRATIONS, start=1):
                 if version > current:
-                    for statement in migration.split(";"):
-                        if statement.strip():
+                    statement = ""
+                    for line in migration.splitlines(keepends=True):
+                        statement += line
+                        if sqlite3.complete_statement(statement):
                             con.execute(statement)
+                            statement = ""
                     con.execute(f"PRAGMA user_version={version}")
 
     @contextmanager

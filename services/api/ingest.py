@@ -84,9 +84,9 @@ def run_once(db_path: str, asset_root: str):
         con.execute("""UPDATE jobs SET status=CASE WHEN attempts >= ? THEN 'failed' ELSE 'queued' END,
             error_code=CASE WHEN attempts >= ? THEN 'worker_retry_exhausted' ELSE NULL END,
             lease_token=NULL, lease_expires_at=NULL, updated_at=?
-            WHERE status='running' AND lease_expires_at <= ?""",
+            WHERE stage='audio_ingest' AND status='running' AND lease_expires_at <= ?""",
             (MAX_ATTEMPTS, MAX_ATTEMPTS, stamp.isoformat(), stamp.isoformat()))
-        row = con.execute("SELECT * FROM jobs WHERE status='queued' ORDER BY created_at, id LIMIT 1").fetchone()
+        row = con.execute("SELECT * FROM jobs WHERE stage='audio_ingest' AND status='queued' ORDER BY created_at, id LIMIT 1").fetchone()
         if row is None:
             return None
         job_id = row["id"]

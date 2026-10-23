@@ -221,7 +221,7 @@ def test_legacy_database_migrates_without_losing_encounters(tmp_path):
     Store(path)
     Store(path)  # Migration is repeatable at application startup.
     with sqlite3.connect(path) as con:
-        assert con.execute("PRAGMA user_version").fetchone()[0] == 2
+        assert con.execute("PRAGMA user_version").fetchone()[0] == len(MIGRATIONS)
         assert con.execute("SELECT id FROM encounters").fetchone()[0] == "legacy"
 
 

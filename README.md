@@ -6,9 +6,10 @@ English-only, clinician-reviewed outpatient documentation, based on the
 This is a **synthetic-data-only development API**: authenticated
 encounters, clinician/tenant isolation, scoped authorization with expiry and
 withdrawal, durable SQLite storage, and transactional metadata audit events.
-It now supports idempotent creation, bounded PCM WAV uploads, and a durable
-audio-inspection job queue. There is no ASR, note generation, approval, or export yet.
-No models or datasets have been downloaded or benchmarked.
+It supports idempotent creation, bounded PCM WAV uploads, durable ingest/ASR
+jobs, and immutable timestamped transcripts from a local faster-whisper adapter.
+Note generation, clinician approval and exports are still pending. A pinned
+tiny English model passed a synthetic smoke test; clinical benchmarking is pending.
 
 ## Run locally
 
@@ -51,7 +52,7 @@ and operation. Clients must retain the returned encounter ID beyond that window.
 Creation does not authorize recording. Record scopes separately through
 `POST /v1/encounters/{id}/authorizations`, with `scopes`, `policy_version`,
 `method`, and a future timezone-aware `expires_at`. The permission endpoint
-shows effective authorization; inference remains disabled in this milestone.
+shows effective authorization; ASR remains disabled until local profiles are configured.
 Withdrawal is repeatable and preserves its original timestamp.
 
 ## Upload and inspect synthetic audio
@@ -93,6 +94,69 @@ For an offline synthetic smoke demonstration (requires the `dev` dependencies):
 ```powershell
 python -m services.demo_ingest
 ```
+
+## Local speech transcription
+
+Install optional ASR dependencies in the virtual environment:
+
+```powershell
+python -m pip install -e '.[dev,asr]'
+```
+
+The tested Windows/Python 3.13 dependency versions are captured in
+`requirements/asr-windows-py313.lock.txt`. To reproduce that environment,
+install it first, then install this project with `--no-deps -e '.[dev,asr]'`.
+These pins are a development record, not a production security/release assessment.
+
+Provision a converted faster-whisper model directory yourself from an approved
+source and fixed 40-character commit revision. Keep it under ignored `data/models/`
+or `models/`. Model downloading is separate from API/worker execution. After
+reviewing its applicable terms, create a local artifact manifest:
+
+```powershell
+python -m services.asr.profiles --model-dir data/models/your-model --profile-id local-english-v1 --source owner/model --revision YOUR_40_CHARACTER_COMMIT --license-id YOUR_REVIEWED_LICENSE --out data/asr-profiles.json
+$env:MED_TRANSCRIPT_ASR_PROFILES = (Resolve-Path data/asr-profiles.json).Path
+```
+
+The manifest command hashes the local files. It requires `model.bin`,
+`config.json` and `tokenizer.json`; a supplied `preprocessor_config.json` is
+hashed too. Without that file the pinned runtime's default feature extractor
+is recorded in provenance. Do not delete the tokenizer: an incomplete local
+model is rejected before loading. The tool does not verify license suitability,
+clinical accuracy or that a claimed source revision produced those artifacts.
+
+Restart the API with this environment variable. After successful audio ingestion,
+request transcription with an `Idempotency-Key`:
+
+```http
+POST /v1/encounters/{id}/transcriptions
+Content-Type: application/json
+
+{"audio_asset_id":"UPLOAD_UUID","inference_profile_id":"local-english-v1"}
+```
+
+Run the separate ASR worker, then poll the returned job URL:
+
+```powershell
+python -m services.asr.worker --db data/development.sqlite3
+```
+
+Successful jobs link to `GET /v1/encounters/{id}/transcripts/{version_uuid}`.
+Transcripts preserve original segment text, estimated timestamps, model/config
+provenance, untranscribed intervals and an exact-version SHA-256/ETag. Speakers
+remain unassigned, and language support and clinical completeness require review.
+ASR currently accepts **mono, 16 kHz, 16-bit PCM WAV only**; resampling, stereo
+attribution, diarization and general codec decoding are deferred.
+
+For a local speech smoke run using your synthetic fixture and profile:
+
+```powershell
+python -m services.demo_ingest --synthetic-audio data/synthetic-fixture.wav --asr-profiles data/asr-profiles.json
+```
+
+The demo uses the first profile in that file. See the
+[ASR runbook](docs/runbooks/local-asr.md) and
+[executed synthetic smoke record](evaluation/reports/local-asr-smoke-2026-10-23.md).
 
 ## Verify
 

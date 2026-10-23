@@ -5,10 +5,13 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        extras: ['dev', 'dev,asr']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - run: python -m pip install -e '.[dev]'
+      - run: python -m pip install -e '.[${{ matrix.extras }}]'
       - run: python -m pytest -q

@@ -51,12 +51,42 @@ The offline synthetic demo completed successfully with a 1,000 ms, 16 kHz mono
 PCM result and the original checksum. The third-party deprecation warning from
 Milestone 1 remains; no external service or ASR model was called.
 
+## Milestone 3: local ASR adapter and immutable transcripts
+
+Implemented operator-configured, artifact-hashed local model profiles, optional
+faster-whisper 1.2.1 dependencies, separate durable transcription jobs,
+authorization-aware heartbeat leases and exact immutable transcript publication.
+The schema upgrade preserves original ingest job IDs and stages. Queue requests
+are idempotent; retries for the same upload/profile snapshot reuse one ASR job.
+The ingest worker cannot claim transcription work.
+
+The adapter accepts original mono 16 kHz PCM arrays, forces English transcription,
+consumes the full lazy result, preserves raw text/time values and publishes
+estimated timestamps with unassigned speakers and explicit review flags.
+Invalid/partial output never becomes a saved transcript. Canonical content hashes
+and ETags bind each saved version; source input and model/runtime provenance are
+retained. Transcript correction, approvals and export remain future work.
+
+Real CPU inference with a pinned tiny English checkpoint passed a 7.26-second
+synthetic speech smoke test, including a repeat with Python-level external
+network calls guarded. See the [executed report](../evaluation/reports/local-asr-smoke-2026-10-23.md)
+for observed text, configuration and limits. This tiny checkpoint is a smoke
+fixture, not a selected clinical model. The [ASR runbook](runbooks/local-asr.md)
+documents provisioning and cancellation/resource-isolation limitations.
+
+Validation: the 51-test regression suite passed in both the pre-existing Python
+environment and the fresh isolated `.[dev,asr]` environment. After the final
+lease/migration/Unicode cases were added, all 18 transcription tests passed
+(54 total tests now collected across the project). The isolated dependencies
+passed `pip check`; evaluation JSON, Python compilation and whitespace checks
+also passed. Unit tests require no model downloads; real inference is separately
+recorded in the smoke report.
+
 ## Next milestones
 
 1. Add sandboxed codec decoding and upload storage/recovery hardening.
 2. Add PostgreSQL deployment and migration validation.
-3. Implement local faster-whisper adapter with pinned local artifacts, original
-   timeline mapping and honest coverage/uncertainty metadata.
+3. Evaluate the large-v3 control and eligible challengers on representative audio.
 4. Add React/TypeScript review UI with audio playback and immutable transcript edits.
 5. Add typed facts and constrained SOAP drafting with validated evidence references.
 6. Add blocking findings, exact-version approval, amendments and approved exports.

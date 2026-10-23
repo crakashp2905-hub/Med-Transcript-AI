@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "med-transcript-ai"
-version = "0.2.0"
+version = "0.3.0"
 description = "English clinician-reviewed transcription foundation"
 requires-python = ">=3.11"
 dependencies = ["fastapi==0.136.1", "pydantic==2.12.5", "uvicorn>=0.34,<1", "tzdata>=2025.1; sys_platform == 'win32'"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "httpx>=0.28,<1"]
+asr = ["faster-whisper==1.2.1"]
 
 [tool.setuptools.packages.find]
 include = ["services*"]

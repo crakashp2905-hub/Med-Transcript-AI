@@ -19,6 +19,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from services.api.ingest import MAX_UPLOAD_BYTES, file_sha256
 from services.api.storage import Store, active_scopes, processing_allowed
+from services.asr.profiles import ASRProfile, load_profiles
 
 
 IdempotencyKey = Annotated[str, Header(alias="Idempotency-Key", min_length=8, max_length=128,
@@ -73,20 +74,33 @@ class UploadInput(StrictModel):
     media_type: Literal["audio/wav"] = "audio/wav"
 
 
+class TranscriptionInput(StrictModel):
+    audio_asset_id: UUID
+    inference_profile_id: str = Field(pattern=r"^[a-zA-Z0-9_.-]{1,80}$")
+
+
 def now():
     return datetime.now(timezone.utc).isoformat()
 
 
-def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str | None = None) -> FastAPI:
+def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str | None = None,
+               asr_profiles: dict[str, ASRProfile] | None = None) -> FastAPI:
     if not credentials or any(len(token) < 32 for token in credentials):
         raise ValueError("Configure service tokens of at least 32 characters")
     # Only digests are retained by the authentication closure.
     identities = {hashlib.sha256(k.encode()).hexdigest(): v for k, v in credentials.items()}
     database = Store(db_path).transaction
+    profiles = dict(asr_profiles or {})
+    if any(key != profile.profile_id for key, profile in profiles.items()):
+        raise ValueError("ASR profile keys must match their profile IDs")
+    with database() as con:
+        for profile in profiles.values():
+            con.execute("INSERT OR IGNORE INTO asr_profiles VALUES (?,?)",
+                        (profile.sha256, profile.model_dump_json()))
     assets = Path(asset_root) if asset_root else Path(db_path).parent / "assets"
     assets.mkdir(parents=True, exist_ok=True)
 
-    app = FastAPI(title="Med Transcript AI — synthetic foundation", version="0.2.0")
+    app = FastAPI(title="Med Transcript AI — synthetic foundation", version="0.3.0")
     bearer = HTTPBearer(auto_error=False)
 
     @app.middleware("http")
@@ -171,7 +185,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
 
     @app.get("/health")
     def health():
-        return {"status": "ok", "data_mode": "synthetic_only", "inference_enabled": False}
+        return {"status": "ok", "data_mode": "synthetic_only", "inference_enabled": bool(profiles)}
 
     @app.post("/v1/encounters", status_code=201)
     def create_encounter(body: EncounterInput, idempotency_key: IdempotencyKey,
@@ -234,7 +248,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
                     "local_processing_authorized": "local_processing" in scopes,
                     "external_audio_processing_authorized": False,
                     "external_text_processing_authorized": False,
-                    "inference_enabled": False}
+                    "inference_enabled": bool(profiles)}
 
     @app.post("/v1/encounters/{encounter_id}/audio-uploads", status_code=201)
     def create_upload(encounter_id: UUID, body: UploadInput, idempotency_key: IdempotencyKey,
@@ -317,7 +331,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
         with database() as con:
             row = upload_row(con, encounter_id, upload_id, actor)
             require_processing(con, encounter_id)
-            existing = con.execute("SELECT id FROM jobs WHERE upload=?", (str(upload_id),)).fetchone()
+            existing = con.execute("SELECT id FROM jobs WHERE upload=? AND stage='audio_ingest'", (str(upload_id),)).fetchone()
             if existing:
                 return {"job_id": existing["id"], "status_url": f"/v1/jobs/{existing['id']}"}
             require_live_upload(row)
@@ -345,10 +359,56 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             if row is None:
                 raise HTTPException(404, "job_not_found")
             audit(con, actor, "job_read", str(job_id))
-            return {"id": row["id"], "encounter_id": row["encounter"], "stage": "audio_ingest",
+            return {"id": row["id"], "encounter_id": row["encounter"], "stage": row["stage"],
+                    "profile_sha256": row["profile_sha256"],
                     "status": row["status"], "attempts": row["attempts"], "error_code": row["error_code"],
                     "retryable": False, "created_at": row["created_at"], "updated_at": row["updated_at"],
                     "result": json.loads(row["result"]) if row["result"] else None}
+
+    @app.post("/v1/encounters/{encounter_id}/transcriptions", status_code=202)
+    def create_transcription(encounter_id: UUID, body: TranscriptionInput, idempotency_key: IdempotencyKey,
+                              actor: Identity = Depends(identity)):
+        with database() as con:
+            encounter(con, encounter_id, actor)
+            require_processing(con, encounter_id)
+            scope, fingerprint, previous = replay(con, actor, f"transcription:{encounter_id}",
+                                                   idempotency_key, body.model_dump(mode="json"))
+            if previous:
+                return previous
+            profile = profiles.get(body.inference_profile_id)
+            if profile is None:
+                raise HTTPException(503, "asr_profile_unavailable")
+            upload = upload_row(con, encounter_id, body.audio_asset_id, actor)
+            ingest = con.execute("SELECT * FROM jobs WHERE upload=? AND stage='audio_ingest'",
+                                 (upload["id"],)).fetchone()
+            if ingest is None or ingest["status"] != "succeeded":
+                raise HTTPException(409, "audio_ingest_required")
+            metadata = json.loads(ingest["result"])
+            if metadata["sample_rate"] != 16000 or metadata["channels"] != 1:
+                raise HTTPException(422, "unsupported_asr_input")
+            existing = con.execute("SELECT id FROM jobs WHERE upload=? AND stage='transcription' AND profile_sha256=?",
+                                   (upload["id"], profile.sha256)).fetchone()
+            job_id, created = existing["id"] if existing else str(uuid4()), now()
+            if not existing:
+                con.execute("""INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,profile_sha256)
+                    VALUES (?,?,?,'queued',?,?,'transcription',?)""",
+                    (job_id, upload["id"], str(encounter_id), created, created, profile.sha256))
+                audit(con, actor, "transcription_queued", job_id)
+            response = {"job_id": job_id, "status_url": f"/v1/jobs/{job_id}"}
+            remember(con, scope, fingerprint, response)
+        return response
+
+    @app.get("/v1/encounters/{encounter_id}/transcripts/{version}")
+    def get_transcript(encounter_id: UUID, version: UUID, actor: Identity = Depends(identity)):
+        with database() as con:
+            encounter(con, encounter_id, actor)
+            row = con.execute("SELECT * FROM transcript_versions WHERE id=? AND encounter=?",
+                              (str(version), str(encounter_id))).fetchone()
+            if row is None:
+                raise HTTPException(404, "transcript_not_found")
+            audit(con, actor, "transcript_read", str(version))
+            return JSONResponse(content={**json.loads(row["body"]), "sha256": row["sha256"]},
+                                headers={"ETag": f'"{row["sha256"]}"'})
 
     return app
 
@@ -359,5 +419,6 @@ def app_from_env():
     if not raw:
         raise RuntimeError("MED_TRANSCRIPT_IDENTITIES must contain a token-to-identity JSON object")
     identities = {token: Identity.model_validate(value) for token, value in json.loads(raw).items()}
+    profile_path = os.environ.get("MED_TRANSCRIPT_ASR_PROFILES")
     return create_app(os.environ.get("MED_TRANSCRIPT_DB", "data/development.sqlite3"), identities,
-                      os.environ.get("MED_TRANSCRIPT_ASSETS"))
+                      os.environ.get("MED_TRANSCRIPT_ASSETS"), load_profiles(profile_path) if profile_path else None)
