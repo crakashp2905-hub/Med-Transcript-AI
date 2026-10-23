@@ -84,6 +84,25 @@ recorded in the smoke report.
 
 ## Next milestones
 
+Milestone 4 implements the full synthetic clinician workflow: React/TypeScript
+review UI, authenticated audio playback, manual/reference and corrected transcript
+versions, typed evidence-linked facts, conservative reviewed-facts SOAP templates,
+blocking findings, omission checks, documented clinical corrections, atomic
+exact-version approvals, amendments and attributed Markdown/text/JSON exports.
+The local launcher starts a separate worker process. Windows can generate its
+own audible example; no patient or model assets are committed.
+
+Validation so far: all 62 core/regression tests passed; the new operations checks
+also passed (4 passed, one PostgreSQL integration test awaiting its service).
+The real headless Chrome workflow passed source review, ambiguity blocking,
+clinical correction, approval, approved download and mobile overflow checks.
+The TypeScript production build and frontend dependency audit passed.
+
+Backup/restore helpers preserve post-backup tombstones, verify backup checksums,
+and report primary purging separately from backup expiry. Orphan reconciliation
+defaults to dry run. Approved records and legal holds block generic deletion.
+PostgreSQL support and its isolated CI service test are being verified separately.
+
 1. Add sandboxed codec decoding and upload storage/recovery hardening.
 2. Add PostgreSQL deployment and migration validation.
 3. Evaluate the large-v3 control and eligible challengers on representative audio.

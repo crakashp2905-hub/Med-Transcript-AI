@@ -18,7 +18,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from services.api.ingest import MAX_UPLOAD_BYTES, file_sha256
-from services.api.storage import Store, active_scopes, processing_allowed
+from services.api.storage import Store, active_scopes, processing_allowed, default_asset_root
 from services.asr.profiles import ASRProfile, load_profiles
 
 
@@ -97,7 +97,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
         for profile in profiles.values():
             con.execute("INSERT OR IGNORE INTO asr_profiles VALUES (?,?)",
                         (profile.sha256, profile.model_dump_json()))
-    assets = Path(asset_root) if asset_root else Path(db_path).parent / "assets"
+    assets = Path(asset_root or default_asset_root(db_path))
     assets.mkdir(parents=True, exist_ok=True)
 
     app = FastAPI(title="Med Transcript AI — synthetic foundation", version="0.3.0")
@@ -110,6 +110,8 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
         response.headers["X-Request-ID"] = request.state.request_id
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["Referrer-Policy"] = "no-referrer"
+        response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
         return response
 
     @app.exception_handler(RequestValidationError)
@@ -130,6 +132,10 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             "code": "storage_unavailable", "request_id": request.state.request_id},
             headers={"Retry-After": "2"})
 
+    if db_path.startswith(("postgresql://", "postgres://")):
+        import psycopg
+        app.add_exception_handler(psycopg.OperationalError, database_error)
+
     def identity(auth: HTTPAuthorizationCredentials | None = Depends(bearer)):
         if auth:
             digest = hashlib.sha256(auth.credentials.encode()).hexdigest()
@@ -141,7 +147,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
     def encounter(con, encounter_id, actor):
         row = con.execute("SELECT * FROM encounters WHERE id=? AND tenant=? AND clinician=?",
                           (str(encounter_id), str(actor.tenant_id), str(actor.clinician_id))).fetchone()
-        if row is None:
+        if row is None or row["deleted_at"]:
             raise HTTPException(404, "encounter_not_found")
         return row
 
@@ -196,7 +202,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
                                                    body.model_dump(mode="json"))
             if previous:
                 return previous
-            con.execute("INSERT INTO encounters VALUES (?,?,?,?,?)", (resource, str(actor.tenant_id),
+            con.execute("INSERT INTO encounters (id,tenant,clinician,body,created_at) VALUES (?,?,?,?,?)", (resource, str(actor.tenant_id),
                         str(actor.clinician_id), body.model_dump_json(), created))
             audit(con, actor, "encounter_created", resource)
             response = {"id": resource, "created_at": created, "status": "awaiting_authorization",
@@ -410,6 +416,16 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             return JSONResponse(content={**json.loads(row["body"]), "sha256": row["sha256"]},
                                 headers={"ETag": f'"{row["sha256"]}"'})
 
+    from services.review.routes import register_review_routes
+    register_review_routes(app, database, identity, encounter, audit, require_processing, assets, profiles)
+    from fastapi.staticfiles import StaticFiles
+    from fastapi.responses import FileResponse
+    frontend = Path(__file__).resolve().parents[2] / "apps" / "clinician-web" / "dist"
+    if frontend.is_dir():
+        app.mount("/assets", StaticFiles(directory=frontend / "assets"), name="web-assets")
+        @app.get("/", include_in_schema=False)
+        def clinician_web():
+            return FileResponse(frontend / "index.html")
     return app
 
 

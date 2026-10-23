@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from uuid import uuid4
 
-from services.api.storage import Store, processing_allowed
+from services.api.storage import Store, processing_allowed, default_asset_root
 
 
 MAX_UPLOAD_BYTES = 250_000_000
@@ -136,7 +136,7 @@ def main():
     parser.add_argument("--db", default="data/development.sqlite3")
     parser.add_argument("--assets", default=None)
     args = parser.parse_args()
-    root = args.assets or str(Path(args.db).parent / "assets")
+    root = args.assets or default_asset_root(args.db)
     print(json.dumps(run_once(args.db, root) or {"status": "idle"}))
 
 

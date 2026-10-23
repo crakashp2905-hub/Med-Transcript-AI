@@ -7,11 +7,39 @@ This is a **synthetic-data-only development API**: authenticated
 encounters, clinician/tenant isolation, scoped authorization with expiry and
 withdrawal, durable SQLite storage, and transactional metadata audit events.
 It supports idempotent creation, bounded PCM WAV uploads, durable ingest/ASR
-jobs, and immutable timestamped transcripts from a local faster-whisper adapter.
-Note generation, clinician approval and exports are still pending. A pinned
+jobs, immutable timestamped transcripts, a clinician review interface, reviewed-fact
+SOAP drafting, blocking verification, exact-version approval, amendments and
+Markdown/text/JSON exports. A pinned
 tiny English model passed a synthetic smoke test; clinical benchmarking is pending.
 
 ## Run locally
+
+The quickest Windows start builds the interface and starts the API and its
+separate worker. It also creates an audible synthetic consultation where a
+Windows speech voice is available:
+
+```powershell
+./scripts/start.ps1
+```
+
+Open the loopback address printed by the launcher and enter its local access key.
+Use **Open synthetic example** to explore the complete review workflow. Use
+`-WithAsr` to install speech dependencies and configure a local model profile
+as described below; `-WithPostgres` installs the PostgreSQL driver. Model weights
+are never silently downloaded. The access key and development state live under
+ignored `data/`; the key stays in browser memory and is not placed in URLs.
+
+For an existing installed environment and built frontend:
+
+```powershell
+python -m services.launch --demo
+```
+
+The clinician workflow is source review → reviewed facts → saved SOAP draft →
+verification → patient reconfirmation → exact approval → approved export.
+Fixing a transcript invalidates dependent note approval; editing approved content
+requires an amendment. Critical ambiguity cannot be dismissed with an ignore
+button. Clinician additions have their own attribution and no invented citations.
 
 Python 3.11+ is required. From this folder in PowerShell:
 

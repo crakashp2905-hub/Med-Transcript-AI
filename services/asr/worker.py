@@ -9,7 +9,7 @@ from threading import Event, Thread
 from uuid import uuid4
 
 from services.api.ingest import file_sha256, inspect_pcm_wav
-from services.api.storage import Store, processing_allowed
+from services.api.storage import Store, processing_allowed, default_asset_root
 from services.asr.adapter import ASRFailure, FasterWhisperAdapter
 from services.asr.profiles import ASRProfile, canonical_json, content_sha256
 from services.asr.transcripts import build_transcript
@@ -128,6 +128,7 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter):
                     con.execute("INSERT INTO transcript_versions VALUES (?,?,?,?,?,?,?,?)",
                         (transcript_id, job["encounter"], job["upload"], job["id"], version,
                          digest, canonical_json(body), finished.isoformat()))
+                    con.execute("UPDATE encounters SET current_transcript=? WHERE id=?", (transcript_id, job["encounter"]))
                     result = {"transcript_version_id": transcript_id, "sha256": digest,
                               "transcript_url": f"/v1/encounters/{job['encounter']}/transcripts/{transcript_id}"}
                 except ASRFailure as exc:
@@ -147,7 +148,7 @@ def main():
     parser.add_argument("--db", default="data/development.sqlite3")
     parser.add_argument("--assets", default=None)
     args = parser.parse_args()
-    root = args.assets or str(Path(args.db).parent / "assets")
+    root = args.assets or default_asset_root(args.db)
     print(json.dumps(run_once(args.db, root) or {"status": "idle"}))
 
 

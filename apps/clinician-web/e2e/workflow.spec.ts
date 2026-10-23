@@ -1,0 +1,62 @@
+import { test, expect } from '@playwright/test';
+import { readFileSync, mkdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+const root=resolve('../..');
+const token=process.env.MED_TRANSCRIPT_TEST_KEY||JSON.parse(readFileSync(resolve(root,'data/local-config.json'),'utf8')).access_key;
+
+test('clinician reviews evidence, corrects a blocking medication, approves and exports',async({page})=>{
+  const failures:string[]=[];
+  page.on('pageerror',error=>failures.push(error.message));
+  await page.goto('/');
+  await expect(page.getByRole('heading',{name:'Welcome to your workspace'})).toBeVisible();
+  await page.getByLabel('Access key').fill(token);
+  await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+  await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();
+  await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
+  await expect(page.getByLabel('Transcript segment 1')).toContainText('cough');
+  await page.getByLabel('I confirmed supported English.').check();
+  await page.getByLabel('I reviewed source completeness.').check();
+  await page.getByLabel('Review basis').fill('Reviewed every audible interval and the complete synthetic recording.');
+  await page.getByLabel('Correction reason').fill('Confirmed the scripted speaker roles and reviewed all source statements.');
+  await page.getByRole('button',{name:'Save source review',exact:true}).click();
+  await expect(page.getByRole('status')).toContainText('Saved as a new transcript version');
+  await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
+  await expect(page.locator('.fact-card')).toHaveCount(5);
+  const cards=page.locator('.fact-card');
+  for(let index=0;index<5;index++){
+    const card=cards.nth(index);
+    await card.getByRole('combobox',{name:'Subject',exact:true}).selectOption('patient');
+    await card.getByRole('combobox',{name:'Assertion',exact:true}).selectOption(index===3?'negated':'affirmed');
+    await card.getByRole('combobox',{name:'Temporality',exact:true}).selectOption(index===2||index===4?'planned':'current');
+    if(index===2||index===4)await card.getByRole('combobox',{name:'SOAP section',exact:true}).selectOption('plan');
+    if(index===1)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('medication');
+    if(index===3)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('allergy');
+    await card.getByLabel('Content and attribution reviewed').check();
+    await card.getByLabel('Critical details checked').check();
+  }
+  await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
+  await expect(page.getByText('Ambiguous statement',{exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeDisabled();
+  await cards.nth(1).getByLabel('Note statement').fill('Patient takes metformin 500 mg.');
+  await cards.nth(1).getByLabel('Clinical clarification / exclusion reason').fill('Synthetic clinician correction: the medication label was independently checked to confirm 500 mg.');
+  await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Ready for your final review'})).toBeVisible();
+  await page.getByLabel('I rechecked the patient identifiers and the exact saved note.').check();
+  await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeEnabled();
+  await page.getByRole('button',{name:'Approve saved version',exact:false}).click();
+  await expect(page.getByRole('heading',{name:'Approved record'})).toBeVisible();
+  const downloadPromise=page.waitForEvent('download');
+  await page.getByRole('button',{name:'↓ Json',exact:true}).click();
+  const download=await downloadPromise;
+  const dir=resolve(root,'data/ui-screenshots');mkdirSync(dir,{recursive:true});
+  const target=resolve(dir,'approved-note.json');await download.saveAs(target);
+  expect(JSON.parse(readFileSync(target,'utf8')).status).toBe('approved');
+  await page.screenshot({path:resolve(dir,'approved-workspace.png'),fullPage:true});
+  await page.getByRole('button',{name:'Source & transcript',exact:false}).click();
+  await page.setViewportSize({width:390,height:844});
+  await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await page.screenshot({path:resolve(dir,'mobile-source.png'),fullPage:true});
+  expect(failures).toEqual([]);
+});
