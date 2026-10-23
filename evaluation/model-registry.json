@@ -12,21 +12,94 @@
     "maximum_normalized_wer": 0.03,
     "decision": "fails_required_wer_limit_not_production_eligible"
   },
-  "measured_results": ["evaluation/reports/primock57-tiny-en-smoke-2026-10-24.json"],
+  "measured_results": [
+    "evaluation/reports/primock57-tiny-en-smoke-2026-10-24.json",
+    "evaluation/reports/primock57-asr-comparison-2026-10-24.json"
+  ],
   "candidates": [
-    {"id": "faster-whisper-large-v3", "batch": "A", "processing": "local", "role": "integration_control"},
-    {"id": "google-medasr-greedy", "batch": "A", "processing": "local", "role": "medical_dictation"},
-    {"id": "google-medasr-approved-decoder", "batch": "A_extension", "processing": "local", "role": "decoder_comparison"},
-    {"id": "eka-parrotlet-a-en-5b", "batch": "A", "processing": "local", "role": "indian_english_medical"},
-    {"id": "eka-parrotlet-a-2.5-pro-english", "batch": "A", "processing": "local", "role": "medical"},
-    {"id": "omi-med-stt-v1", "batch": "A", "processing": "local", "role": "medical_dialogue"},
-    {"id": "multimed-whisper-small-english", "batch": "B", "processing": "local", "role": "research_checkpoint"},
-    {"id": "whisper-small", "batch": "B", "processing": "local", "role": "matched_control"},
-    {"id": "distil-whisper-large-v3", "batch": "B", "processing": "local", "role": "compact_control"},
-    {"id": "parakeet-tdt-0.6b-v2", "batch": "B", "processing": "local", "role": "omi_parent_control"},
-    {"id": "canary-qwen-2.5b", "batch": "B", "processing": "local", "role": "speech_llm_control"},
-    {"id": "amazon-transcribe-medical", "batch": "C", "processing": "hosted_audio", "role": "commercial_comparator"},
-    {"id": "deepgram-nova-3-medical", "batch": "C", "processing": "hosted_audio", "role": "commercial_comparator"}
+    {
+      "id": "faster-whisper-large-v3",
+      "batch": "A",
+      "processing": "local",
+      "role": "integration_control",
+      "status": "completed",
+      "measured_scope": "six_clip_development_smoke_only",
+      "normalized_wer": 0.07462686567164178,
+      "decision": "fails_required_3_percent_limit",
+      "report": "evaluation/reports/primock57-asr-comparison-2026-10-24.json"
+    },
+    {
+      "id": "google-medasr-greedy",
+      "batch": "A",
+      "processing": "local",
+      "role": "medical_dictation"
+    },
+    {
+      "id": "google-medasr-approved-decoder",
+      "batch": "A_extension",
+      "processing": "local",
+      "role": "decoder_comparison"
+    },
+    {
+      "id": "eka-parrotlet-a-en-5b",
+      "batch": "A",
+      "processing": "local",
+      "role": "indian_english_medical"
+    },
+    {
+      "id": "eka-parrotlet-a-2.5-pro-english",
+      "batch": "A",
+      "processing": "local",
+      "role": "medical"
+    },
+    {
+      "id": "omi-med-stt-v1",
+      "batch": "A",
+      "processing": "local",
+      "role": "medical_dialogue"
+    },
+    {
+      "id": "multimed-whisper-small-english",
+      "batch": "B",
+      "processing": "local",
+      "role": "research_checkpoint"
+    },
+    {
+      "id": "whisper-small",
+      "batch": "B",
+      "processing": "local",
+      "role": "matched_control"
+    },
+    {
+      "id": "distil-whisper-large-v3",
+      "batch": "B",
+      "processing": "local",
+      "role": "compact_control"
+    },
+    {
+      "id": "parakeet-tdt-0.6b-v2",
+      "batch": "B",
+      "processing": "local",
+      "role": "omi_parent_control"
+    },
+    {
+      "id": "canary-qwen-2.5b",
+      "batch": "B",
+      "processing": "local",
+      "role": "speech_llm_control"
+    },
+    {
+      "id": "amazon-transcribe-medical",
+      "batch": "C",
+      "processing": "hosted_audio",
+      "role": "commercial_comparator"
+    },
+    {
+      "id": "deepgram-nova-3-medical",
+      "batch": "C",
+      "processing": "hosted_audio",
+      "role": "commercial_comparator"
+    }
   ],
   "admission_requirements": [
     "Confirm artifact identity and pin revision/runtime before execution",

@@ -4,9 +4,11 @@
 
 The developer provisioned tiny.en to test the local CPU pipeline with a small
 checkpoint. There was no accuracy tournament, automatic model selector or
-evidence that it was the best clinical model. Only tiny.en has measured results
-so far: 16.42% normalized WER on six selected PriMock57 clips from one consultation.
-That fails the user's required **≤3%** maximum. No production model is selected.
+evidence that it was the best clinical model. Initially, only tiny.en had measured
+results: 16.42% normalized WER on six selected PriMock57 clips from one consultation.
+Large-v3 has now also been measured on the identical manifest: **7.46%**, ten
+edits across 134 reference words, no processing failures. Both fail the user's
+required **≤3%** maximum. No production model is selected.
 The synthetic demo reference text is separate from measured ASR output.
 
 The local machine is an Intel i5-1135G7, four cores/eight threads, approximately
@@ -20,7 +22,7 @@ These are planned candidates, not thirteen completed experiments.
 
 | Candidate/configuration | Intended comparison | Measured here? |
 | --- | --- | --- |
-| Whisper large-v3 / faster-whisper | Large general-ASR control | Not yet; local artifact preparation started |
+| Whisper large-v3 / faster-whisper | Large general-ASR control | Six-clip smoke: 7.46%, fails 3% limit |
 | Google MedASR, greedy | Medical dictation challenger | No |
 | Google MedASR, approved external decoder | Decoder variant using the same weights | No |
 | Eka Parrotlet-a-en-5b | Indian-English medical challenger | No |
@@ -39,6 +41,12 @@ artifacts, licenses and runtime adapters must be resolved for each before use.
 For example, Google MedASR uses the Health AI Developer Foundations terms;
 an unofficial site describing it as Apache-licensed must not override the
 [official model card](https://huggingface.co/google/medasr).
+
+The executed comparison, including model revisions and the shared manifest hash,
+is in [the comparison report](../evaluation/reports/primock57-asr-comparison-2026-10-24.json).
+The large-v3 model file matched upstream SHA-256 before inference. Runtime was
+faster-whisper 1.2.1, CPU INT8, four threads, beam five, forced English. The app's
+active model was left unchanged; a better smoke score does not establish approval.
 
 ## How a winner will be selected
 

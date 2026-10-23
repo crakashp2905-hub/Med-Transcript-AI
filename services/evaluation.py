@@ -105,7 +105,7 @@ def run(manifest_path, profile, output_path, retain_hypotheses=False, max_normal
         if retain_hypotheses:
             row.update(reference=sample["reference"], hypothesis=hypothesis)
         rows.append(row)
-    report = {"schema_version": "1.0", "dataset_id": manifest["dataset_id"], "split_role": manifest["split_role"],
+    report = {"schema_version": "1.0", "dataset_id": manifest["dataset_id"], "manifest_sha256": file_sha256(source), "split_role": manifest["split_role"],
         "data_class": manifest["data_class"], "profile_id": profile.profile_id, "profile_sha256": profile.sha256,
         "model_revision": profile.revision, "scoring_profile": "lowercase_words_preserve_decimals_units_negation_v1",
         "sample_count": len(rows), "failed_samples": failures, "reference_words": total_words,
