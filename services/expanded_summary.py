@@ -22,6 +22,8 @@ def summarize(root="."):
     for row in result["ranked"]:
         report = json.loads((root / row["report"]).read_text(encoding="utf-8"))
         job, config = jobs[row["candidate_id"]], report["runtime_configuration"]
+        if config["runtime_version"] != {"whisper": "1.2.1", "onnx": "0.12.0", "omi": "0.2.1"}[job["runtime"]]:
+            raise ValueError("Predeclared runtime version mismatch")
         if job["runtime"] == "whisper":
             if config.get("source_profile_sha256") != job["source_profile_sha256"] or report["profile_id"] != job["profile_id"]:
                 raise ValueError("Predeclared source profile mismatch")
@@ -53,6 +55,7 @@ def markdown(result):
     lines = ["# Expanded local ASR comparison", "",
         f"{result['sample_count']} fixed clips; {result['consultation_groups']} new consultation groups; {result['reference_words']} reference words. Required normalized WER: **≤5%**.", "",
         "All seven local configurations use text-only adapters. References, scorer, failure policy and model artifacts were fixed before inference. No paid calls.", "",
+        "[Preserved Omi first attempt and Windows loader repair](expanded-omi-runtime-repair-2026-10-24.md). The final comparison uses its complete repaired rerun, not selected successful clips.", "",
         "| Rank | Model/configuration | Normalized WER | Edits / words | Failed clips | 5% gate |",
         "| --- | --- | ---: | ---: | ---: | --- |"]
     for row in result["models"]:

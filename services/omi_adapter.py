@@ -1,10 +1,13 @@
 """Pinned Omi CPU C API lifecycle for text-only benchmarks, with bounded DLL handles."""
 
 import wave
+import importlib.metadata
 
 
 class OmiPredictor:
     def __init__(self, model_dir, revision):
+        if importlib.metadata.version("omi-med-stt") != "0.2.1":
+            raise ValueError("This lifecycle adapter requires pinned omi-med-stt 0.2.1")
         import numpy as np
         from omi_stt import cpp_runtime as runtime
 
