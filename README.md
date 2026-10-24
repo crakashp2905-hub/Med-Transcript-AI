@@ -14,7 +14,9 @@ tiny English model passed a synthetic smoke test; clinical benchmarking is pendi
 
 ## Measured ASR ranking
 
-The user revised the maximum normalized WER to **5%**. The expanded comparison uses a predeclared 120-clip corpus from 20 new consultations across all five recording days, with all seven local configurations evaluated as text-only recognizers. Historical datasets and results remain unchanged.
+The user revised the maximum normalized WER to **5%**. The expanded comparison uses **118 frozen clips from 20 new consultations across all five recording days: 2,264 reference words and 13m 50s of audio**, with all seven local configurations evaluated as text-only recognizers. The initial target was 120 clips; one sparse role supplied one eligible utterance instead of three. Historical datasets and results remain unchanged.
+
+During execution, [local progress](http://127.0.0.1:8766/expanded-progress.html) refreshes automatically. To serve it after restarting: run `python -m services.benchmark_progress --watch` and, in another terminal, `python -m http.server 8766 --bind 127.0.0.1 --directory evaluation`. The public evaluation directory is served locally; the private application data directory is excluded. Scores appear only for complete integrity-checked runs.
 
 The [follow-up validation](evaluation/reports/follow-up-validation-2026-10-24.md)
 tested the two screening leaders on 30 fixed clips from five additional

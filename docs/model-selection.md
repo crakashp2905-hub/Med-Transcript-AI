@@ -1,6 +1,6 @@
 # Model selection status — 24 October 2026
 
-The current user requirement is **≤5% normalized WER**. The original screening and five-group follow-up below used the historical 3% gate. The expanded 120-clip comparison is predeclared in `evaluation/expanded-protocol-v1.json` and tests all seven local configurations uniformly as text-only recognizers. Access and resource blockers remain explicit; hosted calls remain disabled.
+The current user requirement is **≤5% normalized WER**. The original screening and five-group follow-up below used the historical 3% gate. The expanded 118-clip comparison is predeclared in `evaluation/expanded-protocol-v1.json` and tests all seven local configurations uniformly as text-only recognizers. Access and resource blockers remain explicit; hosted calls remain disabled.
 
 ## Why tiny.en is currently running
 
