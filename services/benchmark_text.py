@@ -11,11 +11,22 @@ from pathlib import Path
 
 from services.api.ingest import file_sha256, inspect_pcm_wav
 from services.asr.profiles import canonical_json
-from services.evaluation import score, wer_gate
+from services.evaluation import PROJECT_MAX_NORMALIZED_WER, score, wer_gate
 
 
-def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, cache_dir=None):
-    sys.path.insert(0, str(Path(package_dir).resolve()))
+def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, cache_dir=None,
+        maximum=PROJECT_MAX_NORMALIZED_WER, profiles=None, profile_id=None):
+    wer_gate({"reference_words": 1, "normalized_edits": 0, "failed_samples": 0}, maximum)
+    if maximum > PROJECT_MAX_NORMALIZED_WER:
+        raise ValueError("Project policy forbids a normalized WER maximum above 5%")
+    if package_dir:
+        sys.path.insert(0, str(Path(package_dir).resolve()))
+    profile = None
+    if runtime == "whisper":
+        from services.asr.profiles import load_profiles
+        profile = load_profiles(profiles)[profile_id]
+        profile.verify_artifacts()
+        model_dir, revision = profile.model_dir, profile.revision
     model = Path(model_dir).resolve()
     artifacts = {p.name: file_sha256(p) for p in model.iterdir() if p.is_file()}
     if not artifacts or any(name.endswith('.partial') for name in artifacts):
@@ -36,13 +47,33 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
         from omi_stt.cpp_runtime import transcribe_cpp
         predict = lambda path: transcribe_cpp([path], str(model), auto_install=False, cpp_backend="cpu", threads=4)[0]
         profile_id, package = "omi-v1-gguf-q8-cpu-v1", "omi-med-stt"
+    elif runtime == "whisper":
+        import wave
+        import numpy as np
+        from faster_whisper import WhisperModel
+        if importlib.metadata.version("faster-whisper") != profile.runtime_version:
+            raise ValueError("Profile/runtime mismatch")
+        recognizer = WhisperModel(str(model), device=profile.device, compute_type=profile.compute_type,
+            cpu_threads=profile.cpu_threads, num_workers=1, local_files_only=True)
+        def predict(path):
+            with wave.open(str(path), "rb") as audio:
+                pcm = np.frombuffer(audio.readframes(audio.getnframes()), dtype="<i2")
+            segments, _ = recognizer.transcribe(pcm.astype(np.float32)/32768.0,
+                language="en", task="transcribe", beam_size=profile.beam_size, temperature=0.0,
+                vad_filter=False, word_timestamps=False, condition_on_previous_text=False, log_progress=False)
+            return " ".join(s.text.strip() for s in segments)
+        profile_id, package = profile.profile_id, "faster-whisper"
     else:
         raise ValueError("Unknown runtime")
     config = {"engine": runtime, "profile_id": profile_id, "revision": revision,
         "runtime_version": importlib.metadata.version(package), "artifacts": artifacts,
         "device": "cpu", "threads": 4, "timestamp_support": "not_provided_text_only_evaluation"}
+    if profile:
+        config.update(source_profile_sha256=profile.sha256, beam_size=profile.beam_size,
+            compute_type=profile.compute_type, language="en", temperature=0.0,
+            vad_filter=False, condition_on_previous_text=False)
     path = Path(manifest_path).resolve()
-    manifest = json.loads(path.read_text())
+    manifest = json.loads(path.read_text(encoding="utf-8"))
     if manifest.get("data_class") not in ("synthetic", "approved_public") or not manifest.get("rights_reviewed"):
         raise ValueError("Only approved public/synthetic benchmarks are allowed")
     rows = []
@@ -81,7 +112,8 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
         "failure_policy": "empty_hypothesis_full_reference_deletions",
         "critical_error_adjudication": "pending_clinician_review", "clinical_release_gate": "not_evaluated",
         "api_integration_gate": "text_only_adapter_not_admitted_for_clinical_publication", "samples": rows}
-    report["wer_gate"] = wer_gate(report, .03)
+    report["wer_gate"] = wer_gate(report, maximum)
+    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     Path(output_path).write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps({k: v for k, v in report.items() if k not in ("samples", "runtime_configuration")}))
     return report
@@ -90,13 +122,21 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True)
-    parser.add_argument("--runtime", choices=["onnx", "omi"], required=True)
-    parser.add_argument("--model-dir", required=True)
-    parser.add_argument("--revision", required=True)
-    parser.add_argument("--package-dir", required=True)
+    parser.add_argument("--runtime", choices=["onnx", "omi", "whisper"], required=True)
+    parser.add_argument("--model-dir")
+    parser.add_argument("--revision")
+    parser.add_argument("--package-dir")
+    parser.add_argument("--profiles")
+    parser.add_argument("--profile-id")
+    parser.add_argument("--max-normalized-wer", type=float, default=PROJECT_MAX_NORMALIZED_WER)
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
-    report = run(args.manifest, args.runtime, args.model_dir, args.revision, args.package_dir, args.out)
+    if args.runtime == "whisper" and not (args.profiles and args.profile_id):
+        parser.error("Whisper requires --profiles and --profile-id")
+    if args.runtime != "whisper" and not (args.model_dir and args.revision and args.package_dir):
+        parser.error("ONNX/Omi require --model-dir, --revision and --package-dir")
+    report = run(args.manifest, args.runtime, args.model_dir, args.revision, args.package_dir, args.out,
+        maximum=args.max_normalized_wer, profiles=args.profiles, profile_id=args.profile_id)
     raise SystemExit(0 if report["wer_gate"]["status"] == "pass" else 2)
 
 

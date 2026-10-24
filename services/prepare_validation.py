@@ -20,7 +20,9 @@ def prepare(destination, protocol_path="evaluation/validation-protocol-v1.json")
         raise ValueError("Validation corpus already exists; do not overwrite a frozen manifest")
     root.mkdir(parents=True, exist_ok=True)
     sources, samples = [], []
-    download(f"{RAW}/LICENSE.md", root / "LICENSE.md", 100_000)
+    license_text = download(f"{RAW}/LICENSE.md", root / "LICENSE.md", 100_000).decode("utf-8")
+    if "Creative Commons Attribution 4.0 International" not in license_text:
+        raise ValueError("Unexpected upstream dataset license")
     for consultation in protocol["consultations"]:
         if not re.fullmatch(r"day\d+_consultation\d+", consultation):
             raise ValueError("Invalid source consultation")
@@ -44,7 +46,7 @@ def prepare(destination, protocol_path="evaluation/validation-protocol-v1.json")
                 raise ValueError(f"Normalization failed: {result['error_code']}")
             chosen = [(a, b, words) for a, b, words in intervals(text)
                       if 4 <= b-a <= 20 and len(words.split()) >= 5 and "<" not in words][:protocol["utterances_per_role"]]
-            if len(chosen) != protocol["utterances_per_role"]:
+            if not chosen or (protocol.get("require_full_role_count", True) and len(chosen) != protocol["utterances_per_role"]):
                 raise ValueError("Predeclared selection cannot be fulfilled; do not silently substitute samples")
             with wave.open(str(normalized), "rb") as audio:
                 rate, frames = audio.getframerate(), audio.getnframes()
@@ -78,8 +80,9 @@ def prepare(destination, protocol_path="evaluation/validation-protocol-v1.json")
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--destination", default="data/datasets/primock57-validation-v1")
+    parser.add_argument("--protocol", default="evaluation/validation-protocol-v1.json")
     args = parser.parse_args()
-    print(prepare(args.destination))
+    print(prepare(args.destination, args.protocol))
 
 
 if __name__ == "__main__":

@@ -14,7 +14,7 @@ from services.asr.profiles import load_profiles
 from services.asr.transcripts import build_transcript
 
 
-PROJECT_MAX_NORMALIZED_WER = 0.03
+PROJECT_MAX_NORMALIZED_WER = 0.05
 
 
 def tokens(text, normalized=True):
@@ -65,7 +65,7 @@ def wer_gate(report, maximum):
 def run(manifest_path, profile, output_path, retain_hypotheses=False, max_normalized_wer=PROJECT_MAX_NORMALIZED_WER):
     wer_gate({"reference_words": 1, "normalized_edits": 0, "failed_samples": 0}, max_normalized_wer)
     if max_normalized_wer > PROJECT_MAX_NORMALIZED_WER:
-        raise ValueError("Project policy forbids a normalized WER maximum above 3%")
+        raise ValueError("Project policy forbids a normalized WER maximum above 5%")
     source = Path(manifest_path).resolve()
     manifest = json.loads(source.read_text(encoding="utf-8"))
     if manifest.get("data_class") not in ("synthetic", "approved_public") or not manifest.get("rights_reviewed"):
@@ -127,7 +127,7 @@ def main():
     parser.add_argument("--profile-id", required=True)
     parser.add_argument("--out", default="data/evaluation-results.json")
     parser.add_argument("--retain-hypotheses", action="store_true")
-    parser.add_argument("--max-normalized-wer", type=float, default=PROJECT_MAX_NORMALIZED_WER, help="Maximum aggregate WER fraction, default 0.03 (3%%). May be stricter, never looser than project policy. Failure exits 2.")
+    parser.add_argument("--max-normalized-wer", type=float, default=PROJECT_MAX_NORMALIZED_WER, help="Maximum aggregate WER fraction, default 0.05 (5%%). May be stricter, never looser than project policy. Failure exits 2.")
     args = parser.parse_args()
     profile = load_profiles(args.profiles).get(args.profile_id)
     if profile is None:

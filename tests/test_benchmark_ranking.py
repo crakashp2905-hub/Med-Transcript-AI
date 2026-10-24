@@ -80,7 +80,7 @@ def test_dataset_lock_cannot_relax_user_wer_limit(corpus):
     body = json.loads(lock.read_text())
     body["maximum_normalized_wer"] = .1
     lock.write_text(json.dumps(body))
-    with pytest.raises(ValueError, match="fixed 3%"):
+    with pytest.raises(ValueError, match="above 5%"):
         rank(path, lock, [], root)
 
 

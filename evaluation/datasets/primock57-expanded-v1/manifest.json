@@ -1,0 +1,1519 @@
+{
+  "dataset_id": "primock57-20consultations-120clips-v1",
+  "split_role": "new_consultation_group_development_validation_not_clinical_acceptance",
+  "data_class": "approved_public",
+  "rights_reviewed": true,
+  "license_id": "CC-BY-4.0",
+  "attribution": "PriMock57: A Dataset Of Primary Care Mock Consultations, Alex Papadopoulos Korfiatis, Francesco Moramarco, Radmila Sarac and Aleksandar Savkov (2022), Babylon Health. CC BY 4.0. Source: https://github.com/babylonhealth/primock57",
+  "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+  "protocol_sha256": "5268d7cd6ce24b94ee435cbde97e980e2ff6f8c99550a48f859bf36945b3e95d",
+  "selection": "First up to three upstream intervals per role with duration 4\u201320 seconds, at least five whitespace-delimited reference words and no annotation tags; at least one per role required; fixed before any model inference.",
+  "changes": "Mono 16kHz PCM16; utterance crops with 250ms padding; references unchanged.",
+  "limitations": [
+    "Public mock consultations, selected clean utterances, separate speaker channels",
+    "New groups relative to the project screening set; speaker independence and model-training independence are not established",
+    "No prompt changes, model tuning, reference editing or exclusions based on inference results"
+  ],
+  "sources": [
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation07_doctor.wav",
+      "audio_sha256": "2734b0e1aa2c8c6aa7c2c7abf28ab4d10d31db15b940bb500f8a59a25412f266",
+      "annotation_sha256": "3f13e35fbee17813544ad8b4ce64964aae59f5ed9192c3205f73d279a2e1275c"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation07_patient.wav",
+      "audio_sha256": "a70715b454787a1b056b1d3d230e1ad1e2a44be42ff45c1596f55f19886bce5d",
+      "annotation_sha256": "5d84b563fce8fdd9fc40691aaeaece9724612381227e1c1272e0dd2466d4a8c3"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation08_doctor.wav",
+      "audio_sha256": "582d5bcecc34fcd6facc421909b3211d83cc6894f1d05f4625ff9fa7f4a03d6d",
+      "annotation_sha256": "3219c5cc64fd07d504bcf46b4222cc1679ccd9e77c1d00730ecdeb88046326e7"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation08_patient.wav",
+      "audio_sha256": "2c51d6f758086b8bab433135026ba2203f7109f5aa2f4db51437c76a27863b88",
+      "annotation_sha256": "eb5e6f5e75c738e05103efa8c1c0c6793446c0334b21c23e210a1c079023e445"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation09_doctor.wav",
+      "audio_sha256": "814e22bd48ab72bc339a08d8b72b0f8838174de5f4a9ece150db99a322b58a08",
+      "annotation_sha256": "04944863f322f2e79d0e21dcd0fc1a4171887d25642b9b12867655c7b0e46bdc"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation09_patient.wav",
+      "audio_sha256": "4aac99fa5e9c69a5b92356c05cb96436e8f37e60323bed2d7ec8d44845af2c8a",
+      "annotation_sha256": "9cd4163e76fde7ccaac92dd22c4f0329a3eaf30fd6a3df90a34965fa928eb4c5"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation10_doctor.wav",
+      "audio_sha256": "9168dba564fbdd79e8e2464501e0f3fc83f7f45e263653f64b3fc3689a0946a1",
+      "annotation_sha256": "ee0368edd55f5fc942afaa97c1cb4d307647b4fb9bad5b0eafd398b27d5aeb5e"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation10_patient.wav",
+      "audio_sha256": "11c406bbc91b4c5c840cef58979ca45f51fdd787ed15cfb079df26ef2a37c874",
+      "annotation_sha256": "52eff9121eac66bd6ae82bbde724da479b94339865f2850bc5918909fbd217b5"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day2_consultation01_doctor.wav",
+      "audio_sha256": "e320bd80a986946b931a3bfb45ed629e7cba3d2510c6e44a3ad4978864fe5af3",
+      "annotation_sha256": "b11a57a887d60fc5dfd497718f28f4b0de12d25444cb06a08b1adf6cfc6645e7"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day2_consultation01_patient.wav",
+      "audio_sha256": "6ea2d231201e9ebf5f04e8cd4ad19f4d32f040dc2c16505c19ed6ea89e273a5c",
+      "annotation_sha256": "c116d3285d9ef632d1cd2d20aeed162978cf6416e185558a2f5a02ea07e04da1"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day2_consultation02_doctor.wav",
+      "audio_sha256": "1363f8a876b40cd980fd56bfb6e343dd803056f33a166535fc9fc33a14481b67",
+      "annotation_sha256": "66aa5caaf88646cb637bde510919b86fc4d67584529b8dc0d892a81a3eb02120"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day2_consultation02_patient.wav",
+      "audio_sha256": "4f6fff057ff86c3f3e19a7c34dc0dd62996f7105480ec2e87273a9f79d5da745",
+      "annotation_sha256": "289fba3dcbb9ce74e832a4e96eba5be7104c219178b9413c23ea596ab3155faa"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day2_consultation03_doctor.wav",
+      "audio_sha256": "748f022c320a6044cc4c1dd39061a01b428b37e509a89e195db3aa3c2b1feb46",
+      "annotation_sha256": "df33bf5710284b64723cca9d6300f7f87792d3523c43a1f524573a8c517009ff"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day2_consultation03_patient.wav",
+      "audio_sha256": "9070ca8b1d2fcfb0efb55b6c17704a779161bf75c7f8fda59082bb19f674e3c1",
+      "annotation_sha256": "64a0237933be893f2314534a05c4f2a5f3f39d1e606cf5b920a443460ef06de9"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day2_consultation04_doctor.wav",
+      "audio_sha256": "b87fd8f5a764f3b4982d00597ce7d7122d075a23c1137ab71a5d8750948cabff",
+      "annotation_sha256": "fa10303b37a97184e29b987f70d514dc00a1824c0ae85b26d08fc80eb0103929"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day2_consultation04_patient.wav",
+      "audio_sha256": "f6e721edb0941dd6c86464be98c31edce5754678678fad23e4968a5106f75097",
+      "annotation_sha256": "1b34136477b0fa6cc1bd4eb6336ef26a3adae95e89afc428d8d40576f8356ba7"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day3_consultation01_doctor.wav",
+      "audio_sha256": "9d1ea1279daf51e9010b1d9107793d377df2b2369a818a5e4538e5a6fd914eee",
+      "annotation_sha256": "f1d76e0088006965f7c795558c60e10ddf4a4b36d4127f44f54e8b7305ffaf35"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day3_consultation01_patient.wav",
+      "audio_sha256": "fb483e7da6701cdb5520551d35237a4deb6cdd730a086b4088a0f12a789d95fa",
+      "annotation_sha256": "d85d5eccd5c1b2032e550c5d2f04605a92dc5666442fdb772e3ee7e907c0b5df"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day3_consultation02_doctor.wav",
+      "audio_sha256": "b36bd6dbc1c0c443c0140c24903645f96d607e160920882ac2a5cd45a63c0842",
+      "annotation_sha256": "7b49ec8d6aabe0fcf58ad333425e7589a651e1b289cedf95267d4a73cfcb0271"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day3_consultation02_patient.wav",
+      "audio_sha256": "a3ed2f5f9fb017e19107d250e6b65acdbac8b8d6de840762e86e7d64d3af6027",
+      "annotation_sha256": "8b32093006f860efdd931c2fdc76d303940f4a3c7726fc9b02f60b5653ee028c"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day3_consultation03_doctor.wav",
+      "audio_sha256": "b7696bb0d44abec36bf5532489c457be408f470f335263de7683986797d45cd4",
+      "annotation_sha256": "bd5c6e059fb08e133c7fcfb00af486bc59e5d8883333e3795e74297da457fcb5"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day3_consultation03_patient.wav",
+      "audio_sha256": "0b7823499b467c4f9a13fc3fbb2e6e92b79a18471efad4cafa9d29cee91b8d47",
+      "annotation_sha256": "f0dc1621cec01e967d8e098eb7408761faef99b5d1bdd5a2478de707abdb04d0"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day3_consultation04_doctor.wav",
+      "audio_sha256": "07fbfc44a33d83dc177d519c59d10a9c8dba14cd26e415467dc032a04efaeb7b",
+      "annotation_sha256": "ccc5055fa2195d68de62b4beda20b3940eb5335db5c90e9f8e9ae7edbf63f878"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day3_consultation04_patient.wav",
+      "audio_sha256": "b155fb8fdf901a02ef240a7ee60d631bb001c328c12fa783a76dbd712ae6dc1c",
+      "annotation_sha256": "8a973afa50974aa74b52517e6267d1c59c74803e396a9d4e2b906d439cc36119"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day4_consultation01_doctor.wav",
+      "audio_sha256": "67a6ca079870b299c106c9db5f767d6e57a084ca612c750f936389475261ffb3",
+      "annotation_sha256": "5876bd0ea1ed20ca79c418f8c4e730914d9a85a790ac40388c9f5b9bb1a1d158"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day4_consultation01_patient.wav",
+      "audio_sha256": "740fc5e712507be2a132a0080038760bf5ff6c7de0bfd9b3bb121a11dceed4c8",
+      "annotation_sha256": "3ee459bab3f69e84dd9cc007843d5c7b67c1cdd52456d54dd40c09d60c09df38"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day4_consultation02_doctor.wav",
+      "audio_sha256": "f92750170f95b400142b76223b9ed13570640ab206c952eaf76f89d3e66ad1ba",
+      "annotation_sha256": "a88e821730345c165fe55d7ad8900dfc6175c841b3dea7800a4ad1a50ac65b9d"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day4_consultation02_patient.wav",
+      "audio_sha256": "79678959189214b0d23074338310dbc01cd1f22cc09a966c1f55541d4309fcf1",
+      "annotation_sha256": "2b96d4fefd39e3ceaaa981aec8bbc82af2ca09b7afc311d00d84c8014d3b11c7"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day4_consultation03_doctor.wav",
+      "audio_sha256": "825526c3d48d1840480077e90ffa960e754b00eaebb1962ecaf6591ec4418525",
+      "annotation_sha256": "ab16b82a5797c39776413d0253655b791fd048f97d64669c756981fbbc12a310"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day4_consultation03_patient.wav",
+      "audio_sha256": "32e65ce449801376fac1bf77c2d3045070056bed1939b77799339e68fe95e504",
+      "annotation_sha256": "4375157295755529e83b4efc9da406e74903eff19b88cd770c659218c640637c"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day4_consultation04_doctor.wav",
+      "audio_sha256": "9451c62020040cce5f90295b96a582d4795d90e19d2560b40f79321e6cc841cd",
+      "annotation_sha256": "4079578f50cfc2d098632a6d1070931d9e13aea5b91973ef2179b9f1ac6e42ef"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day4_consultation04_patient.wav",
+      "audio_sha256": "fd29f5032e08a2699358ab22bd8128722ee01f7fda67944a008cb5c389587f1f",
+      "annotation_sha256": "ce31e2886a48e73ac18507eeb2d85ccef8fa3cc05eb45fbc679e4b87226855f1"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation01_doctor.wav",
+      "audio_sha256": "8efdd8539941de82f7412e5ba3cace71d0c8ee118023bac2db63f20824cc191a",
+      "annotation_sha256": "a91469ed0dcc5de451fb369e3cb5674d3839b1b87994f05d2a255f99ad5d2aae"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation01_patient.wav",
+      "audio_sha256": "005d617220672d7299ac167be73cf502703da28e794d910a27b7d52f09d5f5f8",
+      "annotation_sha256": "6ac43091e009c3a36b034a644a102a36f88880478966ef25b405c5c32bf72493"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation02_doctor.wav",
+      "audio_sha256": "228faafe972c90dbcfab2734f4bfc887ef6cb01476bb3befa0690b2f0cf976c3",
+      "annotation_sha256": "9679f24dfe3102cdb11c237e65b368d8cdad4de06043f5c1ff5c6bc087ed35b6"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation02_patient.wav",
+      "audio_sha256": "fbaee1e0e21f9096731f3b2c80419bb36be8ec402f837797ca7da0daa65c6a5a",
+      "annotation_sha256": "a2bcb5cfa2f00045190d442580417cc47e80c78f3476424f6db995ae79177862"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation03_doctor.wav",
+      "audio_sha256": "54b5af05ec90eeb6ab64c90519574d8ca80933cb2b851733a24e2ae080b29942",
+      "annotation_sha256": "38b91e45c3f6470f695b944815fa3980b2b47c145b0aaa67e825fe2b3606160d"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation03_patient.wav",
+      "audio_sha256": "ccf5970ee07df481d8263127d956aa6f80540921a58bfebd62133df9c8c9de59",
+      "annotation_sha256": "d55d04f79fcb8dc0e3a1a330355edb44a4746b6be55ace280b80a7a9055097c7"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation04_doctor.wav",
+      "audio_sha256": "e72ccd8790aa16d90257a5d1e7ef2a7dca180de6635aafa273ea72bd3c787001",
+      "annotation_sha256": "97b654cc86270f98214c43914314b250a9777e9082d71bd0c0aabbffe8cb6246"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation04_patient.wav",
+      "audio_sha256": "f8a83aa585de75013567dd328de9e0a53245ea352f3e5820d1271080061972f6",
+      "annotation_sha256": "338706d00afd436bedc1c617625e47b28cd00c71ed0e989d126b08ea6a4ded51"
+    }
+  ],
+  "samples": [
+    {
+      "sample_id": "day1_consultation07_doctor.utterance01",
+      "group_id": "day1_consultation07",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation07_doctor.utterance01.wav",
+      "audio_sha256": "96ad266e58f24fffd5b929bc8d31995afc75be8b014a2a939e1e48de7c5e23d2",
+      "reference": "Well I will certainly try my best, for you. Um, can you tell me a bit more about what's been going on?",
+      "source_start_seconds": 27.6554375,
+      "source_end_seconds": 32.946625
+    },
+    {
+      "sample_id": "day1_consultation07_doctor.utterance02",
+      "group_id": "day1_consultation07",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation07_doctor.utterance02.wav",
+      "audio_sha256": "ffad68cbb58de7ea123186854ff208cd8546c5adcacfb1beb09cc7178dad5e76",
+      "reference": "OK, OK. Fine. Um, moving down to your chest. Um, how's your breathing been?",
+      "source_start_seconds": 213.1110625,
+      "source_end_seconds": 220.382625
+    },
+    {
+      "sample_id": "day1_consultation07_doctor.utterance03",
+      "group_id": "day1_consultation07",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation07_doctor.utterance03.wav",
+      "audio_sha256": "5a482dbc95710bb8786b2fc747fff8bea533072af671d18feee65e876dfcf9a8",
+      "reference": "No pain, OK, OK. Have you noticed yourself, any, any, any temperatures or fevers? Um, feeling hot and cold? Sweaty?",
+      "source_start_seconds": 267.6644375,
+      "source_end_seconds": 276.209
+    },
+    {
+      "sample_id": "day1_consultation07_patient.utterance01",
+      "group_id": "day1_consultation07",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation07_patient.utterance01.wav",
+      "audio_sha256": "5168b735789834f9c62cf61e2f2fdff9416e81c33c3d1d2c4a80508c20f3bdc1",
+      "reference": "Uh, I just feel a bit, run-down, you know I've got, a cough, a cold.",
+      "source_start_seconds": 34.2078125,
+      "source_end_seconds": 42.1051875
+    },
+    {
+      "sample_id": "day1_consultation07_patient.utterance02",
+      "group_id": "day1_consultation07",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation07_patient.utterance02.wav",
+      "audio_sha256": "bab6301edd40081ebbe0c00965672ff61bfa3ff7aa4820c8713d0279f060ad3f",
+      "reference": "And they're in the, they're not even in the top division, uh, of the Scottish, league. They're actually in the, the, the championship, which is the league below that, and they're, bottom of the table.",
+      "source_start_seconds": 125.51175,
+      "source_end_seconds": 138.07675
+    },
+    {
+      "sample_id": "day1_consultation07_patient.utterance03",
+      "group_id": "day1_consultation07",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation07_patient.utterance03.wav",
+      "audio_sha256": "b2f15b78cbd32036cfdce0f0984bd18e7bbacdcfc49d409499e7a7d48cd785ea",
+      "reference": "It it's, just kinda, like you know when you're, when you're bending like, elbows and knees and just, just a wee bit, kinda stiff, you know?",
+      "source_start_seconds": 395.5183125,
+      "source_end_seconds": 403.1195625
+    },
+    {
+      "sample_id": "day1_consultation08_doctor.utterance01",
+      "group_id": "day1_consultation08",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation08_doctor.utterance01.wav",
+      "audio_sha256": "bbe572fc34902eadb688a18da8892cf385f01099bbf3e9b0e2b661b4b08b2125",
+      "reference": "Hello. Uh, just before we go any further, can I confirm your name and, age please?",
+      "source_start_seconds": 6.799375,
+      "source_end_seconds": 12.7018125
+    },
+    {
+      "sample_id": "day1_consultation08_doctor.utterance02",
+      "group_id": "day1_consultation08",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation08_doctor.utterance02.wav",
+      "audio_sha256": "18ce01a92205f5f321b7b02ab56aa079153a2c9e2b7a7d9f0014e4237baed886",
+      "reference": "OK. Um, sorry to hear work's been so stressful. Um.",
+      "source_start_seconds": 29.213625,
+      "source_end_seconds": 34.3434375
+    },
+    {
+      "sample_id": "day1_consultation08_doctor.utterance03",
+      "group_id": "day1_consultation08",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation08_doctor.utterance03.wav",
+      "audio_sha256": "378c52cf56b58632d3b651ce3315df5ccfa38d1c492f9cb48d57e7392f633e1b",
+      "reference": "So, uh, did it, did it come about quite suddenly, or was it more, kind of a gradual thing?",
+      "source_start_seconds": 51.909125,
+      "source_end_seconds": 56.7569375
+    },
+    {
+      "sample_id": "day1_consultation08_patient.utterance01",
+      "group_id": "day1_consultation08",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation08_patient.utterance01.wav",
+      "audio_sha256": "451e6e7f3fd12d7dd3a52fd751cc084d7962e48ae91879485a00285e8ab4441f",
+      "reference": "Um, so basically, I've been really stressed at work for the past few days.",
+      "source_start_seconds": 18.86425,
+      "source_end_seconds": 24.203
+    },
+    {
+      "sample_id": "day1_consultation08_patient.utterance02",
+      "group_id": "day1_consultation08",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation08_patient.utterance02.wav",
+      "audio_sha256": "32c6199003d4f9b0dc64e6b68a3bb8c7001ceda12b3f774a9eef4354355d13f6",
+      "reference": "And, I've realised that I've got, really dry itchy skin.",
+      "source_start_seconds": 23.703,
+      "source_end_seconds": 29.425125
+    },
+    {
+      "sample_id": "day1_consultation08_patient.utterance03",
+      "group_id": "day1_consultation08",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation08_patient.utterance03.wav",
+      "audio_sha256": "d6abff24c9cf00dc44d76cfc9ae2a743bd9e3f49746a262cf0058c5155bf60e1",
+      "reference": "All over my arms, um, and my hands mainly.",
+      "source_start_seconds": 41.2785625,
+      "source_end_seconds": 45.85
+    },
+    {
+      "sample_id": "day1_consultation09_doctor.utterance01",
+      "group_id": "day1_consultation09",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation09_doctor.utterance01.wav",
+      "audio_sha256": "fad5463db01f28db5dada80f743c71492c0281145cfa3074f580018d7031d3fa",
+      "reference": "No, OK, fine. With those symptoms, have you noticed any other symptoms like nausea, vomiting?",
+      "source_start_seconds": 143.6523125,
+      "source_end_seconds": 150.084625
+    },
+    {
+      "sample_id": "day1_consultation09_doctor.utterance02",
+      "group_id": "day1_consultation09",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation09_doctor.utterance02.wav",
+      "audio_sha256": "62b7e53ec426e9c223c06bbed8cb5861a3f3420b31535f5d005cc4759443294c",
+      "reference": "No fever, OK, fine, sorry. Um, OK. Um, in terms of your bowel, are your bowels working OK?",
+      "source_start_seconds": 167.9530625,
+      "source_end_seconds": 174.3403125
+    },
+    {
+      "sample_id": "day1_consultation09_doctor.utterance03",
+      "group_id": "day1_consultation09",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation09_doctor.utterance03.wav",
+      "audio_sha256": "46a88abe49cb1ea855d9c681f19b00f96d1c9564348bfd951cd0cdacc04e07b0",
+      "reference": "Fine, OK. Um, have you noticed any other discharge from, from down below?",
+      "source_start_seconds": 205.80275,
+      "source_end_seconds": 211.663625
+    },
+    {
+      "sample_id": "day1_consultation09_patient.utterance01",
+      "group_id": "day1_consultation09",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation09_patient.utterance01.wav",
+      "audio_sha256": "e5128b516976af6305d87022651a2051c6ca04aa12abd72560f4d4d36b6333f7",
+      "reference": "Um, it's, it's not too bad, it's sort of like a stinging kind of pain. Um.",
+      "source_start_seconds": 47.5311875,
+      "source_end_seconds": 53.206
+    },
+    {
+      "sample_id": "day1_consultation09_patient.utterance02",
+      "group_id": "day1_consultation09",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation09_patient.utterance02.wav",
+      "audio_sha256": "278859e851b8a45c62843bbfc96f260a110021c06ebb1eb770a5147e0ee5c4ec",
+      "reference": "And uh, yeah I also maybe sometimes get some like, pain kind of lower down in my tummy, when I, when I go to the bathroom. Uh, yeah.",
+      "source_start_seconds": 58.302875,
+      "source_end_seconds": 68.6414375
+    },
+    {
+      "sample_id": "day1_consultation09_patient.utterance03",
+      "group_id": "day1_consultation09",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation09_patient.utterance03.wav",
+      "audio_sha256": "238fd542567d474e45bb6d1a2cb7b0f0471a60b0b5fd982310f92a4bedbdca1f",
+      "reference": "Um, there was a little bit of blood earlier today, um, but besides that, not at all, no. Um.",
+      "source_start_seconds": 106.9036875,
+      "source_end_seconds": 115.2880625
+    },
+    {
+      "sample_id": "day1_consultation10_doctor.utterance01",
+      "group_id": "day1_consultation10",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation10_doctor.utterance01.wav",
+      "audio_sha256": "79aff3fb1f6d0e599a456e86c26c1ae960a44986ea0bf85bbabf49c02194a99f",
+      "reference": "OK, fine. Um, when was the last time you had um, unprotected sex?",
+      "source_start_seconds": 252.2976875,
+      "source_end_seconds": 260.5081875
+    },
+    {
+      "sample_id": "day1_consultation10_doctor.utterance02",
+      "group_id": "day1_consultation10",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation10_doctor.utterance02.wav",
+      "audio_sha256": "d3b60f27415126597b9d5e27488d3949153992374abfd4c5628814173f92f9eb",
+      "reference": "Fine, in terms of your general health otherwise at the moment are you, uh eating and drinking OK?",
+      "source_start_seconds": 302.119,
+      "source_end_seconds": 309.563875
+    },
+    {
+      "sample_id": "day1_consultation10_doctor.utterance03",
+      "group_id": "day1_consultation10",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation10_doctor.utterance03.wav",
+      "audio_sha256": "1b16785da05f45e75d5f9dd7daaf6c8573f331767ef6a97a5b639d9987690be9",
+      "reference": "But, uh, you know I do strongly advise you to you know, um, make it a regular habit if you can. Um, just for your, just for your general health moving forwards, OK?",
+      "source_start_seconds": 339.9953125,
+      "source_end_seconds": 350.67475
+    },
+    {
+      "sample_id": "day1_consultation10_patient.utterance01",
+      "group_id": "day1_consultation10",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation10_patient.utterance01.wav",
+      "audio_sha256": "58f2d789e3e5c4749c3200d835904cee5109134842c57d81a27e09f0e137f4e7",
+      "reference": "Sure, um, I'm Amanda Jackson and I'm nineteen years old.",
+      "source_start_seconds": 11.74,
+      "source_end_seconds": 16.3050625
+    },
+    {
+      "sample_id": "day1_consultation10_patient.utterance02",
+      "group_id": "day1_consultation10",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation10_patient.utterance02.wav",
+      "audio_sha256": "734dbf3eaa40969fff0cc13bc36a5fdf3e0fd86a0a1d7488d63548d1756948a8",
+      "reference": "Um, and yeah it's like I'm going to the toilet a lot more, um.",
+      "source_start_seconds": 27.905125,
+      "source_end_seconds": 33.5001875
+    },
+    {
+      "sample_id": "day1_consultation10_patient.utterance03",
+      "group_id": "day1_consultation10",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation10_patient.utterance03.wav",
+      "audio_sha256": "38cd7b168a11b79fe2ade1b729589160696df5628aca8c8c6370e32d500b255b",
+      "reference": "And it's really, like I can't, like go to uni properly. I'm just like constantly looking for the toilet.",
+      "source_start_seconds": 33.0001875,
+      "source_end_seconds": 40.1701875
+    },
+    {
+      "sample_id": "day2_consultation01_doctor.utterance01",
+      "group_id": "day2_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation01_doctor.utterance01.wav",
+      "audio_sha256": "06ba981334432eae576d75a743077b05f5566c4f33ec932d097ec004287426b4",
+      "reference": "Yeah, OK, great. Well, nice to see you this morning. Um, before we start your appointment, could I confirm your full name and date of birth please?",
+      "source_start_seconds": 12.4550625,
+      "source_end_seconds": 19.7404375
+    },
+    {
+      "sample_id": "day2_consultation01_doctor.utterance02",
+      "group_id": "day2_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation01_doctor.utterance02.wav",
+      "audio_sha256": "e081cc23afbbe4f68564d4975e7cfbf2d610659188a5653dff918d973072bcfd",
+      "reference": "That's perfect, thank you, John. Um, are you in a private place where you're OK to speak at the moment?",
+      "source_start_seconds": 24.8688125,
+      "source_end_seconds": 29.9105
+    },
+    {
+      "sample_id": "day2_consultation01_doctor.utterance03",
+      "group_id": "day2_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation01_doctor.utterance03.wav",
+      "audio_sha256": "af4efd4832516636684c0cfa2e0ef4b78560edc469788dd825c111a501c858ee",
+      "reference": "Six weeks, OK. Um, and before that have you had any hearing problem at all?",
+      "source_start_seconds": 45.1520625,
+      "source_end_seconds": 50.2695625
+    },
+    {
+      "sample_id": "day2_consultation01_patient.utterance01",
+      "group_id": "day2_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation01_patient.utterance01.wav",
+      "audio_sha256": "aece20a67e1daaaf06fa77ee7e0693d4ed36545a8eb510f8e78de396869fdde9",
+      "reference": "Yeah, so I just feel I can't really hear as well as I used to, like my hearing is kind of deteriorating in some way.",
+      "source_start_seconds": 36.029125,
+      "source_end_seconds": 41.5225625
+    },
+    {
+      "sample_id": "day2_consultation01_patient.utterance02",
+      "group_id": "day2_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation01_patient.utterance02.wav",
+      "audio_sha256": "e4f4cb14ebd62a561154412610bf8735773bf6a27893e6a25eddeb81935dc85b",
+      "reference": "Um I had something maybe, about a year ago, but it only lasted a couple of days, it wasn't anything as long as this.",
+      "source_start_seconds": 50.3365625,
+      "source_end_seconds": 57.0430625
+    },
+    {
+      "sample_id": "day2_consultation01_patient.utterance03",
+      "group_id": "day2_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation01_patient.utterance03.wav",
+      "audio_sha256": "63c8db49defd02e3c399d7d4bfddf846cba334a702d00a07dd25327e9c3a4abd",
+      "reference": "Uh nothing major it's just kind of uh it's, it's not the kind of dizziness you get with nausea, like uh not, not proper room spinning or anything like that but just, just a little bit kind of off balance.",
+      "source_start_seconds": 200.7291875,
+      "source_end_seconds": 211.794625
+    },
+    {
+      "sample_id": "day2_consultation02_doctor.utterance01",
+      "group_id": "day2_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation02_doctor.utterance01.wav",
+      "audio_sha256": "d92a9207fb56260a89f902787d19dd9193f68f9f8a1e234307c2e8d78a52065c",
+      "reference": "OK. Before we start your appointment, could you please tell me your first name and your date of birth.",
+      "source_start_seconds": 8.63725,
+      "source_end_seconds": 13.4229375
+    },
+    {
+      "sample_id": "day2_consultation02_doctor.utterance02",
+      "group_id": "day2_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation02_doctor.utterance02.wav",
+      "audio_sha256": "17fca27b44cc20d31fb01396d712d7963d88a2277af637ea1de73fe4b613a253",
+      "reference": "OK, that's great. Thank you for that. Um, are you in a private place where you're OK to speak freely?",
+      "source_start_seconds": 21.8478125,
+      "source_end_seconds": 27.167375
+    },
+    {
+      "sample_id": "day2_consultation02_doctor.utterance03",
+      "group_id": "day2_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation02_doctor.utterance03.wav",
+      "audio_sha256": "cf53f1172f9477eb65b7b93e9c4ebb2ce1b6e97fb372f6f831c95b04bc79d4d1",
+      "reference": "Sure, OK. Uh, and can I um, can I just double-check? Has anyone in your family, got any, kind of rheumatology, diseases, like rheumatoid arthritis, or lupus or anything like that?",
+      "source_start_seconds": 117.0814375,
+      "source_end_seconds": 128.325875
+    },
+    {
+      "sample_id": "day2_consultation02_patient.utterance01",
+      "group_id": "day2_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation02_patient.utterance01.wav",
+      "audio_sha256": "99a9fff4894bdc250eab3292985a1af2c9b14f18e99c8f678d3eb269904eb8cc",
+      "reference": "Yes. Uh, my name is John Smith. And I was born on the fifth of April, uh, nineteen seventy three.",
+      "source_start_seconds": 13.3670625,
+      "source_end_seconds": 22.2646875
+    },
+    {
+      "sample_id": "day2_consultation02_patient.utterance02",
+      "group_id": "day2_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation02_patient.utterance02.wav",
+      "audio_sha256": "140eee2b5fb70b1f0535d3bf09bba61ba787d3557c28d34d01ca063385a816ae",
+      "reference": "Yeah. Um, I just noticed this like about a week ago, or something? Um, have like a weird swelling on, on, on my elbow.  I noticed that when I was in the shower. Uh,",
+      "source_start_seconds": 34.9966875,
+      "source_end_seconds": 46.0728125
+    },
+    {
+      "sample_id": "day2_consultation02_patient.utterance03",
+      "group_id": "day2_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation02_patient.utterance03.wav",
+      "audio_sha256": "d5a2b8250b7fec374ec59d77199a255a19dc4b1683fa06c64907ca4b4591f8da",
+      "reference": "Um, it's, it's slightly warm. Um, and I, I, cannot feel like this, little bit fluid in inside, or, uh, um?",
+      "source_start_seconds": 52.405875,
+      "source_end_seconds": 64.4883125
+    },
+    {
+      "sample_id": "day2_consultation03_doctor.utterance01",
+      "group_id": "day2_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation03_doctor.utterance01.wav",
+      "audio_sha256": "d1e2a7ded47bc07270e51fe737d5c53ee2ceb6f7b3f5f718eec7884f244a0c36",
+      "reference": "Hi. Um, so, before we start your appointment, could I confirm your full name and date of birth, if that's OK?",
+      "source_start_seconds": 8.8476875,
+      "source_end_seconds": 14.934125
+    },
+    {
+      "sample_id": "day2_consultation03_doctor.utterance02",
+      "group_id": "day2_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation03_doctor.utterance02.wav",
+      "audio_sha256": "b231672d5ab2edff5a3bb81ad7a3c38acd043478eef6a78abf1d85fce685a77e",
+      "reference": "Right, OK. And, is this just on one side, or both sides?",
+      "source_start_seconds": 54.6595,
+      "source_end_seconds": 59.25725
+    },
+    {
+      "sample_id": "day2_consultation03_doctor.utterance03",
+      "group_id": "day2_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation03_doctor.utterance03.wav",
+      "audio_sha256": "01681dbf05ff10559cb574944376640e7c20cda6a7ff2c031e39fcffd180bf30",
+      "reference": "Right, OK. OK. Um, has anything else happened, um, in this time? Any other symptoms you have at all?",
+      "source_start_seconds": 80.9526875,
+      "source_end_seconds": 88.81125
+    },
+    {
+      "sample_id": "day2_consultation03_patient.utterance01",
+      "group_id": "day2_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation03_patient.utterance01.wav",
+      "audio_sha256": "1b44d9df24817b8e60dc802a5f5cd9245a20bcc95c21f6e38865cf3c30e95b91",
+      "reference": "Uh, yeah. Uh, Mary Richards. Uh, and my, I'm forty years old. So.",
+      "source_start_seconds": 14.5373125,
+      "source_end_seconds": 22.8261875
+    },
+    {
+      "sample_id": "day2_consultation03_patient.utterance02",
+      "group_id": "day2_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation03_patient.utterance02.wav",
+      "audio_sha256": "cba111bd01e95194f5646b2860811abc1a41b1ab81f96f53dcd2b8289515c0d8",
+      "reference": "Um, it's been, it's been a few weeks now. Um, been about three weeks or something.",
+      "source_start_seconds": 48.894875,
+      "source_end_seconds": 55.0615
+    },
+    {
+      "sample_id": "day2_consultation03_patient.utterance03",
+      "group_id": "day2_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation03_patient.utterance03.wav",
+      "audio_sha256": "4466d77514f06385bb4badb10fd5b9b6f07aad77cafa5f665bc6e2bd350b2b14",
+      "reference": "Just one side, just on my left side, I've noticed that the hearing's kind of gone down a bit.",
+      "source_start_seconds": 59.271625,
+      "source_end_seconds": 64.3803125
+    },
+    {
+      "sample_id": "day2_consultation04_doctor.utterance01",
+      "group_id": "day2_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation04_doctor.utterance01.wav",
+      "audio_sha256": "e963cf547ab0263c02a0d828ba2cb1bc6e216e5a1e80214ec2eb4e687d427a76",
+      "reference": "That's great, OK, thank you. Um, are you in a private place where you're OK to speak at the moment?",
+      "source_start_seconds": 33.8559375,
+      "source_end_seconds": 39.163875
+    },
+    {
+      "sample_id": "day2_consultation04_doctor.utterance02",
+      "group_id": "day2_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation04_doctor.utterance02.wav",
+      "audio_sha256": "443f057576cd2b1f7c375f242df3493baa589396dc7096e0ce0ed412b0a06ab2",
+      "reference": "OK, fantastic. All right, so tell me what's been going on. You said you're, a bit short of breath. Is that right?",
+      "source_start_seconds": 39.730125,
+      "source_end_seconds": 45.197
+    },
+    {
+      "sample_id": "day2_consultation04_doctor.utterance03",
+      "group_id": "day2_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day2_consultation04_doctor.utterance03.wav",
+      "audio_sha256": "09e21b82b05f1a1b3e31e9ef5223ddfeacc7a9e9f1812e6f6720fe7445004f50",
+      "reference": "Right, OK. Any other symptoms at the same time, uh, that you've had this pain?",
+      "source_start_seconds": 63.553625,
+      "source_end_seconds": 68.567875
+    },
+    {
+      "sample_id": "day2_consultation04_patient.utterance01",
+      "group_id": "day2_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation04_patient.utterance01.wav",
+      "audio_sha256": "70e30de9992a097c681754b38b1093cd4698ead64fc2f32b31a74d0cfc12cc92",
+      "reference": "Uh my name is, Tracy Chapman, and, um, my date of birth is.",
+      "source_start_seconds": 12.998125,
+      "source_end_seconds": 19.5206875
+    },
+    {
+      "sample_id": "day2_consultation04_patient.utterance02",
+      "group_id": "day2_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation04_patient.utterance02.wav",
+      "audio_sha256": "4020488970a334076b18e17e5206bbf02cb69be06922f259d646a00cd9facf2a",
+      "reference": "Haven't really been, like exercising has been a bit difficult, because I've been feeling tired.",
+      "source_start_seconds": 110.6600625,
+      "source_end_seconds": 116.2181875
+    },
+    {
+      "sample_id": "day2_consultation04_patient.utterance03",
+      "group_id": "day2_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day2_consultation04_patient.utterance03.wav",
+      "audio_sha256": "4193833e536352b5ee968b32efb68aaaa314484acd1cb8ab2822c7828a51cb31",
+      "reference": "Well you know, you start coughing up blood and you think you're, gonna, die of lung cancer, so.",
+      "source_start_seconds": 532.3380625,
+      "source_end_seconds": 538.7779375
+    },
+    {
+      "sample_id": "day3_consultation01_doctor.utterance01",
+      "group_id": "day3_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation01_doctor.utterance01.wav",
+      "audio_sha256": "9997cfd67d9974572a67458e1119bd2fd6d42e01b511d6c6295bfbe7cb43a4de",
+      "reference": "All right. So when did you have the prawn soup? What time?",
+      "source_start_seconds": 137.885375,
+      "source_end_seconds": 143.0165625
+    },
+    {
+      "sample_id": "day3_consultation01_doctor.utterance02",
+      "group_id": "day3_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation01_doctor.utterance02.wav",
+      "audio_sha256": "963f1f8f1524837da8dfd5dc657a8c6c02227e9950c936e94a8b8ca3ee123e91",
+      "reference": "OK, around seven o'clock, and um how long did it take to develop the swelling?",
+      "source_start_seconds": 149.786125,
+      "source_end_seconds": 156.1585
+    },
+    {
+      "sample_id": "day3_consultation01_doctor.utterance03",
+      "group_id": "day3_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation01_doctor.utterance03.wav",
+      "audio_sha256": "5e54cd0244c7b338f5e60bc065da52ff56f53b24aa66f9ba26106d3f8c22945b",
+      "reference": "OK. Uh, and what did you take at that time? Did you use anything like antihistamine or anything, when you had that last time?",
+      "source_start_seconds": 268.9705,
+      "source_end_seconds": 278.45475
+    },
+    {
+      "sample_id": "day3_consultation01_patient.utterance01",
+      "group_id": "day3_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation01_patient.utterance01.wav",
+      "audio_sha256": "16d75490fa2b25c2534205b7fa705b903764bbcd20c6e5e306d344a19992f765",
+      "reference": "I'm all right, thank you. Well I feel a little weird today, to be honest.",
+      "source_start_seconds": 15.336375,
+      "source_end_seconds": 20.5061875
+    },
+    {
+      "sample_id": "day3_consultation01_patient.utterance02",
+      "group_id": "day3_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation01_patient.utterance02.wav",
+      "audio_sha256": "6428f10b37337b770fdaa6f48811b45bc671b6754923a52c11a032cdf63732d0",
+      "reference": "That is the first of October, ninety-nine.",
+      "source_start_seconds": 31.538875,
+      "source_end_seconds": 36.4835625
+    },
+    {
+      "sample_id": "day3_consultation01_patient.utterance03",
+      "group_id": "day3_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation01_patient.utterance03.wav",
+      "audio_sha256": "8f8c2d0e4fa122896714128f64764c706c2fe3f5c431aa912aa38a83d7b7ffaa",
+      "reference": "Yeah that is, well, I don't think, I don't think it was, it it wasn't a sandwich but it was, it was something with prawn so.",
+      "source_start_seconds": 66.250875,
+      "source_end_seconds": 75.813
+    },
+    {
+      "sample_id": "day3_consultation02_doctor.utterance01",
+      "group_id": "day3_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation02_doctor.utterance01.wav",
+      "audio_sha256": "76dfb22686c7fa0e10b6a12f961162f6e14f5743a2647129c9858579b97e1faf",
+      "reference": "Hi. So, just before we start is it alright if you could confirm your name for me please?",
+      "source_start_seconds": 5.137,
+      "source_end_seconds": 11.2054375
+    },
+    {
+      "sample_id": "day3_consultation02_doctor.utterance02",
+      "group_id": "day3_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation02_doctor.utterance02.wav",
+      "audio_sha256": "4ab2c9c461433696c706c3271062d51e3ee3cd6ab968f5478ed7f626079354ca",
+      "reference": "That's correct.  And just to confirm that you're in a secure location and we can have a confidential conversation?",
+      "source_start_seconds": 32.47475,
+      "source_end_seconds": 39.104875
+    },
+    {
+      "sample_id": "day3_consultation02_doctor.utterance03",
+      "group_id": "day3_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation02_doctor.utterance03.wav",
+      "audio_sha256": "89f171cbaab680f66e19c08041e11e3b9a1ee5407ecc653c49f32e6f95040982",
+      "reference": "OK. Right. And um, so what started first, was it the headache or the fever?",
+      "source_start_seconds": 62.8226875,
+      "source_end_seconds": 69.8879375
+    },
+    {
+      "sample_id": "day3_consultation02_patient.utterance01",
+      "group_id": "day3_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation02_patient.utterance01.wav",
+      "audio_sha256": "e56eeeb62c8c887c1c21266ea61dce43ccbd632014b7232afc0e586942a84eab",
+      "reference": "Is, uh, number one London Street. Um, NW three six PQ.",
+      "source_start_seconds": 25.2740625,
+      "source_end_seconds": 33.2068125
+    },
+    {
+      "sample_id": "day3_consultation02_patient.utterance02",
+      "group_id": "day3_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation02_patient.utterance02.wav",
+      "audio_sha256": "07da53242b33af65e5e506e362a1475cf7438602319e524ab7bb8badd8a3926d",
+      "reference": "Uh yeah, iIve had a, um a sort of a, a, a very sort of bad, severe headache, the past four days. Um, and um I've been sort of feeling a bit hot as well. Um, I've got, got a bit of a temperature, I think.",
+      "source_start_seconds": 44.5855,
+      "source_end_seconds": 59.4865
+    },
+    {
+      "sample_id": "day3_consultation02_patient.utterance03",
+      "group_id": "day3_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation02_patient.utterance03.wav",
+      "audio_sha256": "00600726f66a53736ecf90ed1e70a6bdf0ac53163bd5c5314e34afa0a9a34eac",
+      "reference": "Um, so um, headache started uh, first. Um, and then sort of yeah, fever sort of came along a bit afterwards.",
+      "source_start_seconds": 69.461,
+      "source_end_seconds": 78.4611875
+    },
+    {
+      "sample_id": "day3_consultation03_doctor.utterance01",
+      "group_id": "day3_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation03_doctor.utterance01.wav",
+      "audio_sha256": "d66cc371e912b23df5ebb9f6796d965436daf65b5606db18d68a7fc72459f05c",
+      "reference": "Yes, I can. Hi, I'm Dr. Jacob and welcome to Babylon. How are you doing?",
+      "source_start_seconds": 7.5035625,
+      "source_end_seconds": 12.55425
+    },
+    {
+      "sample_id": "day3_consultation03_doctor.utterance02",
+      "group_id": "day3_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation03_doctor.utterance02.wav",
+      "audio_sha256": "289d5bed7a0a670fc744600a22a4821316b2db9805a8ce15a857ba4f53588846",
+      "reference": "That's correct. And just to confirm that you're in a secure location, and we can have a confidential conversation.",
+      "source_start_seconds": 41.86575,
+      "source_end_seconds": 48.7715
+    },
+    {
+      "sample_id": "day3_consultation03_doctor.utterance03",
+      "group_id": "day3_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation03_doctor.utterance03.wav",
+      "audio_sha256": "fb9f1ebee597cc4b66a067dfa0fb0a77dc2d4a3779255aa5a79a2d2682d50ed9",
+      "reference": "Alright. So, you've mentioned that you're not having much of an appetite and energy lately. I'm sorry to hear that. Could you tell me a bit more about it please?",
+      "source_start_seconds": 50.1265625,
+      "source_end_seconds": 59.5830625
+    },
+    {
+      "sample_id": "day3_consultation03_patient.utterance01",
+      "group_id": "day3_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation03_patient.utterance01.wav",
+      "audio_sha256": "49e5aeecac68243e7d9e18fbe11f987bc8028930516791672c4d2b79cb1cca06",
+      "reference": "Started long, long ago now. Uh, that have been feeling down and, and didn't really have yeah, energy.",
+      "source_start_seconds": 61.4535625,
+      "source_end_seconds": 68.681
+    },
+    {
+      "sample_id": "day3_consultation03_patient.utterance02",
+      "group_id": "day3_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation03_patient.utterance02.wav",
+      "audio_sha256": "ae62192e9176917d5c2d6a761e74878ac998cc46260b6c065236791448b49db3",
+      "reference": "Um, my, my, my wife was starting to complain as well, uh in, in nightly activities.",
+      "source_start_seconds": 68.181,
+      "source_end_seconds": 75.4449375
+    },
+    {
+      "sample_id": "day3_consultation03_patient.utterance03",
+      "group_id": "day3_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation03_patient.utterance03.wav",
+      "audio_sha256": "aaefcd484932feef0ea903c63e5772dec7480096b986b8c16da4b05367d9eb9b",
+      "reference": "And um, I just felt like I, I needed to call you guys and needed to get some, some more information about what could be going on.",
+      "source_start_seconds": 74.9449375,
+      "source_end_seconds": 85.5375625
+    },
+    {
+      "sample_id": "day3_consultation04_doctor.utterance01",
+      "group_id": "day3_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation04_doctor.utterance01.wav",
+      "audio_sha256": "f363c69832ef4d5f1609972b4221583edc52d7c367fbf6bcf2306c784e42b5a1",
+      "reference": "Hi, hello. I'm Doctor Jacob and welcome to Babylon. Hello. Hi. So just before we start, is it alright if you could confirm your name for me please?",
+      "source_start_seconds": 2.5203125,
+      "source_end_seconds": 12.9630625
+    },
+    {
+      "sample_id": "day3_consultation04_doctor.utterance02",
+      "group_id": "day3_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation04_doctor.utterance02.wav",
+      "audio_sha256": "8350af26f262d3db4d96ca146c84899df243a83ebcd9c0ef6cb2dd6fe7a1e0e9",
+      "reference": "That's correct. And just to confirm that you're in a secure location, and we can have a confidential conversation.",
+      "source_start_seconds": 23.960125,
+      "source_end_seconds": 30.2786875
+    },
+    {
+      "sample_id": "day3_consultation04_doctor.utterance03",
+      "group_id": "day3_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day3_consultation04_doctor.utterance03.wav",
+      "audio_sha256": "bd7c71cb3624365eaebd15f0f861f1427013ae956ce5899feab83a529dd5e0b0",
+      "reference": "Wheezing and coughing, OK. And you've mentioned you're using the blue inhaler. So, how often are you using the blue inhaler?",
+      "source_start_seconds": 66.773375,
+      "source_end_seconds": 74.3943125
+    },
+    {
+      "sample_id": "day3_consultation04_patient.utterance01",
+      "group_id": "day3_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation04_patient.utterance01.wav",
+      "audio_sha256": "bfb0a0746e19ff7cbdb56ab7947eb53f3021932105fa3dea653c297546016282",
+      "reference": "Um, ohh yeah, so I'm having, I'm just wheezing a bit, and coughing and just generally a bit short of breath",
+      "source_start_seconds": 60.4019375,
+      "source_end_seconds": 67.054125
+    },
+    {
+      "sample_id": "day3_consultation04_patient.utterance02",
+      "group_id": "day3_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation04_patient.utterance02.wav",
+      "audio_sha256": "f8e1c728c7691c67a37d7ca99e7cddc2c15169d1aa5cc763bf211892af322aec",
+      "reference": "Um, yeah, and morning or evening to kinda prevent it as well.",
+      "source_start_seconds": 84.70625,
+      "source_end_seconds": 89.387375
+    },
+    {
+      "sample_id": "day3_consultation04_patient.utterance03",
+      "group_id": "day3_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day3_consultation04_patient.utterance03.wav",
+      "audio_sha256": "62aa0a66a06604e8655f39fb680f3f4cde56caf33c457ad5d5730bb66a730686",
+      "reference": "Um, I think I'm using that every day and the Salbutamol just like as and when",
+      "source_start_seconds": 157.3509375,
+      "source_end_seconds": 162.908875
+    },
+    {
+      "sample_id": "day4_consultation01_doctor.utterance01",
+      "group_id": "day4_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation01_doctor.utterance01.wav",
+      "audio_sha256": "6f4f9ab8c6fada23ddcdb4bfb6ed7c2d7f53b71a8e48ec68ff2132e74074bebf",
+      "reference": "Great, and it says here, um, it says you're having chest discomfort. Is that correct?",
+      "source_start_seconds": 44.90225,
+      "source_end_seconds": 51.2399375
+    },
+    {
+      "sample_id": "day4_consultation01_doctor.utterance02",
+      "group_id": "day4_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation01_doctor.utterance02.wav",
+      "audio_sha256": "062c20ae0467f866a73a6cf7968eeced83f33b7f17b540180971f85f7cde8187",
+      "reference": "OK, can you tell me a little bit more about your chest discomfort? When it started, and how you're feeling at the moment?",
+      "source_start_seconds": 54.9673125,
+      "source_end_seconds": 60.6524375
+    },
+    {
+      "sample_id": "day4_consultation01_doctor.utterance03",
+      "group_id": "day4_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation01_doctor.utterance03.wav",
+      "audio_sha256": "358ebd2a195385a0307ea4b1c944d069d1154c35e1b0cd30877d27b2723ca379",
+      "reference": "Great. So, you've talked about your chest. Are you still in, discomfort at the moment?",
+      "source_start_seconds": 99.2975625,
+      "source_end_seconds": 104.635375
+    },
+    {
+      "sample_id": "day4_consultation01_patient.utterance01",
+      "group_id": "day4_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation01_patient.utterance01.wav",
+      "audio_sha256": "8d4c5668749412804961db34fe482855378c3df589fc81118fa9beb370926d17",
+      "reference": "Uh, it's Joe Bloggs. It's the seventh, of June, nineteen seventy four.",
+      "source_start_seconds": 29.905125,
+      "source_end_seconds": 37.81525
+    },
+    {
+      "sample_id": "day4_consultation01_patient.utterance02",
+      "group_id": "day4_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation01_patient.utterance02.wav",
+      "audio_sha256": "5c249a80f2cf472435304618735020ff458b43abf0c1d61710c53a2b10b06569",
+      "reference": "That, that is correct, yes. I'm experiencing discomfort in my chest.",
+      "source_start_seconds": 50.0109375,
+      "source_end_seconds": 55.5431875
+    },
+    {
+      "sample_id": "day4_consultation01_patient.utterance03",
+      "group_id": "day4_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation01_patient.utterance03.wav",
+      "audio_sha256": "84e187cb116b6b415c0dd0cb84d60db321bebfef58b0f7a542fba969a683e83e",
+      "reference": "Say about, say, seven out of ten.",
+      "source_start_seconds": 111.51125,
+      "source_end_seconds": 116.575125
+    },
+    {
+      "sample_id": "day4_consultation02_doctor.utterance01",
+      "group_id": "day4_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation02_doctor.utterance01.wav",
+      "audio_sha256": "ef126c78dd97fc67bfba40bf2c138cfa0f3fe067375b9b9459919b12149a6f54",
+      "reference": "OK. So it says here, um, you are feeling hot, and have had severe headaches. Is that correct?",
+      "source_start_seconds": 41.518375,
+      "source_end_seconds": 47.7065
+    },
+    {
+      "sample_id": "day4_consultation02_doctor.utterance02",
+      "group_id": "day4_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation02_doctor.utterance02.wav",
+      "audio_sha256": "417739a6977d0938c1b6c2e7b80f0eab6481edec7c66c9855f76069b7fc30f0e",
+      "reference": "OK, and tell me about what you do. Do you sit in front of a computer most of the time? Or do you speak to people?",
+      "source_start_seconds": 204.72175,
+      "source_end_seconds": 211.293875
+    },
+    {
+      "sample_id": "day4_consultation02_doctor.utterance03",
+      "group_id": "day4_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation02_doctor.utterance03.wav",
+      "audio_sha256": "683da49d59128fd356b1661c585a9434ce176900e5e7237a0014ed3452df0005",
+      "reference": "So, you mentioned your headaches. You also mentioned your reduced appetite. So, you don't want to eat as much.",
+      "source_start_seconds": 260.0153125,
+      "source_end_seconds": 266.4031875
+    },
+    {
+      "sample_id": "day4_consultation02_patient.utterance01",
+      "group_id": "day4_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation02_patient.utterance01.wav",
+      "audio_sha256": "93ab50cdc4cd56c25ca922c61d4668234ce7b0cec4156bbbbb2f8487f915566d",
+      "reference": "Yeah. It's, it's really affecting my work. Uh, uh, it comes and goes. Uh.",
+      "source_start_seconds": 49.161,
+      "source_end_seconds": 55.48625
+    },
+    {
+      "sample_id": "day4_consultation02_patient.utterance02",
+      "group_id": "day4_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation02_patient.utterance02.wav",
+      "audio_sha256": "30210fac5be948cc5c215428bfc0b9f1547724b21bc5afebf383da393b110833",
+      "reference": "Uh, not really but, generally during, work times.",
+      "source_start_seconds": 107.9708125,
+      "source_end_seconds": 112.65525
+    },
+    {
+      "sample_id": "day4_consultation02_patient.utterance03",
+      "group_id": "day4_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation02_patient.utterance03.wav",
+      "audio_sha256": "0e290a82b9cceeace0b53c45d6735f6ef1096de4ebf63d14b58b1322108abe9b",
+      "reference": "Uh, yeah. It's like uh, maybe, probably, breathing or something.",
+      "source_start_seconds": 161.5778125,
+      "source_end_seconds": 168.3463125
+    },
+    {
+      "sample_id": "day4_consultation03_doctor.utterance01",
+      "group_id": "day4_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation03_doctor.utterance01.wav",
+      "audio_sha256": "f8777b1d572ee727b2128c8c70703c71c773cd6a171bde2f2499588c786468af",
+      "reference": "Good. Um, my name is Doctor Gohil. I'm one of the physicians that works here at Babylon.",
+      "source_start_seconds": 8.61425,
+      "source_end_seconds": 14.6995625
+    },
+    {
+      "sample_id": "day4_consultation03_doctor.utterance02",
+      "group_id": "day4_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation03_doctor.utterance02.wav",
+      "audio_sha256": "f5efa6b6a20585299a2f9f7c8dc0b324f4dea30a95333c32cd97e17ac1494b0b",
+      "reference": "Nineteen eighty three. And, are you in a space that's private and quiet, and you can talk?",
+      "source_start_seconds": 27.1954375,
+      "source_end_seconds": 32.397125
+    },
+    {
+      "sample_id": "day4_consultation03_doctor.utterance03",
+      "group_id": "day4_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation03_doctor.utterance03.wav",
+      "audio_sha256": "fc9b0ff529d8a82437754fda155b3daaaac8ba10bfe3e4653b223a7e98495fa0",
+      "reference": "Good. So, it says, erm, I've got a note to say, it says you're feeling short of breath. Is that correct?",
+      "source_start_seconds": 33.428375,
+      "source_end_seconds": 40.114625
+    },
+    {
+      "sample_id": "day4_consultation03_patient.utterance01",
+      "group_id": "day4_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation03_patient.utterance01.wav",
+      "audio_sha256": "b2e9b63798c9aff8c932dd4833174641fdd9a019f4087fb3693bba20a368b533",
+      "reference": "Uh, uh, my name is Sarah Smith. And, my date of birth is the twentieth of April nineteen eighty.",
+      "source_start_seconds": 16.8161875,
+      "source_end_seconds": 25.69325
+    },
+    {
+      "sample_id": "day4_consultation03_patient.utterance02",
+      "group_id": "day4_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation03_patient.utterance02.wav",
+      "audio_sha256": "bdd590833312b55dc0670ffba7f0650edb942cd4bec055a81b6075d5eb655945",
+      "reference": "Yeah. I was watching TV and, um, just like over the last hour, I've started to feel, like, a bit short of breath.",
+      "source_start_seconds": 44.19475,
+      "source_end_seconds": 51.407375
+    },
+    {
+      "sample_id": "day4_consultation03_patient.utterance03",
+      "group_id": "day4_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation03_patient.utterance03.wav",
+      "audio_sha256": "64eec7d869eff70a3028a87c53ac03061b6f2adf2e43832b297c84f587a14af4",
+      "reference": "Yeah. I, I don't know if it's, um, relevant, but I had a C-section a few weeks ago.",
+      "source_start_seconds": 77.4949375,
+      "source_end_seconds": 83.2793125
+    },
+    {
+      "sample_id": "day4_consultation04_doctor.utterance01",
+      "group_id": "day4_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation04_doctor.utterance01.wav",
+      "audio_sha256": "8a48020c06d555a45c522336a878b0a1d00d55c6df501ba512d096692eb593b1",
+      "reference": "OK. And, you mentioned that you are wheezy.",
+      "source_start_seconds": 36.1805625,
+      "source_end_seconds": 41.3310625
+    },
+    {
+      "sample_id": "day4_consultation04_doctor.utterance02",
+      "group_id": "day4_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation04_doctor.utterance02.wav",
+      "audio_sha256": "01d6558014fe8b52fac40c1c29b6324d2bc20844f27b787fc9fb596a8889ad6e",
+      "reference": "OK. And so, and the wheeze has been getting worse. And, today you're particularly worried. Is it because you're finding it hard to breathe or finding it hard to talk?",
+      "source_start_seconds": 108.590875,
+      "source_end_seconds": 117.655875
+    },
+    {
+      "sample_id": "day4_consultation04_doctor.utterance03",
+      "group_id": "day4_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day4_consultation04_doctor.utterance03.wav",
+      "audio_sha256": "17459a9f4c864bb38e5086e37249e8324381c0a94a12fbfe3ff2475d675624b5",
+      "reference": "And, when you can breathe, and you take a deep breath, do you notice any pain?",
+      "source_start_seconds": 136.756875,
+      "source_end_seconds": 142.10175
+    },
+    {
+      "sample_id": "day4_consultation04_patient.utterance01",
+      "group_id": "day4_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation04_patient.utterance01.wav",
+      "audio_sha256": "ddb7e2c46baff69da52111224dcb8a2e4b3b17305329b0235576122110b5036b",
+      "reference": "Yeah, yeah. A bit of both actually. So, um, I'm feeling like a little bit, uh, uh, short of breath.",
+      "source_start_seconds": 117.7838125,
+      "source_end_seconds": 123.1610625
+    },
+    {
+      "sample_id": "day4_consultation04_patient.utterance02",
+      "group_id": "day4_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation04_patient.utterance02.wav",
+      "audio_sha256": "d014fd3593a9062291ed56f5a6e3a11d4be4a12d86b7f67c17dc437997b303ac",
+      "reference": "Yeah, yeah. I think I'm having, like, you know,  four or five glasses a day. Yeah.",
+      "source_start_seconds": 162.4504375,
+      "source_end_seconds": 167.0861875
+    },
+    {
+      "sample_id": "day4_consultation04_patient.utterance03",
+      "group_id": "day4_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day4_consultation04_patient.utterance03.wav",
+      "audio_sha256": "69bbe0e1b6cd86fe292ed051ba061bd42943a69f6a3bf76371f94d3c2b0f6305",
+      "reference": "Well, actually, uh, I used to have, like, a bit of, um, asthma, uh, as a child.",
+      "source_start_seconds": 173.96025,
+      "source_end_seconds": 179.07225
+    },
+    {
+      "sample_id": "day5_consultation01_doctor.utterance01",
+      "group_id": "day5_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation01_doctor.utterance01.wav",
+      "audio_sha256": "b15838e4664d9f324d4ba6af69f4760d65bde929678a3c7fe73a804df91f29c9",
+      "reference": "OK. And are you in a private place you can have a confidential consultation today?",
+      "source_start_seconds": 29.90775,
+      "source_end_seconds": 34.7911875
+    },
+    {
+      "sample_id": "day5_consultation01_doctor.utterance02",
+      "group_id": "day5_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation01_doctor.utterance02.wav",
+      "audio_sha256": "abde9625b6902346f90681a5b47dc848c98772acad71899c55dd3981cee804cb",
+      "reference": "OK, and can you just tell me about, how it started? What were you doing when it came on?",
+      "source_start_seconds": 41.12575,
+      "source_end_seconds": 46.9115
+    },
+    {
+      "sample_id": "day5_consultation01_doctor.utterance03",
+      "group_id": "day5_consultation01",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation01_doctor.utterance03.wav",
+      "audio_sha256": "90a8ce3c1a3d95d369a4afee6dccfed83fc1cf10bdd4ce416b2ec2c72a5d9029",
+      "reference": "OK. And any, any other symptoms that you've had, any problems with your eyes, or your eyesight?",
+      "source_start_seconds": 84.2685,
+      "source_end_seconds": 91.0766875
+    },
+    {
+      "sample_id": "day5_consultation01_patient.utterance01",
+      "group_id": "day5_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation01_patient.utterance01.wav",
+      "audio_sha256": "a32daee9819bfc9e3ae27bf5800102efe38f0d73fb843d1ab59c7feb877fa462",
+      "reference": "Um, yeah, just ever since yesterday morning, since I woke up really. Um, just yeah, kind of throbbing headache, haven't really wanted to leave the house much since then.",
+      "source_start_seconds": 46.6704375,
+      "source_end_seconds": 56.869375
+    },
+    {
+      "sample_id": "day5_consultation01_patient.utterance02",
+      "group_id": "day5_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation01_patient.utterance02.wav",
+      "audio_sha256": "7c37daaea43381fa818c6cdb0ace3af3d85ec135ee329cfe8b3cfe74eb062b26",
+      "reference": "Um, it just, kind of feels like it's throbbing, it's quite intense, sort of comes and goes. Um, yeah, quite sensitive to light, um, but yeah, quite painful.",
+      "source_start_seconds": 63.377125,
+      "source_end_seconds": 75.52575
+    },
+    {
+      "sample_id": "day5_consultation01_patient.utterance03",
+      "group_id": "day5_consultation01",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation01_patient.utterance03.wav",
+      "audio_sha256": "22e7f988a81d4f2519f1f842f6141d247d49afb87b1d182bf0d34ee3eafde535",
+      "reference": "Uh, just kind of fades, so it's still there a little bit but, it kind of gets more or less, severe.",
+      "source_start_seconds": 78.62925,
+      "source_end_seconds": 85.085625
+    },
+    {
+      "sample_id": "day5_consultation02_doctor.utterance01",
+      "group_id": "day5_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation02_doctor.utterance01.wav",
+      "audio_sha256": "a66b9d05b65df5166b60475396b99446139447abea23fc260aaa8d318ce130ae",
+      "reference": "Good morning. I'm Doctor Smith from Babylon. Can you just confirm your name, date of birth, and the first line of your address please?",
+      "source_start_seconds": 1.3375,
+      "source_end_seconds": 8.610375
+    },
+    {
+      "sample_id": "day5_consultation02_doctor.utterance02",
+      "group_id": "day5_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation02_doctor.utterance02.wav",
+      "audio_sha256": "6fb97fd5c90d62e601b8298659bd52312b9394793fc4f7ded986331320268daf",
+      "reference": "Six days, OK. And just tell me a bit more about that. How did it start?",
+      "source_start_seconds": 42.0565625,
+      "source_end_seconds": 48.118875
+    },
+    {
+      "sample_id": "day5_consultation02_doctor.utterance03",
+      "group_id": "day5_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation02_doctor.utterance03.wav",
+      "audio_sha256": "6551990db9e2ec59a835c95ebc0884a7a3dba55eb4ab0745953811ff77d89458",
+      "reference": "OK. And, have you had any other symptoms along with that? Have you had any abdominal pain, or back, lower back pain at all?",
+      "source_start_seconds": 55.567,
+      "source_end_seconds": 64.799625
+    },
+    {
+      "sample_id": "day5_consultation02_patient.utterance01",
+      "group_id": "day5_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation02_patient.utterance01.wav",
+      "audio_sha256": "ec4c4d78f2a6073e7a23a4c15b5f5c77fcdcbfda7ad9c9fdac967fd930d1ba5b",
+      "reference": "Um, I've got this thing when I pee, and it hurts when I go to the loo, and I've got this very unpleasant smell that comes out.",
+      "source_start_seconds": 48.5096875,
+      "source_end_seconds": 56.41575
+    },
+    {
+      "sample_id": "day5_consultation03_doctor.utterance01",
+      "group_id": "day5_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation03_doctor.utterance01.wav",
+      "audio_sha256": "133caba5803a050a85560abfb350c2400c62f054cfbb7553ce1966552647637a",
+      "reference": "Hi there. Can you just confirm your name, date of birth, and the first line of your address, first of all please?",
+      "source_start_seconds": 3.9463125,
+      "source_end_seconds": 9.07825
+    },
+    {
+      "sample_id": "day5_consultation03_doctor.utterance02",
+      "group_id": "day5_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation03_doctor.utterance02.wav",
+      "audio_sha256": "11c23bc576c757338e9ae12c1801b98905492279a8d6e460072c4ccf139f6411",
+      "reference": "OK. Are you in a private place where you can have a confidential consultation today?",
+      "source_start_seconds": 27.187875,
+      "source_end_seconds": 31.899625
+    },
+    {
+      "sample_id": "day5_consultation03_doctor.utterance03",
+      "group_id": "day5_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation03_doctor.utterance03.wav",
+      "audio_sha256": "e175a1754f7e63159fa8ce2ec56f2dc295a68e59b04ccd4e80924b8717fd65f5",
+      "reference": "How, how does it affect you, in terms of like your sleep at night, and things like that?",
+      "source_start_seconds": 130.3163125,
+      "source_end_seconds": 137.1673125
+    },
+    {
+      "sample_id": "day5_consultation03_patient.utterance01",
+      "group_id": "day5_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation03_patient.utterance01.wav",
+      "audio_sha256": "fdce2e4d7353dcd29129bddb757df155c0f00f576d5d59caa14c62b4049d5af8",
+      "reference": "My address is, uh, sixty four, Cliveden Place, in, South Wimbledon.",
+      "source_start_seconds": 18.6465625,
+      "source_end_seconds": 27.295125
+    },
+    {
+      "sample_id": "day5_consultation03_patient.utterance02",
+      "group_id": "day5_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation03_patient.utterance02.wav",
+      "audio_sha256": "b7a3ba0ac7c0ae9149560886f94eada610077acb47a1fcb3d25ead203ad43e4c",
+      "reference": "Um, I've been feeling really anxious over the past few months. Um, I just get really nervous every morning about leaving the house, and it's started to really worry me, and just add up, and build up on that anxiety. And I just didn't know, who to talk to or, so I wanted to check with my GP.",
+      "source_start_seconds": 34.795125,
+      "source_end_seconds": 53.686125
+    },
+    {
+      "sample_id": "day5_consultation03_patient.utterance03",
+      "group_id": "day5_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation03_patient.utterance03.wav",
+      "audio_sha256": "982be2e8a2029878e7836197b4ad1f591046a457bd47b33449951e262ab80a5b",
+      "reference": "Um, I guess so, I think um, I would say maybe about two months or so, I've been feeling like this, and that probably coincides with, me starting a new job, um.",
+      "source_start_seconds": 63.2313125,
+      "source_end_seconds": 77.6861875
+    },
+    {
+      "sample_id": "day5_consultation04_doctor.utterance01",
+      "group_id": "day5_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation04_doctor.utterance01.wav",
+      "audio_sha256": "fd916624769a03155178937d825b0b75097f1c7d28e44b9960b1b74de90f2779",
+      "reference": "Hi there. Can you confirm your full name, date of birth, and the first line of your address please?",
+      "source_start_seconds": 6.1800625,
+      "source_end_seconds": 11.355875
+    },
+    {
+      "sample_id": "day5_consultation04_doctor.utterance02",
+      "group_id": "day5_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation04_doctor.utterance02.wav",
+      "audio_sha256": "6622ecd50cbab384fc00399a4128c5ed9fa9e28920184285b5c602ebaf1579bf",
+      "reference": "And, is it around your belly button, or above or below that?",
+      "source_start_seconds": 86.874375,
+      "source_end_seconds": 92.2011875
+    },
+    {
+      "sample_id": "day5_consultation04_doctor.utterance03",
+      "group_id": "day5_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day5_consultation04_doctor.utterance03.wav",
+      "audio_sha256": "cb63f2bfa4f8be04f138d53cd2c054b9bef26d9f334838cdee20ea8c540da400",
+      "reference": "OK. And what would you say it is on a scale of one to ten, with ten being the worst pain you've ever had?",
+      "source_start_seconds": 100.505,
+      "source_end_seconds": 106.533125
+    },
+    {
+      "sample_id": "day5_consultation04_patient.utterance01",
+      "group_id": "day5_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation04_patient.utterance01.wav",
+      "audio_sha256": "edbde11aded90408dbf7bac976f338e1eec07dca29de2424d740d0fa10e748a5",
+      "reference": "Um, yeah, last week, last week I had problems, but this week it seems to be.",
+      "source_start_seconds": 214.88225,
+      "source_end_seconds": 220.492375
+    },
+    {
+      "sample_id": "day5_consultation04_patient.utterance02",
+      "group_id": "day5_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation04_patient.utterance02.wav",
+      "audio_sha256": "e0f34f70f48b1a922071cfdcca2d748418c83fe6386a288f307c7840b90aa720",
+      "reference": "Like, I was constipated for a week. Like, I was having problem.",
+      "source_start_seconds": 221.87075,
+      "source_end_seconds": 227.6255625
+    },
+    {
+      "sample_id": "day5_consultation04_patient.utterance03",
+      "group_id": "day5_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day5_consultation04_patient.utterance03.wav",
+      "audio_sha256": "45585cf6f0f40a839ede14c2133e706ce4b94415da82ddbff7ca026c7a979aee",
+      "reference": "Just very small, extra, like, a vaginal discharge, just.",
+      "source_start_seconds": 276.94475,
+      "source_end_seconds": 282.3850625
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "maximum_normalized_wer": 0.03,
-  "threshold_authority": "User requirement, 24 October 2026",
+  "maximum_normalized_wer": 0.05,
+  "threshold_authority": "User revised requirement from 3% to 5%, 24 October 2026",
   "comparison": "less_than_or_equal_unrounded",
   "scope": "aggregate_reference_transcribed_evaluation_dataset",
   "processing_failures_allowed": 0,
@@ -14,5 +14,6 @@
   ],
   "production_model_selected": null,
   "live_recording_wer": "Cannot be measured without an independently verified reference transcript",
-  "fallback": "Keep candidate in development; no automatic production promotion or weaker-model substitution"
+  "fallback": "Keep candidate in development; no automatic production promotion or weaker-model substitution",
+  "historical_reports": "Earlier frozen datasets retain their original 3% threshold; new expanded evaluation uses 5%."
 }

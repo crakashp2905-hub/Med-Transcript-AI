@@ -8,7 +8,7 @@ import os
 from fractions import Fraction
 from pathlib import Path
 
-from services.evaluation import score, tokens, wer_gate
+from services.evaluation import PROJECT_MAX_NORMALIZED_WER, score, tokens, wer_gate
 
 
 SCORING = "lowercase_words_preserve_decimals_units_negation_v1"
@@ -20,8 +20,8 @@ def rank(manifest_path, lock_path, entries, root):
     digest = hashlib.sha256(body).hexdigest()
     if digest != lock["manifest_sha256"] or manifest["dataset_id"] != lock["dataset_id"]:
         raise ValueError("Frozen dataset integrity failure")
-    if lock["maximum_normalized_wer"] != .03:
-        raise ValueError("Project ranking requires the fixed 3% WER limit")
+    if type(lock["maximum_normalized_wer"]) not in (int, float) or not 0 <= lock["maximum_normalized_wer"] <= PROJECT_MAX_NORMALIZED_WER:
+        raise ValueError("Project ranking forbids a WER limit above 5%")
     truth = {s["sample_id"]: s for s in manifest["samples"]}
     if len(truth) != len(manifest["samples"]):
         raise ValueError("Duplicate reference sample")
@@ -99,8 +99,8 @@ def rank(manifest_path, lock_path, entries, root):
 def render(result):
     lines = ["# ASR benchmark ranking", "", f"Dataset: `{result['dataset_id']}`", "",
         f"Manifest SHA-256: `{result['manifest_sha256']}`", "",
-        "Required normalized WER: **≤3%**. Lower is better. Equal exact scores share a rank.", "",
-        "| Rank | Model/configuration | Normalized WER | Failed clips | 3% gate |",
+        f"Required normalized WER: **≤{result['maximum_normalized_wer']:.0%}**. Lower is better. Equal exact scores share a rank.", "",
+        f"| Rank | Model/configuration | Normalized WER | Failed clips | {result['maximum_normalized_wer']:.0%} gate |",
         "| --- | --- | ---: | ---: | --- |"]
     for row in result["ranked"]:
         lines.append(f"| {row['rank']} | {row['candidate_id']} | {row['normalized_wer']:.2%} | {row['failed_samples']} | {row['wer_gate']['status']} |")
@@ -120,8 +120,8 @@ def render_html(result, manifest, dataset_path="datasets/primock57-smoke-v1"):
     return f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ASR model comparison</title>
 <style>body{{font:16px/1.6 system-ui;margin:0;background:#f1f6f5;color:#173c39}}main{{max-width:1180px;margin:auto;padding:40px 24px}}h1{{font-size:36px;line-height:1.2}}.eyebrow{{font-size:13px;letter-spacing:.1em;font-weight:700}}.notice,article,.table{{background:white;border:1px solid #d5e2df;border-radius:12px;padding:20px;margin:20px 0}}.table{{overflow-x:auto;padding:0}}table{{width:100%;border-collapse:collapse;text-align:left}}td,th{{padding:14px;border-bottom:1px solid #e1ebe8;vertical-align:top}}thead{{background:#dcebe7}}code{{overflow-wrap:anywhere;font-size:12px}}audio{{max-width:100%}}small{{color:#42635f}}article h3{{overflow-wrap:anywhere}}@media(max-width:600px){{main{{padding:24px 14px}}h1{{font-size:28px}}td,th{{padding:10px}}}}</style>
 <main><p class="eyebrow">MED TRANSCRIPT · REPRODUCIBLE SCREENING</p><h1>ASR models, ranked by measured word error rate</h1>
-<div class="notice"><strong>Required normalized WER: ≤3.00%</strong><p>Lower is better. Ties share an exact rank. This is a development evaluation dataset, not a clinical acceptance result. No production model has been selected.</p></div>
-<h2>Measured models</h2><div class="table"><table><thead><tr><th>Rank</th><th>Model / runtime variant</th><th>Normalized WER</th><th>Edits / words</th><th>Failed clips</th><th>3% gate</th></tr></thead><tbody>{measured}</tbody></table></div>
+<div class="notice"><strong>Required normalized WER: ≤{result['maximum_normalized_wer']:.2%}</strong><p>Lower is better. Ties share an exact rank. This is a development evaluation dataset, not a clinical acceptance result. No production model has been selected.</p></div>
+<h2>Measured models</h2><div class="table"><table><thead><tr><th>Rank</th><th>Model / runtime variant</th><th>Normalized WER</th><th>Edits / words</th><th>Failed clips</th><th>{result['maximum_normalized_wer']:.0%} gate</th></tr></thead><tbody>{measured}</tbody></table></div>
 <h2>Unranked candidates</h2><p>Access, runtime and resource blockers do not establish a model's accuracy. Paid calls are disabled.</p><div class="table"><table><thead><tr><th>Candidate</th><th>Status</th><th>Reason</th></tr></thead><tbody>{blocked}</tbody></table></div>
 <h2>Frozen reference dataset</h2><p>{esc(result['dataset_id'])}</p><p><small>Manifest SHA-256</small><br><code>{esc(result['manifest_sha256'])}</code></p><p>{esc(result['limitations'])}</p>
 <details><summary>Listen to the {len(manifest['samples'])} recordings and read their reference transcripts</summary>{recordings}</details>

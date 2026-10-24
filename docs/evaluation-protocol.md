@@ -2,7 +2,7 @@
 
 ## Required WER limit
 
-The user set a strict maximum normalized WER of **3%** on 24 October 2026.
+The user revised the strict maximum normalized WER from **3% to 5%** on 24 October 2026. Earlier frozen evaluations retain their original 3% gate; new evaluations default to 5%.
 The runner now applies this gate by default, compares unrounded counts, exits
 with status 2 on failure, rejects any processing failure and cannot accept a
 looser threshold. `--max-normalized-wer` may specify a stricter fraction only.
@@ -12,7 +12,7 @@ independent acceptance material and clinical safety adjudication remain required
 WER cannot be calculated for a new recording without a verified reference.
 
 The selection policy is recorded in `evaluation/selection-policy.json`.
-The older six-clip tiny.en report predates enforcement and fails the new 3% gate
+The older six-clip tiny.en report predates enforcement and fails both the historical 3% gate and current 5% gate
 at 16.42%. It remains a development fixture. There is no production winner yet.
 
 The benchmark runner is `python -m services.evaluation`. It accepts a local
@@ -71,3 +71,9 @@ review, critical-error adjudication and release thresholds still require the
 blueprint's controlled evaluation work. The working clinician UI uses an audible,
 explicit synthetic reference transcript to demonstrate review independent of a
 model's errors; it does not present that reference as measured ASR output.
+
+## Expanded local comparison
+
+The predeclared `evaluation/expanded-protocol-v1.json` selects 120 utterances from 20 new consultations across five recording days, before inference. All seven locally runnable configurations use text-only adapters and unchanged decoding settings. This measures recognition separately from clinical timestamp/publication admission. In particular, MultiMed timestamp failures in the old pipeline-inclusive ranking are not comparable to this new text-only ranking. No reference edits, outcome-dependent exclusions or model tuning are permitted. Failures still contribute all reference words as deletions and fail the gate.
+
+`services.benchmark_suite` runs two bounded local lanes in isolated processes, checks the predeclared source profiles/artifact hashes, saves per-clip progress logs and complete reports, and validates reports before reuse. Models are initialized once per dataset run; timings include that different lifecycle and concurrent CPU contention, so these are accuracy comparisons, not speed or capacity benchmarks. Hosted/gated/resource-blocked candidates remain explicit and unranked; no paid calls or access approvals are enabled.

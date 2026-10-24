@@ -1,6 +1,6 @@
 import pytest
 
-from services.evaluation import tokens, distance, score, wer_gate, run
+from services.evaluation import PROJECT_MAX_NORMALIZED_WER, tokens, distance, score, wer_gate, run
 
 
 def test_scoring_preserves_clinically_material_tokens():
@@ -33,5 +33,12 @@ def test_invalid_wer_threshold_is_rejected(maximum):
 
 
 def test_project_threshold_cannot_be_loosened_before_inference():
-    with pytest.raises(ValueError, match="above 3%"):
-        run("unused", None, "unused", max_normalized_wer=0.04)
+    with pytest.raises(ValueError, match="above 5%"):
+        run("unused", None, "unused", max_normalized_wer=0.06)
+
+
+def test_revised_five_percent_policy_preserves_exact_boundary():
+    assert PROJECT_MAX_NORMALIZED_WER == .05
+    assert wer_gate({"reference_words": 100, "normalized_edits": 5, "failed_samples": 0}, .05)["status"] == "pass"
+    assert wer_gate({"reference_words": 9999, "normalized_edits": 500, "failed_samples": 0}, .05)["status"] == "fail"
+    assert wer_gate({"reference_words": 100, "normalized_edits": 5, "failed_samples": 1}, .05)["status"] == "fail"

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "primock57-20consultations-120clips-v1",
+  "manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+  "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+  "dataset_license": "CC-BY-4.0",
+  "sample_count": 118,
+  "consultation_groups": 20,
+  "audio_seconds": 830.0976250000001,
+  "allowed_use": "expanded_development_comparison_not_clinical_acceptance",
+  "scoring_profile": "lowercase_words_preserve_decimals_units_negation_v1",
+  "failure_policy": "empty_hypothesis_full_reference_deletions",
+  "maximum_normalized_wer": 0.05,
+  "limitations": "118 selected utterances from 20 new public mock consultation groups across five recording days; separate speaker tracks, predominantly clean speech. One role supplies only one untagged eligible utterance. Repeated speakers and model-training overlap are not ruled out. Text-only development comparison, not independent clinical acceptance. No production winner."
+}

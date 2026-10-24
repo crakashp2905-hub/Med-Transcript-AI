@@ -1,5 +1,7 @@
 # Model selection status — 24 October 2026
 
+The current user requirement is **≤5% normalized WER**. The original screening and five-group follow-up below used the historical 3% gate. The expanded 120-clip comparison is predeclared in `evaluation/expanded-protocol-v1.json` and tests all seven local configurations uniformly as text-only recognizers. Access and resource blockers remain explicit; hosted calls remain disabled.
+
 ## Why tiny.en is currently running
 
 The developer provisioned tiny.en to test the local CPU pipeline with a small
@@ -78,7 +80,7 @@ clinician review effort. Keep related clips in the same corpus partition.
 Advance eligible finalists to independent, representative, frozen acceptance
 consultations. Do not keep tuning on that acceptance set.
 
-The unrounded aggregate normalized WER must be ≤0.03, with no processing failures.
+The unrounded aggregate normalized WER must now be ≤0.05, with no processing failures.
 This is necessary but does not replace drug/dose/unit/allergy/negation adjudication,
 licensing, deployment and clinical approval. If no candidate qualifies, report
 that none qualifies and retain supervised development/manual review. Do not

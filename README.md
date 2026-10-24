@@ -14,10 +14,12 @@ tiny English model passed a synthetic smoke test; clinical benchmarking is pendi
 
 ## Measured ASR ranking
 
+The user revised the maximum normalized WER to **5%**. The expanded comparison uses a predeclared 120-clip corpus from 20 new consultations across all five recording days, with all seven local configurations evaluated as text-only recognizers. Historical datasets and results remain unchanged.
+
 The [follow-up validation](evaluation/reports/follow-up-validation-2026-10-24.md)
 tested the two screening leaders on 30 fixed clips from five additional
 consultations (575 reference words). **Omi GGUF Q8: 8.70%; Parakeet ONNX
-INT8: 13.91% normalized WER. Neither meets the required 3%.** Omi leads this
+INT8: 13.91% normalized WER. Neither meets the historical 3% or current 5% requirement.** Omi leads this
 follow-up; these development results do not establish clinical acceptance.
 Open the [follow-up comparison with playable audio](evaluation/validation-leaderboard.html).
 The dataset, references, pinned model configurations and full hypotheses are
@@ -38,7 +40,7 @@ user-disabled hosted candidates remain unranked. No paid calls were made.
 The [frozen dataset](evaluation/datasets/primock57-smoke-v1/README.md) includes
 six CC-BY-4.0 mock-consultation recordings, manual reference text, checksums and
 the source revision. It is the source of truth for this **screening** ranking,
-not a clinical acceptance corpus. The strict normalized WER limit is ≤3%; none
+not a clinical acceptance corpus. The current normalized WER limit is ≤5% (historical reports used ≤3%); none
 of the tested configurations currently passes. Rebuild the leaderboard with:
 
 ```powershell
@@ -97,7 +99,7 @@ are the tested Windows browsers. An ASR profile and the local worker are require
 The launcher reads `MED_TRANSCRIPT_ASR_PROFILES`, or an explicitly configured
 `asr_profiles_path` in ignored `data/local-config.json`. It does not download or
 switch models automatically. This workstation retains its existing tiny.en
-development profile for dictation. All tested models still fail the 3% quality
+development profile for dictation. All tested models still fail the 5% quality
 requirement, so use synthetic test speech only and review every result.
 
 Python 3.11+ is required. From this folder in PowerShell:
