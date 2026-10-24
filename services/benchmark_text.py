@@ -28,7 +28,7 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
         profile.verify_artifacts()
         model_dir, revision = profile.model_dir, profile.revision
     model = Path(model_dir).resolve()
-    artifacts = {p.name: file_sha256(p) for p in model.iterdir() if p.is_file()}
+    artifacts = dict(profile.artifacts) if profile else {p.name: file_sha256(p) for p in model.iterdir() if p.is_file()}
     if not artifacts or any(name.endswith('.partial') for name in artifacts):
         raise ValueError("Model artifacts incomplete")
     if runtime == "onnx":
@@ -44,8 +44,8 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
     elif runtime == "omi":
         os.environ["OMI_MED_STT_CACHE"] = str(Path(cache_dir or "data/omi-cache").resolve())
         os.environ["OMI_MED_STT_CPP_REQUIRE_PREBUILT"] = "1"
-        from omi_stt.cpp_runtime import transcribe_cpp
-        predict = lambda path: transcribe_cpp([path], str(model), auto_install=False, cpp_backend="cpu", threads=4)[0]
+        from services.omi_adapter import OmiPredictor
+        predict = OmiPredictor(model, revision)
         profile_id, package = "omi-v1-gguf-q8-cpu-v1", "omi-med-stt"
     elif runtime == "whisper":
         import wave
@@ -72,6 +72,8 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
         config.update(source_profile_sha256=profile.sha256, beam_size=profile.beam_size,
             compute_type=profile.compute_type, language="en", temperature=0.0,
             vad_filter=False, condition_on_previous_text=False)
+    if runtime == "omi":
+        config["adapter_revision"] = "reuse_capi_close_windows_dll_directories_v1"
     path = Path(manifest_path).resolve()
     manifest = json.loads(path.read_text(encoding="utf-8"))
     if manifest.get("data_class") not in ("synthetic", "approved_public") or not manifest.get("rights_reviewed"):
@@ -98,6 +100,8 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
             **score(sample["reference"], hypothesis), "reference": sample["reference"], "hypothesis": hypothesis}
         rows.append(row)
         print(json.dumps({"sample_id": row["sample_id"], "status": row["status"]}), flush=True)
+    if runtime == "omi":
+        predict.close()
     words = sum(r["reference_words"] for r in rows)
     edits = sum(r["normalized_edits"] for r in rows)
     raw_words = sum(r["raw_reference_words"] for r in rows)

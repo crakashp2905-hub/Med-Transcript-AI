@@ -21,7 +21,7 @@ def test_whisper_text_comparison_reuses_model_and_counts_failures(tmp_path, monk
     (model / "config.json").write_text("{}")
     profile = types.SimpleNamespace(model_dir=str(model), revision="a" * 40,
         profile_id="test", runtime_version="1.2.1", device="cpu", compute_type="int8",
-        cpu_threads=4, beam_size=5, sha256="b" * 64, verify_artifacts=lambda: None)
+        cpu_threads=4, beam_size=5, sha256="b" * 64, artifacts={"config.json": hashlib.sha256(b"{}").hexdigest()}, verify_artifacts=lambda: None)
     monkeypatch.setattr("services.asr.profiles.load_profiles", lambda _: {"test": profile})
     monkeypatch.setattr("importlib.metadata.version", lambda _: "1.2.1")
     loads, predictions = [], []
