@@ -10,15 +10,26 @@ It supports idempotent creation, bounded audio uploads, durable ingest/ASR
 jobs, immutable timestamped transcripts, a clinician review interface, reviewed-fact
 SOAP drafting, blocking verification, exact-version approval, amendments and
 Markdown/text/JSON exports. A pinned
-tiny English model passed a synthetic smoke test; clinical benchmarking is pending.
+tiny English model passed a synthetic smoke test; expanded public mock benchmarks are complete and independent clinical acceptance remains pending.
 
 ## Measured ASR ranking
+
+The [expanded ranking and playable recordings](evaluation/expanded-leaderboard.html) now includes **all seven local configurations on 118 clips from 20 consultations, 2,264 reference words**. **Omi GGUF Q8 leads at 8.70% normalized WER; none meets the required ≤5%.** All final runs processed all clips successfully. [Grouped results](evaluation/reports/expanded-comparison-2026-10-24.md) include recording-day, consultation and speaker-role breakdowns. Seven gated, resource-blocked or user-disabled hosted configurations remain visible and unranked.
+
+Generate publications from complete local runs with `python -m services.publish_expanded`. Rebuild scores from the committed corpus and reports, without model downloads or paid calls:
+
+```powershell
+python -m services.benchmark_ranking --manifest evaluation/datasets/primock57-expanded-v1/manifest.json --lock evaluation/datasets/primock57-expanded-v1/lock.json --ledger evaluation/expanded-ledger.json --out evaluation/expanded-leaderboard.json
+python -m services.expanded_summary
+```
+
+Paid medical services may improve accuracy, but have not been measured on this corpus. See the [hosted-model evidence and comparison constraints](evaluation/reports/hosted-model-evidence-2026-10-24.md). The application dictation model remains unchanged; these text-only benchmarks do not establish clinical admission.
 
 The user revised the maximum normalized WER to **5%**. The expanded comparison uses **118 frozen clips from 20 new consultations across all five recording days: 2,264 reference words and 13m 50s of audio**, with all seven local configurations evaluated as text-only recognizers. The initial target was 120 clips; one sparse role supplied one eligible utterance instead of three. Historical datasets and results remain unchanged.
 
 During execution, [local progress](http://127.0.0.1:8766/expanded-progress.html) refreshes automatically. To serve it after restarting: run `python -m services.benchmark_progress --watch` and, in another terminal, `python -m http.server 8766 --bind 127.0.0.1 --directory evaluation`. The public evaluation directory is served locally; the private application data directory is excluded. Scores appear only for complete integrity-checked runs.
 
-The [follow-up validation](evaluation/reports/follow-up-validation-2026-10-24.md)
+The earlier [follow-up validation](evaluation/reports/follow-up-validation-2026-10-24.md)
 tested the two screening leaders on 30 fixed clips from five additional
 consultations (575 reference words). **Omi GGUF Q8: 8.70%; Parakeet ONNX
 INT8: 13.91% normalized WER. Neither meets the historical 3% or current 5% requirement.** Omi leads this

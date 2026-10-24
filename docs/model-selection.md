@@ -2,6 +2,10 @@
 
 The current user requirement is **≤5% normalized WER**. The original screening and five-group follow-up below used the historical 3% gate. The expanded 118-clip comparison is predeclared in `evaluation/expanded-protocol-v1.json` and tests all seven local configurations uniformly as text-only recognizers. Access and resource blockers remain explicit; hosted calls remain disabled.
 
+## Expanded comparison completed
+
+All seven local configurations completed all 118 clips (2,264 reference words) with zero processing failures. Omi GGUF Q8 leads at **8.70%**; all configurations fail the current **≤5%** gate. See the [complete ranking](../evaluation/expanded-leaderboard.md) and [grouped report](../evaluation/reports/expanded-comparison-2026-10-24.md). Seven access/resource/paid-service configurations remain explicitly unranked. No hosted calls were made. The application model remains tiny.en; no clinical model was promoted.
+
 ## Why tiny.en is currently running
 
 The developer provisioned tiny.en to test the local CPU pipeline with a small

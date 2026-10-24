@@ -1,0 +1,1591 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "primock57-20consultations-120clips-v1",
+  "manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+  "sample_count": 118,
+  "consultation_groups": 20,
+  "reference_words": 2264,
+  "maximum_normalized_wer": 0.05,
+  "models": [
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "completed",
+      "normalized_wer": 0.08701413427561837,
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter; persistent C API with explicit Windows DLL cleanup",
+      "normalized_edits": 197,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "02fc48dedded8a26f1dfa055cd0d21c4a66a87b6c652a5c6dbcb8da6c7e5c045",
+      "model_revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "report": "evaluation/runs/primock57-expanded-v1/omi-med-stt-v1.json",
+      "report_sha256": "2fab0eb25ed6f7dbf6b57523781448542b8c93ad127c7d731452a38594b8b59e",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 256.414,
+      "rank": 1,
+      "by_consultation": {
+        "day1_consultation07": {
+          "reference_words": 132,
+          "normalized_edits": 15,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.11363636363636363
+        },
+        "day1_consultation08": {
+          "reference_words": 78,
+          "normalized_edits": 7,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.08974358974358974
+        },
+        "day1_consultation09": {
+          "reference_words": 109,
+          "normalized_edits": 6,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.05504587155963303
+        },
+        "day1_consultation10": {
+          "reference_words": 107,
+          "normalized_edits": 12,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.11214953271028037
+        },
+        "day2_consultation01": {
+          "reference_words": 151,
+          "normalized_edits": 11,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.0728476821192053
+        },
+        "day2_consultation02": {
+          "reference_words": 145,
+          "normalized_edits": 24,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.16551724137931034
+        },
+        "day2_consultation03": {
+          "reference_words": 100,
+          "normalized_edits": 10,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1
+        },
+        "day2_consultation04": {
+          "reference_words": 103,
+          "normalized_edits": 9,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.08737864077669903
+        },
+        "day3_consultation01": {
+          "reference_words": 99,
+          "normalized_edits": 10,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.10101010101010101
+        },
+        "day3_consultation02": {
+          "reference_words": 130,
+          "normalized_edits": 15,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.11538461538461539
+        },
+        "day3_consultation03": {
+          "reference_words": 125,
+          "normalized_edits": 10,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.08
+        },
+        "day3_consultation04": {
+          "reference_words": 117,
+          "normalized_edits": 9,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.07692307692307693
+        },
+        "day4_consultation01": {
+          "reference_words": 83,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1686746987951807
+        },
+        "day4_consultation02": {
+          "reference_words": 95,
+          "normalized_edits": 1,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.010526315789473684
+        },
+        "day4_consultation03": {
+          "reference_words": 115,
+          "normalized_edits": 12,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.10434782608695652
+        },
+        "day4_consultation04": {
+          "reference_words": 107,
+          "normalized_edits": 9,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.08411214953271028
+        },
+        "day5_consultation01": {
+          "reference_words": 129,
+          "normalized_edits": 6,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.046511627906976744
+        },
+        "day5_consultation02": {
+          "reference_words": 91,
+          "normalized_edits": 2,
+          "sample_count": 4,
+          "failed_samples": 0,
+          "normalized_wer": 0.02197802197802198
+        },
+        "day5_consultation03": {
+          "reference_words": 156,
+          "normalized_edits": 8,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.05128205128205128
+        },
+        "day5_consultation04": {
+          "reference_words": 92,
+          "normalized_edits": 7,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.07608695652173914
+        }
+      },
+      "by_role": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 50,
+          "sample_count": 60,
+          "failed_samples": 0,
+          "normalized_wer": 0.04397537379067722
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 147,
+          "sample_count": 58,
+          "failed_samples": 0,
+          "normalized_wer": 0.13043478260869565
+        }
+      },
+      "by_day": {
+        "day1": {
+          "reference_words": 426,
+          "normalized_edits": 40,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.09389671361502347
+        },
+        "day2": {
+          "reference_words": 499,
+          "normalized_edits": 54,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.10821643286573146
+        },
+        "day3": {
+          "reference_words": 471,
+          "normalized_edits": 44,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.09341825902335456
+        },
+        "day4": {
+          "reference_words": 400,
+          "normalized_edits": 36,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.09
+        },
+        "day5": {
+          "reference_words": 468,
+          "normalized_edits": 23,
+          "sample_count": 22,
+          "failed_samples": 0,
+          "normalized_wer": 0.049145299145299144
+        }
+      }
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "completed",
+      "normalized_wer": 0.13250883392226148,
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU",
+      "normalized_edits": 300,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "8385613288709264cef2dcd31a5f3bcc7620c9650b785e1f0ea1c09cc10f10d2",
+      "model_revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+      "report": "evaluation/runs/primock57-expanded-v1/parakeet-tdt-0.6b-v2.json",
+      "report_sha256": "532ff3357195261b37e95b8e494243e08ceb36a3e27e5c374ad5268fb73efc4d",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 292.544,
+      "rank": 2,
+      "by_consultation": {
+        "day1_consultation07": {
+          "reference_words": 132,
+          "normalized_edits": 26,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.19696969696969696
+        },
+        "day1_consultation08": {
+          "reference_words": 78,
+          "normalized_edits": 11,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.14102564102564102
+        },
+        "day1_consultation09": {
+          "reference_words": 109,
+          "normalized_edits": 25,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.22935779816513763
+        },
+        "day1_consultation10": {
+          "reference_words": 107,
+          "normalized_edits": 20,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.18691588785046728
+        },
+        "day2_consultation01": {
+          "reference_words": 151,
+          "normalized_edits": 10,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.06622516556291391
+        },
+        "day2_consultation02": {
+          "reference_words": 145,
+          "normalized_edits": 22,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.15172413793103448
+        },
+        "day2_consultation03": {
+          "reference_words": 100,
+          "normalized_edits": 15,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.15
+        },
+        "day2_consultation04": {
+          "reference_words": 103,
+          "normalized_edits": 13,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1262135922330097
+        },
+        "day3_consultation01": {
+          "reference_words": 99,
+          "normalized_edits": 17,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1717171717171717
+        },
+        "day3_consultation02": {
+          "reference_words": 130,
+          "normalized_edits": 26,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.2
+        },
+        "day3_consultation03": {
+          "reference_words": 125,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.112
+        },
+        "day3_consultation04": {
+          "reference_words": 117,
+          "normalized_edits": 18,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.15384615384615385
+        },
+        "day4_consultation01": {
+          "reference_words": 83,
+          "normalized_edits": 6,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.07228915662650602
+        },
+        "day4_consultation02": {
+          "reference_words": 95,
+          "normalized_edits": 7,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.07368421052631578
+        },
+        "day4_consultation03": {
+          "reference_words": 115,
+          "normalized_edits": 15,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.13043478260869565
+        },
+        "day4_consultation04": {
+          "reference_words": 107,
+          "normalized_edits": 12,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.11214953271028037
+        },
+        "day5_consultation01": {
+          "reference_words": 129,
+          "normalized_edits": 13,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.10077519379844961
+        },
+        "day5_consultation02": {
+          "reference_words": 91,
+          "normalized_edits": 7,
+          "sample_count": 4,
+          "failed_samples": 0,
+          "normalized_wer": 0.07692307692307693
+        },
+        "day5_consultation03": {
+          "reference_words": 156,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.08974358974358974
+        },
+        "day5_consultation04": {
+          "reference_words": 92,
+          "normalized_edits": 9,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.09782608695652174
+        }
+      },
+      "by_role": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 118,
+          "sample_count": 60,
+          "failed_samples": 0,
+          "normalized_wer": 0.10378188214599825
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 182,
+          "sample_count": 58,
+          "failed_samples": 0,
+          "normalized_wer": 0.16149068322981366
+        }
+      },
+      "by_day": {
+        "day1": {
+          "reference_words": 426,
+          "normalized_edits": 82,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.19248826291079812
+        },
+        "day2": {
+          "reference_words": 499,
+          "normalized_edits": 60,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.12024048096192384
+        },
+        "day3": {
+          "reference_words": 471,
+          "normalized_edits": 75,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.1592356687898089
+        },
+        "day4": {
+          "reference_words": 400,
+          "normalized_edits": 40,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.1
+        },
+        "day5": {
+          "reference_words": 468,
+          "normalized_edits": 43,
+          "sample_count": 22,
+          "failed_samples": 0,
+          "normalized_wer": 0.09188034188034189
+        }
+      }
+    },
+    {
+      "candidate_id": "distil-whisper-large-v3",
+      "status": "completed",
+      "normalized_wer": 0.15724381625441697,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 356,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "ba6fbaddc30280b18b04ce589a3f28e6b297b790952617250f683322af72e70f",
+      "model_revision": "c3058b475261292e64a0412df1d2681c06260fab",
+      "report": "evaluation/runs/primock57-expanded-v1/distil-whisper-large-v3.json",
+      "report_sha256": "657b3221f34f987a4a801f38f13282d2d48f2f9336177f0aebe76247c4cccab6",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 2430.8536,
+      "rank": 3,
+      "by_consultation": {
+        "day1_consultation07": {
+          "reference_words": 132,
+          "normalized_edits": 25,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1893939393939394
+        },
+        "day1_consultation08": {
+          "reference_words": 78,
+          "normalized_edits": 11,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.14102564102564102
+        },
+        "day1_consultation09": {
+          "reference_words": 109,
+          "normalized_edits": 23,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.21100917431192662
+        },
+        "day1_consultation10": {
+          "reference_words": 107,
+          "normalized_edits": 17,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1588785046728972
+        },
+        "day2_consultation01": {
+          "reference_words": 151,
+          "normalized_edits": 20,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.13245033112582782
+        },
+        "day2_consultation02": {
+          "reference_words": 145,
+          "normalized_edits": 30,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.20689655172413793
+        },
+        "day2_consultation03": {
+          "reference_words": 100,
+          "normalized_edits": 23,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.23
+        },
+        "day2_consultation04": {
+          "reference_words": 103,
+          "normalized_edits": 16,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1553398058252427
+        },
+        "day3_consultation01": {
+          "reference_words": 99,
+          "normalized_edits": 12,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.12121212121212122
+        },
+        "day3_consultation02": {
+          "reference_words": 130,
+          "normalized_edits": 32,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.24615384615384617
+        },
+        "day3_consultation03": {
+          "reference_words": 125,
+          "normalized_edits": 15,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.12
+        },
+        "day3_consultation04": {
+          "reference_words": 117,
+          "normalized_edits": 18,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.15384615384615385
+        },
+        "day4_consultation01": {
+          "reference_words": 83,
+          "normalized_edits": 16,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1927710843373494
+        },
+        "day4_consultation02": {
+          "reference_words": 95,
+          "normalized_edits": 10,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.10526315789473684
+        },
+        "day4_consultation03": {
+          "reference_words": 115,
+          "normalized_edits": 18,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1565217391304348
+        },
+        "day4_consultation04": {
+          "reference_words": 107,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1308411214953271
+        },
+        "day5_consultation01": {
+          "reference_words": 129,
+          "normalized_edits": 17,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.13178294573643412
+        },
+        "day5_consultation02": {
+          "reference_words": 91,
+          "normalized_edits": 7,
+          "sample_count": 4,
+          "failed_samples": 0,
+          "normalized_wer": 0.07692307692307693
+        },
+        "day5_consultation03": {
+          "reference_words": 156,
+          "normalized_edits": 15,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.09615384615384616
+        },
+        "day5_consultation04": {
+          "reference_words": 92,
+          "normalized_edits": 17,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.18478260869565216
+        }
+      },
+      "by_role": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 133,
+          "sample_count": 60,
+          "failed_samples": 0,
+          "normalized_wer": 0.1169744942832014
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 223,
+          "sample_count": 58,
+          "failed_samples": 0,
+          "normalized_wer": 0.19787045252883761
+        }
+      },
+      "by_day": {
+        "day1": {
+          "reference_words": 426,
+          "normalized_edits": 76,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.1784037558685446
+        },
+        "day2": {
+          "reference_words": 499,
+          "normalized_edits": 89,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.17835671342685372
+        },
+        "day3": {
+          "reference_words": 471,
+          "normalized_edits": 77,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.16348195329087048
+        },
+        "day4": {
+          "reference_words": 400,
+          "normalized_edits": 58,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.145
+        },
+        "day5": {
+          "reference_words": 468,
+          "normalized_edits": 56,
+          "sample_count": 22,
+          "failed_samples": 0,
+          "normalized_wer": 0.11965811965811966
+        }
+      }
+    },
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "status": "completed",
+      "normalized_wer": 0.16563604240282687,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 375,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "3852b0e5a80831de7f3740f396a3f2001484f4fadd2a309a822a23c615b0ce96",
+      "model_revision": "edaa852ec7e145841d8ffdb056a99866b5f0a478",
+      "report": "evaluation/runs/primock57-expanded-v1/faster-whisper-large-v3.json",
+      "report_sha256": "ef13b01e0c386a298d2b7a1ab50f9e9ad02198a2d04ff920901de04a9bee43af",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 3890.215,
+      "rank": 4,
+      "by_consultation": {
+        "day1_consultation07": {
+          "reference_words": 132,
+          "normalized_edits": 29,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.2196969696969697
+        },
+        "day1_consultation08": {
+          "reference_words": 78,
+          "normalized_edits": 10,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1282051282051282
+        },
+        "day1_consultation09": {
+          "reference_words": 109,
+          "normalized_edits": 21,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1926605504587156
+        },
+        "day1_consultation10": {
+          "reference_words": 107,
+          "normalized_edits": 18,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.16822429906542055
+        },
+        "day2_consultation01": {
+          "reference_words": 151,
+          "normalized_edits": 24,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.15894039735099338
+        },
+        "day2_consultation02": {
+          "reference_words": 145,
+          "normalized_edits": 35,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.2413793103448276
+        },
+        "day2_consultation03": {
+          "reference_words": 100,
+          "normalized_edits": 24,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.24
+        },
+        "day2_consultation04": {
+          "reference_words": 103,
+          "normalized_edits": 15,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.14563106796116504
+        },
+        "day3_consultation01": {
+          "reference_words": 99,
+          "normalized_edits": 18,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.18181818181818182
+        },
+        "day3_consultation02": {
+          "reference_words": 130,
+          "normalized_edits": 36,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.27692307692307694
+        },
+        "day3_consultation03": {
+          "reference_words": 125,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.112
+        },
+        "day3_consultation04": {
+          "reference_words": 117,
+          "normalized_edits": 21,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1794871794871795
+        },
+        "day4_consultation01": {
+          "reference_words": 83,
+          "normalized_edits": 20,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.24096385542168675
+        },
+        "day4_consultation02": {
+          "reference_words": 95,
+          "normalized_edits": 8,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.08421052631578947
+        },
+        "day4_consultation03": {
+          "reference_words": 115,
+          "normalized_edits": 19,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.16521739130434782
+        },
+        "day4_consultation04": {
+          "reference_words": 107,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1308411214953271
+        },
+        "day5_consultation01": {
+          "reference_words": 129,
+          "normalized_edits": 13,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.10077519379844961
+        },
+        "day5_consultation02": {
+          "reference_words": 91,
+          "normalized_edits": 6,
+          "sample_count": 4,
+          "failed_samples": 0,
+          "normalized_wer": 0.06593406593406594
+        },
+        "day5_consultation03": {
+          "reference_words": 156,
+          "normalized_edits": 13,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.08333333333333333
+        },
+        "day5_consultation04": {
+          "reference_words": 92,
+          "normalized_edits": 17,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.18478260869565216
+        }
+      },
+      "by_role": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 131,
+          "sample_count": 60,
+          "failed_samples": 0,
+          "normalized_wer": 0.11521547933157432
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 244,
+          "sample_count": 58,
+          "failed_samples": 0,
+          "normalized_wer": 0.21650399290150843
+        }
+      },
+      "by_day": {
+        "day1": {
+          "reference_words": 426,
+          "normalized_edits": 78,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.18309859154929578
+        },
+        "day2": {
+          "reference_words": 499,
+          "normalized_edits": 98,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.1963927855711423
+        },
+        "day3": {
+          "reference_words": 471,
+          "normalized_edits": 89,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.18895966029723993
+        },
+        "day4": {
+          "reference_words": 400,
+          "normalized_edits": 61,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.1525
+        },
+        "day5": {
+          "reference_words": 468,
+          "normalized_edits": 49,
+          "sample_count": 22,
+          "failed_samples": 0,
+          "normalized_wer": 0.1047008547008547
+        }
+      }
+    },
+    {
+      "candidate_id": "whisper-small",
+      "status": "completed",
+      "normalized_wer": 0.18065371024734983,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 409,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "3f18eeddd06386c3f83d717f6ad71f01e13cadf12e0e669484b605bceff57bf8",
+      "model_revision": "536b0662742c02347bc0e980a01041f333bce120",
+      "report": "evaluation/runs/primock57-expanded-v1/whisper-small.json",
+      "report_sha256": "af97db6ea687f0443da051b74d7ce75a24710af8e72252ede62292ec1e1db586",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 584.5755,
+      "rank": 5,
+      "by_consultation": {
+        "day1_consultation07": {
+          "reference_words": 132,
+          "normalized_edits": 33,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.25
+        },
+        "day1_consultation08": {
+          "reference_words": 78,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1794871794871795
+        },
+        "day1_consultation09": {
+          "reference_words": 109,
+          "normalized_edits": 32,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.29357798165137616
+        },
+        "day1_consultation10": {
+          "reference_words": 107,
+          "normalized_edits": 24,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.22429906542056074
+        },
+        "day2_consultation01": {
+          "reference_words": 151,
+          "normalized_edits": 19,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.12582781456953643
+        },
+        "day2_consultation02": {
+          "reference_words": 145,
+          "normalized_edits": 33,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.22758620689655173
+        },
+        "day2_consultation03": {
+          "reference_words": 100,
+          "normalized_edits": 25,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.25
+        },
+        "day2_consultation04": {
+          "reference_words": 103,
+          "normalized_edits": 18,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.17475728155339806
+        },
+        "day3_consultation01": {
+          "reference_words": 99,
+          "normalized_edits": 11,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1111111111111111
+        },
+        "day3_consultation02": {
+          "reference_words": 130,
+          "normalized_edits": 33,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.25384615384615383
+        },
+        "day3_consultation03": {
+          "reference_words": 125,
+          "normalized_edits": 19,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.152
+        },
+        "day3_consultation04": {
+          "reference_words": 117,
+          "normalized_edits": 24,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.20512820512820512
+        },
+        "day4_consultation01": {
+          "reference_words": 83,
+          "normalized_edits": 22,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.26506024096385544
+        },
+        "day4_consultation02": {
+          "reference_words": 95,
+          "normalized_edits": 10,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.10526315789473684
+        },
+        "day4_consultation03": {
+          "reference_words": 115,
+          "normalized_edits": 22,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.19130434782608696
+        },
+        "day4_consultation04": {
+          "reference_words": 107,
+          "normalized_edits": 15,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.14018691588785046
+        },
+        "day5_consultation01": {
+          "reference_words": 129,
+          "normalized_edits": 23,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.17829457364341086
+        },
+        "day5_consultation02": {
+          "reference_words": 91,
+          "normalized_edits": 6,
+          "sample_count": 4,
+          "failed_samples": 0,
+          "normalized_wer": 0.06593406593406594
+        },
+        "day5_consultation03": {
+          "reference_words": 156,
+          "normalized_edits": 12,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.07692307692307693
+        },
+        "day5_consultation04": {
+          "reference_words": 92,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.15217391304347827
+        }
+      },
+      "by_role": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 157,
+          "sample_count": 60,
+          "failed_samples": 0,
+          "normalized_wer": 0.13808267370272648
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 252,
+          "sample_count": 58,
+          "failed_samples": 0,
+          "normalized_wer": 0.2236024844720497
+        }
+      },
+      "by_day": {
+        "day1": {
+          "reference_words": 426,
+          "normalized_edits": 103,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.24178403755868544
+        },
+        "day2": {
+          "reference_words": 499,
+          "normalized_edits": 95,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.1903807615230461
+        },
+        "day3": {
+          "reference_words": 471,
+          "normalized_edits": 87,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.18471337579617833
+        },
+        "day4": {
+          "reference_words": 400,
+          "normalized_edits": 69,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.1725
+        },
+        "day5": {
+          "reference_words": 468,
+          "normalized_edits": 55,
+          "sample_count": 22,
+          "failed_samples": 0,
+          "normalized_wer": 0.11752136752136752
+        }
+      }
+    },
+    {
+      "candidate_id": "faster-whisper-tiny.en",
+      "status": "completed",
+      "normalized_wer": 0.2230565371024735,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 505,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "d127ec7a5fc01a584cc0806ba208908c034ffe7c4696a0db6e1d598058c967f1",
+      "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+      "report": "evaluation/runs/primock57-expanded-v1/faster-whisper-tiny.en.json",
+      "report_sha256": "fb0eb97c215789cf07d1ab8b97bab256d5d2a475cb6b24ec77d0d6d6aac324f3",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 107.4621,
+      "rank": 6,
+      "by_consultation": {
+        "day1_consultation07": {
+          "reference_words": 132,
+          "normalized_edits": 33,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.25
+        },
+        "day1_consultation08": {
+          "reference_words": 78,
+          "normalized_edits": 19,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.24358974358974358
+        },
+        "day1_consultation09": {
+          "reference_words": 109,
+          "normalized_edits": 41,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.3761467889908257
+        },
+        "day1_consultation10": {
+          "reference_words": 107,
+          "normalized_edits": 28,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.2616822429906542
+        },
+        "day2_consultation01": {
+          "reference_words": 151,
+          "normalized_edits": 29,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.19205298013245034
+        },
+        "day2_consultation02": {
+          "reference_words": 145,
+          "normalized_edits": 43,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.296551724137931
+        },
+        "day2_consultation03": {
+          "reference_words": 100,
+          "normalized_edits": 38,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.38
+        },
+        "day2_consultation04": {
+          "reference_words": 103,
+          "normalized_edits": 19,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.18446601941747573
+        },
+        "day3_consultation01": {
+          "reference_words": 99,
+          "normalized_edits": 10,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.10101010101010101
+        },
+        "day3_consultation02": {
+          "reference_words": 130,
+          "normalized_edits": 31,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.23846153846153847
+        },
+        "day3_consultation03": {
+          "reference_words": 125,
+          "normalized_edits": 15,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.12
+        },
+        "day3_consultation04": {
+          "reference_words": 117,
+          "normalized_edits": 30,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.2564102564102564
+        },
+        "day4_consultation01": {
+          "reference_words": 83,
+          "normalized_edits": 22,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.26506024096385544
+        },
+        "day4_consultation02": {
+          "reference_words": 95,
+          "normalized_edits": 10,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.10526315789473684
+        },
+        "day4_consultation03": {
+          "reference_words": 115,
+          "normalized_edits": 21,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1826086956521739
+        },
+        "day4_consultation04": {
+          "reference_words": 107,
+          "normalized_edits": 23,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.21495327102803738
+        },
+        "day5_consultation01": {
+          "reference_words": 129,
+          "normalized_edits": 30,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.23255813953488372
+        },
+        "day5_consultation02": {
+          "reference_words": 91,
+          "normalized_edits": 13,
+          "sample_count": 4,
+          "failed_samples": 0,
+          "normalized_wer": 0.14285714285714285
+        },
+        "day5_consultation03": {
+          "reference_words": 156,
+          "normalized_edits": 26,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.16666666666666666
+        },
+        "day5_consultation04": {
+          "reference_words": 92,
+          "normalized_edits": 24,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.2608695652173913
+        }
+      },
+      "by_role": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 214,
+          "sample_count": 60,
+          "failed_samples": 0,
+          "normalized_wer": 0.1882145998240985
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 291,
+          "sample_count": 58,
+          "failed_samples": 0,
+          "normalized_wer": 0.25820763087843834
+        }
+      },
+      "by_day": {
+        "day1": {
+          "reference_words": 426,
+          "normalized_edits": 121,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.284037558685446
+        },
+        "day2": {
+          "reference_words": 499,
+          "normalized_edits": 129,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.25851703406813625
+        },
+        "day3": {
+          "reference_words": 471,
+          "normalized_edits": 86,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.18259023354564755
+        },
+        "day4": {
+          "reference_words": 400,
+          "normalized_edits": 76,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.19
+        },
+        "day5": {
+          "reference_words": 468,
+          "normalized_edits": 93,
+          "sample_count": 22,
+          "failed_samples": 0,
+          "normalized_wer": 0.1987179487179487
+        }
+      }
+    },
+    {
+      "candidate_id": "multimed-whisper-small-english",
+      "status": "completed",
+      "normalized_wer": 0.4204946996466431,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 952,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "0370ecef71a67e67fc9979cd291f5b7719a9d2c5bf8e5958bfb120ec6b95c5ae",
+      "model_revision": "fb15edd1dfc68810a7d0c75e6cfc73c3e5ed01c1",
+      "report": "evaluation/runs/primock57-expanded-v1/multimed-whisper-small-english.json",
+      "report_sha256": "757be9c7ddf2ef61b232d70b610461297a55f731ef1e860f57d45dca869db54c",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 926.6692,
+      "rank": 7,
+      "by_consultation": {
+        "day1_consultation07": {
+          "reference_words": 132,
+          "normalized_edits": 32,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.24242424242424243
+        },
+        "day1_consultation08": {
+          "reference_words": 78,
+          "normalized_edits": 17,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.21794871794871795
+        },
+        "day1_consultation09": {
+          "reference_words": 109,
+          "normalized_edits": 28,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.25688073394495414
+        },
+        "day1_consultation10": {
+          "reference_words": 107,
+          "normalized_edits": 213,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 1.9906542056074767
+        },
+        "day2_consultation01": {
+          "reference_words": 151,
+          "normalized_edits": 48,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.31788079470198677
+        },
+        "day2_consultation02": {
+          "reference_words": 145,
+          "normalized_edits": 183,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 1.2620689655172415
+        },
+        "day2_consultation03": {
+          "reference_words": 100,
+          "normalized_edits": 24,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.24
+        },
+        "day2_consultation04": {
+          "reference_words": 103,
+          "normalized_edits": 19,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.18446601941747573
+        },
+        "day3_consultation01": {
+          "reference_words": 99,
+          "normalized_edits": 21,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.21212121212121213
+        },
+        "day3_consultation02": {
+          "reference_words": 130,
+          "normalized_edits": 34,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.26153846153846155
+        },
+        "day3_consultation03": {
+          "reference_words": 125,
+          "normalized_edits": 18,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.144
+        },
+        "day3_consultation04": {
+          "reference_words": 117,
+          "normalized_edits": 30,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.2564102564102564
+        },
+        "day4_consultation01": {
+          "reference_words": 83,
+          "normalized_edits": 38,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.4578313253012048
+        },
+        "day4_consultation02": {
+          "reference_words": 95,
+          "normalized_edits": 9,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.09473684210526316
+        },
+        "day4_consultation03": {
+          "reference_words": 115,
+          "normalized_edits": 28,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.24347826086956523
+        },
+        "day4_consultation04": {
+          "reference_words": 107,
+          "normalized_edits": 17,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1588785046728972
+        },
+        "day5_consultation01": {
+          "reference_words": 129,
+          "normalized_edits": 25,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1937984496124031
+        },
+        "day5_consultation02": {
+          "reference_words": 91,
+          "normalized_edits": 8,
+          "sample_count": 4,
+          "failed_samples": 0,
+          "normalized_wer": 0.08791208791208792
+        },
+        "day5_consultation03": {
+          "reference_words": 156,
+          "normalized_edits": 137,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.8782051282051282
+        },
+        "day5_consultation04": {
+          "reference_words": 92,
+          "normalized_edits": 23,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.25
+        }
+      },
+      "by_role": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 191,
+          "sample_count": 60,
+          "failed_samples": 0,
+          "normalized_wer": 0.167985927880387
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 761,
+          "sample_count": 58,
+          "failed_samples": 0,
+          "normalized_wer": 0.6752440106477373
+        }
+      },
+      "by_day": {
+        "day1": {
+          "reference_words": 426,
+          "normalized_edits": 290,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.6807511737089202
+        },
+        "day2": {
+          "reference_words": 499,
+          "normalized_edits": 274,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.5490981963927856
+        },
+        "day3": {
+          "reference_words": 471,
+          "normalized_edits": 103,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.21868365180467092
+        },
+        "day4": {
+          "reference_words": 400,
+          "normalized_edits": 92,
+          "sample_count": 24,
+          "failed_samples": 0,
+          "normalized_wer": 0.23
+        },
+        "day5": {
+          "reference_words": 468,
+          "normalized_edits": 193,
+          "sample_count": 22,
+          "failed_samples": 0,
+          "normalized_wer": 0.41239316239316237
+        }
+      }
+    }
+  ],
+  "unranked": [
+    {
+      "candidate_id": "google-medasr-greedy",
+      "status": "access_pending",
+      "reason": "Google model gate requires user approval/login; no HF credentials configured."
+    },
+    {
+      "candidate_id": "google-medasr-approved-decoder",
+      "status": "access_pending",
+      "reason": "Same gated MedASR weights and gated 6-gram decoder; no approved access."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-en-5b",
+      "status": "access_pending",
+      "reason": "Hugging Face model gate requires user approval/login."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-2.5-pro-english",
+      "status": "resource_preflight_blocked",
+      "reason": "Public BF16 weights total about 9.95 GB; reviewed canonical loader defaults to FP32 plus duplicate encoder loading, exceeding this 16 GB host physical RAM. No qualified CPU quantization provisioned."
+    },
+    {
+      "candidate_id": "canary-qwen-2.5b",
+      "status": "resource_preflight_blocked",
+      "reason": "Dependency resolution succeeded. Reviewed NeMo 3.0 SALM initializes FP32; conservative weights + checkpoint + 2 GiB runtime allowance estimate is 17.50 GB versus 16.91 GB physical RAM. Inference not attempted; no qualified lower-memory CPU variant or NVIDIA GPU."
+    },
+    {
+      "candidate_id": "amazon-transcribe-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; AWS credentials not configured."
+    },
+    {
+      "candidate_id": "deepgram-nova-3-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; Deepgram credentials not configured."
+    }
+  ],
+  "limitations": "118 selected utterances from 20 new public mock consultation groups across five recording days; separate speaker tracks, predominantly clean speech. One role supplies only one untagged eligible utterance. Repeated speakers and model-training overlap are not ruled out. Text-only development comparison, not independent clinical acceptance. No production winner.",
+  "clinical_release_gate": "not_evaluated",
+  "production_model_selected": null
+}

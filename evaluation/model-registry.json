@@ -10,12 +10,27 @@
     "measured_report": "evaluation/reports/primock57-tiny-en-smoke-2026-10-24.json",
     "normalized_wer": 0.16417910447761194,
     "maximum_normalized_wer": 0.03,
-    "decision": "fails_required_wer_limit_not_production_eligible"
+    "decision": "fails_required_wer_limit_not_production_eligible",
+    "expanded_comparison": {
+      "rank": 6,
+      "normalized_wer": 0.2230565371024735,
+      "normalized_edits": 505,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "report": "evaluation/runs/primock57-expanded-v1/faster-whisper-tiny.en.json",
+      "profile_sha256": "d127ec7a5fc01a584cc0806ba208908c034ffe7c4696a0db6e1d598058c967f1",
+      "dataset_id": "primock57-20consultations-120clips-v1",
+      "maximum_normalized_wer": 0.05,
+      "decision": "fail",
+      "scope": "text_only_development_not_clinical_acceptance"
+    }
   },
   "measured_results": [
     "evaluation/reports/primock57-tiny-en-smoke-2026-10-24.json",
     "evaluation/reports/primock57-asr-comparison-2026-10-24.json",
-    "evaluation/leaderboard.json"
+    "evaluation/leaderboard.json",
+    "evaluation/validation-leaderboard.json",
+    "evaluation/expanded-leaderboard.json"
   ],
   "candidates": [
     {
@@ -29,7 +44,20 @@
       "decision": "fails_required_3_percent_limit",
       "report": "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json",
       "benchmark_ledger": "evaluation/benchmark-ledger.json",
-      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "expanded_comparison": {
+        "rank": 4,
+        "normalized_wer": 0.16563604240282687,
+        "normalized_edits": 375,
+        "reference_words": 2264,
+        "failed_samples": 0,
+        "report": "evaluation/runs/primock57-expanded-v1/faster-whisper-large-v3.json",
+        "profile_sha256": "3852b0e5a80831de7f3740f396a3f2001484f4fadd2a309a822a23c615b0ce96",
+        "dataset_id": "primock57-20consultations-120clips-v1",
+        "maximum_normalized_wer": 0.05,
+        "decision": "fail",
+        "scope": "text_only_development_not_clinical_acceptance"
+      }
     },
     {
       "id": "google-medasr-greedy",
@@ -78,7 +106,20 @@
       "report": "evaluation/runs/primock57-smoke-v1/omi-med-stt-v1.json",
       "measured_scope": "frozen_six_clip_development_screening",
       "decision": "fails_required_3_percent_limit",
-      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter"
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter",
+      "expanded_comparison": {
+        "rank": 1,
+        "normalized_wer": 0.08701413427561837,
+        "normalized_edits": 197,
+        "reference_words": 2264,
+        "failed_samples": 0,
+        "report": "evaluation/runs/primock57-expanded-v1/omi-med-stt-v1.json",
+        "profile_sha256": "02fc48dedded8a26f1dfa055cd0d21c4a66a87b6c652a5c6dbcb8da6c7e5c045",
+        "dataset_id": "primock57-20consultations-120clips-v1",
+        "maximum_normalized_wer": 0.05,
+        "decision": "fail",
+        "scope": "text_only_development_not_clinical_acceptance"
+      }
     },
     {
       "id": "multimed-whisper-small-english",
@@ -91,7 +132,20 @@
       "report": "evaluation/runs/primock57-smoke-v1/multimed-whisper-small-english.json",
       "measured_scope": "frozen_six_clip_development_screening",
       "decision": "fails_required_3_percent_limit",
-      "runtime_variant": "English source checkpoint converted to CTranslate2 INT8; CPU; two invalid-timestamp outputs counted as failed samples"
+      "runtime_variant": "English source checkpoint converted to CTranslate2 INT8; CPU; two invalid-timestamp outputs counted as failed samples",
+      "expanded_comparison": {
+        "rank": 7,
+        "normalized_wer": 0.4204946996466431,
+        "normalized_edits": 952,
+        "reference_words": 2264,
+        "failed_samples": 0,
+        "report": "evaluation/runs/primock57-expanded-v1/multimed-whisper-small-english.json",
+        "profile_sha256": "0370ecef71a67e67fc9979cd291f5b7719a9d2c5bf8e5958bfb120ec6b95c5ae",
+        "dataset_id": "primock57-20consultations-120clips-v1",
+        "maximum_normalized_wer": 0.05,
+        "decision": "fail",
+        "scope": "text_only_development_not_clinical_acceptance"
+      }
     },
     {
       "id": "whisper-small",
@@ -104,7 +158,20 @@
       "report": "evaluation/runs/primock57-smoke-v1/whisper-small.json",
       "measured_scope": "frozen_six_clip_development_screening",
       "decision": "fails_required_3_percent_limit",
-      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "expanded_comparison": {
+        "rank": 5,
+        "normalized_wer": 0.18065371024734983,
+        "normalized_edits": 409,
+        "reference_words": 2264,
+        "failed_samples": 0,
+        "report": "evaluation/runs/primock57-expanded-v1/whisper-small.json",
+        "profile_sha256": "3f18eeddd06386c3f83d717f6ad71f01e13cadf12e0e669484b605bceff57bf8",
+        "dataset_id": "primock57-20consultations-120clips-v1",
+        "maximum_normalized_wer": 0.05,
+        "decision": "fail",
+        "scope": "text_only_development_not_clinical_acceptance"
+      }
     },
     {
       "id": "distil-whisper-large-v3",
@@ -117,7 +184,20 @@
       "report": "evaluation/runs/primock57-smoke-v1/distil-whisper-large-v3.json",
       "measured_scope": "frozen_six_clip_development_screening",
       "decision": "fails_required_3_percent_limit",
-      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five"
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "expanded_comparison": {
+        "rank": 3,
+        "normalized_wer": 0.15724381625441697,
+        "normalized_edits": 356,
+        "reference_words": 2264,
+        "failed_samples": 0,
+        "report": "evaluation/runs/primock57-expanded-v1/distil-whisper-large-v3.json",
+        "profile_sha256": "ba6fbaddc30280b18b04ce589a3f28e6b297b790952617250f683322af72e70f",
+        "dataset_id": "primock57-20consultations-120clips-v1",
+        "maximum_normalized_wer": 0.05,
+        "decision": "fail",
+        "scope": "text_only_development_not_clinical_acceptance"
+      }
     },
     {
       "id": "parakeet-tdt-0.6b-v2",
@@ -130,7 +210,20 @@
       "report": "evaluation/runs/primock57-smoke-v1/parakeet-tdt-0.6b-v2.json",
       "measured_scope": "frozen_six_clip_development_screening",
       "decision": "fails_required_3_percent_limit",
-      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU"
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU",
+      "expanded_comparison": {
+        "rank": 2,
+        "normalized_wer": 0.13250883392226148,
+        "normalized_edits": 300,
+        "reference_words": 2264,
+        "failed_samples": 0,
+        "report": "evaluation/runs/primock57-expanded-v1/parakeet-tdt-0.6b-v2.json",
+        "profile_sha256": "8385613288709264cef2dcd31a5f3bcc7620c9650b785e1f0ea1c09cc10f10d2",
+        "dataset_id": "primock57-20consultations-120clips-v1",
+        "maximum_normalized_wer": 0.05,
+        "decision": "fail",
+        "scope": "text_only_development_not_clinical_acceptance"
+      }
     },
     {
       "id": "canary-qwen-2.5b",
@@ -168,5 +261,6 @@
     "Hosted audio requires separate approved disclosure and cost authorization"
   ],
   "current_maximum_normalized_wer": 0.05,
-  "historical_policy_note": "Earlier six-clip and thirty-clip reports retain their original 3% gate. The expanded corpus uses the user-revised 5% gate."
+  "historical_policy_note": "Earlier six-clip and thirty-clip reports retain their original 3% gate. The expanded corpus uses the user-revised 5% gate.",
+  "latest_complete_comparison": "evaluation/expanded-leaderboard.json"
 }

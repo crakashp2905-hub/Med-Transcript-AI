@@ -45,3 +45,27 @@ def test_all_locally_measured_configurations_are_predeclared_without_hosted_jobs
     assert {j["runtime"] for j in suite["jobs"]} == {"whisper", "onnx", "omi"}
     # Historical 3% and current 5% locks remain separately reproducible.
     assert rank(CORPUS / "manifest.json", CORPUS / "lock.json", [], ROOT)["maximum_normalized_wer"] == .05
+
+
+def test_published_expanded_ranking_and_grouped_report_reproduce():
+    from services.expanded_summary import summarize
+
+    ledger = json.loads((ROOT / "evaluation/expanded-ledger.json").read_text())
+    rebuilt = rank(CORPUS / "manifest.json", CORPUS / "lock.json", ledger["candidates"], ROOT)
+    assert rebuilt == json.loads((ROOT / "evaluation/expanded-leaderboard.json").read_text())
+    assert len(rebuilt["ranked"]) == len(rebuilt["unranked"]) == 7
+    assert not any(r["status"] == "invalid_report" for r in rebuilt["unranked"])
+    assert all(r["sample_count"] == 118 and r["reference_words"] == 2264 for r in rebuilt["ranked"])
+    assert summarize(ROOT) == json.loads((ROOT / "evaluation/reports/expanded-comparison-2026-10-24.json").read_text())
+
+
+def test_repaired_omi_preserves_earlier_successes_without_partial_selection():
+    folder = ROOT / "evaluation/runs/primock57-expanded-v1"
+    first = json.loads((folder / "attempts/omi-med-stt-v1-windows-dll-registration-failure.json").read_text())
+    repaired = json.loads((folder / "omi-med-stt-v1.json").read_text())
+    earlier = {s["sample_id"]: s for s in first["samples"] if s["status"] == "completed"}
+    latest = {s["sample_id"]: s for s in repaired["samples"]}
+    assert len(earlier) == 36 and len(latest) == 118
+    assert first["failed_samples"] == 82 and repaired["failed_samples"] == 0
+    assert all(s["hypothesis"] == latest[sid]["hypothesis"] for sid, s in earlier.items())
+    assert first["profile_sha256"] != repaired["profile_sha256"]
