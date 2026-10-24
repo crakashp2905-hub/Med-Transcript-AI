@@ -10,4 +10,6 @@ The project-owned adapter now loads the pinned CPU C API once, keeps it for the 
 
 The repaired configuration is rerun on **all 118 clips**. The first attempt is not silently overwritten or mixed with selected successful rerun clips. The main ranking uses the full repaired attempt and links to this repair record. Any failures remaining after repair still fail the 5% gate and count as full-reference deletions. This is a loader lifecycle fix, not a model, reference or scorer change.
 
-A partial repair probe completed four clips successfully, then was deliberately stopped when it overlapped both original workers during large-v3 initialization and available physical memory dropped to about 326 MB. Its log remains under ignored data storage; it contributes no quality result. The entire repaired Omi run is scheduled after the other lanes, avoiding that extra concurrency.
+A partial repair probe completed 16 clips successfully, then was deliberately stopped when it overlapped both original workers during large-v3 initialization and available physical memory dropped to about 326 MB. Its log remains under ignored data storage; it contributes no quality result. The entire repaired Omi run is scheduled after the other lanes, avoiding that extra concurrency.
+
+The 16 successful partial-probe status lines are preserved in `evaluation/runs/primock57-expanded-v1/attempts/omi-med-stt-v1-memory-interrupted.log`; they contain no scored hypotheses and are excluded from the main comparison.

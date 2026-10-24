@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from services.benchmark_ranking import rank
+from services.asr.profiles import content_sha256
 
 
 def summarize(root="."):
@@ -13,22 +14,34 @@ def summarize(root="."):
     ledger = json.loads((root / "evaluation/expanded-ledger.json").read_text(encoding="utf-8"))
     result = rank(root / suite["manifest"], root / suite["lock"], ledger["candidates"], root)
     expected = {j["candidate_id"] for j in suite["jobs"]}
+    if len(suite["jobs"]) != 7 or len(expected) != 7:
+        raise ValueError("Exactly seven unique predeclared local configurations are required")
     if {r["candidate_id"] for r in result["ranked"]} != expected:
         raise ValueError("All seven predeclared local configurations must have complete valid reports")
     manifest = json.loads((root / suite["manifest"]).read_text(encoding="utf-8"))
     truth = {s["sample_id"]: s for s in manifest["samples"]}
     jobs = {j["candidate_id"]: j for j in suite["jobs"]}
+    source_profiles = {p["profile_id"]: p for p in json.loads((root / "evaluation/expanded-whisper-profiles.json").read_text(encoding="utf-8"))}
     models = []
     for row in result["ranked"]:
         report = json.loads((root / row["report"]).read_text(encoding="utf-8"))
         job, config = jobs[row["candidate_id"]], report["runtime_configuration"]
+        if content_sha256(config) != report["profile_sha256"]:
+            raise ValueError("Predeclared runtime configuration hash mismatch")
         if config["runtime_version"] != {"whisper": "1.2.1", "onnx": "0.12.0", "omi": "0.2.1"}[job["runtime"]]:
             raise ValueError("Predeclared runtime version mismatch")
         if job["runtime"] == "whisper":
+            source = source_profiles[job["profile_id"]]
+            if content_sha256(source) != job["source_profile_sha256"]:
+                raise ValueError("Predeclared public source profile changed")
             if config.get("source_profile_sha256") != job["source_profile_sha256"] or report["profile_id"] != job["profile_id"]:
                 raise ValueError("Predeclared source profile mismatch")
+            if config["artifacts"] != source["artifacts"] or report["model_revision"] != source["revision"]:
+                raise ValueError("Predeclared Whisper artifacts/revision mismatch")
         elif config["artifacts"] != job["expected_artifacts"] or report["model_revision"] != job["revision"]:
             raise ValueError("Predeclared artifact/revision mismatch")
+        if job["runtime"] == "omi" and config.get("adapter_revision") != "reuse_capi_close_windows_dll_directories_v1":
+            raise ValueError("Predeclared repaired Omi lifecycle required")
         partitions = {"by_consultation": {}, "by_role": {}, "by_day": {}}
         for sample in report["samples"]:
             reference = truth[sample["sample_id"]]

@@ -26,3 +26,5 @@ Model artifacts and isolated optional runtime packages must already be locally p
 ```
 
 Run the lanes in separate terminals. Complete valid reports can be reused after interruption; incomplete/invalid reports require review. Per-clip progress and full model outputs are written under ignored `data/datasets/primock57-expanded-v1/results/`. These concurrent accuracy runs do not establish warmed throughput or latency.
+
+`../../expanded-whisper-profiles.json` records the five original Windows source profiles in full. Their canonical configuration hashes match the pre-inference suite declaration; absolute paths identify this execution host. Scoring the committed reports is portable. Inference on a different host requires explicit local profile paths and a separately recorded configuration declaration, while retaining the pinned artifact hashes and decoding settings.
