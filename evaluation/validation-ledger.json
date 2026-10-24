@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "dataset": "evaluation/datasets/primock57-validation-v1/manifest.json",
+  "policy": "Two predeclared finalists; unchanged models and scorer; no paid calls.",
+  "candidates": [
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-validation-v1/omi-med-stt-v1.json",
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter"
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-validation-v1/parakeet-tdt-0.6b-v2.json",
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU"
+    }
+  ]
+}

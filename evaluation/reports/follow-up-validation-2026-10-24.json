@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "primock57-consultations02-06-validation-v1",
+  "manifest_sha256": "39e123830ba2dcff73b5621f1a4f10cbf76cd1eb8a7c56654c6d3d40e4cdbac7",
+  "sample_count": 30,
+  "consultation_groups": 5,
+  "reference_words": 575,
+  "maximum_normalized_wer": 0.03,
+  "models": [
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "completed",
+      "normalized_wer": 0.08695652173913043,
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter",
+      "normalized_edits": 50,
+      "reference_words": 575,
+      "failed_samples": 0,
+      "sample_count": 30,
+      "profile_sha256": "bf13378dee7768a3f8bd86b85f52370bb1d7c9fb0c7b0511aa9fb4e3b2582021",
+      "model_revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "report": "evaluation/runs/primock57-validation-v1/omi-med-stt-v1.json",
+      "report_sha256": "132c6ab65b7d7c7acf0cc482ec4fe38191b358d5294487ddd772709d7b77803d",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 209.7375,
+      "rank": 1,
+      "initial_screening_wer": 0.06716417910447761,
+      "same_profile_as_screening": true,
+      "by_consultation": {
+        "day1_consultation02": {
+          "reference_words": 122,
+          "normalized_edits": 12,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.09836065573770492
+        },
+        "day1_consultation03": {
+          "reference_words": 120,
+          "normalized_edits": 9,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.075
+        },
+        "day1_consultation04": {
+          "reference_words": 115,
+          "normalized_edits": 13,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.11304347826086956
+        },
+        "day1_consultation05": {
+          "reference_words": 99,
+          "normalized_edits": 7,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.0707070707070707
+        },
+        "day1_consultation06": {
+          "reference_words": 119,
+          "normalized_edits": 9,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.07563025210084033
+        }
+      },
+      "by_role": {
+        "doctor": {
+          "reference_words": 294,
+          "normalized_edits": 30,
+          "sample_count": 15,
+          "failed_samples": 0,
+          "normalized_wer": 0.10204081632653061
+        },
+        "patient": {
+          "reference_words": 281,
+          "normalized_edits": 20,
+          "sample_count": 15,
+          "failed_samples": 0,
+          "normalized_wer": 0.0711743772241993
+        }
+      }
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "completed",
+      "normalized_wer": 0.1391304347826087,
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU",
+      "normalized_edits": 80,
+      "reference_words": 575,
+      "failed_samples": 0,
+      "sample_count": 30,
+      "profile_sha256": "8385613288709264cef2dcd31a5f3bcc7620c9650b785e1f0ea1c09cc10f10d2",
+      "model_revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+      "report": "evaluation/runs/primock57-validation-v1/parakeet-tdt-0.6b-v2.json",
+      "report_sha256": "b8c4b10eba4a475acf5469b96e7d9f1ae27ef3890e4f83896b2a78fcecd4631c",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 84.9792,
+      "rank": 2,
+      "initial_screening_wer": 0.05223880597014925,
+      "same_profile_as_screening": true,
+      "by_consultation": {
+        "day1_consultation02": {
+          "reference_words": 122,
+          "normalized_edits": 19,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1557377049180328
+        },
+        "day1_consultation03": {
+          "reference_words": 120,
+          "normalized_edits": 9,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.075
+        },
+        "day1_consultation04": {
+          "reference_words": 115,
+          "normalized_edits": 24,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.20869565217391303
+        },
+        "day1_consultation05": {
+          "reference_words": 99,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.1414141414141414
+        },
+        "day1_consultation06": {
+          "reference_words": 119,
+          "normalized_edits": 14,
+          "sample_count": 6,
+          "failed_samples": 0,
+          "normalized_wer": 0.11764705882352941
+        }
+      },
+      "by_role": {
+        "doctor": {
+          "reference_words": 294,
+          "normalized_edits": 48,
+          "sample_count": 15,
+          "failed_samples": 0,
+          "normalized_wer": 0.16326530612244897
+        },
+        "patient": {
+          "reference_words": 281,
+          "normalized_edits": 32,
+          "sample_count": 15,
+          "failed_samples": 0,
+          "normalized_wer": 0.11387900355871886
+        }
+      }
+    }
+  ],
+  "production_model_selected": null,
+  "clinical_release_gate": "not_evaluated",
+  "confidence_limitations": "Only five consultation groups; speaker and training independence are unverified. No population-level confidence or clinical safety claim.",
+  "decision": "No automatic production promotion; the 3% gate and independent clinical acceptance remain required."
+}

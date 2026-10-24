@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import html
 import json
+import os
 from fractions import Fraction
 from pathlib import Path
 
@@ -92,7 +93,7 @@ def rank(manifest_path, lock_path, entries, root):
         "scope": lock["allowed_use"], "ranking_rule": "ascending_unrounded_aggregate_normalized_wer_shared_ranks_for_ties",
         "maximum_normalized_wer": lock["maximum_normalized_wer"], "ranked": measured, "unranked": unranked,
         "production_model_selected": None, "clinical_release_gate": "not_evaluated",
-        "limitations": "Six clips from one consultation; upstream references are not independently clinically adjudicated. No production winner from this screening set."}
+        "limitations": lock.get("limitations", "Six clips from one consultation; upstream references are not independently clinically adjudicated. No production winner from this screening set.")}
 
 
 def render(result):
@@ -111,19 +112,19 @@ def render(result):
     return "\n".join(lines)
 
 
-def render_html(result, manifest):
+def render_html(result, manifest, dataset_path="datasets/primock57-smoke-v1"):
     esc = lambda value: html.escape(str(value), quote=True)
     measured = ''.join(f'<tr><td>{r["rank"]}</td><th>{esc(r["candidate_id"])}<br><small>{esc(r["runtime_variant"])}</small></th><td>{r["normalized_wer"]:.2%}</td><td>{r["normalized_edits"]}/{r["reference_words"]}</td><td>{r["failed_samples"]}</td><td>{esc(r["wer_gate"]["status"]).upper()}</td></tr>' for r in result['ranked'])
     blocked = ''.join(f'<tr><th>{esc(r["candidate_id"])}</th><td>{esc(r["status"])}</td><td>{esc(r.get("reason", "No complete comparable run"))}</td></tr>' for r in result['unranked'])
-    recordings = ''.join(f'<article><h3>{esc(s["sample_id"])}</h3><audio controls preload="none" src="datasets/primock57-smoke-v1/{esc(s["audio"])}"></audio><p>{esc(s["reference"])}</p></article>' for s in manifest['samples'])
+    recordings = ''.join(f'<article><h3>{esc(s["sample_id"])}</h3><audio controls preload="none" src="{esc(dataset_path)}/{esc(s["audio"])}"></audio><p>{esc(s["reference"])}</p></article>' for s in manifest['samples'])
     return f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ASR model comparison</title>
 <style>body{{font:16px/1.6 system-ui;margin:0;background:#f1f6f5;color:#173c39}}main{{max-width:1180px;margin:auto;padding:40px 24px}}h1{{font-size:36px;line-height:1.2}}.eyebrow{{font-size:13px;letter-spacing:.1em;font-weight:700}}.notice,article,.table{{background:white;border:1px solid #d5e2df;border-radius:12px;padding:20px;margin:20px 0}}.table{{overflow-x:auto;padding:0}}table{{width:100%;border-collapse:collapse;text-align:left}}td,th{{padding:14px;border-bottom:1px solid #e1ebe8;vertical-align:top}}thead{{background:#dcebe7}}code{{overflow-wrap:anywhere;font-size:12px}}audio{{max-width:100%}}small{{color:#42635f}}article h3{{overflow-wrap:anywhere}}@media(max-width:600px){{main{{padding:24px 14px}}h1{{font-size:28px}}td,th{{padding:10px}}}}</style>
 <main><p class="eyebrow">MED TRANSCRIPT · REPRODUCIBLE SCREENING</p><h1>ASR models, ranked by measured word error rate</h1>
-<div class="notice"><strong>Required normalized WER: ≤3.00%</strong><p>Lower is better. Ties share an exact rank. This is a six-clip development screening dataset, not a clinical acceptance result. No production model has been selected.</p></div>
+<div class="notice"><strong>Required normalized WER: ≤3.00%</strong><p>Lower is better. Ties share an exact rank. This is a development evaluation dataset, not a clinical acceptance result. No production model has been selected.</p></div>
 <h2>Measured models</h2><div class="table"><table><thead><tr><th>Rank</th><th>Model / runtime variant</th><th>Normalized WER</th><th>Edits / words</th><th>Failed clips</th><th>3% gate</th></tr></thead><tbody>{measured}</tbody></table></div>
 <h2>Unranked candidates</h2><p>Access, runtime and resource blockers do not establish a model's accuracy. Paid calls are disabled.</p><div class="table"><table><thead><tr><th>Candidate</th><th>Status</th><th>Reason</th></tr></thead><tbody>{blocked}</tbody></table></div>
 <h2>Frozen reference dataset</h2><p>{esc(result['dataset_id'])}</p><p><small>Manifest SHA-256</small><br><code>{esc(result['manifest_sha256'])}</code></p><p>{esc(result['limitations'])}</p>
-<details><summary>Listen to the six recordings and read their reference transcripts</summary>{recordings}</details>
+<details><summary>Listen to the {len(manifest['samples'])} recordings and read their reference transcripts</summary>{recordings}</details>
 <p><small>Source: PriMock57, Babylon Health; Papadopoulos Korfiatis, Moramarco, Sarac and Savkov (2022), CC BY 4.0. Normalized and cropped from simulated consultation recordings. See the dataset directory for license and attribution.</small></p></main></html>'''
 
 
@@ -141,7 +142,8 @@ def main():
     path.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     path.with_suffix(".md").write_text(render(result), encoding="utf-8")
     # Standalone file is intentionally self-contained and can be opened directly.
-    path.with_suffix(".html").write_text(render_html(result, json.loads(Path(args.manifest).read_text())), encoding="utf-8")
+    dataset_path = Path(os.path.relpath(Path(args.manifest).resolve().parent, path.resolve().parent)).as_posix()
+    path.with_suffix(".html").write_text(render_html(result, json.loads(Path(args.manifest).read_text()), dataset_path), encoding="utf-8")
     print(json.dumps({"ranked": len(result["ranked"]), "unranked": len(result["unranked"]), "out": str(path)}))
 
 

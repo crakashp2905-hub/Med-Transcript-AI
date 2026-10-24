@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "primock57-consultations02-06-validation-v1",
+  "manifest_sha256": "39e123830ba2dcff73b5621f1a4f10cbf76cd1eb8a7c56654c6d3d40e4cdbac7",
+  "scope": "new_consultation_group_development_validation_not_clinical_acceptance",
+  "ranking_rule": "ascending_unrounded_aggregate_normalized_wer_shared_ranks_for_ties",
+  "maximum_normalized_wer": 0.03,
+  "ranked": [
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "completed",
+      "normalized_wer": 0.08695652173913043,
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter",
+      "normalized_edits": 50,
+      "reference_words": 575,
+      "failed_samples": 0,
+      "sample_count": 30,
+      "profile_sha256": "bf13378dee7768a3f8bd86b85f52370bb1d7c9fb0c7b0511aa9fb4e3b2582021",
+      "model_revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "report": "evaluation/runs/primock57-validation-v1/omi-med-stt-v1.json",
+      "report_sha256": "132c6ab65b7d7c7acf0cc482ec4fe38191b358d5294487ddd772709d7b77803d",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 209.7375,
+      "rank": 1
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "completed",
+      "normalized_wer": 0.1391304347826087,
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU",
+      "normalized_edits": 80,
+      "reference_words": 575,
+      "failed_samples": 0,
+      "sample_count": 30,
+      "profile_sha256": "8385613288709264cef2dcd31a5f3bcc7620c9650b785e1f0ea1c09cc10f10d2",
+      "model_revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+      "report": "evaluation/runs/primock57-validation-v1/parakeet-tdt-0.6b-v2.json",
+      "report_sha256": "b8c4b10eba4a475acf5469b96e7d9f1ae27ef3890e4f83896b2a78fcecd4631c",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.03,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 84.9792,
+      "rank": 2
+    }
+  ],
+  "unranked": [],
+  "production_model_selected": null,
+  "clinical_release_gate": "not_evaluated",
+  "limitations": "30 preselected utterances from five additional public mock consultations; separate speaker tracks; repeated speakers and training overlap are not ruled out. Development validation only; no clinical acceptance or production winner."
+}

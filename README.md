@@ -14,6 +14,20 @@ tiny English model passed a synthetic smoke test; clinical benchmarking is pendi
 
 ## Measured ASR ranking
 
+The [follow-up validation](evaluation/reports/follow-up-validation-2026-10-24.md)
+tested the two screening leaders on 30 fixed clips from five additional
+consultations (575 reference words). **Omi GGUF Q8: 8.70%; Parakeet ONNX
+INT8: 13.91% normalized WER. Neither meets the required 3%.** Omi leads this
+follow-up; these development results do not establish clinical acceptance.
+Open the [follow-up comparison with playable audio](evaluation/validation-leaderboard.html).
+The dataset, references, pinned model configurations and full hypotheses are
+committed separately from the original screening set. Reproduce with:
+
+```powershell
+.\.venv\Scripts\python.exe -m services.benchmark_ranking --manifest evaluation/datasets/primock57-validation-v1/manifest.json --lock evaluation/datasets/primock57-validation-v1/lock.json --ledger evaluation/validation-ledger.json --out evaluation/validation-leaderboard.json
+.\.venv\Scripts\python.exe -m services.validation_summary
+```
+
 Open [the standalone comparison page](evaluation/leaderboard.html) in a browser,
 or read [the ranked results](evaluation/leaderboard.md). The page opens directly
 without an API server and includes playable reference recordings. All 13 blueprint

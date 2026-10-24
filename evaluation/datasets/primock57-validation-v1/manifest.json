@@ -1,0 +1,401 @@
+{
+  "dataset_id": "primock57-consultations02-06-validation-v1",
+  "split_role": "new_consultation_group_development_validation_not_clinical_acceptance",
+  "data_class": "approved_public",
+  "rights_reviewed": true,
+  "license_id": "CC-BY-4.0",
+  "attribution": "PriMock57: A Dataset Of Primary Care Mock Consultations, Alex Papadopoulos Korfiatis, Francesco Moramarco, Radmila Sarac and Aleksandar Savkov (2022), Babylon Health. CC BY 4.0. Source: https://github.com/babylonhealth/primock57",
+  "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+  "protocol_sha256": "1f27af071b426f785a9a467d6d583d53cc616ca61c0a2cac6bab7ce8b0d9e9aa",
+  "selection": "First three upstream intervals with duration 4\u201320 seconds, at least five whitespace-delimited reference words and no annotation tags; fixed before model execution.",
+  "changes": "Mono 16kHz PCM16; utterance crops with 250ms padding; references unchanged.",
+  "limitations": [
+    "Public mock consultations, selected clean utterances, separate speaker channels",
+    "New groups relative to the project screening set; speaker independence and model-training independence are not established",
+    "No prompt changes, model tuning, reference editing or exclusions based on inference results"
+  ],
+  "sources": [
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation02_doctor.wav",
+      "audio_sha256": "39800525bbb34834aa19a6bb24dea514b093ae3417c6f22d49e585e9743a2ae6",
+      "annotation_sha256": "4a33e030a4670936754821469855e63cb3263b1575da098cacd1158b48684277"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation02_patient.wav",
+      "audio_sha256": "594383d70f8724740f39dc46258a01cd5762c42c46db4c6631ea205ddf66a7c2",
+      "annotation_sha256": "61ae00734844852f9fd70df574b02aa79b3da4b654464bd0d70191266a5f78fa"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation03_doctor.wav",
+      "audio_sha256": "d5cca0801f77c4b0d125ce6156c09666d93e30fa832c0912af374ab16a46458b",
+      "annotation_sha256": "a4a10a7817ea6ff09baa7c5dcf582008d4d67d82154492622e3ba39af7ef8589"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation03_patient.wav",
+      "audio_sha256": "1a0db408c2bb8db7142285fad75a427ad909487268d71bdf3e5fea730e67af9b",
+      "annotation_sha256": "db2982dfa60856dc104919f3e7a71716bd58c243e81311d41cd6010cb7f39f90"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation04_doctor.wav",
+      "audio_sha256": "1ef8321c89c4ee2ca4f59fd265bb705e3ee32b8d3ba90f2c24da9797c9504089",
+      "annotation_sha256": "78151a98fa5ffda75ecee3f7f3663f2ae0a38bf8ed5e0fbfa4d04a0545624fea"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation04_patient.wav",
+      "audio_sha256": "b54be25036f726b936f5dc2df047283c1f36a2b47f073304f4ea40899156405c",
+      "annotation_sha256": "012ba2cc6ed1494913037fafc7f787d9cafa8c1420e011c7ec9ec1f2181813fc"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation05_doctor.wav",
+      "audio_sha256": "49daae0bb285ffd6d8727543e7634e389353dc5b88b3c1e59461f24bebed441f",
+      "annotation_sha256": "3c834cbb2a4105cae1e091b487e04d4ae2b81596e9a6e40b608f8106617d316c"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation05_patient.wav",
+      "audio_sha256": "f342bb267d6f5a167e9b00e6d831c6e47710980e42a3dcc10c0fd1742603df17",
+      "annotation_sha256": "0c015d45b7dcda76580e765301064ccefabe8ea7d6850bded2d2283b76b51cbe"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation06_doctor.wav",
+      "audio_sha256": "36c2bdb1d8e42bdb42d5a69cfda091ff1a0d2554179ae5a14ef4f674388b2d2c",
+      "annotation_sha256": "73203b4bce1ccd96b57632186933a3f81baa3d2e7fea46da25f297c01364c7d7"
+    },
+    {
+      "source": "https://media.githubusercontent.com/media/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day1_consultation06_patient.wav",
+      "audio_sha256": "495077d1786bb2272d41b144e4118853964b5abae9caab1e758e6b9b045b888f",
+      "annotation_sha256": "59c6411e37bd4b2366293ef9881c037af7138d4e58d34ab060114a3187e0ab08"
+    }
+  ],
+  "samples": [
+    {
+      "sample_id": "day1_consultation02_doctor.utterance01",
+      "group_id": "day1_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation02_doctor.utterance01.wav",
+      "audio_sha256": "e7599f887e6038915c62a8ffb9ff2c602a234d4e60b47fe41f3ce2f6f1fb8328",
+      "reference": "No, no problem. I'm happy to help. Um whereabouts in your skin is it affected?",
+      "source_start_seconds": 27.5635,
+      "source_end_seconds": 32.237125
+    },
+    {
+      "sample_id": "day1_consultation02_doctor.utterance02",
+      "group_id": "day1_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation02_doctor.utterance02.wav",
+      "audio_sha256": "4bd86f49d6940de03f2424ec386f420a3610299e20de6fb26f322984cb2cea5b",
+      "reference": "Um have you, have you noticed any uh bleeding or discharge from your skins?",
+      "source_start_seconds": 156.1674375,
+      "source_end_seconds": 162.6604375
+    },
+    {
+      "sample_id": "day1_consultation02_doctor.utterance03",
+      "group_id": "day1_consultation02",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation02_doctor.utterance03.wav",
+      "audio_sha256": "f79daa0e08e649bbbe45d4617450689cd0861205fd41d39db97080948c19361e",
+      "reference": "You've not, haven't uh seen any other uh pus or blood, coming out of your skin.",
+      "source_start_seconds": 171.4243125,
+      "source_end_seconds": 176.3965625
+    },
+    {
+      "sample_id": "day1_consultation02_patient.utterance01",
+      "group_id": "day1_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation02_patient.utterance01.wav",
+      "audio_sha256": "9f213bfb555e0e9807b7493fa3ec1003ad0412d2878408521392ea9ad7d0cf59",
+      "reference": "Yes. So, it's been a few days now. I have like a sore, and a red skin. It's kind of, it's really itchy, and it's like super annoying. So I'd like to find something quick to solve it.",
+      "source_start_seconds": 16.3315625,
+      "source_end_seconds": 28.2083125
+    },
+    {
+      "sample_id": "day1_consultation02_patient.utterance02",
+      "group_id": "day1_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation02_patient.utterance02.wav",
+      "audio_sha256": "dcb694f774c437ad48bffc6474134513f535796452d5926954213888f20d3f13",
+      "reference": "Uh, mostly like my chest, my, my hands, my arms. Like, like really, it's it's super annoying. Like it's itching a lot, like all the time. And",
+      "source_start_seconds": 32.1865625,
+      "source_end_seconds": 41.7763125
+    },
+    {
+      "sample_id": "day1_consultation02_patient.utterance03",
+      "group_id": "day1_consultation02",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation02_patient.utterance03.wav",
+      "audio_sha256": "48fd1428040cc879c1b0e54f7d1e7985ee51b194ffa92c49e537c5994d95a1f1",
+      "reference": "Um so yes. Uh earlier I was like prescribed for my eczema.",
+      "source_start_seconds": 70.7273125,
+      "source_end_seconds": 76.05325
+    },
+    {
+      "sample_id": "day1_consultation03_doctor.utterance01",
+      "group_id": "day1_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation03_doctor.utterance01.wav",
+      "audio_sha256": "09cbb0abd695d7afb4759fc8e072ae2be661fc74bc578127df3db71578b2cba2",
+      "reference": "Well, let's try our best. Let's try and get you, let's try and get you well, soon. Um you mentioned it's on your left hand side. Is that right? And it started at mid-day, a few hours ago.",
+      "source_start_seconds": 43.92175,
+      "source_end_seconds": 52.6063125
+    },
+    {
+      "sample_id": "day1_consultation03_doctor.utterance02",
+      "group_id": "day1_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation03_doctor.utterance02.wav",
+      "audio_sha256": "8183c8d48d88e30c1bcb766772bffcbda5d56b6d1d6dd316cb7e2611c8d8a26b",
+      "reference": "OK. Um did the pain come on quite suddenly? Or was it more of a gradual build up?",
+      "source_start_seconds": 53.1261875,
+      "source_end_seconds": 58.5040625
+    },
+    {
+      "sample_id": "day1_consultation03_doctor.utterance03",
+      "group_id": "day1_consultation03",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation03_doctor.utterance03.wav",
+      "audio_sha256": "a383dc1038d2aad9d969e2e6ead0c3968004eff1a4051ecc596e9686b4626013",
+      "reference": "OK. And are you able to describe what kind of headache it was? For example, was it throbbing, or was it more of a sharp pain?",
+      "source_start_seconds": 60.37525,
+      "source_end_seconds": 66.652
+    },
+    {
+      "sample_id": "day1_consultation03_patient.utterance01",
+      "group_id": "day1_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation03_patient.utterance01.wav",
+      "audio_sha256": "e21359b95d3c5ef53143c8a21aeac0043f35c8324669a2673a03cd1b60ec51b5",
+      "reference": "Well you know, I noticed some zig-zag lines in my vision a few minutes before the headache started.",
+      "source_start_seconds": 20.3063125,
+      "source_end_seconds": 26.7984375
+    },
+    {
+      "sample_id": "day1_consultation03_patient.utterance02",
+      "group_id": "day1_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation03_patient.utterance02.wav",
+      "audio_sha256": "5c7bbc45b4147555c1e38e44b9c1a383ed79c87265d54ceaeef0431bd94bba04",
+      "reference": "My vision blurred. Um, you know, it just",
+      "source_start_seconds": 26.833,
+      "source_end_seconds": 32.510625
+    },
+    {
+      "sample_id": "day1_consultation03_patient.utterance03",
+      "group_id": "day1_consultation03",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation03_patient.utterance03.wav",
+      "audio_sha256": "31c38e3024951da3eb50537b07fd20549aec65723c4b0a16c355802a2eec61e7",
+      "reference": "I, yeah. Pain's just horrible. Just making me feel so unwell. Um",
+      "source_start_seconds": 33.100625,
+      "source_end_seconds": 39.249
+    },
+    {
+      "sample_id": "day1_consultation04_doctor.utterance01",
+      "group_id": "day1_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation04_doctor.utterance01.wav",
+      "audio_sha256": "09d2a5b197ba5771c1c5cb3a7ecb74f0c1c82b20bdc9de7d408f0f622dcf9d57",
+      "reference": "OK. OK. And did you have any uh difficulty or pain on swallowing?",
+      "source_start_seconds": 76.674625,
+      "source_end_seconds": 81.565625
+    },
+    {
+      "sample_id": "day1_consultation04_doctor.utterance02",
+      "group_id": "day1_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation04_doctor.utterance02.wav",
+      "audio_sha256": "ec3ce4587dac7229039a0f5455416a1ec0572e2bdf5a788a0daf39147445cee2",
+      "reference": "OK, fine. Um you also mentioned a cough as well. Can you tell me a bit more about that?",
+      "source_start_seconds": 132.2535,
+      "source_end_seconds": 137.6256875
+    },
+    {
+      "sample_id": "day1_consultation04_doctor.utterance03",
+      "group_id": "day1_consultation04",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation04_doctor.utterance03.wav",
+      "audio_sha256": "227cd1fa21729f13de25f82766d828df13486458d5ad230effe50b18dfce8def",
+      "reference": "Is it, is it worse any particular time of the day? For example in the evenings, night time, mornings?",
+      "source_start_seconds": 154.8399375,
+      "source_end_seconds": 160.7309375
+    },
+    {
+      "sample_id": "day1_consultation04_patient.utterance01",
+      "group_id": "day1_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation04_patient.utterance01.wav",
+      "audio_sha256": "d479d4e176f67c3c54238082475833028f1ece95409cae1d6989d401d8f75baa",
+      "reference": "Alright, so I've been feeling, I've been feeling kind of uh under the weather for the past four days.",
+      "source_start_seconds": 9.77875,
+      "source_end_seconds": 16.3759375
+    },
+    {
+      "sample_id": "day1_consultation04_patient.utterance02",
+      "group_id": "day1_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation04_patient.utterance02.wav",
+      "audio_sha256": "2e31221c1a17217be538f530632e5d5cec6c533a592076addb8ea07b30e78407",
+      "reference": "Um it started with the um, uh sore throat and runny nose, and",
+      "source_start_seconds": 15.8759375,
+      "source_end_seconds": 23.23925
+    },
+    {
+      "sample_id": "day1_consultation04_patient.utterance03",
+      "group_id": "day1_consultation04",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation04_patient.utterance03.wav",
+      "audio_sha256": "92c8b55bf42cccddc06964da6c6f928df10900219257aead27c79563e5424aec",
+      "reference": "uh from their kindergarten or something. And uh, you know the it it started as normal sore throat, and uh was quite painful for a couple days, but then it was past.",
+      "source_start_seconds": 65.0765625,
+      "source_end_seconds": 77.325625
+    },
+    {
+      "sample_id": "day1_consultation05_doctor.utterance01",
+      "group_id": "day1_consultation05",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation05_doctor.utterance01.wav",
+      "audio_sha256": "5a751e562a81ee4118b849123a6f2aa77670ce126084a5f807a46b0d843b77f1",
+      "reference": "Right, I'm sorry to hear that. When, when did your symptoms all start?",
+      "source_start_seconds": 23.51825,
+      "source_end_seconds": 28.10525
+    },
+    {
+      "sample_id": "day1_consultation05_doctor.utterance02",
+      "group_id": "day1_consultation05",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation05_doctor.utterance02.wav",
+      "audio_sha256": "b4d2402ee673f69fe2992eae2ff1e90908d325a8d1d2776c1662aff684f46329",
+      "reference": "OK, OK. And can you describe the pain to me?",
+      "source_start_seconds": 52.286625,
+      "source_end_seconds": 57.1489375
+    },
+    {
+      "sample_id": "day1_consultation05_doctor.utterance03",
+      "group_id": "day1_consultation05",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation05_doctor.utterance03.wav",
+      "audio_sha256": "b9772e362bc0f72e828cd50d52366804a3dc6b8e69f33e7ef97ad9780dbadbfb",
+      "reference": "OK. So you've got no other symptoms, like diarrhea or loose stools?",
+      "source_start_seconds": 104.2435625,
+      "source_end_seconds": 109.1766875
+    },
+    {
+      "sample_id": "day1_consultation05_patient.utterance01",
+      "group_id": "day1_consultation05",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation05_patient.utterance01.wav",
+      "audio_sha256": "b245309813f1d41184e77687490c8fe699d1fc85e722e433bfe62f5df28274cb",
+      "reference": "Yeah, I had a bit of constipation, but that's better, now. That was like, since last week.",
+      "source_start_seconds": 98.9375625,
+      "source_end_seconds": 104.8961875
+    },
+    {
+      "sample_id": "day1_consultation05_patient.utterance02",
+      "group_id": "day1_consultation05",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation05_patient.utterance02.wav",
+      "audio_sha256": "2634a38422b0f3b7e450f4397efbfb1eb14d9082f566359804328fe626d5c906",
+      "reference": "Uh, yeah I've, I have had the same partner, I am, we were last sexually active about four days ago. Um, my last STD screen was normal, which was about six months ago.",
+      "source_start_seconds": 200.1219375,
+      "source_end_seconds": 211.7078125
+    },
+    {
+      "sample_id": "day1_consultation05_patient.utterance03",
+      "group_id": "day1_consultation05",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation05_patient.utterance03.wav",
+      "audio_sha256": "64a279f479a8f4af6974c24ebd618cd29b03e4a5d865506049b74c0d8c27cda6",
+      "reference": "Uh, I'm, on the Implanon. I had the Implanon inserted about a year ago.",
+      "source_start_seconds": 221.0574375,
+      "source_end_seconds": 225.7679375
+    },
+    {
+      "sample_id": "day1_consultation06_doctor.utterance01",
+      "group_id": "day1_consultation06",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation06_doctor.utterance01.wav",
+      "audio_sha256": "a4934744323e3d758e90b4943301a053f148ca9cf342ae2157fec4f8aefd2324",
+      "reference": "Right, OK. So you mentioned you're feeling, uh, short of breath for the last couple of weeks, but mainly the last couple of days it's got a bit worse.",
+      "source_start_seconds": 81.3083125,
+      "source_end_seconds": 87.673375
+    },
+    {
+      "sample_id": "day1_consultation06_doctor.utterance02",
+      "group_id": "day1_consultation06",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation06_doctor.utterance02.wav",
+      "audio_sha256": "a73795ab7ecb4e337ffe2f56485a90165b156f433809aca14f469c7bbd0e9d0a",
+      "reference": "Um, uh, and you're now feeling more breathless on kind of minimal, minimal exertion you mentioned. Um, have you noticed any other symptoms at all, uh, uh, with your breath? So, for example, any pain in your chest?",
+      "source_start_seconds": 87.173375,
+      "source_end_seconds": 99.0115
+    },
+    {
+      "sample_id": "day1_consultation06_doctor.utterance03",
+      "group_id": "day1_consultation06",
+      "speaker_role": "doctor",
+      "language": "en",
+      "audio": "day1_consultation06_doctor.utterance03.wav",
+      "audio_sha256": "b3081b456dd568dd3eee363b10af4c53de4692ca31423606f8247c72bb341af8",
+      "reference": "OK. OK. And how's your general health otherwise? Are you feeling uh, weak, lethargic?",
+      "source_start_seconds": 110.2865625,
+      "source_end_seconds": 117.6351875
+    },
+    {
+      "sample_id": "day1_consultation06_patient.utterance01",
+      "group_id": "day1_consultation06",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation06_patient.utterance01.wav",
+      "audio_sha256": "1991197901c588647dc6f68e9be0813bbb4f095f70f9e1916941da287d65acec",
+      "reference": "Um, I'm, contacting you because I've been, quite short of breath lately.",
+      "source_start_seconds": 20.05425,
+      "source_end_seconds": 25.1774375
+    },
+    {
+      "sample_id": "day1_consultation06_patient.utterance02",
+      "group_id": "day1_consultation06",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation06_patient.utterance02.wav",
+      "audio_sha256": "4ddf5151c31c6888e440eec48b740fa6f4cc688067bfea6900312192ae8d23ef",
+      "reference": "Uh, well it seems to have been, slowly getting worse over the last couple of weeks.",
+      "source_start_seconds": 30.132,
+      "source_end_seconds": 35.0085
+    },
+    {
+      "sample_id": "day1_consultation06_patient.utterance03",
+      "group_id": "day1_consultation06",
+      "speaker_role": "patient",
+      "language": "en",
+      "audio": "day1_consultation06_patient.utterance03.wav",
+      "audio_sha256": "f113ea53b8e380acbd905dc67735563237243a3b62a86149b2e08e17cfda9ee4",
+      "reference": "Um, well, I've, I've uh, I've got um, heart failure.",
+      "source_start_seconds": 59.8769375,
+      "source_end_seconds": 67.41875
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "primock57-consultations02-06-validation-v1",
+  "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+  "consultations": ["day1_consultation02", "day1_consultation03", "day1_consultation04", "day1_consultation05", "day1_consultation06"],
+  "roles": ["doctor", "patient"],
+  "utterances_per_role": 3,
+  "selection": "First three upstream intervals with duration 4–20 seconds, at least five whitespace-delimited reference words and no annotation tags; fixed before model execution.",
+  "padding_seconds": 0.25,
+  "normalization": "mono 16kHz PCM16; reference text unchanged",
+  "scoring_profile": "lowercase_words_preserve_decimals_units_negation_v1",
+  "failure_policy": "empty_hypothesis_full_reference_deletions",
+  "maximum_normalized_wer": 0.03,
+  "model_configurations": ["parakeet-v2-onnx-cpu-int8-v1", "omi-v1-gguf-q8-cpu-v1"],
+  "split_role": "new_consultation_group_development_validation_not_clinical_acceptance",
+  "limitations": ["Public mock consultations, selected clean utterances, separate speaker channels", "New groups relative to the project screening set; speaker independence and model-training independence are not established", "No prompt changes, model tuning, reference editing or exclusions based on inference results"]
+}
