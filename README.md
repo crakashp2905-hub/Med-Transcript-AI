@@ -64,6 +64,28 @@ Fixing a transcript invalidates dependent note approval; editing approved conten
 requires an amendment. Critical ambiguity cannot be dismissed with an ignore
 button. Clinician additions have their own attribution and no invented citations.
 
+### Microphone dictation
+
+Create an encounter, confirm the synthetic-speech/recording authorization in
+**Microphone dictation**, then choose **Start dictation**. Allow the browser's
+microphone prompt, speak English and choose **Stop & transcribe**. The application
+uploads the recording, waits for local inspection, queues the configured ASR
+profile and displays the unreviewed transcript automatically. Audio never goes
+to a browser speech-recognition service or hosted ASR provider.
+
+This is stop-to-transcript dictation, not word-by-word streaming. Processing time
+depends on the configured model and local hardware. Recordings are limited to
+five minutes or 25 MB. Discard stops capture without uploading; failed uploads
+can be retried from the retained local recording. You can also save that recording
+locally. Browser microphone access requires localhost or HTTPS; Chrome and Edge
+are the tested Windows browsers. An ASR profile and the local worker are required.
+
+The launcher reads `MED_TRANSCRIPT_ASR_PROFILES`, or an explicitly configured
+`asr_profiles_path` in ignored `data/local-config.json`. It does not download or
+switch models automatically. This workstation retains its existing tiny.en
+development profile for dictation. All tested models still fail the 3% quality
+requirement, so use synthetic test speech only and review every result.
+
 Python 3.11+ is required. From this folder in PowerShell:
 
 ```powershell

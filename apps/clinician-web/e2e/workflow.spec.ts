@@ -69,7 +69,7 @@ test('compressed upload is normalized by the worker and supports manual transcri
   await page.getByLabel('I confirmed the patient and encounter identifiers.').check();
   await page.getByRole('button',{name:'Create encounter',exact:false}).click();
   await page.locator('input[type=file]').setInputFiles(resolve(root,'data/synthetic-asr-smoke.mp3'));
-  await page.getByLabel('Recording and local-processing authorization is documented.').check();
+  await page.getByLabel('Recording and local-processing authorization is documented.',{exact:true}).check();
   await page.getByRole('button',{name:'Upload recording',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Manual transcription'})).toBeVisible({timeout:20000});
   await page.getByLabel('Manual source text').fill('This is a synthetic recording for a transcription software test. No patient information is included.');

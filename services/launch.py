@@ -39,7 +39,7 @@ def main():
     if args.demo:
         print("Synthetic example ready." if create_fixture(root) else "Synthetic voice unavailable; upload your own synthetic WAV.")
     db = os.environ.get("MED_TRANSCRIPT_DB", str(root / "development.sqlite3"))
-    profile_path = os.environ.get("MED_TRANSCRIPT_ASR_PROFILES")
+    profile_path = os.environ.get("MED_TRANSCRIPT_ASR_PROFILES") or config.get("asr_profiles_path")
     profiles = load_profiles(profile_path) if profile_path else {}
     app = create_app(db, {config["access_key"]: Identity(tenant_id=config["tenant_id"], clinician_id=config["clinician_id"])},
         os.environ.get("MED_TRANSCRIPT_ASSETS"), profiles)
