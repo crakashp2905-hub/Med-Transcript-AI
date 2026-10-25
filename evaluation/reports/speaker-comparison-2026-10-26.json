@@ -1,0 +1,377 @@
+{
+  "schema_version": "speaker_comparison_v1",
+  "reference_status": "upstream_not_independently_adjudicated",
+  "role_mapping": "optimal_reference_mapping_for_scoring_only_never_application_role_assignment",
+  "clinical_acceptance": false,
+  "conditions": [
+    {
+      "id": "fixed_window",
+      "evidence_sha256": "9cb58630bf6664ad9fb4f180751b05b7ea49b247fa07ccee4dc5195b768d562c",
+      "cases": [
+        {
+          "id": "day1_consultation11",
+          "failed": false,
+          "metrics": {
+            "reference_speaker_ms": 821255,
+            "missed_speaker_ms": 209923,
+            "false_alarm_speaker_ms": 4,
+            "confused_speaker_ms": 182988,
+            "diarization_error_rate": 0.4784323991939166,
+            "collar_ms": 0,
+            "overlap_scored": true,
+            "optimal_scoring_mapping": {
+              "speaker_7": "doctor",
+              "speaker_1": "patient"
+            },
+            "predicted_clusters": 19,
+            "reference_speakers": 2,
+            "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+            "scoring_mapping_is_not_clinician_role_confirmation": true
+          },
+          "role_errors": {
+            "doctor": {
+              "reference_ms": 306603,
+              "predicted_ms": 49268,
+              "correct_ms": 49156,
+              "missed_ms": 257447,
+              "extra_ms": 112,
+              "recall": 0.16032458912665565,
+              "precision": 0.9977267191686288,
+              "boundaries": {
+                "reference_boundaries": 134,
+                "predicted_boundaries": 50,
+                "matched": 8,
+                "missed": 126,
+                "extra": 42,
+                "tolerance_ms": 250,
+                "f1": 0.08695652173913043
+              }
+            },
+            "patient": {
+              "reference_ms": 514652,
+              "predicted_ms": 503948,
+              "correct_ms": 379188,
+              "missed_ms": 135464,
+              "extra_ms": 124760,
+              "recall": 0.7367852451753807,
+              "precision": 0.7524347750164699,
+              "boundaries": {
+                "reference_boundaries": 180,
+                "predicted_boundaries": 448,
+                "matched": 71,
+                "missed": 109,
+                "extra": 377,
+                "tolerance_ms": 250,
+                "f1": 0.22611464968152867
+              }
+            }
+          }
+        },
+        {
+          "id": "day1_consultation12",
+          "failed": false,
+          "metrics": {
+            "reference_speaker_ms": 461302,
+            "missed_speaker_ms": 110196,
+            "false_alarm_speaker_ms": 598,
+            "confused_speaker_ms": 150065,
+            "diarization_error_rate": 0.5654842164135425,
+            "collar_ms": 0,
+            "overlap_scored": true,
+            "optimal_scoring_mapping": {
+              "speaker_1": "doctor",
+              "speaker_3": "patient"
+            },
+            "predicted_clusters": 44,
+            "reference_speakers": 2,
+            "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+            "scoring_mapping_is_not_clinician_role_confirmation": true
+          },
+          "role_errors": {
+            "doctor": {
+              "reference_ms": 232380,
+              "predicted_ms": 136340,
+              "correct_ms": 118610,
+              "missed_ms": 113770,
+              "extra_ms": 17730,
+              "recall": 0.5104139771064635,
+              "precision": 0.8699574592929441,
+              "boundaries": {
+                "reference_boundaries": 110,
+                "predicted_boundaries": 156,
+                "matched": 38,
+                "missed": 72,
+                "extra": 118,
+                "tolerance_ms": 250,
+                "f1": 0.2857142857142857
+              }
+            },
+            "patient": {
+              "reference_ms": 228922,
+              "predicted_ms": 83176,
+              "correct_ms": 82431,
+              "missed_ms": 146491,
+              "extra_ms": 745,
+              "recall": 0.3600833471662837,
+              "precision": 0.9910430893526979,
+              "boundaries": {
+                "reference_boundaries": 98,
+                "predicted_boundaries": 86,
+                "matched": 12,
+                "missed": 86,
+                "extra": 74,
+                "tolerance_ms": 250,
+                "f1": 0.13043478260869565
+              }
+            }
+          }
+        },
+        {
+          "id": "day1_consultation13",
+          "failed": false,
+          "metrics": {
+            "reference_speaker_ms": 625770,
+            "missed_speaker_ms": 154886,
+            "false_alarm_speaker_ms": 388,
+            "confused_speaker_ms": 162518,
+            "diarization_error_rate": 0.5078415392236765,
+            "collar_ms": 0,
+            "overlap_scored": true,
+            "optimal_scoring_mapping": {
+              "speaker_1": "doctor",
+              "speaker_2": "patient"
+            },
+            "predicted_clusters": 30,
+            "reference_speakers": 2,
+            "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+            "scoring_mapping_is_not_clinician_role_confirmation": true
+          },
+          "role_errors": {
+            "doctor": {
+              "reference_ms": 323218,
+              "predicted_ms": 214148,
+              "correct_ms": 174487,
+              "missed_ms": 148731,
+              "extra_ms": 39661,
+              "recall": 0.539843078046396,
+              "precision": 0.8147963090946448,
+              "boundaries": {
+                "reference_boundaries": 130,
+                "predicted_boundaries": 220,
+                "matched": 58,
+                "missed": 72,
+                "extra": 162,
+                "tolerance_ms": 250,
+                "f1": 0.3314285714285714
+              }
+            },
+            "patient": {
+              "reference_ms": 302552,
+              "predicted_ms": 137876,
+              "correct_ms": 133879,
+              "missed_ms": 168673,
+              "extra_ms": 3997,
+              "recall": 0.44249914064359186,
+              "precision": 0.9710101830630422,
+              "boundaries": {
+                "reference_boundaries": 116,
+                "predicted_boundaries": 116,
+                "matched": 7,
+                "missed": 109,
+                "extra": 109,
+                "tolerance_ms": 250,
+                "f1": 0.0603448275862069
+              }
+            }
+          }
+        }
+      ],
+      "weighted_der": 0.5091192442385398
+    },
+    {
+      "id": "separate_channels",
+      "evidence_sha256": "c4a2447748f0c26c4cf2fd518553e791cbc76ec364b772d02617a79927f7ecfd",
+      "cases": [
+        {
+          "id": "day1_consultation11",
+          "failed": false,
+          "metrics": {
+            "reference_speaker_ms": 821255,
+            "missed_speaker_ms": 206475,
+            "false_alarm_speaker_ms": 4,
+            "confused_speaker_ms": 5,
+            "diarization_error_rate": 0.251424953272735,
+            "collar_ms": 0,
+            "overlap_scored": true,
+            "optimal_scoring_mapping": {
+              "channel_0": "doctor",
+              "channel_1": "patient"
+            },
+            "predicted_clusters": 2,
+            "reference_speakers": 2,
+            "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+            "scoring_mapping_is_not_clinician_role_confirmation": true
+          },
+          "role_errors": {
+            "doctor": {
+              "reference_ms": 306603,
+              "predicted_ms": 224128,
+              "correct_ms": 224128,
+              "missed_ms": 82475,
+              "extra_ms": 0,
+              "recall": 0.7310039366868556,
+              "precision": 1.0,
+              "boundaries": {
+                "reference_boundaries": 134,
+                "predicted_boundaries": 190,
+                "matched": 48,
+                "missed": 86,
+                "extra": 142,
+                "tolerance_ms": 250,
+                "f1": 0.2962962962962963
+              }
+            },
+            "patient": {
+              "reference_ms": 514652,
+              "predicted_ms": 390656,
+              "correct_ms": 390647,
+              "missed_ms": 124005,
+              "extra_ms": 9,
+              "recall": 0.7590507760583851,
+              "precision": 0.9999769618283093,
+              "boundaries": {
+                "reference_boundaries": 180,
+                "predicted_boundaries": 396,
+                "matched": 98,
+                "missed": 82,
+                "extra": 298,
+                "tolerance_ms": 250,
+                "f1": 0.3402777777777778
+              }
+            }
+          }
+        },
+        {
+          "id": "day1_consultation12",
+          "failed": false,
+          "metrics": {
+            "reference_speaker_ms": 461302,
+            "missed_speaker_ms": 109155,
+            "false_alarm_speaker_ms": 301,
+            "confused_speaker_ms": 93,
+            "diarization_error_rate": 0.23747783447719714,
+            "collar_ms": 0,
+            "overlap_scored": true,
+            "optimal_scoring_mapping": {
+              "channel_0": "doctor",
+              "channel_1": "patient"
+            },
+            "predicted_clusters": 2,
+            "reference_speakers": 2,
+            "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+            "scoring_mapping_is_not_clinician_role_confirmation": true
+          },
+          "role_errors": {
+            "doctor": {
+              "reference_ms": 232380,
+              "predicted_ms": 178016,
+              "correct_ms": 177622,
+              "missed_ms": 54758,
+              "extra_ms": 394,
+              "recall": 0.7643600998364748,
+              "precision": 0.9977867158008269,
+              "boundaries": {
+                "reference_boundaries": 110,
+                "predicted_boundaries": 188,
+                "matched": 70,
+                "missed": 40,
+                "extra": 118,
+                "tolerance_ms": 250,
+                "f1": 0.4697986577181208
+              }
+            },
+            "patient": {
+              "reference_ms": 228922,
+              "predicted_ms": 174432,
+              "correct_ms": 174432,
+              "missed_ms": 54490,
+              "extra_ms": 0,
+              "recall": 0.7619713264780144,
+              "precision": 1.0,
+              "boundaries": {
+                "reference_boundaries": 98,
+                "predicted_boundaries": 170,
+                "matched": 58,
+                "missed": 40,
+                "extra": 112,
+                "tolerance_ms": 250,
+                "f1": 0.43283582089552236
+              }
+            }
+          }
+        },
+        {
+          "id": "day1_consultation13",
+          "failed": false,
+          "metrics": {
+            "reference_speaker_ms": 625770,
+            "missed_speaker_ms": 156763,
+            "false_alarm_speaker_ms": 561,
+            "confused_speaker_ms": 78,
+            "diarization_error_rate": 0.25153331096089615,
+            "collar_ms": 0,
+            "overlap_scored": true,
+            "optimal_scoring_mapping": {
+              "channel_0": "doctor",
+              "channel_1": "patient"
+            },
+            "predicted_clusters": 2,
+            "reference_speakers": 2,
+            "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+            "scoring_mapping_is_not_clinician_role_confirmation": true
+          },
+          "role_errors": {
+            "doctor": {
+              "reference_ms": 323218,
+              "predicted_ms": 258400,
+              "correct_ms": 257850,
+              "missed_ms": 65368,
+              "extra_ms": 550,
+              "recall": 0.7977587881863015,
+              "precision": 0.9978715170278638,
+              "boundaries": {
+                "reference_boundaries": 130,
+                "predicted_boundaries": 230,
+                "matched": 102,
+                "missed": 28,
+                "extra": 128,
+                "tolerance_ms": 250,
+                "f1": 0.5666666666666667
+              }
+            },
+            "patient": {
+              "reference_ms": 302552,
+              "predicted_ms": 211168,
+              "correct_ms": 211079,
+              "missed_ms": 91473,
+              "extra_ms": 89,
+              "recall": 0.6976618895264285,
+              "precision": 0.9995785346264585,
+              "boundaries": {
+                "reference_boundaries": 116,
+                "predicted_boundaries": 186,
+                "matched": 16,
+                "missed": 100,
+                "extra": 170,
+                "tolerance_ms": 250,
+                "f1": 0.10596026490066225
+              }
+            }
+          }
+        }
+      ],
+      "weighted_der": 0.248089032959236
+    }
+  ],
+  "absolute_der_reduction": 0.2610302112793038
+}

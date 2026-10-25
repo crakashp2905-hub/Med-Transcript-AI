@@ -98,6 +98,46 @@ test('microphone permission denial explains recovery without uploading audio',as
  await expect(page.getByRole('button',{name:'Start dictation',exact:true})).toBeEnabled();
 });
 
+test('disconnected microphone retains a partial recording without automatic submission',async({page})=>{
+ await page.addInitScript(()=>{
+  const original=navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+  navigator.mediaDevices.getUserMedia=async options=>{
+   const stream=await original(options);(window as unknown as {testStream:MediaStream}).testStream=stream;return stream;
+  };
+ });
+ let uploads=0;page.on('request',request=>{if(request.method()==='POST'&&/\/audio-uploads$/.test(request.url()))uploads++;});
+ await encounter(page);
+ await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
+ await page.getByRole('button',{name:'Start dictation',exact:true}).click();
+ await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
+ await page.waitForTimeout(1600);
+ await page.evaluate(()=>{const track=(window as unknown as {testStream:MediaStream}).testStream.getAudioTracks()[0];track.stop();track.dispatchEvent(new Event('ended'));});
+ await expect(page.getByRole('alert')).toContainText('microphone disconnected');
+ await expect(page.getByRole('link',{name:'Save this recording locally'})).toBeVisible();
+ await expect(page.getByRole('button',{name:'Retry recording upload',exact:true})).toBeVisible();
+ await expect(page.getByRole('button',{name:'Start dictation',exact:true})).toBeDisabled();
+ expect(uploads).toBe(0);
+ await page.getByRole('button',{name:'Discard partial recording',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Start dictation',exact:true})).toBeEnabled();
+});
+
+test('simulated clock passes five minutes and stops capture at thirty minutes',async({page})=>{
+ // Tests control timing, not a claim of 30 real minutes of browser-encoded audio.
+ await page.clock.install();
+ await encounter(page);
+ await expect(page.getByText(/Maximum 30 minutes or 64 MiB/)).toBeVisible();
+ await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
+ await page.getByRole('button',{name:'Start dictation',exact:true}).click();
+ await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
+ await page.waitForTimeout(1500);
+ await page.clock.fastForward(6*60*1000);
+ await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
+ await page.clock.fastForward(14*60*1000);
+ await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
+ await page.clock.fastForward(10*60*1000);
+ await expect(page.getByText('Recording · microphone is on',{exact:true})).not.toBeVisible();
+});
+
 test('retry after a lost successful upload response reuses the saved source',async({page})=>{
  let puts=0,creationUrl='';const keys:string[]=[];
  page.on('request',request=>{if(request.method()==='POST'&&/\/audio-uploads$/.test(request.url())){creationUrl=request.url();keys.push(request.headers()['idempotency-key']);}});

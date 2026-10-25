@@ -2,6 +2,30 @@
 
 These tools prepare and analyze human work; they cannot certify credentials, recruit clinicians, approve a pilot or make a failed model pass. Keep public mock recordings as the development source. Do not edit references after seeing model output. Freeze a separate institution-approved acceptance cohort and protocol before measuring acceptance.
 
+The versioned [gold concept schema](../evaluation/gold-concept-schema-v1.json)
+defines the clinical vocabulary and exact evidence shape. Workflow validation
+also checks these vocabulary enums and the actual source slices; JSON schema
+alone cannot validate a citation or prove completeness. Extra flat clinical
+slots affect exact matching and must use a frozen agreed vocabulary.
+
+The [reserved acceptance candidate](../evaluation/acceptance-reservation-v1.json)
+selects day5 consultations 05–07, disjoint from every current development
+manifest. The [source pointer audit](../evaluation/reports/acceptance-source-audit-2026-10-26.json)
+records the six upstream audio SHA-256 pointers at the pinned source revision.
+It does not claim to have downloaded/audited audio contents. No models have
+been evaluated on this reserved cohort. Speakers, sites, devices and training
+independence still need audit before it can become an acceptance cohort.
+
+The institution keeps the qualification registry privately, using the fields
+listed in the reservation protocol. Verify current credentials, clinical scope,
+English consultation experience, conflicts, training and verification dates.
+Use a separate training case before blinded annotation; do not train reviewers
+on acceptance answers or share the other reviewer's first-pass labels. Stop
+and version the source if audible evidence disputes the frozen transcript.
+Record uncertainty instead of resolving it through ASR output. The adjudicator
+must review all disagreements and audit evidence even when concept labels match.
+The code cannot verify identity, qualifications or actual listening.
+
 ## Independent annotation
 
 Generate a blank source-only packet, without ASR hypotheses or model-generated facts:

@@ -1,0 +1,4858 @@
+{
+  "schema_version": "two_channel_vad_v1",
+  "manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a",
+  "runtime_version": "2.0.0",
+  "vad": {
+    "path": "D:\\Med-Transcript\\data\\models\\public-diarization-v1\\silero_vad.onnx",
+    "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+    "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad.onnx",
+    "license": "MIT"
+  },
+  "complete": true,
+  "cases": [
+    {
+      "id": "day1_consultation11",
+      "failed": false,
+      "failure_type": null,
+      "segments": [
+        {
+          "start_ms": 2342,
+          "end_ms": 2758,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 4006,
+          "end_ms": 4518,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 6342,
+          "end_ms": 7174,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 11622,
+          "end_ms": 12134,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 14982,
+          "end_ms": 15782,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 16806,
+          "end_ms": 17190,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 17446,
+          "end_ms": 19046,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 20070,
+          "end_ms": 23814,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 32390,
+          "end_ms": 34886,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 75910,
+          "end_ms": 77798,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 78054,
+          "end_ms": 80742,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 92742,
+          "end_ms": 93190,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 93478,
+          "end_ms": 96998,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 98214,
+          "end_ms": 100742,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 108774,
+          "end_ms": 110694,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 111878,
+          "end_ms": 113318,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 125382,
+          "end_ms": 127398,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 137990,
+          "end_ms": 141638,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 156582,
+          "end_ms": 158822,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 167206,
+          "end_ms": 171270,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 179750,
+          "end_ms": 182214,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 186406,
+          "end_ms": 186790,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 187206,
+          "end_ms": 190502,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 190790,
+          "end_ms": 191942,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 206150,
+          "end_ms": 208710,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 209382,
+          "end_ms": 214246,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 230118,
+          "end_ms": 231910,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 232614,
+          "end_ms": 234086,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 234950,
+          "end_ms": 238086,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 260230,
+          "end_ms": 261958,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 266054,
+          "end_ms": 269158,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 271878,
+          "end_ms": 275558,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 277094,
+          "end_ms": 281510,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 300966,
+          "end_ms": 305094,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 312646,
+          "end_ms": 313414,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 313830,
+          "end_ms": 314662,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 314950,
+          "end_ms": 318662,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 318886,
+          "end_ms": 320550,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 320838,
+          "end_ms": 326534,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 350438,
+          "end_ms": 351782,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 364070,
+          "end_ms": 364454,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 364710,
+          "end_ms": 371142,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 382246,
+          "end_ms": 382822,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 384006,
+          "end_ms": 385766,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 386118,
+          "end_ms": 388166,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 401222,
+          "end_ms": 403718,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 404006,
+          "end_ms": 406950,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 431142,
+          "end_ms": 433126,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 450662,
+          "end_ms": 452646,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 457222,
+          "end_ms": 457574,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 458150,
+          "end_ms": 461638,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 467174,
+          "end_ms": 471078,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 478214,
+          "end_ms": 479942,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 502150,
+          "end_ms": 503046,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 517830,
+          "end_ms": 520038,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 520422,
+          "end_ms": 526022,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 536550,
+          "end_ms": 538246,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 540998,
+          "end_ms": 541702,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 543430,
+          "end_ms": 545190,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 545702,
+          "end_ms": 546854,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 547334,
+          "end_ms": 548710,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 593158,
+          "end_ms": 596038,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 610118,
+          "end_ms": 617094,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 617510,
+          "end_ms": 619462,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 639846,
+          "end_ms": 640614,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 674246,
+          "end_ms": 679206,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 680102,
+          "end_ms": 681350,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 682022,
+          "end_ms": 685606,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 686950,
+          "end_ms": 689350,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 689926,
+          "end_ms": 690470,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 691174,
+          "end_ms": 695494,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 696326,
+          "end_ms": 697414,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 698758,
+          "end_ms": 700230,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 700454,
+          "end_ms": 700870,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 701510,
+          "end_ms": 702470,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 705862,
+          "end_ms": 706214,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 707910,
+          "end_ms": 709606,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 710086,
+          "end_ms": 717702,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 718406,
+          "end_ms": 722150,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 724230,
+          "end_ms": 725734,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 726886,
+          "end_ms": 730470,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 730854,
+          "end_ms": 736358,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 736966,
+          "end_ms": 742278,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 742758,
+          "end_ms": 743814,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 744422,
+          "end_ms": 745318,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 746598,
+          "end_ms": 748294,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 758150,
+          "end_ms": 763046,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 763494,
+          "end_ms": 766982,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 767494,
+          "end_ms": 771302,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 777030,
+          "end_ms": 782278,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 784646,
+          "end_ms": 787462,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 790630,
+          "end_ms": 791270,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 794310,
+          "end_ms": 794726,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 797190,
+          "end_ms": 797638,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 798790,
+          "end_ms": 799270,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 5254,
+          "end_ms": 5766,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 7718,
+          "end_ms": 10022,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 12742,
+          "end_ms": 14342,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 15078,
+          "end_ms": 17254,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 20102,
+          "end_ms": 20454,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 25382,
+          "end_ms": 26150,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 26854,
+          "end_ms": 29894,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 30630,
+          "end_ms": 32070,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 35750,
+          "end_ms": 42086,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 42758,
+          "end_ms": 44806,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 45254,
+          "end_ms": 47462,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 47814,
+          "end_ms": 49062,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 49478,
+          "end_ms": 51366,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 52038,
+          "end_ms": 57510,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 57862,
+          "end_ms": 60198,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 60870,
+          "end_ms": 63174,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 63462,
+          "end_ms": 64198,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 64518,
+          "end_ms": 67174,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 67910,
+          "end_ms": 72166,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 72710,
+          "end_ms": 73062,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 73414,
+          "end_ms": 75462,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 81318,
+          "end_ms": 85318,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 86214,
+          "end_ms": 86854,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 87110,
+          "end_ms": 90246,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 90598,
+          "end_ms": 92486,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 102086,
+          "end_ms": 103334,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 103590,
+          "end_ms": 107622,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 107878,
+          "end_ms": 108358,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 114022,
+          "end_ms": 116998,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 117446,
+          "end_ms": 119974,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 120230,
+          "end_ms": 120966,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 121670,
+          "end_ms": 123910,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 124134,
+          "end_ms": 125158,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 128294,
+          "end_ms": 128934,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 130406,
+          "end_ms": 131142,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 131814,
+          "end_ms": 137606,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 141414,
+          "end_ms": 144166,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 145062,
+          "end_ms": 147910,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 148614,
+          "end_ms": 149894,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 150214,
+          "end_ms": 152358,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 152774,
+          "end_ms": 154886,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 155494,
+          "end_ms": 156134,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 159494,
+          "end_ms": 161030,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 161446,
+          "end_ms": 162598,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 163078,
+          "end_ms": 164806,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 165222,
+          "end_ms": 166918,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 167142,
+          "end_ms": 167590,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 172166,
+          "end_ms": 172678,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 172998,
+          "end_ms": 174790,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 175014,
+          "end_ms": 178982,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 183110,
+          "end_ms": 185894,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 193478,
+          "end_ms": 194470,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 195654,
+          "end_ms": 196262,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 201702,
+          "end_ms": 202630,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 203942,
+          "end_ms": 206182,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 214566,
+          "end_ms": 220966,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 221606,
+          "end_ms": 222790,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 223046,
+          "end_ms": 225478,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 225958,
+          "end_ms": 228390,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 228806,
+          "end_ms": 230470,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 239686,
+          "end_ms": 240230,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 240518,
+          "end_ms": 244166,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 245734,
+          "end_ms": 251206,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 251622,
+          "end_ms": 259910,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 262694,
+          "end_ms": 265286,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 269862,
+          "end_ms": 270214,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 270950,
+          "end_ms": 271910,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 275782,
+          "end_ms": 276934,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 282182,
+          "end_ms": 285222,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 285606,
+          "end_ms": 286086,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 286598,
+          "end_ms": 288838,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 289094,
+          "end_ms": 290854,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 291366,
+          "end_ms": 294662,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 295014,
+          "end_ms": 296070,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 297254,
+          "end_ms": 298054,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 298726,
+          "end_ms": 300774,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 306438,
+          "end_ms": 307494,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 307910,
+          "end_ms": 308710,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 309158,
+          "end_ms": 312294,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 327590,
+          "end_ms": 329734,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 330310,
+          "end_ms": 333190,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 333798,
+          "end_ms": 337702,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 338182,
+          "end_ms": 338822,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 339974,
+          "end_ms": 340326,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 340678,
+          "end_ms": 341190,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 341510,
+          "end_ms": 343014,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 343622,
+          "end_ms": 350214,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 352646,
+          "end_ms": 353094,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 355014,
+          "end_ms": 355558,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 355910,
+          "end_ms": 363334,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 371622,
+          "end_ms": 372070,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 372870,
+          "end_ms": 375814,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 376038,
+          "end_ms": 379398,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 379942,
+          "end_ms": 381190,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 389254,
+          "end_ms": 390662,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 391686,
+          "end_ms": 392934,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 394342,
+          "end_ms": 396038,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 396294,
+          "end_ms": 396966,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 397766,
+          "end_ms": 400742,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 408198,
+          "end_ms": 408742,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 409062,
+          "end_ms": 409766,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 410150,
+          "end_ms": 410694,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 411942,
+          "end_ms": 413766,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 414150,
+          "end_ms": 415238,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 415558,
+          "end_ms": 416038,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 416710,
+          "end_ms": 418150,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 418822,
+          "end_ms": 419910,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 420326,
+          "end_ms": 420678,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 422438,
+          "end_ms": 423558,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 424134,
+          "end_ms": 425734,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 425990,
+          "end_ms": 426534,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 426886,
+          "end_ms": 427878,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 428710,
+          "end_ms": 429510,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 429734,
+          "end_ms": 430886,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 434950,
+          "end_ms": 436070,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 437478,
+          "end_ms": 438118,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 440006,
+          "end_ms": 441702,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 441990,
+          "end_ms": 450054,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 453862,
+          "end_ms": 456902,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 462534,
+          "end_ms": 463302,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 463622,
+          "end_ms": 464902,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 465478,
+          "end_ms": 467046,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 470246,
+          "end_ms": 470630,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 472134,
+          "end_ms": 477734,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 481190,
+          "end_ms": 483814,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 484422,
+          "end_ms": 487814,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 488518,
+          "end_ms": 492646,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 493702,
+          "end_ms": 495782,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 496166,
+          "end_ms": 500198,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 500422,
+          "end_ms": 502182,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 503654,
+          "end_ms": 504166,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 504998,
+          "end_ms": 506214,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 506982,
+          "end_ms": 507430,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 508038,
+          "end_ms": 512870,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 514150,
+          "end_ms": 514758,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 515238,
+          "end_ms": 517286,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 527558,
+          "end_ms": 528390,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 529094,
+          "end_ms": 534278,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 539398,
+          "end_ms": 539878,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 540518,
+          "end_ms": 540902,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 542022,
+          "end_ms": 543430,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 549606,
+          "end_ms": 550502,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 551270,
+          "end_ms": 551878,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 552294,
+          "end_ms": 552838,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 553094,
+          "end_ms": 554694,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 554950,
+          "end_ms": 555430,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 555910,
+          "end_ms": 558342,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 558982,
+          "end_ms": 560326,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 560998,
+          "end_ms": 561510,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 561798,
+          "end_ms": 564006,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 564678,
+          "end_ms": 567366,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 567590,
+          "end_ms": 568518,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 569414,
+          "end_ms": 572390,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 572806,
+          "end_ms": 574054,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 574982,
+          "end_ms": 577158,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 578118,
+          "end_ms": 578502,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 578950,
+          "end_ms": 579686,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 579910,
+          "end_ms": 584518,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 585062,
+          "end_ms": 588550,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 588966,
+          "end_ms": 589606,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 590022,
+          "end_ms": 592518,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 597030,
+          "end_ms": 598886,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 599590,
+          "end_ms": 601606,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 602406,
+          "end_ms": 602758,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 603206,
+          "end_ms": 609094,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 619974,
+          "end_ms": 622502,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 623334,
+          "end_ms": 624358,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 625254,
+          "end_ms": 629222,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 629446,
+          "end_ms": 629926,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 630438,
+          "end_ms": 637638,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 641638,
+          "end_ms": 642950,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 644230,
+          "end_ms": 648102,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 648582,
+          "end_ms": 650182,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 650502,
+          "end_ms": 652422,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 653062,
+          "end_ms": 653574,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 653894,
+          "end_ms": 655750,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 656422,
+          "end_ms": 657094,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 657958,
+          "end_ms": 659366,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 660102,
+          "end_ms": 661862,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 662534,
+          "end_ms": 664390,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 665958,
+          "end_ms": 668198,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 668518,
+          "end_ms": 669798,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 670278,
+          "end_ms": 672102,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 672966,
+          "end_ms": 673318,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 673830,
+          "end_ms": 674214,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 686406,
+          "end_ms": 686886,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 702470,
+          "end_ms": 705606,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 706534,
+          "end_ms": 707910,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 722470,
+          "end_ms": 724198,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 748870,
+          "end_ms": 754886,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 755366,
+          "end_ms": 758118,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 771910,
+          "end_ms": 774758,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 775366,
+          "end_ms": 777030,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 783526,
+          "end_ms": 783942,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 788550,
+          "end_ms": 790118,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 793414,
+          "end_ms": 793798,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 795398,
+          "end_ms": 797670,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 798246,
+          "end_ms": 798598,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        }
+      ],
+      "metrics": {
+        "reference_speaker_ms": 821255,
+        "missed_speaker_ms": 206475,
+        "false_alarm_speaker_ms": 4,
+        "confused_speaker_ms": 5,
+        "diarization_error_rate": 0.251424953272735,
+        "collar_ms": 0,
+        "overlap_scored": true,
+        "optimal_scoring_mapping": {
+          "channel_0": "doctor",
+          "channel_1": "patient"
+        },
+        "predicted_clusters": 2,
+        "reference_speakers": 2,
+        "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+        "scoring_mapping_is_not_clinician_role_confirmation": true
+      },
+      "wall_seconds": 70.84419780003373
+    },
+    {
+      "id": "day1_consultation12",
+      "failed": false,
+      "failure_type": null,
+      "segments": [
+        {
+          "start_ms": 70,
+          "end_ms": 1190,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 2566,
+          "end_ms": 3142,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 4966,
+          "end_ms": 6310,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 6534,
+          "end_ms": 10918,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 14854,
+          "end_ms": 15302,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 20294,
+          "end_ms": 20742,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 21478,
+          "end_ms": 21862,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 22982,
+          "end_ms": 25574,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 35014,
+          "end_ms": 36134,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 36422,
+          "end_ms": 40006,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 49926,
+          "end_ms": 50278,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 66694,
+          "end_ms": 71910,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 72358,
+          "end_ms": 73190,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 77222,
+          "end_ms": 78534,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 79046,
+          "end_ms": 79590,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 79814,
+          "end_ms": 80582,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 80934,
+          "end_ms": 85126,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 91878,
+          "end_ms": 93126,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 95814,
+          "end_ms": 96294,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 96518,
+          "end_ms": 101382,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 113830,
+          "end_ms": 116294,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 134662,
+          "end_ms": 135206,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 136038,
+          "end_ms": 136742,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 137702,
+          "end_ms": 139622,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 151750,
+          "end_ms": 153158,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 153510,
+          "end_ms": 154054,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 155430,
+          "end_ms": 156934,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 157958,
+          "end_ms": 160646,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 161734,
+          "end_ms": 162662,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 162886,
+          "end_ms": 165638,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 181798,
+          "end_ms": 182182,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 184166,
+          "end_ms": 185446,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 185862,
+          "end_ms": 187494,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 191238,
+          "end_ms": 191782,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 192198,
+          "end_ms": 196646,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 213958,
+          "end_ms": 217734,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 221766,
+          "end_ms": 222182,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 222726,
+          "end_ms": 227238,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 230950,
+          "end_ms": 231334,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 231750,
+          "end_ms": 233510,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 234054,
+          "end_ms": 234598,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 234854,
+          "end_ms": 236390,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 239942,
+          "end_ms": 242310,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 257254,
+          "end_ms": 258374,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 260134,
+          "end_ms": 261350,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 262630,
+          "end_ms": 263782,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 264838,
+          "end_ms": 266502,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 268966,
+          "end_ms": 271590,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 275718,
+          "end_ms": 278726,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 292614,
+          "end_ms": 293926,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 294662,
+          "end_ms": 295398,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 296038,
+          "end_ms": 296390,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 296870,
+          "end_ms": 298214,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 304934,
+          "end_ms": 307366,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 310566,
+          "end_ms": 311558,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 312902,
+          "end_ms": 314470,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 314758,
+          "end_ms": 317382,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 317798,
+          "end_ms": 318246,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 318982,
+          "end_ms": 319366,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 319910,
+          "end_ms": 321798,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 323238,
+          "end_ms": 324422,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 326662,
+          "end_ms": 327494,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 327718,
+          "end_ms": 329382,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 336838,
+          "end_ms": 338886,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 340934,
+          "end_ms": 342950,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 344038,
+          "end_ms": 345830,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 355366,
+          "end_ms": 356358,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 356614,
+          "end_ms": 359910,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 360230,
+          "end_ms": 361862,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 369350,
+          "end_ms": 369830,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 370054,
+          "end_ms": 370566,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 370950,
+          "end_ms": 371814,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 372198,
+          "end_ms": 372902,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 373126,
+          "end_ms": 374374,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 375686,
+          "end_ms": 377158,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 378342,
+          "end_ms": 381702,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 383238,
+          "end_ms": 388454,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 388966,
+          "end_ms": 392454,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 394214,
+          "end_ms": 396454,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 397030,
+          "end_ms": 398374,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 398758,
+          "end_ms": 402950,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 403622,
+          "end_ms": 411110,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 413414,
+          "end_ms": 415334,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 415814,
+          "end_ms": 416678,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 416902,
+          "end_ms": 420134,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 420742,
+          "end_ms": 424582,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 425158,
+          "end_ms": 430118,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 431334,
+          "end_ms": 436134,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 436870,
+          "end_ms": 437830,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 438214,
+          "end_ms": 442950,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 443846,
+          "end_ms": 445798,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 449766,
+          "end_ms": 451206,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 463750,
+          "end_ms": 464934,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 468326,
+          "end_ms": 468678,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 3878,
+          "end_ms": 4294,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 11654,
+          "end_ms": 12134,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 12518,
+          "end_ms": 14022,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 17638,
+          "end_ms": 18182,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 18566,
+          "end_ms": 19686,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 26182,
+          "end_ms": 32006,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 32550,
+          "end_ms": 34086,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 40454,
+          "end_ms": 41766,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 43078,
+          "end_ms": 45382,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 45990,
+          "end_ms": 49766,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 51526,
+          "end_ms": 53766,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 55014,
+          "end_ms": 59814,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 60230,
+          "end_ms": 61222,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 61446,
+          "end_ms": 62598,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 63014,
+          "end_ms": 65990,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 73766,
+          "end_ms": 74502,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 74854,
+          "end_ms": 76774,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 85446,
+          "end_ms": 89094,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 89542,
+          "end_ms": 91334,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 93862,
+          "end_ms": 95558,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 102470,
+          "end_ms": 104966,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 105382,
+          "end_ms": 107334,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 107878,
+          "end_ms": 108838,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 109382,
+          "end_ms": 112902,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 117094,
+          "end_ms": 118246,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 118822,
+          "end_ms": 121030,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 122310,
+          "end_ms": 129286,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 129894,
+          "end_ms": 133574,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 140806,
+          "end_ms": 146822,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 147430,
+          "end_ms": 147878,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 148294,
+          "end_ms": 151622,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 161318,
+          "end_ms": 161734,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 166822,
+          "end_ms": 167302,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 167718,
+          "end_ms": 168678,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 169062,
+          "end_ms": 170374,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 170694,
+          "end_ms": 174246,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 174886,
+          "end_ms": 181606,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 182534,
+          "end_ms": 184070,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 189574,
+          "end_ms": 190566,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 198022,
+          "end_ms": 198406,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 198694,
+          "end_ms": 201638,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 201958,
+          "end_ms": 203750,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 204134,
+          "end_ms": 205862,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 206182,
+          "end_ms": 207174,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 207878,
+          "end_ms": 212294,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 212742,
+          "end_ms": 213606,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 219686,
+          "end_ms": 220134,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 220454,
+          "end_ms": 221414,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 229030,
+          "end_ms": 229894,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 230150,
+          "end_ms": 230534,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 243206,
+          "end_ms": 247142,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 247494,
+          "end_ms": 250694,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 251142,
+          "end_ms": 253478,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 254566,
+          "end_ms": 256390,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 256678,
+          "end_ms": 257158,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 261734,
+          "end_ms": 262534,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 267494,
+          "end_ms": 268678,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 272198,
+          "end_ms": 274214,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 279782,
+          "end_ms": 281126,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 281350,
+          "end_ms": 282406,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 282886,
+          "end_ms": 286214,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 286470,
+          "end_ms": 288742,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 290310,
+          "end_ms": 291814,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 298854,
+          "end_ms": 300390,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 300646,
+          "end_ms": 304102,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 308230,
+          "end_ms": 308774,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 309382,
+          "end_ms": 309766,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 325222,
+          "end_ms": 326534,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 330534,
+          "end_ms": 330982,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 331206,
+          "end_ms": 336294,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 339494,
+          "end_ms": 340678,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 347302,
+          "end_ms": 350534,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 351654,
+          "end_ms": 355046,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 363046,
+          "end_ms": 363558,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 364134,
+          "end_ms": 369126,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 393670,
+          "end_ms": 394022,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 403654,
+          "end_ms": 404102,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 412070,
+          "end_ms": 413318,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 446790,
+          "end_ms": 448198,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 448934,
+          "end_ms": 449734,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 451750,
+          "end_ms": 455238,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 455878,
+          "end_ms": 456550,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 456774,
+          "end_ms": 463686,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 466214,
+          "end_ms": 467974,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 469510,
+          "end_ms": 470246,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        }
+      ],
+      "metrics": {
+        "reference_speaker_ms": 461302,
+        "missed_speaker_ms": 109155,
+        "false_alarm_speaker_ms": 301,
+        "confused_speaker_ms": 93,
+        "diarization_error_rate": 0.23747783447719714,
+        "collar_ms": 0,
+        "overlap_scored": true,
+        "optimal_scoring_mapping": {
+          "channel_0": "doctor",
+          "channel_1": "patient"
+        },
+        "predicted_clusters": 2,
+        "reference_speakers": 2,
+        "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+        "scoring_mapping_is_not_clinician_role_confirmation": true
+      },
+      "wall_seconds": 41.85868720000144
+    },
+    {
+      "id": "day1_consultation13",
+      "failed": false,
+      "failure_type": null,
+      "segments": [
+        {
+          "start_ms": 102,
+          "end_ms": 1254,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 4102,
+          "end_ms": 4614,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 6374,
+          "end_ms": 7814,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 8294,
+          "end_ms": 14022,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 20390,
+          "end_ms": 22566,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 30886,
+          "end_ms": 34694,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 34950,
+          "end_ms": 35590,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 38822,
+          "end_ms": 42150,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 52646,
+          "end_ms": 54310,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 54566,
+          "end_ms": 58150,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 68838,
+          "end_ms": 70598,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 70822,
+          "end_ms": 75910,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 76454,
+          "end_ms": 77734,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 81030,
+          "end_ms": 89606,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 112966,
+          "end_ms": 113350,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 117798,
+          "end_ms": 120166,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 122022,
+          "end_ms": 124294,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 135910,
+          "end_ms": 136326,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 142278,
+          "end_ms": 145350,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 146758,
+          "end_ms": 147174,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 148166,
+          "end_ms": 148934,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 149254,
+          "end_ms": 150982,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 164262,
+          "end_ms": 167398,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 170630,
+          "end_ms": 171142,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 171558,
+          "end_ms": 174534,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 183782,
+          "end_ms": 185606,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 193414,
+          "end_ms": 195590,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 196550,
+          "end_ms": 197670,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 198278,
+          "end_ms": 200326,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 203206,
+          "end_ms": 206534,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 207398,
+          "end_ms": 207942,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 209766,
+          "end_ms": 212678,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 220070,
+          "end_ms": 220934,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 221510,
+          "end_ms": 224518,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 224774,
+          "end_ms": 225670,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 227142,
+          "end_ms": 229190,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 232422,
+          "end_ms": 234854,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 238726,
+          "end_ms": 241542,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 251750,
+          "end_ms": 252614,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 253414,
+          "end_ms": 255622,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 258054,
+          "end_ms": 259910,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 263046,
+          "end_ms": 266982,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 268870,
+          "end_ms": 271014,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 273574,
+          "end_ms": 275366,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 284070,
+          "end_ms": 284774,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 285382,
+          "end_ms": 290470,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 294374,
+          "end_ms": 295174,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 297094,
+          "end_ms": 299398,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 302502,
+          "end_ms": 305254,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 307270,
+          "end_ms": 311302,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 311942,
+          "end_ms": 312742,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 329222,
+          "end_ms": 330502,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 330982,
+          "end_ms": 331750,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 332102,
+          "end_ms": 334566,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 335878,
+          "end_ms": 336966,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 337222,
+          "end_ms": 338822,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 344934,
+          "end_ms": 347814,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 360678,
+          "end_ms": 361222,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 362214,
+          "end_ms": 363110,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 364774,
+          "end_ms": 366662,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 367302,
+          "end_ms": 367846,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 374214,
+          "end_ms": 374726,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 375558,
+          "end_ms": 378342,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 378790,
+          "end_ms": 381478,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 382214,
+          "end_ms": 382854,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 383910,
+          "end_ms": 386694,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 394630,
+          "end_ms": 395590,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 396742,
+          "end_ms": 397414,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 398438,
+          "end_ms": 402214,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 409606,
+          "end_ms": 410630,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 411750,
+          "end_ms": 412326,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 413702,
+          "end_ms": 422118,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 456902,
+          "end_ms": 459750,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 468710,
+          "end_ms": 469062,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 476358,
+          "end_ms": 478086,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 483110,
+          "end_ms": 484134,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 484358,
+          "end_ms": 484870,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 485254,
+          "end_ms": 486022,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 486310,
+          "end_ms": 487942,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 489030,
+          "end_ms": 492838,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 493510,
+          "end_ms": 495238,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 496166,
+          "end_ms": 502470,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 503046,
+          "end_ms": 504902,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 505542,
+          "end_ms": 506310,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 507046,
+          "end_ms": 509222,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 509510,
+          "end_ms": 510758,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 511142,
+          "end_ms": 515270,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 516294,
+          "end_ms": 521830,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 522630,
+          "end_ms": 523078,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 523334,
+          "end_ms": 525542,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 526598,
+          "end_ms": 529350,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 531238,
+          "end_ms": 532902,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 533702,
+          "end_ms": 537574,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 538246,
+          "end_ms": 540710,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 541702,
+          "end_ms": 542150,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 543302,
+          "end_ms": 544550,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 544870,
+          "end_ms": 548838,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 556358,
+          "end_ms": 559462,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 559782,
+          "end_ms": 561926,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 562854,
+          "end_ms": 564838,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 565638,
+          "end_ms": 569414,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 569798,
+          "end_ms": 572998,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 573702,
+          "end_ms": 574278,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 574918,
+          "end_ms": 580166,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 580486,
+          "end_ms": 584198,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 584614,
+          "end_ms": 587142,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 587590,
+          "end_ms": 589862,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 590406,
+          "end_ms": 593798,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 594150,
+          "end_ms": 595622,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 597958,
+          "end_ms": 598534,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 599270,
+          "end_ms": 602918,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 603462,
+          "end_ms": 607302,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 608230,
+          "end_ms": 615430,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 616870,
+          "end_ms": 617318,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 619430,
+          "end_ms": 620358,
+          "speaker_id": "channel_0",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 5574,
+          "end_ms": 5958,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 15142,
+          "end_ms": 20038,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 23750,
+          "end_ms": 30534,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 36262,
+          "end_ms": 38630,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 44166,
+          "end_ms": 46310,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 47078,
+          "end_ms": 51654,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 52774,
+          "end_ms": 53222,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 59558,
+          "end_ms": 63750,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 64166,
+          "end_ms": 64582,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 64902,
+          "end_ms": 68614,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 79302,
+          "end_ms": 80678,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 91622,
+          "end_ms": 92678,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 92998,
+          "end_ms": 93542,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 94662,
+          "end_ms": 101414,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 101766,
+          "end_ms": 104198,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 105158,
+          "end_ms": 106982,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 107366,
+          "end_ms": 107750,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 108070,
+          "end_ms": 110246,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 110470,
+          "end_ms": 112774,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 114182,
+          "end_ms": 117734,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 120774,
+          "end_ms": 121158,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 125542,
+          "end_ms": 130534,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 130982,
+          "end_ms": 131718,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 132102,
+          "end_ms": 132838,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 133382,
+          "end_ms": 134726,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 136806,
+          "end_ms": 141798,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 147526,
+          "end_ms": 148166,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 152422,
+          "end_ms": 156582,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 156870,
+          "end_ms": 159494,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 160102,
+          "end_ms": 163718,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 167558,
+          "end_ms": 168774,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 168998,
+          "end_ms": 169606,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 176422,
+          "end_ms": 179270,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 179750,
+          "end_ms": 180710,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 181958,
+          "end_ms": 183142,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 186854,
+          "end_ms": 192582,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 201446,
+          "end_ms": 202022,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 208518,
+          "end_ms": 209062,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 214342,
+          "end_ms": 216262,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 216870,
+          "end_ms": 219654,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 230342,
+          "end_ms": 230822,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 236614,
+          "end_ms": 238534,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 242182,
+          "end_ms": 251206,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 256806,
+          "end_ms": 257190,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 260902,
+          "end_ms": 263014,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 267974,
+          "end_ms": 268806,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 271622,
+          "end_ms": 272262,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 272710,
+          "end_ms": 273318,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 276742,
+          "end_ms": 282342,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 292646,
+          "end_ms": 293670,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 296070,
+          "end_ms": 296486,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 300294,
+          "end_ms": 302054,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 312806,
+          "end_ms": 313798,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 314214,
+          "end_ms": 315366,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 316614,
+          "end_ms": 324646,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 324934,
+          "end_ms": 326214,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 326918,
+          "end_ms": 328806,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 340166,
+          "end_ms": 341574,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 341830,
+          "end_ms": 342598,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 342886,
+          "end_ms": 343302,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 348966,
+          "end_ms": 353222,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 353990,
+          "end_ms": 356230,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 357254,
+          "end_ms": 360678,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 363814,
+          "end_ms": 364486,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 368902,
+          "end_ms": 372934,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 388454,
+          "end_ms": 391974,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 392422,
+          "end_ms": 394438,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 403558,
+          "end_ms": 406534,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 407014,
+          "end_ms": 408614,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 423590,
+          "end_ms": 425094,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 425606,
+          "end_ms": 431206,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 431462,
+          "end_ms": 432422,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 432774,
+          "end_ms": 434982,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 435270,
+          "end_ms": 436198,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 436902,
+          "end_ms": 437414,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 437958,
+          "end_ms": 440102,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 440454,
+          "end_ms": 446246,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 446630,
+          "end_ms": 447014,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 447270,
+          "end_ms": 452806,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 453094,
+          "end_ms": 455302,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 461254,
+          "end_ms": 468422,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 468838,
+          "end_ms": 469254,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 470022,
+          "end_ms": 475750,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 479526,
+          "end_ms": 480038,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 481158,
+          "end_ms": 481862,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 530470,
+          "end_ms": 531270,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 550022,
+          "end_ms": 550438,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 551206,
+          "end_ms": 554470,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 554918,
+          "end_ms": 556230,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 596198,
+          "end_ms": 596646,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 597158,
+          "end_ms": 597606,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 616198,
+          "end_ms": 616582,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        },
+        {
+          "start_ms": 620966,
+          "end_ms": 622374,
+          "speaker_id": "channel_1",
+          "role": "unknown",
+          "role_status": "unconfirmed"
+        }
+      ],
+      "metrics": {
+        "reference_speaker_ms": 625770,
+        "missed_speaker_ms": 156763,
+        "false_alarm_speaker_ms": 561,
+        "confused_speaker_ms": 78,
+        "diarization_error_rate": 0.25153331096089615,
+        "collar_ms": 0,
+        "overlap_scored": true,
+        "optimal_scoring_mapping": {
+          "channel_0": "doctor",
+          "channel_1": "patient"
+        },
+        "predicted_clusters": 2,
+        "reference_speakers": 2,
+        "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+        "scoring_mapping_is_not_clinician_role_confirmation": true
+      },
+      "wall_seconds": 70.23682569997618
+    }
+  ],
+  "clinical_acceptance": false,
+  "reference_status": "upstream_channel_labels_not_independent_clinical_adjudication",
+  "role_policy": "unconfirmed channel IDs; clinician confirmation required in application",
+  "limitations": [
+    "Requires separate time-synchronized speaker channels.",
+    "Cross-talk, channel swaps and simultaneous voices on one channel remain possible.",
+    "Optimal scoring mapping is not role confirmation."
+  ],
+  "weighted_der": 0.248089032959236
+}

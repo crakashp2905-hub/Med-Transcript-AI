@@ -14,7 +14,7 @@ from services.review.models import (AmendmentInput, ApprovalInput, DraftInput, E
 
 
 def register_review_routes(app, database, identity, encounter, audit, require_processing, assets, profiles):
-    from services.review.providers import configured_provider, JSONProvider
+    from services.review.providers import configured_provider, JSONProvider, DeterministicProvider
     from services.review.models import DraftProposalInput
     app.state.drafting_provider = configured_provider()
 
@@ -46,6 +46,8 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
                 raise HTTPException(422, "hosted_text_disclosure_and_scope_required")
         try:
             result = provider.draft([f.model_dump(mode="json") for f in body.facts], authorized=True, synthetic=True)
+            result['deterministic_baseline'] = DeterministicProvider().draft(
+                [f.model_dump(mode='json') for f in body.facts], authorized=True, synthetic=True)
         except ValueError:
             raise HTTPException(422, "draft_proposal_failed_no_output_admitted") from None
         with database() as con:

@@ -20,7 +20,7 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByLabel('Review basis').fill('Reviewed every audible interval and the complete synthetic recording.');
   await page.getByLabel('Correction reason').fill('Confirmed the scripted speaker roles and reviewed all source statements.');
   await page.getByRole('button',{name:'Save source review',exact:true}).click();
-  await expect(page.getByRole('status')).toContainText('Saved as a new transcript version');
+  await expect(page.locator('.notice')).toContainText('Saved as a new transcript version');
   await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
   await expect(page.locator('.fact-card')).toHaveCount(5);
   const cards=page.locator('.fact-card');
@@ -40,12 +40,18 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeDisabled();
   await cards.nth(1).getByLabel('Note statement').fill('Patient takes metformin 500 mg.');
   await cards.nth(1).getByLabel('Clinical clarification / exclusion reason').fill('Synthetic clinician correction: the medication label was independently checked to confirm 500 mg.');
+  await expect(cards.nth(1).getByLabel('Content and attribution reviewed')).not.toBeChecked();
+  await cards.nth(1).getByLabel('Content and attribution reviewed').check();
+  await cards.nth(1).getByLabel('Critical details checked').check();
   await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Ready for your final review'})).toBeVisible();
   await page.getByLabel('I rechecked the patient identifiers and the exact saved note.').check();
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeEnabled();
   await page.getByRole('button',{name:'Approve saved version',exact:false}).click();
   await expect(page.getByRole('heading',{name:'Approved record'})).toBeVisible();
+  await expect(page.getByRole('region',{name:'Source alongside note'})).toBeVisible();
+  await page.getByRole('button',{name:'▷ Evidence',exact:true}).first().click();
+  await expect(page.locator('.citation-selected')).toHaveCount(1);
   const downloadPromise=page.waitForEvent('download');
   await page.getByRole('button',{name:'↓ Json',exact:true}).click();
   const download=await downloadPromise;

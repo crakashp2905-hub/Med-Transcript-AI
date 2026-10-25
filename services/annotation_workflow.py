@@ -51,6 +51,12 @@ def validate(review, source):
         for concept in concepts:
             # The existing frozen exact-concept scorer validates required clinical slots.
             evaluate('', '', [concept], [])
+            enums={'category':{'medication','dose','allergy','negation','symptom','measurement','assessment','plan','other'},
+                   'subject':{'patient','family','caregiver','other','unknown'},
+                   'assertion':{'affirmed','negated','uncertain','not_stated'},
+                   'temporality':{'current','historical','planned','unknown'}}
+            if any(concept[field] not in options for field,options in enums.items()):
+                raise ValueError('Clinical vocabulary must match gold-concept-schema-v1')
             annotation_id = concept.get('annotation_id')
             if not isinstance(annotation_id, str) or not annotation_id or annotation_id in ids:
                 raise ValueError('Unique annotation IDs required')

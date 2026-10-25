@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:med-transcript:gold-concept:v1",
+  "title": "Evidence-linked independent concept annotation",
+  "type": "object",
+  "required": ["annotation_id", "category", "concept", "subject", "assertion", "temporality", "evidence"],
+  "properties": {
+    "annotation_id": {"type": "string", "minLength": 1},
+    "category": {"enum": ["medication", "dose", "allergy", "negation", "symptom", "measurement", "assessment", "plan", "other"]},
+    "concept": {"type": "string", "minLength": 1},
+    "subject": {"enum": ["patient", "family", "caregiver", "other", "unknown"]},
+    "assertion": {"enum": ["affirmed", "negated", "uncertain", "not_stated"]},
+    "temporality": {"enum": ["current", "historical", "planned", "unknown"]},
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["turn_index", "start", "end", "quote"],
+      "properties": {"turn_index": {"type": "integer", "minimum": 0},
+        "start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 1},
+        "quote": {"type": "string", "minLength": 1}}
+    }
+  },
+  "additionalProperties": {"type": ["string", "number", "boolean", "null"]},
+  "$comment": "Schema validity is insufficient: workflow also verifies unique IDs, exact source spans, full case coverage, reviewers and adjudication. Qualification requires institutional verification. Flat extra slots affect exact concept scoring. Freeze their vocabulary before annotation."
+}

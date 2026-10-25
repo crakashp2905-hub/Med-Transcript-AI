@@ -1,0 +1,5 @@
+Finalize evidence-linked gold schemas, audio-first blinded reviewer instructions, two-reviewer disagreement comparison and third-reviewer adjudication. Reserve day5 consultations 05–07 outside every existing development manifest and audit their pinned upstream audio hash pointers. Do not run models or tune against the reserved cohort before audited gold and protocol approval.
+
+Success: source-audited, independently adjudicated data with documented reviewer qualifications. Two qualified clinicians plus a third distinct adjudicator must be supplied and credential-verified by the institution. Self-attestation or model-generated labels cannot substitute. Group disjointness does not establish speaker, device, site or training independence.
+
+Implementation: `services/annotation_workflow.py`, `services/acceptance_audit.py`, `evaluation/gold-concept-schema-v1.json`, `evaluation/acceptance-reservation-v1.json`, and `docs/independent-validation-workflow.md`. Pointer audit does not verify audio contents or certify clinical gold. This issue remains blocked on actual qualified reviewer submissions and institutional protocol decisions.

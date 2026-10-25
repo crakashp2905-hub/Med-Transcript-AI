@@ -6,7 +6,7 @@ import time
 import urllib.request
 from pathlib import Path
 
-from services.review.providers import JSONProvider
+from services.review.providers import JSONProvider, DeterministicProvider
 from services.usability_metrics import summarize_runs
 
 
@@ -26,6 +26,10 @@ def run(models, output, structured=False):
     available={m['name']:m for m in get('/api/tags')['models']}
     report={'data_class':'synthetic','purpose':'development_transport_and_fact_preservation_screen',
         'clinical_acceptance':False,'structured_schema':structured,'runtime':get('/api/version'),'cases':CASES,'models':[]}
+    report['deterministic_baseline']=[]
+    for index,lines in enumerate(CASES):
+        facts=[{'fact_id':f'f{i}','section':'subjective','text':text,'reviewed':True} for i,text in enumerate(lines)]
+        report['deterministic_baseline'].append({'case':index,**DeterministicProvider().draft(facts,authorized=True,synthetic=True)})
     for model in models:
         if model not in available:
             raise ValueError('Model must already be installed locally')

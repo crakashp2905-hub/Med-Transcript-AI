@@ -1,0 +1,103 @@
+{
+  "schema_version": "acceptance_source_audit_v1",
+  "reservation_sha256": "d08de25ea071150b792874bfde6baf5cb955e779cfdba41abd615db41bcb42b1",
+  "reserved_groups": [
+    "day5_consultation05",
+    "day5_consultation06",
+    "day5_consultation07"
+  ],
+  "development_groups": [
+    "day1_consultation01",
+    "day1_consultation02",
+    "day1_consultation03",
+    "day1_consultation04",
+    "day1_consultation05",
+    "day1_consultation06",
+    "day1_consultation07",
+    "day1_consultation08",
+    "day1_consultation09",
+    "day1_consultation10",
+    "day1_consultation11",
+    "day1_consultation12",
+    "day1_consultation13",
+    "day2_consultation01",
+    "day2_consultation02",
+    "day2_consultation03",
+    "day2_consultation04",
+    "day3_consultation01",
+    "day3_consultation02",
+    "day3_consultation03",
+    "day3_consultation04",
+    "day4_consultation01",
+    "day4_consultation02",
+    "day4_consultation03",
+    "day4_consultation04",
+    "day5_consultation01",
+    "day5_consultation02",
+    "day5_consultation03",
+    "day5_consultation04"
+  ],
+  "group_disjoint": true,
+  "sources": [
+    {
+      "group_id": "day5_consultation05",
+      "role": "doctor",
+      "original_audio_sha256": "fdc764b471c39d25037683401c283c01442357b40e0912b087cd916166b26914",
+      "original_audio_bytes": 13090604,
+      "pointer_sha256": "bfac12387a12f9ef2400f0853b5b2dd1ceff450f446df1013ca9e3b868c8857c",
+      "source_url": "https://raw.githubusercontent.com/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation05_doctor.wav",
+      "audio_bytes_downloaded": false
+    },
+    {
+      "group_id": "day5_consultation05",
+      "role": "patient",
+      "original_audio_sha256": "1c21a76603867d1675621fa50792077e698dfc35a7df5de31bb11d92d99e3097",
+      "original_audio_bytes": 13090604,
+      "pointer_sha256": "f71572c2cc5d216663665e3ac023b4eefee4927dd8436c8662f83b0d361786b9",
+      "source_url": "https://raw.githubusercontent.com/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation05_patient.wav",
+      "audio_bytes_downloaded": false
+    },
+    {
+      "group_id": "day5_consultation06",
+      "role": "doctor",
+      "original_audio_sha256": "63abc82ad68a0d92ab5643a4b7b2bc85b7c233a3d5f43bb2eb0f806cbae5e6d8",
+      "original_audio_bytes": 19668524,
+      "pointer_sha256": "8ca0898d71950e113502108a13809e62bde56b374a34b5d17b1c11356e96342d",
+      "source_url": "https://raw.githubusercontent.com/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation06_doctor.wav",
+      "audio_bytes_downloaded": false
+    },
+    {
+      "group_id": "day5_consultation06",
+      "role": "patient",
+      "original_audio_sha256": "ff46076f9cd696ab12ac220160599bcd3de0379d8e4b5ecbcb88e90e911c4b9f",
+      "original_audio_bytes": 19668524,
+      "pointer_sha256": "b5b7181b67cb4dc9b818fe1b44dfaaf458265285a77b90a0322841dbb06b5c92",
+      "source_url": "https://raw.githubusercontent.com/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation06_patient.wav",
+      "audio_bytes_downloaded": false
+    },
+    {
+      "group_id": "day5_consultation07",
+      "role": "doctor",
+      "original_audio_sha256": "cd7eaff81a18e9475134dd2c2514c0870183ec57cb1e72311f7d5e5a2ebab459",
+      "original_audio_bytes": 15655724,
+      "pointer_sha256": "9855b180f8c9a54960827105880936988b859707084c11840d18ce118b3289ed",
+      "source_url": "https://raw.githubusercontent.com/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation07_doctor.wav",
+      "audio_bytes_downloaded": false
+    },
+    {
+      "group_id": "day5_consultation07",
+      "role": "patient",
+      "original_audio_sha256": "1c1be03a4ee84e2a099b888613746ad07e2aa707f3bd4faad5efd07c73d33658",
+      "original_audio_bytes": 15653804,
+      "pointer_sha256": "61fd45acbc1adf063b7d4b8cf708a57986846b099b4c2cbc82d942c4fd94e3ff",
+      "source_url": "https://raw.githubusercontent.com/babylonhealth/primock57/cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5/audio/day5_consultation07_patient.wav",
+      "audio_bytes_downloaded": false
+    }
+  ],
+  "pointer_audit_complete": true,
+  "audio_content_verified": false,
+  "speaker_independence_verified": false,
+  "human_qualifications_verified": false,
+  "adjudicated": false,
+  "acceptance_authorized": false
+}

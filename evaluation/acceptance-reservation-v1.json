@@ -1,0 +1,14 @@
+{
+  "schema_version": "acceptance_reservation_v1",
+  "dataset_id": "primock57-reserved-acceptance-candidate-v1",
+  "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+  "reserved_groups": ["day5_consultation05", "day5_consultation06", "day5_consultation07"],
+  "selection_rule": "Three next sequential day5 groups outside every existing development manifest; fixed before model inference on these groups",
+  "allowed_use": "source audit and independent human annotation only; no model tuning or inference before credential-verified gold and protocol approval",
+  "acceptance_status": "reserved_not_adjudicated_or_approved",
+  "reviewer_qualifications": "Two currently qualified clinicians with English consultation experience and a third independent adjudicator. Institution verifies credentials, specialty, scope, conflicts, training and dates privately.",
+  "qualification_registry_fields": ["reviewer_id", "credential_type", "credential_jurisdiction", "specialty", "english_consultation_experience", "credential_verified_by", "credential_verified_date", "training_protocol_version", "conflict_of_interest_declaration"],
+  "adjudication": "Blind independent audio-first annotation; record exact turn/character evidence, uncertain source words and overlap. Third reviewer resolves every disagreement with a recorded rationale; source corrections create new frozen versions.",
+  "release_threshold": {"maximum_normalized_wer": 0.05, "clinical_error_tolerances": "pending_clinical_owner", "speaker_error_tolerances": "pending_clinical_owner"},
+  "limitations": ["Group disjointness does not prove independent speakers, sites, devices or training data.", "Three mock consultations alone are insufficient to claim population clinical safety.", "No institution, reviewer identity, credential check, adjudication or acceptance approval has been supplied."]
+}

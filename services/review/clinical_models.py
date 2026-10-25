@@ -146,7 +146,23 @@ class LocalClinicalModels:
             if any(not any(e['start_char']<=m.start() and e['end_char']>=m.end() for e in selected_spans)
                    for m in re.finditer(r'\w+',segment['text'])):
                 findings.append({'code':'model_extraction_coverage_requires_review','segment_id':segment['segment_id'],'blocks_approval':True})
-        return {'facts':facts,'findings':findings,'status':'unreviewed_proposal','provenance':provenance}
+        # Keep every deterministic source span visible even when the model omits it.
+        # This is an explicitly attributed baseline fallback, never inferred gold.
+        fallback=[]
+        for candidate in extract(transcript):
+            evidence=candidate['evidence']
+            key=(evidence['segment_id'],evidence['start_char'],evidence['end_char'])
+            if key not in seen:
+                candidate['extraction_version']='source_span_fallback_after_model_v1'
+                fallback.append(Fact.model_validate(candidate).model_dump(mode='json'))
+        if len(facts)+len(fallback)>300:
+            raise ClinicalModelFailure('too_many_source_facts_split_encounter_review')
+        facts.extend(fallback)
+        order={s['segment_id']:i for i,s in enumerate(transcript['segments'])}
+        facts.sort(key=lambda f:(order[f['evidence']['segment_id']],f['evidence']['start_char']))
+        return {'facts':facts,'findings':findings,'status':'unreviewed_proposal','provenance':provenance,
+            'source_span_fallback_count':len(fallback),
+            'completeness_status':'source_spans_retained_semantic_atomicity_requires_clinician_review'}
 
     def check_claims(self,claims,*,authorized,synthetic):
         if not 1<=len(claims)<=20 or len({str(c['fact_id']) for c in claims})!=len(claims):
