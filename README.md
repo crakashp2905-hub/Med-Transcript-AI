@@ -284,6 +284,12 @@ worker crash recovery, unsupported configuration, and redacted validation errors
 
 ## Boundaries and next work
 
+The [independent validation workflow](docs/independent-validation-workflow.md)
+provides hash-bound source-only annotation packets, two-reviewer disagreement
+comparison, third-reviewer adjudication intake, failure-inclusive paired-study
+analysis and a reproducible [release evidence inventory](evaluation/reports/release-readiness-2026-10-25.json).
+These tools do not supply clinician observations or authorize real-patient use.
+
 This development service uses operator-provisioned bearer credentials, not a
 human SSO/session implementation. SQLite is a development storage choice;
 SQLite schema upgrades are transactional and versioned, including upgrades from

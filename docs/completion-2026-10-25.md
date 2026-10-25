@@ -31,6 +31,22 @@ The final CI cleanup pins verified Node 24 action releases and disables persiste
 
 ## What cannot honestly be marked finished
 
+The subsequent [independent validation tools](independent-validation-workflow.md)
+now generate hash-locked, source-only review packets, validate exact evidence and
+independent reviewer attestations, compare clinical-slot disagreements, and bind
+third-reviewer resolutions to both original submissions. Qualification remains
+an externally audited attestation. A blank three-consultation packet was generated
+locally; no reviewer submissions or gold labels were fabricated.
+
+Paired-study analysis now preserves the frozen planned roster, failed/missing
+conditions, negative time differences and unknown costs. The new release inventory
+recomputes all eight completed ASR candidates, records evidence hashes and keeps
+clinical promotion blocked. These workflows passed 15 new regression cases;
+the complete suite passed **167 tests, one PostgreSQL test skipped locally**.
+The initial sandbox run could not create temporary directories; the successful
+full run used the unrestricted local test environment. A fresh Browser retry
+still failed during connection setup, so no new visual pass is claimed.
+
 | Release requirement | Current evidence |
 |---|---|
 | A local ASR meeting the strict 5% ceiling | None: best 8.70% on the shared clip corpus; Omi 13.05% on the full-consultation corpus |
