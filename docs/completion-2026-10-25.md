@@ -27,6 +27,8 @@ The [live application test](../evaluation/reports/completion-application-smoke-2
 
 Validation: **152 local tests passed, one PostgreSQL test skipped locally**. The frontend production build passed. The main engineering milestone passed all five [GitHub CI jobs](https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/40217043825), including PostgreSQL and Docker. New UI controls have compilation/API coverage; a fresh visual browser pass remains unverified because the browser connection failed in this environment.
 
+The final CI cleanup pins verified Node 24 action releases and disables persisted checkout credentials. The manual model lane retains ignored provisioned artifacts while rejecting dirty source and validating all frozen model/runtime paths. Its Windows x64 runner must be separately provisioned; no heavyweight self-hosted execution is claimed.
+
 ## What cannot honestly be marked finished
 
 | Release requirement | Current evidence |

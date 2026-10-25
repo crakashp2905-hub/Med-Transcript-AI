@@ -5,13 +5,33 @@ permissions:
   contents: read
 jobs:
   inference:
-    runs-on: [self-hosted, med-transcript-models]
+    runs-on: [self-hosted, Windows, X64, med-transcript-models]
     timeout-minutes: 180
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          clean: false
+      - name: Require clean source without deleting provisioned data
+        shell: pwsh
+        run: |
+          git diff --quiet
+          if ($LASTEXITCODE -ne 0) { throw "Tracked source is modified; use a dedicated clean model runner" }
+          git diff --cached --quiet
+          if ($LASTEXITCODE -ne 0) { throw "Staged source changes are forbidden on the model runner" }
+          $untrackedSource = git ls-files --others --exclude-standard
+          if ($untrackedSource) { throw "Untracked source must be reviewed before inference" }
       - name: Run operator-provisioned models without downloading
         shell: pwsh
         run: |
-          if (!(Test-Path data/asr-smoke-profiles.json)) { throw "Provisioned artifacts missing; downloads are forbidden" }
+          if (!(Test-Path .venv/Scripts/python.exe)) { throw "Provisioned Python environment missing; downloads are forbidden" }
+          $suite = Get-Content -Raw evaluation/expanded-suite-v1.json | ConvertFrom-Json
+          foreach ($job in $suite.jobs) {
+            if ($job.runtime -eq 'whisper') {
+              if (!(Test-Path (Join-Path data $job.profile_file))) { throw "A required frozen model profile is missing; downloads are forbidden" }
+            } else {
+              if (!(Test-Path $job.model_dir) -or !(Test-Path $job.package_dir)) { throw "Provisioned model/runtime missing; downloads are forbidden" }
+            }
+          }
           ./.venv/Scripts/python.exe -m services.benchmark_suite --lane a
           ./.venv/Scripts/python.exe -m services.benchmark_suite --lane b
