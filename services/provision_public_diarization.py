@@ -12,6 +12,21 @@ ARTIFACTS={
 }
 
 
+def fetch(url,path,maximum=30000000):
+    temporary=path.with_suffix(path.suffix+'.partial')
+    count=0
+    try:
+        with urllib.request.urlopen(url,timeout=30) as response, temporary.open('wb') as out:
+            while block:=response.read(65536):
+                count+=len(block)
+                if count>maximum:
+                    raise ValueError('Public artifact download size budget exceeded')
+                out.write(block)
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 def provision():
     ROOT.mkdir(parents=True,exist_ok=True)
     manifest={'engine':'vad_embeddings_v1','enabled':True,'license_approved':True,
@@ -23,7 +38,7 @@ def provision():
         path=ROOT/name
         url=f'https://github.com/k2-fsa/sherpa-onnx/releases/download/{tag}/{name}'
         if not path.exists():
-            urllib.request.urlretrieve(url,path)
+            fetch(url,path)
         if file_sha256(path)!=digest:
             raise ValueError('Public artifact hash mismatch; refuse changed upstream bytes')
         manifest[key]={'path':str(path.resolve()),'sha256':digest,'source':url,'license':license_id}
@@ -33,7 +48,7 @@ def provision():
         'WESPEAKER-MODEL-LICENSE-EVIDENCE.md':manifest['weight_license_evidence'].replace('github.com','raw.githubusercontent.com').replace('/blob/','/'),
     }
     for name,url in licenses.items():
-        urllib.request.urlretrieve(url,ROOT/name)
+        fetch(url,ROOT/name,1000000)
     # Same unmodified CC BY 4.0 legal code already retained with the public corpus.
     shutil.copyfile('evaluation/datasets/primock57-full-v1/LICENSE.md',ROOT/'WESPEAKER-MODEL-LICENSE.txt')
     (ROOT/'manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')

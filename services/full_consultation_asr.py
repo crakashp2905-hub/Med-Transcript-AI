@@ -19,6 +19,9 @@ def main():
     from services.omi_adapter import OmiPredictor
     source=Path('evaluation/datasets/primock57-full-v1/manifest.json')
     manifest=json.loads(source.read_text(encoding='utf-8'))
+    lock=json.loads((source.parent/'lock.json').read_text(encoding='utf-8'))
+    if hashlib.sha256(source.read_bytes()).hexdigest()!=lock['manifest_sha256']:
+        raise ValueError('Frozen full-consultation manifest changed')
     original=json.loads(Path('evaluation/runs/primock57-expanded-v1/omi-med-stt-v1.json').read_text(encoding='utf-8'))
     model=Path('data/models/omi-med-stt-v1-gguf').resolve()
     for name,sha in original['runtime_configuration']['artifacts'].items():
@@ -28,6 +31,7 @@ def main():
     report={'dataset_id':manifest['dataset_id'],'manifest_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
         'model':original['runtime_configuration'],'maximum_normalized_wer':.05,
         'clinical_acceptance':False,'reference_status':'upstream_not_clinician_adjudicated',
+        'clinical_metrics_status':'independent_concept_annotations_not_available',
         'reference_rendering':'strip_annotation_markup_retain_all_enclosed_words_v1',
         'limitations':['Fixed non-overlapping 30-second input windows can split words',
             'Input chunk intervals are not word or utterance alignment',

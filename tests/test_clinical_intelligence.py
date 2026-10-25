@@ -85,6 +85,18 @@ def test_speaker_projection_keeps_boundary_crossings_unknown():
     assert attach_speakers(tx,report)['segments'][0]['speaker_id'] is None
 
 
+def test_public_model_download_budget_preserves_existing_target(tmp_path,monkeypatch):
+    import io
+    import urllib.request
+    from services.provision_public_diarization import fetch
+    target=tmp_path/'model.onnx';target.write_bytes(b'known valid model')
+    monkeypatch.setattr(urllib.request,'urlopen',lambda *a,**kw:io.BytesIO(b'x'*100))
+    with pytest.raises(ValueError,match='size budget'):
+        fetch('https://example.invalid/model',target,maximum=10)
+    assert target.read_bytes()==b'known valid model'
+    assert not list(tmp_path.glob('*.partial'))
+
+
 def test_measured_review_and_latency_do_not_fabricate_cost_or_active_time():
     result=correction('5 mg','50 mg',1000,500)
     assert result['word_edits']==1 and not result['active_time_verified']

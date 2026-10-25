@@ -63,7 +63,8 @@ def prepare(destination):
         "split": "untuned_full_encounter_development_not_acceptance", "clinician_adjudication": "pending",
         "limitations": "Source-channel roles are reference labels, not automatic diarization. Track clocks follow upstream annotations; synchronization and overlap require independent review. Uncertain references retained and flagged. No noise/device/speaker independence claim.",
         "cases": cases}
-    (root / "manifest.json").write_text(json.dumps(body,indent=2),encoding="utf-8")
+    # Preserve the frozen Windows-generated manifest bytes on every platform.
+    (root / "manifest.json").write_text(json.dumps(body,indent=2),encoding="utf-8",newline='\r\n')
     (root / "ATTRIBUTION.txt").write_text(ATTRIBUTION,encoding="utf-8")
     return body
 
