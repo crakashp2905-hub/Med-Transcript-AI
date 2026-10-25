@@ -1,7 +1,7 @@
 import React,{useRef,useState} from 'react';
 import type {Fact} from './facts';
 
-type Extraction={id:string;facts:Fact[];findings?:{code:string}[]};
+type Extraction={id:string;facts:Fact[];findings?:{code:string}[];source_span_fallback_count?:number};
 type Check={fact_id:string;label:string;reason:string;requires_review:boolean;rule_findings:{code:string}[]};
 type Request=(path:string,options?:RequestInit)=>Promise<any>;
 
@@ -20,7 +20,7 @@ export function ClinicalProposals({encounter,transcript,note,disabled,request,lo
  <button disabled={disabled||busy||!note||!next.length} onClick={()=>void run('verify')}>Check {next.length} saved claims with independent model</button>
  {busy&&<p role="status">Running local model; bounded to one request and a 60-second timeout.</p>}
  {error&&<p role="alert" className="error">{error}</p>}
- {extraction&&<><p>{extraction.facts.length} unreviewed facts proposed. {extraction.findings?.length||0} coverage findings.</p><button disabled={disabled||busy||!extraction.facts.length} onClick={()=>loadFacts(extraction.facts.map(f=>({...f,reviewed:false,critical_reviewed:false})))}>Replace editor with these unreviewed proposals</button></>}
+ {extraction&&<><p>{extraction.facts.length} unreviewed facts proposed. {extraction.findings?.length||0} coverage findings.</p>{!!extraction.source_span_fallback_count&&<p className="callout">The model omitted {extraction.source_span_fallback_count} source spans. The deterministic baseline retained them for your review.</p>}<button disabled={disabled||busy||!extraction.facts.length} onClick={()=>loadFacts(extraction.facts.map(f=>({...f,reviewed:false,critical_reviewed:false})))}>Replace editor with these unreviewed proposals</button></>}
  {checks.length>0&&<><p>{checks.length} of {eligible.length} evidence-linked saved facts checked. Unchecked facts remain unevaluated.</p>{checks.map(c=><details key={c.fact_id}><summary>{c.label}{c.requires_review?' · Review required':''}</summary><p>{eligible.find(f=>f.fact_id===c.fact_id)?.text}</p><p>{c.reason}</p><p>{c.rule_findings.map(f=>f.code.replaceAll('_',' ')).join('; ')}</p></details>)}</>}
  </section>;
 }

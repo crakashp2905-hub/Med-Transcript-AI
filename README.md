@@ -286,6 +286,11 @@ worker crash recovery, unsupported configuration, and redacted validation errors
 
 ## Boundaries and next work
 
+See the [scribe workflow and evaluation delivery](docs/scribe-2026-10-26.md)
+for source-linked note review, 30-minute dictation, real-worker stress tests,
+full-conversation ASR ablations, speaker comparisons and new verification results.
+The 5% ASR gate and independent clinical acceptance remain unmet.
+
 The [independent validation workflow](docs/independent-validation-workflow.md)
 provides hash-bound source-only annotation packets, two-reviewer disagreement
 comparison, third-reviewer adjudication intake, failure-inclusive paired-study

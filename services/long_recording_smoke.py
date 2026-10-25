@@ -56,7 +56,8 @@ def run(output):
             with wave.open(str(file),'wb') as out:
                 out.setparams((1,2,16000,0,'NONE','not compressed'))
                 for _ in range(minutes):out.writeframesraw(tile)
-            row={'minutes':minutes,'input_sha256':file_sha256(file),'failed':False}
+            reference=' '.join([sample['reference']]*minutes)
+            row={'minutes':minutes,'input_sha256':file_sha256(file),'failed':False,'reference':reference}
             started=time.perf_counter()
             try:
                 encounter=request('POST','/v1/encounters',headers={'Idempotency-Key':str(uuid4())},json={
@@ -78,20 +79,23 @@ def run(output):
                 valid &= all(a['start_ms']<=b['start_ms'] for a,b in zip(tx['segments'],tx['segments'][1:]))
                 if not valid:raise ValueError('invalid_source_timeline')
                 hypothesis=' '.join(s['text'] for s in tx['segments'])
-                reference=' '.join([sample['reference']]*minutes)
                 row.update(transcript=tx,job=finished,reference=reference,hypothesis=hypothesis,
                            timestamp_bounds_valid=True,source_audio_duration_preserved=True,
                            note_created=workspace['note'] is not None,approval_created=workspace['approval'] is not None,
                            **score(reference,hypothesis))
                 if row['note_created'] or row['approval_created']:raise ValueError('unexpected_automatic_note_or_approval')
             except (ValueError,httpx.HTTPError) as exc:
-                row.update(failed=True,failure_code=str(exc) if isinstance(exc,ValueError) else 'local_transport_failure')
+                row.update(failed=True,failure_code=str(exc) if isinstance(exc,ValueError) else 'local_transport_failure',
+                           scored_hypothesis='',**score(reference,''))
             row['wall_seconds']=time.perf_counter()-started;result['runs'].append(row)
             Path(output).write_text(json.dumps(result,indent=2),encoding='utf-8')
             print(minutes,'minutes failed=',row['failed'],flush=True)
     result['complete']=True
     Path(output).write_text(json.dumps(result,indent=2),encoding='utf-8')
+    return result
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);a=p.parse_args();run(a.out)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);a=p.parse_args()
+    result=run(a.out)
+    if any(r['failed'] for r in result['runs']):raise SystemExit(1)

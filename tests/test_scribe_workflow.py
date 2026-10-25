@@ -142,3 +142,60 @@ def test_channel_diagnostics_keep_original_turn_indices_and_overlap():
                     'normalized_edits':1,'failed':False},[turns[1]],turns)
     assert result['first_100_error_examples'][0]['reference_turn_index']==1
     assert result['errors_on_overlapping_reference_turns']==1
+
+
+@pytest.mark.parametrize('allow_empty,error,accepted',[
+    (False,'parakeet.cpp C API produced an empty transcript for PCM chunk',False),
+    (True,'parakeet.cpp C API produced an empty transcript for PCM chunk',True),
+    (True,'parakeet.cpp C API failed on PCM chunk: native failure',False)])
+def test_empty_output_opt_in_never_hides_other_runtime_failures(tmp_path,allow_empty,error,accepted):
+    from types import SimpleNamespace
+    from services.omi_adapter import OmiPredictor
+    from tests.test_foundation import wav_bytes
+    class Vector:
+        def astype(self,*args):return self
+        def __truediv__(self,other):return self
+    model=object.__new__(OmiPredictor)
+    model.np=SimpleNamespace(frombuffer=lambda *args,**kwargs:Vector(),
+                             ascontiguousarray=lambda v:v,float32=None)
+    model.allow_empty_output=allow_empty
+    def fail(*args):raise RuntimeError(error)
+    model.capi=SimpleNamespace(transcribe_pcm=fail)
+    path=tmp_path/'synthetic.wav';path.write_bytes(wav_bytes())
+    if accepted:
+        assert model(path)=='' and model.last_empty_output is True
+    else:
+        with pytest.raises(RuntimeError,match='parakeet'):model(path)
+
+
+@pytest.mark.parametrize('kind,expected_failed',[
+    ('wrapper_rejects_empty_native_output',False),('other_runtime_failure',True)])
+def test_posthoc_empty_reconstruction_preserves_original_failures(tmp_path,kind,expected_failed):
+    import json,hashlib
+    from services.omi_empty_reconstruction import reconstruct
+    chunk={'input_start_ms':1000,'input_end_ms':2000,'failed':True,'hypothesis':''}
+    row={'id':'synthetic','role':'patient','mode':'two_channel','reference':'No fever',
+         'hypothesis':'No fever','failed':True,'chunks':[
+             {'input_start_ms':0,'input_end_ms':1000,'failed':False,'hypothesis':'No fever'},chunk]}
+    original={'complete':True,'model':{},'manifest_sha256':'a'*64,'runs':[row]}
+    source=tmp_path/'source.json';source.write_text(json.dumps(original))
+    digest=hashlib.sha256(source.read_bytes()).hexdigest()
+    proof={'complete':True,'model':{},'experiment_sha256':digest,'probes':[
+        {**chunk,'id':'synthetic','role':'patient','mode':'two_channel',
+         'reproduced_failure':True,'failure_kind':kind}]}
+    probe=tmp_path/'probe.json';probe.write_text(json.dumps(proof))
+    report=reconstruct(source,probe,tmp_path/'reconstruction.json')
+    assert report['runs'][0]['failed'] is expected_failed
+    assert report['summary']['normalized_edits']==(2 if expected_failed else 0)
+    assert hashlib.sha256(source.read_bytes()).hexdigest()==digest
+    assert report['qualified_asr_candidate'] is False
+    proof['experiment_sha256']='b'*64;probe.write_text(json.dumps(proof))
+    with pytest.raises(ValueError):reconstruct(source,probe,tmp_path/'invalid.json')
+
+
+def test_filler_overlap_ablation_never_discards_unmatched_dose_or_negation():
+    from services.overlap_reassembly import stitch
+    value,event=stitch('Patient takes insulin 5 units','Patient takes insulin 10 units')
+    assert event['method']=='unmatched_retained' and '5 units' in value and '10 units' in value
+    value,event=stitch('Patient reports a cough','Patient reports no cough')
+    assert event['method']=='unmatched_retained' and 'no cough' in value

@@ -1,0 +1,76 @@
+{
+  "schema_version": "release_readiness_v1",
+  "scope": "development_evidence_inventory_not_deployment_authorization",
+  "maximum_normalized_wer": 0.05,
+  "evaluated_candidates": 8,
+  "unranked_candidates": 7,
+  "eligible_development_candidates": [],
+  "best_development_candidate": "omi-med-stt-v1",
+  "best_development_normalized_wer": 0.08701413427561837,
+  "evidence_sha256": {
+    "evaluation/expanded-extension-ledger-v2.json": "e63d101f802f568f1a44ca8048200ed2d9385caac81d9d2d47fe559107ec4c23",
+    "evaluation/datasets/primock57-expanded-v1/manifest.json": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+    "evaluation/datasets/primock57-expanded-v1/lock.json": "946943146b44065304edf86f53276475e849f88fd60e171113cea4d5d56eceda",
+    "evaluation/runs/primock57-expanded-v1/omi-med-stt-v1.json": "2fab0eb25ed6f7dbf6b57523781448542b8c93ad127c7d731452a38594b8b59e",
+    "evaluation/runs/primock57-expanded-v1/parakeet-tdt-0.6b-v2.json": "532ff3357195261b37e95b8e494243e08ceb36a3e27e5c374ad5268fb73efc4d",
+    "evaluation/runs/primock57-expanded-v1/qwen3-asr-0.6b-int8.json": "40503124700f608af8c7032baa6d5503b3d0cf2cdfefe532f4af914172e57a63",
+    "evaluation/runs/primock57-expanded-v1/distil-whisper-large-v3.json": "657b3221f34f987a4a801f38f13282d2d48f2f9336177f0aebe76247c4cccab6",
+    "evaluation/runs/primock57-expanded-v1/faster-whisper-large-v3.json": "ef13b01e0c386a298d2b7a1ab50f9e9ad02198a2d04ff920901de04a9bee43af",
+    "evaluation/runs/primock57-expanded-v1/whisper-small.json": "af97db6ea687f0443da051b74d7ce75a24710af8e72252ede62292ec1e1db586",
+    "evaluation/runs/primock57-expanded-v1/faster-whisper-tiny.en.json": "fb0eb97c215789cf07d1ab8b97bab256d5d2a475cb6b24ec77d0d6d6aac324f3",
+    "evaluation/runs/primock57-expanded-v1/multimed-whisper-small-english.json": "757be9c7ddf2ef61b232d70b610461297a55f731ef1e860f57d45dca869db54c"
+  },
+  "gates": [
+    {
+      "id": "development_asr_wer",
+      "status": "fail"
+    },
+    {
+      "id": "independent_acceptance_cohort",
+      "status": "not_established"
+    },
+    {
+      "id": "timestamped_application_asr",
+      "status": "not_established"
+    },
+    {
+      "id": "speaker_attribution_quality",
+      "status": "not_established"
+    },
+    {
+      "id": "clinical_extraction_and_verifier_calibration",
+      "status": "not_established"
+    },
+    {
+      "id": "credential_verified_clinician_adjudication",
+      "status": "not_established"
+    },
+    {
+      "id": "paired_clinician_study",
+      "status": "not_established"
+    },
+    {
+      "id": "institutional_sso_mfa",
+      "status": "not_established"
+    },
+    {
+      "id": "deployment_encryption_and_key_management",
+      "status": "not_established"
+    },
+    {
+      "id": "approved_retention_and_backup_deletion",
+      "status": "not_established"
+    },
+    {
+      "id": "external_audit_and_security_review",
+      "status": "not_established"
+    },
+    {
+      "id": "institutional_real_patient_pilot_approval",
+      "status": "not_established"
+    }
+  ],
+  "production_model_selected": null,
+  "real_patient_release_authorized": false,
+  "note": "Passing development WER cannot establish the other gates. No operator checkbox or model opinion promotes a clinical release."
+}

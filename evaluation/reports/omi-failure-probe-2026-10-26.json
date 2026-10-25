@@ -1,0 +1,100 @@
+{
+  "schema_version": "omi_failure_probe_v1",
+  "experiment_sha256": "b2ec0e7c0314499fabf2ab5a03b080edfee5c0e5cbf90b7854508f4458531356",
+  "model": {
+    "engine": "omi",
+    "profile_id": "omi-v1-gguf-q8-cpu-v1",
+    "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+    "runtime_version": "0.2.1",
+    "artifacts": {
+      "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+    },
+    "device": "cpu",
+    "threads": 4,
+    "timestamp_support": "not_provided_text_only_evaluation",
+    "adapter_revision": "reuse_capi_close_windows_dll_directories_v1"
+  },
+  "complete": true,
+  "clinical_acceptance": false,
+  "probes": [
+    {
+      "mode": "two_channel",
+      "id": "day1_consultation11",
+      "role": "doctor",
+      "input_start_ms": 49900.0,
+      "input_end_ms": 75750.0,
+      "pcm_sha256": "65c48d79bd1b64c0783d54a988aa0911f7d0d9d0739aaa9d78bc65a61ffa1882",
+      "input_all_zero": false,
+      "reproduced_failure": true,
+      "error_type": "RuntimeError",
+      "failure_kind": "wrapper_rejects_empty_native_output",
+      "error_message_sha256": "cbe219acca1baf2e351a1e568db5e2780bd21a0b97668c0878324ebdb38441c1"
+    },
+    {
+      "mode": "two_channel",
+      "id": "day1_consultation11",
+      "role": "doctor",
+      "input_start_ms": 556800.0,
+      "input_end_ms": 584250.0,
+      "pcm_sha256": "fcedf71f0cd7f632bdbe99e57fc64e003d7be2602d019810e761aafe953a6e15",
+      "input_all_zero": false,
+      "reproduced_failure": true,
+      "error_type": "RuntimeError",
+      "failure_kind": "wrapper_rejects_empty_native_output",
+      "error_message_sha256": "cbe219acca1baf2e351a1e568db5e2780bd21a0b97668c0878324ebdb38441c1"
+    },
+    {
+      "mode": "two_channel",
+      "id": "day1_consultation13",
+      "role": "patient",
+      "input_start_ms": 80050.0,
+      "input_end_ms": 108000.0,
+      "pcm_sha256": "b477d71c9238e93f723f20eba6821ffc1f07aeb9252982aa5afbd0af8db8a69b",
+      "input_all_zero": false,
+      "reproduced_failure": true,
+      "error_type": "RuntimeError",
+      "failure_kind": "wrapper_rejects_empty_native_output",
+      "error_message_sha256": "cbe219acca1baf2e351a1e568db5e2780bd21a0b97668c0878324ebdb38441c1"
+    },
+    {
+      "mode": "two_channel",
+      "id": "day1_consultation13",
+      "role": "patient",
+      "input_start_ms": 491550.0,
+      "input_end_ms": 517100.0,
+      "pcm_sha256": "74d50d7916388e493a5eddcbfe380bcf79395bb6792bebe20d39f369cfa8cbf3",
+      "input_all_zero": false,
+      "reproduced_failure": true,
+      "error_type": "RuntimeError",
+      "failure_kind": "wrapper_rejects_empty_native_output",
+      "error_message_sha256": "cbe219acca1baf2e351a1e568db5e2780bd21a0b97668c0878324ebdb38441c1"
+    },
+    {
+      "mode": "two_channel",
+      "id": "day1_consultation13",
+      "role": "patient",
+      "input_start_ms": 515100.0,
+      "input_end_ms": 541550.0,
+      "pcm_sha256": "f0131fc03f1edc91ee1ff97df82e9ab428c92871f8677ba0626112787fd80cbe",
+      "input_all_zero": false,
+      "reproduced_failure": true,
+      "error_type": "RuntimeError",
+      "failure_kind": "wrapper_rejects_empty_native_output",
+      "error_message_sha256": "cbe219acca1baf2e351a1e568db5e2780bd21a0b97668c0878324ebdb38441c1"
+    },
+    {
+      "mode": "two_channel",
+      "id": "day1_consultation13",
+      "role": "patient",
+      "input_start_ms": 565600.0,
+      "input_end_ms": 591250.0,
+      "pcm_sha256": "ed3daf5439ca5cb18dcca84b5d76a1ce59e47bd29438e0a946a3909f1ac5981a",
+      "input_all_zero": false,
+      "reproduced_failure": true,
+      "error_type": "RuntimeError",
+      "failure_kind": "wrapper_rejects_empty_native_output",
+      "error_message_sha256": "cbe219acca1baf2e351a1e568db5e2780bd21a0b97668c0878324ebdb38441c1"
+    }
+  ],
+  "original_failures_preserved": true
+}

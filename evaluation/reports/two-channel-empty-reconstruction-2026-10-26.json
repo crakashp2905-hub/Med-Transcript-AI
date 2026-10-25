@@ -1,0 +1,1303 @@
+{
+  "schema_version": "native_empty_reconstruction_v1",
+  "experiment_sha256": "b2ec0e7c0314499fabf2ab5a03b080edfee5c0e5cbf90b7854508f4458531356",
+  "probe_sha256": "e4b397f95b42c3c801769efe732fc41c6a960f37b5d08b40b64473952ffea387",
+  "model": {
+    "engine": "omi",
+    "profile_id": "omi-v1-gguf-q8-cpu-v1",
+    "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+    "runtime_version": "0.2.1",
+    "artifacts": {
+      "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+    },
+    "device": "cpu",
+    "threads": 4,
+    "timestamp_support": "not_provided_text_only_evaluation",
+    "adapter_revision": "reuse_capi_close_windows_dll_directories_v1"
+  },
+  "manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a",
+  "runs": [
+    {
+      "id": "day1_consultation11",
+      "mode": "two_channel_allow_native_empty_v2",
+      "role": "doctor",
+      "reference": "Hello? Hello? Can you hear me OK? That's perfect. Um  this audio. And then it's absolutely fine. Uh, now before I go any further, can I confirm your name and your age? Twenty seven, OK. And how can I help you this afternoon, Dan? Wow, no. Sorry to hear. Seems like there's a lot going on there. Well, when did it all start, your symptoms? OK. And is it mainly diarrhoea? So, you mentioned watery stools. Um How many times are you going a day, would you say? Alright, wow. OK. So you're losing a lot of, a lot of, you're using a lot of fluid there. OK. Have you got any blood in your stools? OK. And any, any tummy pain? Any, any, any pain in your tummy?   Where is this crampy pain? Which part of your tummy? . Well why don't we start with, is it, is it in the middle, or is it to one particular side? OK. And does the pain come and go, or is it there constantly? . Fine, OK. And if I was to ask you on a scale of one to ten, ten being the worst pain you ever had, how bad is this pain?  Is it, is this pain as in making you double over? Is it ten, is it ten out of ten, the worst pain you ever had? Or is it more of a kind of a mild pain, like a three out of ten?  solid six. OK, OK. Alright, good. Um, and apart from the pain and diarrhea, any other symptoms like nausea, vomiting? Not sleeping. OK, alright. Uh And the vomiting is not as pronounced as the diarrhea. Is that right?  and the vomiting is not as, uh, prominent as the diarrhea. Is that right? OK. OK, alright. Um, any other symptoms, like fevers or temperatures? OK. OK, so you're feeling hoarse. OK. And in terms of your waterworks, are you passing urine OK? OK, alright. Um, fine. And, and you said that, you mentioned, three days ago was when it all kicked off. Are you aware of any triggers? I mean, have you for example gone out, had some takeaway food? Have you been around anyone else, um with diarrhea, for example? Is your, is your brother now better? OK, alright. Are you having anything to eat or drink? Have you, I can see you're drinking a coffee, but are you keeping it down? Are you keeping your fluids down? OK, alright. Fine. When was the last time you had anything solid to eat? And which , which uh which you kept in? OK, alright. Um and and Dan, moving forwards, are you otherwise fit and well, or do you have any other medical history? Good. I'll take it you don't take any regular medications, then. OK. And do you have any allergies to any medications? OK. And what about any family history? Do you have any family history of bowel problems?  Yeah, yeah. So what I mean by bowel is the whole gut. So it could be anything from the  mouth anus. Ohh dear. I'm very sorry to hear that. How is he?  Yeah, OK.   Yeah I'll make a not of that 'cause uh,  important to know these kind of details. Um, and socially, tell me more about your home situation. Who's at home with you, Dan? OK. And, uh, how are things at home? Don't .  in general day-to-day life are you managing OK? Any particular ? Sure.  you mentioned work. You mentioned work. What is it you do for work? , OK. So , OK right. And just a couple last final couple, uh couple  questions. Uh, smoking and alcohol, do you do either? Do you smoke, or do you drink much in the way of alcohol?  And alcohol?  But not .   Well thank you for  me. That's really helpful to know. So um, Dan, just as a a conclusion, uh um, just to wrap it all up, I think your symptoms are suggestive of something called gastroenteritis. bit of a basic infection of your tummy. . There's nothing to worry about. Uh um uh uh I suspect this will just settle down in the next few days. Just like you did for you brother. Drink, make sure you drink plenty of fluids, OK? And you can  Right.  fluid is probably best. But I am obviously worried about the fact that you are losing minerals and vitamins. Um so, you can get things like Diarolyte, which is um, a fluid replacement you can get from the pharmacy. It's probably worth  uh recommending that.  no, you can just get that over the counter. Um, you can try just you know regular Paracetamol if you are feeling feverish. But if your symptoms aren't settling down in the next couple of days, so forty eight hours, I want you to give me a call back. Because um, you know if you are getting dehydrated then we need to do further investigations, OK? But I think let's, let's see how you are in the next one to two days. And uh, we'll catch up soon, OK?  clear fluids. You can use soft diet, things like soup, mash. And then gradually build up, um as much as your body can tolerate. Um, but let's try and keep yourself well-hydrated first, OK? Absolutely. If you are having, if you've got a bit of tummy pain, if you're feeling feverish, then I think Paracetamol is very sensible. OK? Try and  avoid alcohol if you can. OK. Alright then. Thank you for your help. . Thank you. Bye bye now.",
+      "chunks": [
+        {
+          "input_start_ms": 0.0,
+          "input_end_ms": 25050.0,
+          "hypothesis": "Hello. Hello. Can you hear me okay? That's perfect. No. I think it's audio. No, no, it's absolutely fine. Now, before I go any further, can I confirm your name and your age?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 23050.0,
+          "input_end_ms": 51900.0,
+          "hypothesis": "your age 27 ok and how can I help you this afternoon Dan",
+          "failed": false,
+          "stitched_duplicate_tokens": 2
+        },
+        {
+          "input_start_ms": 49900.0,
+          "input_end_ms": 75750.0,
+          "hypothesis": "",
+          "failed": false,
+          "stitched_duplicate_tokens": 0,
+          "native_empty_output": true,
+          "original_wrapper_failure_preserved_in_source": true
+        },
+        {
+          "input_start_ms": 73750.0,
+          "input_end_ms": 102800.0,
+          "hypothesis": "Wow, no, sorry to hear that seems like there's a lot going on there. When does it all start, your symptoms? OK, and is it mainly diarrhea? So you mentioned watery stools. How many times are you going a day, would you say?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 100800.0,
+          "input_end_ms": 129050.0,
+          "hypothesis": "Right, well, OK, so you're losing a lot of, you're losing a lot of fluid there. OK, have you noticed any blood in your stools?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 127050.0,
+          "input_end_ms": 156000.0,
+          "hypothesis": "OK. And any any tummy pain? Any any pain in your tummy with with",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 154000.0,
+          "input_end_ms": 179050.0,
+          "hypothesis": "Where is this crampy pain? Which part of your tummy? Why don't we start with, is it, is it in the middle or is it to one particular side?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 177050.0,
+          "input_end_ms": 203900.0,
+          "hypothesis": "OK, and this is pain come and go or is there constantly? Fine, OK. And if I was to ask you to scale one to ten, ten being the worst pain you ever had, how bad is this pain?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 201900.0,
+          "input_end_ms": 228850.0,
+          "hypothesis": "Is this pain that's making you double over? Is it 10 out of 10 the worst pain you've ever had? Or is it more of a kind of a mild pain, like a 3 out of 10?",
+          "failed": false,
+          "stitched_duplicate_tokens": 3
+        },
+        {
+          "input_start_ms": 226850.0,
+          "input_end_ms": 252800.0,
+          "hypothesis": "OK, alright, good. And apart from the pain and diarrhea, any other symptoms like nausea, vomiting?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 250800.0,
+          "input_end_ms": 276550.0,
+          "hypothesis": "not easy. OK, alright. But the vomiting is not as pronounced as the diarrhea, is that right? The vomiting is not as prominent as the diarrhea, is that right?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 274550.0,
+          "input_end_ms": 299800.0,
+          "hypothesis": "diarrhea, is that right? OK, OK, alright. Any other symptoms like fevers or temperatures? OK.",
+          "failed": false,
+          "stitched_duplicate_tokens": 4
+        },
+        {
+          "input_start_ms": 297800.0,
+          "input_end_ms": 327350.0,
+          "hypothesis": "OK, so you're feeling hot. OK. And in terms of your water works, are you passing urine OK? OK, alright. Fine. And you said, mentioned three days ago was when it all kicked off. Are you aware of any triggers? I mean, have you, for example, gone out, had some takeaway food? Have you been around anyone else with diarrhea, for example?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 325350.0,
+          "input_end_ms": 353800.0,
+          "hypothesis": "diarrhea, for example is your brother now better?",
+          "failed": false,
+          "stitched_duplicate_tokens": 3
+        },
+        {
+          "input_start_ms": 351800.0,
+          "input_end_ms": 381050.0,
+          "hypothesis": "OK, alright. Are you having anything to eat or drink? I can see you're drinking your coffee, but are you keeping it down? Are you keeping your fluids down?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 379050.0,
+          "input_end_ms": 408700.0,
+          "hypothesis": "OK, alright, fine. When was the last time you had anything solid to eat? Which kept, which you kept in? OK, alright. And Dan, moving forward, are you otherwise fitting well or do you have any other medical history?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 406700.0,
+          "input_end_ms": 433750.0,
+          "hypothesis": "Good. Well, thank you. You don't take any regular medications then?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 431750.0,
+          "input_end_ms": 456900.0,
+          "hypothesis": "taking any regular medications in. OK, and do you have any allergies to any medications?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 454900.0,
+          "input_end_ms": 484650.0,
+          "hypothesis": "OK, what about any family history? Do you have any family history of bowel problems? Gut problems? Yeah, yeah, so what I mean by bowel is a whole gut really, anything from the mouth to the tumors. Oh dear, I'm very sorry to hear that. How is he?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 482650.0,
+          "input_end_ms": 508000.0,
+          "hypothesis": "Yeah, OK",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 506000.0,
+          "input_end_ms": 532350.0,
+          "hypothesis": "I'm really sorry. I'll make a note of that because it's always important to know these kind of details. And socially, tell me more about your home situation. Who's at home with you, Dan?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 530350.0,
+          "input_end_ms": 558800.0,
+          "hypothesis": "OK and how are things at home? Generally, generally as well. Just in general, day-to-day life, are you managing OK? Any particular structures?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 556800.0,
+          "input_end_ms": 584250.0,
+          "hypothesis": "",
+          "failed": false,
+          "stitched_duplicate_tokens": 0,
+          "native_empty_output": true,
+          "original_wrapper_failure_preserved_in_source": true
+        },
+        {
+          "input_start_ms": 582250.0,
+          "input_end_ms": 608200.0,
+          "hypothesis": "You mentioned work. What is it you do for work?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 606200.0,
+          "input_end_ms": 633850.0,
+          "hypothesis": "OK, so off with, OK, right. Just a couple of last final couple, a couple of questions there. Smoking and alcohol, do you do either? Do you smoke or do you drink much in the way of alcohol?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 631850.0,
+          "input_end_ms": 657400.0,
+          "hypothesis": "an alcohol but not food",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 655400.0,
+          "input_end_ms": 681950.0,
+          "hypothesis": "Thank you for sharing with me. That's very helpful to know. So Dan, just as a conclusion, just to wrap it all up, I think",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 679950.0,
+          "input_end_ms": 707400.0,
+          "hypothesis": "just to wrap it all up. I think your symptoms are suggestive of something called gastroenteritis a bit of a basically infection of your tummy of your gut. There's nothing to worry about. I suspect this will just settle down in the next few days, just like it did for your brother. Drink, make sure you drink plenty of fluids, OK. You can well,",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 705400.0,
+          "input_end_ms": 732050.0,
+          "hypothesis": "Well their fluid is probably best, but I am obviously worried about the fact that you are losing minerals and vitamins. So you can get things like dirolite, which is a fluid replacement which can get from the pharmacy. It's probably worth recommending that. No, you can just get that over the counter. You can try just regular paracetamol if you are feeling feverish. But if your symptoms aren't",
+          "failed": false,
+          "stitched_duplicate_tokens": 1
+        },
+        {
+          "input_start_ms": 730050.0,
+          "input_end_ms": 756700.0,
+          "hypothesis": "feverish but if your symptoms aren't settling down in the next couple of days so 48 hours I want you to give me a call back because you know if you are getting dehydrated then we need to do further investigations okay but I think let's let's see how you are in the next one to two days and we'll catch up soon okay",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 754700.0,
+          "input_end_ms": 784550.0,
+          "hypothesis": "food dissolving yeah absolutely so clear fluids you can use soft diet things like soup mash and then gradually build up um as much as your body can tolerate um but really let's try and keep yourself well hydrated first okay absolutely if you are having if you've got a bit of tummy pain if you're feeling feverish then I think paracetamol is very sensible",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 782550.0,
+          "input_end_ms": 803280.0,
+          "hypothesis": "OK, try and avoid alcohol if you can OK. Alright then. Thank you for your help. No way. Thank you for that bad help.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        }
+      ],
+      "duration_ms": 803280.0,
+      "hypothesis": "Hello. Hello. Can you hear me okay? That's perfect. No. I think it's audio. No, no, it's absolutely fine. Now, before I go any further, can I confirm your name and your age? 27 ok and how can I help you this afternoon Dan Wow, no, sorry to hear that seems like there's a lot going on there. When does it all start, your symptoms? OK, and is it mainly diarrhea? So you mentioned watery stools. How many times are you going a day, would you say? Right, well, OK, so you're losing a lot of, you're losing a lot of fluid there. OK, have you noticed any blood in your stools? OK. And any any tummy pain? Any any pain in your tummy with with Where is this crampy pain? Which part of your tummy? Why don't we start with, is it, is it in the middle or is it to one particular side? OK, and this is pain come and go or is there constantly? Fine, OK. And if I was to ask you to scale one to ten, ten being the worst pain you ever had, how bad is this pain? that's making you double over? Is it 10 out of 10 the worst pain you've ever had? Or is it more of a kind of a mild pain, like a 3 out of 10? OK, alright, good. And apart from the pain and diarrhea, any other symptoms like nausea, vomiting? not easy. OK, alright. But the vomiting is not as pronounced as the diarrhea, is that right? The vomiting is not as prominent as the diarrhea, is that right? OK, OK, alright. Any other symptoms like fevers or temperatures? OK. OK, so you're feeling hot. OK. And in terms of your water works, are you passing urine OK? OK, alright. Fine. And you said, mentioned three days ago was when it all kicked off. Are you aware of any triggers? I mean, have you, for example, gone out, had some takeaway food? Have you been around anyone else with diarrhea, for example? is your brother now better? OK, alright. Are you having anything to eat or drink? I can see you're drinking your coffee, but are you keeping it down? Are you keeping your fluids down? OK, alright, fine. When was the last time you had anything solid to eat? Which kept, which you kept in? OK, alright. And Dan, moving forward, are you otherwise fitting well or do you have any other medical history? Good. Well, thank you. You don't take any regular medications then? taking any regular medications in. OK, and do you have any allergies to any medications? OK, what about any family history? Do you have any family history of bowel problems? Gut problems? Yeah, yeah, so what I mean by bowel is a whole gut really, anything from the mouth to the tumors. Oh dear, I'm very sorry to hear that. How is he? Yeah, OK I'm really sorry. I'll make a note of that because it's always important to know these kind of details. And socially, tell me more about your home situation. Who's at home with you, Dan? OK and how are things at home? Generally, generally as well. Just in general, day-to-day life, are you managing OK? Any particular structures? You mentioned work. What is it you do for work? OK, so off with, OK, right. Just a couple of last final couple, a couple of questions there. Smoking and alcohol, do you do either? Do you smoke or do you drink much in the way of alcohol? an alcohol but not food Thank you for sharing with me. That's very helpful to know. So Dan, just as a conclusion, just to wrap it all up, I think just to wrap it all up. I think your symptoms are suggestive of something called gastroenteritis a bit of a basically infection of your tummy of your gut. There's nothing to worry about. I suspect this will just settle down in the next few days, just like it did for your brother. Drink, make sure you drink plenty of fluids, OK. You can well, their fluid is probably best, but I am obviously worried about the fact that you are losing minerals and vitamins. So you can get things like dirolite, which is a fluid replacement which can get from the pharmacy. It's probably worth recommending that. No, you can just get that over the counter. You can try just regular paracetamol if you are feeling feverish. But if your symptoms aren't feverish but if your symptoms aren't settling down in the next couple of days so 48 hours I want you to give me a call back because you know if you are getting dehydrated then we need to do further investigations okay but I think let's let's see how you are in the next one to two days and we'll catch up soon okay food dissolving yeah absolutely so clear fluids you can use soft diet things like soup mash and then gradually build up um as much as your body can tolerate um but really let's try and keep yourself well hydrated first okay absolutely if you are having if you've got a bit of tummy pain if you're feeling feverish then I think paracetamol is very sensible OK, try and avoid alcohol if you can OK. Alright then. Thank you for your help. No way. Thank you for that bad help.",
+      "failed": false,
+      "reference_words": 929,
+      "hypothesis_words": 915,
+      "normalized_edits": 187,
+      "raw_edits": 313,
+      "raw_reference_words": 939,
+      "clinical_terms": {
+        "lexicon": "\\b(?:paracetamol|metformin|warfarin|penicillin|insulin|allergies|allergy|diarrhoea|diarrhea|gastroenteritis|dehydrated|cancer|blood|vomiting|fever|pain)\\b",
+        "reference_mentions": 25,
+        "missing_mentions": {
+          "diarrhoea": 1,
+          "pain": 1
+        },
+        "extra_mentions": {
+          "diarrhea": 1
+        },
+        "limitation": "Literal development term counts, not clinical concept correctness or adjudicated errors"
+      },
+      "wall_seconds": 354.9788114000112,
+      "normalized_wer": 0.20129171151776104,
+      "input_coverage_complete": true,
+      "original_case_failed": true,
+      "admitted_empty_native_outputs": 2
+    },
+    {
+      "id": "day1_consultation11",
+      "mode": "two_channel_allow_native_empty_v2",
+      "role": "patient",
+      "reference": "Hello? Hello. Uh I can hear you, but I can't really see you. Is, is that OK? Am I meant to Just  connection on the screen. OK. Um so, um my name is uh Dan Choudhry. I am seven, twenty seven. Um so I've just um, been having some troubles, basically in the  uh, I guess it's been a little while now. And I've just been feeling not so great. And It's all come from like, uh it's like basically I think it's diarrhoea. And it's like just coming out, like loads of it. Like I go to the toilet and it's just super watery and it Yeah it doesn't feel very solid. It so, it just, it's just pouring straight from my bum, and like just coming out. And it's, uh, Yeah it's just uh not, not been very pleasant. And like I just, it just kind of hasn't, doesn't feel like it's getting better. So Um, so I think it was a few, when I think about it So Monday, Tuesday, I I, so I think it was about three, it's been about three days now. Um so I , I feel like it's like almost every hour, when I'm awake. Um, so  . Sorry? Yeah, so I mean I'm , I'm trying to drink a lot of water. But um, yeah it's just quite a lot and Uh it's, yeah I I, I think I  I feel like it's just, just fluids coming out. Um So I, no I don't, I don't remember anything, like, no I , I think it's just I, nothing like that. There's nothing like that. Yeah. I mean I, it, I feel, I feel a cramp.  and then, and then I know it's time to go right? So, around every hour I just feel something come up. And then I have to go. So, yeah I mean that's, that's the , kind of the first sign. It's kind of, . If I think about it, it's like, it's like at the bottom. Uh, I don't know if that makes sense. Um Um I I think it it , it feels pretty , like in the middle, to me. Not on any side, left or right. Um, it it comes and goes. It comes and goes. OK so like Um  So What do you mean by, uh pain? So I, I think it's maybe a I I guess so. I'm, when I think about it, like when I get it, I can pretend that I don't feel it. So I can still sit down and Uh I can still like cover it up, and people don't really notice. So I, I don't know what that means. But maybe is that like a six, or a seven?  OK. Um, yeah I definitely, I definitely feel kind of nauseous. Um Like I and, like I've have vomited. And when I like, I think it's maybe something to do with like, whenever I have like milk or something like that, I just feel like I want to vomit. And actually,  yeah one time I just like had some milk, and I just completely vomited it. Um, I've been, I've been trying to avoid it. But um, yeah. Um, sorry could you repeat that? Uh no, no it's not. Um so I, yeah I think I am pretty, I feel kind of really hot all the time. And uh I'm pretty sure I'm burning up. I haven't actually done any temperature reading, or anything like that. But it's, I, yeah I've, I've sure I'm, I'm not a, like not a normal temperature. Um yeah a bit, I guess less frequently maybe. Um but yeah, it seems to be OK. Um so I , so my um my brother has had, actually had something like this for um  he has it as well for five days, as well. Um and I I've, I'm not, yeah I  I can't think of what, what the trigger is for me. I mean, my brother normally can deal, deals with this stuff a lot better than me. But , yeah I, that's why Um He, so he's been like this for five days. I think he's getting better, but I'm not, I'm not really sure. He said, he said he had, he's had something for a little while as well. Um so it just feels like the, the fluids do go down. But it just feels like it's going straight through. It just feels like it's going straight through. Um so, I had some, I mean I had some lunch today. Um But again it just it  just came, come out pretty loose. Um, so I um, yeah I think, I think otherwise I'm fit and well. I um Yeah I mean I, I'm an OK weight. And um, I I can't think of any related medical history. Um, I mean like my, yeah I  no I  I don't think so. So I Um No I mean I, I've been taking some like Paracetamols and stuff like that lately. But uh, I haven't been, I'm not on any regular medication or anything like that. Um, so I don't have any allergies that I know of. Um bowel, so would, would bowel like, is is the colon like something that  So my, yeah my, my dad actually has um colon cancer at the moment. So um, from what I heard he's kind of, So I don't I don't speak to him that often. So I don't, I don't know the exact details. And I, I don't exactly know the full things of like the steps of cancer, and all that kind of thing. But um, he's sort of in his third stage. Uh, I'm not sure what that means exactly. Um, and yeah. So yeah it's, it's um, he's, yeah you can, yeah I can see he's kind of weaker, and it's affecting him a lot. And um, that's  it's quite, I I guess he's um, had it for a little while now. Um so, uh not my brother. He doesn't live with me. I'm, I live with my, um sister and my mum. Um, I think,  I mean in what sense do you mean that?  I mean uh I think uh, yeah it's been, it's been tricky. Um Going to work with all of this. Um I dislike um, taking time off work. I feel like I I just want to go, um when I can. So I  I try and go um I think at, at home, uh yeah I just haven't really um I I don't normally actually um, eat with my family. I normally am buying stuff and that kind of thing. So, I don't think it's affected them. And I haven't really been, haven't really gone into detail with my sister and my mom about it. Um Yeah. I'd, I'd just rather deal with these things. Um so  Um So I work at a, I I work at um an office, um in Central London. Um it's uh, so I work in government. Um so I I smoke um, I smoke uh, uh for like socially, but not like regularly. Um So normally if if it's a, a Friday or something like that I might, I might have a cigarette or something like that. But um not . Sorry? So alcohol, um  uh you know I might have a a beer during the weekdays, maybe uh not that many, maybe um . On Fridays I have more um alcohol um But yeah uh, I'll have my units um Uh, honest, I suppose um, not every week, but maybe I'll once or twice a month, that yeah, I'll go out with my friends and drink a lot so that that's um, yeah um OK. OK. Uh-huh. Should I just drink like normal water? I just feel like every time I drink  it's just coming out. Um   Do i need like a prescription for that? OK.  OK. OK. So you're saying that I should,  I could, uh I'll try and buy this Dioralyte. What, what should I do in terms of um, food and that kind of thing? Should I just focus on fluids? OK. Is it OK for me to carry on having like, um Paracetamol and things like that? OK. Uh, OK I'll try. Yeah. OK. Alright. Thank you very much. Thanks, thanks for helping me out. K. Bye.",
+      "chunks": [
+        {
+          "input_start_ms": 0.0,
+          "input_end_ms": 25250.0,
+          "hypothesis": "Hello? Hello. I can hear you, but I can't really see you. Is that OK? Am I meant to just connection on the screen? OK.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 23250.0,
+          "input_end_ms": 51900.0,
+          "hypothesis": "Um so um so my name is Dan Chowdhury. I am 27 um so I've just um been having some troubles basically in the uh I guess it's been a little while now and I've just been feeling not so great and it's all come from like uh it's like basically I think it's",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 49900.0,
+          "input_end_ms": 78350.0,
+          "hypothesis": "it's like basically I think is diarrhea and is like just coming out like loads of it like I go to the toilet and it's just super watery and it yeah it doesn't feel very solid it's it just it's just pouring straight from my bum and like just coming out and it's uh yeah it's just uh not not been very pleasant and like I just it just kind of hasn't doesn't feel like it's getting better so",
+          "failed": false,
+          "stitched_duplicate_tokens": 1
+        },
+        {
+          "input_start_ms": 76350.0,
+          "input_end_ms": 101700.0,
+          "hypothesis": "Um so I think it was a few when I think about it so Monday, Tuesday, I I saw I think it was about three it's been about three days now.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 99700.0,
+          "input_end_ms": 129450.0,
+          "hypothesis": "Um, so I I feel like it's like almost every hour when I'm awake. Um, so no sorry. Yeah, so I mean I'm I'm trying to drink a lot of water, but um, yeah, it's just quite a lot and uh it's yeah, I think I feel like it's just just fluids coming out. Um,",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 127450.0,
+          "input_end_ms": 157300.0,
+          "hypothesis": "Um so I no, I don't, I don't remember anything like, no, I think it's just nothing like that. There's nothing like that. Yeah, I mean I it, I feel, I feel a cramp and then and then I know it's time to go, right? So around every hour I just feel something come up and then I have to go. So yeah, I mean that's that's the kind of the first sign.",
+          "failed": false,
+          "stitched_duplicate_tokens": 1
+        },
+        {
+          "input_start_ms": 155300.0,
+          "input_end_ms": 180750.0,
+          "hypothesis": "at the first sign. It's kind of, I so wanna, if I think about it, it's like it's like at the bottom. I don't know if that makes sense. I think if it feels pretty like in the middle to me, not on any side, left or right.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 178750.0,
+          "input_end_ms": 206900.0,
+          "hypothesis": "right um it it comes and goes, it comes and goes. OK, so like um so what do you mean by pain? So I I think it's maybe a",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 204900.0,
+          "input_end_ms": 232550.0,
+          "hypothesis": "I think it's maybe I guess so I'm, when I think about it, like when I get it, I can pretend that I don't feel it, so I can still sit down and I can still like cover it up and people don't really notice. So I don't know what that means, but maybe is that like a six or a seven? OK.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 230550.0,
+          "input_end_ms": 260100.0,
+          "hypothesis": "OK. Um, yeah, I definitely, I definitely feel kind of nauseous. Um like I and like I have vomited and when I like I think it's maybe something to do with like whenever I have like milk or something like that I just feel like I wanna vomit and actually like yeah one time I just like had some milk and I just completely vomited it.",
+          "failed": false,
+          "stitched_duplicate_tokens": 1
+        },
+        {
+          "input_start_ms": 258100.0,
+          "input_end_ms": 285450.0,
+          "hypothesis": "and I just completely vomited it. I've been trying to avoid it, but yeah, sorry, could you repeat that? Uh no, no, it's not. Um, so I, yeah, I think I am pretty, I feel pretty,",
+          "failed": false,
+          "stitched_duplicate_tokens": 6
+        },
+        {
+          "input_start_ms": 283450.0,
+          "input_end_ms": 313400.0,
+          "hypothesis": "Yeah, I think I am pretty, I feel kind of really hot all the time and I pretty sure I'm burning up. I haven't actually done any temperature reading or anything like that, but it's, yeah, I, I'm sure I'm not like not a normal temperature. Um, yeah, but I guess less frequently maybe, um, but yeah, it seems to be OK.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 311400.0,
+          "input_end_ms": 338050.0,
+          "hypothesis": "seems to be OK. So I know, so my brother has had actually had something like this for he has it as well for five days as well.",
+          "failed": false,
+          "stitched_duplicate_tokens": 4
+        },
+        {
+          "input_start_ms": 336050.0,
+          "input_end_ms": 365900.0,
+          "hypothesis": "as well um and I I I'm not yeah I can't think of what what the trigger is for me I mean my brother normally can deal deals with this stuff a lot better than me but yeah that's why um he so he's been like this for five days I think he's getting better but I'm not I'm not really sure he said he said he had he's had something for a little while as well",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 363900.0,
+          "input_end_ms": 393750.0,
+          "hypothesis": "Um so it just feels like um the fluids do go down, but it just feels like it's going straight through. Just feels like it's going straight through. Um, so I had some",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 391750.0,
+          "input_end_ms": 418300.0,
+          "hypothesis": "I had some, I mean, I had some lunch today, um, but again, it just, it just came, come out pretty loose. Um, so I, um, yeah, I think, I think otherwise I'm fit well. I, um, yeah, I mean, I, I'm,",
+          "failed": false,
+          "stitched_duplicate_tokens": 3
+        },
+        {
+          "input_start_ms": 416300.0,
+          "input_end_ms": 442650.0,
+          "hypothesis": "Yeah, I mean, I I'm an OK weight and I I can't think of any related medical history. Um, I mean, like my yeah, I, no, I, I don't think so. So I, um no, I mean, I, I've been taking some,",
+          "failed": false,
+          "stitched_duplicate_tokens": 5
+        },
+        {
+          "input_start_ms": 440650.0,
+          "input_end_ms": 468300.0,
+          "hypothesis": "I've been taking some like paracetamols and stuff like that lately, but I haven't been, I'm not on any regular medication or anything like that. Um, so I don't have any allergies that I know of. Um, bowel. So with bowel, like, does, is the colon like something that",
+          "failed": false,
+          "stitched_duplicate_tokens": 4
+        },
+        {
+          "input_start_ms": 466300.0,
+          "input_end_ms": 494950.0,
+          "hypothesis": "like something that so my yeah my my dad actually has colon cancer at the moment so um from what I heard he's kind of so I don't I don't speak to him that often so I don't I don't know the exact details and I don't exactly know the full things of like the steps of cancer and all of that",
+          "failed": false,
+          "stitched_duplicate_tokens": 3
+        },
+        {
+          "input_start_ms": 492950.0,
+          "input_end_ms": 522600.0,
+          "hypothesis": "steps of cancer and all of that thing, but he's sort of in his third stage. I'm not sure what that means exactly. Yeah, so yeah, it's it's he's yeah, you can I can see he's kind of weaker and it's affecting a lot and that's quite, I guess he's had it for a little while now.",
+          "failed": false,
+          "stitched_duplicate_tokens": 7
+        },
+        {
+          "input_start_ms": 520600.0,
+          "input_end_ms": 547350.0,
+          "hypothesis": "Um, so uh, not my brother, he doesn't live with me. I'm, I live with my sister and my mum. Um, I think in what sense do you mean that?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 545350.0,
+          "input_end_ms": 574400.0,
+          "hypothesis": "Yeah, I mean, uh, I think, yeah, it's been, it's been tricky going to work with all of this. Um, I dislike um taking time off work. I feel like I, I just wanna go when I can, so I try and go. Um, I think at home, uh, yeah, I just haven't really",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 572400.0,
+          "input_end_ms": 599450.0,
+          "hypothesis": "I haven't really I don't normally actually eat with my family. I normally buying stuff and that kind of thing. So I don't think it's affected them. And I haven't really been, I haven't really gone into detail with my sister and my mom about it. Yeah, I just rather deal with these things. So yeah, so I",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 597450.0,
+          "input_end_ms": 623000.0,
+          "hypothesis": "So I work at a I work at an office in central London. It's so I work in government so I I smoke",
+          "failed": false,
+          "stitched_duplicate_tokens": 2
+        },
+        {
+          "input_start_ms": 621000.0,
+          "input_end_ms": 648450.0,
+          "hypothesis": "I smoke I smoke for like socially, but not like regularly. So normally if it's a Friday or something like that, I might I might have a cigarette or something like that, but not regularly. Sorry? So alcohol I might have a beer during the weekdays, maybe not",
+          "failed": false,
+          "stitched_duplicate_tokens": 2
+        },
+        {
+          "input_start_ms": 646450.0,
+          "input_end_ms": 674700.0,
+          "hypothesis": "weekdays maybe not that many maybe um one or two on Fridays I have more alcohol um but yeah a lot more units um on it I suppose um not every week but maybe uh once or twice a month that yeah I'll go out with my friends and drink a lot so that that's yeah um",
+          "failed": false,
+          "stitched_duplicate_tokens": 3
+        },
+        {
+          "input_start_ms": 672700.0,
+          "input_end_ms": 701150.0,
+          "hypothesis": "Yeah, um OK OK Uh-huh",
+          "failed": false,
+          "stitched_duplicate_tokens": 2
+        },
+        {
+          "input_start_ms": 699150.0,
+          "input_end_ms": 724500.0,
+          "hypothesis": "Should I just drink like normal water? I just feel like every time I drink, it's just coming out. Um, like else in it. Do I need like a prescription for that?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 722500.0,
+          "input_end_ms": 748450.0,
+          "hypothesis": "Do I have like a prescription for that? OK. OK.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 746450.0,
+          "input_end_ms": 775100.0,
+          "hypothesis": "OK, so you're saying that I should, I could, I'll try and buy this dirolite. What, what should I do in terms of food and that kind of thing? Should I just focus on fluids? OK, is it OK for me to carry on having like",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 773100.0,
+          "input_end_ms": 802150.0,
+          "hypothesis": "to carry on having like paracetamol and things like that. OK, I'll try. Yeah. OK. Alright, thank you very much. Thanks, thanks for helping me out. OK, bye.",
+          "failed": false,
+          "stitched_duplicate_tokens": 5
+        },
+        {
+          "input_start_ms": 800150.0,
+          "input_end_ms": 803220.0,
+          "hypothesis": "OK, but",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        }
+      ],
+      "duration_ms": 803220.0,
+      "hypothesis": "Hello? Hello. I can hear you, but I can't really see you. Is that OK? Am I meant to just connection on the screen? OK. Um so um so my name is Dan Chowdhury. I am 27 um so I've just um been having some troubles basically in the uh I guess it's been a little while now and I've just been feeling not so great and it's all come from like uh it's like basically I think it's like basically I think is diarrhea and is like just coming out like loads of it like I go to the toilet and it's just super watery and it yeah it doesn't feel very solid it's it just it's just pouring straight from my bum and like just coming out and it's uh yeah it's just uh not not been very pleasant and like I just it just kind of hasn't doesn't feel like it's getting better so Um so I think it was a few when I think about it so Monday, Tuesday, I I saw I think it was about three it's been about three days now. Um, so I I feel like it's like almost every hour when I'm awake. Um, so no sorry. Yeah, so I mean I'm I'm trying to drink a lot of water, but um, yeah, it's just quite a lot and uh it's yeah, I think I feel like it's just just fluids coming out. Um, so I no, I don't, I don't remember anything like, no, I think it's just nothing like that. There's nothing like that. Yeah, I mean I it, I feel, I feel a cramp and then and then I know it's time to go, right? So around every hour I just feel something come up and then I have to go. So yeah, I mean that's that's the kind of the first sign. at the first sign. It's kind of, I so wanna, if I think about it, it's like it's like at the bottom. I don't know if that makes sense. I think if it feels pretty like in the middle to me, not on any side, left or right. right um it it comes and goes, it comes and goes. OK, so like um so what do you mean by pain? So I I think it's maybe a I think it's maybe I guess so I'm, when I think about it, like when I get it, I can pretend that I don't feel it, so I can still sit down and I can still like cover it up and people don't really notice. So I don't know what that means, but maybe is that like a six or a seven? OK. Um, yeah, I definitely, I definitely feel kind of nauseous. Um like I and like I have vomited and when I like I think it's maybe something to do with like whenever I have like milk or something like that I just feel like I wanna vomit and actually like yeah one time I just like had some milk and I just completely vomited it. I've been trying to avoid it, but yeah, sorry, could you repeat that? Uh no, no, it's not. Um, so I, yeah, I think I am pretty, I feel pretty, Yeah, I think I am pretty, I feel kind of really hot all the time and I pretty sure I'm burning up. I haven't actually done any temperature reading or anything like that, but it's, yeah, I, I'm sure I'm not like not a normal temperature. Um, yeah, but I guess less frequently maybe, um, but yeah, it seems to be OK. So I know, so my brother has had actually had something like this for he has it as well for five days as well. as well um and I I I'm not yeah I can't think of what what the trigger is for me I mean my brother normally can deal deals with this stuff a lot better than me but yeah that's why um he so he's been like this for five days I think he's getting better but I'm not I'm not really sure he said he said he had he's had something for a little while as well Um so it just feels like um the fluids do go down, but it just feels like it's going straight through. Just feels like it's going straight through. Um, so I had some I mean, I had some lunch today, um, but again, it just, it just came, come out pretty loose. Um, so I, um, yeah, I think, I think otherwise I'm fit well. I, um, yeah, I mean, I, I'm, an OK weight and I I can't think of any related medical history. Um, I mean, like my yeah, I, no, I, I don't think so. So I, um no, I mean, I, I've been taking some, like paracetamols and stuff like that lately, but I haven't been, I'm not on any regular medication or anything like that. Um, so I don't have any allergies that I know of. Um, bowel. So with bowel, like, does, is the colon like something that so my yeah my my dad actually has colon cancer at the moment so um from what I heard he's kind of so I don't I don't speak to him that often so I don't I don't know the exact details and I don't exactly know the full things of like the steps of cancer and all of that thing, but he's sort of in his third stage. I'm not sure what that means exactly. Yeah, so yeah, it's it's he's yeah, you can I can see he's kind of weaker and it's affecting a lot and that's quite, I guess he's had it for a little while now. Um, so uh, not my brother, he doesn't live with me. I'm, I live with my sister and my mum. Um, I think in what sense do you mean that? Yeah, I mean, uh, I think, yeah, it's been, it's been tricky going to work with all of this. Um, I dislike um taking time off work. I feel like I, I just wanna go when I can, so I try and go. Um, I think at home, uh, yeah, I just haven't really I haven't really I don't normally actually eat with my family. I normally buying stuff and that kind of thing. So I don't think it's affected them. And I haven't really been, I haven't really gone into detail with my sister and my mom about it. Yeah, I just rather deal with these things. So yeah, so I work at a I work at an office in central London. It's so I work in government so I I smoke I smoke for like socially, but not like regularly. So normally if it's a Friday or something like that, I might I might have a cigarette or something like that, but not regularly. Sorry? So alcohol I might have a beer during the weekdays, maybe not that many maybe um one or two on Fridays I have more alcohol um but yeah a lot more units um on it I suppose um not every week but maybe uh once or twice a month that yeah I'll go out with my friends and drink a lot so that that's yeah um OK OK Uh-huh Should I just drink like normal water? I just feel like every time I drink, it's just coming out. Um, like else in it. Do I need like a prescription for that? Do I have like a prescription for that? OK. OK. OK, so you're saying that I should, I could, I'll try and buy this dirolite. What, what should I do in terms of food and that kind of thing? Should I just focus on fluids? OK, is it OK for me to carry on having like paracetamol and things like that. OK, I'll try. Yeah. OK. Alright, thank you very much. Thanks, thanks for helping me out. OK, bye. OK, but",
+      "failed": false,
+      "reference_words": 1399,
+      "hypothesis_words": 1355,
+      "normalized_edits": 180,
+      "raw_edits": 448,
+      "raw_reference_words": 1411,
+      "clinical_terms": {
+        "lexicon": "\\b(?:paracetamol|metformin|warfarin|penicillin|insulin|allergies|allergy|diarrhoea|diarrhea|gastroenteritis|dehydrated|cancer|blood|vomiting|fever|pain)\\b",
+        "reference_mentions": 6,
+        "missing_mentions": {
+          "diarrhoea": 1
+        },
+        "extra_mentions": {
+          "diarrhea": 1
+        },
+        "limitation": "Literal development term counts, not clinical concept correctness or adjudicated errors"
+      },
+      "wall_seconds": 242.9945607999689,
+      "normalized_wer": 0.12866333095067906,
+      "input_coverage_complete": true,
+      "original_case_failed": false,
+      "admitted_empty_native_outputs": 0
+    },
+    {
+      "id": "day1_consultation12",
+      "mode": "two_channel_allow_native_empty_v2",
+      "role": "doctor",
+      "reference": "Uh no, it is, yes. Hello? Can you hear me OK? Great. Hello there. Um, before I go any further, can I confirm you name and your age please? Robert? OK. OK. Great. Excellent. And how can I help you this afternoon, sir? OK, well I'm sorry to hear that. Uh can you tell me a bit more about your diarrhoea? Right. Mm-hmm. OK. And you mentioned you've been um going to the toilet very often. How many times are you going a day? OK. And uh uh can you tell me, I know it's not nice to talk about, but is it quite watery, your stools, loose? OK. K. Any blood in your stools? OK. And uh uh uh with the diarrhea have you noticed any other symptoms, like tummy pain?  OK. When you say you can't drink too much, why is that? OK, alright. Um have you managed to eat anything, solids? OK. You . OK. Um with your um,  the vomiting has now stopped. Is that right? You said  OK, alright. Have you had any other symptoms, like fever or temperature? OK.   OK. Alright. Any headaches or muscle pains? OK, alright. And you mentioned three days ago. What were you doing when the symptoms started? Are you aware of any triggers? Yeah. Did you have any takeaway food, or any dodgy restaurant food? OK. Have you been around anyone unwell, with diarrhea recently, last week or so? OK. OK. Um, right. So moving on, um are you otherwise fit and well? Uh OK. And do you take any regular medications? Is that, is that  inhaler? Is that the blue inhaler? Blue inhaler. OK, alright. Any other medications that you take? OK. Do you have any allergies to medications? OK. And any family history of any medical problems? OK. Sorry to hear that. Um, OK. And uh what about your mother? Diabetes. Do you know if that's type one or type two? OK. Alright. Fine. And um, just a little bit more about your life in general, sir. Um who, who's at home with you? Who lives at home with you? Who lives at home with you, sir? You live alone, OK. Are you currently working at the moment? What's your employment? What do you do for work? . OK, alright. Have you taken time off work recently? OK, alright. And just the last couple of questions with, regarding your smoking and alcohol. Do you do either of those? OK, alright. Um fine.  uh Robert um  having listened to your story, I think you're probably suffering from what we call gastroenteritis, uh which essentially is just a, a tummy bug. It's an infection of your, your tummy. Um and normally lasts about three to five days, and gets better.  the things you can do to really help yourself get better soon, um are you can drink plenty of fluids. Really try and flush the toxins out of your body. Uh you can get things from the pharmacy, which is called Dioralyte, which can help replenish any  uh minerals and vitamins you may have lost. Uh, it's called  Dioralyte. Um it's, it's a, it's a type of fluid replacement drink. Um, you can take some Paracetamol if you're feeling feverish and weak. I would probably advise you to continue taking time off work for next day or two, until you get better.  normally you have to be diarrhea-free for about twenty four to forty eight hours, before you return back to work. Um, let's see how the next few  days go. And if you're still not better next week, I want you to come back and see me. And we can have another look at your symptoms, OK? Thanks.  do you have any questions for me, or?   I really hope you get better soon.  OK. Bye bye.",
+      "chunks": [
+        {
+          "input_start_ms": 0.0,
+          "input_end_ms": 26250.0,
+          "hypothesis": "Oh, no, it is, yes. Hello. Can you hear me? OK, great. Hello there. Before I go any further, can I confirm your name and your age, please? Robert? OK. OK, great. Excellent. And how can I help you this afternoon, sir?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 24250.0,
+          "input_end_ms": 51000.0,
+          "hypothesis": "this afternoon, sir. OK, right, sorry to hear that. Can you tell me a bit more about your diarrhea? Right.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 49000.0,
+          "input_end_ms": 75250.0,
+          "hypothesis": "right OK, and you mentioned you've been going to the toilet very often. How many times are you going a day?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 73250.0,
+          "input_end_ms": 101900.0,
+          "hypothesis": "OK, and can you tell me, I know it's not nice to talk about, but is it quite watery your stools, loose? OK. Any blood in your stools? OK, and with the diarrhea, have you noticed any other symptoms like tummy pain?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 99900.0,
+          "input_end_ms": 125350.0,
+          "hypothesis": "symptoms like tummy pain OK, when you say you can't drink too much, why is that?",
+          "failed": false,
+          "stitched_duplicate_tokens": 4
+        },
+        {
+          "input_start_ms": 123350.0,
+          "input_end_ms": 148500.0,
+          "hypothesis": "OK, alright. Have you managed to eat anything, solids?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 146500.0,
+          "input_end_ms": 174450.0,
+          "hypothesis": "OK, your avatar is reduced. OK. With your vomiting has now stopped. Is that right? You said it. OK, alright. Have you any any other symptoms like fever or temperature?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 172450.0,
+          "input_end_ms": 200100.0,
+          "hypothesis": "OK. Alright. Any headaches or muscle pains? OK, alright. And you mentioned three days ago, what were you doing when the symptoms started? Are you aware of any triggers?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 198100.0,
+          "input_end_ms": 227450.0,
+          "hypothesis": "Yeah, did you have any takeaway food or any dodgy restaurant food? OK, have you been around anyone unwell with diarrhea recently, last week or so?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 225450.0,
+          "input_end_ms": 252800.0,
+          "hypothesis": "recently, last week or so. OK, OK. Right, so moving on. Are you otherwise fit and well? OK, and do you take any regular medications?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 250800.0,
+          "input_end_ms": 279050.0,
+          "hypothesis": "Is that the blue inhaler? Is that the blue inhaler? Blue inhaler. OK, alright. Any other medications that you take? OK, do you have any allergies to any medications? OK, and any family history of any medical problems?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 277050.0,
+          "input_end_ms": 302700.0,
+          "hypothesis": "you have any medical problems? OK, sorry to hear that. OK, and what about your mother?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 300700.0,
+          "input_end_ms": 330550.0,
+          "hypothesis": "diabetes. Do we know if that's type one or type two? OK, alright fine, and um just a little bit more about your life in general, sir. Um who who's at home with you? Who lives at home with you? Who lives at home with you, sir? You live alone, OK. Are you currently working at the moment?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 328550.0,
+          "input_end_ms": 353900.0,
+          "hypothesis": "at the moment? What's your employment? What do you do for work? OK, alright. Have you taken time off work recently?",
+          "failed": false,
+          "stitched_duplicate_tokens": 3
+        },
+        {
+          "input_start_ms": 351900.0,
+          "input_end_ms": 377750.0,
+          "hypothesis": "OK, alright. And just last couple of questions was regarding your smoking and alcohol. Do you do either of those? OK, alright. Fine. So Robert, I think having listened to your story,",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 375750.0,
+          "input_end_ms": 403500.0,
+          "hypothesis": "having listened to your story I think you're probably suffering from what we call gastroenteritis which essentially is just a tummy bug it's an infection of your your tummy and normally lasts for about three to five days and gets better but the things you can do to really help yourself get better soon um are you can drink plenty of fluids to really try and flush the toxin out of your body",
+          "failed": false,
+          "stitched_duplicate_tokens": 5
+        },
+        {
+          "input_start_ms": 401500.0,
+          "input_end_ms": 430650.0,
+          "hypothesis": "the toxin out of your body. You can get things from the pharmacy which are called dirolite, which can help replenish any minerals and vitamins you may have lost. It's called dirolite. It's a type of fluid replacement drink. You can take some paracetamol if you're feeling feverish and weak. I would probably advise you to continue taking time off work for the next day or two until you get better.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 428650.0,
+          "input_end_ms": 458400.0,
+          "hypothesis": "or two until you get better. Normally you have to be diarrhea free for about 24 to 48 hours before you return back to work. Let's see how the next few days go. And if you're still not better next week, I want you to come back and see me and we can have another look at your symptoms, OK? Thanks. Do you have any questions for me?",
+          "failed": false,
+          "stitched_duplicate_tokens": 6
+        },
+        {
+          "input_start_ms": 456400.0,
+          "input_end_ms": 471960.0,
+          "hypothesis": "I really hope you get better soon. Bye bye.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        }
+      ],
+      "duration_ms": 471960.0,
+      "hypothesis": "Oh, no, it is, yes. Hello. Can you hear me? OK, great. Hello there. Before I go any further, can I confirm your name and your age, please? Robert? OK. OK, great. Excellent. And how can I help you this afternoon, sir? this afternoon, sir. OK, right, sorry to hear that. Can you tell me a bit more about your diarrhea? Right. right OK, and you mentioned you've been going to the toilet very often. How many times are you going a day? OK, and can you tell me, I know it's not nice to talk about, but is it quite watery your stools, loose? OK. Any blood in your stools? OK, and with the diarrhea, have you noticed any other symptoms like tummy pain? OK, when you say you can't drink too much, why is that? OK, alright. Have you managed to eat anything, solids? OK, your avatar is reduced. OK. With your vomiting has now stopped. Is that right? You said it. OK, alright. Have you any any other symptoms like fever or temperature? OK. Alright. Any headaches or muscle pains? OK, alright. And you mentioned three days ago, what were you doing when the symptoms started? Are you aware of any triggers? Yeah, did you have any takeaway food or any dodgy restaurant food? OK, have you been around anyone unwell with diarrhea recently, last week or so? recently, last week or so. OK, OK. Right, so moving on. Are you otherwise fit and well? OK, and do you take any regular medications? Is that the blue inhaler? Is that the blue inhaler? Blue inhaler. OK, alright. Any other medications that you take? OK, do you have any allergies to any medications? OK, and any family history of any medical problems? you have any medical problems? OK, sorry to hear that. OK, and what about your mother? diabetes. Do we know if that's type one or type two? OK, alright fine, and um just a little bit more about your life in general, sir. Um who who's at home with you? Who lives at home with you? Who lives at home with you, sir? You live alone, OK. Are you currently working at the moment? What's your employment? What do you do for work? OK, alright. Have you taken time off work recently? OK, alright. And just last couple of questions was regarding your smoking and alcohol. Do you do either of those? OK, alright. Fine. So Robert, I think having listened to your story, I think you're probably suffering from what we call gastroenteritis which essentially is just a tummy bug it's an infection of your your tummy and normally lasts for about three to five days and gets better but the things you can do to really help yourself get better soon um are you can drink plenty of fluids to really try and flush the toxin out of your body the toxin out of your body. You can get things from the pharmacy which are called dirolite, which can help replenish any minerals and vitamins you may have lost. It's called dirolite. It's a type of fluid replacement drink. You can take some paracetamol if you're feeling feverish and weak. I would probably advise you to continue taking time off work for the next day or two until you get better. Normally you have to be diarrhea free for about 24 to 48 hours before you return back to work. Let's see how the next few days go. And if you're still not better next week, I want you to come back and see me and we can have another look at your symptoms, OK? Thanks. Do you have any questions for me? I really hope you get better soon. Bye bye.",
+      "failed": false,
+      "reference_words": 636,
+      "hypothesis_words": 628,
+      "normalized_edits": 87,
+      "raw_edits": 169,
+      "raw_reference_words": 638,
+      "clinical_terms": {
+        "lexicon": "\\b(?:paracetamol|metformin|warfarin|penicillin|insulin|allergies|allergy|diarrhoea|diarrhea|gastroenteritis|dehydrated|cancer|blood|vomiting|fever|pain)\\b",
+        "reference_mentions": 11,
+        "missing_mentions": {
+          "diarrhoea": 1
+        },
+        "extra_mentions": {
+          "diarrhea": 1
+        },
+        "limitation": "Literal development term counts, not clinical concept correctness or adjudicated errors"
+      },
+      "wall_seconds": 134.33791980001843,
+      "normalized_wer": 0.13679245283018868,
+      "input_coverage_complete": true,
+      "original_case_failed": false,
+      "admitted_empty_native_outputs": 0
+    },
+    {
+      "id": "day1_consultation12",
+      "mode": "two_channel_allow_native_empty_v2",
+      "role": "patient",
+      "reference": "Hi. Yes. So, my name is Robert. Yep. Um, I'm forty eight.  Right, so, uh, I've been having, uh, diarrhoea, for like, let's say past three days, more or less. Yeah, so it's been a, very bad diarrhoea, so it keeps me like, I keep going back and forth, to, to the toilet very often. Um, yeah it started like three days ago. And uh, uh, so it started with vomiting, so I vomited a couple of times. Uh, but then, that went away, and, uh, yeah it's just diarrhoea now. Yeah, around, five to six times a day. Yes, it's definitely, definitely watery, uh, loose stools, yeah. No, not that I could see. Uh, not, not really, no. Uh, but I, I, I feel like, um, I can't, really drink too much, so I feel very dehydrated. Uh, yeah because, really I, uh I, um, I'm like,  I feel like I don't drink enough, like I'm, I'm drink, I'm trying to drink, but then I just go to the loo, and I like, I, uh I, I, I do everything and I feel dehydrated again. Uh,  not much, not much. So just a little bit, but I don't feel, um, I don't really feel like, uh, I have appetite. Yes, yes. Uh, so, not, really I , I feel a little bit warm, um, probably at, at the beginning I was feeling I had a bit of temperature, but now I feel, I feel kind of fine. I feel very weak though. Not, not really, no. , not that I, I remember, what was I doing, I, I was at home I was working, on my computer and. Yeah, just felt, like some nausea and I had to, to vomit, and then I had some diarrhoea, straight after that. Uh, not that I remember, no. Hmm, not that I know, not that I. Yeah, yeah, . Um, so I, I do suffer of asthma. So, I do have my inhalers, uh, that I you know, I need, I use infrequently, let's say only when I have, uh, a bit of . Sorry? Yes it is, yeah. Uh, no, nothing. Um, not that I know of. Um, so, my father has, high uh, well used to have high blood pressure. He actually, so he actually died, of, bowel cancer, like ten years ago. Ohh yes, so uh, probably is worth mentioning uh, she has diabetes. Uh, it's type two. Sorry? Ohh I, I live alone. Uh, well I haven't been able to work in the past few days, but yes , like given, uh, my uh. I'm a software engineer. Uh, yes, yes I have, uh. Uh, these last three days I've been feeling, really unwell, so I couldn't work. Uh, not really, I drink infrequently, like socially let's say, and I don't smoke. OK. All right. OK. I'm sorry, what's the name of that?  All right. OK. That sounds good, that sounds good. Uh, thanks so much. Um, no I think that's fine. Uh, yeah I'll, I'll try to , and drink , drink plenty of fluid and I hope it go away. Uh, if it doesn't I'll uh, I'll call, I'll call back. Is that OK? Thanks a lot. Thanks so much, for your time. OK. Bye.",
+      "chunks": [
+        {
+          "input_start_ms": 0.0,
+          "input_end_ms": 25550.0,
+          "hypothesis": "Hi Yes, so my name is Robert Yep, I'm 48",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 23550.0,
+          "input_end_ms": 50100.0,
+          "hypothesis": "Right, so I've been having diarrhea for like let's say past three days more or less. Yeah, so it's been a very bad diarrhea. So it keeps me like I keep going back and forth to the toilet very often.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 48100.0,
+          "input_end_ms": 77750.0,
+          "hypothesis": "to the toilet very often. Yeah, it started like three days ago and so it started with vomiting. So I vomited a couple of times, but then that went away and yeah, it's just diarrhea now. Yeah, around five to six times a day.",
+          "failed": false,
+          "stitched_duplicate_tokens": 5
+        },
+        {
+          "input_start_ms": 75750.0,
+          "input_end_ms": 102100.0,
+          "hypothesis": "times a day yes it's definitely definitely watery loose stools yeah no not that I could see",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 100100.0,
+          "input_end_ms": 129850.0,
+          "hypothesis": "Uh not not really, no. Uh, but I, I feel like um I can't really drink too much, so I feel very dehydrated. Uh, yeah, because really I I I'm like I feel like I don't drink enough, like I'm I'm drink, I'm trying to drink, but then I just go to the loo and I like I",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 127850.0,
+          "input_end_ms": 153200.0,
+          "hypothesis": "and I like I boo everything and I feel dehydrated again not much, not much, so just a little bit, but I don't feel I don't really feel like I have appetite",
+          "failed": false,
+          "stitched_duplicate_tokens": 4
+        },
+        {
+          "input_start_ms": 151200.0,
+          "input_end_ms": 179550.0,
+          "hypothesis": "Yes. So not really, I feel a little bit warm. Probably at the beginning I was feeling I had a bit of temperature but",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 177550.0,
+          "input_end_ms": 204000.0,
+          "hypothesis": "bit of temperature, but now I feel, I feel kind of fine. I feel very weak though. Not really. Not that I remember. What was I doing? I I was at home, I was working",
+          "failed": false,
+          "stitched_duplicate_tokens": 4
+        },
+        {
+          "input_start_ms": 202000.0,
+          "input_end_ms": 231350.0,
+          "hypothesis": "I was at home, I was working on my computer and yeah, I just felt like some nausea and I had to vomit and then I had some diarrhea straight after that. Not that I remember. Not that I know, not that I know.",
+          "failed": false,
+          "stitched_duplicate_tokens": 7
+        },
+        {
+          "input_start_ms": 229350.0,
+          "input_end_ms": 256500.0,
+          "hypothesis": "that I know, not that I know. Yeah, yeah. Um, so I, I do suffer of asthma, so I do have my nailers that I, you know, I I use infrequently, let's say only when I have",
+          "failed": false,
+          "stitched_duplicate_tokens": 7
+        },
+        {
+          "input_start_ms": 254500.0,
+          "input_end_ms": 282550.0,
+          "hypothesis": "frequently let's say only when I have a cough yes it is yeah no nothing not that I know of so my father has",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 280550.0,
+          "input_end_ms": 306900.0,
+          "hypothesis": "So my father has high, well, used to have high blood pressure. He actually, so he actually died of bowel cancer like 10 years ago. Oh yes, so probably it's worth mentioning she has diabetes.",
+          "failed": false,
+          "stitched_duplicate_tokens": 4
+        },
+        {
+          "input_start_ms": 304900.0,
+          "input_end_ms": 330150.0,
+          "hypothesis": "It's type 2 Sorry. Oh, I I live alone",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 328150.0,
+          "input_end_ms": 357500.0,
+          "hypothesis": "Uh, well, I haven't been able to work in the past few days, but yes, like in my I'm a software engineer. Uh, yes, yes, I have. Uh, these last three days I've been feeling really unwell, so I couldn't work.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 355500.0,
+          "input_end_ms": 381350.0,
+          "hypothesis": "Uh not really. I drink infrequently, like socially, let's say, and I don't smoke.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 379350.0,
+          "input_end_ms": 404900.0,
+          "hypothesis": "OK Alright OK.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 402900.0,
+          "input_end_ms": 432250.0,
+          "hypothesis": "OK sorry, what's the name of that? OK.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 430250.0,
+          "input_end_ms": 455600.0,
+          "hypothesis": "OK That sounds good. That sounds good. Thanks so much. No, I think that's fine. Yeah, I'll",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 453600.0,
+          "input_end_ms": 471900.0,
+          "hypothesis": "Uh yeah, I'll I'll try to rest and drink plenty of fluid and I hope it goes away. If it doesn't, I'll I'll call, I'll call back. Is that OK? Thanks a lot. Thanks so much for your time. OK, bye.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        }
+      ],
+      "duration_ms": 471900.0,
+      "hypothesis": "Hi Yes, so my name is Robert Yep, I'm 48 Right, so I've been having diarrhea for like let's say past three days more or less. Yeah, so it's been a very bad diarrhea. So it keeps me like I keep going back and forth to the toilet very often. Yeah, it started like three days ago and so it started with vomiting. So I vomited a couple of times, but then that went away and yeah, it's just diarrhea now. Yeah, around five to six times a day. times a day yes it's definitely definitely watery loose stools yeah no not that I could see Uh not not really, no. Uh, but I, I feel like um I can't really drink too much, so I feel very dehydrated. Uh, yeah, because really I I I'm like I feel like I don't drink enough, like I'm I'm drink, I'm trying to drink, but then I just go to the loo and I like I boo everything and I feel dehydrated again not much, not much, so just a little bit, but I don't feel I don't really feel like I have appetite Yes. So not really, I feel a little bit warm. Probably at the beginning I was feeling I had a bit of temperature but now I feel, I feel kind of fine. I feel very weak though. Not really. Not that I remember. What was I doing? I I was at home, I was working on my computer and yeah, I just felt like some nausea and I had to vomit and then I had some diarrhea straight after that. Not that I remember. Not that I know, not that I know. Yeah, yeah. Um, so I, I do suffer of asthma, so I do have my nailers that I, you know, I I use infrequently, let's say only when I have frequently let's say only when I have a cough yes it is yeah no nothing not that I know of so my father has high, well, used to have high blood pressure. He actually, so he actually died of bowel cancer like 10 years ago. Oh yes, so probably it's worth mentioning she has diabetes. It's type 2 Sorry. Oh, I I live alone Uh, well, I haven't been able to work in the past few days, but yes, like in my I'm a software engineer. Uh, yes, yes, I have. Uh, these last three days I've been feeling really unwell, so I couldn't work. Uh not really. I drink infrequently, like socially, let's say, and I don't smoke. OK Alright OK. OK sorry, what's the name of that? OK. OK That sounds good. That sounds good. Thanks so much. No, I think that's fine. Yeah, I'll Uh yeah, I'll I'll try to rest and drink plenty of fluid and I hope it goes away. If it doesn't, I'll I'll call, I'll call back. Is that OK? Thanks a lot. Thanks so much for your time. OK, bye.",
+      "failed": false,
+      "reference_words": 542,
+      "hypothesis_words": 502,
+      "normalized_edits": 86,
+      "raw_edits": 208,
+      "raw_reference_words": 549,
+      "clinical_terms": {
+        "lexicon": "\\b(?:paracetamol|metformin|warfarin|penicillin|insulin|allergies|allergy|diarrhoea|diarrhea|gastroenteritis|dehydrated|cancer|blood|vomiting|fever|pain)\\b",
+        "reference_mentions": 9,
+        "missing_mentions": {
+          "diarrhoea": 4
+        },
+        "extra_mentions": {
+          "diarrhea": 4
+        },
+        "limitation": "Literal development term counts, not clinical concept correctness or adjudicated errors"
+      },
+      "wall_seconds": 121.37018490000628,
+      "normalized_wer": 0.15867158671586715,
+      "input_coverage_complete": true,
+      "original_case_failed": false,
+      "admitted_empty_native_outputs": 0
+    },
+    {
+      "id": "day1_consultation13",
+      "mode": "two_channel_allow_native_empty_v2",
+      "role": "doctor",
+      "reference": "There's no . , hello? Hello there. Um, thanks for, thanks for, being here. Um, before I go any further, can I uh, confirm your name and your age please?  OK, Adriana, and how can I help you this afternoon? Ohh dear, OK. , when, when did it exactly start, this headache? Three days ago, OK. And whereabout in your head, is this pain? , OK. Um, and is the, headache there all the time, or does it come and go? OK, so it comes and, fine, OK. And if I was to ask you on a scale of one to ten, um, ten being the worst type of pain you ever had. How would you rate this headache? Eight. And if I was to ask you describe the headache to me, um, in terms of the nature of the pain. Is it sharp? Is it dull? Is it crampy? Is it throbbing? Mm-hmm. Mm-hmm. So, you think the headache is getting worse over the last three days? OK. Have you tried anything which has made the headache better? Did that help? OK, all right. And except for the headaches, any other symptoms at all? So, example any, problems your eyesight or your vision? So when you say annoying, does it hurt to look, uh, look at bright lights? , OK. And um, have you had any loss of vision or blurry vision? Mmm, , OK. Any nausea or any vomiting? When you say sick, you mean you feel sick? OK. Yeah, no vomiting, OK. Any neck pain or neck stiffness? OK. And any difficulty with speaking or, um, speech? Any difficulty , with weakness in your arms and legs? Ohh really? OK. OK, yeah probably, well I'll, I'll ask you a bit more about your work later on. Um, any recent head injuries at all? OK. And have you had anything like this before in the past? Or, uh, or similar, similar to, similar to this kind of headache, ?  not, OK. All right. Um, any temperatures, or fevers? Any rashes at all, on your skin? OK. And just moving forwards. Are you otherwise fit and well, Adriana? You fit and well? , do you have any other medical history? Any history of migraines at all? OK. Um, fine. I'll ask you a bit more about that in just a second. Before I go any further, can I ask, do you take any regular medication? Are you on the pill? OK. Do you have any allergies to any medications? OK. So you mentioned your mother and sister both have migraines. Are they, is that normally well-controlled or are they um, having difficulty, controlling their symptoms? Mm-hmm, OK. Ohh right, OK, fine. Um, socially, tell me a bit more about your life, outside of, um, outside of, work. So , who lives at home with you? OK. Excellent. And are you working at the moment? You mentioned this , impacting on your work. Mmm. OK. Do you wear glasses? Have you had any, uh, have you had any recent eye check, done? Eye test? OK, all right. Something for you to bear in mind if you feel that you are, your eyes are straining. Um I would always recommend having a repeat eye test done. Um, have you been feeling more stressed or anxious at work recently? OK, all right. Great. Um, regarding smoking or alcohol. Do you drink or smoke at all? But only socially? OK. Right. Now um, Adriana, do you have any ideas as to what could be causing your symptoms? Have you, have you read anything online, or spoken to people? Mm-hmm.  Mmm. OK. Is it anything in particular you were hoping I could do for you today? OK. How many tablets did you take of Ibuprofen? Three a day, OK. All right. Um, so uh, Adriana, so um, really what I think is going on here. I , uh, unfortunately I do think this could be, a headache very similar to a migraine. Um, the reason I say that is because the history is very suggestive of it, given your mum and your sister also migraines. I think it's something for us to think about. Um, now I'm not saying it's gonna, keep happening, but, it may just be a one-off. But it's certainly worth treating it today stronger analgesia or painkillers. Um, now moving forward, we have some options which we can discuss. Uh, you tried the Ibuprofen. Now, my only worry is, I'm not sure whether you're taking, the correct dose. You can take up to two tablets, three times a day. So, so , there's definitely room for, improvement there. Or, I can prescribe you something stronger, like Naproxen, which is another anti-inflammatory, which can be helpful. Um, we can also add in other, painkillers like, Paracetamol, or Codeine. Which might be helpful as well. OK. And I think it's , certainly worth looking into that, so I can give you a , prescription for that today. Um, with regards to um, the next few days. It may be worth keeping a headache diary so we can try and work out what's, you know, if there's any triggers which could be causing your headaches to become worse. And, and, you know I'd like you to come back and see me, in about uh, a week's time, week to two weeks' time. If you are having , more frequent episodes of these type of headaches. We can think about giving you medications as, prophylactic. Which basically means, medications to stop you from having these headaches on a regular basis. But we can have that discussion next time. OK. In the meantime if your headaches aren't getting any better, or they're getting worse. Um, you know, I want you to give me a call, or come back and see me sooner. OK? So, if you're having any problems with your vision, or weakness in your arms and legs, or you're just not feeling very well. Just give me a call, and come back and see me. All right? Great. Well, have a good day. Bye.",
+      "chunks": [
+        {
+          "input_start_ms": 0.0,
+          "input_end_ms": 27850.0,
+          "hypothesis": "there's no delays. Hello? Hello there. Thanks all. Thanks for being here. Before I go any further, can I confirm your name and your age, please? OK, Adriana, how can I help you this afternoon?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 25850.0,
+          "input_end_ms": 51900.0,
+          "hypothesis": "No dear. OK, where, when, when did it exactly start this headache? Three days ago. OK, and whereabouts in your head is this pain?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 49900.0,
+          "input_end_ms": 79850.0,
+          "hypothesis": "OK, and is a headache there all the time or does it come and go? OK, so it comes in fine. OK. And if I was to ask you on a scale of 1 to 10, 10 being the worst type of pain you ever had, how would you rate this headache?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 77850.0,
+          "input_end_ms": 107300.0,
+          "hypothesis": "OK, and if I was to ask you to describe the headache to me in terms of the nature of the pain, is it sharp? Is it dull, is it crampy, is it throbbing?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 105300.0,
+          "input_end_ms": 134550.0,
+          "hypothesis": "Mhmm. So you think the headache is getting worse over the last three days? OK, have you tried anything which made the headache better?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 132550.0,
+          "input_end_ms": 162200.0,
+          "hypothesis": "Does that help? OK, alright. And except for the headaches, any other symptoms at all? So for example, any problems with your eyesight or your vision?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 160200.0,
+          "input_end_ms": 186450.0,
+          "hypothesis": "So when you say annoying, does it hurt to look at bright lights? OK, and have you had any loss of vision or blurry vision? Any nausea or any vomiting?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 184450.0,
+          "input_end_ms": 214100.0,
+          "hypothesis": "or any vomiting? When you say sick, you mean you feel sick? OK. Yeah, no vomiting. OK. Any neck pain or neck stiffness? OK, any difficulty with speaking or speech? Any difficulty with weakness in your arms and legs?",
+          "failed": false,
+          "stitched_duplicate_tokens": 3
+        },
+        {
+          "input_start_ms": 212100.0,
+          "input_end_ms": 238450.0,
+          "hypothesis": "and legs? No, really? OK. OK, no problem. Well, I'll ask you a bit more about your work later on. Any recent head injuries at all? OK, and have you had anything like this before in the past?",
+          "failed": false,
+          "stitched_duplicate_tokens": 2
+        },
+        {
+          "input_start_ms": 236450.0,
+          "input_end_ms": 262200.0,
+          "hypothesis": "or similar to similar to this kind of headache. It's not OK. Alright, any temperatures or fevers? Any rashes at all on your skin?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 260200.0,
+          "input_end_ms": 285250.0,
+          "hypothesis": "OK, and just moving forward, are you otherwise fit and well, Adriana? Are you fitting well? Do you have any other medical history? Any history of migraines at all? OK,",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 283250.0,
+          "input_end_ms": 311600.0,
+          "hypothesis": "OK, fine, I'll ask you a bit more about that in just a second. Before I go any further, can I ask, do you take any regular medication? Are you on the pill? OK, do you have any allergies to any medications? OK, so you mentioned your mother and sister both have migraines. Is that normally well controlled or are they having difficulty?",
+          "failed": false,
+          "stitched_duplicate_tokens": 1
+        },
+        {
+          "input_start_ms": 309600.0,
+          "input_end_ms": 339450.0,
+          "hypothesis": "um having difficulty controlling the symptoms OK, fine. Um socially, tell me a bit more about your life outside of um outside of work. So who lives at home with you?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 337450.0,
+          "input_end_ms": 363900.0,
+          "hypothesis": "Who lives at home with you? OK, excellent. And are you working at the moment? You mentioned this impacting on your work. OK, do you wear glasses?",
+          "failed": false,
+          "stitched_duplicate_tokens": 6
+        },
+        {
+          "input_start_ms": 361900.0,
+          "input_end_ms": 391750.0,
+          "hypothesis": "OK, do you wear glasses? Have you had any recent eye check done, eye test? OK, always. So free to bear in mind if you feel like your eyes are straining. I would always recommend having a repeat eye test done. Have you been feeling more stressed or anxious at work recently?",
+          "failed": false,
+          "stitched_duplicate_tokens": 5
+        },
+        {
+          "input_start_ms": 389750.0,
+          "input_end_ms": 415400.0,
+          "hypothesis": "OK, alright, great. Um regarding smoking or alcohol, do you drink or smoke at all? Only socially. OK, right now,",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 413400.0,
+          "input_end_ms": 440050.0,
+          "hypothesis": "Right. Now, Adriana, do you have any ideas as to what could be causing your symptoms? Have you read anything online or spoken to people?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 438050.0,
+          "input_end_ms": 467200.0,
+          "hypothesis": "OK, is there anything in particular you were hoping I could do for you today?",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 465200.0,
+          "input_end_ms": 493350.0,
+          "hypothesis": "OK How many tablets did you take of ibuprofen? Three a day. OK, alright. Um so Adriana, so um really what I think is going on here unfortunately I do think this could be",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 491350.0,
+          "input_end_ms": 519900.0,
+          "hypothesis": "do think this could be a headache very similar to a migraine. The reason I say that is because the history is very suggestive of it, given your mum and your sister also have migraines. I think it's something for us to think about. Now I'm not saying it's going to keep happening, but it may just be a one-off, but it's certainly worth treating it today with some stronger analgesia or painkillers. Now moving forward, we have some options which we can discuss.",
+          "failed": false,
+          "stitched_duplicate_tokens": 5
+        },
+        {
+          "input_start_ms": 517900.0,
+          "input_end_ms": 543050.0,
+          "hypothesis": "have some options which we can discuss. You try the ibuprofen. Now, my only worry is I'm not sure whether you're taking the correct dose. You can take up to two tablets three times a day. So there's definitely room for improvement there. Or I can prescribe you something stronger like naproxen, which is another anti-inflammatory which can be helpful.",
+          "failed": false,
+          "stitched_duplicate_tokens": 7
+        },
+        {
+          "input_start_ms": 541050.0,
+          "input_end_ms": 569700.0,
+          "hypothesis": "We can also add in other painkillers like paracetamol or codeine, which might be helpful as well. OK, so I think it's certainly worth looking into that so I can give you a prescription for that today. Um with regards to um the next few days, it may be worth keeping a headache diary so we can try and work out what's",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 567700.0,
+          "input_end_ms": 596050.0,
+          "hypothesis": "so we can try and work out what's you know if there's any triggers which could be causing your headaches to become worse and and you know I'd like you to come back and see me in about a week's time week to two weeks time if you are having more frequent episodes of these type of headaches we can think about giving you medications as prophylactic which basically means medications to stop you from having these headaches on a regular basis but we can have that discussion next time",
+          "failed": false,
+          "stitched_duplicate_tokens": 8
+        },
+        {
+          "input_start_ms": 594050.0,
+          "input_end_ms": 622400.0,
+          "hypothesis": "but we can have that discussion next time. OK, in the meantime, if your headaches aren't getting any better or they're getting worse, you know, I want you to give me a call or come back and see me sooner. OK. So if you have any problems with your vision or weakness in your arms and legs or you're just not feeling very well, just give me a call and come back and see me. Alright. Great, we'll have a good day.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 620400.0,
+          "input_end_ms": 624360.0,
+          "hypothesis": "but",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        }
+      ],
+      "duration_ms": 624360.0,
+      "hypothesis": "there's no delays. Hello? Hello there. Thanks all. Thanks for being here. Before I go any further, can I confirm your name and your age, please? OK, Adriana, how can I help you this afternoon? No dear. OK, where, when, when did it exactly start this headache? Three days ago. OK, and whereabouts in your head is this pain? OK, and is a headache there all the time or does it come and go? OK, so it comes in fine. OK. And if I was to ask you on a scale of 1 to 10, 10 being the worst type of pain you ever had, how would you rate this headache? OK, and if I was to ask you to describe the headache to me in terms of the nature of the pain, is it sharp? Is it dull, is it crampy, is it throbbing? Mhmm. So you think the headache is getting worse over the last three days? OK, have you tried anything which made the headache better? Does that help? OK, alright. And except for the headaches, any other symptoms at all? So for example, any problems with your eyesight or your vision? So when you say annoying, does it hurt to look at bright lights? OK, and have you had any loss of vision or blurry vision? Any nausea or any vomiting? When you say sick, you mean you feel sick? OK. Yeah, no vomiting. OK. Any neck pain or neck stiffness? OK, any difficulty with speaking or speech? Any difficulty with weakness in your arms and legs? No, really? OK. OK, no problem. Well, I'll ask you a bit more about your work later on. Any recent head injuries at all? OK, and have you had anything like this before in the past? or similar to similar to this kind of headache. It's not OK. Alright, any temperatures or fevers? Any rashes at all on your skin? OK, and just moving forward, are you otherwise fit and well, Adriana? Are you fitting well? Do you have any other medical history? Any history of migraines at all? OK, fine, I'll ask you a bit more about that in just a second. Before I go any further, can I ask, do you take any regular medication? Are you on the pill? OK, do you have any allergies to any medications? OK, so you mentioned your mother and sister both have migraines. Is that normally well controlled or are they having difficulty? um having difficulty controlling the symptoms OK, fine. Um socially, tell me a bit more about your life outside of um outside of work. So who lives at home with you? OK, excellent. And are you working at the moment? You mentioned this impacting on your work. OK, do you wear glasses? Have you had any recent eye check done, eye test? OK, always. So free to bear in mind if you feel like your eyes are straining. I would always recommend having a repeat eye test done. Have you been feeling more stressed or anxious at work recently? OK, alright, great. Um regarding smoking or alcohol, do you drink or smoke at all? Only socially. OK, right now, Right. Now, Adriana, do you have any ideas as to what could be causing your symptoms? Have you read anything online or spoken to people? OK, is there anything in particular you were hoping I could do for you today? OK How many tablets did you take of ibuprofen? Three a day. OK, alright. Um so Adriana, so um really what I think is going on here unfortunately I do think this could be a headache very similar to a migraine. The reason I say that is because the history is very suggestive of it, given your mum and your sister also have migraines. I think it's something for us to think about. Now I'm not saying it's going to keep happening, but it may just be a one-off, but it's certainly worth treating it today with some stronger analgesia or painkillers. Now moving forward, we have some options which we can discuss. You try the ibuprofen. Now, my only worry is I'm not sure whether you're taking the correct dose. You can take up to two tablets three times a day. So there's definitely room for improvement there. Or I can prescribe you something stronger like naproxen, which is another anti-inflammatory which can be helpful. We can also add in other painkillers like paracetamol or codeine, which might be helpful as well. OK, so I think it's certainly worth looking into that so I can give you a prescription for that today. Um with regards to um the next few days, it may be worth keeping a headache diary so we can try and work out what's you know if there's any triggers which could be causing your headaches to become worse and and you know I'd like you to come back and see me in about a week's time week to two weeks time if you are having more frequent episodes of these type of headaches we can think about giving you medications as prophylactic which basically means medications to stop you from having these headaches on a regular basis but we can have that discussion next time but we can have that discussion next time. OK, in the meantime, if your headaches aren't getting any better or they're getting worse, you know, I want you to give me a call or come back and see me sooner. OK. So if you have any problems with your vision or weakness in your arms and legs or you're just not feeling very well, just give me a call and come back and see me. Alright. Great, we'll have a good day. but",
+      "failed": false,
+      "reference_words": 1005,
+      "hypothesis_words": 965,
+      "normalized_edits": 122,
+      "raw_edits": 288,
+      "raw_reference_words": 1021,
+      "clinical_terms": {
+        "lexicon": "\\b(?:paracetamol|metformin|warfarin|penicillin|insulin|allergies|allergy|diarrhoea|diarrhea|gastroenteritis|dehydrated|cancer|blood|vomiting|fever|pain)\\b",
+        "reference_mentions": 8,
+        "missing_mentions": {},
+        "extra_mentions": {},
+        "limitation": "Literal development term counts, not clinical concept correctness or adjudicated errors"
+      },
+      "wall_seconds": 177.378293100046,
+      "normalized_wer": 0.12139303482587065,
+      "input_coverage_complete": true,
+      "original_case_failed": false,
+      "admitted_empty_native_outputs": 0
+    },
+    {
+      "id": "day1_consultation13",
+      "mode": "two_channel_allow_native_empty_v2",
+      "role": "patient",
+      "reference": ". Hi there. Yes, it's um Adriana Katherine . And I'm twenty six year old. Well, I have this like really crazy headache that's been going on for a few days. And it really annoys me. Eh, around three days ago, maybe. Um, it's basically like, it kind of feels all over my head, but like mainly, um, around my right eye. Um Um it's, it kind of comes and goes. Um but, I mean it is there all the time, but  like sometimes it's stronger. Ohh it's probably a eight. Um, it's kind of, it's dull but sometimes it gets a bit sharper. So basically it like, it developed gradually, I guess. It's like the first day it just started when I was at work. And by the end of the day it was like pretty, pretty, like it was a lot, basically. And then I was thinking OK, maybe I'll just go to sleep. And when I woke up the next morning like, it was even, even worse basically. So Yeah. Um so I tried uh Ibuprofen. Um so I took, like a few. Um for the last two days, basically. But it doesn't really help, no. In in the past it did help me, which is why I decided to try it. But Um Not really, but just when it started, I I got this like weird shooting lights. And like now like light is quite annoying, my eyes. Yeah, yeah. It hurts. So Not loss of vision, I wouldn't say. It's just like some lights from, shooting lights . Um, well I'm like basically, I I'm sick with the headache. But I, no vomiting. Yeah. No. No. No, it's hard to focus though. So, I I had to take a couple of days off work, actually. Uh, no. Yeah I mean, headaches, you mean. Yeah. I mean I had. But, usually after I I take uh Ibuprofen it kind of goes away. So, but this time it's just not. . No. Mm, no not that I've noticed. Am I what, sorry? Yeah, I think so. It's just the headache. Not myself, I've never had a migraine. But my sister and my mom have them quite frequently. Uh, no no. Mm not that I know of. Yeah. Um so my sister's, like better. Like it's kind of, it's very rare. But my mom's is like quite bad, um usually when there's like a season changing and stuff like that. It's, yeah. Takes her out for a few days, basically. Uh I live with housemates. So, three of them. So we're four . Yeah so I work, well I work in IT. So I work with computers a lot. So it kind of is difficult to focus. Um I had to like reduce the uh, brightness of my screen. Yes, I do. No, uh I've been wearing them since I was five , five year old.  So, it's quite a long time.  Well, it's been a bit stressful, kicking off a new project. But um, yeah nothing out of the ordinary, really. I socially smoke. And I drink  only socially. Um Not really. Um  at first I thought it's stress, or maybe I didn't drink enough water. Because sometimes when I don't drink enough water, I I like get headaches. Um But, I don't think that's it. And I'm like worried, it's, I don't want it to be a migraine. Because I know what it's like, from my mom and my sister. And it's really annoying. So I I really don't want to have that. And I know it's genetic. So I've researched that. Um but I don't know if that is the case. So, yeah. Yeah maybe just kinda, if you have any recommendations of  that I can take something stronger. Because apparently, Ibuprofen doesn't help me. Uh Usually it gets resolved if I have headache in like, after like one or two days. But currently it, it didn't help me. Uh, three a day.  Ohh right. Mm-hmm. Mm, yeah. I think  is what my mom takes for when she has um, um migraines. Mm-hmm. Mm, OK. OK. Yeah. OK. Great. Thank you. You too. Bye!",
+      "chunks": [
+        {
+          "input_start_ms": 0.0,
+          "input_end_ms": 29450.0,
+          "hypothesis": "Hi. Hi there. Yes, it's Adriana Katronjieva and 26 year old. Well, I have this like really crazy headache that's been going on for a few days and it",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 27450.0,
+          "input_end_ms": 54200.0,
+          "hypothesis": "going on for a few days and it really annoys me. Around three days ago maybe it's basically like it kind of feels all over my head but like mainly around my right eye",
+          "failed": false,
+          "stitched_duplicate_tokens": 8
+        },
+        {
+          "input_start_ms": 52200.0,
+          "input_end_ms": 82050.0,
+          "hypothesis": "Um, it's, it kind of comes and goes, um, but I mean, it is there all the time, but like sometimes it's stronger. It's probably a 8.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 80050.0,
+          "input_end_ms": 108000.0,
+          "hypothesis": "",
+          "failed": false,
+          "stitched_duplicate_tokens": 0,
+          "native_empty_output": true,
+          "original_wrapper_failure_preserved_in_source": true
+        },
+        {
+          "input_start_ms": 106000.0,
+          "input_end_ms": 133150.0,
+          "hypothesis": "was like pretty pretty like it was a lot basically and then I was thinking OK maybe I'll just go to sleep and then I woke up the next morning like it was even even worse basically so yeah so I tried ibuprofen so I took like a few",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 131150.0,
+          "input_end_ms": 156800.0,
+          "hypothesis": "a few for the last two days basically but it doesn't really help no in the past it did help me which is why I decided to try it but um not really but just when it started I got this like",
+          "failed": false,
+          "stitched_duplicate_tokens": 2
+        },
+        {
+          "input_start_ms": 154800.0,
+          "input_end_ms": 181550.0,
+          "hypothesis": "When it started, I got this like weird shooting lights and like now like light is quite annoying my eyes. Yeah, yeah, it hurts. So not loss of vision, I wouldn't say it's just like some lights from",
+          "failed": false,
+          "stitched_duplicate_tokens": 7
+        },
+        {
+          "input_start_ms": 179550.0,
+          "input_end_ms": 206400.0,
+          "hypothesis": "lights from shooting lights basically um well I'm like basically I I'm sick with the headache but I no vomiting yeah no",
+          "failed": false,
+          "stitched_duplicate_tokens": 2
+        },
+        {
+          "input_start_ms": 204400.0,
+          "input_end_ms": 233650.0,
+          "hypothesis": "No, it's hard to focus though, so I had to take a couple of days off work actually. Uh, no.",
+          "failed": false,
+          "stitched_duplicate_tokens": 1
+        },
+        {
+          "input_start_ms": 231650.0,
+          "input_end_ms": 258700.0,
+          "hypothesis": "Yeah, I mean, headaches, you mean yeah, I mean I had, but usually after I take ibuprofen, it kind of goes away. So, but this time it's just not. No.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 256700.0,
+          "input_end_ms": 286450.0,
+          "hypothesis": "No. No, not that I've noticed. Am I what, sorry? I think so. It's just a headache. Not myself, I've never had a migraine, but my sister and my mom have them quite frequently.",
+          "failed": false,
+          "stitched_duplicate_tokens": 1
+        },
+        {
+          "input_start_ms": 284450.0,
+          "input_end_ms": 311000.0,
+          "hypothesis": "Uh, no, no, not that I know of. Yeah.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 309000.0,
+          "input_end_ms": 338350.0,
+          "hypothesis": "Um so my sister's like better, like it kind of is very rare, but my mom's is like quite bad. Um usually when there's like a season changing and stuff like that, it's yeah, takes her out for a few days basically.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 336350.0,
+          "input_end_ms": 361800.0,
+          "hypothesis": "I live with housemates, so three of them. So we're four basically. Yeah, so I work, well, I work in IT, so I work with computers a lot, so it kind of is difficult to focus. I had to like reduce the brightness of my screen.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 359800.0,
+          "input_end_ms": 387350.0,
+          "hypothesis": "my screen? Yes, I do. No, I've been wearing them since I was five, five years old. It's quite a long time.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 385350.0,
+          "input_end_ms": 412300.0,
+          "hypothesis": "Well, it's been a bit stressful kicking off on your project, but yeah, nothing out of the ordinary really. I socially smoke and I drink not only socially.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 410300.0,
+          "input_end_ms": 440250.0,
+          "hypothesis": "Uhm not really. At first I thought it's stress or maybe I didn't drink enough water because sometimes when I don't drink enough water I get headaches. But I don't think that's it.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 438250.0,
+          "input_end_ms": 468000.0,
+          "hypothesis": "but I don't think that's it. And I'm like worried it's, I don't want it to be a migraine because I know what it's like from my mom and my sister and it's really annoying. So I really don't want to have that. And I know it's genetic, so I've researched that, but I don't know if that is the case. So yeah. Yeah, maybe just kind of if you have any recommendations of I can take something stronger because apparently ibuprofen doesn't help",
+          "failed": false,
+          "stitched_duplicate_tokens": 6
+        },
+        {
+          "input_start_ms": 466000.0,
+          "input_end_ms": 493550.0,
+          "hypothesis": "Apparently ibuprofen doesn't help me. Usually it gets resolved if I have headache and like after like one or two days, but currently it didn't help me. Three a day,",
+          "failed": false,
+          "stitched_duplicate_tokens": 4
+        },
+        {
+          "input_start_ms": 491550.0,
+          "input_end_ms": 517100.0,
+          "hypothesis": "",
+          "failed": false,
+          "stitched_duplicate_tokens": 0,
+          "native_empty_output": true,
+          "original_wrapper_failure_preserved_in_source": true
+        },
+        {
+          "input_start_ms": 515100.0,
+          "input_end_ms": 541550.0,
+          "hypothesis": "",
+          "failed": false,
+          "stitched_duplicate_tokens": 0,
+          "native_empty_output": true,
+          "original_wrapper_failure_preserved_in_source": true
+        },
+        {
+          "input_start_ms": 539550.0,
+          "input_end_ms": 567600.0,
+          "hypothesis": "Mhmm. Yeah, I think cuisine is what my mom takes for when she has migraines.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 565600.0,
+          "input_end_ms": 591250.0,
+          "hypothesis": "",
+          "failed": false,
+          "stitched_duplicate_tokens": 0,
+          "native_empty_output": true,
+          "original_wrapper_failure_preserved_in_source": true
+        },
+        {
+          "input_start_ms": 589250.0,
+          "input_end_ms": 615900.0,
+          "hypothesis": "OK, yep.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        },
+        {
+          "input_start_ms": 613900.0,
+          "input_end_ms": 624300.0,
+          "hypothesis": "OK. Great. Thank you, you two. Bye.",
+          "failed": false,
+          "stitched_duplicate_tokens": 0
+        }
+      ],
+      "duration_ms": 624300.0,
+      "hypothesis": "Hi. Hi there. Yes, it's Adriana Katronjieva and 26 year old. Well, I have this like really crazy headache that's been going on for a few days and it really annoys me. Around three days ago maybe it's basically like it kind of feels all over my head but like mainly around my right eye Um, it's, it kind of comes and goes, um, but I mean, it is there all the time, but like sometimes it's stronger. It's probably a 8. was like pretty pretty like it was a lot basically and then I was thinking OK maybe I'll just go to sleep and then I woke up the next morning like it was even even worse basically so yeah so I tried ibuprofen so I took like a few for the last two days basically but it doesn't really help no in the past it did help me which is why I decided to try it but um not really but just when it started I got this like weird shooting lights and like now like light is quite annoying my eyes. Yeah, yeah, it hurts. So not loss of vision, I wouldn't say it's just like some lights from shooting lights basically um well I'm like basically I I'm sick with the headache but I no vomiting yeah no it's hard to focus though, so I had to take a couple of days off work actually. Uh, no. Yeah, I mean, headaches, you mean yeah, I mean I had, but usually after I take ibuprofen, it kind of goes away. So, but this time it's just not. No. No, not that I've noticed. Am I what, sorry? I think so. It's just a headache. Not myself, I've never had a migraine, but my sister and my mom have them quite frequently. Uh, no, no, not that I know of. Yeah. Um so my sister's like better, like it kind of is very rare, but my mom's is like quite bad. Um usually when there's like a season changing and stuff like that, it's yeah, takes her out for a few days basically. I live with housemates, so three of them. So we're four basically. Yeah, so I work, well, I work in IT, so I work with computers a lot, so it kind of is difficult to focus. I had to like reduce the brightness of my screen. my screen? Yes, I do. No, I've been wearing them since I was five, five years old. It's quite a long time. Well, it's been a bit stressful kicking off on your project, but yeah, nothing out of the ordinary really. I socially smoke and I drink not only socially. Uhm not really. At first I thought it's stress or maybe I didn't drink enough water because sometimes when I don't drink enough water I get headaches. But I don't think that's it. And I'm like worried it's, I don't want it to be a migraine because I know what it's like from my mom and my sister and it's really annoying. So I really don't want to have that. And I know it's genetic, so I've researched that, but I don't know if that is the case. So yeah. Yeah, maybe just kind of if you have any recommendations of I can take something stronger because apparently ibuprofen doesn't help me. Usually it gets resolved if I have headache and like after like one or two days, but currently it didn't help me. Three a day, Mhmm. Yeah, I think cuisine is what my mom takes for when she has migraines. OK, yep. OK. Great. Thank you, you two. Bye.",
+      "failed": false,
+      "reference_words": 693,
+      "hypothesis_words": 612,
+      "normalized_edits": 113,
+      "raw_edits": 253,
+      "raw_reference_words": 699,
+      "clinical_terms": {
+        "lexicon": "\\b(?:paracetamol|metformin|warfarin|penicillin|insulin|allergies|allergy|diarrhoea|diarrhea|gastroenteritis|dehydrated|cancer|blood|vomiting|fever|pain)\\b",
+        "reference_mentions": 1,
+        "missing_mentions": {},
+        "extra_mentions": {},
+        "limitation": "Literal development term counts, not clinical concept correctness or adjudicated errors"
+      },
+      "wall_seconds": 171.82388919999357,
+      "normalized_wer": 0.16305916305916307,
+      "input_coverage_complete": true,
+      "original_case_failed": true,
+      "admitted_empty_native_outputs": 4
+    }
+  ],
+  "complete": true,
+  "summary": {
+    "reference_words": 5204,
+    "normalized_edits": 775,
+    "normalized_wer": 0.148923904688701,
+    "failed_runs": 0,
+    "admitted_empty_native_outputs": 6
+  },
+  "original_failures_preserved": true,
+  "qualified_asr_candidate": false,
+  "output_timestamp_support": false,
+  "clinical_acceptance": false,
+  "maximum_normalized_wer": 0.05,
+  "method": "Reuse unchanged successful chunk hypotheses; reproduce every failed chunk; only explicitly empty native string results become empty hypotheses under the opt-in v2 adapter.",
+  "limitations": [
+    "Post-hoc runtime reconstruction, not a fresh full inference run or independent acceptance result.",
+    "Empty hypotheses can omit actual speech; every reference word stays in the scoring denominator.",
+    "Other native failures remain failures and make the whole case score as empty.",
+    "Reported wall times belong to the original run and are not v2 latency evidence.",
+    "Input window bounds are not ASR timestamps; no application promotion."
+  ]
+}
