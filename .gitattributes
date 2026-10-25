@@ -1,6 +1,6 @@
 # Preserve exact benchmark bytes and hashes across Windows and Linux checkouts.
 # Reports, ledgers, schemas and protocols also form byte-hash evidence chains.
-evaluation/** -text
+evaluation/** -text whitespace=cr-at-eol
 evaluation/datasets/** -text
 evaluation/runs/** -text
 evaluation/leaderboard.json -text
