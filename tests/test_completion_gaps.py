@@ -178,3 +178,40 @@ def test_revocation_during_model_extraction_discards_output(setup):
     assert r.status_code==403
     with sqlite3.connect(path) as con:
         assert con.execute("SELECT COUNT(*) FROM model_proposals WHERE kind='fact_proposal'").fetchone()[0]==0
+
+
+def test_model_transport_constrains_input_quotes_and_verifies_digest(monkeypatch):
+    import io
+    import urllib.request
+    from services.review.clinical_models import MODEL_DIGESTS
+    sid=str(uuid4());posts=[]
+    class Opener:
+        def open(self,request,**kwargs):
+            if isinstance(request,str):
+                value={'models':[{'name':'qwen2.5:1.5b','digest':MODEL_DIGESTS['qwen2.5:1.5b']}]} if request.endswith('/tags') else {'version':'test-runtime'}
+            else:
+                payload=json.loads(request.data);posts.append(payload)
+                props=payload['response_format']['json_schema']['schema']['$defs']['SelectedFact']['properties']
+                assert props['segment_id']['enum']==[sid]
+                assert props['quote']['enum']==['Taking warfarin 5 mg.','Patient denies fever.']
+                content={'facts':[{'segment_id':sid,'quote':'Taking warfarin 5 mg.','category':'medication','section':'subjective','assertion':'affirmed'}]}
+                value={'choices':[{'message':{'content':json.dumps(content)}}],'usage':{'prompt_tokens':7,'api_key':'must-not-persist'}}
+            return io.BytesIO(json.dumps(value).encode())
+    monkeypatch.setattr(urllib.request,'build_opener',lambda *args:Opener())
+    result=LocalClinicalModels(True).extract_facts({'segments':[{'segment_id':sid,'text':'Taking warfarin 5 mg. Patient denies fever.'}]},authorized=True,synthetic=True)
+    assert len(posts)==1
+    assert result['provenance']['usage']=={'prompt_tokens':7}
+    assert result['provenance']['model_digest']==MODEL_DIGESTS['qwen2.5:1.5b']
+    assert not result['facts'][0]['reviewed']
+
+
+def test_changed_model_digest_prevents_inference(monkeypatch):
+    import io
+    import urllib.request
+    class Opener:
+        def open(self,request,**kwargs):
+            assert isinstance(request,str) and request.endswith('/tags')
+            return io.BytesIO(json.dumps({'models':[{'name':'qwen2.5:1.5b','digest':'changed'}]}).encode())
+    monkeypatch.setattr(urllib.request,'build_opener',lambda *args:Opener())
+    with pytest.raises(ValueError,match='model_digest_mismatch'):
+        LocalClinicalModels(True).extract_facts({'segments':[{'segment_id':str(uuid4()),'text':'No fever.'}]},authorized=True,synthetic=True)

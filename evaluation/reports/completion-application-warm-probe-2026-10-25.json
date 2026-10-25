@@ -1,0 +1,36 @@
+{
+  "data_class": "synthetic",
+  "scope": "warm_runtime_application_semantic_probe_after_direct_model_probe",
+  "clinical_acceptance": false,
+  "http_status": 201,
+  "wall_seconds": 18.059769100043923,
+  "no_paid_calls": true,
+  "provenance": {
+    "model": "qwen2.5:7b",
+    "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "runtime": "Ollama",
+    "runtime_version": "0.40.6",
+    "usage": {
+      "prompt_tokens": 432,
+      "completion_tokens": 93,
+      "total_tokens": 525
+    },
+    "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+    "schema_sha256": "1cb8c02e1bd86368709fb89daaf7f4895f6bed1b4b576df586ac21edb0e968b2",
+    "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+    "schema": "Verdicts",
+    "temperature": 0,
+    "max_tokens": 1536,
+    "attempts": 1,
+    "wall_seconds": 17.87161949998699,
+    "provider_mode": "local",
+    "provider_cost_usd": 0,
+    "hardware_cost": "not_measured",
+    "clinical_validation": "not_established"
+  },
+  "verdict_labels": [
+    "supported"
+  ],
+  "cannot_clear_existing_findings": true,
+  "saved_artifacts_unchanged": true
+}

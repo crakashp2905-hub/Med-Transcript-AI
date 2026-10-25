@@ -1,0 +1,55 @@
+{
+  "data_class": "synthetic",
+  "scope": "real_application_transport_and_invariant_test_not_clinician_study",
+  "note_remains_blocked": true,
+  "comparison_detected_structured_edit": true,
+  "timing_start_retry_idempotent": true,
+  "metrics": {
+    "word_edits": 0,
+    "review_wall_ms": 257,
+    "self_reported_active_ms": null,
+    "active_time_verified": false,
+    "raw_text_in_telemetry": false,
+    "facts_added": 0,
+    "facts_removed": 0,
+    "field_edit_counts": {
+      "text": 0,
+      "category": 0,
+      "section": 0,
+      "subject": 0,
+      "assertion": 0,
+      "temporality": 0,
+      "excluded": 0,
+      "concept": 0,
+      "anatomical_site": 0,
+      "laterality": 0,
+      "clinical_source": 1,
+      "medication_name": 0,
+      "dose_value": 0,
+      "dose_unit": 0,
+      "route": 0,
+      "frequency": 0,
+      "duration": 0,
+      "allergen": 0,
+      "allergy_reaction": 0
+    },
+    "id": "1f17ec1d-3c99-4346-ad05-2af270bcd884",
+    "session_id": "a684ad6b-f54b-4aa6-9f71-1154168e4cbc",
+    "before_note": "f2714c5b-4ca7-4b47-8044-4959e623233c",
+    "after_note": "2178cf3e-6cd9-4aa0-b69f-83badd9bbdf1",
+    "source_changed": false
+  },
+  "hosted_calls": 0,
+  "semantic_http_status": 422,
+  "model_extraction_http_status": 201,
+  "extraction": {
+    "facts": 0,
+    "all_unreviewed": true,
+    "finding_codes": [
+      "model_extraction_coverage_requires_review",
+      "model_extraction_coverage_requires_review"
+    ],
+    "model_digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b"
+  },
+  "model_calls_did_not_change_saved_note_or_verification": true
+}

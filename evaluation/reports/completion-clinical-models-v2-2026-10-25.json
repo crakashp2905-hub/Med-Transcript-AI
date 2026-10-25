@@ -1,0 +1,505 @@
+{
+  "data_class": "synthetic",
+  "annotation_status": "developer_authored_not_clinician_calibrated",
+  "complete": true,
+  "clinical_acceptance": false,
+  "cases": [
+    {
+      "id": "dose_assignment",
+      "source": "Taking metformin 500 mg and warfarin 5 mg.",
+      "claim": "Taking metformin 5 mg and warfarin 500 mg.",
+      "expected_unsafe": true,
+      "rule_findings": [
+        "medication_dose_assignment_disagreement"
+      ],
+      "rule_detected_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "15d4abaf-9b53-51c3-af83-12c55405f608",
+            "label": "contradicted",
+            "evidence_quote": "Taking metformin 500 mg and warfarin 5 mg.",
+            "reason": "The evidence specifies 500 mg of metformin and 5 mg of warfarin, contradicting the claim of 5 mg of metformin and 500 mg of warfarin.",
+            "rule_findings": [
+              {
+                "code": "medication_dose_assignment_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Taking metformin 500 mg and warfarin 5 mg.",
+                "claim": "Taking metformin 5 mg and warfarin 500 mg.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 444,
+            "completion_tokens": 138,
+            "total_tokens": 582
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "4adf31717de7193aef4bdfb1fa0579957f71dfb4c47bdc5bb9bbbe01c979a84d",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 43.58235450001666,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "model_wall_seconds": 43.60539250000147
+    },
+    {
+      "id": "negation_scope",
+      "source": "Patient denies fever but reports cough.",
+      "claim": "Patient reports fever but denies cough.",
+      "expected_unsafe": true,
+      "rule_findings": [
+        "negation_scope_disagreement"
+      ],
+      "rule_detected_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "d47b7b19-e1af-5ccf-9895-227be4078ea6",
+            "label": "contradicted",
+            "evidence_quote": "Patient denies fever but reports cough.",
+            "reason": "The evidence contradicts the patient's report of fever and denial of cough in the claim.",
+            "rule_findings": [
+              {
+                "code": "negation_scope_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Patient denies fever but reports cough.",
+                "claim": "Patient reports fever but denies cough.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 422,
+            "completion_tokens": 100,
+            "total_tokens": 522
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "61e09d360ee3b8864f4c4c6d73af309696e4c0183c4c869069b3fb4cc315a608",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 22.809922499989625,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "model_wall_seconds": 22.812361400050577
+    },
+    {
+      "id": "omission",
+      "source": "Patient reports cough and fever.",
+      "claim": "Patient reports cough.",
+      "expected_unsafe": true,
+      "rule_findings": [
+        "omitted_source_terms"
+      ],
+      "rule_detected_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "1398a949-b764-5c0e-b6d5-16446fcbe571",
+            "label": "supported",
+            "evidence_quote": "Patient reports cough and fever.",
+            "reason": "The evidence includes the patient reporting a cough, which is consistent with the claim.",
+            "rule_findings": [
+              {
+                "code": "omitted_source_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Patient reports cough and fever.",
+                "claim": "Patient reports cough.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 419,
+            "completion_tokens": 96,
+            "total_tokens": 515
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "5e7cf9ddd279b8c0615e0791c4ab1966f38348a2a1a764540d4200d89fe289ba",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 21.99912570003653,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "model_wall_seconds": 22.002961500023957
+    },
+    {
+      "id": "unit_conversion",
+      "source": "Taking metformin 1000 mg.",
+      "claim": "Taking metformin 1 g.",
+      "expected_unsafe": false,
+      "rule_findings": [],
+      "rule_detected_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "8208a958-8fb8-573a-99b4-410a0fe5a936",
+            "label": "supported",
+            "evidence_quote": "Taking metformin 1000 mg.",
+            "reason": "1000 mg is equivalent to 1 g, confirming the claim.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 430,
+            "completion_tokens": 103,
+            "total_tokens": 533
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "4c9db1c271838e2695e351dae4f6dfd258e1cf250aeaaaa2ffe9550e428f895e",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 26.307882599998266,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "model_wall_seconds": 26.312982300005388
+    },
+    {
+      "id": "decimal_conversion",
+      "source": "Taking warfarin .005 g.",
+      "claim": "Taking warfarin 5 mg.",
+      "expected_unsafe": false,
+      "rule_findings": [],
+      "rule_detected_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "b9acc99d-6476-5b6b-9158-bd4778a46cb1",
+            "label": "contradicted",
+            "evidence_quote": "Taking warfarin .005 g.",
+            "reason": "The evidence states 0.005 g, which is equivalent to 500 mcg, not 5 mg as claimed.",
+            "rule_findings": [],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 427,
+            "completion_tokens": 115,
+            "total_tokens": 542
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "bc1d20b3dd037e5b589d1807e5f8abecde122d1c15b2ec007ca4f571d0f09e5e",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 27.762728600006085,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "model_wall_seconds": 27.767650500056334
+    },
+    {
+      "id": "unchanged_allergy",
+      "source": "Allergy to penicillin with rash.",
+      "claim": "Allergy to penicillin with rash.",
+      "expected_unsafe": false,
+      "rule_findings": [],
+      "rule_detected_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "b1a2cf88-f0c6-5a7f-99aa-1cfe82809581",
+            "label": "supported",
+            "evidence_quote": "Allergy to penicillin with rash.",
+            "reason": "The evidence directly matches the claim.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 427,
+            "completion_tokens": 90,
+            "total_tokens": 517
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "c9305c544364ce3c2a79dfe58d0f1b430eb02420babac020ed97a39954feebee",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 21.448718299972825,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "model_wall_seconds": 21.452698199951556
+    }
+  ],
+  "model_extraction": [
+    {
+      "input": {
+        "segments": [
+          {
+            "segment_id": "b070fe7f-cab3-5e65-80ce-bfd82d9eb4e0",
+            "text": "Patient reports cough and denies fever. Taking warfarin 5 mg."
+          }
+        ]
+      },
+      "result": {
+        "facts": [
+          {
+            "fact_id": "cb396a28-f010-4743-92f7-4feae045eb8a",
+            "category": "symptom",
+            "section": "subjective",
+            "text": "Patient reports cough",
+            "subject": "patient",
+            "assertion": "affirmed",
+            "temporality": "current",
+            "origin": "source_linked",
+            "evidence": {
+              "segment_id": "b070fe7f-cab3-5e65-80ce-bfd82d9eb4e0",
+              "start_char": 0,
+              "end_char": 21,
+              "quote": "Patient reports cough"
+            },
+            "reviewed": false,
+            "critical_reviewed": false,
+            "clarification": "",
+            "excluded": false,
+            "concept": null,
+            "anatomical_site": null,
+            "laterality": "unknown",
+            "clinical_source": "unknown",
+            "extraction_version": "local_model_exact_quote_v1",
+            "medication_name": null,
+            "dose_value": null,
+            "dose_unit": null,
+            "route": null,
+            "frequency": null,
+            "duration": null,
+            "allergen": null,
+            "allergy_reaction": null
+          }
+        ],
+        "findings": [
+          {
+            "code": "model_extraction_coverage_requires_review",
+            "segment_id": "b070fe7f-cab3-5e65-80ce-bfd82d9eb4e0",
+            "blocks_approval": true
+          }
+        ],
+        "status": "unreviewed_proposal",
+        "provenance": {
+          "model": "qwen2.5:1.5b",
+          "model_digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 544,
+            "completion_tokens": 84,
+            "total_tokens": 628
+          },
+          "prompt_sha256": "0b32dfc1f4ff3321e60d9bd4aae984c6e4029c6572e5d996cadff50635b7d3a7",
+          "schema_sha256": "86a62d08523662f7fb5c51a998b038e90d5f2af47cecacaa0268d20f91aec777",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Extraction",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 19.333712200052105,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        }
+      },
+      "failed": false,
+      "wall_seconds": 19.34716489998391
+    },
+    {
+      "input": {
+        "segments": [
+          {
+            "segment_id": "37aeb7ae-79c2-5e00-b46c-f79063a1c3ab",
+            "text": "Mother has diabetes. Patient reports left knee pain. No drug allergies."
+          }
+        ]
+      },
+      "result": {
+        "facts": [
+          {
+            "fact_id": "ae3b974d-0b38-4579-9d91-d9b9d9a0bcbf",
+            "category": "allergy",
+            "section": "subjective",
+            "text": "Mother has diabetes.",
+            "subject": "unknown",
+            "assertion": "affirmed",
+            "temporality": "current",
+            "origin": "source_linked",
+            "evidence": {
+              "segment_id": "37aeb7ae-79c2-5e00-b46c-f79063a1c3ab",
+              "start_char": 0,
+              "end_char": 20,
+              "quote": "Mother has diabetes."
+            },
+            "reviewed": false,
+            "critical_reviewed": false,
+            "clarification": "",
+            "excluded": false,
+            "concept": null,
+            "anatomical_site": null,
+            "laterality": "unknown",
+            "clinical_source": "unknown",
+            "extraction_version": "local_model_exact_quote_v1",
+            "medication_name": null,
+            "dose_value": null,
+            "dose_unit": null,
+            "route": null,
+            "frequency": null,
+            "duration": null,
+            "allergen": null,
+            "allergy_reaction": null
+          }
+        ],
+        "findings": [
+          {
+            "code": "model_extraction_coverage_requires_review",
+            "segment_id": "37aeb7ae-79c2-5e00-b46c-f79063a1c3ab",
+            "blocks_approval": true
+          }
+        ],
+        "status": "unreviewed_proposal",
+        "provenance": {
+          "model": "qwen2.5:1.5b",
+          "model_digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 545,
+            "completion_tokens": 86,
+            "total_tokens": 631
+          },
+          "prompt_sha256": "0b32dfc1f4ff3321e60d9bd4aae984c6e4029c6572e5d996cadff50635b7d3a7",
+          "schema_sha256": "c5b2e19cfc8f760bf0501b29621789bd6c8c6b4681b054838617d4e7255c4979",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Extraction",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 5.40635140001541,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        }
+      },
+      "failed": false,
+      "wall_seconds": 5.418406700016931
+    }
+  ],
+  "scope": "small_development_regression_not_estimated_clinical_sensitivity",
+  "rule_confusion": {
+    "true_positive": 3,
+    "false_positive": 0,
+    "true_negative": 3,
+    "false_negative": 0
+  },
+  "model_failures": 0,
+  "model_summary": {
+    "attempted_cases": 6,
+    "admitted_verdicts": 6,
+    "raw_model_correct_including_failures": 4,
+    "combined_rule_model_correct_including_failures": 5,
+    "unsafe_reference_cases": 3,
+    "unsafe_without_admitted_model_detection": 1,
+    "false_model_alerts_on_safe_cases": 1,
+    "clinical_calibration": false
+  },
+  "failure_inclusive_latency": {
+    "count": 6,
+    "p50_seconds": 22.812361400050577,
+    "p95_seconds": 43.60539250000147,
+    "cost_total": null,
+    "cost_status": "not_measured",
+    "failures": 0
+  }
+}

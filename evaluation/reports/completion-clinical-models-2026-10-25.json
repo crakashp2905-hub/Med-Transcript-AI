@@ -368,5 +368,16 @@
   },
   "model_failures": 2,
   "complete": true,
-  "transport_revision": "initial_local_schema_transport_before_per_call_digest_metadata"
+  "transport_revision": "initial_local_schema_transport_before_per_call_digest_metadata",
+  "model_summary": {
+    "attempted_cases": 6,
+    "admitted_verdicts": 4,
+    "raw_model_correct_including_failures": 3,
+    "combined_rule_model_correct_including_failures": 4,
+    "unsafe_reference_cases": 3,
+    "unsafe_without_admitted_model_detection": 2,
+    "false_model_alerts_on_safe_cases": 0,
+    "clinical_calibration": false
+  },
+  "failure_inclusive_latency": null
 }
