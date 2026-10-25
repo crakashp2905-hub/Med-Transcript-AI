@@ -76,6 +76,8 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(context).toContainText('Historical source bound to this saved note');
   await expect(context).toContainText('I have had a cough for three days');
   await expect(context).not.toContainText('corrected synthetic source now reports headache');
+  await expect(page.getByRole('heading',{name:'Historical verification',exact:true})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Historical approved record',exact:true})).toBeVisible();
   await page.getByRole('button',{name:'▷ Evidence',exact:true}).first().click();
   await expect(page.locator('.citation-selected')).toHaveCount(1);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);

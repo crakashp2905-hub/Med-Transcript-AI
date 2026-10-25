@@ -1,0 +1,2583 @@
+{
+  "schema_version": "real_worker_long_duration_stress_v1",
+  "scope": "synthetic_repeated_public_clip_transport_and_timestamp_stress_not_a_clinical_consultation",
+  "source_clip_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+  "source_manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+  "source_attribution": "PriMock57: A Dataset Of Primary Care Mock Consultations, Alex Papadopoulos Korfiatis, Francesco Moramarco, Radmila Sarac and Aleksandar Savkov (2022), Babylon Health. CC BY 4.0. Source: https://github.com/babylonhealth/primock57",
+  "tile_seconds": 60,
+  "clinical_acceptance": false,
+  "complete": true,
+  "runs": [
+    {
+      "minutes": 20,
+      "input_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+      "failed": false,
+      "encounter_id": "28eac128-4a8f-44b5-a986-ad2f8a0ecb59",
+      "transcript": {
+        "audio_asset_id": "9b27b47c-732f-4b51-92c0-fffea983d6ae",
+        "duration_ms": 1200000,
+        "encounter_id": "28eac128-4a8f-44b5-a986-ad2f8a0ecb59",
+        "id": "980158f1-8170-4f84-84a0-640ae00dff53",
+        "input_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+        "language": "en",
+        "provenance": {
+          "adapter_iteration": "finished",
+          "clinical_coverage": "unverified",
+          "engine": "faster-whisper",
+          "feature_extractor": "faster_whisper_1.2.1_defaults",
+          "inference_executed": true,
+          "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+          "model_source": "Systran/faster-whisper-tiny.en",
+          "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+          "profile_id": "tiny-en-smoke-v1",
+          "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+          "runtime_packages": {
+            "av": "19.0.2",
+            "ctranslate2": "4.8.3",
+            "faster-whisper": "1.2.1",
+            "numpy": "2.5.4",
+            "onnxruntime": "1.31.0",
+            "tokenizers": "0.23.3"
+          },
+          "runtime_version": "1.2.1",
+          "timeline_mapping_status": "original_pcm_timeline",
+          "vad_filter": false,
+          "word_timestamps": false,
+          "working_audio_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1"
+        },
+        "review_flags": [
+          "clinician_review_required",
+          "language_support_unverified",
+          "clinical_coverage_unverified",
+          "untranscribed_intervals_require_review"
+        ],
+        "schema_version": "1.0",
+        "segments": [
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 6920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 6.92,
+            "raw_start_seconds": 0.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "769f7dcc-8301-4e3b-967c-4319e195cc7a",
+            "speaker_id": null,
+            "start_ms": 0,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 32000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 32.0,
+            "raw_start_seconds": 30.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "e4419836-d6ba-4f6d-b33a-9ba2391ea6c1",
+            "speaker_id": null,
+            "start_ms": 30000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 66920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 66.92,
+            "raw_start_seconds": 60.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "5d4020d4-919e-4ba9-ba9a-f60266618a42",
+            "speaker_id": null,
+            "start_ms": 60000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 92000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 92.0,
+            "raw_start_seconds": 90.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "24b35621-49ce-4e23-a9f3-be50800a0eed",
+            "speaker_id": null,
+            "start_ms": 90000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 126920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 126.92,
+            "raw_start_seconds": 120.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "3a9c69b0-8c3d-4c87-877c-ed172c4b1bb9",
+            "speaker_id": null,
+            "start_ms": 120000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 152000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 152.0,
+            "raw_start_seconds": 150.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "cd2d47eb-981d-4601-9c6f-46583710eb11",
+            "speaker_id": null,
+            "start_ms": 150000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 186920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 186.92,
+            "raw_start_seconds": 180.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "899ffae2-a6c2-4882-93a9-977f4f337e00",
+            "speaker_id": null,
+            "start_ms": 180000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 212000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 212.0,
+            "raw_start_seconds": 210.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "3be8999b-88f7-40ab-8f67-b7aeb966d7f3",
+            "speaker_id": null,
+            "start_ms": 210000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 246920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 246.92,
+            "raw_start_seconds": 240.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "2d9adb65-6dc5-4e31-804a-8e62e040a52b",
+            "speaker_id": null,
+            "start_ms": 240000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 272000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 272.0,
+            "raw_start_seconds": 270.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "c26b837a-8c97-44bc-9736-5a10857d45e7",
+            "speaker_id": null,
+            "start_ms": 270000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 306920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 306.92,
+            "raw_start_seconds": 300.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "a5090480-b7d0-4719-8331-e7f6c9c84d6e",
+            "speaker_id": null,
+            "start_ms": 300000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 332000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 332.0,
+            "raw_start_seconds": 330.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "8243ca99-da35-4207-a193-96b840678a42",
+            "speaker_id": null,
+            "start_ms": 330000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 366920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 366.92,
+            "raw_start_seconds": 360.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "58036928-2081-4ef5-880d-c4158b974336",
+            "speaker_id": null,
+            "start_ms": 360000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 392000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 392.0,
+            "raw_start_seconds": 390.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "c206b541-f1de-4dca-a2d5-8463585ac4e7",
+            "speaker_id": null,
+            "start_ms": 390000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 426920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 426.92,
+            "raw_start_seconds": 420.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "f2ab275b-830a-4a67-af54-41f5986e5440",
+            "speaker_id": null,
+            "start_ms": 420000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 452000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 452.0,
+            "raw_start_seconds": 450.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "c57b5e18-99d7-4ba8-81ee-fb475cb56c69",
+            "speaker_id": null,
+            "start_ms": 450000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 486920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 486.92,
+            "raw_start_seconds": 480.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "2d7565f5-9abf-473d-81dd-304c93ad0b49",
+            "speaker_id": null,
+            "start_ms": 480000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 512000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 512.0,
+            "raw_start_seconds": 510.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "6333bf2c-fd37-4cfc-89fb-e1b3f8995f0c",
+            "speaker_id": null,
+            "start_ms": 510000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 546920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 546.92,
+            "raw_start_seconds": 540.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "e15d8104-9d3d-4a87-97c3-d724c55babca",
+            "speaker_id": null,
+            "start_ms": 540000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 572000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 572.0,
+            "raw_start_seconds": 570.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "f6f8076a-f8b1-4948-b3cc-3cbddcfd55e7",
+            "speaker_id": null,
+            "start_ms": 570000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 606920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 606.92,
+            "raw_start_seconds": 600.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "7ee7acb3-5cf9-4f1b-80fd-9d3063fb43e4",
+            "speaker_id": null,
+            "start_ms": 600000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 632000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 632.0,
+            "raw_start_seconds": 630.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "825f1f5a-2fcf-4f25-ac25-13c8f1393214",
+            "speaker_id": null,
+            "start_ms": 630000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 666920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 666.92,
+            "raw_start_seconds": 660.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "68d3c8c6-be08-41be-b2da-c710635e6444",
+            "speaker_id": null,
+            "start_ms": 660000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 692000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 692.0,
+            "raw_start_seconds": 690.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "0910dc0c-bf52-4f80-9947-050c797901a4",
+            "speaker_id": null,
+            "start_ms": 690000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 726920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 726.92,
+            "raw_start_seconds": 720.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "b5ea7eff-72a1-4161-acea-06b80ea4c1dd",
+            "speaker_id": null,
+            "start_ms": 720000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 752000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 752.0,
+            "raw_start_seconds": 750.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "d8eea21a-8474-4761-931b-989b44075533",
+            "speaker_id": null,
+            "start_ms": 750000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 786920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 786.92,
+            "raw_start_seconds": 780.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "6a62e596-22fc-4ae7-ba07-5a6009681f29",
+            "speaker_id": null,
+            "start_ms": 780000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 812000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 812.0,
+            "raw_start_seconds": 810.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "4a485658-774b-4190-ad68-817ac9cf4024",
+            "speaker_id": null,
+            "start_ms": 810000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 846920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 846.92,
+            "raw_start_seconds": 840.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "59484706-4c8a-4fb5-9535-736aba31238b",
+            "speaker_id": null,
+            "start_ms": 840000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 872000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 872.0,
+            "raw_start_seconds": 870.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "f0d28b28-aa37-4ef3-b87b-d49b0b5be523",
+            "speaker_id": null,
+            "start_ms": 870000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 906920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 906.92,
+            "raw_start_seconds": 900.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "98ed2cae-abc5-4136-9b24-5a55786edc3f",
+            "speaker_id": null,
+            "start_ms": 900000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 932000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 932.0,
+            "raw_start_seconds": 930.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "0807865e-8e99-442a-b9f2-8f529cfd9492",
+            "speaker_id": null,
+            "start_ms": 930000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 966920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 966.92,
+            "raw_start_seconds": 960.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "e44ecde2-ca1a-4050-9b8d-b76dec3b9906",
+            "speaker_id": null,
+            "start_ms": 960000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 992000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 992.0,
+            "raw_start_seconds": 990.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "bd5fe07c-477f-40d1-8336-91116a08d364",
+            "speaker_id": null,
+            "start_ms": 990000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1026920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1026.92,
+            "raw_start_seconds": 1020.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "44e373de-5e85-4149-b749-6abe6a23fada",
+            "speaker_id": null,
+            "start_ms": 1020000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1052000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1052.0,
+            "raw_start_seconds": 1050.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "388410b8-7316-453c-9fae-307fd7389404",
+            "speaker_id": null,
+            "start_ms": 1050000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1086920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1086.92,
+            "raw_start_seconds": 1080.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "e96ec9ee-6756-49c2-9f2f-296e6edeab6c",
+            "speaker_id": null,
+            "start_ms": 1080000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1112000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1112.0,
+            "raw_start_seconds": 1110.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "38a2ee98-a86a-4ae6-aae7-36bd50154293",
+            "speaker_id": null,
+            "start_ms": 1110000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1146920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1146.92,
+            "raw_start_seconds": 1140.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "9ed67c31-2798-47f4-9af4-371e5faea41e",
+            "speaker_id": null,
+            "start_ms": 1140000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1172000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1172.0,
+            "raw_start_seconds": 1170.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "5172b6e9-7eec-4274-88c8-4039f250b132",
+            "speaker_id": null,
+            "start_ms": 1170000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          }
+        ],
+        "source_availability": "available",
+        "status": "review_required",
+        "untranscribed_intervals": [
+          {
+            "end_ms": 30000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 6920
+          },
+          {
+            "end_ms": 60000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 32000
+          },
+          {
+            "end_ms": 90000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 66920
+          },
+          {
+            "end_ms": 120000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 92000
+          },
+          {
+            "end_ms": 150000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 126920
+          },
+          {
+            "end_ms": 180000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 152000
+          },
+          {
+            "end_ms": 210000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 186920
+          },
+          {
+            "end_ms": 240000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 212000
+          },
+          {
+            "end_ms": 270000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 246920
+          },
+          {
+            "end_ms": 300000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 272000
+          },
+          {
+            "end_ms": 330000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 306920
+          },
+          {
+            "end_ms": 360000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 332000
+          },
+          {
+            "end_ms": 390000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 366920
+          },
+          {
+            "end_ms": 420000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 392000
+          },
+          {
+            "end_ms": 450000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 426920
+          },
+          {
+            "end_ms": 480000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 452000
+          },
+          {
+            "end_ms": 510000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 486920
+          },
+          {
+            "end_ms": 540000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 512000
+          },
+          {
+            "end_ms": 570000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 546920
+          },
+          {
+            "end_ms": 600000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 572000
+          },
+          {
+            "end_ms": 630000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 606920
+          },
+          {
+            "end_ms": 660000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 632000
+          },
+          {
+            "end_ms": 690000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 666920
+          },
+          {
+            "end_ms": 720000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 692000
+          },
+          {
+            "end_ms": 750000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 726920
+          },
+          {
+            "end_ms": 780000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 752000
+          },
+          {
+            "end_ms": 810000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 786920
+          },
+          {
+            "end_ms": 840000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 812000
+          },
+          {
+            "end_ms": 870000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 846920
+          },
+          {
+            "end_ms": 900000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 872000
+          },
+          {
+            "end_ms": 930000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 906920
+          },
+          {
+            "end_ms": 960000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 932000
+          },
+          {
+            "end_ms": 990000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 966920
+          },
+          {
+            "end_ms": 1020000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 992000
+          },
+          {
+            "end_ms": 1050000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1026920
+          },
+          {
+            "end_ms": 1080000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1052000
+          },
+          {
+            "end_ms": 1110000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1086920
+          },
+          {
+            "end_ms": 1140000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1112000
+          },
+          {
+            "end_ms": 1170000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1146920
+          },
+          {
+            "end_ms": 1200000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1172000
+          }
+        ],
+        "version": 1,
+        "sha256": "61e697bab453d8bd3636c480a14a095017f37aca103bfbcfc0ddc2d6f4ba44e2"
+      },
+      "job": {
+        "id": "12aa3191-a83f-49d7-a3d4-9479fc571df3",
+        "encounter_id": "28eac128-4a8f-44b5-a986-ad2f8a0ecb59",
+        "stage": "transcription",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "status": "succeeded",
+        "attempts": 1,
+        "error_code": null,
+        "retryable": false,
+        "created_at": "2026-10-25T19:12:51.322070+00:00",
+        "updated_at": "2026-10-25T19:13:53.002448+00:00",
+        "result": {
+          "transcript_version_id": "980158f1-8170-4f84-84a0-640ae00dff53",
+          "sha256": "61e697bab453d8bd3636c480a14a095017f37aca103bfbcfc0ddc2d6f4ba44e2",
+          "transcript_url": "/v1/encounters/28eac128-4a8f-44b5-a986-ad2f8a0ecb59/transcripts/980158f1-8170-4f84-84a0-640ae00dff53"
+        }
+      },
+      "reference": "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting.",
+      "hypothesis": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You",
+      "timestamp_bounds_valid": true,
+      "source_audio_duration_preserved": true,
+      "note_created": false,
+      "approval_created": false,
+      "reference_words": 340,
+      "hypothesis_words": 320,
+      "normalized_edits": 60,
+      "raw_edits": 80,
+      "raw_reference_words": 340,
+      "wall_seconds": 67.99204319994897
+    },
+    {
+      "minutes": 30,
+      "input_sha256": "5c3643bf51b53b290067c6e6d4a633adc853a18e4e9c584bbbb634968fb7ef70",
+      "failed": false,
+      "encounter_id": "d1b22df4-bc75-4627-a4a9-41317e2670be",
+      "transcript": {
+        "audio_asset_id": "f8d8d054-4dfc-4edf-a4c7-ade3d8b42546",
+        "duration_ms": 1800000,
+        "encounter_id": "d1b22df4-bc75-4627-a4a9-41317e2670be",
+        "id": "d7756e06-ea4c-4bf6-84a0-cebdc7cd0cce",
+        "input_sha256": "5c3643bf51b53b290067c6e6d4a633adc853a18e4e9c584bbbb634968fb7ef70",
+        "language": "en",
+        "provenance": {
+          "adapter_iteration": "finished",
+          "clinical_coverage": "unverified",
+          "engine": "faster-whisper",
+          "feature_extractor": "faster_whisper_1.2.1_defaults",
+          "inference_executed": true,
+          "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+          "model_source": "Systran/faster-whisper-tiny.en",
+          "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+          "profile_id": "tiny-en-smoke-v1",
+          "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+          "runtime_packages": {
+            "av": "19.0.2",
+            "ctranslate2": "4.8.3",
+            "faster-whisper": "1.2.1",
+            "numpy": "2.5.4",
+            "onnxruntime": "1.31.0",
+            "tokenizers": "0.23.3"
+          },
+          "runtime_version": "1.2.1",
+          "timeline_mapping_status": "original_pcm_timeline",
+          "vad_filter": false,
+          "word_timestamps": false,
+          "working_audio_sha256": "5c3643bf51b53b290067c6e6d4a633adc853a18e4e9c584bbbb634968fb7ef70"
+        },
+        "review_flags": [
+          "clinician_review_required",
+          "language_support_unverified",
+          "clinical_coverage_unverified",
+          "untranscribed_intervals_require_review"
+        ],
+        "schema_version": "1.0",
+        "segments": [
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 6920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 6.92,
+            "raw_start_seconds": 0.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "adc10990-d752-4883-a968-df40d6627ff7",
+            "speaker_id": null,
+            "start_ms": 0,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 32000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 32.0,
+            "raw_start_seconds": 30.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "044c31ec-ad3e-42bd-a11a-0f1393a3050b",
+            "speaker_id": null,
+            "start_ms": 30000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 66920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 66.92,
+            "raw_start_seconds": 60.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "b168ce3e-11a4-48cd-acd4-85db8ef4a8a2",
+            "speaker_id": null,
+            "start_ms": 60000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 92000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 92.0,
+            "raw_start_seconds": 90.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "d2ddd8a9-8d8b-432f-b83b-31914958cb33",
+            "speaker_id": null,
+            "start_ms": 90000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 126920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 126.92,
+            "raw_start_seconds": 120.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "054c65be-d1e9-4c97-bd59-d158bdc31b6d",
+            "speaker_id": null,
+            "start_ms": 120000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 152000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 152.0,
+            "raw_start_seconds": 150.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "e8bdc4da-dff5-4edd-8869-e9162e03597d",
+            "speaker_id": null,
+            "start_ms": 150000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 186920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 186.92,
+            "raw_start_seconds": 180.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "cf41f0e0-8009-4b71-8e7b-957d72ff236b",
+            "speaker_id": null,
+            "start_ms": 180000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 212000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 212.0,
+            "raw_start_seconds": 210.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "b8eabcbc-84bc-424c-a748-b97f4112cff0",
+            "speaker_id": null,
+            "start_ms": 210000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 246920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 246.92,
+            "raw_start_seconds": 240.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "4106d131-6c00-459c-9e30-1a9531e117a6",
+            "speaker_id": null,
+            "start_ms": 240000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 272000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 272.0,
+            "raw_start_seconds": 270.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "d55533bb-1081-4c69-962b-264f845bb2ca",
+            "speaker_id": null,
+            "start_ms": 270000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 306920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 306.92,
+            "raw_start_seconds": 300.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "75976f40-d79a-49d6-a1ff-9b0aa819b471",
+            "speaker_id": null,
+            "start_ms": 300000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 332000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 332.0,
+            "raw_start_seconds": 330.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "a8161c56-d922-46f2-9aa1-b686ba94f273",
+            "speaker_id": null,
+            "start_ms": 330000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 366920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 366.92,
+            "raw_start_seconds": 360.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "93058f4d-b176-48e4-a978-58f281a66d5e",
+            "speaker_id": null,
+            "start_ms": 360000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 392000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 392.0,
+            "raw_start_seconds": 390.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "449d9704-075e-4457-a266-ba13d8bc16a5",
+            "speaker_id": null,
+            "start_ms": 390000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 426920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 426.92,
+            "raw_start_seconds": 420.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "f511d7a9-ea24-4569-9131-94d72f687e7a",
+            "speaker_id": null,
+            "start_ms": 420000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 452000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 452.0,
+            "raw_start_seconds": 450.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "13e26007-a814-401c-9070-6b22ccfd67a4",
+            "speaker_id": null,
+            "start_ms": 450000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 486920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 486.92,
+            "raw_start_seconds": 480.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "62398dac-525a-4095-8e95-04f71ae4ed77",
+            "speaker_id": null,
+            "start_ms": 480000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 512000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 512.0,
+            "raw_start_seconds": 510.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "4a5b7ff5-0550-4b05-b2c3-0593892ea743",
+            "speaker_id": null,
+            "start_ms": 510000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 546920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 546.92,
+            "raw_start_seconds": 540.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "d55080c4-ebb4-4b24-823f-acf6dc069372",
+            "speaker_id": null,
+            "start_ms": 540000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 572000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 572.0,
+            "raw_start_seconds": 570.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "9297cb80-2971-4a06-9928-7f2c9d89a40b",
+            "speaker_id": null,
+            "start_ms": 570000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 606920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 606.92,
+            "raw_start_seconds": 600.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "9151e77b-6a44-4df1-816e-b013c217767f",
+            "speaker_id": null,
+            "start_ms": 600000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 632000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 632.0,
+            "raw_start_seconds": 630.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "048af7fb-a019-4aa9-8adf-3e2c5f34d650",
+            "speaker_id": null,
+            "start_ms": 630000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 666920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 666.92,
+            "raw_start_seconds": 660.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "9e66ea80-2989-4629-a5ae-81867932789e",
+            "speaker_id": null,
+            "start_ms": 660000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 692000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 692.0,
+            "raw_start_seconds": 690.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "b010560b-f533-4d3a-8f75-9039a38bfd4f",
+            "speaker_id": null,
+            "start_ms": 690000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 726920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 726.92,
+            "raw_start_seconds": 720.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "7261173d-3dec-469d-903b-ed2bf8e86bc6",
+            "speaker_id": null,
+            "start_ms": 720000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 752000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 752.0,
+            "raw_start_seconds": 750.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "7b94df42-9bfa-480c-978b-39413c18cca4",
+            "speaker_id": null,
+            "start_ms": 750000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 786920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 786.92,
+            "raw_start_seconds": 780.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "2708a9c1-4c83-43cb-a5da-47b88f2de5f2",
+            "speaker_id": null,
+            "start_ms": 780000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 812000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 812.0,
+            "raw_start_seconds": 810.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "938e521c-248a-4e20-be28-8f8d308cbb97",
+            "speaker_id": null,
+            "start_ms": 810000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 846920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 846.92,
+            "raw_start_seconds": 840.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "41026ece-a30b-4158-9b3a-15782c0474b0",
+            "speaker_id": null,
+            "start_ms": 840000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 872000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 872.0,
+            "raw_start_seconds": 870.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "51abdefb-b92d-4242-a248-9e6dcaa3227b",
+            "speaker_id": null,
+            "start_ms": 870000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 906920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 906.92,
+            "raw_start_seconds": 900.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "cbef52d8-8e55-4e9f-8f55-76375121bb30",
+            "speaker_id": null,
+            "start_ms": 900000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 932000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 932.0,
+            "raw_start_seconds": 930.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "9036ac99-5e39-44f7-ac74-99d1c27644fd",
+            "speaker_id": null,
+            "start_ms": 930000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 966920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 966.92,
+            "raw_start_seconds": 960.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "0240bf37-e627-475e-8f55-a60004fa3106",
+            "speaker_id": null,
+            "start_ms": 960000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 992000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 992.0,
+            "raw_start_seconds": 990.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "d11a355a-83bc-4902-9273-c2aeef8ec3b9",
+            "speaker_id": null,
+            "start_ms": 990000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1026920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1026.92,
+            "raw_start_seconds": 1020.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "1eda644e-8ed9-438b-84ab-5da00f78395c",
+            "speaker_id": null,
+            "start_ms": 1020000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1052000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1052.0,
+            "raw_start_seconds": 1050.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "14118aad-3221-4843-94bb-07df4ca2cc3e",
+            "speaker_id": null,
+            "start_ms": 1050000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1086920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1086.92,
+            "raw_start_seconds": 1080.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "9ff9fe22-e2ec-4796-895d-49d3ca5c6db4",
+            "speaker_id": null,
+            "start_ms": 1080000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1112000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1112.0,
+            "raw_start_seconds": 1110.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "904c208c-1500-4781-8b85-b811efafb946",
+            "speaker_id": null,
+            "start_ms": 1110000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1146920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1146.92,
+            "raw_start_seconds": 1140.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "75139df1-92f0-450d-932f-87b1be4118db",
+            "speaker_id": null,
+            "start_ms": 1140000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1172000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1172.0,
+            "raw_start_seconds": 1170.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "1cb2efd8-5e6b-428d-9e52-88bdcc5858c9",
+            "speaker_id": null,
+            "start_ms": 1170000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1206920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1206.92,
+            "raw_start_seconds": 1200.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "b141fb8a-772a-4b65-8134-ca6a1e6ea97b",
+            "speaker_id": null,
+            "start_ms": 1200000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1232000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1232.0,
+            "raw_start_seconds": 1230.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "fadd8ab5-929e-4c9f-a03c-84758ebb5ffc",
+            "speaker_id": null,
+            "start_ms": 1230000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1266920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1266.92,
+            "raw_start_seconds": 1260.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "85096e3f-a20b-4fcd-b111-ca1ad3ac48df",
+            "speaker_id": null,
+            "start_ms": 1260000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1292000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1292.0,
+            "raw_start_seconds": 1290.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "be8f6365-215a-48bc-b07d-fbf8a0368b64",
+            "speaker_id": null,
+            "start_ms": 1290000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1326920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1326.92,
+            "raw_start_seconds": 1320.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "77bca5a2-7a76-4b2c-b1f1-4153d07dc995",
+            "speaker_id": null,
+            "start_ms": 1320000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1352000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1352.0,
+            "raw_start_seconds": 1350.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "47058438-61a0-43a9-8613-60bf9603d713",
+            "speaker_id": null,
+            "start_ms": 1350000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1386920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1386.92,
+            "raw_start_seconds": 1380.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "2ef45366-0afa-450c-89a3-daeee1e6385d",
+            "speaker_id": null,
+            "start_ms": 1380000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1412000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1412.0,
+            "raw_start_seconds": 1410.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "5a5b13e7-2016-4c8a-a8f0-478d9212f8c5",
+            "speaker_id": null,
+            "start_ms": 1410000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1446920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1446.92,
+            "raw_start_seconds": 1440.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "aa862778-253c-4b35-b707-debe0358f013",
+            "speaker_id": null,
+            "start_ms": 1440000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1472000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1472.0,
+            "raw_start_seconds": 1470.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "aa30b7c6-ef3d-43bc-8fb0-261f3ee060b5",
+            "speaker_id": null,
+            "start_ms": 1470000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1506920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1506.92,
+            "raw_start_seconds": 1500.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "4a696533-7ce3-4f51-af04-f8ed539ed22c",
+            "speaker_id": null,
+            "start_ms": 1500000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1532000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1532.0,
+            "raw_start_seconds": 1530.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "b8e08ddf-8d12-4ed1-9d63-e92d5bb0be9e",
+            "speaker_id": null,
+            "start_ms": 1530000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1566920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1566.92,
+            "raw_start_seconds": 1560.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "74916dff-85dc-4258-9ceb-c4f6f962fb94",
+            "speaker_id": null,
+            "start_ms": 1560000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1592000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1592.0,
+            "raw_start_seconds": 1590.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "34163429-ca63-427c-8b38-5bf0b7870b2a",
+            "speaker_id": null,
+            "start_ms": 1590000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1626920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1626.92,
+            "raw_start_seconds": 1620.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "51371857-937b-47ae-aefb-90fa679be24e",
+            "speaker_id": null,
+            "start_ms": 1620000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1652000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1652.0,
+            "raw_start_seconds": 1650.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "de0a15c2-11f6-4e3f-9821-2a1d6737f6b3",
+            "speaker_id": null,
+            "start_ms": 1650000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1686920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1686.92,
+            "raw_start_seconds": 1680.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "a4ed840d-e2b1-4f4f-a87b-273f540b45ef",
+            "speaker_id": null,
+            "start_ms": 1680000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1712000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1712.0,
+            "raw_start_seconds": 1710.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "c6adf421-9ab4-4758-a4bf-91762d82a628",
+            "speaker_id": null,
+            "start_ms": 1710000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1746920,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1746.92,
+            "raw_start_seconds": 1740.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "39a43593-2ea8-496a-b6b2-979e9bc8744e",
+            "speaker_id": null,
+            "start_ms": 1740000,
+            "text": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          },
+          {
+            "alignment_status": "model_estimated",
+            "end_ms": 1772000,
+            "language": "en",
+            "language_status": "uncertain",
+            "raw_end_seconds": 1772.0,
+            "raw_start_seconds": 1770.0,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "segment_id": "c56ba629-8d45-47bb-848f-63bedfa55403",
+            "speaker_id": null,
+            "start_ms": 1770000,
+            "text": " You",
+            "uncertainties": [
+              "unreviewed_asr",
+              "language_support_unverified",
+              "speaker_unassigned"
+            ]
+          }
+        ],
+        "source_availability": "available",
+        "status": "review_required",
+        "untranscribed_intervals": [
+          {
+            "end_ms": 30000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 6920
+          },
+          {
+            "end_ms": 60000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 32000
+          },
+          {
+            "end_ms": 90000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 66920
+          },
+          {
+            "end_ms": 120000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 92000
+          },
+          {
+            "end_ms": 150000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 126920
+          },
+          {
+            "end_ms": 180000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 152000
+          },
+          {
+            "end_ms": 210000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 186920
+          },
+          {
+            "end_ms": 240000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 212000
+          },
+          {
+            "end_ms": 270000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 246920
+          },
+          {
+            "end_ms": 300000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 272000
+          },
+          {
+            "end_ms": 330000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 306920
+          },
+          {
+            "end_ms": 360000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 332000
+          },
+          {
+            "end_ms": 390000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 366920
+          },
+          {
+            "end_ms": 420000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 392000
+          },
+          {
+            "end_ms": 450000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 426920
+          },
+          {
+            "end_ms": 480000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 452000
+          },
+          {
+            "end_ms": 510000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 486920
+          },
+          {
+            "end_ms": 540000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 512000
+          },
+          {
+            "end_ms": 570000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 546920
+          },
+          {
+            "end_ms": 600000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 572000
+          },
+          {
+            "end_ms": 630000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 606920
+          },
+          {
+            "end_ms": 660000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 632000
+          },
+          {
+            "end_ms": 690000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 666920
+          },
+          {
+            "end_ms": 720000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 692000
+          },
+          {
+            "end_ms": 750000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 726920
+          },
+          {
+            "end_ms": 780000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 752000
+          },
+          {
+            "end_ms": 810000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 786920
+          },
+          {
+            "end_ms": 840000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 812000
+          },
+          {
+            "end_ms": 870000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 846920
+          },
+          {
+            "end_ms": 900000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 872000
+          },
+          {
+            "end_ms": 930000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 906920
+          },
+          {
+            "end_ms": 960000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 932000
+          },
+          {
+            "end_ms": 990000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 966920
+          },
+          {
+            "end_ms": 1020000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 992000
+          },
+          {
+            "end_ms": 1050000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1026920
+          },
+          {
+            "end_ms": 1080000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1052000
+          },
+          {
+            "end_ms": 1110000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1086920
+          },
+          {
+            "end_ms": 1140000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1112000
+          },
+          {
+            "end_ms": 1170000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1146920
+          },
+          {
+            "end_ms": 1200000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1172000
+          },
+          {
+            "end_ms": 1230000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1206920
+          },
+          {
+            "end_ms": 1260000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1232000
+          },
+          {
+            "end_ms": 1290000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1266920
+          },
+          {
+            "end_ms": 1320000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1292000
+          },
+          {
+            "end_ms": 1350000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1326920
+          },
+          {
+            "end_ms": 1380000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1352000
+          },
+          {
+            "end_ms": 1410000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1386920
+          },
+          {
+            "end_ms": 1440000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1412000
+          },
+          {
+            "end_ms": 1470000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1446920
+          },
+          {
+            "end_ms": 1500000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1472000
+          },
+          {
+            "end_ms": 1530000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1506920
+          },
+          {
+            "end_ms": 1560000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1532000
+          },
+          {
+            "end_ms": 1590000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1566920
+          },
+          {
+            "end_ms": 1620000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1592000
+          },
+          {
+            "end_ms": 1650000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1626920
+          },
+          {
+            "end_ms": 1680000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1652000
+          },
+          {
+            "end_ms": 1710000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1686920
+          },
+          {
+            "end_ms": 1740000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1712000
+          },
+          {
+            "end_ms": 1770000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1746920
+          },
+          {
+            "end_ms": 1800000,
+            "reason": "not_transcribed_unknown_cause",
+            "start_ms": 1772000
+          }
+        ],
+        "version": 1,
+        "sha256": "ab4e0ae5fde7729e770f2f726495eaf7ba0c8e9df40023269f5e934bed730716"
+      },
+      "job": {
+        "id": "15f669a6-02f0-4dd4-a6a9-aada7cb8888c",
+        "encounter_id": "d1b22df4-bc75-4627-a4a9-41317e2670be",
+        "stage": "transcription",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "status": "succeeded",
+        "attempts": 1,
+        "error_code": null,
+        "retryable": false,
+        "created_at": "2026-10-25T19:14:03.924023+00:00",
+        "updated_at": "2026-10-25T19:15:44.256482+00:00",
+        "result": {
+          "transcript_version_id": "d7756e06-ea4c-4bf6-84a0-cebdc7cd0cce",
+          "sha256": "ab4e0ae5fde7729e770f2f726495eaf7ba0c8e9df40023269f5e934bed730716",
+          "transcript_url": "/v1/encounters/d1b22df4-bc75-4627-a4a9-41317e2670be/transcripts/d7756e06-ea4c-4bf6-84a0-cebdc7cd0cce"
+        }
+      },
+      "reference": "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting. Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting.",
+      "hypothesis": " Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You  Yeah, so I vomited at the start of the symptoms, but now I've stopped vomiting.  You",
+      "timestamp_bounds_valid": true,
+      "source_audio_duration_preserved": true,
+      "note_created": false,
+      "approval_created": false,
+      "reference_words": 510,
+      "hypothesis_words": 480,
+      "normalized_edits": 90,
+      "raw_edits": 120,
+      "raw_reference_words": 510,
+      "wall_seconds": 110.09742809995078
+    }
+  ],
+  "limitations": [
+    "Repeated speech and long digital silence are not representative consultation accuracy.",
+    "Concurrent local benchmark load affects latency; no performance target is inferred.",
+    "Application development ASR is not qualified under the 5% acceptance gate."
+  ]
+}

@@ -122,3 +122,23 @@ def test_reserved_cohort_leakage_is_rejected_before_network(tmp_path):
     (evaluation/'acceptance-reservation-v1.json').write_text(json.dumps({'reserved_groups':['held_out']}))
     (evaluation/'datasets'/'dev'/'manifest.json').write_text(json.dumps({'cases':[{'group_id':'held_out'}]}))
     with pytest.raises(ValueError,match='leakage'):audit(tmp_path,tmp_path/'out.json',fetch=False)
+
+
+def test_diagnostic_alignment_matches_frozen_lexical_distance():
+    import random
+    from services.conversation_errors import alignment
+    from services.evaluation import distance
+    rng=random.Random(104)
+    for _ in range(60):
+        a,b=[rng.choices(['cough','fever','no','patient'],k=rng.randrange(15)) for _ in range(2)]
+        assert len(alignment(a,b))==distance(a,b)
+
+
+def test_channel_diagnostics_keep_original_turn_indices_and_overlap():
+    from services.conversation_errors import analyze
+    turns=[{'start_ms':0,'end_ms':1000,'role':'patient','reference':'Cough.'},
+           {'start_ms':100,'end_ms':900,'role':'doctor','reference':'No fever.'}]
+    result=analyze({'id':'synthetic','reference':'No fever.','hypothesis':'fever',
+                    'normalized_edits':1,'failed':False},[turns[1]],turns)
+    assert result['first_100_error_examples'][0]['reference_turn_index']==1
+    assert result['errors_on_overlapping_reference_turns']==1

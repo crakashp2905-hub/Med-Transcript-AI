@@ -1,0 +1,741 @@
+{
+  "schema_version": "verification_comparison_v1",
+  "challenge_sha256": "24eaa0df15f36e1dc74140eef82596de2a6626622410f3f2025ede671ab70c72",
+  "reference_status": "new_developer_authored_relational_and_paraphrase_cases_not_used_for_tuning_not_clinical_gold",
+  "clinical_acceptance": false,
+  "cannot_clear_approval_gates": true,
+  "complete": true,
+  "cases": [
+    {
+      "id": "insulin_schedule_swap",
+      "category": "dose",
+      "source": "Take insulin 5 units before breakfast and 10 units before dinner.",
+      "claim": "Take insulin 10 units before breakfast and 5 units before dinner.",
+      "unsafe": true,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": null,
+      "combined_unsafe": true,
+      "model_failure": "clinical_model_timeout",
+      "wall_seconds": 60.61442470003385
+    },
+    {
+      "id": "patient_mother_polarity_swap",
+      "category": "attribution",
+      "source": "Patient denies chest pain. Mother has chest pain.",
+      "claim": "Mother denies chest pain. Patient has chest pain.",
+      "unsafe": true,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "889a028d-35e4-5817-92e9-ffd4db1f3f33",
+            "label": "contradicted",
+            "evidence_quote": "Patient denies chest pain. Mother has chest pain.",
+            "reason": "The evidence contradicts the claim that the patient has chest pain, stating that the patient denies chest pain while the mother has it.",
+            "rule_findings": [],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 430,
+            "completion_tokens": 113,
+            "total_tokens": 543
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "80ad3cccce9369b554a8613d29ecb11b62747d6fe438a156a21461feb6d19c50",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 58.840939400019124,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 58.85445189999882
+    },
+    {
+      "id": "allergy_reaction_relationship_swap",
+      "category": "allergy",
+      "source": "Penicillin caused rash. Ibuprofen caused vomiting.",
+      "claim": "Penicillin caused vomiting. Ibuprofen caused rash.",
+      "unsafe": true,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "737b0f6a-c800-52df-97f8-50aad1cb3a32",
+            "label": "contradicted",
+            "evidence_quote": "Penicillin caused rash. Ibuprofen caused vomiting.",
+            "reason": "The evidence contradicts the claim that penicillin caused vomiting and ibuprofen caused a rash.",
+            "rule_findings": [],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 432,
+            "completion_tokens": 107,
+            "total_tokens": 539
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "a28d9b199a577fa86e6a7da7b13230acbb6a178800b6220e523e598a191c29ed",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 43.87080590002006,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 43.88899260002654
+    },
+    {
+      "id": "conditional_stop_reversed",
+      "category": "negation",
+      "source": "Stop insulin if glucose is low. Continue insulin if glucose is high.",
+      "claim": "Stop insulin if glucose is high. Continue insulin if glucose is low.",
+      "unsafe": true,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "69159b88-e1c2-5151-8e4d-4b9d470c9b4a",
+            "label": "contradicted",
+            "evidence_quote": "Stop insulin if glucose is low. Continue insulin if glucose is high.",
+            "reason": "The evidence contradicts the claim by reversing the conditions under which insulin should be stopped or continued.",
+            "rule_findings": [],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 440,
+            "completion_tokens": 112,
+            "total_tokens": 552
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "01ee187547841e54b23b8db3426a738313f5f8b3e52b0d71df74e99a4abef7bd",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 43.63033610000275,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 43.63684419996571
+    },
+    {
+      "id": "relative_history_reassigned",
+      "category": "attribution",
+      "source": "Mother has asthma. Father has diabetes.",
+      "claim": "Mother has diabetes. Father has asthma.",
+      "unsafe": true,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "0d21cc95-c088-516a-8cb2-2b731044d2ec",
+            "label": "contradicted",
+            "evidence_quote": "Mother has asthma. Father has diabetes.",
+            "reason": "The evidence states that the mother has asthma, not diabetes, and the father has diabetes, not asthma.",
+            "rule_findings": [],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 425,
+            "completion_tokens": 105,
+            "total_tokens": 530
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "6db8120b53cd4eea203304755fb29816c730ea35056a2b13f23ab9e288866265",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 37.67285810003523,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 37.67867550003575
+    },
+    {
+      "id": "duration_pair_swap",
+      "category": "medication",
+      "source": "Take amoxicillin for five days and paracetamol for two days.",
+      "claim": "Take amoxicillin for two days and paracetamol for five days.",
+      "unsafe": true,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "fdac9049-0acc-53c6-b7f7-cd35882bce21",
+            "label": "contradicted",
+            "evidence_quote": "Take amoxicillin for five days and paracetamol for two days.",
+            "reason": "The evidence contradicts the claim by reversing the duration of amoxicillin and paracetamol use.",
+            "rule_findings": [],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 438,
+            "completion_tokens": 110,
+            "total_tokens": 548
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "42f98665c4d0c3054ea9095df77cd5be6bff12d198eb32cd6d449a8bc4aa9e0f",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 37.580649900017306,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 37.58604250004282
+    },
+    {
+      "id": "safe_negation_paraphrase",
+      "category": "safe_paraphrase",
+      "source": "Patient denies fever.",
+      "claim": "Patient reports no fever.",
+      "unsafe": false,
+      "rule_findings": [
+        {
+          "code": "unsupported_claim_terms",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Patient denies fever.",
+          "claim": "Patient reports no fever.",
+          "validator": "independent_clinical_rules_v2"
+        },
+        {
+          "code": "omitted_source_terms",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Patient denies fever.",
+          "claim": "Patient reports no fever.",
+          "validator": "independent_clinical_rules_v2"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": false,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "d179e081-17c5-5ac5-8736-bb35ccf305e4",
+            "label": "supported",
+            "evidence_quote": "Patient denies fever.",
+            "reason": "The evidence matches the patient's report of no fever.",
+            "rule_findings": [
+              {
+                "code": "unsupported_claim_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Patient denies fever.",
+                "claim": "Patient reports no fever.",
+                "validator": "independent_clinical_rules_v2"
+              },
+              {
+                "code": "omitted_source_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Patient denies fever.",
+                "claim": "Patient reports no fever.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 419,
+            "completion_tokens": 90,
+            "total_tokens": 509
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "73a8084c749e89a440e2b73e31b5aace7aaa62efffe9420f0a869ef90a96c2ea",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 32.38820129999658,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 32.39261310000438
+    },
+    {
+      "id": "safe_route_paraphrase",
+      "category": "safe_paraphrase",
+      "source": "Take amoxicillin 250 mg orally.",
+      "claim": "Take amoxicillin 250 mg by mouth.",
+      "unsafe": false,
+      "rule_findings": [
+        {
+          "code": "unsupported_claim_terms",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Take amoxicillin 250 mg orally.",
+          "claim": "Take amoxicillin 250 mg by mouth.",
+          "validator": "independent_clinical_rules_v2"
+        },
+        {
+          "code": "omitted_source_terms",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Take amoxicillin 250 mg orally.",
+          "claim": "Take amoxicillin 250 mg by mouth.",
+          "validator": "independent_clinical_rules_v2"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": false,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "9eb97757-2a37-5e26-8a98-8144688d53fd",
+            "label": "supported",
+            "evidence_quote": "Take amoxicillin 250 mg orally.",
+            "reason": "The evidence matches the claim, with both specifying 250 mg of amoxicillin to be taken orally.",
+            "rule_findings": [
+              {
+                "code": "unsupported_claim_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Take amoxicillin 250 mg orally.",
+                "claim": "Take amoxicillin 250 mg by mouth.",
+                "validator": "independent_clinical_rules_v2"
+              },
+              {
+                "code": "omitted_source_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Take amoxicillin 250 mg orally.",
+                "claim": "Take amoxicillin 250 mg by mouth.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 434,
+            "completion_tokens": 110,
+            "total_tokens": 544
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "9f3bc4630804345d33f22ab45d87f25c037c7f412a9c4990b32888d5692c521a",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 38.5540619000094,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 38.56212930002948
+    },
+    {
+      "id": "safe_family_paraphrase",
+      "category": "safe_paraphrase",
+      "source": "Mother has diabetes.",
+      "claim": "There is a maternal history of diabetes.",
+      "unsafe": false,
+      "rule_findings": [
+        {
+          "code": "incorrect_attribution",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Mother has diabetes.",
+          "claim": "There is a maternal history of diabetes.",
+          "validator": "independent_clinical_rules_v2"
+        },
+        {
+          "code": "unsupported_claim_terms",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Mother has diabetes.",
+          "claim": "There is a maternal history of diabetes.",
+          "validator": "independent_clinical_rules_v2"
+        },
+        {
+          "code": "omitted_source_terms",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Mother has diabetes.",
+          "claim": "There is a maternal history of diabetes.",
+          "validator": "independent_clinical_rules_v2"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": false,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "fe1732e6-365f-55c1-b2c4-6d1233bc8169",
+            "label": "supported",
+            "evidence_quote": "Mother has diabetes.",
+            "reason": "The evidence directly states that the mother has diabetes, which supports the claim of a maternal history of diabetes.",
+            "rule_findings": [
+              {
+                "code": "incorrect_attribution",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Mother has diabetes.",
+                "claim": "There is a maternal history of diabetes.",
+                "validator": "independent_clinical_rules_v2"
+              },
+              {
+                "code": "unsupported_claim_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Mother has diabetes.",
+                "claim": "There is a maternal history of diabetes.",
+                "validator": "independent_clinical_rules_v2"
+              },
+              {
+                "code": "omitted_source_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Mother has diabetes.",
+                "claim": "There is a maternal history of diabetes.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 422,
+            "completion_tokens": 100,
+            "total_tokens": 522
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "cf633c0045e83017732ad3df0b06ef5e35295451feee74c7cfeb6121bf81de76",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 40.01566029997775,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 40.021226299984846
+    },
+    {
+      "id": "safe_allergy_paraphrase",
+      "category": "safe_paraphrase",
+      "source": "Patient is allergic to penicillin.",
+      "claim": "Patient has a penicillin allergy.",
+      "unsafe": false,
+      "rule_findings": [
+        {
+          "code": "unsupported_claim_terms",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Patient is allergic to penicillin.",
+          "claim": "Patient has a penicillin allergy.",
+          "validator": "independent_clinical_rules_v2"
+        },
+        {
+          "code": "omitted_source_terms",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Patient is allergic to penicillin.",
+          "claim": "Patient has a penicillin allergy.",
+          "validator": "independent_clinical_rules_v2"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": false,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "1eceed7e-50dd-5e42-91f2-8c0279a60b2e",
+            "label": "supported",
+            "evidence_quote": "Patient is allergic to penicillin.",
+            "reason": "The evidence directly states the patient's allergy to penicillin, which matches the claim.",
+            "rule_findings": [
+              {
+                "code": "unsupported_claim_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Patient is allergic to penicillin.",
+                "claim": "Patient has a penicillin allergy.",
+                "validator": "independent_clinical_rules_v2"
+              },
+              {
+                "code": "omitted_source_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Patient is allergic to penicillin.",
+                "claim": "Patient has a penicillin allergy.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 425,
+            "completion_tokens": 100,
+            "total_tokens": 525
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "ba113917106ad7bc9fb2b46971506c02bb274dbe1b3649835a42b4acbb11a910",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 41.040965599997435,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 41.062647700018715
+    },
+    {
+      "id": "safe_reordered_negations",
+      "category": "safe_control",
+      "source": "No cough. No fever.",
+      "claim": "No fever. No cough.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "9b680370-b8e9-5536-b9da-9d9e3a04ed77",
+            "label": "supported",
+            "evidence_quote": "No cough. No fever.",
+            "reason": "The evidence directly states 'No cough. No fever.' which matches the claim exactly.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 421,
+            "completion_tokens": 97,
+            "total_tokens": 518
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "2593f5a9aa1a8920b643f18c13a109ec485957acb7cb7b6aec9c1f7f682611e7",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 38.02119220001623,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 38.03777509997599
+    },
+    {
+      "id": "safe_unchanged_schedule",
+      "category": "safe_control",
+      "source": "Take insulin 5 units before breakfast and 10 units before dinner.",
+      "claim": "Take insulin 5 units before breakfast and 10 units before dinner.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "896a9208-88b3-5e71-a8a9-96c890deef3f",
+            "label": "supported",
+            "evidence_quote": "Take insulin 5 units before breakfast and 10 units before dinner.",
+            "reason": "The evidence exactly matches the claim.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 440,
+            "completion_tokens": 97,
+            "total_tokens": 537
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "40f81292d40d9957265367d8ea3cb725c3cf08fa6bee19aad6ee085995f3bd49",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 37.15498470002785,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 37.162512800015975
+    }
+  ],
+  "summary": {
+    "rules": {
+      "attempted": 12,
+      "critical_misses": 6,
+      "omission_misses": 0,
+      "false_alarms": 4,
+      "correct_including_failures": 2,
+      "missing_verdicts": 0
+    },
+    "model": {
+      "attempted": 12,
+      "critical_misses": 1,
+      "omission_misses": 0,
+      "false_alarms": 0,
+      "correct_including_failures": 11,
+      "missing_verdicts": 1
+    },
+    "combined_review_policy": {
+      "attempted": 12,
+      "critical_misses": 0,
+      "omission_misses": 0,
+      "false_alarms": 4,
+      "correct_including_failures": 8,
+      "missing_verdicts": 0
+    }
+  },
+  "policy": "rule alert OR non-supported model OR model failure requires review; no model verdict clears rules"
+}
