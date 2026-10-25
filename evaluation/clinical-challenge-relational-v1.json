@@ -1,0 +1,18 @@
+{
+  "schema_version":"clinical_challenge_v1",
+  "scope":"new_developer_authored_relational_and_paraphrase_cases_not_used_for_tuning_not_clinical_gold",
+  "cases":[
+    {"id":"insulin_schedule_swap","category":"dose","source":"Take insulin 5 units before breakfast and 10 units before dinner.","claim":"Take insulin 10 units before breakfast and 5 units before dinner.","unsafe":true},
+    {"id":"patient_mother_polarity_swap","category":"attribution","source":"Patient denies chest pain. Mother has chest pain.","claim":"Mother denies chest pain. Patient has chest pain.","unsafe":true},
+    {"id":"allergy_reaction_relationship_swap","category":"allergy","source":"Penicillin caused rash. Ibuprofen caused vomiting.","claim":"Penicillin caused vomiting. Ibuprofen caused rash.","unsafe":true},
+    {"id":"conditional_stop_reversed","category":"negation","source":"Stop insulin if glucose is low. Continue insulin if glucose is high.","claim":"Stop insulin if glucose is high. Continue insulin if glucose is low.","unsafe":true},
+    {"id":"relative_history_reassigned","category":"attribution","source":"Mother has asthma. Father has diabetes.","claim":"Mother has diabetes. Father has asthma.","unsafe":true},
+    {"id":"duration_pair_swap","category":"medication","source":"Take amoxicillin for five days and paracetamol for two days.","claim":"Take amoxicillin for two days and paracetamol for five days.","unsafe":true},
+    {"id":"safe_negation_paraphrase","category":"safe_paraphrase","source":"Patient denies fever.","claim":"Patient reports no fever.","unsafe":false},
+    {"id":"safe_route_paraphrase","category":"safe_paraphrase","source":"Take amoxicillin 250 mg orally.","claim":"Take amoxicillin 250 mg by mouth.","unsafe":false},
+    {"id":"safe_family_paraphrase","category":"safe_paraphrase","source":"Mother has diabetes.","claim":"There is a maternal history of diabetes.","unsafe":false},
+    {"id":"safe_allergy_paraphrase","category":"safe_paraphrase","source":"Patient is allergic to penicillin.","claim":"Patient has a penicillin allergy.","unsafe":false},
+    {"id":"safe_reordered_negations","category":"safe_control","source":"No cough. No fever.","claim":"No fever. No cough.","unsafe":false},
+    {"id":"safe_unchanged_schedule","category":"safe_control","source":"Take insulin 5 units before breakfast and 10 units before dinner.","claim":"Take insulin 5 units before breakfast and 10 units before dinner.","unsafe":false}
+  ]
+}

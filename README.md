@@ -110,7 +110,9 @@ to a browser speech-recognition service or hosted ASR provider.
 
 This is stop-to-transcript dictation, not word-by-word streaming. Processing time
 depends on the configured model and local hardware. Recordings are limited to
-five minutes or 25 MB. Discard stops capture without uploading; failed uploads
+30 minutes or 64 MiB. Keep the tab open: live capture stays in browser memory.
+A disconnected microphone retains a partial recording for review, download or
+retry. Partial recordings can be incomplete. Discard stops capture without uploading; failed uploads
 can be retried from the retained local recording. You can also save that recording
 locally. Browser microphone access requires localhost or HTTPS; Chrome and Edge
 are the tested Windows browsers. An ASR profile and the local worker are required.

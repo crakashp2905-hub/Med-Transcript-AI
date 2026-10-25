@@ -22,27 +22,30 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByRole('button',{name:'Save source review',exact:true}).click();
   await expect(page.locator('.notice')).toContainText('Saved as a new transcript version');
   await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
-  await expect(page.locator('.fact-card')).toHaveCount(5);
+  await expect(page.locator('.fact-card')).toHaveCount(6);
   const cards=page.locator('.fact-card');
-  for(let index=0;index<5;index++){
+  for(let index=0;index<6;index++){
     const card=cards.nth(index);
     await card.getByRole('combobox',{name:'Subject',exact:true}).selectOption('patient');
-    await card.getByRole('combobox',{name:'Assertion',exact:true}).selectOption(index===3?'negated':'affirmed');
-    await card.getByRole('combobox',{name:'Temporality',exact:true}).selectOption(index===2||index===4?'planned':'current');
-    if(index===2||index===4)await card.getByRole('combobox',{name:'SOAP section',exact:true}).selectOption('plan');
-    if(index===1)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('medication');
-    if(index===3)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('allergy');
+    await card.getByRole('combobox',{name:'Assertion',exact:true}).selectOption(index===1||index===4?'negated':'affirmed');
+    await card.getByRole('combobox',{name:'Temporality',exact:true}).selectOption(index===3||index===5?'planned':'current');
+    if(index===3||index===5)await card.getByRole('combobox',{name:'SOAP section',exact:true}).selectOption('plan');
+    if(index===2)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('medication');
+    if(index===4)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('allergy');
     await card.getByLabel('Content and attribution reviewed').check();
     await card.getByLabel('Critical details checked').check();
   }
   await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
   await expect(page.getByText('Ambiguous statement',{exact:true})).toBeVisible();
+  await expect(page.getByRole('region',{name:'critical verification issues'})).toBeVisible();
+  await page.getByRole('button',{name:'Review statement and source',exact:true}).first().click();
+  expect(await page.evaluate(()=>document.activeElement?.id.startsWith('fact-'))).toBe(true);
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeDisabled();
-  await cards.nth(1).getByLabel('Note statement').fill('Patient takes metformin 500 mg.');
-  await cards.nth(1).getByLabel('Clinical clarification / exclusion reason').fill('Synthetic clinician correction: the medication label was independently checked to confirm 500 mg.');
-  await expect(cards.nth(1).getByLabel('Content and attribution reviewed')).not.toBeChecked();
-  await cards.nth(1).getByLabel('Content and attribution reviewed').check();
-  await cards.nth(1).getByLabel('Critical details checked').check();
+  await cards.nth(2).getByLabel('Note statement').fill('Patient takes metformin 500 mg.');
+  await cards.nth(2).getByLabel('Clinical clarification / exclusion reason').fill('Synthetic clinician correction: the medication label was independently checked to confirm 500 mg.');
+  await expect(cards.nth(2).getByLabel('Content and attribution reviewed')).not.toBeChecked();
+  await cards.nth(2).getByLabel('Content and attribution reviewed').check();
+  await cards.nth(2).getByLabel('Critical details checked').check();
   await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Ready for your final review'})).toBeVisible();
   await page.getByLabel('I rechecked the patient identifiers and the exact saved note.').check();
@@ -64,6 +67,19 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   await page.screenshot({path:resolve(dir,'mobile-source.png'),fullPage:true});
+  await page.getByLabel('Transcript segment 1').fill('The corrected synthetic source now reports headache.');
+  await page.getByLabel('Correction reason').fill('Synthetic test source edit after approval; preserve the original approved version.');
+  await page.getByRole('button',{name:'Save source review',exact:true}).click();
+  await expect(page.locator('.status-badge')).toHaveText('Source changed');
+  await page.getByRole('button',{name:'Facts & SOAP note',exact:false}).click();
+  const context=page.getByRole('region',{name:'Source alongside note'});
+  await expect(context).toContainText('Historical source bound to this saved note');
+  await expect(context).toContainText('I have had a cough for three days');
+  await expect(context).not.toContainText('corrected synthetic source now reports headache');
+  await page.getByRole('button',{name:'▷ Evidence',exact:true}).first().click();
+  await expect(page.locator('.citation-selected')).toHaveCount(1);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await page.screenshot({path:resolve(dir,'historical-citation-mobile.png'),fullPage:true});
   expect(failures).toEqual([]);
 });
 

@@ -1,5 +1,5 @@
 type Finding={finding_id:string;code:string;message:string;severity:string;fact_id:string|null};
-const title=(value:string)=>value.replaceAll('_',' ');
+const title=(value:string)=>value.replaceAll('_',' ').replace(/^./,char=>char.toUpperCase());
 export function VerificationWarnings({findings,review}:{findings:Finding[];review:(id:string|null)=>void}){
  const groups=['critical','major','minor','info'];
  const group=(severity:string)=>groups.includes(severity)?severity:severity==='warning'?'minor':'major';

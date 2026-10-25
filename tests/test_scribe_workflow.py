@@ -98,3 +98,27 @@ def test_proposal_baseline_source_edit_and_stale_approval(setup):
     saved=client.get(f"/v1/encounters/{eid}/draft-proposals/{proposal.json()['id']}",headers=headers()).json()
     assert saved['stale'] is True
     assert saved['draft']==proposal.json()['draft']
+
+
+def test_speaker_role_scoring_keeps_wrong_roles_and_missing_boundaries():
+    from services.speaker_comparison import role_metrics
+    ref=[{'start_ms':0,'end_ms':1000,'role':'patient'}]
+    hyp=[{'start_ms':0,'end_ms':1000,'speaker_id':'channel_0'}]
+    result=role_metrics(ref,hyp,{'channel_0':'clinician'})['patient']
+    assert result['recall']==0 and result['missed_ms']==1000
+    assert result['boundaries']['missed']==2
+
+
+def test_boundary_matching_is_one_to_one_and_tolerance_bounded():
+    from services.speaker_comparison import boundaries
+    result=boundaries([0,1000],[100,120,1300])
+    assert result['matched']==1 and result['missed']==1 and result['extra']==2
+
+
+def test_reserved_cohort_leakage_is_rejected_before_network(tmp_path):
+    import json
+    from services.acceptance_audit import audit
+    evaluation=tmp_path/'evaluation';(evaluation/'datasets'/'dev').mkdir(parents=True)
+    (evaluation/'acceptance-reservation-v1.json').write_text(json.dumps({'reserved_groups':['held_out']}))
+    (evaluation/'datasets'/'dev'/'manifest.json').write_text(json.dumps({'cases':[{'group_id':'held_out'}]}))
+    with pytest.raises(ValueError,match='leakage'):audit(tmp_path,tmp_path/'out.json',fetch=False)
