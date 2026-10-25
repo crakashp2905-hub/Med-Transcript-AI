@@ -62,6 +62,34 @@ def enqueue(env):
                            body=body, route=route, job=queued.json())
 
 
+def test_optional_diarization_worker_and_versioned_clinician_roles(environment, tmp_path, monkeypatch):
+    import services.diarization
+    env=environment
+    queued=enqueue(env)
+    manifest=tmp_path/'diarization.json'
+    manifest.write_text('{}',encoding='utf-8')
+    def fake(audio, profile, checkpoint):
+        checkpoint()
+        return {'segments':[{'start_ms':0,'end_ms':100,'speaker_id':'speaker_0','role':'unknown','role_status':'unconfirmed'}],
+                'role_assignment':'clinician_confirmation_required','clinical_validation':'not_validated'}
+    monkeypatch.setattr(services.diarization,'diarize',fake)
+    assert transcribe_once(env.path,env.assets,SyntheticAdapter,diarization_manifest=manifest)['status']=='succeeded'
+    workspace=env.client.get(f'/v1/encounters/{queued.resource}/workspace',headers=headers()).json()
+    tx=workspace['transcript']
+    assert tx['segments'][0]['speaker_id']=='speaker_0'
+    assert tx['segments'][0]['role']=='unknown'
+    route=f"/v1/encounters/{queued.resource}/transcripts/{tx['id']}/speaker-roles"
+    body={'clinician_confirmed':True,'assignments':{'speaker_0':'patient'}}
+    assert env.client.post(route,headers={**headers(),'If-Match':'"wrong"'},json=body).status_code==412
+    assert env.client.post(route,headers={**headers(),'If-Match':f'"{tx["sha256"]}"'},json={**body,'clinician_confirmed':False}).status_code==422
+    response=env.client.post(route,headers={**headers(),'If-Match':f'"{tx["sha256"]}"'},json=body)
+    assert response.status_code==201,response.text
+    assert response.json()['segments'][0]['role']=='patient'
+    assert response.json()['id']!=tx['id']
+    assert response.json()['parent_version_id']==tx['id']
+    assert env.client.post(route,headers={**headers(),'If-Match':f'"{tx["sha256"]}"'},json=body).status_code==412
+
+
 def test_transcription_end_to_end_preserves_provenance_and_immutable_hash(environment):
     env = environment
     queued = enqueue(env)

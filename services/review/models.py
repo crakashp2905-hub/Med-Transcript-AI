@@ -82,6 +82,11 @@ class SegmentEdit(Strict):
     role: Literal["patient", "clinician", "caregiver", "unknown"] = "unknown"
 
 
+class SpeakerRoleConfirmation(Strict):
+    clinician_confirmed: Literal[True]
+    assignments: dict[str, Literal['patient', 'clinician', 'caregiver', 'unknown']] = Field(min_length=1, max_length=100)
+
+
 class ReviewAttestation(Strict):
     english_confirmed: bool = False
     source_completeness_reviewed: bool = False

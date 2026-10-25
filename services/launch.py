@@ -20,6 +20,26 @@ from services.asr.profiles import load_profiles
 from services.demo_fixture import create_fixture
 
 
+def configure_local_features(local_drafting=False, public_diarization=False):
+    if local_drafting:
+        with urllib.request.urlopen('http://127.0.0.1:11434/api/tags',timeout=10) as response:
+            models=json.load(response)['models']
+        expected='65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b'
+        if not any(m['name']=='qwen2.5:1.5b' and m['digest']==expected for m in models):
+            raise ValueError('Provision the screened local Qwen digest before enabling drafting')
+        os.environ.update(MED_TRANSCRIPT_DRAFTING_MODE='local',MED_TRANSCRIPT_LLM_ENABLED='1',
+            MED_TRANSCRIPT_LLM_ENDPOINT='http://127.0.0.1:11434/v1/chat/completions',
+            MED_TRANSCRIPT_LLM_MODEL='qwen2.5:1.5b',MED_TRANSCRIPT_LLM_STRUCTURED_SCHEMA='1',
+            MED_TRANSCRIPT_LLM_TIMEOUT_SECONDS='60',MED_TRANSCRIPT_LLM_MAX_TOKENS='1024')
+    if public_diarization:
+        runtime=Path('data/diarization-runtime').resolve()
+        manifest=Path('data/models/public-diarization-v1/manifest.json').resolve()
+        if not manifest.is_file() or not (runtime/'sherpa_onnx').is_dir():
+            raise ValueError('Provision the public diarization runtime and artifacts first')
+        os.environ['MED_TRANSCRIPT_DIARIZATION_MANIFEST']=str(manifest)
+        os.environ['PYTHONPATH']=str(runtime)+(os.pathsep+os.environ['PYTHONPATH'] if os.environ.get('PYTHONPATH') else '')
+
+
 def main():
     parser = argparse.ArgumentParser(description="Start the synthetic clinician workspace on loopback")
     parser.add_argument("--port", type=int, default=8000)
@@ -27,7 +47,10 @@ def main():
     parser.add_argument("--no-worker", action="store_true")
     parser.add_argument("--demo", action="store_true")
     parser.add_argument("--open", action="store_true", help="Open the browser once the workspace is serving")
+    parser.add_argument('--local-drafting',action='store_true',help='Enable screened local Qwen proposals, never automatic note approval')
+    parser.add_argument('--public-diarization',action='store_true',help='Enable experimental public VAD/embedding speaker clustering')
     args = parser.parse_args()
+    configure_local_features(args.local_drafting,args.public_diarization)
     root = Path("data")
     root.mkdir(exist_ok=True)
     config_path = root / "local-config.json"

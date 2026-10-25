@@ -1,4 +1,4 @@
-param([switch]$WithAsr, [switch]$WithPostgres, [int]$Port=8000, [switch]$NoBrowser)
+param([switch]$WithAsr, [switch]$WithPostgres, [int]$Port=8000, [switch]$NoBrowser, [switch]$LocalDrafting, [switch]$PublicDiarization)
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path -Parent $PSScriptRoot
 Push-Location -LiteralPath $repo
@@ -10,6 +10,7 @@ try {
         $existingWorkspace = $health.status -eq 'ok'
     } catch { }
     if ($existingWorkspace) {
+        if ($LocalDrafting -or $PublicDiarization) { throw 'A workspace is already running on this port. Stop it or choose another port to enable these inference options.' }
         Write-Host "Workspace already running: $workspaceUrl"
         if (Test-Path -LiteralPath 'data/local-config.json') {
             Write-Host ('Local access key: ' + ((Get-Content -Raw 'data/local-config.json' | ConvertFrom-Json).access_key))
@@ -35,6 +36,8 @@ try {
         if ($LASTEXITCODE -ne 0) { throw 'Frontend build failed.' }
     } finally { Pop-Location }
     $launchArgs = @('-m', 'services.launch', '--demo', '--port', "$Port")
+    if ($LocalDrafting) { $launchArgs += '--local-drafting' }
+    if ($PublicDiarization) { $launchArgs += '--public-diarization' }
     if (-not $NoBrowser) { $launchArgs += '--open' }
     & ./.venv/Scripts/python.exe @launchArgs
 } finally { Pop-Location }

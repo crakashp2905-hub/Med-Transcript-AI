@@ -14,6 +14,8 @@ tiny English model passed a synthetic smoke test; expanded public mock benchmark
 
 The [2026-10-25 delivery status](docs/delivery-status-2026-10-25.md) covers full-length consultation cases, clinical metrics, drafting adapters, evidence-linked facts, independent verification rules, review telemetry and pilot requirements, with explicit account/model/clinical dependencies. These additions remain development features; no candidate has met the 5% ASR gate.
 
+The [local dependency follow-up](docs/local-dependencies-2026-10-25.md) records real Qwen drafting tests, provisioned public diarization models, worker/UI integration and measured limitations. Start local model proposals with `scripts/start.ps1 -WithAsr -LocalDrafting -Port 8002`; experimental speaker clustering is separately opt-in with `-PublicDiarization`.
+
 ## Measured ASR ranking
 
 The [expanded ranking and playable recordings](evaluation/expanded-leaderboard.html) now includes **all seven local configurations on 118 clips from 20 consultations, 2,264 reference words**. **Omi GGUF Q8 leads at 8.70% normalized WER; none meets the required ≤5%.** All final runs processed all clips successfully. [Grouped results](evaluation/reports/expanded-comparison-2026-10-24.md) include recording-day, consultation and speaker-role breakdowns. Seven gated, resource-blocked or user-disabled hosted configurations remain visible and unranked.

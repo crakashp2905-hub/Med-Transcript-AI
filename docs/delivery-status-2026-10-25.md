@@ -1,5 +1,7 @@
 # Requested work: delivery and dependencies
 
+Follow-up: see [provisioned local dependencies](local-dependencies-2026-10-25.md). Local Qwen has now been tested and integrated into optional model proposals; public-model diarization has been provisioned, benchmarked and connected to the worker and role-confirmation UI. Its measured accuracy remains poor. Institution/clinical-owner approval and real clinician studies were explicitly skipped by the user; paid calls remain prohibited. The table below records the original delivery state before that follow-up.
+
 | Request | Delivered | Remaining dependency / limit |
 |---|---|---|
 | P0 CI | Investigated exact account billing failure; constrained Python installs, patched pip advisories, added dependency automation/audit and separate manual model lane | New main run 40206920869 passed all five jobs, including PostgreSQL and container; prior billing restriction did not recur |

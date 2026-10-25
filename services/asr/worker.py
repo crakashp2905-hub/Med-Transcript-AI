@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import os
 import sqlite3
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -57,7 +58,7 @@ class Lease:
                         ((stamp + timedelta(seconds=LEASE_SECONDS)).isoformat(), stamp.isoformat(), self.job_id))
 
 
-def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter):
+def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarization_manifest=None):
     store = Store(db_path)
     stamp, token = datetime.now(timezone.utc), str(uuid4())
     with store.transaction() as con:
@@ -83,7 +84,7 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter):
         upload = con.execute("SELECT * FROM uploads WHERE id=?", (job["upload"],)).fetchone()
         profile_body = con.execute("SELECT body FROM asr_profiles WHERE sha256=?", (job["profile_sha256"],)).fetchone()[0]
 
-    raw, metadata, profile, error = None, None, None, None
+    raw, metadata, profile, error, speaker_report = None, None, None, None, None
     with Lease(store, job["id"], token, job["encounter"]) as lease:
         try:
             profile = ASRProfile.model_validate_json(profile_body)
@@ -108,6 +109,10 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter):
                 raise ASRFailure("unsupported_asr_input")
             lease.checkpoint()
             raw = adapter_factory(profile).transcribe(source, metadata, lease.checkpoint)
+            manifest_path = diarization_manifest or os.environ.get('MED_TRANSCRIPT_DIARIZATION_MANIFEST')
+            if manifest_path:
+                from services.diarization import diarize
+                speaker_report = diarize(source, json.loads(Path(manifest_path).read_text(encoding='utf-8')), lease.checkpoint)
             lease.checkpoint()
         except ASRFailure as exc:
             error = exc.code
@@ -137,6 +142,9 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter):
                 transcript_id = str(uuid4())
                 try:
                     body = build_transcript(raw, metadata, job["encounter"], job["upload"], profile, transcript_id, version)
+                    if speaker_report is not None:
+                        from services.diarization import attach_speakers
+                        body = attach_speakers(body, speaker_report)
                     digest = content_sha256(body)
                     con.execute("INSERT INTO transcript_versions VALUES (?,?,?,?,?,?,?,?)",
                         (transcript_id, job["encounter"], job["upload"], job["id"], version,

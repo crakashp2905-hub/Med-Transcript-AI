@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse, JSONResponse, Response
 from services.asr.profiles import canonical_json, content_sha256
 from services.review.engine import findings_for, propose_facts, render_export, render_sections, validate_evidence
 from services.review.models import (AmendmentInput, ApprovalInput, DraftInput, ExportInput, ManualTranscript,
-                                    NoteEdit, ResolutionInput, TranscriptEdit)
+                                    NoteEdit, ResolutionInput, TranscriptEdit, SpeakerRoleConfirmation)
 
 
 def register_review_routes(app, database, identity, encounter, audit, require_processing, assets, profiles):
@@ -278,6 +278,34 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
                                language_status="supported" if body.english_confirmed else "uncertain")
             tx["review"] = body.model_dump(include={"english_confirmed", "source_completeness_reviewed", "source_review_reason", "correction_reason"})
             return store_tx(con, eid, tr["upload"], tx, actor, str(tid))
+
+    @app.post('/v1/encounters/{eid}/transcripts/{tid}/speaker-roles', status_code=201)
+    def speaker_roles(eid: UUID, tid: UUID, body: SpeakerRoleConfirmation, if_match: str = Header(alias='If-Match'), actor=Depends(identity)):
+        from services.diarization import confirm_roles
+        with database() as con:
+            row=current(con,eid,actor)
+            require_processing(con,eid)
+            tr,tx=get_tx(con,eid,tid)
+            if_current(row,'current_transcript',tid,tr['sha256'],if_match)
+            report=tx.get('diarization')
+            if not report:
+                raise HTTPException(409,'diarization_required')
+            identified=[s for s in report['segments'] if s.get('speaker_id') is not None]
+            try:
+                confirmed=confirm_roles(identified,body.assignments,clinician_confirmed=body.clinician_confirmed)
+            except ValueError:
+                raise HTTPException(422,'all_speaker_clusters_require_explicit_roles') from None
+            by_interval={(s['start_ms'],s['end_ms'],s['speaker_id']):s for s in confirmed}
+            report['segments']=[by_interval.get((s['start_ms'],s['end_ms'],s.get('speaker_id')),s) for s in report['segments']]
+            report['role_assignment']='clinician_confirmed'
+            report['role_confirmed_by']=str(actor.clinician_id)
+            report['role_confirmed_at']=stamp()
+            for s in tx['segments']:
+                if s.get('speaker_id') in body.assignments:
+                    s['role']=body.assignments[s['speaker_id']]
+                    s['role_status']='human_confirmed'
+                    s['uncertainties']=[u for u in s['uncertainties'] if u!='speaker_unassigned']
+            return store_tx(con,eid,tr['upload'],tx,actor,str(tid))
 
     @app.get("/v1/encounters/{eid}/facts")
     def facts(eid: UUID, actor=Depends(identity)):

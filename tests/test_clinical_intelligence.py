@@ -68,6 +68,23 @@ def test_diarization_never_assigns_roles_without_explicit_confirmation():
     assert confirm_roles(rows,{'s1':'patient'},clinician_confirmed=True)[0]['role']=='patient'
 
 
+def test_diarization_scoring_counts_misses_false_alarms_and_confusion():
+    from services.diarization_evaluation import score_turns
+    reference=[{'start_ms':0,'end_ms':1000,'role':'patient'}, {'start_ms':1000,'end_ms':2000,'role':'clinician'}]
+    predicted=[{'start_ms':0,'end_ms':1000,'speaker_id':'a'},{'start_ms':1000,'end_ms':2000,'speaker_id':'b'}]
+    assert score_turns(reference,predicted)['diarization_error_rate']==0
+    assert score_turns(reference,[])['diarization_error_rate']==1
+    predicted[1]['speaker_id']='a'
+    assert score_turns(reference,predicted)['confused_speaker_ms']==1000
+
+
+def test_speaker_projection_keeps_boundary_crossings_unknown():
+    from services.diarization import attach_speakers
+    tx={'segments':[{'start_ms':0,'end_ms':1000,'speaker_id':None,'uncertainties':[]}],'review_flags':[]}
+    report={'segments':[{'start_ms':0,'end_ms':900,'speaker_id':'a'},{'start_ms':900,'end_ms':1000,'speaker_id':'b'}]}
+    assert attach_speakers(tx,report)['segments'][0]['speaker_id'] is None
+
+
 def test_measured_review_and_latency_do_not_fabricate_cost_or_active_time():
     result=correction('5 mg','50 mg',1000,500)
     assert result['word_edits']==1 and not result['active_time_verified']

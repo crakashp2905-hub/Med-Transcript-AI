@@ -1,5 +1,7 @@
 # Drafting adapters and diarization
 
+Current provisioning and launch instructions: [local dependency follow-up](../local-dependencies-2026-10-25.md). This now includes real local Qwen tests and an optional public VAD/embedding diarization baseline connected to the worker and role-confirmation UI. The gated segmentation adapter described below remains unprovisioned. Public baseline accuracy is insufficient for clinical admission.
+
 Drafting defaults to the deterministic local provider. `POST /v1/encounters/{id}/draft-proposals` accepts the current transcript version and reviewed typed facts. Results are immutable proposals in a separate table, with provenance and source fact snapshots; they never become approvable notes automatically. Retrieve a proposal with the corresponding GET route. Model statements cite known reviewed fact IDs, obey a bounded JSON schema and undergo independent critical-field checks. Omissions and paraphrases remain review findings. Clinician approval/export continues through the existing note workflow.
 
 For a provisioned OpenAI-compatible local text server, configure environment variables before starting the API:
@@ -11,7 +13,7 @@ MED_TRANSCRIPT_LLM_ENDPOINT=http://127.0.0.1:PORT/v1/chat/completions
 MED_TRANSCRIPT_LLM_MODEL=YOUR_PROVISIONED_MODEL
 ```
 
-Local endpoints must resolve entirely to loopback. No local LLM has been downloaded or clinically qualified by this change. The HTTP adapter is covered by a local fake-server integration test, not a real model quality result. Disabled adapters fail explicitly; failures never silently become a generated note.
+Local endpoints must use localhost or a literal loopback IP and resolve entirely to loopback; proxy forwarding is disabled. Existing local Qwen models were tested in the follow-up; neither is clinically qualified. Disabled adapters fail explicitly; failures never silently become a generated note.
 
 Hosted configuration additionally requires mode `hosted`, an exact HTTPS public-host allowlist in `MED_TRANSCRIPT_LLM_ALLOWED_HOSTS`, an environment-only `MED_TRANSCRIPT_LLM_API_KEY`, enabled flag and `MED_TRANSCRIPT_LLM_BILLING_CAP_CONFIRMED=1`. That last flag confirms a separately configured provider-side spending cap; it does not implement a dollar meter. The encounter must be `hybrid_text`, have an active `hosted_text_processing` authorization scope, and each proposal request must explicitly accept hosted disclosure. Fully local encounters cannot send text to hosted drafting. The application remains synthetic-only. **No paid calls are authorized or made.** Account setup, provider terms, privacy approval and any future paid evaluation require the user.
 

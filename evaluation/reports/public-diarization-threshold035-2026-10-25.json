@@ -1,0 +1,5323 @@
+{
+  "dataset_id": "primock57-full-development-v1",
+  "data_class": "approved_public_mock",
+  "model": {
+    "engine": "vad_embeddings_v1",
+    "enabled": true,
+    "license_approved": true,
+    "scope": "public_mock_development_only",
+    "runtime_version": "2.0.0",
+    "clustering_threshold": 0.35,
+    "window_seconds": 1.5,
+    "attribution": "Silero Team, Silero VAD; WeSpeaker team, English VoxCeleb ResNet34 LM; ONNX exports distributed by k2-fsa/sherpa-onnx.",
+    "weight_license_evidence": "https://github.com/wenet-e2e/wespeaker/blob/master/docs/pretrained.md",
+    "vad": {
+      "path": "D:\\Med-Transcript\\data\\models\\public-diarization-v1\\silero_vad.onnx",
+      "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+      "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad.onnx",
+      "license": "MIT"
+    },
+    "embedding": {
+      "path": "D:\\Med-Transcript\\data\\models\\public-diarization-v1\\wespeaker_en_voxceleb_resnet34_LM.onnx",
+      "sha256": "e9848563da86f263117134dfd7ad63c92355b37de492b55e325400c9d9c39012",
+      "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models/wespeaker_en_voxceleb_resnet34_LM.onnx",
+      "license": "CC-BY-4.0"
+    }
+  },
+  "clinical_acceptance": false,
+  "cases": [
+    {
+      "id": "day1_consultation11",
+      "failed": false,
+      "duration_ms": 803280.0,
+      "metrics": {
+        "reference_speaker_ms": 821255,
+        "missed_speaker_ms": 209923,
+        "false_alarm_speaker_ms": 4,
+        "confused_speaker_ms": 206126,
+        "diarization_error_rate": 0.5066063524727399,
+        "collar_ms": 0,
+        "overlap_scored": true,
+        "optimal_scoring_mapping": {
+          "__missing_0": "doctor",
+          "speaker_0": "patient"
+        },
+        "predicted_clusters": 1,
+        "reference_speakers": 2,
+        "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+        "scoring_mapping_is_not_clinician_role_confirmation": true
+      },
+      "result": {
+        "segments": [
+          {
+            "start_ms": 2342,
+            "end_ms": 2758,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 4006,
+            "end_ms": 4518,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 5254,
+            "end_ms": 5734,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 6310,
+            "end_ms": 7174,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 7718,
+            "end_ms": 10718,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 10718,
+            "end_ms": 10918,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 11590,
+            "end_ms": 12102,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 12998,
+            "end_ms": 14342,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 14982,
+            "end_ms": 19046,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 20070,
+            "end_ms": 23782,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 25382,
+            "end_ms": 26118,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 26854,
+            "end_ms": 29854,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 29854,
+            "end_ms": 29862,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 30598,
+            "end_ms": 32070,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 32390,
+            "end_ms": 34886,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 35750,
+            "end_ms": 41750,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 41750,
+            "end_ms": 42086,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 42726,
+            "end_ms": 44806,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 45254,
+            "end_ms": 47462,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 47814,
+            "end_ms": 49094,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 49478,
+            "end_ms": 51398,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 52038,
+            "end_ms": 57542,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 57862,
+            "end_ms": 60198,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 60870,
+            "end_ms": 63206,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 63462,
+            "end_ms": 64198,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 64550,
+            "end_ms": 67174,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 67910,
+            "end_ms": 72166,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 72710,
+            "end_ms": 73094,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 73414,
+            "end_ms": 75462,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 75878,
+            "end_ms": 77798,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 78054,
+            "end_ms": 80774,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 81350,
+            "end_ms": 85318,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 86214,
+            "end_ms": 86854,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 87110,
+            "end_ms": 90110,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 90110,
+            "end_ms": 90246,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 90566,
+            "end_ms": 92486,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 92710,
+            "end_ms": 93222,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 93446,
+            "end_ms": 96998,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 98214,
+            "end_ms": 100742,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 102086,
+            "end_ms": 104742,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 105030,
+            "end_ms": 107462,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 107878,
+            "end_ms": 108358,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 108742,
+            "end_ms": 110694,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 111302,
+            "end_ms": 113318,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 113990,
+            "end_ms": 116966,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 117414,
+            "end_ms": 119974,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 120230,
+            "end_ms": 120966,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 121670,
+            "end_ms": 123910,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 124134,
+            "end_ms": 127134,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 127134,
+            "end_ms": 127398,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 128294,
+            "end_ms": 128934,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 130374,
+            "end_ms": 131142,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 131814,
+            "end_ms": 137286,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 137990,
+            "end_ms": 143990,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 143990,
+            "end_ms": 144166,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 145062,
+            "end_ms": 149562,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 149562,
+            "end_ms": 149894,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 150214,
+            "end_ms": 152358,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 152774,
+            "end_ms": 154918,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 155206,
+            "end_ms": 156134,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 156486,
+            "end_ms": 158822,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 159494,
+            "end_ms": 160994,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 160994,
+            "end_ms": 161030,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 161446,
+            "end_ms": 162630,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 163078,
+            "end_ms": 164578,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 164578,
+            "end_ms": 164838,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 165222,
+            "end_ms": 166722,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 166722,
+            "end_ms": 166918,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 167142,
+            "end_ms": 171238,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 172102,
+            "end_ms": 172678,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 172998,
+            "end_ms": 174498,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 174498,
+            "end_ms": 174790,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 175046,
+            "end_ms": 182214,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 183110,
+            "end_ms": 185894,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 186406,
+            "end_ms": 186822,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 187206,
+            "end_ms": 190206,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 190206,
+            "end_ms": 190470,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 190790,
+            "end_ms": 191942,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 193478,
+            "end_ms": 194310,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 195654,
+            "end_ms": 196262,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 201702,
+            "end_ms": 202630,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 203942,
+            "end_ms": 208442,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 208442,
+            "end_ms": 208710,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 209382,
+            "end_ms": 213882,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 213882,
+            "end_ms": 214278,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 214566,
+            "end_ms": 220966,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 221606,
+            "end_ms": 222790,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 223046,
+            "end_ms": 225478,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 225958,
+            "end_ms": 228422,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 228774,
+            "end_ms": 231774,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 231774,
+            "end_ms": 232038,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 232614,
+            "end_ms": 234086,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 234950,
+            "end_ms": 237950,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 237950,
+            "end_ms": 238086,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 239686,
+            "end_ms": 240230,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 240518,
+            "end_ms": 244166,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 245734,
+            "end_ms": 251206,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 251622,
+            "end_ms": 261990,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 262630,
+            "end_ms": 265286,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 266022,
+            "end_ms": 269022,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 269022,
+            "end_ms": 269158,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 269862,
+            "end_ms": 270214,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 270950,
+            "end_ms": 275450,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 275450,
+            "end_ms": 275526,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 275782,
+            "end_ms": 281510,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 282182,
+            "end_ms": 285182,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 285182,
+            "end_ms": 285222,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 285606,
+            "end_ms": 286054,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 286598,
+            "end_ms": 288838,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 289094,
+            "end_ms": 290594,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 290594,
+            "end_ms": 290854,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 291366,
+            "end_ms": 294366,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 294366,
+            "end_ms": 294662,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 295014,
+            "end_ms": 296038,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 296294,
+            "end_ms": 296710,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 297254,
+            "end_ms": 298054,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 298726,
+            "end_ms": 304726,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 304726,
+            "end_ms": 305094,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 306438,
+            "end_ms": 307494,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 307814,
+            "end_ms": 312314,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 312314,
+            "end_ms": 312326,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 312614,
+            "end_ms": 313478,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 313830,
+            "end_ms": 314726,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 314950,
+            "end_ms": 318662,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 318950,
+            "end_ms": 320450,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 320450,
+            "end_ms": 320550,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 320806,
+            "end_ms": 326534,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 327590,
+            "end_ms": 329734,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 330278,
+            "end_ms": 333190,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 333798,
+            "end_ms": 337734,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 338182,
+            "end_ms": 338822,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 340678,
+            "end_ms": 341190,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 341510,
+            "end_ms": 343010,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 343010,
+            "end_ms": 343014,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 343622,
+            "end_ms": 351814,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 352646,
+            "end_ms": 353094,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 355014,
+            "end_ms": 355558,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 355910,
+            "end_ms": 363366,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 364038,
+            "end_ms": 371174,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 371558,
+            "end_ms": 372070,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 372774,
+            "end_ms": 375774,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 375774,
+            "end_ms": 375814,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 376038,
+            "end_ms": 379038,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 379038,
+            "end_ms": 379430,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 379942,
+            "end_ms": 381190,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 382246,
+            "end_ms": 383334,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 384006,
+            "end_ms": 385506,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 385506,
+            "end_ms": 385766,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 386086,
+            "end_ms": 388166,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 389254,
+            "end_ms": 390662,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 391686,
+            "end_ms": 392934,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 394342,
+            "end_ms": 395842,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 395842,
+            "end_ms": 396070,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 396294,
+            "end_ms": 396966,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 397766,
+            "end_ms": 403718,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 403974,
+            "end_ms": 406950,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 408166,
+            "end_ms": 408710,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 409030,
+            "end_ms": 409798,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 410150,
+            "end_ms": 410726,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 411942,
+            "end_ms": 413442,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 413442,
+            "end_ms": 413766,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 414150,
+            "end_ms": 415238,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 415558,
+            "end_ms": 416038,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 416710,
+            "end_ms": 418150,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 418822,
+            "end_ms": 419910,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 422438,
+            "end_ms": 423590,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 424134,
+            "end_ms": 425634,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 425634,
+            "end_ms": 425734,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 425990,
+            "end_ms": 426534,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 426854,
+            "end_ms": 427878,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 428710,
+            "end_ms": 429510,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 429734,
+            "end_ms": 430886,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 431110,
+            "end_ms": 433126,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 434918,
+            "end_ms": 436070,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 437478,
+            "end_ms": 438150,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 440006,
+            "end_ms": 441506,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 441506,
+            "end_ms": 441702,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 441990,
+            "end_ms": 452490,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 452490,
+            "end_ms": 452646,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 453862,
+            "end_ms": 456862,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 456862,
+            "end_ms": 456902,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 457190,
+            "end_ms": 457606,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 458150,
+            "end_ms": 461638,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 462534,
+            "end_ms": 463302,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 463622,
+            "end_ms": 464902,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 465478,
+            "end_ms": 471174,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 472038,
+            "end_ms": 479942,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 481190,
+            "end_ms": 483814,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 484422,
+            "end_ms": 487422,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 487422,
+            "end_ms": 487814,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 488518,
+            "end_ms": 490886,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 491110,
+            "end_ms": 492610,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 492610,
+            "end_ms": 492678,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 492902,
+            "end_ms": 495782,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 496166,
+            "end_ms": 500198,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 500422,
+            "end_ms": 504166,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 504998,
+            "end_ms": 506214,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 506982,
+            "end_ms": 507430,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 508038,
+            "end_ms": 512538,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 512538,
+            "end_ms": 512902,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 514150,
+            "end_ms": 514790,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 515238,
+            "end_ms": 519738,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 519738,
+            "end_ms": 520070,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 520422,
+            "end_ms": 526022,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 527558,
+            "end_ms": 528390,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 529094,
+            "end_ms": 534278,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 536550,
+            "end_ms": 538050,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 538050,
+            "end_ms": 538246,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 539398,
+            "end_ms": 539878,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 540422,
+            "end_ms": 544922,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 544922,
+            "end_ms": 545190,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 545670,
+            "end_ms": 546854,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 547366,
+            "end_ms": 548710,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 549606,
+            "end_ms": 550502,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 551238,
+            "end_ms": 551878,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 552294,
+            "end_ms": 552838,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 553094,
+            "end_ms": 554594,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 554594,
+            "end_ms": 554694,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 554950,
+            "end_ms": 555462,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 555910,
+            "end_ms": 558342,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 558982,
+            "end_ms": 559622,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 560998,
+            "end_ms": 561510,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 561798,
+            "end_ms": 564006,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 564678,
+            "end_ms": 567366,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 567590,
+            "end_ms": 568518,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 569414,
+            "end_ms": 572390,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 572806,
+            "end_ms": 574054,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 574982,
+            "end_ms": 577158,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 578118,
+            "end_ms": 578502,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 578950,
+            "end_ms": 579686,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 579910,
+            "end_ms": 584410,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 584410,
+            "end_ms": 584550,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 585062,
+            "end_ms": 588062,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 588062,
+            "end_ms": 588422,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 588966,
+            "end_ms": 589670,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 590022,
+            "end_ms": 592582,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 592902,
+            "end_ms": 595902,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 595902,
+            "end_ms": 596102,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 597030,
+            "end_ms": 598530,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 598530,
+            "end_ms": 598918,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 599590,
+            "end_ms": 601606,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 603206,
+            "end_ms": 609094,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 610086,
+            "end_ms": 617094,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 617510,
+            "end_ms": 619462,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 619974,
+            "end_ms": 622502,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 623302,
+            "end_ms": 624358,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 625254,
+            "end_ms": 629222,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 629446,
+            "end_ms": 629926,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 630438,
+            "end_ms": 637670,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 639302,
+            "end_ms": 640614,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 641638,
+            "end_ms": 642950,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 644230,
+            "end_ms": 648102,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 648582,
+            "end_ms": 650082,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 650082,
+            "end_ms": 650150,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 650374,
+            "end_ms": 652422,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 653062,
+            "end_ms": 653574,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 653894,
+            "end_ms": 655394,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 655394,
+            "end_ms": 655750,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 656422,
+            "end_ms": 657062,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 657958,
+            "end_ms": 659366,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 660102,
+            "end_ms": 661602,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 661602,
+            "end_ms": 661862,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 662534,
+            "end_ms": 664034,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 664034,
+            "end_ms": 664390,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 664742,
+            "end_ms": 665126,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 665958,
+            "end_ms": 668262,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 668486,
+            "end_ms": 669798,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 670278,
+            "end_ms": 671778,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 671778,
+            "end_ms": 672134,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 672966,
+            "end_ms": 673350,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 673734,
+            "end_ms": 679238,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 680102,
+            "end_ms": 681382,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 682022,
+            "end_ms": 685606,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 686406,
+            "end_ms": 689350,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 689926,
+            "end_ms": 690502,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 691174,
+            "end_ms": 695494,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 696326,
+            "end_ms": 697414,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 698182,
+            "end_ms": 700230,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 700454,
+            "end_ms": 700870,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 701510,
+            "end_ms": 705606,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 705830,
+            "end_ms": 706278,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 706502,
+            "end_ms": 709502,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 709502,
+            "end_ms": 709606,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 710086,
+            "end_ms": 717586,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 717586,
+            "end_ms": 717702,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 718406,
+            "end_ms": 722150,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 722470,
+            "end_ms": 725470,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 725470,
+            "end_ms": 725766,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 726150,
+            "end_ms": 726502,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 726886,
+            "end_ms": 730470,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 730854,
+            "end_ms": 736358,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 736934,
+            "end_ms": 742278,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 742758,
+            "end_ms": 743814,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 744326,
+            "end_ms": 745318,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 746566,
+            "end_ms": 748066,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 748066,
+            "end_ms": 748326,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 748870,
+            "end_ms": 754870,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 754870,
+            "end_ms": 754886,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 755366,
+            "end_ms": 762866,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 762866,
+            "end_ms": 763046,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 763494,
+            "end_ms": 766982,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 767494,
+            "end_ms": 771334,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 771910,
+            "end_ms": 774758,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 775366,
+            "end_ms": 782278,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 783526,
+            "end_ms": 783942,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 784614,
+            "end_ms": 787462,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 788550,
+            "end_ms": 791270,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 793382,
+            "end_ms": 793798,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 794310,
+            "end_ms": 794726,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 795398,
+            "end_ms": 797670,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 798086,
+            "end_ms": 799270,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          }
+        ],
+        "engine": "vad_embeddings_v1",
+        "runtime_version": "2.0.0",
+        "role_assignment": "clinician_confirmation_required",
+        "clinical_validation": "not_validated",
+        "overlap_detection": "unsupported",
+        "short_windows": "unknown_speaker",
+        "limitations": [
+          "Fixed windows can straddle speaker changes",
+          "No overlapping-speaker detection",
+          "Clustering threshold is a development parameter, not clinically calibrated"
+        ],
+        "artifacts": {
+          "engine": "vad_embeddings_v1",
+          "enabled": true,
+          "license_approved": true,
+          "scope": "public_mock_development_only",
+          "runtime_version": "2.0.0",
+          "clustering_threshold": 0.35,
+          "window_seconds": 1.5,
+          "attribution": "Silero Team, Silero VAD; WeSpeaker team, English VoxCeleb ResNet34 LM; ONNX exports distributed by k2-fsa/sherpa-onnx.",
+          "weight_license_evidence": "https://github.com/wenet-e2e/wespeaker/blob/master/docs/pretrained.md",
+          "vad": {
+            "path": "D:\\Med-Transcript\\data\\models\\public-diarization-v1\\silero_vad.onnx",
+            "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+            "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad.onnx",
+            "license": "MIT"
+          },
+          "embedding": {
+            "path": "D:\\Med-Transcript\\data\\models\\public-diarization-v1\\wespeaker_en_voxceleb_resnet34_LM.onnx",
+            "sha256": "e9848563da86f263117134dfd7ad63c92355b37de492b55e325400c9d9c39012",
+            "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models/wespeaker_en_voxceleb_resnet34_LM.onnx",
+            "license": "CC-BY-4.0"
+          }
+        }
+      },
+      "wall_seconds": 43.1504539999878
+    },
+    {
+      "id": "day1_consultation12",
+      "failed": false,
+      "duration_ms": 471960.0,
+      "metrics": {
+        "reference_speaker_ms": 461302,
+        "missed_speaker_ms": 110196,
+        "false_alarm_speaker_ms": 598,
+        "confused_speaker_ms": 163375,
+        "diarization_error_rate": 0.5943373321598432,
+        "collar_ms": 0,
+        "overlap_scored": true,
+        "optimal_scoring_mapping": {
+          "speaker_0": "doctor",
+          "__missing_0": "patient"
+        },
+        "predicted_clusters": 1,
+        "reference_speakers": 2,
+        "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+        "scoring_mapping_is_not_clinician_role_confirmation": true
+      },
+      "result": {
+        "segments": [
+          {
+            "start_ms": 102,
+            "end_ms": 1190,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 2566,
+            "end_ms": 3142,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 3878,
+            "end_ms": 4262,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 4966,
+            "end_ms": 6310,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 6534,
+            "end_ms": 10918,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 11654,
+            "end_ms": 12134,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 12518,
+            "end_ms": 14018,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 14018,
+            "end_ms": 14022,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 14854,
+            "end_ms": 15302,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 16486,
+            "end_ms": 16838,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 17638,
+            "end_ms": 18182,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 18790,
+            "end_ms": 19686,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 20294,
+            "end_ms": 20774,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 21478,
+            "end_ms": 22278,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 22950,
+            "end_ms": 25574,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 26182,
+            "end_ms": 32006,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 32550,
+            "end_ms": 34050,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 34050,
+            "end_ms": 34086,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 34982,
+            "end_ms": 36198,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 36422,
+            "end_ms": 40006,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 40422,
+            "end_ms": 41766,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 42246,
+            "end_ms": 45246,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 45246,
+            "end_ms": 45382,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 45958,
+            "end_ms": 50278,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 51526,
+            "end_ms": 53766,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 53990,
+            "end_ms": 54374,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 55014,
+            "end_ms": 59514,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 59514,
+            "end_ms": 59846,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 60230,
+            "end_ms": 61222,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 61446,
+            "end_ms": 62662,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 63014,
+            "end_ms": 65990,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 66662,
+            "end_ms": 73190,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 73670,
+            "end_ms": 74502,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 74854,
+            "end_ms": 76774,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 77222,
+            "end_ms": 78534,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 79078,
+            "end_ms": 79590,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 79814,
+            "end_ms": 80582,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 80934,
+            "end_ms": 89094,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 89542,
+            "end_ms": 91654,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 91878,
+            "end_ms": 93126,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 93862,
+            "end_ms": 95362,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 95362,
+            "end_ms": 95558,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 95814,
+            "end_ms": 96262,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 96518,
+            "end_ms": 101018,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 101018,
+            "end_ms": 101382,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 102438,
+            "end_ms": 104966,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 105350,
+            "end_ms": 107334,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 107846,
+            "end_ms": 108838,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 109382,
+            "end_ms": 112966,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 113830,
+            "end_ms": 116294,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 117062,
+            "end_ms": 118246,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 118822,
+            "end_ms": 121030,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 122310,
+            "end_ms": 129222,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 129894,
+            "end_ms": 133574,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 134086,
+            "end_ms": 135206,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 136006,
+            "end_ms": 136742,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 137702,
+            "end_ms": 139622,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 140806,
+            "end_ms": 146806,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 146806,
+            "end_ms": 146822,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 147430,
+            "end_ms": 147878,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 148294,
+            "end_ms": 152794,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 152794,
+            "end_ms": 153158,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 153510,
+            "end_ms": 154054,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 155398,
+            "end_ms": 156898,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 156898,
+            "end_ms": 156934,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 157798,
+            "end_ms": 160774,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 161318,
+            "end_ms": 162662,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 162886,
+            "end_ms": 165638,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 166822,
+            "end_ms": 167302,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 167622,
+            "end_ms": 168678,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 169126,
+            "end_ms": 170374,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 170694,
+            "end_ms": 174246,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 174886,
+            "end_ms": 182182,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 182534,
+            "end_ms": 185446,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 185830,
+            "end_ms": 187330,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 187330,
+            "end_ms": 187494,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 188262,
+            "end_ms": 188966,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 189574,
+            "end_ms": 190118,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 190758,
+            "end_ms": 196646,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 197990,
+            "end_ms": 198374,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 198694,
+            "end_ms": 201638,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 201958,
+            "end_ms": 203458,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 203458,
+            "end_ms": 203750,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 204134,
+            "end_ms": 205634,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 205634,
+            "end_ms": 205862,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 206182,
+            "end_ms": 207174,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 207878,
+            "end_ms": 212326,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 212742,
+            "end_ms": 213606,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 213894,
+            "end_ms": 217734,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 219686,
+            "end_ms": 220198,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 220454,
+            "end_ms": 221414,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 221766,
+            "end_ms": 222214,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 222726,
+            "end_ms": 227226,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 227226,
+            "end_ms": 227238,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 229126,
+            "end_ms": 231366,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 231750,
+            "end_ms": 233250,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 233250,
+            "end_ms": 233510,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 234054,
+            "end_ms": 234598,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 234854,
+            "end_ms": 236354,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 236354,
+            "end_ms": 236358,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 239910,
+            "end_ms": 242310,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 243206,
+            "end_ms": 247142,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 247462,
+            "end_ms": 250462,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 250462,
+            "end_ms": 250694,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 251110,
+            "end_ms": 253478,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 254566,
+            "end_ms": 256066,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 256066,
+            "end_ms": 256358,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 256678,
+            "end_ms": 258178,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 258178,
+            "end_ms": 258374,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 260134,
+            "end_ms": 261350,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 261702,
+            "end_ms": 263814,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 264838,
+            "end_ms": 266338,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 266338,
+            "end_ms": 266470,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 267494,
+            "end_ms": 268678,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 268966,
+            "end_ms": 271558,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 272198,
+            "end_ms": 274118,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 275718,
+            "end_ms": 278694,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 279782,
+            "end_ms": 281126,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 281350,
+            "end_ms": 282406,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 282886,
+            "end_ms": 285886,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 285886,
+            "end_ms": 286150,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 286470,
+            "end_ms": 288742,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 290406,
+            "end_ms": 291814,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 292614,
+            "end_ms": 293926,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 294630,
+            "end_ms": 295430,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 296038,
+            "end_ms": 296390,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 296838,
+            "end_ms": 298214,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 298854,
+            "end_ms": 300354,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 300354,
+            "end_ms": 300390,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 300614,
+            "end_ms": 304102,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 304934,
+            "end_ms": 307366,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 308230,
+            "end_ms": 308774,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 309350,
+            "end_ms": 309766,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 310566,
+            "end_ms": 311814,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 312902,
+            "end_ms": 314402,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 314402,
+            "end_ms": 314438,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 314758,
+            "end_ms": 317382,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 317798,
+            "end_ms": 318246,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 318982,
+            "end_ms": 319366,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 319910,
+            "end_ms": 321410,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 321410,
+            "end_ms": 321798,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 323238,
+            "end_ms": 324422,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 325190,
+            "end_ms": 327494,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 327750,
+            "end_ms": 329250,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 329250,
+            "end_ms": 329382,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 330534,
+            "end_ms": 330950,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 331206,
+            "end_ms": 336294,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 336838,
+            "end_ms": 338886,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 339494,
+            "end_ms": 340678,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 340902,
+            "end_ms": 342918,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 344038,
+            "end_ms": 345538,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 345538,
+            "end_ms": 345830,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 347270,
+            "end_ms": 350270,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 350270,
+            "end_ms": 350534,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 351654,
+            "end_ms": 354654,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 354654,
+            "end_ms": 355046,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 355334,
+            "end_ms": 359834,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 359834,
+            "end_ms": 359910,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 360230,
+            "end_ms": 361730,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 361730,
+            "end_ms": 361862,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 363046,
+            "end_ms": 363558,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 364134,
+            "end_ms": 369094,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 369318,
+            "end_ms": 370566,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 370950,
+            "end_ms": 371782,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 372198,
+            "end_ms": 374374,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 375686,
+            "end_ms": 377186,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 377186,
+            "end_ms": 377190,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 378310,
+            "end_ms": 381310,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 381310,
+            "end_ms": 381702,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 382726,
+            "end_ms": 388454,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 388966,
+            "end_ms": 392454,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 393638,
+            "end_ms": 396454,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 397030,
+            "end_ms": 398374,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 398758,
+            "end_ms": 402950,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 403622,
+            "end_ms": 411110,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 412038,
+            "end_ms": 415038,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 415038,
+            "end_ms": 415334,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 415782,
+            "end_ms": 416678,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 416902,
+            "end_ms": 419902,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 419902,
+            "end_ms": 420134,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 420710,
+            "end_ms": 424582,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 425158,
+            "end_ms": 430118,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 430726,
+            "end_ms": 436134,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 436870,
+            "end_ms": 437798,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 438246,
+            "end_ms": 442746,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 442746,
+            "end_ms": 442950,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 443846,
+            "end_ms": 445798,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 446758,
+            "end_ms": 448198,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 448934,
+            "end_ms": 451206,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 451750,
+            "end_ms": 455238,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 455878,
+            "end_ms": 456550,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 456774,
+            "end_ms": 460230,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 460614,
+            "end_ms": 464998,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 466214,
+            "end_ms": 467714,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 467714,
+            "end_ms": 467974,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 468294,
+            "end_ms": 468710,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 469862,
+            "end_ms": 470246,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          }
+        ],
+        "engine": "vad_embeddings_v1",
+        "runtime_version": "2.0.0",
+        "role_assignment": "clinician_confirmation_required",
+        "clinical_validation": "not_validated",
+        "overlap_detection": "unsupported",
+        "short_windows": "unknown_speaker",
+        "limitations": [
+          "Fixed windows can straddle speaker changes",
+          "No overlapping-speaker detection",
+          "Clustering threshold is a development parameter, not clinically calibrated"
+        ],
+        "artifacts": {
+          "engine": "vad_embeddings_v1",
+          "enabled": true,
+          "license_approved": true,
+          "scope": "public_mock_development_only",
+          "runtime_version": "2.0.0",
+          "clustering_threshold": 0.35,
+          "window_seconds": 1.5,
+          "attribution": "Silero Team, Silero VAD; WeSpeaker team, English VoxCeleb ResNet34 LM; ONNX exports distributed by k2-fsa/sherpa-onnx.",
+          "weight_license_evidence": "https://github.com/wenet-e2e/wespeaker/blob/master/docs/pretrained.md",
+          "vad": {
+            "path": "D:\\Med-Transcript\\data\\models\\public-diarization-v1\\silero_vad.onnx",
+            "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+            "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad.onnx",
+            "license": "MIT"
+          },
+          "embedding": {
+            "path": "D:\\Med-Transcript\\data\\models\\public-diarization-v1\\wespeaker_en_voxceleb_resnet34_LM.onnx",
+            "sha256": "e9848563da86f263117134dfd7ad63c92355b37de492b55e325400c9d9c39012",
+            "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models/wespeaker_en_voxceleb_resnet34_LM.onnx",
+            "license": "CC-BY-4.0"
+          }
+        }
+      },
+      "wall_seconds": 20.85565119999228
+    },
+    {
+      "id": "day1_consultation13",
+      "failed": false,
+      "duration_ms": 624360.0,
+      "metrics": {
+        "reference_speaker_ms": 625770,
+        "missed_speaker_ms": 154886,
+        "false_alarm_speaker_ms": 388,
+        "confused_speaker_ms": 205385,
+        "diarization_error_rate": 0.5763443437684772,
+        "collar_ms": 0,
+        "overlap_scored": true,
+        "optimal_scoring_mapping": {
+          "speaker_0": "doctor",
+          "__missing_0": "patient"
+        },
+        "predicted_clusters": 1,
+        "reference_speakers": 2,
+        "reference_status": "upstream_TextGrid_turn_labels_not_independently_adjudicated",
+        "scoring_mapping_is_not_clinician_role_confirmation": true
+      },
+      "result": {
+        "segments": [
+          {
+            "start_ms": 102,
+            "end_ms": 1222,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 3462,
+            "end_ms": 4614,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 5574,
+            "end_ms": 5926,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 6374,
+            "end_ms": 7814,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 8294,
+            "end_ms": 14022,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 15110,
+            "end_ms": 20038,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 20390,
+            "end_ms": 22566,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 23750,
+            "end_ms": 30534,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 30886,
+            "end_ms": 34694,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 34950,
+            "end_ms": 35590,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 36262,
+            "end_ms": 42150,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 44198,
+            "end_ms": 46310,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 47078,
+            "end_ms": 51578,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 51578,
+            "end_ms": 51654,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 52646,
+            "end_ms": 54146,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 54146,
+            "end_ms": 54310,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 54566,
+            "end_ms": 58150,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 59558,
+            "end_ms": 63750,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 64166,
+            "end_ms": 75910,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 76454,
+            "end_ms": 77734,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 79302,
+            "end_ms": 80710,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 81030,
+            "end_ms": 89446,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 91622,
+            "end_ms": 92710,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 92934,
+            "end_ms": 93542,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 94310,
+            "end_ms": 101446,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 101766,
+            "end_ms": 104646,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 105158,
+            "end_ms": 106658,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 106658,
+            "end_ms": 106982,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 107366,
+            "end_ms": 107782,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 108038,
+            "end_ms": 110246,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 110470,
+            "end_ms": 120166,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 120774,
+            "end_ms": 121158,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 122022,
+            "end_ms": 124262,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 125542,
+            "end_ms": 130534,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 130982,
+            "end_ms": 131718,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 132102,
+            "end_ms": 132870,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 133382,
+            "end_ms": 134726,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 135878,
+            "end_ms": 136454,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 136806,
+            "end_ms": 145350,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 146758,
+            "end_ms": 148934,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 149254,
+            "end_ms": 150754,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 150754,
+            "end_ms": 150982,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 152422,
+            "end_ms": 156582,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 156870,
+            "end_ms": 159558,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 160102,
+            "end_ms": 163718,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 164230,
+            "end_ms": 168730,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 168730,
+            "end_ms": 168774,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 168998,
+            "end_ms": 169606,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 170630,
+            "end_ms": 171142,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 171526,
+            "end_ms": 174526,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 174526,
+            "end_ms": 174534,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 176422,
+            "end_ms": 179270,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 179750,
+            "end_ms": 180710,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 181894,
+            "end_ms": 183302,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 183782,
+            "end_ms": 185282,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 185282,
+            "end_ms": 185574,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 186822,
+            "end_ms": 192582,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 193382,
+            "end_ms": 197670,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 198278,
+            "end_ms": 200326,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 201446,
+            "end_ms": 202054,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 203206,
+            "end_ms": 206206,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 206206,
+            "end_ms": 206310,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 207398,
+            "end_ms": 207942,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 208518,
+            "end_ms": 209062,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 209734,
+            "end_ms": 212646,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 214310,
+            "end_ms": 216262,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 216806,
+            "end_ms": 219654,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 220070,
+            "end_ms": 221158,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 221478,
+            "end_ms": 224478,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 224478,
+            "end_ms": 224518,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 224774,
+            "end_ms": 225670,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 227142,
+            "end_ms": 229190,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 230310,
+            "end_ms": 230822,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 232422,
+            "end_ms": 234886,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 236614,
+            "end_ms": 241542,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 242150,
+            "end_ms": 252650,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 252650,
+            "end_ms": 252774,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 253382,
+            "end_ms": 255622,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 258054,
+            "end_ms": 259554,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 259554,
+            "end_ms": 259910,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 260902,
+            "end_ms": 266902,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 266902,
+            "end_ms": 266982,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 267974,
+            "end_ms": 270974,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 270974,
+            "end_ms": 271110,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 271494,
+            "end_ms": 272262,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 272646,
+            "end_ms": 273318,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 273574,
+            "end_ms": 275074,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 275074,
+            "end_ms": 275398,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 276742,
+            "end_ms": 282342,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 284038,
+            "end_ms": 284774,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 285350,
+            "end_ms": 290438,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 292646,
+            "end_ms": 293670,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 294374,
+            "end_ms": 295174,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 296102,
+            "end_ms": 296486,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 297094,
+            "end_ms": 299398,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 300294,
+            "end_ms": 301794,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 301794,
+            "end_ms": 302022,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 302406,
+            "end_ms": 305254,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 307270,
+            "end_ms": 311302,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 311942,
+            "end_ms": 313442,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 313442,
+            "end_ms": 313798,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 314150,
+            "end_ms": 315398,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 315814,
+            "end_ms": 316230,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 316614,
+            "end_ms": 324646,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 324934,
+            "end_ms": 326434,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 326434,
+            "end_ms": 326470,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 326886,
+            "end_ms": 328806,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 329190,
+            "end_ms": 329958,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 330950,
+            "end_ms": 331750,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 332070,
+            "end_ms": 334598,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 335878,
+            "end_ms": 336934,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 337222,
+            "end_ms": 338722,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 338722,
+            "end_ms": 338822,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 340166,
+            "end_ms": 343166,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 343166,
+            "end_ms": 343302,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 344934,
+            "end_ms": 347814,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 348966,
+            "end_ms": 353466,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 353466,
+            "end_ms": 353670,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 353990,
+            "end_ms": 356230,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 357286,
+            "end_ms": 361254,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 362214,
+            "end_ms": 363110,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 363814,
+            "end_ms": 364486,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 364774,
+            "end_ms": 366274,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 366274,
+            "end_ms": 366662,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 367302,
+            "end_ms": 367846,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 368902,
+            "end_ms": 372934,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 374214,
+            "end_ms": 374630,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 375558,
+            "end_ms": 378310,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 378790,
+            "end_ms": 381446,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 382182,
+            "end_ms": 382822,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 383910,
+            "end_ms": 386694,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 388454,
+            "end_ms": 391974,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 392422,
+            "end_ms": 395942,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 396742,
+            "end_ms": 397414,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 398438,
+            "end_ms": 402214,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 403558,
+            "end_ms": 406534,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 407014,
+            "end_ms": 408514,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 408514,
+            "end_ms": 408614,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 409574,
+            "end_ms": 410630,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 411750,
+            "end_ms": 412262,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 413702,
+            "end_ms": 415202,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 415202,
+            "end_ms": 415270,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 415494,
+            "end_ms": 422118,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 423494,
+            "end_ms": 424358,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 425606,
+            "end_ms": 431206,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 431462,
+            "end_ms": 432422,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 432774,
+            "end_ms": 435014,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 435270,
+            "end_ms": 437446,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 437958,
+            "end_ms": 440102,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 440454,
+            "end_ms": 446246,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 446502,
+            "end_ms": 447014,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 447270,
+            "end_ms": 452806,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 453094,
+            "end_ms": 455302,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 456646,
+            "end_ms": 459646,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 459646,
+            "end_ms": 459750,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 461254,
+            "end_ms": 468422,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 468678,
+            "end_ms": 469286,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 470022,
+            "end_ms": 475782,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 476358,
+            "end_ms": 477858,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 477858,
+            "end_ms": 478054,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 479526,
+            "end_ms": 480038,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 481158,
+            "end_ms": 481894,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 483110,
+            "end_ms": 484134,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 484358,
+            "end_ms": 484838,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 485254,
+            "end_ms": 485990,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 486310,
+            "end_ms": 487810,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 487810,
+            "end_ms": 487942,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 489030,
+            "end_ms": 492838,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 493510,
+            "end_ms": 495010,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 495010,
+            "end_ms": 495238,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 496166,
+            "end_ms": 502166,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 502166,
+            "end_ms": 502470,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 503046,
+            "end_ms": 504546,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 504546,
+            "end_ms": 504902,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 505542,
+            "end_ms": 506310,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 507078,
+            "end_ms": 509222,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 509510,
+            "end_ms": 510758,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 511142,
+            "end_ms": 515270,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 516294,
+            "end_ms": 519814,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 520038,
+            "end_ms": 521538,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 521538,
+            "end_ms": 521862,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 522598,
+            "end_ms": 523110,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 523334,
+            "end_ms": 525542,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 526598,
+            "end_ms": 529350,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 530438,
+            "end_ms": 532902,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 533702,
+            "end_ms": 537606,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 538246,
+            "end_ms": 540710,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 541670,
+            "end_ms": 542182,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 543302,
+            "end_ms": 544550,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 544870,
+            "end_ms": 548838,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 550022,
+            "end_ms": 550470,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 551174,
+            "end_ms": 554174,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 554174,
+            "end_ms": 554470,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 554918,
+            "end_ms": 559418,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 559418,
+            "end_ms": 559462,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 559782,
+            "end_ms": 561926,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 562854,
+            "end_ms": 564838,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 565638,
+            "end_ms": 569382,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 569798,
+            "end_ms": 572798,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 572798,
+            "end_ms": 572998,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 573702,
+            "end_ms": 574278,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 574918,
+            "end_ms": 580166,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 580486,
+            "end_ms": 584198,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 584614,
+            "end_ms": 587142,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 587590,
+            "end_ms": 589862,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 590406,
+            "end_ms": 593406,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 593406,
+            "end_ms": 593798,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 594118,
+            "end_ms": 595618,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 595618,
+            "end_ms": 595622,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 596166,
+            "end_ms": 596646,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 597158,
+            "end_ms": 597606,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 597926,
+            "end_ms": 598534,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 599270,
+            "end_ms": 602918,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 603462,
+            "end_ms": 607302,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 607750,
+            "end_ms": 615250,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 615250,
+            "end_ms": 615430,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 616166,
+            "end_ms": 616582,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 616838,
+            "end_ms": 617318,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 618758,
+            "end_ms": 619110,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 619430,
+            "end_ms": 620358,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 620966,
+            "end_ms": 622466,
+            "speaker_id": "speaker_0",
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          },
+          {
+            "start_ms": 622466,
+            "end_ms": 622694,
+            "speaker_id": null,
+            "role": "unknown",
+            "role_status": "unconfirmed"
+          }
+        ],
+        "engine": "vad_embeddings_v1",
+        "runtime_version": "2.0.0",
+        "role_assignment": "clinician_confirmation_required",
+        "clinical_validation": "not_validated",
+        "overlap_detection": "unsupported",
+        "short_windows": "unknown_speaker",
+        "limitations": [
+          "Fixed windows can straddle speaker changes",
+          "No overlapping-speaker detection",
+          "Clustering threshold is a development parameter, not clinically calibrated"
+        ],
+        "artifacts": {
+          "engine": "vad_embeddings_v1",
+          "enabled": true,
+          "license_approved": true,
+          "scope": "public_mock_development_only",
+          "runtime_version": "2.0.0",
+          "clustering_threshold": 0.35,
+          "window_seconds": 1.5,
+          "attribution": "Silero Team, Silero VAD; WeSpeaker team, English VoxCeleb ResNet34 LM; ONNX exports distributed by k2-fsa/sherpa-onnx.",
+          "weight_license_evidence": "https://github.com/wenet-e2e/wespeaker/blob/master/docs/pretrained.md",
+          "vad": {
+            "path": "D:\\Med-Transcript\\data\\models\\public-diarization-v1\\silero_vad.onnx",
+            "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+            "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad.onnx",
+            "license": "MIT"
+          },
+          "embedding": {
+            "path": "D:\\Med-Transcript\\data\\models\\public-diarization-v1\\wespeaker_en_voxceleb_resnet34_LM.onnx",
+            "sha256": "e9848563da86f263117134dfd7ad63c92355b37de492b55e325400c9d9c39012",
+            "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models/wespeaker_en_voxceleb_resnet34_LM.onnx",
+            "license": "CC-BY-4.0"
+          }
+        }
+      },
+      "wall_seconds": 34.12234310002532
+    }
+  ]
+}

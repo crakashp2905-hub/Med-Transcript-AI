@@ -41,6 +41,8 @@ def validate(draft, facts):
         used.update(statement.fact_ids)
         source = " ".join(lookup[fid]["text"] for fid in statement.fact_ids)
         findings.extend(check_claim(source, statement.text))
+        if any(lookup[fid]['section'] != statement.section for fid in statement.fact_ids):
+            findings.append({'code':'section_changed_requires_review','blocks_approval':True})
         if statement.text != source:
             findings.append({"code": "paraphrase_requires_independent_review", "blocks_approval": True})
     for fid in lookup.keys()-used:
@@ -76,6 +78,7 @@ class JSONProvider:
     max_tokens: int = 2048
     timeout_seconds: int = 30
     billing_cap_confirmed: bool = False
+    structured_schema: bool = False
 
     def draft(self, facts, *, authorized, synthetic):
         if not self.enabled or not authorized:
@@ -91,12 +94,19 @@ class JSONProvider:
         if self.mode == "local":
             if url.scheme not in ("http", "https") or not all(x.is_loopback for x in addresses):
                 raise ValueError("Local provider must resolve only to loopback")
+            try:
+                ipaddress.ip_address(url.hostname)
+            except ValueError:
+                if url.hostname != 'localhost':
+                    raise ValueError('Use localhost or a literal loopback IP for local inference')
         elif not synthetic or url.scheme != "https" or url.hostname not in self.allowed_hosts or any(not x.is_global for x in addresses):
             raise ValueError("Hosted text disclosure requires synthetic data and an explicit public HTTPS host allowlist")
         if any(not f.get("reviewed") for f in facts):
             raise ValueError("Review facts before drafting")
+        response_format = ({"type":"json_schema","json_schema":{"name":"evidence_draft","strict":True,"schema":Draft.model_json_schema()}}
+            if self.structured_schema else {"type":"json_object"})
         payload = json.dumps({"model": self.model, "temperature": 0, "max_tokens": self.max_tokens,
-            "response_format": {"type": "json_object"}, "messages": [
+            "response_format": response_format, "messages": [
                 {"role": "system", "content": PROMPT}, {"role": "user", "content": json.dumps(facts)}]}).encode()
         if len(payload) > 65536:
             raise ValueError("Provider request exceeds size budget")
@@ -106,7 +116,10 @@ class JSONProvider:
         request = urllib.request.Request(self.endpoint, payload, headers, method="POST")
         started = time.perf_counter()
         try:
-            with urllib.request.build_opener(NoRedirect).open(request, timeout=self.timeout_seconds) as response:
+            handlers=[NoRedirect]
+            if self.mode == 'local':
+                handlers.append(urllib.request.ProxyHandler({}))
+            with urllib.request.build_opener(*handlers).open(request, timeout=self.timeout_seconds) as response:
                 raw = response.read(262145)
             if len(raw) > 262144:
                 raise ValueError("Provider response exceeds budget")
@@ -121,6 +134,9 @@ class JSONProvider:
             "prompt_sha256": hashlib.sha256(PROMPT.encode()).hexdigest(), "schema": "evidence_draft_v1",
             "temperature": 0, "max_tokens": self.max_tokens, "usage": usage,
             "cost": None, "cost_status": "requires_verified_provider_pricing", "attempts": 1}
+        result['provenance']['structured_schema'] = self.structured_schema
+        if self.mode == 'local':
+            result['provenance'].update(provider_cost_usd=0,cost_status='local_hardware_cost_not_measured')
         result["provenance"]["wall_seconds"] = time.perf_counter()-started
         return result
 
@@ -137,4 +153,7 @@ def configured_provider():
         enabled=os.environ.get("MED_TRANSCRIPT_LLM_ENABLED") == "1",
         allowed_hosts=tuple(filter(None, os.environ.get("MED_TRANSCRIPT_LLM_ALLOWED_HOSTS", "").split(","))),
         api_key=os.environ.get("MED_TRANSCRIPT_LLM_API_KEY", ""),
-        billing_cap_confirmed=os.environ.get("MED_TRANSCRIPT_LLM_BILLING_CAP_CONFIRMED") == "1")
+        billing_cap_confirmed=os.environ.get("MED_TRANSCRIPT_LLM_BILLING_CAP_CONFIRMED") == "1",
+        structured_schema=os.environ.get('MED_TRANSCRIPT_LLM_STRUCTURED_SCHEMA') == '1',
+        timeout_seconds=int(os.environ.get('MED_TRANSCRIPT_LLM_TIMEOUT_SECONDS','30')),
+        max_tokens=int(os.environ.get('MED_TRANSCRIPT_LLM_MAX_TOKENS','2048')))
