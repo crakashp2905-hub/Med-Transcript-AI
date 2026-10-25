@@ -39,6 +39,19 @@ class Fact(Strict):
     critical_reviewed: bool = False
     clarification: str = Field(default="", max_length=2000)
     excluded: bool = False
+    concept: str | None = Field(default=None, max_length=300)
+    anatomical_site: str | None = Field(default=None, max_length=200)
+    laterality: Literal["left", "right", "bilateral", "unknown"] = "unknown"
+    clinical_source: Literal["patient_report", "clinician_statement", "unknown"] = "unknown"
+    extraction_version: str = Field(default="manual_or_legacy", max_length=100)
+    medication_name: str | None = Field(default=None, max_length=200)
+    dose_value: str | None = Field(default=None, max_length=100)
+    dose_unit: str | None = Field(default=None, max_length=50)
+    route: str | None = Field(default=None, max_length=100)
+    frequency: str | None = Field(default=None, max_length=100)
+    duration: str | None = Field(default=None, max_length=100)
+    allergen: str | None = Field(default=None, max_length=200)
+    allergy_reaction: str | None = Field(default=None, max_length=300)
 
     @model_validator(mode="after")
     def provenance(self):
@@ -53,6 +66,10 @@ class Fact(Strict):
 class DraftInput(Strict):
     transcript_version_id: UUID
     facts: list[Fact] = Field(min_length=1, max_length=300)
+
+
+class DraftProposalInput(DraftInput):
+    hosted_text_disclosure_accepted: bool = False
 
 
 class NoteEdit(DraftInput):

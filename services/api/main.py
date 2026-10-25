@@ -41,7 +41,7 @@ class EncounterInput(StrictModel):
     language: Literal["en"] = "en"
     timezone: str = Field(default="Asia/Kolkata", max_length=80)
     workflow: Literal["outpatient_general_medicine"] = "outpatient_general_medicine"
-    requested_inference_mode: Literal["fully_local"] = "fully_local"
+    requested_inference_mode: Literal["fully_local", "hybrid_text"] = "fully_local"
     synthetic_data: Literal[True]
 
     @field_validator("timezone")
@@ -55,7 +55,7 @@ class EncounterInput(StrictModel):
 
 
 class AuthorizationInput(StrictModel):
-    scopes: list[Literal["recording", "local_processing"]] = Field(min_length=1, max_length=2)
+    scopes: list[Literal["recording", "local_processing", "hosted_text_processing"]] = Field(min_length=1, max_length=3)
     policy_version: str = Field(min_length=1, max_length=80, pattern=r"^[a-zA-Z0-9_.-]+$")
     method: Literal["written", "verbal_documented"]
     expires_at: datetime

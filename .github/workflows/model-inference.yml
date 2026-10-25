@@ -1,0 +1,17 @@
+name: Explicit provisioned CPU inference
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inference:
+    runs-on: [self-hosted, med-transcript-models]
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run operator-provisioned models without downloading
+        shell: pwsh
+        run: |
+          if (!(Test-Path data/asr-smoke-profiles.json)) { throw "Provisioned artifacts missing; downloads are forbidden" }
+          ./.venv/Scripts/python.exe -m services.benchmark_suite --lane a
+          ./.venv/Scripts/python.exe -m services.benchmark_suite --lane b

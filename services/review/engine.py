@@ -26,16 +26,8 @@ def validate_evidence(facts, transcript):
 
 
 def propose_facts(transcript):
-    result = []
-    for segment in transcript["segments"]:
-        if not segment["text"].strip():
-            continue
-        result.append({"fact_id": str(uuid4()), "category": "other", "section": "subjective",
-            "text": segment["text"], "subject": "unknown", "assertion": "uncertain", "temporality": "unknown",
-            "origin": "source_linked", "reviewed": False, "critical_reviewed": False, "clarification": "",
-            "evidence": {"segment_id": segment["segment_id"], "start_char": 0,
-                         "end_char": len(segment["text"]), "quote": segment["text"]}})
-    return result
+    from services.review.clinical import extract
+    return extract(transcript)
 
 
 def findings_for(note, transcript):
@@ -55,6 +47,10 @@ def findings_for(note, transcript):
         if not fact["reviewed"] or fact["subject"] == "unknown" or fact["temporality"] == "unknown":
             add("fact_review_required", "Review content, subject and chronology against its evidence.", fid)
         quote = fact["evidence"]["quote"] if fact["evidence"] else ""
+        if fact["origin"] == "source_linked" and not fact.get("excluded") and not AMBIGUITY.search(quote):
+            from services.review.clinical import check_claim
+            for disagreement in check_claim(quote, fact["text"]):
+                add(disagreement["code"], "Claim contradicts source wording; correct the transcript or record an explicitly clinician-entered addition.", fid, "critical")
         critical = fact["category"] in ("medication", "allergy", "measurement") or CRITICAL.search(quote + " " + fact["text"])
         if critical and not fact["critical_reviewed"]:
             add("critical_field_review", "Explicitly check medication, allergy and numeric details.", fid, "critical")

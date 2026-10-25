@@ -98,7 +98,7 @@ def purge(db, assets):
             except OSError:
                 results.append({"id": request["id"], "status": "asset_deletion_pending"})
                 continue
-            for table in ("exports", "approvals", "documents", "transcript_versions", "jobs", "uploads", "authorizations"):
+            for table in ("review_metrics", "model_proposals", "exports", "approvals", "documents", "transcript_versions", "jobs", "uploads", "authorizations"):
                 con.execute(f"DELETE FROM {table} WHERE encounter=?", (eid,))
             con.execute("DELETE FROM idempotency WHERE operation LIKE ? OR response LIKE ?", (f"%{eid}%", f"%{eid}%"))
             con.execute("UPDATE encounters SET body='{}',current_note=NULL,current_transcript=NULL WHERE id=?", (eid,))

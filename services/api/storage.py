@@ -116,6 +116,21 @@ MIGRATIONS = (
     """
     ALTER TABLE jobs ADD COLUMN expected_transcript_id TEXT;
     """,
+    """
+    CREATE TABLE model_proposals (
+        id TEXT PRIMARY KEY, encounter TEXT NOT NULL REFERENCES encounters(id),
+        kind TEXT NOT NULL, version INTEGER NOT NULL, sha256 TEXT NOT NULL,
+        body TEXT NOT NULL, created_at TEXT NOT NULL);
+    CREATE TRIGGER model_proposals_immutable BEFORE UPDATE ON model_proposals
+    BEGIN SELECT RAISE(ABORT, 'Version bodies are immutable'); END;
+    """,
+    """
+    CREATE TABLE review_metrics (
+        id TEXT PRIMARY KEY, session TEXT NOT NULL UNIQUE REFERENCES model_proposals(id),
+        encounter TEXT NOT NULL REFERENCES encounters(id), body TEXT NOT NULL, created_at TEXT NOT NULL);
+    CREATE TRIGGER review_metrics_immutable BEFORE UPDATE ON review_metrics
+    BEGIN SELECT RAISE(ABORT, 'Version bodies are immutable'); END;
+    """,
 )
 
 

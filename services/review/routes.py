@@ -14,6 +14,56 @@ from services.review.models import (AmendmentInput, ApprovalInput, DraftInput, E
 
 
 def register_review_routes(app, database, identity, encounter, audit, require_processing, assets, profiles):
+    from services.review.providers import configured_provider, JSONProvider
+    from services.review.models import DraftProposalInput
+    app.state.drafting_provider = configured_provider()
+
+    @app.get("/v1/encounters/{eid}/draft-proposals/{did}")
+    def get_draft_proposal(eid: UUID, did: UUID, actor=Depends(identity)):
+        with database() as con:
+            row = encounter(con,eid,actor)
+            proposal = con.execute("SELECT body FROM model_proposals WHERE encounter=? AND id=? AND kind='draft_proposal'",(str(eid),str(did))).fetchone()
+            if proposal is None:
+                raise HTTPException(404,"draft_proposal_not_found")
+            value = json.loads(proposal["body"])
+            value["stale"] = row["current_transcript"] != value["transcript_version_id"]
+            return value
+
+    @app.post("/v1/encounters/{eid}/draft-proposals", status_code=201)
+    def draft_proposal(eid: UUID, body: DraftProposalInput, actor=Depends(identity)):
+        from services.api.storage import active_scopes
+        provider = app.state.drafting_provider
+        hosted = isinstance(provider, JSONProvider) and provider.mode == "hosted"
+        with database() as con:
+            row = encounter(con, eid, actor)
+            require_processing(con, eid)
+            if row["current_transcript"] != str(body.transcript_version_id):
+                raise HTTPException(412, "stale_transcript")
+            tr, tx = get_tx(con, eid, body.transcript_version_id)
+            validate_evidence(body.facts, tx)
+            original_hash = tr["sha256"]
+            if hosted and (not body.hosted_text_disclosure_accepted or json.loads(row["body"])["requested_inference_mode"] != "hybrid_text" or "hosted_text_processing" not in active_scopes(con,eid)):
+                raise HTTPException(422, "hosted_text_disclosure_and_scope_required")
+        try:
+            result = provider.draft([f.model_dump(mode="json") for f in body.facts], authorized=True, synthetic=True)
+        except ValueError:
+            raise HTTPException(422, "draft_proposal_failed_no_output_admitted") from None
+        with database() as con:
+            row = encounter(con, eid, actor)
+            require_processing(con, eid)
+            if hosted and "hosted_text_processing" not in active_scopes(con,eid):
+                raise HTTPException(403, "hosted_text_authorization_withdrawn")
+            tr, _ = get_tx(con, eid, body.transcript_version_id)
+            if row["current_transcript"] != str(body.transcript_version_id) or tr["sha256"] != original_hash:
+                raise HTTPException(412, "stale_transcript")
+            did, created = str(uuid4()), stamp()
+            version = con.execute("SELECT COALESCE(MAX(version),0)+1 FROM model_proposals WHERE encounter=? AND kind='draft_proposal'", (str(eid),)).fetchone()[0]
+            result.update(id=did, transcript_version_id=str(body.transcript_version_id), transcript_sha256=original_hash,
+                source_facts=[f.model_dump(mode="json") for f in body.facts], status="unreviewed_proposal_not_approvable")
+            con.execute("INSERT INTO model_proposals VALUES (?,?,?,?,?,?,?)", (did,str(eid),"draft_proposal",version,content_sha256(result),canonical_json(result),created))
+            audit(con, actor, "draft_proposal_created", did)
+            return result
+
     def stamp():
         return datetime.now(timezone.utc).isoformat()
 
@@ -28,6 +78,9 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
         if row is None:
             raise HTTPException(404, "document_not_found")
         return row, json.loads(row["body"])
+
+    from services.review.metrics_routes import register as register_metrics
+    register_metrics(app,database,identity,encounter,require_processing,document,audit)
 
     def current(con, eid, actor):
         return encounter(con, eid, actor)
@@ -296,7 +349,7 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
                 raise HTTPException(412, "stale_transcript")
             values = []
             for value in old["facts"]:
-                value = {key: value[key] for key in Fact.model_fields}
+                value = {key: value[key] for key in Fact.model_fields if key in value}
                 if value["fact_id"] == str(body.fact_id):
                     if value["text"] == body.corrected_text:
                         raise HTTPException(422, "clinical_correction_required")
@@ -353,7 +406,7 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
                 # Fresh evidence must be selected against the corrected transcript.
                 values = [Fact.model_validate(item) for item in propose_facts(tx)]
             else:
-                values = [Fact.model_validate({key: value[key] for key in Fact.model_fields}) for value in old["facts"]]
+                values = [Fact.model_validate({key: value[key] for key in Fact.model_fields if key in value}) for value in old["facts"]]
             return save_note(con, eid, tr, tx, values, actor, old["id"], body.reason)
 
     @app.post("/v1/encounters/{eid}/exports", status_code=201)
@@ -394,7 +447,7 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
         with database() as con:
             current(con, eid, actor)
             ids = {str(eid)}
-            for table in ("uploads", "jobs", "documents", "transcript_versions", "approvals", "exports", "authorizations"):
+            for table in ("review_metrics", "model_proposals", "uploads", "jobs", "documents", "transcript_versions", "approvals", "exports", "authorizations"):
                 ids.update(item[0] for item in con.execute(f"SELECT id FROM {table} WHERE encounter=?", (str(eid),)))
             rows = con.execute("SELECT * FROM audit WHERE tenant=? ORDER BY time DESC LIMIT 2000", (str(actor.tenant_id),)).fetchall()
             return {"items": [dict(item) for item in rows if item["resource"] in ids][:200]}

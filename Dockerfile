@@ -7,9 +7,9 @@ RUN npm run build
 
 FROM python:3.13-slim
 WORKDIR /app
-COPY pyproject.toml README.md ./
+COPY pyproject.toml README.md constraints-ci.txt ./
 COPY services/ ./services/
-RUN pip install --no-cache-dir '.[asr,postgres]'
+RUN python -m pip install --no-cache-dir --upgrade pip==26.2.2 && python -m pip install --no-cache-dir -c constraints-ci.txt '.[asr,postgres]'
 COPY --from=web /web/dist ./apps/clinician-web/dist
 RUN useradd --create-home --uid 10001 medscribe && mkdir -p /app/data/assets && chown -R medscribe:medscribe /app/data
 USER medscribe

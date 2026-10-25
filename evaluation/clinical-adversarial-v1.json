@@ -1,0 +1,118 @@
+{
+  "data_class": "synthetic",
+  "annotation_status": "developer_authored_not_clinician_calibrated",
+  "cases": [
+    {
+      "id": "negation-changed",
+      "category": "negation",
+      "source": "Patient has fever.",
+      "claim": "Patient does not have fever.",
+      "expected_unsafe": true
+    },
+    {
+      "id": "negation-unchanged",
+      "category": "negation",
+      "source": "Patient has fever.",
+      "claim": "Patient has fever.",
+      "expected_unsafe": false
+    },
+    {
+      "id": "dose-changed",
+      "category": "dose",
+      "source": "Take warfarin 5 mg.",
+      "claim": "Take warfarin 50 mg.",
+      "expected_unsafe": true
+    },
+    {
+      "id": "dose-unchanged",
+      "category": "dose",
+      "source": "Take warfarin 5 mg.",
+      "claim": "Take warfarin 5 mg.",
+      "expected_unsafe": false
+    },
+    {
+      "id": "unit-changed",
+      "category": "unit",
+      "source": "Take warfarin 5 mg.",
+      "claim": "Take warfarin 5 mcg.",
+      "expected_unsafe": true
+    },
+    {
+      "id": "unit-unchanged",
+      "category": "unit",
+      "source": "Take warfarin 5 mg.",
+      "claim": "Take warfarin 5 mg.",
+      "expected_unsafe": false
+    },
+    {
+      "id": "laterality-changed",
+      "category": "laterality",
+      "source": "Left knee pain.",
+      "claim": "Right knee pain.",
+      "expected_unsafe": true
+    },
+    {
+      "id": "laterality-unchanged",
+      "category": "laterality",
+      "source": "Left knee pain.",
+      "claim": "Left knee pain.",
+      "expected_unsafe": false
+    },
+    {
+      "id": "temporality-changed",
+      "category": "temporality",
+      "source": "Stopped taking metformin.",
+      "claim": "Taking metformin.",
+      "expected_unsafe": true
+    },
+    {
+      "id": "temporality-unchanged",
+      "category": "temporality",
+      "source": "Stopped taking metformin.",
+      "claim": "Stopped taking metformin.",
+      "expected_unsafe": false
+    },
+    {
+      "id": "medication-changed",
+      "category": "medication",
+      "source": "Taking metformin.",
+      "claim": "Taking warfarin.",
+      "expected_unsafe": true
+    },
+    {
+      "id": "medication-unchanged",
+      "category": "medication",
+      "source": "Taking metformin.",
+      "claim": "Taking metformin.",
+      "expected_unsafe": false
+    },
+    {
+      "id": "allergy-changed",
+      "category": "allergy",
+      "source": "Allergic to penicillin.",
+      "claim": "No allergies.",
+      "expected_unsafe": true
+    },
+    {
+      "id": "allergy-unchanged",
+      "category": "allergy",
+      "source": "Allergic to penicillin.",
+      "claim": "Allergic to penicillin.",
+      "expected_unsafe": false
+    },
+    {
+      "id": "unsupported-diagnosis",
+      "category": "unsupported",
+      "source": "Patient has cough.",
+      "claim": "Patient has diabetes.",
+      "expected_unsafe": true
+    },
+    {
+      "id": "family-attribution",
+      "category": "attribution",
+      "source": "Mother has diabetes.",
+      "claim": "Patient has diabetes.",
+      "expected_unsafe": true
+    }
+  ]
+}
