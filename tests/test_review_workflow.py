@@ -22,7 +22,9 @@ def prepare(client, path, text="Patient reports cough and denies fever.", assets
     assert response.status_code == 201, response.text
     facts = client.get(f"/v1/encounters/{eid}/facts", headers=headers()).json()["facts"]
     for fact in facts:
-        fact.update(reviewed=True, critical_reviewed=True, subject="patient", temporality="current", assertion="affirmed")
+        fact.update(reviewed=True, critical_reviewed=True,
+            subject='family' if fact['subject']=='family' else 'patient',
+            temporality='current' if fact['temporality']=='unknown' else fact['temporality'])
     return eid, response.json(), facts
 
 

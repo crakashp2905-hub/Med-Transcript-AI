@@ -1,0 +1,372 @@
+{
+  "data_class": "synthetic",
+  "annotation_status": "developer_authored_not_clinician_calibrated",
+  "clinical_acceptance": false,
+  "cases": [
+    {
+      "id": "dose_assignment",
+      "source": "Taking metformin 500 mg and warfarin 5 mg.",
+      "claim": "Taking metformin 5 mg and warfarin 500 mg.",
+      "expected_unsafe": true,
+      "rule_findings": [
+        "medication_dose_assignment_disagreement"
+      ],
+      "rule_detected_unsafe": true,
+      "model_failure": "bounded_failure_no_verdict_admitted"
+    },
+    {
+      "id": "negation_scope",
+      "source": "Patient denies fever but reports cough.",
+      "claim": "Patient reports fever but denies cough.",
+      "expected_unsafe": true,
+      "rule_findings": [
+        "negation_scope_disagreement"
+      ],
+      "rule_detected_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "d47b7b19-e1af-5ccf-9895-227be4078ea6",
+            "label": "contradicted",
+            "evidence_quote": "Patient denies fever but reports cough.",
+            "reason": "The evidence states that the patient denies fever and reports cough, which contradicts the claim that the patient reports fever but denies cough.",
+            "rule_findings": [
+              {
+                "code": "negation_scope_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Patient denies fever but reports cough.",
+                "claim": "Patient reports fever but denies cough.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "prompt_sha256": "894f2ef37f71e0484ad911f0031a1580c3a75ff4a73f8ab575d1f7a113dd47e3",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 28.21000110002933,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      }
+    },
+    {
+      "id": "omission",
+      "source": "Patient reports cough and fever.",
+      "claim": "Patient reports cough.",
+      "expected_unsafe": true,
+      "rule_findings": [
+        "omitted_source_terms"
+      ],
+      "rule_detected_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "1398a949-b764-5c0e-b6d5-16446fcbe571",
+            "label": "supported",
+            "evidence_quote": "Patient reports cough and fever.",
+            "reason": "The evidence explicitly states that the patient reports cough, which is consistent with the claim.",
+            "rule_findings": [
+              {
+                "code": "omitted_source_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Patient reports cough and fever.",
+                "claim": "Patient reports cough.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "prompt_sha256": "894f2ef37f71e0484ad911f0031a1580c3a75ff4a73f8ab575d1f7a113dd47e3",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 25.390352400019765,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      }
+    },
+    {
+      "id": "unit_conversion",
+      "source": "Taking metformin 1000 mg.",
+      "claim": "Taking metformin 1 g.",
+      "expected_unsafe": false,
+      "rule_findings": [],
+      "rule_detected_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "8208a958-8fb8-573a-99b4-410a0fe5a936",
+            "label": "supported",
+            "evidence_quote": "Taking metformin 1000 mg.",
+            "reason": "The evidence states that the patient is taking metformin 1000 mg, which is equivalent to the claim of 1 g.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "prompt_sha256": "894f2ef37f71e0484ad911f0031a1580c3a75ff4a73f8ab575d1f7a113dd47e3",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 29.741746000014246,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      }
+    },
+    {
+      "id": "decimal_conversion",
+      "source": "Taking warfarin .005 g.",
+      "claim": "Taking warfarin 5 mg.",
+      "expected_unsafe": false,
+      "rule_findings": [],
+      "rule_detected_unsafe": false,
+      "model_failure": "bounded_failure_no_verdict_admitted"
+    },
+    {
+      "id": "unchanged_allergy",
+      "source": "Allergy to penicillin with rash.",
+      "claim": "Allergy to penicillin with rash.",
+      "expected_unsafe": false,
+      "rule_findings": [],
+      "rule_detected_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "b1a2cf88-f0c6-5a7f-99aa-1cfe82809581",
+            "label": "supported",
+            "evidence_quote": "Allergy to penicillin with rash.",
+            "reason": "The evidence directly matches the claim.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "prompt_sha256": "894f2ef37f71e0484ad911f0031a1580c3a75ff4a73f8ab575d1f7a113dd47e3",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 21.45329259999562,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      }
+    }
+  ],
+  "model_extraction": [
+    {
+      "input": {
+        "segments": [
+          {
+            "segment_id": "b070fe7f-cab3-5e65-80ce-bfd82d9eb4e0",
+            "text": "Patient reports cough and denies fever. Taking warfarin 5 mg."
+          }
+        ]
+      },
+      "result": {
+        "facts": [
+          {
+            "fact_id": "e7099962-9809-43c9-b672-86aa31b2bed4",
+            "category": "symptom",
+            "section": "subjective",
+            "text": "Patient reports cough and denies fever.",
+            "subject": "patient",
+            "assertion": "not_stated",
+            "temporality": "unknown",
+            "origin": "source_linked",
+            "evidence": {
+              "segment_id": "b070fe7f-cab3-5e65-80ce-bfd82d9eb4e0",
+              "start_char": 0,
+              "end_char": 39,
+              "quote": "Patient reports cough and denies fever."
+            },
+            "reviewed": false,
+            "critical_reviewed": false,
+            "clarification": "",
+            "excluded": false,
+            "concept": null,
+            "anatomical_site": null,
+            "laterality": "unknown",
+            "clinical_source": "unknown",
+            "extraction_version": "local_model_exact_quote_v1",
+            "medication_name": null,
+            "dose_value": null,
+            "dose_unit": null,
+            "route": null,
+            "frequency": null,
+            "duration": null,
+            "allergen": null,
+            "allergy_reaction": null
+          }
+        ],
+        "findings": [
+          {
+            "code": "model_extraction_coverage_requires_review",
+            "segment_id": "b070fe7f-cab3-5e65-80ce-bfd82d9eb4e0",
+            "blocks_approval": true
+          }
+        ],
+        "status": "unreviewed_proposal",
+        "provenance": {
+          "model": "qwen2.5:1.5b",
+          "prompt_sha256": "763217f69a3c15ab972f7aed3f0329e4ada0ff916f0097566b8e227b93fce86c",
+          "schema": "Extraction",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 21.435144299990498,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        }
+      },
+      "failed": false
+    },
+    {
+      "input": {
+        "segments": [
+          {
+            "segment_id": "37aeb7ae-79c2-5e00-b46c-f79063a1c3ab",
+            "text": "Mother has diabetes. Patient reports left knee pain. No drug allergies."
+          }
+        ]
+      },
+      "result": {
+        "facts": [
+          {
+            "fact_id": "862a688f-aa43-4bd9-b520-c3534d6bf1b2",
+            "category": "allergy",
+            "section": "subjective",
+            "text": "Mother has diabetes.",
+            "subject": "unknown",
+            "assertion": "not_stated",
+            "temporality": "unknown",
+            "origin": "source_linked",
+            "evidence": {
+              "segment_id": "37aeb7ae-79c2-5e00-b46c-f79063a1c3ab",
+              "start_char": 0,
+              "end_char": 20,
+              "quote": "Mother has diabetes."
+            },
+            "reviewed": false,
+            "critical_reviewed": false,
+            "clarification": "",
+            "excluded": false,
+            "concept": null,
+            "anatomical_site": null,
+            "laterality": "unknown",
+            "clinical_source": "unknown",
+            "extraction_version": "local_model_exact_quote_v1",
+            "medication_name": null,
+            "dose_value": null,
+            "dose_unit": null,
+            "route": null,
+            "frequency": null,
+            "duration": null,
+            "allergen": null,
+            "allergy_reaction": null
+          },
+          {
+            "fact_id": "14e3c05b-c1d1-4456-afef-8c715967606e",
+            "category": "symptom",
+            "section": "subjective",
+            "text": "Patient reports left knee pain.",
+            "subject": "unknown",
+            "assertion": "not_stated",
+            "temporality": "unknown",
+            "origin": "source_linked",
+            "evidence": {
+              "segment_id": "37aeb7ae-79c2-5e00-b46c-f79063a1c3ab",
+              "start_char": 21,
+              "end_char": 52,
+              "quote": "Patient reports left knee pain."
+            },
+            "reviewed": false,
+            "critical_reviewed": false,
+            "clarification": "",
+            "excluded": false,
+            "concept": null,
+            "anatomical_site": null,
+            "laterality": "unknown",
+            "clinical_source": "unknown",
+            "extraction_version": "local_model_exact_quote_v1",
+            "medication_name": null,
+            "dose_value": null,
+            "dose_unit": null,
+            "route": null,
+            "frequency": null,
+            "duration": null,
+            "allergen": null,
+            "allergy_reaction": null
+          }
+        ],
+        "findings": [
+          {
+            "code": "model_extraction_coverage_requires_review",
+            "segment_id": "37aeb7ae-79c2-5e00-b46c-f79063a1c3ab",
+            "blocks_approval": true
+          }
+        ],
+        "status": "unreviewed_proposal",
+        "provenance": {
+          "model": "qwen2.5:1.5b",
+          "prompt_sha256": "763217f69a3c15ab972f7aed3f0329e4ada0ff916f0097566b8e227b93fce86c",
+          "schema": "Extraction",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 10.980613499996252,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        }
+      },
+      "failed": false
+    }
+  ],
+  "scope": "small_development_regression_not_estimated_clinical_sensitivity",
+  "rule_confusion": {
+    "true_positive": 3,
+    "false_positive": 0,
+    "true_negative": 3,
+    "false_negative": 0
+  },
+  "model_failures": 2,
+  "complete": true,
+  "transport_revision": "initial_local_schema_transport_before_per_call_digest_metadata"
+}

@@ -47,6 +47,11 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
         from services.omi_adapter import OmiPredictor
         predict = OmiPredictor(model, revision)
         profile_id, package = "omi-v1-gguf-q8-cpu-v1", "omi-med-stt"
+    elif runtime == 'sherpa-qwen3':
+        from services.qwen_adapter import QwenPredictor
+        predict=QwenPredictor(model,revision)
+        artifacts=predict.artifacts
+        profile_id,package='qwen3-asr-0.6b-sherpa-cpu-int8-v1','sherpa-onnx'
     elif runtime == "whisper":
         import wave
         import numpy as np
@@ -74,6 +79,11 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
             vad_filter=False, condition_on_previous_text=False)
     if runtime == "omi":
         config["adapter_revision"] = "reuse_capi_close_windows_dll_directories_v1"
+    if runtime == 'sherpa-qwen3':
+        config.update(max_total_len=512,max_new_tokens=256,temperature=.000001,top_p=.8,seed=42,
+            language_selection='automatic_no_reference_prompt',hotwords='',license_id='Apache-2.0',
+            source='https://github.com/k2-fsa/sherpa-onnx/releases/tag/asr-models',
+            revision_kind='converted_archive_sha256_not_upstream_commit')
     path = Path(manifest_path).resolve()
     manifest = json.loads(path.read_text(encoding="utf-8"))
     if manifest.get("data_class") not in ("synthetic", "approved_public") or not manifest.get("rights_reviewed"):
@@ -126,7 +136,7 @@ def run(manifest_path, runtime, model_dir, revision, package_dir, output_path, c
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True)
-    parser.add_argument("--runtime", choices=["onnx", "omi", "whisper"], required=True)
+    parser.add_argument("--runtime", choices=["onnx", "omi", "whisper",'sherpa-qwen3'], required=True)
     parser.add_argument("--model-dir")
     parser.add_argument("--revision")
     parser.add_argument("--package-dir")

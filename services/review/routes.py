@@ -81,6 +81,24 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
 
     from services.review.metrics_routes import register as register_metrics
     register_metrics(app,database,identity,encounter,require_processing,document,audit)
+    from services.review.clinical_routes import register as register_clinical
+    register_clinical(app,database,identity,encounter,require_processing,get_tx,document,audit)
+
+    @app.get('/v1/encounters/{eid}/versions')
+    def versions(eid: UUID,actor=Depends(identity)):
+        with database() as con:
+            encounter(con,eid,actor)
+            return {'notes':[dict(r) for r in con.execute("SELECT id,version,sha256,created_at FROM documents WHERE encounter=? AND kind='note' ORDER BY version DESC LIMIT 100",(str(eid),))],
+                'transcripts':[dict(r) for r in con.execute('SELECT id,version,sha256,created_at FROM transcript_versions WHERE encounter=? ORDER BY version DESC LIMIT 100',(str(eid),))],'limit':100}
+
+    @app.get('/v1/encounters/{eid}/notes/{before}/compare/{after}')
+    def compare_notes(eid: UUID,before: UUID,after: UUID,actor=Depends(identity)):
+        from services.review.comparison import compare
+        with database() as con:
+            encounter(con,eid,actor)
+            _,a=document(con,eid,before)
+            _,b=document(con,eid,after)
+            return compare(a,b)
 
     def current(con, eid, actor):
         return encounter(con, eid, actor)
@@ -119,7 +137,7 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
         findings = findings_for(body, tx)
         report = {"schema_version": "1.0", "id": rid, "note_version_id": nid, "note_sha256": digest,
                   "transcript_version_id": tx_row["id"], "transcript_sha256": tx_row["sha256"],
-                  "validator_version": "rules_v1", "findings": findings, "gate": "blocked" if findings else "ready",
+                  "validator_version": "rules_v2", "findings": findings, "gate": "blocked" if findings else "ready",
                   "created_at": created}
         con.execute("INSERT INTO documents VALUES (?,?,?,?,?,?,?)",
                     (nid, str(eid), "note", version, digest, canonical_json(body), created))
@@ -133,7 +151,8 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
     def session(actor=Depends(identity)):
         return {"clinician_id": str(actor.clinician_id), "tenant_id": str(actor.tenant_id),
                 "data_mode": "synthetic_only", "asr_profiles": list(profiles),
-                "demo_available": (assets.parent / "demo-sample.json").is_file()}
+                "demo_available": (assets.parent / "demo-sample.json").is_file(),
+                "clinical_models_enabled": bool(app.state.clinical_models.enabled)}
 
     @app.post("/v1/demo", status_code=201)
     def demo(actor=Depends(identity)):

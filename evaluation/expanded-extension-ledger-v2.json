@@ -1,0 +1,94 @@
+{
+  "schema_version": "2.0",
+  "dataset": "evaluation/datasets/primock57-expanded-v1/manifest.json",
+  "protocol": "evaluation/expanded-protocol-v1.json",
+  "maximum_normalized_wer": 0.05,
+  "policy": "Local/public models first; no paid calls or gated access approvals. All seven local runs use text-only adapters.",
+  "runtime_repair_audit": "evaluation/reports/expanded-omi-runtime-repair-2026-10-24.md",
+  "candidates": [
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-expanded-v1/faster-whisper-large-v3.json",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    {
+      "candidate_id": "google-medasr-greedy",
+      "status": "access_pending",
+      "reason": "Google model gate requires user approval/login; no HF credentials configured."
+    },
+    {
+      "candidate_id": "google-medasr-approved-decoder",
+      "status": "access_pending",
+      "reason": "Same gated MedASR weights and gated 6-gram decoder; no approved access."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-en-5b",
+      "status": "access_pending",
+      "reason": "Hugging Face model gate requires user approval/login."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-2.5-pro-english",
+      "status": "resource_preflight_blocked",
+      "reason": "Public BF16 weights total about 9.95 GB; reviewed canonical loader defaults to FP32 plus duplicate encoder loading, exceeding this 16 GB host physical RAM. No qualified CPU quantization provisioned."
+    },
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-expanded-v1/omi-med-stt-v1.json",
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter; persistent C API with explicit Windows DLL cleanup"
+    },
+    {
+      "candidate_id": "multimed-whisper-small-english",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-expanded-v1/multimed-whisper-small-english.json",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    {
+      "candidate_id": "whisper-small",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-expanded-v1/whisper-small.json",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    {
+      "candidate_id": "distil-whisper-large-v3",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-expanded-v1/distil-whisper-large-v3.json",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-expanded-v1/parakeet-tdt-0.6b-v2.json",
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU"
+    },
+    {
+      "candidate_id": "canary-qwen-2.5b",
+      "status": "resource_preflight_blocked",
+      "reason": "Dependency resolution succeeded. Reviewed NeMo 3.0 SALM initializes FP32; conservative weights + checkpoint + 2 GiB runtime allowance estimate is 17.50 GB versus 16.91 GB physical RAM. Inference not attempted; no qualified lower-memory CPU variant or NVIDIA GPU."
+    },
+    {
+      "candidate_id": "amazon-transcribe-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; AWS credentials not configured."
+    },
+    {
+      "candidate_id": "deepgram-nova-3-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; Deepgram credentials not configured."
+    },
+    {
+      "candidate_id": "faster-whisper-tiny.en",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-expanded-v1/faster-whisper-tiny.en.json",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    {
+      "candidate_id": "qwen3-asr-0.6b-int8",
+      "status": "completed",
+      "report": "evaluation/runs/primock57-expanded-v1/qwen3-asr-0.6b-int8.json",
+      "runtime_variant": "Public sherpa-onnx 2.0.0 / Qwen3-ASR 0.6B CPU INT8, four threads, greedy text-only, no reference prompt or hotwords"
+    }
+  ],
+  "extension_status": "Public Qwen3 candidate added after the original prespecified suite; all runs use the unchanged frozen development corpus. Not independent acceptance."
+}

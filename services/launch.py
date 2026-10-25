@@ -20,7 +20,7 @@ from services.asr.profiles import load_profiles
 from services.demo_fixture import create_fixture
 
 
-def configure_local_features(local_drafting=False, public_diarization=False):
+def configure_local_features(local_drafting=False, public_diarization=False,local_clinical_models=False):
     if local_drafting:
         with urllib.request.urlopen('http://127.0.0.1:11434/api/tags',timeout=10) as response:
             models=json.load(response)['models']
@@ -38,6 +38,15 @@ def configure_local_features(local_drafting=False, public_diarization=False):
             raise ValueError('Provision the public diarization runtime and artifacts first')
         os.environ['MED_TRANSCRIPT_DIARIZATION_MANIFEST']=str(manifest)
         os.environ['PYTHONPATH']=str(runtime)+(os.pathsep+os.environ['PYTHONPATH'] if os.environ.get('PYTHONPATH') else '')
+    if local_clinical_models:
+        with urllib.request.urlopen('http://127.0.0.1:11434/api/tags',timeout=10) as response:
+            models=json.load(response)['models']
+        required={'qwen2.5:1.5b':'65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b',
+            'qwen2.5:7b':'845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e'}
+        for name,digest in required.items():
+            if not any(m['name']==name and m['digest']==digest for m in models):
+                raise ValueError('Provision the pinned local extraction and verifier models first')
+        os.environ['MED_TRANSCRIPT_LOCAL_CLINICAL_MODELS']='1'
 
 
 def main():
@@ -49,8 +58,9 @@ def main():
     parser.add_argument("--open", action="store_true", help="Open the browser once the workspace is serving")
     parser.add_argument('--local-drafting',action='store_true',help='Enable screened local Qwen proposals, never automatic note approval')
     parser.add_argument('--public-diarization',action='store_true',help='Enable experimental public VAD/embedding speaker clustering')
+    parser.add_argument('--local-clinical-models',action='store_true',help='Enable advisory local fact extraction and an independent model verifier')
     args = parser.parse_args()
-    configure_local_features(args.local_drafting,args.public_diarization)
+    configure_local_features(args.local_drafting,args.public_diarization,args.local_clinical_models)
     root = Path("data")
     root.mkdir(exist_ok=True)
     config_path = root / "local-config.json"

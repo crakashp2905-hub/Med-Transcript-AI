@@ -1,0 +1,158 @@
+{
+  "fixture_sha256": "5a50875e43c8c1579b2b7db769fa5c3e107f72c97a6b59a7d535a33427a21441",
+  "scope": "developer_authored_not_clinician_calibrated",
+  "validator": "independent_clinical_rules_v2",
+  "limitation": "Small synthetic developer fixture; not an estimate of clinical sensitivity or specificity.",
+  "confusion_matrix": {
+    "true_positive": 9,
+    "false_positive": 0,
+    "true_negative": 7,
+    "false_negative": 0
+  },
+  "cases": [
+    {
+      "id": "negation-changed",
+      "category": "negation",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "negation_disagreement",
+        "negation_scope_disagreement",
+        "unsupported_claim_terms"
+      ]
+    },
+    {
+      "id": "negation-unchanged",
+      "category": "negation",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "dose-changed",
+      "category": "dose",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "dose_or_unit_disagreement",
+        "medication_dose_assignment_disagreement"
+      ]
+    },
+    {
+      "id": "dose-unchanged",
+      "category": "dose",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "unit-changed",
+      "category": "unit",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "dose_or_unit_disagreement",
+        "medication_dose_assignment_disagreement"
+      ]
+    },
+    {
+      "id": "unit-unchanged",
+      "category": "unit",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "laterality-changed",
+      "category": "laterality",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "laterality_disagreement",
+        "unsupported_claim_terms",
+        "omitted_source_terms"
+      ]
+    },
+    {
+      "id": "laterality-unchanged",
+      "category": "laterality",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "temporality-changed",
+      "category": "temporality",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "temporality_disagreement",
+        "omitted_source_terms"
+      ]
+    },
+    {
+      "id": "temporality-unchanged",
+      "category": "temporality",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "medication-changed",
+      "category": "medication",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "medication_or_allergen_disagreement",
+        "unsupported_claim_terms",
+        "omitted_source_terms"
+      ]
+    },
+    {
+      "id": "medication-unchanged",
+      "category": "medication",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "allergy-changed",
+      "category": "allergy",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "negation_disagreement",
+        "medication_or_allergen_disagreement",
+        "unsupported_claim_terms",
+        "omitted_source_terms"
+      ]
+    },
+    {
+      "id": "allergy-unchanged",
+      "category": "allergy",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "unsupported-diagnosis",
+      "category": "unsupported",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "unsupported_claim_terms",
+        "omitted_source_terms"
+      ]
+    },
+    {
+      "id": "family-attribution",
+      "category": "attribution",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "incorrect_attribution",
+        "omitted_source_terms"
+      ]
+    }
+  ]
+}

@@ -157,7 +157,7 @@ def test_full_consultation_manifest_lock_and_reference_bounds():
 
 def test_adversarial_report_rebuild():
     from services.clinical_evaluation import adversarial
-    saved=json.loads(Path('evaluation/reports/clinical-adversarial-2026-10-25.json').read_text())
+    saved=json.loads(Path('evaluation/reports/clinical-adversarial-v2-2026-10-25.json').read_text())
     assert adversarial('evaluation/clinical-adversarial-v1.json')==saved
 
 

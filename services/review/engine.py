@@ -46,11 +46,16 @@ def findings_for(note, transcript):
         fid = fact["fact_id"]
         if not fact["reviewed"] or fact["subject"] == "unknown" or fact["temporality"] == "unknown":
             add("fact_review_required", "Review content, subject and chronology against its evidence.", fid)
+        if fact['assertion']=='not_stated' and not fact.get('excluded'):
+            add('fact_review_required','A documented assertion cannot retain a not-stated polarity label.',fid)
         quote = fact["evidence"]["quote"] if fact["evidence"] else ""
         if fact["origin"] == "source_linked" and not fact.get("excluded") and not AMBIGUITY.search(quote):
             from services.review.clinical import check_claim
             for disagreement in check_claim(quote, fact["text"]):
                 add(disagreement["code"], "Claim contradicts source wording; correct the transcript or record an explicitly clinician-entered addition.", fid, "critical")
+            from services.review.clinical import check_fact_slots
+            for disagreement in check_fact_slots(quote,fact):
+                add(disagreement['code'],f"Structured field {disagreement['field']} is not supported by the selected evidence.",fid,'critical')
         critical = fact["category"] in ("medication", "allergy", "measurement") or CRITICAL.search(quote + " " + fact["text"])
         if critical and not fact["critical_reviewed"]:
             add("critical_field_review", "Explicitly check medication, allergy and numeric details.", fid, "critical")
@@ -71,6 +76,13 @@ def findings_for(note, transcript):
         for match in CRITICAL.finditer(segment["text"]):
             if not any(fact["evidence"]["start_char"] <= match.start() and fact["evidence"]["end_char"] >= match.end() for fact in relevant):
                 add("critical_source_omission", "A medication, allergy or number in the source is not accounted for.", severity="critical")
+                break
+        ignored={'and','but','the','a','an','patient','reports','report','states','state','i','has','have','is','was','takes','take','taking'}
+        for match in re.finditer(r"\b[\w]+(?:[.'-][\w]+)*\b",segment['text']):
+            if match.group().lower() in ignored:
+                continue
+            if not any(f['evidence']['start_char']<=match.start() and f['evidence']['end_char']>=match.end() for f in relevant):
+                add('unaccounted_source_content','Source content falls outside all included or explicitly excluded evidence spans.',severity='critical')
                 break
     return findings
 

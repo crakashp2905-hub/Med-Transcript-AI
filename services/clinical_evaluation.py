@@ -21,7 +21,7 @@ def adversarial(path):
         rows.append({'id': case['id'], 'category': case['category'], 'expected_unsafe': expected,
                      'detected_unsafe': unsafe, 'findings': [x['code'] for x in findings]})
     return {'fixture_sha256': hashlib.sha256(raw).hexdigest(),
-            'scope': fixture['annotation_status'], 'validator': 'independent_clinical_rules_v1',
+            'scope': fixture['annotation_status'], 'validator': 'independent_clinical_rules_v2',
             'limitation': 'Small synthetic developer fixture; not an estimate of clinical sensitivity or specificity.',
             'confusion_matrix': counts, 'cases': rows}
 

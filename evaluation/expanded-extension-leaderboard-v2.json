@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "primock57-20consultations-120clips-v1",
+  "manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+  "scope": "expanded_development_comparison_not_clinical_acceptance",
+  "ranking_rule": "ascending_unrounded_aggregate_normalized_wer_shared_ranks_for_ties",
+  "maximum_normalized_wer": 0.05,
+  "ranked": [
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "completed",
+      "normalized_wer": 0.08701413427561837,
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter; persistent C API with explicit Windows DLL cleanup",
+      "normalized_edits": 197,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "02fc48dedded8a26f1dfa055cd0d21c4a66a87b6c652a5c6dbcb8da6c7e5c045",
+      "model_revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "report": "evaluation/runs/primock57-expanded-v1/omi-med-stt-v1.json",
+      "report_sha256": "2fab0eb25ed6f7dbf6b57523781448542b8c93ad127c7d731452a38594b8b59e",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 256.414,
+      "rank": 1
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "completed",
+      "normalized_wer": 0.13250883392226148,
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU",
+      "normalized_edits": 300,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "8385613288709264cef2dcd31a5f3bcc7620c9650b785e1f0ea1c09cc10f10d2",
+      "model_revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+      "report": "evaluation/runs/primock57-expanded-v1/parakeet-tdt-0.6b-v2.json",
+      "report_sha256": "532ff3357195261b37e95b8e494243e08ceb36a3e27e5c374ad5268fb73efc4d",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 292.544,
+      "rank": 2
+    },
+    {
+      "candidate_id": "qwen3-asr-0.6b-int8",
+      "status": "completed",
+      "normalized_wer": 0.13736749116607774,
+      "runtime_variant": "Public sherpa-onnx 2.0.0 / Qwen3-ASR 0.6B CPU INT8, four threads, greedy text-only, no reference prompt or hotwords",
+      "normalized_edits": 311,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "7207f810576faa9be3ef692c058931dca536575b5dc92ef0d7581cf48235e8a5",
+      "model_revision": "393f8a14e2f5fb96746aaab342997a40641001fbd5bf9592a080a8329178ee96",
+      "report": "evaluation/runs/primock57-expanded-v1/qwen3-asr-0.6b-int8.json",
+      "report_sha256": "40503124700f608af8c7032baa6d5503b3d0cf2cdfefe532f4af914172e57a63",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 435.5009,
+      "rank": 3
+    },
+    {
+      "candidate_id": "distil-whisper-large-v3",
+      "status": "completed",
+      "normalized_wer": 0.15724381625441697,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 356,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "ba6fbaddc30280b18b04ce589a3f28e6b297b790952617250f683322af72e70f",
+      "model_revision": "c3058b475261292e64a0412df1d2681c06260fab",
+      "report": "evaluation/runs/primock57-expanded-v1/distil-whisper-large-v3.json",
+      "report_sha256": "657b3221f34f987a4a801f38f13282d2d48f2f9336177f0aebe76247c4cccab6",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 2430.8536,
+      "rank": 4
+    },
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "status": "completed",
+      "normalized_wer": 0.16563604240282687,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 375,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "3852b0e5a80831de7f3740f396a3f2001484f4fadd2a309a822a23c615b0ce96",
+      "model_revision": "edaa852ec7e145841d8ffdb056a99866b5f0a478",
+      "report": "evaluation/runs/primock57-expanded-v1/faster-whisper-large-v3.json",
+      "report_sha256": "ef13b01e0c386a298d2b7a1ab50f9e9ad02198a2d04ff920901de04a9bee43af",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 3890.215,
+      "rank": 5
+    },
+    {
+      "candidate_id": "whisper-small",
+      "status": "completed",
+      "normalized_wer": 0.18065371024734983,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 409,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "3f18eeddd06386c3f83d717f6ad71f01e13cadf12e0e669484b605bceff57bf8",
+      "model_revision": "536b0662742c02347bc0e980a01041f333bce120",
+      "report": "evaluation/runs/primock57-expanded-v1/whisper-small.json",
+      "report_sha256": "af97db6ea687f0443da051b74d7ce75a24710af8e72252ede62292ec1e1db586",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 584.5755,
+      "rank": 6
+    },
+    {
+      "candidate_id": "faster-whisper-tiny.en",
+      "status": "completed",
+      "normalized_wer": 0.2230565371024735,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 505,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "d127ec7a5fc01a584cc0806ba208908c034ffe7c4696a0db6e1d598058c967f1",
+      "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+      "report": "evaluation/runs/primock57-expanded-v1/faster-whisper-tiny.en.json",
+      "report_sha256": "fb0eb97c215789cf07d1ab8b97bab256d5d2a475cb6b24ec77d0d6d6aac324f3",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 107.4621,
+      "rank": 7
+    },
+    {
+      "candidate_id": "multimed-whisper-small-english",
+      "status": "completed",
+      "normalized_wer": 0.4204946996466431,
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate",
+      "normalized_edits": 952,
+      "reference_words": 2264,
+      "failed_samples": 0,
+      "sample_count": 118,
+      "profile_sha256": "0370ecef71a67e67fc9979cd291f5b7719a9d2c5bf8e5958bfb120ec6b95c5ae",
+      "model_revision": "fb15edd1dfc68810a7d0c75e6cfc73c3e5ed01c1",
+      "report": "evaluation/runs/primock57-expanded-v1/multimed-whisper-small-english.json",
+      "report_sha256": "757be9c7ddf2ef61b232d70b610461297a55f731ef1e860f57d45dca869db54c",
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "elapsed_seconds": 926.6692,
+      "rank": 8
+    }
+  ],
+  "unranked": [
+    {
+      "candidate_id": "google-medasr-greedy",
+      "status": "access_pending",
+      "reason": "Google model gate requires user approval/login; no HF credentials configured."
+    },
+    {
+      "candidate_id": "google-medasr-approved-decoder",
+      "status": "access_pending",
+      "reason": "Same gated MedASR weights and gated 6-gram decoder; no approved access."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-en-5b",
+      "status": "access_pending",
+      "reason": "Hugging Face model gate requires user approval/login."
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-2.5-pro-english",
+      "status": "resource_preflight_blocked",
+      "reason": "Public BF16 weights total about 9.95 GB; reviewed canonical loader defaults to FP32 plus duplicate encoder loading, exceeding this 16 GB host physical RAM. No qualified CPU quantization provisioned."
+    },
+    {
+      "candidate_id": "canary-qwen-2.5b",
+      "status": "resource_preflight_blocked",
+      "reason": "Dependency resolution succeeded. Reviewed NeMo 3.0 SALM initializes FP32; conservative weights + checkpoint + 2 GiB runtime allowance estimate is 17.50 GB versus 16.91 GB physical RAM. Inference not attempted; no qualified lower-memory CPU variant or NVIDIA GPU."
+    },
+    {
+      "candidate_id": "amazon-transcribe-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; AWS credentials not configured."
+    },
+    {
+      "candidate_id": "deepgram-nova-3-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; Deepgram credentials not configured."
+    }
+  ],
+  "production_model_selected": null,
+  "clinical_release_gate": "not_evaluated",
+  "limitations": "118 selected utterances from 20 new public mock consultation groups across five recording days; separate speaker tracks, predominantly clean speech. One role supplies only one untagged eligible utterance. Repeated speakers and model-training overlap are not ruled out. Text-only development comparison, not independent clinical acceptance. No production winner."
+}
