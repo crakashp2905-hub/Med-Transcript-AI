@@ -11,6 +11,7 @@ from uuid import uuid4
 from services.api.storage import Store, processing_allowed, default_asset_root
 
 
+MAX_CHANNELS = 8
 MAX_UPLOAD_BYTES = 250_000_000
 MAX_DURATION_SECONDS = 3600
 MAX_ATTEMPTS = 3
@@ -60,7 +61,7 @@ def inspect_pcm_wav(path):
         if fmt is None or data_size is None:
             raise InvalidAudio("invalid_media")
         codec, channels, sample_rate, byte_rate, block_align, bits = fmt
-        if codec != 1 or channels not in (1, 2) or bits != 16 or not 8000 <= sample_rate <= 48000:
+        if codec != 1 or not 1 <= channels <= MAX_CHANNELS or bits != 16 or not 8000 <= sample_rate <= 48000:
             raise InvalidAudio("unsupported_media")
         if block_align != channels * 2 or byte_rate != sample_rate * block_align:
             raise InvalidAudio("invalid_media")
@@ -108,7 +109,7 @@ def run_once(db_path: str, asset_root: str):
             if upload["media_type"] != "audio/wav":
                 raise InvalidAudio("requires_decode")
             result = inspect_pcm_wav(source)
-            needs_decode = result["sample_rate"] != 16000 or result["channels"] != 1
+            needs_decode = result["sample_rate"] != 16000
         except InvalidAudio as exc:
             if upload["media_type"] == "audio/wav" and str(exc) != "unsupported_media":
                 raise
@@ -129,7 +130,7 @@ def run_once(db_path: str, asset_root: str):
             else:
                 result = {**normalized, "bytes": upload["expected_bytes"]}
             result.update(working_sha256=file_sha256(working), working_filename=working.name,
-                          asr_sample_rate=16000, asr_channels=1, normalized_duration_ms=normalized["duration_ms"],
+                          asr_sample_rate=16000, asr_channels=normalized["channels"], normalized_duration_ms=normalized["duration_ms"],
                           original_media_type=upload["media_type"], timeline_mapping_status="decoded_media_requires_review")
         result["sha256"] = upload["expected_sha256"]
     except InvalidAudio as exc:

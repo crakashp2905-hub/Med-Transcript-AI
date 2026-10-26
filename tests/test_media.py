@@ -24,7 +24,7 @@ def test_separate_decoder_normalizes_stereo_48k(tmp_path):
     result = normalize(source, target, "audio/wav")
     assert result["error_code"] is None, result
     metadata = inspect_pcm_wav(target)
-    assert metadata["channels"] == 1 and metadata["sample_rate"] == 16000
+    assert metadata["channels"] == 2 and metadata["sample_rate"] == 16000
     assert metadata["duration_ms"] == 100
 
 

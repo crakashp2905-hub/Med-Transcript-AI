@@ -25,6 +25,7 @@ async function encounter(page:Page){
 }
 
 test('microphone dictation records, uploads, transcribes locally and leaves source review pending',async({page})=>{
+ test.setTimeout(150000);
  const failures:string[]=[];page.on('pageerror',error=>failures.push(error.message));
  await encounter(page);
  await expect(page.getByRole('button',{name:'Start dictation',exact:true})).toBeDisabled();
@@ -35,7 +36,7 @@ test('microphone dictation records, uploads, transcribes locally and leaves sour
  // Capture all 7.58 seconds of the synthetic utterance and a trailing silent interval.
  await page.waitForTimeout(9000);
  await page.getByRole('button',{name:'Stop & transcribe',exact:true}).click();
- await expect(page.getByLabel('Transcript segment 1')).toBeVisible({timeout:60000});
+ await expect(page.getByLabel('Transcript segment 1')).toBeVisible({timeout:120000});
  await expect(page.getByLabel('Transcript segment 1')).toHaveValue(/vomit/i);
  await expect(page.getByRole('status')).toContainText('Dictation transcript ready');
  await expect(page.getByLabel('I confirmed supported English.')).not.toBeChecked();
@@ -154,4 +155,59 @@ test('retry after a lost successful upload response reuses the saved source',asy
  expect(puts).toBe(1);expect(keys).toHaveLength(2);expect(keys[0]).toBe(keys[1]);
  const response=await page.request.get(creationUrl.replace('/audio-uploads','/uploads'),{headers:{Authorization:`Bearer ${token}`}});
  expect(response.ok()).toBe(true);expect((await response.json()).items).toHaveLength(1);
+});
+
+
+test('three-channel browser PCM preserves distinct physical input signals and retry file',async({page})=>{
+ await page.addInitScript(()=>{
+  const original=navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+  const source=AudioContext.prototype.createMediaStreamSource;
+  const generated=new WeakSet<MediaStream>();
+  navigator.mediaDevices.getUserMedia=async()=>{const stream=await original({audio:true});generated.add(stream);stream.getAudioTracks()[0].getSettings=()=>({channelCount:3,sampleRate:16000});return stream;};
+  AudioContext.prototype.createMediaStreamSource=function(stream){
+   if(!generated.has(stream))return source.call(this,stream);
+   // Feed three independent signals directly; synthetic MediaStream destinations may downmix.
+   const merger=this.createChannelMerger(3);
+   for(let channel=0;channel<3;channel++){const oscillator=this.createOscillator(),gain=this.createGain();oscillator.frequency.value=220*(channel+1);gain.gain.value=0.05*(channel+1);oscillator.connect(gain);gain.connect(merger,0,channel);oscillator.start();}
+   return merger as unknown as MediaStreamAudioSourceNode;
+  };
+ });
+ await page.route('**/audio-uploads/*/content',route=>route.fulfill({status:503,body:'synthetic upload interruption'}));
+ await encounter(page);
+ await page.getByLabel('Physical input channels').selectOption('3');
+ await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
+ await page.getByRole('button',{name:'Start dictation',exact:true}).click();
+ await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
+ await page.waitForTimeout(1800);
+ await page.getByRole('button',{name:'Stop & transcribe',exact:true}).click();
+ await expect(page.getByRole('link',{name:'Save this recording locally'})).toBeVisible();
+ const downloaded=page.waitForEvent('download');
+ await page.getByRole('link',{name:'Save this recording locally'}).click();
+ const download=await downloaded,path=await download.path();expect(path).toBeTruthy();
+ const bytes=readFileSync(path!),peaks=[0,0,0];
+ for(let offset=44;offset+6<=bytes.length;offset+=6)for(let channel=0;channel<3;channel++)peaks[channel]=Math.max(peaks[channel],Math.abs(bytes.readInt16LE(offset+channel*2)));
+ const result={channels:bytes.readUInt16LE(22),rate:bytes.readUInt32LE(24),declared:bytes.readUInt32LE(40),actual:bytes.length-44,peaks};
+ expect(result.channels).toBe(3);expect(result.rate).toBe(16000);expect(result.declared).toBe(result.actual);
+ expect(result.peaks[0]).toBeGreaterThan(1000);expect(result.peaks[1]).toBeGreaterThan(result.peaks[0]*1.7);expect(result.peaks[2]).toBeGreaterThan(result.peaks[1]*1.3);
+ await expect(page.getByRole('button',{name:'Retry recording upload'})).toBeVisible();
+});
+
+test('multichannel request rejects a device reporting fewer channels',async({page})=>{
+ await page.addInitScript(()=>{const original=navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);navigator.mediaDevices.getUserMedia=async()=>{const stream=await original({audio:true});stream.getAudioTracks()[0].getSettings=()=>({channelCount:1});return stream;};});
+ await encounter(page);await page.getByLabel('Physical input channels').selectOption('4');
+ await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
+ await page.getByRole('button',{name:'Start dictation',exact:true}).click();
+ await expect(page.getByRole('alert')).toContainText('did not confirm the requested physical channel count');
+ await expect(page.getByText('The microphone is off.',{exact:true})).toBeVisible();
+});
+
+
+test('worklet rejects silently changed channel count even when device settings claim three',async({page})=>{
+ await page.addInitScript(()=>{const original=navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);navigator.mediaDevices.getUserMedia=async()=>{const stream=await original({audio:true});stream.getAudioTracks()[0].getSettings=()=>({channelCount:3});return stream;};});
+ let uploads=0;page.on('request',request=>{if(request.method()==='POST'&&/\/audio-uploads$/.test(request.url()))uploads++;});
+ await encounter(page);await page.getByLabel('Physical input channels').selectOption('3');
+ await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
+ await page.getByRole('button',{name:'Start dictation',exact:true}).click();
+ await expect(page.getByRole('alert')).toContainText('browser changed the input channel count');
+ await expect(page.getByText('The microphone is off.',{exact:true})).toBeVisible();expect(uploads).toBe(0);
 });

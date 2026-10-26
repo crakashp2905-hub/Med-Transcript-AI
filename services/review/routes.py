@@ -238,7 +238,7 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
                     "exports": [dict(item) for item in con.execute("SELECT id,format,sha256,created_at FROM exports WHERE encounter=?", (str(eid),))]}
 
     @app.get("/v1/encounters/{eid}/audio/{upload_id}")
-    def audio(eid: UUID, upload_id: UUID, actor=Depends(identity)):
+    def audio(eid: UUID, upload_id: UUID, channel: int | None = Query(default=None, ge=0, le=7), actor=Depends(identity)):
         with database() as con:
             current(con, eid, actor)
             row = con.execute("SELECT * FROM uploads WHERE id=? AND encounter=? AND status='complete'", (str(upload_id), str(eid))).fetchone()
@@ -246,6 +246,31 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
             if not row or not path.is_file():
                 raise HTTPException(404, "audio_unavailable")
             audit(con, actor, "audio_playback", str(upload_id))
+        if channel is not None:
+            import tempfile
+            from starlette.background import BackgroundTask
+            from services.api.ingest import file_sha256, inspect_pcm_wav
+            from services.asr.channels import write_channel
+            with database() as con:
+                ingest = con.execute("SELECT result FROM jobs WHERE upload=? AND encounter=? AND stage='audio_ingest' AND status='succeeded'", (str(upload_id), str(eid))).fetchone()
+            if not ingest:
+                raise HTTPException(409, "audio_ingest_required")
+            metadata = json.loads(ingest["result"])
+            if metadata.get("working_filename"):
+                path = assets / f"{upload_id}.normalized.wav"
+            expected = metadata.get("working_sha256") or row["expected_sha256"]
+            if not path.is_file() or file_sha256(path) != expected:
+                raise HTTPException(409, "asset_integrity_failure")
+            if channel >= inspect_pcm_wav(path)["channels"]:
+                raise HTTPException(422, "channel_unavailable")
+            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as handle:
+                isolated = Path(handle.name)
+            try:
+                write_channel(path, isolated, channel)
+            except Exception:
+                isolated.unlink(missing_ok=True)
+                raise
+            return FileResponse(isolated, media_type="audio/wav", background=BackgroundTask(isolated.unlink, missing_ok=True))
         return FileResponse(path, media_type=row["media_type"])
 
     @app.post("/v1/encounters/{eid}/manual-transcripts", status_code=201)

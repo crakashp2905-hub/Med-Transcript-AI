@@ -9,7 +9,7 @@ from pathlib import Path
 from threading import Event, Thread
 from uuid import uuid4
 
-from services.api.ingest import file_sha256, inspect_pcm_wav
+from services.api.ingest import MAX_CHANNELS, file_sha256, inspect_pcm_wav
 from services.api.storage import Store, processing_allowed, default_asset_root
 from services.asr.adapter import ASRFailure, FasterWhisperAdapter
 from services.asr.profiles import ASRProfile, canonical_json, content_sha256
@@ -105,12 +105,17 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
             metadata["sha256"] = upload["expected_sha256"]
             metadata["working_sha256"] = ingest.get("working_sha256")
             metadata["timeline_mapping_status"] = ingest.get("timeline_mapping_status", "original_pcm_timeline")
-            if metadata["channels"] != 1 or metadata["sample_rate"] != 16000:
+            if not 1 <= metadata["channels"] <= MAX_CHANNELS or metadata["sample_rate"] != 16000:
                 raise ASRFailure("unsupported_asr_input")
             lease.checkpoint()
-            raw = adapter_factory(profile).transcribe(source, metadata, lease.checkpoint)
+            adapter = adapter_factory(profile)
+            if metadata["channels"] > 1:
+                from services.asr.channels import transcribe_channels
+                raw = transcribe_channels(source, metadata, adapter, lease.checkpoint)
+            else:
+                raw = adapter.transcribe(source, metadata, lease.checkpoint)
             manifest_path = diarization_manifest or os.environ.get('MED_TRANSCRIPT_DIARIZATION_MANIFEST')
-            if manifest_path:
+            if manifest_path and metadata["channels"] == 1:
                 from services.diarization import diarize
                 speaker_report = diarize(source, json.loads(Path(manifest_path).read_text(encoding='utf-8')), lease.checkpoint)
             lease.checkpoint()
@@ -141,7 +146,9 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
                                       (job["encounter"],)).fetchone()[0]
                 transcript_id = str(uuid4())
                 try:
-                    body = build_transcript(raw, metadata, job["encounter"], job["upload"], profile, transcript_id, version)
+                    from services.asr.channels import build_channels
+                    builder = build_channels if isinstance(raw, dict) and "channel_outputs" in raw else build_transcript
+                    body = builder(raw, metadata, job["encounter"], job["upload"], profile, transcript_id, version)
                     if speaker_report is not None:
                         from services.diarization import attach_speakers
                         body = attach_speakers(body, speaker_report)

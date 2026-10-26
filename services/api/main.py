@@ -17,7 +17,7 @@ from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-from services.api.ingest import MAX_UPLOAD_BYTES, file_sha256
+from services.api.ingest import MAX_CHANNELS, MAX_UPLOAD_BYTES, file_sha256
 from services.api.storage import Store, active_scopes, processing_allowed, default_asset_root
 from services.asr.profiles import ASRProfile, load_profiles
 
@@ -392,7 +392,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             if ingest is None or ingest["status"] != "succeeded":
                 raise HTTPException(409, "audio_ingest_required")
             metadata = json.loads(ingest["result"])
-            if metadata.get("asr_sample_rate", metadata["sample_rate"]) != 16000 or metadata.get("asr_channels", metadata["channels"]) != 1:
+            if metadata.get("asr_sample_rate", metadata["sample_rate"]) != 16000 or not 1 <= metadata.get("asr_channels", metadata["channels"]) <= MAX_CHANNELS:
                 raise HTTPException(422, "unsupported_asr_input")
             existing = con.execute("SELECT id FROM jobs WHERE upload=? AND stage='transcription' AND profile_sha256=?",
                                    (upload["id"], profile.sha256)).fetchone()

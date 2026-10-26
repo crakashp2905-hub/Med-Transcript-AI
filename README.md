@@ -167,9 +167,9 @@ Withdrawal is repeatable and preserves its original timestamp.
 
 ## Upload and inspect synthetic audio
 
-WAV, MP3, M4A/MP4, WebM and Ogg audio uploads are supported: one or two channels,
+WAV, MP3, M4A/MP4, WebM and Ogg audio uploads are supported: one to eight channels,
 8–48 kHz, at most 250 MB and 60 minutes. Install the `media` extra for decoding.
-The worker normalizes supported recordings to mono 16 kHz PCM in a bounded
+The worker normalizes supported recordings to channel-preserving 16 kHz PCM in a bounded
 separate process and preserves the original checksum. Windows process isolation
 does not provide a kernel-enforced decoder memory sandbox. Use synthetic recordings only.
 See the [operations runbook](docs/runbooks/operations.md) for deployment,
@@ -260,8 +260,10 @@ Successful jobs link to `GET /v1/encounters/{id}/transcripts/{version_uuid}`.
 Transcripts preserve original segment text, estimated timestamps, model/config
 provenance, untranscribed intervals and an exact-version SHA-256/ETag. Speakers
 remain unassigned, and language support and clinical completeness require review.
-ASR currently accepts **mono, 16 kHz, 16-bit PCM WAV only**; resampling, stereo
-attribution, diarization and general codec decoding are deferred.
+The recognizer consumes mono 16 kHz PCM per channel; the worker independently
+transcribes 1–8 synchronized channels, retaining overlapping timestamps and source
+channel references. Roles require clinician confirmation. See the
+[multichannel implementation and limits](docs/multichannel-2026-10-26.md).
 
 For a local speech smoke run using your synthetic fixture and profile:
 
@@ -308,3 +310,5 @@ patient information. Do not enter real patient information.
 See [implementation status](docs/implementation-status.md) for the staged backlog.
 Commit and push verified milestones to the configured GitHub remote; never
 commit credentials, databases, recordings, or private annotations.
+
+Multichannel capture, inference and channel-specific evidence playback: [implementation and limits](docs/multichannel-2026-10-26.md).

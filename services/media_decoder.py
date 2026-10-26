@@ -1,4 +1,4 @@
-"""Resource-bounded, separate-process audio decoding and mono 16 kHz normalization."""
+"""Resource-bounded, separate-process audio decoding and channel-preserving 16 kHz normalization."""
 
 import argparse
 import json
@@ -18,7 +18,7 @@ def decode_child(source, destination, media_type):
         import resource
         resource.setrlimit(resource.RLIMIT_AS, (1024**3, 1024**3))
         resource.setrlimit(resource.RLIMIT_CPU, (90, 90))
-        resource.setrlimit(resource.RLIMIT_FSIZE, (120_000_000, 120_000_000))
+        resource.setrlimit(resource.RLIMIT_FSIZE, (250_000_000, 250_000_000))
     try:
         import av
     except ImportError:
@@ -31,19 +31,26 @@ def decode_child(source, destination, media_type):
             if len(container.streams.audio) != 1 or len(container.streams.video):
                 return {"error_code": "unsupported_media_streams"}
             stream = container.streams.audio[0]
-            resampler = av.AudioResampler(format="s16", layout="mono", rate=16000)
+            channels = len(stream.codec_context.layout.channels)
+            if not 1 <= channels <= 8:
+                return {"error_code": "unsupported_audio_profile"}
+            resampler = av.AudioResampler(format="s16", layout=stream.codec_context.layout, rate=16000)
             with wave.open(str(destination), "wb") as target:
-                target.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
+                target.setparams((channels, 2, 16000, 0, "NONE", "not compressed"))
                 for frame in container.decode(stream):
-                    if len(frame.layout.channels) > 2 or not 8000 <= frame.sample_rate <= 48000:
+                    if len(frame.layout.channels) != channels or not 8000 <= frame.sample_rate <= 48000:
                         return {"error_code": "unsupported_audio_profile"}
                     for output in resampler.resample(frame):
                         total += output.samples
+                        if total * channels * 2 + 44 > 250_000_000:
+                            return {"error_code": "decoded_size_limit_exceeded"}
                         if total > 16000 * 3600:
                             return {"error_code": "duration_limit_exceeded"}
                         target.writeframes(output.to_ndarray().astype("<i2").tobytes())
                 for output in resampler.resample(None):
                     total += output.samples
+                    if total * channels * 2 + 44 > 250_000_000:
+                        return {"error_code": "decoded_size_limit_exceeded"}
                     if total > 16000 * 3600:
                         return {"error_code": "duration_limit_exceeded"}
                     target.writeframes(output.to_ndarray().astype("<i2").tobytes())

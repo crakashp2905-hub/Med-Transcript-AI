@@ -163,6 +163,6 @@ def confirm_roles(segments, assignments, *, clinician_confirmed=False):
     if not clinician_confirmed:
         raise ValueError("Clinician confirmation required")
     speakers = {s["speaker_id"] for s in segments}
-    if set(assignments) != speakers or any(v not in ("patient","clinician","caregiver","unknown") for v in assignments.values()):
+    if set(assignments) != speakers or any(v not in ("patient","clinician","caregiver","interpreter","other","unknown") for v in assignments.values()):
         raise ValueError("Explicit assignment required for every observed speaker")
     return [{**s,"role":assignments[s["speaker_id"]],"role_status":"clinician_confirmed"} for s in segments]

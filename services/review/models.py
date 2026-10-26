@@ -79,12 +79,12 @@ class NoteEdit(DraftInput):
 class SegmentEdit(Strict):
     segment_id: UUID
     text: str = Field(max_length=4000)
-    role: Literal["patient", "clinician", "caregiver", "unknown"] = "unknown"
+    role: Literal["patient", "clinician", "caregiver", "interpreter", "other", "unknown"] = "unknown"
 
 
 class SpeakerRoleConfirmation(Strict):
     clinician_confirmed: Literal[True]
-    assignments: dict[str, Literal['patient', 'clinician', 'caregiver', 'unknown']] = Field(min_length=1, max_length=100)
+    assignments: dict[str, Literal['patient', 'clinician', 'caregiver', 'interpreter', 'other', 'unknown']] = Field(min_length=1, max_length=100)
 
 
 class ReviewAttestation(Strict):
@@ -102,7 +102,7 @@ class ManualSegment(Strict):
     start_ms: int = Field(ge=0, strict=True)
     end_ms: int = Field(gt=0, strict=True)
     text: str = Field(min_length=1, max_length=4000)
-    role: Literal["patient", "clinician", "caregiver", "unknown"] = "unknown"
+    role: Literal["patient", "clinician", "caregiver", "interpreter", "other", "unknown"] = "unknown"
 
 
 class ManualTranscript(ReviewAttestation):
