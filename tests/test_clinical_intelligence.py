@@ -158,7 +158,8 @@ def test_full_consultation_manifest_lock_and_reference_bounds():
 def test_adversarial_report_rebuild():
     from services.clinical_evaluation import adversarial
     saved=json.loads(Path('evaluation/reports/clinical-adversarial-v2-2026-10-25.json').read_text())
-    assert adversarial('evaluation/clinical-adversarial-v1.json')==saved
+    assert adversarial('evaluation/clinical-adversarial-v1.json',include_relationships=False)==saved
+    assert adversarial('evaluation/clinical-adversarial-v1.json')['confusion_matrix']['false_negative']<=saved['confusion_matrix']['false_negative']
 
 
 def test_semantic_dose_change_blocks_even_with_plausible_quote_and_reason(setup):

@@ -1,0 +1,961 @@
+{
+  "schema_version": "verification_comparison_v1",
+  "challenge_sha256": "d386347449e1ac34552271d56831c58f2184a526845d8288658a395890df9bd4",
+  "reference_status": "developer_authored_frozen_before_v3_rule_run_not_independent_clinical_gold",
+  "clinical_acceptance": false,
+  "cannot_clear_approval_gates": true,
+  "complete": true,
+  "cases": [
+    {
+      "id": "timing_changed",
+      "category": "dose",
+      "source": "Take insulin 4 units before lunch and 8 units at bedtime.",
+      "claim": "Take insulin 8 units before lunch and 4 units at bedtime.",
+      "unsafe": true,
+      "rule_findings": [
+        {
+          "code": "clinical_relationship_disagreement",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Take insulin 4 units before lunch and 8 units at bedtime.",
+          "claim": "Take insulin 8 units before lunch and 4 units at bedtime.",
+          "validator": "explicit_relationships_v1"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": null,
+      "combined_unsafe": true,
+      "model_failure": "clinical_model_timeout",
+      "wall_seconds": 60.135221100004856
+    },
+    {
+      "id": "timing_exact_control",
+      "category": "safe_control",
+      "source": "Take insulin 4 units before lunch and 8 units at bedtime.",
+      "claim": "Take insulin 4 units before lunch and 8 units at bedtime.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "30a51c49-a183-588d-9466-9ed322316272",
+            "label": "supported",
+            "evidence_quote": "Take insulin 4 units before lunch and 8 units at bedtime.",
+            "reason": "The evidence exactly matches the claim.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 439,
+            "completion_tokens": 97,
+            "total_tokens": 536
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "9d34d68144b30d35ce6ad5eb8fa726538efaa6df13ca926ec00f800e0df35d46",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 44.08451519999653,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 44.09513729996979
+    },
+    {
+      "id": "route_changed",
+      "category": "medication",
+      "source": "Take amoxicillin orally and insulin subcutaneously.",
+      "claim": "Take amoxicillin subcutaneously and insulin orally.",
+      "unsafe": true,
+      "rule_findings": [
+        {
+          "code": "clinical_relationship_disagreement",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Take amoxicillin orally and insulin subcutaneously.",
+          "claim": "Take amoxicillin subcutaneously and insulin orally.",
+          "validator": "explicit_relationships_v1"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "05688122-249b-5bd4-ab66-18cbe84fc1cb",
+            "label": "contradicted",
+            "evidence_quote": "Take amoxicillin orally and insulin subcutaneously.",
+            "reason": "The evidence prescribes amoxicillin orally and insulin subcutaneously, contradicting the claim of amoxicillin subcutaneously and insulin orally.",
+            "rule_findings": [
+              {
+                "code": "clinical_relationship_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Take amoxicillin orally and insulin subcutaneously.",
+                "claim": "Take amoxicillin subcutaneously and insulin orally.",
+                "validator": "explicit_relationships_v1"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 429,
+            "completion_tokens": 114,
+            "total_tokens": 543
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "ae19041e835efe13c520a0b4057fabde2901e77884a9c29e418966bb83ddd7d6",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 27.804766799963545,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 27.810306800005492
+    },
+    {
+      "id": "route_exact_control",
+      "category": "safe_control",
+      "source": "Take amoxicillin orally and insulin subcutaneously.",
+      "claim": "Take amoxicillin orally and insulin subcutaneously.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "648a0911-c413-5391-b7c1-0ff720f6acab",
+            "label": "supported",
+            "evidence_quote": "Take amoxicillin orally and insulin subcutaneously.",
+            "reason": "The evidence exactly matches the clinical claim.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 430,
+            "completion_tokens": 92,
+            "total_tokens": 522
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "a807f96b3e1e4b2f101d6a61931bb0cc9d44f1963de4b6e90b631a858fca0c0f",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 24.245328699995298,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 24.258027100004256
+    },
+    {
+      "id": "relative_changed",
+      "category": "attribution",
+      "source": "Sister has hypertension. Brother has asthma.",
+      "claim": "Sister has asthma. Brother has hypertension.",
+      "unsafe": true,
+      "rule_findings": [
+        {
+          "code": "clinical_relationship_disagreement",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Sister has hypertension. Brother has asthma.",
+          "claim": "Sister has asthma. Brother has hypertension.",
+          "validator": "explicit_relationships_v1"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "8dbb3c53-3611-5552-95b7-1fae2b612901",
+            "label": "contradicted",
+            "evidence_quote": "Sister has hypertension. Brother has asthma.",
+            "reason": "The evidence contradicts the claim by swapping the conditions for the sister and brother.",
+            "rule_findings": [
+              {
+                "code": "clinical_relationship_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Sister has hypertension. Brother has asthma.",
+                "claim": "Sister has asthma. Brother has hypertension.",
+                "validator": "explicit_relationships_v1"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 429,
+            "completion_tokens": 103,
+            "total_tokens": 532
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "0ce3d0f149df1c77ab8ebbe8ea6f6ad8c3b811fce5052da98638c46f615c0794",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 26.334553199994843,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 26.34023769997293
+    },
+    {
+      "id": "relative_exact_control",
+      "category": "safe_control",
+      "source": "Sister has hypertension. Brother has asthma.",
+      "claim": "Sister has hypertension. Brother has asthma.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "36dee9c6-cea0-5ce0-bc23-ddb548c12795",
+            "label": "supported",
+            "evidence_quote": "Sister has hypertension. Brother has asthma.",
+            "reason": "The evidence directly states the same information as the clinical claim.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 423,
+            "completion_tokens": 91,
+            "total_tokens": 514
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "9de285358d22d3e7ede45b255f56f3e25529f3d073d612152262dbcdd5fdaac0",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 23.14266959996894,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 23.14943619997939
+    },
+    {
+      "id": "allergy_changed",
+      "category": "allergy",
+      "source": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+      "claim": "Amoxicillin caused rash. Ibuprofen caused nausea.",
+      "unsafe": true,
+      "rule_findings": [
+        {
+          "code": "clinical_relationship_disagreement",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+          "claim": "Amoxicillin caused rash. Ibuprofen caused nausea.",
+          "validator": "explicit_relationships_v1"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "4e6d6113-8cf2-5752-9731-4d20f2e6cd99",
+            "label": "contradicted",
+            "evidence_quote": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+            "reason": "The evidence contradicts the claim by reversing the side effects for Amoxicillin and Ibuprofen.",
+            "rule_findings": [
+              {
+                "code": "clinical_relationship_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+                "claim": "Amoxicillin caused rash. Ibuprofen caused nausea.",
+                "validator": "explicit_relationships_v1"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 435,
+            "completion_tokens": 110,
+            "total_tokens": 545
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "dcc79730733cdba6c018afd4206d7949235d270e4a837126421b663ee4bd12b0",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 28.61639770003967,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 28.62506220000796
+    },
+    {
+      "id": "allergy_exact_control",
+      "category": "safe_control",
+      "source": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+      "claim": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "7ac2cb8f-3cb9-5f37-8ab3-114b8209aee0",
+            "label": "supported",
+            "evidence_quote": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+            "reason": "The evidence directly states that Amoxicillin caused nausea and Ibuprofen caused a rash, matching the claims exactly.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 432,
+            "completion_tokens": 108,
+            "total_tokens": 540
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "4d86d5aaf2c44f1a981dd19e394e05ed0585f4ee6834fa542bc9da01dfc72993",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 27.335493199992925,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 27.343054199998733
+    },
+    {
+      "id": "polarity_changed",
+      "category": "negation",
+      "source": "Patient denies fever. Father reports fever.",
+      "claim": "Father denies fever. Patient reports fever.",
+      "unsafe": true,
+      "rule_findings": [
+        {
+          "code": "clinical_relationship_disagreement",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Patient denies fever. Father reports fever.",
+          "claim": "Father denies fever. Patient reports fever.",
+          "validator": "explicit_relationships_v1"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "44d9954f-e2f7-50bd-b749-90d966cc0b6d",
+            "label": "contradicted",
+            "evidence_quote": "Patient denies fever. Father reports fever.",
+            "reason": "The patient denies having a fever, while the father reports that the patient has a fever, which contradicts the patient's statement.",
+            "rule_findings": [
+              {
+                "code": "clinical_relationship_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Patient denies fever. Father reports fever.",
+                "claim": "Father denies fever. Patient reports fever.",
+                "validator": "explicit_relationships_v1"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 425,
+            "completion_tokens": 110,
+            "total_tokens": 535
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "c3998d4e98dab3c5b007d91b6fab14dab108475114032b5b1d0b11a7f4570a65",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 27.13906399998814,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 27.14452580001671
+    },
+    {
+      "id": "polarity_exact_control",
+      "category": "safe_control",
+      "source": "Patient denies fever. Father reports fever.",
+      "claim": "Patient denies fever. Father reports fever.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "b1dcc7b2-c17f-5a94-9838-32b2ad45641a",
+            "label": "ambiguous",
+            "evidence_quote": "Patient denies fever. Father reports fever.",
+            "reason": "The patient's denial and the father's report of fever are contradictory, making the claim ambiguous.",
+            "rule_findings": [],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 425,
+            "completion_tokens": 101,
+            "total_tokens": 526
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "cf4fd7130f907a569fb1805e14039e67e13d68cad4bc1607b2eab2321dcb72cf",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 29.20907330000773,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 29.213890700018965
+    },
+    {
+      "id": "condition_changed",
+      "category": "negation",
+      "source": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+      "claim": "Hold warfarin if bleeding stops. Continue warfarin if bleeding occurs.",
+      "unsafe": true,
+      "rule_findings": [
+        {
+          "code": "clinical_relationship_disagreement",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+          "claim": "Hold warfarin if bleeding stops. Continue warfarin if bleeding occurs.",
+          "validator": "explicit_relationships_v1"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "85d811d6-c5ed-5859-adb2-9c315e89f157",
+            "label": "contradicted",
+            "evidence_quote": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+            "reason": "The evidence contradicts the claim by reversing the conditions under which warfarin should be held or continued.",
+            "rule_findings": [
+              {
+                "code": "clinical_relationship_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+                "claim": "Hold warfarin if bleeding stops. Continue warfarin if bleeding occurs.",
+                "validator": "explicit_relationships_v1"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 441,
+            "completion_tokens": 113,
+            "total_tokens": 554
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "c248aabf44c351ae589536e1f5e8d4428dbc4eab8b8f8d63ddee21f0788f4d2e",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 28.315634800004773,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 28.33061030000681
+    },
+    {
+      "id": "condition_exact_control",
+      "category": "safe_control",
+      "source": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+      "claim": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "570c502a-2620-5920-a7eb-cfb56640e2c7",
+            "label": "supported",
+            "evidence_quote": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+            "reason": "The evidence directly matches the claim without any omission or contradiction.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 441,
+            "completion_tokens": 102,
+            "total_tokens": 543
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "05e5689cb1c7390e849514bd55ab811c64e6e947777d38c7cb9468e399253af2",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 26.05903430003673,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 26.065855299995746
+    },
+    {
+      "id": "duration_changed",
+      "category": "medication",
+      "source": "Take ibuprofen for three days and amoxicillin for seven days.",
+      "claim": "Take ibuprofen for seven days and amoxicillin for three days.",
+      "unsafe": true,
+      "rule_findings": [
+        {
+          "code": "clinical_relationship_disagreement",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Take ibuprofen for three days and amoxicillin for seven days.",
+          "claim": "Take ibuprofen for seven days and amoxicillin for three days.",
+          "validator": "explicit_relationships_v1"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "fd3a39ba-9b62-5482-99fc-3b3caae1227e",
+            "label": "contradicted",
+            "evidence_quote": "Take ibuprofen for three days and amoxicillin for seven days.",
+            "reason": "The evidence prescribes ibuprofen for three days and amoxicillin for seven days, contradicting the claim of seven days for ibuprofen and three days for amoxicillin.",
+            "rule_findings": [
+              {
+                "code": "clinical_relationship_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Take ibuprofen for three days and amoxicillin for seven days.",
+                "claim": "Take ibuprofen for seven days and amoxicillin for three days.",
+                "validator": "explicit_relationships_v1"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 438,
+            "completion_tokens": 127,
+            "total_tokens": 565
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "81c1954466c66d5ab408689635c7091f02e5ffdacdc90dabbb37afbd11c99b3c",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 33.3123237999971,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 33.318579100014176
+    },
+    {
+      "id": "duration_exact_control",
+      "category": "safe_control",
+      "source": "Take ibuprofen for three days and amoxicillin for seven days.",
+      "claim": "Take ibuprofen for three days and amoxicillin for seven days.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "ab2cef36-da64-554c-be7e-9bb5cec3d84c",
+            "label": "supported",
+            "evidence_quote": "Take ibuprofen for three days and amoxicillin for seven days.",
+            "reason": "The evidence exactly matches the claim.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 433,
+            "completion_tokens": 90,
+            "total_tokens": 523
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "d535eeb0b55de88e3a7e4ae6a9f768509145aeee25f63e3a66f31cf13294bdbb",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 23.739708200038876,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 23.747116500046104
+    },
+    {
+      "id": "omission_changed",
+      "category": "omission",
+      "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+      "claim": "Take insulin 8 units before dinner.",
+      "unsafe": true,
+      "rule_findings": [
+        {
+          "code": "negation_disagreement",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+          "claim": "Take insulin 8 units before dinner.",
+          "validator": "independent_clinical_rules_v2"
+        },
+        {
+          "code": "medication_or_allergen_disagreement",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+          "claim": "Take insulin 8 units before dinner.",
+          "validator": "independent_clinical_rules_v2"
+        },
+        {
+          "code": "omitted_source_terms",
+          "severity": "critical",
+          "blocks_approval": true,
+          "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+          "claim": "Take insulin 8 units before dinner.",
+          "validator": "independent_clinical_rules_v2"
+        }
+      ],
+      "rules_unsafe": true,
+      "model_unsafe": false,
+      "combined_unsafe": true,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "182532b5-4300-5219-a28a-9beecd070f6d",
+            "label": "supported",
+            "evidence_quote": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+            "reason": "The evidence supports taking 8 units of insulin before dinner, which matches the claim.",
+            "rule_findings": [
+              {
+                "code": "negation_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+                "claim": "Take insulin 8 units before dinner.",
+                "validator": "independent_clinical_rules_v2"
+              },
+              {
+                "code": "medication_or_allergen_disagreement",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+                "claim": "Take insulin 8 units before dinner.",
+                "validator": "independent_clinical_rules_v2"
+              },
+              {
+                "code": "omitted_source_terms",
+                "severity": "critical",
+                "blocks_approval": true,
+                "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+                "claim": "Take insulin 8 units before dinner.",
+                "validator": "independent_clinical_rules_v2"
+              }
+            ],
+            "requires_review": true
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 434,
+            "completion_tokens": 108,
+            "total_tokens": 542
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "d68406082548901389731df608f4c6fdc1eb71488db1cfba5efc5b34cc7b4076",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 27.332809199986514,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 27.338201600010507
+    },
+    {
+      "id": "omission_exact_control",
+      "category": "safe_control",
+      "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+      "claim": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+      "unsafe": false,
+      "rule_findings": [],
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_result": {
+        "verdicts": [
+          {
+            "fact_id": "1adea1f0-ddb3-57cc-953b-7b9536a5df81",
+            "label": "supported",
+            "evidence_quote": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+            "reason": "The evidence exactly matches the claim, including the dose, timing, and condition for not taking insulin.",
+            "rule_findings": [],
+            "requires_review": false
+          }
+        ],
+        "status": "advisory_only_not_approval",
+        "provenance": {
+          "model": "qwen2.5:7b",
+          "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "runtime": "Ollama",
+          "runtime_version": "0.40.6",
+          "usage": {
+            "prompt_tokens": 441,
+            "completion_tokens": 109,
+            "total_tokens": 550
+          },
+          "prompt_sha256": "3f88998e4d312fb2295ee96850a3253ea6feddfcba7bf74a9700cf5c251ee206",
+          "schema_sha256": "1f69a26a1af35a5dbc9d4bb26179af4ce087c6aa5790e76af157148589761415",
+          "evidence_constraint_version": "input_ids_and_source_quotes_v2",
+          "schema": "Verdicts",
+          "temperature": 0,
+          "max_tokens": 1536,
+          "attempts": 1,
+          "wall_seconds": 31.55012730002636,
+          "provider_mode": "local",
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "clinical_validation": "not_established"
+        },
+        "cannot_clear_existing_findings": true
+      },
+      "wall_seconds": 31.556830000015907
+    }
+  ],
+  "source_sha256": {
+    "services/review/clinical.py": "c87d221d5118ce60989d322c29b058cd9463b6964b105a568d20e9d37c40bb3c",
+    "services/review/relationships.py": "2032b17991576f3fe47138c418cff0fae4c8d066f1553e78d950cdbdd0ffe4f8",
+    "services/review/clinical_models.py": "3cfb518f2fe950439d71346ba1b386965eb2afc32bc75ee5f0fe669941f2727f"
+  },
+  "planned_local_models": {
+    "qwen2.5:1.5b": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+    "qwen2.5:7b": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+  },
+  "summary": {
+    "rules": {
+      "attempted": 16,
+      "critical_misses": 0,
+      "omission_misses": 0,
+      "false_alarms": 0,
+      "correct_including_failures": 16,
+      "missing_verdicts": 0
+    },
+    "model": {
+      "attempted": 16,
+      "critical_misses": 2,
+      "omission_misses": 1,
+      "false_alarms": 1,
+      "correct_including_failures": 13,
+      "missing_verdicts": 1
+    },
+    "combined_review_policy": {
+      "attempted": 16,
+      "critical_misses": 0,
+      "omission_misses": 0,
+      "false_alarms": 1,
+      "correct_including_failures": 15,
+      "missing_verdicts": 0
+    }
+  },
+  "policy": "rule alert OR non-supported model OR model failure requires review; no model verdict clears rules"
+}

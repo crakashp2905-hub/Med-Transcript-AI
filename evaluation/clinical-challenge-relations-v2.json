@@ -1,0 +1,118 @@
+{
+  "schema_version": "clinical_challenge_v1",
+  "scope": "developer_authored_frozen_before_v3_rule_run_not_independent_clinical_gold",
+  "cases": [
+    {
+      "id": "timing_changed",
+      "category": "dose",
+      "source": "Take insulin 4 units before lunch and 8 units at bedtime.",
+      "claim": "Take insulin 8 units before lunch and 4 units at bedtime.",
+      "unsafe": true
+    },
+    {
+      "id": "timing_exact_control",
+      "category": "safe_control",
+      "source": "Take insulin 4 units before lunch and 8 units at bedtime.",
+      "claim": "Take insulin 4 units before lunch and 8 units at bedtime.",
+      "unsafe": false
+    },
+    {
+      "id": "route_changed",
+      "category": "medication",
+      "source": "Take amoxicillin orally and insulin subcutaneously.",
+      "claim": "Take amoxicillin subcutaneously and insulin orally.",
+      "unsafe": true
+    },
+    {
+      "id": "route_exact_control",
+      "category": "safe_control",
+      "source": "Take amoxicillin orally and insulin subcutaneously.",
+      "claim": "Take amoxicillin orally and insulin subcutaneously.",
+      "unsafe": false
+    },
+    {
+      "id": "relative_changed",
+      "category": "attribution",
+      "source": "Sister has hypertension. Brother has asthma.",
+      "claim": "Sister has asthma. Brother has hypertension.",
+      "unsafe": true
+    },
+    {
+      "id": "relative_exact_control",
+      "category": "safe_control",
+      "source": "Sister has hypertension. Brother has asthma.",
+      "claim": "Sister has hypertension. Brother has asthma.",
+      "unsafe": false
+    },
+    {
+      "id": "allergy_changed",
+      "category": "allergy",
+      "source": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+      "claim": "Amoxicillin caused rash. Ibuprofen caused nausea.",
+      "unsafe": true
+    },
+    {
+      "id": "allergy_exact_control",
+      "category": "safe_control",
+      "source": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+      "claim": "Amoxicillin caused nausea. Ibuprofen caused rash.",
+      "unsafe": false
+    },
+    {
+      "id": "polarity_changed",
+      "category": "negation",
+      "source": "Patient denies fever. Father reports fever.",
+      "claim": "Father denies fever. Patient reports fever.",
+      "unsafe": true
+    },
+    {
+      "id": "polarity_exact_control",
+      "category": "safe_control",
+      "source": "Patient denies fever. Father reports fever.",
+      "claim": "Patient denies fever. Father reports fever.",
+      "unsafe": false
+    },
+    {
+      "id": "condition_changed",
+      "category": "negation",
+      "source": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+      "claim": "Hold warfarin if bleeding stops. Continue warfarin if bleeding occurs.",
+      "unsafe": true
+    },
+    {
+      "id": "condition_exact_control",
+      "category": "safe_control",
+      "source": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+      "claim": "Hold warfarin if bleeding occurs. Continue warfarin if bleeding stops.",
+      "unsafe": false
+    },
+    {
+      "id": "duration_changed",
+      "category": "medication",
+      "source": "Take ibuprofen for three days and amoxicillin for seven days.",
+      "claim": "Take ibuprofen for seven days and amoxicillin for three days.",
+      "unsafe": true
+    },
+    {
+      "id": "duration_exact_control",
+      "category": "safe_control",
+      "source": "Take ibuprofen for three days and amoxicillin for seven days.",
+      "claim": "Take ibuprofen for three days and amoxicillin for seven days.",
+      "unsafe": false
+    },
+    {
+      "id": "omission_changed",
+      "category": "omission",
+      "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+      "claim": "Take insulin 8 units before dinner.",
+      "unsafe": true
+    },
+    {
+      "id": "omission_exact_control",
+      "category": "safe_control",
+      "source": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+      "claim": "Take insulin 8 units before dinner. Do not take insulin if glucose is low.",
+      "unsafe": false
+    }
+  ]
+}

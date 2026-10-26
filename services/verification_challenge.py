@@ -6,7 +6,7 @@ from pathlib import Path
 import time
 from uuid import NAMESPACE_URL, uuid5
 from services.review.clinical import check_claim
-from services.review.clinical_models import LocalClinicalModels
+from services.review.clinical_models import LocalClinicalModels,MODEL_DIGESTS
 
 
 def confusion(rows, field):
@@ -25,7 +25,9 @@ def run(source, output, models):
     if len({c['id'] for c in cases})!=len(cases): raise ValueError('Duplicate challenge IDs')
     result={'schema_version':'verification_comparison_v1','challenge_sha256':hashlib.sha256(body).hexdigest(),
             'reference_status':challenge['scope'],'clinical_acceptance':False,
-            'cannot_clear_approval_gates':True,'complete':False,'cases':[]}
+            'cannot_clear_approval_gates':True,'complete':False,'cases':[],
+            'source_sha256':{name:hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in ('services/review/clinical.py','services/review/relationships.py','services/review/clinical_models.py')},
+            'planned_local_models':MODEL_DIGESTS if models else {}}
     provider=LocalClinicalModels(enabled=models)
     for case in cases:
         findings=check_claim(case['source'],case['claim'])

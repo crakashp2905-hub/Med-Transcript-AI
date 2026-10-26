@@ -1,0 +1,11 @@
+{
+ "schema_version":"full_expansion_development_v1",
+ "groups":["day1_consultation14","day1_consultation15","day2_consultation01","day2_consultation02","day2_consultation03"],
+ "selection":"Next sequential available full groups after the previous day1 11-13 cohort, fixed before inference; retain all words and failures",
+ "role":"development_not_acceptance",
+ "reference_status":"upstream_mock_not_independently_adjudicated",
+ "maximum_normalized_wer":0.05,
+ "candidate":"omi-med-stt-v1 public pinned local CPU model, prior best development candidate",
+ "window_seconds":30,
+ "limitations":["Selection does not establish independent speakers, sites, devices or training separation","Chunk bounds are not model timestamps","No real-patient release or clinical gold"]
+}

@@ -2,6 +2,8 @@
 
 import importlib.metadata
 import math
+import time
+from functools import lru_cache
 import wave
 from pathlib import Path
 
@@ -16,6 +18,16 @@ class ASRFailure(Exception):
     def __init__(self, code):
         self.code = code if code in self.SAFE_CODES else "asr_failed"
         super().__init__(self.code)
+
+
+@lru_cache(maxsize=1)
+def loaded_model(profile_json):
+    """One pinned local model per worker process; never cache recognized text."""
+    from faster_whisper import WhisperModel
+    profile = ASRProfile.model_validate_json(profile_json)
+    return WhisperModel(profile.model_dir, device=profile.device,
+                        compute_type=profile.compute_type, cpu_threads=profile.cpu_threads,
+                        num_workers=1, local_files_only=True)
 
 
 class FasterWhisperAdapter:
@@ -50,9 +62,10 @@ class FasterWhisperAdapter:
             return {"segments": [], "duration_seconds": metadata["frames"] / 16000,
                     "digital_silence": True, "inference_executed": False, "runtime_packages": runtime_packages}
         checkpoint()
-        model = WhisperModel(self.profile.model_dir, device=self.profile.device,
-                             compute_type=self.profile.compute_type, cpu_threads=self.profile.cpu_threads,
-                             num_workers=1, local_files_only=True)
+        hits=loaded_model.cache_info().hits;load_started=time.perf_counter()
+        model = loaded_model(self.profile.model_dump_json())
+        timing={"model_cache_hit":loaded_model.cache_info().hits>hits,"model_load_seconds":time.perf_counter()-load_started}
+        inference_started=time.perf_counter()
         segments, info = model.transcribe(normalized, language="en", task="transcribe",
             beam_size=self.profile.beam_size, temperature=0.0, vad_filter=False,
             word_timestamps=False, condition_on_previous_text=False, log_progress=False)
@@ -70,5 +83,6 @@ class FasterWhisperAdapter:
         duration = info.duration
         if not isinstance(duration, (float, int)) or not math.isfinite(duration):
             raise ASRFailure("invalid_asr_output")
-        return {"segments": raw, "duration_seconds": duration, "digital_silence": False,
+        timing["inference_seconds"]=time.perf_counter()-inference_started
+        return {"segments": raw, "duration_seconds": duration, "digital_silence": False, "timing": timing,
                 "inference_executed": True, "runtime_packages": runtime_packages}

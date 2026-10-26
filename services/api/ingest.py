@@ -12,7 +12,7 @@ from services.api.storage import Store, processing_allowed, default_asset_root
 
 
 MAX_CHANNELS = 8
-MAX_UPLOAD_BYTES = 250_000_000
+MAX_UPLOAD_BYTES = 512_000_000
 MAX_DURATION_SECONDS = 3600
 MAX_ATTEMPTS = 3
 

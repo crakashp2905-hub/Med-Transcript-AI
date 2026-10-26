@@ -1,5 +1,7 @@
 """Scoped immutable local extraction/verifier proposals with late-publication fences."""
 import json
+from contextlib import nullcontext
+from services.inference_slot import local_inference_slot
 import os
 from datetime import datetime,timezone
 from typing import Literal
@@ -45,8 +47,14 @@ def register(app,database,identity,encounter,require_processing,get_tx,document,
             if row['current_transcript']!=str(body.transcript_version_id):raise HTTPException(412,'stale_transcript')
             tr,tx=get_tx(con,eid,body.transcript_version_id)
         provider=RuleExtractor() if body.mode=='rules' else app.state.clinical_models
-        try:result=provider.extract_facts(tx,authorized=True,synthetic=True)
+        try:
+            with (local_inference_slot() if body.mode=='local_model' else nullcontext(True)) as ready:
+                if not ready:raise HTTPException(503,'local_inference_busy')
+                result=provider.extract_facts(tx,authorized=True,synthetic=True)
         except ValueError:raise HTTPException(422,'clinical_extraction_failed_no_output_admitted') from None
+        from services.review.relationships import analyze_transcript
+        try:result['source_relationships']=analyze_transcript(tx)
+        except ValueError:raise HTTPException(422,'clinical_relationship_output_rejected') from None
         with database() as con:return save(con,eid,actor,'fact_proposal',result,tx,tr['sha256'])
 
     @app.post('/v1/encounters/{eid}/semantic-checks',status_code=201)
@@ -61,7 +69,10 @@ def register(app,database,identity,encounter,require_processing,get_tx,document,
             lookup={f['fact_id']:f for f in note['facts'] if not f.get('excluded') and f.get('evidence')}
             if not selected<=lookup.keys() or not 1<=len(selected)<=20:raise HTTPException(422,'select_up_to_twenty_evidence_linked_facts')
             claims=[{'fact_id':f['fact_id'],'text':f['text'],'evidence':f['evidence']['quote']} for f in note['facts'] if f['fact_id'] in selected]
-        try:result=app.state.clinical_models.check_claims(claims,authorized=True,synthetic=True)
+        try:
+            with local_inference_slot() as ready:
+                if not ready:raise HTTPException(503,'local_inference_busy')
+                result=app.state.clinical_models.check_claims(claims,authorized=True,synthetic=True)
         except ValueError:raise HTTPException(422,'semantic_check_failed_no_output_admitted') from None
         result.update(checked_fact_ids=sorted(selected),evidence_linked_fact_count=len(lookup),
             unchecked_fact_ids=sorted(lookup.keys()-selected),independent_clinical_calibration=False)

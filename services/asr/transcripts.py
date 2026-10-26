@@ -65,7 +65,7 @@ def build_transcript(raw, metadata, encounter_id, upload_id, profile, transcript
             "source_availability": "available", "status": "review_required", "language": "en",
             "segments": segments, "untranscribed_intervals": gaps, "review_flags": flags,
             "provenance": {"engine": profile.engine, "runtime_version": profile.runtime_version,
-                "runtime_packages": raw.get("runtime_packages", {}),
+                "runtime_packages": raw.get("runtime_packages", {}), "timing": raw.get("timing", {}),
                 "working_audio_sha256": metadata.get("working_sha256") or metadata["sha256"],
                 "timeline_mapping_status": metadata.get("timeline_mapping_status", "original_pcm_timeline"),
                 "profile_id": profile.profile_id, "profile_sha256": profile.sha256,

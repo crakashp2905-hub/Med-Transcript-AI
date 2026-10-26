@@ -5,7 +5,8 @@ import json
 import re
 import shutil
 import sqlite3
-from datetime import datetime, timezone
+from contextlib import closing
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from services.api.ingest import file_sha256
@@ -28,13 +29,14 @@ def backup(db, assets, destination):
     target.mkdir(parents=True, exist_ok=False)
     try:
         with Store(db).transaction() as con:
-            with sqlite3.connect(db) as source, sqlite3.connect(target / "database.sqlite3") as output:
+            with closing(sqlite3.connect(db)) as source, closing(sqlite3.connect(target / "database.sqlite3")) as output:
                 source.backup(output)
+                output.commit()
             (target / "assets").mkdir()
             for row in con.execute("SELECT id,status FROM uploads"):
                 if row["status"] not in ("uploaded", "complete"):
                     continue
-                for suffix in (".wav", ".normalized.wav"):
+                for suffix in (".wav", ".normalized.wav", ".resume.part"):
                     source = Path(assets) / f"{row['id']}{suffix}"
                     if source.is_file():
                         shutil.copyfile(source, target / "assets" / source.name)
@@ -72,7 +74,7 @@ def restore(source, destination, tombstones_from):
             con.execute("UPDATE encounters SET deleted_at=? WHERE id=?", (deleted_at, eid))
             con.execute("UPDATE jobs SET status='cancelled',lease_token=NULL,lease_expires_at=NULL WHERE encounter=? AND status IN ('queued','running')", (eid,))
             for row in con.execute("SELECT id FROM uploads WHERE encounter=?", (eid,)):
-                for suffix in (".wav", ".normalized.wav"):
+                for suffix in (".wav", ".normalized.wav", ".resume.part"):
                     (target / "assets" / f"{row['id']}{suffix}").unlink(missing_ok=True)
         if con.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
             raise ValueError("Restored database failed integrity check")
@@ -93,12 +95,12 @@ def purge(db, assets):
                 continue
             try:
                 for upload in con.execute("SELECT id FROM uploads WHERE encounter=?", (eid,)):
-                    for suffix in (".wav", ".normalized.wav"):
+                    for suffix in (".wav", ".normalized.wav", ".resume.part"):
                         checked(Path(assets), f"{upload['id']}{suffix}").unlink(missing_ok=True)
             except OSError:
                 results.append({"id": request["id"], "status": "asset_deletion_pending"})
                 continue
-            for table in ("review_metrics", "model_proposals", "exports", "approvals", "documents", "transcript_versions", "jobs", "uploads", "authorizations"):
+            for table in ("job_attempts", "asr_checkpoints", "review_metrics", "model_proposals", "exports", "approvals", "documents", "transcript_versions", "jobs", "uploads", "authorizations"):
                 con.execute(f"DELETE FROM {table} WHERE encounter=?", (eid,))
             con.execute("DELETE FROM idempotency WHERE operation LIKE ? OR response LIKE ?", (f"%{eid}%", f"%{eid}%"))
             con.execute("UPDATE encounters SET body='{}',current_note=NULL,current_transcript=NULL WHERE id=?", (eid,))
@@ -107,13 +109,32 @@ def purge(db, assets):
     return {"requests": results, "backup_expiry": "requires_operator_confirmation"}
 
 
+def expire_previews(db,assets,ttl_seconds=900):
+    """Synthetic preview cache only; preserve any source referenced by a saved version."""
+    if not 60<=ttl_seconds<=86400:raise ValueError('Preview cache TTL outside allowed bounds')
+    cutoff=(datetime.now(timezone.utc)-timedelta(seconds=ttl_seconds)).isoformat()
+    removed=0
+    with Store(db).transaction() as con:
+        rows=con.execute("SELECT jobs.* FROM jobs JOIN encounters ON encounters.id=jobs.encounter WHERE jobs.preview_only=1 AND jobs.preview_cache_expired=0 AND jobs.status IN ('succeeded','failed','cancelled') AND jobs.updated_at<? AND encounters.legal_hold=0",(cutoff,)).fetchall()
+        for row in rows:
+            if con.execute('SELECT 1 FROM transcript_versions WHERE upload=?',(row['upload'],)).fetchone():continue
+            try:
+                for suffix in ('.wav','.normalized.wav','.resume.part'):
+                    checked(Path(assets),f"{row['upload']}{suffix}").unlink(missing_ok=True)
+            except OSError:continue
+            con.execute('DELETE FROM asr_checkpoints WHERE job=?',(row['id'],))
+            con.execute("UPDATE jobs SET result=?,preview_cache_expired=1 WHERE id=?",(json.dumps({'status':'expired_provisional_preview','approvable':False}),row['id']))
+            removed+=1
+    return {'expired_preview_caches':removed,'ttl_seconds':ttl_seconds}
+
+
 def reconcile(db, assets, apply=False):
     root = Path(assets).resolve()
     candidates = []
     with Store(db).transaction() as con:
         uploads = {row["id"]: row for row in con.execute("SELECT uploads.*,encounters.legal_hold FROM uploads JOIN encounters ON encounters.id=uploads.encounter")}
         for path in root.glob("*"):
-            match = re.fullmatch(r"([a-f0-9-]{36})(?:\.[a-f0-9-]{36}(?:\.part|\.normalized\.wav)|(?:\.normalized)?\.wav)", path.name)
+            match = re.fullmatch(r"([a-f0-9-]{36})(?:\.[a-f0-9-]{36}(?:\.part|\.normalized\.wav)|(?:\.normalized)?\.wav|\.resume\.part)", path.name)
             if not match or not path.is_file() or path.is_symlink():
                 continue
             row = uploads.get(match[1])

@@ -18,7 +18,7 @@ def decode_child(source, destination, media_type):
         import resource
         resource.setrlimit(resource.RLIMIT_AS, (1024**3, 1024**3))
         resource.setrlimit(resource.RLIMIT_CPU, (90, 90))
-        resource.setrlimit(resource.RLIMIT_FSIZE, (250_000_000, 250_000_000))
+        resource.setrlimit(resource.RLIMIT_FSIZE, (512_000_000, 512_000_000))
     try:
         import av
     except ImportError:
@@ -42,14 +42,14 @@ def decode_child(source, destination, media_type):
                         return {"error_code": "unsupported_audio_profile"}
                     for output in resampler.resample(frame):
                         total += output.samples
-                        if total * channels * 2 + 44 > 250_000_000:
+                        if total * channels * 2 + 44 > 512_000_000:
                             return {"error_code": "decoded_size_limit_exceeded"}
                         if total > 16000 * 3600:
                             return {"error_code": "duration_limit_exceeded"}
                         target.writeframes(output.to_ndarray().astype("<i2").tobytes())
                 for output in resampler.resample(None):
                     total += output.samples
-                    if total * channels * 2 + 44 > 250_000_000:
+                    if total * channels * 2 + 44 > 512_000_000:
                         return {"error_code": "decoded_size_limit_exceeded"}
                     if total > 16000 * 3600:
                         return {"error_code": "duration_limit_exceeded"}

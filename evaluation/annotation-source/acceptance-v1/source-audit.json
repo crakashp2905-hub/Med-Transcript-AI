@@ -1,0 +1,67 @@
+{
+  "schema_version": "acceptance_human_materials_v1",
+  "manifest_sha256": "1b0644d9901aa007a3161509cca2c41d9831cd8cc95b3091759f4fd8997cb404",
+  "reservation_sha256": "d08de25ea071150b792874bfde6baf5cb955e779cfdba41abd615db41bcb42b1",
+  "audio_content_hash_verified": true,
+  "sources": [
+    {
+      "group_id": "day5_consultation05",
+      "role": "doctor",
+      "original_audio_sha256": "fdc764b471c39d25037683401c283c01442357b40e0912b087cd916166b26914",
+      "original_audio_bytes": 13090604,
+      "normalized_audio_sha256": "fdc764b471c39d25037683401c283c01442357b40e0912b087cd916166b26914",
+      "annotation_sha256": "391a9ce9b6833e6c06dc7659899da2384f71356e495d5a87e51fef0ded88179f"
+    },
+    {
+      "group_id": "day5_consultation05",
+      "role": "patient",
+      "original_audio_sha256": "1c21a76603867d1675621fa50792077e698dfc35a7df5de31bb11d92d99e3097",
+      "original_audio_bytes": 13090604,
+      "normalized_audio_sha256": "1c21a76603867d1675621fa50792077e698dfc35a7df5de31bb11d92d99e3097",
+      "annotation_sha256": "9e6b6d7b5843c4a77078d2da545f49fc7d95fb3aa0963f673a00e66eba4e8ed7"
+    },
+    {
+      "group_id": "day5_consultation06",
+      "role": "doctor",
+      "original_audio_sha256": "63abc82ad68a0d92ab5643a4b7b2bc85b7c233a3d5f43bb2eb0f806cbae5e6d8",
+      "original_audio_bytes": 19668524,
+      "normalized_audio_sha256": "63abc82ad68a0d92ab5643a4b7b2bc85b7c233a3d5f43bb2eb0f806cbae5e6d8",
+      "annotation_sha256": "f1da25ddf52dd10dfcee028d5f5373fe061c9f974bdaf7b68da30fe1a7dd5073"
+    },
+    {
+      "group_id": "day5_consultation06",
+      "role": "patient",
+      "original_audio_sha256": "ff46076f9cd696ab12ac220160599bcd3de0379d8e4b5ecbcb88e90e911c4b9f",
+      "original_audio_bytes": 19668524,
+      "normalized_audio_sha256": "ff46076f9cd696ab12ac220160599bcd3de0379d8e4b5ecbcb88e90e911c4b9f",
+      "annotation_sha256": "c365df05ee78a48a71621e1c467fac74cd2fc971a5fe4e385098fb61977b5695"
+    },
+    {
+      "group_id": "day5_consultation07",
+      "role": "doctor",
+      "original_audio_sha256": "cd7eaff81a18e9475134dd2c2514c0870183ec57cb1e72311f7d5e5a2ebab459",
+      "original_audio_bytes": 15655724,
+      "normalized_audio_sha256": "cd7eaff81a18e9475134dd2c2514c0870183ec57cb1e72311f7d5e5a2ebab459",
+      "annotation_sha256": "5f75626f10892b9f61ecb37e06b24b0409abc0372f393878ea111f4097fc854d"
+    },
+    {
+      "group_id": "day5_consultation07",
+      "role": "patient",
+      "original_audio_sha256": "1c1be03a4ee84e2a099b888613746ad07e2aa707f3bd4faad5efd07c73d33658",
+      "original_audio_bytes": 15653804,
+      "normalized_audio_sha256": "1c1be03a4ee84e2a099b888613746ad07e2aa707f3bd4faad5efd07c73d33658",
+      "annotation_sha256": "45bb5985fa76803ab301f1ba64cb0ee8014f0990e609e95661a9a44159dbdf73"
+    }
+  ],
+  "models_run_by_this_tool": false,
+  "independent_audio_listening_complete": false,
+  "qualified_reviewers_verified": false,
+  "adjudicated": false,
+  "clinical_gold": false,
+  "clinical_release_authorized": false,
+  "next_steps": [
+    "Qualified reviewers audit and correct upstream references against all audio before freezing the annotation source.",
+    "Two distinct reviewers independently annotate; a third resolves every disagreement.",
+    "The institution verifies credentials, site/speaker/device independence, protocol and approval privately."
+  ]
+}

@@ -9,11 +9,11 @@ import wave
 from services.api.ingest import file_sha256
 
 
-def probe(experiment,output):
+def probe(experiment,output,manifest='evaluation/datasets/primock57-full-v1/manifest.json',audio_root='data/datasets/primock57-full-v1'):
     body=Path(experiment).read_bytes();source=json.loads(body)
     if not source['complete']:raise ValueError('Wait for the original experiment to finish')
     if Path(output).exists():raise ValueError('Preserve previous probe evidence')
-    manifest_path=Path('evaluation/datasets/primock57-full-v1/manifest.json')
+    manifest_path=Path(manifest)
     manifest=json.loads(manifest_path.read_text())
     if file_sha256(manifest_path)!=source['manifest_sha256']:raise ValueError('Source changed')
     cases={c['group_id']:c for c in manifest['cases']}
@@ -30,11 +30,13 @@ def probe(experiment,output):
             'original_failures_preserved':True}
     work=Path('data/conversation-probe');work.mkdir(exist_ok=True)
     try:
-        for row in source['runs']:
+        for row in source.get('runs',source.get('cases',[])):
+            row={**row,'role':row.get('role','mixed'),'mode':row.get('mode','baseline_fixed30')}
+            row['chunks']=[{**c,'input_start_ms':c.get('input_start_ms',c.get('start_ms')),'input_end_ms':c.get('input_end_ms',c.get('end_ms'))} for c in row['chunks']]
             failures=[c for c in row['chunks'] if c['failed']]
             if not failures:continue
             case=cases[row['id']]
-            audio=Path('data/datasets/primock57-full-v1')/(case['audio'] if row['role']=='mixed' else f"{row['id']}_{row['role']}.wav")
+            audio=Path(audio_root)/(case['audio'] if row['role']=='mixed' else f"{row['id']}_{row['role']}.wav")
             expected=case['audio_sha256'] if row['role']=='mixed' else next(c['normalized_sha256'] for c in case['sources'] if c['role']==row['role'])
             if file_sha256(audio)!=expected:raise ValueError('Audio changed')
             with wave.open(str(audio),'rb') as stream:pcm=stream.readframes(stream.getnframes())
@@ -63,4 +65,4 @@ def probe(experiment,output):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--experiment',required=True)
-    p.add_argument('--out',required=True);a=p.parse_args();probe(a.experiment,a.out)
+    p.add_argument('--out',required=True);p.add_argument('--manifest',default='evaluation/datasets/primock57-full-v1/manifest.json');p.add_argument('--audio-root',default='data/datasets/primock57-full-v1');a=p.parse_args();probe(a.experiment,a.out,a.manifest,a.audio_root)

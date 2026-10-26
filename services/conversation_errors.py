@@ -72,14 +72,15 @@ def analyze(case,reference_turns,full_turns=None):
                            'Literal lexicon errors do not measure clinical concept correctness.']}
 
 
-def run(root,output,experiment=None):
-    root=Path(root);manifest_path=root/'evaluation/datasets/primock57-full-v1/manifest.json'
+def run(root,output,experiment=None,manifest=None,baseline=None):
+    root=Path(root);manifest_path=Path(manifest) if manifest else root/'evaluation/datasets/primock57-full-v1/manifest.json'
     manifest=json.loads(manifest_path.read_text())
     if file_sha256(manifest_path)!=json.loads((manifest_path.parent/'lock.json').read_text())['manifest_sha256']:
         raise ValueError('Frozen source changed')
     truth={c['group_id']:c for c in manifest['cases']}
-    baseline_path=root/'evaluation/reports/full-consultation-omi-2026-10-25.json'
+    baseline_path=Path(baseline) if baseline else root/'evaluation/reports/full-consultation-omi-2026-10-25.json'
     baseline=json.loads(baseline_path.read_text())
+    if not baseline.get('complete') or baseline['manifest_sha256']!=file_sha256(manifest_path):raise ValueError('Complete matching baseline required')
     report={'schema_version':'conversation_error_diagnostics_v1','clinical_acceptance':False,
             'manifest_sha256':file_sha256(manifest_path),'inputs':{str(baseline_path.relative_to(root)):file_sha256(baseline_path)},'conditions':[]}
     conditions=[('baseline_fixed30',baseline['cases'])]
@@ -100,4 +101,4 @@ def run(root,output,experiment=None):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--root',default='.')
-    p.add_argument('--out',required=True);p.add_argument('--experiment');a=p.parse_args();run(a.root,a.out,a.experiment)
+    p.add_argument('--out',required=True);p.add_argument('--experiment');p.add_argument('--manifest');p.add_argument('--baseline');a=p.parse_args();run(a.root,a.out,a.experiment,a.manifest,a.baseline)

@@ -12,6 +12,7 @@ dependencies = ["fastapi==0.136.1", "pydantic==2.12.5", "uvicorn>=0.34,<1", "tzd
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "httpx>=0.28,<1"]
 asr = ["faster-whisper==1.2.1"]
+security = ["cryptography==50.0.2"]
 postgres = ["psycopg[binary]>=3.2,<4"]
 media = ["av>=11,<20", "numpy>=2,<3"]
 

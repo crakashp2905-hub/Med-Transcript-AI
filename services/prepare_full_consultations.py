@@ -10,7 +10,13 @@ from services.media_decoder import normalize
 from services.prepare_primock import ATTRIBUTION, RAW, MEDIA, download, intervals, REVISION
 
 
-def prepare(destination):
+def prepare(destination, groups=None, dataset_id="primock57-full-development-v1", purpose="development"):
+    groups = list(groups or [f"day1_consultation{n:02}" for n in (11,12,13)])
+    reserved = set(json.loads(Path("evaluation/acceptance-reservation-v1.json").read_text(encoding="utf-8"))["reserved_groups"])
+    if not groups or len(set(groups)) != len(groups) or any(not re.fullmatch(r"day[1-5]_consultation\d{2}",g) for g in groups):
+        raise ValueError("Unique source groups required")
+    if purpose not in ('development','human_annotation') or (purpose=='development' and reserved.intersection(groups)) or (purpose=='human_annotation' and not set(groups)<=reserved):
+        raise ValueError("Reserved acceptance groups require human-annotation purpose; no development inference allowed")
     import numpy as np
     root = Path(destination)
     if (root / "manifest.json").exists():
@@ -20,8 +26,7 @@ def prepare(destination):
     if "Creative Commons Attribution 4.0 International" not in license_text:
         raise ValueError("Unexpected license")
     cases = []
-    for number in (11, 12, 13):
-        group = f"day1_consultation{number:02}"
+    for group in groups:
         turns, tracks, sources = [], [], []
         for role in ("doctor", "patient"):
             stem = f"{group}_{role}"
@@ -58,9 +63,9 @@ def prepare(destination):
         cases.append({"group_id": group, "audio": target.name, "audio_sha256": file_sha256(target),
             "duration_ms": count/16, "sources": sources, "reference_turns": turns})
         print(f"Prepared full consultation {group}: {count/16000:.1f} seconds", flush=True)
-    body = {"dataset_id": "primock57-full-development-v1", "source_revision": REVISION,
+    body = {"dataset_id": dataset_id, "source_revision": REVISION,
         "data_class": "approved_public", "license": "CC-BY-4.0", "attribution": ATTRIBUTION,
-        "split": "untuned_full_encounter_development_not_acceptance", "clinician_adjudication": "pending",
+        "split": "reserved_human_annotation_only_no_inference" if purpose=="human_annotation" else "untuned_full_encounter_development_not_acceptance", "clinician_adjudication": "pending",
         "limitations": "Source-channel roles are reference labels, not automatic diarization. Track clocks follow upstream annotations; synchronization and overlap require independent review. Uncertain references retained and flagged. No noise/device/speaker independence claim.",
         "cases": cases}
     # Preserve the frozen Windows-generated manifest bytes on every platform.
@@ -72,5 +77,8 @@ def prepare(destination):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--destination", default="data/datasets/primock57-full-v1")
+    parser.add_argument("--groups", nargs="+")
+    parser.add_argument("--dataset-id", default="primock57-full-development-v1")
+    parser.add_argument("--purpose",choices=["development","human_annotation"],default="development")
     args = parser.parse_args()
-    prepare(args.destination)
+    prepare(args.destination, args.groups, args.dataset_id, args.purpose)

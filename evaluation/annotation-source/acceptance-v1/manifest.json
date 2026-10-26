@@ -1,0 +1,2723 @@
+{
+  "dataset_id": "primock57-acceptance-human-review-v1",
+  "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+  "data_class": "approved_public",
+  "license": "CC-BY-4.0",
+  "attribution": "PriMock57: A Dataset Of Primary Care Mock Consultations, Alex Papadopoulos Korfiatis, Francesco Moramarco, Radmila Sarac and Aleksandar Savkov (2022), Babylon Health. CC BY 4.0. Source: https://github.com/babylonhealth/primock57",
+  "split": "reserved_human_annotation_only_no_inference",
+  "clinician_adjudication": "pending",
+  "limitations": "Source-channel roles are reference labels, not automatic diarization. Track clocks follow upstream annotations; synchronization and overlap require independent review. Uncertain references retained and flagged. No noise/device/speaker independence claim.",
+  "cases": [
+    {
+      "group_id": "day5_consultation05",
+      "audio": "day5_consultation05.mixed.wav",
+      "audio_sha256": "017572f085718daf688a2c3fca39dcfa5449f0ce148a9628d0c7764926688943",
+      "duration_ms": 409080.0,
+      "sources": [
+        {
+          "role": "doctor",
+          "original_sha256": "fdc764b471c39d25037683401c283c01442357b40e0912b087cd916166b26914",
+          "annotation_sha256": "391a9ce9b6833e6c06dc7659899da2384f71356e495d5a87e51fef0ded88179f",
+          "normalized_audio": "day5_consultation05_doctor.wav",
+          "normalized_sha256": "fdc764b471c39d25037683401c283c01442357b40e0912b087cd916166b26914"
+        },
+        {
+          "role": "patient",
+          "original_sha256": "1c21a76603867d1675621fa50792077e698dfc35a7df5de31bb11d92d99e3097",
+          "annotation_sha256": "9e6b6d7b5843c4a77078d2da545f49fc7d95fb3aa0963f673a00e66eba4e8ed7",
+          "normalized_audio": "day5_consultation05_patient.wav",
+          "normalized_sha256": "1c21a76603867d1675621fa50792077e698dfc35a7df5de31bb11d92d99e3097"
+        }
+      ],
+      "reference_turns": [
+        {
+          "start_ms": 1244,
+          "end_ms": 3256,
+          "role": "doctor",
+          "reference": "Hi there, I'm Doctor Smith from Babylon.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 3297,
+          "end_ms": 4034,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 4000,
+          "end_ms": 11856,
+          "role": "doctor",
+          "reference": "Hi. Can you just confirm your name, date of birth and your address, please?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 8453,
+          "end_ms": 13020,
+          "role": "patient",
+          "reference": "Yes. <INAUDIBLE_SPEECH/> Italy.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 14480,
+          "end_ms": 15622,
+          "role": "patient",
+          "reference": "And,",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 14529,
+          "end_ms": 15344,
+          "role": "doctor",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 16344,
+          "end_ms": 19606,
+          "role": "doctor",
+          "reference": "I see, sounds a bit <INAUDIBLE_SPEECH/> . Um.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 20356,
+          "end_ms": 22957,
+          "role": "doctor",
+          "reference": "Are you in a private place so you can have a consultation today?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 23824,
+          "end_ms": 24507,
+          "role": "patient",
+          "reference": "Sorry?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 24594,
+          "end_ms": 27867,
+          "role": "doctor",
+          "reference": "Are you in a private place so you can have a consultation today?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 28426,
+          "end_ms": 29358,
+          "role": "patient",
+          "reference": "Uh, yes.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 28504,
+          "end_ms": 30813,
+          "role": "doctor",
+          "reference": "What can I do for you?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 31662,
+          "end_ms": 38608,
+          "role": "patient",
+          "reference": "So, I have had a <UNIN/> pain in my lower tummy the last two days. I feel kind of hot and sweaty.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 31813,
+          "end_ms": 33004,
+          "role": "doctor",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 33671,
+          "end_ms": 34218,
+          "role": "doctor",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 39152,
+          "end_ms": 42247,
+          "role": "doctor",
+          "reference": "OK. And any pain like this in the past?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 43317,
+          "end_ms": 45277,
+          "role": "patient",
+          "reference": "Uh, not yet, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 45384,
+          "end_ms": 48122,
+          "role": "doctor",
+          "reference": "OK, can you just describe to me whereabouts it is?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 49730,
+          "end_ms": 52250,
+          "role": "patient",
+          "reference": "Um, so, I don't, what, sorry?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 52865,
+          "end_ms": 56948,
+          "role": "doctor",
+          "reference": "Can you describe to me whereabouts the pain is? Is it, is it.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 55919,
+          "end_ms": 57689,
+          "role": "patient",
+          "reference": "So it's my lower tummy.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 57627,
+          "end_ms": 60823,
+          "role": "doctor",
+          "reference": "Yeah. Is it in the middle or to one side?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 61581,
+          "end_ms": 64230,
+          "role": "patient",
+          "reference": "Uh, not, um, with a needle.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 64847,
+          "end_ms": 72185,
+          "role": "doctor",
+          "reference": "In the middle, OK. And any other symptoms along that, with that? Have you had any nausea or any vomiting?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 72655,
+          "end_ms": 76649,
+          "role": "patient",
+          "reference": "Uh, no. I'm just a bit nausea but no vomiting.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 76637,
+          "end_ms": 82291,
+          "role": "doctor",
+          "reference": "OK. Any change in your bowel habit recently, or any diarrhoea? Constipation?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 82797,
+          "end_ms": 92013,
+          "role": "patient",
+          "reference": "Uh, I had been constipated in, like, in the last, um, last week, but now it's fine. And, yeah, like <UNIN/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 90278,
+          "end_ms": 93076,
+          "role": "doctor",
+          "reference": "<INAUDIBLE_SPEECH/> to the toilet?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 93392,
+          "end_ms": 93905,
+          "role": "patient",
+          "reference": "Sorry?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 93743,
+          "end_ms": 95677,
+          "role": "doctor",
+          "reference": "When did you last go to the toilet?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 96284,
+          "end_ms": 98148,
+          "role": "patient",
+          "reference": "Uh, like two hours ago.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 97957,
+          "end_ms": 99361,
+          "role": "doctor",
+          "reference": "And was it normal?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 99635,
+          "end_ms": 100230,
+          "role": "patient",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 100302,
+          "end_ms": 102272,
+          "role": "doctor",
+          "reference": "Any blood in the stool?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 103155,
+          "end_ms": 112689,
+          "role": "patient",
+          "reference": "Um, so there was some, like, slight, uh, blood in the urine, but, like, <UNIN/> it was a little bit pink but.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 112640,
+          "end_ms": 115884,
+          "role": "doctor",
+          "reference": "OK. And has this ever happened in the past before?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 116965,
+          "end_ms": 118378,
+          "role": "patient",
+          "reference": "Um, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 119288,
+          "end_ms": 122014,
+          "role": "doctor",
+          "reference": "Right. Any pain when you pass water?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 122976,
+          "end_ms": 124676,
+          "role": "patient",
+          "reference": "Uh, no, that's fine.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 124710,
+          "end_ms": 127180,
+          "role": "doctor",
+          "reference": "Are you having to go more often than normal?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 128027,
+          "end_ms": 132892,
+          "role": "patient",
+          "reference": "Uh, yeah, a little bit, but I wasn't drinking a lot in these days.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 133763,
+          "end_ms": 135888,
+          "role": "doctor",
+          "reference": "Are you more thirsty than normal?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 136419,
+          "end_ms": 137311,
+          "role": "patient",
+          "reference": "Uh, yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 139042,
+          "end_ms": 143316,
+          "role": "doctor",
+          "reference": "And you said you felt hot and cold. Have you measured your temperature?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 143804,
+          "end_ms": 148304,
+          "role": "patient",
+          "reference": "Uh, yes, I measured it but it's fine, like, around thirty seven.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 147089,
+          "end_ms": 152505,
+          "role": "doctor",
+          "reference": "What was it? Thirty seven. Have you measured it at any other time when it's been raised?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 149709,
+          "end_ms": 150189,
+          "role": "patient",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 153202,
+          "end_ms": 153811,
+          "role": "patient",
+          "reference": "Sorry?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 153612,
+          "end_ms": 156731,
+          "role": "doctor",
+          "reference": "Have you measured it at any other time when it's been raised?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 156513,
+          "end_ms": 160432,
+          "role": "patient",
+          "reference": "Um, no, no, I just measured, like, one hour ago.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 160677,
+          "end_ms": 170551,
+          "role": "doctor",
+          "reference": "OK, that's fine. And, are you getting any pain higher up in your stomach? Any acid coming up into your throat or anything like that?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 169209,
+          "end_ms": 174216,
+          "role": "patient",
+          "reference": "No, no, <UNIN/> but like just a bit of nausea but not vomiting.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 174461,
+          "end_ms": 178348,
+          "role": "doctor",
+          "reference": "OK. And any other discharge below?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 179081,
+          "end_ms": 180081,
+          "role": "patient",
+          "reference": "Uh, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 180687,
+          "end_ms": 184193,
+          "role": "doctor",
+          "reference": "OK. Um, and have you been abroad recently?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 185135,
+          "end_ms": 186831,
+          "role": "patient",
+          "reference": "Um, no, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 187002,
+          "end_ms": 189680,
+          "role": "doctor",
+          "reference": "No. And no similar problems to this before?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 190993,
+          "end_ms": 191513,
+          "role": "patient",
+          "reference": "No.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 191442,
+          "end_ms": 194400,
+          "role": "doctor",
+          "reference": "Have you had any other medical problems in the past?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 195263,
+          "end_ms": 203433,
+          "role": "patient",
+          "reference": "Um, no, no, nothing sore. I mean, depends what, like, normal stuff like cold, flu.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 203120,
+          "end_ms": 208655,
+          "role": "doctor",
+          "reference": "OK, nothing <UNIN/> significant. Any allergies to medications?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 204777,
+          "end_ms": 205182,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 208831,
+          "end_ms": 211824,
+          "role": "patient",
+          "reference": "Uh, yes, amoxycillin.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 212631,
+          "end_ms": 215214,
+          "role": "doctor",
+          "reference": "OK. Do you take any regular medications?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 215912,
+          "end_ms": 216648,
+          "role": "patient",
+          "reference": "Uh, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 216333,
+          "end_ms": 218339,
+          "role": "doctor",
+          "reference": "<UNSURE>Any</UNSURE> over the counter medications?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 218506,
+          "end_ms": 228020,
+          "role": "patient",
+          "reference": "No. I have had the just, the, uh, internal <UNIN/> uh, contraceptive implant, but like, for one year, now, no more.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 229391,
+          "end_ms": 234128,
+          "role": "doctor",
+          "reference": "OK. Um, and do you have regular periods?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 235108,
+          "end_ms": 236108,
+          "role": "patient",
+          "reference": "Uh, yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 237378,
+          "end_ms": 241306,
+          "role": "doctor",
+          "reference": "Any bleeding in between periods or after intercourse?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 241979,
+          "end_ms": 244337,
+          "role": "patient",
+          "reference": "Um, no, no, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 244645,
+          "end_ms": 245455,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 245391,
+          "end_ms": 247756,
+          "role": "patient",
+          "reference": "Just like <INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 247961,
+          "end_ms": 253799,
+          "role": "doctor",
+          "reference": "Right. Um, and you haven't felt shivery or sweaty? You said you had felt a bit sweaty.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 254006,
+          "end_ms": 256162,
+          "role": "patient",
+          "reference": "Yeah. <INAUDIBLE_SPEECH/> , yeah.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 255877,
+          "end_ms": 260013,
+          "role": "doctor",
+          "reference": "OK. And any, any back pain or strong smell to the urine?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 261040,
+          "end_ms": 266533,
+          "role": "patient",
+          "reference": "Uh, no back pain. No, I typically don't suffer from back pain, so, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 267001,
+          "end_ms": 271679,
+          "role": "doctor",
+          "reference": "Right, OK. Anyone in your family had any medical problems before?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 272094,
+          "end_ms": 284662,
+          "role": "patient",
+          "reference": "Uh, so, <UNIN/> actually my mom had the breast cancer. Uh, but, again, not so important. I mean, just, like, the beginning it was <UNIN/>, uh, cured in time.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 276309,
+          "end_ms": 277101,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 283761,
+          "end_ms": 286582,
+          "role": "doctor",
+          "reference": "OK. And who do you live with at home?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 287621,
+          "end_ms": 289067,
+          "role": "patient",
+          "reference": "Um, sorry?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 289112,
+          "end_ms": 290754,
+          "role": "doctor",
+          "reference": "Who do you live with at home?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 291439,
+          "end_ms": 293270,
+          "role": "patient",
+          "reference": "Uh, with my parents.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 293534,
+          "end_ms": 296516,
+          "role": "doctor",
+          "reference": "And, do you smoke <UNIN/> or drink alcohol regularly?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 297182,
+          "end_ms": 298418,
+          "role": "patient",
+          "reference": "Uh, yes.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 298450,
+          "end_ms": 300153,
+          "role": "doctor",
+          "reference": "How much in a normal week?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 300581,
+          "end_ms": 303864,
+          "role": "patient",
+          "reference": "Uh, so, I don't smoke. I drink, I <INAUDIBLE_SPEECH/> .",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 304979,
+          "end_ms": 306986,
+          "role": "patient",
+          "reference": "Four times per week.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 307057,
+          "end_ms": 308199,
+          "role": "doctor",
+          "reference": "And how much?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 308979,
+          "end_ms": 314006,
+          "role": "patient",
+          "reference": "Uh, yeah, a beer <UNIN/> like, per time, let's say. <INAUDIBLE_SPEECH/> .",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 312764,
+          "end_ms": 313860,
+          "role": "doctor",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 315806,
+          "end_ms": 317080,
+          "role": "doctor",
+          "reference": "What per time?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 317513,
+          "end_ms": 319026,
+          "role": "patient",
+          "reference": "Uh, let's say a beer.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 319026,
+          "end_ms": 319919,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 320026,
+          "end_ms": 322716,
+          "role": "patient",
+          "reference": "Four times a week on average, yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 322371,
+          "end_ms": 330049,
+          "role": "doctor",
+          "reference": "Right, OK. Um, so, it, it may be possible that you might be having an infection in the urine.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 330749,
+          "end_ms": 331553,
+          "role": "patient",
+          "reference": "Uh-huh.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 331436,
+          "end_ms": 337739,
+          "role": "doctor",
+          "reference": "If you feel like you're, you're going, you're having a little bit of difficulty when you're passing urine.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 338209,
+          "end_ms": 338891,
+          "role": "patient",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 339768,
+          "end_ms": 345315,
+          "role": "doctor",
+          "reference": "Um, it might be worth taking a three day course of antibiotics.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 346006,
+          "end_ms": 364373,
+          "role": "doctor",
+          "reference": "To clear that. Um, but, if the pain is getting worse, or you have a high temperature or back pain or develop any new symptoms, we feel like it's not getting better, then, um, we should speak to you again, because we might need to see you face-to-face for an examination.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 346405,
+          "end_ms": 347195,
+          "role": "patient",
+          "reference": "Uh-huh.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 364797,
+          "end_ms": 366526,
+          "role": "patient",
+          "reference": "Uh-huh, OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 366301,
+          "end_ms": 370342,
+          "role": "doctor",
+          "reference": "Um, have you allocated a pharmacy with Babylon?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 371175,
+          "end_ms": 372574,
+          "role": "patient",
+          "reference": "Uh, yes.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 373259,
+          "end_ms": 378752,
+          "role": "doctor",
+          "reference": "OK. So, are you happy to take a course of antibiotics, if I send it through to the pharmacy?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 379270,
+          "end_ms": 382486,
+          "role": "patient",
+          "reference": "Uh, yeah, that's fine. If it helps, yeah. OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 382544,
+          "end_ms": 391674,
+          "role": "doctor",
+          "reference": "OK, so I can do that for you. Start taking them as soon as you get them, it's just twice a day for three days. Um, if your pain's getting worse,",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 388479,
+          "end_ms": 389215,
+          "role": "patient",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 392418,
+          "end_ms": 398203,
+          "role": "doctor",
+          "reference": "um, or you've got new symptoms, just contact us straightaway, or if you're getting a recurrence of the same problem again.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 398486,
+          "end_ms": 402121,
+          "role": "patient",
+          "reference": "Uh-huh, OK. Sure. OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 400453,
+          "end_ms": 403929,
+          "role": "doctor",
+          "reference": "OK? Alright then, have you got any other questions?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 404168,
+          "end_ms": 409080,
+          "role": "patient",
+          "reference": "Uh, no, that's fine. Yeah. Thank you. Thank you. Bye.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 405797,
+          "end_ms": 408256,
+          "role": "doctor",
+          "reference": "OK, thanks a lot. Bye.",
+          "uncertain_reference": false
+        }
+      ]
+    },
+    {
+      "group_id": "day5_consultation06",
+      "audio": "day5_consultation06.mixed.wav",
+      "audio_sha256": "c4dc2ee3501bde195e88817d6bede0eb17fbdf1dd0bd2709b38e91202071ae7b",
+      "duration_ms": 614640.0,
+      "sources": [
+        {
+          "role": "doctor",
+          "original_sha256": "63abc82ad68a0d92ab5643a4b7b2bc85b7c233a3d5f43bb2eb0f806cbae5e6d8",
+          "annotation_sha256": "f1da25ddf52dd10dfcee028d5f5373fe061c9f974bdaf7b68da30fe1a7dd5073",
+          "normalized_audio": "day5_consultation06_doctor.wav",
+          "normalized_sha256": "63abc82ad68a0d92ab5643a4b7b2bc85b7c233a3d5f43bb2eb0f806cbae5e6d8"
+        },
+        {
+          "role": "patient",
+          "original_sha256": "ff46076f9cd696ab12ac220160599bcd3de0379d8e4b5ecbcb88e90e911c4b9f",
+          "annotation_sha256": "c365df05ee78a48a71621e1c467fac74cd2fc971a5fe4e385098fb61977b5695",
+          "normalized_audio": "day5_consultation06_patient.wav",
+          "normalized_sha256": "ff46076f9cd696ab12ac220160599bcd3de0379d8e4b5ecbcb88e90e911c4b9f"
+        }
+      ],
+      "reference_turns": [
+        {
+          "start_ms": 880,
+          "end_ms": 2068,
+          "role": "patient",
+          "reference": "Hello?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 1645,
+          "end_ms": 4167,
+          "role": "doctor",
+          "reference": "Hi there, it's Doctor Smith from Babylon.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 4541,
+          "end_ms": 6045,
+          "role": "patient",
+          "reference": "Uh, hi, Doctor Smith.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 5303,
+          "end_ms": 10754,
+          "role": "doctor",
+          "reference": "Hi there. Could you give me your full name, date of birth, and your, the first line of your address, please?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 11361,
+          "end_ms": 13098,
+          "role": "patient",
+          "reference": "Um, I.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 11599,
+          "end_ms": 13018,
+          "role": "doctor",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 14015,
+          "end_ms": 15015,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 14173,
+          "end_ms": 15206,
+          "role": "doctor",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 18238,
+          "end_ms": 24514,
+          "role": "doctor",
+          "reference": "Your full name, date of birth, and your address, please? Yeah, OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 21872,
+          "end_ms": 23872,
+          "role": "patient",
+          "reference": "Yeah, my name is Barbara <UNIN/>.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 25211,
+          "end_ms": 29211,
+          "role": "patient",
+          "reference": "Um, and my date of birth, fourth October, nineteen eighty four.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 29056,
+          "end_ms": 30024,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 30707,
+          "end_ms": 32609,
+          "role": "patient",
+          "reference": "And address fifty <UNIN/> Avenue.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 32630,
+          "end_ms": 36694,
+          "role": "doctor",
+          "reference": "OK. Are you in a private place so you can have a confidential consultation today?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 37188,
+          "end_ms": 38211,
+          "role": "patient",
+          "reference": "Yes, I am.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 37894,
+          "end_ms": 39462,
+          "role": "doctor",
+          "reference": "What can I do for you?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 40135,
+          "end_ms": 48489,
+          "role": "patient",
+          "reference": "Um, I've just been <UNIN/> for the past couple of days. I've been having this serious diarrhoea and this really,",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 49165,
+          "end_ms": 50248,
+          "role": "patient",
+          "reference": "Giving me trouble.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 50699,
+          "end_ms": 52796,
+          "role": "doctor",
+          "reference": "OK. So when did it start?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 53714,
+          "end_ms": 55639,
+          "role": "patient",
+          "reference": "<UNSURE>It was</UNSURE> three days ago.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 56293,
+          "end_ms": 57143,
+          "role": "patient",
+          "reference": "Now.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 56911,
+          "end_ms": 62717,
+          "role": "doctor",
+          "reference": "OK. And when you say diarrhoea, what do you mean by that? Is it watery or just loose?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 63233,
+          "end_ms": 68263,
+          "role": "patient",
+          "reference": "It's, it's, it's very loose but it started as being very watery.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 68317,
+          "end_ms": 70942,
+          "role": "doctor",
+          "reference": "OK. And how many times are you going to the toilet?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 71308,
+          "end_ms": 72526,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 73459,
+          "end_ms": 75737,
+          "role": "patient",
+          "reference": "I lost count, um.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 76444,
+          "end_ms": 80113,
+          "role": "patient",
+          "reference": "Today alone, I've been at least four time.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 81315,
+          "end_ms": 86605,
+          "role": "doctor",
+          "reference": "OK. And any, any high temperatures? Are you feeling feverish?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 87120,
+          "end_ms": 91263,
+          "role": "patient",
+          "reference": "Yes, I've been running a serious temperature. I'm literally boiling.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 91153,
+          "end_ms": 93598,
+          "role": "doctor",
+          "reference": "Have you checked your temperature with a thermometer?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 94500,
+          "end_ms": 99932,
+          "role": "patient",
+          "reference": "No, 'cause I've not got one but like, to the touch, I'm, like, literally roasting.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 100449,
+          "end_ms": 105023,
+          "role": "doctor",
+          "reference": "OK. Um, and any nausea or vomiting?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 105466,
+          "end_ms": 116128,
+          "role": "patient",
+          "reference": "Yes, I've been throwing up. I can't keep to, uh, I can't seem to be able to keep anything in me. Not even water, not even my tea, not even any liquid stuff. I've just been throwing up everything.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 116376,
+          "end_ms": 119686,
+          "role": "doctor",
+          "reference": "OK. And when, when were you last sick?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 120902,
+          "end_ms": 128421,
+          "role": "patient",
+          "reference": "Um, I was sick just after trying, uh, trying to have breakfast this morning, so maybe about two hours ago.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 128485,
+          "end_ms": 132181,
+          "role": "doctor",
+          "reference": "OK. And have you been passing water OK?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 133481,
+          "end_ms": 137602,
+          "role": "patient",
+          "reference": "Yeah, I've been, I've been, yeah, urinating OK. Is that what you mean, like?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 137032,
+          "end_ms": 141980,
+          "role": "doctor",
+          "reference": "Yeah, yeah, urinating, yeah. Any, and what sort of color is the urine?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 142707,
+          "end_ms": 146060,
+          "role": "patient",
+          "reference": "To be honest, I <INAUDIBLE_SPEECH/> have a look so I really couldn't say.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 144767,
+          "end_ms": 145625,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 146180,
+          "end_ms": 149580,
+          "role": "doctor",
+          "reference": "OK. And when did you last pass urine, do you think?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 150166,
+          "end_ms": 151226,
+          "role": "patient",
+          "reference": "Um.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 153128,
+          "end_ms": 154677,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/> an hour ago.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 154870,
+          "end_ms": 155753,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 156753,
+          "end_ms": 161417,
+          "role": "doctor",
+          "reference": "And any blood in the stool or in the urine that you've noticed?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 161722,
+          "end_ms": 162955,
+          "role": "patient",
+          "reference": "No blood.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 163753,
+          "end_ms": 164462,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 165004,
+          "end_ms": 169423,
+          "role": "doctor",
+          "reference": "Any episodes like this before? How's your bowels normally?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 170489,
+          "end_ms": 172271,
+          "role": "patient",
+          "reference": "Sorry, I didn't catch that.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 171572,
+          "end_ms": 173591,
+          "role": "doctor",
+          "reference": "How is your bowels normally?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 173699,
+          "end_ms": 180730,
+          "role": "patient",
+          "reference": "Ah, ah, my, my bowels is normally fine. I would normally go to the toilet every day. You know, in the morning, just once, yeah, and that's fine.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 177591,
+          "end_ms": 178352,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 179062,
+          "end_ms": 182752,
+          "role": "doctor",
+          "reference": "Any episodes of diarrhoea or constipation normally?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 183414,
+          "end_ms": 184414,
+          "role": "patient",
+          "reference": "No.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 183532,
+          "end_ms": 188867,
+          "role": "doctor",
+          "reference": "And <UNIN/> is there anything you think might have triggered this off? Have you been abroad anywhere?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 189530,
+          "end_ms": 207632,
+          "role": "patient",
+          "reference": "No, but then, um, my, um my brother, um, has actually been having similar symptoms, um, for the past, um, few days as well, and he does say like everyone in school's got this so, I, I don't know, that might, that might be something.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 207162,
+          "end_ms": 209336,
+          "role": "doctor",
+          "reference": "So you've been in contact with him, have you?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 209587,
+          "end_ms": 210511,
+          "role": "patient",
+          "reference": "Yes.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 210691,
+          "end_ms": 215561,
+          "role": "doctor",
+          "reference": "OK. Um, and any other medical problems?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 216406,
+          "end_ms": 218075,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 218445,
+          "end_ms": 223006,
+          "role": "doctor",
+          "reference": "Have you had any other symptoms at the moment, like rash?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 224654,
+          "end_ms": 227421,
+          "role": "patient",
+          "reference": "No, no rash, no, nothing that, um.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 225934,
+          "end_ms": 226689,
+          "role": "doctor",
+          "reference": "No.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 227347,
+          "end_ms": 233011,
+          "role": "doctor",
+          "reference": "OK. Um, any surgery before, or abdominal problems, or any other medical issues?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 233775,
+          "end_ms": 246782,
+          "role": "patient",
+          "reference": "Well, apart from the fact that this one is giving me abdominal pains, no previous abdominal pains before. Obviously I get the odd, um,  you know, menstrual cramps and all that but, you know, that's, you know, that comes and goes.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 239372,
+          "end_ms": 240088,
+          "role": "doctor",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 246391,
+          "end_ms": 249029,
+          "role": "doctor",
+          "reference": "OK. And whereabouts is the pain that you're getting?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 249880,
+          "end_ms": 261068,
+          "role": "patient",
+          "reference": "Um, it's kind of like towards my navel area, like I can't touch my navel area. It's just so sore. And it gets, yeah, it's almost like the center of my navel.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 257719,
+          "end_ms": 258299,
+          "role": "doctor",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 260873,
+          "end_ms": 262963,
+          "role": "doctor",
+          "reference": "Um, and does the pain come and go?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 264369,
+          "end_ms": 273985,
+          "role": "patient",
+          "reference": "Yes, it does come. When it comes, I feel this strong urge to go to the, to the loo, and then <INAUDIBLE_SPEECH/> and sort of like comes again, it comes and.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 274362,
+          "end_ms": 275162,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 275911,
+          "end_ms": 279801,
+          "role": "doctor",
+          "reference": "Um, and do you take any medication regularly?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 280609,
+          "end_ms": 289091,
+          "role": "patient",
+          "reference": "Well, I, I take my, my vitamins, <UNIN/> vitamin D, every day. That's about, that's about all that I regularly take.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 285187,
+          "end_ms": 285981,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 289567,
+          "end_ms": 291490,
+          "role": "doctor",
+          "reference": "And have you got a normal diet?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 292361,
+          "end_ms": 294827,
+          "role": "patient",
+          "reference": "Yeah, <UNIN/> I eat well, normally.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 294857,
+          "end_ms": 297315,
+          "role": "doctor",
+          "reference": "Right. Do you smoke or drink alcohol?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 298444,
+          "end_ms": 302030,
+          "role": "patient",
+          "reference": "Well, I don't smoke, but, you know, I have a pint from time to time.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 302160,
+          "end_ms": 304128,
+          "role": "doctor",
+          "reference": "And do you take any other drugs?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 304985,
+          "end_ms": 314609,
+          "role": "patient",
+          "reference": "No. Like I said, I only take, um, vitamins. And for my menstrual cramps, when they come, maybe I might take a, a, an ibuprofen just to ease the pain, but.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 313481,
+          "end_ms": 315842,
+          "role": "doctor",
+          "reference": "And when was, when was your last period?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 316436,
+          "end_ms": 317963,
+          "role": "patient",
+          "reference": "Um, two weeks ago.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 318681,
+          "end_ms": 320758,
+          "role": "doctor",
+          "reference": "OK. Are you on any contraception?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 321196,
+          "end_ms": 322000,
+          "role": "patient",
+          "reference": "No.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 321900,
+          "end_ms": 324223,
+          "role": "doctor",
+          "reference": "Are you having regular sexual intercourse?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 324888,
+          "end_ms": 325790,
+          "role": "patient",
+          "reference": "No.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 325668,
+          "end_ms": 326474,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 327868,
+          "end_ms": 330106,
+          "role": "doctor",
+          "reference": "Um, and what's your job?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 331030,
+          "end_ms": 333166,
+          "role": "patient",
+          "reference": "Um, um, uh.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 334820,
+          "end_ms": 336271,
+          "role": "patient",
+          "reference": "Um, uh.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 337271,
+          "end_ms": 339061,
+          "role": "patient",
+          "reference": "A graphics designer.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 338879,
+          "end_ms": 341350,
+          "role": "doctor",
+          "reference": "Have you had to miss work because of this problem?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 342015,
+          "end_ms": 351038,
+          "role": "patient",
+          "reference": "Well, yes, I've had to actually work from home today. I'm working from home today because I can't, I can't be out for work. <INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 348498,
+          "end_ms": 350149,
+          "role": "doctor",
+          "reference": "OK. <UNIN/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 351149,
+          "end_ms": 353136,
+          "role": "doctor",
+          "reference": "And who do you live with at home?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 354015,
+          "end_ms": 356557,
+          "role": "patient",
+          "reference": "I live with my brother and my mum.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 356160,
+          "end_ms": 357949,
+          "role": "doctor",
+          "reference": "OK. OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 359026,
+          "end_ms": 363865,
+          "role": "doctor",
+          "reference": "And, um, have you tried anything yourself for this problem?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 364339,
+          "end_ms": 374925,
+          "role": "patient",
+          "reference": "Well, I've tried a home remedy. Um, I've tried the, the, uh, ORS, you know, thing I bought from my, my local, my local, uh.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 375925,
+          "end_ms": 376843,
+          "role": "patient",
+          "reference": "Um.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 376315,
+          "end_ms": 378011,
+          "role": "doctor",
+          "reference": "What? Could you just repeat that?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 378286,
+          "end_ms": 386903,
+          "role": "patient",
+          "reference": "The ORS, the, the salt sugar ORS, um, um, mix, the salt sugar mix.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 386604,
+          "end_ms": 389501,
+          "role": "doctor",
+          "reference": "OK. And how often have you been taking that?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 387617,
+          "end_ms": 388241,
+          "role": "patient",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 389985,
+          "end_ms": 395452,
+          "role": "patient",
+          "reference": "I've taken that, I've taken that, like, um, three times a day for the past two days.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 395732,
+          "end_ms": 405241,
+          "role": "doctor",
+          "reference": "OK. Um, and do you feel like your symptoms are easing off, or getting worse, or <UNIN/> ?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 404309,
+          "end_ms": 415632,
+          "role": "patient",
+          "reference": "<UNIN/> I, I, I they're not getting any better, 'cause like I said, I've been, I've been vomiting literally everything I take, so, so I doubt that even that had, had the chance to work.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 411621,
+          "end_ms": 412331,
+          "role": "doctor",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 415962,
+          "end_ms": 416833,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 417988,
+          "end_ms": 418846,
+          "role": "doctor",
+          "reference": "Um.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 419330,
+          "end_ms": 435077,
+          "role": "doctor",
+          "reference": "I mean, it sounds like, because your brother's had a similar thing, it sounds like it might be some, an infectious gastroenteritis that you've got, which is usually caused by a virus. But, it can be from something you've eaten, as well. Um.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 435077,
+          "end_ms": 449740,
+          "role": "doctor",
+          "reference": "If the symptoms, they do normally start to settle by themselves with the oral rehydration salts. Um, if the symptoms are continuing to get worse, the key thing is that we want to make sure that you're hydrated enough.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 450533,
+          "end_ms": 465009,
+          "role": "doctor",
+          "reference": "Um, sometimes you do require certain medication to help this, if it's, sometimes if it's caused by a bacteria. Um, what I would say, probably worth as it's been going on for a few days and you feel like it's not starting to ease off.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 465009,
+          "end_ms": 473066,
+          "role": "doctor",
+          "reference": "I think it's probably important to get a sample of the stool, so we can make sure that you haven't got a nasty bacterial infection which needs specific treatment.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 473489,
+          "end_ms": 474489,
+          "role": "patient",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 474544,
+          "end_ms": 486336,
+          "role": "doctor",
+          "reference": "Um, and we should also check that you're not getting dehydrated, because if you're, if you're not keeping fluid down, then you can get dehydrated.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 487529,
+          "end_ms": 489748,
+          "role": "doctor",
+          "reference": "Um, so.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 487790,
+          "end_ms": 496549,
+          "role": "patient",
+          "reference": "So, how, how do I, how do I get myself hydrated when I'm not able to even, like, drink water? I'm throwing up everything.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 496245,
+          "end_ms": 509856,
+          "role": "doctor",
+          "reference": "Yeah. So you need to carry on with your rehydration salts, and just have very small amounts. It's a positive sign that you passed urine an hour ago. So, you're obviously still, um, hydrated enough to pass urine.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 506031,
+          "end_ms": 506752,
+          "role": "patient",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 509856,
+          "end_ms": 521313,
+          "role": "doctor",
+          "reference": "But we, um, we should see you so that we can check your hydration and, um, get that sample sent off as soon as possible.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 522048,
+          "end_ms": 529996,
+          "role": "doctor",
+          "reference": "'cause if, if, if you come into the clinic, you can send that sample off straightaway. Otherwise, we would have to post it out to you which would take time.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 522226,
+          "end_ms": 523061,
+          "role": "patient",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 530542,
+          "end_ms": 534264,
+          "role": "patient",
+          "reference": "Ohh, OK. So, when can I come to the clinic to have this done?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 534170,
+          "end_ms": 553870,
+          "role": "doctor",
+          "reference": "Um, so we can, we can make you an urgent appointment, um, and then you can, you can get the sample sent off and we can check your hydration. Um, but if, in the meantime, you're feeling more unwell, then we would get you seen urgently in A and E.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 554790,
+          "end_ms": 555655,
+          "role": "patient",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 555412,
+          "end_ms": 558677,
+          "role": "doctor",
+          "reference": "So you can call us back in the meantime.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 559076,
+          "end_ms": 573166,
+          "role": "patient",
+          "reference": "OK. So, what I'll do is, yeah. If you could, please book me the appointment and, um, yeah, I'll see how I feel, um, for the end of the day. Hopefully I don't need to go to the A and E, and, um <INAUDIBLE_SPEECH/> .",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 571507,
+          "end_ms": 586138,
+          "role": "doctor",
+          "reference": "Yeah. If you keep drinking, keep going with the rehydration salts. Just tiny sips constantly, to <UNIN/> so that your stomach doesn't get overfilled and, and you vomit, so just tiny, tiny sips but just keep going with it.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 586138,
+          "end_ms": 600607,
+          "role": "doctor",
+          "reference": "Um, and just have very simple food, if you're gonna have anything, like toast or biscuit or something really light like that. Avoid, um, fruit, vegetables, uh, milk, anything like that, which might just make it worse.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 593948,
+          "end_ms": 594647,
+          "role": "patient",
+          "reference": "Mm-hmm.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 600790,
+          "end_ms": 601587,
+          "role": "patient",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 602259,
+          "end_ms": 606155,
+          "role": "doctor",
+          "reference": "OK. So you'll have to book an appointment through the support line.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 603347,
+          "end_ms": 604519,
+          "role": "patient",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 606347,
+          "end_ms": 607384,
+          "role": "patient",
+          "reference": "Yes, please.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 607587,
+          "end_ms": 609574,
+          "role": "doctor",
+          "reference": "Right, OK. We'll do that for you.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 610136,
+          "end_ms": 610730,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 610852,
+          "end_ms": 612303,
+          "role": "doctor",
+          "reference": "OK, take care.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 612324,
+          "end_ms": 613226,
+          "role": "patient",
+          "reference": "Thank you.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 612878,
+          "end_ms": 614181,
+          "role": "doctor",
+          "reference": "Thanks, bye.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 613798,
+          "end_ms": 614640,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        }
+      ]
+    },
+    {
+      "group_id": "day5_consultation07",
+      "audio": "day5_consultation07.mixed.wav",
+      "audio_sha256": "726e06309e67e1bd5a7a9a49f87c524738854d1c8d1d47f675a6e9477d9cebd2",
+      "duration_ms": 489240.0,
+      "sources": [
+        {
+          "role": "doctor",
+          "original_sha256": "cd7eaff81a18e9475134dd2c2514c0870183ec57cb1e72311f7d5e5a2ebab459",
+          "annotation_sha256": "5f75626f10892b9f61ecb37e06b24b0409abc0372f393878ea111f4097fc854d",
+          "normalized_audio": "day5_consultation07_doctor.wav",
+          "normalized_sha256": "cd7eaff81a18e9475134dd2c2514c0870183ec57cb1e72311f7d5e5a2ebab459"
+        },
+        {
+          "role": "patient",
+          "original_sha256": "1c1be03a4ee84e2a099b888613746ad07e2aa707f3bd4faad5efd07c73d33658",
+          "annotation_sha256": "45bb5985fa76803ab301f1ba64cb0ee8014f0990e609e95661a9a44159dbdf73",
+          "normalized_audio": "day5_consultation07_patient.wav",
+          "normalized_sha256": "1c1be03a4ee84e2a099b888613746ad07e2aa707f3bd4faad5efd07c73d33658"
+        }
+      ],
+      "reference_turns": [
+        {
+          "start_ms": 1243,
+          "end_ms": 3125,
+          "role": "doctor",
+          "reference": "Hi there, it's Doctor Smith from Babylon.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 3365,
+          "end_ms": 4061,
+          "role": "patient",
+          "reference": "Hi.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 4336,
+          "end_ms": 7487,
+          "role": "doctor",
+          "reference": "Hi. Can you confirm you name, date of birth and your home address, please?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 7791,
+          "end_ms": 13351,
+          "role": "patient",
+          "reference": "Uh, Sandra Bullock, uh, twentieth of February, nineteen fifty eight.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 8428,
+          "end_ms": 11289,
+          "role": "doctor",
+          "reference": "Hello. <INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 15289,
+          "end_ms": 16632,
+          "role": "doctor",
+          "reference": "And your home address?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 17601,
+          "end_ms": 22290,
+          "role": "patient",
+          "reference": "Uh, seven three four, <UNIN/> court in St. <UNIN/>.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 22132,
+          "end_ms": 26881,
+          "role": "doctor",
+          "reference": "OK, that's fine. Uh, are you in a private place that you can have a consultation at the moment?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 27074,
+          "end_ms": 28230,
+          "role": "patient",
+          "reference": "Yeah, yeah, I am.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 28598,
+          "end_ms": 30368,
+          "role": "doctor",
+          "reference": "OK, what can I do for you today?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 30939,
+          "end_ms": 36844,
+          "role": "patient",
+          "reference": "Um, well, like five days ago I started having problems like a cough, and my nose is just constantly streaming.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 37572,
+          "end_ms": 41520,
+          "role": "doctor",
+          "reference": "OK. And, and are you normally fit and well?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 42135,
+          "end_ms": 47358,
+          "role": "patient",
+          "reference": "Yeah, normally I'm diabetic, but other than that, like, generally pretty good.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 47506,
+          "end_ms": 51329,
+          "role": "doctor",
+          "reference": "Right, OK. So, just tell me about the last, did you say five days?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 51615,
+          "end_ms": 53216,
+          "role": "patient",
+          "reference": "Yeah, five days or so ago.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 53171,
+          "end_ms": 55447,
+          "role": "doctor",
+          "reference": "OK. How about your cough at the moment?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 56121,
+          "end_ms": 60297,
+          "role": "patient",
+          "reference": "Uh, it's quite bad. It's kind of quite dry, um.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 61094,
+          "end_ms": 64561,
+          "role": "patient",
+          "reference": "I'm coughing maybe every twenty, thirty minutes or so.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 64612,
+          "end_ms": 66901,
+          "role": "doctor",
+          "reference": "OK, you bringing up any phlegm at all?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 67750,
+          "end_ms": 68750,
+          "role": "patient",
+          "reference": "No.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 69171,
+          "end_ms": 71296,
+          "role": "doctor",
+          "reference": "No. Any chest pain?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 70243,
+          "end_ms": 70750,
+          "role": "patient",
+          "reference": "No.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 72000,
+          "end_ms": 73243,
+          "role": "patient",
+          "reference": "Chest what, sorry?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 72914,
+          "end_ms": 74612,
+          "role": "doctor",
+          "reference": "Any pain in your chest?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 74844,
+          "end_ms": 75784,
+          "role": "patient",
+          "reference": "Uh, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 75993,
+          "end_ms": 81013,
+          "role": "doctor",
+          "reference": "Any difficulty breathing, feeling short of breath or any pain when you take a deep breath?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 81419,
+          "end_ms": 82662,
+          "role": "patient",
+          "reference": "No, that's all fine.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 82644,
+          "end_ms": 85000,
+          "role": "doctor",
+          "reference": "Have you coughed up any blood or anything like that?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 85551,
+          "end_ms": 86058,
+          "role": "patient",
+          "reference": "Nope.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 86322,
+          "end_ms": 88861,
+          "role": "doctor",
+          "reference": "And what about your nose symptoms?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 89625,
+          "end_ms": 92967,
+          "role": "doctor",
+          "reference": "Are you <INAUDIBLE_SPEECH/> front of your sinuses or anything?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 89735,
+          "end_ms": 91985,
+          "role": "patient",
+          "reference": "Uh, just <UNIN/>.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 93222,
+          "end_ms": 99196,
+          "role": "patient",
+          "reference": "Uh, nothing up in here but just constant streaming, like, using a million tissues.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 98868,
+          "end_ms": 101493,
+          "role": "doctor",
+          "reference": "OK. And any blood coming from the nose?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 101774,
+          "end_ms": 103498,
+          "role": "patient",
+          "reference": "No, it's pretty green.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 103861,
+          "end_ms": 107894,
+          "role": "doctor",
+          "reference": "Right, OK. Any other symptoms, like sore ears? Sore throat?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 108103,
+          "end_ms": 119606,
+          "role": "patient",
+          "reference": "Uh, I <UNIN/> I've been feeling really hot, um, I don't know if it's fever as such, but, <UNIN/> like, to touch I'm quite hot but sometimes I'm feeling really chilly, needing to be under a blanket, that sort of thing.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 119230,
+          "end_ms": 121822,
+          "role": "doctor",
+          "reference": "Have you checked your temperature with a thermometer?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 122261,
+          "end_ms": 123617,
+          "role": "patient",
+          "reference": "Uhh, no, I haven't.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 123868,
+          "end_ms": 128098,
+          "role": "doctor",
+          "reference": "OK. Um, and are you eating and drinking normally?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 128880,
+          "end_ms": 138610,
+          "role": "patient",
+          "reference": "Uhh, yes. Um, kind of around when it started, I had some diarrhoea, but I don't know if that was associated. But since then it's all been pretty fine.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 138795,
+          "end_ms": 142605,
+          "role": "doctor",
+          "reference": "OK. So, you're drinking well, holding down fluids OK?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 143235,
+          "end_ms": 143788,
+          "role": "patient",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 143809,
+          "end_ms": 145499,
+          "role": "doctor",
+          "reference": "And passing water OK?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 146051,
+          "end_ms": 147104,
+          "role": "patient",
+          "reference": "Yeah, that's fine.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 146631,
+          "end_ms": 148387,
+          "role": "doctor",
+          "reference": "No <UNSURE>vomiting</UNSURE>, diarrhoea now?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 148663,
+          "end_ms": 149229,
+          "role": "patient",
+          "reference": "No.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 149644,
+          "end_ms": 154368,
+          "role": "doctor",
+          "reference": "OK, that's fine. Um, any rashes that you've noticed?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 154735,
+          "end_ms": 157827,
+          "role": "patient",
+          "reference": "Rashes? Uhh, no, nothing like that.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 155519,
+          "end_ms": 156144,
+          "role": "doctor",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 157624,
+          "end_ms": 160164,
+          "role": "doctor",
+          "reference": "Any headaches or change in your vision?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 160419,
+          "end_ms": 164775,
+          "role": "patient",
+          "reference": "No, um, I've had quite achy muscles, but that's pretty much it.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 165381,
+          "end_ms": 169348,
+          "role": "doctor",
+          "reference": "OK. And normally, do you have any chest problems?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 170130,
+          "end_ms": 171189,
+          "role": "patient",
+          "reference": "Uh, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 171144,
+          "end_ms": 173966,
+          "role": "doctor",
+          "reference": "Do you ever get wheezing, short of breath?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 174998,
+          "end_ms": 178880,
+          "role": "patient",
+          "reference": "Uh, I mean, like, if I do intense exercise, then yes. But not <UNIN/>.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 177947,
+          "end_ms": 185406,
+          "role": "doctor",
+          "reference": "<UNIN/>. And, do you regularly have any infections in your chest, or anything that needs treatment, normally?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 185919,
+          "end_ms": 191900,
+          "role": "patient",
+          "reference": "No, uh, I've got hypertension, um, so I'm on some drugs for that, um, but that's it, really.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 191795,
+          "end_ms": 195243,
+          "role": "doctor",
+          "reference": "OK. Um, any other medical problems?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 196795,
+          "end_ms": 200084,
+          "role": "patient",
+          "reference": "Uh, just the hypertension and the diabetes.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 199835,
+          "end_ms": 202144,
+          "role": "doctor",
+          "reference": "OK, and what type of drugs are you on?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 202762,
+          "end_ms": 208762,
+          "role": "patient",
+          "reference": "Uh, I think something called metformin, and lisinopril I think is the other one.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 209210,
+          "end_ms": 211703,
+          "role": "doctor",
+          "reference": "OK, and when did you last have your blood pressure checked?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 213031,
+          "end_ms": 220505,
+          "role": "patient",
+          "reference": "Uh, ooh, uh, <UNIN/> a while ago. Um, <INAUDIBLE_SPEECH/>.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 217960,
+          "end_ms": 221275,
+          "role": "doctor",
+          "reference": "<UNIN/> Do you know if it, do you know if it's been stable?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 221933,
+          "end_ms": 223328,
+          "role": "patient",
+          "reference": "Uh, I can't remember.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 223242,
+          "end_ms": 230578,
+          "role": "doctor",
+          "reference": "OK. And with your blood, with your diabetes, have you had a blood test recently?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 231466,
+          "end_ms": 235729,
+          "role": "patient",
+          "reference": "Um, yeah. Like.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 236788,
+          "end_ms": 240334,
+          "role": "patient",
+          "reference": "Yeah, it was normal. It was around three weeks ago.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 240815,
+          "end_ms": 244203,
+          "role": "doctor",
+          "reference": "OK, and do you know what dose of the lisinopril you're taking?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 244887,
+          "end_ms": 247486,
+          "role": "patient",
+          "reference": "Uh, two hundred.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 248367,
+          "end_ms": 256413,
+          "role": "doctor",
+          "reference": "OK. Have you been able to pass water normally? Any increase in <UNIN/> in frequency that you're passing water or any increased thirst?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 257170,
+          "end_ms": 259630,
+          "role": "patient",
+          "reference": "Uh, no, not particularly.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 259755,
+          "end_ms": 261874,
+          "role": "doctor",
+          "reference": "And has your weight been stable?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 262722,
+          "end_ms": 263472,
+          "role": "patient",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 263479,
+          "end_ms": 265578,
+          "role": "doctor",
+          "reference": "What is your weight and height?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 265861,
+          "end_ms": 272518,
+          "role": "patient",
+          "reference": "Uh, my height is five foot five, and my weight is sixty five kilograms.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 272874,
+          "end_ms": 275578,
+          "role": "doctor",
+          "reference": "OK. And do you smoke at all?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 275933,
+          "end_ms": 276676,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 276657,
+          "end_ms": 278222,
+          "role": "doctor",
+          "reference": "You drink any alcohol?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 278716,
+          "end_ms": 280749,
+          "role": "patient",
+          "reference": "Yes, the odd cherry.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 281420,
+          "end_ms": 284124,
+          "role": "doctor",
+          "reference": "OK.Um, who do you live with at home?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 284519,
+          "end_ms": 286591,
+          "role": "patient",
+          "reference": "Uh, my partner and my dog.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 288130,
+          "end_ms": 289709,
+          "role": "doctor",
+          "reference": "And do you work?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 290275,
+          "end_ms": 293308,
+          "role": "patient",
+          "reference": "Uh, yes. I'm an office manager.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 293216,
+          "end_ms": 293986,
+          "role": "doctor",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 295222,
+          "end_ms": 300999,
+          "role": "doctor",
+          "reference": "And have you been doing anything yourself to help with the symptoms? Anything that you've bought in the chemist?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 302019,
+          "end_ms": 308499,
+          "role": "patient",
+          "reference": "Um, uh, a quite a few lemon sips. Um, they seems to be helping.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 306972,
+          "end_ms": 307775,
+          "role": "doctor",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 308584,
+          "end_ms": 312380,
+          "role": "doctor",
+          "reference": "Do you, what, what do you mean by quite a few? How many in, in a day do you normally take?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 312749,
+          "end_ms": 316591,
+          "role": "patient",
+          "reference": "Uh, maybe two or three. Maybe, like, at the start of the day and at the end of the day.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 316887,
+          "end_ms": 319446,
+          "role": "doctor",
+          "reference": "OK. Have you noticed any improvement in that?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 320321,
+          "end_ms": 323716,
+          "role": "patient",
+          "reference": "Yeah. It tends to soothe my throat a bit for when I'm going to sleep.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 324466,
+          "end_ms": 328321,
+          "role": "doctor",
+          "reference": "OK. Um, do you have any allergies to anything?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 329144,
+          "end_ms": 333644,
+          "role": "patient",
+          "reference": "Uh, I sometimes suffer from some, like, hay fever. But, um, but it's not bad <INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 332242,
+          "end_ms": 335808,
+          "role": "doctor",
+          "reference": "Any <INAUDIBLE_SPEECH/>. Any allergies to any medications at all?",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 336052,
+          "end_ms": 337611,
+          "role": "patient",
+          "reference": "Not that I'm aware of, no.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 337828,
+          "end_ms": 358216,
+          "role": "doctor",
+          "reference": "OK. So, what you've described to me, it sounds like you, you probably have got an infection in the chest, um, because it's, it, you know, you're obviously getting symptoms of from your nose and your chest. Um, it sounds like you might have a high temperature, it's definitely worth getting a thermometer and checking your temperature.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 358499,
+          "end_ms": 361578,
+          "role": "patient",
+          "reference": "OK. I can just get one of those at a pharmacy or something?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 361900,
+          "end_ms": 380103,
+          "role": "doctor",
+          "reference": "Yeah, and most of the time, these infections are caused by viruses, so they do normally settle by themselves. But it can take, you know, a week or two, um, and you can <UNIN/> persistently have the cough ongoing longer than that.",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 380818,
+          "end_ms": 384108,
+          "role": "doctor",
+          "reference": "Um, the important thing to do would be to take your temperature.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 384806,
+          "end_ms": 404202,
+          "role": "doctor",
+          "reference": "Um, and if you feel like, if the temperature's ongoing, above thirty seven point five, thirty eight, um, and you keep spiking temperatures and that's not settling down, or your cough's getting worse, you're coughing up lots of nasty phlegm or you cough up any blood or get blood coming out your nose,",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 404202,
+          "end_ms": 419585,
+          "role": "doctor",
+          "reference": "um, or any shortness of breath, chest pain, then we certainly would need to speak to you again. With the diabetes you are a bit more likely to get a bacterial infection than if you didn't have the diabetes, so it's something we do need to be careful of.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 411111,
+          "end_ms": 411855,
+          "role": "patient",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 420624,
+          "end_ms": 424966,
+          "role": "patient",
+          "reference": "OK. So, then we would at potentially antibiotics at that time, perhaps?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 424746,
+          "end_ms": 430773,
+          "role": "doctor",
+          "reference": "Yeah, potentially. If it is, if it's not settling or the temperature's ongoing, getting worse, then we definitely need to talk to you again.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 430927,
+          "end_ms": 431717,
+          "role": "patient",
+          "reference": "OK.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 431773,
+          "end_ms": 435021,
+          "role": "doctor",
+          "reference": "Um, have you got any other questions?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 435638,
+          "end_ms": 438045,
+          "role": "patient",
+          "reference": "Um, no, that's all fine.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 437956,
+          "end_ms": 451291,
+          "role": "doctor",
+          "reference": "It's fine to carry on what you're doing at the moment, with the lemsip. I wouldn't take, and that, that contains paracetamol so don't take any other paracetamol containing products, um, with that at the same time.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 445793,
+          "end_ms": 446331,
+          "role": "patient",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 451291,
+          "end_ms": 464638,
+          "role": "doctor",
+          "reference": "Um, the cough syrup isn't advisable in the daytime because it's best for your body if you just keep coughing. But if you're kept up all night and you can't sleep at all, then it, it's OK to have a little bit of cough syrup, just to settle that down.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 465355,
+          "end_ms": 466513,
+          "role": "patient",
+          "reference": "OK. Cool.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 467216,
+          "end_ms": 483121,
+          "role": "doctor",
+          "reference": "OK? Do you have blood sugar checking equipment? Do you check? No, OK. Well, if you make sure that you have the regular diabetes and blood pressure checkups that your GP has asked you for?",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 468559,
+          "end_ms": 469157,
+          "role": "patient",
+          "reference": "Yep.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 473118,
+          "end_ms": 474407,
+          "role": "patient",
+          "reference": "I'm not at home.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 483428,
+          "end_ms": 483947,
+          "role": "patient",
+          "reference": "Yeah.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 484321,
+          "end_ms": 489240,
+          "role": "doctor",
+          "reference": "OK, great. Alright then, take care. Bye.",
+          "uncertain_reference": false
+        },
+        {
+          "start_ms": 485059,
+          "end_ms": 485677,
+          "role": "patient",
+          "reference": "<INAUDIBLE_SPEECH/>",
+          "uncertain_reference": true
+        },
+        {
+          "start_ms": 486736,
+          "end_ms": 489180,
+          "role": "patient",
+          "reference": "Alright. Thanks so much. Bye.",
+          "uncertain_reference": false
+        }
+      ]
+    }
+  ]
+}

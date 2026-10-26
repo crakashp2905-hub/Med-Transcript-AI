@@ -263,7 +263,7 @@ def test_upload_requires_authorization_and_valid_limits(setup):
     route = f"/v1/encounters/{resource}/audio-uploads"
     body = {"bytes": 100, "sha256": "a" * 64}
     assert client.post(route, json=body, headers=headers()).status_code == 403
-    for changed in ({"bytes": 250_000_001}, {"bytes": -1}, {"bytes": True},
+    for changed in ({"bytes": __import__("services.api.ingest",fromlist=["MAX_UPLOAD_BYTES"]).MAX_UPLOAD_BYTES+1}, {"bytes": -1}, {"bytes": True},
                     {"sha256": "invalid"}, {"media_type": "audio/unsupported"}, {"filename": "../../escape"}):
         assert client.post(route, json={**body, **changed}, headers=headers()).status_code == 422
 

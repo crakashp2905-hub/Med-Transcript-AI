@@ -21,7 +21,7 @@ def write_channel(source, target, channel, checkpoint=lambda: None):
                 output.writeframes(memoryview(data).cast("h")[channel::count].tobytes())
 
 
-def transcribe_channels(source, metadata, adapter, checkpoint):
+def transcribe_channels(source, metadata, adapter, checkpoint, load_channel=None, save_channel=None):
     outputs = []
     with tempfile.TemporaryDirectory(prefix="scribe-channels-") as directory:
         for channel in range(metadata["channels"]):
@@ -29,9 +29,14 @@ def transcribe_channels(source, metadata, adapter, checkpoint):
             write_channel(source, target, channel, checkpoint)
             mono = {**metadata, **inspect_pcm_wav(target)}
             # A failed channel fails the job; never silently publish partial coverage.
-            output = adapter.transcribe(target, mono, checkpoint)
-            if isinstance(output, dict):
-                output["isolated_channel_pcm_sha256"] = file_sha256(target)
+            pcm_hash = file_sha256(target)
+            output = load_channel(channel, pcm_hash) if load_channel else None
+            if output is None:
+                output = adapter.transcribe(target, mono, checkpoint)
+                if isinstance(output, dict):
+                    output["isolated_channel_pcm_sha256"] = pcm_hash
+                if save_channel:
+                    save_channel(channel, output)
             outputs.append(output)
             checkpoint()
     return {"channel_outputs": outputs}

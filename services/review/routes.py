@@ -1,4 +1,7 @@
 import hashlib
+from contextlib import nullcontext
+from services.inference_slot import local_inference_slot
+from services.api.job_state import progress as job_progress,retryable as job_retryable
 import json
 from pathlib import Path
 from datetime import datetime, timezone
@@ -45,7 +48,9 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
             if hosted and (not body.hosted_text_disclosure_accepted or json.loads(row["body"])["requested_inference_mode"] != "hybrid_text" or "hosted_text_processing" not in active_scopes(con,eid)):
                 raise HTTPException(422, "hosted_text_disclosure_and_scope_required")
         try:
-            result = provider.draft([f.model_dump(mode="json") for f in body.facts], authorized=True, synthetic=True)
+            with (local_inference_slot() if isinstance(provider,JSONProvider) and provider.mode=='local' else nullcontext(True)) as ready:
+                if not ready:raise HTTPException(503,'local_inference_busy')
+                result = provider.draft([f.model_dump(mode="json") for f in body.facts], authorized=True, synthetic=True)
             result['deterministic_baseline'] = DeterministicProvider().draft(
                 [f.model_dump(mode='json') for f in body.facts], authorized=True, synthetic=True)
         except ValueError:
@@ -230,11 +235,11 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
                 _, report = document(con, eid, note["verification_report_id"], "verification")
                 ar = con.execute("SELECT body FROM approvals WHERE note=?", (note["id"],)).fetchone()
                 approval = json.loads(ar["body"]) if ar else None
-            jobs = con.execute("SELECT id,stage,status,error_code,result FROM jobs WHERE encounter=? ORDER BY created_at DESC LIMIT 20", (str(eid),)).fetchall()
+            jobs = con.execute("SELECT id,stage,status,error_code,result,attempts,upload,preview_only FROM jobs WHERE encounter=? ORDER BY created_at DESC LIMIT 20", (str(eid),)).fetchall()
             return {"encounter": {"id": str(eid), **json.loads(row["body"])}, "transcript": tx,
                     "note": note, "verification": report, "approval": approval,
                     "stale": bool(note and (not tx or note["transcript_version_id"] != tx["id"])),
-                    "jobs": [{**dict(job), "result": json.loads(job["result"]) if job["result"] else None} for job in jobs],
+                    "jobs": [{**dict(job), "retryable":job_retryable(job), "progress":job_progress(con,job) if job["status"] in ("queued","running","failed") else None, "result": json.loads(job["result"]) if job["result"] else None} for job in jobs],
                     "exports": [dict(item) for item in con.execute("SELECT id,format,sha256,created_at FROM exports WHERE encounter=?", (str(eid),))]}
 
     @app.get("/v1/encounters/{eid}/audio/{upload_id}")

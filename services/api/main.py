@@ -17,6 +17,7 @@ from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from services.api.job_state import progress as job_progress, retryable as job_retryable
 from services.api.ingest import MAX_CHANNELS, MAX_UPLOAD_BYTES, file_sha256
 from services.api.storage import Store, active_scopes, processing_allowed, default_asset_root
 from services.asr.profiles import ASRProfile, load_profiles
@@ -77,6 +78,8 @@ class UploadInput(StrictModel):
 class TranscriptionInput(StrictModel):
     audio_asset_id: UUID
     inference_profile_id: str = Field(pattern=r"^[a-zA-Z0-9_.-]{1,80}$")
+    preview_only: bool = False
+    timeline_offset_ms: int = Field(default=0,ge=0,le=3600000,strict=True)
 
 
 def now():
@@ -283,9 +286,12 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
         with database() as con:
             row = upload_row(con, encounter_id, upload_id, actor)
             audit(con, actor, "upload_read", str(upload_id))
-            return {"id": row["id"], "status": row["status"], "expected_bytes": row["expected_bytes"],
+            return {"id": row["id"], "status": row["status"], "expected_bytes": row["expected_bytes"], "received_bytes": row["received_bytes"],
                     "expires_at": row["expires_at"],
                     "expired": datetime.fromisoformat(row["expires_at"]) <= datetime.now(timezone.utc)}
+
+    from services.api.resumable import register as register_resumable
+    register_resumable(app, database, identity, upload_row, require_processing, require_live_upload, assets, audit)
 
     @app.put("/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content")
     async def upload_content(encounter_id: UUID, upload_id: UUID, request: Request,
@@ -294,7 +300,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             row = upload_row(con, encounter_id, upload_id, actor)
             require_processing(con, encounter_id)
             require_live_upload(row)
-            if row["status"] != "open":
+            if row["status"] != "open" or row["received_bytes"]:
                 raise HTTPException(409, "upload_not_open")
             if request.headers.get("content-type", "").split(";")[0].strip().lower() != row["media_type"]:
                 raise HTTPException(415, "unsupported_media")
@@ -321,7 +327,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
                 require_live_upload(current)
                 require_processing(con, encounter_id)
                 os.replace(temporary, destination)
-                con.execute("UPDATE uploads SET status='uploaded' WHERE id=?", (str(upload_id),))
+                con.execute("UPDATE uploads SET status='uploaded',received_bytes=? WHERE id=?", (received,str(upload_id)))
                 audit(con, actor, "upload_received", str(upload_id))
             published = True
         except OSError:
@@ -370,8 +376,24 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             return {"id": row["id"], "encounter_id": row["encounter"], "stage": row["stage"],
                     "profile_sha256": row["profile_sha256"],
                     "status": row["status"], "attempts": row["attempts"], "error_code": row["error_code"],
-                    "retryable": False, "created_at": row["created_at"], "updated_at": row["updated_at"],
+                    "retryable": job_retryable(row), "preview_only":bool(row["preview_only"]), "progress":job_progress(con,row), "created_at": row["created_at"], "updated_at": row["updated_at"],
                     "result": json.loads(row["result"]) if row["result"] else None}
+
+    @app.post("/v1/jobs/{job_id}/retry", status_code=202)
+    def retry_transcription(job_id: UUID, actor: Identity = Depends(identity)):
+        with database() as con:
+            job = con.execute("SELECT * FROM jobs WHERE id=?", (str(job_id),)).fetchone()
+            if job is None:
+                raise HTTPException(404,"job_not_found")
+            owner = encounter(con,job["encounter"],actor)
+            require_processing(con,job["encounter"])
+            if job["stage"] != "transcription" or job["status"] != "failed" or job["attempts"] >= 3 or job["error_code"] not in {"asr_failed","worker_lease_lost","asset_unavailable"}:
+                raise HTTPException(409,"job_not_retryable")
+            if owner["current_transcript"] != job["expected_transcript_id"]:
+                raise HTTPException(412,"stale_transcript")
+            con.execute("UPDATE jobs SET status='queued',error_code=NULL,result=NULL,updated_at=? WHERE id=?",(now(),str(job_id)))
+            audit(con,actor,"transcription_retry_queued",str(job_id))
+            return {"job_id":str(job_id),"status_url":f"/v1/jobs/{job_id}"}
 
     @app.post("/v1/encounters/{encounter_id}/transcriptions", status_code=202)
     def create_transcription(encounter_id: UUID, body: TranscriptionInput, idempotency_key: IdempotencyKey,
@@ -394,14 +416,24 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             metadata = json.loads(ingest["result"])
             if metadata.get("asr_sample_rate", metadata["sample_rate"]) != 16000 or not 1 <= metadata.get("asr_channels", metadata["channels"]) <= MAX_CHANNELS:
                 raise HTTPException(422, "unsupported_asr_input")
-            existing = con.execute("SELECT id FROM jobs WHERE upload=? AND stage='transcription' AND profile_sha256=?",
+            if body.preview_only:
+                duration=metadata.get("normalized_duration_ms",metadata["duration_ms"])
+                if duration>15000 or duration+body.timeline_offset_ms>3600000:
+                    raise HTTPException(422,"preview_window_limit_exceeded")
+                if con.execute("SELECT 1 FROM jobs WHERE encounter=? AND preview_only=1 AND status IN ('queued','running')",(str(encounter_id),)).fetchone():
+                    raise HTTPException(409,"preview_already_pending")
+            elif body.timeline_offset_ms:
+                raise HTTPException(422,"offset_requires_preview_mode")
+            existing = con.execute("SELECT id,preview_only,timeline_offset_ms FROM jobs WHERE upload=? AND stage='transcription' AND profile_sha256=?",
                                    (upload["id"], profile.sha256)).fetchone()
+            if existing and (bool(existing["preview_only"])!=body.preview_only or existing["timeline_offset_ms"]!=body.timeline_offset_ms):
+                raise HTTPException(409,"transcription_mode_mismatch")
             job_id, created = existing["id"] if existing else str(uuid4()), now()
             if not existing:
-                con.execute("""INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,profile_sha256,expected_transcript_id)
-                    VALUES (?,?,?,'queued',?,?,'transcription',?,?)""",
+                con.execute("""INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,profile_sha256,expected_transcript_id,preview_only,timeline_offset_ms)
+                    VALUES (?,?,?,'queued',?,?,'transcription',?,?,?,?)""",
                     (job_id, upload["id"], str(encounter_id), created, created, profile.sha256,
-                     encounter(con, encounter_id, actor)["current_transcript"]))
+                     encounter(con, encounter_id, actor)["current_transcript"],int(body.preview_only),body.timeline_offset_ms))
                 audit(con, actor, "transcription_queued", job_id)
             response = {"job_id": job_id, "status_url": f"/v1/jobs/{job_id}"}
             remember(con, scope, fingerprint, response)

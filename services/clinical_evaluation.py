@@ -8,20 +8,20 @@ from services.clinical_metrics import evaluate
 from services.review.clinical import check_claim
 
 
-def adversarial(path):
+def adversarial(path, *, include_relationships=True):
     raw = Path(path).read_bytes()
     fixture = json.loads(raw)
     rows = []
     counts = dict(true_positive=0, false_positive=0, true_negative=0, false_negative=0)
     for case in fixture['cases']:
-        findings = check_claim(case['source'], case['claim'])
+        findings = check_claim(case['source'], case['claim'], include_relationships=include_relationships)
         unsafe, expected = bool(findings), case['expected_unsafe']
         key = ('true_' if unsafe == expected else 'false_') + ('positive' if unsafe else 'negative')
         counts[key] += 1
         rows.append({'id': case['id'], 'category': case['category'], 'expected_unsafe': expected,
                      'detected_unsafe': unsafe, 'findings': [x['code'] for x in findings]})
     return {'fixture_sha256': hashlib.sha256(raw).hexdigest(),
-            'scope': fixture['annotation_status'], 'validator': 'independent_clinical_rules_v2',
+            'scope': fixture['annotation_status'], 'validator': 'independent_clinical_rules_v2+explicit_relationships_v1' if include_relationships else 'independent_clinical_rules_v2',
             'limitation': 'Small synthetic developer fixture; not an estimate of clinical sensitivity or specificity.',
             'confusion_matrix': counts, 'cases': rows}
 

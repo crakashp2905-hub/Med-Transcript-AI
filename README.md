@@ -168,7 +168,7 @@ Withdrawal is repeatable and preserves its original timestamp.
 ## Upload and inspect synthetic audio
 
 WAV, MP3, M4A/MP4, WebM and Ogg audio uploads are supported: one to eight channels,
-8–48 kHz, at most 250 MB and 60 minutes. Install the `media` extra for decoding.
+8–48 kHz, at most 512 MB and 60 minutes. Install the `media` extra for decoding.
 The worker normalizes supported recordings to channel-preserving 16 kHz PCM in a bounded
 separate process and preserves the original checksum. Windows process isolation
 does not provide a kernel-enforced decoder memory sandbox. Use synthetic recordings only.
@@ -312,3 +312,5 @@ Commit and push verified milestones to the configured GitHub remote; never
 commit credentials, databases, recordings, or private annotations.
 
 Multichannel capture, inference and channel-specific evidence playback: [implementation and limits](docs/multichannel-2026-10-26.md).
+
+Durable recording, resumable uploads, provisional local previews, clinical relationship checks and expanded evaluation: [2026-10-27 delivery](docs/development-delivery-2026-10-27.md).

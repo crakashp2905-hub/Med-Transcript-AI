@@ -1,0 +1,620 @@
+{
+  "dataset_id": "primock57-full-expansion-development-v1",
+  "manifest_sha256": "712f0ced8a18523e93941f5ec92f5a6ef0e8617aff4e55c509c5964ff82698bf",
+  "model": {
+    "engine": "omi",
+    "profile_id": "omi-v1-gguf-q8-cpu-v1",
+    "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+    "runtime_version": "0.2.1",
+    "artifacts": {
+      "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+    },
+    "device": "cpu",
+    "threads": 4,
+    "timestamp_support": "not_provided_text_only_evaluation",
+    "adapter_revision": "reuse_capi_close_windows_dll_directories_v1"
+  },
+  "maximum_normalized_wer": 0.05,
+  "clinical_acceptance": false,
+  "reference_status": "upstream_not_clinician_adjudicated",
+  "clinical_metrics_status": "independent_concept_annotations_not_available",
+  "reference_rendering": "strip_annotation_markup_retain_all_enclosed_words_v1",
+  "limitations": [
+    "Fixed non-overlapping 30-second input windows can split words",
+    "Input chunk intervals are not word or utterance alignment",
+    "Upstream uncertain words and overlapping turns require independent adjudication"
+  ],
+  "cases": [
+    {
+      "id": "day1_consultation14",
+      "failed": false,
+      "reference": "Hello? Hello? Hello. Um, before I go any further, can I confirm your name and your date of birth? Uh, yeah. Uh my name is April, and I'm fifty. You're fifty, OK. April, how can I help you this afternoon? Well I've just been having this like, cough, for quite a few days. And my nose is running. Um and it's just been super annoying, and it's not going away. , OK. When did it all start? Uh I think it started like maybe, a bit less than a week ago. Like maybe, maybe five or six days ago. OK. And you mentioned a couple of things there. You mentioned a cough. You mentioned a bit of a runny nose. Is that right?  OK. Let's focus on your cough first. Can you tell me a bit more about your cough? Uh, it's just so continuous. It's really, really frustrating. It's quite dry. And it's just all day, it like keeps me up at night as well, which is really annoying. OK. So it's a dry cough. So you're not bringing up any , you're not bringing up any mucky, ohh I can hear that, yeah. Um you're not bringing up any uh, mucky phlegm or anything like that. No, OK. So it keeps you up at night. Um you mentioned uh the cold symptoms as well, the runny nose. Do you have a  do you have a sore throat at all? I mean, apart from, I mean the coughing is giving me a sore throat. But it's not like, you know not more than, than that. You know just, just my throat is irritated from coughing. But it's not like, it's not that bad when I swallow or anything.  Right. Do you have any uh,  how are your ears? Do you ears feel blocked or? No.They feel OK, actually. Yeah. . Nothing, nothing on the ears.  No pain, no discharge coming from your ears.  OK, alright. Um fine. In terms of your breathing, how is your , how's your chest? Is your breathing more labored? Um, I don't think so. Like, I guess I get laboured when I'm coughing and I can't breathe. But I, not, yeah, not, I, I don't think so. Not really. Day to day when you walk around, uh you don't feel breathless do you? I don't feel restless. No,  I feel you know, generally tired.  OK. OK. So like, yeah, but  not, not anything special with my chest. Any pain in your chest?  No not, not that either. OK. You mentioned feeling tired. Um have you felt feverish at all? Have you had a temperature? Um I've been having like, like shivers, even when I'm in, when I'm in bed. You know like, when you, when you go to sleep and, and you feel like I I should be warm. But I'm still, still you know, shivering a little bit.  OK. But I haven't taken my temperature, so I'm not a hundred percent sure if I had a fever. But it feels like I probably did. 'Cause I was just, I was next to my boyfriend. And he was completely warm and totally fine. And I just like couldn't stop shivering. And kept adding more sweaters on, and I was still cold.   OK. OK. OK. Alright. Um, fine. And in terms of any other symptoms, so have you had any nausea? Have you had any vomiting? No. No, no nausea. No vomiting. Like, um yeah,  nothing like that. OK. How's your appetite? Um, I mean it's OK. I, at the beginning, like when I was starting to have the , the , the coughing and stuff. Um, I had a little bit of diarrhea. Um but, but it didn't, it didn't cut my appetite or anything. I just like, my stomach wasn't feeling great.   OK. Has that got better now, the diarrhea? Yeah, yeah. It got better. It was only like the first, like it started at the same time as the cough started. And then it stopped. So I thought everything would be fine. But then the cough just kept going.   OK fine. Um, any problems with your waterworks at all?  With my what? Uh your  your waterworks, your urine.  Ohh. Uh, no. No no, it's fine.  you're passing urine OK. You're drinking plenty of fluids, and passing urine OK. No. I, I drank loads of water, when I started having the diarrhea. Now that it stopped, I just went back to normal. OK, alright. Um in terms of any other thing, do you notice any, any find any skin rashes, or um problems with your muscles or joints? Uh  like my, you know when I had the, when I was telling you I had like the, I had chills, and I was really cold. My muscle  was really hurting. Yeah. OK.  Sometimes I do pilates. But like, it's hurting me so much at the moment. Um so, to be honest, all I feel like doing is just lying in bed. Right. Right, OK. OK. I'm sorry. That must be very difficult for you.  Yeah, right. Especially like in my arms, my legs, like just everywhere basically.  quite lethargic and weak, you mentioned. Um, OK. And um, April are you normally otherwise fit and well? Yeah, pretty much. Am I normally what? Uh fit and well. So do you have any other medical history? Uh, well I have type two diabetes. And I have quite high blood pressure. OK. OK. And what do you take for your blood pressure? Any, or what what medications do you take on a regular basis, if you don't mind saying? Um I take  Metformin for the diabetes. And I take Lisinopril for the high blood pressure. Yep. Zinopril. OK, fine. Any allergies at all, to medications? No. No allergies.  No, OK. Regarding any family history, is there anything I should be aware of? Uh my dad also has type two diabetes. But I think that's it. OK, alright. Who's looking after your diabetes? Is there anyone, is there a doctor in a hospital, who looks after your diabetes?  I just regularly go see a doctor. Um, that just checks up on it. Same with the high blood pressure. Like I, I have it under control. And since I've started taking this medication, I've just been like regularly checking that it, it's under control.  Right, excellent. And in terms of your social situation, who lives at home with you? Uh just, it's just me and my partner. lives OK, um fine. Is your partner well at the moment? Yeah he has none of this. Like he's just going ahead like, like  nothing. Like I was a bit worried that I would pass it to him but,  not uh, diarrhea, nothing, fine. Right, OK. So he Go away, he's got away with it, at the moment. OK. And uh, are you working at the moment, April?  Uh, yeah I am working. But the, the first day I skipped.  because I was feeling just too shit. Um, but then, I just felt like had to go back, 'cause I had so much to do.  So I've been going in. But it's not been fun. Yeah.  No, I can imagine. What is it that you do for work? Uh, I am a developer. Ohh, so you work in the IT field. OK.  IT field. Right, OK. Uh  yeah. Work in IT.  not too active a job. Uh, yeah. No. Has it been quite stressful recently? Not more than usual. I don't think it's related to stress. Like I, I don't feel like I've had a particularly hard time at work that way. Um OK. The reason I ask is sometimes  I've been able to take a day off to try and recover. So yeah, I don't think it's related. Sure.  reason I ask is because sometimes stress can really affect your immune system. Um but uh it's good to know you're you're you're not feeling stressed. Um, do you smoke at all, April? I used to, but I've stopped for about six months now. OK. Um and what about alcohol? I mean, yeah I, I don't think I drank that much. Like, I I don't really know how you count the units. So I guess like I don't drink more than like, like, let's say three evenings a week? And I rarely get like properly drunk, or anything. And what is it that you drink? Wine, mostly. The wine. How much do you drink on those nights? Uh, I'd say like maybe two or three glasses. OK. So um, yeah so you're probably just about under the limit of um, the recommended limit.  Something  think about, just in terms of your blood pressure and diabetes, maybe something that you can maybe cut down on if you can. Yeah?  I should cut down on it.   really ideally, the the the right answer is to cut down completely. But so in practice I know that's not realistic. So maybe for the first few weeks, why don't you cut down to two glasses a week. And then, one week thereafter Um and if you are coping OK, then you can maybe try and cut down altogether. OK. OK? Just something for you to think about. Um, right so uh just  as we wrap up really, um April I think based on your story, I think uh essentially I think you're, you're going through a bit of a bit of a viral illness. Um, I don't think there's anything to worry about. Yeah. You know you've had a bit of a cough, bit of a runny nose, feeling quite weak and lethargic. I'm hoping that, you know, you're probably over the worst of it now. It's been five days. I'm hoping you're maybe going to get better in the next couple of days. It normally lasts for about a week to ten days. What, what should I do if it just keeps going on and on? Like if it's still going on in, in say four days? Yeah, absolutely. So, you know things you can do to help yourself in the meantime is to, you know get some nice, good rest. Drink plenty of fluids. Keep yourself well-hydrated. You can take regular Paracetamol. If you feel like you're still not getting any better in two to three days, it's probably worth coming back to see me again. We can check you over. And if you are still feeling feverish, um and your cough isn't getting any better, then we may look to give you some antibiotics for your chest.  some of the uh uh common source of infection. Um Do you think I should keep going to work? Or do you think I should just Yeah so I think you know , really I think it depends on you.  it's um if you are coughing, then there is a theoretical, you know risk that you're maybe slightly infectious still. So I would say maybe take a day or two off work, if you can. Uh and get some good bed rest. Um and maybe think about work early next week. OK. OK. Thank you. But um, if your cough isn't getting any better, or your breathing is getting worse, I want you to come back and see me sooner. OK? OK. But otherwise, I don't need to worry. No no no , nothing to worry about otherwise. OK. Alright. Thank you very much. OK. Well, have a good day. Appreciate it. Thank you. Bye!",
+      "hypothesis": "Yeah. Well, hello. Hello. Before I go any further, can I confirm your name and your date of birth? Uh, yeah, my name is April and I'm 50. You're 50, OK. April, how can I help you this afternoon? Well, I've just been having this like cough for quite a few days and my nose is running. Um and it's just been super annoying and it's not going away. OK, when did it all start? Uh I think it started like maybe a bit less than a week ago like maybe maybe five or six days ago okay and you mentioned a couple of things there you mentioned a cough you mentioned a bit of a runny nose that right yeah okay let's focus on your cough first can you tell me a bit more about your cough uh it's just so continuous it's really really frustrating it's quite dry and it's just all day like keeps me up at night as well which is really annoying okay so it's a dry cough so you're not bringing up any you're not bringing up any oh I can hear that yeah you're not bringing up any mucky phlegm or anything like that? No. No, OK. So keep you up at night. You mentioned the cold symptoms as well, the runny nose. Do you have a sore throat at all? I mean, apart from, I mean, the coughing is giving me a sore throat, but it's not like, you know, not more than than that. You know, just just my throat is irritated from coughing, but it's not like, it's not that bad when I swallow or anything. Right. Do you have any, do you, are you, how are your ears? Your ears, ears feel blocked? No, they feel OK actually. Yeah. No pain or disjoint on your ears? No, not pain, not pain on the ears. OK, alright. Fine. In terms of your breathing, how is your breath, how's your chest? Is your breathing more labored? I don't think so. Like I guess like it's labored when I'm coughing and I can't breathe, but like not, yeah, I don't think so. walk around, you don't feel breathless, do you? I don't feel breathless. No, I feel, you know, generally tired. OK, OK. Yeah, but not not anything special with my chest. Any pain in your chest? No, not that either. OK, you mentioned feeling tired. Have you felt feverish at all? Have you had a temperature? Uh, I've been having like like shivers, even when I'm in, when I'm in bed. You know, like when you, when you go to sleep, and you feel like I should be warm, but I'm still still shivering a little bit. I haven't seen my temperature, so I'm not 100% sure if I had a fever, but it feels like I probably did, because I was just, I was next to my boyfriend and he was completely warm and totally fine. And I just like couldn't stop shivering. I kept having more sweaters on and I was still cold. And in terms of any other symptoms, so have you had any nausea? Have you had any vomiting? No, no, no nausea, no vomiting, like um yeah nothing like that. How's your appetite? Um, I mean, it's OK. I, at the beginning, like when I was starting to have the system, the coughing and stuff, um, I had a little bit of diarrhea, um, but but I didn't, it didn't cut my appetite or anything. I just like my stomach wasn't feeling great. OK, has that got better now, the diarrhea? Yeah, Uh yeah, it got better. It was only like the first like it started at the same time as the cough started and then it stopped. So I thought everything would be fine. But then the coughs just stopped going. OK, fine. Um any problems with your water works at all? With my what? Your ur, your water works, your urine. Oh, uh no, no, no, that's fine. Passing urine OK. You're drinking plenty of fluids and passing urine OK? Yeah, I drank loads of water when I started having the diarrhea. Now that it stopped, I just back to normal. OK, alright. In terms of any other thing, do you notice any any funny skin rashes or problems with your muscles or joints? Like my, you know, when I have this, when I was telling you I had like the, I had chills and I was really cold, my muscle was really hurting. OK. But like it's hurting me so much at the moment. Right. Um but to be honest, all I feel like doing is just lying in bed. Right, OK, OK. I'm sorry that must be very difficult for you. Yeah, right. Especially like in my arms, my legs, like just everywhere basically. You're getting quite lethargic and weak mentioned. Yeah, pretty much. OK, and April, are you normally otherwise fit and well? Am I normally well? Fit and well, so do you have any other medical history? Uh, well I have type two diabetes. OK. I have quite high blood pressure. OK, and what do you take for your your blood pressure any what medications do you take on a regular basis should I say? Um I take metformin for the diabetes. Yep. And I take lisinopril for the high blood pressure. Lisinopril, OK. Fine. Any allergies at all to medications? No allergies. No, OK. Regarding any family history, is there anything I should be aware of? My dad also has type two diabetes, but I think that's it. OK, alright. Who's looking after your diabetes? Is it anyone, do you have a doctor in the hospital? I just regularly go see a doctor and just checks up on it. Same with the high blood pressure. Like I have it under control. And since I've started taking this medication, I've just been like regularly checking that it's it's under control. Great. Excellent. In terms of your social situation, who lives at home with you? Uh, just it's just me and my partner. OK, um, fine. Is your partner well at the moment? Yeah, he has none of this. Like he's just going ahead like like nothing nothing like I was a bit worried that I would pass it to him but right OK. Not diarrhea nothing, he's fine. Oh wait, he's got away with it at the moment. OK. And are you working at the moment, April? Uh yeah, I am working, but the first day I skipped 'cause 'cause I was feeling just too shit. Yeah. Um but then I just felt like I had to go back 'cause I had so much to do. So I've been going in, but it's not been fun. No, I can imagine. What is it that you do for work? Uh, I am a developer. Oh, so you work in your IT field, OK. Yeah, work in IT. IT field, right? OK. Not too active a job. No. Have you been quite stressful recently? Not more than usual. I don't think it's related to stress. Like I, I don't feel like I've had a particularly hard time at work currently. Um, I've been able to take a day off to try and recover. So yeah, I don't think it's related. I ask is sometimes stress can really affect your immune system. But it's good to know you're not feeling stressed. Do you smoke at all, April? I used to, but I've stopped for about six months now. OK, and what about alcohol? I mean, yeah, I don't think I drink that much. Like, I don't really know how you count the units, but I guess like I don't drink more than like like say three evenings a week and I rarely get like properly drunk or anything. And what is it that you drink? Wine mostly. And wine, how much would you drink on those nights? I'd say like maybe two or three glasses. OK, so yeah, so you're probably just about under the limit of the recommended limit. Something we think about just because of your blood pressure and diabetes, maybe something that you can maybe cut down on if you can. Yeah? I know that's not realistic. So maybe for the first few weeks, why don't you cut down to two glasses a week and then one week thereafter. And if you are coping OK, then we can maybe try and cut down altogether. OK. OK, just something for you to think about. Right, so just as we wrap up really, April, I think based on your story, I think essentially I think you've you're going through a bit of a bit of a viral illness. I don't think there's anything to worry about. You know, you've had a bit of a cough, bit of a runny nose, feeling quite weak and lethargic. I'm hoping that, you know, you're probably over the worst of it now. It's been five days. I'm hoping you're maybe going to get better the next couple of days. It normally lasts about a week to 10 days. What should I do if it just keeps going on and on? Like if it's still going on in say four days. Yeah, absolutely. So you know, things you can do to help yourself in the meantime is to, you know, get some nice good rest, drink plenty of fluids, keep yourself well hydrated. You can take a regular paracetamol. If you feel like it's still not getting any better in two to three days, it's probably worth coming back to see me again. We can check you over. And if you are still feeling feverish and your cough isn't getting any better, then we may look to give you some antibiotics for your chest, which can sometimes be a common source of infection. Do you think I should keep going to work or do you think I should just? Yeah, so I think really, I think it depends on you. it's if you are coughing then there is a theater you know risk that you're maybe slightly infectious still so I would say maybe take a day or two off work if you can get some good bed rest um and maybe think about work early next week. OK, OK. But if your cough isn't getting any better or your breathing is getting worse, I want you to come back and see me sooner, OK? OK, but otherwise I don't need to worry. No, no, nothing, nothing to worry about otherwise. OK, alright, thank you very much. much. Have a good day. Appreciate it. Thank you. Bye.",
+      "chunks": [
+        {
+          "start_ms": 0.0,
+          "end_ms": 30000.0,
+          "hypothesis": "Yeah. Well, hello. Hello. Before I go any further, can I confirm your name and your date of birth? Uh, yeah, my name is April and I'm 50. You're 50, OK. April, how can I help you this afternoon? Well, I've just been having this like cough for quite a few days and my nose is running. Um and it's just been super annoying and it's not going away. OK, when did it all start? Uh I think it started",
+          "failed": false
+        },
+        {
+          "start_ms": 30000.0,
+          "end_ms": 60000.0,
+          "hypothesis": "like maybe a bit less than a week ago like maybe maybe five or six days ago okay and you mentioned a couple of things there you mentioned a cough you mentioned a bit of a runny nose that right yeah okay let's focus on your cough first can you tell me a bit more about your cough uh it's just so continuous it's really really frustrating it's quite dry and it's just all day like keeps me up at night as well which is really annoying okay so it's a dry cough so you're not bringing up any you're not bringing up any oh I can hear that yeah",
+          "failed": false
+        },
+        {
+          "start_ms": 60000.0,
+          "end_ms": 90000.0,
+          "hypothesis": "you're not bringing up any mucky phlegm or anything like that? No. No, OK. So keep you up at night. You mentioned the cold symptoms as well, the runny nose. Do you have a sore throat at all? I mean, apart from, I mean, the coughing is giving me a sore throat, but it's not like, you know, not more than than that. You know, just just my throat is irritated from coughing, but it's not like, it's not that bad when I swallow or anything. Right. Do you have any, do you, are you, how are your ears? Your ears,",
+          "failed": false
+        },
+        {
+          "start_ms": 90000.0,
+          "end_ms": 120000.0,
+          "hypothesis": "ears feel blocked? No, they feel OK actually. Yeah. No pain or disjoint on your ears? No, not pain, not pain on the ears. OK, alright. Fine. In terms of your breathing, how is your breath, how's your chest? Is your breathing more labored? I don't think so. Like I guess like it's labored when I'm coughing and I can't breathe, but like not, yeah, I don't think so.",
+          "failed": false
+        },
+        {
+          "start_ms": 120000.0,
+          "end_ms": 150000.0,
+          "hypothesis": "walk around, you don't feel breathless, do you? I don't feel breathless. No, I feel, you know, generally tired. OK, OK. Yeah, but not not anything special with my chest. Any pain in your chest? No, not that either. OK, you mentioned feeling tired. Have you felt feverish at all? Have you had a temperature? Uh, I've been having like like shivers, even when I'm in, when I'm in bed. You know, like when you, when you go to sleep,",
+          "failed": false
+        },
+        {
+          "start_ms": 150000.0,
+          "end_ms": 180000.0,
+          "hypothesis": "and you feel like I should be warm, but I'm still still shivering a little bit. I haven't seen my temperature, so I'm not 100% sure if I had a fever, but it feels like I probably did, because I was just, I was next to my boyfriend and he was completely warm and totally fine. And I just like couldn't stop shivering. I kept having more sweaters on and I was still cold. And in terms of any other symptoms, so have you had any nausea? Have you had any vomiting?",
+          "failed": false
+        },
+        {
+          "start_ms": 180000.0,
+          "end_ms": 210000.0,
+          "hypothesis": "No, no, no nausea, no vomiting, like um yeah nothing like that. How's your appetite? Um, I mean, it's OK. I, at the beginning, like when I was starting to have the system, the coughing and stuff, um, I had a little bit of diarrhea, um, but but I didn't, it didn't cut my appetite or anything. I just like my stomach wasn't feeling great. OK, has that got better now, the diarrhea? Yeah,",
+          "failed": false
+        },
+        {
+          "start_ms": 210000.0,
+          "end_ms": 240000.0,
+          "hypothesis": "Uh yeah, it got better. It was only like the first like it started at the same time as the cough started and then it stopped. So I thought everything would be fine. But then the coughs just stopped going. OK, fine. Um any problems with your water works at all? With my what? Your ur, your water works, your urine. Oh, uh no, no, no, that's fine. Passing urine OK. You're drinking plenty of fluids and passing urine OK? Yeah, I drank loads of water when I started having the diarrhea. Now that it stopped, I just",
+          "failed": false
+        },
+        {
+          "start_ms": 240000.0,
+          "end_ms": 270000.0,
+          "hypothesis": "back to normal. OK, alright. In terms of any other thing, do you notice any any funny skin rashes or problems with your muscles or joints? Like my, you know, when I have this, when I was telling you I had like the, I had chills and I was really cold, my muscle was really hurting. OK. But like it's hurting me so much at the moment. Right. Um but to be honest, all I feel like doing is just lying in bed. Right, OK, OK.",
+          "failed": false
+        },
+        {
+          "start_ms": 270000.0,
+          "end_ms": 300000.0,
+          "hypothesis": "I'm sorry that must be very difficult for you. Yeah, right. Especially like in my arms, my legs, like just everywhere basically. You're getting quite lethargic and weak mentioned. Yeah, pretty much. OK, and April, are you normally otherwise fit and well? Am I normally well? Fit and well, so do you have any other medical history? Uh, well I have type two diabetes. OK. I have quite high blood pressure. OK, and what do you take for your",
+          "failed": false
+        },
+        {
+          "start_ms": 300000.0,
+          "end_ms": 330000.0,
+          "hypothesis": "your blood pressure any what medications do you take on a regular basis should I say? Um I take metformin for the diabetes. Yep. And I take lisinopril for the high blood pressure. Lisinopril, OK. Fine. Any allergies at all to medications? No allergies. No, OK. Regarding any family history, is there anything I should be aware of? My dad also has type two diabetes, but I think that's it. OK, alright. Who's looking after your diabetes? Is it anyone, do you have a doctor in the hospital?",
+          "failed": false
+        },
+        {
+          "start_ms": 330000.0,
+          "end_ms": 360000.0,
+          "hypothesis": "I just regularly go see a doctor and just checks up on it. Same with the high blood pressure. Like I have it under control. And since I've started taking this medication, I've just been like regularly checking that it's it's under control. Great. Excellent. In terms of your social situation, who lives at home with you? Uh, just it's just me and my partner. OK, um, fine. Is your partner well at the moment? Yeah, he has none of this. Like he's just going ahead like like nothing",
+          "failed": false
+        },
+        {
+          "start_ms": 360000.0,
+          "end_ms": 390000.0,
+          "hypothesis": "nothing like I was a bit worried that I would pass it to him but right OK. Not diarrhea nothing, he's fine. Oh wait, he's got away with it at the moment. OK. And are you working at the moment, April? Uh yeah, I am working, but the first day I skipped 'cause 'cause I was feeling just too shit. Yeah. Um but then I just felt like I had to go back 'cause I had so much to do. So I've been going in, but it's not been fun. No, I can imagine. What is it that you do for work?",
+          "failed": false
+        },
+        {
+          "start_ms": 390000.0,
+          "end_ms": 420000.0,
+          "hypothesis": "Uh, I am a developer. Oh, so you work in your IT field, OK. Yeah, work in IT. IT field, right? OK. Not too active a job. No. Have you been quite stressful recently? Not more than usual. I don't think it's related to stress. Like I, I don't feel like I've had a particularly hard time at work currently. Um, I've been able to take a day off to try and recover. So yeah, I don't think it's related.",
+          "failed": false
+        },
+        {
+          "start_ms": 420000.0,
+          "end_ms": 450000.0,
+          "hypothesis": "I ask is sometimes stress can really affect your immune system. But it's good to know you're not feeling stressed. Do you smoke at all, April? I used to, but I've stopped for about six months now. OK, and what about alcohol? I mean, yeah, I don't think I drink that much. Like, I don't really know how you count the units, but I guess like I don't drink more than like like say three evenings a week and I rarely",
+          "failed": false
+        },
+        {
+          "start_ms": 450000.0,
+          "end_ms": 480000.0,
+          "hypothesis": "get like properly drunk or anything. And what is it that you drink? Wine mostly. And wine, how much would you drink on those nights? I'd say like maybe two or three glasses. OK, so yeah, so you're probably just about under the limit of the recommended limit. Something we think about just because of your blood pressure and diabetes, maybe something that you can maybe cut down on if you can. Yeah?",
+          "failed": false
+        },
+        {
+          "start_ms": 480000.0,
+          "end_ms": 510000.0,
+          "hypothesis": "I know that's not realistic. So maybe for the first few weeks, why don't you cut down to two glasses a week and then one week thereafter. And if you are coping OK, then we can maybe try and cut down altogether. OK. OK, just something for you to think about. Right, so just as we wrap up really, April, I think based on your story,",
+          "failed": false
+        },
+        {
+          "start_ms": 510000.0,
+          "end_ms": 540000.0,
+          "hypothesis": "I think essentially I think you've you're going through a bit of a bit of a viral illness. I don't think there's anything to worry about. You know, you've had a bit of a cough, bit of a runny nose, feeling quite weak and lethargic. I'm hoping that, you know, you're probably over the worst of it now. It's been five days. I'm hoping you're maybe going to get better the next couple of days. It normally lasts about a week to 10 days. What should I do if it just keeps going on and on? Like if it's still going on in say four days. Yeah, absolutely. So you know, things you can do to help yourself in the meantime is to, you know, get some nice",
+          "failed": false
+        },
+        {
+          "start_ms": 540000.0,
+          "end_ms": 570000.0,
+          "hypothesis": "good rest, drink plenty of fluids, keep yourself well hydrated. You can take a regular paracetamol. If you feel like it's still not getting any better in two to three days, it's probably worth coming back to see me again. We can check you over. And if you are still feeling feverish and your cough isn't getting any better, then we may look to give you some antibiotics for your chest, which can sometimes be a common source of infection. Do you think I should keep going to work or do you think I should just? Yeah, so I think really, I think it depends on you.",
+          "failed": false
+        },
+        {
+          "start_ms": 570000.0,
+          "end_ms": 600000.0,
+          "hypothesis": "it's if you are coughing then there is a theater you know risk that you're maybe slightly infectious still so I would say maybe take a day or two off work if you can get some good bed rest um and maybe think about work early next week. OK, OK. But if your cough isn't getting any better or your breathing is getting worse, I want you to come back and see me sooner, OK? OK, but otherwise I don't need to worry. No, no, nothing, nothing to worry about otherwise. OK, alright, thank you very much.",
+          "failed": false
+        },
+        {
+          "start_ms": 600000.0,
+          "end_ms": 604680.0,
+          "hypothesis": "much. Have a good day. Appreciate it. Thank you. Bye.",
+          "failed": false
+        }
+      ],
+      "wall_seconds": 229.79078270000173,
+      "reference_words": 1921,
+      "hypothesis_words": 1790,
+      "normalized_edits": 285,
+      "raw_edits": 531,
+      "raw_reference_words": 1928
+    },
+    {
+      "id": "day1_consultation15",
+      "failed": false,
+      "reference": "Hello? Hello? Hello. Can you hear me? Yes. Great, excellent. Before I go any further, can I confirm you name and your, um, age please? Uh yes. Um Laura Parkinson. And uh I'm forty five. Forty five. Alright Laura, well how can I help you this afternoon? Uh yeah. So I have uh soreness in my fingers, my finger, like, the skin on my hands is kind of cracked. OK. When, when did this all start? Um, a couple of months ago. I got it three, four months ago.  OK so it's been that long, has it? OK. And so you mentioned your , is it the skin on your hand, mainly that's dry? Yeah. Yeah, I haven't noticed. I mean, I have dryness, like you know, in other parts, like my legs. But it's not, it's not very, it's not severe. It's just you know, I've always, you know, I don't hydrate very much. So Right. OK.  Yeah. Like it's very, it's very bad in my hands. OK. Can I ask why have you come to see me today? Uh is it because it's got worse recently, your symptoms? Yeah I mean, it's gotten to a point where, where it hurts a lot. And I can't really do my job. So, I thought I should probably get it checked out. Yeah, that sounds like a very sensible plan. Um, which part of your hands are affected, mainly? Uh the palm. I don't get, yeah. Um, OK alright. Um, have you  any itchiness in your palms? Yeah, it's itchy. Not all the time, but yeah, it does get itchy. OK. Any bleeding at all? Um um I don't, I mean, no I don't think so.  you scratch yourself, you scratching yourself often, and bleeding? Um, yeah I guess when I scratched it, yes it has bled sometimes but, yeah. Otherwise, it hasn't bled on its own. OK. Um, fine. Uh OK. Sorry, I'm  writing notes as we go along. Um, and you mentioned that skin is quite cracked as well. Is that right? Yes, that's right. OK, alright. Um , I know it's a long time ago, but do you remember how it all started?  what were you doing at the time when it all started? Is it anything you may have done, to bring your symptoms on? Uh, I mean I am a, I do work as a housekeeper. Um  And to be honest, I'm not always very good about wearing gloves. So that could be related. Um, I switched jobs, uh four months ago. Uh OK. OK. OK. I've been working for, as a housekeeper for, for a while now, but um, that's the only thing I can think of. Yeah, I think that might be quite important actually. I think there's definitely, maybe a correlation between the two. Um, fine. And so you mentioned something about having general dryness. Is that, you mentioned in your legs as well? Yeah. Yeah but isn't, sorry. Is that,  is that something you've, you've had for a while now? Yeah. It's not really, it's not really major. Uh yeah it's just like literally grinding my legs.  OK.  Right, OK.   trouble. OK. I'm just going to ask you some very brief yes or no questions, if that's OK. With your symptoms, have you, have you had any other symptoms, such as fever, or temperatures? No. Any nausea, or any vomiting? No. Any problem with your bowels? No. Any problem with your urine, or waterworks?  No. Otherwise you feel well, do you? And yourself,  your eating, drinking, your appetite is well-maintained? Yeah.   OK, alright. Fine. Um, in terms of your past medical history, do you have any other conditions at all? I have diabetes. Do you know if that's type one or type two? Type two. Diabetes, OK. Anything else? Um no. Any skin problems? No. Eczema, dermatitis, for exmaple? Not that I know of. No, I haven't been diagnosed. No, OK. Which medications do you take?  Metformin, OK. Do you have any allergies, either to any medications or in general? No. OK. Family history-wise, is there anything I should be aware of? Diabetes and what? Diabetes as well. OK. Again, any skin problems? Yeah. Uh no, not that I know of. Any history of asthma, or bowel problems? Uh, no. No. OK, alright. Um Fine. In terms of social history, you mentioned that you work as a housekeeper. Um are you, you're not always very good at wearing gloves. Yeah. Um, you've recently changed jobs. Which  which kind of places do you work in? Is it mainly residential, or is it commercial? Yeah. At a hotel. I have to do the whole thing like bedrooms, bathrooms, . Hotel, OK. OK. OK.  Do you think there might be a relationship between the two? Between the, kind of the products you're using, and your symptoms? Yeah, I usually use those for bathrooms. But, yeah bedrooms and corridors not always. OK. Have your symptoms stopped you from doing any work? Have you had to take time off work recently? Uh, yeah like the past three days, I haven't been able to go to work. OK. Can I ask a couple questions? Do you smoke at all? No. Do you drink much in the way of alcohol?  pints a week. Once a week? Uh, a couple of pints a week.  a week. OK so, very minimal, alcohol there. Um  have you tried anything for your symptoms? Have you tried anything over the counter? Any creams? Yeah. I tried uh E forty five. Any luck with that?  Yeah, no it didn't really do anything. No, OK. Alright. Um  I also tried an  antihistamine, antihistamine. Uh but it didn't . OK, alright. Um, Mrs. Parkinson, so I think um, based on your story, I  I think you might have something called dermatitis or contact dermatitis. Which is very common in, particularly people in your in your in your field, who are using cleaning products, not using gloves. And sometimes you get a bit of reaction between the chemicals and your skin. Um, so moving forward there's a couple of options. So firstly,  what we try and do is, you know, avoid the triggers. In your case, I strongly recommend that you wear gloves when cleaning at all times. Yeah. OK. And in terms of helping your dryness and the cracking of your skin, um we can try some steroid creams to help with the inflammation. Yeah.   As well as some stronger emollients, um which you really need to kind of coat on, three four times a day, for the next couple of weeks, just to help with the moisturizing of your skin.   Um if it still hasn't got better in about a week, two weeks time, I really need you to come back and see me again. And we can maybe think about other things we can give to you.  OK. Is that all clear? Uh yeah, that sounds good. Great. Do you have any questions for me? Um, where do I get the medicine from?  I'll I'll I'll do a  prescription for you now, and send it over to your pharmacy. OK great. Yeah, uh so you said a couple of weeks, it should get better, right? OK. I think  I think minimum couple of weeks. Uh ten days to fourteen days. Um and if it still hasn't got better, or indeed if it's getting worse, like if it's spreading, or dryness is getting worse, come back and see me sooner. OK. Great. Thank you Laura. Thank you. Alright. Thank you very much. . Bye bye now. Bye.",
+      "hypothesis": "Hello? Hello. Hello, can you hear me? Yes. Great, excellent. Before I go any further, can I confirm your name and your age, please? Yes, I'm Laura Parkinson and I'm 45. 45, alright Laura. Well, how can I help you this afternoon? Yeah, so I have soreness in my fingers, my fingers, like the skin in my hands. is kind of cracked. OK, when, when did this all start? Um a couple of months ago, like three, four months ago. OK, so it's been that long, has it? Yeah. OK, and so you mentioned your, is it the skin on your hands mainly that's dry? Yeah, I haven't noticed. I mean, I have dryness like, you know, in other parts like my legs, but it's not, it's not very, it's not severe. It's just, you know, I've always, you know, I don't hide very much so. Right. OK. Yeah, like it's very, it's very bad in my hands. OK. Can I ask why have you come to see me today? Is it because it's got worse recently, your symptoms? Yeah, I mean, it's gotten to a point where it hurts a lot and I can't really do my job, so I thought I should probably get it checked out. Yeah, that sounds like a very sensible plan. Um which part of your hands are affected mainly? Uh the palm. palms. OK, alright. Do you notice any itchiness in your palms? Yeah, it's itchy, not all the time, but yeah, it does get itchy. OK, any bleeding at all? Uh I don't, I mean, no, I don't think so. You scratching yourself often and bleeding? Um, yeah, I guess when I scratched it, yes, it has bled sometimes, but yeah, otherwise it hasn't bled on its own. OK. Shh. Fine. Uh OK, sorry, I'm just gonna write some notes as we go along. Um, and you mentioned the skin is quite cracked as well, is that right? Yes, that's right. OK, alright. Um, I know it's a long time ago, but do you remember how it all started? What were you doing at the time when it all started? Anything you may have done to bring your symptoms on? Uh, I mean, I am, I do work as a house. keeper. And to be honest, I'm not always very good about wearing gloves. So that could be related. I switched jobs four months ago. I've been working for as a housekeeper for for a while though, but that's the only thing I can think of. Yeah, I think that might be quite important actually. I think there's definitely maybe a correlation between the two. Fine. And so you mentioned something about having general dryness. Is that you mentioned in your legs as well? Yeah. Yeah, but is that sorry? Is that something you've you've had for awhile now? Yeah, it's not really, it's not really major. Yeah, it's just a little bit of dryness in my legs. Right, OK. OK, I'm just going to ask you some very brief yes or no questions. That's OK. With your symptoms, have you had any other symptoms such as fever or temperatures? No. Any nausea or anything? vomiting? No. Any problems with your bowels? No. And any problems with your urine or water works? No. Otherwise you feel well, do you, in yourself? You're eating and drinking, your appetite is well maintained? Yeah, I feel good. OK, alright. Fine. In terms of your past medical history, do you have any other conditions at all? I have diabetes. Do you know that's type one or not type 2? Type 2. Diabetes, OK. Anything else? Uhm, no. Any skin problems? No. Eczema, dermatitis, for example? No, that I know of, no, I haven't been diagnosed. No, OK. Which medications do you take? No formin. No formin, OK. Do you have any allergies either to any medications or in general? No. OK. Family history? wise, is it anything I should be aware of? Diabetes as well. Diabetes as well? Yeah. OK, again, any skin problems? Uh, no, not that I know. Any history of asthma or bowel problems? Uh no. No, OK, alright. Um fine. In terms of social history, you mentioned that you work as a housekeeper and you're not always very good at wearing gloves. you've recently changed jobs. Which what, where, which kind of places you work in? Is it mainly residential or is it commercial? It's a hotel. Hotel, OK. I do the whole thing like bedroom, bathroom, OK. Do you think there might be a relationship between the two, between the kind of the products you're using and your symptoms? Yeah, I usually use both for bathrooms, but yeah, bedrooms, rooms and corridors not always. OK, have your symptoms stopped you from doing any work? Have you had to take time off work recently? Uh yeah, like the past three days I haven't been able to go to work. OK, alright. Can I ask a couple of questions? Do you smoke at all? No. Do you drink much in the way of alcohol? Pints a week. Once a week? A couple of pints a week. A couple of pints a week. OK, so very minimal alcohol there. Have you tried anything for your symptoms? Have you tried anything over the counter, any cream? Yeah, I've tried E45. Any luck with that? Yeah, no, it didn't really do anything. No, OK, alright. I've tried an anti-stamines, anti-stamines, but it didn't work. OK, alright. Um Mrs. Parkinson, so I think um based on your story, I think I think you might have something called dermatitis or contact dermatitis, which is very common in particular people in your in your in your field who are using cleaning products, not using gloves. You can sometimes get a bit of a reaction between the chemicals and your skin. Um so moving forward, there's a couple of options. So firstly, what we try and do is you know, avoid the trigger. So in your case, I strongly recommend that you wear gloves when cleaning at all times. OK. In terms of helping your dryness and the cracking of your skin, we can try some steroid creams to help with inflammation as well as some stronger emoleins, which you really need to kind of coat on throughout the day, three, four times a day for the next couple of weeks, just to help with the moisturizing of your skin. If it still hasn't got better in about a week to two weeks' time, already you need to come back and see me again and we can maybe think about other things we can give to you. OK. Is that all clear? Uh yeah, it sounds good. Great. Do you have any questions for me? Um where do I get the medicines from? So I'll I'll do a prescription for you now and send over to your pharmacy. OK, great. Yeah. So you said a couple of weeks it should get better right now. I think minimum couple of weeks, 10 days to 14 days, and if it still hasn't got better or indeed if it's getting worse, if it's spreading or or the dryness is getting worse. Come back and see me sooner. OK. OK. Great. Thank you, Laura. Thank you. OK, thank you very much. Bye-bye now. Bye.",
+      "chunks": [
+        {
+          "start_ms": 0.0,
+          "end_ms": 30000.0,
+          "hypothesis": "Hello? Hello. Hello, can you hear me? Yes. Great, excellent. Before I go any further, can I confirm your name and your age, please? Yes, I'm Laura Parkinson and I'm 45. 45, alright Laura. Well, how can I help you this afternoon? Yeah, so I have soreness in my fingers, my fingers, like the skin in my hands.",
+          "failed": false
+        },
+        {
+          "start_ms": 30000.0,
+          "end_ms": 60000.0,
+          "hypothesis": "is kind of cracked. OK, when, when did this all start? Um a couple of months ago, like three, four months ago. OK, so it's been that long, has it? Yeah. OK, and so you mentioned your, is it the skin on your hands mainly that's dry? Yeah, I haven't noticed. I mean, I have dryness like, you know, in other parts like my legs, but it's not, it's not very, it's not severe. It's just, you know, I've always, you know, I don't hide",
+          "failed": false
+        },
+        {
+          "start_ms": 60000.0,
+          "end_ms": 90000.0,
+          "hypothesis": "very much so. Right. OK. Yeah, like it's very, it's very bad in my hands. OK. Can I ask why have you come to see me today? Is it because it's got worse recently, your symptoms? Yeah, I mean, it's gotten to a point where it hurts a lot and I can't really do my job, so I thought I should probably get it checked out. Yeah, that sounds like a very sensible plan. Um which part of your hands are affected mainly? Uh the palm.",
+          "failed": false
+        },
+        {
+          "start_ms": 90000.0,
+          "end_ms": 120000.0,
+          "hypothesis": "palms. OK, alright. Do you notice any itchiness in your palms? Yeah, it's itchy, not all the time, but yeah, it does get itchy. OK, any bleeding at all? Uh I don't, I mean, no, I don't think so. You scratching yourself often and bleeding? Um, yeah, I guess when I scratched it, yes, it has bled sometimes, but yeah, otherwise it hasn't bled on its own. OK.",
+          "failed": false
+        },
+        {
+          "start_ms": 120000.0,
+          "end_ms": 150000.0,
+          "hypothesis": "Shh. Fine. Uh OK, sorry, I'm just gonna write some notes as we go along. Um, and you mentioned the skin is quite cracked as well, is that right? Yes, that's right. OK, alright. Um, I know it's a long time ago, but do you remember how it all started? What were you doing at the time when it all started? Anything you may have done to bring your symptoms on? Uh, I mean, I am, I do work as a house.",
+          "failed": false
+        },
+        {
+          "start_ms": 150000.0,
+          "end_ms": 180000.0,
+          "hypothesis": "keeper. And to be honest, I'm not always very good about wearing gloves. So that could be related. I switched jobs four months ago. I've been working for as a housekeeper for for a while though, but that's the only thing I can think of. Yeah, I think that might be quite important actually. I think there's definitely maybe a correlation between the two. Fine. And so you mentioned something about having general dryness. Is that you mentioned",
+          "failed": false
+        },
+        {
+          "start_ms": 180000.0,
+          "end_ms": 210000.0,
+          "hypothesis": "in your legs as well? Yeah. Yeah, but is that sorry? Is that something you've you've had for awhile now? Yeah, it's not really, it's not really major. Yeah, it's just a little bit of dryness in my legs. Right, OK. OK, I'm just going to ask you some very brief yes or no questions. That's OK. With your symptoms, have you had any other symptoms such as fever or temperatures? No. Any nausea or anything?",
+          "failed": false
+        },
+        {
+          "start_ms": 210000.0,
+          "end_ms": 240000.0,
+          "hypothesis": "vomiting? No. Any problems with your bowels? No. And any problems with your urine or water works? No. Otherwise you feel well, do you, in yourself? You're eating and drinking, your appetite is well maintained? Yeah, I feel good. OK, alright. Fine. In terms of your past medical history, do you have any other conditions at all? I have diabetes. Do you know that's type one or not",
+          "failed": false
+        },
+        {
+          "start_ms": 240000.0,
+          "end_ms": 270000.0,
+          "hypothesis": "type 2? Type 2. Diabetes, OK. Anything else? Uhm, no. Any skin problems? No. Eczema, dermatitis, for example? No, that I know of, no, I haven't been diagnosed. No, OK. Which medications do you take? No formin. No formin, OK. Do you have any allergies either to any medications or in general? No. OK. Family history?",
+          "failed": false
+        },
+        {
+          "start_ms": 270000.0,
+          "end_ms": 300000.0,
+          "hypothesis": "wise, is it anything I should be aware of? Diabetes as well. Diabetes as well? Yeah. OK, again, any skin problems? Uh, no, not that I know. Any history of asthma or bowel problems? Uh no. No, OK, alright. Um fine. In terms of social history, you mentioned that you work as a housekeeper and you're not always very good at wearing gloves.",
+          "failed": false
+        },
+        {
+          "start_ms": 300000.0,
+          "end_ms": 330000.0,
+          "hypothesis": "you've recently changed jobs. Which what, where, which kind of places you work in? Is it mainly residential or is it commercial? It's a hotel. Hotel, OK. I do the whole thing like bedroom, bathroom, OK. Do you think there might be a relationship between the two, between the kind of the products you're using and your symptoms? Yeah, I usually use both for bathrooms, but yeah, bedrooms,",
+          "failed": false
+        },
+        {
+          "start_ms": 330000.0,
+          "end_ms": 360000.0,
+          "hypothesis": "rooms and corridors not always. OK, have your symptoms stopped you from doing any work? Have you had to take time off work recently? Uh yeah, like the past three days I haven't been able to go to work. OK, alright. Can I ask a couple of questions? Do you smoke at all? No. Do you drink much in the way of alcohol? Pints a week. Once a week? A couple of pints a week. A couple of pints a week. OK, so",
+          "failed": false
+        },
+        {
+          "start_ms": 360000.0,
+          "end_ms": 390000.0,
+          "hypothesis": "very minimal alcohol there. Have you tried anything for your symptoms? Have you tried anything over the counter, any cream? Yeah, I've tried E45. Any luck with that? Yeah, no, it didn't really do anything. No, OK, alright. I've tried an anti-stamines, anti-stamines, but it didn't work. OK, alright.",
+          "failed": false
+        },
+        {
+          "start_ms": 390000.0,
+          "end_ms": 420000.0,
+          "hypothesis": "Um Mrs. Parkinson, so I think um based on your story, I think I think you might have something called dermatitis or contact dermatitis, which is very common in particular people in your in your in your field who are using cleaning products, not using gloves. You can sometimes get a bit of a reaction between the chemicals and your skin. Um so moving forward, there's a couple of options. So firstly, what we try and do is you know, avoid the trigger. So in your case, I strongly recommend that you wear gloves when cleaning at all times.",
+          "failed": false
+        },
+        {
+          "start_ms": 420000.0,
+          "end_ms": 450000.0,
+          "hypothesis": "OK. In terms of helping your dryness and the cracking of your skin, we can try some steroid creams to help with inflammation as well as some stronger emoleins, which you really need to kind of coat on throughout the day, three, four times a day for the next couple of weeks, just to help with the moisturizing of your skin. If it still hasn't got better in about a week to two weeks' time, already you need to come back and see me again and we can maybe think about",
+          "failed": false
+        },
+        {
+          "start_ms": 450000.0,
+          "end_ms": 480000.0,
+          "hypothesis": "other things we can give to you. OK. Is that all clear? Uh yeah, it sounds good. Great. Do you have any questions for me? Um where do I get the medicines from? So I'll I'll do a prescription for you now and send over to your pharmacy. OK, great. Yeah. So you said a couple of weeks it should get better right now. I think minimum couple of weeks, 10 days to 14 days, and if it still hasn't got better or indeed if it's getting worse, if it's spreading or",
+          "failed": false
+        },
+        {
+          "start_ms": 480000.0,
+          "end_ms": 491820.0,
+          "hypothesis": "or the dryness is getting worse. Come back and see me sooner. OK. OK. Great. Thank you, Laura. Thank you. OK, thank you very much. Bye-bye now. Bye.",
+          "failed": false
+        }
+      ],
+      "wall_seconds": 552.4892923000152,
+      "reference_words": 1266,
+      "hypothesis_words": 1231,
+      "normalized_edits": 188,
+      "raw_edits": 362,
+      "raw_reference_words": 1271
+    },
+    {
+      "id": "day2_consultation01",
+      "failed": false,
+      "reference": "Hi, there. Good morning!  Uh, I'm Dr. Dean Mesa from Babylon.   Can you hear me OK? Yep. Can you find Yeah, OK, great. Well, nice to see you this morning. Um, before we start your appointment, could I confirm your full name and date of birth please? Uh yeah, uh Jack Smith, uh thirty first  October nineteen ninety. That's perfect, thank you, John. Um, are you in a private place where you're OK to speak at the moment? I am, yes OK, great. So, um, tell me what's been going on.  You've been saying there's a problem with your hearing. Is that right? Yeah, so I just feel I can't really hear as well as I used to, like my hearing is kind of deteriorating in some way. Right, OK. How long has this been going on for? Uh about six weeks. Six weeks, OK. Um, and before that have you had any hearing problem at all? Um I had something maybe, about a year ago, but it only lasted a couple of days, it wasn't anything as long as this. Right, OK, OK. And, um, in this six week period, have you had anything else happen? Have you had any other ear symptoms at all? Um, I  occasionally get like a ringing in my left ear, uh just on the one side and um there's actually been a few times when I felt kind of a bit sick or a bit dizzy as well. Right, OK. Uh, uh, um,  just to clarify, the difficulty you've got in hearing, is that both ears or just the left ear? Uh just the left ear, yeah. Alright, so your right ear is fine. It seems be yeah. OK. So you've had ringing, difficulty hearing in your left ear, and feeling slightly sick. Mh-mm. Um, that's been, on and off for the six weeks, or is it continuous there throughout that six weeks? Yeah. Uh it's kind of on and off. Like some things trigger it as well. So, for example, if I'm watching TV or listen to music or something that'll solve the ringing in the ear. Right, OK. Um, and, um, have you had any pain from the ear at all? Uh no my left ear. OK. Any discharge coming out of the ear? No, OK. Um,  have, have you been experiencing any fever?  Uh, not specifically apart from the dizziness  so much. Right, OK. And, um, has your ear been itchy at all?  OK. Now, do you use cotton ball buds to try and  clean out wax from your ears? Uh nah I'll do it. No, OK. Well, you're right, you should, you shouldn't be doing that.  Doesn't clean up wax, it pushes it back in. Alright, um, the first thing that we need to do is we need to get someone to have a look inside your ear. 'K. I'm just exclude the simple things. Simple things  might be wax. You know. Someone might have impacted wax, blocking the tube going into the eardrum, which can OK. lead to muffled hearing. Um, if that's the case, that that's something that's easy fixable. But, um, so we need to exclude that first. and then after that, we can consider other potential possibilities. Um, and for that we need to have a look inside the ear drum. So, um, what I think we could do is, um, maybe if we book you in for a face-to-face appointment in one of our clinics. It's not an emergency. It can be done within the next four, five days or so, OK? And then, um, what I'll do, I'll send a message to our admin team. I'll ask them to slot you into the clinic, one of our clinics in that time frame. You can come in and one of the GPs will just have a quick look in the ear and figure out whether there's physical blockage or whether there's something else going on, OK? Um, can I just double check, the dizziness that you've been getting, um, how severe is it? OK. Yeah. Uh nothing major it's just kind of uh it's, it's not the kind of dizziness you get with nausea, like uh not, not proper room spinning or anything like that but just, just a little bit kind of off balance.  Right, right, OK. Have, have you had any chest pain with it?  No. No. Any palpitations, heart beating fast?  OK, fine, alright. Um, so  let's get your ear checked out. I think that will be the, the most sensible thing to do. And then after that, we can, we'll be a step closer to figuring out which way we   It might be that there's a problem inside the drum or the balance system within the ear. But, we just need to exclude whether there's  physical blockage first and trying to deal with that if that's the case, OK? Um, but  is that the sort of thing that can cause uh like this uh ringing I've got in my ear, 'cause it seems  .  The ringing that you got, that you've got, it's something called Tinnitus. OK? Um Right. and Tinnitus is something actually that medicine doctors, we don't really understand it fully. We haven't OK. Uh,  people can't give you a specific cause for why some patients get Tinnitus and some patients don't. It can be triggered by a wide range of different things, and in fact I'm glad that you've mentioned that. What I might do, in the time between now and when you come for the appointment, I'm going to, uh, put paste the link for a leaflet about Tinnitus, um, in the notes for this appointment. I'd really appreciate it if you could start reading about it. OK. Sure. OK. And often that, that, uh, awareness of what it is and what the treatment options are, and there are limited options um that helps us in terms of conversation about what we do next, if your ear is clear, OK? So, um, I'm going to paste a link to that, um, and you can read about that and what we'll do is we'll see you in about four, five days time. It won't be with me, it'll be another GP but they'll have my notes and they'll know exactly what, what my question is, which is just to check your ears. Is that OK? OK. Yeah it sounds great. Alright, great. So, um, bear with me five minutes and then you can ring the support team, I'll leave the number in the notes for this appointment. Ring them, and then they'll slot you in, OK? OK brilliant. Alright.  If there's any problem, any issues  between now and when the clinic appointment is, just book another appointment and you can speak to one of us over video, OK? OK. Alright then. Take care. Nice to see you this morning. OK. Bye bye. Thank you. See you later.",
+      "hypothesis": "Hi there, good morning. Hi. Um, I'm Dr. Dean Mezza from Babylon. Hi uh. Can you hear me okay? Yeah, can you hear me fine? Yeah OK, great. Well, nice to see you this morning. Um before we start your appointment, could I confirm your full name and date of birth, please? Uh yeah. Uh Jack Smith, uh 31st of October 1990. That's perfect. Thank you, Jack. Um are you in a private place where you're OK to speak at the moment? Um yes. OK, great. So tell me what's been going on. You've been saying there's a problem with your hearing, is that right? Yeah, so I just feel like I can't really hear as well as I used to, like my hearing's kind of deteriorating in some way. Right, OK. How long has this been going on for? About six weeks. Six weeks, OK. And before that, have you had any hearing problem at all? Um, I had something maybe about a year ago, but it only lasted a couple of days. It wasn't anything as long as this. Right, OK, OK. And in this six weeks, period. Have you had anything else happen? Have you had any other ear symptoms at all? Um I occasionally get like a ringing in my left ear just on the one side and um there's actually been a few times when I felt kind of a bit sick or a bit dizzy as well. Right, OK. And just to clarify, the difficulty you've got in hearing, is that both ears or just the left ear? Just the left ear, yeah. Alright, so your right ear is fine? It seems to be yeah. OK, so you've had ringing, difficulty hearing in your left ear. and feeling slightly sick. And that's been on and off for the six weeks or is it continuous throughout that six weeks? It's kind of on and off, like some things trigger it as well. So for example, if I'm watching TV or I listen to music or something, that'll set off the ringing in the ear. Right, OK. And have you had any pain from the ear at all? No, not like that. OK, any discharge coming out of the ear? No. No, OK. Have you been experiencing any fever? Uh, not specifically apart from the dizziness and sickness I'm a child. Right, OK. And has your ear been itchy at all? No. OK. Now, do you use cottonwood buds to try and clean, clean out wax from your ears? Uh, no, I don't know. No, OK, well, you're right, you shouldn't, we shouldn't be doing that. It doesn't clean out the wax, it pushes it back in. Alright, um, the first thing that we need to do is we need to get someone to have a look inside your ear. OK, and just exclude the simple things. Simple things would might be wax. You know, someone might have impacted wax. blocking the tube going into the eardrum, which can lead to muffled hearing. If that's the case, that's something that's easily fixable. But so we need to exclude that first, and then after that we can consider other potential possibilities. And for that, we need to have a look inside the eardrum. So what I think we could do is maybe if we book you in for a face-to-face appointment in one of our clinics, it's not an emergency, it can be done within the next four or five days or so, OK, and then Um, what I'll do is I'll send a message to our admin team. I'll ask them to slot you into in a clinic, one of our clinics in that time frame. You can come in and one of the GPs will just have a quick look down the ear and figure out whether there's a physical blockage or whether there's something else going on. OK. Um, can I just double check? The dizziness that you've been getting, um, how severe is it? Uh, nothing major, it's just kind of, uh, it's, it's not the kind of dizziness you get with nausea, like not proper room spinning or anything like that, but just just a little bit kind of off balance. Right, right. OK. Have you any chest pain with it? No. No any palpitations, heart beating fast? Not that I'm at all. OK, fine, alright. So let, let's get your ear checked out. I think that would be the most sensible thing to do. And then after that, we can, we'll be a step closer to figuring out which way we're going to go. It might be that there's a problem inside the drum or the balance system within the ear, but we just need to exclude whether there's a physical blockage first and try and deal with that if that's the case. OK. Is that the sort of thing that can cause like this ringing I've got in my ear? Does it seem like the ringing that you've got that you've got something called tinnitus? And tinnitus is something actually that medicine doctors, we don't really understand it fully. We haven't, you know, people can't give you a specific cause for why some patients get tinnitus and some patients don't. It can be triggered by a wide range of different things. And in fact, I'm glad that you've mentioned that. What I might do in the time between now and when you come for the appointment, I'm going to put paste the link for a leaflet about Tinnitus in the notes for this appointment. I'd really appreciate it if you could start reading about it. OK. And often that awareness of what it is and what the treatment options are, and there are limited options, that helps us in terms of the conversation about what we do next, if it is clear. OK. So I'm going to paste a link to that and you can read about that. And what we'll do is we'll see you in about four or five days' time. It won't be with me, it'll be another GP, but they'll have my notes. notes and they'll know exactly what what my question is, which is just to check your ears. Is that OK? Yeah, sounds great. Alright, great. So bear with me five minutes, and then you can ring the support team. I'll give the number in the notes for this appointment, ring them, and then they'll stop you in, OK? OK, brilliant. Alright, if any, if there's any problem, any issues between now and when the clinic appointment is, just book another appointment and you can speak to them and also have a video, OK? OK. Alright then, take care. Nice to see you this morning. Thank you.",
+      "chunks": [
+        {
+          "start_ms": 0.0,
+          "end_ms": 30000.0,
+          "hypothesis": "Hi there, good morning. Hi. Um, I'm Dr. Dean Mezza from Babylon. Hi uh. Can you hear me okay? Yeah, can you hear me fine? Yeah OK, great. Well, nice to see you this morning. Um before we start your appointment, could I confirm your full name and date of birth, please? Uh yeah. Uh Jack Smith, uh 31st of October 1990. That's perfect. Thank you, Jack. Um are you in a private place where you're OK to speak at the moment?",
+          "failed": false
+        },
+        {
+          "start_ms": 30000.0,
+          "end_ms": 60000.0,
+          "hypothesis": "Um yes. OK, great. So tell me what's been going on. You've been saying there's a problem with your hearing, is that right? Yeah, so I just feel like I can't really hear as well as I used to, like my hearing's kind of deteriorating in some way. Right, OK. How long has this been going on for? About six weeks. Six weeks, OK. And before that, have you had any hearing problem at all? Um, I had something maybe about a year ago, but it only lasted a couple of days. It wasn't anything as long as this. Right, OK, OK. And in this six weeks,",
+          "failed": false
+        },
+        {
+          "start_ms": 60000.0,
+          "end_ms": 90000.0,
+          "hypothesis": "period. Have you had anything else happen? Have you had any other ear symptoms at all? Um I occasionally get like a ringing in my left ear just on the one side and um there's actually been a few times when I felt kind of a bit sick or a bit dizzy as well. Right, OK. And just to clarify, the difficulty you've got in hearing, is that both ears or just the left ear? Just the left ear, yeah. Alright, so your right ear is fine? It seems to be yeah. OK, so you've had ringing, difficulty hearing in your left ear.",
+          "failed": false
+        },
+        {
+          "start_ms": 90000.0,
+          "end_ms": 120000.0,
+          "hypothesis": "and feeling slightly sick. And that's been on and off for the six weeks or is it continuous throughout that six weeks? It's kind of on and off, like some things trigger it as well. So for example, if I'm watching TV or I listen to music or something, that'll set off the ringing in the ear. Right, OK. And have you had any pain from the ear at all? No, not like that. OK, any discharge coming out of the ear? No. No, OK. Have you been experiencing any fever?",
+          "failed": false
+        },
+        {
+          "start_ms": 120000.0,
+          "end_ms": 150000.0,
+          "hypothesis": "Uh, not specifically apart from the dizziness and sickness I'm a child. Right, OK. And has your ear been itchy at all? No. OK. Now, do you use cottonwood buds to try and clean, clean out wax from your ears? Uh, no, I don't know. No, OK, well, you're right, you shouldn't, we shouldn't be doing that. It doesn't clean out the wax, it pushes it back in. Alright, um, the first thing that we need to do is we need to get someone to have a look inside your ear. OK, and just exclude the simple things. Simple things would might be wax. You know, someone might have impacted wax.",
+          "failed": false
+        },
+        {
+          "start_ms": 150000.0,
+          "end_ms": 180000.0,
+          "hypothesis": "blocking the tube going into the eardrum, which can lead to muffled hearing. If that's the case, that's something that's easily fixable. But so we need to exclude that first, and then after that we can consider other potential possibilities. And for that, we need to have a look inside the eardrum. So what I think we could do is maybe if we book you in for a face-to-face appointment in one of our clinics, it's not an emergency, it can be done within the next four or five days or so, OK, and then",
+          "failed": false
+        },
+        {
+          "start_ms": 180000.0,
+          "end_ms": 210000.0,
+          "hypothesis": "Um, what I'll do is I'll send a message to our admin team. I'll ask them to slot you into in a clinic, one of our clinics in that time frame. You can come in and one of the GPs will just have a quick look down the ear and figure out whether there's a physical blockage or whether there's something else going on. OK. Um, can I just double check? The dizziness that you've been getting, um, how severe is it? Uh, nothing major, it's just kind of, uh, it's, it's not the kind of dizziness you get with nausea, like not proper room spinning or anything like that, but just",
+          "failed": false
+        },
+        {
+          "start_ms": 210000.0,
+          "end_ms": 240000.0,
+          "hypothesis": "just a little bit kind of off balance. Right, right. OK. Have you any chest pain with it? No. No any palpitations, heart beating fast? Not that I'm at all. OK, fine, alright. So let, let's get your ear checked out. I think that would be the most sensible thing to do. And then after that, we can, we'll be a step closer to figuring out which way we're going to go. It might be that there's a problem inside the drum or the balance system within the ear, but we just need to exclude whether there's a physical blockage first and try and deal with that if that's the case. OK.",
+          "failed": false
+        },
+        {
+          "start_ms": 240000.0,
+          "end_ms": 270000.0,
+          "hypothesis": "Is that the sort of thing that can cause like this ringing I've got in my ear? Does it seem like the ringing that you've got that you've got something called tinnitus? And tinnitus is something actually that medicine doctors, we don't really understand it fully. We haven't, you know, people can't give you a specific cause for why some patients get tinnitus and some patients don't. It can be triggered by a wide range of different things. And in fact, I'm glad that you've mentioned that. What I might do in the time between now and when you come for the appointment,",
+          "failed": false
+        },
+        {
+          "start_ms": 270000.0,
+          "end_ms": 300000.0,
+          "hypothesis": "I'm going to put paste the link for a leaflet about Tinnitus in the notes for this appointment. I'd really appreciate it if you could start reading about it. OK. And often that awareness of what it is and what the treatment options are, and there are limited options, that helps us in terms of the conversation about what we do next, if it is clear. OK. So I'm going to paste a link to that and you can read about that. And what we'll do is we'll see you in about four or five days' time. It won't be with me, it'll be another GP, but they'll have my notes.",
+          "failed": false
+        },
+        {
+          "start_ms": 300000.0,
+          "end_ms": 329160.0,
+          "hypothesis": "notes and they'll know exactly what what my question is, which is just to check your ears. Is that OK? Yeah, sounds great. Alright, great. So bear with me five minutes, and then you can ring the support team. I'll give the number in the notes for this appointment, ring them, and then they'll stop you in, OK? OK, brilliant. Alright, if any, if there's any problem, any issues between now and when the clinic appointment is, just book another appointment and you can speak to them and also have a video, OK? OK. Alright then, take care. Nice to see you this morning. Thank you.",
+          "failed": false
+        }
+      ],
+      "wall_seconds": 103.40806979994522,
+      "reference_words": 1159,
+      "hypothesis_words": 1134,
+      "normalized_edits": 155,
+      "raw_edits": 283,
+      "raw_reference_words": 1160
+    },
+    {
+      "id": "day2_consultation02",
+      "failed": true,
+      "reference": "Hi there. Good morning. Hello, good morning. Um, I'm Doctor Deen Mirza from GP at Hand. Nice to see you. Nice to see you. OK. Before we start your appointment, could you please tell me your first name and your date of birth. Yes. Uh, my name is John Smith. And I was born on the fifth of April, uh, nineteen seventy three. OK, that's great. Thank you for that. Um, are you in a private place where you're OK to speak freely? Yes. . OK, OK, great. OK, so um, tell me a bit about what's been happening? You said you mentioned in the notes that you've got a problem with your elbow. Yeah. Um, I just noticed this like about a week ago, or something? Um, have like a weird swelling on, on, on my elbow.  I noticed that when I was in the shower. Uh, It's not painful at all, or like, I  I feel fine. But it's just, just a bit, a bit weird, to see that. Um, it's, it's slightly warm. Um, and I, I, cannot feel like this, little bit fluid in inside, or, uh, um? Sure. Sure, sure. , and . So, I, I like to know what's going on with . , and so, did you say it was the left elbow or the right elbow? Um, it's the, the left  elbow. Left elbow, OK. , and have you banged that elbow? Do you have any kind of injury? No, not really. Um, not that I know of. I haven't noticed anything. I can actually like move it normally. Um, it's just, I , I can just see that. It feels a bit strange, a bit Sure, OK. , and um, , in terms of your job, do you do anything physical? Not really. No, I just, you know sit at a desk. Um, yeah. Right. OK. , and um, has this happened before? No, no I haven't noticed that before. Um, I don't have any like history of, of seeing this. I don't remember . Sure, OK. Uh, and can I um, can I just double-check? Has anyone in your family, got any, kind of rheumatology, diseases, like rheumatoid arthritis, or lupus or anything like that? Um, no, well I, I do, well I think, I think I have something like uh, osteoarthritis. Um, Uh, uh, it sometimes kind of hurts, uh, my joints. But uh, in my family, I'm not sure. OK. . No. Sure. , so you know you said you think you've got , uh, osteoarthritis. Has anyone ever told you that? Have you ever seen a doctor who's confirmed that, and told you you've got osteoarthritis? Um, yes. Yes, a few years ago. OK. , was that a GP or a specialist or, was it, a physiotherapist?  a  a GP. Um, yeah. GP, OK, all right. Um, look can I just, uh, sorry can I just double-check how old you are please? I'm uh, fifty three. Fifty three, OK. Fantastic. All right. Um, and, do you have any other illnesses at all? Um, Well not, not really, no. Um,  I'm, I'm allergic to, to peanuts. Um, but that's, that's pretty much all I uh, have to say about my medical history, yeah. Right, OK. . OK. Uh, are you, are, are you allergic to any medication? Uh, no. Not that I know of. No. Sure. , and um, do you um, are you on any medication on a regular basis? Uh, no. No, OK.  And are you normally fit and well? Mobile and active?  yeah. I do, I do, I do some sports. I run regularly, like two, three times a week. Um, yeah, no, I'm, think I'm healthy. OK, good, good, glad to hear. Well done that's , it's good that you're doing that on a regular basis. OK. Um, and um, uh, can I, is it possible for me to have a look at your elbow, now? Uh, yeah, sure. OK, good, bear with me one second. Right, OK. And if you can just raise your elbow up a little bit like that, a bit higher, so I can just see the underside. OK, fantastic, all right. And then, just, bring it round to this side, , I can see other side. OK, fantastic. All right. And if you can just touch the tip of your elbow with your fingers. There's, , is it, is it hot, compared to the surrounding skin, the adjacent skin? Yeah. It's a bit warm, yes. It's a bit warmer. OK. Um, and um, is it very tender when you're pressing on that nerve? Is it, if you, if you give it a press, does it hurt you at all? On the, on the tip of the elbow, it's, it's OK, just like, next to it like where the, the swelling is, it's a bit, yeah it feels weird. OK. All right. Um, well, um, I noticed the skin was a bit dry, , on the tip of the elbow. Do you, do you have dry skin anywhere else on the body? Uh, no not really. I have   skin really dry now. , do you , do you suffer from eczema at all? No. No. Alright. OK. So um, what I think we should do, with regards to your elbow problem OK. Is um, I think, it would be worthwhile. , this seems like uh, what we call the Bursitis. OK. So, that's an inflammation of one of the fluid sacs around the joint. Um, what I think we should do is, I think you should be on some anti-inflammatory medication, in the, in the first instance. OK. And, as well as that, what I would like to do, is to get some blood tests done, to check for other types of uh, causes of joint swelling. K? Alright. So, um, what we're going to do is, we're going to arrange some, um, blood test forms to be sent out to your house. And, there'll be instructions within that pack, about where to go to get those blood tests done. And, that will involve you, um, having some tests done to check for inflammatory markers, infection, rheumatological antibodies.  So we'll do a full screen, and also check for things like Gout as well, OK. Um. OK. The time frame for that, will be um, the results will come back to us after about five or six days. Um. K . O From now, but it may take time for the form to come out to you. And if you get the form get the blood tests done straight away, by the time that we're expecting result back, you know one or two days after that, we're looking maybe six days. And, what I would suggest, is, we can arrange a follow-up appointment for you, in one of our clinics, where we can have a look at your joint, feel it, we can review the blood test. OK. Uh, we can um, get a gauge as to, uh, what's going on. Now in terms of your joint right now, It doesn't look like, to me that's something called, excuse me, septic arthritis. So, we're worried sometimes that someone might have an acutely infected joint. Mm-hmm. Um, and uh, your, your joint doesn't look like that. Yeah. However, if your, the elbow was to become very red, very painful, uh, and the redness was to spread or become uh, you know more intense. Then you need to get on the phone or get, have a video appointment , with one of us as soon as possible. OK. 'Cause that would be an emergency. That would require more immediate assessment, more immediate treatment. OK?  do you, do you think it's something dangerous? Like something, like could I die from that, or is it, is it No. I, I don't think this is anything dangerous.  don't need to worry. OK? What I'm doing, is I'm just outlining the worst case scenario if things were to, to develop. K? So, , this, this is not the case right now. Right now, it looks quite straightforward. OK. Yeah, OK, I see. It's nothing , sinister or life-threatening. Um, what I'm doing is I'm just saying, in case things worsen, these are the things that we'd be looking out for, and this is what we have to do. But you don't have that now, thankfully, and I don't think you're going to have it. OK. But I'm just saying, the what if scenario. Is that OK? Yeah that, that sounds good. Thank you. All right. Did you have any questions that you wanted to ask me? Um, well just yeah  I just wanted to know about this. Um, yeah it feels a bit better now . Uh, but yeah, no that's it. Thank you. OK, all right. Um. OK. So, I, I would take Ibuprofen regularly, OK. You can get that , over the counter. Um, that's four hundred milligrams, two times a day. And you should take, take that after food, not on an empty stomach. If you get any heartburn, stop taking it. OK. OK. Sure.  thanks. Bye. All right. So, what I wanna do is, I'll get the forms sent out to you. And, um, we are going to arrange a, a follow-up appointment. Maybe within a um, actually you know, the follow-up appointment doesn't have to be face-to-face, if it's more convenient for you do, to do it over the phone, we can do that over the phone, uh, over video. We can do that as well, that's, that's your call. But you contact us, , after you've had the blood test done, and we can review things then, OK. OK. OK, yeah that sounds good. I, I'll do that. And if I see that it's getting worse, I'll probably ask for a physical appointment. Sure, sure that's a good idea. All right then, OK. Um, take care then. So , look just leave that with me, I'll sort all those bits and pieces out, and then we'll get them sent out to you, and then we'll, we'll um, review you after the tests, things goes well, OK.  Thank you. Alright. Sounds All right then. Take care then, all the best. Bye bye. Bye.",
+      "hypothesis": "",
+      "chunks": [
+        {
+          "start_ms": 0.0,
+          "end_ms": 30000.0,
+          "hypothesis": "Hi there, good morning. Good morning. Um, I'm Dr. Dean Mezza from GPA Han. Nice to see you. Nice to see you. OK, before we start your appointment, could you please tell me your first name and your date of birth? Yes. My name is John Smith, and I was born on the 5th of April 1973. OK, that's great. Thank you for that. Are you in a private place where you're OK to speak freely? Yes, absolutely. OK, great. OK,",
+          "failed": false
+        },
+        {
+          "start_ms": 30000.0,
+          "end_ms": 60000.0,
+          "hypothesis": "So tell me a bit about what's been happening. You said you mentioned in the notes that you've got a problem with your elbow. Yeah, I just noticed this like about a week ago or something. I have like a weird swelling on my elbow. I noticed that when I was in the shower. It's not painful at all or like I feel fine, but it's just it's just a bit a bit weird to see that. It's it's slightly warm and I kind of feel like",
+          "failed": false
+        },
+        {
+          "start_ms": 60000.0,
+          "end_ms": 90000.0,
+          "hypothesis": "this it's a bit fluid in inside or so I to know what's going on basically and so did you say it was the left elbow or the right elbow it's the the left elbow left elbow OK and have you banged that elbow did you have any kind of injury no not really um not that I know of I haven't noticed anything I can actually like move it normally um it's just like I can just see that",
+          "failed": false
+        },
+        {
+          "start_ms": 90000.0,
+          "end_ms": 120000.0,
+          "hypothesis": "it feels a bit strange. Sure, OK. And in terms of your job, do you do anything physical? Not really, no, I just, you know, sit at the desk. Right. Yeah. OK, and has this happened before? No, no, I haven't noticed that before. I don't have any like history of seeing this. I don't remember at all. Sure, OK. And can I,",
+          "failed": false
+        },
+        {
+          "start_ms": 120000.0,
+          "end_ms": 150000.0,
+          "hypothesis": "Can I just double check? Has anyone in your family got any kind of rheumatology diseases like rheumatoid arthritis or lupus or anything like that? Um no, well I I do well I think I think I have something like osteoarthritis. Um uh it sometimes kind of hurts my joints. But in my family, I'm not sure. OK. Sure. So you know you said you think you've got osteoarthritis. Has anyone ever told you that? Have you ever",
+          "failed": false
+        },
+        {
+          "start_ms": 150000.0,
+          "end_ms": 180000.0,
+          "hypothesis": "ever seen a doctor who's confirmed that and told you you've got osteoarthritis? Um yes, just a few years ago. OK, was that a GP or a specialist or was it a physiotherapist? A GP. GP, OK, alright. Rick, can I just, sorry, can I just double check how old you are, please? I'm 53. 53, OK, fantastic. Alright. And do you have any other illnesses at all? Well, nothing.",
+          "failed": false
+        },
+        {
+          "start_ms": 180000.0,
+          "end_ms": 210000.0,
+          "hypothesis": "not really, you know, so pretty, I'm, I'm allergic to peanuts. OK. That's pretty much all I have to say about my people. Are you allergic to any medication? Uh no, not that I know of. Sure. And um do you um are you on any medication on a regular basis? Uh no. No, OK. And are you normally fit and well, mobile, active? I do, I do, I do some sports, I run regularly,",
+          "failed": false
+        },
+        {
+          "start_ms": 210000.0,
+          "end_ms": 240000.0,
+          "hypothesis": "like two, three times a week. Um yeah, no, I'm, I think I'm healthy. OK, good, good. Glad to hear that. Well done. That's good. Good that you're doing that on a regular basis. OK. Um and um uh can I, is it possible for me to have a look at your elbow now? Uh, yes, sure. OK, bear with me one second. Right, OK. And if you can just raise your elbow up a little bit, like that, a bit higher so I can just see the underside. OK, fantastic. All right.",
+          "failed": false
+        },
+        {
+          "start_ms": 240000.0,
+          "end_ms": 270000.0,
+          "hypothesis": "and then just bring it around to this side centrally I can see the other side. OK, fantastic. Alright, and if you can just touch the tip of the elbow with your fingers, is it hot compared to the surrounding skin, the adjacent skin? It's a bit warm, yes. It's a bit warmer, OK. And is it very tender when you're pressing on that now? If you give it a press, does it hurt you at all? On the on the tip of the elbow it's",
+          "failed": false
+        },
+        {
+          "start_ms": 270000.0,
+          "end_ms": 300000.0,
+          "hypothesis": "It's OK, just like next to it, like where the swelling is, it's a bit, yeah, it feels a bit fluid. OK, alright. What I noticed the skin was a bit dry on the tip of the elbow. Do you have dry skin anywhere else in the body? No, not really skin dry. Do you suffer from eczema at all? No. No. Alright. OK, so what I think we should do with",
+          "failed": false
+        },
+        {
+          "start_ms": 300000.0,
+          "end_ms": 330000.0,
+          "hypothesis": "regards to your elbow problem, OK, is I think it would be worthwhile. This seems like what we call the bursitis. OK, so that's an inflammation of one of the fluid sacs around the joint. What I think we should do is I think you should be on some anti-inflammatory medication in the first instance. And as well as that, what I would like to do is to get some blood tests done to check for other types of causes of joint swelling.",
+          "failed": false
+        },
+        {
+          "start_ms": 330000.0,
+          "end_ms": 360000.0,
+          "hypothesis": "So what we're going to do is we're going to arrange some blood test forms to be sent out to your house, and there'll be instructions within that pack about where to go to get those blood tests done. And that will involve you having some tests done to check for inflammatory markers, infection, rheumatological antibodies. So we'll do a full screen and also check for things like gout as well. OK. The time frame for that will be",
+          "failed": false
+        },
+        {
+          "start_ms": 360000.0,
+          "end_ms": 390000.0,
+          "hypothesis": "the results will come back to us after about five, six days from now. It takes time for the forms to come out to you. And if you get the form test done straight away, by the time that we're expecting a result back, you know, one or two days after that, we're looking at maybe six days. And what I would suggest is we can arrange a follow-up appointment for you in one of our clinics where we can have a look at your joint, feel it, we can review the blood tests, and we can get a gauge as to",
+          "failed": false
+        },
+        {
+          "start_ms": 390000.0,
+          "end_ms": 420000.0,
+          "hypothesis": "what's going on. Now, in terms of your joint right now, it doesn't look like to me like something called, excuse me, septic arthritis. So we are worried sometimes that someone might have an acutely infected joint and your joint doesn't look like that. However, if your, the elbow was to become very red, very painful, and the redness was to spread or become more intense, then you need to get on the phone or get have a video",
+          "failed": false
+        },
+        {
+          "start_ms": 420000.0,
+          "end_ms": 450000.0,
+          "hypothesis": "with one of us as soon as possible. Because that would be an emergency that would require more immediate assessment, more immediate treatment. OK? Do you think it's something dangerous, like something like, could I die from that? Or is it, is it? No, I don't think this is anything dangerous. Don't need to worry. OK. What I'm doing is I'm just outlining the worst case scenario if things were to develop. OK. So if things were to worsen, this is not the case right now. Right now, it looks quite straightforward.",
+          "failed": false
+        },
+        {
+          "start_ms": 450000.0,
+          "end_ms": 480000.0,
+          "hypothesis": "nothing sinister or life threatening. What I'm doing is I'm just saying in case things worsen, these are the things that we've been looking out for and this is what we have to do. But you don't have that now, thankfully. And I don't think you're going to have it. But I'm just saying the what if scenario. Is that OK? Yeah, that that sounds good. Thank you. Alright, did you have any questions that you wanted to ask me? Well, just yeah, I just wanted to know about this. Yeah, it feels a bit better now to know that. OK, alright.",
+          "failed": false
+        },
+        {
+          "start_ms": 480000.0,
+          "end_ms": 510000.0,
+          "hypothesis": "Yeah, no, that's it. Thank you. OK, so I would take ibuprofen regularly. OK, you can get that over the counter. That's 400 milligrams two times a day. And you should take, take that after food, not on an empty stomach. If you get any heartburn, stop taking it. OK? Sure. Alright. So what I want to do is I'll get the form sent out to you and we are going to arrange a follow-up appointment maybe within a follow-up appointment doesn't have to be face-to-face. If it's more convenient to do it to do it over the phone, we can do that over the phone.",
+          "failed": false
+        },
+        {
+          "start_ms": 510000.0,
+          "end_ms": 540000.0,
+          "hypothesis": "video you can do that as well that's that's your call but you contact us after you've had the blood test done and we can review things then okay okay yeah that sounds good I'll do that and if I see that it's getting worse I'll probably ask for a physical appointment but sure that's a good idea alright then OK um take care then so just leave that with me I'll sort all those bits and pieces out and then we'll get them sent out to you and then we'll we'll review you after the test things go well all right all right take care then all the best bye bye bye",
+          "failed": false
+        },
+        {
+          "start_ms": 540000.0,
+          "end_ms": 541560.0,
+          "hypothesis": "",
+          "failed": true
+        }
+      ],
+      "wall_seconds": 155.3008141000173,
+      "reference_words": 1689,
+      "hypothesis_words": 0,
+      "normalized_edits": 1689,
+      "raw_edits": 1721,
+      "raw_reference_words": 1721
+    },
+    {
+      "id": "day2_consultation03",
+      "failed": false,
+      "reference": "Hello? Hi there. Good morning! Hi. . Nice to meet you. Hello. Hello. I, I'm Doctor . Nice to see you. Hi. Um, so, before we start your appointment, could I confirm your full name and date of birth, if that's OK? Uh, yeah. Uh, Mary Richards. Uh, and my, I'm forty years old. So. You're  OK, fine. So, you're  you're forty years old, you said, yeah?  Perfect, OK. Um, are you in a private place where you're OK to speak at the moment? Yep. OK, great. Um, so how can I help you today? Um, so, just been having some, um, problems with my hearing, I can't really hear very well, and my , noticed that my face has been feeling a bit numb recently. Right, OK. OK. And how long has this been going on for? Um, it's been, it's been a few weeks now. Um, been about three weeks or something. Right, OK. And, is this just on one side, or both sides? Just one side, just on my left side, I've noticed that the hearing's kind of gone down a bit. Right, OK. And  your face feeling numb, where exactly is that? Which part of your face? Can you, can you show me with your finger?  Yeah, so again it's the left side, it's kind of like around my left ear, and kind of, along here. So like, my jawline's just all feeling a bit numb round here. Right, OK. OK. Um, has anything else happened, um, in this time? Any other symptoms you have at all? Not that I, not that I've noticed, .   I think, occasionally noticed a, ringing in my ear. Um. Some, some ringing in your ear. OK. , yeah it's . Sure, OK. Um, and um, have you had any weakness or numbness, down the, in the rest of the body at all? No, no, no, no, nothing like that. OK. Have you had any difficulty swallowing? No. And, have you had any difficulty speaking? No, no. Have you noticed any problems with your vision, at all? No, that's all good. OK. Uh, and do you have the numbness present right now? Uh, yeah. It kind of, kind of, there quite often, so, all the time. So yeah, right now it feels very, doesn't feel like when I touch this side of my face. Sure. Sure, OK. Alright, um, just going back to the kind of  feeling in, in the ear, um, do you have any discharge coming from that ear at all? No, nothing, nothing coming out. K. Any pain in the ear, or from the ear? Uh, no, don't think so. Right, OK. And um, have you had any fever at all? No, nothing like that. And, do you, um, have any itchiness in the ear?   Do you use cotton  buds to kind of clean your ears out? Pardon? Ohh, no, no, no, don't use cottons buds,  like that. No. Alright. OK. Alright. Um,  need to, need to ask a few other general questions. Um, do you have any other illnesses at all? Um, I've, well I've got kind of, been told I have polyps in my nose in the past and, occasionally get them kind of . Um, that, that's all fine and, you know I take a Rennie's if I need to, and if my nose polyps are playing up I've got a spray. Um.  Other than that I think they said, ages ago, I had something called, can't quite remember but, labyrinthitis, something like that, but again, nothing, nothing ongoing.  Sure. Sure, OK. So, are you on any regular medication? You mentioned the spray for your nose. Yeah, so, no, uh, I only take the, spray for my nose when I need it for, and um, sometimes take  like Rennies, but I just get that from the chemist. Sure.  and, and the spray for your nose, where do you get that from? Is that from a doctor? Uh, yeah, they gave me a prescription ages ago. Yeah. Do you remember the name of the spray, at all? Unfortunately I don't, sorry.  that's alright. That's alright. Uh, and you're not on any other medication at all? No. No, OK. Do you have any , any allergies to any medication? Uh, no just Latex. Latex, OK. Alright, that's good to know. Um, and um, in terms of your family, are there any kind of illnesses within your family at all? My brother had, Neurofibromatosis, I think it is. Um, other than that everyone else is OK. Right, OK. OK, good. That's good. Um, and in, in terms of your own kind of background now, are you, are you working at the moment? Yeah, so I'm a, I'm a jockey, um, but, because of all the kind of, these symptoms I've been getting, especially sometimes when I get a ringing, I can feel a bit dizzy. Ohh, I've just had to do far less training. So, kind of beginning to, yeah, impacting work, um, a little bit now. OK. So you have to excuse my ignorance, you mean, jockey like with horses? Is that what you're talking about? Yeah. Alright, OK. Fine. Um, great. Um, uh, and, uh, do you live alone? Yeah, yeah. Um, I, uh, live with my partner. Uh, OK. Right, um, do you have any pets at all at home? No, no pets. OK, fine. OK so, alright. Um, Is there anything else that you wanted to tell me about what's been  going on, recently? Uh, no, just like, like I said, like the ringing um, occasionally and, when I get that I can sometimes feel a bit dizzy but, the main thing is really the, lack of hearing, and the numbness that's got me  like,  yeah, no idea what's going on there.  OK, fine. Alright. Um, So, , what I think , go on. I mean, there was just like, there was one thing I think just, 'cause I can panic and you can look online,  get a bit, frantic.  , I guess what I'm trying to think is, you know, is there something particularly serious that, you know, will need to be sorted and. Obviously, really, anything can just make you really frantic . Hopefully nothing , so serious I will die from it, I don't know I just, I think got myself in a pickle.  OK.  so um, uh, obviously we're limited in terms of assessment via the video, uh, portal. Mmm.  um, from what you've told me, this doesn't seem to be you know, anything um, that you're gonna die from. However, I would like you to be assessed in a clinic today. OK. OK? I ,would like you to come to one of my clinics. I would like a GP to assess you.  what you're, what you're describing might be something called Bell's Palsy. OK? Um, OK. Yeah. We can go into that, explaining what that is, if um, if that's confirmed on, on physical examination. But um, that's not usually a  life-threatening problem. OK. But, um, part of the reason why I'd like you to come in, it's just that we can do a, a what we call a, a neurological examination just to make sure there's nothing else going on, and confirm  that might be the diagnosis. Have a look, have a look inside the ear, see if there's any, , anything to see within the ear. OK.  So, um, um, so, in answer to your question. No, I don't think that you need to worry about that, I ,  think you know , preliminarily I can, I can reassure you. OK. However, , in order to definitively reassure you, I, I think you need a physical examination today, OK. , so what I wanna do, is I'm gonna send a message to our admin team, I'll ask them, to book you in for a face-to-face appointment in one of our clinics. Mm-hmm. Yeah, that's fine. OK. Um, within Central London. OK, and then you can ring the , the support team number, I'll leave that number in your notes. And you can ring them after five minutes, and then they'll slot you in to a place that's convenient for you, OK. OK. Yeah. , that's fine. All right. So, someone  will see you, and hopefully you will be able to reassure further but, please make sure the appointment gets done today. OK, yep, I will do, that's fine. Thank you very much. All right then. OK. Nice to see you. Take care. Bye bye. Bye.",
+      "hypothesis": "Hello. Hi there, good morning. Hi. Hi. I'm Dr. Jin Mega from UPHA. Nice to see you. Nice to see you. Hello. Hi. So before we start your appointment, could I confirm your full name and date of birth? That's OK. Yeah, Mary Richards. And my, I'm 40 years old. OK, fine. So you're you're 40 years old, you said, yeah? Perfect. OK. Are you in a private place where you're OK to speak at the moment? Yeah. OK, great. So how can I help you today? Um, so just been having some um problems with my hearing. I can't really hear very well and my notice that my face has just been feeling a bit numb recently. Right, OK. OK, and how long has this been going on for? Um it's been, it's been a few weeks now, um, been about three weeks or something. Right, OK. And is this just on one side or both sizes? just one side, just on my left side. I've noticed that the hearing's kind of gone down a bit. Right, OK. And your face feeling numb. Where exactly is that? Which part of your face? Can you, can you show me with your finger? Yeah, so again, it's the left side. It's kind of like around my left ear and kind of along here, so like my jawline, just all feeling a bit numb around here. Right, OK, OK. Has anything else happened in this time? Any other symptoms you've had at all? Not I might notice actually occasionally notice that ringing in my ear. Some ringing in your ear, OK. Yeah, part of it hard. Sure, OK. And have you had any weakness or numbness down in the rest of the body at all? No, no, no, no, nothing like that. OK, have you had any difficulty swallowing? No. And have you had any difficulty speaking? No, no. Have you noticed any problems with your vision at all? No, that's all good. OK, and do you have the numbness present right now? Uh yeah, it's kind of kind of there quite often, quite all the time. So yeah, right now it feels very, it doesn't feel like when I touch this side of my face. Sure, sure. OK, alright. Just going back to the kind of muffled hearing feeling in the ear, do you have any discharge coming from that ear at all? No, nothing, nothing coming out. Any pain in the in the ear or from the ear? Uh no. Right, OK. And have you had any fever at all? No, nothing like that. And do you have any itchiness in the ear? No. Do you use coffee or buds to kind of clean your ears out? I don't, no, no, no, don't use coffee buds like that. OK, alright, um do you need to need to ask a few other general questions. Um do you have any other illness Um I well I've got kind of been told I had polyps in my nose in the past and occasionally get some kind of heart burny feeling. Um that's all fine and you know I take a renny if I need to and if my polyps are playing up I've got a spray. Um other than that I think they said ages ago I had something called can't quite remember but lab brincitis something like that, but again nothing, nothing on there. Sure, OK. So are you on any regular medication you mentioned the spray for your nose yeah so no i only take the spray for my nose when i need it for and um sometimes take over like reni but i just get that from the chemist sure and the spray for your nose where do you get that from is that from a doctor uh yeah they gave me a prescription ages ago yeah do you remember the name of the spray at all unfortunately i don't sorry that's all right and you're not on any other medication at all no no okay do you have any any allergies to any medication uh no just latex. Datex. OK, alright, that's good to know. And in terms of your family, are there any kind of illnesses within your family at all? My brother had neurofibromatosis, I think it is. Right. Other than that, everyone else is OK. OK, good. That's good to hear. And in terms of your own kind of background now, are you working at the moment? Yeah, so I'm a, I'm a jockey, um, but because of all the kind of symptoms I'm getting, especially sometimes when I get a really, I feel a bit busy. I've just had to do far less training. So kind of beginning to, yeah, impacting work a little bit now. OK, so you have to extravagance. You mean jocky like with horses, is that what you're talking about? Yeah. Alright, OK. OK, fine. Great. And do you live alone? I live with my partner. OK, right. Do you have any pets at all at home? No, no pets. OK, OK, fine, fantastic. Alright. Is there anything else that you wanted to tell me about what's been going on recently? Uh, no, just like like I said, like the ringing occasionally and when I get back I can sometimes feel a bit dizzy, but the main thing is really this lack of hearing and the numbness that's got me upside, yeah, no idea what's going on there. OK, fine, alright. Um so what I think, go on. There was one thing I think because I can panic and you could look online and get a bit frantic. I guess what I'm trying to think is, you know, is there something particularly serious that will need to be sorted and obviously really anything could make you really frantic and is it hopefully nothing so serious I would die from it? I don't know. I just, I think I'll. Obviously we're limited in terms of assessment via a video portal. But from what you've told me, this doesn't seem to be anything that you're going to die from. However, I would like you to be assessed in a clinic today. OK, I would like you to come into one of my clinics. I'd like GP to assess you. What you're describing might be something called bell palsy. We can go into that, explaining what that is, if that's confirmed on physical examination. That's not usually a life-threatening problem. But part of the reason why I like to to come in it's just that we can just do what we call a neurological examination just to make sure there's nothing else going on and confirm whether that might be the diagnosis have a look inside the ear see if there's any anything to see within the ear so um uh so in answer to your question no i don't think that you need to worry about that i think you know preliminarily i can i can reassure you however do you know in order to definitively reassure you i think you need a physical examination today okay so so what i'm going to do is i'm going to send a message to our administration I'll ask them to book you in for a face-to-face appointment in one of our clinics within central London. OK, and then you can ring the support team number. I'll leave that number in your notes. You can ring them after five minutes and then they'll slot you into a place that's convenient for you. OK? That's fine. Alright, so someone will see you and hopefully we'll be able to reassure you further. But please make sure the appointment gets done today. OK, yep, they will do it. That's fine. Thank you very much. Alright then. OK, nice to see you. Take care. Bye bye. Bye. Do you have anything?",
+      "chunks": [
+        {
+          "start_ms": 0.0,
+          "end_ms": 30000.0,
+          "hypothesis": "Hello. Hi there, good morning. Hi. Hi. I'm Dr. Jin Mega from UPHA. Nice to see you. Nice to see you. Hello. Hi. So before we start your appointment, could I confirm your full name and date of birth? That's OK. Yeah, Mary Richards. And my, I'm 40 years old. OK, fine. So you're you're 40 years old, you said, yeah? Perfect. OK. Are you in a private place where you're",
+          "failed": false
+        },
+        {
+          "start_ms": 30000.0,
+          "end_ms": 60000.0,
+          "hypothesis": "OK to speak at the moment? Yeah. OK, great. So how can I help you today? Um, so just been having some um problems with my hearing. I can't really hear very well and my notice that my face has just been feeling a bit numb recently. Right, OK. OK, and how long has this been going on for? Um it's been, it's been a few weeks now, um, been about three weeks or something. Right, OK. And is this just on one side or both sizes?",
+          "failed": false
+        },
+        {
+          "start_ms": 60000.0,
+          "end_ms": 90000.0,
+          "hypothesis": "just one side, just on my left side. I've noticed that the hearing's kind of gone down a bit. Right, OK. And your face feeling numb. Where exactly is that? Which part of your face? Can you, can you show me with your finger? Yeah, so again, it's the left side. It's kind of like around my left ear and kind of along here, so like my jawline, just all feeling a bit numb around here. Right, OK, OK. Has anything else happened in this time? Any other symptoms you've had at all? Not",
+          "failed": false
+        },
+        {
+          "start_ms": 90000.0,
+          "end_ms": 120000.0,
+          "hypothesis": "I might notice actually occasionally notice that ringing in my ear. Some ringing in your ear, OK. Yeah, part of it hard. Sure, OK. And have you had any weakness or numbness down in the rest of the body at all? No, no, no, no, nothing like that. OK, have you had any difficulty swallowing? No. And have you had any difficulty speaking? No, no. Have you noticed",
+          "failed": false
+        },
+        {
+          "start_ms": 120000.0,
+          "end_ms": 150000.0,
+          "hypothesis": "any problems with your vision at all? No, that's all good. OK, and do you have the numbness present right now? Uh yeah, it's kind of kind of there quite often, quite all the time. So yeah, right now it feels very, it doesn't feel like when I touch this side of my face. Sure, sure. OK, alright. Just going back to the kind of muffled hearing feeling in the ear, do you have any discharge coming from that ear at all? No, nothing, nothing coming out. Any pain in the",
+          "failed": false
+        },
+        {
+          "start_ms": 150000.0,
+          "end_ms": 180000.0,
+          "hypothesis": "in the ear or from the ear? Uh no. Right, OK. And have you had any fever at all? No, nothing like that. And do you have any itchiness in the ear? No. Do you use coffee or buds to kind of clean your ears out? I don't, no, no, no, don't use coffee buds like that. OK, alright, um do you need to need to ask a few other general questions. Um do you have any other illness",
+          "failed": false
+        },
+        {
+          "start_ms": 180000.0,
+          "end_ms": 210000.0,
+          "hypothesis": "Um I well I've got kind of been told I had polyps in my nose in the past and occasionally get some kind of heart burny feeling. Um that's all fine and you know I take a renny if I need to and if my polyps are playing up I've got a spray. Um other than that I think they said ages ago I had something called can't quite remember but lab brincitis something like that, but again nothing, nothing on there. Sure, OK. So are you on any regular",
+          "failed": false
+        },
+        {
+          "start_ms": 210000.0,
+          "end_ms": 240000.0,
+          "hypothesis": "medication you mentioned the spray for your nose yeah so no i only take the spray for my nose when i need it for and um sometimes take over like reni but i just get that from the chemist sure and the spray for your nose where do you get that from is that from a doctor uh yeah they gave me a prescription ages ago yeah do you remember the name of the spray at all unfortunately i don't sorry that's all right and you're not on any other medication at all no no okay do you have any any allergies to any medication uh no just latex.",
+          "failed": false
+        },
+        {
+          "start_ms": 240000.0,
+          "end_ms": 270000.0,
+          "hypothesis": "Datex. OK, alright, that's good to know. And in terms of your family, are there any kind of illnesses within your family at all? My brother had neurofibromatosis, I think it is. Right. Other than that, everyone else is OK. OK, good. That's good to hear. And in terms of your own kind of background now, are you working at the moment? Yeah, so I'm a, I'm a jockey, um, but because of all the kind of symptoms I'm getting, especially sometimes when I get a really,",
+          "failed": false
+        },
+        {
+          "start_ms": 270000.0,
+          "end_ms": 300000.0,
+          "hypothesis": "I feel a bit busy. I've just had to do far less training. So kind of beginning to, yeah, impacting work a little bit now. OK, so you have to extravagance. You mean jocky like with horses, is that what you're talking about? Yeah. Alright, OK. OK, fine. Great. And do you live alone? I live with my partner. OK, right. Do you have any pets at all at home? No, no pets. OK,",
+          "failed": false
+        },
+        {
+          "start_ms": 300000.0,
+          "end_ms": 330000.0,
+          "hypothesis": "OK, fine, fantastic. Alright. Is there anything else that you wanted to tell me about what's been going on recently? Uh, no, just like like I said, like the ringing occasionally and when I get back I can sometimes feel a bit dizzy, but the main thing is really this lack of hearing and the numbness that's got me upside, yeah, no idea what's going on there. OK, fine, alright. Um so what I think, go on. There was one thing I think",
+          "failed": false
+        },
+        {
+          "start_ms": 330000.0,
+          "end_ms": 360000.0,
+          "hypothesis": "because I can panic and you could look online and get a bit frantic. I guess what I'm trying to think is, you know, is there something particularly serious that will need to be sorted and obviously really anything could make you really frantic and is it hopefully nothing so serious I would die from it? I don't know. I just, I think I'll. Obviously we're limited in terms of assessment via a video portal. But from what you've told me, this doesn't",
+          "failed": false
+        },
+        {
+          "start_ms": 360000.0,
+          "end_ms": 390000.0,
+          "hypothesis": "seem to be anything that you're going to die from. However, I would like you to be assessed in a clinic today. OK, I would like you to come into one of my clinics. I'd like GP to assess you. What you're describing might be something called bell palsy. We can go into that, explaining what that is, if that's confirmed on physical examination. That's not usually a life-threatening problem. But part of the reason why I like to",
+          "failed": false
+        },
+        {
+          "start_ms": 390000.0,
+          "end_ms": 420000.0,
+          "hypothesis": "to come in it's just that we can just do what we call a neurological examination just to make sure there's nothing else going on and confirm whether that might be the diagnosis have a look inside the ear see if there's any anything to see within the ear so um uh so in answer to your question no i don't think that you need to worry about that i think you know preliminarily i can i can reassure you however do you know in order to definitively reassure you i think you need a physical examination today okay so so what i'm going to do is i'm going to send a message to our administration",
+          "failed": false
+        },
+        {
+          "start_ms": 420000.0,
+          "end_ms": 450000.0,
+          "hypothesis": "I'll ask them to book you in for a face-to-face appointment in one of our clinics within central London. OK, and then you can ring the support team number. I'll leave that number in your notes. You can ring them after five minutes and then they'll slot you into a place that's convenient for you. OK? That's fine. Alright, so someone will see you and hopefully we'll be able to reassure you further. But please make sure the appointment gets done today. OK, yep, they will do it. That's fine. Thank you very much. Alright then. OK, nice to see you. Take care. Bye bye. Bye.",
+          "failed": false
+        },
+        {
+          "start_ms": 450000.0,
+          "end_ms": 450840.0,
+          "hypothesis": "Do you have anything?",
+          "failed": false
+        }
+      ],
+      "wall_seconds": 131.54196780000348,
+      "reference_words": 1408,
+      "hypothesis_words": 1321,
+      "normalized_edits": 251,
+      "raw_edits": 475,
+      "raw_reference_words": 1428
+    }
+  ],
+  "summary": {
+    "reference_words": 7443,
+    "normalized_edits": 2568,
+    "failed_samples": 1,
+    "normalized_wer": 0.3450221684804514
+  },
+  "wer_gate": {
+    "maximum_normalized_wer": 0.05,
+    "scope": "aggregate_evaluation_dataset",
+    "status": "fail",
+    "reasons": [
+      "normalized_wer_exceeds_maximum",
+      "processing_failures_present"
+    ],
+    "clinical_approval": "not_established_by_wer"
+  },
+  "complete": true
+}

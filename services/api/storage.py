@@ -131,6 +131,24 @@ MIGRATIONS = (
     CREATE TRIGGER review_metrics_immutable BEFORE UPDATE ON review_metrics
     BEGIN SELECT RAISE(ABORT, 'Version bodies are immutable'); END;
     """,
+    """
+    ALTER TABLE uploads ADD COLUMN received_bytes INTEGER NOT NULL DEFAULT 0;
+    CREATE TABLE asr_checkpoints (
+        job TEXT NOT NULL REFERENCES jobs(id), encounter TEXT NOT NULL REFERENCES encounters(id),
+        channel_index INTEGER NOT NULL, input_sha256 TEXT NOT NULL, profile_sha256 TEXT NOT NULL,
+        body TEXT NOT NULL, sha256 TEXT NOT NULL, created_at TEXT NOT NULL,
+        PRIMARY KEY(job,channel_index));
+    CREATE TABLE job_attempts (
+        job TEXT NOT NULL REFERENCES jobs(id), encounter TEXT NOT NULL REFERENCES encounters(id),
+        attempt INTEGER NOT NULL, status TEXT NOT NULL, error_code TEXT, finished_at TEXT NOT NULL,
+        PRIMARY KEY(job,attempt));
+    """,
+    """
+    ALTER TABLE jobs ADD COLUMN preview_only INTEGER NOT NULL DEFAULT 0;
+    ALTER TABLE jobs ADD COLUMN preview_cache_expired INTEGER NOT NULL DEFAULT 0;
+    ALTER TABLE jobs ADD COLUMN timeline_offset_ms INTEGER NOT NULL DEFAULT 0;
+    """,
+
 )
 
 

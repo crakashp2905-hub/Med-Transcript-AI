@@ -62,12 +62,14 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
     store = Store(db_path)
     stamp, token = datetime.now(timezone.utc), str(uuid4())
     with store.transaction() as con:
+        for abandoned in con.execute("SELECT * FROM jobs WHERE stage='transcription' AND status='running' AND lease_expires_at<=?", (stamp.isoformat(),)).fetchall():
+            con.execute("INSERT OR IGNORE INTO job_attempts VALUES (?,?,?,?,?,?)", (abandoned["id"],abandoned["encounter"],abandoned["attempts"],"abandoned","worker_lease_expired",stamp.isoformat()))
         con.execute("""UPDATE jobs SET status=CASE WHEN attempts >= ? THEN 'failed' ELSE 'queued' END,
             error_code=CASE WHEN attempts >= ? THEN 'worker_retry_exhausted' ELSE NULL END,
             lease_token=NULL,lease_expires_at=NULL,updated_at=?
             WHERE stage='transcription' AND status='running' AND lease_expires_at <= ?""",
             (MAX_ATTEMPTS, MAX_ATTEMPTS, stamp.isoformat(), stamp.isoformat()))
-        # One heavy inference job per development workstation, across worker processes.
+        # One heavy inference job per database, across workers sharing that database.
         if con.execute("SELECT 1 FROM jobs WHERE stage='transcription' AND status='running' LIMIT 1").fetchone():
             return None
         job = con.execute("""SELECT * FROM jobs WHERE stage='transcription' AND status='queued'
@@ -90,6 +92,10 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
             profile = ASRProfile.model_validate_json(profile_body)
             if profile.sha256 != job["profile_sha256"]:
                 raise ASRFailure("model_integrity_failure")
+            try:
+                profile.verify_artifacts()
+            except (OSError, ValueError):
+                raise ASRFailure("model_integrity_failure") from None
             source = Path(asset_root) / f"{upload['id']}.wav"
             if source.stat().st_size != upload["expected_bytes"] or file_sha256(source) != upload["expected_sha256"]:
                 raise ASRFailure("asset_integrity_failure")
@@ -111,11 +117,34 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
             adapter = adapter_factory(profile)
             if metadata["channels"] > 1:
                 from services.asr.channels import transcribe_channels
-                raw = transcribe_channels(source, metadata, adapter, lease.checkpoint)
+                input_digest = metadata.get("working_sha256") or metadata["sha256"]
+                def load_channel(channel, pcm_hash):
+                    lease.checkpoint()
+                    with store.transaction() as con:
+                        saved = con.execute("SELECT * FROM asr_checkpoints WHERE job=? AND channel_index=?", (job["id"], channel)).fetchone()
+                    if saved is None:
+                        return None
+                    if saved["input_sha256"] != input_digest or saved["profile_sha256"] != profile.sha256:
+                        raise ASRFailure("asset_integrity_failure")
+                    value = json.loads(saved["body"])
+                    if content_sha256(value) != saved["sha256"] or value.get("isolated_channel_pcm_sha256") != pcm_hash:
+                        raise ASRFailure("asset_integrity_failure")
+                    build_transcript(value, metadata, job["encounter"], job["upload"], profile, str(uuid4()), 0)
+                    return value
+                def save_channel(channel, value):
+                    build_transcript(value, metadata, job["encounter"], job["upload"], profile, str(uuid4()), 0)
+                    lease.checkpoint()
+                    with store.transaction() as con:
+                        current = con.execute("SELECT lease_token,status FROM jobs WHERE id=?", (job["id"],)).fetchone()
+                        if current["lease_token"] != token or current["status"] != "running" or not processing_allowed(con, job["encounter"]):
+                            raise ASRFailure("worker_lease_lost")
+                        con.execute("INSERT INTO asr_checkpoints VALUES (?,?,?,?,?,?,?,?)", (job["id"], job["encounter"], channel,
+                            input_digest, profile.sha256, canonical_json(value), content_sha256(value), datetime.now(timezone.utc).isoformat()))
+                raw = transcribe_channels(source, metadata, adapter, lease.checkpoint, load_channel, save_channel)
             else:
                 raw = adapter.transcribe(source, metadata, lease.checkpoint)
             manifest_path = diarization_manifest or os.environ.get('MED_TRANSCRIPT_DIARIZATION_MANIFEST')
-            if manifest_path and metadata["channels"] == 1:
+            if manifest_path and metadata["channels"] == 1 and not job["preview_only"]:
                 from services.diarization import diarize
                 speaker_report = diarize(source, json.loads(Path(manifest_path).read_text(encoding='utf-8')), lease.checkpoint)
             lease.checkpoint()
@@ -152,16 +181,24 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
                     if speaker_report is not None:
                         from services.diarization import attach_speakers
                         body = attach_speakers(body, speaker_report)
-                    digest = content_sha256(body)
-                    con.execute("INSERT INTO transcript_versions VALUES (?,?,?,?,?,?,?,?)",
-                        (transcript_id, job["encounter"], job["upload"], job["id"], version,
-                         digest, canonical_json(body), finished.isoformat()))
-                    con.execute("UPDATE encounters SET current_transcript=? WHERE id=?", (transcript_id, job["encounter"]))
-                    result = {"transcript_version_id": transcript_id, "sha256": digest,
-                              "transcript_url": f"/v1/encounters/{job['encounter']}/transcripts/{transcript_id}"}
+                    if job["preview_only"]:
+                        offset=job["timeline_offset_ms"]
+                        result={"status":"provisional_not_a_source_version","approvable":False,
+                            "profile_sha256":profile.sha256,"input_sha256":metadata["sha256"],
+                            "provisional_segments":[{**segment,"start_ms":segment["start_ms"]+offset,"end_ms":segment["end_ms"]+offset,
+                                "role":"unknown","role_status":"unconfirmed"} for segment in body["segments"]]}
+                    else:
+                        digest = content_sha256(body)
+                        con.execute("INSERT INTO transcript_versions VALUES (?,?,?,?,?,?,?,?)",
+                            (transcript_id, job["encounter"], job["upload"], job["id"], version,
+                             digest, canonical_json(body), finished.isoformat()))
+                        con.execute("UPDATE encounters SET current_transcript=? WHERE id=?", (transcript_id, job["encounter"]))
+                        result = {"transcript_version_id": transcript_id, "sha256": digest,
+                                  "transcript_url": f"/v1/encounters/{job['encounter']}/transcripts/{transcript_id}"}
                 except ASRFailure as exc:
                     error = exc.code
             status = "failed" if error else "succeeded"
+        con.execute("INSERT OR IGNORE INTO job_attempts VALUES (?,?,?,?,?,?)", (job["id"],job["encounter"],current["attempts"],status,error,finished.isoformat()))
         con.execute("""UPDATE jobs SET status=?,error_code=?,result=?,lease_token=NULL,
             lease_expires_at=NULL,updated_at=? WHERE id=?""",
             (status, error, json.dumps(result) if result else None, finished.isoformat(), job["id"]))

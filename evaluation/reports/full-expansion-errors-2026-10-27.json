@@ -1,0 +1,4825 @@
+{
+  "schema_version": "conversation_error_diagnostics_v1",
+  "clinical_acceptance": false,
+  "manifest_sha256": "712f0ced8a18523e93941f5ec92f5a6ef0e8617aff4e55c509c5964ff82698bf",
+  "inputs": {
+    "evaluation\\reports\\full-consultation-expansion-omi-2026-10-27.json": "ed5c362f4c1184b4a09fe087e7f4bec73683b43d2bca51ebcdef08112a4406b5"
+  },
+  "conditions": [
+    {
+      "mode": "baseline_fixed30",
+      "cases": [
+        {
+          "id": "day1_consultation14",
+          "failed": false,
+          "reference_words": 1921,
+          "normalized_edits": 285,
+          "edit_types": {
+            "substitution": 102,
+            "deletion": 157,
+            "insertion": 26
+          },
+          "by_reference_role": {
+            "doctor": {
+              "reference_words": 1009,
+              "substitutions": 63,
+              "deletions": 105,
+              "insertions": 13,
+              "normalized_edits": 181,
+              "diagnostic_wer": 0.17938553022794845
+            },
+            "patient": {
+              "reference_words": 912,
+              "substitutions": 39,
+              "deletions": 52,
+              "insertions": 13,
+              "normalized_edits": 104,
+              "diagnostic_wer": 0.11403508771929824
+            }
+          },
+          "errors_on_uncertain_reference_turns": 133,
+          "errors_on_overlapping_reference_turns": 251,
+          "first_100_error_examples": [
+            {
+              "operation": "substitution",
+              "reference_token": "hello",
+              "hypothesis_token": "yeah",
+              "reference_turn_index": 0,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 1386,
+              "reference_turn_end_ms": 2110
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "hello",
+              "hypothesis_token": "well",
+              "reference_turn_index": 1,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 1582,
+              "reference_turn_end_ms": 9273
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "hello",
+              "reference_turn_index": 1,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 1582,
+              "reference_turn_end_ms": 9273
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 9625,
+              "reference_turn_end_ms": 13227
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "fifty",
+              "hypothesis_token": "50",
+              "reference_turn_index": 2,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 9625,
+              "reference_turn_end_ms": 13227
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "fifty",
+              "hypothesis_token": "50",
+              "reference_turn_index": 3,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 13416,
+              "reference_turn_end_ms": 16963
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ok",
+              "hypothesis_token": "okay",
+              "reference_turn_index": 7,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 34499,
+              "reference_turn_end_ms": 40929
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "is",
+              "hypothesis_token": null,
+              "reference_turn_index": 7,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 34499,
+              "reference_turn_end_ms": 40929
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "yeah",
+              "reference_turn_index": 7,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 34499,
+              "reference_turn_end_ms": 40929
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ok",
+              "hypothesis_token": "okay",
+              "reference_turn_index": 9,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 40929,
+              "reference_turn_end_ms": 45190
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "it",
+              "hypothesis_token": null,
+              "reference_turn_index": 10,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 45908,
+              "reference_turn_end_ms": 53989
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ok",
+              "hypothesis_token": "okay",
+              "reference_turn_index": 11,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 53892,
+              "reference_turn_end_ms": 64225
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "mucky",
+              "hypothesis_token": null,
+              "reference_turn_index": 11,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 53892,
+              "reference_turn_end_ms": 64225
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ohh",
+              "hypothesis_token": "oh",
+              "reference_turn_index": 11,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 53892,
+              "reference_turn_end_ms": 64225
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 11,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 53892,
+              "reference_turn_end_ms": 64225
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 11,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 53892,
+              "reference_turn_end_ms": 64225
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "no",
+              "reference_turn_index": 11,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 53892,
+              "reference_turn_end_ms": 64225
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "it",
+              "hypothesis_token": null,
+              "reference_turn_index": 12,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 64225,
+              "reference_turn_end_ms": 73511
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "keeps",
+              "hypothesis_token": "keep",
+              "reference_turn_index": 12,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 64225,
+              "reference_turn_end_ms": 73511
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 12,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 64225,
+              "reference_turn_end_ms": 73511
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 12,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 64225,
+              "reference_turn_end_ms": 73511
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "do",
+              "hypothesis_token": null,
+              "reference_turn_index": 12,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 64225,
+              "reference_turn_end_ms": 73511
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 12,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 64225,
+              "reference_turn_end_ms": 73511
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "have",
+              "hypothesis_token": null,
+              "reference_turn_index": 12,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 64225,
+              "reference_turn_end_ms": 73511
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "a",
+              "hypothesis_token": null,
+              "reference_turn_index": 12,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 64225,
+              "reference_turn_end_ms": 73511
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "do",
+              "reference_turn_index": 15,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 85916,
+              "reference_turn_end_ms": 91832
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "you",
+              "reference_turn_index": 15,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 85916,
+              "reference_turn_end_ms": 91832
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "are",
+              "reference_turn_index": 15,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 85916,
+              "reference_turn_end_ms": 91832
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "uh",
+              "hypothesis_token": "you",
+              "reference_turn_index": 15,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 85916,
+              "reference_turn_end_ms": 91832
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "do",
+              "hypothesis_token": "your",
+              "reference_turn_index": 15,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 85916,
+              "reference_turn_end_ms": 91832
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "you",
+              "hypothesis_token": "ears",
+              "reference_turn_index": 15,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 85916,
+              "reference_turn_end_ms": 91832
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "or",
+              "hypothesis_token": null,
+              "reference_turn_index": 15,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 85916,
+              "reference_turn_end_ms": 91832
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "no",
+              "reference_turn_index": 16,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 91859,
+              "reference_turn_end_ms": 99956
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "pain",
+              "reference_turn_index": 16,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 91859,
+              "reference_turn_end_ms": 99956
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "nothing",
+              "hypothesis_token": "or",
+              "reference_turn_index": 16,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 91859,
+              "reference_turn_end_ms": 99956
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "nothing",
+              "hypothesis_token": "disjoint",
+              "reference_turn_index": 16,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 91859,
+              "reference_turn_end_ms": 99956
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "the",
+              "hypothesis_token": "your",
+              "reference_turn_index": 16,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 91859,
+              "reference_turn_end_ms": 99956
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "pain",
+              "hypothesis_token": "not",
+              "reference_turn_index": 17,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 94225,
+              "reference_turn_end_ms": 97510
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "no",
+              "hypothesis_token": "pain",
+              "reference_turn_index": 17,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 94225,
+              "reference_turn_end_ms": 97510
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "discharge",
+              "hypothesis_token": "not",
+              "reference_turn_index": 17,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 94225,
+              "reference_turn_end_ms": 97510
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "coming",
+              "hypothesis_token": "pain",
+              "reference_turn_index": 17,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 94225,
+              "reference_turn_end_ms": 97510
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "from",
+              "hypothesis_token": "on",
+              "reference_turn_index": 17,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 94225,
+              "reference_turn_end_ms": 97510
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "your",
+              "hypothesis_token": "the",
+              "reference_turn_index": 17,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 94225,
+              "reference_turn_end_ms": 97510
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 19,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 99798,
+              "reference_turn_end_ms": 109496
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "breath",
+              "reference_turn_index": 19,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 99798,
+              "reference_turn_end_ms": 109496
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 111055,
+              "reference_turn_end_ms": 120183
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "i",
+              "hypothesis_token": "like",
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 111055,
+              "reference_turn_end_ms": 120183
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "get",
+              "hypothesis_token": "it's",
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 111055,
+              "reference_turn_end_ms": 120183
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "laboured",
+              "hypothesis_token": "labored",
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 111055,
+              "reference_turn_end_ms": 120183
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "i",
+              "hypothesis_token": "like",
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 111055,
+              "reference_turn_end_ms": 120183
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "not",
+              "hypothesis_token": null,
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 111055,
+              "reference_turn_end_ms": 120183
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "i",
+              "hypothesis_token": null,
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 111055,
+              "reference_turn_end_ms": 120183
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "not",
+              "hypothesis_token": null,
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 111055,
+              "reference_turn_end_ms": 120183
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "really",
+              "hypothesis_token": null,
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 111055,
+              "reference_turn_end_ms": 120183
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "day",
+              "hypothesis_token": null,
+              "reference_turn_index": 21,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 118992,
+              "reference_turn_end_ms": 122957
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "to",
+              "hypothesis_token": null,
+              "reference_turn_index": 21,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 118992,
+              "reference_turn_end_ms": 122957
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "day",
+              "hypothesis_token": null,
+              "reference_turn_index": 21,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 118992,
+              "reference_turn_end_ms": 122957
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "when",
+              "hypothesis_token": null,
+              "reference_turn_index": 21,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 118992,
+              "reference_turn_end_ms": 122957
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 21,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 118992,
+              "reference_turn_end_ms": 122957
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 21,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 118992,
+              "reference_turn_end_ms": 122957
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "restless",
+              "hypothesis_token": "breathless",
+              "reference_turn_index": 22,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 123174,
+              "reference_turn_end_ms": 128126
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "so",
+              "hypothesis_token": null,
+              "reference_turn_index": 25,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 129072,
+              "reference_turn_end_ms": 132718
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "like",
+              "hypothesis_token": null,
+              "reference_turn_index": 25,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 129072,
+              "reference_turn_end_ms": 132718
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "not",
+              "hypothesis_token": null,
+              "reference_turn_index": 28,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 134982,
+              "reference_turn_end_ms": 136691
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 29,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 136667,
+              "reference_turn_end_ms": 142443
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "uh",
+              "reference_turn_index": 30,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 143331,
+              "reference_turn_end_ms": 148408
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "and",
+              "hypothesis_token": null,
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 148408,
+              "reference_turn_end_ms": 155843
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "i",
+              "hypothesis_token": null,
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 148408,
+              "reference_turn_end_ms": 155843
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 148408,
+              "reference_turn_end_ms": 155843
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "know",
+              "hypothesis_token": null,
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 148408,
+              "reference_turn_end_ms": 155843
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 33,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 155787,
+              "reference_turn_end_ms": 156474
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "but",
+              "hypothesis_token": null,
+              "reference_turn_index": 34,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 155843,
+              "reference_turn_end_ms": 170564
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "taken",
+              "hypothesis_token": "seen",
+              "reference_turn_index": 34,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 155843,
+              "reference_turn_end_ms": 170564
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "a",
+              "hypothesis_token": null,
+              "reference_turn_index": 34,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 155843,
+              "reference_turn_end_ms": 170564
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "hundred",
+              "hypothesis_token": null,
+              "reference_turn_index": 34,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 155843,
+              "reference_turn_end_ms": 170564
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "percent",
+              "hypothesis_token": "100",
+              "reference_turn_index": 34,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 155843,
+              "reference_turn_end_ms": 170564
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "cause",
+              "hypothesis_token": "because",
+              "reference_turn_index": 34,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 155843,
+              "reference_turn_end_ms": 170564
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "and",
+              "hypothesis_token": "i",
+              "reference_turn_index": 34,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 155843,
+              "reference_turn_end_ms": 170564
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "adding",
+              "hypothesis_token": "having",
+              "reference_turn_index": 34,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 155843,
+              "reference_turn_end_ms": 170564
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 37,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 170374,
+              "reference_turn_end_ms": 179345
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 37,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 170374,
+              "reference_turn_end_ms": 179345
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 37,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 170374,
+              "reference_turn_end_ms": 179345
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "alright",
+              "hypothesis_token": null,
+              "reference_turn_index": 37,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 170374,
+              "reference_turn_end_ms": 179345
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 37,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 170374,
+              "reference_turn_end_ms": 179345
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "fine",
+              "hypothesis_token": null,
+              "reference_turn_index": 37,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 170374,
+              "reference_turn_end_ms": 179345
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 39,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 182478,
+              "reference_turn_end_ms": 183020
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "the",
+              "hypothesis_token": "system",
+              "reference_turn_index": 41,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 187797,
+              "reference_turn_end_ms": 195730
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "it",
+              "hypothesis_token": "i",
+              "reference_turn_index": 42,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 195730,
+              "reference_turn_end_ms": 207040
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "uh",
+              "reference_turn_index": 46,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 209625,
+              "reference_turn_end_ms": 219099
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "cough",
+              "hypothesis_token": "coughs",
+              "reference_turn_index": 46,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 209625,
+              "reference_turn_end_ms": 219099
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "kept",
+              "hypothesis_token": "stopped",
+              "reference_turn_index": 46,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 209625,
+              "reference_turn_end_ms": 219099
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "water",
+              "reference_turn_index": 49,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 219033,
+              "reference_turn_end_ms": 224990
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "waterworks",
+              "hypothesis_token": "works",
+              "reference_turn_index": 49,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 219033,
+              "reference_turn_end_ms": 224990
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "your",
+              "reference_turn_index": 51,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 225574,
+              "reference_turn_end_ms": 226659
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "uh",
+              "hypothesis_token": "ur",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 226523,
+              "reference_turn_end_ms": 228762
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "your",
+              "hypothesis_token": "water",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 226523,
+              "reference_turn_end_ms": 228762
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "waterworks",
+              "hypothesis_token": "works",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 226523,
+              "reference_turn_end_ms": 228762
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ohh",
+              "hypothesis_token": "oh",
+              "reference_turn_index": 54,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 229031,
+              "reference_turn_end_ms": 231626
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "it's",
+              "hypothesis_token": "that's",
+              "reference_turn_index": 54,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 229031,
+              "reference_turn_end_ms": 231626
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you're",
+              "hypothesis_token": null,
+              "reference_turn_index": 55,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 230908,
+              "reference_turn_end_ms": 234838
+            }
+          ],
+          "literal_clinical_term_errors": [
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "pain",
+              "reference_turn_index": 16,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 91859,
+              "reference_turn_end_ms": 99956
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "pain",
+              "hypothesis_token": "not",
+              "reference_turn_index": 17,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 94225,
+              "reference_turn_end_ms": 97510
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "no",
+              "hypothesis_token": "pain",
+              "reference_turn_index": 17,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 94225,
+              "reference_turn_end_ms": 97510
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "coming",
+              "hypothesis_token": "pain",
+              "reference_turn_index": 17,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 94225,
+              "reference_turn_end_ms": 97510
+            }
+          ],
+          "limitations": [
+            "Insertions are attributed to the preceding reference token role; this is diagnostic, not predicted role accuracy.",
+            "Reference turn bounds locate containing source turns; they are not ASR word timestamps.",
+            "Optimal edit alignment ties follow substitution, deletion, insertion order.",
+            "Uncertain/overlapping counts overlap each other and do not establish error causality.",
+            "Literal lexicon errors do not measure clinical concept correctness."
+          ],
+          "input_role": "mixed"
+        },
+        {
+          "id": "day1_consultation15",
+          "failed": false,
+          "reference_words": 1266,
+          "normalized_edits": 188,
+          "edit_types": {
+            "substitution": 71,
+            "deletion": 76,
+            "insertion": 41
+          },
+          "by_reference_role": {
+            "doctor": {
+              "reference_words": 842,
+              "substitutions": 41,
+              "deletions": 38,
+              "insertions": 28,
+              "normalized_edits": 107,
+              "diagnostic_wer": 0.12707838479809977
+            },
+            "patient": {
+              "reference_words": 424,
+              "substitutions": 30,
+              "deletions": 38,
+              "insertions": 13,
+              "normalized_edits": 81,
+              "diagnostic_wer": 0.19103773584905662
+            }
+          },
+          "errors_on_uncertain_reference_turns": 77,
+          "errors_on_overlapping_reference_turns": 151,
+          "first_100_error_examples": [
+            {
+              "operation": "substitution",
+              "reference_token": "you",
+              "hypothesis_token": "your",
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 7225,
+              "reference_turn_end_ms": 12055
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 7225,
+              "reference_turn_end_ms": 12055
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 12571,
+              "reference_turn_end_ms": 18739
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "i'm",
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 12571,
+              "reference_turn_end_ms": 18739
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 12571,
+              "reference_turn_end_ms": 18739
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "forty",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 12571,
+              "reference_turn_end_ms": 18739
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "five",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 12571,
+              "reference_turn_end_ms": 18739
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "forty",
+              "hypothesis_token": "45",
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 18578,
+              "reference_turn_end_ms": 21853
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "five",
+              "hypothesis_token": "45",
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 18578,
+              "reference_turn_end_ms": 21853
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 22677,
+              "reference_turn_end_ms": 31317
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 22677,
+              "reference_turn_end_ms": 31317
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "finger",
+              "hypothesis_token": "fingers",
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 22677,
+              "reference_turn_end_ms": 31317
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "on",
+              "hypothesis_token": "in",
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 22677,
+              "reference_turn_end_ms": 31317
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "i",
+              "hypothesis_token": null,
+              "reference_turn_index": 9,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 34492,
+              "reference_turn_end_ms": 39049
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "got",
+              "hypothesis_token": null,
+              "reference_turn_index": 9,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 34492,
+              "reference_turn_end_ms": 39049
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "it",
+              "hypothesis_token": "like",
+              "reference_turn_index": 9,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 34492,
+              "reference_turn_end_ms": 39049
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "yeah",
+              "reference_turn_index": 10,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 38863,
+              "reference_turn_end_ms": 47542
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "hand",
+              "hypothesis_token": "hands",
+              "reference_turn_index": 10,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 38863,
+              "reference_turn_end_ms": 47542
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "yeah",
+              "hypothesis_token": null,
+              "reference_turn_index": 11,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 41296,
+              "reference_turn_end_ms": 42296
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "hydrate",
+              "hypothesis_token": "hide",
+              "reference_turn_index": 12,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 48327,
+              "reference_turn_end_ms": 60957
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 16,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 64349,
+              "reference_turn_end_ms": 71753
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "where",
+              "hypothesis_token": null,
+              "reference_turn_index": 17,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 72297,
+              "reference_turn_end_ms": 80884
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "i",
+              "hypothesis_token": null,
+              "reference_turn_index": 19,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 87946,
+              "reference_turn_end_ms": 91627
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "don't",
+              "hypothesis_token": null,
+              "reference_turn_index": 19,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 87946,
+              "reference_turn_end_ms": 91627
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "get",
+              "hypothesis_token": null,
+              "reference_turn_index": 19,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 87946,
+              "reference_turn_end_ms": 91627
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "yeah",
+              "hypothesis_token": null,
+              "reference_turn_index": 19,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 87946,
+              "reference_turn_end_ms": 91627
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "palms",
+              "reference_turn_index": 20,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 89890,
+              "reference_turn_end_ms": 96588
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "do",
+              "reference_turn_index": 20,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 89890,
+              "reference_turn_end_ms": 96588
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "have",
+              "hypothesis_token": "you",
+              "reference_turn_index": 20,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 89890,
+              "reference_turn_end_ms": 96588
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "you",
+              "hypothesis_token": "notice",
+              "reference_turn_index": 20,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 89890,
+              "reference_turn_end_ms": 96588
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 23,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 104719,
+              "reference_turn_end_ms": 110112
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "uh",
+              "reference_turn_index": 23,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 104719,
+              "reference_turn_end_ms": 110112
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 24,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 108166,
+              "reference_turn_end_ms": 112744
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "scratch",
+              "hypothesis_token": null,
+              "reference_turn_index": 24,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 108166,
+              "reference_turn_end_ms": 112744
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "yourself",
+              "hypothesis_token": null,
+              "reference_turn_index": 24,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 108166,
+              "reference_turn_end_ms": 112744
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "shh",
+              "reference_turn_index": 26,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 119203,
+              "reference_turn_end_ms": 125551
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "just",
+              "reference_turn_index": 27,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 125551,
+              "reference_turn_end_ms": 133542
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "gonna",
+              "reference_turn_index": 27,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 125551,
+              "reference_turn_end_ms": 133542
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "write",
+              "reference_turn_index": 27,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 125551,
+              "reference_turn_end_ms": 133542
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "writing",
+              "hypothesis_token": "some",
+              "reference_turn_index": 27,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 125551,
+              "reference_turn_end_ms": 133542
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "that",
+              "hypothesis_token": "the",
+              "reference_turn_index": 27,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 125551,
+              "reference_turn_end_ms": 133542
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "is",
+              "hypothesis_token": null,
+              "reference_turn_index": 30,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 136689,
+              "reference_turn_end_ms": 146019
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "it",
+              "hypothesis_token": null,
+              "reference_turn_index": 30,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 136689,
+              "reference_turn_end_ms": 146019
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "a",
+              "hypothesis_token": null,
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 146597,
+              "reference_turn_end_ms": 152413
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "housekeeper",
+              "hypothesis_token": "house",
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 146597,
+              "reference_turn_end_ms": 152413
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "keeper",
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 146597,
+              "reference_turn_end_ms": 152413
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 33,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 152413,
+              "reference_turn_end_ms": 164188
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 33,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 152413,
+              "reference_turn_end_ms": 164188
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 33,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 152413,
+              "reference_turn_end_ms": 164188
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 34,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 156230,
+              "reference_turn_end_ms": 158496
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 34,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 156230,
+              "reference_turn_end_ms": 158496
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 35,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 162845,
+              "reference_turn_end_ms": 164120
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "now",
+              "hypothesis_token": "though",
+              "reference_turn_index": 36,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 164188,
+              "reference_turn_end_ms": 170288
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 36,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 164188,
+              "reference_turn_end_ms": 170288
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 38,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 174833,
+              "reference_turn_end_ms": 181551
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "isn't",
+              "hypothesis_token": null,
+              "reference_turn_index": 39,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 181752,
+              "reference_turn_end_ms": 185329
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "sorry",
+              "hypothesis_token": null,
+              "reference_turn_index": 39,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 181752,
+              "reference_turn_end_ms": 185329
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "sorry",
+              "reference_turn_index": 40,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 183527,
+              "reference_turn_end_ms": 187753
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "a",
+              "hypothesis_token": null,
+              "reference_turn_index": 40,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 183527,
+              "reference_turn_end_ms": 187753
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "while",
+              "hypothesis_token": "awhile",
+              "reference_turn_index": 40,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 183527,
+              "reference_turn_end_ms": 187753
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 41,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 187989,
+              "reference_turn_end_ms": 194289
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "a",
+              "reference_turn_index": 41,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 187989,
+              "reference_turn_end_ms": 194289
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "little",
+              "reference_turn_index": 41,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 187989,
+              "reference_turn_end_ms": 194289
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "bit",
+              "reference_turn_index": 41,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 187989,
+              "reference_turn_end_ms": 194289
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "like",
+              "hypothesis_token": "of",
+              "reference_turn_index": 41,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 187989,
+              "reference_turn_end_ms": 194289
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "literally",
+              "hypothesis_token": "dryness",
+              "reference_turn_index": 41,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 187989,
+              "reference_turn_end_ms": 194289
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "grinding",
+              "hypothesis_token": "in",
+              "reference_turn_index": 41,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 187989,
+              "reference_turn_end_ms": 194289
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 42,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 191056,
+              "reference_turn_end_ms": 192347
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "trouble",
+              "hypothesis_token": null,
+              "reference_turn_index": 45,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 195518,
+              "reference_turn_end_ms": 197486
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "if",
+              "hypothesis_token": null,
+              "reference_turn_index": 46,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 197421,
+              "reference_turn_end_ms": 207001
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "have",
+              "hypothesis_token": null,
+              "reference_turn_index": 46,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 197421,
+              "reference_turn_end_ms": 207001
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 46,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 197421,
+              "reference_turn_end_ms": 207001
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "any",
+              "hypothesis_token": "anything",
+              "reference_turn_index": 48,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 208861,
+              "reference_turn_end_ms": 210825
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "problem",
+              "hypothesis_token": "problems",
+              "reference_turn_index": 50,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 212173,
+              "reference_turn_end_ms": 213854
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "and",
+              "reference_turn_index": 51,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 214267,
+              "reference_turn_end_ms": 215267
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "problem",
+              "hypothesis_token": "problems",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 215306,
+              "reference_turn_end_ms": 218045
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "water",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 215306,
+              "reference_turn_end_ms": 218045
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "waterworks",
+              "hypothesis_token": "works",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 215306,
+              "reference_turn_end_ms": 218045
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "and",
+              "hypothesis_token": "in",
+              "reference_turn_index": 55,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 219495,
+              "reference_turn_end_ms": 224547
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "your",
+              "hypothesis_token": "you're",
+              "reference_turn_index": 55,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 219495,
+              "reference_turn_end_ms": 224547
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "and",
+              "reference_turn_index": 55,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 219495,
+              "reference_turn_end_ms": 224547
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "well",
+              "reference_turn_index": 55,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 219495,
+              "reference_turn_end_ms": 224547
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "well-maintained",
+              "hypothesis_token": "maintained",
+              "reference_turn_index": 55,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 219495,
+              "reference_turn_end_ms": 224547
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "i",
+              "reference_turn_index": 56,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 224536,
+              "reference_turn_end_ms": 226412
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "feel",
+              "reference_turn_index": 56,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 224536,
+              "reference_turn_end_ms": 226412
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "good",
+              "reference_turn_index": 56,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 224536,
+              "reference_turn_end_ms": 226412
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 58,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 226446,
+              "reference_turn_end_ms": 235946
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "if",
+              "hypothesis_token": null,
+              "reference_turn_index": 60,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 238779,
+              "reference_turn_end_ms": 240739
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "not",
+              "reference_turn_index": 60,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 238779,
+              "reference_turn_end_ms": 240739
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "two",
+              "hypothesis_token": "2",
+              "reference_turn_index": 60,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 238779,
+              "reference_turn_end_ms": 240739
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "two",
+              "hypothesis_token": "2",
+              "reference_turn_index": 61,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 241154,
+              "reference_turn_end_ms": 242154
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "uhm",
+              "reference_turn_index": 63,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 245526,
+              "reference_turn_end_ms": 247577
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "exmaple",
+              "hypothesis_token": "example",
+              "reference_turn_index": 66,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 250800,
+              "reference_turn_end_ms": 253589
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "not",
+              "hypothesis_token": "no",
+              "reference_turn_index": 67,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 253567,
+              "reference_turn_end_ms": 256103
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "no",
+              "reference_turn_index": 68,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 256066,
+              "reference_turn_end_ms": 258640
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "formin",
+              "reference_turn_index": 68,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 256066,
+              "reference_turn_end_ms": 258640
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "no",
+              "reference_turn_index": 68,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 256066,
+              "reference_turn_end_ms": 258640
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "metformin",
+              "hypothesis_token": "formin",
+              "reference_turn_index": 70,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 260389,
+              "reference_turn_end_ms": 266038
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "history",
+              "reference_turn_index": 72,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 267846,
+              "reference_turn_end_ms": 272240
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "history-wise",
+              "hypothesis_token": "wise",
+              "reference_turn_index": 72,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 267846,
+              "reference_turn_end_ms": 272240
+            }
+          ],
+          "literal_clinical_term_errors": [
+            {
+              "operation": "substitution",
+              "reference_token": "metformin",
+              "hypothesis_token": "formin",
+              "reference_turn_index": 70,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 260389,
+              "reference_turn_end_ms": 266038
+            }
+          ],
+          "limitations": [
+            "Insertions are attributed to the preceding reference token role; this is diagnostic, not predicted role accuracy.",
+            "Reference turn bounds locate containing source turns; they are not ASR word timestamps.",
+            "Optimal edit alignment ties follow substitution, deletion, insertion order.",
+            "Uncertain/overlapping counts overlap each other and do not establish error causality.",
+            "Literal lexicon errors do not measure clinical concept correctness."
+          ],
+          "input_role": "mixed"
+        },
+        {
+          "id": "day2_consultation01",
+          "failed": false,
+          "reference_words": 1159,
+          "normalized_edits": 155,
+          "edit_types": {
+            "insertion": 37,
+            "substitution": 56,
+            "deletion": 62
+          },
+          "by_reference_role": {
+            "doctor": {
+              "reference_words": 901,
+              "substitutions": 34,
+              "deletions": 39,
+              "insertions": 27,
+              "normalized_edits": 100,
+              "diagnostic_wer": 0.11098779134295228
+            },
+            "patient": {
+              "reference_words": 258,
+              "substitutions": 22,
+              "deletions": 23,
+              "insertions": 10,
+              "normalized_edits": 55,
+              "diagnostic_wer": 0.2131782945736434
+            }
+          },
+          "errors_on_uncertain_reference_turns": 64,
+          "errors_on_overlapping_reference_turns": 94,
+          "first_100_error_examples": [
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "hi",
+              "reference_turn_index": 0,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 1313,
+              "reference_turn_end_ms": 3313
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "uh",
+              "hypothesis_token": "um",
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4875,
+              "reference_turn_end_ms": 7300
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "mesa",
+              "hypothesis_token": "mezza",
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4875,
+              "reference_turn_end_ms": 7300
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "hi",
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4875,
+              "reference_turn_end_ms": 7300
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "uh",
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4875,
+              "reference_turn_end_ms": 7300
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ok",
+              "hypothesis_token": "okay",
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 9275,
+              "reference_turn_end_ms": 11313
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "yep",
+              "hypothesis_token": "yeah",
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 11515,
+              "reference_turn_end_ms": 12724
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "hear",
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 11515,
+              "reference_turn_end_ms": 12724
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "me",
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 11515,
+              "reference_turn_end_ms": 12724
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "find",
+              "hypothesis_token": "fine",
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 11515,
+              "reference_turn_end_ms": 12724
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "thirty",
+              "hypothesis_token": "31",
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 19379,
+              "reference_turn_end_ms": 25321
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "first",
+              "hypothesis_token": "st",
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 19379,
+              "reference_turn_end_ms": 25321
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "october",
+              "hypothesis_token": "of",
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 19379,
+              "reference_turn_end_ms": 25321
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "nineteen",
+              "hypothesis_token": "october",
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 19379,
+              "reference_turn_end_ms": 25321
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ninety",
+              "hypothesis_token": "1990",
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 19379,
+              "reference_turn_end_ms": 25321
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "john",
+              "hypothesis_token": "jack",
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 25119,
+              "reference_turn_end_ms": 29661
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "i",
+              "hypothesis_token": null,
+              "reference_turn_index": 9,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 29838,
+              "reference_turn_end_ms": 30792
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "am",
+              "hypothesis_token": "um",
+              "reference_turn_index": 9,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 29838,
+              "reference_turn_end_ms": 30792
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 10,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 30661,
+              "reference_turn_end_ms": 36118
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "like",
+              "reference_turn_index": 11,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 36279,
+              "reference_turn_end_ms": 41273
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "hearing",
+              "hypothesis_token": null,
+              "reference_turn_index": 11,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 36279,
+              "reference_turn_end_ms": 41273
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "is",
+              "hypothesis_token": "hearing's",
+              "reference_turn_index": 11,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 36279,
+              "reference_turn_end_ms": 41273
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 13,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 43925,
+              "reference_turn_end_ms": 45302
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 14,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 45402,
+              "reference_turn_end_ms": 50020
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 16,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 56650,
+              "reference_turn_end_ms": 64267
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "week",
+              "hypothesis_token": "weeks",
+              "reference_turn_index": 16,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 56650,
+              "reference_turn_end_ms": 64267
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 17,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 65101,
+              "reference_turn_end_ms": 74413
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 18,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 74355,
+              "reference_turn_end_ms": 80948
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 18,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 74355,
+              "reference_turn_end_ms": 80948
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "and",
+              "reference_turn_index": 18,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 74355,
+              "reference_turn_end_ms": 80948
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 19,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 81000,
+              "reference_turn_end_ms": 82171
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "to",
+              "reference_turn_index": 21,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 84363,
+              "reference_turn_end_ms": 85363
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "mh-mm",
+              "hypothesis_token": null,
+              "reference_turn_index": 23,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 90363,
+              "reference_turn_end_ms": 90828
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "and",
+              "reference_turn_index": 24,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 91799,
+              "reference_turn_end_ms": 97022
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "there",
+              "hypothesis_token": null,
+              "reference_turn_index": 24,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 91799,
+              "reference_turn_end_ms": 97022
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "yeah",
+              "hypothesis_token": null,
+              "reference_turn_index": 25,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 92024,
+              "reference_turn_end_ms": 92806
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 26,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 97234,
+              "reference_turn_end_ms": 104855
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "i",
+              "reference_turn_index": 26,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 97234,
+              "reference_turn_end_ms": 104855
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "set",
+              "reference_turn_index": 26,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 97234,
+              "reference_turn_end_ms": 104855
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "solve",
+              "hypothesis_token": "off",
+              "reference_turn_index": 26,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 97234,
+              "reference_turn_end_ms": 104855
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 27,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 104788,
+              "reference_turn_end_ms": 110566
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 27,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 104788,
+              "reference_turn_end_ms": 110566
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 28,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 110858,
+              "reference_turn_end_ms": 112050
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "my",
+              "hypothesis_token": "not",
+              "reference_turn_index": 28,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 110858,
+              "reference_turn_end_ms": 112050
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "left",
+              "hypothesis_token": "like",
+              "reference_turn_index": 28,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 110858,
+              "reference_turn_end_ms": 112050
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ear",
+              "hypothesis_token": "that",
+              "reference_turn_index": 28,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 110858,
+              "reference_turn_end_ms": 112050
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 29,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 112270,
+              "reference_turn_end_ms": 118974
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "no",
+              "reference_turn_index": 29,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 112270,
+              "reference_turn_end_ms": 118974
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "have",
+              "hypothesis_token": "ok",
+              "reference_turn_index": 29,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 112270,
+              "reference_turn_end_ms": 118974
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "and",
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 119584,
+              "reference_turn_end_ms": 123157
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "sickness",
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 119584,
+              "reference_turn_end_ms": 123157
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "i'm",
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 119584,
+              "reference_turn_end_ms": 123157
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "so",
+              "hypothesis_token": "a",
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 119584,
+              "reference_turn_end_ms": 123157
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "much",
+              "hypothesis_token": "child",
+              "reference_turn_index": 31,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 119584,
+              "reference_turn_end_ms": 123157
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 32,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 123345,
+              "reference_turn_end_ms": 127135
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "no",
+              "reference_turn_index": 32,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 123345,
+              "reference_turn_end_ms": 127135
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "cotton",
+              "hypothesis_token": null,
+              "reference_turn_index": 34,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 128160,
+              "reference_turn_end_ms": 133148
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ball",
+              "hypothesis_token": "cottonwood",
+              "reference_turn_index": 34,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 128160,
+              "reference_turn_end_ms": 133148
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "clean",
+              "reference_turn_index": 34,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 128160,
+              "reference_turn_end_ms": 133148
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "nah",
+              "hypothesis_token": "no",
+              "reference_turn_index": 35,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 133343,
+              "reference_turn_end_ms": 134810
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "i'll",
+              "hypothesis_token": "i",
+              "reference_turn_index": 35,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 133343,
+              "reference_turn_end_ms": 134810
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "do",
+              "hypothesis_token": "don't",
+              "reference_turn_index": 35,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 133343,
+              "reference_turn_end_ms": 134810
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "it",
+              "hypothesis_token": "know",
+              "reference_turn_index": 35,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 133343,
+              "reference_turn_end_ms": 134810
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "should",
+              "hypothesis_token": "shouldn't",
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 134753,
+              "reference_turn_end_ms": 143766
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "you",
+              "hypothesis_token": "we",
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 134753,
+              "reference_turn_end_ms": 143766
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "it",
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 134753,
+              "reference_turn_end_ms": 143766
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "out",
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 134753,
+              "reference_turn_end_ms": 143766
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "up",
+              "hypothesis_token": "the",
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 134753,
+              "reference_turn_end_ms": 143766
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "k",
+              "hypothesis_token": "ok",
+              "reference_turn_index": 37,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 143766,
+              "reference_turn_end_ms": 152631
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "i'm",
+              "hypothesis_token": "and",
+              "reference_turn_index": 37,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 143766,
+              "reference_turn_end_ms": 152631
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "would",
+              "reference_turn_index": 37,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 143766,
+              "reference_turn_end_ms": 152631
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 38,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 144080,
+              "reference_turn_end_ms": 144505
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 39,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 152631,
+              "reference_turn_end_ms": 160606
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "that",
+              "hypothesis_token": null,
+              "reference_turn_index": 39,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 152631,
+              "reference_turn_end_ms": 160606
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "easy",
+              "hypothesis_token": "easily",
+              "reference_turn_index": 39,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 152631,
+              "reference_turn_end_ms": 160606
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 39,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 152631,
+              "reference_turn_end_ms": 160606
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 40,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 160606,
+              "reference_turn_end_ms": 167841
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ear",
+              "hypothesis_token": null,
+              "reference_turn_index": 40,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 160606,
+              "reference_turn_end_ms": 167841
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "drum",
+              "hypothesis_token": "eardrum",
+              "reference_turn_index": 40,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 160606,
+              "reference_turn_end_ms": 167841
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 41,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 167841,
+              "reference_turn_end_ms": 175953
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 41,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 167841,
+              "reference_turn_end_ms": 175953
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "or",
+              "reference_turn_index": 42,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 175953,
+              "reference_turn_end_ms": 182818
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "is",
+              "reference_turn_index": 42,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 175953,
+              "reference_turn_end_ms": 182818
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "in",
+              "reference_turn_index": 43,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 182818,
+              "reference_turn_end_ms": 190913
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "the",
+              "hypothesis_token": "a",
+              "reference_turn_index": 43,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 182818,
+              "reference_turn_end_ms": 190913
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "in",
+              "hypothesis_token": "down",
+              "reference_turn_index": 43,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 182818,
+              "reference_turn_end_ms": 190913
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "a",
+              "reference_turn_index": 44,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 190913,
+              "reference_turn_end_ms": 200127
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 45,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 194201,
+              "reference_turn_end_ms": 194615
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "yeah",
+              "hypothesis_token": null,
+              "reference_turn_index": 46,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 198403,
+              "reference_turn_end_ms": 198828
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 47,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 200979,
+              "reference_turn_end_ms": 211545
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "not",
+              "hypothesis_token": null,
+              "reference_turn_index": 47,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 200979,
+              "reference_turn_end_ms": 211545
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "have",
+              "hypothesis_token": null,
+              "reference_turn_index": 49,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 211795,
+              "reference_turn_end_ms": 215770
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "had",
+              "hypothesis_token": null,
+              "reference_turn_index": 49,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 211795,
+              "reference_turn_end_ms": 215770
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "not",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 216585,
+              "reference_turn_end_ms": 219067
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "that",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 216585,
+              "reference_turn_end_ms": 219067
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "i'm",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 216585,
+              "reference_turn_end_ms": 219067
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "at",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 216585,
+              "reference_turn_end_ms": 219067
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "all",
+              "reference_turn_index": 52,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 216585,
+              "reference_turn_end_ms": 219067
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "so",
+              "reference_turn_index": 54,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 220128,
+              "reference_turn_end_ms": 228709
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "so",
+              "hypothesis_token": "let",
+              "reference_turn_index": 54,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 220128,
+              "reference_turn_end_ms": 228709
+            }
+          ],
+          "literal_clinical_term_errors": [],
+          "limitations": [
+            "Insertions are attributed to the preceding reference token role; this is diagnostic, not predicted role accuracy.",
+            "Reference turn bounds locate containing source turns; they are not ASR word timestamps.",
+            "Optimal edit alignment ties follow substitution, deletion, insertion order.",
+            "Uncertain/overlapping counts overlap each other and do not establish error causality.",
+            "Literal lexicon errors do not measure clinical concept correctness."
+          ],
+          "input_role": "mixed"
+        },
+        {
+          "id": "day2_consultation02",
+          "failed": true,
+          "reference_words": 1689,
+          "normalized_edits": 1689,
+          "edit_types": {
+            "deletion": 1689
+          },
+          "by_reference_role": {
+            "doctor": {
+              "reference_words": 1227,
+              "substitutions": 0,
+              "deletions": 1227,
+              "insertions": 0,
+              "normalized_edits": 1227,
+              "diagnostic_wer": 1.0
+            },
+            "patient": {
+              "reference_words": 462,
+              "substitutions": 0,
+              "deletions": 462,
+              "insertions": 0,
+              "normalized_edits": 462,
+              "diagnostic_wer": 1.0
+            }
+          },
+          "errors_on_uncertain_reference_turns": 944,
+          "errors_on_overlapping_reference_turns": 1182,
+          "first_100_error_examples": [
+            {
+              "operation": "deletion",
+              "reference_token": "hi",
+              "hypothesis_token": null,
+              "reference_turn_index": 0,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 865,
+              "reference_turn_end_ms": 2684
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "there",
+              "hypothesis_token": null,
+              "reference_turn_index": 0,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 865,
+              "reference_turn_end_ms": 2684
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "good",
+              "hypothesis_token": null,
+              "reference_turn_index": 0,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 865,
+              "reference_turn_end_ms": 2684
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "morning",
+              "hypothesis_token": null,
+              "reference_turn_index": 0,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 865,
+              "reference_turn_end_ms": 2684
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "hello",
+              "hypothesis_token": null,
+              "reference_turn_index": 1,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 2789,
+              "reference_turn_end_ms": 4141
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "good",
+              "hypothesis_token": null,
+              "reference_turn_index": 1,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 2789,
+              "reference_turn_end_ms": 4141
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "morning",
+              "hypothesis_token": null,
+              "reference_turn_index": 1,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 2789,
+              "reference_turn_end_ms": 4141
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "i'm",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "doctor",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "deen",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "mirza",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "from",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "gp",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "at",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "hand",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "nice",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "to",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "see",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 2,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 4098,
+              "reference_turn_end_ms": 7541
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "nice",
+              "hypothesis_token": null,
+              "reference_turn_index": 3,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 7609,
+              "reference_turn_end_ms": 8841
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "to",
+              "hypothesis_token": null,
+              "reference_turn_index": 3,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 7609,
+              "reference_turn_end_ms": 8841
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "see",
+              "hypothesis_token": null,
+              "reference_turn_index": 3,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 7609,
+              "reference_turn_end_ms": 8841
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 3,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 7609,
+              "reference_turn_end_ms": 8841
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "before",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "we",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "start",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "your",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "appointment",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "could",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "please",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "tell",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "me",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "your",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "first",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "name",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "and",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "your",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "date",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "of",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "birth",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 8887,
+              "reference_turn_end_ms": 13173
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "yes",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "my",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "name",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "is",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "john",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "smith",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "and",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "i",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "was",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "born",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "on",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "the",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "fifth",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "of",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "april",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "nineteen",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "seventy",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "three",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 13617,
+              "reference_turn_end_ms": 22015
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "that's",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "great",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "thank",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "for",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "that",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "are",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "in",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "a",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "private",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "place",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "where",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you're",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "to",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "speak",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "freely",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 22098,
+              "reference_turn_end_ms": 26917
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "yes",
+              "hypothesis_token": null,
+              "reference_turn_index": 7,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 27046,
+              "reference_turn_end_ms": 28696
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "great",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "ok",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "so",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "tell",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "me",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "a",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "bit",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "about",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "what's",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "been",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "happening",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "said",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27782,
+              "reference_turn_end_ms": 34902
+            }
+          ],
+          "literal_clinical_term_errors": [
+            {
+              "operation": "deletion",
+              "reference_token": "blood",
+              "hypothesis_token": null,
+              "reference_turn_index": 64,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 321257,
+              "reference_turn_end_ms": 329670
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "blood",
+              "hypothesis_token": null,
+              "reference_turn_index": 66,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 329670,
+              "reference_turn_end_ms": 341127
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "blood",
+              "hypothesis_token": null,
+              "reference_turn_index": 66,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 329670,
+              "reference_turn_end_ms": 341127
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "blood",
+              "hypothesis_token": null,
+              "reference_turn_index": 73,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 364123,
+              "reference_turn_end_ms": 374231
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "blood",
+              "hypothesis_token": null,
+              "reference_turn_index": 74,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 374231,
+              "reference_turn_end_ms": 386373
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "blood",
+              "hypothesis_token": null,
+              "reference_turn_index": 100,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 502995,
+              "reference_turn_end_ms": 516928
+            }
+          ],
+          "limitations": [
+            "Insertions are attributed to the preceding reference token role; this is diagnostic, not predicted role accuracy.",
+            "Reference turn bounds locate containing source turns; they are not ASR word timestamps.",
+            "Optimal edit alignment ties follow substitution, deletion, insertion order.",
+            "Uncertain/overlapping counts overlap each other and do not establish error causality.",
+            "Literal lexicon errors do not measure clinical concept correctness."
+          ],
+          "input_role": "mixed"
+        },
+        {
+          "id": "day2_consultation03",
+          "failed": false,
+          "reference_words": 1408,
+          "normalized_edits": 251,
+          "edit_types": {
+            "insertion": 33,
+            "substitution": 98,
+            "deletion": 120
+          },
+          "by_reference_role": {
+            "doctor": {
+              "reference_words": 832,
+              "substitutions": 55,
+              "deletions": 68,
+              "insertions": 18,
+              "normalized_edits": 141,
+              "diagnostic_wer": 0.16947115384615385
+            },
+            "patient": {
+              "reference_words": 576,
+              "substitutions": 43,
+              "deletions": 52,
+              "insertions": 15,
+              "normalized_edits": 110,
+              "diagnostic_wer": 0.1909722222222222
+            }
+          },
+          "errors_on_uncertain_reference_turns": 181,
+          "errors_on_overlapping_reference_turns": 212,
+          "first_100_error_examples": [
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "hi",
+              "reference_turn_index": 1,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 1439,
+              "reference_turn_end_ms": 2975
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "i'm",
+              "reference_turn_index": 2,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 3130,
+              "reference_turn_end_ms": 9507
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "nice",
+              "hypothesis_token": "dr",
+              "reference_turn_index": 2,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 3130,
+              "reference_turn_end_ms": 9507
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "to",
+              "hypothesis_token": "jin",
+              "reference_turn_index": 2,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 3130,
+              "reference_turn_end_ms": 9507
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "meet",
+              "hypothesis_token": "mega",
+              "reference_turn_index": 2,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 3130,
+              "reference_turn_end_ms": 9507
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "you",
+              "hypothesis_token": "from",
+              "reference_turn_index": 2,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 3130,
+              "reference_turn_end_ms": 9507
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "hello",
+              "hypothesis_token": "upha",
+              "reference_turn_index": 2,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 3130,
+              "reference_turn_end_ms": 9507
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "hello",
+              "hypothesis_token": "nice",
+              "reference_turn_index": 3,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 3619,
+              "reference_turn_end_ms": 7759
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "i",
+              "hypothesis_token": "to",
+              "reference_turn_index": 3,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 3619,
+              "reference_turn_end_ms": 7759
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "i'm",
+              "hypothesis_token": "see",
+              "reference_turn_index": 3,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 3619,
+              "reference_turn_end_ms": 7759
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "doctor",
+              "hypothesis_token": "you",
+              "reference_turn_index": 3,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 3619,
+              "reference_turn_end_ms": 7759
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "hi",
+              "hypothesis_token": "hello",
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 9098,
+              "reference_turn_end_ms": 14684
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "hi",
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 9098,
+              "reference_turn_end_ms": 14684
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "if",
+              "hypothesis_token": null,
+              "reference_turn_index": 4,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 9098,
+              "reference_turn_end_ms": 14684
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 14787,
+              "reference_turn_end_ms": 22576
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 14787,
+              "reference_turn_end_ms": 22576
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 14787,
+              "reference_turn_end_ms": 22576
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "forty",
+              "hypothesis_token": "40",
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 14787,
+              "reference_turn_end_ms": 22576
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "so",
+              "hypothesis_token": null,
+              "reference_turn_index": 5,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 14787,
+              "reference_turn_end_ms": 22576
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "you're",
+              "hypothesis_token": null,
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 23188,
+              "reference_turn_end_ms": 26750
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "forty",
+              "hypothesis_token": "40",
+              "reference_turn_index": 6,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 23188,
+              "reference_turn_end_ms": 26750
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 8,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 27343,
+              "reference_turn_end_ms": 30994
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "yep",
+              "hypothesis_token": "yeah",
+              "reference_turn_index": 9,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 31043,
+              "reference_turn_end_ms": 31872
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 10,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 31662,
+              "reference_turn_end_ms": 35022
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "noticed",
+              "hypothesis_token": "notice",
+              "reference_turn_index": 11,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 35319,
+              "reference_turn_end_ms": 44725
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "just",
+              "reference_turn_index": 11,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 35319,
+              "reference_turn_end_ms": 44725
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "sides",
+              "hypothesis_token": "sizes",
+              "reference_turn_index": 14,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 54910,
+              "reference_turn_end_ms": 59007
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "jawline's",
+              "hypothesis_token": "jawline",
+              "reference_turn_index": 18,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 72317,
+              "reference_turn_end_ms": 81594
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "round",
+              "hypothesis_token": "around",
+              "reference_turn_index": 18,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 72317,
+              "reference_turn_end_ms": 81594
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 19,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 81203,
+              "reference_turn_end_ms": 88561
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 19,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 81203,
+              "reference_turn_end_ms": 88561
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "you",
+              "hypothesis_token": "you've",
+              "reference_turn_index": 19,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 81203,
+              "reference_turn_end_ms": 88561
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "have",
+              "hypothesis_token": "had",
+              "reference_turn_index": 19,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 81203,
+              "reference_turn_end_ms": 88561
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "that",
+              "hypothesis_token": null,
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 88942,
+              "reference_turn_end_ms": 92506
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "not",
+              "hypothesis_token": null,
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 88942,
+              "reference_turn_end_ms": 92506
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "that",
+              "hypothesis_token": null,
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 88942,
+              "reference_turn_end_ms": 92506
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "i've",
+              "hypothesis_token": null,
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 88942,
+              "reference_turn_end_ms": 92506
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "noticed",
+              "hypothesis_token": "might",
+              "reference_turn_index": 20,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 88942,
+              "reference_turn_end_ms": 92506
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "i",
+              "hypothesis_token": "notice",
+              "reference_turn_index": 23,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 93555,
+              "reference_turn_end_ms": 97616
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "think",
+              "hypothesis_token": "actually",
+              "reference_turn_index": 23,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 93555,
+              "reference_turn_end_ms": 97616
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "noticed",
+              "hypothesis_token": "notice",
+              "reference_turn_index": 23,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 93555,
+              "reference_turn_end_ms": 97616
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "a",
+              "hypothesis_token": "that",
+              "reference_turn_index": 23,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 93555,
+              "reference_turn_end_ms": 97616
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 23,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 93555,
+              "reference_turn_end_ms": 97616
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "some",
+              "hypothesis_token": null,
+              "reference_turn_index": 24,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 96939,
+              "reference_turn_end_ms": 99112
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "part",
+              "reference_turn_index": 25,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 98925,
+              "reference_turn_end_ms": 100750
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "of",
+              "reference_turn_index": 25,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 98925,
+              "reference_turn_end_ms": 100750
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "it",
+              "reference_turn_index": 25,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 98925,
+              "reference_turn_end_ms": 100750
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "it's",
+              "hypothesis_token": "hard",
+              "reference_turn_index": 25,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 98925,
+              "reference_turn_end_ms": 100750
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 26,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 101263,
+              "reference_turn_end_ms": 109556
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 26,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 101263,
+              "reference_turn_end_ms": 109556
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "the",
+              "hypothesis_token": null,
+              "reference_turn_index": 26,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 101263,
+              "reference_turn_end_ms": 109556
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 34,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 123646,
+              "reference_turn_end_ms": 127042
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "it",
+              "hypothesis_token": "it's",
+              "reference_turn_index": 35,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 127768,
+              "reference_turn_end_ms": 137232
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "so",
+              "hypothesis_token": "quite",
+              "reference_turn_index": 35,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 127768,
+              "reference_turn_end_ms": 137232
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "it",
+              "reference_turn_index": 35,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 127768,
+              "reference_turn_end_ms": 137232
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 136902,
+              "reference_turn_end_ms": 146639
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "muffled",
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 136902,
+              "reference_turn_end_ms": 146639
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "feeling",
+              "hypothesis_token": "hearing",
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 136902,
+              "reference_turn_end_ms": 146639
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "in",
+              "hypothesis_token": "feeling",
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 136902,
+              "reference_turn_end_ms": 146639
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 36,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 136902,
+              "reference_turn_end_ms": 146639
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "k",
+              "hypothesis_token": null,
+              "reference_turn_index": 38,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 147902,
+              "reference_turn_end_ms": 151285
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "in",
+              "reference_turn_index": 38,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 147902,
+              "reference_turn_end_ms": 151285
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "the",
+              "reference_turn_index": 38,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 147902,
+              "reference_turn_end_ms": 151285
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "don't",
+              "hypothesis_token": null,
+              "reference_turn_index": 39,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 151919,
+              "reference_turn_end_ms": 154610
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "think",
+              "hypothesis_token": null,
+              "reference_turn_index": 39,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 151919,
+              "reference_turn_end_ms": 154610
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "so",
+              "hypothesis_token": null,
+              "reference_turn_index": 39,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 151919,
+              "reference_turn_end_ms": 154610
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 40,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 154548,
+              "reference_turn_end_ms": 158646
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "um",
+              "hypothesis_token": null,
+              "reference_turn_index": 42,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 160895,
+              "reference_turn_end_ms": 164263
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "no",
+              "reference_turn_index": 42,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 160895,
+              "reference_turn_end_ms": 164263
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "coffee",
+              "reference_turn_index": 45,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 166881,
+              "reference_turn_end_ms": 169909
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "cotton",
+              "hypothesis_token": "or",
+              "reference_turn_index": 45,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 166881,
+              "reference_turn_end_ms": 169909
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "pardon",
+              "hypothesis_token": "i",
+              "reference_turn_index": 46,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 170571,
+              "reference_turn_end_ms": 173797
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ohh",
+              "hypothesis_token": "don't",
+              "reference_turn_index": 46,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 170571,
+              "reference_turn_end_ms": 173797
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "cottons",
+              "hypothesis_token": "coffee",
+              "reference_turn_index": 46,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 170571,
+              "reference_turn_end_ms": 173797
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "no",
+              "hypothesis_token": "ok",
+              "reference_turn_index": 47,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 172052,
+              "reference_turn_end_ms": 180992
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ok",
+              "hypothesis_token": "um",
+              "reference_turn_index": 47,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 172052,
+              "reference_turn_end_ms": 180992
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "alright",
+              "hypothesis_token": "do",
+              "reference_turn_index": 47,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 172052,
+              "reference_turn_end_ms": 180992
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "you",
+              "reference_turn_index": 47,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 172052,
+              "reference_turn_end_ms": 180992
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "illnesses",
+              "hypothesis_token": null,
+              "reference_turn_index": 47,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 172052,
+              "reference_turn_end_ms": 180992
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "at",
+              "hypothesis_token": null,
+              "reference_turn_index": 47,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 172052,
+              "reference_turn_end_ms": 180992
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "all",
+              "hypothesis_token": "illness",
+              "reference_turn_index": 47,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 172052,
+              "reference_turn_end_ms": 180992
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "i've",
+              "hypothesis_token": "i",
+              "reference_turn_index": 48,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 181880,
+              "reference_turn_end_ms": 190686
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "have",
+              "hypothesis_token": "had",
+              "reference_turn_index": 48,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 181880,
+              "reference_turn_end_ms": 190686
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "them",
+              "hypothesis_token": "some",
+              "reference_turn_index": 48,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 181880,
+              "reference_turn_end_ms": 190686
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "heart",
+              "reference_turn_index": 48,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 181880,
+              "reference_turn_end_ms": 190686
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "burny",
+              "reference_turn_index": 48,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 181880,
+              "reference_turn_end_ms": 190686
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "um",
+              "hypothesis_token": "feeling",
+              "reference_turn_index": 49,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 190686,
+              "reference_turn_end_ms": 199130
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "that",
+              "hypothesis_token": "um",
+              "reference_turn_index": 49,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 190686,
+              "reference_turn_end_ms": 199130
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "rennie's",
+              "hypothesis_token": "renny",
+              "reference_turn_index": 49,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 190686,
+              "reference_turn_end_ms": 199130
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "nose",
+              "hypothesis_token": null,
+              "reference_turn_index": 49,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 190686,
+              "reference_turn_end_ms": 199130
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "lab",
+              "reference_turn_index": 51,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 199130,
+              "reference_turn_end_ms": 208188
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "labyrinthitis",
+              "hypothesis_token": "brincitis",
+              "reference_turn_index": 51,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 199130,
+              "reference_turn_end_ms": 208188
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "ongoing",
+              "hypothesis_token": "on",
+              "reference_turn_index": 51,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 199130,
+              "reference_turn_end_ms": 208188
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "sure",
+              "hypothesis_token": "there",
+              "reference_turn_index": 53,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 207082,
+              "reference_turn_end_ms": 212315
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "uh",
+              "hypothesis_token": null,
+              "reference_turn_index": 54,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 211869,
+              "reference_turn_end_ms": 220565
+            },
+            {
+              "operation": "insertion",
+              "reference_token": null,
+              "hypothesis_token": "over",
+              "reference_turn_index": 54,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 211869,
+              "reference_turn_end_ms": 220565
+            },
+            {
+              "operation": "substitution",
+              "reference_token": "rennies",
+              "hypothesis_token": "reni",
+              "reference_turn_index": 54,
+              "reference_role": "patient",
+              "reference_turn_start_ms": 211869,
+              "reference_turn_end_ms": 220565
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "and",
+              "hypothesis_token": null,
+              "reference_turn_index": 55,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 220262,
+              "reference_turn_end_ms": 223909
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "that's",
+              "hypothesis_token": null,
+              "reference_turn_index": 59,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 230300,
+              "reference_turn_end_ms": 233977
+            },
+            {
+              "operation": "deletion",
+              "reference_token": "alright",
+              "hypothesis_token": null,
+              "reference_turn_index": 59,
+              "reference_role": "doctor",
+              "reference_turn_start_ms": 230300,
+              "reference_turn_end_ms": 233977
+            }
+          ],
+          "literal_clinical_term_errors": [],
+          "limitations": [
+            "Insertions are attributed to the preceding reference token role; this is diagnostic, not predicted role accuracy.",
+            "Reference turn bounds locate containing source turns; they are not ASR word timestamps.",
+            "Optimal edit alignment ties follow substitution, deletion, insertion order.",
+            "Uncertain/overlapping counts overlap each other and do not establish error causality.",
+            "Literal lexicon errors do not measure clinical concept correctness."
+          ],
+          "input_role": "mixed"
+        }
+      ]
+    }
+  ]
+}

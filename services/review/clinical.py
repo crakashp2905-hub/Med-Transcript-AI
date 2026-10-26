@@ -70,6 +70,13 @@ def extract(transcript):
                 fact['medication_name']=medications[0].group()
                 if len(quantities)==1:
                     fact.update(dose_value=quantities[0]['value'],dose_unit=quantities[0]['unit'])
+            if category=='medication':
+                routes=list(re.finditer(r'\b(?:orally|by mouth|intravenously|subcutaneously|topically)\b',quote,re.I))
+                frequencies=list(re.finditer(r'\b(?:once daily|twice daily|three times daily|daily|weekly)\b',quote,re.I))
+                durations=list(re.finditer(r'\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:days?|weeks?|months?)\b',quote,re.I))
+                if len(routes)==1:fact['route']=routes[0].group()
+                if len(frequencies)==1:fact['frequency']=frequencies[0].group()
+                if len(durations)==1:fact['duration']=durations[0].group()
             if category=='allergy' and len(medications)==1:
                 fact['allergen']=medications[0].group()
             side=re.findall(r'\b(?:left|right|bilateral)\b',quote,re.I)
@@ -78,7 +85,7 @@ def extract(transcript):
     return result
 
 
-def check_claim(source, claim):
+def check_claim(source, claim, *, include_relationships=True):
     from services.evaluation import tokens
     findings = []
     def add(code):
@@ -115,6 +122,10 @@ def check_claim(source, claim):
         add("unsupported_claim_terms")
     if original_words-claimed_words-connective:
         add('omitted_source_terms')
+    from services.review.relationships import disagreement
+    if include_relationships and disagreement(source,claim):
+        add('clinical_relationship_disagreement')
+        findings[-1]['validator']='explicit_relationships_v1'
     return findings
 
 
@@ -134,6 +145,21 @@ def check_fact_slots(source,fact):
             if not supplied or not supplied<=quantity_signature(source):add('dose_value_or_unit')
         except Exception:
             add('dose_value_or_unit')
+    # Joint binding matters: a dose/reaction elsewhere in the quote is not evidence for this drug.
+    anchor=fact.get('medication_name') or fact.get('allergen')
+    if anchor:
+        clauses=[part for part in re.split(r'(?<=[;.!?])\s+|\b(?:and|but)\b',source,flags=re.I)
+                 if re.search(r'(?<!\w)'+re.escape(anchor)+r'(?!\w)',part,re.I)]
+        if clauses:
+            if any(len(set(m.group().lower() for m in MEDICATION.finditer(part)))>1 for part in clauses):
+                add('ambiguous_medication_relationship')
+            else:
+                for field in ('route','frequency','duration','allergy_reaction'):
+                    supplied=fact.get(field)
+                    if supplied and not any(re.search(r'(?<!\w)'+re.escape(supplied)+r'(?!\w)',part,re.I) for part in clauses):add(field+'_relationship')
+                if value or unit:
+                    supplied=quantity_signature(f'{value or ""} {unit or ""}')
+                    if supplied and not any(supplied<=quantity_signature(part) for part in clauses):add('dose_medication_relationship')
     if fact.get('laterality','unknown')!='unknown' and not re.search(r'\b'+re.escape(fact['laterality'])+r'\b',source,re.I):
         add('laterality')
     if fact.get('subject')=='patient' and re.search(r'\b(?:mother|father|sister|brother)\b',source,re.I):

@@ -11,7 +11,8 @@ from services.api.ingest import file_sha256
 from services.evaluation import score
 
 
-def run(output):
+def run(output,minutes_sequence=(20,30),channels=1):
+    if not 1<=channels<=8 or not minutes_sequence or any(type(m) is not int or not 1<=m<=30 for m in minutes_sequence):raise ValueError('Bounded duration/channel configuration required')
     if Path(output).exists():raise ValueError('Preserve previous evidence')
     source=Path('evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav')
     manifest_path=source.parent/'manifest.json'
@@ -25,15 +26,18 @@ def run(output):
         pcm=audio.readframes(audio.getnframes())
     if len(pcm)>60*32000:raise ValueError('Source does not fit stress tile')
     tile=pcm+b'\0'*(60*32000-len(pcm))
+    if channels>1:
+        import numpy as np
+        tile=np.repeat(np.frombuffer(tile,dtype='<i2')[:,None],channels,axis=1).astype('<i2').tobytes()
     config=json.loads(Path('data/local-config.json').read_text())
     result={'schema_version':'real_worker_long_duration_stress_v1',
             'scope':'synthetic_repeated_public_clip_transport_and_timestamp_stress_not_a_clinical_consultation',
             'source_clip_sha256':file_sha256(source),'source_manifest_sha256':file_sha256(manifest_path),
             'source_attribution':manifest.get('attribution','PriMock57 CC-BY-4.0; see source dataset attribution'),
-            'tile_seconds':60,'clinical_acceptance':False,'complete':False,'runs':[],
+            'tile_seconds':60,'channels':channels,'scoring_order':'independent_channels_then_sum_edits_and_reference_words','clinical_acceptance':False,'complete':False,'runs':[],
             'limitations':['Repeated speech and long digital silence are not representative consultation accuracy.',
                           'Concurrent local benchmark load affects latency; no performance target is inferred.',
-                          'Application development ASR is not qualified under the 5% acceptance gate.']}
+                          'Application development ASR is not qualified under the 5% acceptance gate.','Multichannel stress repeats the same public utterance on each channel; it is not independent speakers or hardware.']}
     root=Path('data/long-recording-stress');root.mkdir(exist_ok=True)
     with httpx.Client(base_url='http://127.0.0.1:8003',headers={'Authorization':'Bearer '+config['access_key']},
                       timeout=60,trust_env=False,follow_redirects=False) as client:
@@ -45,19 +49,23 @@ def run(output):
         if not profiles:raise ValueError('No development ASR configured')
         def wait(path):
             deadline=time.monotonic()+1800
+            previous=-1
             while time.monotonic()<deadline:
                 job=request('GET',path)
+                completed=(job.get('progress') or {}).get('completed_channels',-1)
+                if completed!=previous:print('completed channels:',completed,flush=True);previous=completed
                 if job['status']=='succeeded':return job
                 if job['status'] in ('failed','cancelled'):raise ValueError('job_'+job['status'])
                 time.sleep(2)
             raise ValueError('job_deadline_exceeded')
-        for minutes in (20,30):
-            file=root/f'public-repeated-{minutes}min.wav'
+        for minutes in minutes_sequence:
+            file=root/f'public-repeated-{minutes}min-{channels}ch.wav'
             with wave.open(str(file),'wb') as out:
-                out.setparams((1,2,16000,0,'NONE','not compressed'))
+                out.setparams((channels,2,16000,0,'NONE','not compressed'))
                 for _ in range(minutes):out.writeframesraw(tile)
-            reference=' '.join([sample['reference']]*minutes)
-            row={'minutes':minutes,'input_sha256':file_sha256(file),'failed':False,'reference':reference}
+            mono_reference=' '.join([sample['reference']]*minutes)
+            reference=' '.join([mono_reference]*channels)
+            row={'minutes':minutes,'channels':channels,'input_sha256':file_sha256(file),'failed':False,'reference':reference}
             started=time.perf_counter()
             try:
                 encounter=request('POST','/v1/encounters',headers={'Idempotency-Key':str(uuid4())},json={
@@ -69,7 +77,11 @@ def run(output):
                     'expires_at':(datetime.now(timezone.utc)+timedelta(hours=2)).isoformat()})
                 upload=request('POST',base+'/audio-uploads',headers={'Idempotency-Key':str(uuid4())},json={
                     'bytes':file.stat().st_size,'sha256':row['input_sha256'],'media_type':'audio/wav'})
-                request('PUT',upload['content_url'],headers={'Content-Type':'audio/wav'},content=file.read_bytes())
+                with file.open('rb') as incoming:
+                    offset=0
+                    while chunk:=incoming.read(4*1024*1024):
+                        progress=request('PATCH',upload['content_url'],headers={'Content-Type':'audio/wav','Upload-Offset':str(offset),'Upload-Chunk-SHA256':hashlib.sha256(chunk).hexdigest()},content=chunk)
+                        offset=progress['received_bytes']
                 ingest=request('POST',base+f'/audio-uploads/{upload["id"]}/complete');wait(ingest['status_url'])
                 job=request('POST',base+'/transcriptions',headers={'Idempotency-Key':str(uuid4())},json={
                     'audio_asset_id':upload['id'],'inference_profile_id':profiles[0]});finished=wait(job['status_url'])
@@ -78,7 +90,12 @@ def run(output):
                 valid &= all(0<=s['start_ms']<s['end_ms']<=tx['duration_ms'] for s in tx['segments'])
                 valid &= all(a['start_ms']<=b['start_ms'] for a,b in zip(tx['segments'],tx['segments'][1:]))
                 if not valid:raise ValueError('invalid_source_timeline')
-                hypothesis=' '.join(s['text'] for s in tx['segments'])
+                channel_scores=[];hypotheses=[]
+                for channel in range(channels):
+                    text=' '.join(s['text'] for s in tx['segments'] if s.get('channel_index',0)==channel)
+                    hypotheses.append(text);channel_scores.append({'channel_index':channel,**score(mono_reference,text)})
+                hypothesis=' '.join(hypotheses)
+                row['channel_scores']=channel_scores
                 row.update(transcript=tx,job=finished,reference=reference,hypothesis=hypothesis,
                            timestamp_bounds_valid=True,source_audio_duration_preserved=True,
                            note_created=workspace['note'] is not None,approval_created=workspace['approval'] is not None,
@@ -96,6 +113,6 @@ def run(output):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);a=p.parse_args()
-    result=run(a.out)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);p.add_argument('--minutes',type=int,nargs='+',default=[20,30]);p.add_argument('--channels',type=int,default=1);a=p.parse_args()
+    result=run(a.out,a.minutes,a.channels)
     if any(r['failed'] for r in result['runs']):raise SystemExit(1)

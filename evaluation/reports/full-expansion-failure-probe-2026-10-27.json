@@ -1,0 +1,35 @@
+{
+  "schema_version": "omi_failure_probe_v1",
+  "experiment_sha256": "ed5c362f4c1184b4a09fe087e7f4bec73683b43d2bca51ebcdef08112a4406b5",
+  "model": {
+    "engine": "omi",
+    "profile_id": "omi-v1-gguf-q8-cpu-v1",
+    "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+    "runtime_version": "0.2.1",
+    "artifacts": {
+      "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+    },
+    "device": "cpu",
+    "threads": 4,
+    "timestamp_support": "not_provided_text_only_evaluation",
+    "adapter_revision": "reuse_capi_close_windows_dll_directories_v1"
+  },
+  "complete": true,
+  "clinical_acceptance": false,
+  "probes": [
+    {
+      "mode": "baseline_fixed30",
+      "id": "day2_consultation02",
+      "role": "mixed",
+      "input_start_ms": 540000.0,
+      "input_end_ms": 541560.0,
+      "pcm_sha256": "397b54804df4afa57945e58abf70716e17bea24eae9eb4ad82c8713648a37712",
+      "input_all_zero": false,
+      "reproduced_failure": true,
+      "error_type": "RuntimeError",
+      "failure_kind": "wrapper_rejects_empty_native_output",
+      "error_message_sha256": "cbe219acca1baf2e351a1e568db5e2780bd21a0b97668c0878324ebdb38441c1"
+    }
+  ],
+  "original_failures_preserved": true
+}

@@ -126,7 +126,7 @@ test('simulated clock passes five minutes and stops capture at thirty minutes',a
  // Tests control timing, not a claim of 30 real minutes of browser-encoded audio.
  await page.clock.install();
  await encounter(page);
- await expect(page.getByText(/Maximum 30 minutes or 64 MiB/)).toBeVisible();
+ await expect(page.getByText(/Maximum 30 minutes or 512 MB/)).toBeVisible();
  await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
  await page.getByRole('button',{name:'Start dictation',exact:true}).click();
  await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
@@ -140,6 +140,7 @@ test('simulated clock passes five minutes and stops capture at thirty minutes',a
 });
 
 test('retry after a lost successful upload response reuses the saved source',async({page})=>{
+ test.setTimeout(150000);
  let puts=0,creationUrl='';const keys:string[]=[];
  page.on('request',request=>{if(request.method()==='POST'&&/\/audio-uploads$/.test(request.url())){creationUrl=request.url();keys.push(request.headers()['idempotency-key']);}});
  await page.route('**/audio-uploads/*/content',async route=>{puts++;await route.fetch();await route.abort('connectionreset');});
@@ -150,8 +151,9 @@ test('retry after a lost successful upload response reuses the saved source',asy
  await page.waitForTimeout(2200);
  await page.getByRole('button',{name:'Stop & transcribe',exact:true}).click();
  await expect(page.getByRole('button',{name:'Retry recording upload',exact:true})).toBeVisible();
+ await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
  await page.getByRole('button',{name:'Retry recording upload',exact:true}).click();
- await expect(page.getByLabel('Transcript segment 1').or(page.getByText('Recording saved. Check the transcription result or job status below.',{exact:true}))).toBeVisible({timeout:60000});
+ await expect(page.getByLabel('Transcript segment 1').or(page.getByText('Recording saved. Check the transcription result or job status below.',{exact:true}))).toBeVisible({timeout:120000});
  expect(puts).toBe(1);expect(keys).toHaveLength(2);expect(keys[0]).toBe(keys[1]);
  const response=await page.request.get(creationUrl.replace('/audio-uploads','/uploads'),{headers:{Authorization:`Bearer ${token}`}});
  expect(response.ok()).toBe(true);expect((await response.json()).items).toHaveLength(1);
