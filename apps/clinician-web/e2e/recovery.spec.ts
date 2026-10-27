@@ -85,3 +85,29 @@ test('revoked recording permission stops capture and requires fresh confirmation
  await expect(page.getByRole('link',{name:'Save this recording locally'})).toBeVisible();
  await page.getByRole('button',{name:'Discard partial recording'}).click();
 });
+
+test('server backup recovers an acknowledged prefix after local draft loss',async({page})=>{
+ await login(page);await create(page);
+ await page.getByLabel('Back up recording chunks to the local server while recording').check();
+ await record(page);
+ await expect(page.getByText(/Server acknowledged/)).toBeVisible({timeout:20000});
+ // Discard is explicitly local; server recovery remains independently available.
+ await page.getByRole('button',{name:'Discard recording'}).click();
+ await page.getByRole('button',{name:'Check server recording backups'}).click();
+ await expect(page.getByRole('button',{name:'Download server recovery'})).toBeVisible();
+ const downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Download server recovery'}).click();
+ expect((await downloaded).suggestedFilename()).toContain('partial-recovered-recording.');
+ await expect(page.getByRole('button',{name:'Prepare facts',exact:false})).toBeDisabled();
+});
+
+test('server-backed recording seals the final source instead of uploading it twice',async({page})=>{
+ let seals=0,regular=0;
+ page.on('request',request=>{if(request.method()==='POST'&&/\/stream-uploads\/[^/]+\/seal$/.test(request.url()))seals++;if(request.method()==='POST'&&/\/audio-uploads$/.test(request.url()))regular++;});
+ await login(page);await create(page);await page.getByLabel('Back up recording chunks to the local server while recording').check();await record(page);
+ await expect(page.getByText(/Server acknowledged/)).toBeVisible({timeout:20000});
+ await page.waitForTimeout(9000);
+ await page.getByRole('button',{name:'Stop & transcribe'}).click();
+ await expect.poll(()=>seals,{timeout:20000}).toBe(1);
+ await expect(page.locator('.notice')).toContainText('Dictation transcript ready',{timeout:60000});
+ expect(regular).toBe(0);
+});

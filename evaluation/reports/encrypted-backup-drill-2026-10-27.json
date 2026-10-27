@@ -1,0 +1,21 @@
+{
+  "schema_version": "synthetic_encrypted_backup_drill_v1",
+  "scope": "isolated_synthetic_fixture_not_deployment_key_custody",
+  "backup": {
+    "status": "encrypted_backup_created",
+    "algorithm": "Cobblestone-128",
+    "files": 2,
+    "ciphertext_sha256": "795fbd59e9ceb4364cd1d6249995bb1eca201332a2125b11bddf880266aca901",
+    "encrypted": true,
+    "managed_key_custody_verified": false
+  },
+  "restore": {
+    "status": "restored_for_operator_review",
+    "tombstones_applied": 0,
+    "envelope_authenticated": true,
+    "real_patient_release_authorized": false
+  },
+  "restored_audio_sha256_matches": true,
+  "secret_printed": false,
+  "institutional_key_custody_established": false
+}

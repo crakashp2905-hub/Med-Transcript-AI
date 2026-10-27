@@ -1,0 +1,1994 @@
+{
+  "schema_version": "isolated_recovered_job_v1",
+  "interruption_sha256": "a1e9e8e7133ae8efc23114d2b9f3fc0b7d29e902a24cabee255d592d6408a919",
+  "original_report_sha256": "f540562057f212bfe78a2258ebf70380fe14b0d3e22415797c01682fd63d3c7f",
+  "job_id": "eb08c95d-a259-49c8-8926-57de887aab99",
+  "clinical_acceptance": false,
+  "complete": true,
+  "failed": false,
+  "job": {
+    "id": "eb08c95d-a259-49c8-8926-57de887aab99",
+    "encounter_id": "13e4c7d9-9619-440b-bfed-e4c4f54cd7c1",
+    "stage": "transcription",
+    "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+    "status": "succeeded",
+    "attempts": 2,
+    "error_code": null,
+    "retryable": false,
+    "preview_only": false,
+    "progress": {
+      "completed_channels": 8,
+      "total_channels": 8,
+      "partial_output_is_not_a_source_version": true
+    },
+    "created_at": "2026-10-26T21:37:23.495446+00:00",
+    "updated_at": "2026-10-26T21:51:48.843381+00:00",
+    "result": {
+      "transcript_version_id": "22b5f800-079f-4608-b520-54380ee8de6b",
+      "sha256": "8fc7f134f1a53761a1706448debbe9986923513ebf6018b455e80233545aeb52",
+      "transcript_url": "/v1/encounters/13e4c7d9-9619-440b-bfed-e4c4f54cd7c1/transcripts/22b5f800-079f-4608-b520-54380ee8de6b"
+    }
+  },
+  "duration_ms": 1200000,
+  "channels": 8,
+  "input_sha256": "9a08b24891ed1f045a99f0a5de80d1945ad8a085700c65fd0b8a20bb5dd73abd",
+  "source_input_matches_original": true,
+  "timestamp_bounds_valid": true,
+  "roles_unconfirmed": true,
+  "no_automatic_note_or_approval": true,
+  "worker_timing": {
+    "lease_checkpoint_calls": 9985,
+    "lease_checkpoint_seconds": 91.46415469987551,
+    "lease_database_checks": 179,
+    "minimum_checkpoint_interval_seconds": 1.0,
+    "wall_seconds": 310.24620669998694
+  },
+  "channel_provenance": [
+    {
+      "channel_index": 0,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 29.36880499997642,
+          "model_cache_hit": false,
+          "model_load_seconds": 0.3939255999866873
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "9a08b24891ed1f045a99f0a5de80d1945ad8a085700c65fd0b8a20bb5dd73abd"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_0",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 30000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 6920
+        },
+        {
+          "end_ms": 60000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 32000
+        },
+        {
+          "end_ms": 90000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 66920
+        },
+        {
+          "end_ms": 120000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 92000
+        },
+        {
+          "end_ms": 150000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 126920
+        },
+        {
+          "end_ms": 180000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 152000
+        },
+        {
+          "end_ms": 210000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 186920
+        },
+        {
+          "end_ms": 240000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 212000
+        },
+        {
+          "end_ms": 270000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 246920
+        },
+        {
+          "end_ms": 300000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 272000
+        },
+        {
+          "end_ms": 330000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 306920
+        },
+        {
+          "end_ms": 360000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 332000
+        },
+        {
+          "end_ms": 390000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 366920
+        },
+        {
+          "end_ms": 420000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 392000
+        },
+        {
+          "end_ms": 450000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 426920
+        },
+        {
+          "end_ms": 480000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 452000
+        },
+        {
+          "end_ms": 510000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 486920
+        },
+        {
+          "end_ms": 540000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 512000
+        },
+        {
+          "end_ms": 570000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 546920
+        },
+        {
+          "end_ms": 600000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 572000
+        },
+        {
+          "end_ms": 630000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 606920
+        },
+        {
+          "end_ms": 660000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 632000
+        },
+        {
+          "end_ms": 690000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 666920
+        },
+        {
+          "end_ms": 720000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 692000
+        },
+        {
+          "end_ms": 750000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 726920
+        },
+        {
+          "end_ms": 780000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 752000
+        },
+        {
+          "end_ms": 810000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 786920
+        },
+        {
+          "end_ms": 840000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 812000
+        },
+        {
+          "end_ms": 870000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 846920
+        },
+        {
+          "end_ms": 900000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 872000
+        },
+        {
+          "end_ms": 930000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 906920
+        },
+        {
+          "end_ms": 960000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 932000
+        },
+        {
+          "end_ms": 990000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 966920
+        },
+        {
+          "end_ms": 1020000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 992000
+        },
+        {
+          "end_ms": 1050000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1026920
+        },
+        {
+          "end_ms": 1080000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1052000
+        },
+        {
+          "end_ms": 1110000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1086920
+        },
+        {
+          "end_ms": 1140000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1112000
+        },
+        {
+          "end_ms": 1170000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1146920
+        },
+        {
+          "end_ms": 1200000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1172000
+        }
+      ]
+    },
+    {
+      "channel_index": 1,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 30.594379099959042,
+          "model_cache_hit": true,
+          "model_load_seconds": 3.940000897273421e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "9a08b24891ed1f045a99f0a5de80d1945ad8a085700c65fd0b8a20bb5dd73abd"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_1",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 30000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 6920
+        },
+        {
+          "end_ms": 60000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 32000
+        },
+        {
+          "end_ms": 90000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 66920
+        },
+        {
+          "end_ms": 120000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 92000
+        },
+        {
+          "end_ms": 150000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 126920
+        },
+        {
+          "end_ms": 180000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 152000
+        },
+        {
+          "end_ms": 210000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 186920
+        },
+        {
+          "end_ms": 240000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 212000
+        },
+        {
+          "end_ms": 270000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 246920
+        },
+        {
+          "end_ms": 300000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 272000
+        },
+        {
+          "end_ms": 330000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 306920
+        },
+        {
+          "end_ms": 360000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 332000
+        },
+        {
+          "end_ms": 390000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 366920
+        },
+        {
+          "end_ms": 420000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 392000
+        },
+        {
+          "end_ms": 450000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 426920
+        },
+        {
+          "end_ms": 480000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 452000
+        },
+        {
+          "end_ms": 510000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 486920
+        },
+        {
+          "end_ms": 540000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 512000
+        },
+        {
+          "end_ms": 570000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 546920
+        },
+        {
+          "end_ms": 600000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 572000
+        },
+        {
+          "end_ms": 630000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 606920
+        },
+        {
+          "end_ms": 660000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 632000
+        },
+        {
+          "end_ms": 690000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 666920
+        },
+        {
+          "end_ms": 720000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 692000
+        },
+        {
+          "end_ms": 750000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 726920
+        },
+        {
+          "end_ms": 780000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 752000
+        },
+        {
+          "end_ms": 810000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 786920
+        },
+        {
+          "end_ms": 840000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 812000
+        },
+        {
+          "end_ms": 870000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 846920
+        },
+        {
+          "end_ms": 900000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 872000
+        },
+        {
+          "end_ms": 930000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 906920
+        },
+        {
+          "end_ms": 960000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 932000
+        },
+        {
+          "end_ms": 990000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 966920
+        },
+        {
+          "end_ms": 1020000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 992000
+        },
+        {
+          "end_ms": 1050000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1026920
+        },
+        {
+          "end_ms": 1080000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1052000
+        },
+        {
+          "end_ms": 1110000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1086920
+        },
+        {
+          "end_ms": 1140000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1112000
+        },
+        {
+          "end_ms": 1170000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1146920
+        },
+        {
+          "end_ms": 1200000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1172000
+        }
+      ]
+    },
+    {
+      "channel_index": 2,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 36.99516639998183,
+          "model_cache_hit": true,
+          "model_load_seconds": 3.7999998312443495e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "9a08b24891ed1f045a99f0a5de80d1945ad8a085700c65fd0b8a20bb5dd73abd"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_2",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 30000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 6920
+        },
+        {
+          "end_ms": 60000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 32000
+        },
+        {
+          "end_ms": 90000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 66920
+        },
+        {
+          "end_ms": 120000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 92000
+        },
+        {
+          "end_ms": 150000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 126920
+        },
+        {
+          "end_ms": 180000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 152000
+        },
+        {
+          "end_ms": 210000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 186920
+        },
+        {
+          "end_ms": 240000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 212000
+        },
+        {
+          "end_ms": 270000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 246920
+        },
+        {
+          "end_ms": 300000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 272000
+        },
+        {
+          "end_ms": 330000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 306920
+        },
+        {
+          "end_ms": 360000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 332000
+        },
+        {
+          "end_ms": 390000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 366920
+        },
+        {
+          "end_ms": 420000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 392000
+        },
+        {
+          "end_ms": 450000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 426920
+        },
+        {
+          "end_ms": 480000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 452000
+        },
+        {
+          "end_ms": 510000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 486920
+        },
+        {
+          "end_ms": 540000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 512000
+        },
+        {
+          "end_ms": 570000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 546920
+        },
+        {
+          "end_ms": 600000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 572000
+        },
+        {
+          "end_ms": 630000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 606920
+        },
+        {
+          "end_ms": 660000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 632000
+        },
+        {
+          "end_ms": 690000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 666920
+        },
+        {
+          "end_ms": 720000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 692000
+        },
+        {
+          "end_ms": 750000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 726920
+        },
+        {
+          "end_ms": 780000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 752000
+        },
+        {
+          "end_ms": 810000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 786920
+        },
+        {
+          "end_ms": 840000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 812000
+        },
+        {
+          "end_ms": 870000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 846920
+        },
+        {
+          "end_ms": 900000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 872000
+        },
+        {
+          "end_ms": 930000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 906920
+        },
+        {
+          "end_ms": 960000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 932000
+        },
+        {
+          "end_ms": 990000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 966920
+        },
+        {
+          "end_ms": 1020000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 992000
+        },
+        {
+          "end_ms": 1050000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1026920
+        },
+        {
+          "end_ms": 1080000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1052000
+        },
+        {
+          "end_ms": 1110000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1086920
+        },
+        {
+          "end_ms": 1140000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1112000
+        },
+        {
+          "end_ms": 1170000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1146920
+        },
+        {
+          "end_ms": 1200000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1172000
+        }
+      ]
+    },
+    {
+      "channel_index": 3,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 35.47825309995096,
+          "model_cache_hit": true,
+          "model_load_seconds": 4.160002572461963e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "9a08b24891ed1f045a99f0a5de80d1945ad8a085700c65fd0b8a20bb5dd73abd"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_3",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 30000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 6920
+        },
+        {
+          "end_ms": 60000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 32000
+        },
+        {
+          "end_ms": 90000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 66920
+        },
+        {
+          "end_ms": 120000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 92000
+        },
+        {
+          "end_ms": 150000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 126920
+        },
+        {
+          "end_ms": 180000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 152000
+        },
+        {
+          "end_ms": 210000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 186920
+        },
+        {
+          "end_ms": 240000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 212000
+        },
+        {
+          "end_ms": 270000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 246920
+        },
+        {
+          "end_ms": 300000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 272000
+        },
+        {
+          "end_ms": 330000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 306920
+        },
+        {
+          "end_ms": 360000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 332000
+        },
+        {
+          "end_ms": 390000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 366920
+        },
+        {
+          "end_ms": 420000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 392000
+        },
+        {
+          "end_ms": 450000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 426920
+        },
+        {
+          "end_ms": 480000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 452000
+        },
+        {
+          "end_ms": 510000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 486920
+        },
+        {
+          "end_ms": 540000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 512000
+        },
+        {
+          "end_ms": 570000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 546920
+        },
+        {
+          "end_ms": 600000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 572000
+        },
+        {
+          "end_ms": 630000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 606920
+        },
+        {
+          "end_ms": 660000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 632000
+        },
+        {
+          "end_ms": 690000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 666920
+        },
+        {
+          "end_ms": 720000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 692000
+        },
+        {
+          "end_ms": 750000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 726920
+        },
+        {
+          "end_ms": 780000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 752000
+        },
+        {
+          "end_ms": 810000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 786920
+        },
+        {
+          "end_ms": 840000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 812000
+        },
+        {
+          "end_ms": 870000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 846920
+        },
+        {
+          "end_ms": 900000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 872000
+        },
+        {
+          "end_ms": 930000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 906920
+        },
+        {
+          "end_ms": 960000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 932000
+        },
+        {
+          "end_ms": 990000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 966920
+        },
+        {
+          "end_ms": 1020000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 992000
+        },
+        {
+          "end_ms": 1050000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1026920
+        },
+        {
+          "end_ms": 1080000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1052000
+        },
+        {
+          "end_ms": 1110000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1086920
+        },
+        {
+          "end_ms": 1140000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1112000
+        },
+        {
+          "end_ms": 1170000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1146920
+        },
+        {
+          "end_ms": 1200000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1172000
+        }
+      ]
+    },
+    {
+      "channel_index": 4,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 36.199454899993725,
+          "model_cache_hit": true,
+          "model_load_seconds": 3.7999998312443495e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "9a08b24891ed1f045a99f0a5de80d1945ad8a085700c65fd0b8a20bb5dd73abd"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_4",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 30000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 6920
+        },
+        {
+          "end_ms": 60000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 32000
+        },
+        {
+          "end_ms": 90000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 66920
+        },
+        {
+          "end_ms": 120000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 92000
+        },
+        {
+          "end_ms": 150000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 126920
+        },
+        {
+          "end_ms": 180000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 152000
+        },
+        {
+          "end_ms": 210000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 186920
+        },
+        {
+          "end_ms": 240000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 212000
+        },
+        {
+          "end_ms": 270000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 246920
+        },
+        {
+          "end_ms": 300000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 272000
+        },
+        {
+          "end_ms": 330000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 306920
+        },
+        {
+          "end_ms": 360000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 332000
+        },
+        {
+          "end_ms": 390000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 366920
+        },
+        {
+          "end_ms": 420000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 392000
+        },
+        {
+          "end_ms": 450000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 426920
+        },
+        {
+          "end_ms": 480000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 452000
+        },
+        {
+          "end_ms": 510000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 486920
+        },
+        {
+          "end_ms": 540000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 512000
+        },
+        {
+          "end_ms": 570000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 546920
+        },
+        {
+          "end_ms": 600000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 572000
+        },
+        {
+          "end_ms": 630000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 606920
+        },
+        {
+          "end_ms": 660000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 632000
+        },
+        {
+          "end_ms": 690000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 666920
+        },
+        {
+          "end_ms": 720000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 692000
+        },
+        {
+          "end_ms": 750000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 726920
+        },
+        {
+          "end_ms": 780000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 752000
+        },
+        {
+          "end_ms": 810000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 786920
+        },
+        {
+          "end_ms": 840000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 812000
+        },
+        {
+          "end_ms": 870000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 846920
+        },
+        {
+          "end_ms": 900000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 872000
+        },
+        {
+          "end_ms": 930000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 906920
+        },
+        {
+          "end_ms": 960000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 932000
+        },
+        {
+          "end_ms": 990000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 966920
+        },
+        {
+          "end_ms": 1020000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 992000
+        },
+        {
+          "end_ms": 1050000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1026920
+        },
+        {
+          "end_ms": 1080000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1052000
+        },
+        {
+          "end_ms": 1110000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1086920
+        },
+        {
+          "end_ms": 1140000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1112000
+        },
+        {
+          "end_ms": 1170000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1146920
+        },
+        {
+          "end_ms": 1200000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1172000
+        }
+      ]
+    },
+    {
+      "channel_index": 5,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 36.676525600021705,
+          "model_cache_hit": true,
+          "model_load_seconds": 4.4199987314641476e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "9a08b24891ed1f045a99f0a5de80d1945ad8a085700c65fd0b8a20bb5dd73abd"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_5",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 30000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 6920
+        },
+        {
+          "end_ms": 60000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 32000
+        },
+        {
+          "end_ms": 90000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 66920
+        },
+        {
+          "end_ms": 120000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 92000
+        },
+        {
+          "end_ms": 150000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 126920
+        },
+        {
+          "end_ms": 180000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 152000
+        },
+        {
+          "end_ms": 210000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 186920
+        },
+        {
+          "end_ms": 240000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 212000
+        },
+        {
+          "end_ms": 270000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 246920
+        },
+        {
+          "end_ms": 300000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 272000
+        },
+        {
+          "end_ms": 330000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 306920
+        },
+        {
+          "end_ms": 360000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 332000
+        },
+        {
+          "end_ms": 390000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 366920
+        },
+        {
+          "end_ms": 420000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 392000
+        },
+        {
+          "end_ms": 450000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 426920
+        },
+        {
+          "end_ms": 480000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 452000
+        },
+        {
+          "end_ms": 510000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 486920
+        },
+        {
+          "end_ms": 540000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 512000
+        },
+        {
+          "end_ms": 570000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 546920
+        },
+        {
+          "end_ms": 600000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 572000
+        },
+        {
+          "end_ms": 630000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 606920
+        },
+        {
+          "end_ms": 660000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 632000
+        },
+        {
+          "end_ms": 690000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 666920
+        },
+        {
+          "end_ms": 720000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 692000
+        },
+        {
+          "end_ms": 750000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 726920
+        },
+        {
+          "end_ms": 780000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 752000
+        },
+        {
+          "end_ms": 810000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 786920
+        },
+        {
+          "end_ms": 840000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 812000
+        },
+        {
+          "end_ms": 870000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 846920
+        },
+        {
+          "end_ms": 900000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 872000
+        },
+        {
+          "end_ms": 930000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 906920
+        },
+        {
+          "end_ms": 960000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 932000
+        },
+        {
+          "end_ms": 990000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 966920
+        },
+        {
+          "end_ms": 1020000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 992000
+        },
+        {
+          "end_ms": 1050000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1026920
+        },
+        {
+          "end_ms": 1080000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1052000
+        },
+        {
+          "end_ms": 1110000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1086920
+        },
+        {
+          "end_ms": 1140000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1112000
+        },
+        {
+          "end_ms": 1170000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1146920
+        },
+        {
+          "end_ms": 1200000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1172000
+        }
+      ]
+    },
+    {
+      "channel_index": 6,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 45.44867360003991,
+          "model_cache_hit": true,
+          "model_load_seconds": 5.909998435527086e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "9a08b24891ed1f045a99f0a5de80d1945ad8a085700c65fd0b8a20bb5dd73abd"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_6",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 30000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 6920
+        },
+        {
+          "end_ms": 60000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 32000
+        },
+        {
+          "end_ms": 90000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 66920
+        },
+        {
+          "end_ms": 120000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 92000
+        },
+        {
+          "end_ms": 150000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 126920
+        },
+        {
+          "end_ms": 180000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 152000
+        },
+        {
+          "end_ms": 210000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 186920
+        },
+        {
+          "end_ms": 240000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 212000
+        },
+        {
+          "end_ms": 270000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 246920
+        },
+        {
+          "end_ms": 300000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 272000
+        },
+        {
+          "end_ms": 330000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 306920
+        },
+        {
+          "end_ms": 360000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 332000
+        },
+        {
+          "end_ms": 390000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 366920
+        },
+        {
+          "end_ms": 420000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 392000
+        },
+        {
+          "end_ms": 450000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 426920
+        },
+        {
+          "end_ms": 480000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 452000
+        },
+        {
+          "end_ms": 510000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 486920
+        },
+        {
+          "end_ms": 540000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 512000
+        },
+        {
+          "end_ms": 570000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 546920
+        },
+        {
+          "end_ms": 600000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 572000
+        },
+        {
+          "end_ms": 630000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 606920
+        },
+        {
+          "end_ms": 660000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 632000
+        },
+        {
+          "end_ms": 690000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 666920
+        },
+        {
+          "end_ms": 720000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 692000
+        },
+        {
+          "end_ms": 750000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 726920
+        },
+        {
+          "end_ms": 780000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 752000
+        },
+        {
+          "end_ms": 810000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 786920
+        },
+        {
+          "end_ms": 840000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 812000
+        },
+        {
+          "end_ms": 870000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 846920
+        },
+        {
+          "end_ms": 900000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 872000
+        },
+        {
+          "end_ms": 930000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 906920
+        },
+        {
+          "end_ms": 960000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 932000
+        },
+        {
+          "end_ms": 990000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 966920
+        },
+        {
+          "end_ms": 1020000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 992000
+        },
+        {
+          "end_ms": 1050000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1026920
+        },
+        {
+          "end_ms": 1080000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1052000
+        },
+        {
+          "end_ms": 1110000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1086920
+        },
+        {
+          "end_ms": 1140000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1112000
+        },
+        {
+          "end_ms": 1170000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1146920
+        },
+        {
+          "end_ms": 1200000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1172000
+        }
+      ]
+    },
+    {
+      "channel_index": 7,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "f4b7e7a3f895aab1c322188c97068a6d2be2f3fd11d83b4ecb67fa693e75aad1",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 36.48441180004738,
+          "model_cache_hit": true,
+          "model_load_seconds": 3.660004585981369e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "9a08b24891ed1f045a99f0a5de80d1945ad8a085700c65fd0b8a20bb5dd73abd"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_7",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 30000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 6920
+        },
+        {
+          "end_ms": 60000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 32000
+        },
+        {
+          "end_ms": 90000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 66920
+        },
+        {
+          "end_ms": 120000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 92000
+        },
+        {
+          "end_ms": 150000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 126920
+        },
+        {
+          "end_ms": 180000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 152000
+        },
+        {
+          "end_ms": 210000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 186920
+        },
+        {
+          "end_ms": 240000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 212000
+        },
+        {
+          "end_ms": 270000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 246920
+        },
+        {
+          "end_ms": 300000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 272000
+        },
+        {
+          "end_ms": 330000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 306920
+        },
+        {
+          "end_ms": 360000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 332000
+        },
+        {
+          "end_ms": 390000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 366920
+        },
+        {
+          "end_ms": 420000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 392000
+        },
+        {
+          "end_ms": 450000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 426920
+        },
+        {
+          "end_ms": 480000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 452000
+        },
+        {
+          "end_ms": 510000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 486920
+        },
+        {
+          "end_ms": 540000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 512000
+        },
+        {
+          "end_ms": 570000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 546920
+        },
+        {
+          "end_ms": 600000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 572000
+        },
+        {
+          "end_ms": 630000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 606920
+        },
+        {
+          "end_ms": 660000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 632000
+        },
+        {
+          "end_ms": 690000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 666920
+        },
+        {
+          "end_ms": 720000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 692000
+        },
+        {
+          "end_ms": 750000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 726920
+        },
+        {
+          "end_ms": 780000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 752000
+        },
+        {
+          "end_ms": 810000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 786920
+        },
+        {
+          "end_ms": 840000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 812000
+        },
+        {
+          "end_ms": 870000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 846920
+        },
+        {
+          "end_ms": 900000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 872000
+        },
+        {
+          "end_ms": 930000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 906920
+        },
+        {
+          "end_ms": 960000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 932000
+        },
+        {
+          "end_ms": 990000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 966920
+        },
+        {
+          "end_ms": 1020000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 992000
+        },
+        {
+          "end_ms": 1050000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1026920
+        },
+        {
+          "end_ms": 1080000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1052000
+        },
+        {
+          "end_ms": 1110000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1086920
+        },
+        {
+          "end_ms": 1140000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1112000
+        },
+        {
+          "end_ms": 1170000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1146920
+        },
+        {
+          "end_ms": 1200000,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 1172000
+        }
+      ]
+    }
+  ],
+  "transcript_sha256": "8fc7f134f1a53761a1706448debbe9986923513ebf6018b455e80233545aeb52",
+  "observation_wall_seconds": 236.4351640000241
+}

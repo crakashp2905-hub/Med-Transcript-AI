@@ -1,0 +1,7 @@
+import {useState} from 'react';
+export function ServerRecovery({request,disabled}:{request:(path:string)=>Promise<Response>;disabled:boolean}){
+ const [rows,setRows]=useState<{id:string;received_bytes:number;media_type:string}[]>([]),[notice,setNotice]=useState('');
+ async function list(){try{const response=await request('/stream-uploads');setRows((await response.json()).items);setNotice('Only acknowledged prefixes are recoverable. Review missing endings before using a recovered recording.');}catch{setNotice('Server recovery could not be checked.');}}
+ async function download(row:typeof rows[number]){try{const response=await request(`/stream-uploads/${row.id}/recovery`),blob=await response.blob(),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`partial-recovered-recording.${row.media_type==='audio/wav'?'wav':row.media_type==='audio/mp4'?'m4a':row.media_type.split('/')[1]}`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);setNotice('Downloaded a partial recording. Listen to it, then upload with fresh authorization if appropriate.');}catch{setNotice('This server prefix could not be recovered.');}}
+ return <section aria-label="Server recording recovery"><button disabled={disabled} onClick={()=>void list()}>Check server recording backups</button><p>{notice}</p>{rows.map(row=><div key={row.id}>Partial recording · {(row.received_bytes/1024/1024).toFixed(1)} MiB <button disabled={disabled} onClick={()=>void download(row)}>Download server recovery</button></div>)}</section>;
+}

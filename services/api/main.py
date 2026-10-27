@@ -286,12 +286,14 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
         with database() as con:
             row = upload_row(con, encounter_id, upload_id, actor)
             audit(con, actor, "upload_read", str(upload_id))
-            return {"id": row["id"], "status": row["status"], "expected_bytes": row["expected_bytes"], "received_bytes": row["received_bytes"],
+            return {"id": row["id"], "status": row["status"], "expected_bytes": row["expected_bytes"], "received_bytes": row["received_bytes"], "stream_format":row["stream_format"], "stream_sealed":bool(row["stream_sealed"]),
                     "expires_at": row["expires_at"],
                     "expired": datetime.fromisoformat(row["expires_at"]) <= datetime.now(timezone.utc)}
 
     from services.api.resumable import register as register_resumable
     register_resumable(app, database, identity, upload_row, require_processing, require_live_upload, assets, audit)
+    from services.api.live_uploads import register as register_live_uploads
+    register_live_uploads(app,database,identity,encounter,upload_row,require_processing,require_live_upload,assets,audit,replay,remember)
 
     @app.put("/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content")
     async def upload_content(encounter_id: UUID, upload_id: UUID, request: Request,
@@ -300,7 +302,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             row = upload_row(con, encounter_id, upload_id, actor)
             require_processing(con, encounter_id)
             require_live_upload(row)
-            if row["status"] != "open" or row["received_bytes"]:
+            if row["status"] != "open" or row["received_bytes"] or row["stream_format"]:
                 raise HTTPException(409, "upload_not_open")
             if request.headers.get("content-type", "").split(";")[0].strip().lower() != row["media_type"]:
                 raise HTTPException(415, "unsupported_media")
@@ -349,6 +351,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             if existing:
                 return {"job_id": existing["id"], "status_url": f"/v1/jobs/{existing['id']}"}
             require_live_upload(row)
+            if row["stream_format"] and not row["stream_sealed"]:raise HTTPException(409,"live_upload_requires_seal")
             if row["status"] != "uploaded":
                 raise HTTPException(409, "upload_not_received")
             try:
@@ -376,7 +379,7 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
             return {"id": row["id"], "encounter_id": row["encounter"], "stage": row["stage"],
                     "profile_sha256": row["profile_sha256"],
                     "status": row["status"], "attempts": row["attempts"], "error_code": row["error_code"],
-                    "retryable": job_retryable(row), "preview_only":bool(row["preview_only"]), "progress":job_progress(con,row), "created_at": row["created_at"], "updated_at": row["updated_at"],
+                    "retryable": job_retryable(row), "preview_only":bool(row["preview_only"]), "progress":job_progress(con,row), "attempt_history":[dict(r) for r in con.execute("SELECT attempt,status,error_code,finished_at FROM job_attempts WHERE job=? ORDER BY attempt",(str(job_id),))], "created_at": row["created_at"], "updated_at": row["updated_at"],
                     "result": json.loads(row["result"]) if row["result"] else None}
 
     @app.post("/v1/jobs/{job_id}/retry", status_code=202)

@@ -152,3 +152,18 @@ def test_reserved_audio_is_rejected_for_development_before_download(tmp_path,mon
     monkeypatch.setattr(preparation,'download',blocked)
     with pytest.raises(ValueError,match='Reserved acceptance'):
         preparation.prepare(tmp_path/'corpus',['day5_consultation05'])
+
+
+def test_fast_audio_copy_throttles_lease_writes_but_force_checks_revocation(environment,monkeypatch):
+    from services.asr.worker import Lease
+    from datetime import datetime,timedelta,timezone
+    env=environment;eid,_=queued(env,2)
+    with Store(env.path).transaction() as con:
+        job=con.execute("SELECT id FROM jobs WHERE stage='transcription'").fetchone()[0]
+        con.execute("UPDATE jobs SET status='running',lease_token='test-token',lease_expires_at=? WHERE id=?",((datetime.now(timezone.utc)+timedelta(minutes=5)).isoformat(),job))
+    monkeypatch.setattr('services.asr.worker.time.monotonic',lambda:100.0)
+    lease=Lease(Store(env.path),job,'test-token',eid)
+    for _ in range(1000):lease.checkpoint()
+    assert lease.db_checkpoints==1 and lease.checkpoint_calls==1000
+    with Store(env.path).transaction() as con:con.execute("UPDATE jobs SET status='cancelled' WHERE id=?",(job,))
+    with pytest.raises(ASRFailure):lease.checkpoint(force=True)

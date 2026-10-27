@@ -33,7 +33,21 @@ def backup(db, assets, destination):
                 source.backup(output)
                 output.commit()
             (target / "assets").mkdir()
-            for row in con.execute("SELECT id,status FROM uploads"):
+            for row in con.execute("SELECT id,status,stream_format,stream_sealed,received_bytes FROM uploads"):
+                if row['stream_format'] and not row['stream_sealed'] and row['received_bytes']:
+                    source = Path(assets) / f"{row['id']}.resume.part"
+                    if not source.is_file():source = Path(assets) / f"{row['id']}.wav"
+                    if not source.is_file() or source.stat().st_size < row['received_bytes']:
+                        raise ValueError('Committed recording prefix unavailable for backup')
+                    # Copy only committed bytes. A sealing worker may concurrently
+                    # repair the PCM header; recovery reconstructs that header.
+                    with source.open('rb') as incoming, (target/'assets'/f"{row['id']}.resume.part").open('xb') as output:
+                        left = row['received_bytes']
+                        while left:
+                            chunk = incoming.read(min(left,1024*1024))
+                            if not chunk:raise ValueError('Committed recording prefix truncated')
+                            output.write(chunk);left -= len(chunk)
+                    continue
                 if row["status"] not in ("uploaded", "complete"):
                     continue
                 for suffix in (".wav", ".normalized.wav", ".resume.part"):

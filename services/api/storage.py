@@ -148,6 +148,13 @@ MIGRATIONS = (
     ALTER TABLE jobs ADD COLUMN preview_cache_expired INTEGER NOT NULL DEFAULT 0;
     ALTER TABLE jobs ADD COLUMN timeline_offset_ms INTEGER NOT NULL DEFAULT 0;
     """,
+    """
+    ALTER TABLE uploads ADD COLUMN stream_format TEXT;
+    ALTER TABLE uploads ADD COLUMN stream_channels INTEGER;
+    ALTER TABLE uploads ADD COLUMN stream_sealed INTEGER NOT NULL DEFAULT 0;
+    ALTER TABLE uploads ADD COLUMN stream_seal_token TEXT;
+    ALTER TABLE uploads ADD COLUMN stream_seal_expires_at TEXT;
+    """,
 
 )
 

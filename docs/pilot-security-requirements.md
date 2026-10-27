@@ -21,3 +21,8 @@ A supervised pilot protocol must specify inclusion/exclusion criteria, English-l
 Collect paired baseline/manual and assisted note tasks with randomized order, comparable cases, reviewer consent and an independent correctness assessment. Measure fact precision/recall by category, critical errors, completeness, wall/active correction time, edit counts, end-to-end p50/p95 latency, failure rate and total cost per successful consultation. Separate self-reported active time from observed time and local hardware cost from provider charges. Never report test-fixture timing as clinician productivity. Define review cadence, pause thresholds and incident ownership before recruitment.
 
 New review-session endpoints store server-observed wall duration and token edit counts without note text in telemetry. Active time is explicitly self-reported/unverified. Immutable records remain scoped to the encounter and included in purge. A real clinician study, externally managed encryption/audit, backup retention enforcement and legal approval remain unperformed dependencies.
+
+
+## Implemented development backup support (2026-10-27)
+
+Optional authenticated streaming backup/restore tooling and a synthetic round-trip drill are documented in [the development delivery](development-delivery-2026-10-27.md). Committed live recording prefixes are included; recovery remains explicitly partial and cannot create an approved note. These tools do not provision institutional storage encryption, Windows ACLs, SSO/MFA, external key custody, approved retention or a real-patient pilot. Local browser drafts and live server prefixes remain synthetic development data under explicit encounter deletion/retention controls.

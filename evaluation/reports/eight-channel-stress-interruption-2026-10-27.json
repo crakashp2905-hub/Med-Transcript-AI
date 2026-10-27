@@ -1,0 +1,18 @@
+{
+  "schema_version": "stress_interruption_v1",
+  "original_report_sha256": "f540562057f212bfe78a2258ebf70380fe14b0d3e22415797c01682fd63d3c7f",
+  "running_jobs_at_worker_stop": [
+    {
+      "id": "eb08c95d-a259-49c8-8926-57de887aab99",
+      "encounter": "13e4c7d9-9619-440b-bfed-e4c4f54cd7c1",
+      "upload": "b6f35453-69d3-43b6-b104-1aa986e7de89",
+      "attempts": 1,
+      "status": "running",
+      "created_at": "2026-10-26T21:37:23.495446+00:00",
+      "updated_at": "2026-10-26T21:44:25.261816+00:00"
+    }
+  ],
+  "reason": "Repeated per-audio-second database lease writes during channel isolation caused client timeouts; original failed runs retained.",
+  "operator_action": "Stopped only isolated test worker; advanced its lease expiry to exercise normal abandoned-job recovery after throttling fix.",
+  "clinical_acceptance": false
+}

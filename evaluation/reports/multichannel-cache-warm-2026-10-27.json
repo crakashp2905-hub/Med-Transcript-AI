@@ -1,0 +1,209 @@
+{
+  "schema_version": "multichannel_real_worker_smoke_v1",
+  "scope": "three_padded_public_clips_shared_origin_not_a_consultation",
+  "source_manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+  "source_attribution": "PriMock57: A Dataset Of Primary Care Mock Consultations, Alex Papadopoulos Korfiatis, Francesco Moramarco, Radmila Sarac and Aleksandar Savkov (2022), Babylon Health. CC BY 4.0. Source: https://github.com/babylonhealth/primock57",
+  "input_sha256": "91fec391654975cab18329eeb6c4d524340fec1623580dc099f0ae8a65f777c5",
+  "channels": 3,
+  "frames": 132980,
+  "clinical_acceptance": false,
+  "complete": true,
+  "failed": false,
+  "runs": [
+    {
+      "channel_index": 0,
+      "source_sample": "day1_consultation01_doctor.utterance01",
+      "source_audio_sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa",
+      "reference": "Okay. And how many times a day are you going, let's say, in the last couple of days?",
+      "hypothesis": " Okay and how many times a day are you going? Let's see we lost a couple of days",
+      "score": {
+        "reference_words": 18,
+        "hypothesis_words": 18,
+        "normalized_edits": 4,
+        "raw_edits": 9,
+        "raw_reference_words": 18
+      }
+    },
+    {
+      "channel_index": 1,
+      "source_sample": "day1_consultation01_doctor.utterance02",
+      "source_audio_sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83",
+      "reference": "Okay. And is the pain, is that, is it there all the time, or does it come and go?",
+      "hypothesis": " Okay, and there's a pain. Is that is there all the time or does it come and go?",
+      "score": {
+        "reference_words": 19,
+        "hypothesis_words": 18,
+        "normalized_edits": 3,
+        "raw_edits": 9,
+        "raw_reference_words": 19
+      }
+    },
+    {
+      "channel_index": 2,
+      "source_sample": "day1_consultation01_doctor.utterance03",
+      "source_audio_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+      "reference": "Okay, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having, uh have you been feeling feverish, for example?",
+      "hypothesis": " Okay, fine, and you mentioned you've been feeling quite weak and shaky as well. Would you be by shaky?  Do you mean you've been having a feeling feverish for example?",
+      "score": {
+        "reference_words": 34,
+        "hypothesis_words": 30,
+        "normalized_edits": 7,
+        "raw_edits": 11,
+        "raw_reference_words": 34
+      }
+    }
+  ],
+  "profile_id": "tiny-en-smoke-v1",
+  "transcript_sha256": "aa05418852543375e7bc537267212c484206c391a9cd850e9ec4eb8221d306dc",
+  "duration_ms": 8311,
+  "channel_provenance": [
+    {
+      "channel_index": 0,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "d1b7e959de204e9d65d22591a5376a01ffcde92d898ef10632e5104de45a3f9b",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 1.8066193999839015,
+          "model_cache_hit": true,
+          "model_load_seconds": 3.3599964808672667e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "91fec391654975cab18329eeb6c4d524340fec1623580dc099f0ae8a65f777c5"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_0",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 8311,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 4080
+        }
+      ]
+    },
+    {
+      "channel_index": 1,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "a418922638b984d0eca137123f89fa46de4ba499d31bd23a62391a79415b3dbf",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 1.8950399000314064,
+          "model_cache_hit": true,
+          "model_load_seconds": 4.379998426884413e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "91fec391654975cab18329eeb6c4d524340fec1623580dc099f0ae8a65f777c5"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_1",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 8311,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 3880
+        }
+      ]
+    },
+    {
+      "channel_index": 2,
+      "provenance": {
+        "adapter_iteration": "finished",
+        "clinical_coverage": "unverified",
+        "engine": "faster-whisper",
+        "feature_extractor": "faster_whisper_1.2.1_defaults",
+        "inference_executed": true,
+        "isolated_channel_pcm_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+        "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "model_source": "Systran/faster-whisper-tiny.en",
+        "preprocessing": "original_mono_16khz_pcm16_to_float32_v1",
+        "profile_id": "tiny-en-smoke-v1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_packages": {
+          "av": "19.0.2",
+          "ctranslate2": "4.8.3",
+          "faster-whisper": "1.2.1",
+          "numpy": "2.5.4",
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3"
+        },
+        "runtime_version": "1.2.1",
+        "timeline_mapping_status": "original_pcm_timeline",
+        "timing": {
+          "inference_seconds": 2.6097068000235595,
+          "model_cache_hit": true,
+          "model_load_seconds": 8.77000275067985e-05
+        },
+        "vad_filter": false,
+        "word_timestamps": false,
+        "working_audio_sha256": "91fec391654975cab18329eeb6c4d524340fec1623580dc099f0ae8a65f777c5"
+      },
+      "review_flags": [
+        "clinician_review_required",
+        "language_support_unverified",
+        "clinical_coverage_unverified",
+        "untranscribed_intervals_require_review"
+      ],
+      "speaker_id": "channel_2",
+      "untranscribed_intervals": [
+        {
+          "end_ms": 8311,
+          "reason": "not_transcribed_unknown_cause",
+          "start_ms": 7840
+        }
+      ]
+    }
+  ],
+  "timestamps_valid": true,
+  "roles_unconfirmed": true,
+  "no_automatic_note_or_approval": true,
+  "wall_seconds": 51.84401359996991
+}

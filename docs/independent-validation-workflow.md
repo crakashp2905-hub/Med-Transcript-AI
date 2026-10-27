@@ -16,6 +16,8 @@ It does not claim to have downloaded/audited audio contents. No models have
 been evaluated on this reserved cohort. Speakers, sites, devices and training
 independence still need audit before it can become an acceptance cohort.
 
+The subsequent [content-audited source packet](../evaluation/annotation-source/acceptance-v1/source-audit.json) verifies the downloaded audio and annotation bytes against the pinned revision. Separate reviewer A/B packets and a blank qualification registry are stored alongside it, outside development dataset discovery. This supersedes the earlier pointer-only audit for byte verification; it does not establish listening, independent gold, reviewer credentials or cohort acceptance. No model has been run on those reserved recordings.
+
 The institution keeps the qualification registry privately, using the fields
 listed in the reservation protocol. Verify current credentials, clinical scope,
 English consultation experience, conflicts, training and verification dates.

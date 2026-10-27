@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   storageScope:string;
+  backup:(id:string)=>Promise<number>;
   permission:()=>Promise<boolean>;
   preview:(file:File,startMs:number)=>Promise<{start_ms:number;end_ms:number;text:string;channel_index?:number}[]>;
   disabled:boolean;
@@ -15,7 +16,7 @@ type Props = {
 const formatTime=(seconds:number)=>`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;
 const MAX_SECONDS=30*60, MAX_BYTES=511999956;
 
-export function Dictation({permission,preview,storageScope,disabled,profile,authorize,submit,onActiveChange}:Props){
+export function Dictation({backup,permission,preview,storageScope,disabled,profile,authorize,submit,onActiveChange}:Props){
  const [confirmed,setConfirmed]=useState(false),[phase,setPhase]=useState<'idle'|'starting'|'recording'|'sending'|'saved'|'retry'>('idle');
  const [seconds,setSeconds]=useState(0),[error,setError]=useState(''),[draft,setDraft]=useState<File|null>(null),[url,setUrl]=useState('');
  const [channelCount,setChannelCount]=useState(1),[device,setDevice]=useState(''),[devices,setDevices]=useState<MediaDeviceInfo[]>([]);
@@ -24,6 +25,8 @@ export function Dictation({permission,preview,storageScope,disabled,profile,auth
  const recordingId=useRef(''),writes=useRef<Promise<void>>(Promise.resolve()),queuedBytes=useRef(0),persistenceFailed=useRef(false);
  const [livePreview,setLivePreview]=useState(false),[previewRows,setPreviewRows]=useState<{start_ms:number;end_ms:number;text:string;channel_index?:number}[]>([]),[previewNotice,setPreviewNotice]=useState('');
  const previewBusy=useRef(false),previewParts=useRef<Blob[]>([]),previewBytes=useRef(0),previewStart=useRef(0);
+ const [serverBackup,setServerBackup]=useState(false),[serverNotice,setServerNotice]=useState('');
+ const backupAt=useRef(0),backupBusy=useRef(false);
  const [recoveries,setRecoveries]=useState<DraftRecord[]>([]),[savedBytes,setSavedBytes]=useState(0);
  useEffect(()=>{let active=true;listDrafts(storageScope).then(rows=>{if(active)setRecoveries(rows);}).catch(()=>setError('Local recovery storage is unavailable. Recording will not start until browser storage is available.'));return()=>{active=false;};},[storageScope]);
  async function recover(id:string){const attempt=++generation.current;setPhase('sending');try{const file=await readDraft(id,storageScope);if(!mounted.current||attempt!==generation.current)return;recordingId.current=id;setDraft(file);setPhase('retry');setError('Recovered committed audio after an interruption. Review the partial recording before uploading; its ending may be missing.');}catch{if(mounted.current&&attempt===generation.current){setPhase('idle');setError('The local draft could not be read. Keep it for recovery or explicitly delete it.');}}}
@@ -45,7 +48,7 @@ export function Dictation({permission,preview,storageScope,disabled,profile,auth
   const usePcm=channelCount>1||livePreview;
   const type=usePcm?'audio/wav':['audio/webm;codecs=opus','audio/ogg;codecs=opus','audio/mp4'].find(value=>MediaRecorder.isTypeSupported(value));
   if(!type){setError('This browser cannot record a supported audio format. Use Chrome or Edge on localhost, or upload a WAV.');return;}
-  const attempt=++generation.current;setPhase('starting');setError('');setDraft(null);setSeconds(0);
+  const attempt=++generation.current;setPhase('starting');setError('');setDraft(null);setSeconds(0);setServerNotice('');backupAt.current=0;
   try{
    // Establish server-side authorization before asking for microphone access.
    await authorize();
@@ -72,7 +75,7 @@ export function Dictation({permission,preview,storageScope,disabled,profile,auth
    capture.ondataavailable=event=>{
     if(attempt!==generation.current||discard.current||!event.data.size||persistenceFailed.current)return;
     const data=event.data;offerPreview(data);bytes.current+=data.size;queuedBytes.current+=data.size;
-    writes.current=writes.current.then(async()=>{if(attempt!==generation.current||persistenceFailed.current)return;await appendDraft(id,data);if(attempt===generation.current)queuedBytes.current-=data.size;if(mounted.current&&attempt===generation.current)setSavedBytes(value=>value+data.size);}).catch(()=>{if(attempt!==generation.current)return;persistenceFailed.current=true;interrupted.current=true;if(mounted.current)setError('Browser storage failed or is full. Capture stopped. Only previously saved chunks can be recovered.');if(capture.state==='recording')capture.stop();});
+    writes.current=writes.current.then(async()=>{if(attempt!==generation.current||persistenceFailed.current)return;await appendDraft(id,data);if(attempt===generation.current)queuedBytes.current-=data.size;if(mounted.current&&attempt===generation.current){setSavedBytes(value=>value+data.size);if(serverBackup&&!backupBusy.current&&Date.now()-backupAt.current>=2000){backupAt.current=Date.now();backupBusy.current=true;void backup(id).then(count=>{if(mounted.current&&attempt===generation.current)setServerNotice(`Server acknowledged ${(count/1024/1024).toFixed(1)} MiB. Only this prefix is recoverable if browser storage is lost.`);}).catch(()=>{if(mounted.current&&attempt===generation.current)setServerNotice('Server backup is interrupted. Local browser recovery continues; keep this browser storage.');}).finally(()=>{backupBusy.current=false;});}}}).catch(()=>{if(attempt!==generation.current)return;persistenceFailed.current=true;interrupted.current=true;if(mounted.current)setError('Browser storage failed or is full. Capture stopped. Only previously saved chunks can be recovered.');if(capture.state==='recording')capture.stop();});
     if(queuedBytes.current>8*1024*1024&&capture.state==='recording'){interrupted.current=true;setError('Browser storage is too slow. Capture stopped to keep recovery memory bounded; review the saved partial recording.');capture.stop();}
     if(bytes.current>=MAX_BYTES&&capture.state==='recording'){interrupted.current=true;setError('Recording size limit reached. Review and save the partial recording before continuing.');capture.stop();}
    };
@@ -92,6 +95,7 @@ export function Dictation({permission,preview,storageScope,disabled,profile,auth
  return <section className="dictation" aria-labelledby="dictation-heading"><div className="dictation-heading"><div><span className="eyebrow">RECORD HERE</span><h3 id="dictation-heading">Microphone dictation</h3></div><span className={`dictation-timer ${phase==='recording'?'is-recording':''}`} role="timer" aria-label="Recording duration">{phase==='recording'&&<span className="recording-dot"/>}{formatTime(seconds)}</span></div>
  <p>Speak in English, then stop to get a local transcript. Text appears after processing. Maximum 30 minutes or 512 MB. Audio chunks are saved in this browser for interruption recovery. Do not clear browser storage before saving or deleting your drafts.</p>
  <button disabled={active||phase==='sending'||phase==='retry'} onClick={()=>void findDevices()}>Refresh input devices</button><label>Input device <select aria-label="Input device" value={device} disabled={active||phase==='sending'||phase==='retry'} onChange={e=>setDevice(e.target.value)}><option value="">System default</option>{devices.filter(d=>d.deviceId&&d.deviceId!=='default').map((d,i)=><option value={d.deviceId} key={d.deviceId}>{d.label||`Audio input ${i+1}`}</option>)}</select></label>
+ <label className="check"><input type="checkbox" checked={serverBackup} disabled={active||phase==='sending'||phase==='retry'} onChange={event=>setServerBackup(event.target.checked)}/>Back up recording chunks to the local server while recording</label><p>Optional server backup stores acknowledged prefixes before stopping. Discarding a local draft does not delete server backups; encounter retention controls apply.</p><p role="status">{serverNotice}</p>
  <label className="check"><input type="checkbox" checked={livePreview} disabled={active||phase==='sending'||phase==='retry'} onChange={event=>setLivePreview(event.target.checked)}/>Show provisional local previews while recording</label><p>Previews process approximately ten-second windows, may lag or skip intervals when busy, and cannot be approved. The complete recording is transcribed separately after stopping.</p>
  <label>Physical input channels <select aria-label="Physical input channels" value={channelCount} disabled={active||phase==='retry'||phase==='sending'} onChange={e=>setChannelCount(Number(e.target.value))}>{Array.from({length:8},(_,i)=><option key={i+1} value={i+1}>{i+1}</option>)}</select></label><p>Multiple channels require one synchronized multichannel input device. Channels retain separate timelines and need speaker review. PCM multichannel recordings can require sufficient browser disk quota; 30 minutes at eight channels uses about 461 MB.</p>
  <label className="check"><input type="checkbox" checked={confirmed} disabled={active||phase==='sending'} onChange={event=>setConfirmed(event.target.checked)}/>I am dictating synthetic test speech, and recording and local-processing authorization is documented.</label>

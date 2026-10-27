@@ -95,3 +95,19 @@ def test_decoder_preserves_three_distinct_channels(tmp_path):
         import numpy as np
         values=np.frombuffer(audio.readframes(1600),dtype='<i2').reshape(-1,3)
         assert (values[100:]==[1,2,3]).all()
+
+
+def test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job(environment):
+    from services.asr.channels import build_channels
+    profile=environment.profile
+    silent={'segments':[],'duration_seconds':.1,'digital_silence':True,'inference_executed':False}
+    speech={'segments':[{'start_seconds':0,'end_seconds':.08,'text':'synthetic'}],'duration_seconds':.1,'inference_executed':True,
+            'isolated_channel_pcm_sha256':'b'*64,'timing':{'model_cache_hit':False,'model_load_seconds':2,'inference_seconds':3}}
+    from uuid import uuid4
+    value=build_channels({'channel_outputs':[silent,speech]},{'channels':2,'duration_ms':100,'sha256':'a'*64},str(uuid4()),str(uuid4()),profile,str(uuid4()),1)
+    assert value['provenance']['inference_executed'] is True
+    assert 'digital_silence' not in value['review_flags']
+    assert value['channels'][0]['provenance']['inference_executed'] is False
+    assert value['channels'][0]['provenance']['timing']=={}
+    assert value['provenance']['timing']['summed_channel_inference_seconds']==3
+    assert 'isolated_channel_pcm_sha256' not in value['provenance']

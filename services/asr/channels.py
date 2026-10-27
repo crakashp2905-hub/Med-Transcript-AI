@@ -1,5 +1,6 @@
 """Bounded channel isolation; channel identity never implies a clinical role."""
 import tempfile
+from copy import deepcopy
 import wave
 from pathlib import Path
 
@@ -50,7 +51,7 @@ def build_channels(raw, metadata, encounter_id, upload_id, profile, transcript_i
     for index, output in enumerate(outputs):
         item = build_transcript(output, metadata, encounter_id, upload_id, profile, transcript_id, version)
         item["provenance"]["isolated_channel_pcm_sha256"] = output.get("isolated_channel_pcm_sha256")
-        body = body or item
+        body = body or deepcopy(item)
         for segment in item["segments"]:
             segment.update(channel_index=index, speaker_id=f"channel_{index}")
             segment["uncertainties"].append("channel_is_not_verified_speaker")
@@ -65,7 +66,16 @@ def build_channels(raw, metadata, encounter_id, upload_id, profile, transcript_i
     body["review_flags"] = sorted(set(flag for c in channels for flag in c["review_flags"]) | {"channel_roles_require_confirmation", "cross_talk_requires_review"})
     if segments:
         body["review_flags"] = [flag for flag in body["review_flags"] if flag not in {"no_transcribed_speech", "digital_silence"}]
-    body["provenance"]["preprocessing"] = "independent_pcm_channels_shared_timeline_v1"
+    if not all("digital_silence" in c["review_flags"] for c in channels):
+        body["review_flags"]=[flag for flag in body["review_flags"] if flag!="digital_silence"]
+    body["provenance"].pop("isolated_channel_pcm_sha256",None)
+    body["provenance"]["inference_executed"] = any(c["provenance"]["inference_executed"] for c in channels)
+    timings=[c["provenance"].get("timing",{}) for c in channels]
+    body["provenance"]["timing"]={"channel_count":len(channels),
+        "cached_channels":sum(t.get("model_cache_hit") is True for t in timings),
+        "summed_model_load_seconds":sum(t.get("model_load_seconds",0) for t in timings),
+        "summed_channel_inference_seconds":sum(t.get("inference_seconds",0) for t in timings)}
+    body["provenance"]["preprocessing"] = "independent_pcm_channels_shared_timeline_v2"
     body["diarization"] = {"method": "physical_channels_not_speaker_identification", "clinical_validation": "not_validated",
         "role_assignment": "clinician_confirmation_required", "segments": [
             {k: s[k] for k in ("start_ms", "end_ms", "speaker_id", "role", "role_status", "channel_index")} for s in body["segments"]]}

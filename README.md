@@ -108,14 +108,23 @@ uploads the recording, waits for local inspection, queues the configured ASR
 profile and displays the unreviewed transcript automatically. Audio never goes
 to a browser speech-recognition service or hosted ASR provider.
 
-This is stop-to-transcript dictation, not word-by-word streaming. Processing time
-depends on the configured model and local hardware. Recordings are limited to
-30 minutes or 64 MiB. Keep the tab open: live capture stays in browser memory.
-A disconnected microphone retains a partial recording for review, download or
-retry. Partial recordings can be incomplete. Discard stops capture without uploading; failed uploads
-can be retried from the retained local recording. You can also save that recording
-locally. Browser microphone access requires localhost or HTTPS; Chrome and Edge
-are the tested Windows browsers. An ASR profile and the local worker are required.
+Recording supports 30 minutes or 512 MB with one to eight synchronized physical
+input channels. Ordered audio chunks are committed to this browser's IndexedDB;
+reload recovery requires review and fresh confirmation. Keep browser storage until
+you upload or explicitly delete the draft. Optional **Back up recording chunks to
+the local server while recording** preserves acknowledged prefixes independently
+of browser storage. **Check server recording backups** downloads an unfinished
+prefix for review. Local discard does not delete server copies; encounter
+retention/deletion controls apply.
+
+Optional local previews process short windows and remain clearly provisional;
+busy intervals may be skipped. The complete saved recording is processed separately
+after stopping. Neither previews nor recovered partial recordings can be approved.
+Processing time depends on the configured model and hardware. Browser microphone
+access requires localhost or HTTPS; Chrome and Edge are the tested Windows browsers.
+Compatible physical hardware, adequate disk quota, an ASR profile and a local worker
+are required. See the [delivery report](docs/development-delivery-2026-10-27.md)
+for measured limits and validation.
 
 The launcher reads `MED_TRANSCRIPT_ASR_PROFILES`, or an explicitly configured
 `asr_profiles_path` in ignored `data/local-config.json`. It does not download or

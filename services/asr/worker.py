@@ -4,9 +4,10 @@ import argparse
 import json
 import os
 import sqlite3
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from threading import Event, Thread
+from threading import Event, Thread, Lock
 from uuid import uuid4
 
 from services.api.ingest import MAX_CHANNELS, file_sha256, inspect_pcm_wav
@@ -25,6 +26,8 @@ class Lease:
         self.store, self.job_id, self.token, self.encounter_id = store, job_id, token, encounter_id
         self.shutdown = Event()
         self.failure = None
+        self.check_lock=Lock();self.last_check=-float('inf')
+        self.checkpoint_calls=0;self.db_checkpoints=0;self.checkpoint_seconds=0.0
         self.thread = Thread(target=self._heartbeat, daemon=True)
 
     def __enter__(self):
@@ -38,24 +41,29 @@ class Lease:
     def _heartbeat(self):
         while not self.shutdown.wait(20):
             try:
-                self.checkpoint()
+                self.checkpoint(force=True)
             except (ASRFailure, sqlite3.Error):
                 self.failure = "worker_lease_lost"
                 return
 
-    def checkpoint(self):
-        if self.failure:
-            raise ASRFailure(self.failure)
-        with self.store.transaction() as con:
-            row = con.execute("SELECT * FROM jobs WHERE id=?", (self.job_id,)).fetchone()
-            stamp = datetime.now(timezone.utc)
-            if (row["status"] != "running" or row["lease_token"] != self.token
-                    or datetime.fromisoformat(row["lease_expires_at"]) <= stamp):
-                raise ASRFailure("worker_lease_lost")
-            if not processing_allowed(con, self.encounter_id):
-                raise ASRFailure("authorization_required")
-            con.execute("UPDATE jobs SET lease_expires_at=?,updated_at=? WHERE id=?",
-                        ((stamp + timedelta(seconds=LEASE_SECONDS)).isoformat(), stamp.isoformat(), self.job_id))
+    def checkpoint(self,*,force=False):
+        # Audio may be copied much faster than realtime. Database leases track wall
+        # time; renewing once per audio second causes writer starvation on long files.
+        with self.check_lock:
+            self.checkpoint_calls+=1
+            if self.failure:raise ASRFailure(self.failure)
+            if not force and time.monotonic()-self.last_check<1.0:return
+            started=time.perf_counter();self.db_checkpoints+=1
+            try:
+                with self.store.transaction() as con:
+                    row=con.execute("SELECT * FROM jobs WHERE id=?",(self.job_id,)).fetchone()
+                    stamp=datetime.now(timezone.utc)
+                    if row["status"]!="running" or row["lease_token"]!=self.token or datetime.fromisoformat(row["lease_expires_at"])<=stamp:
+                        raise ASRFailure("worker_lease_lost")
+                    if not processing_allowed(con,self.encounter_id):raise ASRFailure("authorization_required")
+                    con.execute("UPDATE jobs SET lease_expires_at=?,updated_at=? WHERE id=?",((stamp+timedelta(seconds=LEASE_SECONDS)).isoformat(),stamp.isoformat(),self.job_id))
+                self.last_check=time.monotonic()
+            finally:self.checkpoint_seconds+=time.perf_counter()-started
 
 
 def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarization_manifest=None):
@@ -87,6 +95,7 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
         profile_body = con.execute("SELECT body FROM asr_profiles WHERE sha256=?", (job["profile_sha256"],)).fetchone()[0]
 
     raw, metadata, profile, error, speaker_report = None, None, None, None, None
+    work_started=time.perf_counter()
     with Lease(store, job["id"], token, job["encounter"]) as lease:
         try:
             profile = ASRProfile.model_validate_json(profile_body)
@@ -119,7 +128,7 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
                 from services.asr.channels import transcribe_channels
                 input_digest = metadata.get("working_sha256") or metadata["sha256"]
                 def load_channel(channel, pcm_hash):
-                    lease.checkpoint()
+                    lease.checkpoint(force=True)
                     with store.transaction() as con:
                         saved = con.execute("SELECT * FROM asr_checkpoints WHERE job=? AND channel_index=?", (job["id"], channel)).fetchone()
                     if saved is None:
@@ -133,7 +142,7 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
                     return value
                 def save_channel(channel, value):
                     build_transcript(value, metadata, job["encounter"], job["upload"], profile, str(uuid4()), 0)
-                    lease.checkpoint()
+                    lease.checkpoint(force=True)
                     with store.transaction() as con:
                         current = con.execute("SELECT lease_token,status FROM jobs WHERE id=?", (job["id"],)).fetchone()
                         if current["lease_token"] != token or current["status"] != "running" or not processing_allowed(con, job["encounter"]):
@@ -178,6 +187,9 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
                     from services.asr.channels import build_channels
                     builder = build_channels if isinstance(raw, dict) and "channel_outputs" in raw else build_transcript
                     body = builder(raw, metadata, job["encounter"], job["upload"], profile, transcript_id, version)
+                    body["provenance"]["worker_timing"]={"wall_seconds":time.perf_counter()-work_started,
+                        "lease_checkpoint_calls":lease.checkpoint_calls,"lease_database_checks":lease.db_checkpoints,
+                        "lease_checkpoint_seconds":lease.checkpoint_seconds,"minimum_checkpoint_interval_seconds":1.0}
                     if speaker_report is not None:
                         from services.diarization import attach_speakers
                         body = attach_speakers(body, speaker_report)
