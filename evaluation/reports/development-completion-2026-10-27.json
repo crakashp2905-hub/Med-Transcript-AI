@@ -1,0 +1,95 @@
+{
+  "schema_version": "development_completion_receipt_v1",
+  "date": "2026-10-27",
+  "implementation_commit": "69f289ff3e57684f8cc7e10cc0c5dda0bd4d6941",
+  "scope": "synthetic_public_mock_engineering_not_clinical_acceptance",
+  "validation": {
+    "pytest_passed": 233,
+    "pytest_skipped_local_postgres": 1,
+    "post_event_loop_fix_focused_tests_passed": 17,
+    "browser_e2e_passed": 20,
+    "browser_final_clean_run": "20 passed (2.2m)",
+    "frontend_build": "passed",
+    "hosted_ci_jobs_passed": 5,
+    "hosted_ci_run": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/40446507215"
+  },
+  "earlier_browser_failures": [
+    "Initial new scenarios exposed a recording-permission timeout under load and a too-short fake recording rejected by ASR; disk commits were moved off the event loop and the test now captures its complete public utterance.",
+    "An isolated retry still exposed the short fake-recording failure before the rebuilt final test.",
+    "A subsequent suite started before the refreshed server was ready and failed its first navigation; all other 19 scenarios passed. The final ready-server run passed all 20."
+  ],
+  "long_recording_stress": {
+    "channels": 8,
+    "minutes": [
+      20,
+      30
+    ],
+    "fresh_rerun_wall_seconds": [
+      330.60576929996023,
+      534.1774012999958
+    ],
+    "all_channels_and_duration_preserved": true,
+    "timestamp_bounds_valid": true,
+    "initial_timeouts_preserved": true,
+    "interrupted_attempt_and_checkpoint_recovery_preserved": true,
+    "clinical_consultation_accuracy_established": false
+  },
+  "recording_recovery": {
+    "browser_committed_prefix": true,
+    "optional_local_server_committed_prefix": true,
+    "maximum_capture_minutes": 30,
+    "maximum_upload_bytes": 512000000,
+    "supported_synchronized_channels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "unsealed_prefix_can_be_approved": false,
+    "provisional_preview_can_be_approved": false
+  },
+  "drills": {
+    "authenticated_encrypted_backup_restore": "passed_isolated_synthetic_fixture",
+    "eight_channel_signal": "passed_generated_tones_only",
+    "physical_hardware_validated": false,
+    "institutional_key_custody_established": false
+  },
+  "asr_quality": {
+    "maximum_normalized_wer": 0.05,
+    "qualifying_timestamped_application_candidate": null,
+    "new_full_consultation_reference_words": 7443,
+    "strict_failure_inclusive_normalized_edits": 2568,
+    "posthoc_reconstruction_normalized_edits": 1152,
+    "posthoc_is_fresh_inference_or_acceptance": false,
+    "all_candidates_rerun_on_new_full_cohort": false
+  },
+  "human_acceptance": {
+    "reserved_source_content_hash_audit": true,
+    "qualified_reviewers_verified": false,
+    "independent_annotation_complete": false,
+    "adjudication_complete": false,
+    "clinician_study_complete": false,
+    "institutional_pilot_approval": false
+  },
+  "policy": {
+    "public_local_models_only": true,
+    "paid_calls": 0,
+    "real_patient_release_authorized": false
+  },
+  "workspace": {
+    "url": "http://127.0.0.1:8002",
+    "idle_before_refresh": true,
+    "health_after_refresh": "ok",
+    "access_key_preserved_and_not_printed": true
+  },
+  "issues_updated_and_kept_open": [
+    7,
+    8,
+    9,
+    10
+  ]
+}
