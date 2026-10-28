@@ -1,0 +1,101 @@
+{
+  "schema_version": "detailed_ranking_v1",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "ranked": [
+    {
+      "candidate_id": "faster-whisper-tiny.en",
+      "status": "complete",
+      "clean": {
+        "reference_words": 13683,
+        "normalized_edits": 4415,
+        "normalized_wer": 0.32266315866403567,
+        "failed_samples": 0,
+        "samples": 8,
+        "wall_seconds": 299.6619674001122,
+        "wer_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "distracted": {
+        "reference_words": 13683,
+        "normalized_edits": 4689,
+        "normalized_wer": 0.34268800701600527,
+        "failed_samples": 0,
+        "samples": 8,
+        "wall_seconds": 397.8786615000572,
+        "wer_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "paired_WER_delta": 0.020024848351969604,
+      "clean_cluster_interval": {
+        "method": "foreground_cluster_percentile_bootstrap",
+        "iterations": 1000,
+        "seed": 20261029,
+        "low": 0.28946181599518944,
+        "high": 0.35710640469507526,
+        "limitation": "Eight convenience-sampled development foregrounds; not a clinical acceptance confidence bound."
+      },
+      "native_segment_timestamps": true,
+      "native_timestamp_bounds_valid": false,
+      "report_sha256": "21de3bbc2dd4812d135aaf5c2a6256ab1b8e9a047bd8f56142621156a01c3ece",
+      "clinical_approval": false,
+      "rank": 1
+    }
+  ],
+  "unranked": [
+    {
+      "candidate_id": "omi-med-stt-v1-native-empty",
+      "status": "queued"
+    },
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "queued"
+    },
+    {
+      "candidate_id": "whisper-small",
+      "status": "queued"
+    },
+    {
+      "candidate_id": "multimed-whisper-small-english",
+      "status": "queued"
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "queued"
+    },
+    {
+      "candidate_id": "qwen3-asr-0.6b-int8",
+      "status": "queued"
+    },
+    {
+      "candidate_id": "distil-whisper-large-v3",
+      "status": "queued"
+    },
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "status": "queued"
+    }
+  ],
+  "complete": false,
+  "maximum_normalized_wer": 0.05,
+  "real_patient_release_authorized": false,
+  "limitations": [
+    "Paired conditions share foregrounds; do not count them as independent patients.",
+    "Native segment bounds are not word alignment or verified timestamp accuracy.",
+    "One same-weight native-empty wrapper variant is separately labelled.",
+    "Incomplete or load-blocked models are visible and never assigned invented WER."
+  ]
+}
