@@ -23,3 +23,7 @@ test-results/
 playwright-report/
 evaluation/expanded-progress.json
 evaluation/expanded-progress.json.tmp
+
+# Transient benchmark publication and runtime logs; JSON evidence is versioned.
+evaluation/runs/**/*.log
+evaluation/runs/**/*.pending

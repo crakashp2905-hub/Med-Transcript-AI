@@ -1,5 +1,7 @@
 # Med Transcript AI
 
+
+The [detailed full-consultation campaign](docs/detailed-evaluation-2026-10-29.md) adds paired clean/background-speech recordings, full local-model comparisons, device identification and blinded reviewer/study packets. The comparison is still in progress; no candidate is promoted.
 English-only, clinician-reviewed outpatient documentation, based on the
 [master blueprint](medical_transcription_agent_master_blueprint.md).
 

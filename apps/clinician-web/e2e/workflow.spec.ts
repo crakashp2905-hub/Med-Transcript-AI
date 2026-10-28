@@ -41,6 +41,9 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByRole('button',{name:'Review statement and source',exact:true}).first().click();
   expect(await page.evaluate(()=>document.activeElement?.id.startsWith('fact-'))).toBe(true);
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeDisabled();
+  await page.getByLabel('Timed review drafting approach').selectOption('deterministic');
+  await page.getByRole('button',{name:'Start timed review',exact:true}).click();
+  await expect(page.getByLabel('Timed review drafting approach')).toBeDisabled();
   await cards.nth(2).getByLabel('Note statement').fill('Patient takes metformin 500 mg.');
   await cards.nth(2).getByLabel('Clinical clarification / exclusion reason').fill('Synthetic clinician correction: the medication label was independently checked to confirm 500 mg.');
   await expect(cards.nth(2).getByLabel('Content and attribution reviewed')).not.toBeChecked();
@@ -48,6 +51,8 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await cards.nth(2).getByLabel('Critical details checked').check();
   await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Ready for your final review'})).toBeVisible();
+  await page.getByRole('button',{name:'Finish review of saved version',exact:true}).click();
+  await expect(page.getByText(/Completed \(deterministic\)/)).toBeVisible();
   await page.getByLabel('I rechecked the patient identifiers and the exact saved note.').check();
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeEnabled();
   await page.getByRole('button',{name:'Approve saved version',exact:false}).click();

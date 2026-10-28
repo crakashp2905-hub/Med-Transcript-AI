@@ -1,6 +1,7 @@
 import json
 from datetime import datetime, timezone
 from uuid import UUID, uuid4
+from typing import Literal
 
 from fastapi import Depends, HTTPException
 from pydantic import Field
@@ -12,6 +13,7 @@ from services.usability_metrics import note_correction
 class StartReview(Strict):
     note_version_id: UUID
     client_request_id: UUID | None = None
+    drafting_arm: Literal['unspecified','manual','deterministic','local_qwen'] = 'unspecified'
 
 
 class FinishReview(Strict):
@@ -40,10 +42,11 @@ def register(app, database, identity, encounter, require_processing, document, a
             existing=con.execute('SELECT encounter,body FROM model_proposals WHERE id=?',(sid,)).fetchone()
             if existing:
                 old=json.loads(existing['body'])
-                if existing['encounter']!=str(eid) or old.get('actor')!=str(actor.clinician_id) or old.get('note_version_id')!=str(body.note_version_id):
+                if existing['encounter']!=str(eid) or old.get('actor')!=str(actor.clinician_id) or old.get('note_version_id')!=str(body.note_version_id) or old.get('drafting_arm','unspecified')!=body.drafting_arm:
                     raise HTTPException(409,'review_session_request_conflict')
                 return old
-            value={'id':sid,'note_version_id':str(body.note_version_id),'actor':str(actor.clinician_id),'started_at':stamp}
+            value={'id':sid,'note_version_id':str(body.note_version_id),'actor':str(actor.clinician_id),'started_at':stamp,
+                'drafting_arm':body.drafting_arm,'arm_attribution':'clinician_selected_not_independently_verified'}
             con.execute('INSERT INTO model_proposals VALUES (?,?,?,?,?,?,?)',(sid,str(eid),'review_session',1,content_sha256(value),canonical_json(value),stamp))
             audit(con,actor,'review_session_started',sid)
             return value
@@ -77,7 +80,7 @@ def register(app, database, identity, encounter, require_processing, document, a
                 raise HTTPException(422,'active_time_exceeds_observed_session') from None
             mid=str(uuid4())
             measured.update(id=mid,session_id=str(sid),before_note=session['note_version_id'],after_note=str(body.note_version_id),
-                source_changed=before['transcript_version_id']!=after['transcript_version_id'])
+                source_changed=before['transcript_version_id']!=after['transcript_version_id'],drafting_arm=session.get('drafting_arm','unspecified'),arm_attribution='clinician_selected_not_independently_verified')
             con.execute('INSERT INTO review_metrics VALUES (?,?,?,?,?)',(mid,str(sid),str(eid),canonical_json(measured),stamp.isoformat()))
             audit(con,actor,'review_metrics_created',mid)
             return measured

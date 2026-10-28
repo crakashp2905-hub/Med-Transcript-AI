@@ -1,0 +1,110 @@
+{
+  "schema_version": "three_arm_clinician_protocol_draft_v1",
+  "source_manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "purpose": "compare_note_accuracy_and_clinician_correction_time",
+  "approval_status": "not_approved",
+  "clinical_owner": null,
+  "reviewer_qualifications_verified": false,
+  "washout_and_training_plan": null,
+  "arms": [
+    "manual",
+    "deterministic",
+    "local_qwen"
+  ],
+  "planned_pairs": [
+    {
+      "pair_id": "pair-001",
+      "foreground_id": "day1_consultation07",
+      "reviewer_id": null,
+      "proposed_order": [
+        "manual",
+        "deterministic",
+        "local_qwen"
+      ]
+    },
+    {
+      "pair_id": "pair-002",
+      "foreground_id": "day1_consultation08",
+      "reviewer_id": null,
+      "proposed_order": [
+        "manual",
+        "local_qwen",
+        "deterministic"
+      ]
+    },
+    {
+      "pair_id": "pair-003",
+      "foreground_id": "day1_consultation01",
+      "reviewer_id": null,
+      "proposed_order": [
+        "deterministic",
+        "manual",
+        "local_qwen"
+      ]
+    },
+    {
+      "pair_id": "pair-004",
+      "foreground_id": "day1_consultation05",
+      "reviewer_id": null,
+      "proposed_order": [
+        "deterministic",
+        "local_qwen",
+        "manual"
+      ]
+    },
+    {
+      "pair_id": "pair-005",
+      "foreground_id": "day1_consultation06",
+      "reviewer_id": null,
+      "proposed_order": [
+        "local_qwen",
+        "manual",
+        "deterministic"
+      ]
+    },
+    {
+      "pair_id": "pair-006",
+      "foreground_id": "day1_consultation04",
+      "reviewer_id": null,
+      "proposed_order": [
+        "local_qwen",
+        "deterministic",
+        "manual"
+      ]
+    },
+    {
+      "pair_id": "pair-007",
+      "foreground_id": "day1_consultation03",
+      "reviewer_id": null,
+      "proposed_order": [
+        "manual",
+        "deterministic",
+        "local_qwen"
+      ]
+    },
+    {
+      "pair_id": "pair-008",
+      "foreground_id": "day1_consultation02",
+      "reviewer_id": null,
+      "proposed_order": [
+        "manual",
+        "local_qwen",
+        "deterministic"
+      ]
+    }
+  ],
+  "required_observations": [
+    "wall_seconds",
+    "active_edit_seconds",
+    "independently_adjudicated_critical_errors",
+    "independently_adjudicated_omissions",
+    "provider_cost_usd",
+    "hardware_cost_usd"
+  ],
+  "limitations": [
+    "Draft counterbalancing is not institutional study approval.",
+    "Repeated-case exposure needs a clinician-approved washout/training design.",
+    "Automatic model runtime is not clinician correction time.",
+    "Reference notes are not exhaustive atomic clinical gold."
+  ]
+}

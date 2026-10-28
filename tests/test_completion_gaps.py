@@ -93,6 +93,18 @@ def test_timing_retry_creates_one_session_and_history_contains_no_note_text(setu
     assert correction('word '*20000,'word '*19999+'changed',10)['word_edits']==1
 
 
+def test_timed_review_retains_selected_arm_and_rejects_relabelling_retry(setup):
+    client,path,_=setup;eid,tx,facts=prepare(client,path);note=draft(client,eid,tx,facts)['note']
+    base=f'/v1/encounters/{eid}/review-sessions';body={'note_version_id':note['id'],'client_request_id':str(uuid4()),'drafting_arm':'deterministic'}
+    session=client.post(base,headers=headers(),json=body)
+    assert session.status_code==201
+    assert client.post(base,headers=headers(),json={**body,'drafting_arm':'local_qwen'}).status_code==409
+    measured=client.post(base+'/'+session.json()['id']+'/complete',headers=headers(),json={'note_version_id':note['id']})
+    assert measured.status_code==200 and measured.json()['drafting_arm']=='deterministic'
+    assert measured.json()['arm_attribution']=='clinician_selected_not_independently_verified'
+    assert measured.json()['active_time_verified'] is False
+
+
 def test_timing_captures_structured_edits_and_rejects_conflicting_replay(setup):
     client,path,_=setup
     eid,tx,facts=prepare(client,path,'Taking warfarin 5 mg.')
