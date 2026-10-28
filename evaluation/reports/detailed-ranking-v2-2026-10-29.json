@@ -55,6 +55,58 @@
       "rank": 1
     },
     {
+      "candidate_id": "whisper-small",
+      "status": "complete",
+      "clean": {
+        "reference_words": 13683,
+        "normalized_edits": 3477,
+        "normalized_wer": 0.25411094058320544,
+        "failed_samples": 0,
+        "samples": 8,
+        "wall_seconds": 1314.5420114001026,
+        "wer_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "distracted": {
+        "reference_words": 13683,
+        "normalized_edits": 3970,
+        "normalized_wer": 0.2901410509391215,
+        "failed_samples": 0,
+        "samples": 8,
+        "wall_seconds": 1343.6022658998845,
+        "wer_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "paired_WER_delta": 0.03603011035591608,
+      "clean_cluster_interval": {
+        "method": "foreground_cluster_percentile_bootstrap",
+        "iterations": 1000,
+        "seed": 20261029,
+        "low": 0.2290634583628214,
+        "high": 0.27889802209093245,
+        "limitation": "Eight convenience-sampled development foregrounds; not a clinical acceptance confidence bound."
+      },
+      "native_segment_timestamps": true,
+      "native_timestamp_bounds_valid": false,
+      "report_sha256": "e31e210dce79f247ab65ac49d4543866166d6cf5be7b73e228d9d1b8fd02e035",
+      "clinical_approval": false,
+      "rank": 2
+    },
+    {
       "candidate_id": "omi-med-stt-v1",
       "status": "complete",
       "clean": {
@@ -106,7 +158,7 @@
       "native_timestamp_bounds_valid": false,
       "report_sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
       "clinical_approval": false,
-      "rank": 2
+      "rank": 3
     },
     {
       "candidate_id": "faster-whisper-tiny.en",
@@ -158,14 +210,10 @@
       "native_timestamp_bounds_valid": false,
       "report_sha256": "21de3bbc2dd4812d135aaf5c2a6256ab1b8e9a047bd8f56142621156a01c3ece",
       "clinical_approval": false,
-      "rank": 3
+      "rank": 4
     }
   ],
   "unranked": [
-    {
-      "candidate_id": "whisper-small",
-      "status": "queued"
-    },
     {
       "candidate_id": "multimed-whisper-small-english",
       "status": "queued"
