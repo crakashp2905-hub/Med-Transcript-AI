@@ -5,6 +5,7 @@ import wave
 import pytest
 
 from services.detailed_benchmark import coverage,evaluate_case,fast_score,summarize
+from services.detailed_benchmark import validated_resume
 from services.evaluation import score
 from services.prepare_detailed import select
 
@@ -48,3 +49,14 @@ def test_coverage_rejects_missing_prefix_gap_or_tail():
     assert not coverage([(1,30),(28,50)],50)
     assert not coverage([(0,30),(31,50)],50)
     assert not coverage([(0,49)],50)
+
+
+def test_resume_rejects_altered_references_models_or_scores():
+    from copy import deepcopy
+    case={'group_id':'one','condition':'clean','audio_sha256':'a'*64,'reference_turns':[{'reference':'No allergy.'}]}
+    row={'id':'one','condition':'clean','input_sha256':'a'*64,'input_coverage_complete':True,'failed':False,'reference':'No allergy.','hypothesis':'No allergy.',**fast_score('No allergy.','No allergy.')}
+    prior={'candidate_id':'model','mode':'fixed','runtime':{'revision':'pinned'},'cases':[row]}
+    assert validated_resume(prior,{'cases':[case]},{'revision':'pinned'},'model','fixed')==[row]
+    altered=deepcopy(prior);altered['cases'][0]['normalized_edits']=1
+    with pytest.raises(ValueError):validated_resume(altered,{'cases':[case]},{'revision':'pinned'},'model','fixed')
+    with pytest.raises(ValueError):validated_resume(prior,{'cases':[case]},{'revision':'changed'},'model','fixed')

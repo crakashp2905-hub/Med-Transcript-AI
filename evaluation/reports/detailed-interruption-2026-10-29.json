@@ -1,0 +1,22 @@
+{
+  "schema_version": "detailed_campaign_interruption_v1",
+  "reason": "Windows PermissionError during os.replace of a report while progress was being read; bounded publication retry required",
+  "initial_attempt_preserved": true,
+  "original_model_failures_not_reclassified": true,
+  "terminated_owned_processes": [
+    "old_campaign",
+    "old_diagnostics_watch"
+  ],
+  "drafting_process_not_interrupted": true,
+  "artifacts": {
+    "evaluation/runs/meddistract-detailed-v1/faster-whisper-tiny.en.fixed.json": "10f686122259a473b4872fee69a71dbbf9d70be9df3d18dc11f04eb2fc4d9d23"
+  },
+  "reused_case_validation_required": [
+    "same_manifest",
+    "same_runtime_configuration",
+    "same_input_hash",
+    "same_reference",
+    "same_exact_scores"
+  ],
+  "clinical_acceptance": false
+}

@@ -12,6 +12,12 @@ import time
 from services.api.ingest import file_sha256
 from services.detailed_benchmark import fast_score,summarize
 from services.inference_slot import local_inference_slot
+from services.evidence_io import atomic_json
+
+
+def source_hash(path):
+    import hashlib
+    return hashlib.sha256(Path(path).read_text(encoding='utf-8').encode('utf-8')).hexdigest()
 
 
 def initialize(path,manifest='evaluation/datasets/meddistract-detailed-v1/manifest.json'):
@@ -27,6 +33,9 @@ def initialize(path,manifest='evaluation/datasets/meddistract-detailed-v1/manife
         'variant_note':'Same weights; exact documented native zero-token response accepted. All other errors remain failures.'})
     order=['faster-whisper-tiny.en','omi-med-stt-v1-native-empty','omi-med-stt-v1','whisper-small','multimed-whisper-small-english','parakeet-tdt-0.6b-v2','qwen3-asr-0.6b-int8','distil-whisper-large-v3','faster-whisper-large-v3']
     jobs.sort(key=lambda j:order.index(j['candidate_id']))
+    for job in jobs:
+        old=Path('evaluation/runs/meddistract-detailed-v1')/f'{job["candidate_id"]}.fixed.json'
+        if old.exists() and json.loads(old.read_text()).get('cases'):job['resume_from']={'path':old.as_posix(),'sha256':file_sha256(old)}
     suite={'schema_version':'detailed_campaign_v1','manifest':manifest,'manifest_sha256':file_sha256(manifest),
         'audio_root':'data/datasets/meddistract-detailed-v1','maximum_normalized_wer':.05,'paid_calls_permitted':False,
         'primary_ranking':'all_eight_clean_full_consultations_micro_WER_then_paired_distracted_WER_then_latency',
@@ -34,7 +43,9 @@ def initialize(path,manifest='evaluation/datasets/meddistract-detailed-v1/manife
         'ablations':{'selection':'two lowest clean WER completed fixed-window candidates, distinct weights','modes':['overlap','speech_aware'],
             'native_whisper_context':'run only when selected finalist uses Whisper; no context emulation for text-only adapters'},
         'timeout_per_candidate_seconds':14400,'clinical_release_authorized':False,
-        'source_sha256':{name:file_sha256(name) for name in ['services/detailed_benchmark.py','services/detailed_campaign.py','services/conversation_experiment.py','services/evaluation.py','services/omi_adapter.py','services/qwen_adapter.py']}}
+        'artifact_publication':'atomic_replace_with_bounded_Windows_reader_lock_retry_v2',
+        'superseded_preinference_suite_sha256':file_sha256('evaluation/detailed-suite-v1.json'),
+        'source_text_sha256':{name:source_hash(name) for name in ['services/detailed_benchmark.py','services/detailed_campaign.py','services/conversation_experiment.py','services/evaluation.py','services/omi_adapter.py','services/qwen_adapter.py','services/evidence_io.py']}}
     target.write_text(json.dumps(suite,indent=2)+'\n',encoding='utf-8');return suite
 
 
@@ -86,11 +97,11 @@ def ranking(suite,results,states=None):
 
 def run(suite_path,results,summary,publish=False):
     suite=json.loads(Path(suite_path).read_text());root=Path(results);root.mkdir(parents=True,exist_ok=True);states={}
-    for name,sha in suite['source_sha256'].items():
-        if file_sha256(name)!=sha:raise ValueError('Frozen runner source changed before execution')
+    for name,sha in suite['source_text_sha256'].items():
+        if source_hash(name)!=sha:raise ValueError('Frozen runner source changed before execution')
     def save():
         output=ranking(suite,root,states);path=Path(summary);path.parent.mkdir(parents=True,exist_ok=True)
-        pending=path.with_suffix('.pending');pending.write_text(json.dumps(output,indent=2)+'\n',encoding='utf-8');os.replace(pending,path)
+        atomic_json(path,output)
         return output
     def job_run(cid,mode):
         path=root/f'{cid}.{mode}.json'
@@ -139,7 +150,7 @@ def run(suite_path,results,summary,publish=False):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['init','run','status']);p.add_argument('--suite',default='evaluation/detailed-suite-v1.json');p.add_argument('--results',default='evaluation/runs/meddistract-detailed-v1');p.add_argument('--summary',default='evaluation/reports/detailed-ranking-2026-10-29.json');p.add_argument('--publish',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['init','run','status']);p.add_argument('--suite',default='evaluation/detailed-suite-v2.json');p.add_argument('--results',default='evaluation/runs/meddistract-detailed-v2');p.add_argument('--summary',default='evaluation/reports/detailed-ranking-v2-2026-10-29.json');p.add_argument('--publish',action='store_true');a=p.parse_args()
     if a.action=='init':initialize(a.suite)
     elif a.action=='run':run(a.suite,a.results,a.summary,a.publish)
     else:print(json.dumps(ranking(json.loads(Path(a.suite).read_text()),a.results),indent=2))

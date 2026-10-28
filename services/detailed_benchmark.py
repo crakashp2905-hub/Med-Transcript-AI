@@ -14,6 +14,7 @@ from services.api.ingest import file_sha256
 from services.clinical_metrics import character_distance
 from services.conversation_experiment import windows,join_text,term_counts
 from services.evaluation import tokens,wer_gate
+from services.evidence_io import atomic_json
 
 
 def fast_score(reference,hypothesis):
@@ -51,6 +52,7 @@ def load(job):
         model=OmiPredictor(root.resolve(),job['revision'],allow_empty_output=job.get('allow_native_empty',False))
     elif runtime=='onnx':
         import onnx_asr,onnxruntime as ort
+        if importlib.metadata.version('onnx-asr')!='0.12.0':raise ValueError('Pinned ONNX runtime changed')
         options=ort.SessionOptions();options.intra_op_num_threads=4;options.inter_op_num_threads=1
         recognizer=onnx_asr.load_model('nemo-parakeet-tdt-0.6b-v2',path=str(root.resolve()),quantization='int8',sess_options=options,providers=['CPUExecutionProvider'])
         model=lambda path:recognizer.recognize(str(path))
@@ -119,11 +121,29 @@ def summarize(rows):
     return result
 
 
+def validated_resume(previous,manifest,config,candidate,mode):
+    if previous['candidate_id']!=candidate or previous['mode']!=mode or previous['runtime']!=config:
+        raise ValueError('Resume model configuration changed')
+    truth={c['group_id']:c for c in manifest['cases']};seen=set()
+    for row in previous['cases']:
+        if row['id'] in seen or row['id'] not in truth:raise ValueError('Unknown/duplicate resumed case')
+        seen.add(row['id']);case=truth[row['id']]
+        reference=' '.join(re.sub(r'<[^>]+>','',t['reference']) for t in case['reference_turns'])
+        if row['reference']!=reference or row['input_sha256']!=case['audio_sha256'] or row['condition']!=case['condition'] or not row['input_coverage_complete']:
+            raise ValueError('Resume source changed or coverage incomplete')
+        if row['failed'] and row['hypothesis']!='':raise ValueError('Failed resume must preserve whole-case deletions')
+        if any(row[k]!=v for k,v in fast_score(reference,row['hypothesis']).items()):raise ValueError('Resume scoring changed')
+    return previous['cases']
+
+
 def run(suite_path,candidate,output,mode='fixed'):
     suite=json.loads(Path(suite_path).read_text());manifest_path=Path(suite['manifest']);manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
     lock=json.loads((manifest_path.parent/'lock.json').read_text())
     if file_sha256(manifest_path)!=suite['manifest_sha256'] or suite['manifest_sha256']!=lock['manifest_sha256']:raise ValueError('Frozen dataset changed')
     if suite['maximum_normalized_wer']!=.05:raise ValueError('The 5% gate is unchanged')
+    import hashlib
+    for name,digest in suite['source_text_sha256'].items():
+        if hashlib.sha256(Path(name).read_text(encoding='utf-8').encode('utf-8')).hexdigest()!=digest:raise ValueError('Frozen execution source changed')
     reserved=set(json.loads(Path('evaluation/acceptance-reservation-v1.json').read_text())['reserved_groups'])
     if 'human_annotation' in manifest['split'] or any(c['foreground_id'] in reserved or c['donor_id'] in reserved for c in manifest['cases']):raise ValueError('Acceptance cohort must remain blinded')
     job=next(j for j in suite['jobs'] if j['candidate_id']==candidate)
@@ -135,14 +155,24 @@ def run(suite_path,candidate,output,mode='fixed'):
         'scoring_profile':'lowercase_words_preserve_decimals_units_negation_v1','failure_policy':'any_failed_chunk_empty_whole_case_all_reference_deletions',
         'maximum_normalized_wer':.05,'clinical_acceptance':False,'runtime':None,'active_case':None}
     def save():
-        temporary=destination.with_suffix('.pending');temporary.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');os.replace(temporary,destination)
+        atomic_json(destination,report)
     save();t=time.perf_counter()
     try:predict,config,close=load(job)
     except Exception as exc:
         report['initialization_failure']=type(exc).__name__;save();raise
     report['runtime']=config;report['model_load_seconds']=time.perf_counter()-t
     try:
+        if mode=='fixed' and job.get('resume_from'):
+            resume=job['resume_from'];path=Path(resume['path'])
+            if file_sha256(path)!=resume['sha256']:raise ValueError('Original resume receipt changed')
+            previous=json.loads(path.read_text(encoding='utf-8'))
+            if previous['manifest_sha256']!=suite['manifest_sha256']:raise ValueError('Resume dataset changed')
+            report['cases']=validated_resume(previous,manifest,config,candidate,mode)
+            report['resumed_from']={**resume,'reused_complete_cases':[r['id'] for r in report['cases']],
+                'unfinished_case_rerun_in_full':True,'latency_scope':'includes_original_completed_case_measurements_not_a_fresh_whole_corpus_run'}
+            save()
         for case in manifest['cases']:
+            if any(r['id']==case['group_id'] for r in report['cases']):continue
             audio=Path(suite['audio_root'])/case['audio']
             if file_sha256(audio)!=case['audio_sha256']:raise ValueError('Source waveform changed')
             def checkpoint(row):
@@ -155,4 +185,4 @@ def run(suite_path,candidate,output,mode='fixed'):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--suite',default='evaluation/detailed-suite-v1.json');p.add_argument('--candidate',required=True);p.add_argument('--output',required=True);p.add_argument('--mode',choices=['fixed','overlap','speech_aware','context'],default='fixed');a=p.parse_args();run(a.suite,a.candidate,a.output,a.mode)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--suite',default='evaluation/detailed-suite-v2.json');p.add_argument('--candidate',required=True);p.add_argument('--output',required=True);p.add_argument('--mode',choices=['fixed','overlap','speech_aware','context'],default='fixed');a=p.parse_args();run(a.suite,a.candidate,a.output,a.mode)
