@@ -1,0 +1,134 @@
+{
+  "schema_version": "detailed_campaign_v1",
+  "manifest": "evaluation/datasets/meddistract-detailed-v1/manifest.json",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "audio_root": "data/datasets/meddistract-detailed-v1",
+  "maximum_normalized_wer": 0.05,
+  "paid_calls_permitted": false,
+  "primary_ranking": "all_eight_clean_full_consultations_micro_WER_then_paired_distracted_WER_then_latency",
+  "models": 8,
+  "runtime_variants": 9,
+  "jobs": [
+    {
+      "candidate_id": "faster-whisper-tiny.en",
+      "lane": "a",
+      "runtime": "whisper",
+      "profile_file": "asr-smoke-profiles.json",
+      "profile_id": "tiny-en-smoke-v1",
+      "source_profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    {
+      "candidate_id": "omi-med-stt-v1-native-empty",
+      "lane": "b",
+      "runtime": "omi",
+      "model_dir": "data/models/omi-med-stt-v1-gguf",
+      "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "package_dir": "data/benchmark-runtime",
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter",
+      "expected_artifacts": {
+        "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+      },
+      "allow_native_empty": true,
+      "variant_note": "Same weights; exact documented native zero-token response accepted. All other errors remain failures."
+    },
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "lane": "b",
+      "runtime": "omi",
+      "model_dir": "data/models/omi-med-stt-v1-gguf",
+      "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "package_dir": "data/benchmark-runtime",
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter",
+      "expected_artifacts": {
+        "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+      }
+    },
+    {
+      "candidate_id": "whisper-small",
+      "lane": "a",
+      "runtime": "whisper",
+      "profile_file": "small-cpu-int8-v1-profiles.json",
+      "profile_id": "small-cpu-int8-v1",
+      "source_profile_sha256": "566c3b316045584eb28ce7102c9c05aaef38a47818cd2626ada184f98e82b512",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    {
+      "candidate_id": "multimed-whisper-small-english",
+      "lane": "b",
+      "runtime": "whisper",
+      "profile_file": "multimed-small-cpu-int8-v1-profiles.json",
+      "profile_id": "multimed-small-cpu-int8-v1",
+      "source_profile_sha256": "b3b014a163c5968fa5430198ace0ca40b8467459ddcc138eb52269b001623b57",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "lane": "b",
+      "runtime": "onnx",
+      "model_dir": "data/models/parakeet-tdt-v2-onnx",
+      "revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+      "package_dir": "data/onnx-runtime",
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU",
+      "expected_artifacts": {
+        "config.json": "666903c76b9798caf2c210afd4f6cd60b08a8dbf9800ec8d7a3bc0d2148ac466",
+        "decoder_joint-model.int8.onnx": "a449f49acd68979d418651dd2dcb737cc0f1bf0225e009e29ee326354edbf7d3",
+        "encoder-model.int8.onnx": "3e0581fda6ab843888b51e56d7ee78b6d5bc3237ec113af1f732d1d5286aa155",
+        "nemo128.onnx": "a9fde1486ebfcc08f328d75ad4610c67835fea58c73ba57e3209a6f6cf019e9f",
+        "vocab.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      }
+    },
+    {
+      "candidate_id": "qwen3-asr-0.6b-int8",
+      "runtime": "sherpa-qwen3",
+      "model_dir": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25",
+      "revision": "393f8a14e2f5fb96746aaab342997a40641001fbd5bf9592a080a8329178ee96",
+      "package_dir": "data/diarization-runtime",
+      "expected_artifacts": {
+        "conv_frontend.onnx": "d22dc4423e0940e49884e903d2ea2f7e5567c14fc1aed97e4e26d6b8f208ef9e",
+        "decoder.int8.onnx": "4f6885be5959ae26af3089d38ee7972c5fafbeeb1cf8d5e76eab6d8b61ca5771",
+        "encoder.int8.onnx": "60748d3e6744a57c9c91e1b17424a6c2990567e8adceb0783940c03ed98fa9d9",
+        "README.md": "bbc6dbeb9dce5b4ed0e839057137e9cba4bf05c5797277d36a80e22594414e14",
+        "tokenizer/merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+        "tokenizer/tokenizer_config.json": "4942d005604266809309cabc9f4e9cb89ce855d59b14681fdc0e1cc62ea26c4c",
+        "tokenizer/vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    },
+    {
+      "candidate_id": "distil-whisper-large-v3",
+      "lane": "b",
+      "runtime": "whisper",
+      "profile_file": "distil-large-v3-cpu-int8-v1-profiles.json",
+      "profile_id": "distil-large-v3-cpu-int8-v1",
+      "source_profile_sha256": "f1c9644ef49c78cd62282f3ca1fa182d326cd6866fc3bc183516c5c6c518aa65",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "lane": "a",
+      "runtime": "whisper",
+      "profile_file": "large-v3-eval-profiles.json",
+      "profile_id": "large-v3-cpu-int8-eval-v1",
+      "source_profile_sha256": "41f08c86824b407aa6bc4aefdfe096da2d060d33e3b2e960c8298c1bd9526659",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    }
+  ],
+  "ablations": {
+    "selection": "two lowest clean WER completed fixed-window candidates, distinct weights",
+    "modes": [
+      "overlap",
+      "speech_aware"
+    ],
+    "native_whisper_context": "run only when selected finalist uses Whisper; no context emulation for text-only adapters"
+  },
+  "timeout_per_candidate_seconds": 14400,
+  "clinical_release_authorized": false,
+  "source_sha256": {
+    "services/detailed_benchmark.py": "a26076e34b6e5315fd9d07a6dab274f3af9091ae4b90935d3a120ad5a0d51a85",
+    "services/detailed_campaign.py": "b062b21b6a9747f63580e0281e77c063c608ddd3c12c9e851eb9b4a197d94106",
+    "services/conversation_experiment.py": "a22244e86c88877b0d371f67fdad9d6ef173eecccc3c8ff158bee7603ca80960",
+    "services/evaluation.py": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055",
+    "services/omi_adapter.py": "5a5e7db46470e388a8841fdfffc7f8cb22b148603194fa89e5c4d0b1af5e612c",
+    "services/qwen_adapter.py": "3e02eaae537b80673794aa5dcd4c658e8370fc1c7e271bc5bd7f5fa3a8533654"
+  }
+}

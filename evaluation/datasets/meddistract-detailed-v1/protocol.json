@@ -1,0 +1,44 @@
+{
+  "schema_version": "detailed_preinference_protocol_v1",
+  "dataset_revision": "bcef38c2bc8404d52a2c66a799be778e28216102",
+  "selection": "first_eight_foreground_encounters_in_frozen_pair_table_with_minus10dB_donor_not_reserved",
+  "groups": [
+    "day1_consultation01",
+    "day1_consultation02",
+    "day1_consultation03",
+    "day1_consultation04",
+    "day1_consultation05",
+    "day1_consultation06",
+    "day1_consultation07",
+    "day1_consultation08"
+  ],
+  "recordings": [
+    "day1_consultation01__audio_-10dB_d0",
+    "day1_consultation01__clean",
+    "day1_consultation02__audio_-10dB_d0",
+    "day1_consultation02__clean",
+    "day1_consultation03__audio_-10dB_d0",
+    "day1_consultation03__clean",
+    "day1_consultation04__audio_-10dB_d0",
+    "day1_consultation04__clean",
+    "day1_consultation05__audio_-10dB_d0",
+    "day1_consultation05__clean",
+    "day1_consultation06__audio_-10dB_d0",
+    "day1_consultation06__clean",
+    "day1_consultation07__audio_-10dB_d0",
+    "day1_consultation07__clean",
+    "day1_consultation08__audio_-10dB_d0",
+    "day1_consultation08__clean"
+  ],
+  "excluded_foreground_and_donors": [
+    "day5_consultation05",
+    "day5_consultation06",
+    "day5_consultation07"
+  ],
+  "maximum_normalized_wer": 0.05,
+  "primary_reference": "original_pinned_human_TextGrid_all_words_markup_removed",
+  "primary_condition": "clean",
+  "robustness_condition": "paired_minus10dB_foreground_reference_donor_speech_is_contamination",
+  "no_saved_asr_or_automated_judgments_as_gold": true,
+  "clinical_acceptance": false
+}
