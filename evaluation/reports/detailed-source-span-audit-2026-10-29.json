@@ -1,0 +1,96 @@
+{
+  "schema_version": "detailed_source_span_batch_audit_v1",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "rule_source_sha256": "c87d221d5118ce60989d322c29b058cd9463b6964b105a568d20e9d37c40bb3c",
+  "cases": [
+    {
+      "id": "day1_consultation01",
+      "source_segments": 109,
+      "source_span_proposals": 175,
+      "batches": 6,
+      "largest_batch_facts": 40,
+      "all_exact_evidence_valid": true,
+      "unreviewed_proposals_only": true,
+      "batching_preserves_all_rule_spans": true
+    },
+    {
+      "id": "day1_consultation02",
+      "source_segments": 130,
+      "source_span_proposals": 248,
+      "batches": 7,
+      "largest_batch_facts": 48,
+      "all_exact_evidence_valid": true,
+      "unreviewed_proposals_only": true,
+      "batching_preserves_all_rule_spans": true
+    },
+    {
+      "id": "day1_consultation03",
+      "source_segments": 141,
+      "source_span_proposals": 239,
+      "batches": 8,
+      "largest_batch_facts": 38,
+      "all_exact_evidence_valid": true,
+      "unreviewed_proposals_only": true,
+      "batching_preserves_all_rule_spans": true
+    },
+    {
+      "id": "day1_consultation04",
+      "source_segments": 132,
+      "source_span_proposals": 234,
+      "batches": 7,
+      "largest_batch_facts": 35,
+      "all_exact_evidence_valid": true,
+      "unreviewed_proposals_only": true,
+      "batching_preserves_all_rule_spans": true
+    },
+    {
+      "id": "day1_consultation05",
+      "source_segments": 116,
+      "source_span_proposals": 210,
+      "batches": 6,
+      "largest_batch_facts": 42,
+      "all_exact_evidence_valid": true,
+      "unreviewed_proposals_only": true,
+      "batching_preserves_all_rule_spans": true
+    },
+    {
+      "id": "day1_consultation06",
+      "source_segments": 162,
+      "source_span_proposals": 273,
+      "batches": 9,
+      "largest_batch_facts": 43,
+      "all_exact_evidence_valid": true,
+      "unreviewed_proposals_only": true,
+      "batching_preserves_all_rule_spans": true
+    },
+    {
+      "id": "day1_consultation07",
+      "source_segments": 175,
+      "source_span_proposals": 302,
+      "batches": 9,
+      "largest_batch_facts": 41,
+      "all_exact_evidence_valid": true,
+      "unreviewed_proposals_only": true,
+      "batching_preserves_all_rule_spans": true
+    },
+    {
+      "id": "day1_consultation08",
+      "source_segments": 119,
+      "source_span_proposals": 200,
+      "batches": 6,
+      "largest_batch_facts": 34,
+      "all_exact_evidence_valid": true,
+      "unreviewed_proposals_only": true,
+      "batching_preserves_all_rule_spans": true
+    }
+  ],
+  "total_proposals": 1881,
+  "clinical_atomicity_adjudicated": false,
+  "clinical_acceptance": false,
+  "note_fact_limit": 300,
+  "extraction_batch_maximum_segments": 20,
+  "limitations": [
+    "Source-span transport preservation, not proof of clinical completeness or semantic atomicity.",
+    "Banter and nonclinical source spans remain visible; a clinician must select and verify note statements."
+  ]
+}

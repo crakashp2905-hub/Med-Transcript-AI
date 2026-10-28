@@ -24,7 +24,7 @@ The first attempt stopped after a Windows sharing violation during atomic report
 
 ## Run and inspect
 
-Only already installed public/local model artifacts are used. No paid calls or gated terms are authorized. Models and local Qwen drafting cooperate through the existing local inference admission lock; application ASR can queue while a benchmark occupies it. Runs may take hours on this 16 GB CPU workstation. Each completed candidate and its diagnostic report is committed and pushed. Runtime logs remain under ignored/transient paths; JSON evidence is versioned.
+Only already installed public/local model artifacts are used. No paid calls or gated terms are authorized. Models and local Qwen drafting cooperate through the existing local inference admission lock; application ASR can queue while a benchmark occupies it. Runs may take hours on this 16 GB CPU workstation. Each completed candidate and its diagnostic report is committed and pushed. A one-off finalizer waits for the owned campaign to exit, audits saved outputs and publishes a final ranking, chunking comparison and execution receipt. It never claims a complete comparison if models or required ablations are unfinished. Its temporary Windows system-awake request lasts only for the owned job and does not change persistent power settings. Runtime logs remain under ignored/transient paths; JSON evidence is versioned.
 
 ```powershell
 .\.venv\Scripts\python.exe -m services.detailed_campaign status
@@ -39,6 +39,14 @@ For a fresh data preparation, install `pyarrow==26.0.0` into `data/dataset-runti
 `services.detailed_diagnostics` reports per-consultation edits, reference-role edit attribution, literal medication/dose/allergy/negation mention changes, token deletions and donor-only eight-token matches. These are lexical diagnostics: they do not establish predicted speaker accuracy, correct medication bindings, negation scope or independently adjudicated clinical omissions. Reference-role labels are not model-predicted roles. The finite medication lexicon is explicitly reported and is not comprehensive medical terminology coverage.
 
 The separate detailed drafting screen compares deterministic output with pinned local Qwen 1.5B and 7B on complete upstream clinician-note units. It retains every line/semicolon clause and exact note-character evidence. Fixture eligibility flags are not clinician attestations. This screen measures exact preservation, bounded failures and model runtime, not clinical note accuracy, proper SOAP classification or clinician correction time. Full note units are not asserted to be adjudicated atomic clinical facts. Its failures remain included.
+
+## Long-source proposal batches
+
+The detailed source audit found 1,881 deterministic assertion-span proposals across the eight clean sources. The longest case produces 302, exceeding the single-note limit of 300. The application now requests up to 20 original source segments per local extraction call. Every batch remains bound to the complete source version/hash and records unprocessed segment IDs. Model output and relationship proposals remain separately saved and unreviewed; a model verdict cannot attest source completeness.
+
+The UI retains each source batch, shows processing coverage separately from clinician review, and lets a clinician select relevant proposals before adding them to the editor. Prior selections survive subsequent batches. Adding proposals clears their review flags, duplicate source spans are avoided and the 300-fact note bound remains enforced. Semantic checks reset after a saved note version changes, while extraction batches remain valid for the unchanged source. Existing stale-source and revoked-authorization publication fences still apply. Tests prove that the 302-span case can be split without losing any exact source evidence; they do not establish that lexical spans are clinically complete atomic facts.
+
+The completed [reference-note preservation screen](../evaluation/reports/detailed-drafting-summary-2026-10-29.json) independently checks saved statements against fixture units: deterministic 8/8 exact, Qwen 1.5B 3/8 exact with two failed cases, Qwen 7B 0/8 exact with eight failed cases under the configured 60-second bound. These are transport/preservation outcomes, not clinician correction-time or clinical note-accuracy measurements.
 
 ## Reviewers and clinician study
 
@@ -56,4 +64,4 @@ A reported channel count does not prove separate physical inputs, correct routin
 
 ## Verification and current limits
 
-The final regression results and ongoing measured reports are recorded with the delivery. The existing 5% gate, no-paid-call policy, clinician confirmation of roles and separation of proposals from approved notes remain unchanged. Independent annotation, clinician observations, physical routing/drift measurements and institutional approval are **not complete**. A final model winner cannot be announced while the comparable campaign is unfinished.
+The full backend regression, production build and targeted browser scenarios cover the added device, review-timing and source-batch behavior; exact results are recorded in the engineering validation receipt. Other model-dependent browser tests are not rerun concurrently with the resource-exclusive campaign. Ongoing measured results remain separate from completed engineering checks. The existing 5% gate, no-paid-call policy, clinician confirmation of roles and separation of proposals from approved notes remain unchanged. Independent annotation, clinician observations, physical routing/drift measurements and institutional approval are **not complete**. A final model winner cannot be announced while the comparable campaign is unfinished.

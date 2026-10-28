@@ -1,0 +1,3423 @@
+{
+  "schema_version": "detailed_note_preservation_screen_v1",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "clinical_acceptance": false,
+  "clinician_correction_time_measured": false,
+  "independent_gold_available": false,
+  "fixture_reviewed_flag": "offline_fixture_eligibility_only_not_a_clinician_attestation",
+  "unitization": "exact_note_lines_or_semicolon_clauses_not_adjudicated_atomic_facts",
+  "note_sections": "all_fixture_units_in_subjective_to_isolate_transport_preservation",
+  "complete": true,
+  "cases": [
+    {
+      "id": "day1_consultation01",
+      "note": "3/7 hx of diarrhea, mainly watery. No blood in stool. Opening bowels x6/day. Associated LLQ pain - crampy, intermittent, nil radiation.  Also vomiting - mainly bilous. No blood in vomit. Fever on first day, nil since. Has been feeling lethargic and weak since. \n\nTakeaway 4/7 ago - Chinese restaurant. Wife and children also unwell with vomiting, but no diarrhea. No other unwell contacts. \n\nPMH: Asthma\nDH: Inhalers\nSH: works as an accountant. Lives with wife and children. Affecting his ADLs as has to be near toilet often. \nNil smoking/etOH hx\n\nImp: gastroenteritis \n\nPlan:\nConservative management - rest, push fluids, paracetamol if feverish. Recommend OTC diarolyte. To review in 3-5d if symptoms not improving. To see earlier if feeling more unwell. \n",
+      "facts": [
+        {
+          "fact_id": "f1",
+          "section": "subjective",
+          "text": "3/7 hx of diarrhea, mainly watery. No blood in stool. Opening bowels x6/day. Associated LLQ pain - crampy, intermittent, nil radiation.  Also vomiting - mainly bilous. No blood in vomit. Fever on first day, nil since. Has been feeling lethargic and weak since.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 0,
+            "end_char": 260,
+            "quote": "3/7 hx of diarrhea, mainly watery. No blood in stool. Opening bowels x6/day. Associated LLQ pain - crampy, intermittent, nil radiation.  Also vomiting - mainly bilous. No blood in vomit. Fever on first day, nil since. Has been feeling lethargic and weak since."
+          }
+        },
+        {
+          "fact_id": "f2",
+          "section": "subjective",
+          "text": "Takeaway 4/7 ago - Chinese restaurant. Wife and children also unwell with vomiting, but no diarrhea. No other unwell contacts.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 263,
+            "end_char": 389,
+            "quote": "Takeaway 4/7 ago - Chinese restaurant. Wife and children also unwell with vomiting, but no diarrhea. No other unwell contacts."
+          }
+        },
+        {
+          "fact_id": "f3",
+          "section": "subjective",
+          "text": "PMH: Asthma",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 392,
+            "end_char": 403,
+            "quote": "PMH: Asthma"
+          }
+        },
+        {
+          "fact_id": "f4",
+          "section": "subjective",
+          "text": "DH: Inhalers",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 404,
+            "end_char": 416,
+            "quote": "DH: Inhalers"
+          }
+        },
+        {
+          "fact_id": "f5",
+          "section": "subjective",
+          "text": "SH: works as an accountant. Lives with wife and children. Affecting his ADLs as has to be near toilet often.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 417,
+            "end_char": 525,
+            "quote": "SH: works as an accountant. Lives with wife and children. Affecting his ADLs as has to be near toilet often."
+          }
+        },
+        {
+          "fact_id": "f6",
+          "section": "subjective",
+          "text": "Nil smoking/etOH hx",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 527,
+            "end_char": 546,
+            "quote": "Nil smoking/etOH hx"
+          }
+        },
+        {
+          "fact_id": "f7",
+          "section": "subjective",
+          "text": "Imp: gastroenteritis",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 548,
+            "end_char": 568,
+            "quote": "Imp: gastroenteritis"
+          }
+        },
+        {
+          "fact_id": "f8",
+          "section": "subjective",
+          "text": "Plan:",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 571,
+            "end_char": 576,
+            "quote": "Plan:"
+          }
+        },
+        {
+          "fact_id": "f9",
+          "section": "subjective",
+          "text": "Conservative management - rest, push fluids, paracetamol if feverish. Recommend OTC diarolyte. To review in 3-5d if symptoms not improving. To see earlier if feeling more unwell.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 577,
+            "end_char": 755,
+            "quote": "Conservative management - rest, push fluids, paracetamol if feverish. Recommend OTC diarolyte. To review in 3-5d if symptoms not improving. To see earlier if feeling more unwell."
+          }
+        }
+      ]
+    },
+    {
+      "id": "day1_consultation02",
+      "note": "4/7 hx of dry itchy skin, mainly on chest and back. Skin is also sore and cracked. No bleeding or discharge. No spread elsewhere. Not aware of any triggers. Used steroid cream OTC last night with minimal effect. Pt has also tried antihistamines. \nSystemically well otherwise - no fevers, no vomiting, no SOB/cough. No bowel sx. \n\nPMH: Eczema, Asthma \nDHx: Nil regular\nNKDA\nSH: lives with flatmates, works as a pharmaceutical manager. Non-smoker, social EtOH. \nICE: pt thinks might be related to eczema. No concerns\n\nImp: flare up of eczema\n\nPlan:\n1.\tSteroid cream - Betnovate BD\n2.\tEmollients - cetraben - use up to QDS\n3.\tTrial antihistamines\n4.\tKeep trigger diary \n5.\tReview in 10-14d if symptoms no better, or earlier if any concerns/worsening sx\n",
+      "facts": [
+        {
+          "fact_id": "f1",
+          "section": "subjective",
+          "text": "4/7 hx of dry itchy skin, mainly on chest and back. Skin is also sore and cracked. No bleeding or discharge. No spread elsewhere. Not aware of any triggers. Used steroid cream OTC last night with minimal effect. Pt has also tried antihistamines.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 0,
+            "end_char": 245,
+            "quote": "4/7 hx of dry itchy skin, mainly on chest and back. Skin is also sore and cracked. No bleeding or discharge. No spread elsewhere. Not aware of any triggers. Used steroid cream OTC last night with minimal effect. Pt has also tried antihistamines."
+          }
+        },
+        {
+          "fact_id": "f2",
+          "section": "subjective",
+          "text": "Systemically well otherwise - no fevers, no vomiting, no SOB/cough. No bowel sx.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 247,
+            "end_char": 327,
+            "quote": "Systemically well otherwise - no fevers, no vomiting, no SOB/cough. No bowel sx."
+          }
+        },
+        {
+          "fact_id": "f3",
+          "section": "subjective",
+          "text": "PMH: Eczema, Asthma",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 330,
+            "end_char": 349,
+            "quote": "PMH: Eczema, Asthma"
+          }
+        },
+        {
+          "fact_id": "f4",
+          "section": "subjective",
+          "text": "DHx: Nil regular",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 351,
+            "end_char": 367,
+            "quote": "DHx: Nil regular"
+          }
+        },
+        {
+          "fact_id": "f5",
+          "section": "subjective",
+          "text": "NKDA",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 368,
+            "end_char": 372,
+            "quote": "NKDA"
+          }
+        },
+        {
+          "fact_id": "f6",
+          "section": "subjective",
+          "text": "SH: lives with flatmates, works as a pharmaceutical manager. Non-smoker, social EtOH.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 373,
+            "end_char": 458,
+            "quote": "SH: lives with flatmates, works as a pharmaceutical manager. Non-smoker, social EtOH."
+          }
+        },
+        {
+          "fact_id": "f7",
+          "section": "subjective",
+          "text": "ICE: pt thinks might be related to eczema. No concerns",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 460,
+            "end_char": 514,
+            "quote": "ICE: pt thinks might be related to eczema. No concerns"
+          }
+        },
+        {
+          "fact_id": "f8",
+          "section": "subjective",
+          "text": "Imp: flare up of eczema",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 516,
+            "end_char": 539,
+            "quote": "Imp: flare up of eczema"
+          }
+        },
+        {
+          "fact_id": "f9",
+          "section": "subjective",
+          "text": "Plan:",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 541,
+            "end_char": 546,
+            "quote": "Plan:"
+          }
+        },
+        {
+          "fact_id": "f10",
+          "section": "subjective",
+          "text": "1.\tSteroid cream - Betnovate BD",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 547,
+            "end_char": 578,
+            "quote": "1.\tSteroid cream - Betnovate BD"
+          }
+        },
+        {
+          "fact_id": "f11",
+          "section": "subjective",
+          "text": "2.\tEmollients - cetraben - use up to QDS",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 579,
+            "end_char": 619,
+            "quote": "2.\tEmollients - cetraben - use up to QDS"
+          }
+        },
+        {
+          "fact_id": "f12",
+          "section": "subjective",
+          "text": "3.\tTrial antihistamines",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 620,
+            "end_char": 643,
+            "quote": "3.\tTrial antihistamines"
+          }
+        },
+        {
+          "fact_id": "f13",
+          "section": "subjective",
+          "text": "4.\tKeep trigger diary",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 644,
+            "end_char": 665,
+            "quote": "4.\tKeep trigger diary"
+          }
+        },
+        {
+          "fact_id": "f14",
+          "section": "subjective",
+          "text": "5.\tReview in 10-14d if symptoms no better, or earlier if any concerns/worsening sx",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 667,
+            "end_char": 749,
+            "quote": "5.\tReview in 10-14d if symptoms no better, or earlier if any concerns/worsening sx"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day1_consultation03",
+      "note": "Headache on left side. Started few hours ago, gradual onset. Throbbing in nature. Nil radiating. \nHad visual aura before onset of headaches - zigzag lines in field of vision. Also associated photophobia and blurred vision. Feels nauseous and has vomited twice today. Also reports some neck pain. Nil neck stiffness. \nNo speech disturbances\nNo limb weakness or numbness\nNo coordination/balance issues\nNo recent head injury \nNo fever\nNo rashes \n\nSimilar episode 2/52 ago - resolved with analgesia. Pt worried about brain Ca. \n\nPMH: nil\nDH: microgynon \nNKDA\nFH: mother - migraine \nSH: lives alone, works in fashion industry. Feeling stressed ++. Nil mood sx. Nil smoking/etOH hx\n\nImp: migraine\n\nPlan:\n1.\tChange COCP to POP\n2.\tKeep headache diary \n3.\tRegular paracetamol/NSAIDs\n4.\tReview in 1w to discuss prophylactic Rx, or earlier if worsening sx (headaches, vomiting, vision sx) or any concerns\n",
+      "facts": [
+        {
+          "fact_id": "f1",
+          "section": "subjective",
+          "text": "Headache on left side. Started few hours ago, gradual onset. Throbbing in nature. Nil radiating.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 0,
+            "end_char": 96,
+            "quote": "Headache on left side. Started few hours ago, gradual onset. Throbbing in nature. Nil radiating."
+          }
+        },
+        {
+          "fact_id": "f2",
+          "section": "subjective",
+          "text": "Had visual aura before onset of headaches - zigzag lines in field of vision. Also associated photophobia and blurred vision. Feels nauseous and has vomited twice today. Also reports some neck pain. Nil neck stiffness.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 98,
+            "end_char": 315,
+            "quote": "Had visual aura before onset of headaches - zigzag lines in field of vision. Also associated photophobia and blurred vision. Feels nauseous and has vomited twice today. Also reports some neck pain. Nil neck stiffness."
+          }
+        },
+        {
+          "fact_id": "f3",
+          "section": "subjective",
+          "text": "No speech disturbances",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 317,
+            "end_char": 339,
+            "quote": "No speech disturbances"
+          }
+        },
+        {
+          "fact_id": "f4",
+          "section": "subjective",
+          "text": "No limb weakness or numbness",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 340,
+            "end_char": 368,
+            "quote": "No limb weakness or numbness"
+          }
+        },
+        {
+          "fact_id": "f5",
+          "section": "subjective",
+          "text": "No coordination/balance issues",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 369,
+            "end_char": 399,
+            "quote": "No coordination/balance issues"
+          }
+        },
+        {
+          "fact_id": "f6",
+          "section": "subjective",
+          "text": "No recent head injury",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 400,
+            "end_char": 421,
+            "quote": "No recent head injury"
+          }
+        },
+        {
+          "fact_id": "f7",
+          "section": "subjective",
+          "text": "No fever",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 423,
+            "end_char": 431,
+            "quote": "No fever"
+          }
+        },
+        {
+          "fact_id": "f8",
+          "section": "subjective",
+          "text": "No rashes",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 432,
+            "end_char": 441,
+            "quote": "No rashes"
+          }
+        },
+        {
+          "fact_id": "f9",
+          "section": "subjective",
+          "text": "Similar episode 2/52 ago - resolved with analgesia. Pt worried about brain Ca.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 444,
+            "end_char": 522,
+            "quote": "Similar episode 2/52 ago - resolved with analgesia. Pt worried about brain Ca."
+          }
+        },
+        {
+          "fact_id": "f10",
+          "section": "subjective",
+          "text": "PMH: nil",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 525,
+            "end_char": 533,
+            "quote": "PMH: nil"
+          }
+        },
+        {
+          "fact_id": "f11",
+          "section": "subjective",
+          "text": "DH: microgynon",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 534,
+            "end_char": 548,
+            "quote": "DH: microgynon"
+          }
+        },
+        {
+          "fact_id": "f12",
+          "section": "subjective",
+          "text": "NKDA",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 550,
+            "end_char": 554,
+            "quote": "NKDA"
+          }
+        },
+        {
+          "fact_id": "f13",
+          "section": "subjective",
+          "text": "FH: mother - migraine",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 555,
+            "end_char": 576,
+            "quote": "FH: mother - migraine"
+          }
+        },
+        {
+          "fact_id": "f14",
+          "section": "subjective",
+          "text": "SH: lives alone, works in fashion industry. Feeling stressed ++. Nil mood sx. Nil smoking/etOH hx",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 578,
+            "end_char": 675,
+            "quote": "SH: lives alone, works in fashion industry. Feeling stressed ++. Nil mood sx. Nil smoking/etOH hx"
+          }
+        },
+        {
+          "fact_id": "f15",
+          "section": "subjective",
+          "text": "Imp: migraine",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 677,
+            "end_char": 690,
+            "quote": "Imp: migraine"
+          }
+        },
+        {
+          "fact_id": "f16",
+          "section": "subjective",
+          "text": "Plan:",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 692,
+            "end_char": 697,
+            "quote": "Plan:"
+          }
+        },
+        {
+          "fact_id": "f17",
+          "section": "subjective",
+          "text": "1.\tChange COCP to POP",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 698,
+            "end_char": 719,
+            "quote": "1.\tChange COCP to POP"
+          }
+        },
+        {
+          "fact_id": "f18",
+          "section": "subjective",
+          "text": "2.\tKeep headache diary",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 720,
+            "end_char": 742,
+            "quote": "2.\tKeep headache diary"
+          }
+        },
+        {
+          "fact_id": "f19",
+          "section": "subjective",
+          "text": "3.\tRegular paracetamol/NSAIDs",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 744,
+            "end_char": 773,
+            "quote": "3.\tRegular paracetamol/NSAIDs"
+          }
+        },
+        {
+          "fact_id": "f20",
+          "section": "subjective",
+          "text": "4.\tReview in 1w to discuss prophylactic Rx, or earlier if worsening sx (headaches, vomiting, vision sx) or any concerns",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 774,
+            "end_char": 893,
+            "quote": "4.\tReview in 1w to discuss prophylactic Rx, or earlier if worsening sx (headaches, vomiting, vision sx) or any concerns"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day1_consultation04",
+      "note": "4/7 hx of generally unwell, mainly sore throat, runny nose, fatigue, myalgia and general joint pain. Sore throat is improving. Also has nasal congestion. Now developed a cough -mainly dry, constant. Night sweats for the past 4/7. Initially had fever, but now settling with paracetamol/ibuprofen. \nNo chest pain. Feels more SOB on exertion. \nAssociated headaches - generalized, intermittent. No visual sx/photophobia. No nausea/vomiting. No bowel or urinary sx. Drinking fluids, reduced appetite. No rashes\n\nPMH: Nil \nDH: nil \nNKDA\nFH: Grandmother - type 2 diabetes\nSH: lives alone, works as an accountant. Occasional smoker/etOH. Finding work slightly stressful. No mood sx. \n\nImp: viral URTI/influenza \n\nPlan:\n1.\tConservative mx - rest, push fluids, regular paracetamol/ibuprofen, monitor temp\n2.\tReview in 5-7d INB\n3.\tDiscussed red flag sx (SOB, chest pain, fevers)- if present, for urgent review with Dr \n",
+      "facts": [
+        {
+          "fact_id": "f1",
+          "section": "subjective",
+          "text": "4/7 hx of generally unwell, mainly sore throat, runny nose, fatigue, myalgia and general joint pain. Sore throat is improving. Also has nasal congestion. Now developed a cough -mainly dry, constant. Night sweats for the past 4/7. Initially had fever, but now settling with paracetamol/ibuprofen.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 0,
+            "end_char": 295,
+            "quote": "4/7 hx of generally unwell, mainly sore throat, runny nose, fatigue, myalgia and general joint pain. Sore throat is improving. Also has nasal congestion. Now developed a cough -mainly dry, constant. Night sweats for the past 4/7. Initially had fever, but now settling with paracetamol/ibuprofen."
+          }
+        },
+        {
+          "fact_id": "f2",
+          "section": "subjective",
+          "text": "No chest pain. Feels more SOB on exertion.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 297,
+            "end_char": 339,
+            "quote": "No chest pain. Feels more SOB on exertion."
+          }
+        },
+        {
+          "fact_id": "f3",
+          "section": "subjective",
+          "text": "Associated headaches - generalized, intermittent. No visual sx/photophobia. No nausea/vomiting. No bowel or urinary sx. Drinking fluids, reduced appetite. No rashes",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 341,
+            "end_char": 505,
+            "quote": "Associated headaches - generalized, intermittent. No visual sx/photophobia. No nausea/vomiting. No bowel or urinary sx. Drinking fluids, reduced appetite. No rashes"
+          }
+        },
+        {
+          "fact_id": "f4",
+          "section": "subjective",
+          "text": "PMH: Nil",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 507,
+            "end_char": 515,
+            "quote": "PMH: Nil"
+          }
+        },
+        {
+          "fact_id": "f5",
+          "section": "subjective",
+          "text": "DH: nil",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 517,
+            "end_char": 524,
+            "quote": "DH: nil"
+          }
+        },
+        {
+          "fact_id": "f6",
+          "section": "subjective",
+          "text": "NKDA",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 526,
+            "end_char": 530,
+            "quote": "NKDA"
+          }
+        },
+        {
+          "fact_id": "f7",
+          "section": "subjective",
+          "text": "FH: Grandmother - type 2 diabetes",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 531,
+            "end_char": 564,
+            "quote": "FH: Grandmother - type 2 diabetes"
+          }
+        },
+        {
+          "fact_id": "f8",
+          "section": "subjective",
+          "text": "SH: lives alone, works as an accountant. Occasional smoker/etOH. Finding work slightly stressful. No mood sx.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 565,
+            "end_char": 674,
+            "quote": "SH: lives alone, works as an accountant. Occasional smoker/etOH. Finding work slightly stressful. No mood sx."
+          }
+        },
+        {
+          "fact_id": "f9",
+          "section": "subjective",
+          "text": "Imp: viral URTI/influenza",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 677,
+            "end_char": 702,
+            "quote": "Imp: viral URTI/influenza"
+          }
+        },
+        {
+          "fact_id": "f10",
+          "section": "subjective",
+          "text": "Plan:",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 705,
+            "end_char": 710,
+            "quote": "Plan:"
+          }
+        },
+        {
+          "fact_id": "f11",
+          "section": "subjective",
+          "text": "1.\tConservative mx - rest, push fluids, regular paracetamol/ibuprofen, monitor temp",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 711,
+            "end_char": 794,
+            "quote": "1.\tConservative mx - rest, push fluids, regular paracetamol/ibuprofen, monitor temp"
+          }
+        },
+        {
+          "fact_id": "f12",
+          "section": "subjective",
+          "text": "2.\tReview in 5-7d INB",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 795,
+            "end_char": 816,
+            "quote": "2.\tReview in 5-7d INB"
+          }
+        },
+        {
+          "fact_id": "f13",
+          "section": "subjective",
+          "text": "3.\tDiscussed red flag sx (SOB, chest pain, fevers)- if present, for urgent review with Dr",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 817,
+            "end_char": 906,
+            "quote": "3.\tDiscussed red flag sx (SOB, chest pain, fevers)- if present, for urgent review with Dr"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day1_consultation05",
+      "note": "2/7 ago developed lower abdo pain/suprapubic pain, gradual onset, burning pain, constant, progressively worsening\nNo bowel sx. \nUrinary sx - noticed some pink coloured urine, no frank haematuria, nil dysuria.  \nSome nausea, no vomiting\nFeeling hot and sweaty\nCurrently sexually active with regular partner. Last STD 6/12 ago. Unprotected SI 2/7 ago. \nLMP 2/52 ago \n\nNo chest pain/SOB/palpitations\nNo headches/visual sx\n\nPMH: nil\nPSH: nil \nDH: implanon , otherwise nil\nFH: nil \nSH: roomshare with 2 flatmates, works as an accountant. Nil smoking, social EtOH \n\nImp: ?UTI. also need to exclude pregnancy \n\nPlan:\n1.\tPregnancy test\n2.\tUrine dip and MSU\n3.\tRx empirically with Abx for UTI\n4.\tRegular paracetamol for pain \n5.\tReview in 24-48 hours if sx not improving, or earlier if worsening sx (fever, abdo pain, vomiting)\n",
+      "facts": [
+        {
+          "fact_id": "f1",
+          "section": "subjective",
+          "text": "2/7 ago developed lower abdo pain/suprapubic pain, gradual onset, burning pain, constant, progressively worsening",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 0,
+            "end_char": 113,
+            "quote": "2/7 ago developed lower abdo pain/suprapubic pain, gradual onset, burning pain, constant, progressively worsening"
+          }
+        },
+        {
+          "fact_id": "f2",
+          "section": "subjective",
+          "text": "No bowel sx.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 114,
+            "end_char": 126,
+            "quote": "No bowel sx."
+          }
+        },
+        {
+          "fact_id": "f3",
+          "section": "subjective",
+          "text": "Urinary sx - noticed some pink coloured urine, no frank haematuria, nil dysuria.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 128,
+            "end_char": 208,
+            "quote": "Urinary sx - noticed some pink coloured urine, no frank haematuria, nil dysuria."
+          }
+        },
+        {
+          "fact_id": "f4",
+          "section": "subjective",
+          "text": "Some nausea, no vomiting",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 211,
+            "end_char": 235,
+            "quote": "Some nausea, no vomiting"
+          }
+        },
+        {
+          "fact_id": "f5",
+          "section": "subjective",
+          "text": "Feeling hot and sweaty",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 236,
+            "end_char": 258,
+            "quote": "Feeling hot and sweaty"
+          }
+        },
+        {
+          "fact_id": "f6",
+          "section": "subjective",
+          "text": "Currently sexually active with regular partner. Last STD 6/12 ago. Unprotected SI 2/7 ago.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 259,
+            "end_char": 349,
+            "quote": "Currently sexually active with regular partner. Last STD 6/12 ago. Unprotected SI 2/7 ago."
+          }
+        },
+        {
+          "fact_id": "f7",
+          "section": "subjective",
+          "text": "LMP 2/52 ago",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 351,
+            "end_char": 363,
+            "quote": "LMP 2/52 ago"
+          }
+        },
+        {
+          "fact_id": "f8",
+          "section": "subjective",
+          "text": "No chest pain/SOB/palpitations",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 366,
+            "end_char": 396,
+            "quote": "No chest pain/SOB/palpitations"
+          }
+        },
+        {
+          "fact_id": "f9",
+          "section": "subjective",
+          "text": "No headches/visual sx",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 397,
+            "end_char": 418,
+            "quote": "No headches/visual sx"
+          }
+        },
+        {
+          "fact_id": "f10",
+          "section": "subjective",
+          "text": "PMH: nil",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 420,
+            "end_char": 428,
+            "quote": "PMH: nil"
+          }
+        },
+        {
+          "fact_id": "f11",
+          "section": "subjective",
+          "text": "PSH: nil",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 429,
+            "end_char": 437,
+            "quote": "PSH: nil"
+          }
+        },
+        {
+          "fact_id": "f12",
+          "section": "subjective",
+          "text": "DH: implanon , otherwise nil",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 439,
+            "end_char": 467,
+            "quote": "DH: implanon , otherwise nil"
+          }
+        },
+        {
+          "fact_id": "f13",
+          "section": "subjective",
+          "text": "FH: nil",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 468,
+            "end_char": 475,
+            "quote": "FH: nil"
+          }
+        },
+        {
+          "fact_id": "f14",
+          "section": "subjective",
+          "text": "SH: roomshare with 2 flatmates, works as an accountant. Nil smoking, social EtOH",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 477,
+            "end_char": 557,
+            "quote": "SH: roomshare with 2 flatmates, works as an accountant. Nil smoking, social EtOH"
+          }
+        },
+        {
+          "fact_id": "f15",
+          "section": "subjective",
+          "text": "Imp: ?UTI. also need to exclude pregnancy",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 560,
+            "end_char": 601,
+            "quote": "Imp: ?UTI. also need to exclude pregnancy"
+          }
+        },
+        {
+          "fact_id": "f16",
+          "section": "subjective",
+          "text": "Plan:",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 604,
+            "end_char": 609,
+            "quote": "Plan:"
+          }
+        },
+        {
+          "fact_id": "f17",
+          "section": "subjective",
+          "text": "1.\tPregnancy test",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 610,
+            "end_char": 627,
+            "quote": "1.\tPregnancy test"
+          }
+        },
+        {
+          "fact_id": "f18",
+          "section": "subjective",
+          "text": "2.\tUrine dip and MSU",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 628,
+            "end_char": 648,
+            "quote": "2.\tUrine dip and MSU"
+          }
+        },
+        {
+          "fact_id": "f19",
+          "section": "subjective",
+          "text": "3.\tRx empirically with Abx for UTI",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 649,
+            "end_char": 683,
+            "quote": "3.\tRx empirically with Abx for UTI"
+          }
+        },
+        {
+          "fact_id": "f20",
+          "section": "subjective",
+          "text": "4.\tRegular paracetamol for pain",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 684,
+            "end_char": 715,
+            "quote": "4.\tRegular paracetamol for pain"
+          }
+        },
+        {
+          "fact_id": "f21",
+          "section": "subjective",
+          "text": "5.\tReview in 24-48 hours if sx not improving, or earlier if worsening sx (fever, abdo pain, vomiting)",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 717,
+            "end_char": 818,
+            "quote": "5.\tReview in 24-48 hours if sx not improving, or earlier if worsening sx (fever, abdo pain, vomiting)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day1_consultation06",
+      "note": "2/5 hx of SOB, worsening over the past 2/7. Feeling more SOB on minimal exertion, nil SOB at rest. No chest pain/palpitations. Assoc cough - mainly dry. No fevers. Has also noticed ankle odema bilaterally over past few days extending to shins. \nDiagnosed with heart failure previously and currently on diuretics. \nUrinary - Polyuria, nil else\n\nPMH: Heart failure, ?unstable angina \nDH: furosemide, aspirin, bisoprolol, simvastatin\nNKDA\nFH - father died of MI early 60s , mother - osteoporosis \nSH: lives alone, 2 cats , works part time as a lorry driver. Ex-smoker - a pack/d for 25 years. No etOH\n\nImp: exacerbation of heart failure\n\nPlan:\n1.\tIncrease furosemide BD\n2.\tBlood tests, inc U+Es, FBC, BNP\n3.\tArrange echo \n4.\tReview in 7d, or earlier if worsening sx (chest pain, SOB, dizziness, etc)\n",
+      "facts": [
+        {
+          "fact_id": "f1",
+          "section": "subjective",
+          "text": "2/5 hx of SOB, worsening over the past 2/7. Feeling more SOB on minimal exertion, nil SOB at rest. No chest pain/palpitations. Assoc cough - mainly dry. No fevers. Has also noticed ankle odema bilaterally over past few days extending to shins.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 0,
+            "end_char": 243,
+            "quote": "2/5 hx of SOB, worsening over the past 2/7. Feeling more SOB on minimal exertion, nil SOB at rest. No chest pain/palpitations. Assoc cough - mainly dry. No fevers. Has also noticed ankle odema bilaterally over past few days extending to shins."
+          }
+        },
+        {
+          "fact_id": "f2",
+          "section": "subjective",
+          "text": "Diagnosed with heart failure previously and currently on diuretics.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 245,
+            "end_char": 312,
+            "quote": "Diagnosed with heart failure previously and currently on diuretics."
+          }
+        },
+        {
+          "fact_id": "f3",
+          "section": "subjective",
+          "text": "Urinary - Polyuria, nil else",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 314,
+            "end_char": 342,
+            "quote": "Urinary - Polyuria, nil else"
+          }
+        },
+        {
+          "fact_id": "f4",
+          "section": "subjective",
+          "text": "PMH: Heart failure, ?unstable angina",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 344,
+            "end_char": 380,
+            "quote": "PMH: Heart failure, ?unstable angina"
+          }
+        },
+        {
+          "fact_id": "f5",
+          "section": "subjective",
+          "text": "DH: furosemide, aspirin, bisoprolol, simvastatin",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 382,
+            "end_char": 430,
+            "quote": "DH: furosemide, aspirin, bisoprolol, simvastatin"
+          }
+        },
+        {
+          "fact_id": "f6",
+          "section": "subjective",
+          "text": "NKDA",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 431,
+            "end_char": 435,
+            "quote": "NKDA"
+          }
+        },
+        {
+          "fact_id": "f7",
+          "section": "subjective",
+          "text": "FH - father died of MI early 60s , mother - osteoporosis",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 436,
+            "end_char": 492,
+            "quote": "FH - father died of MI early 60s , mother - osteoporosis"
+          }
+        },
+        {
+          "fact_id": "f8",
+          "section": "subjective",
+          "text": "SH: lives alone, 2 cats , works part time as a lorry driver. Ex-smoker - a pack/d for 25 years. No etOH",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 494,
+            "end_char": 597,
+            "quote": "SH: lives alone, 2 cats , works part time as a lorry driver. Ex-smoker - a pack/d for 25 years. No etOH"
+          }
+        },
+        {
+          "fact_id": "f9",
+          "section": "subjective",
+          "text": "Imp: exacerbation of heart failure",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 599,
+            "end_char": 633,
+            "quote": "Imp: exacerbation of heart failure"
+          }
+        },
+        {
+          "fact_id": "f10",
+          "section": "subjective",
+          "text": "Plan:",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 635,
+            "end_char": 640,
+            "quote": "Plan:"
+          }
+        },
+        {
+          "fact_id": "f11",
+          "section": "subjective",
+          "text": "1.\tIncrease furosemide BD",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 641,
+            "end_char": 666,
+            "quote": "1.\tIncrease furosemide BD"
+          }
+        },
+        {
+          "fact_id": "f12",
+          "section": "subjective",
+          "text": "2.\tBlood tests, inc U+Es, FBC, BNP",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 667,
+            "end_char": 701,
+            "quote": "2.\tBlood tests, inc U+Es, FBC, BNP"
+          }
+        },
+        {
+          "fact_id": "f13",
+          "section": "subjective",
+          "text": "3.\tArrange echo",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 702,
+            "end_char": 717,
+            "quote": "3.\tArrange echo"
+          }
+        },
+        {
+          "fact_id": "f14",
+          "section": "subjective",
+          "text": "4.\tReview in 7d, or earlier if worsening sx (chest pain, SOB, dizziness, etc)",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 719,
+            "end_char": 796,
+            "quote": "4.\tReview in 7d, or earlier if worsening sx (chest pain, SOB, dizziness, etc)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day1_consultation07",
+      "note": "5/7 hx of generally unwell with cough and cold sx. Mainly dry cough. No chest pain. Feeling more SOB. \nFeeling hot/cold and sweaty. No fevers. \nSore throat and blocked ears. Also myalgia and arthralgia - mainly stiffness in joints. \nNo unwell contacts\nNo nausea/vomiting\nNo bowel symptoms\n\n\nPMH: obesity, diabetes - type 2 , hypertension\nDH: metformin, lisinopril , aspirin, \nNKDA\nSH: lives with wife, works in factory/manufacturing, smoking socially, etOH - >14 units/week \n\nImp: viral URTI/? LRTI\n\nPlan:\n1.\tConservative mx - rest, fluids, regular paracetamol \n2.\tDelayed script for amoxicillin abx - to start in 24-48 hours if sx not improving\n3.\tReview in 1/52 INB, or earlier if worsening sx (chest pain, SOB, fevers)\n",
+      "facts": [
+        {
+          "fact_id": "f1",
+          "section": "subjective",
+          "text": "5/7 hx of generally unwell with cough and cold sx. Mainly dry cough. No chest pain. Feeling more SOB.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 0,
+            "end_char": 101,
+            "quote": "5/7 hx of generally unwell with cough and cold sx. Mainly dry cough. No chest pain. Feeling more SOB."
+          }
+        },
+        {
+          "fact_id": "f2",
+          "section": "subjective",
+          "text": "Feeling hot/cold and sweaty. No fevers.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 103,
+            "end_char": 142,
+            "quote": "Feeling hot/cold and sweaty. No fevers."
+          }
+        },
+        {
+          "fact_id": "f3",
+          "section": "subjective",
+          "text": "Sore throat and blocked ears. Also myalgia and arthralgia - mainly stiffness in joints.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 144,
+            "end_char": 231,
+            "quote": "Sore throat and blocked ears. Also myalgia and arthralgia - mainly stiffness in joints."
+          }
+        },
+        {
+          "fact_id": "f4",
+          "section": "subjective",
+          "text": "No unwell contacts",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 233,
+            "end_char": 251,
+            "quote": "No unwell contacts"
+          }
+        },
+        {
+          "fact_id": "f5",
+          "section": "subjective",
+          "text": "No nausea/vomiting",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 252,
+            "end_char": 270,
+            "quote": "No nausea/vomiting"
+          }
+        },
+        {
+          "fact_id": "f6",
+          "section": "subjective",
+          "text": "No bowel symptoms",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 271,
+            "end_char": 288,
+            "quote": "No bowel symptoms"
+          }
+        },
+        {
+          "fact_id": "f7",
+          "section": "subjective",
+          "text": "PMH: obesity, diabetes - type 2 , hypertension",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 291,
+            "end_char": 337,
+            "quote": "PMH: obesity, diabetes - type 2 , hypertension"
+          }
+        },
+        {
+          "fact_id": "f8",
+          "section": "subjective",
+          "text": "DH: metformin, lisinopril , aspirin,",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 338,
+            "end_char": 374,
+            "quote": "DH: metformin, lisinopril , aspirin,"
+          }
+        },
+        {
+          "fact_id": "f9",
+          "section": "subjective",
+          "text": "NKDA",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 376,
+            "end_char": 380,
+            "quote": "NKDA"
+          }
+        },
+        {
+          "fact_id": "f10",
+          "section": "subjective",
+          "text": "SH: lives with wife, works in factory/manufacturing, smoking socially, etOH - >14 units/week",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 381,
+            "end_char": 473,
+            "quote": "SH: lives with wife, works in factory/manufacturing, smoking socially, etOH - >14 units/week"
+          }
+        },
+        {
+          "fact_id": "f11",
+          "section": "subjective",
+          "text": "Imp: viral URTI/? LRTI",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 476,
+            "end_char": 498,
+            "quote": "Imp: viral URTI/? LRTI"
+          }
+        },
+        {
+          "fact_id": "f12",
+          "section": "subjective",
+          "text": "Plan:",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 500,
+            "end_char": 505,
+            "quote": "Plan:"
+          }
+        },
+        {
+          "fact_id": "f13",
+          "section": "subjective",
+          "text": "1.\tConservative mx - rest, fluids, regular paracetamol",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 506,
+            "end_char": 560,
+            "quote": "1.\tConservative mx - rest, fluids, regular paracetamol"
+          }
+        },
+        {
+          "fact_id": "f14",
+          "section": "subjective",
+          "text": "2.\tDelayed script for amoxicillin abx - to start in 24-48 hours if sx not improving",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 562,
+            "end_char": 645,
+            "quote": "2.\tDelayed script for amoxicillin abx - to start in 24-48 hours if sx not improving"
+          }
+        },
+        {
+          "fact_id": "f15",
+          "section": "subjective",
+          "text": "3.\tReview in 1/52 INB, or earlier if worsening sx (chest pain, SOB, fevers)",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 646,
+            "end_char": 721,
+            "quote": "3.\tReview in 1/52 INB, or earlier if worsening sx (chest pain, SOB, fevers)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "day1_consultation08",
+      "note": "3/7 hx of dry itchy skin, mainly on the hands and palms. No spread elsewhere. No bleeding/discharge. No cracked skin. Sx started after going swimming. No prev skin problems. \nNo fevers. No vomiting. \nAppetite maintained, nil nausea/vomiting \nNil bowel/urinary sx \n\nPMH: Lactose intolerance\nDH: microgynon\nNKDA\nFH:  Father - asthma, Mother - hayfever \nSH: - lives alone, nil smoker/etOH/recreational drugs , works as primary school teacher. Recent stress ++\n\nImp: dermatitis\n\nPlan:\n1.\tSteroid cream BD\n2.\tEmollients - regular use QDS\n3.\tAntihistamines \n4.\tReview sx in 1/52, or earlier if worsening sx/any concerns\n",
+      "facts": [
+        {
+          "fact_id": "f1",
+          "section": "subjective",
+          "text": "3/7 hx of dry itchy skin, mainly on the hands and palms. No spread elsewhere. No bleeding/discharge. No cracked skin. Sx started after going swimming. No prev skin problems.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 0,
+            "end_char": 173,
+            "quote": "3/7 hx of dry itchy skin, mainly on the hands and palms. No spread elsewhere. No bleeding/discharge. No cracked skin. Sx started after going swimming. No prev skin problems."
+          }
+        },
+        {
+          "fact_id": "f2",
+          "section": "subjective",
+          "text": "No fevers. No vomiting.",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 175,
+            "end_char": 198,
+            "quote": "No fevers. No vomiting."
+          }
+        },
+        {
+          "fact_id": "f3",
+          "section": "subjective",
+          "text": "Appetite maintained, nil nausea/vomiting",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 200,
+            "end_char": 240,
+            "quote": "Appetite maintained, nil nausea/vomiting"
+          }
+        },
+        {
+          "fact_id": "f4",
+          "section": "subjective",
+          "text": "Nil bowel/urinary sx",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 242,
+            "end_char": 262,
+            "quote": "Nil bowel/urinary sx"
+          }
+        },
+        {
+          "fact_id": "f5",
+          "section": "subjective",
+          "text": "PMH: Lactose intolerance",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 265,
+            "end_char": 289,
+            "quote": "PMH: Lactose intolerance"
+          }
+        },
+        {
+          "fact_id": "f6",
+          "section": "subjective",
+          "text": "DH: microgynon",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 290,
+            "end_char": 304,
+            "quote": "DH: microgynon"
+          }
+        },
+        {
+          "fact_id": "f7",
+          "section": "subjective",
+          "text": "NKDA",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 305,
+            "end_char": 309,
+            "quote": "NKDA"
+          }
+        },
+        {
+          "fact_id": "f8",
+          "section": "subjective",
+          "text": "FH:  Father - asthma, Mother - hayfever",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 310,
+            "end_char": 349,
+            "quote": "FH:  Father - asthma, Mother - hayfever"
+          }
+        },
+        {
+          "fact_id": "f9",
+          "section": "subjective",
+          "text": "SH: - lives alone, nil smoker/etOH/recreational drugs , works as primary school teacher. Recent stress ++",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 351,
+            "end_char": 456,
+            "quote": "SH: - lives alone, nil smoker/etOH/recreational drugs , works as primary school teacher. Recent stress ++"
+          }
+        },
+        {
+          "fact_id": "f10",
+          "section": "subjective",
+          "text": "Imp: dermatitis",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 458,
+            "end_char": 473,
+            "quote": "Imp: dermatitis"
+          }
+        },
+        {
+          "fact_id": "f11",
+          "section": "subjective",
+          "text": "Plan:",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 475,
+            "end_char": 480,
+            "quote": "Plan:"
+          }
+        },
+        {
+          "fact_id": "f12",
+          "section": "subjective",
+          "text": "1.\tSteroid cream BD",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 481,
+            "end_char": 500,
+            "quote": "1.\tSteroid cream BD"
+          }
+        },
+        {
+          "fact_id": "f13",
+          "section": "subjective",
+          "text": "2.\tEmollients - regular use QDS",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 501,
+            "end_char": 532,
+            "quote": "2.\tEmollients - regular use QDS"
+          }
+        },
+        {
+          "fact_id": "f14",
+          "section": "subjective",
+          "text": "3.\tAntihistamines",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 533,
+            "end_char": 550,
+            "quote": "3.\tAntihistamines"
+          }
+        },
+        {
+          "fact_id": "f15",
+          "section": "subjective",
+          "text": "4.\tReview sx in 1/52, or earlier if worsening sx/any concerns",
+          "reviewed": true,
+          "fixture_evidence": {
+            "source": "upstream_clinician_note",
+            "start_char": 552,
+            "end_char": 613,
+            "quote": "4.\tReview sx in 1/52, or earlier if worsening sx/any concerns"
+          }
+        }
+      ]
+    }
+  ],
+  "deterministic": [
+    {
+      "id": "day1_consultation01",
+      "output": {
+        "draft": {
+          "statements": [
+            {
+              "section": "subjective",
+              "text": "3/7 hx of diarrhea, mainly watery. No blood in stool. Opening bowels x6/day. Associated LLQ pain - crampy, intermittent, nil radiation.  Also vomiting - mainly bilous. No blood in vomit. Fever on first day, nil since. Has been feeling lethargic and weak since.",
+              "fact_ids": [
+                "f1"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Takeaway 4/7 ago - Chinese restaurant. Wife and children also unwell with vomiting, but no diarrhea. No other unwell contacts.",
+              "fact_ids": [
+                "f2"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "PMH: Asthma",
+              "fact_ids": [
+                "f3"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "DH: Inhalers",
+              "fact_ids": [
+                "f4"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "SH: works as an accountant. Lives with wife and children. Affecting his ADLs as has to be near toilet often.",
+              "fact_ids": [
+                "f5"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Nil smoking/etOH hx",
+              "fact_ids": [
+                "f6"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Imp: gastroenteritis",
+              "fact_ids": [
+                "f7"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Plan:",
+              "fact_ids": [
+                "f8"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Conservative management - rest, push fluids, paracetamol if feverish. Recommend OTC diarolyte. To review in 3-5d if symptoms not improving. To see earlier if feeling more unwell.",
+              "fact_ids": [
+                "f9"
+              ]
+            }
+          ]
+        },
+        "findings": [],
+        "status": "review_required",
+        "provenance": {
+          "provider_mode": "deterministic",
+          "wall_seconds": 0.0719311999855563,
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "schema": "evidence_draft_v1"
+        }
+      },
+      "exact_preservation": true
+    },
+    {
+      "id": "day1_consultation02",
+      "output": {
+        "draft": {
+          "statements": [
+            {
+              "section": "subjective",
+              "text": "4/7 hx of dry itchy skin, mainly on chest and back. Skin is also sore and cracked. No bleeding or discharge. No spread elsewhere. Not aware of any triggers. Used steroid cream OTC last night with minimal effect. Pt has also tried antihistamines.",
+              "fact_ids": [
+                "f1"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Systemically well otherwise - no fevers, no vomiting, no SOB/cough. No bowel sx.",
+              "fact_ids": [
+                "f2"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "PMH: Eczema, Asthma",
+              "fact_ids": [
+                "f3"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "DHx: Nil regular",
+              "fact_ids": [
+                "f4"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "NKDA",
+              "fact_ids": [
+                "f5"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "SH: lives with flatmates, works as a pharmaceutical manager. Non-smoker, social EtOH.",
+              "fact_ids": [
+                "f6"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "ICE: pt thinks might be related to eczema. No concerns",
+              "fact_ids": [
+                "f7"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Imp: flare up of eczema",
+              "fact_ids": [
+                "f8"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Plan:",
+              "fact_ids": [
+                "f9"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "1.\tSteroid cream - Betnovate BD",
+              "fact_ids": [
+                "f10"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "2.\tEmollients - cetraben - use up to QDS",
+              "fact_ids": [
+                "f11"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "3.\tTrial antihistamines",
+              "fact_ids": [
+                "f12"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "4.\tKeep trigger diary",
+              "fact_ids": [
+                "f13"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "5.\tReview in 10-14d if symptoms no better, or earlier if any concerns/worsening sx",
+              "fact_ids": [
+                "f14"
+              ]
+            }
+          ]
+        },
+        "findings": [],
+        "status": "review_required",
+        "provenance": {
+          "provider_mode": "deterministic",
+          "wall_seconds": 0.006038899999111891,
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "schema": "evidence_draft_v1"
+        }
+      },
+      "exact_preservation": true
+    },
+    {
+      "id": "day1_consultation03",
+      "output": {
+        "draft": {
+          "statements": [
+            {
+              "section": "subjective",
+              "text": "Headache on left side. Started few hours ago, gradual onset. Throbbing in nature. Nil radiating.",
+              "fact_ids": [
+                "f1"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Had visual aura before onset of headaches - zigzag lines in field of vision. Also associated photophobia and blurred vision. Feels nauseous and has vomited twice today. Also reports some neck pain. Nil neck stiffness.",
+              "fact_ids": [
+                "f2"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No speech disturbances",
+              "fact_ids": [
+                "f3"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No limb weakness or numbness",
+              "fact_ids": [
+                "f4"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No coordination/balance issues",
+              "fact_ids": [
+                "f5"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No recent head injury",
+              "fact_ids": [
+                "f6"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No fever",
+              "fact_ids": [
+                "f7"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No rashes",
+              "fact_ids": [
+                "f8"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Similar episode 2/52 ago - resolved with analgesia. Pt worried about brain Ca.",
+              "fact_ids": [
+                "f9"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "PMH: nil",
+              "fact_ids": [
+                "f10"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "DH: microgynon",
+              "fact_ids": [
+                "f11"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "NKDA",
+              "fact_ids": [
+                "f12"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "FH: mother - migraine",
+              "fact_ids": [
+                "f13"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "SH: lives alone, works in fashion industry. Feeling stressed ++. Nil mood sx. Nil smoking/etOH hx",
+              "fact_ids": [
+                "f14"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Imp: migraine",
+              "fact_ids": [
+                "f15"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Plan:",
+              "fact_ids": [
+                "f16"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "1.\tChange COCP to POP",
+              "fact_ids": [
+                "f17"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "2.\tKeep headache diary",
+              "fact_ids": [
+                "f18"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "3.\tRegular paracetamol/NSAIDs",
+              "fact_ids": [
+                "f19"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "4.\tReview in 1w to discuss prophylactic Rx, or earlier if worsening sx (headaches, vomiting, vision sx) or any concerns",
+              "fact_ids": [
+                "f20"
+              ]
+            }
+          ]
+        },
+        "findings": [],
+        "status": "review_required",
+        "provenance": {
+          "provider_mode": "deterministic",
+          "wall_seconds": 0.007974999956786633,
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "schema": "evidence_draft_v1"
+        }
+      },
+      "exact_preservation": true
+    },
+    {
+      "id": "day1_consultation04",
+      "output": {
+        "draft": {
+          "statements": [
+            {
+              "section": "subjective",
+              "text": "4/7 hx of generally unwell, mainly sore throat, runny nose, fatigue, myalgia and general joint pain. Sore throat is improving. Also has nasal congestion. Now developed a cough -mainly dry, constant. Night sweats for the past 4/7. Initially had fever, but now settling with paracetamol/ibuprofen.",
+              "fact_ids": [
+                "f1"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No chest pain. Feels more SOB on exertion.",
+              "fact_ids": [
+                "f2"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Associated headaches - generalized, intermittent. No visual sx/photophobia. No nausea/vomiting. No bowel or urinary sx. Drinking fluids, reduced appetite. No rashes",
+              "fact_ids": [
+                "f3"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "PMH: Nil",
+              "fact_ids": [
+                "f4"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "DH: nil",
+              "fact_ids": [
+                "f5"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "NKDA",
+              "fact_ids": [
+                "f6"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "FH: Grandmother - type 2 diabetes",
+              "fact_ids": [
+                "f7"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "SH: lives alone, works as an accountant. Occasional smoker/etOH. Finding work slightly stressful. No mood sx.",
+              "fact_ids": [
+                "f8"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Imp: viral URTI/influenza",
+              "fact_ids": [
+                "f9"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Plan:",
+              "fact_ids": [
+                "f10"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "1.\tConservative mx - rest, push fluids, regular paracetamol/ibuprofen, monitor temp",
+              "fact_ids": [
+                "f11"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "2.\tReview in 5-7d INB",
+              "fact_ids": [
+                "f12"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "3.\tDiscussed red flag sx (SOB, chest pain, fevers)- if present, for urgent review with Dr",
+              "fact_ids": [
+                "f13"
+              ]
+            }
+          ]
+        },
+        "findings": [],
+        "status": "review_required",
+        "provenance": {
+          "provider_mode": "deterministic",
+          "wall_seconds": 0.013105399906635284,
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "schema": "evidence_draft_v1"
+        }
+      },
+      "exact_preservation": true
+    },
+    {
+      "id": "day1_consultation05",
+      "output": {
+        "draft": {
+          "statements": [
+            {
+              "section": "subjective",
+              "text": "2/7 ago developed lower abdo pain/suprapubic pain, gradual onset, burning pain, constant, progressively worsening",
+              "fact_ids": [
+                "f1"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No bowel sx.",
+              "fact_ids": [
+                "f2"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Urinary sx - noticed some pink coloured urine, no frank haematuria, nil dysuria.",
+              "fact_ids": [
+                "f3"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Some nausea, no vomiting",
+              "fact_ids": [
+                "f4"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Feeling hot and sweaty",
+              "fact_ids": [
+                "f5"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Currently sexually active with regular partner. Last STD 6/12 ago. Unprotected SI 2/7 ago.",
+              "fact_ids": [
+                "f6"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "LMP 2/52 ago",
+              "fact_ids": [
+                "f7"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No chest pain/SOB/palpitations",
+              "fact_ids": [
+                "f8"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No headches/visual sx",
+              "fact_ids": [
+                "f9"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "PMH: nil",
+              "fact_ids": [
+                "f10"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "PSH: nil",
+              "fact_ids": [
+                "f11"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "DH: implanon , otherwise nil",
+              "fact_ids": [
+                "f12"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "FH: nil",
+              "fact_ids": [
+                "f13"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "SH: roomshare with 2 flatmates, works as an accountant. Nil smoking, social EtOH",
+              "fact_ids": [
+                "f14"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Imp: ?UTI. also need to exclude pregnancy",
+              "fact_ids": [
+                "f15"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Plan:",
+              "fact_ids": [
+                "f16"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "1.\tPregnancy test",
+              "fact_ids": [
+                "f17"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "2.\tUrine dip and MSU",
+              "fact_ids": [
+                "f18"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "3.\tRx empirically with Abx for UTI",
+              "fact_ids": [
+                "f19"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "4.\tRegular paracetamol for pain",
+              "fact_ids": [
+                "f20"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "5.\tReview in 24-48 hours if sx not improving, or earlier if worsening sx (fever, abdo pain, vomiting)",
+              "fact_ids": [
+                "f21"
+              ]
+            }
+          ]
+        },
+        "findings": [],
+        "status": "review_required",
+        "provenance": {
+          "provider_mode": "deterministic",
+          "wall_seconds": 0.009550999966450036,
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "schema": "evidence_draft_v1"
+        }
+      },
+      "exact_preservation": true
+    },
+    {
+      "id": "day1_consultation06",
+      "output": {
+        "draft": {
+          "statements": [
+            {
+              "section": "subjective",
+              "text": "2/5 hx of SOB, worsening over the past 2/7. Feeling more SOB on minimal exertion, nil SOB at rest. No chest pain/palpitations. Assoc cough - mainly dry. No fevers. Has also noticed ankle odema bilaterally over past few days extending to shins.",
+              "fact_ids": [
+                "f1"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Diagnosed with heart failure previously and currently on diuretics.",
+              "fact_ids": [
+                "f2"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Urinary - Polyuria, nil else",
+              "fact_ids": [
+                "f3"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "PMH: Heart failure, ?unstable angina",
+              "fact_ids": [
+                "f4"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "DH: furosemide, aspirin, bisoprolol, simvastatin",
+              "fact_ids": [
+                "f5"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "NKDA",
+              "fact_ids": [
+                "f6"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "FH - father died of MI early 60s , mother - osteoporosis",
+              "fact_ids": [
+                "f7"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "SH: lives alone, 2 cats , works part time as a lorry driver. Ex-smoker - a pack/d for 25 years. No etOH",
+              "fact_ids": [
+                "f8"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Imp: exacerbation of heart failure",
+              "fact_ids": [
+                "f9"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Plan:",
+              "fact_ids": [
+                "f10"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "1.\tIncrease furosemide BD",
+              "fact_ids": [
+                "f11"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "2.\tBlood tests, inc U+Es, FBC, BNP",
+              "fact_ids": [
+                "f12"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "3.\tArrange echo",
+              "fact_ids": [
+                "f13"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "4.\tReview in 7d, or earlier if worsening sx (chest pain, SOB, dizziness, etc)",
+              "fact_ids": [
+                "f14"
+              ]
+            }
+          ]
+        },
+        "findings": [],
+        "status": "review_required",
+        "provenance": {
+          "provider_mode": "deterministic",
+          "wall_seconds": 0.010210799984633923,
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "schema": "evidence_draft_v1"
+        }
+      },
+      "exact_preservation": true
+    },
+    {
+      "id": "day1_consultation07",
+      "output": {
+        "draft": {
+          "statements": [
+            {
+              "section": "subjective",
+              "text": "5/7 hx of generally unwell with cough and cold sx. Mainly dry cough. No chest pain. Feeling more SOB.",
+              "fact_ids": [
+                "f1"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Feeling hot/cold and sweaty. No fevers.",
+              "fact_ids": [
+                "f2"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Sore throat and blocked ears. Also myalgia and arthralgia - mainly stiffness in joints.",
+              "fact_ids": [
+                "f3"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No unwell contacts",
+              "fact_ids": [
+                "f4"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No nausea/vomiting",
+              "fact_ids": [
+                "f5"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No bowel symptoms",
+              "fact_ids": [
+                "f6"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "PMH: obesity, diabetes - type 2 , hypertension",
+              "fact_ids": [
+                "f7"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "DH: metformin, lisinopril , aspirin,",
+              "fact_ids": [
+                "f8"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "NKDA",
+              "fact_ids": [
+                "f9"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "SH: lives with wife, works in factory/manufacturing, smoking socially, etOH - >14 units/week",
+              "fact_ids": [
+                "f10"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Imp: viral URTI/? LRTI",
+              "fact_ids": [
+                "f11"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Plan:",
+              "fact_ids": [
+                "f12"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "1.\tConservative mx - rest, fluids, regular paracetamol",
+              "fact_ids": [
+                "f13"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "2.\tDelayed script for amoxicillin abx - to start in 24-48 hours if sx not improving",
+              "fact_ids": [
+                "f14"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "3.\tReview in 1/52 INB, or earlier if worsening sx (chest pain, SOB, fevers)",
+              "fact_ids": [
+                "f15"
+              ]
+            }
+          ]
+        },
+        "findings": [],
+        "status": "review_required",
+        "provenance": {
+          "provider_mode": "deterministic",
+          "wall_seconds": 0.010954900062642992,
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "schema": "evidence_draft_v1"
+        }
+      },
+      "exact_preservation": true
+    },
+    {
+      "id": "day1_consultation08",
+      "output": {
+        "draft": {
+          "statements": [
+            {
+              "section": "subjective",
+              "text": "3/7 hx of dry itchy skin, mainly on the hands and palms. No spread elsewhere. No bleeding/discharge. No cracked skin. Sx started after going swimming. No prev skin problems.",
+              "fact_ids": [
+                "f1"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "No fevers. No vomiting.",
+              "fact_ids": [
+                "f2"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Appetite maintained, nil nausea/vomiting",
+              "fact_ids": [
+                "f3"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Nil bowel/urinary sx",
+              "fact_ids": [
+                "f4"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "PMH: Lactose intolerance",
+              "fact_ids": [
+                "f5"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "DH: microgynon",
+              "fact_ids": [
+                "f6"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "NKDA",
+              "fact_ids": [
+                "f7"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "FH:  Father - asthma, Mother - hayfever",
+              "fact_ids": [
+                "f8"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "SH: - lives alone, nil smoker/etOH/recreational drugs , works as primary school teacher. Recent stress ++",
+              "fact_ids": [
+                "f9"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Imp: dermatitis",
+              "fact_ids": [
+                "f10"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "Plan:",
+              "fact_ids": [
+                "f11"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "1.\tSteroid cream BD",
+              "fact_ids": [
+                "f12"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "2.\tEmollients - regular use QDS",
+              "fact_ids": [
+                "f13"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "3.\tAntihistamines",
+              "fact_ids": [
+                "f14"
+              ]
+            },
+            {
+              "section": "subjective",
+              "text": "4.\tReview sx in 1/52, or earlier if worsening sx/any concerns",
+              "fact_ids": [
+                "f15"
+              ]
+            }
+          ]
+        },
+        "findings": [],
+        "status": "review_required",
+        "provenance": {
+          "provider_mode": "deterministic",
+          "wall_seconds": 0.010244200006127357,
+          "provider_cost_usd": 0,
+          "hardware_cost": "not_measured",
+          "schema": "evidence_draft_v1"
+        }
+      },
+      "exact_preservation": true
+    }
+  ],
+  "models": [
+    {
+      "model": "qwen2.5:1.5b",
+      "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+      "runs": [
+        {
+          "id": "day1_consultation01",
+          "failed": false,
+          "exact_preservation": true,
+          "output": {
+            "draft": {
+              "statements": [
+                {
+                  "section": "subjective",
+                  "text": "3/7 hx of diarrhea, mainly watery. No blood in stool. Opening bowels x6/day. Associated LLQ pain - crampy, intermittent, nil radiation.  Also vomiting - mainly bilous. No blood in vomit. Fever on first day, nil since. Has been feeling lethargic and weak since.",
+                  "fact_ids": [
+                    "f1"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Takeaway 4/7 ago - Chinese restaurant. Wife and children also unwell with vomiting, but no diarrhea. No other unwell contacts.",
+                  "fact_ids": [
+                    "f2"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "PMH: Asthma",
+                  "fact_ids": [
+                    "f3"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "DH: Inhalers",
+                  "fact_ids": [
+                    "f4"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "SH: works as an accountant. Lives with wife and children. Affecting his ADLs as has to be near toilet often.",
+                  "fact_ids": [
+                    "f5"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Nil smoking/etOH hx",
+                  "fact_ids": [
+                    "f6"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Imp: gastroenteritis",
+                  "fact_ids": [
+                    "f7"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Plan:",
+                  "fact_ids": [
+                    "f8"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Conservative management - rest, push fluids, paracetamol if feverish. Recommend OTC diarolyte. To review in 3-5d if symptoms not improving. To see earlier if feeling more unwell.",
+                  "fact_ids": [
+                    "f9"
+                  ]
+                }
+              ]
+            },
+            "findings": [],
+            "status": "review_required",
+            "provenance": {
+              "provider_mode": "local",
+              "model": "qwen2.5:1.5b",
+              "prompt_sha256": "763b00a4af37f28aa7130dd09d12fc759c0d2a75c9c12620fa9be314f62357fb",
+              "schema": "evidence_draft_v1",
+              "response_schema_sha256": "e6c34d00e24b957cc10b4ff8d68255258a6d031ac44009f68b678402122b1033",
+              "temperature": 0,
+              "max_tokens": 4096,
+              "usage": {
+                "prompt_tokens": 1079,
+                "completion_tokens": 385,
+                "total_tokens": 1464
+              },
+              "cost": null,
+              "cost_status": "local_hardware_cost_not_measured",
+              "attempts": 1,
+              "structured_schema": true,
+              "provider_cost_usd": 0,
+              "wall_seconds": 55.15136379993055
+            }
+          },
+          "wall_seconds": 55.155724200070836
+        },
+        {
+          "id": "day1_consultation02",
+          "failed": false,
+          "exact_preservation": true,
+          "output": {
+            "draft": {
+              "statements": [
+                {
+                  "section": "subjective",
+                  "text": "4/7 hx of dry itchy skin, mainly on chest and back. Skin is also sore and cracked. No bleeding or discharge. No spread elsewhere. Not aware of any triggers. Used steroid cream OTC last night with minimal effect. Pt has also tried antihistamines.",
+                  "fact_ids": [
+                    "f1"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Systemically well otherwise - no fevers, no vomiting, no SOB/cough. No bowel sx.",
+                  "fact_ids": [
+                    "f2"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "PMH: Eczema, Asthma",
+                  "fact_ids": [
+                    "f3"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "DHx: Nil regular",
+                  "fact_ids": [
+                    "f4"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "NKDA",
+                  "fact_ids": [
+                    "f5"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "SH: lives with flatmates, works as a pharmaceutical manager. Non-smoker, social EtOH.",
+                  "fact_ids": [
+                    "f6"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "ICE: pt thinks might be related to eczema. No concerns",
+                  "fact_ids": [
+                    "f7"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Imp: flare up of eczema",
+                  "fact_ids": [
+                    "f8"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Plan:",
+                  "fact_ids": [
+                    "f9"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "1.\tSteroid cream - Betnovate BD",
+                  "fact_ids": [
+                    "f10"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "2.\tEmollients - cetraben - use up to QDS",
+                  "fact_ids": [
+                    "f11"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "3.\tTrial antihistamines",
+                  "fact_ids": [
+                    "f12"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "4.\tKeep trigger diary",
+                  "fact_ids": [
+                    "f13"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "5.\tReview in 10-14d if symptoms no better, or earlier if any concerns/worsening sx",
+                  "fact_ids": [
+                    "f14"
+                  ]
+                }
+              ]
+            },
+            "findings": [],
+            "status": "review_required",
+            "provenance": {
+              "provider_mode": "local",
+              "model": "qwen2.5:1.5b",
+              "prompt_sha256": "763b00a4af37f28aa7130dd09d12fc759c0d2a75c9c12620fa9be314f62357fb",
+              "schema": "evidence_draft_v1",
+              "response_schema_sha256": "37ec338a1f32191a6c27075c9061576a9cb0cc1d004b90235feb9e21fa0984a2",
+              "temperature": 0,
+              "max_tokens": 4096,
+              "usage": {
+                "prompt_tokens": 1439,
+                "completion_tokens": 597,
+                "total_tokens": 2036
+              },
+              "cost": null,
+              "cost_status": "local_hardware_cost_not_measured",
+              "attempts": 1,
+              "structured_schema": true,
+              "provider_cost_usd": 0,
+              "wall_seconds": 56.741838500020094
+            }
+          },
+          "wall_seconds": 56.74362049996853
+        },
+        {
+          "id": "day1_consultation03",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.04545169998892
+        },
+        {
+          "id": "day1_consultation04",
+          "failed": false,
+          "exact_preservation": false,
+          "output": {
+            "draft": {
+              "statements": [
+                {
+                  "section": "subjective",
+                  "text": "4/7 hx of generally unwell, mainly sore throat, runny nose, fatigue, myalgia and general joint pain. Sore throat is improving. Also has nasal congestion. Now developed a cough - mainly dry, constant. Night sweats for the past 4/7. Initially had fever, but now settling with paracetamol/ibuprofen.",
+                  "fact_ids": [
+                    "f1"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "No chest pain. Feels more SOB on exertion.",
+                  "fact_ids": [
+                    "f2"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Associated headaches - generalized, intermittent. No visual sx/photophobia. No nausea/vomiting. No bowel or urinary sx. Drinking fluids, reduced appetite. No rashes",
+                  "fact_ids": [
+                    "f3"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "PMH: Nil",
+                  "fact_ids": [
+                    "f4"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "DH: nil",
+                  "fact_ids": [
+                    "f5"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "NKDA",
+                  "fact_ids": [
+                    "f6"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "FH: Grandmother - type 2 diabetes",
+                  "fact_ids": [
+                    "f7"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "SH: lives alone, works as an accountant. Occasional smoker/etOH. Finding work slightly stressful. No mood sx.",
+                  "fact_ids": [
+                    "f8"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Imp: viral URTI/influenza",
+                  "fact_ids": [
+                    "f9"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Plan:",
+                  "fact_ids": [
+                    "f10"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "1.\tConservative mx - rest, push fluids, regular paracetamol/ibuprofen, monitor temp",
+                  "fact_ids": [
+                    "f11"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "2.\tReview in 5-7d INB",
+                  "fact_ids": [
+                    "f12"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "3.\tDiscussed red flag sx (SOB, chest pain, fevers)- if present, for urgent review with Dr",
+                  "fact_ids": [
+                    "f13"
+                  ]
+                }
+              ]
+            },
+            "findings": [
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              }
+            ],
+            "status": "review_required",
+            "provenance": {
+              "provider_mode": "local",
+              "model": "qwen2.5:1.5b",
+              "prompt_sha256": "763b00a4af37f28aa7130dd09d12fc759c0d2a75c9c12620fa9be314f62357fb",
+              "schema": "evidence_draft_v1",
+              "response_schema_sha256": "130c81a058ba0febe5f22031695ef6cf16c2cc61077ad82456b2e611edacfe03",
+              "temperature": 0,
+              "max_tokens": 4096,
+              "usage": {
+                "prompt_tokens": 1444,
+                "completion_tokens": 604,
+                "total_tokens": 2048
+              },
+              "cost": null,
+              "cost_status": "local_hardware_cost_not_measured",
+              "attempts": 1,
+              "structured_schema": true,
+              "provider_cost_usd": 0,
+              "wall_seconds": 59.76877849991433
+            }
+          },
+          "wall_seconds": 59.770181600004435
+        },
+        {
+          "id": "day1_consultation05",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.0494403000921
+        },
+        {
+          "id": "day1_consultation06",
+          "failed": false,
+          "exact_preservation": true,
+          "output": {
+            "draft": {
+              "statements": [
+                {
+                  "section": "subjective",
+                  "text": "2/5 hx of SOB, worsening over the past 2/7. Feeling more SOB on minimal exertion, nil SOB at rest. No chest pain/palpitations. Assoc cough - mainly dry. No fevers. Has also noticed ankle odema bilaterally over past few days extending to shins.",
+                  "fact_ids": [
+                    "f1"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Diagnosed with heart failure previously and currently on diuretics.",
+                  "fact_ids": [
+                    "f2"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Urinary - Polyuria, nil else",
+                  "fact_ids": [
+                    "f3"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "PMH: Heart failure, ?unstable angina",
+                  "fact_ids": [
+                    "f4"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "DH: furosemide, aspirin, bisoprolol, simvastatin",
+                  "fact_ids": [
+                    "f5"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "NKDA",
+                  "fact_ids": [
+                    "f6"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "FH - father died of MI early 60s , mother - osteoporosis",
+                  "fact_ids": [
+                    "f7"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "SH: lives alone, 2 cats , works part time as a lorry driver. Ex-smoker - a pack/d for 25 years. No etOH",
+                  "fact_ids": [
+                    "f8"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Imp: exacerbation of heart failure",
+                  "fact_ids": [
+                    "f9"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Plan:",
+                  "fact_ids": [
+                    "f10"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "1.\tIncrease furosemide BD",
+                  "fact_ids": [
+                    "f11"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "2.\tBlood tests, inc U+Es, FBC, BNP",
+                  "fact_ids": [
+                    "f12"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "3.\tArrange echo",
+                  "fact_ids": [
+                    "f13"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "4.\tReview in 7d, or earlier if worsening sx (chest pain, SOB, dizziness, etc)",
+                  "fact_ids": [
+                    "f14"
+                  ]
+                }
+              ]
+            },
+            "findings": [],
+            "status": "review_required",
+            "provenance": {
+              "provider_mode": "local",
+              "model": "qwen2.5:1.5b",
+              "prompt_sha256": "763b00a4af37f28aa7130dd09d12fc759c0d2a75c9c12620fa9be314f62357fb",
+              "schema": "evidence_draft_v1",
+              "response_schema_sha256": "37ec338a1f32191a6c27075c9061576a9cb0cc1d004b90235feb9e21fa0984a2",
+              "temperature": 0,
+              "max_tokens": 4096,
+              "usage": {
+                "prompt_tokens": 1500,
+                "completion_tokens": 537,
+                "total_tokens": 2037
+              },
+              "cost": null,
+              "cost_status": "local_hardware_cost_not_measured",
+              "attempts": 1,
+              "structured_schema": true,
+              "provider_cost_usd": 0,
+              "wall_seconds": 59.52352849999443
+            }
+          },
+          "wall_seconds": 59.52609379997011
+        },
+        {
+          "id": "day1_consultation07",
+          "failed": false,
+          "exact_preservation": false,
+          "output": {
+            "draft": {
+              "statements": [
+                {
+                  "section": "subjective",
+                  "text": "5/7 hx of generally unwell with cough and cold sx. Mainly dry cough. No chest pain. Feeling more SOB.",
+                  "fact_ids": [
+                    "f1"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Feeling hot/cold and sweaty. No fevers.",
+                  "fact_ids": [
+                    "f2"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Sore throat and blocked ears. Also myalgia and arthralgia - mainly stiffness in joints.",
+                  "fact_ids": [
+                    "f3"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "No unwell contacts",
+                  "fact_ids": [
+                    "f4"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "No nausea/vomiting",
+                  "fact_ids": [
+                    "f5"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "No bowel symptoms",
+                  "fact_ids": [
+                    "f6"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "PMH: obesity, diabetes - type 2 , hypertension",
+                  "fact_ids": [
+                    "f7"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "DH: metformin, lisinopril , aspirin",
+                  "fact_ids": [
+                    "f8"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "NKDA",
+                  "fact_ids": [
+                    "f9"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "SH: lives with wife, works in factory/manufacturing, smoking socially, etOH - >14 units/week",
+                  "fact_ids": [
+                    "f10"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Imp: viral URTI/? LRTI",
+                  "fact_ids": [
+                    "f11"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Plan:",
+                  "fact_ids": [
+                    "f12"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "1.\tConservative mx - rest, fluids, regular paracetamol",
+                  "fact_ids": [
+                    "f13"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "2.\tDelayed script for amoxicillin abx - to start in 24-48 hours if sx not improving",
+                  "fact_ids": [
+                    "f14"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "3.\tReview in 1/52 INB, or earlier if worsening sx (chest pain, SOB, fevers)",
+                  "fact_ids": [
+                    "f15"
+                  ]
+                }
+              ]
+            },
+            "findings": [
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              }
+            ],
+            "status": "review_required",
+            "provenance": {
+              "provider_mode": "local",
+              "model": "qwen2.5:1.5b",
+              "prompt_sha256": "763b00a4af37f28aa7130dd09d12fc759c0d2a75c9c12620fa9be314f62357fb",
+              "schema": "evidence_draft_v1",
+              "response_schema_sha256": "842b115218adcf2d90c51e7ce4545c78f8ef3dbfb802dc36390f93f71c970ca6",
+              "temperature": 0,
+              "max_tokens": 4096,
+              "usage": {
+                "prompt_tokens": 1505,
+                "completion_tokens": 528,
+                "total_tokens": 2033
+              },
+              "cost": null,
+              "cost_status": "local_hardware_cost_not_measured",
+              "attempts": 1,
+              "structured_schema": true,
+              "provider_cost_usd": 0,
+              "wall_seconds": 55.91172229999211
+            }
+          },
+          "wall_seconds": 55.913765000062995
+        },
+        {
+          "id": "day1_consultation08",
+          "failed": false,
+          "exact_preservation": false,
+          "output": {
+            "draft": {
+              "statements": [
+                {
+                  "section": "subjective",
+                  "text": "3/7 hx of dry itchy skin, mainly on the hands and palms. No spread elsewhere. No bleeding/discharge. No cracked skin. Sx started after going swimming. No prev skin problems.",
+                  "fact_ids": [
+                    "f1"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "No fevers. No vomiting.",
+                  "fact_ids": [
+                    "f2"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Appetite maintained, nil nausea/vomiting.",
+                  "fact_ids": [
+                    "f3"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Nil bowel/urinary sx.",
+                  "fact_ids": [
+                    "f4"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "PMH: Lactose intolerance.",
+                  "fact_ids": [
+                    "f5"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "DH: microgynon.",
+                  "fact_ids": [
+                    "f6"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "NKDA.",
+                  "fact_ids": [
+                    "f7"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "FH:  Father - asthma, Mother - hayfever.",
+                  "fact_ids": [
+                    "f8"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "SH: - lives alone, nil smoker/etOH/recreational drugs , works as primary school teacher. Recent stress ++",
+                  "fact_ids": [
+                    "f9"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Imp: dermatitis.",
+                  "fact_ids": [
+                    "f10"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "Plan:",
+                  "fact_ids": [
+                    "f11"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "1.\tSteroid cream BD.",
+                  "fact_ids": [
+                    "f12"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "2.\tEmollients - regular use QDS.",
+                  "fact_ids": [
+                    "f13"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "3.\tAntihistamines.",
+                  "fact_ids": [
+                    "f14"
+                  ]
+                },
+                {
+                  "section": "subjective",
+                  "text": "4.\tReview sx in 1/52, or earlier if worsening sx/any concerns.",
+                  "fact_ids": [
+                    "f15"
+                  ]
+                }
+              ]
+            },
+            "findings": [
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              },
+              {
+                "code": "paraphrase_requires_independent_review",
+                "blocks_approval": true
+              }
+            ],
+            "status": "review_required",
+            "provenance": {
+              "provider_mode": "local",
+              "model": "qwen2.5:1.5b",
+              "prompt_sha256": "763b00a4af37f28aa7130dd09d12fc759c0d2a75c9c12620fa9be314f62357fb",
+              "schema": "evidence_draft_v1",
+              "response_schema_sha256": "842b115218adcf2d90c51e7ce4545c78f8ef3dbfb802dc36390f93f71c970ca6",
+              "temperature": 0,
+              "max_tokens": 4096,
+              "usage": {
+                "prompt_tokens": 1428,
+                "completion_tokens": 491,
+                "total_tokens": 1919
+              },
+              "cost": null,
+              "cost_status": "local_hardware_cost_not_measured",
+              "attempts": 1,
+              "structured_schema": true,
+              "provider_cost_usd": 0,
+              "wall_seconds": 52.365669800085016
+            }
+          },
+          "wall_seconds": 52.36745250003878
+        }
+      ],
+      "failed_cases": 2,
+      "exact_cases": 3
+    },
+    {
+      "model": "qwen2.5:7b",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "runs": [
+        {
+          "id": "day1_consultation01",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.057388499961235
+        },
+        {
+          "id": "day1_consultation02",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.204216000041924
+        },
+        {
+          "id": "day1_consultation03",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.13760540005751
+        },
+        {
+          "id": "day1_consultation04",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.06477850000374
+        },
+        {
+          "id": "day1_consultation05",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.063882200047374
+        },
+        {
+          "id": "day1_consultation06",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.078511200030334
+        },
+        {
+          "id": "day1_consultation07",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.073226299951784
+        },
+        {
+          "id": "day1_consultation08",
+          "failed": true,
+          "exact_preservation": false,
+          "error": "bounded_provider_failure",
+          "wall_seconds": 60.08115680003539
+        }
+      ],
+      "failed_cases": 8,
+      "exact_cases": 0
+    }
+  ],
+  "provider_calls_cost_usd": 0,
+  "hardware_cost_usd": null
+}

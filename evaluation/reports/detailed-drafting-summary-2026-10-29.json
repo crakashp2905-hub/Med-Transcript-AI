@@ -1,0 +1,26 @@
+{
+  "report_sha256": "3a2f2a1c9643fbde7716e240350307457cba7302f766d121b9c0b1273367728d",
+  "rows": [
+    {
+      "mode": "deterministic",
+      "attempted_cases": 8,
+      "exact_preservation_cases": 8,
+      "failed_cases": 0
+    },
+    {
+      "mode": "qwen2.5:1.5b",
+      "attempted_cases": 8,
+      "exact_preservation_cases": 3,
+      "failed_cases": 2
+    },
+    {
+      "mode": "qwen2.5:7b",
+      "attempted_cases": 8,
+      "exact_preservation_cases": 0,
+      "failed_cases": 8
+    }
+  ],
+  "clinical_note_accuracy_measured": false,
+  "clinician_correction_time_measured": false,
+  "limitation": "Exact preservation of upstream note fixture units is not independently adjudicated clinical note accuracy."
+}
