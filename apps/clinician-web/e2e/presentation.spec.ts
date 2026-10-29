@@ -6,10 +6,11 @@ test('current correction comparison and uncertainty queue retain unreviewed prop
  await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
  await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
  await expect(page.locator('.fact-card')).toHaveCount(6);
- await page.locator('.fact-card').first().getByLabel('Note statement',{exact:true}).fill('Clinician correction pending review.');
+ await page.locator('.fact-card').first().getByRole('textbox',{name:'Note statement',exact:true}).fill('Clinician correction pending review.');
  await page.getByText('Current correction comparison (6)',{exact:true}).click();
  const tools=page.getByRole('region',{name:'Encounter review tools'});
- await expect(tools.getByText('Clinician correction pending review.',{exact:true})).toBeVisible();
+ const comparison=tools.locator('details').filter({has:page.locator('summary').filter({hasText:'Current correction comparison'})});
+ await expect(comparison.getByText('Clinician correction pending review.',{exact:true})).toBeVisible();
  await tools.getByText(/Uncertainty review queue/).click();await tools.getByLabel('Queue filter').selectOption('unreviewed');
  await tools.getByRole('button',{name:'Clinician correction pending review.',exact:true}).click();await expect(page.locator('.fact-card').first()).toBeFocused();
  await expect(page.locator('.fact-card').first().getByLabel('Content and attribution reviewed')).not.toBeChecked();

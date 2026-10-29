@@ -1,0 +1,39 @@
+{
+  "schema_version": "presentation_feature_validation_v1",
+  "implementation_commit": "fb5225b153dd745169b2b0cd01deb93f9a16d260",
+  "backend_suite": {
+    "passed": 251,
+    "skipped": 1,
+    "scope": "Full suite before addition of public-demo path rejection test"
+  },
+  "final_targeted_backend": {
+    "passed": 3,
+    "scope": "FHIR approval/hash/evidence/scoping, authenticated dashboard and public-demo path rejection"
+  },
+  "browser_scenarios_passed_across_targeted_runs": [
+    "current correction comparison and uncertainty queue preserve unreviewed status",
+    "detailed human-reference demo, guided navigation, specialty preview, citation playback and dashboard",
+    "approved summary requires separate review; edits reset review; stale server response blocks download; FHIR download",
+    "device identification and five-second signal check release tracks without uploads",
+    "cancelled microphone check releases late permission tracks",
+    "existing clinician correction, approval and export workflow",
+    "existing compressed upload, worker normalization and manual transcription workflow"
+  ],
+  "frontend_production_build": "passed",
+  "github_ci": {
+    "run": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/40815587956",
+    "jobs_passed": 5
+  },
+  "local_application": {
+    "url": "http://127.0.0.1:8002",
+    "health": "ok",
+    "new_authenticated_routes": "200"
+  },
+  "physical_hardware_validation": false,
+  "independent_clinical_validation": false,
+  "receiving_ehr_profile_validation": false,
+  "patient_summary_review": "explicit browser attestation, not a server-signed clinical approval",
+  "benchmark_campaign": "continues independently; active artifacts not modified by feature work",
+  "maximum_normalized_wer": 0.05,
+  "paid_calls": 0
+}
