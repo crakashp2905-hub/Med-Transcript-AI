@@ -21,6 +21,23 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
     from services.review.models import DraftProposalInput
     app.state.drafting_provider = configured_provider()
 
+    @app.get('/v1/study-dashboard')
+    def study_dashboard(actor=Depends(identity)):
+        root = Path(__file__).resolve().parents[2] / 'evaluation' / 'reports'
+        reports = {}
+        for key, filename in (
+            ('ranking', 'detailed-ranking-v2-2026-10-29.json'),
+            ('drafting', 'detailed-drafting-summary-2026-10-29.json'),
+            ('execution', 'detailed-campaign-execution-receipt-2026-10-29.json'),
+        ):
+            try:
+                reports[key] = json.loads((root / filename).read_text(encoding='utf-8'))
+            except (OSError, ValueError):
+                reports[key] = None
+        return {'reports': reports, 'clinical_validation': False,
+                'scope': 'public synthetic development evidence; not independent clinical acceptance',
+                'provider_cost': 0, 'hardware_cost': None}
+
     @app.get("/v1/encounters/{eid}/draft-proposals/{did}")
     def get_draft_proposal(eid: UUID, did: UUID, actor=Depends(identity)):
         with database() as con:
@@ -161,15 +178,28 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
                 "demo_available": (assets.parent / "demo-sample.json").is_file(),
                 "clinical_models_enabled": bool(app.state.clinical_models.enabled)}
 
+    @app.get('/v1/demo-cases')
+    def demo_cases(actor=Depends(identity)):
+        from services.review.presentation import public_demo_cases
+        return {'items': [{'id': c['group_id'], 'duration_ms': c['duration_ms'], 'attribution': c['attribution']} for c in public_demo_cases()],
+                'scope': 'Public mock consultation development references, not ASR output or independent acceptance.'}
+
     @app.post("/v1/demo", status_code=201)
-    def demo(actor=Depends(identity)):
+    def demo(public_case: str | None = Query(default=None, max_length=100), actor=Depends(identity)):
         from services.api.ingest import file_sha256, inspect_pcm_wav
         import shutil
         bundle_path = assets.parent / "demo-sample.json"
         source = assets.parent / "demo-sample.wav"
-        if not bundle_path.is_file() or not source.is_file():
-            raise HTTPException(503, "synthetic_example_not_installed")
-        bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
+        if public_case is not None:
+            from services.review.presentation import public_demo
+            try:
+                source, bundle = public_demo(public_case)
+            except (ValueError, OSError):
+                raise HTTPException(422, 'public_demo_unavailable_or_integrity_failure') from None
+        else:
+            if not bundle_path.is_file() or not source.is_file():
+                raise HTTPException(503, "synthetic_example_not_installed")
+            bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
         metadata = inspect_pcm_wav(source)
         digest = file_sha256(source)
         eid, uid, jid, created = str(uuid4()), str(uuid4()), str(uuid4()), stamp()
@@ -189,11 +219,11 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
                 metadata["sha256"] = digest
                 con.execute("INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,result) VALUES (?,?,?,'succeeded',?,?,?)",
                     (jid, uid, eid, created, created, canonical_json(metadata)))
-                segments = [{**segment, "segment_id": str(uuid4()), "speaker_id": None, "role_status": "synthetic_reference_annotation",
+                segments = [{**segment, "segment_id": str(uuid4()), "speaker_id": None, "role_status": "public_reference_annotation_requires_review" if public_case else "synthetic_reference_annotation",
                     "alignment_status": "fixture_audio_boundaries", "language": "en", "language_status": "uncertain", "uncertainties": ["clinician_review_required"]} for segment in bundle["segments"]]
                 tx = {"schema_version": "1.0", "audio_asset_id": uid, "input_sha256": digest, "duration_ms": metadata["duration_ms"],
                     "segments": segments, "status": "review_required", "source_availability": "available", "review": {},
-                    "provenance": {"engine": "synthetic_reference_transcript", "fixture_id": "outpatient_english_v1"},
+                    "provenance": {"engine": "public_human_reference_not_asr" if public_case else "synthetic_reference_transcript", "fixture_id": public_case or "outpatient_english_v1", "attribution": bundle.get("attribution", "Synthetic scripted example") },
                     "untranscribed_intervals": [], "review_flags": ["clinician_review_required", "language_support_unverified"]}
                 store_tx(con, eid, uid, tx, actor)
                 audit(con, actor, "synthetic_example_created", eid)
@@ -517,7 +547,7 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
             if not row:
                 raise HTTPException(404, "export_not_found")
             audit(con, actor, "approved_export_downloaded", str(xid))
-            extension = {"markdown": "md", "text": "txt", "json": "json"}[row["format"]]
+            extension = {"markdown": "md", "text": "txt", "json": "json", "fhir": "json"}[row["format"]]
             return Response(row["artifact"], media_type="application/json" if extension == "json" else "text/plain; charset=utf-8",
                             headers={"Content-Disposition": f'attachment; filename="approved-note-{xid}.{extension}"', "ETag": f'"{row["sha256"]}"'})
 

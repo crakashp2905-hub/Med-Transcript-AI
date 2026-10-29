@@ -325,3 +325,5 @@ commit credentials, databases, recordings, or private annotations.
 Multichannel capture, inference and channel-specific evidence playback: [implementation and limits](docs/multichannel-2026-10-26.md).
 
 Durable recording, resumable uploads, provisional local previews, clinical relationship checks and expanded evaluation: [2026-10-27 delivery](docs/development-delivery-2026-10-27.md).
+
+Presentation workflow: [demonstration and review features](docs/presentation-features-2026-10-29.md) describes detailed public examples, specialty views, correction/completeness tools, patient summaries, FHIR export, study evidence and recording readiness.

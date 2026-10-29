@@ -1,0 +1,45 @@
+import {test,expect} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
+test('current correction comparison and uncertainty queue retain unreviewed proposals',async({page})=>{
+ await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+ await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
+ await expect(page.locator('.fact-card')).toHaveCount(6);
+ await page.locator('.fact-card').first().getByLabel('Note statement',{exact:true}).fill('Clinician correction pending review.');
+ await page.getByText('Current correction comparison (6)',{exact:true}).click();
+ const tools=page.getByRole('region',{name:'Encounter review tools'});
+ await expect(tools.getByText('Clinician correction pending review.',{exact:true})).toBeVisible();
+ await tools.getByText(/Uncertainty review queue/).click();await tools.getByLabel('Queue filter').selectOption('unreviewed');
+ await tools.getByRole('button',{name:'Clinician correction pending review.',exact:true}).click();await expect(page.locator('.fact-card').first()).toBeFocused();
+ await expect(page.locator('.fact-card').first().getByLabel('Content and attribution reviewed')).not.toBeChecked();
+});
+test('detailed demo, review tools and measured dashboard preserve approval boundaries',async({page})=>{
+ await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+ await page.getByRole('button',{name:'Open detailed public example'}).click();await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
+ await page.getByRole('button',{name:'Start guided walkthrough'}).click();await expect(page.getByRole('heading',{name:'Step 1: Listen and inspect'})).toBeVisible();
+ await page.getByRole('button',{name:'Next step',exact:true}).click();await page.getByRole('button',{name:'Open this workspace view'}).click();
+ await page.getByText('Completeness checklist',{exact:true}).click();await expect(page.getByText('Not documented in selected facts',{exact:false}).first()).toBeVisible();
+ await page.getByText('Specialty note templates',{exact:true}).click();await page.getByLabel('Specialty view').selectOption('Respiratory');await expect(page.getByRole('heading',{name:'Respiratory history'})).toBeVisible();
+ await page.getByText('Timestamped encounter timeline',{exact:true}).click();await page.getByRole('button',{name:/0:02 · clinician/}).first().click();
+ await expect(page.locator('audio')).toHaveJSProperty('paused',false);
+ await expect(page.getByRole('button',{name:'Prepare summary from approved note'})).toBeDisabled();
+ await page.getByRole('button',{name:'Study dashboard',exact:true}).click();await expect(page.getByRole('heading',{name:'Study dashboard'})).toBeVisible();await expect(page.getByText('Quality gate: 5% normalized WER.',{exact:false})).toBeVisible();
+});
+test('approved summary requires separate confirmation and edits reset it',async({page})=>{
+ const headers={Authorization:`Bearer ${token}`};
+ const demo=await page.request.post('/v1/demo',{headers});expect(demo.ok()).toBeTruthy();const eid=(await demo.json()).encounter_id;
+ const ws=await(await page.request.get(`/v1/encounters/${eid}/workspace`,{headers})).json();
+ const source=await page.request.post(`/v1/encounters/${eid}/manual-transcripts`,{headers,data:{audio_asset_id:ws.transcript.audio_asset_id,segments:[{start_ms:0,end_ms:100,text:'Patient reports cough.',role:'patient'}],english_confirmed:true,source_completeness_reviewed:true,source_review_reason:'Synthetic test source reviewed in full.'}});expect(source.ok()).toBeTruthy();const tx=await source.json();
+ const facts=(await(await page.request.get(`/v1/encounters/${eid}/facts`,{headers})).json()).facts.map((f:any)=>({...f,reviewed:true,critical_reviewed:true,subject:'patient',temporality:'current',assertion:'affirmed'}));
+ const saved=await page.request.post(`/v1/encounters/${eid}/drafts`,{headers,data:{transcript_version_id:tx.id,facts}});expect(saved.ok()).toBeTruthy();const note=(await saved.json()).note;
+ const approved=await page.request.post(`/v1/encounters/${eid}/approvals`,{headers,data:{note_version_id:note.id,expected_note_sha256:note.sha256,verification_report_id:note.verification_report_id,patient_identifiers_reconfirmed:true}});expect(approved.ok()).toBeTruthy();
+ await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();await page.locator('.encounter-item').first().click();await page.getByRole('button',{name:'Facts & SOAP note',exact:false}).click();
+ await page.getByRole('button',{name:'Prepare summary from approved note'}).click();await expect(page.getByLabel('Summary for clinician review')).toHaveValue(/Patient reports cough/);
+ const download=page.getByRole('button',{name:'Download reviewed patient summary'});await expect(download).toBeDisabled();await page.getByLabel('I separately reviewed this summary',{exact:false}).check();await expect(download).toBeEnabled();
+ await page.getByLabel('Summary for clinician review').fill('Updated clinician wording.');await expect(download).toBeDisabled();
+ await page.getByLabel('I separately reviewed this summary',{exact:false}).check();const event=page.waitForEvent('download');await download.click();expect((await event).suggestedFilename()).toBe('reviewed-visit-summary.txt');
+ await page.route(`**/v1/encounters/${eid}/workspace`,async route=>{const response=await route.fetch();await route.fulfill({response,json:{...(await response.json()),stale:true}});});
+ await download.click();await expect(page.getByText('The approved source changed. Reload and review a new summary.')).toBeVisible();await expect(download).toBeDisabled();
+ const exported=page.waitForEvent('download');await page.getByRole('button',{name:'↓ Fhir',exact:true}).click();expect((await exported).suggestedFilename()).toContain('.json');
+});

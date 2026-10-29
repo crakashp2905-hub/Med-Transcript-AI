@@ -1,0 +1,6 @@
+import {useEffect,useState} from 'react';
+export function DetailedDemo({request,open,disabled}:{request:(p:string)=>Promise<any>;open:(id:string)=>void;disabled:boolean}){
+ const [cases,setCases]=useState<{id:string;duration_ms:number;attribution:string}[]>([]),[chosen,setChosen]=useState(''),[error,setError]=useState('');
+ useEffect(()=>{let live=true;request('/v1/demo-cases').then(r=>{if(live){setCases(r.items);setChosen(r.items[0]?.id||'');}}).catch(()=>{if(live)setError('Public consultation examples unavailable.');});return()=>{live=false;};},[]);
+ return <section className="panel"><h2>Detailed public consultation demonstration</h2><p>Full mock consultation with the upstream human reference transcript. This demonstrates review workflows, not ASR performance. Review and approval remain required.</p>{error&&<p>{error}</p>}<label>Public consultation<select disabled={disabled} value={chosen} onChange={e=>setChosen(e.target.value)}>{cases.map(c=><option value={c.id} key={c.id}>{c.id} · {(c.duration_ms/60000).toFixed(1)} minutes</option>)}</select></label><p>{cases.find(c=>c.id===chosen)?.attribution}</p><button disabled={disabled||!chosen} onClick={()=>open(chosen)}>Open detailed public example</button></section>;
+}

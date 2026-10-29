@@ -95,6 +95,9 @@ def render_sections(facts):
 
 def render_export(note, approval, format):
     import json
+    if format == "fhir":
+        from services.review.presentation import fhir_document
+        return fhir_document(note, approval)
     payload = {"schema_version": "1.0", "status": "approved", "approval": approval, "note": note}
     if format == "json":
         return json.dumps(payload, ensure_ascii=False, indent=2)

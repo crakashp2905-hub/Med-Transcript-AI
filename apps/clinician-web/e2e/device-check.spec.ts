@@ -12,6 +12,9 @@ test('device identification releases tracks and stores or uploads no audio',asyn
  await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();await button.click();
  await expect(page.getByText(/Microphone released/)).toBeVisible();
  expect(await page.evaluate(()=>(window as unknown as {probeStream:MediaStream}).probeStream.getTracks().every(t=>t.readyState==='ended'))).toBe(true);
+ await page.getByRole('button',{name:'Check five-second microphone signal'}).click();
+ await expect(page.getByText('Browser signal samples only.',{exact:false})).toBeVisible({timeout:15000});
+ expect(await page.evaluate(()=>(window as unknown as {probeStream:MediaStream}).probeStream.getTracks().every(t=>t.readyState==='ended'))).toBe(true);
  expect(uploads).toBe(0);await expect(page.getByRole('button',{name:'Download device check'})).toBeVisible();
  await expect(page.getByRole('button',{name:'Prepare facts',exact:false})).toBeDisabled();
 });
