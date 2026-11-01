@@ -1,0 +1,77 @@
+{
+  "schema_version": "detailed_recovery_v3",
+  "suite_sha256": "94b611e900a49c74d03b370506e5adacc117e252989bc6fd2d59a7ee05938af9",
+  "complete": false,
+  "maximum_normalized_wer": 0.05,
+  "model_promoted": null,
+  "clinical_acceptance": false,
+  "paid_calls": 0,
+  "experiments": [
+    {
+      "mode": "speech_aware",
+      "status": "complete",
+      "report": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.speech_aware.json",
+      "complete": true,
+      "completed_cases": 16,
+      "sha256": "468bdc1826676cb55c897076cd4300f6ad9ed8a812e4e45b425991de4e8174e0",
+      "resumed_from": {
+        "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.speech_aware.json",
+        "sha256": "f9af11b53b314749cbe70f40180bf60f6c7eb35d2f85363994c1bb918afa96bb",
+        "reused_complete_cases": [
+          "day1_consultation01__audio_-10dB_d0",
+          "day1_consultation01__clean",
+          "day1_consultation02__audio_-10dB_d0",
+          "day1_consultation02__clean",
+          "day1_consultation03__audio_-10dB_d0",
+          "day1_consultation03__clean",
+          "day1_consultation04__audio_-10dB_d0",
+          "day1_consultation04__clean",
+          "day1_consultation05__audio_-10dB_d0",
+          "day1_consultation05__clean",
+          "day1_consultation06__audio_-10dB_d0",
+          "day1_consultation06__clean",
+          "day1_consultation07__audio_-10dB_d0",
+          "day1_consultation07__clean"
+        ],
+        "unfinished_case_rerun_in_full": true,
+        "latency_scope": "includes_original_completed_case_measurements_not_a_fresh_whole_corpus_run"
+      },
+      "conditions": {
+        "clean": {
+          "reference_words": 13683,
+          "normalized_edits": 3211,
+          "normalized_wer": 0.23467075933640283,
+          "failed_samples": 0,
+          "samples": 8,
+          "wall_seconds": 7785.404878600151,
+          "wer_gate": {
+            "maximum_normalized_wer": 0.05,
+            "scope": "aggregate_evaluation_dataset",
+            "status": "fail",
+            "reasons": [
+              "normalized_wer_exceeds_maximum"
+            ],
+            "clinical_approval": "not_established_by_wer"
+          }
+        },
+        "distracted": {
+          "reference_words": 13683,
+          "normalized_edits": 3293,
+          "normalized_wer": 0.24066359716436453,
+          "failed_samples": 0,
+          "samples": 8,
+          "wall_seconds": 7598.365897000069,
+          "wer_gate": {
+            "maximum_normalized_wer": 0.05,
+            "scope": "aggregate_evaluation_dataset",
+            "status": "fail",
+            "reasons": [
+              "normalized_wer_exceeds_maximum"
+            ],
+            "clinical_approval": "not_established_by_wer"
+          }
+        }
+      }
+    }
+  ]
+}
