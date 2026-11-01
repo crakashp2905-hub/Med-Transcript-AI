@@ -6,6 +6,49 @@ import re
 from pathlib import Path
 
 
+def campaign_evidence(root):
+    """Prefer published final ranking; retain every incomplete experiment."""
+    root = Path(root)
+    reports = {}
+    sources = {}
+    choices = {
+        'ranking': ['detailed-ranking-final-2026-10-29.json', 'detailed-ranking-v2-2026-10-29.json'],
+        'drafting': ['detailed-drafting-summary-2026-10-29.json'],
+        'execution': ['detailed-campaign-execution-receipt-2026-10-29.json'],
+    }
+    for key, filenames in choices.items():
+        reports[key] = None
+        for filename in filenames:
+            path = root / filename
+            try:
+                raw = path.read_bytes()
+                value = json.loads(raw)
+            except (OSError, ValueError):
+                continue
+            reports[key] = value
+            sources[key] = {'filename': filename, 'sha256': hashlib.sha256(raw).hexdigest()}
+            break
+    experiments = []
+    for path in sorted((root.parent / 'runs/meddistract-detailed-v2').glob('*.json')):
+        try:
+            raw = path.read_bytes()
+            value = json.loads(raw)
+        except (OSError, ValueError):
+            continue
+        if value.get('mode') == 'fixed':
+            continue
+        complete = value.get('complete') is True
+        experiments.append({'candidate': value.get('candidate_id'), 'mode': value.get('mode'),
+            'status': 'complete' if complete else 'incomplete',
+            'completed_cases': len(value.get('cases', [])),
+            'conditions': value.get('conditions') if complete else None,
+            'filename': path.name, 'sha256': hashlib.sha256(raw).hexdigest()})
+    return {'reports': reports, 'sources': sources, 'experiments': experiments,
+            'clinical_validation': False,
+            'scope': 'public synthetic development evidence; not independent clinical acceptance',
+            'provider_cost': 0, 'hardware_cost': None}
+
+
 def public_demo_cases():
     root = Path(__file__).resolve().parents[2]
     manifest = root / 'evaluation/datasets/meddistract-detailed-v1/manifest.json'

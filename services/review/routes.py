@@ -23,20 +23,9 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
 
     @app.get('/v1/study-dashboard')
     def study_dashboard(actor=Depends(identity)):
+        from services.review.presentation import campaign_evidence
         root = Path(__file__).resolve().parents[2] / 'evaluation' / 'reports'
-        reports = {}
-        for key, filename in (
-            ('ranking', 'detailed-ranking-v2-2026-10-29.json'),
-            ('drafting', 'detailed-drafting-summary-2026-10-29.json'),
-            ('execution', 'detailed-campaign-execution-receipt-2026-10-29.json'),
-        ):
-            try:
-                reports[key] = json.loads((root / filename).read_text(encoding='utf-8'))
-            except (OSError, ValueError):
-                reports[key] = None
-        return {'reports': reports, 'clinical_validation': False,
-                'scope': 'public synthetic development evidence; not independent clinical acceptance',
-                'provider_cost': 0, 'hardware_cost': None}
+        return campaign_evidence(root)
 
     @app.get("/v1/encounters/{eid}/draft-proposals/{did}")
     def get_draft_proposal(eid: UUID, did: UUID, actor=Depends(identity)):
