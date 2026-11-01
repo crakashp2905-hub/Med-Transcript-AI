@@ -15,6 +15,7 @@ def campaign_evidence(root):
         'ranking': ['detailed-ranking-final-2026-10-29.json', 'detailed-ranking-v2-2026-10-29.json'],
         'drafting': ['detailed-drafting-summary-2026-10-29.json'],
         'execution': ['detailed-campaign-execution-receipt-2026-10-29.json'],
+        'recovery': ['detailed-recovery-v3.json'],
     }
     for key, filenames in choices.items():
         reports[key] = None
@@ -29,7 +30,9 @@ def campaign_evidence(root):
             sources[key] = {'filename': filename, 'sha256': hashlib.sha256(raw).hexdigest()}
             break
     experiments = []
-    for path in sorted((root.parent / 'runs/meddistract-detailed-v2').glob('*.json')):
+    paths = [p for folder in ('meddistract-detailed-v2', 'meddistract-recovery-v3')
+             for p in (root.parent / 'runs' / folder).glob('*.json')]
+    for path in sorted(paths):
         try:
             raw = path.read_bytes()
             value = json.loads(raw)
@@ -42,7 +45,8 @@ def campaign_evidence(root):
             'status': 'complete' if complete else 'incomplete',
             'completed_cases': len(value.get('cases', [])),
             'conditions': value.get('conditions') if complete else None,
-            'filename': path.name, 'sha256': hashlib.sha256(raw).hexdigest()})
+            'filename': f'{path.parent.name}/{path.name}',
+            'resumed_from': value.get('resumed_from'), 'sha256': hashlib.sha256(raw).hexdigest()})
     return {'reports': reports, 'sources': sources, 'experiments': experiments,
             'clinical_validation': False,
             'scope': 'public synthetic development evidence; not independent clinical acceptance',

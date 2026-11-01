@@ -162,8 +162,9 @@ def run(suite_path,candidate,output,mode='fixed'):
         report['initialization_failure']=type(exc).__name__;save();raise
     report['runtime']=config;report['model_load_seconds']=time.perf_counter()-t
     try:
-        if mode=='fixed' and job.get('resume_from'):
-            resume=job['resume_from'];path=Path(resume['path'])
+        resume=job.get('resume_by_mode',{}).get(mode) or (job.get('resume_from') if mode=='fixed' else None)
+        if resume:
+            path=Path(resume['path'])
             if file_sha256(path)!=resume['sha256']:raise ValueError('Original resume receipt changed')
             previous=json.loads(path.read_text(encoding='utf-8'))
             if previous['manifest_sha256']!=suite['manifest_sha256']:raise ValueError('Resume dataset changed')

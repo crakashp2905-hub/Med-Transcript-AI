@@ -72,6 +72,6 @@ def test_dashboard_prefers_final_and_never_scores_partial_experiments(tmp_path):
 def test_missing_dashboard_evidence_is_not_reported_as_completed(tmp_path):
     from services.review.presentation import campaign_evidence
     value=campaign_evidence(tmp_path)
-    assert value['reports']=={'ranking':None,'drafting':None,'execution':None}
+    assert value['reports']=={'ranking':None,'drafting':None,'execution':None,'recovery':None}
     assert value['sources']=={} and value['experiments']==[]
     assert value['clinical_validation'] is False
