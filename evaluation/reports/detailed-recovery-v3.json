@@ -72,6 +72,65 @@
           }
         }
       }
+    },
+    {
+      "mode": "context",
+      "status": "complete",
+      "report": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.context.json",
+      "complete": true,
+      "completed_cases": 16,
+      "sha256": "cab742638fc7af9768ac000a59e605591f51f508cf57b2dc2810ed3ae564a841",
+      "resumed_from": {
+        "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.context.json",
+        "sha256": "2a2094ee5a1df04aef3a97394a8cf7ed02d44082401d31f08438f0f6ead8d7e2",
+        "reused_complete_cases": [
+          "day1_consultation01__audio_-10dB_d0",
+          "day1_consultation01__clean",
+          "day1_consultation02__audio_-10dB_d0",
+          "day1_consultation02__clean",
+          "day1_consultation03__audio_-10dB_d0",
+          "day1_consultation03__clean",
+          "day1_consultation04__audio_-10dB_d0"
+        ],
+        "unfinished_case_rerun_in_full": true,
+        "latency_scope": "includes_original_completed_case_measurements_not_a_fresh_whole_corpus_run"
+      },
+      "conditions": {
+        "clean": {
+          "reference_words": 13683,
+          "normalized_edits": 11496,
+          "normalized_wer": 0.8401666301249726,
+          "failed_samples": 0,
+          "samples": 8,
+          "wall_seconds": 13621.793649700005,
+          "wer_gate": {
+            "maximum_normalized_wer": 0.05,
+            "scope": "aggregate_evaluation_dataset",
+            "status": "fail",
+            "reasons": [
+              "normalized_wer_exceeds_maximum"
+            ],
+            "clinical_approval": "not_established_by_wer"
+          }
+        },
+        "distracted": {
+          "reference_words": 13683,
+          "normalized_edits": 8671,
+          "normalized_wer": 0.6337060586128773,
+          "failed_samples": 0,
+          "samples": 8,
+          "wall_seconds": 10797.999119999819,
+          "wer_gate": {
+            "maximum_normalized_wer": 0.05,
+            "scope": "aggregate_evaluation_dataset",
+            "status": "fail",
+            "reasons": [
+              "normalized_wer_exceeds_maximum"
+            ],
+            "clinical_approval": "not_established_by_wer"
+          }
+        }
+      }
     }
   ]
 }
