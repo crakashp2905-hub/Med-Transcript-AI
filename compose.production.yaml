@@ -1,0 +1,34 @@
+# Use with compose.yaml behind a trusted HTTPS reverse proxy.
+# docker compose --env-file .env.production -f compose.yaml -f compose.production.yaml up --build -d
+services:
+  api:
+    environment:
+      MED_TRANSCRIPT_ENV: production
+      MED_TRANSCRIPT_AUTH_MODE: google
+      MED_TRANSCRIPT_PUBLIC_ORIGIN: ${MED_TRANSCRIPT_PUBLIC_ORIGIN:?Set the exact HTTPS origin}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:?Register a Google web OAuth client}
+      GOOGLE_CLIENT_SECRET_FILE: /run/secrets/google_client_secret
+      GOOGLE_WORKSPACE_DOMAIN: ${GOOGLE_WORKSPACE_DOMAIN:-}
+      MED_TRANSCRIPT_MEMBERS_FILE: /run/config/members.json
+    secrets: [google_client_secret]
+    volumes:
+      - ${MED_TRANSCRIPT_MEMBERS_FILE:?Set the invitation file}:/run/config/members.json:ro
+    networks: [private, google-egress]
+    mem_limit: 2g
+    cpus: 2
+    pids_limit: 128
+    init: true
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import os,urllib.request; r=urllib.request.Request('http://127.0.0.1:8000/health',headers={'Host':os.environ['MED_TRANSCRIPT_PUBLIC_ORIGIN'].split('://')[1]}); urllib.request.urlopen(r,timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  worker:
+    init: true
+    restart: unless-stopped
+secrets:
+  google_client_secret:
+    file: ${GOOGLE_CLIENT_SECRET_FILE:?Set the secret file path}
+networks:
+  google-egress: {}

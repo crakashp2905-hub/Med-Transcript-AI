@@ -156,6 +156,15 @@ MIGRATIONS = (
     ALTER TABLE uploads ADD COLUMN stream_seal_expires_at TEXT;
     """,
 
+    """
+    CREATE TABLE auth_flows (state_hash TEXT PRIMARY KEY, binding_hash TEXT NOT NULL,
+        verifier TEXT NOT NULL, nonce TEXT NOT NULL, expires_at INTEGER NOT NULL);
+    CREATE TABLE auth_subjects (email TEXT PRIMARY KEY, subject TEXT NOT NULL UNIQUE);
+    CREATE TABLE auth_sessions (token_hash TEXT PRIMARY KEY, email TEXT NOT NULL,
+        subject TEXT NOT NULL, expires_at INTEGER NOT NULL, last_seen INTEGER NOT NULL);
+    CREATE INDEX auth_session_expiry ON auth_sessions(expires_at);
+    CREATE TABLE auth_throttle (bucket TEXT PRIMARY KEY, hits INTEGER NOT NULL, expires_at INTEGER NOT NULL);
+    """,
 )
 
 

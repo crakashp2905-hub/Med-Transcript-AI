@@ -70,3 +70,14 @@ jobs:
         env:
           POSTGRES_PASSWORD: synthetic-ci-password
       - run: docker build -t med-transcript-ci .
+      - name: Validate hosted Google sign-in configuration
+        run: |
+          python -c "from pathlib import Path; Path('/tmp/med-google-secret').write_text('synthetic-ci-secret')"
+          docker compose --env-file .env.production.example -f compose.yaml -f compose.production.yaml config --quiet
+        env:
+          POSTGRES_PASSWORD: synthetic-ci-password
+          GOOGLE_CLIENT_ID: synthetic-ci-client
+          GOOGLE_CLIENT_SECRET_FILE: /tmp/med-google-secret
+          GOOGLE_WORKSPACE_DOMAIN: example.org
+          MED_TRANSCRIPT_PUBLIC_ORIGIN: https://scribe.example.org
+          MED_TRANSCRIPT_MEMBERS_FILE: ./config/members.example.json

@@ -40,7 +40,7 @@ test('approved summary requires separate confirmation and edits reset it',async(
  const download=page.getByRole('button',{name:'Download reviewed patient summary'});await expect(download).toBeDisabled();await page.getByLabel('I separately reviewed this summary',{exact:false}).check();await expect(download).toBeEnabled();
  await page.getByLabel('Summary for clinician review').fill('Updated clinician wording.');await expect(download).toBeDisabled();
  await page.getByLabel('I separately reviewed this summary',{exact:false}).check();const event=page.waitForEvent('download');await download.click();expect((await event).suggestedFilename()).toBe('reviewed-visit-summary.txt');
- await page.route(`**/v1/encounters/${eid}/workspace`,async route=>{const response=await route.fetch();await route.fulfill({response,json:{...(await response.json()),stale:true}});});
+ await page.route(`**/v1/encounters/${eid}/workspace`,async route=>{const response=await route.fetch();const body=await response.json();await route.fulfill({status:response.status(),headers:response.headers(),json:{...body,stale:true}});});
  await download.click();await expect(page.getByText('The approved source changed. Reload and review a new summary.')).toBeVisible();await expect(download).toBeDisabled();
- const exported=page.waitForEvent('download');await page.getByRole('button',{name:'↓ Fhir',exact:true}).click();expect((await exported).suggestedFilename()).toContain('.json');
+ const exported=page.waitForEvent('download');await page.getByRole('button',{name:'↓ Fhir',exact:true}).click();expect((await exported).suggestedFilename()).toContain('.json');await page.unrouteAll({behavior:'wait'});
 });

@@ -27,3 +27,8 @@ evaluation/expanded-progress.json.tmp
 # Transient benchmark publication and runtime logs; JSON evidence is versioned.
 evaluation/runs/**/*.log
 evaluation/runs/**/*.pending
+
+# Hosted sign-in configuration and invitations contain secrets or personal data.
+.env.*
+!.env.*.example
+config/members.json

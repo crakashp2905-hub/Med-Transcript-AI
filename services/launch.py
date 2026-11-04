@@ -60,12 +60,16 @@ def main():
     parser.add_argument('--public-diarization',action='store_true',help='Enable experimental public VAD/embedding speaker clustering')
     parser.add_argument('--local-clinical-models',action='store_true',help='Enable advisory local fact extraction and an independent model verifier')
     args = parser.parse_args()
+    if args.host == '0.0.0.0' and (os.getenv('MED_TRANSCRIPT_AUTH_MODE') != 'google' or os.getenv('MED_TRANSCRIPT_ENV') != 'production'):
+        raise ValueError('Public binding requires Google authentication; use loopback for local key access')
     configure_local_features(args.local_drafting,args.public_diarization,args.local_clinical_models)
     root = Path("data")
     root.mkdir(exist_ok=True)
     config_path = root / "local-config.json"
     if config_path.exists():
         config = json.loads(config_path.read_text(encoding="utf-8"))
+    elif os.getenv("MED_TRANSCRIPT_AUTH_MODE") == "google":
+        config = {}
     else:
         config = {"access_key": secrets.token_urlsafe(32), "tenant_id": str(uuid4()), "clinician_id": str(uuid4())}
         config_path.write_text(json.dumps(config, indent=2), encoding="utf-8")
@@ -74,9 +78,9 @@ def main():
     db = os.environ.get("MED_TRANSCRIPT_DB", str(root / "development.sqlite3"))
     profile_path = os.environ.get("MED_TRANSCRIPT_ASR_PROFILES") or config.get("asr_profiles_path")
     profiles = load_profiles(profile_path) if profile_path else {}
-    app = create_app(db, {config["access_key"]: Identity(tenant_id=config["tenant_id"], clinician_id=config["clinician_id"])},
+    app = create_app(db, {} if os.getenv("MED_TRANSCRIPT_AUTH_MODE") == "google" else {config["access_key"]: Identity(tenant_id=config["tenant_id"], clinician_id=config["clinician_id"])},
         os.environ.get("MED_TRANSCRIPT_ASSETS"), profiles)
-    print(f"Workspace: http://127.0.0.1:{args.port}\nLocal access key: {config['access_key']}", flush=True)
+    print(f"Workspace: http://127.0.0.1:{args.port} · Authentication: {os.getenv('MED_TRANSCRIPT_AUTH_MODE', 'local')} · Key stored locally in data/local-config.json", flush=True)
     process = None
     log = None
     if not args.no_worker:

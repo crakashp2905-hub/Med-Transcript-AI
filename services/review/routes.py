@@ -162,7 +162,7 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
 
     @app.get("/v1/session")
     def session(actor=Depends(identity)):
-        return {"clinician_id": str(actor.clinician_id), "tenant_id": str(actor.tenant_id),
+        return {"clinician_id": str(actor.clinician_id), "tenant_id": str(actor.tenant_id), "role": actor.role,
                 "data_mode": "synthetic_only", "asr_profiles": list(profiles),
                 "demo_available": (assets.parent / "demo-sample.json").is_file(),
                 "clinical_models_enabled": bool(app.state.clinical_models.enabled)}

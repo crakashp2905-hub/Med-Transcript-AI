@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Annotated, Literal
 from uuid import UUID, uuid4
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from urllib.parse import urlsplit
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
@@ -34,6 +35,7 @@ class StrictModel(BaseModel):
 class Identity(StrictModel):
     tenant_id: UUID
     clinician_id: UUID
+    role: Literal["clinician", "viewer"] = "clinician"
 
 
 class EncounterInput(StrictModel):
@@ -88,7 +90,9 @@ def now():
 
 def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str | None = None,
                asr_profiles: dict[str, ASRProfile] | None = None) -> FastAPI:
-    if not credentials or any(len(token) < 32 for token in credentials):
+    from services.api.auth import Settings, GoogleSessions
+    auth_settings = Settings.environment()
+    if (auth_settings.mode == "local" and not credentials) or any(len(token) < 32 for token in credentials):
         raise ValueError("Configure service tokens of at least 32 characters")
     # Only digests are retained by the authentication closure.
     identities = {hashlib.sha256(k.encode()).hexdigest(): v for k, v in credentials.items()}
@@ -103,15 +107,27 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
     assets = Path(asset_root or default_asset_root(db_path))
     assets.mkdir(parents=True, exist_ok=True)
 
-    app = FastAPI(title="Med Transcript AI — synthetic foundation", version="0.3.0")
+    app = FastAPI(title="Med Transcript AI", version="0.5.0", docs_url=None if auth_settings.production else "/docs", redoc_url=None if auth_settings.production else "/redoc", openapi_url=None if auth_settings.production else "/openapi.json")
+    sessions = GoogleSessions(auth_settings, database, Identity)
+    app.state.auth_sessions = sessions
+    sessions.register(app)
+    from services.api.request_limits import RequestLimits
+    app.add_middleware(RequestLimits)
     bearer = HTTPBearer(auto_error=False)
 
     @app.middleware("http")
     async def response_headers(request: Request, call_next):
         request.state.request_id = str(uuid4())
-        response = await call_next(request)
+        if auth_settings.production and request.headers.get('host') != urlsplit(auth_settings.origin).netloc:
+            response = JSONResponse({'code': 'untrusted_host'}, status_code=400)
+        else:
+            response = await call_next(request)
         response.headers["X-Request-ID"] = request.state.request_id
         response.headers["Cache-Control"] = "no-store"
+        response.headers['X-Frame-Options'] = 'DENY'
+        response.headers['Permissions-Policy'] = 'camera=(), geolocation=(), microphone=(self)'
+        if auth_settings.production:
+            response.headers['Strict-Transport-Security'] = 'max-age=31536000'
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["Referrer-Policy"] = "no-referrer"
         response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
@@ -139,11 +155,15 @@ def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str |
         import psycopg
         app.add_exception_handler(psycopg.OperationalError, database_error)
 
-    def identity(auth: HTTPAuthorizationCredentials | None = Depends(bearer)):
+    def identity(request: Request, auth: HTTPAuthorizationCredentials | None = Depends(bearer)):
+        if auth_settings.mode == "google":
+            return sessions.principal(request)
         if auth:
             digest = hashlib.sha256(auth.credentials.encode()).hexdigest()
             for candidate, principal in identities.items():
                 if secrets.compare_digest(digest, candidate):
+                    if principal.role == "viewer" and request.method not in ("GET", "HEAD", "OPTIONS"):
+                        raise HTTPException(403, "read_only_account")
                     return principal
         raise HTTPException(401, "authentication_required", headers={"WWW-Authenticate": "Bearer"})
 
