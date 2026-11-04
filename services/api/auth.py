@@ -1,4 +1,5 @@
 """Google OIDC code + PKCE; opaque, revocable server sessions, invitation-only access."""
+from services.audit_integrity import append as append_audit
 import base64
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -203,7 +204,7 @@ class GoogleSessions:
                 if old:
                     con.execute('DELETE FROM auth_sessions WHERE token_hash=?', (digest(old),))
                 con.execute('INSERT INTO auth_sessions VALUES (?,?,?,?,?)', (digest(token), email, subject, stamp+28800, stamp))
-                con.execute('INSERT INTO audit VALUES (?,?,?,?,?,?)', (str(uuid4()), str(actor.tenant_id), str(actor.clinician_id), 'google_sign_in', 'session', datetime.now(timezone.utc).isoformat()))
+                append_audit(con, (str(uuid4()), str(actor.tenant_id), str(actor.clinician_id), 'google_sign_in', 'session', datetime.now(timezone.utc).isoformat()))
             response = RedirectResponse('/', status_code=303)
             response.delete_cookie('med_login', path='/v1/auth')
             response.set_cookie(settings.cookie, token, max_age=28800, secure=settings.secure, httponly=True, samesite='lax', path='/')

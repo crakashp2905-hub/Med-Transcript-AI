@@ -1,0 +1,87 @@
+{
+  "schema_version": "retrospective_error_taxonomy_protocol_v2",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "maximum_normalized_wer": 0.05,
+  "code_sha256": {
+    "services/error_taxonomy.py": "87c1ea57870c145b75a3a19d7e51f5c296ccb9a2b701ae1794af78a02ca0a288",
+    "services/benchmark_integrity.py": "0548456bbeb05529a829a5a8f8e4e6a668a881d9e1366744a1b24c0e723e4f1a",
+    "services/detailed_benchmark.py": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d",
+    "services/evaluation.py": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055",
+    "services/clinical_metrics.py": "25338570791c7dea3e8a24a52110a8be233c0a1ee3e5afbf9e7abb53181ffae5",
+    "services/canonical.py": "95ac5257a8526364b4f7f082b7a77ca52844918607132f3214e34f3894ab8713"
+  },
+  "source_reports": [
+    {
+      "path": "evaluation/runs/meddistract-detailed-v1/faster-whisper-tiny.en.fixed.json",
+      "sha256": "10f686122259a473b4872fee69a71dbbf9d70be9df3d18dc11f04eb2fc4d9d23"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/distil-whisper-large-v3.fixed.json",
+      "sha256": "9062cbdd6b4947ecb78c437f1b18384f19f69447845ef7e909e9043d277a432c"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.context.json",
+      "sha256": "2a2094ee5a1df04aef3a97394a8cf7ed02d44082401d31f08438f0f6ead8d7e2"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json",
+      "sha256": "97480843cb1585523621ecc3b88149c4c62246380c1571a8abcb3f41cc19c1f3"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.overlap.json",
+      "sha256": "d616df38a47a7b8125f841524bd247a70516f184148122ab99b4cafbfac2ae52"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.speech_aware.json",
+      "sha256": "f9af11b53b314749cbe70f40180bf60f6c7eb35d2f85363994c1bb918afa96bb"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-tiny.en.fixed.json",
+      "sha256": "21de3bbc2dd4812d135aaf5c2a6256ab1b8e9a047bd8f56142621156a01c3ece"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/multimed-whisper-small-english.fixed.json",
+      "sha256": "54ffac5180683367bdf222997890b3f5273eae859d645ca3256ceae09d869a40"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.fixed.json",
+      "sha256": "f5ee39e09eb0da5f56aec1950a7bc5c0f3c22a4b689282c221b6f35e9a8c12e9"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.overlap.json",
+      "sha256": "58d623d0c2af180dc021b8c7af2184082410e23a95c6a81f305ea428dff80482"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.speech_aware.json",
+      "sha256": "56943c0600fa305152af714149bc39a8c76b81d38fb8c3c3664b18bedf1577c9"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json",
+      "sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/parakeet-tdt-0.6b-v2.fixed.json",
+      "sha256": "9becc22cd583cde4f27f48a4d1fc5fc95f36a4ebe11a18ba29e68ac8a0fea7c1"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/qwen3-asr-0.6b-int8.fixed.json",
+      "sha256": "36bb5b4d0ccf2a2dcb0f4a8000d0797a9ceec399f9d5bdd496ee3f64827dc1d4"
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json",
+      "sha256": "e31e210dce79f247ab65ac49d4543866166d6cf5be7b73e228d9d1b8fd02e035"
+    },
+    {
+      "path": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.context.json",
+      "sha256": "cab742638fc7af9768ac000a59e605591f51f508cf57b2dc2810ed3ae564a841"
+    },
+    {
+      "path": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.speech_aware.json",
+      "sha256": "468bdc1826676cb55c897076cd4300f6ad9ed8a812e4e45b425991de4e8174e0"
+    }
+  ],
+  "cohort": "existing development hypotheses only",
+  "primary_score_modified": false,
+  "independent_clinical_gold": false,
+  "real_patient_release_authorized": false
+}

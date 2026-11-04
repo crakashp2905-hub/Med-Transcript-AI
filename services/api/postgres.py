@@ -53,6 +53,9 @@ class PostgresStore:
                     # No parameters: psycopg uses the multi-statement-capable simple protocol.
                     con.execute(postgres_migration(sql))
                     con.execute("UPDATE app_schema_version SET version=? WHERE id=1", (version,))
+                    if 'CREATE TABLE audit_chain' in sql:
+                        from services.audit_integrity import initialize
+                        initialize(con)
 
     @contextmanager
     def transaction(self):

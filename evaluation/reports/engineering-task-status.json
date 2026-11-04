@@ -22,18 +22,36 @@
     {
       "id": "00-02",
       "description": "Keep Version 1 English-only; remove non-English, MRI, X-ray and TTS work from critical-path milestones without deleting previously documented future plans.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+          "sha256": "a8fa0e9e390c65dfe514c09df8f7d94597fd2861003c4323a580c530fd71591e"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_english_only_schema_rejects_other_languages_and_imaging"
+      ],
+      "limitations": "English-only synthetic/public-mock programme; historical future imaging/TTS plans are retained outside the critical path."
     },
     {
       "id": "00-03",
       "description": "Define a machine-readable release matrix: `offline_demo`, `engineering_verified`, `research_evidence_complete`, `clinical_approved`; prohibit collapsing the four into one `ready` boolean.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence"
+      ],
+      "limitations": "Independent release dimensions; engineering/research remain not established and clinical release remains externally blocked."
     },
     {
       "id": "00-04",
@@ -70,10 +88,24 @@
     {
       "id": "00-08",
       "description": "Define a `no_external_dependency` development profile that fails if an operation attempts hosted inference, downloads, telemetrics, live OAuth, or patient-data processing.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        },
+        {
+          "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+          "sha256": "a8fa0e9e390c65dfe514c09df8f7d94597fd2861003c4323a580c530fd71591e"
+        }
+      ],
+      "tests": [
+        "test_offline_guard_denies_external_dns_tcp_udp_but_preserves_loopback",
+        "test_offline_guard_rejects_rebound_localhost",
+        "test_strict_offline_profile_rejects_hosted_and_live_oauth",
+        "test_english_only_schema_rejects_other_languages_and_imaging"
+      ],
+      "limitations": "Python network/profile enforcement only; not an OS firewall or arbitrary native-process containment."
     },
     {
       "id": "00-09",
@@ -86,26 +118,59 @@
     {
       "id": "00-10",
       "description": "Retain an immutable index of negative, failed, timed-out, interrupted and partial experiments; never overwrite them with repaired runs.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/negative-experiments-index-v1.json",
+          "sha256": "737c43007103f0da154e92674f79d48a95e78e5cf4a68155d431f4eb89277a40"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_negative_index_retains_failures_without_misclassifying_clinical_release"
+      ],
+      "limitations": "Immutable snapshot retains 29 negative reports from the 198-file baseline; original experiments unchanged."
     },
     {
       "id": "00-11",
       "description": "Specify a severity model (`P0`, `P1`, `P2`) and mark unsafe auto-approval, identity leakage, missing audit and corrupted evidence as release blockers.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/architecture-decisions/002-evidence-and-completion.md",
+          "sha256": "fc89c2afdf19ad12124674da2da8ef81e7dd156b13b3f8162aaea70da3b6a167"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence"
+      ],
+      "limitations": "Unresolved P0 prevents engineering admission; no clinical approval path."
     },
     {
       "id": "00-12",
       "description": "Add a documented evidence hierarchy: independent clinical labels > non-independent source references > developer-authored synthetic gold > model judgments; the lower tier may not impersonate a higher one.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+          "sha256": "a8fa0e9e390c65dfe514c09df8f7d94597fd2861003c4323a580c530fd71591e"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_lower_evidence_tiers_cannot_claim_independent_gold"
+      ],
+      "limitations": "Evidence hierarchy enforced for new developer acceptance artifacts; historical evidence remains scoped separately."
     },
     {
       "id": "01-01",
@@ -206,18 +271,39 @@
     {
       "id": "01-13",
       "description": "Enforce format/lint/type checks for Python and TypeScript in reproducible CI, including an explicit no-network test lane.",
-      "status": "not_started",
-      "evidence": [],
+      "status": "blocked_missing_local_artifact",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
       "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "limitations": "Ruff and mypy are absent from the existing environment; no installation/download permitted. Existing TypeScript checks still run."
     },
     {
       "id": "01-14",
       "description": "Add a small architecture-decision-log folder for scoring rules, provenance, safe defaults, local-only limits and compatibility choices.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+          "sha256": "a8fa0e9e390c65dfe514c09df8f7d94597fd2861003c4323a580c530fd71591e"
+        },
+        {
+          "path": "docs/architecture-decisions/002-evidence-and-completion.md",
+          "sha256": "fc89c2afdf19ad12124674da2da8ef81e7dd156b13b3f8162aaea70da3b6a167"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence",
+        "test_lower_evidence_tiers_cannot_claim_independent_gold"
+      ],
+      "limitations": "Two ADRs cover scoring/evidence, safe defaults, offline scope and rejected readiness shortcuts."
     },
     {
       "id": "01-15",
@@ -1294,10 +1380,17 @@
     {
       "id": "09-16",
       "description": "Re-run saved benchmarks through a read-only scorer from committed reports; verify scores match without model weights.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_replay_rejects_score_reference_coverage_and_denominator_mutations"
+      ],
+      "limitations": "Read-only exact replay of 17 saved detailed/recovery reports without model weights; other dataset replay remains separately tracked."
     },
     {
       "id": "09-17",
@@ -1334,18 +1427,44 @@
     {
       "id": "10-01",
       "description": "Fix or triage the November 2 `pip-audit --strict` failure; if an advisory exists, update dependencies using tested constraints, and preserve evidence of the outcome.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/dependency-audit-triage.json",
+          "sha256": "40f6413a8511f9b95527ede0f66d8dad3727a494f6ddf131d9f001bb54318d05"
+        },
+        {
+          "path": "docs/dependency-audit-triage.md",
+          "sha256": "3c9e39c749a781d9878d19903e13da1d1e91d3b6cb74eb47f3c47a14850c9497"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_audit_configuration_keeps_strict_third_party_checks"
+      ],
+      "limitations": "Root-cause/configuration triage complete; fresh vulnerability status not established because pip-audit/advisory cache is absent."
     },
     {
       "id": "10-02",
       "description": "Confirm the latest November 4 main-branch CI passes before claiming its Google authentication changes were validated on hosted runners.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/hosted-ci-baseline-receipt.json",
+          "sha256": "6c9870bd2a7ce18cbeef0be525c31745028f6b5e727336d1ef8b270160f6fb8e"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_existing_hosted_ci_receipt_requires_exact_commit_and_all_jobs"
+      ],
+      "limitations": "Hosted CI confirms the reviewed c1afa1e Google-auth baseline only; new offline commits require their own CI evidence."
     },
     {
       "id": "10-03",
@@ -1398,10 +1517,15 @@
     {
       "id": "10-09",
       "description": "Measure and publish per-module coverage, but gate critical state/auth/security paths by mutation/behavior tests rather than only line coverage.",
-      "status": "not_started",
-      "evidence": [],
+      "status": "blocked_missing_local_artifact",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
       "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "limitations": "Coverage tooling is absent from the existing environment; per-module coverage cannot be measured honestly."
     },
     {
       "id": "10-10",
@@ -1486,10 +1610,21 @@
     {
       "id": "11-06",
       "description": "Implement a local, no-secret leak scanner for Git-tracked files, generated reports, sample env files and fixture artifacts.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/secret-scan-foundation-v1.json",
+          "sha256": "b099d6d9623a54a8562face2e1c798c98e93630b7cf036bb0028f17e36e30cc3"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_secret_scanner_redacts_values_and_accepts_placeholders"
+      ],
+      "limitations": "Tracked-text patterns and known local access-key leak detection; not a complete secret/PHI certification."
     },
     {
       "id": "11-07",
@@ -1534,10 +1669,19 @@
     {
       "id": "11-12",
       "description": "Prohibit silent hosted inference, automatic model downloads or telemetry in the offline demo; create network-denial test harnesses.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_offline_guard_denies_external_dns_tcp_udp_but_preserves_loopback",
+        "test_offline_guard_rejects_rebound_localhost",
+        "test_strict_offline_profile_rejects_hosted_and_live_oauth"
+      ],
+      "limitations": "No hosted inference, downloads or telemetry are required by the model-free acceptance route; native subprocess network isolation is not claimed."
     },
     {
       "id": "11-13",
@@ -1598,10 +1742,21 @@
     {
       "id": "11-20",
       "description": "Make the README prominently state synthetic/mock-only until independent patient-data authorization exists.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "README.md",
+          "sha256": "82e4fe87129381320789c1e56aa080870d5f5e3316b7b08bed220ac381e8b3aa"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_english_only_schema_rejects_other_languages_and_imaging"
+      ],
+      "limitations": "README prominently states synthetic/public-mock only and unauthorized real-patient release."
     },
     {
       "id": "12-01",
@@ -1710,18 +1865,34 @@
     {
       "id": "13-02",
       "description": "Provide a one-command offline model-free demo with bundled synthetic fixtures and no accounts, downloads or API calls.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/demo-runbook-offline.md",
+          "sha256": "b8da08c976ef1f6087c2e5292b275fcfa1fe7346130da5c0098ac41b491ab16e"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_offline_scripted_workflow_blocks_dose_error_and_viewer_write"
+      ],
+      "limitations": "One-command loopback account-free model-free demo; silent transport plus developer-scripted text, explicitly not speech recognition."
     },
     {
       "id": "13-03",
       "description": "Build a reproducible offline wheelhouse/npm cache bundle from existing local installation *if present*; mark missing caches honestly.",
-      "status": "not_started",
-      "evidence": [],
+      "status": "blocked_missing_local_artifact",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
       "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "limitations": "No reusable local wheelhouse is present. Installed packages are not equivalent to an installable offline bundle."
     },
     {
       "id": "13-04",
@@ -1782,18 +1953,35 @@
     {
       "id": "13-11",
       "description": "Create an offline acceptance script: preflight -> tests -> mock full workflow -> metrics replay -> safety gates -> report.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/offline-acceptance-summary.md",
+          "sha256": "ef2a1701dd9b1a7b0ba3cfd75b992bb0fde687979cef8735047447c0563fd33f"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_task_count_and_evidence_are_tamper_checked",
+        "test_offline_scripted_workflow_blocks_dose_error_and_viewer_write"
+      ],
+      "limitations": "Preflight, full tests, cached build, saved metrics and safety walkthrough passed; missing optional tools remain disclosed."
     },
     {
       "id": "13-12",
       "description": "Test the actual packaged artifact on a clean isolated local environment, with cached dependencies only; report if unavailable.",
-      "status": "not_started",
-      "evidence": [],
+      "status": "blocked_missing_local_artifact",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
       "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "limitations": "No clean isolated cached-dependency packaging environment/wheelhouse is present."
     },
     {
       "id": "14-01",
@@ -1918,10 +2106,21 @@
     {
       "id": "15-04",
       "description": "Add a local read-only showcase account/session simulator without Google registration; never call it verified live OIDC.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/demo-runbook-offline.md",
+          "sha256": "b8da08c976ef1f6087c2e5292b275fcfa1fe7346130da5c0098ac41b491ab16e"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
+      "tests": [
+        "test_offline_scripted_workflow_blocks_dose_error_and_viewer_write"
+      ],
+      "limitations": "Distinct isolated clinician/viewer local credentials; a role simulator, never represented as live Google authentication."
     },
     {
       "id": "15-05",
@@ -1974,10 +2173,15 @@
     {
       "id": "15-11",
       "description": "Provide a deployment simulation using the production Compose config with fake secrets and local TLS/proxy tests where cached tooling supports it.",
-      "status": "not_started",
-      "evidence": [],
+      "status": "blocked_missing_local_artifact",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+        }
+      ],
       "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "limitations": "Docker CLI and a cached production container/TLS harness are absent; existing historical hosted configuration checks do not prove a local deployment simulation."
     },
     {
       "id": "15-12",

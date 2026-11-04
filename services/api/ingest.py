@@ -1,4 +1,5 @@
 """Bounded PCM WAV inspection. No general codec decoder or inference."""
+from services.audit_integrity import append as append_audit
 
 import argparse
 import hashlib
@@ -167,7 +168,7 @@ def run_once(db_path: str, asset_root: str):
             lease_expires_at=NULL, updated_at=? WHERE id=?""",
             (status, error, json.dumps(result) if result else None, finished.isoformat(), job_id))
         owner = con.execute("SELECT tenant, clinician FROM encounters WHERE id=?", (row["encounter"],)).fetchone()
-        con.execute("INSERT INTO audit VALUES (?,?,?,?,?,?)", (str(uuid4()), owner["tenant"],
+        append_audit(con, (str(uuid4()), owner["tenant"],
                     "local_ingest_worker", f"ingest_{status}", job_id, finished.isoformat()))
     return {"id": job_id, "status": status}
 

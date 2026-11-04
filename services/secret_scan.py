@@ -30,14 +30,19 @@ def inspect_text(text, path, known_secrets=()):
 
 def scan(root='.'):
     root = Path(root).resolve()
-    names = subprocess.check_output(['git', 'ls-files'], cwd=root, text=True).splitlines()
+    names = set(subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard'], cwd=root, text=True).splitlines())
+    # Built browser bundles are ignored by Git but are distributed to users.
+    for directory in ('apps/clinician-web/dist', 'evaluation/reports'):
+        for candidate in (root/directory).rglob('*'):
+            if candidate.is_file():
+                names.add(candidate.relative_to(root).as_posix())
     known = []
     local = root/'data/local-config.json'
     if local.is_file():
         body = json.loads(local.read_text(encoding='utf-8'))
         known = [body.get('access_key', '')]
     results, files = [], []
-    for name in names:
+    for name in sorted(names):
         path = (root/name).resolve()
         if not path.is_relative_to(root) or not path.is_file() or path.suffix.lower() in ('.wav', '.flac', '.mp3', '.png', '.jpg', '.zip'):
             continue

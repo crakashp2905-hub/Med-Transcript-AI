@@ -1,4 +1,4 @@
-import {test,expect} from '@playwright/test';
+import {test,expect} from './fixtures/offline';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;

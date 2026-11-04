@@ -1,0 +1,13 @@
+# ADR 003 — Bounded routers, typed persistence and local tamper alarms
+
+The pre-refactor API snapshot is `evaluation/contracts/api-v1-before-router-split.json`: 53 paths and 26 schemas. API request/identity classes moved to `services/api/contracts.py` and remain re-exported from `api.main`. Explicit frozen service contexts carry scoped database/identity/audit capabilities into bounded routers. Review persistence is centralized in `ReviewService`, with typed safe HTTP state errors. No endpoint or request schema was silently renamed.
+
+Before/after composition roots: API approximately 29 KB to 10.5 KB; review registration 38.7 KB to 1.1 KB. The clinician entry point is now a small bootstrap; source, note and login screens use a typed workspace hook and a separate request/error-code client. Existing keyboard labels, citation IDs, version keys and review reset behavior are preserved and tested.
+
+Canonical semantic JSON hashing now lives in one pure module and remains re-exported from the historical ASR module. Artifact byte hashes remain separate and strict. Typed transcript/note/verification records are validated at writes/reads; a legacy-schema view is validated on a deep copy, without rewriting immutable bodies or hashes. Future unsupported schemas fail closed. Stored body IDs, scope, versions and digests must match their rows.
+
+New audit-chain and approval-seal tables are populated by an append-only data migration. Existing audit/approval bodies are not rewritten. Legacy seals are explicitly labelled `legacy_snapshot_not_external_attestation`; they establish only a local upgrade-time baseline. New audit events and their chain links share the original database transaction. Audit history and approval/export consumption verify the chain/seals; a missing or tampered approval/audit blocks approval or export. A database owner who can rewrite every local chain and seal is outside this local tamper-evidence guarantee; no external immutability is claimed.
+
+Untrusted JSON rejects duplicate/confusable schema keys, excessive depth/size, non-finite values and malformed Unicode. Clinical string values retain valid Unicode. Model output remains a proposal and cannot clear deterministic findings. Markdown exports escape active syntax while JSON/FHIR retain exact approved wording with transcript-version attribution and untested receiving-EHR conformance.
+
+Alternatives rejected: renaming the monolith without separating screens/services; silently normalizing old persisted bodies; trusting an intact metadata hash without recomputing body integrity; accepting any model-supported verdict as clinical approval; or describing local hash chains as an external audit certification.

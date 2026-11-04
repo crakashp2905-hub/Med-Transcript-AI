@@ -1,0 +1,10 @@
+import type {Fact} from "./facts";
+import type {Diarization} from "./SpeakerRoles";
+export type Segment = {segment_id:string; start_ms:number; end_ms:number; text:string; role:string; channel_index?:number};
+export type Transcript = {id:string; sha256:string; version:number; audio_asset_id:string; duration_ms:number; segments:Segment[]; channels?:{channel_index:number}[]; diarization?:Diarization; review?:{english_confirmed:boolean; source_completeness_reviewed:boolean; source_review_reason:string}; provenance:{engine:string}};
+export type Evidence = {segment_id:string; start_char:number; end_char:number; quote:string};
+export type Finding = {finding_id:string;code:string;message:string;severity:string;fact_id:string|null};
+export type Note = {id:string;version:number;sha256:string;transcript_version_id:string;verification_report_id:string;facts:Fact[];sections:{key:string;statements:{text:string;origin:string}[]}[];amendment_reason:string};
+export type Workspace = {encounter:{id:string;patient_reference_id:string};transcript:Transcript|null;note:Note|null;verification:{gate:string;findings:Finding[]}|null;approval:{id:string;approved_at:string}|null;stale:boolean;jobs:{id:string;stage:string;status:string;error_code:string|null;retryable?:boolean;preview_only?:boolean;progress?:{completed_channels:number;total_channels:number}}[];exports:{id:string;format:string}[]};
+export type Encounter = {id:string;patient_reference_id:string;created_at:string;current_note_id:string|null;current_transcript_id:string|null};
+export type Session = {role?:'clinician'|'viewer';clinician_id:string;tenant_id:string;asr_profiles:string[];demo_available?:boolean;clinical_models_enabled?:boolean};

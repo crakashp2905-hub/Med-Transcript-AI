@@ -1,0 +1,109 @@
+"""Shared exact-version review service; scoped dependencies are passed explicitly."""
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Callable, ContextManager
+import json
+from datetime import datetime, timezone
+from uuid import uuid4
+from fastapi import HTTPException
+from services.asr.profiles import ASRProfile, canonical_json, content_sha256
+from services.api.record_integrity import decode_record
+from services.domain_contracts import validate_record
+from services.review.engine import findings_for, render_sections, validate_evidence
+
+
+class ReviewStateError(HTTPException):
+    """Typed safe state failure. Details are machine codes, never source content."""
+    def __init__(self, status_code: int, detail: str):
+        if not detail.replace('_', '').isalnum():
+            raise ValueError('invalid_review_error_code')
+        super().__init__(status_code, detail)
+
+
+@dataclass(frozen=True)
+class ReviewService:
+    database: Callable[[], ContextManager[Any]]
+    identity: Callable[..., Any]
+    encounter: Callable[..., Any]
+    audit: Callable[..., None]
+    require_processing: Callable[..., None]
+    assets: Path
+    profiles: dict[str, ASRProfile]
+
+
+    def stamp(self):
+        return datetime.now(timezone.utc).isoformat()
+
+
+    def get_tx(self, con, eid, tid):
+        row = con.execute("SELECT * FROM transcript_versions WHERE encounter=? AND id=?", (str(eid), str(tid))).fetchone()
+        if row is None:
+            raise ReviewStateError(404, "transcript_not_found")
+        return row, decode_record(row, "transcript")
+
+
+    def document(self, con, eid, did, kind="note"):
+        row = con.execute("SELECT * FROM documents WHERE encounter=? AND id=? AND kind=?", (str(eid), str(did), kind)).fetchone()
+        if row is None:
+            raise ReviewStateError(404, "document_not_found")
+        return row, decode_record(row, kind)
+
+
+    def current(self, con, eid, actor):
+        encounter = self.encounter
+        return encounter(con, eid, actor)
+
+
+    def if_current(self, row, field, resource, sha, etag):
+        if row[field] != str(resource) or etag != f'"{sha}"':
+            raise ReviewStateError(412, "version_changed_reload_required")
+
+
+    def store_tx(self, con, eid, upload, body, actor, parent=None):
+        audit = self.audit
+        stamp = self.stamp
+        tid = str(uuid4())
+        version = con.execute("SELECT COALESCE(MAX(version),0)+1 FROM transcript_versions WHERE encounter=?", (str(eid),)).fetchone()[0]
+        body.update(id=tid, version=version, encounter_id=str(eid), parent_version_id=parent,
+                    creator=str(actor.clinician_id), created_at=stamp())
+        validate_record("transcript", body)
+        digest = content_sha256(body)
+        con.execute("INSERT INTO transcript_versions VALUES (?,?,?,?,?,?,?,?)",
+                    (tid, str(eid), upload, None, version, digest, canonical_json(body), stamp()))
+        con.execute("UPDATE encounters SET current_transcript=? WHERE id=?", (tid, str(eid)))
+        audit(con, actor, "transcript_version_created", tid)
+        return {**body, "sha256": digest}
+
+
+    def save_note(self, con, eid, tx_row, tx, facts, actor, parent=None, amendment_reason=""):
+        audit = self.audit
+        stamp = self.stamp
+        validate_evidence(facts, tx)
+        version = con.execute("SELECT COALESCE(MAX(version),0)+1 FROM documents WHERE encounter=? AND kind='note'", (str(eid),)).fetchone()[0]
+        nid, rid, created = str(uuid4()), str(uuid4()), stamp()
+        values = [fact.model_dump(mode="json") for fact in facts]
+        for value in values:
+            value["review_actor"] = str(actor.clinician_id) if value["reviewed"] else None
+            value["reviewed_at"] = created if value["reviewed"] else None
+        body = {"schema_version": "1.0", "id": nid, "version": version, "encounter_id": str(eid),
+                "parent_version_id": parent, "transcript_version_id": tx_row["id"],
+                "transcript_sha256": tx_row["sha256"], "facts": values, "sections": render_sections(values),
+                "verification_report_id": rid, "creator": str(actor.clinician_id), "created_at": created,
+                "amendment_reason": amendment_reason, "template_id": "reviewed_facts_soap_v1",
+                "status": "review_required", "provenance": {"engine": "deterministic_reviewed_facts_template_v1"}}
+        validate_record("note", body)
+        digest = content_sha256(body)
+        findings = findings_for(body, tx)
+        report = {"schema_version": "1.0", "id": rid, "note_version_id": nid, "note_sha256": digest,
+                  "transcript_version_id": tx_row["id"], "transcript_sha256": tx_row["sha256"],
+                  "validator_version": "rules_v2", "findings": findings, "gate": "blocked" if findings else "ready",
+                  "created_at": created}
+        validate_record("verification", report)
+        con.execute("INSERT INTO documents VALUES (?,?,?,?,?,?,?)",
+                    (nid, str(eid), "note", version, digest, canonical_json(body), created))
+        con.execute("INSERT INTO documents VALUES (?,?,?,?,?,?,?)",
+                    (rid, str(eid), "verification", version, content_sha256(report), canonical_json(report), created))
+        con.execute("UPDATE encounters SET current_note=? WHERE id=?", (nid, str(eid)))
+        audit(con, actor, "note_version_created", nid)
+        return {"note": {**body, "sha256": digest}, "verification": report}
+

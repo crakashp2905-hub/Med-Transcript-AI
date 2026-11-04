@@ -93,24 +93,36 @@ def render_sections(facts):
         for key in ("subjective", "objective", "assessment", "plan")]
 
 
-def render_export(note, approval, format):
+def render_export(note, approval, format, source=None):
     import json
     if format == "fhir":
         from services.review.presentation import fhir_document
-        return fhir_document(note, approval)
+        return fhir_document(note, approval, source)
     payload = {"schema_version": "1.0", "status": "approved", "approval": approval, "note": note}
+    if source is not None:
+        payload['source'] = source
     if format == "json":
         return json.dumps(payload, ensure_ascii=False, indent=2)
     lines = ["# Approved clinical note" if format == "markdown" else "APPROVED CLINICAL NOTE",
              f"Encounter: {note['encounter_id']}", f"Version: {note['version']} ({note['id']})",
              f"Approved: {approval['approved_at']}", f"SHA-256: {approval['note_sha256']}", ""]
+    if source is not None:
+        attribution = source.get('provenance', {}).get('attribution', 'No source-license attribution recorded.')
+        lines.extend(['Source transcript: '+source['transcript_version_id'],
+                      escape_markdown(attribution) if format == 'markdown' else attribution,
+                      'Independent clinical gold: false; recipient EHR conformance: untested.', ''])
     for section in note["sections"]:
         lines.append(("## " if format == "markdown" else "") + section["key"].title())
         for statement in section["statements"]:
-            lines.append(statement["text"])
+            lines.append(escape_markdown(statement['text']) if format == 'markdown' else statement['text'])
             if statement["origin"] == "clinician_entered":
                 lines.append("[Clinician-entered addition; not audio-derived.]")
         if not section["statements"]:
             lines.append("Not documented.")
         lines.append("")
     return "\n".join(lines)
+
+
+def escape_markdown(text):
+    import html
+    return re.sub(r'([\\`*_{}\[\]()#+.!|])', r'\\\1', html.escape(text, quote=False))

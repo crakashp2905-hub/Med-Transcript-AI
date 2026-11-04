@@ -1,4 +1,4 @@
-import {test,expect} from '@playwright/test';
+import {test,expect} from './fixtures/offline';
 
 // Requires the isolated simulated-provider server; never run this against Google
 // or a hosted production deployment. Cryptographic checks are separate backend tests.

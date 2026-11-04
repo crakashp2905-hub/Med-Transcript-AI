@@ -1,0 +1,1 @@
+export function Icon({name}:{name:string}) { return <span aria-hidden="true" className="icon">{({plus:'+',source:'≋',note:'▤',check:'✓',arrow:'↗',play:'▷',shield:'◇',close:'×'} as Record<string,string>)[name]||'·'}</span>; }

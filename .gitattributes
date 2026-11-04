@@ -10,3 +10,5 @@ evaluation/expanded-protocol-v1.json -text
 evaluation/expanded-suite-v1.json -text
 evaluation/expanded-leaderboard.json -text
 evaluation/clinical-adversarial-v1.json -text
+# Preserve the attached checklist's deliberate Markdown hard-break whitespace.
+docs/plans/** -text whitespace=-blank-at-eol

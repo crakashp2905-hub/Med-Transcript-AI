@@ -76,10 +76,13 @@ def public_demo(case_id):
         'attribution': case['attribution'], 'case_id': case_id}
 
 
-def fhir_document(note, approval):
+def fhir_document(note, approval, source=None):
     # R4 DocumentReference with an inline JSON attachment. Not a transaction or
     # a coded MedicationRequest/AllergyIntolerance, and not an EHR write.
-    payload = json.dumps({'note': note, 'approval': approval}, ensure_ascii=False).encode('utf-8')
+    body = {'note': note, 'approval': approval}
+    if source is not None:
+        body['source'] = source
+    payload = json.dumps(body, ensure_ascii=False).encode('utf-8')
     return json.dumps({
         'resourceType': 'DocumentReference', 'id': note['id'],
         'identifier': [{'system': 'urn:med-transcript:note-sha256', 'value': approval['note_sha256']}],

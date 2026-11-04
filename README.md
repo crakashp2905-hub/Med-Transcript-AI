@@ -333,3 +333,5 @@ Durable recording, resumable uploads, provisional local previews, clinical relat
 Presentation workflow: [demonstration and review features](docs/presentation-features-2026-10-29.md) describes detailed public examples, specialty views, correction/completeness tools, patient summaries, FHIR export, study evidence and recording readiness.
 
 Google Workspace sign-in and hosted investor-demo configuration: [activation, security controls and showcase runbook](docs/google-workspace-investor-release.md). Live OAuth requires operator-provided Google client registration and locally configured secrets/invitations. Clinical release remains disabled.
+
+The [router/persistence ADR](docs/architecture-decisions/003-router-and-persistence-boundaries.md) records the contract-preserving split, typed record/hash checks and local audit seals. The [local threat model](docs/local-threat-model.md) lists trust boundaries and remaining security limits. Saved public-mock error diagnostics are retrospective development evidence; clinical release remains blocked.

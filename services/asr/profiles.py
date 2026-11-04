@@ -10,17 +10,14 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from services.api.ingest import file_sha256
+from services.canonical import canonical_json, content_sha256
 
 
 REQUIRED_FILES = {"model.bin", "config.json", "tokenizer.json"}
 
 
-def canonical_json(value):
-    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False)
 
 
-def content_sha256(value):
-    return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
 
 
 class ASRProfile(BaseModel):

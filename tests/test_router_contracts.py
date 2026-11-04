@@ -1,0 +1,67 @@
+from copy import deepcopy
+import json
+from pathlib import Path
+import pytest
+from services.asr.profiles import canonical_json
+from tests.test_foundation import setup,headers
+
+
+def contract_matches(actual,expected):
+    if canonical_json(actual)!=canonical_json(expected):raise ValueError('api_contract_changed')
+    return True
+
+
+def test_api_contract_survives_router_and_service_extraction(setup):
+    client,_,_=setup
+    expected=json.loads(Path('evaluation/contracts/api-v1-before-router-split.json').read_text(encoding='utf-8'))
+    assert contract_matches(client.app.openapi(),expected)
+    mutated=deepcopy(expected);mutated['paths'].pop('/v1/encounters')
+    with pytest.raises(ValueError):contract_matches(client.app.openapi(),mutated)
+
+
+def test_dashboard_resolves_real_evidence_after_router_move(setup):
+    client,_,_=setup
+    result=client.get('/v1/study-dashboard',headers=headers()).json()
+    assert result['sources']['ranking']['filename']=='detailed-ranking-final-2026-10-29.json'
+    assert result['reports']['ranking']['complete'] is True
+    assert result['clinical_validation'] is False
+
+
+def test_review_state_errors_remain_sanitized_and_http_compatible():
+    from services.review.service import ReviewStateError
+    error=ReviewStateError(412,'version_changed_reload_required')
+    assert error.status_code==412 and error.detail=='version_changed_reload_required'
+    with pytest.raises(ValueError):ReviewStateError(412,'Source text must not appear in error details.')
+
+
+def test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail(setup):
+    from services.api.authorization_policy import validate
+    client,_,_=setup
+    expected=json.loads(Path('evaluation/contracts/authorization-policy-v1.json').read_text())
+    assert validate(client.app,expected)['routes_checked']>=60
+    @client.app.get('/v1/unreviewed-test-route')
+    def unreviewed():return {'unexpected':True}
+    with pytest.raises(ValueError):validate(client.app,expected)
+
+
+def test_all_identity_routes_reject_missing_auth_and_viewer_writes(setup):
+    import re
+    from uuid import uuid4
+    from services.api.authorization_policy import inventory
+    from services.api.main import create_app,Identity
+    from fastapi.testclient import TestClient
+    client,path,tokens=setup
+    base=next(iter(tokens.values()))
+    viewer=TestClient(create_app(path,{'v'*40:Identity(tenant_id=base.tenant_id,clinician_id=base.clinician_id,role='viewer')}))
+    count=0
+    for row in inventory(client.app):
+        if row['policy']!='authenticated_scoped_identity':continue
+        path=re.sub(r'\{[^}]+\}',str(uuid4()),row['path'])
+        kwargs={'json':{}} if row['method'] in ('POST','PATCH','PUT') else {}
+        response=client.request(row['method'],path,headers={'Idempotency-Key':str(uuid4())},**kwargs)
+        assert response.status_code==401,(row,response.status_code)
+        if row['method'] not in ('GET','HEAD','OPTIONS'):
+            response=viewer.request(row['method'],path,headers={'Authorization':'Bearer '+'v'*40,'Idempotency-Key':str(uuid4())},**kwargs)
+            assert response.status_code==403,(row,response.status_code)
+        count+=1
+    assert count>=50

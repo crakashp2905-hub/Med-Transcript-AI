@@ -1,4 +1,5 @@
 """Separate, local-only ASR worker. Model profiles are registered by the API operator."""
+from services.audit_integrity import append as append_audit
 
 import argparse
 import json
@@ -200,6 +201,8 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
                             "provisional_segments":[{**segment,"start_ms":segment["start_ms"]+offset,"end_ms":segment["end_ms"]+offset,
                                 "role":"unknown","role_status":"unconfirmed"} for segment in body["segments"]]}
                     else:
+                        from services.domain_contracts import validate_record
+                        validate_record('transcript', body)
                         digest = content_sha256(body)
                         con.execute("INSERT INTO transcript_versions VALUES (?,?,?,?,?,?,?,?)",
                             (transcript_id, job["encounter"], job["upload"], job["id"], version,
@@ -215,7 +218,7 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
             lease_expires_at=NULL,updated_at=? WHERE id=?""",
             (status, error, json.dumps(result) if result else None, finished.isoformat(), job["id"]))
         owner = con.execute("SELECT tenant FROM encounters WHERE id=?", (job["encounter"],)).fetchone()
-        con.execute("INSERT INTO audit VALUES (?,?,?,?,?,?)", (str(uuid4()), owner["tenant"],
+        append_audit(con, (str(uuid4()), owner["tenant"],
                     "local_asr_worker", f"transcription_{status}", job["id"], finished.isoformat()))
     return {"id": job["id"], "status": status}
 

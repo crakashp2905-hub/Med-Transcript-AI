@@ -1,0 +1,23 @@
+import React, { useEffect, useRef, useState } from 'react';
+import {fileHash} from '../fileHash';
+import { Dictation } from '../Dictation';
+import {syncCapture,sealCapture} from '../CaptureSync';
+import {ServerRecovery} from '../ServerRecovery';
+import {SourceContext} from '../SourceContext';
+import {VerificationWarnings} from '../VerificationWarnings';
+import {SpeakerRoles, type Diarization} from '../SpeakerRoles';
+import {DraftProposal} from '../DraftProposal';
+import {ClinicalFields} from '../ClinicalFields';
+import {ReviewTiming} from '../ReviewTiming';
+import {VersionComparison} from '../VersionComparison';
+import {ClinicalProposals} from '../ClinicalProposals';
+import {type Fact,emptyFact,cleanFact} from '../facts';
+import {DetailedDemo} from '../DetailedDemo';
+import {GuidedDemo,EncounterTools,PatientSummary,StudyDashboard} from '../PresentationTools';
+import type {EncounterController} from '../hooks/useEncounterWorkspace';
+import type {Segment,Transcript,Evidence,Finding,Note,Workspace,Encounter,Session} from '../workspaceTypes';
+import {Icon} from '../components/Icon';
+import {clock,title} from '../format';
+export function LoginScreen({controller}:{controller:EncounterController}){const {authMode,authLabel,access,setAccess,busy,error,audio,json,login,approve}=controller;
+return <div className="login-page"><div className="login-brand"><div className="brand-mark">m<span>+</span></div><span>med transcript</span></div><div className="login-copy"><div className="eyebrow">MORE PRESENT. LESS PAPERWORK.</div><h1>Your attention belongs<br/>in the conversation.</h1><p>A local workspace for turning consultation audio into documentation you can trace, review, and approve.</p><div className="login-foot"><Icon name="shield"/> Local processing · Evidence-linked review · Clinician approval</div></div><form className="login-card" onSubmit={login}><span className="pill">SYNTHETIC DEVELOPMENT WORKSPACE</span><h2>Welcome to your workspace</h2>{authMode==='google'?<><p>Sign in with your invited Google account. Investor access is read-only.</p><button className="primary" type="button" onClick={()=>window.location.assign('/v1/auth/login')}>Sign in with {authLabel}</button></>:authMode==='loading'?<p>Checking sign-in settings…</p>:authMode==='local'?<p>Local development access. The access key is stored in data/local-config.json.</p>:<p>Sign-in is unavailable. Contact the workspace operator.</p>}{authMode==='local'&&<><label>Access key<input type="password" value={access} onChange={e=>setAccess(e.target.value)} autoComplete="off" required placeholder="Enter your local access key"/></label>{error&&<div role="alert" className="error">{error}</div>}<button className="primary" disabled={!!busy}>{busy||'Open workspace'} <Icon name="arrow"/></button></>}<small>Use synthetic recordings only. Clinical validation is pending.</small></form><div className="login-bottom">Med Transcript AI <span>English outpatient documentation</span></div></div>;
+}

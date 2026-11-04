@@ -165,6 +165,14 @@ MIGRATIONS = (
     CREATE INDEX auth_session_expiry ON auth_sessions(expires_at);
     CREATE TABLE auth_throttle (bucket TEXT PRIMARY KEY, hits INTEGER NOT NULL, expires_at INTEGER NOT NULL);
     """,
+    """
+    CREATE TABLE audit_chain (seq INTEGER PRIMARY KEY, event_id TEXT NOT NULL UNIQUE REFERENCES audit(id),
+        previous_sha256 TEXT NOT NULL, event_sha256 TEXT NOT NULL, chain_sha256 TEXT NOT NULL);
+    CREATE TABLE approval_integrity (approval_id TEXT PRIMARY KEY REFERENCES approvals(id), sha256 TEXT NOT NULL,
+        established_at TEXT NOT NULL, origin TEXT NOT NULL);
+    CREATE TABLE integrity_bootstrap (id INTEGER PRIMARY KEY, initialized_at TEXT NOT NULL,
+        legacy_audit_count INTEGER NOT NULL, legacy_approval_count INTEGER NOT NULL, initial_tail_sha256 TEXT NOT NULL);
+    """,
 )
 
 
@@ -190,6 +198,9 @@ class Store:
                             con.execute(statement)
                             statement = ""
                     con.execute(f"PRAGMA user_version={version}")
+                    if 'CREATE TABLE audit_chain' in migration:
+                        from services.audit_integrity import initialize
+                        initialize(con)
 
     @contextmanager
     def transaction(self):

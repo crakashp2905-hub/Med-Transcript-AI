@@ -32,3 +32,6 @@ evaluation/runs/**/*.pending
 .env.*
 !.env.*.example
 config/members.json
+
+# The complete diagnostic CSV is published in a lossless ZIP with a recorded raw CSV hash.
+evaluation/reports/error-taxonomy-*/all-errors.csv

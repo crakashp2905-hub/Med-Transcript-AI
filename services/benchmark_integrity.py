@@ -20,6 +20,8 @@ def replay(report, manifest):
         if reference != row['reference'] or source['audio_sha256'] != row['input_sha256']:
             raise ValueError('source_reference_or_audio_identity_changed')
         measured = fast_score(reference, row['hypothesis'])
+        if any(not isinstance(row.get(key), int) or isinstance(row[key], bool) or row[key] < 0 for key in measured):
+            raise ValueError('invalid_benchmark_arithmetic_type')
         if any(row[key] != value for key, value in measured.items()):
             raise ValueError('saved_score_mismatch')
         if row['failed'] and row['hypothesis'] != '':
