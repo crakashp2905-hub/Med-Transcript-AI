@@ -1,0 +1,37 @@
+{
+  "schema_version": "hosted_ci_baseline_receipt_v1",
+  "run_id": 41865659669,
+  "source_commit": "c1afa1e70277af0942c389a37a2cfdf4096c9cc0",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "container",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "frontend",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "postgres",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "test (dev,security)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "test (dev,asr,security)",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "scope": "Existing hosted CI for the reviewed Google OIDC baseline, not new offline changes.",
+  "independent_clinical_gold": false,
+  "real_patient_release_authorized": false
+}

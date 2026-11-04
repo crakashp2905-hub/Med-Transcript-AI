@@ -1,0 +1,376 @@
+{
+  "schema_version": "negative_experiments_index_v1",
+  "source_commit": "c1afa1e70277af0942c389a37a2cfdf4096c9cc0",
+  "inventory_scope": "All JSON reports in the pre-change hashed baseline; absence from this snapshot is not proof that no other failure exists.",
+  "entries": [
+    {
+      "path": "evaluation/annotation-source/acceptance-v1/reviewer-A.blank.json",
+      "sha256": "6e76bcfc648c5a4436cd4528850578029f1a4e3f471513354b1cbd6a3a1cc0b2",
+      "signals": [
+        "$.annotations[0].complete",
+        "$.annotations[1].complete",
+        "$.annotations[2].complete"
+      ]
+    },
+    {
+      "path": "evaluation/annotation-source/acceptance-v1/reviewer-B.blank.json",
+      "sha256": "6e76bcfc648c5a4436cd4528850578029f1a4e3f471513354b1cbd6a3a1cc0b2",
+      "signals": [
+        "$.annotations[0].complete",
+        "$.annotations[1].complete",
+        "$.annotations[2].complete"
+      ]
+    },
+    {
+      "path": "evaluation/leaderboard.json",
+      "sha256": "0384cb46d5aea1e037b0219dfaa74bf6142f3408bff7e284dd10fdb56058c703",
+      "signals": [
+        "$.ranked[6].failed_samples"
+      ]
+    },
+    {
+      "path": "evaluation/reports/conversation-ablation-2026-10-26.json",
+      "sha256": "6a43bc1294ff127dd1d854146847071b30f429283ae903ad8f395019892d24ad",
+      "signals": [
+        "$.complete"
+      ]
+    },
+    {
+      "path": "evaluation/reports/conversation-ablation-resumed-2026-10-26.json",
+      "sha256": "b2ec0e7c0314499fabf2ab5a03b080edfee5c0e5cbf90b7854508f4458531356",
+      "signals": [
+        "$.runs[6].chunks[2].failed",
+        "$.runs[6].chunks[22].failed",
+        "$.runs[6].failed",
+        "$.runs[11].chunks[3].failed",
+        "$.runs[11].chunks[19].failed",
+        "$.runs[11].chunks[20].failed",
+        "$.runs[11].chunks[22].failed",
+        "$.runs[11].failed"
+      ]
+    },
+    {
+      "path": "evaluation/reports/conversation-all-errors-2026-10-26.json",
+      "sha256": "b7d30f4249c103b43a0d8f896c1edf0bdb06213e2a4c1cf83a9979626b908a40",
+      "signals": [
+        "$.conditions[3].cases[0].failed",
+        "$.conditions[3].cases[5].failed"
+      ]
+    },
+    {
+      "path": "evaluation/reports/detailed-campaign-execution-receipt-2026-10-29.json",
+      "sha256": "4ecf46ba17aaab44bb068a20e87aaa9d45e8b1c1241ac932d5abce0e784a6d13",
+      "signals": [
+        "$.completed_conditions[8].clean.failed_samples",
+        "$.completed_conditions[8].distracted.failed_samples",
+        "$.draft_preservation.rows[1].failed_cases",
+        "$.draft_preservation.rows[2].failed_cases"
+      ]
+    },
+    {
+      "path": "evaluation/reports/detailed-diagnostics-final-v2/omi-med-stt-v1.fixed.diagnostics.json",
+      "sha256": "209575b3e8fcd540816a6d2136095a757d163acfe77081aae48f9aab5083a111",
+      "signals": [
+        "$.cases[10].failed",
+        "$.cases[11].failed"
+      ]
+    },
+    {
+      "path": "evaluation/reports/detailed-drafting-2026-10-29.json",
+      "sha256": "3a2f2a1c9643fbde7716e240350307457cba7302f766d121b9c0b1273367728d",
+      "signals": [
+        "$.models[0].runs[2].failed",
+        "$.models[0].runs[4].failed",
+        "$.models[0].failed_cases",
+        "$.models[1].runs[0].failed",
+        "$.models[1].runs[1].failed",
+        "$.models[1].runs[2].failed",
+        "$.models[1].runs[3].failed",
+        "$.models[1].runs[4].failed",
+        "$.models[1].runs[5].failed",
+        "$.models[1].runs[6].failed",
+        "$.models[1].runs[7].failed",
+        "$.models[1].failed_cases"
+      ]
+    },
+    {
+      "path": "evaluation/reports/detailed-drafting-summary-2026-10-29.json",
+      "sha256": "bb2aed668ab3f57fefe9b22fcca5e837fcf16be653997dff0e1ae4e442df9610",
+      "signals": [
+        "$.rows[1].failed_cases",
+        "$.rows[2].failed_cases"
+      ]
+    },
+    {
+      "path": "evaluation/reports/detailed-ranking-2026-10-29.json",
+      "sha256": "6d43a82271cf8071dee09f63ca5204893d8e7aa28331e3eab09aeb245aa34705",
+      "signals": [
+        "$.unranked[0].status",
+        "$.unranked[1].status",
+        "$.complete"
+      ]
+    },
+    {
+      "path": "evaluation/reports/detailed-ranking-final-2026-10-29.json",
+      "sha256": "56a74e271ec4b83fb752c67d9351a4ffc9af57a27669039275b3a3e290da8b3b",
+      "signals": [
+        "$.ranked[6].clean.failed_samples",
+        "$.ranked[6].distracted.failed_samples"
+      ]
+    },
+    {
+      "path": "evaluation/reports/detailed-ranking-v2-2026-10-29.json",
+      "sha256": "56a74e271ec4b83fb752c67d9351a4ffc9af57a27669039275b3a3e290da8b3b",
+      "signals": [
+        "$.ranked[6].clean.failed_samples",
+        "$.ranked[6].distracted.failed_samples"
+      ]
+    },
+    {
+      "path": "evaluation/reports/detailed-v1-unpublished-prefix-2026-10-29.json",
+      "sha256": "a01f48ffbe544df72794da213513797bff130128e55e96f60c493ae1ffe04805",
+      "signals": [
+        "$.complete"
+      ]
+    },
+    {
+      "path": "evaluation/reports/eight-channel-long-recording-2026-10-27.json",
+      "sha256": "f540562057f212bfe78a2258ebf70380fe14b0d3e22415797c01682fd63d3c7f",
+      "signals": [
+        "$.runs[0].failed",
+        "$.runs[1].failed"
+      ]
+    },
+    {
+      "path": "evaluation/reports/full-consultation-expansion-omi-2026-10-27.json",
+      "sha256": "ed5c362f4c1184b4a09fe087e7f4bec73683b43d2bca51ebcdef08112a4406b5",
+      "signals": [
+        "$.cases[3].failed",
+        "$.cases[3].chunks[18].failed",
+        "$.summary.failed_samples"
+      ]
+    },
+    {
+      "path": "evaluation/reports/full-expansion-errors-2026-10-27.json",
+      "sha256": "bfb888f4119201e5e4e7f54a82de2acdcdeac95bec266e5f3cd80275dbd60716",
+      "signals": [
+        "$.conditions[0].cases[3].failed"
+      ]
+    },
+    {
+      "path": "evaluation/reports/full-expansion-failure-probe-2026-10-27.json",
+      "sha256": "de10d24c60ad5695defa0732610e2c239bbd1a4c6f6dece778da7ff5f37cac68",
+      "signals": [
+        "$.probes[0].error_type"
+      ]
+    },
+    {
+      "path": "evaluation/reports/local-drafting-2026-10-25.json",
+      "sha256": "a6d2a1762ccca06e4e2bb3c8ae99f912b3c513a0fa6d34be7baa5cda05815584",
+      "signals": [
+        "$.models[0].runs[0].failed",
+        "$.models[0].runs[1].failed",
+        "$.models[1].runs[0].failed"
+      ]
+    },
+    {
+      "path": "evaluation/reports/omi-failure-probe-2026-10-26.json",
+      "sha256": "e4b397f95b42c3c801769efe732fc41c6a960f37b5d08b40b64473952ffea387",
+      "signals": [
+        "$.probes[0].error_type",
+        "$.probes[1].error_type",
+        "$.probes[2].error_type",
+        "$.probes[3].error_type",
+        "$.probes[4].error_type",
+        "$.probes[5].error_type"
+      ]
+    },
+    {
+      "path": "evaluation/reports/verification-relations-v2-2026-10-27.json",
+      "sha256": "6e10271ce9b90b9d77bc3c2117197a14bc0fe75ea2a41d8420e65076aaa32a4d",
+      "signals": [
+        "$.complete"
+      ]
+    },
+    {
+      "path": "evaluation/reviewer-packets/meddistract-detailed-v1/reviewer-A.blank.json",
+      "sha256": "e87bd3000571b7598dd08f3d685d96ce9b18312a6571e8609bc8ba56d85dd9f8",
+      "signals": [
+        "$.annotations[0].complete",
+        "$.annotations[1].complete",
+        "$.annotations[2].complete",
+        "$.annotations[3].complete",
+        "$.annotations[4].complete",
+        "$.annotations[5].complete",
+        "$.annotations[6].complete",
+        "$.annotations[7].complete",
+        "$.annotations[8].complete",
+        "$.annotations[9].complete",
+        "$.annotations[10].complete",
+        "$.annotations[11].complete",
+        "$.annotations[12].complete",
+        "$.annotations[13].complete",
+        "$.annotations[14].complete",
+        "$.annotations[15].complete"
+      ]
+    },
+    {
+      "path": "evaluation/reviewer-packets/meddistract-detailed-v1/reviewer-B.blank.json",
+      "sha256": "e87bd3000571b7598dd08f3d685d96ce9b18312a6571e8609bc8ba56d85dd9f8",
+      "signals": [
+        "$.annotations[0].complete",
+        "$.annotations[1].complete",
+        "$.annotations[2].complete",
+        "$.annotations[3].complete",
+        "$.annotations[4].complete",
+        "$.annotations[5].complete",
+        "$.annotations[6].complete",
+        "$.annotations[7].complete",
+        "$.annotations[8].complete",
+        "$.annotations[9].complete",
+        "$.annotations[10].complete",
+        "$.annotations[11].complete",
+        "$.annotations[12].complete",
+        "$.annotations[13].complete",
+        "$.annotations[14].complete",
+        "$.annotations[15].complete"
+      ]
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v1/faster-whisper-tiny.en.fixed.json",
+      "sha256": "10f686122259a473b4872fee69a71dbbf9d70be9df3d18dc11f04eb2fc4d9d23",
+      "signals": [
+        "$.complete"
+      ]
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.context.json",
+      "sha256": "2a2094ee5a1df04aef3a97394a8cf7ed02d44082401d31f08438f0f6ead8d7e2",
+      "signals": [
+        "$.complete"
+      ]
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.speech_aware.json",
+      "sha256": "f9af11b53b314749cbe70f40180bf60f6c7eb35d2f85363994c1bb918afa96bb",
+      "signals": [
+        "$.complete"
+      ]
+    },
+    {
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json",
+      "sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
+      "signals": [
+        "$.cases[10].failed",
+        "$.cases[10].chunks[22].failed",
+        "$.cases[10].chunks[22].error_type",
+        "$.cases[11].failed",
+        "$.cases[11].chunks[22].failed",
+        "$.cases[11].chunks[22].error_type",
+        "$.conditions.clean.failed_samples",
+        "$.conditions.distracted.failed_samples"
+      ]
+    },
+    {
+      "path": "evaluation/runs/primock57-expanded-v1/attempts/omi-med-stt-v1-windows-dll-registration-failure.json",
+      "sha256": "6b19760cde34c4cc2185483ac92cd5cce4b574c2d2ec0fefcb23567345a86abf",
+      "signals": [
+        "$.failed_samples",
+        "$.samples[36].status",
+        "$.samples[37].status",
+        "$.samples[38].status",
+        "$.samples[39].status",
+        "$.samples[40].status",
+        "$.samples[41].status",
+        "$.samples[42].status",
+        "$.samples[43].status",
+        "$.samples[44].status",
+        "$.samples[45].status",
+        "$.samples[46].status",
+        "$.samples[47].status",
+        "$.samples[48].status",
+        "$.samples[49].status",
+        "$.samples[50].status",
+        "$.samples[51].status",
+        "$.samples[52].status",
+        "$.samples[53].status",
+        "$.samples[54].status",
+        "$.samples[55].status",
+        "$.samples[56].status",
+        "$.samples[57].status",
+        "$.samples[58].status",
+        "$.samples[59].status",
+        "$.samples[60].status",
+        "$.samples[61].status",
+        "$.samples[62].status",
+        "$.samples[63].status",
+        "$.samples[64].status",
+        "$.samples[65].status",
+        "$.samples[66].status",
+        "$.samples[67].status",
+        "$.samples[68].status",
+        "$.samples[69].status",
+        "$.samples[70].status",
+        "$.samples[71].status",
+        "$.samples[72].status",
+        "$.samples[73].status",
+        "$.samples[74].status",
+        "$.samples[75].status",
+        "$.samples[76].status",
+        "$.samples[77].status",
+        "$.samples[78].status",
+        "$.samples[79].status",
+        "$.samples[80].status",
+        "$.samples[81].status",
+        "$.samples[82].status",
+        "$.samples[83].status",
+        "$.samples[84].status",
+        "$.samples[85].status",
+        "$.samples[86].status",
+        "$.samples[87].status",
+        "$.samples[88].status",
+        "$.samples[89].status",
+        "$.samples[90].status",
+        "$.samples[91].status",
+        "$.samples[92].status",
+        "$.samples[93].status",
+        "$.samples[94].status",
+        "$.samples[95].status",
+        "$.samples[96].status",
+        "$.samples[97].status",
+        "$.samples[98].status",
+        "$.samples[99].status",
+        "$.samples[100].status",
+        "$.samples[101].status",
+        "$.samples[102].status",
+        "$.samples[103].status",
+        "$.samples[104].status",
+        "$.samples[105].status",
+        "$.samples[106].status",
+        "$.samples[107].status",
+        "$.samples[108].status",
+        "$.samples[109].status",
+        "$.samples[110].status",
+        "$.samples[111].status",
+        "$.samples[112].status",
+        "$.samples[113].status",
+        "$.samples[114].status",
+        "$.samples[115].status",
+        "$.samples[116].status",
+        "$.samples[117].status"
+      ]
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/multimed-whisper-small-english.json",
+      "sha256": "ea7473ae73bbadffe0a1d90de7ed6d51426692c11ecc5ab53c3218db92209f94",
+      "signals": [
+        "$.failed_samples",
+        "$.samples[0].status",
+        "$.samples[1].status"
+      ]
+    }
+  ],
+  "original_reports_modified": false,
+  "independent_clinical_gold": false,
+  "real_patient_release_authorized": false
+}

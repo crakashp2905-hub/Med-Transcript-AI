@@ -1,0 +1,12 @@
+{
+  "schema_version": "dependency_audit_triage_v1",
+  "source_commit": "c1afa1e70277af0942c389a37a2cfdf4096c9cc0",
+  "failed_run_id": 41445260398,
+  "failure_reason": "First-party editable project med-transcript-ai 0.4.0 is absent from PyPI advisory lookup.",
+  "configuration_fix": "pip_audit --strict --skip-editable --format json --output dependency-audit.json",
+  "third_party_vulnerabilities_ignored": false,
+  "local_audit_status": "blocked_missing_local_artifact",
+  "fresh_advisories_queried": false,
+  "independent_clinical_gold": false,
+  "real_patient_release_authorized": false
+}

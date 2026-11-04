@@ -90,6 +90,8 @@ def now():
 
 def create_app(db_path: str, credentials: dict[str, Identity], asset_root: str | None = None,
                asr_profiles: dict[str, ASRProfile] | None = None) -> FastAPI:
+    from services.offline import validate_profile
+    validate_profile()
     from services.api.auth import Settings, GoogleSessions
     auth_settings = Settings.environment()
     if (auth_settings.mode == "local" and not credentials) or any(len(token) < 32 for token in credentials):

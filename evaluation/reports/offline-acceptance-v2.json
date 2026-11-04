@@ -1,0 +1,1878 @@
+{
+  "schema_version": "offline_acceptance_v1",
+  "version": "v2",
+  "recorded_at": "2026-11-04T16:45:35.187073+00:00",
+  "source_commit": "c1afa1e70277af0942c389a37a2cfdf4096c9cc0",
+  "preflight": {
+    "schema_version": "offline_preflight_v1",
+    "tools": {
+      "pytest": "available",
+      "codec_av": "available",
+      "coverage": "blocked_missing_local_artifact",
+      "ruff": "blocked_missing_local_artifact",
+      "mypy": "blocked_missing_local_artifact",
+      "pip_audit": "blocked_missing_local_artifact"
+    },
+    "node": "available",
+    "npm_dependencies": "available",
+    "python_wheelhouse": "blocked_missing_local_artifact",
+    "models": [
+      {
+        "path": "data/models/faster-distil-whisper-large-v3",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/faster-whisper-large-v3",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/faster-whisper-small",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/faster-whisper-tiny.en",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/multimed-small-int8",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/multimed-source",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/multimed-transformers",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/omi-med-stt-v1-gguf",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/parakeet-tdt-v2-onnx",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/public-diarization-v1",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25",
+        "status": "directory_present_not_a_weight_verification"
+      }
+    ],
+    "packages": [
+      {
+        "name": "annotated-doc",
+        "version": "0.0.5"
+      },
+      {
+        "name": "annotated-types",
+        "version": "0.8.0"
+      },
+      {
+        "name": "anyio",
+        "version": "4.15.1"
+      },
+      {
+        "name": "av",
+        "version": "19.0.2"
+      },
+      {
+        "name": "certifi",
+        "version": "2026.10.23"
+      },
+      {
+        "name": "cffi",
+        "version": "2.1.1"
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.5.2"
+      },
+      {
+        "name": "click",
+        "version": "8.5.0"
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6"
+      },
+      {
+        "name": "cryptography",
+        "version": "50.0.2"
+      },
+      {
+        "name": "ctranslate2",
+        "version": "4.8.3"
+      },
+      {
+        "name": "fastapi",
+        "version": "0.136.1"
+      },
+      {
+        "name": "faster-whisper",
+        "version": "1.2.1"
+      },
+      {
+        "name": "filelock",
+        "version": "4.2.4"
+      },
+      {
+        "name": "flatbuffers",
+        "version": "25.12.19"
+      },
+      {
+        "name": "fsspec",
+        "version": "2026.9.0"
+      },
+      {
+        "name": "google-auth",
+        "version": "2.62.1"
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0"
+      },
+      {
+        "name": "hf-xet",
+        "version": "1.7.0"
+      },
+      {
+        "name": "httpcore",
+        "version": "1.0.9"
+      },
+      {
+        "name": "httpcore2",
+        "version": "2.16.0"
+      },
+      {
+        "name": "httpx",
+        "version": "0.28.1"
+      },
+      {
+        "name": "httpx2",
+        "version": "2.16.0"
+      },
+      {
+        "name": "huggingface_hub",
+        "version": "2.3.0"
+      },
+      {
+        "name": "idna",
+        "version": "3.20"
+      },
+      {
+        "name": "iniconfig",
+        "version": "2.3.1"
+      },
+      {
+        "name": "med-transcript-ai",
+        "version": "0.3.0"
+      },
+      {
+        "name": "med-transcript-ai",
+        "version": "0.3.0"
+      },
+      {
+        "name": "numpy",
+        "version": "2.5.4"
+      },
+      {
+        "name": "onnxruntime",
+        "version": "1.31.0"
+      },
+      {
+        "name": "packaging",
+        "version": "26.3"
+      },
+      {
+        "name": "pip",
+        "version": "26.2.2"
+      },
+      {
+        "name": "pluggy",
+        "version": "1.7.0"
+      },
+      {
+        "name": "protobuf",
+        "version": "7.36.2"
+      },
+      {
+        "name": "pyasn1",
+        "version": "0.6.5"
+      },
+      {
+        "name": "pyasn1_modules",
+        "version": "0.4.2"
+      },
+      {
+        "name": "pycparser",
+        "version": "3.12"
+      },
+      {
+        "name": "pydantic",
+        "version": "2.12.5"
+      },
+      {
+        "name": "pydantic_core",
+        "version": "2.41.5"
+      },
+      {
+        "name": "Pygments",
+        "version": "2.21.0"
+      },
+      {
+        "name": "pytest",
+        "version": "9.1.1"
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.3"
+      },
+      {
+        "name": "requests",
+        "version": "2.34.2"
+      },
+      {
+        "name": "starlette",
+        "version": "1.9.0"
+      },
+      {
+        "name": "tokenizers",
+        "version": "0.23.3"
+      },
+      {
+        "name": "tqdm",
+        "version": "4.70.1"
+      },
+      {
+        "name": "truststore",
+        "version": "0.10.5"
+      },
+      {
+        "name": "typing-inspection",
+        "version": "0.4.4"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0"
+      },
+      {
+        "name": "tzdata",
+        "version": "2026.5"
+      },
+      {
+        "name": "urllib3",
+        "version": "2.8.0"
+      },
+      {
+        "name": "uvicorn",
+        "version": "0.54.0"
+      }
+    ],
+    "config_sha256": {
+      "pyproject.toml": "7b2109f91233203ba20595048068373de25019e593a2b1820e659e0ae5f1c034",
+      "constraints-ci.txt": "d732bad0c6044cfa0970206df2a4610d574a0f9393cd476dd6fb2c4febd3705e",
+      "apps/clinician-web/package-lock.json": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27"
+    },
+    "new_installations_attempted": 0,
+    "external_calls_attempted": 0,
+    "independent_clinical_gold": false,
+    "real_patient_release_authorized": false
+  },
+  "checks": {
+    "baseline_integrity": {
+      "status": "pass",
+      "result": {
+        "evidence_files_checked": 198,
+        "model_directories_checked": 11
+      }
+    },
+    "saved_metrics_replay": {
+      "status": "pass",
+      "result": {
+        "schema_version": "saved_benchmark_replay_v1",
+        "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+        "reports": [
+          {
+            "path": "evaluation/runs/meddistract-detailed-v1/faster-whisper-tiny.en.fixed.json",
+            "sha256": "10f686122259a473b4872fee69a71dbbf9d70be9df3d18dc11f04eb2fc4d9d23",
+            "candidate": "faster-whisper-tiny.en",
+            "mode": "fixed",
+            "completed_cases": 12,
+            "predeclared_cases": 16,
+            "complete": false,
+            "reference_words": 19596,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "0581cb4169fbabe85515ea983efa2952fbb625eecba950b8445cda526ae2a665"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7bfb9cf77f51ea501f22894c42cba7e961c32eeb59fdc7c051cec01bfd018349"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "5b1aa2667bfd70b8c445398ffe7fbff9418b3f08b07f47ae21c1f6c70a83015e"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "abe530df00dc8eb1986bf7aed4849a3a1ca35a8a94b2e2fb6ebaafa27151b492"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8b604fa4febaec4aee7569e3723d0dddf8eb18cba9a124268ab5082e6d845015"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "cde1a38e177c845de79c335683d048c33f4ab3a18d45b6285701aaa81cdc00f5"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "94f40de64ee8e5eea9e754fe46018d07c9bb3ae26083668d5383adcf59f4295e"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "2674825cd4d221c51c2ee9a48b7ae308557819505520c47e2c5a799c9d867910"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "61cb87df46f6c66e9aa7fc01537c9573a6a2de2a655110d35dafbf5b7b5fc7e4"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "e15d6fc78a640b974a5d7cd55baa33c82cc3696403a463e14e1dc176c650dd20"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "6316bd038a8b4d06ce8c9ddb24932aaf07772ac7be3f5f43b98b48030b67c954"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "08acb564b456a0ff304f6cee0f876a70ab9039bacc2df82a3590359b8a9aa531"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/distil-whisper-large-v3.fixed.json",
+            "sha256": "9062cbdd6b4947ecb78c437f1b18384f19f69447845ef7e909e9043d277a432c",
+            "candidate": "distil-whisper-large-v3",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7b69c2e7fe69d1cf8f930d9fe4bcaee4bdf6e3c61ed14d20fe091b9889faffd1"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "77eaabdd3cbea7ab835831ac7c4eaf3a0bc72b9895bb8221192cb13708863841"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "ce131fa9674a14e72dd43b08f22ead29ab1b4a204f0af68fd67da1df1634b840"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "694fcdae1eda55b46a27b157a7ab222afd7491c48c9986dbd05461efc09b0422"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8e33a36da896a993cacd36fefaf9ff35859c3f4de96875bbba93debf4e996597"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "3852364e966eb0f4c957675bc346c30394c2cbd4b4982ec47a992815c4ff908e"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0d86d8092b8b3f8ba8f98e7c3ee9c179449ce5f0efdf1ec931608e361c49f87c"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "d14cf27c9d2cc89428a3b67ea60a0d5e61b149e76619c4200cd87f8683ce27cb"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "a547886ec604a2e96dcbfcbfe044dfaa92af7911e33c7522ff73d548bff7a2f8"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "e6a390bb4f656ff773063630ed5f297acca74a15b5815754cb52ccb0f0efd75b"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "c9b03ad8e375c5ad09fae2cbf4a1230924a6f785833d3aa80e9f1a95cbc46c71"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "106f2d2ea5d36ee94503f4076c7a70d944790c0510b921f02e9107ee696709cd"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f51981b198024a45509035715c58a32f82e8d614a3135c52c6ef4f4578791393"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "e6efd5439f072d483f3f05886a2d2365a7ef95f4176c76b2faf9f8533ed4c98c"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "8c78766480e0dc6989659e854dcab59663371020f0d2436e286f47d45eabeaf0"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "71c540e03adecf4a847b83942be9a239138d48842f6aabe57a6dc7c4313a3bf9"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.context.json",
+            "sha256": "2a2094ee5a1df04aef3a97394a8cf7ed02d44082401d31f08438f0f6ead8d7e2",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "context",
+            "completed_cases": 7,
+            "predeclared_cases": 16,
+            "complete": false,
+            "reference_words": 10969,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "97442c64312adf905b03514f30800c0572be475c0fa2afbebbff694079479c3f"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "1d18e7ee987552353f569ed9427706c89d4e3f3288ea5e00274c334797a3fd68"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "950c36f318ce668eb3984651c5ddf5e321685417b8dc07b7ceecc51725d791d0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "d3f342ebeec9a87d1167aa7e6a96a6d68b25fd34f4e26b5a2502f1861a457e95"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "0d23764eec2695313c62dfa1fa9d17789449c5795874a9ca87ebe3be3d038eb9"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "90f9c0beaf3a47c71b2d3bc275bc5c8e5abbab4eb230413df70d27fa6cb32417"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0a2e92fb0bb939f47b40010849ba544970b617a314c69af99a0cd78327ca8b09"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json",
+            "sha256": "97480843cb1585523621ecc3b88149c4c62246380c1571a8abcb3f41cc19c1f3",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "50eb53164eb823fc9542091cdf5029d823ceb878516f6fdb3d0d2c23e98637b9"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "aff88ab9a2ea38c2a4647198cc8ea06886b3a532ea128c178b2b04da75ac650e"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "3bd432b14e39552079398ac6146096d8318951697e7bfe2b6d7523673c651407"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "29d48016e8ffadb09e767bdebfd48b1002b44572079ca0982fa937e3da4c13fe"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "80e2eb9dcdd1260eef0629027b28cd9c8c4d0ce093b3e8774b4f49d32281fc6a"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "7d04728597f3d2f0272b36da91344ed2e15ee61ff4c869e612d581d26b4f1cb9"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "dc3d92fed04d96fbe61f9c09966ca8ae5501fe88ef570208a75262841b3120cb"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "21e17bed22e2786136bc51e8ffc617d2942abbbcd7800186c52a7538dc0c5f6b"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "f13ca03a620387eea83fe0d8610a140716e56541420651b840e1252922591b54"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "837e217b3cd63e8d5729b0568b6e730abea0eb391952bfc09b25414dbdcfc075"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "2f6b9902f8813516fc0087c92d688dbc89cc84d46e72273936b5a6e398a8307a"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "08ac8e6eec257d86709a11710aa207f6522c092438d6fa8c3b73e3b912605ea7"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "6d1253cb020fe15e016e8b64197deef9db360e10d066a543c58ea415fc5a1171"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "b7778c3f87b099535176326ad002ef892ea70ebcb3628307b05c4c54bc9e1ac8"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "f7c175874e0b38e73b55e7d8a155661b2f2f4bf1357d391ed06297830d844741"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "31f8b85a7c11d5db3351c0ef53999227f3f9ea3a4d1dca8974a5137cb73805bf"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.overlap.json",
+            "sha256": "d616df38a47a7b8125f841524bd247a70516f184148122ab99b4cafbfac2ae52",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "overlap",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "648e5b4a8664fd7b87ad7a4ea63151d987a996002e4ac216c1158108f2a6449a"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "6139e68e15b67f3a844b8930f0c1b42b3c4200851c8fd8c286a298a9b416f720"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "b06c232c76d980dee17794a49c328e809d14cb797f9d78c82e958c27aaa7b83e"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "a593e8ca98cf45b94b442ba04e184ab9bba2f5a8ecea046df551e6dab985951f"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "f641a650d5ca3423c38237b37029fd0aeb6368483b385cc07115cfa510070d43"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "c1f4f89b6eb865c6e7e9a9c7566bf4933db667e4a1f3d7f3ed620fd0c2e96d6e"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0c49061f0bba602ff26ebf991ad64245f6d09e8d5e85c150c4b0518c71b2a201"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "9f80800fbb94477a4e1d30d8877635b1daf90b114cbeddb12e91a92f453302aa"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "9cb76b9cc5e12a4c9e64c7c8d8e8c06707143afb9758997c79ccb286f62bb65a"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "00dd8bcca241a1a701fc25dc78e728832ed152d51050d4fcafaa69a509e00189"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "639a92f15cf603fbb900925b7f6a9119df6915f93fc815b0c8ef81ef1a694c04"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "22549875d9773318717d6ddb632a421cd13cb7831b534ec4c3effc405c7b2f40"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "8d9856e01494288fa88a8e2bcd627151dbf4d9d308336a9b3c392303c81f12a8"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "8fb1c1613b93961fc9534c8b434d920368e6af3319fe0a268be18230ad8f421e"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "60e8d65ffd942902fceeb74d281e1a5ac925fa579fce42f88ae7a372f783c667"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "113ff4fcc99ef681688987ca2aac97ce30fa427557e0d830ff84b268b473fb5d"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.speech_aware.json",
+            "sha256": "f9af11b53b314749cbe70f40180bf60f6c7eb35d2f85363994c1bb918afa96bb",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "speech_aware",
+            "completed_cases": 14,
+            "predeclared_cases": 16,
+            "complete": false,
+            "reference_words": 25002,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "10f7e5a788c0c1ff23652bc5df8d6ba9cf72656ff192ba24470f48d4466b7bd7"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "5c0ffad7562ef9a0087fae623f1c15bc06fa6a8151702c8009e263ab4a12e2c6"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "f6b237b2bd6d569b2b70f5749b00bb872e2020917b0a368ff0a559db9d2290b0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "392d237ab99c454c8e059caa96d637e3b1271b81bfe47e86777bc5449caa9336"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "050cd4537d85ccd6666cd7f1f03e1cb47a0facfbe39c7986c409b6226801333e"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "e93559212be45431527159f0af3e844b44a8b8aa593fe89109f610e43aa0f7ad"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "ed003fc1cc6855f95c079c2538ee56b3247d9555f64f00ada7d5a8410ee8607a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "52b0a3ee339401b2d2c46f4ec6e234376c0d57a2b50bc84dfe0415fbb19f578c"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8feabc3ed96d1f89456b9a8f8fa45bbe0ab8ebff52fb742b01fe9f10f5cbb8cc"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "2ffe6b6471d9b80bd15b9035aaabe326954cbf8a51ec88f0d77ed13160484bed"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "8ae78ba06dce82698db8c5fa9cec2dfb042f95eebc63fad91fcb13573e6b8da8"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "57f68f8202148415e3b12a196182fd5b3e203013a295248a0f4e68346f1aec7b"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "5af448cadabeee5f28fa44401907c34bff33dc4a4c31c6777e33c37c1658c3ca"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "6fb8e88e506298e036a92d2dc7fbeaac2aeb67fa5cfa5b5b320eb3a828b9a3bd"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-tiny.en.fixed.json",
+            "sha256": "21de3bbc2dd4812d135aaf5c2a6256ab1b8e9a047bd8f56142621156a01c3ece",
+            "candidate": "faster-whisper-tiny.en",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "0581cb4169fbabe85515ea983efa2952fbb625eecba950b8445cda526ae2a665"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7bfb9cf77f51ea501f22894c42cba7e961c32eeb59fdc7c051cec01bfd018349"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "5b1aa2667bfd70b8c445398ffe7fbff9418b3f08b07f47ae21c1f6c70a83015e"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "abe530df00dc8eb1986bf7aed4849a3a1ca35a8a94b2e2fb6ebaafa27151b492"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8b604fa4febaec4aee7569e3723d0dddf8eb18cba9a124268ab5082e6d845015"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "cde1a38e177c845de79c335683d048c33f4ab3a18d45b6285701aaa81cdc00f5"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "94f40de64ee8e5eea9e754fe46018d07c9bb3ae26083668d5383adcf59f4295e"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "2674825cd4d221c51c2ee9a48b7ae308557819505520c47e2c5a799c9d867910"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "61cb87df46f6c66e9aa7fc01537c9573a6a2de2a655110d35dafbf5b7b5fc7e4"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "e15d6fc78a640b974a5d7cd55baa33c82cc3696403a463e14e1dc176c650dd20"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "6316bd038a8b4d06ce8c9ddb24932aaf07772ac7be3f5f43b98b48030b67c954"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "08acb564b456a0ff304f6cee0f876a70ab9039bacc2df82a3590359b8a9aa531"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "0adb2e5bc69213102b3360f06a2b754a5d41483eeb1b0d6d4342bb4a4dd2eb5c"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "bc7af13c0f9628e040f5789e66f43c9bc499b927c81438a8c6edadd4e9670cf8"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e587ebe9ce78d51e850ea44a1a751b452ae18acf6b477f3441b97a1e9dd5c7f6"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "69e4face97c3bf776ab37d1e9cbe1a3823fe3ef8b45fb2e49b67a36993afbdea"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/multimed-whisper-small-english.fixed.json",
+            "sha256": "54ffac5180683367bdf222997890b3f5273eae859d645ca3256ceae09d869a40",
+            "candidate": "multimed-whisper-small-english",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "b29387c46550460527a5f0b7c89ef0d17d9c6b9f6e80ad497b52b7f2db9dfae4"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "ae24a825bd2815177da0ee417e71f4c3d09cd398da1d01db95e5d20c5a7cac0f"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "3f260bde6d3a18ec94b1d7685dea6a70f01f663a8a3e9cf2fc86403c5f6db28f"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "5c3d744da7e945caa9918bbffaffe36e60546fbc81b07443d433cfc082bc23e8"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8cde1339143c76c4fad6db19bc6d32d06e167fb992175be63d98fd5dcd97d29c"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "089892460b0667794c447712ae5d5b8009950b41d7fce9c32e859deb97e5f0c3"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "641badce5915c16494454b9ad19afa6f5a357a08231c9b078ef56941c0616fc7"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "881145cf53dda1708898df46f10d8d78dc9b7e945d4d296e7caf0f3cc10ff639"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "3ee4e1fe73f9ed4c0768d144a6efdf147f9fe65ecc8126efead0b10a10185203"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "59e3df1d054fcc80c521b2aaa47e601695d2757333e1da13283d58a6b546689a"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "fe1a41247ab3feb0fcf9237e17a9963758a08487deaa4a74a10ad8d00f54be9c"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "75c0268bdc1b4bba947aaa3ab2bf281ea030c4067bb4870406aabfae9bcf2d5b"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "4aa4573293ea666cf2525349c26ef7d9741f3a6a75c520bff915222fa152441b"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "7a4ee2327eb11c6ccb238065167c0a62d0b61296f9e366c32f8a27ea451fa9aa"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "28887fcced1331503936cbc57fc350deb6926e49fcf6b9f2a4fff00b242fb75d"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "4a973e186878c23e21515aae41780b504abfa2a0e60a331eecfac8db66c4e1be"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.fixed.json",
+            "sha256": "f5ee39e09eb0da5f56aec1950a7bc5c0f3c22a4b689282c221b6f35e9a8c12e9",
+            "candidate": "omi-med-stt-v1-native-empty",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "9de9e5c154f7868c772e6f8c5f1273fa052ca376abdc4b7f6fa30c502866af36"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "2aba6cf702a9754e1146d7d575e8e18a82661c6a2523b27c897655756203ce79"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "86c410a448c78424d4be842e6feaf69fc2b2da3f9d9bde64d8e733788b8cc673"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "1bff4d25c028b9346bcfe743a1778e8c32f6cefcd4cadb98dbc76b70f80ce740"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "ac2f051e77e1f0538fca8b4cf6275861cd6d14fb0b8d7aed77998766120cfafd"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "7804998ef739da9a35bd8c3d35c1a58841bd25a7d6f579c5b781ec7b8aee243c"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a884063783f5b66bcb8db788ce9a9556b1699e4808f4806bcb3008ec86e96a9c"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a8f7527ae893c9064e67bd314624fb4bbe4d15615b95c828501337d863d331ed"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "ea20ab98f88e03ff8c0e8a3984f175cbfbd9452246a84ae166b7d71d5eb7d2f7"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "d28afca24eba16977d4d852eb1ccd27a88ceff355e6147f5954b93f13f9778d6"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "6ed426d9dfed864d52b238c7465a422975e11cd15d1886237498c0b164fdde80"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "06324f3ef660daa5b0d61ea7f5e6339ea4b58668534a457a5c0885d7832469dd"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f3d9ca5883d36b172a5140094b6d14ee73790679d7652352c07a2f95af35d1d4"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "07189884c5b3320be7d27fe9f25bbb485a9ce44d57dfafd724cb374e0f4d5d17"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "ba7f3cbe35f96376badd53ab28df97d607f157f0078794282b097eb60050c218"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e2e8091e96dd94b5373ce3c620929f1bdfa2372f46d7de38c96f3c1b28feb054"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.overlap.json",
+            "sha256": "58d623d0c2af180dc021b8c7af2184082410e23a95c6a81f305ea428dff80482",
+            "candidate": "omi-med-stt-v1-native-empty",
+            "mode": "overlap",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "2864fa7311b9ea42a2c59c3e56679960de72767cd617f3c05801639297f66c22"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "d02b7494e0395d2561f625930a3a2697141dffa3a909d57de06b6607ebc84219"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "fd6a52e7e7806f85651bd892a28cb61a0ae3794e5bb6a76d3879541a5e3871f0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "66f3768549b5ae7096f4dc61d12a026830ed3702acae4f0333d81aa3ed7c91b0"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "0197f743f3c40dee970a0c19c574a0dcc1dce8c69d94deba20c3ddd27c96b073"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "3b9472699c2cff6ce0e6f3265255083e468b47f2f7e46850a884f65731f9826f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "62ccc029ed4b92c60d7edd641c7dfd0f3d42f744de49e2f7ecc5b08c9446060a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "19d532fa696b24e19f08b19208517cbf8492e51b6354436cbf9300e8dd97f219"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "6a455f089fc326d3f2824961331564a80c54e0f0e1ea56b46ae047979a8308b4"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "1e98d9d9cd295fc6452e33a93bdb25398879b6579ec9f90b5f72baacccd454ad"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "eb3703ce232727414d3081fb510f52c8359d4b9dda449b0b307b6438d3bc2df4"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "fd0d3fee79275674ad18983d6b93656afd6bc372aef5d9945438b7f2a6f2c2a2"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f9ac0e970b3af2861a0adbb98e36144aa03fde895d0bea5c5af93818972d8223"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "9abaac47c9ec04a1e2c037caa39d0fa437f20b4c3c204ee33ddf38026fc2d169"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "a2466029b11edcba5543cccf7971bcdda78320b7139a156c136380bd8a435adb"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "0543edf351b0830c2b7b98ed509b5275314bc4560b0cf18aa5d43928da86def5"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.speech_aware.json",
+            "sha256": "56943c0600fa305152af714149bc39a8c76b81d38fb8c3c3664b18bedf1577c9",
+            "candidate": "omi-med-stt-v1-native-empty",
+            "mode": "speech_aware",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "fc6b5d04ce85aacf0565e2dbda0543ac1fcd300e0dafeaaaeb06983e54e65966"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "68543a12c23be86ba95909e05c5ed36f60cff9560fecf9f27b51133bbd061cc5"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "c818efe7ee5663497c5f51cc02978676fa920ba665133b28d488ed44a79ef89d"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "ae3d058e9b74432887da05b8212cb22f6556811881ae2e51aaf4979dbddeccb0"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "42757da38941b8ed476c27015ffc21928ba99c11446aebc247e2cd5e2f4f5733"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "663d21849370dee66f47262e1874623528c483b47af87af54c12bbfa2c0b5b9f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "248ec4cbe9b8424c1145336fe08afe1858aca9d146e11055d2bed4233c51fb9a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "58a54d04323be6f49540f22a71d06c39838fcf3a9c0370a692c8716ef3e13aa6"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "75c4f98f3103218fbdbbdb77de4d3992cb71e4a68d7d6d45acf6417845df9412"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "a3c791f7e8c1c7bd26c5d3dc03b894c5d81a9adff6f8032f73d4a6509151a643"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "01a8407c6adacdb2e9d18f9a84fa0f422131cdce2a4a9577447d4123ed39b871"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "da7939fd89030f1ab5e09835c2544fb93d199ad4a11861e3d22a8af849576915"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "93a38f8f710df5110e4cb0d6e722989db60c9bb5412418859ddf8b046293fe4e"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "3da97bdcf77bb01bb91ba8bf9c93d8e1db5f849469db8af1a608a1fccb5a748e"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "87acbc28578dac7b28e887968c67a886d9c96406a3cc8ad3902ead3ea2197ff7"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "9106553024b342346e3110b98cd4bd8b4dca1dc84f67974c96c6845bf85afc41"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json",
+            "sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
+            "candidate": "omi-med-stt-v1",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 2,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "9de9e5c154f7868c772e6f8c5f1273fa052ca376abdc4b7f6fa30c502866af36"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "2aba6cf702a9754e1146d7d575e8e18a82661c6a2523b27c897655756203ce79"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "86c410a448c78424d4be842e6feaf69fc2b2da3f9d9bde64d8e733788b8cc673"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "1bff4d25c028b9346bcfe743a1778e8c32f6cefcd4cadb98dbc76b70f80ce740"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "ac2f051e77e1f0538fca8b4cf6275861cd6d14fb0b8d7aed77998766120cfafd"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "7804998ef739da9a35bd8c3d35c1a58841bd25a7d6f579c5b781ec7b8aee243c"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a884063783f5b66bcb8db788ce9a9556b1699e4808f4806bcb3008ec86e96a9c"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a8f7527ae893c9064e67bd314624fb4bbe4d15615b95c828501337d863d331ed"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "ea20ab98f88e03ff8c0e8a3984f175cbfbd9452246a84ae166b7d71d5eb7d2f7"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "d28afca24eba16977d4d852eb1ccd27a88ceff355e6147f5954b93f13f9778d6"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f3d9ca5883d36b172a5140094b6d14ee73790679d7652352c07a2f95af35d1d4"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "07189884c5b3320be7d27fe9f25bbb485a9ce44d57dfafd724cb374e0f4d5d17"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "ba7f3cbe35f96376badd53ab28df97d607f157f0078794282b097eb60050c218"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e2e8091e96dd94b5373ce3c620929f1bdfa2372f46d7de38c96f3c1b28feb054"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/parakeet-tdt-0.6b-v2.fixed.json",
+            "sha256": "9becc22cd583cde4f27f48a4d1fc5fc95f36a4ebe11a18ba29e68ac8a0fea7c1",
+            "candidate": "parakeet-tdt-0.6b-v2",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7ee6fb718ac73132e1e14ee60097c7d1eefd4869d4a80848115feacbc42314e8"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "ad929040fd59c4ff448f2a1b6b6440289b0b907476d59c2c155e536197ca225e"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "fd2b2bb8e8ff74e291aadc4148ce1246e00fd2d06dfeb991cf0cb72e1a2ab5eb"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "92e64ddc9b0e76c81701e1b338f16aed5a520a6b69261139bcf1cd09255d8385"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "70f95abbc125e9dda0756e393af9500c60d2f678280026b775965a212ee38d7f"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "5bb4da1e2a046e6ce2cf58c0834d06904cf9b82765e2f8cc92444a3612a2785f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "f5874150a71f845381359fc514c0ee30506eb71124601f1f0eb23fd691e64af8"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "d5d519125e55fec3dfa7b2cad29a04b05c852cf6311704f5a3771d15a5263460"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "457de8a81ed5cec463032b0fe368b1fb6dbd787047b52696b89ee11e2db2807f"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "c2d9258c3ad8ade2a27063d92d035d77a735f28a31a99381b3f195f8835ac5fe"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "5d18c4c7720afd476e728a7ae654d44c4029f93e374760515156568a21474ee6"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "efa95295d1dbe55835c7b0180d4c723e33b92797bfc28c2735293ef949eb1f91"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "4ec2a96231f869c2f15c0842b833ccd98e31eda71d9144a79b1b723bdaca7105"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "c3b57bb05b37f0fa5fc79f3c38734bf039ea14a18bbf3d4cffbe6a7bcf4f8b6d"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "36e2fe6ce0ad9da673b074d44a2de763abb22975bb0d19d0789f0831f16433e6"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "c4d8f0450b591d69bf4ba7935c1ed2c4d7369fb66abebc23c16cd26e431f5539"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/qwen3-asr-0.6b-int8.fixed.json",
+            "sha256": "36bb5b4d0ccf2a2dcb0f4a8000d0797a9ceec399f9d5bdd496ee3f64827dc1d4",
+            "candidate": "qwen3-asr-0.6b-int8",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "02d173ea14f6ae08fabd1593426f1248ee1dc2120b33b94e3c8f481afa184c45"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "d8f3a1fe9d202a5363cccaa6ea7a1b5228e5d46736e6ebbe79ffbd41a5b5a36d"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "afa842e821b1619141185d545c23ac5c713c41c23b07cd3c5f91b7d6d7c785e5"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "15fda110c1c89672ab58f926f80b4f2c46c696443068255b005a406509b10ce7"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "5ad8b83d45e6865556854a72fa1cc1c16ea4271217d0dd7bd7e9a0485e5d23ac"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "cdc92780954b83d71d236d3836deca09e495bf04a74e515f47c462750e8882b0"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "38d7fe8d5737c7eec8a5d1495b9793bf3daf83ca419ec0a00868443feecd2e80"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "27430b91d0d3d8393ad70eb41adc187f08a2a39e48c0d90919dbabbdcf84ab91"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8ae0fa21b15544bb6329b0bf50f9227d6faf4c7db72f84c7c8fa1920bcd522e0"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "98c33a39074fe5c87d32d21fa230daf8f0f38a0a2c89f91e6d4881b42007bec5"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "561edc5412a808651bb9b0b571c538c33d8fd12de20a7708e7c21bffc1a4e01a"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "47533e579dc5553de7e8cb2bcfda4f6f1d6fee0bae285505e8546c6643510b43"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "54e3d15eb62e52f8e1cfac9de729e7785eeeae51efd3c5605005502c429e0c8e"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "3c308810375a16bd8a2fec7551904be34fd8acab1e26e40e814b632255cc28af"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e266883249a9ba4be236700580464992b0682779ed1a83ab16cef59d884c0a4e"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "a4fbe0f0266bc0a7c745ba5fa76eaec476fe691934734ef20dcb73577e361328"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json",
+            "sha256": "e31e210dce79f247ab65ac49d4543866166d6cf5be7b73e228d9d1b8fd02e035",
+            "candidate": "whisper-small",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "fd440fc0a36f2538f6534c0d6acc8ad428b76ad9c37ee3e6ec8fa4eb002448ff"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "8e0d2674e38ddfd251f1b000432d781f94551a82eecb8472ae1cc1c5786e6620"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "e04e47a83e4f5db84ae34d5d258c2694f6be7c3fb03de6da4ee39c874860b9d8"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "ff52203e3d6066cf1e696d216d5d2dd72615de46c679a3c72cec99c47fb79a56"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8b3d294277b01051c5a66ccbb10a4f488f3b80e196e67c1f818aa4a9149648f2"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "c7203b81491787a2cfd24c5d3c98cec4747e37ef42596776750cc20e2158741f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "c819e3de28716737728aed3569dbe98965c6057094327ba97b4ed9f5e7263537"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "1feadb560c5f7815f7b8631f476e1fbd3648aa7a80a3ff073dcc853806d31b85"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "de1bc303d2affe1e1775f8bfff1b91c8b5345e8279b04bdd653bb81daafc72e7"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "b9e2e5ba83859ce00c196bd5704672dc42456a34d04176eeff4e6eba9ab0a000"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "aa1c077f5c053bf3094585efe37f5a2bbcf3b42485c9924393ba5f2a2fdb1451"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "2ed6cdec7fa93c017fcf04daf2a0a1bb553ab5041ccbe97434044927706bc153"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "ec14e097dd9e85be451ec59c0a95f0c4259785cb5696c37a0239e85e376e1241"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "0bd2109991b92d636e1694e109f00f58e3b71ea5ba8dbb22394670d9573765df"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "0df4274ee42dc1c0beb80416a172912eecbebb6b05297a44942ca19522842608"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "43cc2ba75f2c35fe863073f4e0557fd611591529284b1193d8a5c9b3d80c7551"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.context.json",
+            "sha256": "cab742638fc7af9768ac000a59e605591f51f508cf57b2dc2810ed3ae564a841",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "context",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "97442c64312adf905b03514f30800c0572be475c0fa2afbebbff694079479c3f"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "1d18e7ee987552353f569ed9427706c89d4e3f3288ea5e00274c334797a3fd68"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "950c36f318ce668eb3984651c5ddf5e321685417b8dc07b7ceecc51725d791d0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "d3f342ebeec9a87d1167aa7e6a96a6d68b25fd34f4e26b5a2502f1861a457e95"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "0d23764eec2695313c62dfa1fa9d17789449c5795874a9ca87ebe3be3d038eb9"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "90f9c0beaf3a47c71b2d3bc275bc5c8e5abbab4eb230413df70d27fa6cb32417"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0a2e92fb0bb939f47b40010849ba544970b617a314c69af99a0cd78327ca8b09"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a4fccfe6d86f819b0b6d5fa360acd28e00eb849cb3e985e635e4cc6108ed43c6"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8e822173a227184716d06ee3d72245f21b801c69a32574461818e898a863ea86"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "5a0ab09aac9d1f7f3b76dbf7c4c795a11a38a00dc04a4c324576e9dacd1c34a5"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "ba0de288181cb1f960de31858fe13e9910d2be63235336aeafa8b2299fb31c65"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "f1f7fcac28ac35c3e88f7507e6044faea71cda20131d81f16953763995b99f28"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "0bb994b54b4d24685fac2cbfd146dcbe2cb2ca9edd6eaf2773c5adf9475191ff"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "69f7aa56565b77a898e7b2e494ebdd2ad12659f42775116a1a0c41660d14d6e5"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "7b8114ef306d083f5582ad7dff4e832475a68fbf850d04ac54a867ae034455b9"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "d9a26f0d383ef6d423b2cf1f7cc19c01ee46a475b17d892444e8ec4727631f68"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.speech_aware.json",
+            "sha256": "468bdc1826676cb55c897076cd4300f6ad9ed8a812e4e45b425991de4e8174e0",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "speech_aware",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "10f7e5a788c0c1ff23652bc5df8d6ba9cf72656ff192ba24470f48d4466b7bd7"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "5c0ffad7562ef9a0087fae623f1c15bc06fa6a8151702c8009e263ab4a12e2c6"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "f6b237b2bd6d569b2b70f5749b00bb872e2020917b0a368ff0a559db9d2290b0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "392d237ab99c454c8e059caa96d637e3b1271b81bfe47e86777bc5449caa9336"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "050cd4537d85ccd6666cd7f1f03e1cb47a0facfbe39c7986c409b6226801333e"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "e93559212be45431527159f0af3e844b44a8b8aa593fe89109f610e43aa0f7ad"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "ed003fc1cc6855f95c079c2538ee56b3247d9555f64f00ada7d5a8410ee8607a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "52b0a3ee339401b2d2c46f4ec6e234376c0d57a2b50bc84dfe0415fbb19f578c"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8feabc3ed96d1f89456b9a8f8fa45bbe0ab8ebff52fb742b01fe9f10f5cbb8cc"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "2ffe6b6471d9b80bd15b9035aaabe326954cbf8a51ec88f0d77ed13160484bed"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "8ae78ba06dce82698db8c5fa9cec2dfb042f95eebc63fad91fcb13573e6b8da8"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "57f68f8202148415e3b12a196182fd5b3e203013a295248a0f4e68346f1aec7b"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "5af448cadabeee5f28fa44401907c34bff33dc4a4c31c6777e33c37c1658c3ca"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "6fb8e88e506298e036a92d2dc7fbeaac2aeb67fa5cfa5b5b320eb3a828b9a3bd"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "28ff54703c91ace5b8076f1d854ea671ade2549473459c70b94d9a7f6c5c61b5"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "b0f850fee69a3a3aac018f22d005e8ac6fee7ebfc1bfb1fee5e89c0f606ac94a"
+              }
+            ]
+          }
+        ],
+        "inference_calls": 0,
+        "references_modified": false,
+        "maximum_normalized_wer": 0.05,
+        "independent_clinical_gold": false,
+        "clinical_release": false,
+        "real_patient_release_authorized": false
+      }
+    },
+    "backend_tests": {
+      "status": "pass",
+      "result": {
+        "exit_code": 0,
+        "summary": "281 passed, 1 skipped in 64.84s (0:01:04)"
+      }
+    },
+    "frontend_build": {
+      "status": "pass",
+      "result": {
+        "exit_code": 0,
+        "dependency_installation": false,
+        "built_index_sha256": "4ee9a7e1633fa8145923d229450d9d9c27f1ebe12a98744b8959fa2166b7a559"
+      }
+    },
+    "synthetic_walkthrough": {
+      "status": "pass",
+      "result": {
+        "schema_version": "offline_walkthrough_v1",
+        "encounter_id": "3f3996cc-ad39-4d6e-b6a5-ab5eba6d0da0",
+        "synthetic_dose_error_blocked": true,
+        "unsafe_approval_http_status": 409,
+        "corrected_version_approved": true,
+        "exports": [
+          {
+            "format": "markdown",
+            "sha256": "e155f8f463d90a13cb9ec9fbd1a89cc445d27424f2fa89c44d39f5f2610ca6d9"
+          },
+          {
+            "format": "text",
+            "sha256": "b900747ce84dbdda2aca3ab1b753b31fdcd86f10480cb7f02ef0fa5b3ac4b7a1"
+          },
+          {
+            "format": "json",
+            "sha256": "a5b9308c86aa7309d23b280c6aa834a209436fbf13da1a76867acd8d9b81ac43"
+          },
+          {
+            "format": "fhir",
+            "sha256": "34aa3135a03194580d97c92a842d34204cf2edd1bb166c5d8c3135c7de5bea10"
+          }
+        ],
+        "viewer_write_denied": true,
+        "provider_calls": 0,
+        "independent_clinical_gold": false,
+        "real_patient_release_authorized": false,
+        "limitations": "Programmatic scripted review flags exercise software only. Silent transport audio is not clinical speech or ASR accuracy evidence."
+      }
+    }
+  },
+  "wall_seconds": 73.01471050000691,
+  "release_matrix": {
+    "offline_demo": "verified",
+    "engineering_verified": "not_established",
+    "research_evidence_complete": "not_established",
+    "clinical_approved": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED"
+  },
+  "maximum_normalized_wer": 0.05,
+  "independent_clinical_gold": false,
+  "real_patient_release_authorized": false,
+  "limitations": [
+    "Python sockets are restricted to loopback; this is not an operating-system firewall or native process sandbox.",
+    "Skipped checks, missing cached tools and unavailable independent evidence are not passes.",
+    "The scripted silent-audio workflow tests software invariants, not speech recognition or clinician performance."
+  ]
+}

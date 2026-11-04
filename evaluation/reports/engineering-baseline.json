@@ -1,0 +1,517 @@
+{
+  "schema_version": "engineering_baseline_v1",
+  "recorded_at": "2026-11-04T16:35:34.686863+00:00",
+  "source_commit": "c1afa1e70277af0942c389a37a2cfdf4096c9cc0",
+  "branch": "main",
+  "environment": {
+    "python": "3.13.5",
+    "system": "Windows",
+    "node": "22.16.0",
+    "npm": "10.9.2",
+    "packages": [
+      {
+        "name": "annotated-doc",
+        "version": "0.0.5"
+      },
+      {
+        "name": "annotated-types",
+        "version": "0.8.0"
+      },
+      {
+        "name": "anyio",
+        "version": "4.15.1"
+      },
+      {
+        "name": "av",
+        "version": "19.0.2"
+      },
+      {
+        "name": "certifi",
+        "version": "2026.10.23"
+      },
+      {
+        "name": "cffi",
+        "version": "2.1.1"
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.5.2"
+      },
+      {
+        "name": "click",
+        "version": "8.5.0"
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6"
+      },
+      {
+        "name": "cryptography",
+        "version": "50.0.2"
+      },
+      {
+        "name": "ctranslate2",
+        "version": "4.8.3"
+      },
+      {
+        "name": "fastapi",
+        "version": "0.136.1"
+      },
+      {
+        "name": "faster-whisper",
+        "version": "1.2.1"
+      },
+      {
+        "name": "filelock",
+        "version": "4.2.4"
+      },
+      {
+        "name": "flatbuffers",
+        "version": "25.12.19"
+      },
+      {
+        "name": "fsspec",
+        "version": "2026.9.0"
+      },
+      {
+        "name": "google-auth",
+        "version": "2.62.1"
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0"
+      },
+      {
+        "name": "hf-xet",
+        "version": "1.7.0"
+      },
+      {
+        "name": "httpcore",
+        "version": "1.0.9"
+      },
+      {
+        "name": "httpcore2",
+        "version": "2.16.0"
+      },
+      {
+        "name": "httpx",
+        "version": "0.28.1"
+      },
+      {
+        "name": "httpx2",
+        "version": "2.16.0"
+      },
+      {
+        "name": "huggingface_hub",
+        "version": "2.3.0"
+      },
+      {
+        "name": "idna",
+        "version": "3.20"
+      },
+      {
+        "name": "iniconfig",
+        "version": "2.3.1"
+      },
+      {
+        "name": "med-transcript-ai",
+        "version": "0.3.0"
+      },
+      {
+        "name": "med-transcript-ai",
+        "version": "0.3.0"
+      },
+      {
+        "name": "numpy",
+        "version": "2.5.4"
+      },
+      {
+        "name": "onnxruntime",
+        "version": "1.31.0"
+      },
+      {
+        "name": "packaging",
+        "version": "26.3"
+      },
+      {
+        "name": "pip",
+        "version": "26.2.2"
+      },
+      {
+        "name": "pluggy",
+        "version": "1.7.0"
+      },
+      {
+        "name": "protobuf",
+        "version": "7.36.2"
+      },
+      {
+        "name": "pyasn1",
+        "version": "0.6.5"
+      },
+      {
+        "name": "pyasn1_modules",
+        "version": "0.4.2"
+      },
+      {
+        "name": "pycparser",
+        "version": "3.12"
+      },
+      {
+        "name": "pydantic",
+        "version": "2.12.5"
+      },
+      {
+        "name": "pydantic_core",
+        "version": "2.41.5"
+      },
+      {
+        "name": "Pygments",
+        "version": "2.21.0"
+      },
+      {
+        "name": "pytest",
+        "version": "9.1.1"
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.3"
+      },
+      {
+        "name": "requests",
+        "version": "2.34.2"
+      },
+      {
+        "name": "starlette",
+        "version": "1.9.0"
+      },
+      {
+        "name": "tokenizers",
+        "version": "0.23.3"
+      },
+      {
+        "name": "tqdm",
+        "version": "4.70.1"
+      },
+      {
+        "name": "truststore",
+        "version": "0.10.5"
+      },
+      {
+        "name": "typing-inspection",
+        "version": "0.4.4"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0"
+      },
+      {
+        "name": "tzdata",
+        "version": "2026.5"
+      },
+      {
+        "name": "urllib3",
+        "version": "2.8.0"
+      },
+      {
+        "name": "uvicorn",
+        "version": "0.54.0"
+      }
+    ]
+  },
+  "baseline_tests": {
+    "command": "MED_TRANSCRIPT_OFFLINE=1 python -m pytest -q",
+    "passed": 272,
+    "skipped": 1,
+    "exit_code": 0,
+    "seconds": 55.6,
+    "network_denial_enforced": false
+  },
+  "frontend_build": {
+    "command": "npm --prefix apps/clinician-web run build",
+    "status": "passed",
+    "typescript": "checked"
+  },
+  "installed_model_directories": [
+    {
+      "path": "data/models/faster-distil-whisper-large-v3",
+      "files": 5,
+      "bytes": 1516479628
+    },
+    {
+      "path": "data/models/faster-whisper-large-v3",
+      "files": 14,
+      "bytes": 4565487318
+    },
+    {
+      "path": "data/models/faster-whisper-small",
+      "files": 4,
+      "bytes": 486212372
+    },
+    {
+      "path": "data/models/faster-whisper-tiny.en",
+      "files": 4,
+      "bytes": 78090594
+    },
+    {
+      "path": "data/models/multimed-small-int8",
+      "files": 5,
+      "bytes": 253256261
+    },
+    {
+      "path": "data/models/multimed-source",
+      "files": 10,
+      "bytes": 968902298
+    },
+    {
+      "path": "data/models/multimed-transformers",
+      "files": 11,
+      "bytes": 972648268
+    },
+    {
+      "path": "data/models/omi-med-stt-v1-gguf",
+      "files": 1,
+      "bytes": 929205888
+    },
+    {
+      "path": "data/models/parakeet-tdt-v2-onnx",
+      "files": 5,
+      "bytes": 661331545
+    },
+    {
+      "path": "data/models/public-diarization-v1",
+      "files": 8,
+      "bytes": 27229805
+    },
+    {
+      "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25",
+      "files": 26,
+      "bytes": 1000102108
+    }
+  ],
+  "benchmark_sha256": {
+    "evaluation/acceptance-reservation-v1.json": "d08de25ea071150b792874bfde6baf5cb955e779cfdba41abd615db41bcb42b1",
+    "evaluation/annotation-source/acceptance-v1/LICENSE.md": "c4077139f0479418e8ce544f45f409fd3192a315f23071b4d41083e4a28357a1",
+    "evaluation/annotation-source/acceptance-v1/lock.json": "f8e10ca23eb39d9eb465316a42cbe68ad52db208d8b29545ab1e0d65933f2053",
+    "evaluation/annotation-source/acceptance-v1/manifest.json": "1b0644d9901aa007a3161509cca2c41d9831cd8cc95b3091759f4fd8997cb404",
+    "evaluation/annotation-source/acceptance-v1/qualification-registry.blank.json": "a1318a1c29134439929c7e94414f6e7c8546130eedd415a68a1e16e14050607e",
+    "evaluation/annotation-source/acceptance-v1/reviewer-A.blank.json": "6e76bcfc648c5a4436cd4528850578029f1a4e3f471513354b1cbd6a3a1cc0b2",
+    "evaluation/annotation-source/acceptance-v1/reviewer-B.blank.json": "6e76bcfc648c5a4436cd4528850578029f1a4e3f471513354b1cbd6a3a1cc0b2",
+    "evaluation/annotation-source/acceptance-v1/source-audit.json": "aadb7ecf67da9bac857b01990639c4f1718e259a95c3f828ef04cab13d69df83",
+    "evaluation/benchmark-ledger.json": "125092be4ddbc833e4b9badac96d964c72597e26bd327c2678429e0797b87430",
+    "evaluation/candidate-access-audit.json": "c5fb67c36f9b62fd5fd0cfe0750511900d6c08fc9008aab724306b39dc631adf",
+    "evaluation/clinical-adversarial-v1.json": "5a50875e43c8c1579b2b7db769fa5c3e107f72c97a6b59a7d535a33427a21441",
+    "evaluation/clinical-challenge-relational-v1.json": "24eaa0df15f36e1dc74140eef82596de2a6626622410f3f2025ede671ab70c72",
+    "evaluation/clinical-challenge-relations-v2.json": "d386347449e1ac34552271d56831c58f2184a526845d8288658a395890df9bd4",
+    "evaluation/clinical-challenge-unseen-v1.json": "9a92439b396de4486b188641e85354adfcdda4861312071ff40a7386ac2a8dab",
+    "evaluation/datasets/meddistract-detailed-v1/lock.json": "e4b672ef43ecedf3a77bab7d32fd81e8f3605960ada47bb5acd959186c79b303",
+    "evaluation/datasets/meddistract-detailed-v1/manifest.json": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+    "evaluation/datasets/meddistract-detailed-v1/protocol.json": "d0179b9db3be7b245f0eee3144d84cae925e5d473a4e39486b5ed7ee25d6fd4b",
+    "evaluation/datasets/primock57-expanded-v1/LICENSE.md": "c4077139f0479418e8ce544f45f409fd3192a315f23071b4d41083e4a28357a1",
+    "evaluation/datasets/primock57-expanded-v1/README.md": "d907dafe6e61fb5e24d85cfd5dd84413b041b24e101402d0df07cd5abc324779",
+    "evaluation/datasets/primock57-expanded-v1/lock.json": "946943146b44065304edf86f53276475e849f88fd60e171113cea4d5d56eceda",
+    "evaluation/datasets/primock57-expanded-v1/manifest.json": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+    "evaluation/datasets/primock57-full-expansion-v1/LICENSE.md": "c4077139f0479418e8ce544f45f409fd3192a315f23071b4d41083e4a28357a1",
+    "evaluation/datasets/primock57-full-expansion-v1/lock.json": "0f2959ab96233426f411d706be9153b9ac2dced54b64d216e5d7d5715048ddef",
+    "evaluation/datasets/primock57-full-expansion-v1/manifest.json": "712f0ced8a18523e93941f5ec92f5a6ef0e8617aff4e55c509c5964ff82698bf",
+    "evaluation/datasets/primock57-full-v1/LICENSE.md": "c4077139f0479418e8ce544f45f409fd3192a315f23071b4d41083e4a28357a1",
+    "evaluation/datasets/primock57-full-v1/README.md": "00a5191100c275db42e624e15a4e7adc519b1a8ec57c56909dee9e1f30f99117",
+    "evaluation/datasets/primock57-full-v1/lock.json": "92421644ce4d8319bfa31c620b3c3e7087faac80012d4333c5749d0b65e98900",
+    "evaluation/datasets/primock57-full-v1/manifest.json": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a",
+    "evaluation/datasets/primock57-smoke-v1/LICENSE.md": "c4077139f0479418e8ce544f45f409fd3192a315f23071b4d41083e4a28357a1",
+    "evaluation/datasets/primock57-smoke-v1/README.md": "ceacb8a5743a45d2bfadbd0380efc56d1953dd5705f28bfa5b7e18b5309becd0",
+    "evaluation/datasets/primock57-smoke-v1/lock.json": "f6a0e4a7388b2ae84f3da7818a118a4f1c57e255537a325fb8eb650ecc7bb214",
+    "evaluation/datasets/primock57-smoke-v1/manifest.json": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+    "evaluation/datasets/primock57-validation-v1/LICENSE.md": "c4077139f0479418e8ce544f45f409fd3192a315f23071b4d41083e4a28357a1",
+    "evaluation/datasets/primock57-validation-v1/README.md": "c47335249b209df275a1bd5b860afe570ae461dbf5f9d370a45fff7251c12c94",
+    "evaluation/datasets/primock57-validation-v1/lock.json": "79677a08c2a1db2c9540a995ad9d97b8138734c28ff1601625195318393a1835",
+    "evaluation/datasets/primock57-validation-v1/manifest.json": "39e123830ba2dcff73b5621f1a4f10cbf76cd1eb8a7c56654c6d3d40e4cdbac7",
+    "evaluation/detailed-recovery-v3.json": "94b611e900a49c74d03b370506e5adacc117e252989bc6fd2d59a7ee05938af9",
+    "evaluation/detailed-suite-v1.json": "5ab99a2f668b1b7ba182784292e7f0383db63b2d5085fb71de0e4f51ebcc4422",
+    "evaluation/detailed-suite-v2.json": "185a90cf817a198894c4347e753def0fb90008cef0d628581ed578683d65216c",
+    "evaluation/expanded-extension-leaderboard-v2.json": "fe7abbf3233ddf451f6cef608289d3d505f28ebd7f2ca1487ddaa0f3df303ec5",
+    "evaluation/expanded-extension-leaderboard-v2.md": "24633453e4fd233b425a3d1e1a8e6d6e5c940e4d243e824cb2bd4b4cc5a4a107",
+    "evaluation/expanded-extension-ledger-v2.json": "e63d101f802f568f1a44ca8048200ed2d9385caac81d9d2d47fe559107ec4c23",
+    "evaluation/expanded-leaderboard.json": "058e372ac3981e4e41b4ab0a7c0f26965417e303567f311463fb0329b6693a81",
+    "evaluation/expanded-leaderboard.md": "4788f05374f2e92e4e09f9529f8a8936740d19a35a6823c875871fe5960b18f4",
+    "evaluation/expanded-ledger.json": "81e324609fe05ef78ab8b4aa673d83c9cce84670b4e872cce1204d1139dd16a3",
+    "evaluation/expanded-protocol-v1.json": "5268d7cd6ce24b94ee435cbde97e980e2ff6f8c99550a48f859bf36945b3e95d",
+    "evaluation/expanded-runtime-versions.json": "750f47f8f4a5340062f6488b1627c7214221f50d51ea35d2a027bc7adff345a1",
+    "evaluation/expanded-suite-v1.json": "b82137a4b335a5d0f07045a04747bf034e072e2e6467765786b27e9596ae299b",
+    "evaluation/expanded-whisper-profiles.json": "bf936ddf9134feda62032846f28f4080fd2b9bbb12474c4fcd98ffedce4d8071",
+    "evaluation/full-expansion-protocol-2026-10-27.json": "61c55de7adbb178bdc42fbcb6db112eaca8063d6b2ae7e5677ce94c98c485916",
+    "evaluation/gold-concept-schema-v1.json": "122f41655a1fce1e1e801753f827fea896ddab59b0c77194d01861b851d9bc11",
+    "evaluation/leaderboard.json": "0384cb46d5aea1e037b0219dfaa74bf6142f3408bff7e284dd10fdb56058c703",
+    "evaluation/leaderboard.md": "1797897186fc5f6ffd08d362201e5a6607b03d59de620b0fc552f75915c87e3d",
+    "evaluation/manifests/tiny-en-smoke-artifacts.json": "c3227ae1107f80a9193dffb8df3f4b04aa988a50edcf8958859a06f29ac24b9c",
+    "evaluation/model-registry.json": "08f958dd290614b5f6745f79d97dd260e2684f152ae5d63badf0e0cde39490cb",
+    "evaluation/pilot-templates/hardware-review.blank.json": "818bf4834282ee06ceaa2af1a17e2b5dac82be36786a26b3398470400c4994a2",
+    "evaluation/pilot-templates/paired-observations.blank.json": "684808b19a64065f1101496cc6fc33f56d8c1a776018fb11caa658de943e0979",
+    "evaluation/pilot-templates/study-protocol.blank.json": "73ee53d22fe9150bbdc91319c67b623097ef2dde5f2923fecc83893b7d4a9c77",
+    "evaluation/reports/acceptance-source-audit-2026-10-26.json": "9005fdd586d050edb249571b57548021c58763a8fc549b1962689a36eaa69b66",
+    "evaluation/reports/clinical-adversarial-2026-10-25.json": "fa458cc71adc7254f60f20d1dedb2278a86f63fbdfc279c44defd59a5ab09055",
+    "evaluation/reports/clinical-adversarial-v2-2026-10-25.json": "a77d1160bfcd24a85b7441bf5438e3e5ce1bbe6cfe60aad59d02307c2feeaa3f",
+    "evaluation/reports/completion-application-smoke-2026-10-25.json": "96ea52cce5038228c9d2fd6154e09225917cf949165badf545349277c8444af4",
+    "evaluation/reports/completion-application-smoke-v2-2026-10-25.json": "8800749aadc19c3dedd1ab1b20128aa814edf3eb2bea729ac1abddccbc96b174",
+    "evaluation/reports/completion-application-warm-probe-2026-10-25.json": "db47c769c83f8b7eba6fd2bf727c7afa469eb8dcf83be082ce7b14e163f66d64",
+    "evaluation/reports/completion-clinical-models-2026-10-25.json": "a54cb20ffe0d0d5d0c29a59ed5c710da4330d296651ada9cf0cd344c9ce701f8",
+    "evaluation/reports/completion-clinical-models-v2-2026-10-25.json": "5269ae62401454bce5b96bd1006987c9200beaa13a5ccf1cab116581ede53fa1",
+    "evaluation/reports/conversation-ablation-2026-10-26.json": "6a43bc1294ff127dd1d854146847071b30f429283ae903ad8f395019892d24ad",
+    "evaluation/reports/conversation-ablation-resumed-2026-10-26.json": "b2ec0e7c0314499fabf2ab5a03b080edfee5c0e5cbf90b7854508f4458531356",
+    "evaluation/reports/conversation-all-errors-2026-10-26.json": "b7d30f4249c103b43a0d8f896c1edf0bdb06213e2a4c1cf83a9979626b908a40",
+    "evaluation/reports/conversation-baseline-errors-2026-10-26.json": "b363e69df2d63eb3b073e9b86d6eb1ea582635934e7eb1b445d9e999dad87060",
+    "evaluation/reports/conversation-comparison-2026-10-26.md": "e5410146447fd28afeaa42406de00898cd99ffa5837f4f8945ed47812da3b56b",
+    "evaluation/reports/dependency-application-smoke-2026-10-25.json": "9d8867e4950a8e87464ba3742bf695f8554c264389e144e05a9a8dc52cd3aad7",
+    "evaluation/reports/dependency-audit-2026-10-25.json": "5fbcbf0cd239cb5fa5c1ecd2d466c20c323ecf9d3dc01a9cbe59f2f9f12bea95",
+    "evaluation/reports/detailed-campaign-execution-receipt-2026-10-29.json": "4ecf46ba17aaab44bb068a20e87aaa9d45e8b1c1241ac932d5abce0e784a6d13",
+    "evaluation/reports/detailed-campaign-results-2026-10-29.md": "fcb3f509ae3e0b35d1797c0d1dba906ad23bfc01a5b808f82620e3a848757ef5",
+    "evaluation/reports/detailed-diagnostics-final-v2/distil-whisper-large-v3.fixed.diagnostics.json": "5e89231bd9c27d3e0a672b60168e4cecb46e0214106eb9f86ff29c6ac5041a9c",
+    "evaluation/reports/detailed-diagnostics-final-v2/faster-whisper-large-v3.fixed.diagnostics.json": "904d063a294c208a14f44953ff7bf576aac47092de916b43c137ce16cde49c00",
+    "evaluation/reports/detailed-diagnostics-final-v2/faster-whisper-large-v3.overlap.diagnostics.json": "f81c57d5132e0412201429bd42a26a05447538b1831832f88d28c5844fcbc92c",
+    "evaluation/reports/detailed-diagnostics-final-v2/faster-whisper-tiny.en.fixed.diagnostics.json": "7eeff509214f392e672813abff37b6671bd38dcfa2462f77939fca1ffac24a5b",
+    "evaluation/reports/detailed-diagnostics-final-v2/multimed-whisper-small-english.fixed.diagnostics.json": "0b92ae7b2148f03cadab31a781a0c450b0a10d18d162df84a7401f9b52069f5a",
+    "evaluation/reports/detailed-diagnostics-final-v2/omi-med-stt-v1-native-empty.fixed.diagnostics.json": "9761aa6f94f18b8dee7bef56622add5180ca6569dcc0bfc1eae45bf2195d7aff",
+    "evaluation/reports/detailed-diagnostics-final-v2/omi-med-stt-v1-native-empty.overlap.diagnostics.json": "d104b7edf67c4c44be62dbef5cfdcbe5011497151191e9b7c42a9ab5a8bff2af",
+    "evaluation/reports/detailed-diagnostics-final-v2/omi-med-stt-v1-native-empty.speech_aware.diagnostics.json": "230495ad002c13e66dcef941d61f3888b195dc5c6243bbed4dfdb7bfa52e38a1",
+    "evaluation/reports/detailed-diagnostics-final-v2/omi-med-stt-v1.fixed.diagnostics.json": "209575b3e8fcd540816a6d2136095a757d163acfe77081aae48f9aab5083a111",
+    "evaluation/reports/detailed-diagnostics-final-v2/parakeet-tdt-0.6b-v2.fixed.diagnostics.json": "2f4cbbc87a245044f77aa536ff598a3c237e625df33b587deafe2cc9d83c6b79",
+    "evaluation/reports/detailed-diagnostics-final-v2/qwen3-asr-0.6b-int8.fixed.diagnostics.json": "c3d7f12cc63bc20a2206f3f123d56f68c25c130622de4a5b8a73056c8addbc8b",
+    "evaluation/reports/detailed-diagnostics-final-v2/whisper-small.fixed.diagnostics.json": "ee5a815e1e11682a68a6bb08ae59deea4e3ea9fa7bcf2e8447b10ab3ea481b78",
+    "evaluation/reports/detailed-diagnostics-v2/faster-whisper-tiny.en.fixed.diagnostics.json": "7eeff509214f392e672813abff37b6671bd38dcfa2462f77939fca1ffac24a5b",
+    "evaluation/reports/detailed-drafting-2026-10-29.json": "3a2f2a1c9643fbde7716e240350307457cba7302f766d121b9c0b1273367728d",
+    "evaluation/reports/detailed-drafting-summary-2026-10-29.json": "bb2aed668ab3f57fefe9b22fcca5e837fcf16be653997dff0e1ae4e442df9610",
+    "evaluation/reports/detailed-engineering-validation-2026-10-29.json": "3ab1f98e5fafd42b6c43c7c2f143e939a9b6abbfe2932c521f86158371c23b97",
+    "evaluation/reports/detailed-interruption-2026-10-29.json": "13c3c4b151e9cfc13ae40ae0f6617a59dd864fbb16306b93fc9eec41ffebfae9",
+    "evaluation/reports/detailed-ranking-2026-10-29.json": "6d43a82271cf8071dee09f63ca5204893d8e7aa28331e3eab09aeb245aa34705",
+    "evaluation/reports/detailed-ranking-final-2026-10-29.json": "56a74e271ec4b83fb752c67d9351a4ffc9af57a27669039275b3a3e290da8b3b",
+    "evaluation/reports/detailed-ranking-v2-2026-10-29.json": "56a74e271ec4b83fb752c67d9351a4ffc9af57a27669039275b3a3e290da8b3b",
+    "evaluation/reports/detailed-recovery-v3.json": "33ced58e17ed5aaa9a808d3e1c7ef9bda92b895eae7fbc0534013520ab921419",
+    "evaluation/reports/detailed-review-preparation-2026-10-29.json": "e71bb0e2c3997026dec35d98963fe5b81a06f24189202da7c1641c11d58bb200",
+    "evaluation/reports/detailed-source-span-audit-2026-10-29.json": "8157a606439f16d5767f21b2b51e5fbadf630351debb60a1fe01294153c3327e",
+    "evaluation/reports/detailed-v1-unpublished-prefix-2026-10-29.json": "a01f48ffbe544df72794da213513797bff130128e55e96f60c493ae1ffe04805",
+    "evaluation/reports/development-completion-2026-10-27.json": "2242c4898faeba22566d166ef0356529a14a23d14bb64dd47cd32de2776be685",
+    "evaluation/reports/eight-channel-long-recording-2026-10-27.json": "f540562057f212bfe78a2258ebf70380fe14b0d3e22415797c01682fd63d3c7f",
+    "evaluation/reports/eight-channel-long-recording-throttled-2026-10-27.json": "92d61351a3d0e468a51020ef493e1fc10c1403e626d134d3f01c1c29e94b7b77",
+    "evaluation/reports/eight-channel-recovered-job-2026-10-27.json": "55c1f46571a8d3979456e83ddd570bcacf0aff9a522458f390c794bab33968aa",
+    "evaluation/reports/eight-channel-signal-drill-2026-10-27.json": "90a7ae35712c2176c441928d0a214a4db837f511400bdc29f6ac708ccc7fc276",
+    "evaluation/reports/eight-channel-stress-interruption-2026-10-27.json": "a1e9e8e7133ae8efc23114d2b9f3fc0b7d29e902a24cabee255d592d6408a919",
+    "evaluation/reports/encrypted-backup-drill-2026-10-27.json": "70726f84264504fb6bab1b40af26c911cae7e6837e64f23db2d25d48ea41e2a8",
+    "evaluation/reports/expanded-comparison-2026-10-24.json": "5326e727dff656f0111ca026f70c15da9d47e26d7b6dc11127da35e659cd418b",
+    "evaluation/reports/expanded-comparison-2026-10-24.md": "aadc1c39e6f9bc265ba62abc1e1d7dabda7a3df252c044ae93f8af57a6cdc97f",
+    "evaluation/reports/expanded-omi-runtime-repair-2026-10-24.md": "322bc438f586552d8b7572a59273f6d1a16736931a2f2af19897f0bf08bd3521",
+    "evaluation/reports/follow-up-validation-2026-10-24.json": "2a90ecff78c7bb41c9001b0ac81a28321499a524cdbecabba18c172206c8fdb8",
+    "evaluation/reports/follow-up-validation-2026-10-24.md": "cafabf9e79ed10d045cab4c35b9fe018bdd6593a0c0499a1a001740152adcb44",
+    "evaluation/reports/full-consultation-expansion-omi-2026-10-27.json": "ed5c362f4c1184b4a09fe087e7f4bec73683b43d2bca51ebcdef08112a4406b5",
+    "evaluation/reports/full-consultation-omi-2026-10-25.json": "d3cd848d0179ad3159cb999c4e8812ffa65dd57646ca5dea8b0c64692895c1ce",
+    "evaluation/reports/full-expansion-errors-2026-10-27.json": "bfb888f4119201e5e4e7f54a82de2acdcdeac95bec266e5f3cd80275dbd60716",
+    "evaluation/reports/full-expansion-failure-probe-2026-10-27.json": "de10d24c60ad5695defa0732610e2c239bbd1a4c6f6dece778da7ff5f37cac68",
+    "evaluation/reports/full-expansion-native-empty-errors-2026-10-27.json": "0b211c771842035be8e1ee08eff59d301547dbb7a9564123620e748cbf69af86",
+    "evaluation/reports/full-expansion-native-empty-reconstruction-2026-10-27.json": "f6c7d33595290287f39019bd0aa21249aff8ef0d2c04a2cac7bd42ddbcb6863b",
+    "evaluation/reports/google-oidc-hardening-2026-11-04.json": "092da5b3f5670e214b94f8b190ab21afbba3ea614fb9364cfa2cd4ebf3fb74bd",
+    "evaluation/reports/hosted-model-evidence-2026-10-24.md": "2ecec22627029703391b6a1dcbc042d4a181ffda0d9bdb5652dca26b3d8b5550",
+    "evaluation/reports/local-asr-smoke-2026-10-23.md": "4c84a73e0bd134491ba2f97403c390d29988e583d2fafe11992267a30019d4c1",
+    "evaluation/reports/local-drafting-2026-10-25.json": "a6d2a1762ccca06e4e2bb3c8ae99f912b3c513a0fa6d34be7baa5cda05815584",
+    "evaluation/reports/local-drafting-structured-2026-10-25.json": "eafaa99ed3be9f34c06dc2268a105b883d1154b6edc3bad155ef9c55a62425f9",
+    "evaluation/reports/long-recording-real-worker-2026-10-26.json": "b1034ee512c1f882e835ba8ee61fd74cc8e99a3c3b3029df260e124ffa5b5e44",
+    "evaluation/reports/multichannel-cache-first-2026-10-27.json": "dbac89ae181b53d5fb945910b43ad2a0f4bb1781a69901f86af4e23cbf960105",
+    "evaluation/reports/multichannel-cache-throttled-2026-10-27.json": "c7b741b17df9e61e758e52509adc97ae2f410b208d4f3af4eea7edcee2815738",
+    "evaluation/reports/multichannel-cache-warm-2026-10-27.json": "f06ba2e8aaab415b79907cfd281575e6ee7f417faaa72f268ebd5b9b1bd92fb6",
+    "evaluation/reports/multichannel-real-worker-2026-10-26.json": "78feafc464aa1dd2135bcd5d441be82608f82b87473d67b81ca8bb6b4c85c2d0",
+    "evaluation/reports/omi-failure-probe-2026-10-26.json": "e4b397f95b42c3c801769efe732fc41c6a960f37b5d08b40b64473952ffea387",
+    "evaluation/reports/overlap-reassembly-2026-10-26.json": "d8a8e78b22c77d988a5418748dd36be0a131e49ccf79c598ff947f05f546b8b1",
+    "evaluation/reports/presentation-feature-validation-2026-10-29.json": "0a28293d5999df54e6854ed3bb14b775e13ea269f31dbc2e7ff8e40345eec099",
+    "evaluation/reports/primock57-asr-comparison-2026-10-24.json": "398d21312a9037724fe9897c7614ce0b905f290a1a0bf8305aa27876e2cbb799",
+    "evaluation/reports/primock57-tiny-en-smoke-2026-10-24.json": "58e15d31cee890faa2c0aa25b19f58bdb9de80fa4094e8c278213ed370c50f6a",
+    "evaluation/reports/primock57-tiny-en-smoke-2026-10-24.md": "947e2b60ffbe1e9acd18a22a0d969c9cb33d5b6eb3f9303a9ca6931c6a164928",
+    "evaluation/reports/public-diarization-2026-10-25.json": "9cb58630bf6664ad9fb4f180751b05b7ea49b247fa07ccee4dc5195b768d562c",
+    "evaluation/reports/public-diarization-threshold035-2026-10-25.json": "0e14d9a258cf891444dd8f2c3eec7029eb3387f7523cec3fb9115f58992d0a4e",
+    "evaluation/reports/public-diarization-threshold050-2026-10-25.json": "1b28c585ff58ea0cd30ae541d7b0e61f7daa13e51e614a12489b19ffb5d51834",
+    "evaluation/reports/relationship-rules-2026-10-27.json": "39694e5483992ac5485e4a32dd4997b399a62ecaf1187405468468502b146e00",
+    "evaluation/reports/relationship-rules-final-2026-10-27.json": "d36b04ef5b8ca424bace8304ca4e8f4ae133754114121242f70094cba4c86f24",
+    "evaluation/reports/release-readiness-2026-10-25.json": "8167b3f622b3816cf8148dc550aee9cd8f1bc58f90350c3e34cfb2efde1f00ce",
+    "evaluation/reports/release-readiness-2026-10-26.json": "8167b3f622b3816cf8148dc550aee9cd8f1bc58f90350c3e34cfb2efde1f00ce",
+    "evaluation/reports/release-readiness-2026-10-27.json": "8167b3f622b3816cf8148dc550aee9cd8f1bc58f90350c3e34cfb2efde1f00ce",
+    "evaluation/reports/scribe-drafting-comparison-2026-10-26.json": "971bf41b349c643a66947e1791e31986ab5c82e153bc0d4d7ba2737fd9a31068",
+    "evaluation/reports/scribe-evidence-index-2026-10-26.json": "156da965dda626d2826728365967fc9119eaf796e8a32e0b98599f1f7d84ecc0",
+    "evaluation/reports/scribe-evidence-index-2026-10-27.json": "fdc28f380d676fead8a9da1cbedb3930a767dc28ef303883411da6ae1e3ecb0c",
+    "evaluation/reports/speaker-comparison-2026-10-26.json": "6e87c822d5df5ab90d1d2ed4adcecc6a6223d4ef51fda70aab2f04a413052027",
+    "evaluation/reports/two-channel-diarization-2026-10-26.json": "c4a2447748f0c26c4cf2fd518553e791cbc76ec364b772d02617a79927f7ecfd",
+    "evaluation/reports/two-channel-empty-reconstruction-2026-10-26.json": "60146fd4a707a858be43cee2285ab9b2610cc07ec560cad34daa8dae12859331",
+    "evaluation/reports/verification-relational-2026-10-26.json": "15807dce44d15f1ecdaa2c7aad9fa71fa16981b88a64b446abbb7906447c7795",
+    "evaluation/reports/verification-relations-v2-2026-10-27.json": "6e10271ce9b90b9d77bc3c2117197a14bc0fe75ea2a41d8420e65076aaa32a4d",
+    "evaluation/reports/verification-relations-v2-serial-2026-10-27.json": "d281c90e6250db63eccfa195dc43158125197f350b9a5dafa9be4d2568dd38f9",
+    "evaluation/reports/verification-resource-interruption-2026-10-27.json": "1ad3a17910997879c7199d0c8da3a999805c3df3c31ec06a8551d13058eed5a2",
+    "evaluation/reports/verification-unseen-2026-10-26.json": "d4e3244e2211e1fc37c9bad723e2f2ccf3d63b34435713d8bf496164e5a32270",
+    "evaluation/resource-preflight.json": "28a27950781f5ba561f0495581c2b8932d8b35605248bfc73bd9a3fa6063eade",
+    "evaluation/reviewer-packets/meddistract-detailed-v1/reviewer-A.blank.json": "e87bd3000571b7598dd08f3d685d96ce9b18312a6571e8609bc8ba56d85dd9f8",
+    "evaluation/reviewer-packets/meddistract-detailed-v1/reviewer-B.blank.json": "e87bd3000571b7598dd08f3d685d96ce9b18312a6571e8609bc8ba56d85dd9f8",
+    "evaluation/reviewer-packets/meddistract-detailed-v1/study-observations.blank.json": "f6dba84b29fca8a517392f78e8b87ed26c258f9759c222cc2cb8b7ae25df83cc",
+    "evaluation/reviewer-packets/meddistract-detailed-v1/study-protocol.draft.json": "c2a8c6128273407dfc2be6039b16988e02a6b52b9456cdb1ac72728f9c39fece",
+    "evaluation/runs/meddistract-detailed-v1/faster-whisper-tiny.en.fixed.json": "10f686122259a473b4872fee69a71dbbf9d70be9df3d18dc11f04eb2fc4d9d23",
+    "evaluation/runs/meddistract-detailed-v2/distil-whisper-large-v3.fixed.json": "9062cbdd6b4947ecb78c437f1b18384f19f69447845ef7e909e9043d277a432c",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.context.json": "2a2094ee5a1df04aef3a97394a8cf7ed02d44082401d31f08438f0f6ead8d7e2",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json": "97480843cb1585523621ecc3b88149c4c62246380c1571a8abcb3f41cc19c1f3",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.overlap.json": "d616df38a47a7b8125f841524bd247a70516f184148122ab99b4cafbfac2ae52",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.speech_aware.json": "f9af11b53b314749cbe70f40180bf60f6c7eb35d2f85363994c1bb918afa96bb",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-tiny.en.fixed.json": "21de3bbc2dd4812d135aaf5c2a6256ab1b8e9a047bd8f56142621156a01c3ece",
+    "evaluation/runs/meddistract-detailed-v2/multimed-whisper-small-english.fixed.json": "54ffac5180683367bdf222997890b3f5273eae859d645ca3256ceae09d869a40",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.fixed.json": "f5ee39e09eb0da5f56aec1950a7bc5c0f3c22a4b689282c221b6f35e9a8c12e9",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.overlap.json": "58d623d0c2af180dc021b8c7af2184082410e23a95c6a81f305ea428dff80482",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.speech_aware.json": "56943c0600fa305152af714149bc39a8c76b81d38fb8c3c3664b18bedf1577c9",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
+    "evaluation/runs/meddistract-detailed-v2/parakeet-tdt-0.6b-v2.fixed.json": "9becc22cd583cde4f27f48a4d1fc5fc95f36a4ebe11a18ba29e68ac8a0fea7c1",
+    "evaluation/runs/meddistract-detailed-v2/qwen3-asr-0.6b-int8.fixed.json": "36bb5b4d0ccf2a2dcb0f4a8000d0797a9ceec399f9d5bdd496ee3f64827dc1d4",
+    "evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json": "e31e210dce79f247ab65ac49d4543866166d6cf5be7b73e228d9d1b8fd02e035",
+    "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.context.json": "cab742638fc7af9768ac000a59e605591f51f508cf57b2dc2810ed3ae564a841",
+    "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.speech_aware.json": "468bdc1826676cb55c897076cd4300f6ad9ed8a812e4e45b425991de4e8174e0",
+    "evaluation/runs/primock57-expanded-v1/attempts/omi-med-stt-v1-windows-dll-registration-failure.json": "6b19760cde34c4cc2185483ac92cd5cce4b574c2d2ec0fefcb23567345a86abf",
+    "evaluation/runs/primock57-expanded-v1/distil-whisper-large-v3.json": "657b3221f34f987a4a801f38f13282d2d48f2f9336177f0aebe76247c4cccab6",
+    "evaluation/runs/primock57-expanded-v1/faster-whisper-large-v3.json": "ef13b01e0c386a298d2b7a1ab50f9e9ad02198a2d04ff920901de04a9bee43af",
+    "evaluation/runs/primock57-expanded-v1/faster-whisper-tiny.en.json": "fb0eb97c215789cf07d1ab8b97bab256d5d2a475cb6b24ec77d0d6d6aac324f3",
+    "evaluation/runs/primock57-expanded-v1/multimed-whisper-small-english.json": "757be9c7ddf2ef61b232d70b610461297a55f731ef1e860f57d45dca869db54c",
+    "evaluation/runs/primock57-expanded-v1/omi-med-stt-v1.json": "2fab0eb25ed6f7dbf6b57523781448542b8c93ad127c7d731452a38594b8b59e",
+    "evaluation/runs/primock57-expanded-v1/parakeet-tdt-0.6b-v2.json": "532ff3357195261b37e95b8e494243e08ceb36a3e27e5c374ad5268fb73efc4d",
+    "evaluation/runs/primock57-expanded-v1/qwen3-asr-0.6b-int8.json": "40503124700f608af8c7032baa6d5503b3d0cf2cdfefe532f4af914172e57a63",
+    "evaluation/runs/primock57-expanded-v1/whisper-small.json": "af97db6ea687f0443da051b74d7ce75a24710af8e72252ede62292ec1e1db586",
+    "evaluation/runs/primock57-smoke-v1/distil-whisper-large-v3.json": "ca26b72a0ecf0f8efb1d682d220048e9f33d5205071d14890d4d0a33eb4f6c3e",
+    "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json": "aeff2c6fb8637c280229939fd7e3889ec8d8e543b6d3cfa08817ebcf5c9a0ffa",
+    "evaluation/runs/primock57-smoke-v1/faster-whisper-tiny.en.json": "f2ce3f0172957f05acd3c2c67115ce2fc276f16288194997f02f11c438c9882c",
+    "evaluation/runs/primock57-smoke-v1/multimed-whisper-small-english.json": "ea7473ae73bbadffe0a1d90de7ed6d51426692c11ecc5ab53c3218db92209f94",
+    "evaluation/runs/primock57-smoke-v1/omi-med-stt-v1.json": "0fa6873aeafe66abeba5990e7502282953ce68c15dffdf99765a45874bdbe61f",
+    "evaluation/runs/primock57-smoke-v1/parakeet-tdt-0.6b-v2.json": "a5fecf5ef78df7956eafc99a7c0453875faf6cd6ac060c6a1dfd37e31fbeae43",
+    "evaluation/runs/primock57-smoke-v1/whisper-small.json": "624bcabe1bb40c4ae4f429d50e042d61f26eeae43db2ef912652e5120089210b",
+    "evaluation/runs/primock57-validation-v1/omi-med-stt-v1.json": "132c6ab65b7d7c7acf0cc482ec4fe38191b358d5294487ddd772709d7b77803d",
+    "evaluation/runs/primock57-validation-v1/parakeet-tdt-0.6b-v2.json": "b8c4b10eba4a475acf5469b96e7d9f1ae27ef3890e4f83896b2a78fcecd4631c",
+    "evaluation/runtime-versions.json": "0f1e1d07d4d93cee995c94ebd6d62fcb6c58ce0f260891f3b1e0c8b70ee820b6",
+    "evaluation/selection-policy.json": "a2b823ad85e11e252c6a0e23ee1b7b09be6fd2c2ff5e7bf5a89de9df25b7c620",
+    "evaluation/validation-leaderboard.json": "fa1e9c4a26cb0f5c9ece3321674b541daea09830a6561772211e57cbbbdd550d",
+    "evaluation/validation-leaderboard.md": "0afc845f11bc33266681f1c55685271b6d90cbb47e7ce8fe423acb1c9ccae8ee",
+    "evaluation/validation-ledger.json": "e8bc27086d21331267d7aba7d3edf0ce2d864264eac9949847fb4d4d25fca80d",
+    "evaluation/validation-protocol-v1.json": "1f27af071b426f785a9a467d6d583d53cc616ca61c0a2cac6bab7ce8b0d9e9aa"
+  },
+  "known_failures": [
+    {
+      "id": "dependency-audit-2026-11-02",
+      "status": "failure",
+      "run_id": 41445260398,
+      "triage": "pending"
+    },
+    {
+      "id": "asr_admission",
+      "status": "failed_5_percent_gate"
+    },
+    {
+      "id": "clinical_release",
+      "status": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED"
+    }
+  ],
+  "hosted_ci": {
+    "commit": "c1afa1e70277af0942c389a37a2cfdf4096c9cc0",
+    "run_id": 41865659669,
+    "status": "success",
+    "verified_from_existing_GitHub_metadata": true
+  },
+  "independent_clinical_gold": false,
+  "clinical_release": false,
+  "real_patient_release_authorized": false
+}

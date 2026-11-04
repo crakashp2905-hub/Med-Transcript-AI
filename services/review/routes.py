@@ -212,7 +212,9 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
                     "alignment_status": "fixture_audio_boundaries", "language": "en", "language_status": "uncertain", "uncertainties": ["clinician_review_required"]} for segment in bundle["segments"]]
                 tx = {"schema_version": "1.0", "audio_asset_id": uid, "input_sha256": digest, "duration_ms": metadata["duration_ms"],
                     "segments": segments, "status": "review_required", "source_availability": "available", "review": {},
-                    "provenance": {"engine": "public_human_reference_not_asr" if public_case else "synthetic_reference_transcript", "fixture_id": public_case or "outpatient_english_v1", "attribution": bundle.get("attribution", "Synthetic scripted example") },
+                    "provenance": {"engine": "public_human_reference_not_asr" if public_case else "synthetic_reference_transcript", "fixture_id": public_case or bundle.get('fixture_id', 'outpatient_english_v1'), "attribution": bundle.get("attribution", "Synthetic scripted example"),
+                        "independent_clinical_gold": False,
+                        "limitations": bundle.get('limitations', 'Reference annotations require review; not independent clinical acceptance.')},
                     "untranscribed_intervals": [], "review_flags": ["clinician_review_required", "language_support_unverified"]}
                 store_tx(con, eid, uid, tx, actor)
                 audit(con, actor, "synthetic_example_created", eid)

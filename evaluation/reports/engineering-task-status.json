@@ -1,0 +1,1993 @@
+{
+  "schema_version": "engineering_task_status_v1",
+  "checklist_sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea",
+  "total": 247,
+  "tasks": [
+    {
+      "id": "00-01",
+      "description": "Record a baseline snapshot of branch, commit, environment, installed artifacts, tests, known failures, and benchmark hashes in `evaluation/reports/engineering-baseline.json`; verify every reported path exists.",
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/engineering-baseline.json",
+          "sha256": "69682620f146583a1b1c7d747ae990b0412485876d53c63fd6d68e0cdd8890b3"
+        }
+      ],
+      "tests": [
+        "test_baseline_paths_and_model_directories_must_exist",
+        "test_full_baseline_inventory_has_no_missing_or_changed_paths"
+      ],
+      "limitations": "Pre-change snapshot at c1afa1e; baseline offline flag was not yet network-enforced. Model directories are inventoried, not certified as loadable."
+    },
+    {
+      "id": "00-02",
+      "description": "Keep Version 1 English-only; remove non-English, MRI, X-ray and TTS work from critical-path milestones without deleting previously documented future plans.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-03",
+      "description": "Define a machine-readable release matrix: `offline_demo`, `engineering_verified`, `research_evidence_complete`, `clinical_approved`; prohibit collapsing the four into one `ready` boolean.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-04",
+      "description": "Make the current 5% normalized WER threshold immutable inside frozen benchmark contracts; new exploratory goals require new versioned protocols, never edits to old locks.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-05",
+      "description": "Ensure every model/report uses all predeclared cases with failure-inclusive denominators; failed samples count as full-reference deletions where specified.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-06",
+      "description": "Record the known benchmark baselines without mixing datasets: 8.70% short clips; 13.05% three long consultations; 16.41% clean / 17.22% distracted on MedDistractAudio.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-07",
+      "description": "Prevent test and demo fixtures from being mislabelled as clinical gold or independent human adjudication in exports, README, UI, dashboards and API schemas.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-08",
+      "description": "Define a `no_external_dependency` development profile that fails if an operation attempts hosted inference, downloads, telemetrics, live OAuth, or patient-data processing.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-09",
+      "description": "Add a provenance record for every derived artifact: source commit, dataset SHA, code SHA, model digest, config digest, date, status, limitations and validation scope.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-10",
+      "description": "Retain an immutable index of negative, failed, timed-out, interrupted and partial experiments; never overwrite them with repaired runs.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-11",
+      "description": "Specify a severity model (`P0`, `P1`, `P2`) and mark unsafe auto-approval, identity leakage, missing audit and corrupted evidence as release blockers.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "00-12",
+      "description": "Add a documented evidence hierarchy: independent clinical labels > non-independent source references > developer-authored synthetic gold > model judgments; the lower tier may not impersonate a higher one.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-01",
+      "description": "Separate the 28 KB `services/api/main.py` into bounded routers by encounters, authorizations, audio, jobs, auth, transcript and exports; preserve existing endpoints and response contracts.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-02",
+      "description": "Split the 38 KB `services/review/routes.py` by extraction, draft editing, verification, approval, amendments and export, with a shared service layer and typed exceptions.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-03",
+      "description": "Refactor the approximately 48 KB `apps/clinician-web/src/main.tsx` into screens/hooks/API clients/stores without changing the existing clinician journey.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-04",
+      "description": "Introduce typed `ClinicalFact`, `TranscriptVersion`, `EvidenceSpan`, `ClaimRelation`, `VerificationFinding`, `NoteVersion`, `InferenceReceipt`, and `Approval` boundaries for all modules.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-05",
+      "description": "Use a single explicit state machine for encounter stages and transition guards; reject illegal, stale, double, revoked and cross-tenant transitions.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-06",
+      "description": "Replace loosely coupled `dict` payloads with Pydantic data contracts at persistence boundaries, retaining migration-compatible serialization.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-07",
+      "description": "Implement stable schema versions and `migrate(x -> x+1)` tests for transcript, note, model proposal, report and audit records.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-08",
+      "description": "Centralize deterministic hashing/canonical JSON; add golden cross-platform hash vectors for Unicode, decimals, nulls, sorted keys and line endings.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-09",
+      "description": "Ensure all ASR, diarization, extraction, drafting and verifier providers implement declared interfaces and surface provider-specific limitations.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-10",
+      "description": "Introduce typed non-sensitive error codes with stable client mappings; never return prompt, token, secret, audio or source text in error strings.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-11",
+      "description": "Consolidate configuration validation in startup checks and render a redacted config fingerprint to local diagnostics.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-12",
+      "description": "Apply strict import boundaries so evaluation tools cannot mutate production database state or promote models.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-13",
+      "description": "Enforce format/lint/type checks for Python and TypeScript in reproducible CI, including an explicit no-network test lane.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-14",
+      "description": "Add a small architecture-decision-log folder for scoring rules, provenance, safe defaults, local-only limits and compatibility choices.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-15",
+      "description": "Add branch-independent API contract snapshots and review every new endpoint for backwards compatibility.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "01-16",
+      "description": "Remove dead paths and duplicative experiment helpers only after snapshot-based reproduction of historical reports succeeds.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-01",
+      "description": "Build an error taxonomizer for substitution, deletion, insertion, silences, disfluency, boundary splits, uncertain references and overlap; export per-case diagnostics without editing the references.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-02",
+      "description": "Partition errors by patient/clinician reference roles, but explicitly mark that reference roles are not automatically predicted diarization.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-03",
+      "description": "Report WER/CER in both raw and normalized form and retain punctuation, units, numerals and drug spellings in clinical-term metrics.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-04",
+      "description": "Perform oracle-free, source-only chunk selection; compare 30-second fixed, pause-aware, overlap-aware and source-time-only strategies with all parameters frozen before scoring.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-05",
+      "description": "Study whether reference uncertainty/overlap accounts for measured errors without excluding those words from the primary frozen score.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-06",
+      "description": "Isolate native-empty outputs from actual decoder exceptions; allow empty speech only under a documented model-specific policy and preserve every missing word penalty.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-07",
+      "description": "Benchmark overlap stitching using audio-only alignment and deterministic text deduplication; reject accidentally dropped or duplicated words.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-08",
+      "description": "Add explicit start/end coverage accounting so every submitted audio sample is accounted for, including silence, incomplete inputs and failed windows.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-09",
+      "description": "Implement timestamp capability registry (`none`, `chunk`, `segment`, `word`) and prohibit a chunk bound being called a word timestamp.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-10",
+      "description": "Check timestamp monotonicity, duration bounds, gaps, drift, duplicates, repeated segments and hallucinations in long silence.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-11",
+      "description": "Add a robust transcription postprocessor that preserves uncertainty, negation, doses and source words; any correction suggestion must be separately recorded, never overwrite ASR raw output.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-12",
+      "description": "Make clinical terminology hints opt-in and scoped to a fixed, non-leaking local lexicon; measure both benefit and medication-name hallucination risk.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-13",
+      "description": "Benchmark model throughput and memory on existing hardware under controlled warm and cold runs; record CPU threads, RAM, runtime and inference queue wait.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-14",
+      "description": "Evaluate primary ASR on the existing short-clip, three-long and MedDistractAudio corpora separately; do not synthesize a single misleading universal WER.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-15",
+      "description": "Run all installed local ASR configurations with pinned artifacts and source hashes; preserve `unable_to_run` status where weights are absent.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-16",
+      "description": "Add adversarial synthetic audio for silence, clipping, repeated prompts, numerical doses, medical homophones and intentionally ambiguous utterances.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-17",
+      "description": "Add metamorphic tests: volume change, added leading/trailing silence, mild resampling and split/rejoin should not silently corrupt source integrity.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-18",
+      "description": "Develop a safe `retranscribe_span` tool that produces a candidate transcript version linked to old audio offsets and requires explicit review.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-19",
+      "description": "Compare keyword recovery from different ASR models without automatically merging unsupported medical terms; benchmark a candidate-selection policy before activating it.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "02-20",
+      "description": "Keep the unchanged 5% WER gate; if none passes, retain `ASR_NOT_ADMITTED` and the already working manual transcript fallback.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-01",
+      "description": "Separate `speaker clustering`, `role identification` and `channel assignment` into independent result types, avoiding implicit clinician/patient mapping.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-02",
+      "description": "Make two-channel acquisition a first-class optional pathway when device inputs actually support it, with truthful per-channel hardware detection.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-03",
+      "description": "Add deterministic cross-talk, channel swap, empty channel, mono fake-stereo and desynchronization detectors.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-04",
+      "description": "Construct a robust channel-first baseline using the existing channel-separated recordings; compare its speaker-duration metrics with the single-mic VAD/embedding pipeline.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-05",
+      "description": "Reproduce and pin the current weighted DER baseline (~50.91%) rather than claiming the heuristic clustering is reliable.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-06",
+      "description": "Measure DER, missed speech, false alarm, confusion time, overlap errors and role-confirmation workload separately.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-07",
+      "description": "Implement minimum-turn duration, speaker-change boundary and false-split diagnostics; record high cluster counts as unresolved rather than normal.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-08",
+      "description": "Investigate deterministic clustering constraints only on development cases, including expected speaker count as a declared experimental assumption.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-09",
+      "description": "Use `unknown` for low-confidence source regions; block role-sensitive note claims until confirmed.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-10",
+      "description": "Detect overlapping speech explicitly or mark it unsupported; never assign overlapping assertions to one speaker by guess.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-11",
+      "description": "Test role reassignment after transcript corrections; downstream note evidence and approvals must become stale.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-12",
+      "description": "Create a synthetic turn-swapping suite to ensure semantic claims cannot switch from patient to clinician without warnings.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-13",
+      "description": "Optimize speaker review UI: play exemplar snippets, batch-confirm unambiguous turns, isolate ambiguous boundaries.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-14",
+      "description": "Expose a scorecard comparing single-channel, 2-channel and multi-input configurations without implying device equivalence.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "03-15",
+      "description": "Keep automatic diarization experimental until a predefined score and human-review policy are satisfied.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-01",
+      "description": "Model each atomic fact as `subject + predicate + object + polarity + certainty + temporality + source_evidence`, optionally expanded for medication/dose/route/frequency.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-02",
+      "description": "Do not store a whole segment as a clinical fact when it contains distinct clauses; make all source character offsets exact.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-03",
+      "description": "Implement medication-to-dose and medication-to-frequency associations, including two drugs with different prescriptions in one sentence.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-04",
+      "description": "Support stopped, restarted, reduced, planned, historical and patient-reported medications without inventing current prescription status.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-05",
+      "description": "Distinguish family history from patient history, clinician speculation from diagnosis, patient denial from doctor question and plans from actions completed.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-06",
+      "description": "Preserve uncertain, hedged and questioned statements as uncertain; missing information must stay `unknown`.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-07",
+      "description": "Implement explicit negation scope for conjunctions, exceptions and multiple conditions; fallback to review rather than guessing.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-08",
+      "description": "Normalize units using safe exact decimal arithmetic and bounded conversion tables, preserving original surface string and source evidence.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-09",
+      "description": "Add drug dose value/unit/route/frequency/duration slots with confidence-by-validated-rule rather than unverifiable numeric model certainty.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-10",
+      "description": "Implement anatomy/laterality relations and robust tests for left/right swaps and different entities in one utterance.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-11",
+      "description": "Create an `evidence graph` mapping original audio -> transcript segment -> exact span -> atomic fact -> note statement -> export.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-12",
+      "description": "Build a source-coverage analyzer that distinguishes clinical omissions from irrelevant fillers; do not claim that word-span coverage proves clinical completeness.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-13",
+      "description": "Add duplicate-fact detection that retains contradictory or temporally distinct assertions instead of deleting apparent duplicates.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-14",
+      "description": "Support unrecognized terminology with explicit `unmapped` status rather than expanding a short fixed dictionary into fabricated certainty.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-15",
+      "description": "Run deterministic and installed local-Qwen extraction in shadow mode on the same frozen synthetic corpus, with an exact output/schema failure table.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-16",
+      "description": "Ensure the LLM cannot create fake segment IDs, span offsets or quotes; reject mismatches and preserve the rejected raw output only in redacted local developer diagnostics.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-17",
+      "description": "Add structured evaluation of fact precision/recall, entity-relation correctness and clinically important omissions against developer-authored synthetic scenarios only.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "04-18",
+      "description": "Require human review on incomplete models, cross-utterance pronouns, ambiguous medication attachment or unknown speaker attribution.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-01",
+      "description": "Keep deterministic reviewed-fact SOAP generation as the always-available baseline and offline fallback.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-02",
+      "description": "Formalize clinician-typed Objective vs reported Subjective facts; prevent invented examinations, vitals and assessments.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-03",
+      "description": "Make an LLM draft an unapprovable proposal, never an approval or source-transcript replacement.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-04",
+      "description": "Restrict drafting to cited reviewed fact IDs with a version hash and explicit bounded schema; fail closed on unknown IDs.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-05",
+      "description": "Compare Qwen 1.5B and 7B already installed with identical prompts, inputs, timeout budgets, model digests and full failure accounting.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-06",
+      "description": "Diagnose and publish the 8-case drafting result (8/8 deterministic, 3/8 Qwen 1.5B with 2 failures, 0/8 Qwen 7B with 8 failures) without hiding poor models.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-07",
+      "description": "Try smaller structured prompts, source-to-note subtask decomposition, grammar-constrained output and chunked fact sets only as separate ablations.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-08",
+      "description": "Measure note factuality, exact preservation, section correctness, length, duplication, omissions, unsafe claims, latency and timeout rate.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-09",
+      "description": "Add a configurable deterministic note-style layer, preserving the meaning and evidence of each assertion.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-10",
+      "description": "Ensure copied clinician-entered facts are visibly marked as clinician additions, not fabricated source citations.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-11",
+      "description": "Ensure every generated note statement exposes the underlying evidence and includes a source version watermark.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-12",
+      "description": "Block contradictions, unmapped critical fields, stale facts and incomplete source coverage before note approval, even if a local model claims success.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-13",
+      "description": "Prepare a locally runnable prompt-evaluation harness with frozen prompts and JSON-only reports; prohibit hidden modifications based on acceptance-only data.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "05-14",
+      "description": "Support `no LLM available` mode without degrading upload, transcription, manual editing, deterministic drafting or export.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-01",
+      "description": "Write the claim-verification contract around supported / contradicted / insufficient-evidence / ambiguous, not unsupported free-text opinions.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-02",
+      "description": "Apply deterministic safety checks regardless of local-LLM verdict; model agreement cannot clear a hard clinical contradiction.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-03",
+      "description": "Expand relation tuples for medication-dose-route-frequency-duration-time, allergy-reaction, subject-diagnosis, anatomy-laterality and conditional instructions.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-04",
+      "description": "Make numbers, decimal points and units clinically typed; detect `5 mg` vs `0.5 mg`, `mg` vs `mcg`, and once vs twice daily.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-05",
+      "description": "Distinguish omitting a source symptom from compressing nonclinical conversational filler; document exact evaluation semantics.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-06",
+      "description": "Treat quoted instructions, malicious prompts, HTML, markup, and user utterances as untrusted data throughout model and verifier prompts.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-07",
+      "description": "Implement mutation generators for each fact tuple: one change at a time, then pairwise mutations, then temporal and coreference swaps.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-08",
+      "description": "Add metamorphic tests: safe paraphrase and exact unit-equivalent claims should stay admissible; critical reversals must require review.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-09",
+      "description": "Retain and reproduce the developer-authored 52-case retrospective result (13 -> 0 rule misses, four false alarms) without interpreting it as clinical sensitivity.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-10",
+      "description": "Report per-class TP, FP, FN, TN plus abstentions, timeouts, malformed output and incomplete checking.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-11",
+      "description": "Run ablations: basic lexical rules; relational rules; local verifier alone; rules + local verifier; and deterministic source-only baseline.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-12",
+      "description": "Introduce a second local verifier only if its distinct errors measurably improve a fixed combined policy; otherwise remove redundant compute.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-13",
+      "description": "Ensure verification is complete over all note facts, not just up to 20 selected claims; use bounded batches and merge with exact coverage accounting.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-14",
+      "description": "Reject silent batch omissions, duplicated IDs, invented quote evidence, unsupported role reassignment, and stale verification.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-15",
+      "description": "Guarantee a semantic verifier timeout does not convert a blocking note into an approvable note.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-16",
+      "description": "Generate an explanation for each critical warning with source quote, alleged mismatch, fields and validator version; avoid invented rationales.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-17",
+      "description": "Add adversarial replay testing of old approved note versions after source correction and after a new model version is installed.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-18",
+      "description": "Build a tamper test suite: alter source byte, segment quote, hash, fact, report and approval, then demonstrate rejection at the appropriate boundary.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-19",
+      "description": "Add formal state/invariant assertions: approval requires current source, completed review, no blocking findings and exact verification hashes.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "06-20",
+      "description": "Maintain a documented non-bypassable manual-review path for contradictions and disputed source words.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-01",
+      "description": "Verify 30-minute browser recorder storage and playback for 1, 2, 4 and 8 channels using generated synthetic signals and bounded disk usage.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-02",
+      "description": "Run resume/upload interruption at each transition: capture, IndexedDB commit, server chunk ACK, finalize, ingest and ASR publication.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-03",
+      "description": "Ensure duplicate/idempotent uploads produce one stable asset hash and no extra job or partial publish.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-04",
+      "description": "Test lost last chunk, truncated chunks, random chunk order, wrong offset, oversized request and digest mismatch.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-05",
+      "description": "Add deterministic media format tests for WAV, MP3/M4A/WebM/Ogg where local codecs exist; unsupported codecs must fail safely.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-06",
+      "description": "Test browser quota exhaustion, storage eviction and microphone removal without claiming the recording was successfully retained.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-07",
+      "description": "Keep provisional previews separate from final transcript revisions; no preview segment may be approved.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-08",
+      "description": "Add a durable queue dashboard with per-stage state, attempts, lease owner, timeout and consent/revocation state.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-09",
+      "description": "Test worker crash and recovery at every transaction boundary, including stale lease and resumed channel checkpoints.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-10",
+      "description": "Prevent two processes from processing the same heavyweight model slot, with a bounded worker lock and informative queue status.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-11",
+      "description": "Retest the eight-channel 20/30-minute synthetic duration stress scenario; distinguish transport throughput from transcription accuracy.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-12",
+      "description": "Track exact original/normalized/isolated audio hashes so cross-channel confusion cannot corrupt source lineage.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-13",
+      "description": "Audit live server recording prefixes for safe expiry, recovery authorization, retained copies, and deletion after user discard.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-14",
+      "description": "Test consent revocation during capture, upload, audio normalization, diarization, ASR, drafting and verification; publication must be blocked.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-15",
+      "description": "Add a model-memory pressure probe that fails or queues before OOM while leaving completed source state intact.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "07-16",
+      "description": "Introduce deterministic fault injection for slow disks, write failures, process kills, database busy errors and absent models.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-01",
+      "description": "Provide a single encounter workspace with audio, source transcript, reviewed facts, SOAP note, warnings and evidence links in synchronized panes.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-02",
+      "description": "Ensure clicking any note claim seeks to the correct source audio/segment and never pretends chunk bounds are aligned word timestamps.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-03",
+      "description": "Make speaker-identity uncertainty visible and offer source-linked bulk role correction with diff preview.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-04",
+      "description": "Add keyboard-first workflows, accessibility labels, consistent focus, screen-reader status and responsive layout.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-05",
+      "description": "Show source-completeness status, unverified segments, uncertain doses and pending reviewer decisions before drafting.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-06",
+      "description": "Display generated-vs-deterministic note side-by-side and highlight changed meanings, omissions and extra claims.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-07",
+      "description": "Make every correction create an auditable immutable version; never silently alter an approved record.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-08",
+      "description": "Make warnings severity ordered but not auto-dismissable when clinical-critical, and show exactly which fact blocks approval.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-09",
+      "description": "Treat plain-language patient summary as a separately reviewed draft with explicit non-delivery status.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-10",
+      "description": "Preserve source attribution and version history in FHIR DocumentReference exports; label recipient-specific EHR conformance as untested.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-11",
+      "description": "Add first-run onboarding using only a prebuilt synthetic example, without asking for Google or external accounts.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-12",
+      "description": "Provide a user-facing troubleshooting guide for no local model, no microphone, full disk, expired session, codec problem and failed job.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-13",
+      "description": "Add Playwright test flows for recovery, source edits, errors, keyboard-only review, role correction and local-demo walkthrough.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "08-14",
+      "description": "Run visual regression snapshots at desktop/tablet/mobile resolutions using generated synthetic data only.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-01",
+      "description": "Keep the 118-clip, 3-consultation and 8-foreground/16-condition datasets separately pinned; never claim mutually independent subjects from the paired clean/distracted samples.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-02",
+      "description": "Add a canonical data ledger recording source licenses, dataset hashes, group splits, background donor identity and transformation functions.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-03",
+      "description": "Verify exact reference and hypothesis hashes before and after every reported metric computation.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-04",
+      "description": "Produce machine-generated model cards including language, hardware, decoding settings, failures, timeouts, WER, role metrics and limitations.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-05",
+      "description": "Publish a full confusion/error spreadsheet-like CSV without PHI and without omitting failed examples.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-06",
+      "description": "Build paired-case comparisons with bootstrap over consultations rather than treating thousands of tokens as independent samples.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-07",
+      "description": "Add a `primary endpoint` registry freezing one ASR, one verification and one UX metric per experiment before evaluation.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-08",
+      "description": "Use the reserved acceptance data only for existing provenance/packet preparation; do not score models or tune rules on it without external adjudication.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-09",
+      "description": "Create explicit synthetic test suites with programmatic deterministic oracles for negation, medication swaps, dosage, roles and timestamps.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-10",
+      "description": "Run novel synthetic tests separately from upstream human transcripts; never merge synthetic success into clinically valid performance estimates.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-11",
+      "description": "Implement pairwise regression checks to reject parameter changes that regress critical-safety synthetic tests even when aggregate WER improves.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-12",
+      "description": "Maintain exact provenance of full and partial benchmark runs with retry ancestry and per-case completion data.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-13",
+      "description": "Enforce bounds/consistency checks for all benchmark arithmetic: numerator, denominator, percentage, zero cases, timeouts, hash mismatch.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-14",
+      "description": "Add model-independent reference quality diagnostics for uncertain labels, overlapping speakers, truncated transcripts and missing annotations.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-15",
+      "description": "Create a model/experiment comparison view that discloses task, dataset and evaluation scopes, avoiding cross-dataset ranking errors.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-16",
+      "description": "Re-run saved benchmarks through a read-only scorer from committed reports; verify scores match without model weights.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-17",
+      "description": "Label every claimed method novelty as `hypothesis` until there is a distinct algorithm with an ablation improvement over a fair baseline.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-18",
+      "description": "Generate a reproducibility bundle of model-free commands, artifact hashes, environment manifests and full negative results.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-19",
+      "description": "Require `independent_clinical_gold=false` and `clinical_release=false` in all developer-only reports until genuinely changed by external evidence.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "09-20",
+      "description": "Predefine what constitutes an inconclusive experiment and stop adding variants that cannot be evaluated under the resource budget.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-01",
+      "description": "Fix or triage the November 2 `pip-audit --strict` failure; if an advisory exists, update dependencies using tested constraints, and preserve evidence of the outcome.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-02",
+      "description": "Confirm the latest November 4 main-branch CI passes before claiming its Google authentication changes were validated on hosted runners.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-03",
+      "description": "Add dedicated test lanes for unit, integration, PostgreSQL, browser, property/fuzz, security and offline model-free simulation.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-04",
+      "description": "Make CI fail if a model or benchmark attempts network access under `MED_TRANSCRIPT_OFFLINE=1`.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-05",
+      "description": "Test the OIDC flow with simulated, locally signed tokens (signature, audience, nonce, issuer, state replay and expiry) and no Google registration.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-06",
+      "description": "Run generated-workload tests for race conditions, replay keys, cross-tenant isolation, stale ETags and concurrent approvals.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-07",
+      "description": "Add mutation tests around critical safety guards and prove tests detect deliberately injected bypasses.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-08",
+      "description": "Add randomized property-based tests for time windows, source spans, unit conversion and approval-state invariants using fixed seeds.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-09",
+      "description": "Measure and publish per-module coverage, but gate critical state/auth/security paths by mutation/behavior tests rather than only line coverage.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-10",
+      "description": "Make Windows and Linux test setup deterministic; record any permitted platform-specific divergence explicitly.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-11",
+      "description": "Run full frontend typechecking, build, audit and Playwright suites with synthetic fixtures and no backend cloud dependencies.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-12",
+      "description": "Add a daily offline release-readiness runner that reports `not established` rather than passing missing clinical requirements.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-13",
+      "description": "Make all test artifacts emit machine-readable JSON plus an accessible human-readable summary with failures at the top.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "10-14",
+      "description": "Fail the release build on any migration error, evidence mismatch, unsupported schema, stale approval or incomplete critical verification.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-01",
+      "description": "Write a data-flow threat model covering browser audio, IndexedDB, resumable server prefixes, worker temp files, prompts, model outputs, notes, exports, audit and backups.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-02",
+      "description": "Test source-level cross-tenant and cross-role access across every route, including historical notes and generated proposal IDs.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-03",
+      "description": "Verify session-cookie security, CSRF, state/nonce/PKCE, invited-account membership, subject pinning and revocation under local simulated OIDC.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-04",
+      "description": "Ensure every API route has an explicit authorization policy and test method/status variants, including routes mounted by new routers.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-05",
+      "description": "Avoid logging full note text, transcript snippets, secrets, auth cookies, API keys, audio data, prompts and provider responses.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-06",
+      "description": "Implement a local, no-secret leak scanner for Git-tracked files, generated reports, sample env files and fixture artifacts.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-07",
+      "description": "Reject SSRF via provider endpoints and redirects; block private/non-loopback destinations in offline mode, including DNS rebinding where applicable.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-08",
+      "description": "Constrain inputs, audio duration, JSON depth, request sizes, decompression, timestamps and expensive processing stages.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-09",
+      "description": "Run adversarial transcript prompt-injection cases; source utterances must never control application instructions, file access or note approval.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-10",
+      "description": "Protect against model output parser bombs, duplicate JSON keys, Unicode confusables, excessive facts, nested arrays and malformed schema.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-11",
+      "description": "Ensure evidence spans cannot point outside source transcript, outside tenant/encounter or into a different transcript version.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-12",
+      "description": "Prohibit silent hosted inference, automatic model downloads or telemetry in the offline demo; create network-denial test harnesses.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-13",
+      "description": "Build local encryption test paths for persisted files/backups using synthetic keys; explicitly document missing real key custody.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-14",
+      "description": "Verify restore, retention expiry, purge, legal hold and deletion across new auth tables, live audio prefixes, drafts and model-proposal records.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-15",
+      "description": "Add local tamper-evident audit chain verification and test detection of removed/reordered/mutated records; do not claim external immutability.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-16",
+      "description": "Generate SBOMs and pin hash-verified dependencies where tooling exists; offline audit must distinguish stale advisories from proved clean status.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-17",
+      "description": "Run container security checks: non-root, read-only rootfs, no unnecessary capabilities, private DB, bounded memory, no exposed default credentials.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-18",
+      "description": "Verify defense-in-depth for exported markdown/HTML/JSON/FHIR content, including escaping, formula injection in CSV-like exports and filename safety.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-19",
+      "description": "Test timing and behavior after consent withdrawal mid-inference; discarded outputs must not reappear via cache/retry.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "11-20",
+      "description": "Make the README prominently state synthetic/mock-only until independent patient-data authorization exists.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-01",
+      "description": "Set a documented single-device CPU/16 GB RAM reference profile; avoid assuming an NVIDIA GPU or cloud account.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-02",
+      "description": "Collect stage-level latency: recording, transfer, normalization, ASR, diarization, extraction, drafting, verification, clinician review, export.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-03",
+      "description": "Measure cold and warm model initialization separately and quantify memory footprint and cache effectiveness.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-04",
+      "description": "Benchmark CPU thread settings and quantized local model runtime configurations only when model artifacts are already present.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-05",
+      "description": "Detect and prevent oversubscription when local ASR and Qwen model requests compete for memory.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-06",
+      "description": "Use bounded queues and explicit rejection/deferral under overload rather than OOM or silently unbounded wait.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-07",
+      "description": "Evaluate context truncation and note batch size effects on omissions and hallucinations, not only speed.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-08",
+      "description": "Add streaming file hashing/processing to avoid loading entire 30-minute multichannel recordings into memory.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-09",
+      "description": "Test database indexes and bounded list pagination for 1000 synthetic encounters, many note versions and multiple users.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-10",
+      "description": "Build resource-limit stress tests with fixed synthetic data seeds, repeatable durations and teardown guarantees.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-11",
+      "description": "Calculate successful-consultation local cost from measured CPU-seconds, memory/disk and a user-configurable electricity assumption, without inventing live prices.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "12-12",
+      "description": "Define latency targets for each local development device class; measure and report failures rather than disguising them as fast successes.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-01",
+      "description": "Provide `scripts/offline_preflight` that reports cached Python wheels, npm dependencies, model directories, codec availability and exact hashes before any build.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-02",
+      "description": "Provide a one-command offline model-free demo with bundled synthetic fixtures and no accounts, downloads or API calls.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-03",
+      "description": "Build a reproducible offline wheelhouse/npm cache bundle from existing local installation *if present*; mark missing caches honestly.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-04",
+      "description": "Use deterministic fake ASR, diarization, extraction and verifier adapters for smoke paths that must pass without installed weights.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-05",
+      "description": "Implement model-presence checks that produce `unavailable` rather than auto-installing/downloading a model.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-06",
+      "description": "Provide a Linux Docker Compose demo and Windows PowerShell local demo with isolated demo storage and cleanup.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-07",
+      "description": "Pin Python, Node, TypeScript, PostgreSQL, runtime and package versions and document tested minimum/maximum versions.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-08",
+      "description": "Create a repeatability command that rebuilds published metrics solely from committed hypotheses and manifests, without inference.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-09",
+      "description": "Ensure test fixtures do not contain real patient identifiers, live auth credentials or secrets.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-10",
+      "description": "Add disaster-recovery instructions for synthetic demo database, app config, encrypted backup drill and deleted-asset reconciliation.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-11",
+      "description": "Create an offline acceptance script: preflight -> tests -> mock full workflow -> metrics replay -> safety gates -> report.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "13-12",
+      "description": "Test the actual packaged artifact on a clean isolated local environment, with cached dependencies only; report if unavailable.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-01",
+      "description": "Select one narrow algorithmic contribution: e.g., uncertainty-aware source/evidence coverage and clinical-relation checking over deterministic and LLM baselines.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-02",
+      "description": "Specify the method mathematically: evidence graph, typed claims, relation signatures, contradiction and omission costs, abstention policy.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-03",
+      "description": "Implement the proposed method behind a feature flag; baseline behavior stays frozen and reproducible.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-04",
+      "description": "Use existing predeclared development data for optimization, and developer-authored synthetic adversarial oracles for reproducibility.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-05",
+      "description": "Compare at least four methods on identical cases: lexical rules, relation rules, LLM-only verdict, combined evidence-graph method.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-06",
+      "description": "Ablate each novel component: relations, negation scope, temporality, evidence coverage, model opinion and confidence/abstention.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-07",
+      "description": "Measure critical-error misses, benign false blocks, coverage, runtime, memory and reviewer-like correction events in simulated workflows.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-08",
+      "description": "Add perturbation stress tests with controlled surface paraphrases, speaker swaps, omitted clauses, reversed temporal qualifiers and misleading instructions.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-09",
+      "description": "Report uncertainty via exact denominators and case-level paired intervals; treat small synthetic data as mechanistic evidence only.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-10",
+      "description": "Document negative results where the novel method is slower or less accurate; do not modify reserved acceptance materials.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-11",
+      "description": "Prepare paper-ready method, experimental protocol, limitations, failure taxonomy and reproducibility appendices.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "14-12",
+      "description": "Do not claim an independently novel or clinically effective method without external comparison/review; use `candidate contribution` language.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-01",
+      "description": "Ship a five-minute local walkthrough from synthetic consultation upload through review, blocked claim, correction, exact approval and export.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-02",
+      "description": "Record an audit-friendly demo scenario in which the model makes a deliberate drug-dose error and the deterministic gate blocks it.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-03",
+      "description": "Show a second scenario of legitimate paraphrase and avoid implying all paraphrases are unsafe by construction.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-04",
+      "description": "Add a local read-only showcase account/session simulator without Google registration; never call it verified live OIDC.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-05",
+      "description": "Offer a study dashboard comparing datasets and model variants with visible failures, no invented cost/accuracy, and model-not-admitted banners.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-06",
+      "description": "Generate screenshots and demo transcript using only locally available browser tooling and synthetic content.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-07",
+      "description": "Publish architecture diagrams, API examples, data lifecycle, threat model, model cards and limitations in version-controlled docs.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-08",
+      "description": "Document model license attribution and ensure redistributed fixtures and weights follow their actual licenses; do not distribute weight files by default.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-09",
+      "description": "Remove outdated README claims and stale metrics; make documentation links resolve and lead users to current frozen reports.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-10",
+      "description": "Build a 1-command status command that reports test pass/fail, offline mode, model availability, source hashes and clinical release blocked.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-11",
+      "description": "Provide a deployment simulation using the production Compose config with fake secrets and local TLS/proxy tests where cached tooling supports it.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    },
+    {
+      "id": "15-12",
+      "description": "Add a concise roadmap separating next offline engineering release, independent clinical acceptance, and future optional imaging/TTS work.",
+      "status": "not_started",
+      "evidence": [],
+      "tests": [],
+      "limitations": "Not yet verified against this checklist."
+    }
+  ],
+  "clinical_release": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
+  "real_patient_release_authorized": false
+}
