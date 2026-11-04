@@ -1,0 +1,35 @@
+{
+  "schema_version": "google_oidc_hardening_validation_v1",
+  "implementation_commit": "c857132659cc8d276f8e1789bda1c6933c10984a",
+  "full_backend_suite": {
+    "passed": 269,
+    "skipped": 1,
+    "scope": "before three additional personal-account policy cases"
+  },
+  "final_authentication_tests": {
+    "passed": 16,
+    "includes": "real RSA verification/tampering, state replay/binding, PKCE request, CSRF, role enforcement, revocation, expiry, chunked body limits, personal account domain policy"
+  },
+  "browser_scenarios_passed": [
+    "simulated Google sign-in, clinician creation, logout, investor read-only controls and session reload",
+    "current corrections and uncertainty queue",
+    "detailed public reference demo, timeline and measured evidence",
+    "separately reviewed patient summary and stale-source guard",
+    "clinician correction, approval and export",
+    "worker-normalized upload and manual transcript"
+  ],
+  "frontend_build": "passed",
+  "dependency_check": "passed",
+  "deployment_yaml_parse": "passed",
+  "local_docker_validation": "unavailable: Docker CLI is not installed",
+  "github_ci_run": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/41865076147",
+  "github_ci_status_at_recording": "queued",
+  "local_application_health": "ok",
+  "active_auth_mode": "local",
+  "live_google_provider_verified": false,
+  "google_credentials_supplied": false,
+  "public_deployment_performed": false,
+  "clinical_validation_established": false,
+  "maximum_normalized_wer": 0.05,
+  "secrets_committed": false
+}
