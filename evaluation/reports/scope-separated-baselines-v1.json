@@ -1,0 +1,85 @@
+{
+  "schema_version": "scope_separated_baselines_v1",
+  "scopes": [
+    {
+      "scope": "118_selected_short_clips",
+      "consultation_groups": 20,
+      "candidate": "omi-med-stt-v1",
+      "normalized_edits": 197,
+      "reference_words": 2264,
+      "normalized_wer": 0.08701413427561837,
+      "maximum_normalized_wer": 0.05,
+      "five_percent_gate": "fail"
+    },
+    {
+      "scope": "three_full_mock_consultations",
+      "consultation_groups": 3,
+      "candidate": "omi-med-stt-v1",
+      "normalized_edits": 679,
+      "reference_words": 5204,
+      "normalized_wer": 0.13047655649500384,
+      "maximum_normalized_wer": 0.05,
+      "five_percent_gate": "fail"
+    },
+    {
+      "scope": "meddistract_eight_foregrounds_clean",
+      "consultation_groups": 8,
+      "candidate": "omi-med-stt-v1-native-empty",
+      "normalized_edits": 2245,
+      "reference_words": 13683,
+      "normalized_wer": 0.16407220638748812,
+      "maximum_normalized_wer": 0.05,
+      "five_percent_gate": "fail"
+    },
+    {
+      "scope": "meddistract_same_eight_foregrounds_distracted",
+      "consultation_groups": 8,
+      "candidate": "omi-med-stt-v1-native-empty",
+      "normalized_edits": 2356,
+      "reference_words": 13683,
+      "normalized_wer": 0.17218446247168018,
+      "maximum_normalized_wer": 0.05,
+      "five_percent_gate": "fail"
+    }
+  ],
+  "draft_preservation": [
+    {
+      "mode": "deterministic",
+      "attempted_cases": 8,
+      "exact_preservation_cases": 8,
+      "failed_cases": 0
+    },
+    {
+      "mode": "qwen2.5:1.5b",
+      "attempted_cases": 8,
+      "exact_preservation_cases": 3,
+      "failed_cases": 2
+    },
+    {
+      "mode": "qwen2.5:7b",
+      "attempted_cases": 8,
+      "exact_preservation_cases": 0,
+      "failed_cases": 8
+    }
+  ],
+  "source_sha256": {
+    "evaluation/reports/expanded-comparison-2026-10-24.json": "5326e727dff656f0111ca026f70c15da9d47e26d7b6dc11127da35e659cd418b",
+    "evaluation/reports/conversation-ablation-resumed-2026-10-26.json": "b2ec0e7c0314499fabf2ab5a03b080edfee5c0e5cbf90b7854508f4458531356",
+    "evaluation/reports/detailed-campaign-execution-receipt-2026-10-29.json": "4ecf46ba17aaab44bb068a20e87aaa9d45e8b1c1241ac932d5abce0e784a6d13",
+    "evaluation/reports/detailed-drafting-summary-2026-10-29.json": "bb2aed668ab3f57fefe9b22fcca5e837fcf16be653997dff0e1ae4e442df9610"
+  },
+  "code_sha256": "e6d3a9aee2b80157e0ac2f15e4585ffe5f071ea63a731f60b9d23efb81a270a4",
+  "recorded_at": "2026-11-05T03:48:24.724371+00:00",
+  "source_commit": "c2d425a7c5b120bc35156799366fc24077f2ed53",
+  "universal_combined_wer": null,
+  "inference_calls": 0,
+  "automatic_model_promotion": false,
+  "independent_clinical_gold": false,
+  "clinical_release": false,
+  "limitations": [
+    "Selected clips, three whole consultations and paired clean/distracted inputs are different evaluation scopes.",
+    "Clean/distracted variants are the same foreground subjects, not 16 independent consultations.",
+    "Native-empty reconstruction remains explicitly distinguished from the original Omi wrapper and failures.",
+    "Source-note preservation is not clinical note accuracy, human correction time or independent adjudication."
+  ]
+}

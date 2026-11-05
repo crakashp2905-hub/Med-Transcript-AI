@@ -1,0 +1,29 @@
+{
+  "schema_version": "primary_endpoint_registry_v1",
+  "scope": "Prospective local development and developer-synthetic experiments only; existing saved reports are retrospective and are not preregistered by this registry.",
+  "endpoints": {
+    "asr": {
+      "id": "failure_inclusive_normalized_word_error_rate",
+      "definition": "Sum of normalized word substitutions, deletions and insertions divided by all predeclared reference words. Failed cases retain full-reference deletions under their frozen scoring protocol.",
+      "direction": "minimize",
+      "maximum_admitted": 0.05,
+      "unit": "fraction"
+    },
+    "verification": {
+      "id": "critical_error_miss_rate",
+      "definition": "Critical errors not blocked divided by all predeclared critical-error cases. Report abstentions, failed/malformed/incomplete checks separately; never label them supported.",
+      "direction": "minimize",
+      "unit": "fraction"
+    },
+    "ux": {
+      "id": "observed_active_correction_seconds_per_completed_case",
+      "definition": "Independently observed active correction seconds per completed paired case, with failures/missing arms retained. Browser wall time and scripted actions cannot supply an observed clinician value.",
+      "direction": "minimize",
+      "unit": "seconds",
+      "current_observed_clinician_value": null
+    }
+  },
+  "failure_policy": "Missing cases, exhausted wall budget, excessive failures, insufficient successful pairs or unresolved paired intervals are inconclusive, never a pass.",
+  "independent_clinical_gold": false,
+  "clinical_release": false
+}

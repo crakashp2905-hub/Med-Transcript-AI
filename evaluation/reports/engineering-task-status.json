@@ -1295,18 +1295,46 @@
     {
       "id": "06-14",
       "description": "Reject silent batch omissions, duplicated IDs, invented quote evidence, unsupported role reassignment, and stale verification.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v6.json",
+          "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105"
+        },
+        {
+          "path": "services/review/clinical_models.py",
+          "sha256": "816a6a5771460ce61133f6135a2a47f3e4def25687e6f9cba06aa3026eeaed61"
+        },
+        {
+          "path": "tests/test_verifier_fail_closed.py",
+          "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6"
+        }
+      ],
+      "tests": [
+        "test_semantic_batches_reject_missing_duplicate_invented_ids_and_quotes",
+        "test_semantic_model_cannot_change_saved_verification",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original"
+      ],
+      "limitations": "Exact claim IDs/coverage, quotes, immutable source versions and deterministic role-sensitive findings are enforced; semantic checking remains advisory."
     },
     {
       "id": "06-15",
       "description": "Guarantee a semantic verifier timeout does not convert a blocking note into an approvable note.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v6.json",
+          "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105"
+        },
+        {
+          "path": "tests/test_verifier_fail_closed.py",
+          "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6"
+        }
+      ],
+      "tests": [
+        "test_actual_semantic_transport_timeout_preserves_blocking_note_and_approval"
+      ],
+      "limitations": "Actual mocked transport timeout leaves the saved blocking report unchanged and approval rejected; no model or clinical sensitivity is inferred."
     },
     {
       "id": "06-16",
@@ -1999,10 +2027,23 @@
     {
       "id": "10-05",
       "description": "Test the OIDC flow with simulated, locally signed tokens (signature, audience, nonce, issuer, state replay and expiry) and no Google registration.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v6.json",
+          "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105"
+        },
+        {
+          "path": "tests/test_google_auth.py",
+          "sha256": "ddbb9e84d9a16f412c80b4bfd89ce697b6e8a9a997c480eabe38d585e2eba7ea"
+        }
+      ],
+      "tests": [
+        "test_real_signed_google_id_token_and_forgery",
+        "test_google_claims_rejected",
+        "test_state_binding_replay_and_cookie_flags"
+      ],
+      "limitations": "Locally generated signed tokens test signature, audience, issuer, nonce, expiry and issue time; provider transport is mocked and no live Google registration is validated."
     },
     {
       "id": "10-06",
@@ -2244,10 +2285,30 @@
     {
       "id": "11-10",
       "description": "Protect against model output parser bombs, duplicate JSON keys, Unicode confusables, excessive facts, nested arrays and malformed schema.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v6.json",
+          "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105"
+        },
+        {
+          "path": "services/strict_json.py",
+          "sha256": "90f074e651825f57259c8873b5da122479a74bd3eb839fd4c42c1d79ece5578a"
+        },
+        {
+          "path": "tests/test_domain_integrity.py",
+          "sha256": "f07d651c6ca49aa484c83c6ec8528048dd3a18dc191b5731c9c9400b2ca0cbfa"
+        },
+        {
+          "path": "tests/test_verifier_fail_closed.py",
+          "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6"
+        }
+      ],
+      "tests": [
+        "test_untrusted_json_rejects_duplicates_confusable_keys_depth_and_surrogates",
+        "test_model_parser_bounds_excess_facts_and_confusable_schema_without_rewriting_values"
+      ],
+      "limitations": "Bounded bytes/depth, duplicate/confusable schema keys, finite numeric values including exponent overflow, fact limits and strict model schemas are tested. Valid Unicode source values are preserved."
     },
     {
       "id": "11-11",
@@ -2637,7 +2698,7 @@
       "evidence": [
         {
           "path": "docs/offline-acceptance-summary.md",
-          "sha256": "806080d191a0d4229e838925d7953227e855ff0705e208edcbfed4dc1103a3b0"
+          "sha256": "3399d91c3e51388038f6ea775a0eb04b0d38be631173a34d939806f7ad4627ca"
         },
         {
           "path": "evaluation/reports/offline-acceptance-v3.json",

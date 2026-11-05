@@ -1,0 +1,42 @@
+import {test,expect} from './fixtures/offline';
+import {readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {createHash,randomUUID} from 'node:crypto';
+
+const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
+
+test('fact source navigation requests the exact cited audio channel',async({page})=>{
+ const headers={Authorization:`Bearer ${token}`};
+ const session=await(await page.request.get('/v1/session',{headers})).json();
+ expect(session.asr_profiles).toContain('scripted-non-asr-test-only');
+ const demo=await page.request.post('/v1/demo',{headers});expect(demo.ok()).toBe(true);
+ const eid=(await demo.json()).encounter_id,base=`/v1/encounters/${eid}`;
+ const frames=16000*4,content=Buffer.alloc(44+frames*4);
+ content.write('RIFF',0);content.writeUInt32LE(content.length-8,4);content.write('WAVEfmt ',8);
+ content.writeUInt32LE(16,16);content.writeUInt16LE(1,20);content.writeUInt16LE(2,22);
+ content.writeUInt32LE(16000,24);content.writeUInt32LE(64000,28);content.writeUInt16LE(4,32);content.writeUInt16LE(16,34);
+ content.write('data',36);content.writeUInt32LE(content.length-44,40);
+ for(let frame=0;frame<frames;frame++)for(let channel=0;channel<2;channel++)content.writeInt16LE(Math.round(6000*Math.sin(2*Math.PI*(220+channel*220)*frame/16000)),44+frame*4+channel*2);
+ const sha=createHash('sha256').update(content).digest('hex');
+ const upload=await page.request.post(base+'/audio-uploads',{headers:{...headers,'Idempotency-Key':randomUUID()},data:{bytes:content.length,sha256:sha,media_type:'audio/wav'}});
+ expect(upload.ok()).toBe(true);const asset=await upload.json();
+ expect((await page.request.patch(asset.content_url,{headers:{...headers,'Content-Type':'audio/wav','Upload-Offset':'0','Upload-Chunk-SHA256':sha},data:content})).ok()).toBe(true);
+ const ingest=await page.request.post(`${base}/audio-uploads/${asset.id}/complete`,{headers});expect(ingest.ok()).toBe(true);
+ const ingestJob=await ingest.json();
+ await expect.poll(async()=> (await(await page.request.get(ingestJob.status_url,{headers})).json()).status).toBe('succeeded');
+ const queued=await page.request.post(base+'/transcriptions',{headers:{...headers,'Idempotency-Key':randomUUID()},data:{audio_asset_id:asset.id,inference_profile_id:'scripted-non-asr-test-only'}});
+ expect(queued.ok()).toBe(true);const job=await queued.json();
+ await expect.poll(async()=> (await(await page.request.get(job.status_url,{headers})).json()).status).toBe('succeeded');
+ const workspace=await(await page.request.get(base+'/workspace',{headers})).json();
+ const segments=workspace.transcript.segments as {segment_id:string;channel_index:number}[];
+ const facts=(await(await page.request.get(base+'/facts',{headers})).json()).facts as {evidence:{segment_id:string}}[];
+ const factIndex=facts.findIndex(f=>segments.some(s=>s.segment_id===f.evidence.segment_id&&s.channel_index===1));
+ expect(factIndex).toBeGreaterThanOrEqual(0);
+ await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+ await page.locator('.encounter-item').first().click();await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
+ const isolated=page.waitForRequest(request=>request.url().includes(`/audio/${asset.id}?channel=1`));
+ await page.locator('.fact-card').nth(factIndex).locator('button.quote').click();
+ await isolated;await expect(page.locator('audio')).toHaveJSProperty('paused',false);
+ const after=await(await page.request.get(base+'/workspace',{headers})).json();
+ expect(after.approval).toBeNull();expect(after.note).toBeNull();
+});

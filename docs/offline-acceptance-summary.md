@@ -11,7 +11,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`.
 | synthetic_walkthrough | pass |
 | source_integrity | pass |
 
-Report: [offline-acceptance-v5.json](../evaluation/reports/offline-acceptance-v5.json)
+Report: [offline-acceptance-v6.json](../evaluation/reports/offline-acceptance-v6.json)
 
 Python sockets are restricted to loopback; this is not an operating-system firewall or native process sandbox.
 Skipped checks, missing cached tools and unavailable independent evidence are not passes.

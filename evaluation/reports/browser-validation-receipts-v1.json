@@ -1,0 +1,921 @@
+{
+  "schema_version": "browser_validation_receipts_v1",
+  "recorded_at": "2026-11-05T03:44:04.884495+00:00",
+  "source_commit": "c2d425a7c5b120bc35156799366fc24077f2ed53",
+  "source_sha256": {
+    "apps/clinician-web/e2e/clinical-batches.spec.ts": "86f3142ee38dbae8695e6219a759bebce3d8c3cd4a170ae966104c53af0dccd5",
+    "apps/clinician-web/e2e/device-check.spec.ts": "88eade7f63686bb7d314e374b51b30cb65f8940712c3eaffa59903b1adff1314",
+    "apps/clinician-web/e2e/dictation.spec.ts": "0561f75d9f44cf90857c5e29c0e0a9e053934a2b7562a33e4a851f0a472eaa70",
+    "apps/clinician-web/e2e/google-auth.spec.ts": "26384393a8888f93c233342c4fc1abdee00e0d93341e0df79e920234c9c0d478",
+    "apps/clinician-web/e2e/presentation.spec.ts": "517ab95b611105eba7a7a765ef027142626f4ecbd84370fbf7f664b39d710613",
+    "apps/clinician-web/e2e/recovery.spec.ts": "cc80f7566a38fdbc42b6713b7e1d01f4bb765db5f720180f6314ca48e1920540",
+    "apps/clinician-web/e2e/workflow.spec.ts": "15f9c4187aafeedfc5bc8a9f4e48a1d7078c772202decae2ffd1b58f697f14ce",
+    "apps/clinician-web/e2e/fixtures/offline.ts": "77f21ec35945ec8bd809d3d68c84441c1b127dc8107132de366eaab68dd7e251",
+    "apps/clinician-web/src/App.tsx": "aa4e34ade87ea5fe59110c0c5105ea99da2d78aebbd3651a90a76e067570ec4a",
+    "apps/clinician-web/src/CaptureSync.ts": "9b36f09d5958f53a6008d357c3890b98423ceff8849f5033e0a51b9c5741a0d2",
+    "apps/clinician-web/src/ClinicalBatch.tsx": "990cbc01022fc1061829d5b90faf355a9dc7d4886be67cb5408229a7e87c6963",
+    "apps/clinician-web/src/ClinicalFields.tsx": "8208384db65fb6c5606713de478941bdebc278a80a1c060cef63cab297fe4eb4",
+    "apps/clinician-web/src/ClinicalProposals.tsx": "c0e432ce0409a2d5867f824d1f38690f6f9e44b74db9025145299947530b0341",
+    "apps/clinician-web/src/DetailedDemo.tsx": "4a5adc403e7ad5cc74d15687456908a14e1d9e67d7a8e97c95d3daab6873b866",
+    "apps/clinician-web/src/DeviceCheck.tsx": "0fdaa60251ab65e34cf55ba9e5cfc0189e6e92ca22de4abc3050a7daf7c668e5",
+    "apps/clinician-web/src/Dictation.tsx": "ad3504a30bba6185f99ea2b63e1315b9cb9717e6102b2564ffc4966a65ce3c9a",
+    "apps/clinician-web/src/DraftProposal.tsx": "37b49aab0c7a39162a9ee27fabec29fcbdf2d3a8086fc8dc74f2102819ee0d76",
+    "apps/clinician-web/src/facts.ts": "7500f381f639f861649751dc1764cd900bdd4a50c754c18dcc7a56f73b555e7d",
+    "apps/clinician-web/src/fileHash.ts": "22ee32632aa2f2cbffc5fd02ca600cac3609f4d222fd9f64a6fb44963082dc57",
+    "apps/clinician-web/src/format.ts": "6441fa78890e9c634435ce1efa6ccfcfc19832c73baea3be07e84791450f2227",
+    "apps/clinician-web/src/main.tsx": "82f8eac1b7d24e0a34004cfc9afe091f8aef5fba4825f2072fbbcfb79a7a56a1",
+    "apps/clinician-web/src/PcmCapture.ts": "e8743ec5ef51883ba9cf77c867cfff3715e7ac4b5763450aa8da04ad8f5cc2aa",
+    "apps/clinician-web/src/PresentationTools.tsx": "b80313f67311ae2f243ecc9f772e6e6fd6a48fc8148aa139b5ead71ce43840be",
+    "apps/clinician-web/src/RecordingVault.ts": "c86140c43b327bc3ee78f847b309796f3f1c9bb3d59a43b20589e45af30de659",
+    "apps/clinician-web/src/ReviewTiming.tsx": "3a6d2d4527354325f53daf80a708630c961630061b7509d8e098f2fa5311a7b8",
+    "apps/clinician-web/src/ServerRecovery.tsx": "071f115e560cd3d55442e844dafbd8dad31613c6eb16d7d5e5ae92fc36158f1a",
+    "apps/clinician-web/src/SourceContext.tsx": "6ff9154372605ea5a2fd527f81cd78925eb9d770001b096c22277af7b1f0d3cc",
+    "apps/clinician-web/src/SpeakerRoles.tsx": "87dd567feb4503f599ea55f4774b6b2d6470634f08362bf6791858ad63e6d0e6",
+    "apps/clinician-web/src/style.css": "8456489e41662de27c131582ef5e355b39d1623400f67445dcc0c04da682cc5f",
+    "apps/clinician-web/src/VerificationWarnings.tsx": "20719fe755823d6081e7c1a74b4db794c5f55572259b19cec41f38b9900567f7",
+    "apps/clinician-web/src/VersionComparison.tsx": "55c172952778f8adc2e69733326f14f933b819c2a1cea57552a91fd96133d757",
+    "apps/clinician-web/src/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+    "apps/clinician-web/src/workspaceTypes.ts": "61183869c92795582f547fb4fcd270fef1977ce23523d5b25630ce8c33caa774",
+    "apps/clinician-web/src/client/api.ts": "0e6a7ba781cdfb02987775ab53d3cf5f5087fb26c45e45e7d8a0a579bc5727f8",
+    "apps/clinician-web/src/client/errorCodes.ts": "8328690f0beaf46b2f594e88772d24b0c35ef99d209b9ca510fea0700ea39dda",
+    "apps/clinician-web/src/components/Icon.tsx": "148a4fec7ce363e09f5cfb192962a5e6dd13ab50e4f4ea0352073bbd58642bc1",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "56a21032b2bd85a44252a8e75b5daa780c7538dac2e27fefafc95cf812230774",
+    "apps/clinician-web/src/screens/LoginScreen.tsx": "21050a38ab3f9a3c346c743e13aac37c28bccf2e25703ce93f46be288f6bdf7a",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "f1dee376b4f621695366bc26ad4e22ebea68be62bd109f0dc5a08015887f6e79",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "d719471e84d6ea05e9839de4cb6d1cc1a3e0e5d94a94eeb8050512b497a8534a"
+  },
+  "built_index_sha256": "66da72f904a6a6f9cfdffd834fc4ae9f970e9e9215b1b39ba012c0a624a9df41",
+  "attempts": [
+    {
+      "local_raw_receipt": "data/browser-offline-second-slice.json",
+      "mode": "native_model",
+      "diagnosis": "invalid_asr_output_after_successful_seal",
+      "raw_sha256": "ff6e91e9615193f12945687465bea40c621e4d6a8a4e43b422ddeda561521fe8",
+      "stats": {
+        "startTime": "2026-11-04T18:03:58.536Z",
+        "duration": 273207.005,
+        "expected": 25,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "title": "long source proposal batches preserve earlier editor selections and require review",
+          "file": "clinical-batches.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "device identification releases tracks and stores or uploads no audio",
+          "file": "device-check.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "cancelled device check releases a late-granted microphone",
+          "file": "device-check.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "microphone dictation records, uploads, transcribes locally and leaves source review pending",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "discarding stops microphone tracks and sends no audio upload",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "cancelling a pending microphone request stops a late-granted stream",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "microphone permission denial explains recovery without uploading audio",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "disconnected microphone retains a partial recording without automatic submission",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "simulated clock passes five minutes and stops capture at thirty minutes",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "retry after a lost successful upload response reuses the saved source",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "three-channel browser PCM preserves distinct physical input signals and retry file",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "multichannel request rejects a device reporting fewer channels",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "worklet rejects silently changed channel count even when device settings claim three",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "current correction comparison and uncertainty queue retain unreviewed proposals",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "detailed demo, review tools and measured dashboard preserve approval boundaries",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "approved summary requires separate confirmation and edits reset it",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "reload recovers committed audio only in its encounter, with explicit retry and deletion",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "storage quota failure stops capture and retains previously committed audio",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "large upload resumes after a lost chunk response without retransmitting committed bytes",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "live local preview is labelled provisional and does not prepare or approve a note",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "late rejection from cancelled microphone request cannot stop a newer capture",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "revoked recording permission stops capture and requires fresh confirmation",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "server backup recovers an acknowledged prefix after local draft loss",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "server-backed recording seals the final source instead of uploading it twice",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "failed"
+          ]
+        },
+        {
+          "title": "clinician reviews evidence, corrects a blocking medication, approves and exports",
+          "file": "workflow.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "compressed upload is normalized by the worker and supports manual transcription",
+          "file": "workflow.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        }
+      ]
+    },
+    {
+      "local_raw_receipt": "data/browser-scripted-offline-v1.json",
+      "mode": "scripted_fixture_bringup",
+      "diagnosis": "startup_path_failure_aborted",
+      "status": "raw_receipt_unavailable_not_passed"
+    },
+    {
+      "local_raw_receipt": "data/browser-scripted-offline-v2.json",
+      "mode": "scripted_fixture_bringup",
+      "diagnosis": "missing_demo_assets_aborted",
+      "status": "raw_receipt_unavailable_not_passed"
+    },
+    {
+      "local_raw_receipt": "data/browser-scripted-offline-v3.json",
+      "mode": "scripted_fixture_bringup",
+      "diagnosis": "strict_model_directory_manifest_rejected",
+      "raw_sha256": "ef86fe5e16d94d321716e0dc12be8ed77a56aa088bfe9eaf4cd8803281a0abea",
+      "stats": {
+        "startTime": "2026-11-04T18:12:11.350Z",
+        "duration": 317645.542,
+        "expected": 24,
+        "skipped": 0,
+        "unexpected": 2,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "title": "long source proposal batches preserve earlier editor selections and require review",
+          "file": "clinical-batches.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "device identification releases tracks and stores or uploads no audio",
+          "file": "device-check.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "cancelled device check releases a late-granted microphone",
+          "file": "device-check.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "microphone dictation records, uploads, transcribes locally and leaves source review pending",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "failed"
+          ]
+        },
+        {
+          "title": "discarding stops microphone tracks and sends no audio upload",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "cancelling a pending microphone request stops a late-granted stream",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "microphone permission denial explains recovery without uploading audio",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "disconnected microphone retains a partial recording without automatic submission",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "simulated clock passes five minutes and stops capture at thirty minutes",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "retry after a lost successful upload response reuses the saved source",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "three-channel browser PCM preserves distinct physical input signals and retry file",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "multichannel request rejects a device reporting fewer channels",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "worklet rejects silently changed channel count even when device settings claim three",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "current correction comparison and uncertainty queue retain unreviewed proposals",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "detailed demo, review tools and measured dashboard preserve approval boundaries",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "approved summary requires separate confirmation and edits reset it",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "reload recovers committed audio only in its encounter, with explicit retry and deletion",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "storage quota failure stops capture and retains previously committed audio",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "large upload resumes after a lost chunk response without retransmitting committed bytes",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "live local preview is labelled provisional and does not prepare or approve a note",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "late rejection from cancelled microphone request cannot stop a newer capture",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "revoked recording permission stops capture and requires fresh confirmation",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "server backup recovers an acknowledged prefix after local draft loss",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "server-backed recording seals the final source instead of uploading it twice",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "failed"
+          ]
+        },
+        {
+          "title": "clinician reviews evidence, corrects a blocking medication, approves and exports",
+          "file": "workflow.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "compressed upload is normalized by the worker and supports manual transcription",
+          "file": "workflow.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        }
+      ]
+    },
+    {
+      "local_raw_receipt": "data/browser-scripted-asr-smoke-v4.json",
+      "mode": "scripted_fixture_bringup",
+      "diagnosis": "strict_model_directory_manifest_rejected_aborted",
+      "status": "raw_receipt_unavailable_not_passed"
+    },
+    {
+      "local_raw_receipt": "data/browser-scripted-asr-smoke-v5.json",
+      "mode": "scripted_non_asr",
+      "diagnosis": "two_case_scripted_smoke",
+      "raw_sha256": "1bb00b0844b167e01cefff4e8d43e76ad852c2d29e99dbd515735382ba413d63",
+      "stats": {
+        "startTime": "2026-11-05T03:30:27.784Z",
+        "duration": 65002.32,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "title": "microphone dictation records, uploads, transcribes locally and leaves source review pending",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "server-backed recording seals the final source instead of uploading it twice",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        }
+      ]
+    },
+    {
+      "local_raw_receipt": "data/browser-scripted-full-v6.json",
+      "mode": "scripted_non_asr",
+      "diagnosis": "concurrent_build_temporarily_removed_served_index",
+      "raw_sha256": "9c146ed46d68804bc927028d9d5af90e8e8c15e95ed0049d49943f7f14f60608",
+      "stats": {
+        "startTime": "2026-11-05T03:32:38.975Z",
+        "duration": 329965.208,
+        "expected": 25,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "title": "long source proposal batches preserve earlier editor selections and require review",
+          "file": "clinical-batches.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "device identification releases tracks and stores or uploads no audio",
+          "file": "device-check.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "cancelled device check releases a late-granted microphone",
+          "file": "device-check.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "microphone dictation records, uploads, transcribes locally and leaves source review pending",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "discarding stops microphone tracks and sends no audio upload",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "cancelling a pending microphone request stops a late-granted stream",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "microphone permission denial explains recovery without uploading audio",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "disconnected microphone retains a partial recording without automatic submission",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "simulated clock passes five minutes and stops capture at thirty minutes",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "retry after a lost successful upload response reuses the saved source",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "three-channel browser PCM preserves distinct physical input signals and retry file",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "multichannel request rejects a device reporting fewer channels",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "worklet rejects silently changed channel count even when device settings claim three",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "current correction comparison and uncertainty queue retain unreviewed proposals",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "detailed demo, review tools and measured dashboard preserve approval boundaries",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "approved summary requires separate confirmation and edits reset it",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "reload recovers committed audio only in its encounter, with explicit retry and deletion",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "storage quota failure stops capture and retains previously committed audio",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "large upload resumes after a lost chunk response without retransmitting committed bytes",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "live local preview is labelled provisional and does not prepare or approve a note",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "late rejection from cancelled microphone request cannot stop a newer capture",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "revoked recording permission stops capture and requires fresh confirmation",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "server backup recovers an acknowledged prefix after local draft loss",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "timedOut"
+          ]
+        },
+        {
+          "title": "server-backed recording seals the final source instead of uploading it twice",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "clinician reviews evidence, corrects a blocking medication, approves and exports",
+          "file": "workflow.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "compressed upload is normalized by the worker and supports manual transcription",
+          "file": "workflow.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        }
+      ]
+    },
+    {
+      "local_raw_receipt": "data/browser-scripted-full-v7.json",
+      "mode": "scripted_non_asr",
+      "diagnosis": "clean_run_after_build_completed",
+      "raw_sha256": "ec5d1857b5d1e0b3f710fd8e5e88b6f739fcb3736bb0544b43548e8a861e2e7f",
+      "stats": {
+        "startTime": "2026-11-05T03:40:33.986Z",
+        "duration": 163928.413,
+        "expected": 26,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "title": "long source proposal batches preserve earlier editor selections and require review",
+          "file": "clinical-batches.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "device identification releases tracks and stores or uploads no audio",
+          "file": "device-check.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "cancelled device check releases a late-granted microphone",
+          "file": "device-check.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "microphone dictation records, uploads, transcribes locally and leaves source review pending",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "discarding stops microphone tracks and sends no audio upload",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "cancelling a pending microphone request stops a late-granted stream",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "microphone permission denial explains recovery without uploading audio",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "disconnected microphone retains a partial recording without automatic submission",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "simulated clock passes five minutes and stops capture at thirty minutes",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "retry after a lost successful upload response reuses the saved source",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "three-channel browser PCM preserves distinct physical input signals and retry file",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "multichannel request rejects a device reporting fewer channels",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "worklet rejects silently changed channel count even when device settings claim three",
+          "file": "dictation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "current correction comparison and uncertainty queue retain unreviewed proposals",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "detailed demo, review tools and measured dashboard preserve approval boundaries",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "approved summary requires separate confirmation and edits reset it",
+          "file": "presentation.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "reload recovers committed audio only in its encounter, with explicit retry and deletion",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "storage quota failure stops capture and retains previously committed audio",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "large upload resumes after a lost chunk response without retransmitting committed bytes",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "live local preview is labelled provisional and does not prepare or approve a note",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "late rejection from cancelled microphone request cannot stop a newer capture",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "revoked recording permission stops capture and requires fresh confirmation",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "server backup recovers an acknowledged prefix after local draft loss",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "server-backed recording seals the final source instead of uploading it twice",
+          "file": "recovery.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "clinician reviews evidence, corrects a blocking medication, approves and exports",
+          "file": "workflow.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        },
+        {
+          "title": "compressed upload is normalized by the worker and supports manual transcription",
+          "file": "workflow.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        }
+      ]
+    },
+    {
+      "local_raw_receipt": "data/browser-simulated-oidc-v1.json",
+      "mode": "simulated_oidc",
+      "diagnosis": "local_redirect_interception_no_google_calls",
+      "raw_sha256": "07f80d0ef17f141da8d3ce647cc29c98873d2ef2e0506d132eff4608f3ecc4b6",
+      "stats": {
+        "startTime": "2026-11-05T03:38:29.570Z",
+        "duration": 4570.409,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "title": "Google session bootstrap, sign-out and read-only investor workflow",
+          "file": "google-auth.spec.ts",
+          "statuses": [
+            "passed"
+          ]
+        }
+      ]
+    }
+  ],
+  "independent_clinical_gold": false,
+  "clinical_release": false,
+  "limitations": [
+    "Scripted adapter outputs are independent of audio; no ASR quality or physical hardware result is inferred.",
+    "Native ASR failure remains a separate negative result; passing scripted tests do not repair it.",
+    "Browser HTTP(S) interception is not an operating-system network sandbox.",
+    "Aborted/missing local receipts are not counted as passes. Raw browser JSON stays local; only its hash and non-sensitive test status metadata are published."
+  ]
+}
