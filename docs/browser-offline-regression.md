@@ -9,7 +9,8 @@ Use the cached dependencies and installed Chrome. No installation is part of the
 # In a second terminal:
 $env:MED_TRANSCRIPT_TEST_URL='http://127.0.0.1:8004'
 $env:npm_config_offline='true'
-npx --offline --prefix apps/clinician-web playwright test --config apps/clinician-web/playwright.config.ts --grep-invert 'Google|google'
+Set-Location apps/clinician-web
+npx --offline playwright test --grep-invert 'Google|google'
 ```
 
 Run Playwright from `apps/clinician-web` if using its relative fixture paths. The server uses isolated UUID-named storage, the existing private local key, cached synthetic demo files and strictly hashed marker files. It executes real API, authorization, consent, queue, ingest, transcript-validation, review, approval and export paths. Its explicitly scripted adapter returns developer-written text regardless of audio; `inference_executed=false` and the source/model profile identifies a non-ASR test fixture. It is not a speech-recognition test, a clinician study or a real microphone validation. No production configuration can enable this fixture server.

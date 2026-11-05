@@ -21,7 +21,7 @@ def test_canonical_golden_unicode_decimals_nulls_and_line_endings():
     with pytest.raises(ValueError):canonical_json({'invalid':float('nan')})
 
 
-@pytest.mark.parametrize('body',['{"facts":[],"facts":[1]}','{"fаcts":[]}','['*33+'0'+']'*33,'{"value":NaN}','{"value":"\\ud800"}'])
+@pytest.mark.parametrize('body',['{"facts":[],"facts":[1]}','{"fаcts":[]}','['*33+'0'+']'*33,'{"value":NaN}','{"value":"\\ud800"}', '{"value":1e999}', '{"nested":[-1e999]}'])
 def test_untrusted_json_rejects_duplicates_confusable_keys_depth_and_surrogates(body):
     with pytest.raises((ValueError,UnicodeError)):loads(body)
 

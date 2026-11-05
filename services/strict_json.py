@@ -1,5 +1,6 @@
 """Bounded strict JSON for untrusted requests/model output; values remain unchanged."""
 import json
+import math
 
 
 def loads(raw, *, max_bytes=8*1024*1024, max_depth=32):
@@ -49,6 +50,10 @@ def loads(raw, *, max_bytes=8*1024*1024, max_depth=32):
         item = pending.pop()
         if isinstance(item, str):
             item.encode('utf-8')
+        elif isinstance(item, float) and not math.isfinite(item):
+            # Exponent overflow (1e999) is parsed by json as a float, rather
+            # than visiting parse_constant like literal NaN/Infinity.
+            raise ValueError('non_finite_json_number')
         elif isinstance(item, dict):
             pending.extend(item.values())
         elif isinstance(item, list):

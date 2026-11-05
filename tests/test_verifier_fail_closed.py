@@ -2,6 +2,8 @@
 from uuid import uuid4
 import pytest
 from services.review.clinical_models import LocalClinicalModels, Verdicts
+from services.review.clinical_models import Extraction
+from services.strict_json import loads
 from tests.test_foundation import setup, headers
 from tests.test_review_workflow import prepare, draft, approve
 
@@ -44,3 +46,16 @@ def test_actual_semantic_transport_timeout_preserves_blocking_note_and_approval(
     workspace = client.get(f'/v1/encounters/{eid}/workspace', headers=headers()).json()
     assert workspace['verification'] == result['verification']
     assert approve(client, eid, result['note']).status_code == 409
+
+
+def test_model_parser_bounds_excess_facts_and_confusable_schema_without_rewriting_values():
+    fact={'segment_id':str(uuid4()),'quote':'No fever.','category':'symptom','section':'subjective'}
+    with pytest.raises(ValueError):
+        Extraction.model_validate({'facts':[fact]*101})
+    with pytest.raises(ValueError):
+        Extraction.model_validate({'facts':[{**fact,'hidden_approval':True}]})
+    with pytest.raises(ValueError):
+        loads('{"fаcts": []}')
+    with pytest.raises(ValueError):
+        loads('{"metadata":{"cost":1e999}}')
+    assert loads('{"quote":"Quoted β uncertainty stays unchanged."}')['quote']=='Quoted β uncertainty stays unchanged.'
