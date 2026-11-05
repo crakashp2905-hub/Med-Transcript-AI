@@ -128,7 +128,7 @@ def test_semantic_model_cannot_change_saved_verification(setup):
     saved=draft(client,eid,tx,facts)
     class Fake:
         def check_claims(self,claims,**kwargs):
-            return {'verdicts':[{'fact_id':c['fact_id'],'label':'supported'} for c in claims],
+            return {'verdicts':[{'fact_id':c['fact_id'],'label':'supported','evidence_quote':c['evidence'],'reason':'Synthetic deliberately incorrect supportive verdict.'} for c in claims],
                 'cannot_clear_existing_findings':True}
     client.app.state.clinical_models=Fake()
     response=client.post(f'/v1/encounters/{eid}/semantic-checks',headers=headers(),json={'note_version_id':saved['note']['id']})

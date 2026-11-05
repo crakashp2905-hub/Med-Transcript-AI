@@ -13,6 +13,8 @@ from services.review.engine import validate_evidence
 from services.review.providers import JSONProvider, DeterministicProvider
 from services.review.models import DraftProposalInput
 from services.review.service import ReviewService
+from services.domain_contracts import validate_record
+from services.proposal_integrity import decode_proposal
 
 def register(app, services: ReviewService):
     database = services.database
@@ -27,10 +29,10 @@ def register(app, services: ReviewService):
     def get_draft_proposal(eid: UUID, did: UUID, actor=Depends(identity)):
         with database() as con:
             row = encounter(con,eid,actor)
-            proposal = con.execute("SELECT body FROM model_proposals WHERE encounter=? AND id=? AND kind='draft_proposal'",(str(eid),str(did))).fetchone()
+            proposal = con.execute("SELECT * FROM model_proposals WHERE encounter=? AND id=? AND kind='draft_proposal'",(str(eid),str(did))).fetchone()
             if proposal is None:
                 raise HTTPException(404,"draft_proposal_not_found")
-            value = json.loads(proposal["body"])
+            value = decode_proposal(con,proposal,eid)
             value["stale"] = row["current_transcript"] != value["transcript_version_id"]
             return value
 
@@ -69,6 +71,8 @@ def register(app, services: ReviewService):
             version = con.execute("SELECT COALESCE(MAX(version),0)+1 FROM model_proposals WHERE encounter=? AND kind='draft_proposal'", (str(eid),)).fetchone()[0]
             result.update(id=did, transcript_version_id=str(body.transcript_version_id), transcript_sha256=original_hash,
                 source_facts=[f.model_dump(mode="json") for f in body.facts], status="unreviewed_proposal_not_approvable")
+            try:validate_record('draft_proposal',result)
+            except ValueError:raise HTTPException(422,'draft_proposal_failed_no_output_admitted') from None
             con.execute("INSERT INTO model_proposals VALUES (?,?,?,?,?,?,?)", (did,str(eid),"draft_proposal",version,content_sha256(result),canonical_json(result),created))
             audit(con, actor, "draft_proposal_created", did)
             return result

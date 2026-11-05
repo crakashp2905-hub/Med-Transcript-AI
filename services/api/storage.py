@@ -173,6 +173,11 @@ MIGRATIONS = (
     CREATE TABLE integrity_bootstrap (id INTEGER PRIMARY KEY, initialized_at TEXT NOT NULL,
         legacy_audit_count INTEGER NOT NULL, legacy_approval_count INTEGER NOT NULL, initial_tail_sha256 TEXT NOT NULL);
     """,
+    """
+    CREATE TABLE review_metric_integrity (
+        session TEXT PRIMARY KEY REFERENCES model_proposals(id) ON DELETE CASCADE,
+        metric_id TEXT NOT NULL UNIQUE, sha256 TEXT NOT NULL, origin TEXT NOT NULL);
+    """,
 )
 
 
@@ -200,6 +205,9 @@ class Store:
                     con.execute(f"PRAGMA user_version={version}")
                     if 'CREATE TABLE audit_chain' in migration:
                         from services.audit_integrity import initialize
+                        initialize(con)
+                    if 'CREATE TABLE review_metric_integrity' in migration:
+                        from services.metric_integrity import initialize
                         initialize(con)
 
     @contextmanager

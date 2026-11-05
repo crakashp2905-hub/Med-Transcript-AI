@@ -56,6 +56,9 @@ class PostgresStore:
                     if 'CREATE TABLE audit_chain' in sql:
                         from services.audit_integrity import initialize
                         initialize(con)
+                    if 'CREATE TABLE review_metric_integrity' in sql:
+                        from services.metric_integrity import initialize
+                        initialize(con)
 
     @contextmanager
     def transaction(self):

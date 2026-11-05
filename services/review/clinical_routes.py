@@ -11,6 +11,8 @@ from pydantic import Field
 from services.review.models import Strict
 from services.review.clinical_models import LocalClinicalModels,RuleExtractor
 from services.asr.profiles import canonical_json,content_sha256
+from services.domain_contracts import validate_record
+from services.proposal_integrity import decode_proposal
 
 
 class ExtractRequest(Strict):
@@ -36,6 +38,8 @@ def register(app,database,identity,encounter,require_processing,get_tx,document,
         pid=str(uuid4());stamp=datetime.now(timezone.utc).isoformat()
         result.update(id=pid,transcript_version_id=tx['id'],transcript_sha256=transcript_hash,
             note_version_id=note_id,status='unreviewed_proposal_not_approvable')
+        try:validate_record(kind,result)
+        except ValueError:raise HTTPException(422,'clinical_proposal_schema_rejected') from None
         con.execute('INSERT INTO model_proposals VALUES (?,?,?,?,?,?,?)',
             (pid,str(eid),kind,1,content_sha256(result),canonical_json(result),stamp))
         audit(con,actor,kind+'_created',pid)
@@ -90,8 +94,8 @@ def register(app,database,identity,encounter,require_processing,get_tx,document,
     def proposal(eid:UUID,pid:UUID,actor=Depends(identity)):
         with database() as con:
             row=encounter(con,eid,actor)
-            saved=con.execute("SELECT body FROM model_proposals WHERE encounter=? AND id=? AND kind IN ('fact_proposal','semantic_check')",(str(eid),str(pid))).fetchone()
+            saved=con.execute("SELECT * FROM model_proposals WHERE encounter=? AND id=? AND kind IN ('fact_proposal','semantic_check')",(str(eid),str(pid))).fetchone()
             if saved is None:raise HTTPException(404,'clinical_proposal_not_found')
-            result=json.loads(saved['body'])
+            result=decode_proposal(con,saved,eid)
             result['stale']=row['current_transcript']!=result['transcript_version_id'] or bool(result.get('note_version_id') and row['current_note']!=result['note_version_id'])
             return result

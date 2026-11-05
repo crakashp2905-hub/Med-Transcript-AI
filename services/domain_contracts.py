@@ -3,7 +3,7 @@ from copy import deepcopy
 from datetime import datetime
 from typing import Literal
 from uuid import UUID
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator, ValidationError, StrictInt
 from services.review.models import Fact, Evidence
 from services.review.relationships import ClinicalRelationship
 
@@ -111,6 +111,113 @@ class ModelProposal(StableRecord):
     transcript_sha256: str | None = None
 
 
+class BoundProposal(ModelProposal):
+    transcript_version_id: UUID
+    transcript_sha256: str = Field(pattern=r'^[a-f0-9]{64}$')
+    status: Literal['unreviewed_proposal_not_approvable']
+
+
+class ProposedStatement(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    section: Literal['subjective','objective','assessment','plan']
+    text: str = Field(min_length=1,max_length=4000)
+    fact_ids: list[UUID] = Field(min_length=1,max_length=20)
+
+
+class ProposedDraft(BaseModel):
+    model_config = ConfigDict(extra='allow')
+    statements: list[ProposedStatement] = Field(max_length=300)
+
+
+class DraftProposal(BoundProposal):
+    source_facts: list[ClinicalFact] = Field(min_length=1,max_length=300)
+    draft: ProposedDraft
+
+    @model_validator(mode='after')
+    def known_reviewed_facts(self):
+        eligible={f.fact_id for f in self.source_facts if f.reviewed and not f.excluded}
+        if any(fid not in eligible for s in self.draft.statements for fid in s.fact_ids):
+            raise ValueError('proposal_cites_unknown_or_unreviewed_fact')
+        return self
+
+
+class FactProposal(BoundProposal):
+    facts: list[ClinicalFact] = Field(max_length=300)
+
+    @model_validator(mode='after')
+    def proposals_stay_unreviewed(self):
+        if any(f.reviewed or f.critical_reviewed for f in self.facts):
+            raise ValueError('model_proposal_cannot_mark_review_complete')
+        return self
+
+
+class SemanticVerdict(BaseModel):
+    model_config = ConfigDict(extra='allow')
+    fact_id: UUID
+    label: Literal['supported','contradicted','unsupported','ambiguous']
+    evidence_quote: str = Field(max_length=4000)
+    reason: str = Field(min_length=1,max_length=500)
+
+
+class SemanticProposal(BoundProposal):
+    note_version_id: UUID
+    verdicts: list[SemanticVerdict] = Field(min_length=1,max_length=20)
+    checked_fact_ids: list[UUID] = Field(min_length=1,max_length=20)
+    unchecked_fact_ids: list[UUID] = Field(max_length=300)
+    evidence_linked_fact_count: int = Field(ge=1,le=300,strict=True)
+    independent_clinical_calibration: Literal[False]
+    cannot_clear_existing_findings: Literal[True]
+
+    @model_validator(mode='after')
+    def exact_coverage(self):
+        checked=set(self.checked_fact_ids);unchecked=set(self.unchecked_fact_ids)
+        if (len(checked)!=len(self.checked_fact_ids) or len(unchecked)!=len(self.unchecked_fact_ids)
+            or checked & unchecked or len(checked)+len(unchecked)!=self.evidence_linked_fact_count
+            or len(self.verdicts)!=len(checked) or {v.fact_id for v in self.verdicts}!=checked):
+            raise ValueError('semantic_proposal_coverage_mismatch')
+        return self
+
+
+class ReviewSession(StableRecord):
+    id: UUID
+    note_version_id: UUID
+    actor: UUID
+    started_at: datetime
+    drafting_arm: Literal['unspecified','manual','deterministic','local_qwen']='unspecified'
+    arm_attribution: Literal['clinician_selected_not_independently_verified']='clinician_selected_not_independently_verified'
+
+    @model_validator(mode='after')
+    def aware_start(self):
+        if self.started_at.tzinfo is None:raise ValueError('review_session_timezone_required')
+        return self
+
+
+class ReviewMetric(StableRecord):
+    id: UUID
+    session_id: UUID
+    before_note: UUID
+    after_note: UUID
+    word_edits: int = Field(ge=0,strict=True)
+    review_wall_ms: int = Field(ge=0,strict=True)
+    self_reported_active_ms: int | None = Field(default=None,ge=0,strict=True)
+    active_time_verified: Literal[False]
+    raw_text_in_telemetry: Literal[False]
+    # Earlier metric bodies did not include structured edit counts. Validate a
+    # copy without injecting invented zero observations into the stored payload.
+    facts_added: int | None = Field(default=None,ge=0,strict=True)
+    facts_removed: int | None = Field(default=None,ge=0,strict=True)
+    field_edit_counts: dict[str,StrictInt] = Field(default_factory=dict)
+    drafting_arm: Literal['unspecified','manual','deterministic','local_qwen']='unspecified'
+
+    @model_validator(mode='after')
+    def bounded_observations(self):
+        if self.self_reported_active_ms is not None and self.self_reported_active_ms>self.review_wall_ms:
+            raise ValueError('active_time_exceeds_observed_wall_time')
+        if any(type(v) is not int or v<0 for v in self.field_edit_counts.values()):
+            raise ValueError('invalid_field_edit_counter')
+        return self
+
+
 class AuditRecord(StableRecord):
     id: UUID
     tenant: UUID
@@ -121,12 +228,16 @@ class AuditRecord(StableRecord):
 
 
 MODELS = {'transcript': TranscriptVersion, 'note': NoteVersion, 'verification': VerificationReport,
-          'approval': Approval, 'proposal': ModelProposal, 'audit': AuditRecord}
+          'approval': Approval, 'proposal': ModelProposal, 'audit': AuditRecord,
+          'draft_proposal':DraftProposal,'fact_proposal':FactProposal,
+          'semantic_check':SemanticProposal,'review_session':ReviewSession,'review_metric':ReviewMetric}
 
 
 def migrate_legacy(kind, body):
     if kind not in MODELS:
         raise ValueError('unsupported_record_kind')
+    if not isinstance(body,dict):
+        raise ValueError('persisted_record_object_required')
     version = body.get('schema_version', 'legacy-0')
     if version not in ('legacy-0', '1.0'):
         raise ValueError('unsupported_schema_version')
@@ -138,4 +249,10 @@ def migrate_legacy(kind, body):
 def validate_record(kind, body):
     # Validate a migrated copy; immutable original serialization and hashes stay
     # unchanged. A persisted migration requires an explicit new immutable version.
-    return MODELS[kind].model_validate(migrate_legacy(kind, body))
+    try:
+        migrated=migrate_legacy(kind, body)
+        return MODELS[kind].model_validate(migrated)
+    except ValidationError:
+        # Pydantic's default exception includes input values. Persisted clinical
+        # content must not escape through logs or API error details.
+        raise ValueError('invalid_persisted_record_schema') from None

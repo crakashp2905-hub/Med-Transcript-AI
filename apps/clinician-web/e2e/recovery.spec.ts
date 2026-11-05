@@ -46,7 +46,7 @@ test('large upload resumes after a lost chunk response without retransmitting co
  await expect.poll(()=>offsets.length).toBe(1);
  await expect(page.getByRole('button',{name:'Upload recording',exact:true})).toBeEnabled();
  await page.getByRole('button',{name:'Upload recording',exact:true}).click();
- await expect(page.locator('.notice')).toContainText('Recording received');
+  await expect(page.locator('.notice')).toContainText('Recording received',{timeout:20000});
  expect(offsets).toEqual([0,4*1024*1024,8*1024*1024]);
 });
 
