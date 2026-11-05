@@ -1,0 +1,2171 @@
+{
+  "schema_version": "task_evidence_hash_migration_v1",
+  "previous_ledger_sha256": "b998b0828eca2732da1b7f1e319a0c741ff5aa40aa5b04f5a1198296efb261aa",
+  "reason": "Explicit normalized source-text hashes survive checkout newline changes; frozen artifacts and checklist remain byte-strict.",
+  "task_count_changed": false,
+  "verified_tasks": 70,
+  "changes": [
+    {
+      "task": "00-01",
+      "before": {
+        "path": "evaluation/reports/engineering-baseline.json",
+        "sha256": "69682620f146583a1b1c7d747ae990b0412485876d53c63fd6d68e0cdd8890b3"
+      },
+      "after": {
+        "path": "evaluation/reports/engineering-baseline.json",
+        "sha256": "69682620f146583a1b1c7d747ae990b0412485876d53c63fd6d68e0cdd8890b3",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-02",
+      "before": {
+        "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+        "sha256": "a8fa0e9e390c65dfe514c09df8f7d94597fd2861003c4323a580c530fd71591e"
+      },
+      "after": {
+        "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+        "sha256": "403db70f0416da525221ab527770f2280df111e1aae6cd5447b6f18e018402cf",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "00-02",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-03",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-04",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-04",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-04",
+      "before": {
+        "path": "services/evaluation.py",
+        "sha256": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055"
+      },
+      "after": {
+        "path": "services/evaluation.py",
+        "sha256": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "00-06",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v7.json",
+        "sha256": "fb6388db6bcd6b2c49d6e9524876a5d6cd152305de3d1ddcbe9e211fc39a5f26"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v7.json",
+        "sha256": "fb6388db6bcd6b2c49d6e9524876a5d6cd152305de3d1ddcbe9e211fc39a5f26",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-06",
+      "before": {
+        "path": "evaluation/reports/scope-separated-baselines-v1.json",
+        "sha256": "c9b84529a7b27c6e85d0c8857b0096044b4342f3e7a50c829df1ed8f68910c8a"
+      },
+      "after": {
+        "path": "evaluation/reports/scope-separated-baselines-v1.json",
+        "sha256": "c9b84529a7b27c6e85d0c8857b0096044b4342f3e7a50c829df1ed8f68910c8a",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-06",
+      "before": {
+        "path": "services/baseline_summary.py",
+        "sha256": "e6d3a9aee2b80157e0ac2f15e4585ffe5f071ea63a731f60b9d23efb81a270a4"
+      },
+      "after": {
+        "path": "services/baseline_summary.py",
+        "sha256": "e6d3a9aee2b80157e0ac2f15e4585ffe5f071ea63a731f60b9d23efb81a270a4",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "00-08",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-08",
+      "before": {
+        "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+        "sha256": "a8fa0e9e390c65dfe514c09df8f7d94597fd2861003c4323a580c530fd71591e"
+      },
+      "after": {
+        "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+        "sha256": "403db70f0416da525221ab527770f2280df111e1aae6cd5447b6f18e018402cf",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "00-10",
+      "before": {
+        "path": "evaluation/reports/negative-experiments-index-v1.json",
+        "sha256": "737c43007103f0da154e92674f79d48a95e78e5cf4a68155d431f4eb89277a40"
+      },
+      "after": {
+        "path": "evaluation/reports/negative-experiments-index-v1.json",
+        "sha256": "737c43007103f0da154e92674f79d48a95e78e5cf4a68155d431f4eb89277a40",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-10",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-11",
+      "before": {
+        "path": "docs/architecture-decisions/002-evidence-and-completion.md",
+        "sha256": "fc89c2afdf19ad12124674da2da8ef81e7dd156b13b3f8162aaea70da3b6a167"
+      },
+      "after": {
+        "path": "docs/architecture-decisions/002-evidence-and-completion.md",
+        "sha256": "96aed6a3b36af7fa68926e3c83538a30683fa23811ad8876d338d8f5ca4082f7",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "00-11",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "00-12",
+      "before": {
+        "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+        "sha256": "a8fa0e9e390c65dfe514c09df8f7d94597fd2861003c4323a580c530fd71591e"
+      },
+      "after": {
+        "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+        "sha256": "403db70f0416da525221ab527770f2280df111e1aae6cd5447b6f18e018402cf",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "00-12",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "01-01",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "01-01",
+      "before": {
+        "path": "docs/architecture-decisions/003-router-and-persistence-boundaries.md",
+        "sha256": "29d31be59ee77d7981011f739e56b66246b2b1ff3268b4724760def81a8b1148"
+      },
+      "after": {
+        "path": "docs/architecture-decisions/003-router-and-persistence-boundaries.md",
+        "sha256": "93cbe22b0b244355ec15af62f100b5e9686f2dca33f79654632bb51bdec9e7d2",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "01-01",
+      "before": {
+        "path": "evaluation/contracts/api-v1-before-router-split.json",
+        "sha256": "81ccc5bd8b583bb5558f903cb0acdd58e85f0ff9390983c3702266be20e603b8"
+      },
+      "after": {
+        "path": "evaluation/contracts/api-v1-before-router-split.json",
+        "sha256": "81ccc5bd8b583bb5558f903cb0acdd58e85f0ff9390983c3702266be20e603b8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "01-02",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "01-02",
+      "before": {
+        "path": "docs/architecture-decisions/003-router-and-persistence-boundaries.md",
+        "sha256": "29d31be59ee77d7981011f739e56b66246b2b1ff3268b4724760def81a8b1148"
+      },
+      "after": {
+        "path": "docs/architecture-decisions/003-router-and-persistence-boundaries.md",
+        "sha256": "93cbe22b0b244355ec15af62f100b5e9686f2dca33f79654632bb51bdec9e7d2",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "01-03",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "01-03",
+      "before": {
+        "path": "docs/architecture-decisions/003-router-and-persistence-boundaries.md",
+        "sha256": "29d31be59ee77d7981011f739e56b66246b2b1ff3268b4724760def81a8b1148"
+      },
+      "after": {
+        "path": "docs/architecture-decisions/003-router-and-persistence-boundaries.md",
+        "sha256": "93cbe22b0b244355ec15af62f100b5e9686f2dca33f79654632bb51bdec9e7d2",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "01-08",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "01-08",
+      "before": {
+        "path": "services/canonical.py",
+        "sha256": "95ac5257a8526364b4f7f082b7a77ca52844918607132f3214e34f3894ab8713"
+      },
+      "after": {
+        "path": "services/canonical.py",
+        "sha256": "95ac5257a8526364b4f7f082b7a77ca52844918607132f3214e34f3894ab8713",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "01-14",
+      "before": {
+        "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+        "sha256": "a8fa0e9e390c65dfe514c09df8f7d94597fd2861003c4323a580c530fd71591e"
+      },
+      "after": {
+        "path": "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+        "sha256": "403db70f0416da525221ab527770f2280df111e1aae6cd5447b6f18e018402cf",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "01-14",
+      "before": {
+        "path": "docs/architecture-decisions/002-evidence-and-completion.md",
+        "sha256": "fc89c2afdf19ad12124674da2da8ef81e7dd156b13b3f8162aaea70da3b6a167"
+      },
+      "after": {
+        "path": "docs/architecture-decisions/002-evidence-and-completion.md",
+        "sha256": "96aed6a3b36af7fa68926e3c83538a30683fa23811ad8876d338d8f5ca4082f7",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "01-14",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "01-15",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "01-15",
+      "before": {
+        "path": "evaluation/contracts/api-v1-before-router-split.json",
+        "sha256": "81ccc5bd8b583bb5558f903cb0acdd58e85f0ff9390983c3702266be20e603b8"
+      },
+      "after": {
+        "path": "evaluation/contracts/api-v1-before-router-split.json",
+        "sha256": "81ccc5bd8b583bb5558f903cb0acdd58e85f0ff9390983c3702266be20e603b8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "01-15",
+      "before": {
+        "path": "tests/test_router_contracts.py",
+        "sha256": "c702afcc7fea88b27dc87ef0c3096de0574fec1354fe6883905801f4acb25fb6"
+      },
+      "after": {
+        "path": "tests/test_router_contracts.py",
+        "sha256": "a69296348dd5e0f85eca828577337c4761eb062bc7c3d6a6dc98ed26730af346",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "02-02",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-02",
+      "before": {
+        "path": "evaluation/reports/error-taxonomy-v2/report.json",
+        "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2"
+      },
+      "after": {
+        "path": "evaluation/reports/error-taxonomy-v2/report.json",
+        "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-05",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-05",
+      "before": {
+        "path": "evaluation/reports/error-taxonomy-v2/report.json",
+        "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2"
+      },
+      "after": {
+        "path": "evaluation/reports/error-taxonomy-v2/report.json",
+        "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-06",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-06",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-06",
+      "before": {
+        "path": "services/full_empty_reconstruction.py",
+        "sha256": "efbe634d7c4c4b797d4ed9e153085712d4482591b01ff024815c8628c0995893"
+      },
+      "after": {
+        "path": "services/full_empty_reconstruction.py",
+        "sha256": "ac944aeb3c692c8480452070ab570eee8ab5849879b95500ba4f20eb45f130e4",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "02-08",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-08",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-08",
+      "before": {
+        "path": "services/detailed_benchmark.py",
+        "sha256": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d"
+      },
+      "after": {
+        "path": "services/detailed_benchmark.py",
+        "sha256": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "02-09",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-09",
+      "before": {
+        "path": "services/asr/timestamps.py",
+        "sha256": "643c69083ca3ddd26b59fce9b2d47a6ea27fe8dca7768d31656c54931ef9202d"
+      },
+      "after": {
+        "path": "services/asr/timestamps.py",
+        "sha256": "643c69083ca3ddd26b59fce9b2d47a6ea27fe8dca7768d31656c54931ef9202d",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "02-20",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-20",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "02-20",
+      "before": {
+        "path": "services/evaluation.py",
+        "sha256": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055"
+      },
+      "after": {
+        "path": "services/evaluation.py",
+        "sha256": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "03-10",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "03-10",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "03-10",
+      "before": {
+        "path": "services/diarization.py",
+        "sha256": "7cd6ed090cac1d2bb499e1f6424d3086cddb11b1f1a91c4cb31f2033b1141b93"
+      },
+      "after": {
+        "path": "services/diarization.py",
+        "sha256": "08ae7e3e204f5f960ceb15a4cccc8f896b57e15b7cedec188454114af602e533",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "03-11",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "03-11",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "03-11",
+      "before": {
+        "path": "services/review/routers/transcripts.py",
+        "sha256": "9a9d2d27a6a5318138cb58582c2437fe46e0a1396c0daf889777173641c1fc74"
+      },
+      "after": {
+        "path": "services/review/routers/transcripts.py",
+        "sha256": "2a9d1339cdc92fe962358ecb42b25b0568c629daacf20445985947967c23b16b",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "04-08",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "04-08",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "04-08",
+      "before": {
+        "path": "services/review/clinical.py",
+        "sha256": "c87d221d5118ce60989d322c29b058cd9463b6964b105a568d20e9d37c40bb3c"
+      },
+      "after": {
+        "path": "services/review/clinical.py",
+        "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "04-16",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "04-16",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "04-16",
+      "before": {
+        "path": "services/review/clinical_models.py",
+        "sha256": "816a6a5771460ce61133f6135a2a47f3e4def25687e6f9cba06aa3026eeaed61"
+      },
+      "after": {
+        "path": "services/review/clinical_models.py",
+        "sha256": "31f9aefbe460a91d43feea7608bb71b2bc77db0774f9bf051a014cc9a28538b0",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "05-01",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-01",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-01",
+      "before": {
+        "path": "services/review/providers.py",
+        "sha256": "99dfd619a86bbb54c92bc4a43a906b39bcee7088a6ff7a14d4c22964c3da3694"
+      },
+      "after": {
+        "path": "services/review/providers.py",
+        "sha256": "70104451072ffdbe5629bdbaa4b669448c2499f97b0c5c058a3d3b1ad16c3a56",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "05-03",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-03",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-03",
+      "before": {
+        "path": "services/review/routers/proposals.py",
+        "sha256": "d03b0324ef345a821ea46f03e97a0c998c87b4d35ba56fef6a9b975a41c4c252"
+      },
+      "after": {
+        "path": "services/review/routers/proposals.py",
+        "sha256": "807ef4b6f170d404dbf4fe6c454b30b6fc647b485ccecc145b397a0435c7d64b",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "05-04",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-04",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-04",
+      "before": {
+        "path": "services/review/providers.py",
+        "sha256": "99dfd619a86bbb54c92bc4a43a906b39bcee7088a6ff7a14d4c22964c3da3694"
+      },
+      "after": {
+        "path": "services/review/providers.py",
+        "sha256": "70104451072ffdbe5629bdbaa4b669448c2499f97b0c5c058a3d3b1ad16c3a56",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "05-06",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v7.json",
+        "sha256": "fb6388db6bcd6b2c49d6e9524876a5d6cd152305de3d1ddcbe9e211fc39a5f26"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v7.json",
+        "sha256": "fb6388db6bcd6b2c49d6e9524876a5d6cd152305de3d1ddcbe9e211fc39a5f26",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-06",
+      "before": {
+        "path": "docs/drafting-screen-diagnosis.md",
+        "sha256": "5837746d5e69d9f1060adb583d250474f0fff54fab176a27b803f805bd0213f6"
+      },
+      "after": {
+        "path": "docs/drafting-screen-diagnosis.md",
+        "sha256": "5837746d5e69d9f1060adb583d250474f0fff54fab176a27b803f805bd0213f6",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "05-06",
+      "before": {
+        "path": "evaluation/reports/scope-separated-baselines-v1.json",
+        "sha256": "c9b84529a7b27c6e85d0c8857b0096044b4342f3e7a50c829df1ed8f68910c8a"
+      },
+      "after": {
+        "path": "evaluation/reports/scope-separated-baselines-v1.json",
+        "sha256": "c9b84529a7b27c6e85d0c8857b0096044b4342f3e7a50c829df1ed8f68910c8a",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-10",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-10",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-10",
+      "before": {
+        "path": "services/review/engine.py",
+        "sha256": "c0aa4be7c3bbe8c05467230737a785b670d5a050626592ac6ced6418fc0e3cb6"
+      },
+      "after": {
+        "path": "services/review/engine.py",
+        "sha256": "306866218676d899248530dc4c59ea26de7c15a2986f396c0703a23c55000ab9",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "05-14",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "05-14",
+      "before": {
+        "path": "services/offline_demo.py",
+        "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663"
+      },
+      "after": {
+        "path": "services/offline_demo.py",
+        "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "05-14",
+      "before": {
+        "path": "apps/clinician-web/src/ClinicalProposals.tsx",
+        "sha256": "c0e432ce0409a2d5867f824d1f38690f6f9e44b74db9025145299947530b0341"
+      },
+      "after": {
+        "path": "apps/clinician-web/src/ClinicalProposals.tsx",
+        "sha256": "0a4eb3f761ddb2ec5b91f974fede19c76d172990d69d627233449bed2f3de6f6",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "06-02",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "06-02",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "06-02",
+      "before": {
+        "path": "services/review/clinical_models.py",
+        "sha256": "816a6a5771460ce61133f6135a2a47f3e4def25687e6f9cba06aa3026eeaed61"
+      },
+      "after": {
+        "path": "services/review/clinical_models.py",
+        "sha256": "31f9aefbe460a91d43feea7608bb71b2bc77db0774f9bf051a014cc9a28538b0",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "06-14",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v6.json",
+        "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v6.json",
+        "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "06-14",
+      "before": {
+        "path": "services/review/clinical_models.py",
+        "sha256": "816a6a5771460ce61133f6135a2a47f3e4def25687e6f9cba06aa3026eeaed61"
+      },
+      "after": {
+        "path": "services/review/clinical_models.py",
+        "sha256": "31f9aefbe460a91d43feea7608bb71b2bc77db0774f9bf051a014cc9a28538b0",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "06-14",
+      "before": {
+        "path": "tests/test_verifier_fail_closed.py",
+        "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6"
+      },
+      "after": {
+        "path": "tests/test_verifier_fail_closed.py",
+        "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "06-15",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v6.json",
+        "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v6.json",
+        "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "06-15",
+      "before": {
+        "path": "tests/test_verifier_fail_closed.py",
+        "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6"
+      },
+      "after": {
+        "path": "tests/test_verifier_fail_closed.py",
+        "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "06-18",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "06-18",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "06-18",
+      "before": {
+        "path": "services/api/record_integrity.py",
+        "sha256": "039ca773e3f71581a1304e12c10e57702dc0f4b41cd1f9c82c8a6ca3ac25b2ac"
+      },
+      "after": {
+        "path": "services/api/record_integrity.py",
+        "sha256": "039ca773e3f71581a1304e12c10e57702dc0f4b41cd1f9c82c8a6ca3ac25b2ac",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "06-19",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "06-19",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "06-19",
+      "before": {
+        "path": "services/review/routers/approvals.py",
+        "sha256": "b35a5e21fa8ad52c0f235f6e22b67873b556d86c06a8ffde41e9cf1d629d476f"
+      },
+      "after": {
+        "path": "services/review/routers/approvals.py",
+        "sha256": "50426deccc39019c872940e1088593f4afeaaa97ce069c52919ae76f99a36229",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "07-03",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "07-03",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "07-03",
+      "before": {
+        "path": "services/api/routers/audio.py",
+        "sha256": "b98b965940b25fb73be196a1a39fa2f2003b32c7bc5cedd135ef438d3b253f5a"
+      },
+      "after": {
+        "path": "services/api/routers/audio.py",
+        "sha256": "fa235ab6632b32c963681c8b0360526784efe03533a5ad3c8943b0d21ae89543",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "07-07",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "07-07",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "07-07",
+      "before": {
+        "path": "services/asr/worker.py",
+        "sha256": "ab1d5d1524716f1afe2e2a916adcc8ce12ce620e20b96bae112cd0a7fe3693f5"
+      },
+      "after": {
+        "path": "services/asr/worker.py",
+        "sha256": "702f7c628fdf34898c20895a46e1079fcc45c9c048550fa611c4cdc8f8f26c1f",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "07-10",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "07-10",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "07-10",
+      "before": {
+        "path": "services/inference_slot.py",
+        "sha256": "34bf39fc772af94b14da386cd3288697b04ce1c2d5fe96187f13cb430bc3705a"
+      },
+      "after": {
+        "path": "services/inference_slot.py",
+        "sha256": "d62b6c0ebc0216cf28722f14c6c25834f9b00148d00bd979e3052fac211b37a5",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "07-12",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "07-12",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "07-12",
+      "before": {
+        "path": "services/asr/channels.py",
+        "sha256": "019fbacaf348869eb14e7e3a5b39b688ecb5101ef9b5f9ad77eaa2df756e3c58"
+      },
+      "after": {
+        "path": "services/asr/channels.py",
+        "sha256": "15de03713f6c38e6ec2e76e11b3fc6030c29d28a4ca4ba79fcb4a6f954a045d3",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "08-07",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "08-07",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "08-07",
+      "before": {
+        "path": "services/review/service.py",
+        "sha256": "cadf034517b7c890123fc4a901fe94bb687321e378a34e62d6f0fac7d534d544"
+      },
+      "after": {
+        "path": "services/review/service.py",
+        "sha256": "6a01d9ba011a9f8d5245bd75e8e03f9e75406c10a151a285ddc63c5e876b6c57",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "08-10",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "08-10",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "08-10",
+      "before": {
+        "path": "services/review/presentation.py",
+        "sha256": "30c7ec736aa31cd7f822b73603661e11ec1c747425222a6473b52adf903f9867"
+      },
+      "after": {
+        "path": "services/review/presentation.py",
+        "sha256": "30c7ec736aa31cd7f822b73603661e11ec1c747425222a6473b52adf903f9867",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "09-05",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "09-05",
+      "before": {
+        "path": "evaluation/reports/error-taxonomy-v2/report.json",
+        "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2"
+      },
+      "after": {
+        "path": "evaluation/reports/error-taxonomy-v2/report.json",
+        "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "09-05",
+      "before": {
+        "path": "evaluation/reports/error-taxonomy-v2/all-errors.csv.zip",
+        "sha256": "159e05a0c9415febc08a325bbbba8066ec043d67612ce978f10a564a99a6c280"
+      },
+      "after": {
+        "path": "evaluation/reports/error-taxonomy-v2/all-errors.csv.zip",
+        "sha256": "159e05a0c9415febc08a325bbbba8066ec043d67612ce978f10a564a99a6c280",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "09-07",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v7.json",
+        "sha256": "fb6388db6bcd6b2c49d6e9524876a5d6cd152305de3d1ddcbe9e211fc39a5f26"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v7.json",
+        "sha256": "fb6388db6bcd6b2c49d6e9524876a5d6cd152305de3d1ddcbe9e211fc39a5f26",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "09-07",
+      "before": {
+        "path": "services/experiment_contract.py",
+        "sha256": "8b0ebb16732a9c97dbe810d9ed43789986ec5f7581ed8e382397f0b38ddd9511"
+      },
+      "after": {
+        "path": "services/experiment_contract.py",
+        "sha256": "8b0ebb16732a9c97dbe810d9ed43789986ec5f7581ed8e382397f0b38ddd9511",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "09-07",
+      "before": {
+        "path": "evaluation/primary-endpoint-registry-v1.json",
+        "sha256": "83ae08ff984cdf1d95150df5be8bccc723ea286099ee78a2580e2a30ae9ce772"
+      },
+      "after": {
+        "path": "evaluation/primary-endpoint-registry-v1.json",
+        "sha256": "83ae08ff984cdf1d95150df5be8bccc723ea286099ee78a2580e2a30ae9ce772",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "09-08",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "09-08",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "09-08",
+      "before": {
+        "path": "services/detailed_benchmark.py",
+        "sha256": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d"
+      },
+      "after": {
+        "path": "services/detailed_benchmark.py",
+        "sha256": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "09-16",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "09-20",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v7.json",
+        "sha256": "fb6388db6bcd6b2c49d6e9524876a5d6cd152305de3d1ddcbe9e211fc39a5f26"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v7.json",
+        "sha256": "fb6388db6bcd6b2c49d6e9524876a5d6cd152305de3d1ddcbe9e211fc39a5f26",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "09-20",
+      "before": {
+        "path": "services/experiment_contract.py",
+        "sha256": "8b0ebb16732a9c97dbe810d9ed43789986ec5f7581ed8e382397f0b38ddd9511"
+      },
+      "after": {
+        "path": "services/experiment_contract.py",
+        "sha256": "8b0ebb16732a9c97dbe810d9ed43789986ec5f7581ed8e382397f0b38ddd9511",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "10-01",
+      "before": {
+        "path": "evaluation/reports/dependency-audit-triage.json",
+        "sha256": "40f6413a8511f9b95527ede0f66d8dad3727a494f6ddf131d9f001bb54318d05"
+      },
+      "after": {
+        "path": "evaluation/reports/dependency-audit-triage.json",
+        "sha256": "40f6413a8511f9b95527ede0f66d8dad3727a494f6ddf131d9f001bb54318d05",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-01",
+      "before": {
+        "path": "docs/dependency-audit-triage.md",
+        "sha256": "3c9e39c749a781d9878d19903e13da1d1e91d3b6cb74eb47f3c47a14850c9497"
+      },
+      "after": {
+        "path": "docs/dependency-audit-triage.md",
+        "sha256": "66c9819628894533340c4391eb54106076e4047b37018de92affc0df36046466",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "10-01",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-02",
+      "before": {
+        "path": "evaluation/reports/hosted-ci-baseline-receipt.json",
+        "sha256": "6c9870bd2a7ce18cbeef0be525c31745028f6b5e727336d1ef8b270160f6fb8e"
+      },
+      "after": {
+        "path": "evaluation/reports/hosted-ci-baseline-receipt.json",
+        "sha256": "6c9870bd2a7ce18cbeef0be525c31745028f6b5e727336d1ef8b270160f6fb8e",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-02",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-04",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-04",
+      "before": {
+        "path": ".github/workflows/ci.yml",
+        "sha256": "6aba1f58e053ff04a8264072a20b50ef186ae9dec2d5c681cd2d3ed1d3e8c62d"
+      },
+      "after": {
+        "path": ".github/workflows/ci.yml",
+        "sha256": "fbfb1798a92cf3332e1b5d7d3531350e80ce435ee78210db55279081076b9aeb",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "10-04",
+      "before": {
+        "path": "evaluation/reports/hosted-ci-router-slice-v1.json",
+        "sha256": "dba1afea0ee999a37c434442283b03e878cd5c25123726c991cc555af414b888"
+      },
+      "after": {
+        "path": "evaluation/reports/hosted-ci-router-slice-v1.json",
+        "sha256": "dba1afea0ee999a37c434442283b03e878cd5c25123726c991cc555af414b888",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-05",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v6.json",
+        "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v6.json",
+        "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-05",
+      "before": {
+        "path": "tests/test_google_auth.py",
+        "sha256": "ddbb9e84d9a16f412c80b4bfd89ce697b6e8a9a997c480eabe38d585e2eba7ea"
+      },
+      "after": {
+        "path": "tests/test_google_auth.py",
+        "sha256": "8b89b0517d0c173931ade14da627476ae9f8d63d2290c216ad3e1aafbafe2629",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "10-06",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-06",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-06",
+      "before": {
+        "path": "services/api/routers/encounters.py",
+        "sha256": "4410129865e6b7f613864907335f6e7fde7e9364e620be46a304b4a0fbdec824"
+      },
+      "after": {
+        "path": "services/api/routers/encounters.py",
+        "sha256": "49a9d165477109b351fb35f3dcc930fad3b05a8174668a2f485d3fe8d6120c0e",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "10-08",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "10-08",
+      "before": {
+        "path": "tests/test_safety_properties.py",
+        "sha256": "d045d30bdb59de65323c3b50192b0122e610f649a8c5ac1f0b4a4947a309b364"
+      },
+      "after": {
+        "path": "tests/test_safety_properties.py",
+        "sha256": "480fec88414159a32c0636baf345bc8741ce77e2b4a48d5fc7ebd0153da0866f",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-01",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-01",
+      "before": {
+        "path": "docs/local-threat-model.md",
+        "sha256": "808a4fb23be87a3fe776d8a0c05ef196fa2a1427db912b576cc3c093c61967f1"
+      },
+      "after": {
+        "path": "docs/local-threat-model.md",
+        "sha256": "3db6c6f2865822eb371188393f1d36b8bad4bff4a0ee9e246a1bf6c86a362218",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-03",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-03",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-03",
+      "before": {
+        "path": "services/api/auth.py",
+        "sha256": "d1465044cd2bc453d45a4c7e6143f4e26e094c5ffc04dddae64436643a881a9e"
+      },
+      "after": {
+        "path": "services/api/auth.py",
+        "sha256": "68ae044e6ea63a7fc8f57e14470a75323d611b04a0a315b7f77fdf4c5813734b",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-04",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-04",
+      "before": {
+        "path": "services/api/authorization_policy.py",
+        "sha256": "f39c2ee6f1225267076ad6acb6b021ac7cf7f9c2b74637d62488ea1c5498e595"
+      },
+      "after": {
+        "path": "services/api/authorization_policy.py",
+        "sha256": "f39c2ee6f1225267076ad6acb6b021ac7cf7f9c2b74637d62488ea1c5498e595",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-04",
+      "before": {
+        "path": "evaluation/contracts/authorization-policy-v1.json",
+        "sha256": "a2481b8afc10bb92cef1b69d087fbd12dd51d42d87ebc3ec7ad6c5b7ec8783ff"
+      },
+      "after": {
+        "path": "evaluation/contracts/authorization-policy-v1.json",
+        "sha256": "a2481b8afc10bb92cef1b69d087fbd12dd51d42d87ebc3ec7ad6c5b7ec8783ff",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-06",
+      "before": {
+        "path": "evaluation/reports/secret-scan-foundation-v1.json",
+        "sha256": "b099d6d9623a54a8562face2e1c798c98e93630b7cf036bb0028f17e36e30cc3"
+      },
+      "after": {
+        "path": "evaluation/reports/secret-scan-foundation-v1.json",
+        "sha256": "b099d6d9623a54a8562face2e1c798c98e93630b7cf036bb0028f17e36e30cc3",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-06",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-10",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v6.json",
+        "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v6.json",
+        "sha256": "c1ef677ea76a76919cc24a1d9a888ed335012215a1d92dd7c9ebe954e04bd105",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-10",
+      "before": {
+        "path": "services/strict_json.py",
+        "sha256": "90f074e651825f57259c8873b5da122479a74bd3eb839fd4c42c1d79ece5578a"
+      },
+      "after": {
+        "path": "services/strict_json.py",
+        "sha256": "90f074e651825f57259c8873b5da122479a74bd3eb839fd4c42c1d79ece5578a",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-10",
+      "before": {
+        "path": "tests/test_domain_integrity.py",
+        "sha256": "f07d651c6ca49aa484c83c6ec8528048dd3a18dc191b5731c9c9400b2ca0cbfa"
+      },
+      "after": {
+        "path": "tests/test_domain_integrity.py",
+        "sha256": "a3b1d74bdb497ca86a90d4e9bb7929b0221984237815adb37082b6494e28137d",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-10",
+      "before": {
+        "path": "tests/test_verifier_fail_closed.py",
+        "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6"
+      },
+      "after": {
+        "path": "tests/test_verifier_fail_closed.py",
+        "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-11",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-11",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-11",
+      "before": {
+        "path": "services/review/engine.py",
+        "sha256": "c0aa4be7c3bbe8c05467230737a785b670d5a050626592ac6ced6418fc0e3cb6"
+      },
+      "after": {
+        "path": "services/review/engine.py",
+        "sha256": "306866218676d899248530dc4c59ea26de7c15a2986f396c0703a23c55000ab9",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-12",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-13",
+      "before": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+      },
+      "after": {
+        "path": "evaluation/reports/existing-capability-review-v1.json",
+        "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-13",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-13",
+      "before": {
+        "path": "services/encrypted_backup.py",
+        "sha256": "00866efefb2772a6b7ce62a48a5e673c626e80f1000e6c3547142305f072177a"
+      },
+      "after": {
+        "path": "services/encrypted_backup.py",
+        "sha256": "ca16ea37975639cf98d99c3eb575152ef1fd671e67297a9c905dba752318f567",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-15",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-15",
+      "before": {
+        "path": "services/audit_integrity.py",
+        "sha256": "bd83057be03e8591a553e3160d463c276cb277777fdd3e7c3afc57eee9795740"
+      },
+      "after": {
+        "path": "services/audit_integrity.py",
+        "sha256": "bd83057be03e8591a553e3160d463c276cb277777fdd3e7c3afc57eee9795740",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-15",
+      "before": {
+        "path": "tests/test_audit_integrity.py",
+        "sha256": "575431506943a231e9faf84c7bd438ef1732037964e943ca9f7b9b7a887161d7"
+      },
+      "after": {
+        "path": "tests/test_audit_integrity.py",
+        "sha256": "fe04abd96709a48e01b122505daa88371cd8783d905dce1918eb0da1a65b8290",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-18",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-18",
+      "before": {
+        "path": "services/review/engine.py",
+        "sha256": "c0aa4be7c3bbe8c05467230737a785b670d5a050626592ac6ced6418fc0e3cb6"
+      },
+      "after": {
+        "path": "services/review/engine.py",
+        "sha256": "306866218676d899248530dc4c59ea26de7c15a2986f396c0703a23c55000ab9",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-18",
+      "before": {
+        "path": "services/review/routers/exports.py",
+        "sha256": "41e9382af81992f352e06775abf034a6cf44f3c86c0710f228edaf020fb2bc4c"
+      },
+      "after": {
+        "path": "services/review/routers/exports.py",
+        "sha256": "a435c777fcc376f9b231105323ebbbe36993a594048608780bdad89e9f6c2c7d",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-18",
+      "before": {
+        "path": "evaluation/reports/error-taxonomy-v2/report.json",
+        "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2"
+      },
+      "after": {
+        "path": "evaluation/reports/error-taxonomy-v2/report.json",
+        "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "11-20",
+      "before": {
+        "path": "README.md",
+        "sha256": "82e4fe87129381320789c1e56aa080870d5f5e3316b7b08bed220ac381e8b3aa"
+      },
+      "after": {
+        "path": "README.md",
+        "sha256": "40514a7cc3a4a80ef188eb224d65195182113938fedb53678f4462fccf37571b",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "11-20",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "13-02",
+      "before": {
+        "path": "docs/demo-runbook-offline.md",
+        "sha256": "b8da08c976ef1f6087c2e5292b275fcfa1fe7346130da5c0098ac41b491ab16e"
+      },
+      "after": {
+        "path": "docs/demo-runbook-offline.md",
+        "sha256": "a96dcf7b86169ac20bebd771c018fd30212d42ad3e5673ecdc3c3f126ee28456",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "13-02",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "13-08",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "13-08",
+      "before": {
+        "path": "services/benchmark_integrity.py",
+        "sha256": "0548456bbeb05529a829a5a8f8e4e6a668a881d9e1366744a1b24c0e723e4f1a"
+      },
+      "after": {
+        "path": "services/benchmark_integrity.py",
+        "sha256": "0548456bbeb05529a829a5a8f8e4e6a668a881d9e1366744a1b24c0e723e4f1a",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "13-08",
+      "before": {
+        "path": "docs/benchmark-integrity.md",
+        "sha256": "b14dd65bbae9db61b7ce396e6e9aeffaccda7f4e256da8eff79db8fe026cd111"
+      },
+      "after": {
+        "path": "docs/benchmark-integrity.md",
+        "sha256": "7ac237acaaaf3c4c0eff1c95967bf52104c42c1766c905465d1e33b523cc1283",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "13-11",
+      "before": {
+        "path": "docs/offline-acceptance-summary.md",
+        "sha256": "bf5aa93b19817ac51e35d686208f2e14896df9a530ba2555c27965b008060c70"
+      },
+      "after": {
+        "path": "docs/offline-acceptance-summary.md",
+        "sha256": "b5b17564f860a24a6fc48881610675c54cd93fab19c703a3a227c85fbe11058c",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "13-11",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "15-01",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "15-01",
+      "before": {
+        "path": "services/offline_demo.py",
+        "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663"
+      },
+      "after": {
+        "path": "services/offline_demo.py",
+        "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "15-02",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v4.json",
+        "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+        "hash_mode": "bytes"
+      }
+    },
+    {
+      "task": "15-02",
+      "before": {
+        "path": "services/offline_demo.py",
+        "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663"
+      },
+      "after": {
+        "path": "services/offline_demo.py",
+        "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "15-04",
+      "before": {
+        "path": "docs/demo-runbook-offline.md",
+        "sha256": "b8da08c976ef1f6087c2e5292b275fcfa1fe7346130da5c0098ac41b491ab16e"
+      },
+      "after": {
+        "path": "docs/demo-runbook-offline.md",
+        "sha256": "a96dcf7b86169ac20bebd771c018fd30212d42ad3e5673ecdc3c3f126ee28456",
+        "hash_mode": "normalized_source_text"
+      }
+    },
+    {
+      "task": "15-04",
+      "before": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+      },
+      "after": {
+        "path": "evaluation/reports/offline-acceptance-v3.json",
+        "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+        "hash_mode": "bytes"
+      }
+    }
+  ],
+  "independent_clinical_gold": false,
+  "clinical_release": false
+}

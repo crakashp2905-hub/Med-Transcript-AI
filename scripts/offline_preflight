@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+"""Read-only cached-artifact preflight. Run with the existing project Python."""
+import os
+from pathlib import Path
+import runpy
+import sys
+
+root=Path(__file__).resolve().parents[1]
+os.chdir(root)
+sys.path.insert(0,str(root))
+os.environ['MED_TRANSCRIPT_OFFLINE']='1'
+if '--hash-models' not in sys.argv:sys.argv.append('--hash-models')
+runpy.run_module('services.offline_preflight',run_name='__main__')

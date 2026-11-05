@@ -24,6 +24,29 @@ def sha256(path):
     return digest.hexdigest()
 
 
+def evidence_sha256(path, mode='bytes', relative_name=None):
+    path=Path(path)
+    if mode=='bytes':return sha256(path)
+    if mode!='normalized_source_text':raise ValueError('unknown_evidence_hash_mode')
+    namespace=Path(relative_name) if relative_name is not None else path
+    parts=namespace.parts
+    if ('evaluation' in parts or any(a=='docs' and b=='plans' for a,b in zip(parts,parts[1:]))
+        or path.suffix.lower() not in {'.py','.ts','.tsx','.md','.ps1','.yml','.yaml','.cmd'}):
+        raise ValueError('artifact_bytes_cannot_be_normalized')
+    return hashlib.sha256(path.read_text(encoding='utf-8').encode('utf-8')).hexdigest()
+
+
+def evidence_record(name, root='.'):
+    path=Path(name)
+    try:namespace=path.resolve().relative_to(Path(root).resolve())
+    except ValueError:namespace=path
+    mode='normalized_source_text'
+    try:digest=evidence_sha256(path,mode,namespace)
+    except ValueError:
+        mode='bytes';digest=sha256(path)
+    return {'path':namespace.as_posix(),'sha256':digest,'hash_mode':mode}
+
+
 def validate(document, root='.'):
     root = Path(root).resolve()
     ids = [t['id'] for t in document['tasks']]
@@ -38,7 +61,7 @@ def validate(document, root='.'):
             raise ValueError('verified_task_missing_evidence')
         for evidence in task['evidence']:
             path = (root / evidence['path']).resolve()
-            if not path.is_relative_to(root) or not path.is_file() or sha256(path) != evidence['sha256']:
+            if not path.is_relative_to(root) or not path.is_file() or evidence_sha256(path,evidence.get('hash_mode','bytes'),evidence['path']) != evidence['sha256']:
                 raise ValueError('verified_evidence_missing_or_changed')
     complete = sum(t['status'] == 'verified' for t in document['tasks'])
     return {'verified': complete, 'total': len(ids), 'percent': round(100*complete/len(ids), 2),

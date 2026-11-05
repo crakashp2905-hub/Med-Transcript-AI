@@ -1,0 +1,22 @@
+{
+  "schema_version": "local_artifact_inventory_provenance_v1",
+  "recorded_at": "2026-11-05T04:18:40.068937+00:00",
+  "inventory_sha256": "ea4b00cfe7dc679a3735438777d2770af6c4342586885c8b9f84ad44189f741c",
+  "base_commit": "abd8b6cc16ab7d4d7c3489f2bcd4a6c9c5db1ff9",
+  "working_tree_code_changes": true,
+  "code_sha256": {
+    "services/offline_preflight.py": "24a485706f2da4747185b674e90d57b422559811568d8b47334478f199486b05",
+    "scripts/offline_preflight": "50b89b9bd03b38f21b2014d8a5a12bbc28741eb46c6824422b42d63844cf7276",
+    "scripts/offline_preflight.ps1": "aaa9cacadee64acce8f1d5f91867539038c3f853d55339a57ba503dd347022d0"
+  },
+  "directories": 11,
+  "files": 93,
+  "bytes": 11458946085,
+  "all_reported_paths_exist": true,
+  "model_inference_performed": false,
+  "new_installations_attempted": 0,
+  "external_calls_attempted": 0,
+  "independent_clinical_gold": false,
+  "clinical_release": false,
+  "limitations": "Observed streaming hashes do not attest model eligibility, license approval, word alignment or loadability."
+}

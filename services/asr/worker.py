@@ -102,10 +102,9 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
             profile = ASRProfile.model_validate_json(profile_body)
             if profile.sha256 != job["profile_sha256"]:
                 raise ASRFailure("model_integrity_failure")
-            try:
-                profile.verify_artifacts()
-            except (OSError, ValueError):
-                raise ASRFailure("model_integrity_failure") from None
+            availability=profile.availability()
+            if availability['status']!='available_not_admitted':
+                raise ASRFailure(availability['reason_code'])
             source = Path(asset_root) / f"{upload['id']}.wav"
             if source.stat().st_size != upload["expected_bytes"] or file_sha256(source) != upload["expected_sha256"]:
                 raise ASRFailure("asset_integrity_failure")

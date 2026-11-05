@@ -42,6 +42,8 @@ class ASRProfile(BaseModel):
     @field_validator("model_dir")
     @classmethod
     def absolute_directory(cls, value):
+        if value.startswith(('\\\\','//')):
+            raise ValueError('Network model directories are forbidden')
         if not Path(value).is_absolute():
             raise ValueError("An absolute local model directory is required")
         return value
@@ -73,6 +75,16 @@ class ASRProfile(BaseModel):
             path = root / name
             if path.is_symlink() or not path.is_file() or file_sha256(path) != expected:
                 raise ValueError("model_integrity_failure")
+
+    def availability(self):
+        root=Path(self.model_dir)
+        result={'automatic_download':False,'admission':'not_established_by_file_presence'}
+        if not root.is_symlink() and (not root.is_dir() or any(not (root/name).exists() for name in self.artifacts)):
+            return {**result,'status':'unavailable','reason_code':'model_unavailable'}
+        try:self.verify_artifacts()
+        except (ValueError,OSError):
+            return {**result,'status':'integrity_failed','reason_code':'model_integrity_failure'}
+        return {**result,'status':'available_not_admitted','reason_code':None}
 
 
 def load_profiles(path):

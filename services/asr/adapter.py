@@ -11,7 +11,7 @@ from services.asr.profiles import ASRProfile
 
 
 class ASRFailure(Exception):
-    SAFE_CODES = {"asr_dependency_missing", "asr_runtime_mismatch", "model_integrity_failure",
+    SAFE_CODES = {"asr_dependency_missing", "asr_runtime_mismatch", "model_integrity_failure", "model_unavailable",
                   "unsupported_asr_input", "invalid_asr_output", "asset_integrity_failure",
                   "asset_unavailable", "authorization_required", "worker_lease_lost", "asr_failed"}
 
@@ -37,10 +37,9 @@ class FasterWhisperAdapter:
     def transcribe(self, source: Path, metadata: dict, checkpoint):
         if metadata["channels"] != 1 or metadata["sample_rate"] != 16000:
             raise ASRFailure("unsupported_asr_input")
-        try:
-            self.profile.verify_artifacts()
-        except (ValueError, OSError):
-            raise ASRFailure("model_integrity_failure") from None
+        availability=self.profile.availability()
+        if availability['status']!='available_not_admitted':
+            raise ASRFailure(availability['reason_code'])
         try:
             runtime_packages = {name: importlib.metadata.version(name) for name in
                                 ("faster-whisper", "ctranslate2", "tokenizers", "numpy", "av", "onnxruntime")}

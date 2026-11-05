@@ -19,7 +19,7 @@ def source_inventory():
     patterns=('services/**/*.py','tests/**/*.py','apps/clinician-web/src/**/*',
               'apps/clinician-web/e2e/**/*.ts','apps/clinician-web/*.json','apps/clinician-web/*.ts',
               '.github/workflows/*.yml','pyproject.toml','constraints-ci.txt',
-              'evaluation/primary-endpoint-registry-v1.json')
+              'evaluation/primary-endpoint-registry-v1.json','scripts/*','Dockerfile','compose*.yaml')
     return {p.as_posix():sha256(p) for pattern in patterns for p in Path('.').glob(pattern)
             if p.is_file() and '__pycache__' not in p.parts}
 
