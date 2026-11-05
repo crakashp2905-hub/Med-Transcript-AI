@@ -15,6 +15,28 @@ from services.offline import install
 from services.engineering_status import sha256
 
 
+def source_inventory():
+    patterns=('services/**/*.py','tests/**/*.py','apps/clinician-web/src/**/*',
+              'apps/clinician-web/e2e/**/*.ts','apps/clinician-web/*.json','apps/clinician-web/*.ts',
+              '.github/workflows/*.yml','pyproject.toml','constraints-ci.txt',
+              'evaluation/primary-endpoint-registry-v1.json')
+    return {p.as_posix():sha256(p) for pattern in patterns for p in Path('.').glob(pattern)
+            if p.is_file() and '__pycache__' not in p.parts}
+
+
+def test_result_summary(result):
+    # Do not publish assertion values, source excerpts, parameters or provider text.
+    failed=sorted(set(re.findall(r'^(?:FAILED|ERROR) ([a-zA-Z0-9_./\\:-]+)',result.stdout,re.M)))
+    lines=result.stdout.splitlines()
+    terminal=lines[-1] if lines else ''
+    counts=re.findall(r'\b(\d+) (passed|failed|skipped|warnings?|errors?|deselected|xfailed|xpassed)\b',terminal)
+    summary=', '.join(f'{count} {kind}' for count,kind in counts) or 'No recognized pytest summary available'
+    duration=re.search(r'\bin (\d+(?:\.\d+)?)s\b',terminal)
+    if duration:summary+=' in '+duration.group(1)+'s'
+    return {'exit_code':result.returncode,'summary':summary,
+            'failed_test_ids':failed,'raw_failure_text_included':False}
+
+
 def acceptance(version, run_tests=True, run_build=True):
     if not re.fullmatch(r'[a-zA-Z0-9_.-]{1,80}', version):
         raise ValueError('Invalid acceptance version')
@@ -27,15 +49,13 @@ def acceptance(version, run_tests=True, run_build=True):
     from services.benchmark_integrity import audit
     from services.offline_demo import prepare, walkthrough
     start = time.perf_counter()
-    source_paths = [p for pattern in ('services/**/*.py', 'tests/**/*.py', 'apps/clinician-web/src/**/*')
-                    for p in Path('.').glob(pattern) if p.is_file() and '__pycache__' not in p.parts]
-    source_hashes = {p.as_posix(): sha256(p) for p in source_paths}
+    source_hashes = source_inventory()
     results = {}
     preflight = inspect()
     def step(name, fn):
         try:
             value = fn()
-            results[name] = {'status': 'pass', 'result': value}
+            results[name] = {'status': 'fail' if isinstance(value,dict) and value.get('exit_code',0)!=0 else 'pass', 'result': value}
         except Exception as exc:
             results[name] = {'status': 'fail', 'error_type': type(exc).__name__}
         print(json.dumps({'check': name, 'status': results[name]['status']}), flush=True)
@@ -56,9 +76,7 @@ def acceptance(version, run_tests=True, run_build=True):
             env = dict(os.environ)
             env.pop('MED_TRANSCRIPT_PROFILE', None)
             result = subprocess.run([sys.executable, '-m', 'pytest', '-q'], env=env, capture_output=True, text=True, timeout=600)
-            if result.returncode:
-                raise ValueError('Backend tests failed; inspect local pytest output')
-            return {'exit_code': result.returncode, 'summary': result.stdout.splitlines()[-1]}
+            return test_result_summary(result)
         step('backend_tests', tests)
     else:
         results['backend_tests'] = {'status': 'not_run', 'reason': 'explicitly_skipped'}
@@ -79,7 +97,7 @@ def acceptance(version, run_tests=True, run_build=True):
     else:
         results['frontend_build'] = {'status': 'not_run', 'reason': 'explicitly_skipped'}
     step('synthetic_walkthrough', demo)
-    if any(not Path(name).is_file() or sha256(name) != expected for name, expected in source_hashes.items()):
+    if source_inventory()!=source_hashes:
         results['source_integrity'] = {'status': 'fail', 'reason': 'source_changed_during_acceptance'}
     else:
         results['source_integrity'] = {'status': 'pass', 'files_checked': len(source_hashes)}

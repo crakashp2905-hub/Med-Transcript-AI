@@ -39,9 +39,10 @@ def test_approval_body_and_export_byte_tampering_are_rejected(setup):
 
 def test_legacy_audit_backfill_is_repeatable_and_does_not_rewrite_history(tmp_path):
     path=str(tmp_path/'legacy.sqlite3');event=(str(uuid4()),str(uuid4()),str(uuid4()),'legacy_event','record',datetime.now(timezone.utc).isoformat())
+    audit_index=next(i for i,migration in enumerate(MIGRATIONS) if 'CREATE TABLE audit_chain' in migration)
     with sqlite3.connect(path) as con:
-        for migration in MIGRATIONS[:-1]:con.executescript(migration)
-        con.execute(f'PRAGMA user_version={len(MIGRATIONS)-1}')
+        for migration in MIGRATIONS[:audit_index]:con.executescript(migration)
+        con.execute(f'PRAGMA user_version={audit_index}')
         con.execute('INSERT INTO audit VALUES (?,?,?,?,?,?)',event)
     Store(path);Store(path)
     with Store(path).transaction() as con:
