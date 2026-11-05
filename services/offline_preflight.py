@@ -62,7 +62,7 @@ def inventory_models(root='.',hash_contents=False):
     return models
 
 
-def inspect(root='.',hash_models=False):
+def inspect(root='.',hash_models=False,ollama_root=None):
     root = Path(root).resolve()
     def present(name):
         try:
@@ -73,7 +73,9 @@ def inspect(root='.',hash_models=False):
     tools = {name: ('available' if present(module) else 'blocked_missing_local_artifact') for name, module in
              [('pytest', 'pytest'), ('codec_av', 'av'), ('coverage', 'coverage'), ('ruff', 'ruff'), ('mypy', 'mypy'), ('pip_audit', 'pip_audit')]}
     wheelhouse = root/'data/wheelhouse'
+    from services.ollama_inventory import inventory as ollama_inventory
     return {'schema_version': 'offline_preflight_v1', 'tools': tools,
+            'configured_ollama_cache':ollama_inventory(ollama_root) if ollama_root else {'status':'not_requested','hint':'Use --ollama-root for the configured Qwen blob cache.'},
             'node': 'available' if shutil.which('node') else 'blocked_missing_local_artifact',
             'npm_dependencies': 'available' if (root/'apps/clinician-web/node_modules/typescript').is_dir() else 'blocked_missing_local_artifact',
             'python_wheelhouse': 'available' if list(wheelhouse.glob('*.whl')) else 'blocked_missing_local_artifact',
@@ -88,7 +90,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', required=True)
     parser.add_argument('--hash-models',action='store_true',help='Stream hashes for every existing local model file; does not load or qualify models')
+    parser.add_argument('--ollama-root',help='Explicit existing local Ollama cache; only configured Qwen models are inspected')
     args = parser.parse_args()
-    report=inspect(hash_models=args.hash_models)
+    report=inspect(hash_models=args.hash_models,ollama_root=args.ollama_root)
     with Path(args.out).open('x', encoding='utf-8') as output:
         json.dump(report, output, indent=2)

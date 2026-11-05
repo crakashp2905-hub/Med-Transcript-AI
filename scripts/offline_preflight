@@ -10,4 +10,6 @@ os.chdir(root)
 sys.path.insert(0,str(root))
 os.environ['MED_TRANSCRIPT_OFFLINE']='1'
 if '--hash-models' not in sys.argv:sys.argv.append('--hash-models')
+if '--ollama-root' not in sys.argv and os.environ.get('OLLAMA_MODELS'):
+    sys.argv.extend(['--ollama-root',os.environ['OLLAMA_MODELS']])
 runpy.run_module('services.offline_preflight',run_name='__main__')

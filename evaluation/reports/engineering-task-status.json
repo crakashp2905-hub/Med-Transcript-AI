@@ -1744,18 +1744,56 @@
     {
       "id": "08-01",
       "description": "Provide a single encounter workspace with audio, source transcript, reviewed facts, SOAP note, warnings and evidence links in synchronized panes.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v9.json",
+          "sha256": "fa7ae9da2fb59156199b7d682d71af1f3644bcccda1f491bcaaf08124571c26d",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/browser-validation-receipts-v2.json",
+          "sha256": "7dff9b34bf8e15bf2d4c83ed23e108d7fce9dbb558011cbe1f5963ed9fbed587",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+          "sha256": "ca72e30543d0a7b5c90fff7b1ba5196c85f417c5d37d77e105cf8047daab279c",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "clinician reviews evidence, corrects a blocking medication, approves and exports",
+        "fact source navigation requests the exact cited audio channel"
+      ],
+      "limitations": "Audio, source context, reviewed facts, SOAP, warnings and citations share one encounter workspace. Scripted browser fixtures exercise navigation, not clinical accuracy."
     },
     {
       "id": "08-02",
       "description": "Ensure clicking any note claim seeks to the correct source audio/segment and never pretends chunk bounds are aligned word timestamps.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v9.json",
+          "sha256": "fa7ae9da2fb59156199b7d682d71af1f3644bcccda1f491bcaaf08124571c26d",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/browser-validation-receipts-v2.json",
+          "sha256": "7dff9b34bf8e15bf2d4c83ed23e108d7fce9dbb558011cbe1f5963ed9fbed587",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+          "sha256": "ca72e30543d0a7b5c90fff7b1ba5196c85f417c5d37d77e105cf8047daab279c",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "fact source navigation requests the exact cited audio channel",
+        "clinician reviews evidence, corrects a blocking medication, approves and exports"
+      ],
+      "limitations": "Containing-segment playback retains source version and channel. Highlighting is explicitly not word alignment; no word-level timestamp capability is implied."
     },
     {
       "id": "08-03",
@@ -1820,18 +1858,55 @@
     {
       "id": "08-08",
       "description": "Make warnings severity ordered but not auto-dismissable when clinical-critical, and show exactly which fact blocks approval.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v9.json",
+          "sha256": "fa7ae9da2fb59156199b7d682d71af1f3644bcccda1f491bcaaf08124571c26d",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/browser-validation-receipts-v2.json",
+          "sha256": "7dff9b34bf8e15bf2d4c83ed23e108d7fce9dbb558011cbe1f5963ed9fbed587",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "apps/clinician-web/src/VerificationWarnings.tsx",
+          "sha256": "20719fe755823d6081e7c1a74b4db794c5f55572259b19cec41f38b9900567f7",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "clinician reviews evidence, corrects a blocking medication, approves and exports",
+        "test_ambiguous_medication_blocks_and_correction_creates_new_version"
+      ],
+      "limitations": "Severity groups identify the blocking fact and focus its editor/source. Critical findings persist until the saved version passes deterministic checks and explicit review."
     },
     {
       "id": "08-09",
       "description": "Treat plain-language patient summary as a separately reviewed draft with explicit non-delivery status.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v9.json",
+          "sha256": "fa7ae9da2fb59156199b7d682d71af1f3644bcccda1f491bcaaf08124571c26d",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/browser-validation-receipts-v2.json",
+          "sha256": "7dff9b34bf8e15bf2d4c83ed23e108d7fce9dbb558011cbe1f5963ed9fbed587",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "apps/clinician-web/src/PresentationTools.tsx",
+          "sha256": "4c0a24ae75c568cbf8ddf75f9653019a8735a1b4d44533856f83ef73054d505b",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "approved summary requires separate confirmation and edits reset it"
+      ],
+      "limitations": "Summary remains an undelivered draft, with separate confirmation and source-version recheck. Editing clears confirmation; no automatic patient delivery is implemented."
     },
     {
       "id": "08-10",
@@ -1863,10 +1938,29 @@
     {
       "id": "08-11",
       "description": "Add first-run onboarding using only a prebuilt synthetic example, without asking for Google or external accounts.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v9.json",
+          "sha256": "fa7ae9da2fb59156199b7d682d71af1f3644bcccda1f491bcaaf08124571c26d",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/browser-validation-receipts-v2.json",
+          "sha256": "7dff9b34bf8e15bf2d4c83ed23e108d7fce9dbb558011cbe1f5963ed9fbed587",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "docs/demo-runbook-offline.md",
+          "sha256": "a96dcf7b86169ac20bebd771c018fd30212d42ad3e5673ecdc3c3f126ee28456",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "detailed demo, review tools and measured dashboard preserve approval boundaries",
+        "test_offline_scripted_workflow_blocks_dose_error_and_viewer_write"
+      ],
+      "limitations": "Local onboarding and guided synthetic example use private local access keys, with no external account requirement. Reference/silent fixtures do not measure ASR."
     },
     {
       "id": "08-12",
@@ -2930,7 +3024,7 @@
       "evidence": [
         {
           "path": "docs/offline-acceptance-summary.md",
-          "sha256": "b5b17564f860a24a6fc48881610675c54cd93fab19c703a3a227c85fbe11058c",
+          "sha256": "b3643d8399ef5b8bd4e609f43bc8479e4fc9b0289439c1d1faab0a337387d9a1",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -2961,10 +3055,29 @@
     {
       "id": "14-01",
       "description": "Select one narrow algorithmic contribution: e.g., uncertainty-aware source/evidence coverage and clinical-relation checking over deterministic and LLM baselines.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v9.json",
+          "sha256": "fa7ae9da2fb59156199b7d682d71af1f3644bcccda1f491bcaaf08124571c26d",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/browser-validation-receipts-v2.json",
+          "sha256": "7dff9b34bf8e15bf2d4c83ed23e108d7fce9dbb558011cbe1f5963ed9fbed587",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "docs/candidate-method.md",
+          "sha256": "27e021338e9bf318402d0266dc073e590baf691dba84214223785a5c3a5f74c9",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_relationship_quotes_are_exact_and_never_reviewed",
+        "test_lower_evidence_tiers_cannot_claim_independent_gold"
+      ],
+      "limitations": "One narrow evidence/relation-checking candidate is selected as a hypothesis. Distinct implementation, fair ablations and independent novelty/effectiveness review remain separate incomplete tasks."
     },
     {
       "id": "14-02",
@@ -3049,10 +3162,34 @@
     {
       "id": "14-12",
       "description": "Do not claim an independently novel or clinically effective method without external comparison/review; use `candidate contribution` language.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v9.json",
+          "sha256": "fa7ae9da2fb59156199b7d682d71af1f3644bcccda1f491bcaaf08124571c26d",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/browser-validation-receipts-v2.json",
+          "sha256": "7dff9b34bf8e15bf2d4c83ed23e108d7fce9dbb558011cbe1f5963ed9fbed587",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "docs/candidate-method.md",
+          "sha256": "27e021338e9bf318402d0266dc073e590baf691dba84214223785a5c3a5f74c9",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/release-roadmap.md",
+          "sha256": "4a127099d6005af2f4140219cc1b704c68efb24aa045741ef8de9021737770d7",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_lower_evidence_tiers_cannot_claim_independent_gold",
+        "test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence"
+      ],
+      "limitations": "Candidate-contribution language is explicit. No independently novel method, clinical efficacy or external review is claimed."
     },
     {
       "id": "15-01",
@@ -3191,10 +3328,29 @@
     {
       "id": "15-12",
       "description": "Add a concise roadmap separating next offline engineering release, independent clinical acceptance, and future optional imaging/TTS work.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v9.json",
+          "sha256": "fa7ae9da2fb59156199b7d682d71af1f3644bcccda1f491bcaaf08124571c26d",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/browser-validation-receipts-v2.json",
+          "sha256": "7dff9b34bf8e15bf2d4c83ed23e108d7fce9dbb558011cbe1f5963ed9fbed587",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "docs/release-roadmap.md",
+          "sha256": "4a127099d6005af2f4140219cc1b704c68efb24aa045741ef8de9021737770d7",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence",
+        "test_english_only_schema_rejects_other_languages_and_imaging"
+      ],
+      "limitations": "Documentary roadmap separates offline engineering, local research, independent clinical acceptance and optional future imaging/TTS. It does not declare those releases complete."
     }
   ],
   "clinical_release": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",

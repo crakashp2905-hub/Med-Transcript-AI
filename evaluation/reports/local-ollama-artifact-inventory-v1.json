@@ -1,0 +1,93 @@
+{
+  "schema_version": "configured_local_ollama_inventory_v1",
+  "models": [
+    {
+      "model": "qwen2.5:1.5b",
+      "expected_manifest_sha256": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+      "automatic_download": false,
+      "manifest_sha256": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+      "blob_digests": [
+        "sha256:377ac4d7aeefd5b870c9fccff9a6d4df36901d99fe3277c2f755bc401601ba1c",
+        "sha256:183715c435899236895da3869489cc30ac241476b4971a20285b1a462818a5b4",
+        "sha256:66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e",
+        "sha256:eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+        "sha256:832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      ],
+      "status": "contents_hashed_not_model_eligibility"
+    },
+    {
+      "model": "qwen2.5:7b",
+      "expected_manifest_sha256": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "automatic_download": false,
+      "manifest_sha256": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "blob_digests": [
+        "sha256:2f15b3218f0552c60647ce60ada83632d2c09755b16259b13e3e4458e9ae419d",
+        "sha256:2bada8a7450677000f678be90653b85d364de7db25eb5ea54136ada5f3933730",
+        "sha256:66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e",
+        "sha256:eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+        "sha256:832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      ],
+      "status": "contents_hashed_not_model_eligibility"
+    }
+  ],
+  "blobs": [
+    {
+      "digest": "sha256:377ac4d7aeefd5b870c9fccff9a6d4df36901d99fe3277c2f755bc401601ba1c",
+      "expected_bytes": 487,
+      "bytes": 487,
+      "sha256": "377ac4d7aeefd5b870c9fccff9a6d4df36901d99fe3277c2f755bc401601ba1c",
+      "status": "verified_bytes"
+    },
+    {
+      "digest": "sha256:183715c435899236895da3869489cc30ac241476b4971a20285b1a462818a5b4",
+      "expected_bytes": 986048512,
+      "bytes": 986048512,
+      "sha256": "183715c435899236895da3869489cc30ac241476b4971a20285b1a462818a5b4",
+      "status": "verified_bytes"
+    },
+    {
+      "digest": "sha256:66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e",
+      "expected_bytes": 68,
+      "bytes": 68,
+      "sha256": "66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e",
+      "status": "verified_bytes"
+    },
+    {
+      "digest": "sha256:eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+      "expected_bytes": 1482,
+      "bytes": 1482,
+      "sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+      "status": "verified_bytes"
+    },
+    {
+      "digest": "sha256:832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "expected_bytes": 11343,
+      "bytes": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "status": "verified_bytes"
+    },
+    {
+      "digest": "sha256:2f15b3218f0552c60647ce60ada83632d2c09755b16259b13e3e4458e9ae419d",
+      "expected_bytes": 487,
+      "bytes": 487,
+      "sha256": "2f15b3218f0552c60647ce60ada83632d2c09755b16259b13e3e4458e9ae419d",
+      "status": "verified_bytes"
+    },
+    {
+      "digest": "sha256:2bada8a7450677000f678be90653b85d364de7db25eb5ea54136ada5f3933730",
+      "expected_bytes": 4683073952,
+      "bytes": 4683073952,
+      "sha256": "2bada8a7450677000f678be90653b85d364de7db25eb5ea54136ada5f3933730",
+      "status": "verified_bytes"
+    }
+  ],
+  "unique_blob_bytes": 5669136331,
+  "recorded_at": "2026-11-05T04:38:56.745750+00:00",
+  "source_commit": "36f97b5ebea83b4999478c14775ca8db97dfa29e",
+  "code_sha256": "1197091e49dfbd679724f7dc78a2ee61d8ee11123950db9b78e8cb350a5d14f0",
+  "model_inference_performed": false,
+  "external_calls_attempted": 0,
+  "independent_clinical_gold": false,
+  "clinical_release": false,
+  "limitations": "Only the configured Qwen 1.5B/7B manifests and referenced blobs are inspected. Other cached models remain outside scope; byte hashes do not attest license approval or clinical eligibility."
+}
