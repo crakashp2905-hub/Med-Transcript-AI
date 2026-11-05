@@ -1,0 +1,266 @@
+{
+  "schema_version": "existing_capability_review_v1",
+  "source_commit": "ec428cf99b2c8cbbaad4285c5a231ff7107b45d0",
+  "acceptance_sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8",
+  "scope": "Reviewed existing implementation and passing exact-source tests; no new model inference or clinical labels.",
+  "independent_clinical_gold": false,
+  "clinical_release": false,
+  "tasks": {
+    "00-04": {
+      "source": "services/evaluation.py",
+      "source_sha256": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055",
+      "tests": [
+        "test_dataset_lock_cannot_relax_user_wer_limit",
+        "test_text_benchmark_cannot_relax_five_percent_policy",
+        "test_revised_five_percent_policy_preserves_exact_boundary"
+      ],
+      "limitations": "Five-percent admission stays exact and unrounded; older three-percent results remain historical artifacts."
+    },
+    "02-06": {
+      "source": "services/full_empty_reconstruction.py",
+      "source_sha256": "efbe634d7c4c4b797d4ed9e153085712d4482591b01ff024815c8628c0995893",
+      "tests": [
+        "test_empty_output_opt_in_never_hides_other_runtime_failures",
+        "test_posthoc_empty_reconstruction_preserves_original_failures",
+        "test_other_failures_and_stale_proofs_cannot_be_admitted"
+      ],
+      "limitations": "Model-specific empty-output reconstructions are retrospective and separate; full deletion penalties remain. Empty text does not qualify a model."
+    },
+    "02-08": {
+      "source": "services/detailed_benchmark.py",
+      "source_sha256": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d",
+      "tests": [
+        "test_coverage_rejects_missing_prefix_gap_or_tail",
+        "test_one_failed_window_retains_all_reference_deletions_and_raw_success",
+        "test_chunk_windows_cover_all_samples_without_invalid_bounds"
+      ],
+      "limitations": "Submitted-sample/window accounting is exact; untranscribed intervals are not labelled acoustic silence or proof of completeness."
+    },
+    "02-20": {
+      "source": "services/evaluation.py",
+      "source_sha256": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055",
+      "tests": [
+        "test_failure_keeps_reference_deletions_and_fails_gate",
+        "test_summary_reproduces_and_keeps_strict_gate",
+        "test_published_leaderboard_reproduces_from_committed_source_of_truth"
+      ],
+      "limitations": "No candidate is clinically admitted. Manual source entry remains a review-required fallback, not a passing ASR score."
+    },
+    "03-10": {
+      "source": "services/diarization.py",
+      "source_sha256": "7cd6ed090cac1d2bb499e1f6424d3086cddb11b1f1a91c4cb31f2033b1141b93",
+      "tests": [
+        "test_speaker_projection_keeps_boundary_crossings_unknown",
+        "test_diarization_never_assigns_roles_without_explicit_confirmation"
+      ],
+      "limitations": "Current heuristic explicitly reports overlap_detection=unsupported. No overlapping-speaker accuracy or inferred clinician role is claimed."
+    },
+    "03-11": {
+      "source": "services/review/routers/transcripts.py",
+      "source_sha256": "9a9d2d27a6a5318138cb58582c2437fe46e0a1396c0daf889777173641c1fc74",
+      "tests": [
+        "test_optional_diarization_worker_and_versioned_clinician_roles",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original"
+      ],
+      "limitations": "Role corrections create immutable source versions; prior notes require amendment/review. This does not validate automated role identification."
+    },
+    "04-08": {
+      "source": "services/review/clinical.py",
+      "source_sha256": "c87d221d5118ce60989d322c29b058cd9463b6964b105a568d20e9d37c40bb3c",
+      "tests": [
+        "test_exact_mass_conversion_does_not_create_a_false_dose_error",
+        "test_fixed_seed_exact_unit_equivalence_and_critical_unit_changes",
+        "test_structured_dose_cannot_disagree_with_unchanged_source_text"
+      ],
+      "limitations": "Only explicit bounded mass/volume/unit conversions use Decimal arithmetic; original text/evidence is preserved and unsupported units require review."
+    },
+    "04-16": {
+      "source": "services/review/clinical_models.py",
+      "source_sha256": "816a6a5771460ce61133f6135a2a47f3e4def25687e6f9cba06aa3026eeaed61",
+      "tests": [
+        "test_model_fact_citations_reject_hallucinations_and_stay_unreviewed",
+        "test_model_transport_constrains_input_quotes_and_verifies_digest"
+      ],
+      "limitations": "Invented/ambiguous citations are rejected; rejected raw model content is not persisted or exposed in API errors. Models remain unvalidated."
+    },
+    "05-01": {
+      "source": "services/review/providers.py",
+      "source_sha256": "99dfd619a86bbb54c92bc4a43a906b39bcee7088a6ff7a14d4c22964c3da3694",
+      "tests": [
+        "test_providers_cannot_enable_disclosure_or_invent_citations",
+        "test_offline_scripted_workflow_blocks_dose_error_and_viewer_write"
+      ],
+      "limitations": "Deterministic exact reviewed-fact SOAP is always available; it provides no independent clinical accuracy guarantee."
+    },
+    "05-03": {
+      "source": "services/review/routers/proposals.py",
+      "source_sha256": "423437c67f4c7732b9c42ce9d6ba87dc1cc564e456c9dbba077a05ebb2fbebc2",
+      "tests": [
+        "test_proposal_is_separate_and_not_an_approvable_note",
+        "test_rule_fact_proposals_are_separate_and_clinical_models_default_disabled",
+        "test_proposal_baseline_source_edit_and_stale_approval"
+      ],
+      "limitations": "Model outputs stay separate unreviewed proposals; acceptance requires explicit editing/review and exact current-version approval."
+    },
+    "05-04": {
+      "source": "services/review/providers.py",
+      "source_sha256": "99dfd619a86bbb54c92bc4a43a906b39bcee7088a6ff7a14d4c22964c3da3694",
+      "tests": [
+        "test_providers_cannot_enable_disclosure_or_invent_citations",
+        "test_model_omission_retains_explicit_unreviewed_baseline",
+        "test_proposal_baseline_source_edit_and_stale_approval"
+      ],
+      "limitations": "Bounded statements cite reviewed facts; proposals bind exact source hashes. Changed wording remains review-required, even when a model agrees."
+    },
+    "05-10": {
+      "source": "services/review/engine.py",
+      "source_sha256": "c0aa4be7c3bbe8c05467230737a785b670d5a050626592ac6ced6418fc0e3cb6",
+      "tests": [
+        "test_unreviewed_facts_and_invented_clinician_citation_block",
+        "test_full_review_approval_export_and_amendment"
+      ],
+      "limitations": "Clinician additions must carry clinician-entered origin and clarification; fabricated source citations are rejected."
+    },
+    "06-02": {
+      "source": "services/review/clinical_models.py",
+      "source_sha256": "816a6a5771460ce61133f6135a2a47f3e4def25687e6f9cba06aa3026eeaed61",
+      "tests": [
+        "test_supportive_model_cannot_clear_a_dose_rule",
+        "test_semantic_model_cannot_change_saved_verification",
+        "test_semantic_dose_change_blocks_even_with_plausible_quote_and_reason"
+      ],
+      "limitations": "Model support never clears deterministic findings. Rule performance remains development-only and limited to defined test scenarios."
+    },
+    "06-18": {
+      "source": "services/api/record_integrity.py",
+      "source_sha256": "039ca773e3f71581a1304e12c10e57702dc0f4b41cd1f9c82c8a6ca3ac25b2ac",
+      "tests": [
+        "test_tampered_asset_is_not_accepted_by_worker",
+        "test_false_or_cross_version_evidence_is_rejected",
+        "test_persisted_tamper_and_cross_scope_records_block_reads_and_approval",
+        "test_approval_body_and_export_byte_tampering_are_rejected"
+      ],
+      "limitations": "Byte, citation, record, report and approval mutations fail at their respective boundaries. Local full-state rewriting is outside the hash-chain guarantee."
+    },
+    "06-19": {
+      "source": "services/review/routers/approvals.py",
+      "source_sha256": "b35a5e21fa8ad52c0f235f6e22b67873b556d86c06a8ffde41e9cf1d629d476f",
+      "tests": [
+        "test_synthetic_approval_mutations_never_pass_without_their_required_review",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original",
+        "test_concurrent_approval_retries_create_one_approval"
+      ],
+      "limitations": "Executable invariant assertions cover exact current hashes, review flags, blocking findings and concurrency; this is not a mathematical proof over all implementations."
+    },
+    "07-03": {
+      "source": "services/api/routers/audio.py",
+      "source_sha256": "b98b965940b25fb73be196a1a39fa2f2003b32c7bc5cedd135ef438d3b253f5a",
+      "tests": [
+        "test_upload_session_retry_returns_same_session",
+        "test_concurrent_completion_commits_one_job",
+        "test_transcription_queue_deduplicates_different_keys",
+        "test_upload_resumes_and_replays_identical_chunk_without_duplication"
+      ],
+      "limitations": "Same-source upload/completion retries preserve one asset/job; intentionally new input/configuration may create a new job."
+    },
+    "07-07": {
+      "source": "services/asr/worker.py",
+      "source_sha256": "ab1d5d1524716f1afe2e2a916adcc8ce12ce620e20b96bae112cd0a7fe3693f5",
+      "tests": [
+        "test_live_preview_never_becomes_a_saved_source_or_note"
+      ],
+      "limitations": "Preview output is explicitly provisional, not a source version and never approvable."
+    },
+    "07-10": {
+      "source": "services/inference_slot.py",
+      "source_sha256": "34bf39fc772af94b14da386cd3288697b04ce1c2d5fe96187f13cb430bc3705a",
+      "tests": [
+        "test_second_process_cannot_admit_inference_until_slot_is_released",
+        "test_single_heavy_worker_claim_is_enforced"
+      ],
+      "limitations": "Nonblocking local process slot returns busy/queue behavior. It is not a distributed scheduler or a memory quota."
+    },
+    "07-12": {
+      "source": "services/asr/channels.py",
+      "source_sha256": "019fbacaf348869eb14e7e3a5b39b688ecb5101ef9b5f9ad77eaa2df756e3c58",
+      "tests": [
+        "test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job",
+        "test_decoder_preserves_three_distinct_channels",
+        "test_changed_checkpoint_is_rejected"
+      ],
+      "limitations": "Original, normalized and isolated-channel hashes bind lineage; generated channels do not establish physical microphone correctness."
+    },
+    "08-07": {
+      "source": "services/review/service.py",
+      "source_sha256": "cadf034517b7c890123fc4a901fe94bb687321e378a34e62d6f0fac7d534d544",
+      "tests": [
+        "test_full_review_approval_export_and_amendment",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original",
+        "test_proposal_and_review_metrics_immutable_and_purged"
+      ],
+      "limitations": "Corrections create immutable versions and audit events. Authorized retention purge remains a separate explicit lifecycle action."
+    },
+    "08-10": {
+      "source": "services/review/presentation.py",
+      "source_sha256": "30c7ec736aa31cd7f822b73603661e11ec1c747425222a6473b52adf903f9867",
+      "tests": [
+        "test_fhir_export_requires_real_approval_and_preserves_evidence",
+        "test_full_review_approval_export_and_amendment"
+      ],
+      "limitations": "FHIR DocumentReference carries exact approved note/source attribution; recipient-specific EHR conformance is untested."
+    },
+    "09-08": {
+      "source": "services/detailed_benchmark.py",
+      "source_sha256": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d",
+      "tests": [
+        "test_detailed_selection_excludes_reserved_foreground_and_donor",
+        "test_reserved_cohort_leakage_is_rejected_before_network",
+        "test_reserved_audio_is_rejected_for_development_before_download"
+      ],
+      "limitations": "Reserved cohort is excluded from development scoring and donor selection. It is not independently adjudicated acceptance gold."
+    },
+    "10-06": {
+      "source": "services/api/routers/encounters.py",
+      "source_sha256": "4410129865e6b7f613864907335f6e7fde7e9364e620be46a304b4a0fbdec824",
+      "tests": [
+        "test_concurrent_encounter_retry_creates_one_record",
+        "test_concurrent_approval_retries_create_one_approval",
+        "test_idempotency_is_actor_scoped_and_required",
+        "test_review_resources_are_tenant_and_clinician_scoped",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original"
+      ],
+      "limitations": "Generated concurrent/replay/isolation/stale-version workloads run against isolated synthetic databases; production-scale stress is separately outstanding."
+    },
+    "11-03": {
+      "source": "services/api/auth.py",
+      "source_sha256": "d1465044cd2bc453d45a4c7e6143f4e26e094c5ffc04dddae64436643a881a9e",
+      "tests": [
+        "test_google_session_cookie_csrf_roles_logout_and_replay",
+        "test_state_binding_replay_and_cookie_flags",
+        "test_invitation_revocation_idle_expiry_and_subject_pinning",
+        "test_clinician_cookie_writes_require_csrf_and_persist_across_restart"
+      ],
+      "limitations": "Simulated local OIDC only; no live Google registration, Workspace domain or HTTPS deployment is validated."
+    },
+    "11-11": {
+      "source": "services/review/engine.py",
+      "source_sha256": "c0aa4be7c3bbe8c05467230737a785b670d5a050626592ac6ced6418fc0e3cb6",
+      "tests": [
+        "test_false_or_cross_version_evidence_is_rejected",
+        "test_review_resources_are_tenant_and_clinician_scoped",
+        "test_model_fact_citations_reject_hallucinations_and_stay_unreviewed",
+        "test_scoped_source_batches_preserve_full_version_binding_and_unselected_segments"
+      ],
+      "limitations": "Exact spans/quotes and immutable version/encounter scope are checked; these checks do not establish clinical meaning."
+    },
+    "11-13": {
+      "source": "services/encrypted_backup.py",
+      "source_sha256": "00866efefb2772a6b7ce62a48a5e673c626e80f1000e6c3547142305f072177a",
+      "tests": [
+        "test_authenticated_stream_rejects_tamper_truncation_and_wrong_key",
+        "test_encrypted_database_backup_restore_roundtrip"
+      ],
+      "limitations": "Synthetic-key authenticated backup/restore path only. Real key custody, rotation, institutional access and production at-rest encryption remain unestablished."
+    }
+  }
+}

@@ -111,6 +111,16 @@ def test_real_signed_google_id_token_and_forgery(google_app,monkeypatch):
     monkeypatch.setattr(transport.Request,'__call__',lambda *a,**k:CertResponse())
     from services.api.auth import GoogleSessions
     assert GoogleSessions.exchange(app.state.auth_sessions,'code','verifier','expected')['sub']=='subject'
+    # Exercise the real signature/claims verifier with locally signed adversarial
+    # tokens. Network boundaries remain mocked, rather than bypassing validation.
+    valid = dict(claims)
+    for patch in ({'aud':'another-client'}, {'iss':'https://attacker.invalid'},
+                  {'nonce':'wrong-nonce'}, {'exp':int(time.time())-3600},
+                  {'iat':int(time.time())+3600}):
+        encoded=jwt.encode(crypt.RSASigner.from_string(pem,key_id='key'),{**valid,**patch}).decode()
+        with pytest.raises(Exception):
+            GoogleSessions.exchange(app.state.auth_sessions,'code','verifier','expected')
+    encoded=jwt.encode(crypt.RSASigner.from_string(pem,key_id='key'),valid).decode()
     parts=encoded.split('.');parts[2]=('A' if parts[2][0]!='A' else 'B')+parts[2][1:];encoded='.'.join(parts)
     with pytest.raises(Exception):GoogleSessions.exchange(app.state.auth_sessions,'code','verifier','expected')
 

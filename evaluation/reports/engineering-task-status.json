@@ -56,10 +56,27 @@
     {
       "id": "00-04",
       "description": "Make the current 5% normalized WER threshold immutable inside frozen benchmark contracts; new exploratory goals require new versioned protocols, never edits to old locks.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/evaluation.py",
+          "sha256": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055"
+        }
+      ],
+      "tests": [
+        "test_dataset_lock_cannot_relax_user_wer_limit",
+        "test_text_benchmark_cannot_relax_five_percent_policy",
+        "test_revised_five_percent_policy_preserves_exact_boundary"
+      ],
+      "limitations": "Five-percent admission stays exact and unrounded; older three-percent results remain historical artifacts."
     },
     {
       "id": "00-05",
@@ -175,26 +192,65 @@
     {
       "id": "01-01",
       "description": "Separate the 28 KB `services/api/main.py` into bounded routers by encounters, authorizations, audio, jobs, auth, transcript and exports; preserve existing endpoints and response contracts.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "docs/architecture-decisions/003-router-and-persistence-boundaries.md",
+          "sha256": "29d31be59ee77d7981011f739e56b66246b2b1ff3268b4724760def81a8b1148"
+        },
+        {
+          "path": "evaluation/contracts/api-v1-before-router-split.json",
+          "sha256": "81ccc5bd8b583bb5558f903cb0acdd58e85f0ff9390983c3702266be20e603b8"
+        }
+      ],
+      "tests": [
+        "test_api_contract_survives_router_and_service_extraction"
+      ],
+      "limitations": "Existing 53 paths and 26 schemas preserved; router extraction does not certify clinical correctness."
     },
     {
       "id": "01-02",
       "description": "Split the 38 KB `services/review/routes.py` by extraction, draft editing, verification, approval, amendments and export, with a shared service layer and typed exceptions.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "docs/architecture-decisions/003-router-and-persistence-boundaries.md",
+          "sha256": "29d31be59ee77d7981011f739e56b66246b2b1ff3268b4724760def81a8b1148"
+        }
+      ],
+      "tests": [
+        "test_api_contract_survives_router_and_service_extraction",
+        "test_review_state_errors_remain_sanitized_and_http_compatible"
+      ],
+      "limitations": "Review composition and shared typed state exceptions are covered; runtime provider accuracy remains unvalidated."
     },
     {
       "id": "01-03",
       "description": "Refactor the approximately 48 KB `apps/clinician-web/src/main.tsx` into screens/hooks/API clients/stores without changing the existing clinician journey.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "docs/architecture-decisions/003-router-and-persistence-boundaries.md",
+          "sha256": "29d31be59ee77d7981011f739e56b66246b2b1ff3268b4724760def81a8b1148"
+        }
+      ],
+      "tests": [
+        "frontend_build",
+        "clinician reviews evidence, corrects a blocking medication, approves and exports"
+      ],
+      "limitations": "Existing journey preserved in browser tests; native-ASR server-backed recovery failure is separately retained and is not a UI-refactor pass."
     },
     {
       "id": "01-04",
@@ -231,10 +287,21 @@
     {
       "id": "01-08",
       "description": "Centralize deterministic hashing/canonical JSON; add golden cross-platform hash vectors for Unicode, decimals, nulls, sorted keys and line endings.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/canonical.py",
+          "sha256": "95ac5257a8526364b4f7f082b7a77ca52844918607132f3214e34f3894ab8713"
+        }
+      ],
+      "tests": [
+        "test_canonical_golden_unicode_decimals_nulls_and_line_endings"
+      ],
+      "limitations": "Golden vectors cover supported JSON primitives; arbitrary Decimal objects are not implicitly serialized."
     },
     {
       "id": "01-09",
@@ -308,10 +375,26 @@
     {
       "id": "01-15",
       "description": "Add branch-independent API contract snapshots and review every new endpoint for backwards compatibility.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "evaluation/contracts/api-v1-before-router-split.json",
+          "sha256": "81ccc5bd8b583bb5558f903cb0acdd58e85f0ff9390983c3702266be20e603b8"
+        },
+        {
+          "path": "tests/test_router_contracts.py",
+          "sha256": "c702afcc7fea88b27dc87ef0c3096de0574fec1354fe6883905801f4acb25fb6"
+        }
+      ],
+      "tests": [
+        "test_api_contract_survives_router_and_service_extraction",
+        "test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail"
+      ],
+      "limitations": "Snapshot is an explicit compatibility contract, not live-provider or EHR certification."
     },
     {
       "id": "01-16",
@@ -332,10 +415,21 @@
     {
       "id": "02-02",
       "description": "Partition errors by patient/clinician reference roles, but explicitly mark that reference roles are not automatically predicted diarization.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "evaluation/reports/error-taxonomy-v2/report.json",
+          "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2"
+        }
+      ],
+      "tests": [
+        "test_role_uncertainty_buckets_do_not_change_primary_denominator_or_invent_speaker"
+      ],
+      "limitations": "Reference roles only; insertions remain unattributed and no predicted-speaker accuracy is claimed."
     },
     {
       "id": "02-03",
@@ -356,18 +450,46 @@
     {
       "id": "02-05",
       "description": "Study whether reference uncertainty/overlap accounts for measured errors without excluding those words from the primary frozen score.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "evaluation/reports/error-taxonomy-v2/report.json",
+          "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2"
+        }
+      ],
+      "tests": [
+        "test_role_uncertainty_buckets_do_not_change_primary_denominator_or_invent_speaker"
+      ],
+      "limitations": "Whole-turn uncertainty/overlap buckets are descriptive; attribution cannot prove acoustic causation and no reference words are excluded."
     },
     {
       "id": "02-06",
       "description": "Isolate native-empty outputs from actual decoder exceptions; allow empty speech only under a documented model-specific policy and preserve every missing word penalty.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/full_empty_reconstruction.py",
+          "sha256": "efbe634d7c4c4b797d4ed9e153085712d4482591b01ff024815c8628c0995893"
+        }
+      ],
+      "tests": [
+        "test_empty_output_opt_in_never_hides_other_runtime_failures",
+        "test_posthoc_empty_reconstruction_preserves_original_failures",
+        "test_other_failures_and_stale_proofs_cannot_be_admitted"
+      ],
+      "limitations": "Model-specific empty-output reconstructions are retrospective and separate; full deletion penalties remain. Empty text does not qualify a model."
     },
     {
       "id": "02-07",
@@ -380,18 +502,46 @@
     {
       "id": "02-08",
       "description": "Add explicit start/end coverage accounting so every submitted audio sample is accounted for, including silence, incomplete inputs and failed windows.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/detailed_benchmark.py",
+          "sha256": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d"
+        }
+      ],
+      "tests": [
+        "test_coverage_rejects_missing_prefix_gap_or_tail",
+        "test_one_failed_window_retains_all_reference_deletions_and_raw_success",
+        "test_chunk_windows_cover_all_samples_without_invalid_bounds"
+      ],
+      "limitations": "Submitted-sample/window accounting is exact; untranscribed intervals are not labelled acoustic silence or proof of completeness."
     },
     {
       "id": "02-09",
       "description": "Implement timestamp capability registry (`none`, `chunk`, `segment`, `word`) and prohibit a chunk bound being called a word timestamp.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/asr/timestamps.py",
+          "sha256": "643c69083ca3ddd26b59fce9b2d47a6ea27fe8dca7768d31656c54931ef9202d"
+        }
+      ],
+      "tests": [
+        "test_text_only_and_native_chunk_capabilities_never_claim_word_alignment"
+      ],
+      "limitations": "Declared timestamp capabilities are distinct from alignment validity; no provider is certified for word alignment."
     },
     {
       "id": "02-10",
@@ -476,10 +626,27 @@
     {
       "id": "02-20",
       "description": "Keep the unchanged 5% WER gate; if none passes, retain `ASR_NOT_ADMITTED` and the already working manual transcript fallback.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/evaluation.py",
+          "sha256": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055"
+        }
+      ],
+      "tests": [
+        "test_failure_keeps_reference_deletions_and_fails_gate",
+        "test_summary_reproduces_and_keeps_strict_gate",
+        "test_published_leaderboard_reproduces_from_committed_source_of_truth"
+      ],
+      "limitations": "No candidate is clinically admitted. Manual source entry remains a review-required fallback, not a passing ASR score."
     },
     {
       "id": "03-01",
@@ -556,18 +723,50 @@
     {
       "id": "03-10",
       "description": "Detect overlapping speech explicitly or mark it unsupported; never assign overlapping assertions to one speaker by guess.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/diarization.py",
+          "sha256": "7cd6ed090cac1d2bb499e1f6424d3086cddb11b1f1a91c4cb31f2033b1141b93"
+        }
+      ],
+      "tests": [
+        "test_speaker_projection_keeps_boundary_crossings_unknown",
+        "test_diarization_never_assigns_roles_without_explicit_confirmation"
+      ],
+      "limitations": "Current heuristic explicitly reports overlap_detection=unsupported. No overlapping-speaker accuracy or inferred clinician role is claimed."
     },
     {
       "id": "03-11",
       "description": "Test role reassignment after transcript corrections; downstream note evidence and approvals must become stale.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/routers/transcripts.py",
+          "sha256": "9a9d2d27a6a5318138cb58582c2437fe46e0a1396c0daf889777173641c1fc74"
+        }
+      ],
+      "tests": [
+        "test_optional_diarization_worker_and_versioned_clinician_roles",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original"
+      ],
+      "limitations": "Role corrections create immutable source versions; prior notes require amendment/review. This does not validate automated role identification."
     },
     {
       "id": "03-12",
@@ -660,10 +859,27 @@
     {
       "id": "04-08",
       "description": "Normalize units using safe exact decimal arithmetic and bounded conversion tables, preserving original surface string and source evidence.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/clinical.py",
+          "sha256": "c87d221d5118ce60989d322c29b058cd9463b6964b105a568d20e9d37c40bb3c"
+        }
+      ],
+      "tests": [
+        "test_exact_mass_conversion_does_not_create_a_false_dose_error",
+        "test_fixed_seed_exact_unit_equivalence_and_critical_unit_changes",
+        "test_structured_dose_cannot_disagree_with_unchanged_source_text"
+      ],
+      "limitations": "Only explicit bounded mass/volume/unit conversions use Decimal arithmetic; original text/evidence is preserved and unsupported units require review."
     },
     {
       "id": "04-09",
@@ -724,10 +940,26 @@
     {
       "id": "04-16",
       "description": "Ensure the LLM cannot create fake segment IDs, span offsets or quotes; reject mismatches and preserve the rejected raw output only in redacted local developer diagnostics.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/clinical_models.py",
+          "sha256": "816a6a5771460ce61133f6135a2a47f3e4def25687e6f9cba06aa3026eeaed61"
+        }
+      ],
+      "tests": [
+        "test_model_fact_citations_reject_hallucinations_and_stay_unreviewed",
+        "test_model_transport_constrains_input_quotes_and_verifies_digest"
+      ],
+      "limitations": "Invented/ambiguous citations are rejected; rejected raw model content is not persisted or exposed in API errors. Models remain unvalidated."
     },
     {
       "id": "04-17",
@@ -748,10 +980,26 @@
     {
       "id": "05-01",
       "description": "Keep deterministic reviewed-fact SOAP generation as the always-available baseline and offline fallback.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/providers.py",
+          "sha256": "99dfd619a86bbb54c92bc4a43a906b39bcee7088a6ff7a14d4c22964c3da3694"
+        }
+      ],
+      "tests": [
+        "test_providers_cannot_enable_disclosure_or_invent_citations",
+        "test_offline_scripted_workflow_blocks_dose_error_and_viewer_write"
+      ],
+      "limitations": "Deterministic exact reviewed-fact SOAP is always available; it provides no independent clinical accuracy guarantee."
     },
     {
       "id": "05-02",
@@ -764,18 +1012,52 @@
     {
       "id": "05-03",
       "description": "Make an LLM draft an unapprovable proposal, never an approval or source-transcript replacement.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/routers/proposals.py",
+          "sha256": "423437c67f4c7732b9c42ce9d6ba87dc1cc564e456c9dbba077a05ebb2fbebc2"
+        }
+      ],
+      "tests": [
+        "test_proposal_is_separate_and_not_an_approvable_note",
+        "test_rule_fact_proposals_are_separate_and_clinical_models_default_disabled",
+        "test_proposal_baseline_source_edit_and_stale_approval"
+      ],
+      "limitations": "Model outputs stay separate unreviewed proposals; acceptance requires explicit editing/review and exact current-version approval."
     },
     {
       "id": "05-04",
       "description": "Restrict drafting to cited reviewed fact IDs with a version hash and explicit bounded schema; fail closed on unknown IDs.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/providers.py",
+          "sha256": "99dfd619a86bbb54c92bc4a43a906b39bcee7088a6ff7a14d4c22964c3da3694"
+        }
+      ],
+      "tests": [
+        "test_providers_cannot_enable_disclosure_or_invent_citations",
+        "test_model_omission_retains_explicit_unreviewed_baseline",
+        "test_proposal_baseline_source_edit_and_stale_approval"
+      ],
+      "limitations": "Bounded statements cite reviewed facts; proposals bind exact source hashes. Changed wording remains review-required, even when a model agrees."
     },
     {
       "id": "05-05",
@@ -820,10 +1102,26 @@
     {
       "id": "05-10",
       "description": "Ensure copied clinician-entered facts are visibly marked as clinician additions, not fabricated source citations.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/engine.py",
+          "sha256": "c0aa4be7c3bbe8c05467230737a785b670d5a050626592ac6ced6418fc0e3cb6"
+        }
+      ],
+      "tests": [
+        "test_unreviewed_facts_and_invented_clinician_citation_block",
+        "test_full_review_approval_export_and_amendment"
+      ],
+      "limitations": "Clinician additions must carry clinician-entered origin and clarification; fabricated source citations are rejected."
     },
     {
       "id": "05-11",
@@ -852,10 +1150,26 @@
     {
       "id": "05-14",
       "description": "Support `no LLM available` mode without degrading upload, transcription, manual editing, deterministic drafting or export.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/offline_demo.py",
+          "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663"
+        },
+        {
+          "path": "apps/clinician-web/src/ClinicalProposals.tsx",
+          "sha256": "c0e432ce0409a2d5867f824d1f38690f6f9e44b74db9025145299947530b0341"
+        }
+      ],
+      "tests": [
+        "test_offline_scripted_workflow_blocks_dose_error_and_viewer_write",
+        "frontend_build"
+      ],
+      "limitations": "No-LLM deterministic workflow and source-rule batching are available; native ASR still requires cached weights or manual transcript fallback."
     },
     {
       "id": "06-01",
@@ -868,10 +1182,27 @@
     {
       "id": "06-02",
       "description": "Apply deterministic safety checks regardless of local-LLM verdict; model agreement cannot clear a hard clinical contradiction.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/clinical_models.py",
+          "sha256": "816a6a5771460ce61133f6135a2a47f3e4def25687e6f9cba06aa3026eeaed61"
+        }
+      ],
+      "tests": [
+        "test_supportive_model_cannot_clear_a_dose_rule",
+        "test_semantic_model_cannot_change_saved_verification",
+        "test_semantic_dose_change_blocks_even_with_plausible_quote_and_reason"
+      ],
+      "limitations": "Model support never clears deterministic findings. Rule performance remains development-only and limited to defined test scenarios."
     },
     {
       "id": "06-03",
@@ -996,18 +1327,53 @@
     {
       "id": "06-18",
       "description": "Build a tamper test suite: alter source byte, segment quote, hash, fact, report and approval, then demonstrate rejection at the appropriate boundary.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/api/record_integrity.py",
+          "sha256": "039ca773e3f71581a1304e12c10e57702dc0f4b41cd1f9c82c8a6ca3ac25b2ac"
+        }
+      ],
+      "tests": [
+        "test_tampered_asset_is_not_accepted_by_worker",
+        "test_false_or_cross_version_evidence_is_rejected",
+        "test_persisted_tamper_and_cross_scope_records_block_reads_and_approval",
+        "test_approval_body_and_export_byte_tampering_are_rejected"
+      ],
+      "limitations": "Byte, citation, record, report and approval mutations fail at their respective boundaries. Local full-state rewriting is outside the hash-chain guarantee."
     },
     {
       "id": "06-19",
       "description": "Add formal state/invariant assertions: approval requires current source, completed review, no blocking findings and exact verification hashes.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/routers/approvals.py",
+          "sha256": "b35a5e21fa8ad52c0f235f6e22b67873b556d86c06a8ffde41e9cf1d629d476f"
+        }
+      ],
+      "tests": [
+        "test_synthetic_approval_mutations_never_pass_without_their_required_review",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original",
+        "test_concurrent_approval_retries_create_one_approval"
+      ],
+      "limitations": "Executable invariant assertions cover exact current hashes, review flags, blocking findings and concurrency; this is not a mathematical proof over all implementations."
     },
     {
       "id": "06-20",
@@ -1036,10 +1402,28 @@
     {
       "id": "07-03",
       "description": "Ensure duplicate/idempotent uploads produce one stable asset hash and no extra job or partial publish.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/api/routers/audio.py",
+          "sha256": "b98b965940b25fb73be196a1a39fa2f2003b32c7bc5cedd135ef438d3b253f5a"
+        }
+      ],
+      "tests": [
+        "test_upload_session_retry_returns_same_session",
+        "test_concurrent_completion_commits_one_job",
+        "test_transcription_queue_deduplicates_different_keys",
+        "test_upload_resumes_and_replays_identical_chunk_without_duplication"
+      ],
+      "limitations": "Same-source upload/completion retries preserve one asset/job; intentionally new input/configuration may create a new job."
     },
     {
       "id": "07-04",
@@ -1068,10 +1452,25 @@
     {
       "id": "07-07",
       "description": "Keep provisional previews separate from final transcript revisions; no preview segment may be approved.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/asr/worker.py",
+          "sha256": "ab1d5d1524716f1afe2e2a916adcc8ce12ce620e20b96bae112cd0a7fe3693f5"
+        }
+      ],
+      "tests": [
+        "test_live_preview_never_becomes_a_saved_source_or_note"
+      ],
+      "limitations": "Preview output is explicitly provisional, not a source version and never approvable."
     },
     {
       "id": "07-08",
@@ -1092,10 +1491,26 @@
     {
       "id": "07-10",
       "description": "Prevent two processes from processing the same heavyweight model slot, with a bounded worker lock and informative queue status.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/inference_slot.py",
+          "sha256": "34bf39fc772af94b14da386cd3288697b04ce1c2d5fe96187f13cb430bc3705a"
+        }
+      ],
+      "tests": [
+        "test_second_process_cannot_admit_inference_until_slot_is_released",
+        "test_single_heavy_worker_claim_is_enforced"
+      ],
+      "limitations": "Nonblocking local process slot returns busy/queue behavior. It is not a distributed scheduler or a memory quota."
     },
     {
       "id": "07-11",
@@ -1108,10 +1523,27 @@
     {
       "id": "07-12",
       "description": "Track exact original/normalized/isolated audio hashes so cross-channel confusion cannot corrupt source lineage.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/asr/channels.py",
+          "sha256": "019fbacaf348869eb14e7e3a5b39b688ecb5101ef9b5f9ad77eaa2df756e3c58"
+        }
+      ],
+      "tests": [
+        "test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job",
+        "test_decoder_preserves_three_distinct_channels",
+        "test_changed_checkpoint_is_rejected"
+      ],
+      "limitations": "Original, normalized and isolated-channel hashes bind lineage; generated channels do not establish physical microphone correctness."
     },
     {
       "id": "07-13",
@@ -1196,10 +1628,27 @@
     {
       "id": "08-07",
       "description": "Make every correction create an auditable immutable version; never silently alter an approved record.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/service.py",
+          "sha256": "cadf034517b7c890123fc4a901fe94bb687321e378a34e62d6f0fac7d534d544"
+        }
+      ],
+      "tests": [
+        "test_full_review_approval_export_and_amendment",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original",
+        "test_proposal_and_review_metrics_immutable_and_purged"
+      ],
+      "limitations": "Corrections create immutable versions and audit events. Authorized retention purge remains a separate explicit lifecycle action."
     },
     {
       "id": "08-08",
@@ -1220,10 +1669,26 @@
     {
       "id": "08-10",
       "description": "Preserve source attribution and version history in FHIR DocumentReference exports; label recipient-specific EHR conformance as untested.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/presentation.py",
+          "sha256": "30c7ec736aa31cd7f822b73603661e11ec1c747425222a6473b52adf903f9867"
+        }
+      ],
+      "tests": [
+        "test_fhir_export_requires_real_approval_and_preserves_evidence",
+        "test_full_review_approval_export_and_amendment"
+      ],
+      "limitations": "FHIR DocumentReference carries exact approved note/source attribution; recipient-specific EHR conformance is untested."
     },
     {
       "id": "08-11",
@@ -1292,10 +1757,26 @@
     {
       "id": "09-05",
       "description": "Publish a full confusion/error spreadsheet-like CSV without PHI and without omitting failed examples.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "evaluation/reports/error-taxonomy-v2/report.json",
+          "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2"
+        },
+        {
+          "path": "evaluation/reports/error-taxonomy-v2/all-errors.csv.zip",
+          "sha256": "159e05a0c9415febc08a325bbbba8066ec043d67612ce978f10a564a99a6c280"
+        }
+      ],
+      "tests": [
+        "test_failed_case_retains_all_deletions_and_csv_formula_is_escaped",
+        "test_exact_bitvector_traceback_matches_independent_dp_and_reconstructs_tokens"
+      ],
+      "limitations": "Public mock data only; complete token-edit CSV includes failed cases. Native runtime failures are retained separately; no new inference was run."
     },
     {
       "id": "09-06",
@@ -1316,10 +1797,27 @@
     {
       "id": "09-08",
       "description": "Use the reserved acceptance data only for existing provenance/packet preparation; do not score models or tune rules on it without external adjudication.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/detailed_benchmark.py",
+          "sha256": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d"
+        }
+      ],
+      "tests": [
+        "test_detailed_selection_excludes_reserved_foreground_and_donor",
+        "test_reserved_cohort_leakage_is_rejected_before_network",
+        "test_reserved_audio_is_rejected_for_development_before_download"
+      ],
+      "limitations": "Reserved cohort is excluded from development scoring and donor selection. It is not independently adjudicated acceptance gold."
     },
     {
       "id": "09-09",
@@ -1477,10 +1975,26 @@
     {
       "id": "10-04",
       "description": "Make CI fail if a model or benchmark attempts network access under `MED_TRANSCRIPT_OFFLINE=1`.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "6aba1f58e053ff04a8264072a20b50ef186ae9dec2d5c681cd2d3ed1d3e8c62d"
+        },
+        {
+          "path": "evaluation/reports/hosted-ci-router-slice-v1.json",
+          "sha256": "dba1afea0ee999a37c434442283b03e878cd5c25123726c991cc555af414b888"
+        }
+      ],
+      "tests": [
+        "test_offline_guard_denies_external_dns_tcp_udp_but_preserves_loopback",
+        "test_offline_guard_rejects_rebound_localhost"
+      ],
+      "limitations": "Both hosted Python matrices passed the enforced offline lane. Python sockets are guarded; this is not a native-process OS firewall."
     },
     {
       "id": "10-05",
@@ -1493,10 +2007,29 @@
     {
       "id": "10-06",
       "description": "Run generated-workload tests for race conditions, replay keys, cross-tenant isolation, stale ETags and concurrent approvals.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/api/routers/encounters.py",
+          "sha256": "4410129865e6b7f613864907335f6e7fde7e9364e620be46a304b4a0fbdec824"
+        }
+      ],
+      "tests": [
+        "test_concurrent_encounter_retry_creates_one_record",
+        "test_concurrent_approval_retries_create_one_approval",
+        "test_idempotency_is_actor_scoped_and_required",
+        "test_review_resources_are_tenant_and_clinician_scoped",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original"
+      ],
+      "limitations": "Generated concurrent/replay/isolation/stale-version workloads run against isolated synthetic databases; production-scale stress is separately outstanding."
     },
     {
       "id": "10-07",
@@ -1509,10 +2042,23 @@
     {
       "id": "10-08",
       "description": "Add randomized property-based tests for time windows, source spans, unit conversion and approval-state invariants using fixed seeds.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "tests/test_safety_properties.py",
+          "sha256": "d045d30bdb59de65323c3b50192b0122e610f649a8c5ac1f0b4a4947a309b364"
+        }
+      ],
+      "tests": [
+        "test_fixed_seed_exact_unit_equivalence_and_critical_unit_changes",
+        "test_fixed_seed_time_window_coverage_and_source_span_round_trip",
+        "test_synthetic_approval_mutations_never_pass_without_their_required_review"
+      ],
+      "limitations": "Fixed seeds cover 150 unit cases, 200 interval/span cases and seven state mutations; finite samples do not prove universal invariants."
     },
     {
       "id": "10-09",
@@ -1570,10 +2116,21 @@
     {
       "id": "11-01",
       "description": "Write a data-flow threat model covering browser audio, IndexedDB, resumable server prefixes, worker temp files, prompts, model outputs, notes, exports, audit and backups.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "docs/local-threat-model.md",
+          "sha256": "808a4fb23be87a3fe776d8a0c05ef196fa2a1427db912b576cc3c093c61967f1"
+        }
+      ],
+      "tests": [
+        "test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail"
+      ],
+      "limitations": "Threat model documents data paths, trust boundaries and residual risks; it is not an external security assessment."
     },
     {
       "id": "11-02",
@@ -1586,18 +2143,52 @@
     {
       "id": "11-03",
       "description": "Verify session-cookie security, CSRF, state/nonce/PKCE, invited-account membership, subject pinning and revocation under local simulated OIDC.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/api/auth.py",
+          "sha256": "d1465044cd2bc453d45a4c7e6143f4e26e094c5ffc04dddae64436643a881a9e"
+        }
+      ],
+      "tests": [
+        "test_google_session_cookie_csrf_roles_logout_and_replay",
+        "test_state_binding_replay_and_cookie_flags",
+        "test_invitation_revocation_idle_expiry_and_subject_pinning",
+        "test_clinician_cookie_writes_require_csrf_and_persist_across_restart"
+      ],
+      "limitations": "Simulated local OIDC only; no live Google registration, Workspace domain or HTTPS deployment is validated."
     },
     {
       "id": "11-04",
       "description": "Ensure every API route has an explicit authorization policy and test method/status variants, including routes mounted by new routers.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/api/authorization_policy.py",
+          "sha256": "f39c2ee6f1225267076ad6acb6b021ac7cf7f9c2b74637d62488ea1c5498e595"
+        },
+        {
+          "path": "evaluation/contracts/authorization-policy-v1.json",
+          "sha256": "a2481b8afc10bb92cef1b69d087fbd12dd51d42d87ebc3ec7ad6c5b7ec8783ff"
+        }
+      ],
+      "tests": [
+        "test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail",
+        "test_all_identity_routes_reject_missing_auth_and_viewer_writes"
+      ],
+      "limitations": "All inventoried route/method policies and generic missing-auth/viewer writes tested; exhaustive cross-resource isolation is tracked separately."
     },
     {
       "id": "11-05",
@@ -1661,10 +2252,28 @@
     {
       "id": "11-11",
       "description": "Ensure evidence spans cannot point outside source transcript, outside tenant/encounter or into a different transcript version.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/engine.py",
+          "sha256": "c0aa4be7c3bbe8c05467230737a785b670d5a050626592ac6ced6418fc0e3cb6"
+        }
+      ],
+      "tests": [
+        "test_false_or_cross_version_evidence_is_rejected",
+        "test_review_resources_are_tenant_and_clinician_scoped",
+        "test_model_fact_citations_reject_hallucinations_and_stay_unreviewed",
+        "test_scoped_source_batches_preserve_full_version_binding_and_unselected_segments"
+      ],
+      "limitations": "Exact spans/quotes and immutable version/encounter scope are checked; these checks do not establish clinical meaning."
     },
     {
       "id": "11-12",
@@ -1686,10 +2295,26 @@
     {
       "id": "11-13",
       "description": "Build local encryption test paths for persisted files/backups using synthetic keys; explicitly document missing real key custody.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/existing-capability-review-v1.json",
+          "sha256": "101fa49d7898c10304dcd2dcfb69ee7017ab425469fe558aca1ba9aeec8ae982"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/encrypted_backup.py",
+          "sha256": "00866efefb2772a6b7ce62a48a5e673c626e80f1000e6c3547142305f072177a"
+        }
+      ],
+      "tests": [
+        "test_authenticated_stream_rejects_tamper_truncation_and_wrong_key",
+        "test_encrypted_database_backup_restore_roundtrip"
+      ],
+      "limitations": "Synthetic-key authenticated backup/restore path only. Real key custody, rotation, institutional access and production at-rest encryption remain unestablished."
     },
     {
       "id": "11-14",
@@ -1702,10 +2327,27 @@
     {
       "id": "11-15",
       "description": "Add local tamper-evident audit chain verification and test detection of removed/reordered/mutated records; do not claim external immutability.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/audit_integrity.py",
+          "sha256": "bd83057be03e8591a553e3160d463c276cb277777fdd3e7c3afc57eee9795740"
+        },
+        {
+          "path": "tests/test_audit_integrity.py",
+          "sha256": "4d9c7113ac07e359a16a779c7be092f1b66ccf7828a0f7a58ea365d7be383a36"
+        }
+      ],
+      "tests": [
+        "test_local_audit_tampering_is_detected_and_prevents_approval",
+        "test_legacy_audit_backfill_is_repeatable_and_does_not_rewrite_history",
+        "test_approval_body_and_export_byte_tampering_are_rejected"
+      ],
+      "limitations": "Local hash chain detects removal/reordering/mutation; a DB owner able to rewrite all seals is outside this guarantee. Legacy bootstrap is not external attestation."
     },
     {
       "id": "11-16",
@@ -1726,10 +2368,32 @@
     {
       "id": "11-18",
       "description": "Verify defense-in-depth for exported markdown/HTML/JSON/FHIR content, including escaping, formula injection in CSV-like exports and filename safety.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/review/engine.py",
+          "sha256": "c0aa4be7c3bbe8c05467230737a785b670d5a050626592ac6ced6418fc0e3cb6"
+        },
+        {
+          "path": "services/review/routers/exports.py",
+          "sha256": "41e9382af81992f352e06775abf034a6cf44f3c86c0710f228edaf020fb2bc4c"
+        },
+        {
+          "path": "evaluation/reports/error-taxonomy-v2/report.json",
+          "sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2"
+        }
+      ],
+      "tests": [
+        "test_exported_markdown_escapes_active_markup_but_json_preserves_text",
+        "test_approval_body_and_export_byte_tampering_are_rejected",
+        "test_failed_case_retains_all_deletions_and_csv_formula_is_escaped",
+        "test_full_review_approval_export_and_amendment"
+      ],
+      "limitations": "Markdown/CSV escaping and immutable JSON/FHIR source attribution tested; recipient-specific FHIR conformance is untested."
     },
     {
       "id": "11-19",
@@ -1929,10 +2593,26 @@
     {
       "id": "13-08",
       "description": "Create a repeatability command that rebuilds published metrics solely from committed hypotheses and manifests, without inference.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/benchmark_integrity.py",
+          "sha256": "0548456bbeb05529a829a5a8f8e4e6a668a881d9e1366744a1b24c0e723e4f1a"
+        },
+        {
+          "path": "docs/benchmark-integrity.md",
+          "sha256": "b14dd65bbae9db61b7ce396e6e9aeffaccda7f4e256da8eff79db8fe026cd111"
+        }
+      ],
+      "tests": [
+        "test_replay_rejects_score_reference_coverage_and_denominator_mutations",
+        "saved_metrics_replay"
+      ],
+      "limitations": "Replays 17 detailed/recovery saved reports without inference. Other dataset protocols remain separate; it does not establish independent acceptance."
     },
     {
       "id": "13-09",
@@ -1957,7 +2637,7 @@
       "evidence": [
         {
           "path": "docs/offline-acceptance-summary.md",
-          "sha256": "ef2a1701dd9b1a7b0ba3cfd75b992bb0fde687979cef8735047447c0563fd33f"
+          "sha256": "7de2bef1825d73ff420959291d21e701e5e0c6b55e6f8ddedde3cdf306370958"
         },
         {
           "path": "evaluation/reports/offline-acceptance-v3.json",
@@ -2082,18 +2762,42 @@
     {
       "id": "15-01",
       "description": "Ship a five-minute local walkthrough from synthetic consultation upload through review, blocked claim, correction, exact approval and export.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/offline_demo.py",
+          "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663"
+        }
+      ],
+      "tests": [
+        "test_offline_scripted_workflow_blocks_dose_error_and_viewer_write",
+        "synthetic_walkthrough"
+      ],
+      "limitations": "Automated local walkthrough completes within five minutes; silent transport plus developer-scripted source text is explicitly not an ASR demonstration or clinician timing study."
     },
     {
       "id": "15-02",
       "description": "Record an audit-friendly demo scenario in which the model makes a deliberate drug-dose error and the deterministic gate blocks it.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v4.json",
+          "sha256": "b1a2cf65fe5c64a7f900d64bc574b33c096929330b3587daa774f4bfca6d21a8"
+        },
+        {
+          "path": "services/offline_demo.py",
+          "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663"
+        }
+      ],
+      "tests": [
+        "test_offline_scripted_workflow_blocks_dose_error_and_viewer_write",
+        "synthetic_walkthrough"
+      ],
+      "limitations": "A deliberate 0.5-to-5 mg proposal is blocked, corrected, versioned and approved programmatically; no human clinical review is claimed."
     },
     {
       "id": "15-03",
