@@ -9,7 +9,7 @@ from fastapi import HTTPException
 
 AMBIGUITY = re.compile(r"\b(?:unclear|inaudible|maybe|unsure|not sure)\b|\d+(?:\.\d+)?\s*(?:or|/)\s*\d+", re.I)
 CRITICAL = re.compile(r"\b(?:mg|mcg|ml|units|insulin|allerg\w*|metformin|warfarin|dose|dosage)\b|\d", re.I)
-RULES_VERSION = 'rules_v3'
+RULES_VERSION = 'rules_v4'
 
 
 def validate_evidence(facts, transcript):
@@ -40,9 +40,15 @@ def findings_for(note, transcript):
                     'negation_disagreement':['assertion'],'negation_scope_disagreement':['assertion'],
                     'incorrect_attribution':['subject'],'temporality_disagreement':['temporality'],
                     'laterality_disagreement':['laterality'],'ambiguous_source':['source_uncertainty'],
-                    'ambiguous_statement':['statement_text'],'critical_field_review_required':['critical_reviewed']}
-    def add(code, message, fact_id=None, severity="major",validator=RULES_VERSION,fields=None):
+                    'ambiguous_statement':['statement_text'],'critical_field_review_required':['critical_reviewed'],
+                    'critical_source_omission':['source_coverage'],'unaccounted_source_content':['source_coverage'],
+                    'source_omission':['source_coverage']}
+    def add(code, message, fact_id=None, severity="major",validator=RULES_VERSION,fields=None,source_span=None):
         fact=facts_by_id.get(fact_id);evidence=fact.get('evidence') if fact else None
+        if source_span is not None:
+            segment,start,end=source_span
+            evidence={'segment_id':segment['segment_id'],'start_char':start,'end_char':end,
+                      'quote':segment['text'][start:end]}
         reference=None if not evidence else {'transcript_version_id':transcript.get('id'),
             'segment_id':evidence['segment_id'],'start_char':evidence['start_char'],'end_char':evidence['end_char'],
             'quote_sha256':hashlib.sha256(evidence['quote'].encode('utf-8')).hexdigest()}
@@ -87,17 +93,20 @@ def findings_for(note, transcript):
     for segment in transcript["segments"]:
         relevant = [fact for fact in note["facts"] if fact["evidence"] and fact["evidence"]["segment_id"] == segment["segment_id"]]
         if segment["text"].strip() and not relevant:
-            add("source_omission", "Include or explicitly exclude every source segment after review.")
+            add("source_omission", "This source segment has no reviewed fact or explicit exclusion.",
+                source_span=(segment,0,len(segment['text'])))
         for match in CRITICAL.finditer(segment["text"]):
             if not any(fact["evidence"]["start_char"] <= match.start() and fact["evidence"]["end_char"] >= match.end() for fact in relevant):
-                add("critical_source_omission", "A medication, allergy or number in the source is not accounted for.", severity="critical")
+                add("critical_source_omission", "This medication, allergy or number in the source has no reviewed fact or explicit exclusion.",
+                    severity="critical",source_span=(segment,match.start(),match.end()))
                 break
         ignored={'and','but','the','a','an','patient','reports','report','states','state','i','has','have','is','was','takes','take','taking'}
         for match in re.finditer(r"\b[\w]+(?:[.'-][\w]+)*\b",segment['text']):
             if match.group().lower() in ignored:
                 continue
             if not any(f['evidence']['start_char']<=match.start() and f['evidence']['end_char']>=match.end() for f in relevant):
-                add('unaccounted_source_content','Source content falls outside all included or explicitly excluded evidence spans.',severity='critical')
+                add('unaccounted_source_content','This source word falls outside all included or explicitly excluded evidence spans.',
+                    severity='critical',source_span=(segment,match.start(),match.end()))
                 break
     return findings
 

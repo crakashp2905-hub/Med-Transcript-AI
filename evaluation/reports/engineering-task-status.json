@@ -1220,7 +1220,7 @@
         },
         {
           "path": "services/review/engine.py",
-          "sha256": "05c603dada9f81f869b17beb35893f0d006bbe60ba701e3feb49fd5f41281ce2",
+          "sha256": "20021719cd1cc31826f5eeb76a72694c1f40059440665be4125ff5c93c890882",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1260,7 +1260,7 @@
         },
         {
           "path": "services/review/engine.py",
-          "sha256": "05c603dada9f81f869b17beb35893f0d006bbe60ba701e3feb49fd5f41281ce2",
+          "sha256": "20021719cd1cc31826f5eeb76a72694c1f40059440665be4125ff5c93c890882",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -1488,10 +1488,39 @@
     {
       "id": "06-16",
       "description": "Generate an explanation for each critical warning with source quote, alleged mismatch, fields and validator version; avoid invented rationales.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/engine.py",
+          "sha256": "20021719cd1cc31826f5eeb76a72694c1f40059440665be4125ff5c93c890882",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "apps/clinician-web/src/VerificationWarnings.tsx",
+          "sha256": "9d85e96a02ece5f70591087c3daf5b8285bd23900db9e889f8b1b99c3a94b7ce",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+          "sha256": "5e432216a546bc0f8a2dc6481bb9951f694c7f1f42613ccb50044ca41f63abe4",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_source_warning_context.py",
+          "sha256": "8fd2be492eaec7fffcd2f70e358f7c1fb446c200609f6589138ff25e11dbe158",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v12.json",
+          "sha256": "72c7f124e4d367fe0437bfdc22e431a05bf9d6d4692c4512ddcb4cf804b8c309",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_source_level_critical_warning_links_exact_quote_and_fields",
+        "test_ambiguous_source_cannot_clear_critical_contradiction"
+      ],
+      "limitations": "Source-linked and uncovered-source critical warnings show exact saved excerpts, mismatch fields and validator. Clinician-entered facts have no audio citation and are labeled accordingly; synthetic software validation only."
     },
     {
       "id": "06-17",
@@ -1565,7 +1594,7 @@
       "evidence": [
         {
           "path": "docs/decisions/005-ambiguous-source-current-rule-recheck.md",
-          "sha256": "93721e7e46344286d4209f9d08837f4405e85eb0db6c13db8c05cd3825d1db47",
+          "sha256": "bf88cd54e2d112548914ff2b42e2e298ca5265a186b555eaa7ac42c82bfb1913",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -1819,7 +1848,7 @@
         },
         {
           "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
-          "sha256": "5baca9d1341efe67d767aa6a050f293cc1cef6c8099c79a69ceca50ef2a8aee7",
+          "sha256": "5e432216a546bc0f8a2dc6481bb9951f694c7f1f42613ccb50044ca41f63abe4",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1846,7 +1875,7 @@
         },
         {
           "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
-          "sha256": "5baca9d1341efe67d767aa6a050f293cc1cef6c8099c79a69ceca50ef2a8aee7",
+          "sha256": "5e432216a546bc0f8a2dc6481bb9951f694c7f1f42613ccb50044ca41f63abe4",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1933,7 +1962,7 @@
         },
         {
           "path": "apps/clinician-web/src/VerificationWarnings.tsx",
-          "sha256": "6041fbf0e652633620d8852295cd53a2ea42c9c90049f00383e884fe7ad02b06",
+          "sha256": "9d85e96a02ece5f70591087c3daf5b8285bd23900db9e889f8b1b99c3a94b7ce",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -2693,7 +2722,7 @@
         },
         {
           "path": "services/review/engine.py",
-          "sha256": "05c603dada9f81f869b17beb35893f0d006bbe60ba701e3feb49fd5f41281ce2",
+          "sha256": "20021719cd1cc31826f5eeb76a72694c1f40059440665be4125ff5c93c890882",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -2814,7 +2843,7 @@
         },
         {
           "path": "services/review/engine.py",
-          "sha256": "05c603dada9f81f869b17beb35893f0d006bbe60ba701e3feb49fd5f41281ce2",
+          "sha256": "20021719cd1cc31826f5eeb76a72694c1f40059440665be4125ff5c93c890882",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -3110,7 +3139,7 @@
       "evidence": [
         {
           "path": "docs/offline-acceptance-summary.md",
-          "sha256": "da6593ec3e5f806320734ca4ec2ac042dfb995da0fc4bea6ccd0dc5a124e3f28",
+          "sha256": "9f63fb789ead7dc4f3b0f0266c9f38ba47670195d1df1ff3946665652eaf4825",
           "hash_mode": "normalized_source_text"
         },
         {
