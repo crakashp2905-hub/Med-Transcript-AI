@@ -23,7 +23,36 @@ class ExtractRequest(Strict):
 
 class VerifyRequest(Strict):
     note_version_id:UUID
-    fact_ids:list[UUID]|None=Field(default=None,min_length=1,max_length=20)
+    fact_ids:list[UUID]|None=Field(default=None,min_length=1,max_length=300)
+
+
+def run_semantic_batches(provider,claims):
+    """All-or-nothing advisory verification over bounded, exact-ID batches."""
+    identifiers=[str(claim['fact_id']) for claim in claims]
+    if not 1<=len(claims)<=300 or len(set(identifiers))!=len(identifiers):
+        raise ValueError('invalid_semantic_scope')
+    verdicts=[];provenance=[]
+    for start in range(0,len(claims),20):
+        batch=claims[start:start+20]
+        result=provider.check_claims(batch,authorized=True,synthetic=True)
+        if not isinstance(result,dict):raise ValueError('malformed_semantic_batch')
+        rows=result.get('verdicts')
+        expected={str(item['fact_id']) for item in batch}
+        if (not isinstance(rows,list) or len(rows)!=len(batch)
+            or {str(item.get('fact_id')) for item in rows if isinstance(item,dict)}!=expected):
+            raise ValueError('semantic_batch_coverage_mismatch')
+        for item in rows:
+            source=next(claim['evidence'] for claim in batch if str(claim['fact_id'])==str(item['fact_id']))
+            quote=item.get('evidence_quote')
+            if not isinstance(quote,str) or quote not in source or item.get('label')=='supported' and not quote:
+                raise ValueError('semantic_batch_quote_mismatch')
+        verdicts.extend(rows)
+        provenance.append(result.get('provenance',{}))
+    if len(verdicts)!=len(claims) or {str(row['fact_id']) for row in verdicts}!=set(identifiers):
+        raise ValueError('semantic_total_coverage_mismatch')
+    return {'verdicts':verdicts,'status':'advisory_only_not_approval',
+            'provenance':{'mode':'bounded_batches_v1','batch_size':20,'batches':provenance},
+            'batch_count':len(provenance),'cannot_clear_existing_findings':True}
 
 
 def register(app,database,identity,encounter,require_processing,get_tx,document,audit):
@@ -79,15 +108,20 @@ def register(app,database,identity,encounter,require_processing,get_tx,document,
             tr,tx=get_tx(con,eid,note['transcript_version_id'])
             selected={str(fid) for fid in body.fact_ids} if body.fact_ids else {f['fact_id'] for f in note['facts'] if not f.get('excluded') and f.get('evidence')}
             lookup={f['fact_id']:f for f in note['facts'] if not f.get('excluded') and f.get('evidence')}
-            if not selected<=lookup.keys() or not 1<=len(selected)<=20:raise HTTPException(422,'select_up_to_twenty_evidence_linked_facts')
+            if body.fact_ids and len(selected)!=len(body.fact_ids) or not selected<=lookup.keys() or not 1<=len(selected)<=300:
+                raise HTTPException(422,'invalid_semantic_fact_selection')
             claims=[{'fact_id':f['fact_id'],'text':f['text'],'evidence':f['evidence']['quote']} for f in note['facts'] if f['fact_id'] in selected]
         try:
             with local_inference_slot() as ready:
                 if not ready:raise HTTPException(503,'local_inference_busy')
-                result=app.state.clinical_models.check_claims(claims,authorized=True,synthetic=True)
+                result=run_semantic_batches(app.state.clinical_models,claims)
         except ValueError:raise HTTPException(422,'semantic_check_failed_no_output_admitted') from None
         result.update(checked_fact_ids=sorted(selected),evidence_linked_fact_count=len(lookup),
-            unchecked_fact_ids=sorted(lookup.keys()-selected),independent_clinical_calibration=False)
+            unchecked_fact_ids=sorted(lookup.keys()-selected),independent_clinical_calibration=False,
+            total_note_fact_count=len(note['facts']),
+            unverifiable_no_source_fact_ids=sorted(f['fact_id'] for f in note['facts'] if not f.get('excluded') and not f.get('evidence')),
+            excluded_fact_ids=sorted(f['fact_id'] for f in note['facts'] if f.get('excluded')),
+            completion_status='complete_evidence_linked_scope' if selected==lookup.keys() else 'partial_selected_scope')
         with database() as con:return save(con,eid,actor,'semantic_check',result,tx,tr['sha256'],note['id'])
 
     @app.get('/v1/encounters/{eid}/clinical-proposals/{pid}')

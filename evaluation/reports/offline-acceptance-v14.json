@@ -1,0 +1,3703 @@
+{
+  "schema_version": "offline_acceptance_v1",
+  "version": "v14",
+  "recorded_at": "2026-11-06T20:13:40.327753+00:00",
+  "source_commit": "3a6fdf11fb52ebad073c1731d7c4912c958839b5",
+  "source_sha256": {
+    "services/acceptance_audit.py": "2982ec5bfbd214cb4bb37ac57a0f8bfe74c3d08596dc27f2e9ebe4673cce52f9",
+    "services/acceptance_materials.py": "2a1ce4ca64d3e6a3edb8c78e4de0815c99c5a87c271bdc07b60461b322fa25b2",
+    "services/annotation_workflow.py": "43604a2420fd36b791e15c3562302042b30f703dcbe50487f6c9e5d75c0ea148",
+    "services/audit_integrity.py": "bd83057be03e8591a553e3160d463c276cb277777fdd3e7c3afc57eee9795740",
+    "services/baseline_summary.py": "e6d3a9aee2b80157e0ac2f15e4585ffe5f071ea63a731f60b9d23efb81a270a4",
+    "services/benchmark_integrity.py": "0548456bbeb05529a829a5a8f8e4e6a668a881d9e1366744a1b24c0e723e4f1a",
+    "services/benchmark_progress.py": "6bf931568cbff86ce2a85e3e5deef76c5fba92b5c2781c9c9e167411a7509238",
+    "services/benchmark_ranking.py": "67f236ecde02d1b3c17c392ba17f691fcdc1729d691609bb5f70fd19d2b411a5",
+    "services/benchmark_suite.py": "45a5d6b770ae22dcb84e3f8e4a1320f6071c0906c8c5b29cdc685c84d91fd0c0",
+    "services/benchmark_text.py": "93651dbe86407481ec62eb552e7e87219c3fe7f97af6f3d9918f6de9d0ddf2f1",
+    "services/canonical.py": "95ac5257a8526364b4f7f082b7a77ca52844918607132f3214e34f3894ab8713",
+    "services/channel_diarization.py": "76984ae70f24dc5cddd760ea648e7d4d45ec7e9fc317c05f50cd8b2d4bcd45a0",
+    "services/channel_signal_audit.py": "782a51642323005181ef11662c5cbc1a08512d59156b5a0aaccf6e977386762d",
+    "services/clinical_evaluation.py": "7257738e715de5b96e080c8de92c5209218421304a9bb72cf6ffa41c67e01d32",
+    "services/clinical_metrics.py": "25338570791c7dea3e8a24a52110a8be233c0a1ee3e5afbf9e7abb53181ffae5",
+    "services/completion_evaluation.py": "95ffe7c8ad6aee8075a50f9a6bc426ab1bff099477f1dc6055414e665a084b21",
+    "services/conversation_errors.py": "50d11cb75142ed7a3e4b8c83fd6dd5126d50466137c8038a5b05019684081baf",
+    "services/conversation_experiment.py": "a22244e86c88877b0d371f67fdad9d6ef173eecccc3c8ff158bee7603ca80960",
+    "services/demo_fixture.py": "a00bae7370328198f534a2af322a5472a0adb777c998a0f8188c542a38fac315",
+    "services/demo_ingest.py": "88f7d073fc4ee46dace5e0c54b70e90ac716d0c0fe47c379deb490cd447ddd67",
+    "services/detailed_benchmark.py": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d",
+    "services/detailed_campaign.py": "423000ada7da3a8bf4fd6e301c8e2259cd6949cd8b620a556e09f8beaeb201d3",
+    "services/detailed_diagnostics.py": "81b9c56f994c9b3613d7124dca1e4bbbdef678b04c78050bca48d33cb1b36351",
+    "services/detailed_drafting.py": "e788dc7ed0bfc8620e4e92339d28e5bb10c3af6031a6ada2a7067851bbe15bf1",
+    "services/detailed_finalize.py": "a2fdafff4fd3aa86acb705335449e0153015ab3b0402068965ff16703ab4e1bd",
+    "services/detailed_recovery.py": "d6d388cfd2b879f6228b075de5c276c76b910690b76046bdf8775b06d7f05a8e",
+    "services/detailed_review_materials.py": "d5403f258d83ba79aa46fb2dfbc379e8807f2142871aae2943e35768d0b43bd3",
+    "services/diarization.py": "7cd6ed090cac1d2bb499e1f6424d3086cddb11b1f1a91c4cb31f2033b1141b93",
+    "services/diarization_evaluation.py": "f3a8350690805382902a5a0e148a07561b32cdfe16ef81155bc71e4ec6233b35",
+    "services/domain_contracts.py": "2ed499abbd679d6b41498912a61b763aa9f354276aa4eab4bae127d58600436d",
+    "services/encrypted_backup.py": "00866efefb2772a6b7ce62a48a5e673c626e80f1000e6c3547142305f072177a",
+    "services/engineering_status.py": "90beaa4fcd21486b3e0e88b92cf00a0aa6b42999f8f7e1e4b84f7fd75aeed2f3",
+    "services/error_taxonomy.py": "87c1ea57870c145b75a3a19d7e51f5c296ccb9a2b701ae1794af78a02ca0a288",
+    "services/evaluation.py": "d0883027ba0a4765f0767519cd738508699754c526d9776c5972f9d9eb3a2055",
+    "services/evidence_io.py": "281ce299322ad3db16778874409f6fac723ffd60195ef8193a3d2360b4267899",
+    "services/expanded_summary.py": "a5c02e6dcb05f3cd75b41ca56e8aa21e0e2525b9e2a390452cf27969f5c099b8",
+    "services/experiment_contract.py": "8b0ebb16732a9c97dbe810d9ed43789986ec5f7581ed8e382397f0b38ddd9511",
+    "services/full_consultation_asr.py": "3d478546bf1c5fbe9477227ac7f23e4b11dda1fa681a16d451e3d00cf5299c29",
+    "services/full_empty_reconstruction.py": "efbe634d7c4c4b797d4ed9e153085712d4482591b01ff024815c8628c0995893",
+    "services/inference_slot.py": "34bf39fc772af94b14da386cd3288697b04ce1c2d5fe96187f13cb430bc3705a",
+    "services/launch.py": "98386846df1c7c4b7738b597fce5c233e1bdd589dbb5567aecd203ee3cfc5801",
+    "services/local_drafting_evaluation.py": "88bd41fd797ceae1f7275ed2bddd4c4dd4b2c81de12964e513d89906349d59ee",
+    "services/long_recording_smoke.py": "2903e2de1fc21dd462bb6fcdfde451dc09097688082a9bc4502777d07c2b6e06",
+    "services/maintenance.py": "f2106724bc565095bbbcc29613be92632ab9f1aa5b1b0ea06b34253a9a60d3e3",
+    "services/media_decoder.py": "9a30cee7f451a194128812d1a001354d631ada09186233f91f65b385eb32953b",
+    "services/metric_integrity.py": "654e2ee72a6251a399d802f6733a66257913a53738b5d96f544ce0701c5495f1",
+    "services/multichannel_smoke.py": "88a542ceac3da4c7b069505d02fc5a583a53c34aaa78b470d41d75c5120b3639",
+    "services/negative_index.py": "2b85be807431f0376b8b5fab594b9df1312cb3486bd71f1b24cc4feb93b8ca11",
+    "services/offline.py": "ccc5f425a36ff8b2899cfced3cfd099570e68cddba876924cb00d9d1fcd67009",
+    "services/offline_acceptance.py": "23e252cfb75570c5b9f5740f6a81424a309c062686d5aa4a97b66da062d2e11f",
+    "services/offline_demo.py": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663",
+    "services/offline_preflight.py": "7bb783d18b3ffea881ab926369fb3329dc3730eb6f5d4a4a7bd38924c6fd7b36",
+    "services/ollama_inventory.py": "1197091e49dfbd679724f7dc78a2ee61d8ee11123950db9b78e8cb350a5d14f0",
+    "services/omi_adapter.py": "5a5e7db46470e388a8841fdfffc7f8cb22b148603194fa89e5c4d0b1af5e612c",
+    "services/omi_empty_reconstruction.py": "aaa7f8c9b4a9c21b58a341b823d479e6b61afcbd32dbd864bf49c44437e36aef",
+    "services/omi_failure_probe.py": "659da21023a0a0eab654cec0d53f2be8fe320d1cac623190b96b134d3d7d287b",
+    "services/overlap_reassembly.py": "daf1d1ee99ca871eba2bc9d537f657bdaafdee671e4ea6d444340d0ee683fd4e",
+    "services/prepare_detailed.py": "4a6d6e100ce7dcbdbd124a32cf864232ae4710d1d0e9f4c101d75aa3bc1abe68",
+    "services/prepare_full_consultations.py": "617626701824ee31e21ce92ab81953ee40cd286fb8f6ea85075d2e48cea3f271",
+    "services/prepare_primock.py": "4ac4f5d02c0508561eabf7079b0b4c26c68365ecdd5bd37c43755c19cccd5b7a",
+    "services/prepare_validation.py": "6b27c51dcbff4d5d5c70f55a9813debaff5cd0e982356ce245c9a8c31f9731ab",
+    "services/proposal_integrity.py": "2b75deb6b23e9e8eb927be4f9a443a0caf63e173ed65b522b856ad50c616cc27",
+    "services/provision_benchmark.py": "ac78720eabc79f21a40c924dfdc9dc9b016315278d3d8053c2f18336a66ff7b9",
+    "services/provision_public_diarization.py": "17721cfcba09ca451977a3d7fa2f2d951f4c904665d57dc56e85dcd95b39cfe6",
+    "services/provision_qwen_asr.py": "64279cd691c4847c5130bdec5b60902f93b4f98744b14012b4a5ec644fd83d65",
+    "services/publish_expanded.py": "14b0697d629eb7570f94fd7cd55f40e488c02699af4482880ea857e3ef4c1bd4",
+    "services/qwen_adapter.py": "3e02eaae537b80673794aa5dcd4c658e8370fc1c7e271bc5bd7f5fa3a8533654",
+    "services/recovered_job_receipt.py": "6eba53ded74cb85acbd9dd6c9049438caad90f59109f6271f3e68a94ebc50ae0",
+    "services/relationship_evaluation.py": "5de7fe0b5e6f5531b770818a930880ff13e9430ccebcb04924375a1778df6e54",
+    "services/release_policy.py": "5a32cae8ca597a6be4105efb67145e8b8604a1d321b3ed11088fda2ef532ac42",
+    "services/release_readiness.py": "e89df9607d17c38a4b2a1af70cbf9b9e1406cb18251706e32c897d29da79efcf",
+    "services/secret_scan.py": "3d253b6e308c6d050a0387be0fac8374ab48947518e41d34d739a83ad15bbacb",
+    "services/speaker_comparison.py": "43e835444da2ac2df4765f2e95c1468750b8b33b66161c32617d134dbfb7b185",
+    "services/strict_json.py": "90f074e651825f57259c8873b5da122479a74bd3eb839fd4c42c1d79ece5578a",
+    "services/study_analysis.py": "bc9cdb245277f8a1a3e088f55ef7893efe44dc9671b7f92bf997eb597c6381f6",
+    "services/usability_metrics.py": "ae2764c31d38907cab2716c705fd7e7dc4ba92392dd37b5d52dc7ae56a9c3aff",
+    "services/validation_summary.py": "8417145221241ba4e150bb47ec7237cd5150dd8d97bcc9b4ef528693fa0b14b7",
+    "services/verification_challenge.py": "15a192e4173d493032803cfaa7ed5f89526f2d1ac66348a71e613b7f9291d70d",
+    "services/verify_scribe_evidence.py": "18f6106a84f20541f3715a9f858df11648d662679dc3750c3a84d8d5359380fd",
+    "services/worker_loop.py": "735b745353d9abb76b13bc320405cfe1439d98edfe64ea2301b707030f4b7381",
+    "services/__init__.py": "e5c906acb76dac098c595a68e09f3ff0054db0da3823bf25c32bf73880cbc2fe",
+    "services/api/auth.py": "d1465044cd2bc453d45a4c7e6143f4e26e094c5ffc04dddae64436643a881a9e",
+    "services/api/authorization_policy.py": "f39c2ee6f1225267076ad6acb6b021ac7cf7f9c2b74637d62488ea1c5498e595",
+    "services/api/contracts.py": "79a08c3ff4d90473824432fb397af9d70b1fb7f4640705d0280fa2e9535bcdbd",
+    "services/api/ingest.py": "58d988dbe536e2580d716adcbcd2d684d5e07ae9ccc35173002efd89a0091336",
+    "services/api/job_state.py": "cc8d98e0b922138f6f56d5dc711ecd5db7c019b8a1ee638d01afc321b9081a3e",
+    "services/api/live_uploads.py": "3b9dbbbb29f5453f6c528e6167008e90085b67f75da262ccf677ee2c16cce867",
+    "services/api/main.py": "9e960927199fa292029b497ef591c48397aceb9c6f35586a5cc876eed8b4ab00",
+    "services/api/postgres.py": "b10e4701fb137a3c2c66cbc1474d6664923209a41b25015c9b13ede4e802a83a",
+    "services/api/record_integrity.py": "039ca773e3f71581a1304e12c10e57702dc0f4b41cd1f9c82c8a6ca3ac25b2ac",
+    "services/api/request_limits.py": "9897884cc721c7c0c2ee08319b7516c2c4d509dd6354fd68110503b521f54641",
+    "services/api/resumable.py": "98537613e6c24c755c8bc910529c53a8ed9d8bc5f55a2845dbe7ab4c97f8246e",
+    "services/api/router_context.py": "f3d8163b6919ffddfe803310b178aa37445e9c2a52eb2e6fae39be68577279fd",
+    "services/api/storage.py": "60a1a89ec20182d6085adf9ea5f6f7307f18a3272a74eec99f99e97be72254b7",
+    "services/api/time_utils.py": "63ce431b168093eb7655dc57d39e45e477a37263259e0e433de4adf3c9557cf6",
+    "services/api/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "services/asr/adapter.py": "f7dcc82ae6b044c61d5f4c4590e46ee14bac289594a179041f880774cd08e882",
+    "services/asr/channels.py": "019fbacaf348869eb14e7e3a5b39b688ecb5101ef9b5f9ad77eaa2df756e3c58",
+    "services/asr/profiles.py": "644c24974de0962766f5dc6977ab0847e7bebd3fb20a9c52ea1aa8ee3c44fcb3",
+    "services/asr/timestamps.py": "643c69083ca3ddd26b59fce9b2d47a6ea27fe8dca7768d31656c54931ef9202d",
+    "services/asr/transcripts.py": "a1002c983f58d8fe2209a7eaae298341ddb02969cee4560198aba29902b9bd0f",
+    "services/asr/worker.py": "0a9d2f4a32e4cf41137053f3eb05124e44f6efdc7bc48b2919b9b2855cf9ec78",
+    "services/asr/__init__.py": "88ea6a6b91e2e4a123b82e0543305b864c6d8cfa10982587ca5c41f154ed1d6c",
+    "services/review/clinical.py": "c87d221d5118ce60989d322c29b058cd9463b6964b105a568d20e9d37c40bb3c",
+    "services/review/clinical_models.py": "816a6a5771460ce61133f6135a2a47f3e4def25687e6f9cba06aa3026eeaed61",
+    "services/review/clinical_routes.py": "2afd00a0dc10e05e805bf22fea37b00946eec8cd41869c12b4ec87a44067efc9",
+    "services/review/comparison.py": "3a58d9e5bc2161aa8db68227fc2f77eea38607569a978263d805eb8890672804",
+    "services/review/engine.py": "b8628fd8592bb5119e8fdc8c74f97fa681c7aa21381b8f061f4a7bd4df1a21a6",
+    "services/review/metrics_routes.py": "012f06911f4732979e7393c464d19ac971b9a333845fda74327161f70e43cd02",
+    "services/review/models.py": "fbff7031bbf1cbad5a9bdc2a3d05bac959641e2ca3c6fcdc728df04ac212822a",
+    "services/review/presentation.py": "30c7ec736aa31cd7f822b73603661e11ec1c747425222a6473b52adf903f9867",
+    "services/review/providers.py": "99dfd619a86bbb54c92bc4a43a906b39bcee7088a6ff7a14d4c22964c3da3694",
+    "services/review/relationships.py": "2032b17991576f3fe47138c418cff0fae4c8d066f1553e78d950cdbdd0ffe4f8",
+    "services/review/routes.py": "4a28e59b1a61f0d944c1fb75ca27fa18204508a5500b43195db727c3977eb08f",
+    "services/review/service.py": "3d7dc18fd1dfb96674524099ebaf6c130e3ec011d61820a3df0cca96310b8896",
+    "services/review/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "services/review/routers/amendments.py": "804696b5b2443449b74f0647c9570fc231ece3de3a14d5ca999c7b991f091df0",
+    "services/review/routers/approvals.py": "b35a5e21fa8ad52c0f235f6e22b67873b556d86c06a8ffde41e9cf1d629d476f",
+    "services/review/routers/exports.py": "8d73f6450a120787c2fddcce51f2dfb629d8a2b58898df5ea3d61bb66a666dec",
+    "services/review/routers/history.py": "356ac6d0e7de1f500b011867416a0528808b1046822176c957d12d062183bc5b",
+    "services/review/routers/notes.py": "67813a0e17aee966c011c4d67154b6a075ea25a161ed34d2ff8248cf71287a83",
+    "services/review/routers/proposals.py": "d03b0324ef345a821ea46f03e97a0c998c87b4d35ba56fef6a9b975a41c4c252",
+    "services/review/routers/transcripts.py": "9a9d2d27a6a5318138cb58582c2437fe46e0a1396c0daf889777173641c1fc74",
+    "services/review/routers/verification.py": "aec0336bd5b5bfde7e0b3a9f195e71dc57c15c29404d51c6a0d5bb489f002945",
+    "services/review/routers/workspace.py": "361322f3736a0fde379bb2e400b6315b14edc8477db9c7f8f4f5ac751532ecfa",
+    "services/review/routers/__init__.py": "4c2dd6308530f5ac4b3c77bbc85aa1538dd81480051807dfb18eaa974324929a",
+    "services/api/routers/audio.py": "b98b965940b25fb73be196a1a39fa2f2003b32c7bc5cedd135ef438d3b253f5a",
+    "services/api/routers/authorizations.py": "09928fbe4f7ec00671c5210a1d39efff5376ad4c4fae3ccc24bab3c0c84cbd17",
+    "services/api/routers/encounters.py": "4410129865e6b7f613864907335f6e7fde7e9364e620be46a304b4a0fbdec824",
+    "services/api/routers/jobs.py": "01594dd7f95d6032e8968f6baa0ae684f55bdeb829a33cb003ba1b3a7a1bd08d",
+    "services/api/routers/transcripts.py": "2491db1d2d14ed74803b8bb63d4068d009b7b948c55e2ad36a586773083e46d6",
+    "services/api/routers/__init__.py": "fefb36e0364a77410281ad51f1c28bed6559704edbecb901ab855208cf720da1",
+    "tests/conftest.py": "adf2bf833b0813dd83cad31edd832b7d99a5f62a4c9a27124339c627f1f37138",
+    "tests/google_browser_server.py": "fb46722f299f9ad05aa53236c95a9e655d5b88be5246a302b6da389471dd16dc",
+    "tests/offline_browser_server.py": "aafe2b14636c6b216fdd6521320db9a490bd9f70469df9184e35a7c37a880796",
+    "tests/offline_smoke.py": "d9bf6bd4ba2b5461b5ae779e5c54da50bc8b9e49da3749926e70853578420270",
+    "tests/test_acceptance_reporting.py": "00f64139eb94c8870f79684f05862cf710631c8b3419922eb7dec0af2bf20f6d",
+    "tests/test_audit_integrity.py": "575431506943a231e9faf84c7bd438ef1732037964e943ca9f7b9b7a887161d7",
+    "tests/test_baseline_summary.py": "76f779a60cd288aed61e879f238eeac77aa045ac2eb39b5bb56a36a64934eec1",
+    "tests/test_benchmark_ranking.py": "376dbbb87bd9d45c92e09faed78227470db02dada62b8c878c5ac4aca9136d88",
+    "tests/test_benchmark_text.py": "4a2e40344b558edd8de9451ceb1090fd6777bceb98c2a99690cac2fe3e675781",
+    "tests/test_channels.py": "2a450306fd7b634db592a5b7ac5a3545cd9e91b53a772f4c74568a4321345ed9",
+    "tests/test_channel_signal_audit.py": "aaf84ee5c3beffd10bd61931c2a7a70771a8d9f50eebabf0b4550515fdc04001",
+    "tests/test_clinical_batches.py": "5605b933a66395d5f977982a366365ff1947bdb3343ed4d565c485a7673d5727",
+    "tests/test_clinical_intelligence.py": "19c7b6ec5a99feaa2cb7148c8b2881555dd0d6350885e40739121cb8fe2256f6",
+    "tests/test_completion_gaps.py": "e7f191bc8368b016521832c83524cffca38ccd6c1b29658493d992f78685b06a",
+    "tests/test_detailed_benchmark.py": "d50eb57adb0394774140317623becc884bcc0e4d09cedbc0d828c7610e973c53",
+    "tests/test_detailed_diagnostics.py": "254e4e235290741649b455f49ac1e24cc1f9d2fce618867c8ef4a6f9a8098a6f",
+    "tests/test_detailed_finalize.py": "69bd6700a2425a7a81f41dacb0b56d7f07c1f3c5a9ae1ec2e4de98cfd7c0a4c7",
+    "tests/test_detailed_recovery.py": "2658987b1789a84cd14f3b6539479819c2b69803799efc3499e4864edafdbb47",
+    "tests/test_detailed_review.py": "b3ec515d5b71132764650d88afd18c5a63dd0b92353f630675ae1fdfa5f991f5",
+    "tests/test_domain_integrity.py": "f07d651c6ca49aa484c83c6ec8528048dd3a18dc191b5731c9c9400b2ca0cbfa",
+    "tests/test_encrypted_backup.py": "d10094e4d2b639ec76348976306e0b77a40f6610d05fca833ec48ba2d9ea2dbf",
+    "tests/test_error_taxonomy.py": "bebec394f72377f8b4cfe6a9b934c91aa627a7bcc5153591036cfc84152b3ba9",
+    "tests/test_evaluation.py": "5c13db2e3bdb8f33893d6f5963aee1bad63c2dbfdc4a1f9513d61ea622055f76",
+    "tests/test_evidence_integrity.py": "ba5b28337dcaa3c9b3bb03a35132b5fc628897380b6687ed9a6689a1518ec607",
+    "tests/test_evidence_io.py": "326555db3124b54ec0c3c29d50debaa9e2ba09db035c58794ea1754f24495423",
+    "tests/test_expanded_corpus.py": "96d597e119fb70b24e5e1bfb7c667c01a3279f61953863b42b6a8fe702174abb",
+    "tests/test_expanded_summary.py": "85368c9d3cadd792aaba0f7dd377111efebd82c3a4bc664d993dcfb6e24373ce",
+    "tests/test_experiment_contract.py": "fc8d8316a98dede35a4f8b85e3aa3789a548be9f91d66c540754cadbf61d57a7",
+    "tests/test_foundation.py": "0248fe9ba2623786fd95965211404de1e940756330367de62bea58cd80ba6955",
+    "tests/test_full_reconstruction.py": "098f8b073563d42e1ef7481edb7f32958508a8b753a3737b2253c232fd3b2b59",
+    "tests/test_google_auth.py": "ddbb9e84d9a16f412c80b4bfd89ce697b6e8a9a997c480eabe38d585e2eba7ea",
+    "tests/test_independent_workflows.py": "3d6ccb5ff989e519a1e1eef2035448cd4ec0f87818c96c57d5e1a1b7b751bfbb",
+    "tests/test_inference_slot.py": "9924806fa03ac4cbe16c5a8b4f3be88a74ac3c79e226c743d1e317923a5f786a",
+    "tests/test_live_uploads.py": "550ad216a1687877bd6d2cb82153efff04dab25879ccbd1536d605f63e5d6014",
+    "tests/test_maintenance.py": "b210e46a46dffb62b1e8ebe02a99816e81ecdb8cae5156ab95023c1e2f540e0e",
+    "tests/test_media.py": "409f6130999bbe4013af13f27a4a5f51b154b503f9fda11e4837d88f125f7b04",
+    "tests/test_model_availability.py": "cece7fe0d59440f3209cf3d9397bd262eed9fa53dcfe81f161cedb1f4d48025a",
+    "tests/test_model_inventory.py": "52771d61da315009163a5a533a5aff79c27873f2372fd33a0016a8131e3d3cb9",
+    "tests/test_offline_engineering.py": "56fc557b13acbf40d56705b0373bb98ca62609e9cf3237a1130472866d907751",
+    "tests/test_ollama_inventory.py": "d67d8ef7ecfd8dc5e2804553396664103bd37802ef46a51243aabb0dd43cb4e4",
+    "tests/test_omi_adapter.py": "d583e4e713e337b5dde3b13357fce7cd416f98c0bc071e6e547cbcc0bbd32846",
+    "tests/test_portable_status_evidence.py": "abe802f850f6d4d88aafecce62fa4ad9f5ae81a194abd0e49aa3963fa22ffa26",
+    "tests/test_postgres.py": "6a1878c3528644ef611c24907e5ee0558232f39aae095b038a13882eabadcaf8",
+    "tests/test_presentation_tools.py": "b395e03850a5eab0042788bc2f3885624d2ddbea8091ac555539610d0da97d51",
+    "tests/test_proposal_integrity.py": "ace14102498b50ee39c22cd04de603ae4d37440bd5f2bd23cc3069a3c1003417",
+    "tests/test_recovery.py": "cf493ba3b2d87f37f299f5c8b181d2e90678403d16cf675e7da3f8aea8adecf4",
+    "tests/test_relationships.py": "74d98f23796821c89e7d3ff90a3cbb529e58cabf4055c9ed8c337ab23d60536a",
+    "tests/test_review_workflow.py": "0b6e13808f80df8d1417f89667446a93aaaffc75a07d6748872c0fd7f9eeee1c",
+    "tests/test_router_contracts.py": "627879a46ce011b435e69c69b3fc6b13b34a18354e029e5e8f38de2d1255bb0e",
+    "tests/test_safety_properties.py": "d045d30bdb59de65323c3b50192b0122e610f649a8c5ac1f0b4a4947a309b364",
+    "tests/test_scribe_workflow.py": "c4db52ee6c5be6b71f283c8e7c8ecafe3423bfb4fa2c8c702387aa1c3882c110",
+    "tests/test_semantic_batches.py": "daad7062ac604f377a42c77852499f422760fd24fb0de373626766c5eb2210a3",
+    "tests/test_source_warning_context.py": "8fd2be492eaec7fffcd2f70e358f7c1fb446c200609f6589138ff25e11dbe158",
+    "tests/test_timestamp_registry.py": "1398f9fab6bd41e092c69a2d1de70055d3f569b2c6e9ef1f2ce1909e1d62ab68",
+    "tests/test_transcription.py": "a27fcc67b24aa5f4a8b3a13bdeb978dba9d364fcba3a38dc9be59883829fff4f",
+    "tests/test_validation_summary.py": "dd99c9f80095f1b36fa556bbc7e54d75fa91121d50763e0364261897b5377216",
+    "tests/test_verifier_fail_closed.py": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "apps/clinician-web/src/App.tsx": "aa4e34ade87ea5fe59110c0c5105ea99da2d78aebbd3651a90a76e067570ec4a",
+    "apps/clinician-web/src/CaptureSync.ts": "9b36f09d5958f53a6008d357c3890b98423ceff8849f5033e0a51b9c5741a0d2",
+    "apps/clinician-web/src/ClinicalBatch.tsx": "990cbc01022fc1061829d5b90faf355a9dc7d4886be67cb5408229a7e87c6963",
+    "apps/clinician-web/src/ClinicalFields.tsx": "8208384db65fb6c5606713de478941bdebc278a80a1c060cef63cab297fe4eb4",
+    "apps/clinician-web/src/ClinicalProposals.tsx": "42a4ac8920a4f9b9745962f64d732881ce336b1abb8756bd5bb4a23de062b641",
+    "apps/clinician-web/src/ClinicianCorrection.tsx": "62d7da8b0a58bf94fd7a83c0e87a581497192a8027439c47c2154cda519b41ae",
+    "apps/clinician-web/src/DetailedDemo.tsx": "4a5adc403e7ad5cc74d15687456908a14e1d9e67d7a8e97c95d3daab6873b866",
+    "apps/clinician-web/src/DeviceCheck.tsx": "0fdaa60251ab65e34cf55ba9e5cfc0189e6e92ca22de4abc3050a7daf7c668e5",
+    "apps/clinician-web/src/Dictation.tsx": "ad3504a30bba6185f99ea2b63e1315b9cb9717e6102b2564ffc4966a65ce3c9a",
+    "apps/clinician-web/src/DraftProposal.tsx": "37b49aab0c7a39162a9ee27fabec29fcbdf2d3a8086fc8dc74f2102819ee0d76",
+    "apps/clinician-web/src/facts.ts": "7500f381f639f861649751dc1764cd900bdd4a50c754c18dcc7a56f73b555e7d",
+    "apps/clinician-web/src/fileHash.ts": "22ee32632aa2f2cbffc5fd02ca600cac3609f4d222fd9f64a6fb44963082dc57",
+    "apps/clinician-web/src/format.ts": "6441fa78890e9c634435ce1efa6ccfcfc19832c73baea3be07e84791450f2227",
+    "apps/clinician-web/src/main.tsx": "82f8eac1b7d24e0a34004cfc9afe091f8aef5fba4825f2072fbbcfb79a7a56a1",
+    "apps/clinician-web/src/PcmCapture.ts": "e8743ec5ef51883ba9cf77c867cfff3715e7ac4b5763450aa8da04ad8f5cc2aa",
+    "apps/clinician-web/src/PresentationTools.tsx": "b80313f67311ae2f243ecc9f772e6e6fd6a48fc8148aa139b5ead71ce43840be",
+    "apps/clinician-web/src/RecordingVault.ts": "c86140c43b327bc3ee78f847b309796f3f1c9bb3d59a43b20589e45af30de659",
+    "apps/clinician-web/src/ReviewTiming.tsx": "3a6d2d4527354325f53daf80a708630c961630061b7509d8e098f2fa5311a7b8",
+    "apps/clinician-web/src/ServerRecovery.tsx": "071f115e560cd3d55442e844dafbd8dad31613c6eb16d7d5e5ae92fc36158f1a",
+    "apps/clinician-web/src/SourceContext.tsx": "6ff9154372605ea5a2fd527f81cd78925eb9d770001b096c22277af7b1f0d3cc",
+    "apps/clinician-web/src/SpeakerRoles.tsx": "87dd567feb4503f599ea55f4774b6b2d6470634f08362bf6791858ad63e6d0e6",
+    "apps/clinician-web/src/style.css": "8456489e41662de27c131582ef5e355b39d1623400f67445dcc0c04da682cc5f",
+    "apps/clinician-web/src/VerificationWarnings.tsx": "9d85e96a02ece5f70591087c3daf5b8285bd23900db9e889f8b1b99c3a94b7ce",
+    "apps/clinician-web/src/VersionComparison.tsx": "55c172952778f8adc2e69733326f14f933b819c2a1cea57552a91fd96133d757",
+    "apps/clinician-web/src/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+    "apps/clinician-web/src/workspaceTypes.ts": "8ba70aa0309a67f24722a997cf4ee005501f02800ad842fa6e8a1085f701e8a5",
+    "apps/clinician-web/src/client/api.ts": "0e6a7ba781cdfb02987775ab53d3cf5f5087fb26c45e45e7d8a0a579bc5727f8",
+    "apps/clinician-web/src/client/errorCodes.ts": "fda87ce1945f9a0e1214348fbfc9f637711952bb80d8ac14a0fac5efdff5535b",
+    "apps/clinician-web/src/components/Icon.tsx": "148a4fec7ce363e09f5cfb192962a5e6dd13ab50e4f4ea0352073bbd58642bc1",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "402ccbb982a4bcb94b69dde4107bfed285404b214194ca6225ac0d81f9366d2c",
+    "apps/clinician-web/src/screens/LoginScreen.tsx": "21050a38ab3f9a3c346c743e13aac37c28bccf2e25703ce93f46be288f6bdf7a",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "5e432216a546bc0f8a2dc6481bb9951f694c7f1f42613ccb50044ca41f63abe4",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "d719471e84d6ea05e9839de4cb6d1cc1a3e0e5d94a94eeb8050512b497a8534a",
+    "apps/clinician-web/e2e/clinical-batches.spec.ts": "86f3142ee38dbae8695e6219a759bebce3d8c3cd4a170ae966104c53af0dccd5",
+    "apps/clinician-web/e2e/device-check.spec.ts": "88eade7f63686bb7d314e374b51b30cb65f8940712c3eaffa59903b1adff1314",
+    "apps/clinician-web/e2e/dictation.spec.ts": "0561f75d9f44cf90857c5e29c0e0a9e053934a2b7562a33e4a851f0a472eaa70",
+    "apps/clinician-web/e2e/evidence-channel.spec.ts": "2eed650088b10a4e5123155069ca83fb5fe4c20f9eff6ce6c5b54d0138f476a0",
+    "apps/clinician-web/e2e/google-auth.spec.ts": "26384393a8888f93c233342c4fc1abdee00e0d93341e0df79e920234c9c0d478",
+    "apps/clinician-web/e2e/presentation.spec.ts": "517ab95b611105eba7a7a765ef027142626f4ecbd84370fbf7f664b39d710613",
+    "apps/clinician-web/e2e/recovery.spec.ts": "6939b40fd20046d61411c6860c5663fee6d5895bf2cb8fee39e5aa5f98a048a0",
+    "apps/clinician-web/e2e/workflow.spec.ts": "f45f577f2c01bd9072b701c580e16ded083e2b7e042f97a927a28669a3c77663",
+    "apps/clinician-web/e2e/fixtures/offline.ts": "77f21ec35945ec8bd809d3d68c84441c1b127dc8107132de366eaab68dd7e251",
+    "apps/clinician-web/package-lock.json": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27",
+    "apps/clinician-web/package.json": "c48961e28e3a1fa3abe593a93ccd7d0127df528714c4dd372b1ae9bda13e19e9",
+    "apps/clinician-web/tsconfig.json": "c904f7667b845b93bf5e2a5ffb4c7e5f1c4cfbab768e0f6f53ed6682a84e4d50",
+    "apps/clinician-web/playwright.config.ts": "e483e7c866c0c9be9d0623e783a2d23b3271c33a85332017bab714e5a39ec797",
+    "apps/clinician-web/vite.config.ts": "ab206fa054331b1693c7d96706878fb44cc11d300fd1e831c12fd48cf2911ea0",
+    ".github/workflows/ci.yml": "a2ff8668cd9534dc262be1e9a876f79740d179d98f1a6ad453a2ed74584f84b3",
+    ".github/workflows/dependency-audit.yml": "f47c92bf6781005fea44cfe7004b93acf078200820a2421c92b0c09ea7a2b399",
+    ".github/workflows/model-inference.yml": "39b3dde4297bdedd9eaf308cf605a644c5944628a918be7803154ea792042116",
+    "pyproject.toml": "7b2109f91233203ba20595048068373de25019e593a2b1820e659e0ae5f1c034",
+    "constraints-ci.txt": "d732bad0c6044cfa0970206df2a4610d574a0f9393cd476dd6fb2c4febd3705e",
+    "evaluation/primary-endpoint-registry-v1.json": "83ae08ff984cdf1d95150df5be8bccc723ea286099ee78a2580e2a30ae9ce772",
+    "scripts/create_synthetic_audio.ps1": "fcc42bf16a5bc351b9e540099b5eb54f6459e78c664c8088edde44207cdfbd75",
+    "scripts/offline_preflight": "7cb177ece6d6b00b27d3cf9a1bfc2d0a6b34d3a8eacc154f2b08334433d22406",
+    "scripts/offline_preflight.ps1": "f8053fb553990c2980e211253dac5098d3e2e5d0ac39e05da2561efbd9157db9",
+    "scripts/start.ps1": "b6dfe6c22addc1f619bbacb886297d7f08d52d9d0078606de01d5486c5561d06",
+    "Dockerfile": "3ac27c7236b5f5c642cbcfae742163565447eb5fa39ab1acc751f6fc197431cf",
+    "compose.production.yaml": "a27ebcd37ded839045cb7157de59242583cb2b7fa25911ba8ef50158a63a19b7",
+    "compose.yaml": "aad1f808a2f98e8c2d6d81a9fa3981dd83d738d0bb058d4a948256013eb40736"
+  },
+  "preflight": {
+    "schema_version": "offline_preflight_v1",
+    "tools": {
+      "pytest": "available",
+      "codec_av": "blocked_missing_local_artifact",
+      "coverage": "available",
+      "ruff": "available",
+      "mypy": "available",
+      "pip_audit": "blocked_missing_local_artifact"
+    },
+    "configured_ollama_cache": {
+      "status": "not_requested",
+      "hint": "Use --ollama-root for the configured Qwen blob cache."
+    },
+    "node": "available",
+    "npm_dependencies": "available",
+    "python_wheelhouse": "blocked_missing_local_artifact",
+    "models": [
+      {
+        "path": "data/models/faster-distil-whisper-large-v3",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/faster-whisper-large-v3",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/faster-whisper-small",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/faster-whisper-tiny.en",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/multimed-small-int8",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/multimed-source",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/multimed-transformers",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/omi-med-stt-v1-gguf",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/parakeet-tdt-v2-onnx",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/public-diarization-v1",
+        "status": "directory_present_not_a_weight_verification"
+      },
+      {
+        "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25",
+        "status": "directory_present_not_a_weight_verification"
+      }
+    ],
+    "model_contents_hashed": false,
+    "packages": [
+      {
+        "name": "absl-py",
+        "version": "2.3.1"
+      },
+      {
+        "name": "agno",
+        "version": "1.8.1"
+      },
+      {
+        "name": "aiofiles",
+        "version": "24.1.0"
+      },
+      {
+        "name": "aiohappyeyeballs",
+        "version": "2.6.2"
+      },
+      {
+        "name": "aiohttp",
+        "version": "3.13.5"
+      },
+      {
+        "name": "aiosignal",
+        "version": "1.4.0"
+      },
+      {
+        "name": "aiosqlite",
+        "version": "0.21.0"
+      },
+      {
+        "name": "altair",
+        "version": "5.5.0"
+      },
+      {
+        "name": "anaconda",
+        "version": "0.0.1.1"
+      },
+      {
+        "name": "annotated-doc",
+        "version": "0.0.4"
+      },
+      {
+        "name": "annotated-types",
+        "version": "0.7.0"
+      },
+      {
+        "name": "anyio",
+        "version": "4.15.0"
+      },
+      {
+        "name": "apexgrid-ai",
+        "version": "0.1.0"
+      },
+      {
+        "name": "appdirs",
+        "version": "1.4.4"
+      },
+      {
+        "name": "argon2-cffi",
+        "version": "23.1.0"
+      },
+      {
+        "name": "argon2-cffi-bindings",
+        "version": "21.2.0"
+      },
+      {
+        "name": "argparse-addons",
+        "version": "0.12.0"
+      },
+      {
+        "name": "args",
+        "version": "0.1.0"
+      },
+      {
+        "name": "arrow",
+        "version": "1.3.0"
+      },
+      {
+        "name": "asgiref",
+        "version": "3.8.1"
+      },
+      {
+        "name": "ast_serialize",
+        "version": "0.4.0"
+      },
+      {
+        "name": "asttokens",
+        "version": "3.0.0"
+      },
+      {
+        "name": "astunparse",
+        "version": "1.6.3"
+      },
+      {
+        "name": "async-lru",
+        "version": "2.0.4"
+      },
+      {
+        "name": "attrs",
+        "version": "26.1.0"
+      },
+      {
+        "name": "autogen-agentchat",
+        "version": "0.7.5"
+      },
+      {
+        "name": "autogen-core",
+        "version": "0.7.5"
+      },
+      {
+        "name": "autogen-ext",
+        "version": "0.7.5"
+      },
+      {
+        "name": "azure-ai-ml",
+        "version": "1.27.1"
+      },
+      {
+        "name": "azure-common",
+        "version": "1.1.28"
+      },
+      {
+        "name": "azure-core",
+        "version": "1.34.0"
+      },
+      {
+        "name": "azure-core-tracing-opentelemetry",
+        "version": "1.0.0b12"
+      },
+      {
+        "name": "azure-identity",
+        "version": "1.23.0"
+      },
+      {
+        "name": "azure-mgmt-core",
+        "version": "1.5.0"
+      },
+      {
+        "name": "azure-monitor-opentelemetry",
+        "version": "1.6.10"
+      },
+      {
+        "name": "azure-monitor-opentelemetry-exporter",
+        "version": "1.0.0b37"
+      },
+      {
+        "name": "azure-storage-blob",
+        "version": "12.25.1"
+      },
+      {
+        "name": "azure-storage-file-datalake",
+        "version": "12.20.0"
+      },
+      {
+        "name": "azure-storage-file-share",
+        "version": "12.21.0"
+      },
+      {
+        "name": "babel",
+        "version": "2.17.0"
+      },
+      {
+        "name": "backoff",
+        "version": "2.2.1"
+      },
+      {
+        "name": "backrefs",
+        "version": "8.0"
+      },
+      {
+        "name": "bcrypt",
+        "version": "5.0.0"
+      },
+      {
+        "name": "beautifulsoup4",
+        "version": "4.13.5"
+      },
+      {
+        "name": "bitstruct",
+        "version": "8.23.0"
+      },
+      {
+        "name": "bleach",
+        "version": "6.2.0"
+      },
+      {
+        "name": "blinker",
+        "version": "1.9.0"
+      },
+      {
+        "name": "bokeh",
+        "version": "3.8.1"
+      },
+      {
+        "name": "build",
+        "version": "1.6.1"
+      },
+      {
+        "name": "cachetools",
+        "version": "5.5.2"
+      },
+      {
+        "name": "cantools",
+        "version": "43.0.2"
+      },
+      {
+        "name": "catboost",
+        "version": "1.2.8"
+      },
+      {
+        "name": "cattrs",
+        "version": "26.1.0"
+      },
+      {
+        "name": "certifi",
+        "version": "2025.1.31"
+      },
+      {
+        "name": "cffi",
+        "version": "1.17.1"
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.4.1"
+      },
+      {
+        "name": "chromadb",
+        "version": "1.1.1"
+      },
+      {
+        "name": "click",
+        "version": "8.1.8"
+      },
+      {
+        "name": "clint",
+        "version": "0.5.1"
+      },
+      {
+        "name": "cloudpickle",
+        "version": "3.1.2"
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6"
+      },
+      {
+        "name": "comm",
+        "version": "0.2.2"
+      },
+      {
+        "name": "contourpy",
+        "version": "1.3.1"
+      },
+      {
+        "name": "coverage",
+        "version": "7.10.6"
+      },
+      {
+        "name": "cramjam",
+        "version": "2.11.0"
+      },
+      {
+        "name": "crccheck",
+        "version": "1.3.1"
+      },
+      {
+        "name": "crewai",
+        "version": "1.14.5"
+      },
+      {
+        "name": "crewai-cli",
+        "version": "1.14.5"
+      },
+      {
+        "name": "crewai-core",
+        "version": "1.14.5"
+      },
+      {
+        "name": "crewai-tools",
+        "version": "1.14.5"
+      },
+      {
+        "name": "cryptography",
+        "version": "45.0.4"
+      },
+      {
+        "name": "cycler",
+        "version": "0.12.1"
+      },
+      {
+        "name": "dask",
+        "version": "2025.12.0"
+      },
+      {
+        "name": "debugpy",
+        "version": "1.8.13"
+      },
+      {
+        "name": "decorator",
+        "version": "5.2.1"
+      },
+      {
+        "name": "defusedxml",
+        "version": "0.7.1"
+      },
+      {
+        "name": "Deprecated",
+        "version": "1.2.18"
+      },
+      {
+        "name": "deprecation",
+        "version": "2.1.0"
+      },
+      {
+        "name": "distributed",
+        "version": "2025.12.0"
+      },
+      {
+        "name": "distro",
+        "version": "1.9.0"
+      },
+      {
+        "name": "docstring_parser",
+        "version": "0.17.0"
+      },
+      {
+        "name": "docutils",
+        "version": "0.23"
+      },
+      {
+        "name": "duckdb",
+        "version": "1.5.4"
+      },
+      {
+        "name": "durationpy",
+        "version": "0.10"
+      },
+      {
+        "name": "easyocr",
+        "version": "1.7.2"
+      },
+      {
+        "name": "ecdsa",
+        "version": "0.19.2"
+      },
+      {
+        "name": "et_xmlfile",
+        "version": "2.0.0"
+      },
+      {
+        "name": "executing",
+        "version": "2.2.0"
+      },
+      {
+        "name": "fastapi",
+        "version": "0.136.1"
+      },
+      {
+        "name": "fastf1",
+        "version": "3.8.3"
+      },
+      {
+        "name": "fastjsonschema",
+        "version": "2.21.1"
+      },
+      {
+        "name": "fastparquet",
+        "version": "2024.11.0"
+      },
+      {
+        "name": "filelock",
+        "version": "3.29.0"
+      },
+      {
+        "name": "filetype",
+        "version": "1.2.0"
+      },
+      {
+        "name": "filterpy",
+        "version": "1.4.5"
+      },
+      {
+        "name": "fixedint",
+        "version": "0.1.6"
+      },
+      {
+        "name": "flatbuffers",
+        "version": "25.2.10"
+      },
+      {
+        "name": "fonttools",
+        "version": "4.56.0"
+      },
+      {
+        "name": "fqdn",
+        "version": "1.5.1"
+      },
+      {
+        "name": "frozenlist",
+        "version": "1.8.0"
+      },
+      {
+        "name": "fsspec",
+        "version": "2025.12.0"
+      },
+      {
+        "name": "gast",
+        "version": "0.6.0"
+      },
+      {
+        "name": "ghp-import",
+        "version": "2.1.0"
+      },
+      {
+        "name": "gitdb",
+        "version": "4.0.12"
+      },
+      {
+        "name": "GitPython",
+        "version": "3.1.44"
+      },
+      {
+        "name": "google-ai-generativelanguage",
+        "version": "0.6.15"
+      },
+      {
+        "name": "google-api-core",
+        "version": "2.30.3"
+      },
+      {
+        "name": "google-api-python-client",
+        "version": "2.196.0"
+      },
+      {
+        "name": "google-auth",
+        "version": "2.53.0"
+      },
+      {
+        "name": "google-auth-httplib2",
+        "version": "0.4.0"
+      },
+      {
+        "name": "google-genai",
+        "version": "2.4.0"
+      },
+      {
+        "name": "google-generativeai",
+        "version": "0.8.6"
+      },
+      {
+        "name": "google-pasta",
+        "version": "0.2.0"
+      },
+      {
+        "name": "googleapis-common-protos",
+        "version": "1.75.0"
+      },
+      {
+        "name": "graphviz",
+        "version": "0.21"
+      },
+      {
+        "name": "grpcio",
+        "version": "1.74.0"
+      },
+      {
+        "name": "grpcio-status",
+        "version": "1.71.2"
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0"
+      },
+      {
+        "name": "h5py",
+        "version": "3.14.0"
+      },
+      {
+        "name": "hf-xet",
+        "version": "1.5.0"
+      },
+      {
+        "name": "httpcore",
+        "version": "1.0.9"
+      },
+      {
+        "name": "httpcore2",
+        "version": "2.12.0"
+      },
+      {
+        "name": "httplib2",
+        "version": "0.31.2"
+      },
+      {
+        "name": "httptools",
+        "version": "0.7.1"
+      },
+      {
+        "name": "httpx",
+        "version": "0.28.1"
+      },
+      {
+        "name": "httpx-sse",
+        "version": "0.4.3"
+      },
+      {
+        "name": "httpx2",
+        "version": "2.12.0"
+      },
+      {
+        "name": "huggingface_hub",
+        "version": "1.16.1"
+      },
+      {
+        "name": "hypothesis",
+        "version": "6.167.1"
+      },
+      {
+        "name": "id",
+        "version": "1.6.1"
+      },
+      {
+        "name": "idna",
+        "version": "3.19"
+      },
+      {
+        "name": "ImageIO",
+        "version": "2.37.4"
+      },
+      {
+        "name": "importlib_metadata",
+        "version": "8.6.1"
+      },
+      {
+        "name": "importlib_resources",
+        "version": "7.1.0"
+      },
+      {
+        "name": "imutils",
+        "version": "0.5.4"
+      },
+      {
+        "name": "iniconfig",
+        "version": "2.3.0"
+      },
+      {
+        "name": "instructor",
+        "version": "1.15.1"
+      },
+      {
+        "name": "ipykernel",
+        "version": "6.29.5"
+      },
+      {
+        "name": "ipython",
+        "version": "9.0.1"
+      },
+      {
+        "name": "ipython_pygments_lexers",
+        "version": "1.1.1"
+      },
+      {
+        "name": "ipywidgets",
+        "version": "8.1.7"
+      },
+      {
+        "name": "isodate",
+        "version": "0.7.2"
+      },
+      {
+        "name": "isoduration",
+        "version": "20.11.0"
+      },
+      {
+        "name": "jaraco.classes",
+        "version": "3.4.0"
+      },
+      {
+        "name": "jaraco.context",
+        "version": "6.1.2"
+      },
+      {
+        "name": "jaraco.functools",
+        "version": "4.6.0"
+      },
+      {
+        "name": "jedi",
+        "version": "0.19.2"
+      },
+      {
+        "name": "Jinja2",
+        "version": "3.1.5"
+      },
+      {
+        "name": "jiter",
+        "version": "0.13.0"
+      },
+      {
+        "name": "joblib",
+        "version": "1.5.1"
+      },
+      {
+        "name": "json5",
+        "version": "0.10.0"
+      },
+      {
+        "name": "json_repair",
+        "version": "0.25.3"
+      },
+      {
+        "name": "jsonpatch",
+        "version": "1.33"
+      },
+      {
+        "name": "jsonpointer",
+        "version": "3.0.0"
+      },
+      {
+        "name": "jsonref",
+        "version": "1.1.0"
+      },
+      {
+        "name": "jsonschema",
+        "version": "4.23.0"
+      },
+      {
+        "name": "jsonschema-specifications",
+        "version": "2024.10.1"
+      },
+      {
+        "name": "jupyter",
+        "version": "1.1.1"
+      },
+      {
+        "name": "jupyter-console",
+        "version": "6.6.3"
+      },
+      {
+        "name": "jupyter-events",
+        "version": "0.12.0"
+      },
+      {
+        "name": "jupyter-lsp",
+        "version": "2.2.5"
+      },
+      {
+        "name": "jupyter_client",
+        "version": "8.6.3"
+      },
+      {
+        "name": "jupyter_core",
+        "version": "5.7.2"
+      },
+      {
+        "name": "jupyter_server",
+        "version": "2.15.0"
+      },
+      {
+        "name": "jupyter_server_terminals",
+        "version": "0.5.3"
+      },
+      {
+        "name": "jupyterlab",
+        "version": "4.4.5"
+      },
+      {
+        "name": "jupyterlab_pygments",
+        "version": "0.3.0"
+      },
+      {
+        "name": "jupyterlab_server",
+        "version": "2.27.3"
+      },
+      {
+        "name": "jupyterlab_widgets",
+        "version": "3.0.15"
+      },
+      {
+        "name": "jupytext",
+        "version": "1.19.5"
+      },
+      {
+        "name": "kaggle",
+        "version": "2.2.4"
+      },
+      {
+        "name": "kagglesdk",
+        "version": "0.1.37"
+      },
+      {
+        "name": "keras",
+        "version": "3.11.3"
+      },
+      {
+        "name": "keyring",
+        "version": "25.7.0"
+      },
+      {
+        "name": "kiwisolver",
+        "version": "1.4.8"
+      },
+      {
+        "name": "kubernetes",
+        "version": "36.0.0"
+      },
+      {
+        "name": "lab",
+        "version": "8.4"
+      },
+      {
+        "name": "lance-namespace",
+        "version": "0.7.7"
+      },
+      {
+        "name": "lance-namespace-urllib3-client",
+        "version": "0.7.7"
+      },
+      {
+        "name": "lancedb",
+        "version": "0.30.0"
+      },
+      {
+        "name": "langchain",
+        "version": "1.4.0"
+      },
+      {
+        "name": "langchain-core",
+        "version": "1.6.2"
+      },
+      {
+        "name": "langchain-ollama",
+        "version": "1.1.0"
+      },
+      {
+        "name": "langchain-protocol",
+        "version": "0.0.19"
+      },
+      {
+        "name": "langgraph",
+        "version": "1.2.11"
+      },
+      {
+        "name": "langgraph-checkpoint",
+        "version": "4.2.0"
+      },
+      {
+        "name": "langgraph-prebuilt",
+        "version": "1.1.0"
+      },
+      {
+        "name": "langgraph-sdk",
+        "version": "0.4.4"
+      },
+      {
+        "name": "langserve",
+        "version": "0.3.3"
+      },
+      {
+        "name": "langsmith",
+        "version": "0.12.1"
+      },
+      {
+        "name": "lazy-loader",
+        "version": "0.5"
+      },
+      {
+        "name": "libclang",
+        "version": "18.1.1"
+      },
+      {
+        "name": "librt",
+        "version": "0.11.0"
+      },
+      {
+        "name": "lightgbm",
+        "version": "4.6.0"
+      },
+      {
+        "name": "linkify-it-py",
+        "version": "2.1.0"
+      },
+      {
+        "name": "locket",
+        "version": "1.0.0"
+      },
+      {
+        "name": "lxml",
+        "version": "6.1.1"
+      },
+      {
+        "name": "lz4",
+        "version": "4.4.5"
+      },
+      {
+        "name": "mamba",
+        "version": "0.11.3"
+      },
+      {
+        "name": "Markdown",
+        "version": "3.9"
+      },
+      {
+        "name": "markdown-it-py",
+        "version": "4.0.0"
+      },
+      {
+        "name": "MarkupSafe",
+        "version": "3.0.2"
+      },
+      {
+        "name": "marshmallow",
+        "version": "3.26.1"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.10.3"
+      },
+      {
+        "name": "matplotlib-inline",
+        "version": "0.1.7"
+      },
+      {
+        "name": "mcp",
+        "version": "1.26.0"
+      },
+      {
+        "name": "mcphorizon",
+        "version": "1.0.0"
+      },
+      {
+        "name": "mdit-py-plugins",
+        "version": "0.6.1"
+      },
+      {
+        "name": "mdurl",
+        "version": "0.1.2"
+      },
+      {
+        "name": "med-transcript-ai",
+        "version": "0.3.0"
+      },
+      {
+        "name": "mergedeep",
+        "version": "1.3.4"
+      },
+      {
+        "name": "mistune",
+        "version": "3.1.2"
+      },
+      {
+        "name": "mkdocs",
+        "version": "1.6.1"
+      },
+      {
+        "name": "mkdocs-get-deps",
+        "version": "0.2.2"
+      },
+      {
+        "name": "mkdocs-material",
+        "version": "9.7.7"
+      },
+      {
+        "name": "mkdocs-material-extensions",
+        "version": "1.3.1"
+      },
+      {
+        "name": "ml_dtypes",
+        "version": "0.5.3"
+      },
+      {
+        "name": "mmh3",
+        "version": "5.2.1"
+      },
+      {
+        "name": "more-itertools",
+        "version": "11.1.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      },
+      {
+        "name": "msal",
+        "version": "1.32.3"
+      },
+      {
+        "name": "msal-extensions",
+        "version": "1.3.1"
+      },
+      {
+        "name": "msgpack",
+        "version": "1.1.2"
+      },
+      {
+        "name": "msrest",
+        "version": "0.7.1"
+      },
+      {
+        "name": "multidict",
+        "version": "6.7.1"
+      },
+      {
+        "name": "mypy",
+        "version": "2.1.0"
+      },
+      {
+        "name": "mypy_extensions",
+        "version": "1.1.0"
+      },
+      {
+        "name": "namex",
+        "version": "0.1.0"
+      },
+      {
+        "name": "narwhals",
+        "version": "1.30.0"
+      },
+      {
+        "name": "nbclient",
+        "version": "0.10.2"
+      },
+      {
+        "name": "nbconvert",
+        "version": "7.16.6"
+      },
+      {
+        "name": "nbformat",
+        "version": "5.10.4"
+      },
+      {
+        "name": "nest-asyncio",
+        "version": "1.6.0"
+      },
+      {
+        "name": "networkx",
+        "version": "3.6.1"
+      },
+      {
+        "name": "nh3",
+        "version": "0.3.7"
+      },
+      {
+        "name": "ninja",
+        "version": "1.13.0"
+      },
+      {
+        "name": "notebook",
+        "version": "7.4.4"
+      },
+      {
+        "name": "notebook_shim",
+        "version": "0.2.4"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "oauthlib",
+        "version": "3.2.2"
+      },
+      {
+        "name": "ollama",
+        "version": "0.6.2"
+      },
+      {
+        "name": "onnxruntime",
+        "version": "1.26.0"
+      },
+      {
+        "name": "openai",
+        "version": "2.38.0"
+      },
+      {
+        "name": "opencv-python",
+        "version": "4.11.0.86"
+      },
+      {
+        "name": "opencv-python-headless",
+        "version": "4.11.0.86"
+      },
+      {
+        "name": "openpyxl",
+        "version": "3.1.5"
+      },
+      {
+        "name": "opentelemetry-api",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-common",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-grpc",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-http",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-instrumentation",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-asgi",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-dbapi",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-django",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-fastapi",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-flask",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-psycopg2",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-requests",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-urllib",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-urllib3",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-wsgi",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-proto",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-resource-detector-azure",
+        "version": "0.1.5"
+      },
+      {
+        "name": "opentelemetry-sdk",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-semantic-conventions",
+        "version": "0.55b1"
+      },
+      {
+        "name": "opentelemetry-util-http",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opt_einsum",
+        "version": "3.4.0"
+      },
+      {
+        "name": "optree",
+        "version": "0.17.0"
+      },
+      {
+        "name": "orjson",
+        "version": "3.11.9"
+      },
+      {
+        "name": "ormsgpack",
+        "version": "1.12.2"
+      },
+      {
+        "name": "overrides",
+        "version": "7.7.0"
+      },
+      {
+        "name": "packaging",
+        "version": "26.3"
+      },
+      {
+        "name": "paginate",
+        "version": "0.5.7"
+      },
+      {
+        "name": "paho-mqtt",
+        "version": "2.1.0"
+      },
+      {
+        "name": "pandas",
+        "version": "2.3.1"
+      },
+      {
+        "name": "pandocfilters",
+        "version": "1.5.1"
+      },
+      {
+        "name": "parso",
+        "version": "0.8.4"
+      },
+      {
+        "name": "partd",
+        "version": "1.4.2"
+      },
+      {
+        "name": "pathspec",
+        "version": "1.1.1"
+      },
+      {
+        "name": "pdfminer.six",
+        "version": "20251230"
+      },
+      {
+        "name": "pdfplumber",
+        "version": "0.11.9"
+      },
+      {
+        "name": "pillow",
+        "version": "10.4.0"
+      },
+      {
+        "name": "pip",
+        "version": "25.2"
+      },
+      {
+        "name": "platformdirs",
+        "version": "4.3.6"
+      },
+      {
+        "name": "plotly",
+        "version": "6.3.0"
+      },
+      {
+        "name": "pluggy",
+        "version": "1.6.0"
+      },
+      {
+        "name": "portalocker",
+        "version": "2.7.0"
+      },
+      {
+        "name": "posthog",
+        "version": "5.4.0"
+      },
+      {
+        "name": "prometheus_client",
+        "version": "0.21.1"
+      },
+      {
+        "name": "prompt_toolkit",
+        "version": "3.0.50"
+      },
+      {
+        "name": "propcache",
+        "version": "0.5.2"
+      },
+      {
+        "name": "proto-plus",
+        "version": "1.28.0"
+      },
+      {
+        "name": "protobuf",
+        "version": "5.29.3"
+      },
+      {
+        "name": "psutil",
+        "version": "7.0.0"
+      },
+      {
+        "name": "psycopg",
+        "version": "3.3.6"
+      },
+      {
+        "name": "psycopg-binary",
+        "version": "3.3.6"
+      },
+      {
+        "name": "pure_eval",
+        "version": "0.2.3"
+      },
+      {
+        "name": "pyarrow",
+        "version": "19.0.1"
+      },
+      {
+        "name": "pyasn1",
+        "version": "0.6.3"
+      },
+      {
+        "name": "pyasn1_modules",
+        "version": "0.4.2"
+      },
+      {
+        "name": "pybase64",
+        "version": "1.4.3"
+      },
+      {
+        "name": "pyclipper",
+        "version": "1.4.0"
+      },
+      {
+        "name": "pycparser",
+        "version": "2.22"
+      },
+      {
+        "name": "pyctcdecode",
+        "version": "0.5.0"
+      },
+      {
+        "name": "pydantic",
+        "version": "2.12.5"
+      },
+      {
+        "name": "pydantic-settings",
+        "version": "2.10.1"
+      },
+      {
+        "name": "pydantic_core",
+        "version": "2.41.5"
+      },
+      {
+        "name": "pydash",
+        "version": "8.0.5"
+      },
+      {
+        "name": "pydeck",
+        "version": "0.9.1"
+      },
+      {
+        "name": "Pygments",
+        "version": "2.20.0"
+      },
+      {
+        "name": "pygtrie",
+        "version": "2.6.1"
+      },
+      {
+        "name": "PyJWT",
+        "version": "2.10.1"
+      },
+      {
+        "name": "pymdown-extensions",
+        "version": "12.0.1"
+      },
+      {
+        "name": "PyMuPDF",
+        "version": "1.26.7"
+      },
+      {
+        "name": "pyparsing",
+        "version": "3.2.1"
+      },
+      {
+        "name": "pypdf",
+        "version": "6.19.0"
+      },
+      {
+        "name": "pypdfium2",
+        "version": "5.12.1"
+      },
+      {
+        "name": "PyPika",
+        "version": "0.51.1"
+      },
+      {
+        "name": "pyproject_hooks",
+        "version": "1.2.0"
+      },
+      {
+        "name": "pytest",
+        "version": "9.0.3"
+      },
+      {
+        "name": "pytest-asyncio",
+        "version": "1.3.0"
+      },
+      {
+        "name": "pytest-cov",
+        "version": "7.1.0"
+      },
+      {
+        "name": "python-bidi",
+        "version": "0.6.11"
+      },
+      {
+        "name": "python-can",
+        "version": "4.6.1"
+      },
+      {
+        "name": "python-dateutil",
+        "version": "2.9.0.post0"
+      },
+      {
+        "name": "python-docx",
+        "version": "1.2.0"
+      },
+      {
+        "name": "python-dotenv",
+        "version": "1.2.2"
+      },
+      {
+        "name": "python-jose",
+        "version": "3.5.0"
+      },
+      {
+        "name": "python-json-logger",
+        "version": "3.2.1"
+      },
+      {
+        "name": "python-multipart",
+        "version": "0.0.20"
+      },
+      {
+        "name": "python-slugify",
+        "version": "8.0.4"
+      },
+      {
+        "name": "pytube",
+        "version": "15.0.0"
+      },
+      {
+        "name": "pytz",
+        "version": "2025.1"
+      },
+      {
+        "name": "pywin32",
+        "version": "311"
+      },
+      {
+        "name": "pywin32-ctypes",
+        "version": "0.2.3"
+      },
+      {
+        "name": "pywinpty",
+        "version": "2.0.15"
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.2"
+      },
+      {
+        "name": "pyyaml_env_tag",
+        "version": "1.1"
+      },
+      {
+        "name": "pyzmq",
+        "version": "26.2.1"
+      },
+      {
+        "name": "RapidFuzz",
+        "version": "3.14.5"
+      },
+      {
+        "name": "readme_renderer",
+        "version": "46.0"
+      },
+      {
+        "name": "referencing",
+        "version": "0.36.2"
+      },
+      {
+        "name": "regex",
+        "version": "2026.1.15"
+      },
+      {
+        "name": "requests",
+        "version": "2.34.2"
+      },
+      {
+        "name": "requests-cache",
+        "version": "1.3.2"
+      },
+      {
+        "name": "requests-oauthlib",
+        "version": "2.0.0"
+      },
+      {
+        "name": "requests-toolbelt",
+        "version": "1.0.0"
+      },
+      {
+        "name": "rfc3339-validator",
+        "version": "0.1.4"
+      },
+      {
+        "name": "rfc3986",
+        "version": "2.0.0"
+      },
+      {
+        "name": "rfc3986-validator",
+        "version": "0.1.1"
+      },
+      {
+        "name": "rich",
+        "version": "14.3.4"
+      },
+      {
+        "name": "rpds-py",
+        "version": "0.23.1"
+      },
+      {
+        "name": "rsa",
+        "version": "4.9.1"
+      },
+      {
+        "name": "ruff",
+        "version": "0.15.13"
+      },
+      {
+        "name": "safetensors",
+        "version": "0.8.0"
+      },
+      {
+        "name": "scikit-image",
+        "version": "0.26.0"
+      },
+      {
+        "name": "scikit-learn",
+        "version": "1.7.1"
+      },
+      {
+        "name": "scipy",
+        "version": "1.16.1"
+      },
+      {
+        "name": "seaborn",
+        "version": "0.13.2"
+      },
+      {
+        "name": "Send2Trash",
+        "version": "1.8.3"
+      },
+      {
+        "name": "sentencepiece",
+        "version": "0.2.2"
+      },
+      {
+        "name": "setuptools",
+        "version": "80.9.0"
+      },
+      {
+        "name": "shapely",
+        "version": "2.1.2"
+      },
+      {
+        "name": "shellingham",
+        "version": "1.5.4"
+      },
+      {
+        "name": "signalrcore",
+        "version": "1.0.2"
+      },
+      {
+        "name": "simplejson",
+        "version": "3.20.1"
+      },
+      {
+        "name": "six",
+        "version": "1.17.0"
+      },
+      {
+        "name": "smmap",
+        "version": "5.0.2"
+      },
+      {
+        "name": "sniffio",
+        "version": "1.3.1"
+      },
+      {
+        "name": "sortedcontainers",
+        "version": "2.4.0"
+      },
+      {
+        "name": "soundfile",
+        "version": "0.14.0"
+      },
+      {
+        "name": "soupsieve",
+        "version": "2.6"
+      },
+      {
+        "name": "sse-starlette",
+        "version": "1.8.2"
+      },
+      {
+        "name": "stack-data",
+        "version": "0.6.3"
+      },
+      {
+        "name": "starlette",
+        "version": "1.0.0"
+      },
+      {
+        "name": "streamlit",
+        "version": "1.43.2"
+      },
+      {
+        "name": "strictyaml",
+        "version": "1.7.3"
+      },
+      {
+        "name": "surya-ocr",
+        "version": "0.22.1"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "tblib",
+        "version": "3.2.2"
+      },
+      {
+        "name": "tenacity",
+        "version": "9.0.0"
+      },
+      {
+        "name": "tensorboard",
+        "version": "2.20.0"
+      },
+      {
+        "name": "tensorboard-data-server",
+        "version": "0.7.2"
+      },
+      {
+        "name": "tensorflow",
+        "version": "2.20.0"
+      },
+      {
+        "name": "termcolor",
+        "version": "3.1.0"
+      },
+      {
+        "name": "terminado",
+        "version": "0.18.1"
+      },
+      {
+        "name": "text-unidecode",
+        "version": "1.3"
+      },
+      {
+        "name": "textparser",
+        "version": "0.26.2"
+      },
+      {
+        "name": "textual",
+        "version": "8.2.7"
+      },
+      {
+        "name": "threadpoolctl",
+        "version": "3.6.0"
+      },
+      {
+        "name": "tifffile",
+        "version": "2026.7.31"
+      },
+      {
+        "name": "tiktoken",
+        "version": "0.12.0"
+      },
+      {
+        "name": "timple",
+        "version": "0.1.8"
+      },
+      {
+        "name": "tinycss2",
+        "version": "1.4.0"
+      },
+      {
+        "name": "tokenizers",
+        "version": "0.22.2"
+      },
+      {
+        "name": "toml",
+        "version": "0.10.2"
+      },
+      {
+        "name": "tomli",
+        "version": "2.0.2"
+      },
+      {
+        "name": "tomli_w",
+        "version": "1.1.0"
+      },
+      {
+        "name": "toolz",
+        "version": "1.1.0"
+      },
+      {
+        "name": "torch",
+        "version": "2.13.0"
+      },
+      {
+        "name": "torchvision",
+        "version": "0.28.0"
+      },
+      {
+        "name": "tornado",
+        "version": "6.4.2"
+      },
+      {
+        "name": "tqdm",
+        "version": "4.67.1"
+      },
+      {
+        "name": "traitlets",
+        "version": "5.14.3"
+      },
+      {
+        "name": "transformers",
+        "version": "5.15.0"
+      },
+      {
+        "name": "truststore",
+        "version": "0.10.4"
+      },
+      {
+        "name": "twine",
+        "version": "7.0.0"
+      },
+      {
+        "name": "txt2tags",
+        "version": "3.9"
+      },
+      {
+        "name": "typer",
+        "version": "0.23.1"
+      },
+      {
+        "name": "types-pyasn1",
+        "version": "0.6.0.20260408"
+      },
+      {
+        "name": "types-python-dateutil",
+        "version": "2.9.0.20241206"
+      },
+      {
+        "name": "types-python-jose",
+        "version": "3.5.0.20260408"
+      },
+      {
+        "name": "typing-inspection",
+        "version": "0.4.2"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0"
+      },
+      {
+        "name": "tzdata",
+        "version": "2025.1"
+      },
+      {
+        "name": "uc-micro-py",
+        "version": "2.0.0"
+      },
+      {
+        "name": "uri-template",
+        "version": "1.3.0"
+      },
+      {
+        "name": "uritemplate",
+        "version": "4.2.0"
+      },
+      {
+        "name": "url-normalize",
+        "version": "3.0.0"
+      },
+      {
+        "name": "urllib3",
+        "version": "2.3.0"
+      },
+      {
+        "name": "uuid_utils",
+        "version": "0.16.0"
+      },
+      {
+        "name": "uv",
+        "version": "0.11.16"
+      },
+      {
+        "name": "uvicorn",
+        "version": "0.47.0"
+      },
+      {
+        "name": "watchdog",
+        "version": "6.0.0"
+      },
+      {
+        "name": "watchfiles",
+        "version": "1.1.1"
+      },
+      {
+        "name": "wcwidth",
+        "version": "0.2.13"
+      },
+      {
+        "name": "webcolors",
+        "version": "24.11.1"
+      },
+      {
+        "name": "webencodings",
+        "version": "0.5.1"
+      },
+      {
+        "name": "websocket-client",
+        "version": "1.8.0"
+      },
+      {
+        "name": "websockets",
+        "version": "16.0"
+      },
+      {
+        "name": "Werkzeug",
+        "version": "3.1.3"
+      },
+      {
+        "name": "wheel",
+        "version": "0.45.1"
+      },
+      {
+        "name": "widgetsnbextension",
+        "version": "4.0.14"
+      },
+      {
+        "name": "wrapt",
+        "version": "1.17.2"
+      },
+      {
+        "name": "xgboost",
+        "version": "3.0.5"
+      },
+      {
+        "name": "xxhash",
+        "version": "3.7.0"
+      },
+      {
+        "name": "xyzservices",
+        "version": "2025.11.0"
+      },
+      {
+        "name": "yarl",
+        "version": "1.24.2"
+      },
+      {
+        "name": "youtube-transcript-api",
+        "version": "1.2.4"
+      },
+      {
+        "name": "zict",
+        "version": "3.0.0"
+      },
+      {
+        "name": "zipp",
+        "version": "3.23.0"
+      },
+      {
+        "name": "zstandard",
+        "version": "0.25.0"
+      }
+    ],
+    "config_sha256": {
+      "pyproject.toml": "7b2109f91233203ba20595048068373de25019e593a2b1820e659e0ae5f1c034",
+      "constraints-ci.txt": "d732bad0c6044cfa0970206df2a4610d574a0f9393cd476dd6fb2c4febd3705e",
+      "apps/clinician-web/package-lock.json": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27"
+    },
+    "new_installations_attempted": 0,
+    "external_calls_attempted": 0,
+    "independent_clinical_gold": false,
+    "real_patient_release_authorized": false
+  },
+  "checks": {
+    "baseline_integrity": {
+      "status": "pass",
+      "result": {
+        "evidence_files_checked": 198,
+        "model_directories_checked": 11,
+        "missing_local_model_directories": [],
+        "model_inference_performed": false
+      }
+    },
+    "saved_metrics_replay": {
+      "status": "pass",
+      "result": {
+        "schema_version": "saved_benchmark_replay_v1",
+        "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+        "reports": [
+          {
+            "path": "evaluation/runs/meddistract-detailed-v1/faster-whisper-tiny.en.fixed.json",
+            "sha256": "10f686122259a473b4872fee69a71dbbf9d70be9df3d18dc11f04eb2fc4d9d23",
+            "candidate": "faster-whisper-tiny.en",
+            "mode": "fixed",
+            "completed_cases": 12,
+            "predeclared_cases": 16,
+            "complete": false,
+            "reference_words": 19596,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "0581cb4169fbabe85515ea983efa2952fbb625eecba950b8445cda526ae2a665"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7bfb9cf77f51ea501f22894c42cba7e961c32eeb59fdc7c051cec01bfd018349"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "5b1aa2667bfd70b8c445398ffe7fbff9418b3f08b07f47ae21c1f6c70a83015e"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "abe530df00dc8eb1986bf7aed4849a3a1ca35a8a94b2e2fb6ebaafa27151b492"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8b604fa4febaec4aee7569e3723d0dddf8eb18cba9a124268ab5082e6d845015"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "cde1a38e177c845de79c335683d048c33f4ab3a18d45b6285701aaa81cdc00f5"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "94f40de64ee8e5eea9e754fe46018d07c9bb3ae26083668d5383adcf59f4295e"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "2674825cd4d221c51c2ee9a48b7ae308557819505520c47e2c5a799c9d867910"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "61cb87df46f6c66e9aa7fc01537c9573a6a2de2a655110d35dafbf5b7b5fc7e4"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "e15d6fc78a640b974a5d7cd55baa33c82cc3696403a463e14e1dc176c650dd20"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "6316bd038a8b4d06ce8c9ddb24932aaf07772ac7be3f5f43b98b48030b67c954"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "08acb564b456a0ff304f6cee0f876a70ab9039bacc2df82a3590359b8a9aa531"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/distil-whisper-large-v3.fixed.json",
+            "sha256": "9062cbdd6b4947ecb78c437f1b18384f19f69447845ef7e909e9043d277a432c",
+            "candidate": "distil-whisper-large-v3",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7b69c2e7fe69d1cf8f930d9fe4bcaee4bdf6e3c61ed14d20fe091b9889faffd1"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "77eaabdd3cbea7ab835831ac7c4eaf3a0bc72b9895bb8221192cb13708863841"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "ce131fa9674a14e72dd43b08f22ead29ab1b4a204f0af68fd67da1df1634b840"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "694fcdae1eda55b46a27b157a7ab222afd7491c48c9986dbd05461efc09b0422"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8e33a36da896a993cacd36fefaf9ff35859c3f4de96875bbba93debf4e996597"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "3852364e966eb0f4c957675bc346c30394c2cbd4b4982ec47a992815c4ff908e"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0d86d8092b8b3f8ba8f98e7c3ee9c179449ce5f0efdf1ec931608e361c49f87c"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "d14cf27c9d2cc89428a3b67ea60a0d5e61b149e76619c4200cd87f8683ce27cb"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "a547886ec604a2e96dcbfcbfe044dfaa92af7911e33c7522ff73d548bff7a2f8"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "e6a390bb4f656ff773063630ed5f297acca74a15b5815754cb52ccb0f0efd75b"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "c9b03ad8e375c5ad09fae2cbf4a1230924a6f785833d3aa80e9f1a95cbc46c71"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "106f2d2ea5d36ee94503f4076c7a70d944790c0510b921f02e9107ee696709cd"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f51981b198024a45509035715c58a32f82e8d614a3135c52c6ef4f4578791393"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "e6efd5439f072d483f3f05886a2d2365a7ef95f4176c76b2faf9f8533ed4c98c"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "8c78766480e0dc6989659e854dcab59663371020f0d2436e286f47d45eabeaf0"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "71c540e03adecf4a847b83942be9a239138d48842f6aabe57a6dc7c4313a3bf9"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.context.json",
+            "sha256": "2a2094ee5a1df04aef3a97394a8cf7ed02d44082401d31f08438f0f6ead8d7e2",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "context",
+            "completed_cases": 7,
+            "predeclared_cases": 16,
+            "complete": false,
+            "reference_words": 10969,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "97442c64312adf905b03514f30800c0572be475c0fa2afbebbff694079479c3f"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "1d18e7ee987552353f569ed9427706c89d4e3f3288ea5e00274c334797a3fd68"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "950c36f318ce668eb3984651c5ddf5e321685417b8dc07b7ceecc51725d791d0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "d3f342ebeec9a87d1167aa7e6a96a6d68b25fd34f4e26b5a2502f1861a457e95"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "0d23764eec2695313c62dfa1fa9d17789449c5795874a9ca87ebe3be3d038eb9"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "90f9c0beaf3a47c71b2d3bc275bc5c8e5abbab4eb230413df70d27fa6cb32417"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0a2e92fb0bb939f47b40010849ba544970b617a314c69af99a0cd78327ca8b09"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json",
+            "sha256": "97480843cb1585523621ecc3b88149c4c62246380c1571a8abcb3f41cc19c1f3",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "50eb53164eb823fc9542091cdf5029d823ceb878516f6fdb3d0d2c23e98637b9"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "aff88ab9a2ea38c2a4647198cc8ea06886b3a532ea128c178b2b04da75ac650e"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "3bd432b14e39552079398ac6146096d8318951697e7bfe2b6d7523673c651407"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "29d48016e8ffadb09e767bdebfd48b1002b44572079ca0982fa937e3da4c13fe"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "80e2eb9dcdd1260eef0629027b28cd9c8c4d0ce093b3e8774b4f49d32281fc6a"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "7d04728597f3d2f0272b36da91344ed2e15ee61ff4c869e612d581d26b4f1cb9"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "dc3d92fed04d96fbe61f9c09966ca8ae5501fe88ef570208a75262841b3120cb"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "21e17bed22e2786136bc51e8ffc617d2942abbbcd7800186c52a7538dc0c5f6b"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "f13ca03a620387eea83fe0d8610a140716e56541420651b840e1252922591b54"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "837e217b3cd63e8d5729b0568b6e730abea0eb391952bfc09b25414dbdcfc075"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "2f6b9902f8813516fc0087c92d688dbc89cc84d46e72273936b5a6e398a8307a"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "08ac8e6eec257d86709a11710aa207f6522c092438d6fa8c3b73e3b912605ea7"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "6d1253cb020fe15e016e8b64197deef9db360e10d066a543c58ea415fc5a1171"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "b7778c3f87b099535176326ad002ef892ea70ebcb3628307b05c4c54bc9e1ac8"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "f7c175874e0b38e73b55e7d8a155661b2f2f4bf1357d391ed06297830d844741"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "31f8b85a7c11d5db3351c0ef53999227f3f9ea3a4d1dca8974a5137cb73805bf"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.overlap.json",
+            "sha256": "d616df38a47a7b8125f841524bd247a70516f184148122ab99b4cafbfac2ae52",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "overlap",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "648e5b4a8664fd7b87ad7a4ea63151d987a996002e4ac216c1158108f2a6449a"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "6139e68e15b67f3a844b8930f0c1b42b3c4200851c8fd8c286a298a9b416f720"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "b06c232c76d980dee17794a49c328e809d14cb797f9d78c82e958c27aaa7b83e"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "a593e8ca98cf45b94b442ba04e184ab9bba2f5a8ecea046df551e6dab985951f"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "f641a650d5ca3423c38237b37029fd0aeb6368483b385cc07115cfa510070d43"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "c1f4f89b6eb865c6e7e9a9c7566bf4933db667e4a1f3d7f3ed620fd0c2e96d6e"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0c49061f0bba602ff26ebf991ad64245f6d09e8d5e85c150c4b0518c71b2a201"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "9f80800fbb94477a4e1d30d8877635b1daf90b114cbeddb12e91a92f453302aa"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "9cb76b9cc5e12a4c9e64c7c8d8e8c06707143afb9758997c79ccb286f62bb65a"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "00dd8bcca241a1a701fc25dc78e728832ed152d51050d4fcafaa69a509e00189"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "639a92f15cf603fbb900925b7f6a9119df6915f93fc815b0c8ef81ef1a694c04"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "22549875d9773318717d6ddb632a421cd13cb7831b534ec4c3effc405c7b2f40"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "8d9856e01494288fa88a8e2bcd627151dbf4d9d308336a9b3c392303c81f12a8"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "8fb1c1613b93961fc9534c8b434d920368e6af3319fe0a268be18230ad8f421e"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "60e8d65ffd942902fceeb74d281e1a5ac925fa579fce42f88ae7a372f783c667"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "113ff4fcc99ef681688987ca2aac97ce30fa427557e0d830ff84b268b473fb5d"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.speech_aware.json",
+            "sha256": "f9af11b53b314749cbe70f40180bf60f6c7eb35d2f85363994c1bb918afa96bb",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "speech_aware",
+            "completed_cases": 14,
+            "predeclared_cases": 16,
+            "complete": false,
+            "reference_words": 25002,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "10f7e5a788c0c1ff23652bc5df8d6ba9cf72656ff192ba24470f48d4466b7bd7"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "5c0ffad7562ef9a0087fae623f1c15bc06fa6a8151702c8009e263ab4a12e2c6"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "f6b237b2bd6d569b2b70f5749b00bb872e2020917b0a368ff0a559db9d2290b0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "392d237ab99c454c8e059caa96d637e3b1271b81bfe47e86777bc5449caa9336"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "050cd4537d85ccd6666cd7f1f03e1cb47a0facfbe39c7986c409b6226801333e"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "e93559212be45431527159f0af3e844b44a8b8aa593fe89109f610e43aa0f7ad"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "ed003fc1cc6855f95c079c2538ee56b3247d9555f64f00ada7d5a8410ee8607a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "52b0a3ee339401b2d2c46f4ec6e234376c0d57a2b50bc84dfe0415fbb19f578c"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8feabc3ed96d1f89456b9a8f8fa45bbe0ab8ebff52fb742b01fe9f10f5cbb8cc"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "2ffe6b6471d9b80bd15b9035aaabe326954cbf8a51ec88f0d77ed13160484bed"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "8ae78ba06dce82698db8c5fa9cec2dfb042f95eebc63fad91fcb13573e6b8da8"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "57f68f8202148415e3b12a196182fd5b3e203013a295248a0f4e68346f1aec7b"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "5af448cadabeee5f28fa44401907c34bff33dc4a4c31c6777e33c37c1658c3ca"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "6fb8e88e506298e036a92d2dc7fbeaac2aeb67fa5cfa5b5b320eb3a828b9a3bd"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-tiny.en.fixed.json",
+            "sha256": "21de3bbc2dd4812d135aaf5c2a6256ab1b8e9a047bd8f56142621156a01c3ece",
+            "candidate": "faster-whisper-tiny.en",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "0581cb4169fbabe85515ea983efa2952fbb625eecba950b8445cda526ae2a665"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7bfb9cf77f51ea501f22894c42cba7e961c32eeb59fdc7c051cec01bfd018349"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "5b1aa2667bfd70b8c445398ffe7fbff9418b3f08b07f47ae21c1f6c70a83015e"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "abe530df00dc8eb1986bf7aed4849a3a1ca35a8a94b2e2fb6ebaafa27151b492"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8b604fa4febaec4aee7569e3723d0dddf8eb18cba9a124268ab5082e6d845015"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "cde1a38e177c845de79c335683d048c33f4ab3a18d45b6285701aaa81cdc00f5"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "94f40de64ee8e5eea9e754fe46018d07c9bb3ae26083668d5383adcf59f4295e"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "2674825cd4d221c51c2ee9a48b7ae308557819505520c47e2c5a799c9d867910"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "61cb87df46f6c66e9aa7fc01537c9573a6a2de2a655110d35dafbf5b7b5fc7e4"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "e15d6fc78a640b974a5d7cd55baa33c82cc3696403a463e14e1dc176c650dd20"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "6316bd038a8b4d06ce8c9ddb24932aaf07772ac7be3f5f43b98b48030b67c954"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "08acb564b456a0ff304f6cee0f876a70ab9039bacc2df82a3590359b8a9aa531"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "0adb2e5bc69213102b3360f06a2b754a5d41483eeb1b0d6d4342bb4a4dd2eb5c"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "bc7af13c0f9628e040f5789e66f43c9bc499b927c81438a8c6edadd4e9670cf8"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e587ebe9ce78d51e850ea44a1a751b452ae18acf6b477f3441b97a1e9dd5c7f6"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "69e4face97c3bf776ab37d1e9cbe1a3823fe3ef8b45fb2e49b67a36993afbdea"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/multimed-whisper-small-english.fixed.json",
+            "sha256": "54ffac5180683367bdf222997890b3f5273eae859d645ca3256ceae09d869a40",
+            "candidate": "multimed-whisper-small-english",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "b29387c46550460527a5f0b7c89ef0d17d9c6b9f6e80ad497b52b7f2db9dfae4"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "ae24a825bd2815177da0ee417e71f4c3d09cd398da1d01db95e5d20c5a7cac0f"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "3f260bde6d3a18ec94b1d7685dea6a70f01f663a8a3e9cf2fc86403c5f6db28f"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "5c3d744da7e945caa9918bbffaffe36e60546fbc81b07443d433cfc082bc23e8"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8cde1339143c76c4fad6db19bc6d32d06e167fb992175be63d98fd5dcd97d29c"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "089892460b0667794c447712ae5d5b8009950b41d7fce9c32e859deb97e5f0c3"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "641badce5915c16494454b9ad19afa6f5a357a08231c9b078ef56941c0616fc7"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "881145cf53dda1708898df46f10d8d78dc9b7e945d4d296e7caf0f3cc10ff639"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "3ee4e1fe73f9ed4c0768d144a6efdf147f9fe65ecc8126efead0b10a10185203"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "59e3df1d054fcc80c521b2aaa47e601695d2757333e1da13283d58a6b546689a"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "fe1a41247ab3feb0fcf9237e17a9963758a08487deaa4a74a10ad8d00f54be9c"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "75c0268bdc1b4bba947aaa3ab2bf281ea030c4067bb4870406aabfae9bcf2d5b"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "4aa4573293ea666cf2525349c26ef7d9741f3a6a75c520bff915222fa152441b"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "7a4ee2327eb11c6ccb238065167c0a62d0b61296f9e366c32f8a27ea451fa9aa"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "28887fcced1331503936cbc57fc350deb6926e49fcf6b9f2a4fff00b242fb75d"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "4a973e186878c23e21515aae41780b504abfa2a0e60a331eecfac8db66c4e1be"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.fixed.json",
+            "sha256": "f5ee39e09eb0da5f56aec1950a7bc5c0f3c22a4b689282c221b6f35e9a8c12e9",
+            "candidate": "omi-med-stt-v1-native-empty",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "9de9e5c154f7868c772e6f8c5f1273fa052ca376abdc4b7f6fa30c502866af36"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "2aba6cf702a9754e1146d7d575e8e18a82661c6a2523b27c897655756203ce79"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "86c410a448c78424d4be842e6feaf69fc2b2da3f9d9bde64d8e733788b8cc673"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "1bff4d25c028b9346bcfe743a1778e8c32f6cefcd4cadb98dbc76b70f80ce740"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "ac2f051e77e1f0538fca8b4cf6275861cd6d14fb0b8d7aed77998766120cfafd"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "7804998ef739da9a35bd8c3d35c1a58841bd25a7d6f579c5b781ec7b8aee243c"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a884063783f5b66bcb8db788ce9a9556b1699e4808f4806bcb3008ec86e96a9c"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a8f7527ae893c9064e67bd314624fb4bbe4d15615b95c828501337d863d331ed"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "ea20ab98f88e03ff8c0e8a3984f175cbfbd9452246a84ae166b7d71d5eb7d2f7"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "d28afca24eba16977d4d852eb1ccd27a88ceff355e6147f5954b93f13f9778d6"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "6ed426d9dfed864d52b238c7465a422975e11cd15d1886237498c0b164fdde80"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "06324f3ef660daa5b0d61ea7f5e6339ea4b58668534a457a5c0885d7832469dd"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f3d9ca5883d36b172a5140094b6d14ee73790679d7652352c07a2f95af35d1d4"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "07189884c5b3320be7d27fe9f25bbb485a9ce44d57dfafd724cb374e0f4d5d17"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "ba7f3cbe35f96376badd53ab28df97d607f157f0078794282b097eb60050c218"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e2e8091e96dd94b5373ce3c620929f1bdfa2372f46d7de38c96f3c1b28feb054"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.overlap.json",
+            "sha256": "58d623d0c2af180dc021b8c7af2184082410e23a95c6a81f305ea428dff80482",
+            "candidate": "omi-med-stt-v1-native-empty",
+            "mode": "overlap",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "2864fa7311b9ea42a2c59c3e56679960de72767cd617f3c05801639297f66c22"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "d02b7494e0395d2561f625930a3a2697141dffa3a909d57de06b6607ebc84219"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "fd6a52e7e7806f85651bd892a28cb61a0ae3794e5bb6a76d3879541a5e3871f0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "66f3768549b5ae7096f4dc61d12a026830ed3702acae4f0333d81aa3ed7c91b0"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "0197f743f3c40dee970a0c19c574a0dcc1dce8c69d94deba20c3ddd27c96b073"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "3b9472699c2cff6ce0e6f3265255083e468b47f2f7e46850a884f65731f9826f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "62ccc029ed4b92c60d7edd641c7dfd0f3d42f744de49e2f7ecc5b08c9446060a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "19d532fa696b24e19f08b19208517cbf8492e51b6354436cbf9300e8dd97f219"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "6a455f089fc326d3f2824961331564a80c54e0f0e1ea56b46ae047979a8308b4"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "1e98d9d9cd295fc6452e33a93bdb25398879b6579ec9f90b5f72baacccd454ad"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "eb3703ce232727414d3081fb510f52c8359d4b9dda449b0b307b6438d3bc2df4"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "fd0d3fee79275674ad18983d6b93656afd6bc372aef5d9945438b7f2a6f2c2a2"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f9ac0e970b3af2861a0adbb98e36144aa03fde895d0bea5c5af93818972d8223"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "9abaac47c9ec04a1e2c037caa39d0fa437f20b4c3c204ee33ddf38026fc2d169"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "a2466029b11edcba5543cccf7971bcdda78320b7139a156c136380bd8a435adb"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "0543edf351b0830c2b7b98ed509b5275314bc4560b0cf18aa5d43928da86def5"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.speech_aware.json",
+            "sha256": "56943c0600fa305152af714149bc39a8c76b81d38fb8c3c3664b18bedf1577c9",
+            "candidate": "omi-med-stt-v1-native-empty",
+            "mode": "speech_aware",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "fc6b5d04ce85aacf0565e2dbda0543ac1fcd300e0dafeaaaeb06983e54e65966"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "68543a12c23be86ba95909e05c5ed36f60cff9560fecf9f27b51133bbd061cc5"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "c818efe7ee5663497c5f51cc02978676fa920ba665133b28d488ed44a79ef89d"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "ae3d058e9b74432887da05b8212cb22f6556811881ae2e51aaf4979dbddeccb0"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "42757da38941b8ed476c27015ffc21928ba99c11446aebc247e2cd5e2f4f5733"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "663d21849370dee66f47262e1874623528c483b47af87af54c12bbfa2c0b5b9f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "248ec4cbe9b8424c1145336fe08afe1858aca9d146e11055d2bed4233c51fb9a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "58a54d04323be6f49540f22a71d06c39838fcf3a9c0370a692c8716ef3e13aa6"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "75c4f98f3103218fbdbbdb77de4d3992cb71e4a68d7d6d45acf6417845df9412"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "a3c791f7e8c1c7bd26c5d3dc03b894c5d81a9adff6f8032f73d4a6509151a643"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "01a8407c6adacdb2e9d18f9a84fa0f422131cdce2a4a9577447d4123ed39b871"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "da7939fd89030f1ab5e09835c2544fb93d199ad4a11861e3d22a8af849576915"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "93a38f8f710df5110e4cb0d6e722989db60c9bb5412418859ddf8b046293fe4e"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "3da97bdcf77bb01bb91ba8bf9c93d8e1db5f849469db8af1a608a1fccb5a748e"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "87acbc28578dac7b28e887968c67a886d9c96406a3cc8ad3902ead3ea2197ff7"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "9106553024b342346e3110b98cd4bd8b4dca1dc84f67974c96c6845bf85afc41"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json",
+            "sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
+            "candidate": "omi-med-stt-v1",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 2,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "9de9e5c154f7868c772e6f8c5f1273fa052ca376abdc4b7f6fa30c502866af36"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "2aba6cf702a9754e1146d7d575e8e18a82661c6a2523b27c897655756203ce79"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "86c410a448c78424d4be842e6feaf69fc2b2da3f9d9bde64d8e733788b8cc673"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "1bff4d25c028b9346bcfe743a1778e8c32f6cefcd4cadb98dbc76b70f80ce740"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "ac2f051e77e1f0538fca8b4cf6275861cd6d14fb0b8d7aed77998766120cfafd"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "7804998ef739da9a35bd8c3d35c1a58841bd25a7d6f579c5b781ec7b8aee243c"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a884063783f5b66bcb8db788ce9a9556b1699e4808f4806bcb3008ec86e96a9c"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a8f7527ae893c9064e67bd314624fb4bbe4d15615b95c828501337d863d331ed"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "ea20ab98f88e03ff8c0e8a3984f175cbfbd9452246a84ae166b7d71d5eb7d2f7"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "d28afca24eba16977d4d852eb1ccd27a88ceff355e6147f5954b93f13f9778d6"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f3d9ca5883d36b172a5140094b6d14ee73790679d7652352c07a2f95af35d1d4"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "07189884c5b3320be7d27fe9f25bbb485a9ce44d57dfafd724cb374e0f4d5d17"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "ba7f3cbe35f96376badd53ab28df97d607f157f0078794282b097eb60050c218"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e2e8091e96dd94b5373ce3c620929f1bdfa2372f46d7de38c96f3c1b28feb054"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/parakeet-tdt-0.6b-v2.fixed.json",
+            "sha256": "9becc22cd583cde4f27f48a4d1fc5fc95f36a4ebe11a18ba29e68ac8a0fea7c1",
+            "candidate": "parakeet-tdt-0.6b-v2",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7ee6fb718ac73132e1e14ee60097c7d1eefd4869d4a80848115feacbc42314e8"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "ad929040fd59c4ff448f2a1b6b6440289b0b907476d59c2c155e536197ca225e"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "fd2b2bb8e8ff74e291aadc4148ce1246e00fd2d06dfeb991cf0cb72e1a2ab5eb"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "92e64ddc9b0e76c81701e1b338f16aed5a520a6b69261139bcf1cd09255d8385"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "70f95abbc125e9dda0756e393af9500c60d2f678280026b775965a212ee38d7f"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "5bb4da1e2a046e6ce2cf58c0834d06904cf9b82765e2f8cc92444a3612a2785f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "f5874150a71f845381359fc514c0ee30506eb71124601f1f0eb23fd691e64af8"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "d5d519125e55fec3dfa7b2cad29a04b05c852cf6311704f5a3771d15a5263460"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "457de8a81ed5cec463032b0fe368b1fb6dbd787047b52696b89ee11e2db2807f"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "c2d9258c3ad8ade2a27063d92d035d77a735f28a31a99381b3f195f8835ac5fe"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "5d18c4c7720afd476e728a7ae654d44c4029f93e374760515156568a21474ee6"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "efa95295d1dbe55835c7b0180d4c723e33b92797bfc28c2735293ef949eb1f91"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "4ec2a96231f869c2f15c0842b833ccd98e31eda71d9144a79b1b723bdaca7105"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "c3b57bb05b37f0fa5fc79f3c38734bf039ea14a18bbf3d4cffbe6a7bcf4f8b6d"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "36e2fe6ce0ad9da673b074d44a2de763abb22975bb0d19d0789f0831f16433e6"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "c4d8f0450b591d69bf4ba7935c1ed2c4d7369fb66abebc23c16cd26e431f5539"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/qwen3-asr-0.6b-int8.fixed.json",
+            "sha256": "36bb5b4d0ccf2a2dcb0f4a8000d0797a9ceec399f9d5bdd496ee3f64827dc1d4",
+            "candidate": "qwen3-asr-0.6b-int8",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "02d173ea14f6ae08fabd1593426f1248ee1dc2120b33b94e3c8f481afa184c45"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "d8f3a1fe9d202a5363cccaa6ea7a1b5228e5d46736e6ebbe79ffbd41a5b5a36d"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "afa842e821b1619141185d545c23ac5c713c41c23b07cd3c5f91b7d6d7c785e5"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "15fda110c1c89672ab58f926f80b4f2c46c696443068255b005a406509b10ce7"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "5ad8b83d45e6865556854a72fa1cc1c16ea4271217d0dd7bd7e9a0485e5d23ac"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "cdc92780954b83d71d236d3836deca09e495bf04a74e515f47c462750e8882b0"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "38d7fe8d5737c7eec8a5d1495b9793bf3daf83ca419ec0a00868443feecd2e80"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "27430b91d0d3d8393ad70eb41adc187f08a2a39e48c0d90919dbabbdcf84ab91"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8ae0fa21b15544bb6329b0bf50f9227d6faf4c7db72f84c7c8fa1920bcd522e0"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "98c33a39074fe5c87d32d21fa230daf8f0f38a0a2c89f91e6d4881b42007bec5"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "561edc5412a808651bb9b0b571c538c33d8fd12de20a7708e7c21bffc1a4e01a"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "47533e579dc5553de7e8cb2bcfda4f6f1d6fee0bae285505e8546c6643510b43"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "54e3d15eb62e52f8e1cfac9de729e7785eeeae51efd3c5605005502c429e0c8e"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "3c308810375a16bd8a2fec7551904be34fd8acab1e26e40e814b632255cc28af"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e266883249a9ba4be236700580464992b0682779ed1a83ab16cef59d884c0a4e"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "a4fbe0f0266bc0a7c745ba5fa76eaec476fe691934734ef20dcb73577e361328"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json",
+            "sha256": "e31e210dce79f247ab65ac49d4543866166d6cf5be7b73e228d9d1b8fd02e035",
+            "candidate": "whisper-small",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "fd440fc0a36f2538f6534c0d6acc8ad428b76ad9c37ee3e6ec8fa4eb002448ff"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "8e0d2674e38ddfd251f1b000432d781f94551a82eecb8472ae1cc1c5786e6620"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "e04e47a83e4f5db84ae34d5d258c2694f6be7c3fb03de6da4ee39c874860b9d8"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "ff52203e3d6066cf1e696d216d5d2dd72615de46c679a3c72cec99c47fb79a56"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8b3d294277b01051c5a66ccbb10a4f488f3b80e196e67c1f818aa4a9149648f2"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "c7203b81491787a2cfd24c5d3c98cec4747e37ef42596776750cc20e2158741f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "c819e3de28716737728aed3569dbe98965c6057094327ba97b4ed9f5e7263537"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "1feadb560c5f7815f7b8631f476e1fbd3648aa7a80a3ff073dcc853806d31b85"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "de1bc303d2affe1e1775f8bfff1b91c8b5345e8279b04bdd653bb81daafc72e7"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "b9e2e5ba83859ce00c196bd5704672dc42456a34d04176eeff4e6eba9ab0a000"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "aa1c077f5c053bf3094585efe37f5a2bbcf3b42485c9924393ba5f2a2fdb1451"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "2ed6cdec7fa93c017fcf04daf2a0a1bb553ab5041ccbe97434044927706bc153"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "ec14e097dd9e85be451ec59c0a95f0c4259785cb5696c37a0239e85e376e1241"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "0bd2109991b92d636e1694e109f00f58e3b71ea5ba8dbb22394670d9573765df"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "0df4274ee42dc1c0beb80416a172912eecbebb6b05297a44942ca19522842608"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "43cc2ba75f2c35fe863073f4e0557fd611591529284b1193d8a5c9b3d80c7551"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.context.json",
+            "sha256": "cab742638fc7af9768ac000a59e605591f51f508cf57b2dc2810ed3ae564a841",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "context",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "97442c64312adf905b03514f30800c0572be475c0fa2afbebbff694079479c3f"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "1d18e7ee987552353f569ed9427706c89d4e3f3288ea5e00274c334797a3fd68"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "950c36f318ce668eb3984651c5ddf5e321685417b8dc07b7ceecc51725d791d0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "d3f342ebeec9a87d1167aa7e6a96a6d68b25fd34f4e26b5a2502f1861a457e95"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "0d23764eec2695313c62dfa1fa9d17789449c5795874a9ca87ebe3be3d038eb9"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "90f9c0beaf3a47c71b2d3bc275bc5c8e5abbab4eb230413df70d27fa6cb32417"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0a2e92fb0bb939f47b40010849ba544970b617a314c69af99a0cd78327ca8b09"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a4fccfe6d86f819b0b6d5fa360acd28e00eb849cb3e985e635e4cc6108ed43c6"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8e822173a227184716d06ee3d72245f21b801c69a32574461818e898a863ea86"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "5a0ab09aac9d1f7f3b76dbf7c4c795a11a38a00dc04a4c324576e9dacd1c34a5"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "ba0de288181cb1f960de31858fe13e9910d2be63235336aeafa8b2299fb31c65"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "f1f7fcac28ac35c3e88f7507e6044faea71cda20131d81f16953763995b99f28"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "0bb994b54b4d24685fac2cbfd146dcbe2cb2ca9edd6eaf2773c5adf9475191ff"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "69f7aa56565b77a898e7b2e494ebdd2ad12659f42775116a1a0c41660d14d6e5"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "7b8114ef306d083f5582ad7dff4e832475a68fbf850d04ac54a867ae034455b9"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "d9a26f0d383ef6d423b2cf1f7cc19c01ee46a475b17d892444e8ec4727631f68"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.speech_aware.json",
+            "sha256": "468bdc1826676cb55c897076cd4300f6ad9ed8a812e4e45b425991de4e8174e0",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "speech_aware",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "10f7e5a788c0c1ff23652bc5df8d6ba9cf72656ff192ba24470f48d4466b7bd7"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "5c0ffad7562ef9a0087fae623f1c15bc06fa6a8151702c8009e263ab4a12e2c6"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "f6b237b2bd6d569b2b70f5749b00bb872e2020917b0a368ff0a559db9d2290b0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "392d237ab99c454c8e059caa96d637e3b1271b81bfe47e86777bc5449caa9336"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "050cd4537d85ccd6666cd7f1f03e1cb47a0facfbe39c7986c409b6226801333e"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "e93559212be45431527159f0af3e844b44a8b8aa593fe89109f610e43aa0f7ad"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "ed003fc1cc6855f95c079c2538ee56b3247d9555f64f00ada7d5a8410ee8607a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "52b0a3ee339401b2d2c46f4ec6e234376c0d57a2b50bc84dfe0415fbb19f578c"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8feabc3ed96d1f89456b9a8f8fa45bbe0ab8ebff52fb742b01fe9f10f5cbb8cc"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "2ffe6b6471d9b80bd15b9035aaabe326954cbf8a51ec88f0d77ed13160484bed"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "8ae78ba06dce82698db8c5fa9cec2dfb042f95eebc63fad91fcb13573e6b8da8"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "57f68f8202148415e3b12a196182fd5b3e203013a295248a0f4e68346f1aec7b"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "5af448cadabeee5f28fa44401907c34bff33dc4a4c31c6777e33c37c1658c3ca"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "6fb8e88e506298e036a92d2dc7fbeaac2aeb67fa5cfa5b5b320eb3a828b9a3bd"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "28ff54703c91ace5b8076f1d854ea671ade2549473459c70b94d9a7f6c5c61b5"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "b0f850fee69a3a3aac018f22d005e8ac6fee7ebfc1bfb1fee5e89c0f606ac94a"
+              }
+            ]
+          }
+        ],
+        "inference_calls": 0,
+        "references_modified": false,
+        "maximum_normalized_wer": 0.05,
+        "independent_clinical_gold": false,
+        "clinical_release": false,
+        "real_patient_release_authorized": false
+      }
+    },
+    "backend_tests": {
+      "status": "pass",
+      "result": {
+        "exit_code": 0,
+        "summary": "363 passed, 6 skipped, 1 warning in 68.82s",
+        "failed_test_ids": [],
+        "raw_failure_text_included": false
+      }
+    },
+    "frontend_build": {
+      "status": "pass",
+      "result": {
+        "exit_code": 0,
+        "dependency_installation": false,
+        "built_index_sha256": "edbf70aa9bae607911985b3f2bade536edf308e26019f73d7b7b5d1cedf3c000"
+      }
+    },
+    "synthetic_walkthrough": {
+      "status": "pass",
+      "result": {
+        "schema_version": "offline_walkthrough_v1",
+        "encounter_id": "8dd77ee9-1bac-4579-807b-793bc28dc3b5",
+        "synthetic_dose_error_blocked": true,
+        "unsafe_approval_http_status": 409,
+        "corrected_version_approved": true,
+        "exports": [
+          {
+            "format": "markdown",
+            "sha256": "abad72dfe0e2a4693fe05e15c4bbb2c3493075924de5bbbf55e53d4fed81783e"
+          },
+          {
+            "format": "text",
+            "sha256": "1ead7136a968bc2909597a1ae9bd8b0ad256748524c4b2af6505f1699e30d87d"
+          },
+          {
+            "format": "json",
+            "sha256": "30468a74c00033c0ff0f76330591bd7db2565f10419b60b8543a871428cf6066"
+          },
+          {
+            "format": "fhir",
+            "sha256": "9c8fe2017fd051d2de85b4277eab1ce4d1ee10c10f0704b0544ed0238fdcfb02"
+          }
+        ],
+        "viewer_write_denied": true,
+        "provider_calls": 0,
+        "independent_clinical_gold": false,
+        "real_patient_release_authorized": false,
+        "limitations": "Programmatic scripted review flags exercise software only. Silent transport audio is not clinical speech or ASR accuracy evidence."
+      }
+    },
+    "source_integrity": {
+      "status": "pass",
+      "files_checked": 250
+    }
+  },
+  "wall_seconds": 83.35178560001077,
+  "release_matrix": {
+    "offline_demo": "verified",
+    "engineering_verified": "not_established",
+    "research_evidence_complete": "not_established",
+    "clinical_approved": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED"
+  },
+  "maximum_normalized_wer": 0.05,
+  "independent_clinical_gold": false,
+  "real_patient_release_authorized": false,
+  "limitations": [
+    "Python sockets are restricted to loopback; this is not an operating-system firewall or native process sandbox.",
+    "Skipped checks, missing cached tools and unavailable independent evidence are not passes.",
+    "The scripted silent-audio workflow tests software invariants, not speech recognition or clinician performance."
+  ]
+}

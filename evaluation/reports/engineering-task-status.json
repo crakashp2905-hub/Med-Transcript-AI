@@ -435,7 +435,7 @@
         },
         {
           "path": "tests/test_router_contracts.py",
-          "sha256": "a69296348dd5e0f85eca828577337c4761eb062bc7c3d6a6dc98ed26730af346",
+          "sha256": "c493c8d42d3f2303c50d0415e613fdb0f81d1bfbaa51ae840580b0c3a0774a83",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1302,7 +1302,7 @@
         },
         {
           "path": "apps/clinician-web/src/ClinicalProposals.tsx",
-          "sha256": "0a4eb3f761ddb2ec5b91f974fede19c76d172990d69d627233449bed2f3de6f6",
+          "sha256": "42a4ac8920a4f9b9745962f64d732881ce336b1abb8756bd5bb4a23de062b641",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1431,10 +1431,50 @@
     {
       "id": "06-13",
       "description": "Ensure verification is complete over all note facts, not just up to 20 selected claims; use bounded batches and merge with exact coverage accounting.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/clinical_routes.py",
+          "sha256": "08ae5a9308b75583f4d0a0f8e5d66ee0853692f9e53dee5c73d34d37252a8715",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/domain_contracts.py",
+          "sha256": "2ed499abbd679d6b41498912a61b763aa9f354276aa4eab4bae127d58600436d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "apps/clinician-web/src/ClinicalProposals.tsx",
+          "sha256": "42a4ac8920a4f9b9745962f64d732881ce336b1abb8756bd5bb4a23de062b641",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_semantic_batches.py",
+          "sha256": "daad7062ac604f377a42c77852499f422760fd24fb0de373626766c5eb2210a3",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/decisions/006-bounded-semantic-verification.md",
+          "sha256": "a21caf8ed2c0cb28a077d1d3c9f9360f232d98793d14b77c975b09b0112a13af",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v13.json",
+          "sha256": "47f6926f6ae3a773e7cfff21cb3f5f77b639c34ccb6ee05d649a8dcee69968f7",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v14.json",
+          "sha256": "2c3ddd8843d755c6bbf95bf5c58fec934892984574a9c139af2cf7bbb40d6999",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_semantic_verifier_checks_every_saved_evidence_fact_in_bounded_batches",
+        "test_semantic_batch_merge_rejects_missing_duplicate_or_invented_ids",
+        "test_api_contract_survives_router_and_service_extraction"
+      ],
+      "limitations": "All non-excluded evidence-linked facts are batched with exact coverage; no-source clinician facts and exclusions are explicitly accounted for but cannot be source-verified. Fake-provider synthetic tests only; no local model accuracy claim. Failed v13 contract gate retained, corrected v14 passed."
     },
     {
       "id": "06-14",
@@ -3139,7 +3179,7 @@
       "evidence": [
         {
           "path": "docs/offline-acceptance-summary.md",
-          "sha256": "9f63fb789ead7dc4f3b0f0266c9f38ba47670195d1df1ff3946665652eaf4825",
+          "sha256": "3fa6c5987e82fc3ff5ddc62c17611d3ac7120bb5e723569f1741dcae4e6ef16d",
           "hash_mode": "normalized_source_text"
         },
         {

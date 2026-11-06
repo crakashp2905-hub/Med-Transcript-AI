@@ -161,10 +161,14 @@ class SemanticVerdict(BaseModel):
 
 class SemanticProposal(BoundProposal):
     note_version_id: UUID
-    verdicts: list[SemanticVerdict] = Field(min_length=1,max_length=20)
-    checked_fact_ids: list[UUID] = Field(min_length=1,max_length=20)
+    verdicts: list[SemanticVerdict] = Field(min_length=1,max_length=300)
+    checked_fact_ids: list[UUID] = Field(min_length=1,max_length=300)
     unchecked_fact_ids: list[UUID] = Field(max_length=300)
     evidence_linked_fact_count: int = Field(ge=1,le=300,strict=True)
+    total_note_fact_count: int | None = Field(default=None,ge=1,le=300,strict=True)
+    unverifiable_no_source_fact_ids: list[UUID] = Field(default_factory=list,max_length=300)
+    excluded_fact_ids: list[UUID] = Field(default_factory=list,max_length=300)
+    completion_status: Literal['complete_evidence_linked_scope','partial_selected_scope'] | None = None
     independent_clinical_calibration: Literal[False]
     cannot_clear_existing_findings: Literal[True]
 
@@ -175,6 +179,14 @@ class SemanticProposal(BoundProposal):
             or checked & unchecked or len(checked)+len(unchecked)!=self.evidence_linked_fact_count
             or len(self.verdicts)!=len(checked) or {v.fact_id for v in self.verdicts}!=checked):
             raise ValueError('semantic_proposal_coverage_mismatch')
+        if self.total_note_fact_count is not None:
+            no_source=set(self.unverifiable_no_source_fact_ids);excluded=set(self.excluded_fact_ids)
+            groups=[checked,unchecked,no_source,excluded]
+            if (sum(map(len,groups))!=self.total_note_fact_count or len(set.union(*groups))!=self.total_note_fact_count
+                or len(no_source)!=len(self.unverifiable_no_source_fact_ids)
+                or len(excluded)!=len(self.excluded_fact_ids)
+                or self.completion_status!=('complete_evidence_linked_scope' if not unchecked else 'partial_selected_scope')):
+                raise ValueError('semantic_proposal_total_note_coverage_mismatch')
         return self
 
 
