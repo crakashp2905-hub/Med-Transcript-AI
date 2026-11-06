@@ -13,6 +13,7 @@ from services.asr.profiles import canonical_json
 
 
 from services.review.service import ReviewService
+from services.review.engine import current_safety_recheck
 
 def register(app, services: ReviewService):
     database = services.database
@@ -118,7 +119,7 @@ def register(app, services: ReviewService):
     def workspace(eid: UUID, actor=Depends(identity)):
         with database() as con:
             row = current(con, eid, actor)
-            tx = note = report = approval = None
+            tx = note = report = approval = recheck = None
             if row["current_transcript"]:
                 tr, tx = get_tx(con, eid, row["current_transcript"])
                 tx = {**tx, "sha256": tr["sha256"]}
@@ -128,9 +129,11 @@ def register(app, services: ReviewService):
                 _, report = document(con, eid, note["verification_report_id"], "verification")
                 ar = con.execute("SELECT * FROM approvals WHERE note=?", (note["id"],)).fetchone()
                 approval = approval_body(con, ar) if ar else None
+                _,saved_source=get_tx(con,eid,note['transcript_version_id'])
+                recheck=current_safety_recheck(note,saved_source,report)
             jobs = con.execute("SELECT id,stage,status,error_code,result,attempts,upload,preview_only FROM jobs WHERE encounter=? ORDER BY created_at DESC LIMIT 20", (str(eid),)).fetchall()
             return {"encounter": {"id": str(eid), **json.loads(row["body"])}, "transcript": tx,
-                    "note": note, "verification": report, "approval": approval,
+                    "note": note, "verification": report, "approval": approval,'current_safety_recheck':recheck,
                     "stale": bool(note and (not tx or note["transcript_version_id"] != tx["id"])),
                     "jobs": [{**dict(job), "retryable":job_retryable(job), "progress":job_progress(con,job) if job["status"] in ("queued","running","failed") else None, "result": json.loads(job["result"]) if job["result"] else None} for job in jobs],
                     "exports": [dict(item) for item in con.execute("SELECT id,format,sha256,created_at FROM exports WHERE encounter=?", (str(eid),))]}

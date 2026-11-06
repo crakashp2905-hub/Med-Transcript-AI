@@ -7,7 +7,7 @@ from uuid import UUID, uuid4
 from fastapi import Depends, HTTPException
 from fastapi.responses import Response
 
-from services.review.engine import render_export
+from services.review.engine import render_export,findings_for
 from services.review.models import ExportInput
 
 
@@ -30,13 +30,17 @@ def register(app, services: ReviewService):
             if not ar:
                 raise HTTPException(404, "approval_not_found")
             approval = approval_body(con, ar)
-            existing = con.execute("SELECT * FROM exports WHERE approval=? AND format=?", (ar["id"], body.format)).fetchone()
-            if existing:
-                return {"id": existing["id"], "sha256": existing["sha256"], "download_url": f"/v1/encounters/{eid}/exports/{existing['id']}"}
             nr, note = document(con, eid, ar["note"])
             if nr["sha256"] != approval["note_sha256"]:
                 raise HTTPException(409, "approved_artifact_integrity_failure")
             tr, tx = get_tx(con, eid, note['transcript_version_id'])
+            if tr['sha256']!=approval['transcript_sha256'] or tr['sha256']!=note['transcript_sha256']:
+                raise HTTPException(409,'approved_artifact_integrity_failure')
+            if findings_for(note,tx):
+                raise HTTPException(409,'current_safety_review_required')
+            existing = con.execute("SELECT * FROM exports WHERE approval=? AND format=?", (ar["id"], body.format)).fetchone()
+            if existing:
+                return {"id": existing["id"], "sha256": existing["sha256"], "download_url": f"/v1/encounters/{eid}/exports/{existing['id']}"}
             source = {'transcript_version_id': tr['id'], 'transcript_sha256': tr['sha256'],
                       'provenance': tx.get('provenance', {}), 'independent_clinical_gold': False,
                       'ehr_conformance': 'untested'}

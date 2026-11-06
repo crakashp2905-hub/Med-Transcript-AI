@@ -1,0 +1,37 @@
+{
+  "schema_version": "synthetic_ambiguity_guard_before_v1",
+  "source_commit": "d4a0ddaaa2d0ee96ee47a5d015000cc5282b793e",
+  "code_sha256": {
+    "services/review/engine.py": "c0aa4be7c3bbe8c05467230737a785b670d5a050626592ac6ced6418fc0e3cb6",
+    "services/review/clinical.py": "c87d221d5118ce60989d322c29b058cd9463b6964b105a568d20e9d37c40bb3c"
+  },
+  "cases": [
+    {
+      "case_id": "dose",
+      "source": "Maybe the patient takes warfarin 0.5 mg daily.",
+      "claim": "Patient takes warfarin 5 mg daily.",
+      "saved_gate": "ready",
+      "approval_http_status": 201,
+      "unsafe_result_preserved": true
+    },
+    {
+      "case_id": "drug",
+      "source": "Maybe the patient takes warfarin 0.5 mg daily.",
+      "claim": "Patient takes insulin 0.5 mg daily.",
+      "saved_gate": "ready",
+      "approval_http_status": 201,
+      "unsafe_result_preserved": true
+    },
+    {
+      "case_id": "negation",
+      "source": "Maybe the patient denies fever.",
+      "claim": "Patient reports fever.",
+      "saved_gate": "ready",
+      "approval_http_status": 201,
+      "unsafe_result_preserved": true
+    }
+  ],
+  "independent_clinical_gold": false,
+  "clinical_release": false,
+  "limitations": "Developer-scripted manual transcript and programmatic review flags; no speech recognition, clinician observation or patient data."
+}

@@ -1220,7 +1220,7 @@
         },
         {
           "path": "services/review/engine.py",
-          "sha256": "306866218676d899248530dc4c59ea26de7c15a2986f396c0703a23c55000ab9",
+          "sha256": "05c603dada9f81f869b17beb35893f0d006bbe60ba701e3feb49fd5f41281ce2",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1241,10 +1241,41 @@
     {
       "id": "05-12",
       "description": "Block contradictions, unmapped critical fields, stale facts and incomplete source coverage before note approval, even if a local model claims success.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/ambiguity-guard-before-v1.json",
+          "sha256": "452932b0de3ba5718a6e94409c8fcbcdb81354d684b77dd7cd0bc1b2534a5146",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/ambiguity-guard-after-v1.json",
+          "sha256": "b7852cd3b5fdf2dc9faf073417c93d2e625e5897f3f1952ede6aa3c741e7a60e",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v11.json",
+          "sha256": "945a3e409fd8579d1d8e43e2416e0669c8fe754ec19880598701c89711c51bc1",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "services/review/engine.py",
+          "sha256": "05c603dada9f81f869b17beb35893f0d006bbe60ba701e3feb49fd5f41281ce2",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/review/routers/approvals.py",
+          "sha256": "50426deccc39019c872940e1088593f4afeaaa97ce069c52919ae76f99a36229",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_ambiguous_source_cannot_clear_critical_contradiction",
+        "test_supportive_model_cannot_clear_a_dose_rule",
+        "test_actual_semantic_transport_timeout_preserves_blocking_note_and_approval",
+        "test_transcript_edit_invalidates_old_note_approval_and_preserves_original"
+      ],
+      "limitations": "Verified for predefined synthetic dose, medication, negation, stale-source and coverage scenarios; no clinical sensitivity claim or model admission."
     },
     {
       "id": "05-13",
@@ -1530,10 +1561,40 @@
     {
       "id": "06-20",
       "description": "Maintain a documented non-bypassable manual-review path for contradictions and disputed source words.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/decisions/005-ambiguous-source-current-rule-recheck.md",
+          "sha256": "93721e7e46344286d4209f9d08837f4405e85eb0db6c13db8c05cd3825d1db47",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/ambiguity-guard-after-v1.json",
+          "sha256": "b7852cd3b5fdf2dc9faf073417c93d2e625e5897f3f1952ede6aa3c741e7a60e",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v11.json",
+          "sha256": "945a3e409fd8579d1d8e43e2416e0669c8fe754ec19880598701c89711c51bc1",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "services/review/routers/verification.py",
+          "sha256": "cdc03c1252a73585910bb7ddc479ce5b20312b4d5ae4600d8ce662829a71c7f0",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/review/routers/exports.py",
+          "sha256": "0c2caef015235e8a5576b3b22225d09aebd15558099e3777b4fbb248a7bd98a7",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_ambiguous_medication_blocks_and_correction_creates_new_version",
+        "test_ambiguous_source_cannot_clear_critical_contradiction",
+        "test_legacy_approval_is_preserved_but_new_export_rechecks_current_rules"
+      ],
+      "limitations": "An explicit clinician action creates an unapproved addition without a fabricated source citation; synthetic workflow only. Previously downloaded historical exports require operator handling."
     },
     {
       "id": "07-01",
@@ -1758,7 +1819,7 @@
         },
         {
           "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
-          "sha256": "ca72e30543d0a7b5c90fff7b1ba5196c85f417c5d37d77e105cf8047daab279c",
+          "sha256": "5baca9d1341efe67d767aa6a050f293cc1cef6c8099c79a69ceca50ef2a8aee7",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1785,7 +1846,7 @@
         },
         {
           "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
-          "sha256": "ca72e30543d0a7b5c90fff7b1ba5196c85f417c5d37d77e105cf8047daab279c",
+          "sha256": "5baca9d1341efe67d767aa6a050f293cc1cef6c8099c79a69ceca50ef2a8aee7",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1844,7 +1905,7 @@
         },
         {
           "path": "services/review/service.py",
-          "sha256": "6a01d9ba011a9f8d5245bd75e8e03f9e75406c10a151a285ddc63c5e876b6c57",
+          "sha256": "3d1236d6af22199c77f420df2c8cf2245ec5864cf7225cdb3729ea0cb74b4948",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1872,7 +1933,7 @@
         },
         {
           "path": "apps/clinician-web/src/VerificationWarnings.tsx",
-          "sha256": "20719fe755823d6081e7c1a74b4db794c5f55572259b19cec41f38b9900567f7",
+          "sha256": "6041fbf0e652633620d8852295cd53a2ea42c9c90049f00383e884fe7ad02b06",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -2632,7 +2693,7 @@
         },
         {
           "path": "services/review/engine.py",
-          "sha256": "306866218676d899248530dc4c59ea26de7c15a2986f396c0703a23c55000ab9",
+          "sha256": "05c603dada9f81f869b17beb35893f0d006bbe60ba701e3feb49fd5f41281ce2",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -2753,12 +2814,12 @@
         },
         {
           "path": "services/review/engine.py",
-          "sha256": "306866218676d899248530dc4c59ea26de7c15a2986f396c0703a23c55000ab9",
+          "sha256": "05c603dada9f81f869b17beb35893f0d006bbe60ba701e3feb49fd5f41281ce2",
           "hash_mode": "normalized_source_text"
         },
         {
           "path": "services/review/routers/exports.py",
-          "sha256": "a435c777fcc376f9b231105323ebbbe36993a594048608780bdad89e9f6c2c7d",
+          "sha256": "0c2caef015235e8a5576b3b22225d09aebd15558099e3777b4fbb248a7bd98a7",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -2953,10 +3014,35 @@
     {
       "id": "13-05",
       "description": "Implement model-presence checks that produce `unavailable` rather than auto-installing/downloading a model.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/asr/profiles.py",
+          "sha256": "e2cd1049651824d6c3221a891cc5229735e736e2dca2a1dfd91cd017889d589d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/asr/worker.py",
+          "sha256": "702f7c628fdf34898c20895a46e1079fcc45c9c048550fa611c4cdc8f8f26c1f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/ollama_inventory.py",
+          "sha256": "1197091e49dfbd679724f7dc78a2ee61d8ee11123950db9b78e8cb350a5d14f0",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v11.json",
+          "sha256": "945a3e409fd8579d1d8e43e2416e0669c8fe754ec19880598701c89711c51bc1",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_missing_model_is_unavailable_without_loading_or_downloading",
+        "test_worker_missing_model_preserves_audio_and_does_not_publish_transcript",
+        "test_configured_ollama_blobs_are_hashed_once_and_missing_or_corrupt_stays_visible"
+      ],
+      "limitations": "Presence and hashes do not establish loadability, ASR quality or eligibility; no missing weights were fetched."
     },
     {
       "id": "13-06",
@@ -3024,7 +3110,7 @@
       "evidence": [
         {
           "path": "docs/offline-acceptance-summary.md",
-          "sha256": "b3643d8399ef5b8bd4e609f43bc8479e4fc9b0289439c1d1faab0a337387d9a1",
+          "sha256": "da6593ec3e5f806320734ca4ec2ac042dfb995da0fc4bea6ccd0dc5a124e3f28",
           "hash_mode": "normalized_source_text"
         },
         {

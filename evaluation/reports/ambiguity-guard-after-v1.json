@@ -1,0 +1,54 @@
+{
+  "schema_version": "synthetic_ambiguity_guard_after_v1",
+  "before_report_sha256": "452932b0de3ba5718a6e94409c8fcbcdb81354d684b77dd7cd0bc1b2534a5146",
+  "code_sha256": {
+    "services/review/engine.py": "2274978b3a98691f8c141a7b8f6cade17575084d6372321266f78cea0b27e1ae",
+    "services/review/routers/exports.py": "8d73f6450a120787c2fddcce51f2dfb629d8a2b58898df5ea3d61bb66a666dec"
+  },
+  "cases": [
+    {
+      "case_id": "dose",
+      "saved_gate": "ready",
+      "current_gate": "blocked",
+      "new_export_http_status": 409,
+      "blocking_codes": [
+        "clinical_relationship_disagreement",
+        "dose_or_unit_disagreement",
+        "medication_dose_assignment_disagreement",
+        "omitted_source_terms"
+      ],
+      "historical_approval_unchanged": true,
+      "historical_report_unchanged": true
+    },
+    {
+      "case_id": "drug",
+      "saved_gate": "ready",
+      "current_gate": "blocked",
+      "new_export_http_status": 409,
+      "blocking_codes": [
+        "medication_or_allergen_disagreement",
+        "omitted_source_terms",
+        "unsupported_claim_terms"
+      ],
+      "historical_approval_unchanged": true,
+      "historical_report_unchanged": true
+    },
+    {
+      "case_id": "negation",
+      "saved_gate": "ready",
+      "current_gate": "blocked",
+      "new_export_http_status": 409,
+      "blocking_codes": [
+        "clinical_relationship_disagreement",
+        "negation_disagreement",
+        "negation_scope_disagreement",
+        "omitted_source_terms"
+      ],
+      "historical_approval_unchanged": true,
+      "historical_report_unchanged": true
+    }
+  ],
+  "independent_clinical_gold": false,
+  "clinical_release": false,
+  "limitations": "Developer-scripted pre-fix approvals replayed on current code; no speech recognition, clinician observation or patient data."
+}

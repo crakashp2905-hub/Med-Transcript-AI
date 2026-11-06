@@ -1,6 +1,7 @@
 import hashlib
 import json
 import sqlite3
+import pytest
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4
@@ -78,7 +79,61 @@ def test_ambiguous_medication_blocks_and_correction_creates_new_version(setup):
     assert response.status_code == 201, response.text
     assert response.json()["note"]["id"] != result["note"]["id"]
     assert response.json()["verification"]["gate"] == "ready"
+    corrected = response.json()["note"]["facts"]
+    assert corrected[0]["excluded"] is True
+    assert corrected[0]["text"] == corrected[0]["evidence"]["quote"]
+    assert any(fact["origin"] == "clinician_entered" and fact["evidence"] is None
+               and "500 mg" in fact["text"] for fact in corrected)
+    assert client.get(f"/v1/encounters/{eid}/notes/{result['note']['id']}", headers=headers()).json()["facts"][0]["excluded"] is False
     assert approve(client, eid, response.json()["note"]).status_code == 201
+
+
+@pytest.mark.parametrize("source,claim,expected", [
+    ("Maybe the patient takes warfarin 0.5 mg daily.", "Patient takes warfarin 5 mg daily.", "dose_or_unit_disagreement"),
+    ("Maybe the patient takes warfarin 0.5 mg daily.", "Patient takes insulin 0.5 mg daily.", "medication_or_allergen_disagreement"),
+    ("Maybe the patient denies fever.", "Patient reports fever.", "negation_disagreement"),
+])
+def test_ambiguous_source_cannot_clear_critical_contradiction(setup, source, claim, expected):
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path, source)
+    assert len(facts) == 1
+    facts[0].update(text=claim, clarification="Clinician independently checked this claim against a separate source.")
+    result = draft(client, eid, tx, facts)
+    assert result["verification"]["gate"] == "blocked"
+    warning = next(item for item in result["verification"]["findings"] if item["code"] == expected)
+    assert warning["severity"] == "critical" and warning["validator_version"]
+    assert warning["source_reference"]["quote_sha256"] == hashlib.sha256(facts[0]["evidence"]["quote"].encode()).hexdigest()
+    assert warning["mismatch_fields"]
+    assert approve(client, eid, result["note"]).status_code == 409
+
+
+def test_legacy_approval_is_preserved_but_new_export_rechecks_current_rules(setup, monkeypatch):
+    import services.review.service as service
+    import services.review.routers.approvals as approvals
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path, "Maybe the patient takes warfarin 0.5 mg daily.")
+    facts[0].update(text="Patient takes warfarin 5 mg daily.",
+                    clarification="A programmatic clarification simulates the old unsafe approval path.")
+    with monkeypatch.context() as old_rules:
+        old_rules.setattr(service, "RULES_VERSION", "rules_v2")
+        old_rules.setattr(service, "findings_for", lambda note, source: [])
+        old_rules.setattr(approvals, "findings_for", lambda note, source: [])
+        result = draft(client, eid, tx, facts)
+        assert result["verification"]["gate"] == "ready"
+        approval = approve(client, eid, result["note"])
+        assert approval.status_code == 201
+    before = client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()
+    assert before["verification"]["validator_version"] == "rules_v2"
+    assert before["approval"]["id"] == approval.json()["id"]
+    recheck = before["current_safety_recheck"]
+    assert recheck["gate"] == "blocked"
+    assert any(item["code"] == "dose_or_unit_disagreement" for item in recheck["findings"])
+    export = client.post(f"/v1/encounters/{eid}/exports", headers=headers(),
+                         json={"approval_id": approval.json()["id"], "format": "json"})
+    assert export.status_code == 409 and export.json()["code"] == "current_safety_review_required"
+    after = client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()
+    assert after["verification"] == before["verification"]
+    assert after["approval"] == before["approval"]
 
 
 def test_false_or_cross_version_evidence_is_rejected(setup):

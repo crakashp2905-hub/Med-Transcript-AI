@@ -1,5 +1,5 @@
 """Verification routes with preserved exact-version review contracts."""
-from uuid import UUID
+from uuid import UUID,uuid4
 
 from fastapi import Depends, HTTPException
 
@@ -31,6 +31,7 @@ def register(app, services: ReviewService):
     @app.post("/v1/encounters/{eid}/findings/{fid}/resolve", status_code=201)
     def resolve(eid: UUID, fid: UUID, body: ResolutionInput, actor=Depends(identity)):
         from services.review.models import Fact
+        from services.review.clinical import extract
         with database() as con:
             row = current(con, eid, actor)
             require_processing(con, eid)
@@ -48,10 +49,23 @@ def register(app, services: ReviewService):
             for value in old["facts"]:
                 value = {key: value[key] for key in Fact.model_fields if key in value}
                 if value["fact_id"] == str(body.fact_id):
-                    if value["text"] == body.corrected_text:
+                    if value["text"] == body.corrected_text and value['origin']!='source_linked':
                         raise HTTPException(422, "clinical_correction_required")
-                    value.update(text=body.corrected_text, clarification=body.reason, reviewed=True, critical_reviewed=True)
+                    # Explicit clinician correction is a new clinician statement,
+                    # not a rewritten assertion with an unchanged source citation.
+                    if value['origin']=='source_linked':
+                        original={**value,'text':value['evidence']['quote'],'excluded':True,'clarification':body.reason,'reviewed':True,'critical_reviewed':True}
+                        values.append(Fact.model_validate(original))
+                    proposed=extract({'segments':[{'segment_id':str(uuid4()),'text':body.corrected_text}]})
+                    for entry in proposed:
+                        entry.update(origin='clinician_entered',evidence=None,clarification=body.reason,
+                                     reviewed=True,critical_reviewed=True,section=value['section'],clinical_source='clinician_statement')
+                        if entry['subject']=='unknown':entry['subject']=value['subject']
+                        if entry['temporality']=='unknown':entry['temporality']=value['temporality']
+                        values.append(Fact.model_validate(entry))
+                    continue
                 values.append(Fact.model_validate(value))
+            if len(values)>300:raise HTTPException(422,'too_many_facts_split_review')
             tr, tx = get_tx(con, eid, old["transcript_version_id"])
             result = save_note(con, eid, tr, tx, values, actor, nr["id"], old["amendment_reason"])
             audit(con, actor, "finding_corrected_new_version", str(fid))

@@ -1,6 +1,7 @@
 import { test, expect } from './fixtures/offline';
 import { readFileSync, mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
 
 const root=resolve('../..');
 const token=process.env.MED_TRANSCRIPT_TEST_KEY||JSON.parse(readFileSync(resolve(root,'data/local-config.json'),'utf8')).access_key;
@@ -50,6 +51,10 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await cards.nth(2).getByLabel('Content and attribution reviewed').check();
   await cards.nth(2).getByLabel('Critical details checked').check();
   await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
+  await expect(page.getByText('Dose or unit disagreement',{exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeDisabled();
+  await cards.nth(2).getByRole('button',{name:'Record as clinician addition'}).click();
+  await expect(page.locator('.fact-card').filter({hasText:'Clinician addition'})).toHaveCount(1);
   await expect(page.getByRole('heading',{name:'Ready for your final review'})).toBeVisible();
   await page.getByRole('button',{name:'Finish review of saved version',exact:true}).click();
   await expect(page.getByText(/Completed \(deterministic\)/)).toBeVisible();
@@ -91,6 +96,8 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
 });
 
 test('compressed upload is normalized by the worker and supports manual transcription',async({page})=>{
+  const codec=spawnSync(process.env.PYTHON||'python',['-c','import av'],{encoding:'utf8'});
+  test.skip(codec.status!==0,'Cached PyAV media dependency is unavailable; compressed normalization cannot be exercised on this host.');
   await page.goto('/');
   await page.getByLabel('Access key').fill(token);
   await page.getByRole('button',{name:'Open workspace',exact:false}).click();

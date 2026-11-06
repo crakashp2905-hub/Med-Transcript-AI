@@ -9,7 +9,7 @@ from fastapi import HTTPException
 from services.asr.profiles import ASRProfile, canonical_json, content_sha256
 from services.api.record_integrity import decode_record
 from services.domain_contracts import validate_record
-from services.review.engine import findings_for, render_sections, validate_evidence
+from services.review.engine import findings_for, render_sections, validate_evidence, RULES_VERSION
 
 
 class ReviewStateError(HTTPException):
@@ -46,7 +46,19 @@ class ReviewService:
         row = con.execute("SELECT * FROM documents WHERE encounter=? AND id=? AND kind=?", (str(eid), str(did), kind)).fetchone()
         if row is None:
             raise ReviewStateError(404, "document_not_found")
-        return row, decode_record(row, kind)
+        body=decode_record(row,kind)
+        if kind in ('note','verification'):
+            source_row,source=self.get_tx(con,eid,body['transcript_version_id'])
+            if source_row['sha256']!=body['transcript_sha256']:
+                raise ReviewStateError(409,'persisted_artifact_integrity_failure')
+            if kind=='note':
+                try:validate_evidence(validate_record('note',body).facts,source)
+                except HTTPException:raise ReviewStateError(409,'persisted_artifact_integrity_failure') from None
+            else:
+                note=con.execute("SELECT sha256 FROM documents WHERE id=? AND encounter=? AND kind='note'",(body['note_version_id'],str(eid))).fetchone()
+                if note is None or note['sha256']!=body['note_sha256']:
+                    raise ReviewStateError(409,'persisted_artifact_integrity_failure')
+        return row,body
 
 
     def current(self, con, eid, actor):
@@ -96,7 +108,7 @@ class ReviewService:
         findings = findings_for(body, tx)
         report = {"schema_version": "1.0", "id": rid, "note_version_id": nid, "note_sha256": digest,
                   "transcript_version_id": tx_row["id"], "transcript_sha256": tx_row["sha256"],
-                  "validator_version": "rules_v2", "findings": findings, "gate": "blocked" if findings else "ready",
+                  "validator_version": RULES_VERSION, "findings": findings, "gate": "blocked" if findings else "ready",
                   "created_at": created}
         validate_record("verification", report)
         con.execute("INSERT INTO documents VALUES (?,?,?,?,?,?,?)",

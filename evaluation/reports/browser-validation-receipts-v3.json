@@ -1,0 +1,47 @@
+{
+  "schema_version": "browser_validation_update_v2",
+  "recorded_at": "2026-11-06T19:59:54.536220+00:00",
+  "parent_receipt_sha256": "7dff9b34bf8e15bf2d4c83ed23e108d7fce9dbb558011cbe1f5963ed9fbed587",
+  "acceptance_sha256": "945a3e409fd8579d1d8e43e2416e0669c8fe754ec19880598701c89711c51bc1",
+  "test_server": "isolated loopback scripted-non-asr fixture on port 8006",
+  "runs": [
+    {
+      "id": "workflow-combined-first",
+      "result": "1_pass_1_fail",
+      "passed": [
+        "clinician reviews evidence, corrects a blocking medication, approves and exports"
+      ],
+      "failed": [
+        "compressed upload is normalized by the worker and supports manual transcription"
+      ],
+      "failure": "manual transcription heading absent after 20 seconds; worker reported media_dependency_missing"
+    },
+    {
+      "id": "compressed-standalone",
+      "result": "1_fail",
+      "failed": [
+        "compressed upload is normalized by the worker and supports manual transcription"
+      ],
+      "failure": "same media_dependency_missing on standalone rerun; Python av import unavailable"
+    },
+    {
+      "id": "workflow-with-codec-preflight",
+      "result": "1_pass_1_skip",
+      "passed": [
+        "clinician reviews evidence, corrects a blocking medication, approves and exports"
+      ],
+      "skipped": [
+        "compressed upload is normalized by the worker and supports manual transcription"
+      ],
+      "skip_reason": "cached PyAV media dependency unavailable; compressed normalization unverified on this host"
+    }
+  ],
+  "backend_full_suite": {
+    "passed": 360,
+    "skipped": 6,
+    "duration_seconds": 359.88
+  },
+  "independent_clinical_gold": false,
+  "clinical_release": false,
+  "limitations": "Scripted transcription does not measure ASR accuracy; compressed audio test remains unexecuted without locally cached PyAV."
+}

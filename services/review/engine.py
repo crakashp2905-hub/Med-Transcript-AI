@@ -1,6 +1,7 @@
 """Evidence validation and bounded clinician-reviewed template drafting; no diagnostic model."""
 
 import re
+import hashlib
 from uuid import uuid4
 
 from fastapi import HTTPException
@@ -8,6 +9,7 @@ from fastapi import HTTPException
 
 AMBIGUITY = re.compile(r"\b(?:unclear|inaudible|maybe|unsure|not sure)\b|\d+(?:\.\d+)?\s*(?:or|/)\s*\d+", re.I)
 CRITICAL = re.compile(r"\b(?:mg|mcg|ml|units|insulin|allerg\w*|metformin|warfarin|dose|dosage)\b|\d", re.I)
+RULES_VERSION = 'rules_v3'
 
 
 def validate_evidence(facts, transcript):
@@ -32,9 +34,22 @@ def propose_facts(transcript):
 
 def findings_for(note, transcript):
     findings = []
-    def add(code, message, fact_id=None, severity="major"):
+    facts_by_id={f['fact_id']:f for f in note['facts']}
+    fields_by_code={'dose_or_unit_disagreement':['dose_value','dose_unit'],
+                    'medication_or_allergen_disagreement':['medication_name','allergen'],
+                    'negation_disagreement':['assertion'],'negation_scope_disagreement':['assertion'],
+                    'incorrect_attribution':['subject'],'temporality_disagreement':['temporality'],
+                    'laterality_disagreement':['laterality'],'ambiguous_source':['source_uncertainty'],
+                    'ambiguous_statement':['statement_text'],'critical_field_review_required':['critical_reviewed']}
+    def add(code, message, fact_id=None, severity="major",validator=RULES_VERSION,fields=None):
+        fact=facts_by_id.get(fact_id);evidence=fact.get('evidence') if fact else None
+        reference=None if not evidence else {'transcript_version_id':transcript.get('id'),
+            'segment_id':evidence['segment_id'],'start_char':evidence['start_char'],'end_char':evidence['end_char'],
+            'quote_sha256':hashlib.sha256(evidence['quote'].encode('utf-8')).hexdigest()}
         findings.append({"finding_id": str(uuid4()), "code": code, "message": message,
-                         "severity": severity, "fact_id": fact_id, "state": "open", "blocks_approval": True})
+                         "severity": severity, "fact_id": fact_id, "state": "open", "blocks_approval": True,
+                         'validator_version':validator,'mismatch_fields':fields or fields_by_code.get(code,['statement_text']),
+                         'source_reference':reference})
     review = transcript.get("review", {})
     if not review.get("english_confirmed"):
         add("language_support_unverified", "Confirm supported English against the original source.")
@@ -49,13 +64,13 @@ def findings_for(note, transcript):
         if fact['assertion']=='not_stated' and not fact.get('excluded'):
             add('fact_review_required','A documented assertion cannot retain a not-stated polarity label.',fid)
         quote = fact["evidence"]["quote"] if fact["evidence"] else ""
-        if fact["origin"] == "source_linked" and not fact.get("excluded") and not AMBIGUITY.search(quote):
+        if fact["origin"] == "source_linked" and not fact.get("excluded"):
             from services.review.clinical import check_claim
             for disagreement in check_claim(quote, fact["text"]):
-                add(disagreement["code"], "Claim contradicts source wording; correct the transcript or record an explicitly clinician-entered addition.", fid, "critical")
+                add(disagreement["code"], "The saved claim is not established by its quoted source. Correct the source or record a separate clinician addition.", fid, "critical",validator=disagreement.get('validator',RULES_VERSION))
             from services.review.clinical import check_fact_slots
             for disagreement in check_fact_slots(quote,fact):
-                add(disagreement['code'],f"Structured field {disagreement['field']} is not supported by the selected evidence.",fid,'critical')
+                add(disagreement['code'],f"Structured field {disagreement['field']} is not supported by the selected evidence.",fid,'critical',validator='typed_clinical_fields_v1',fields=[disagreement['field']])
         critical = fact["category"] in ("medication", "allergy", "measurement") or CRITICAL.search(quote + " " + fact["text"])
         if critical and not fact["critical_reviewed"]:
             add("critical_field_review", "Explicitly check medication, allergy and numeric details.", fid, "critical")
@@ -85,6 +100,15 @@ def findings_for(note, transcript):
                 add('unaccounted_source_content','Source content falls outside all included or explicitly excluded evidence spans.',severity='critical')
                 break
     return findings
+
+
+def current_safety_recheck(note,transcript,report):
+    """Additional current-rule findings never rewrite or clear historical reports."""
+    if report.get('validator_version')==RULES_VERSION:return None
+    findings=findings_for(note,transcript)
+    return {'validator_version':RULES_VERSION,'saved_validator_version':report.get('validator_version'),
+            'scope':'current_rules_against_exact_saved_source','gate':'blocked' if findings else 'ready',
+            'findings':findings,'historical_approval_modified':False,'cannot_clear_saved_findings':True}
 
 
 def render_sections(facts):
