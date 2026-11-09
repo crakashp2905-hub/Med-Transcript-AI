@@ -430,10 +430,24 @@
     {
       "id": "01-09",
       "description": "Ensure all ASR, diarization, extraction, drafting and verifier providers implement declared interfaces and surface provider-specific limitations.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/provider_interfaces.py",
+          "sha256": "2c0f7c25f8a1f8d378757692e70cf307acb57e5a140524dcb19a0aae831305aa",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_provider_interfaces.py",
+          "sha256": "b848c839b30ba723c1fd18361d053f03a2956fe584724e6ae9b3738a87029a48",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_all_provider_interfaces_are_declared",
+        "test_provider_result_without_limitations_is_rejected"
+      ],
+      "limitations": "Contracts and limitation enforcement are verified; concrete providers remain subject to their own runtime and artifact-availability checks."
     },
     {
       "id": "01-10",
