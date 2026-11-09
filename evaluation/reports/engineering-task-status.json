@@ -3688,10 +3688,28 @@
     {
       "id": "12-01",
       "description": "Set a documented single-device CPU/16 GB RAM reference profile; avoid assuming an NVIDIA GPU or cloud account.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/device_profile.py",
+          "sha256": "4099d1dc58903506783fc541ea1189372c88a43fa72d1925907c1f1f861768ae",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_device_profile.py",
+          "sha256": "009f5b484bc6d0ce8d82066789d6d4c12bf2c10d8581a01664eae140479c00bf",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/device-profile.md",
+          "sha256": "8290a33ecb6f4d3e9009b2f18c4e405a63d634b4ea8153a2339d41134a4d6026",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_reference_device_profile_does_not_assume_gpu_or_cloud"
+      ],
+      "limitations": "Declared reference profile only; actual host hardware and optional artifacts are measured separately by preflight."
     },
     {
       "id": "12-02",

@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**133/247 verified (53.85%).**
+**134/247 verified (54.25%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -205,7 +205,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 11-18 — Verify defense-in-depth for exported markdown/HTML/JSON/FHIR content, including escaping, formula injection in CSV-like exports and filename safety. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/engine.py](../services/review/engine.py), [services/review/routers/exports.py](../services/review/routers/exports.py), [evaluation/reports/error-taxonomy-v2/report.json](../evaluation/reports/error-taxonomy-v2/report.json) | test_exported_markdown_escapes_active_markup_but_json_preserves_text; test_approval_body_and_export_byte_tampering_are_rejected; test_failed_case_retains_all_deletions_and_csv_formula_is_escaped; test_full_review_approval_export_and_amendment |
 | 11-19 — Test timing and behavior after consent withdrawal mid-inference; discarded outputs must not reappear via cache/retry. | verified | [tests/test_transcription.py](../tests/test_transcription.py), [services/api/ingest.py](../services/api/ingest.py), [docs/runbooks/local-asr.md](../docs/runbooks/local-asr.md) | test_withdrawal_during_inference_discards_late_transcript; test_withdrawal_cancels_pending_job |
 | 11-20 — Make the README prominently state synthetic/mock-only until independent patient-data authorization exists. | verified | [README.md](../README.md), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_english_only_schema_rejects_other_languages_and_imaging |
-| 12-01 — Set a documented single-device CPU/16 GB RAM reference profile; avoid assuming an NVIDIA GPU or cloud account. | not_started | — | Not yet verified against this checklist. |
+| 12-01 — Set a documented single-device CPU/16 GB RAM reference profile; avoid assuming an NVIDIA GPU or cloud account. | verified | [services/device_profile.py](../services/device_profile.py), [tests/test_device_profile.py](../tests/test_device_profile.py), [docs/device-profile.md](../docs/device-profile.md) | test_reference_device_profile_does_not_assume_gpu_or_cloud |
 | 12-02 — Collect stage-level latency: recording, transfer, normalization, ASR, diarization, extraction, drafting, verification, clinician review, export. | implemented | [services/stage_timing.py](../services/stage_timing.py), [services/offline_demo.py](../services/offline_demo.py), [tests/test_stage_timing.py](../tests/test_stage_timing.py) | python -m pytest tests/test_stage_timing.py tests/test_offline_engineering.py::test_offline_scripted_workflow_blocks_dose_error_and_viewer_write -q |
 | 12-03 — Measure cold and warm model initialization separately and quantify memory footprint and cache effectiveness. | not_started | — | Not yet verified against this checklist. |
 | 12-04 — Benchmark CPU thread settings and quantized local model runtime configurations only when model artifacts are already present. | not_started | — | Not yet verified against this checklist. |
