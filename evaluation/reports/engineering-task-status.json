@@ -873,18 +873,61 @@
     {
       "id": "04-01",
       "description": "Model each atomic fact as `subject + predicate + object + polarity + certainty + temporality + source_evidence`, optionally expanded for medication/dose/route/frequency.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/clinical.py",
+          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_completion_gaps.py",
+          "sha256": "e7f191bc8368b016521832c83524cffca38ccd6c1b29658493d992f78685b06a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v14.json",
+          "sha256": "2c3ddd8843d755c6bbf95bf5c58fec934892984574a9c139af2cf7bbb40d6999",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_atomic_extraction_preserves_decimal_offsets_and_multiple_assertions",
+        "test_structured_polarity_time_and_subject_cannot_override_evidence"
+      ],
+      "limitations": "Conservative facts retain typed subject, assertion, temporality and exact evidence; predicate/object are represented by category and typed slots. Synthetic scope only."
     },
     {
       "id": "04-02",
       "description": "Do not store a whole segment as a clinical fact when it contains distinct clauses; make all source character offsets exact.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/clinical.py",
+          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_completion_gaps.py",
+          "sha256": "e7f191bc8368b016521832c83524cffca38ccd6c1b29658493d992f78685b06a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_safety_properties.py",
+          "sha256": "480fec88414159a32c0636baf345bc8741ce77e2b4a48d5fc7ebd0153da0866f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v14.json",
+          "sha256": "2c3ddd8843d755c6bbf95bf5c58fec934892984574a9c139af2cf7bbb40d6999",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_atomic_extraction_preserves_decimal_offsets_and_multiple_assertions",
+        "test_fixed_seed_time_window_coverage_and_source_span_round_trip"
+      ],
+      "limitations": "Distinct clauses receive separate exact character spans; no claim of clinical completeness."
     },
     {
       "id": "04-03",
@@ -921,10 +964,35 @@
     {
       "id": "04-07",
       "description": "Implement explicit negation scope for conjunctions, exceptions and multiple conditions; fallback to review rather than guessing.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/clinical.py",
+          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_completion_gaps.py",
+          "sha256": "e7f191bc8368b016521832c83524cffca38ccd6c1b29658493d992f78685b06a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_relationships.py",
+          "sha256": "f6cd2d1b87ce14819f1497a3b24dd585c89c5cb21790999b3c194e073f4848f4",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v14.json",
+          "sha256": "2c3ddd8843d755c6bbf95bf5c58fec934892984574a9c139af2cf7bbb40d6999",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_critical_scope_assignment_and_omission",
+        "test_atomic_extraction_preserves_decimal_offsets_and_multiple_assertions",
+        "test_clause_reordering_does_not_change_bindings"
+      ],
+      "limitations": "Negation scope and conjunction reversals require review; ambiguous scope falls back to deterministic findings."
     },
     {
       "id": "04-08",
@@ -957,10 +1025,35 @@
     {
       "id": "04-09",
       "description": "Add drug dose value/unit/route/frequency/duration slots with confidence-by-validated-rule rather than unverifiable numeric model certainty.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/clinical.py",
+          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_relationships.py",
+          "sha256": "f6cd2d1b87ce14819f1497a3b24dd585c89c5cb21790999b3c194e073f4848f4",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_completion_gaps.py",
+          "sha256": "e7f191bc8368b016521832c83524cffca38ccd6c1b29658493d992f78685b06a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v14.json",
+          "sha256": "2c3ddd8843d755c6bbf95bf5c58fec934892984574a9c139af2cf7bbb40d6999",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_structured_slots_cannot_borrow_another_drug_dose_or_reaction",
+        "test_exact_mass_conversion_does_not_create_a_false_dose_error",
+        "test_structured_dose_cannot_disagree_with_unchanged_source_text"
+      ],
+      "limitations": "Dose, unit, route, frequency and duration slots use bounded rules and exact decimal conversion; confidence is not a model certainty claim."
     },
     {
       "id": "04-10",
@@ -1359,10 +1452,35 @@
     {
       "id": "06-04",
       "description": "Make numbers, decimal points and units clinically typed; detect `5 mg` vs `0.5 mg`, `mg` vs `mcg`, and once vs twice daily.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/clinical.py",
+          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_completion_gaps.py",
+          "sha256": "e7f191bc8368b016521832c83524cffca38ccd6c1b29658493d992f78685b06a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_relationships.py",
+          "sha256": "f6cd2d1b87ce14819f1497a3b24dd585c89c5cb21790999b3c194e073f4848f4",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v14.json",
+          "sha256": "2c3ddd8843d755c6bbf95bf5c58fec934892984574a9c139af2cf7bbb40d6999",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_critical_scope_assignment_and_omission",
+        "test_exact_mass_conversion_does_not_create_a_false_dose_error",
+        "test_structured_slots_cannot_borrow_another_drug_dose_or_reaction"
+      ],
+      "limitations": "Typed numeric and unit comparisons cover decimal, mass conversion, unit changes and medication attachment in synthetic cases."
     },
     {
       "id": "06-05",
