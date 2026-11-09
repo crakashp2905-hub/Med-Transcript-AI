@@ -1359,10 +1359,23 @@
     {
       "id": "03-13",
       "description": "Optimize speaker review UI: play exemplar snippets, batch-confirm unambiguous turns, isolate ambiguous boundaries.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/speaker_review.py",
+          "sha256": "2441e1ecc53108f291ce9a4c61fa8fb44117b1559233e166572d10ea9fbd811b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_speaker_review.py",
+          "sha256": "d1b2c12f6e183b92deb0d98ae1617ce30f74c1a49544aafecf7545ffbc30d395",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_speaker_review_separates_unambiguous_and_ambiguous_turns"
+      ],
+      "limitations": "The interaction plan separates safe batching from ambiguous review; frontend rendering and audio playback remain integration-specific."
     },
     {
       "id": "03-14",
