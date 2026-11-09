@@ -2667,10 +2667,29 @@
     {
       "id": "09-12",
       "description": "Maintain exact provenance of full and partial benchmark runs with retry ancestry and per-case completion data.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/benchmark_provenance.py",
+          "sha256": "8ee9715f265725c75e4159ffad589c672f9f146d9f3434d4c0c4a8538db80b73",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_benchmark_provenance.py",
+          "sha256": "0b68a6649bf084f3a4d0c8fccf40bce6d8b75c53aafc53e7ca1f5d3f0a2f3c4a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/detailed_benchmark.py",
+          "sha256": "40b288cd2071c58f41618da66a0653ed1c5bd962067f60e3e4952890a01e152d",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_provenance_retains_failed_partial_and_retry_ancestry",
+        "test_resume_rejects_altered_references_models_or_scores"
+      ],
+      "limitations": "Provenance checks are local report invariants; they do not imply model quality or independent clinical evidence."
     },
     {
       "id": "09-13",
