@@ -1214,10 +1214,24 @@
     {
       "id": "03-08",
       "description": "Investigate deterministic clustering constraints only on development cases, including expected speaker count as a declared experimental assumption.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/clustering_constraints.py",
+          "sha256": "4a7a277eeb499b5b4847211089cd8d9f39bd65b90a06b61be8d0132e3a19c61b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_clustering_constraints.py",
+          "sha256": "0e5404705b59e54f364cba24973fdaab437a7ac2a570fd2e008760b8dc033f5d",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_expected_speaker_count_is_declared_for_development_only",
+        "test_clustering_assumption_cannot_be_used_for_production"
+      ],
+      "limitations": "Expected speaker count is explicitly development-only and cannot establish production or clinical acceptance."
     },
     {
       "id": "03-09",
