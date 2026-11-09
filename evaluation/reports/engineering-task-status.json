@@ -4454,10 +4454,23 @@
     {
       "id": "11-09",
       "description": "Run adversarial transcript prompt-injection cases; source utterances must never control application instructions, file access or note approval.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/prompt_injection.py",
+          "sha256": "1b4a6d4f44c6ef0180a0a5ff5ef89b51db0d7b495b021508c8a5370a42ba0a06",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_prompt_injection.py",
+          "sha256": "dfd01ed3efb587aaf9cac46823743879e72389035c3b5439cd87a182c4c9603a",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_transcript_instructions_cannot_control_application_or_approval"
+      ],
+      "limitations": "Transcript content remains untrusted and cannot authorize actions; broader model-level evaluation remains separate."
     },
     {
       "id": "11-10",
