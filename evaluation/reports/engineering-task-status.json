@@ -2793,10 +2793,24 @@
     {
       "id": "07-05",
       "description": "Add deterministic media format tests for WAV, MP3/M4A/WebM/Ogg where local codecs exist; unsupported codecs must fail safely.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/media_formats.py",
+          "sha256": "5d4dab95119e283e44a19c805bee41a7d9f035cf1fb5413cdef1cc5551fbed5f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_media_formats.py",
+          "sha256": "980994287e4a99904adc6b8a860b9b6f53d4753e3585911faf34c69ee0375199",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_media_formats_fail_safely_when_codec_is_missing_or_unknown",
+        "test_media_formats_accept_available_known_codec"
+      ],
+      "limitations": "Codec availability is supplied by the runtime; unavailable codecs are rejected without fallback claims."
     },
     {
       "id": "07-06",
