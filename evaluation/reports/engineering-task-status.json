@@ -474,10 +474,23 @@
     {
       "id": "01-11",
       "description": "Consolidate configuration validation in startup checks and render a redacted config fingerprint to local diagnostics.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/config_fingerprint.py",
+          "sha256": "8a69d052b90225b95cb4c10c0396c9c0203e701dbabcf413f375d34497acf1cc",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_config_fingerprint.py",
+          "sha256": "020712df86516f1ad159f205d2da7de0be9f0295a3cc78fc50e3e49519a831cc",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_config_fingerprint_is_deterministic_and_redacted"
+      ],
+      "limitations": "The fingerprint helper is verified for deterministic redaction; wiring every deployment-specific startup path remains separately tracked."
     },
     {
       "id": "01-12",
