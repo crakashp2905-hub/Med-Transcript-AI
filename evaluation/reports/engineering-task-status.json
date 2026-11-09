@@ -1019,10 +1019,23 @@
     {
       "id": "02-19",
       "description": "Compare keyword recovery from different ASR models without automatically merging unsupported medical terms; benchmark a candidate-selection policy before activating it.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/keyword_recovery.py",
+          "sha256": "7dcbf4dabca2b374bceb093bd8bdd265e0902c35469d8e2f2e5dcec22c23dc63",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_keyword_recovery.py",
+          "sha256": "54dddf4643c9930a999922555deb19094388a94424145de3260357a581d3de99",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_keyword_recovery_preserves_unsupported_terms_and_requires_selection"
+      ],
+      "limitations": "The comparison preserves unsupported terms and requires selection; model benchmark values remain artifact-dependent."
     },
     {
       "id": "02-20",
