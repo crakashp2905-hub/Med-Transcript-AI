@@ -605,10 +605,25 @@
     {
       "id": "02-01",
       "description": "Build an error taxonomizer for substitution, deletion, insertion, silences, disfluency, boundary splits, uncertain references and overlap; export per-case diagnostics without editing the references.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/error_taxonomy.py",
+          "sha256": "87c1ea57870c145b75a3a19d7e51f5c296ccb9a2b701ae1794af78a02ca0a288",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_error_taxonomy.py",
+          "sha256": "3ee9a6374e94ba94aa508f30d1d41fa4978f7d38f322fcd7f63bee4c06fd338c",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_exact_bitvector_traceback_matches_independent_dp_and_reconstructs_tokens",
+        "test_role_uncertainty_buckets_do_not_change_primary_denominator_or_invent_speaker",
+        "test_failed_case_retains_all_deletions_and_csv_formula_is_escaped"
+      ],
+      "limitations": "Diagnostics are lexical/reference-role analyses, not independently adjudicated clinical or speaker accuracy."
     },
     {
       "id": "02-02",
