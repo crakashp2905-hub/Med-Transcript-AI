@@ -2420,10 +2420,24 @@
     {
       "id": "06-12",
       "description": "Introduce a second local verifier only if its distinct errors measurably improve a fixed combined policy; otherwise remove redundant compute.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/verifier_selection.py",
+          "sha256": "892c678c1f9f0c191b3f2debd121122e056ef03da693bfef1660c713d36328fe",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_verifier_selection.py",
+          "sha256": "35a70637feee8efc8e94ab47e9d3e297fa24540b9e86b24f7ea6d84dc63913fb",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_second_verifier_is_excluded_when_combined_policy_does_not_improve",
+        "test_second_verifier_requires_distinct_errors_and_improvement"
+      ],
+      "limitations": "Selection is based on fixed error sets and does not authorize clinical release."
     },
     {
       "id": "06-13",
