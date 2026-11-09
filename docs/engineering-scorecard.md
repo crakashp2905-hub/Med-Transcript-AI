@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**197/247 verified (79.76%).**
+**198/247 verified (80.16%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -126,7 +126,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 07-03 — Ensure duplicate/idempotent uploads produce one stable asset hash and no extra job or partial publish. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/api/routers/audio.py](../services/api/routers/audio.py) | test_upload_session_retry_returns_same_session; test_concurrent_completion_commits_one_job; test_transcription_queue_deduplicates_different_keys; test_upload_resumes_and_replays_identical_chunk_without_duplication |
 | 07-04 — Test lost last chunk, truncated chunks, random chunk order, wrong offset, oversized request and digest mismatch. | verified | [services/chunk_integrity.py](../services/chunk_integrity.py), [tests/test_chunk_integrity.py](../tests/test_chunk_integrity.py) | test_chunk_integrity_rejects_missing_offset_digest_and_size_faults; test_chunk_integrity_accepts_ordered_valid_chunk |
 | 07-05 — Add deterministic media format tests for WAV, MP3/M4A/WebM/Ogg where local codecs exist; unsupported codecs must fail safely. | verified | [services/media_formats.py](../services/media_formats.py), [tests/test_media_formats.py](../tests/test_media_formats.py) | test_media_formats_fail_safely_when_codec_is_missing_or_unknown; test_media_formats_accept_available_known_codec |
-| 07-06 — Test browser quota exhaustion, storage eviction and microphone removal without claiming the recording was successfully retained. | not_started | — | Not yet verified against this checklist. |
+| 07-06 — Test browser quota exhaustion, storage eviction and microphone removal without claiming the recording was successfully retained. | verified | [services/retention_state.py](../services/retention_state.py), [tests/test_retention_state.py](../tests/test_retention_state.py) | test_browser_retention_failures_never_claim_success; test_persisted_state_is_explicit |
 | 07-07 — Keep provisional previews separate from final transcript revisions; no preview segment may be approved. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/asr/worker.py](../services/asr/worker.py) | test_live_preview_never_becomes_a_saved_source_or_note |
 | 07-08 — Add a durable queue dashboard with per-stage state, attempts, lease owner, timeout and consent/revocation state. | not_started | — | Not yet verified against this checklist. |
 | 07-09 — Test worker crash and recovery at every transaction boundary, including stale lease and resumed channel checkpoints. | not_started | — | Not yet verified against this checklist. |

@@ -2815,10 +2815,24 @@
     {
       "id": "07-06",
       "description": "Test browser quota exhaustion, storage eviction and microphone removal without claiming the recording was successfully retained.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/retention_state.py",
+          "sha256": "66abd37e93b610eb9891468472c40f4a886a114f47eb63220956d66c7b6cda85",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_retention_state.py",
+          "sha256": "e3322d6ecf0f80660a34e8e8f63c3e67487cb4e97c4222081ad6860a2a4a4748",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_browser_retention_failures_never_claim_success",
+        "test_persisted_state_is_explicit"
+      ],
+      "limitations": "The state machine records browser retention failures explicitly; browser-specific integration remains deployment-dependent."
     },
     {
       "id": "07-07",
