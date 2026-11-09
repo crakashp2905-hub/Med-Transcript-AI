@@ -3128,10 +3128,24 @@
     {
       "id": "08-05",
       "description": "Show source-completeness status, unverified segments, uncertain doses and pending reviewer decisions before drafting.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review_readiness.py",
+          "sha256": "91828d7c32b8b6117f183aaa11937b031684ee462b30daaabc47428673cfc848",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_review_readiness.py",
+          "sha256": "b6d14e957d3efd4aca27c450e461b5cc3c3e913817185d08a534bd126572bafb",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_review_readiness_blocks_drafting_until_source_issues_are_reviewed",
+        "test_review_readiness_allows_clean_source"
+      ],
+      "limitations": "The readiness status is deterministic; frontend rendering remains integration-specific."
     },
     {
       "id": "08-06",

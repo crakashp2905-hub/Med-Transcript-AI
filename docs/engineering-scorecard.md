@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**203/247 verified (82.19%).**
+**204/247 verified (82.59%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -141,7 +141,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 08-02 — Ensure clicking any note claim seeks to the correct source audio/segment and never pretends chunk bounds are aligned word timestamps. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [apps/clinician-web/src/screens/NoteReviewScreen.tsx](../apps/clinician-web/src/screens/NoteReviewScreen.tsx) | fact source navigation requests the exact cited audio channel; clinician reviews evidence, corrects a blocking medication, approves and exports |
 | 08-03 — Make speaker-identity uncertainty visible and offer source-linked bulk role correction with diff preview. | not_started | — | Not yet verified against this checklist. |
 | 08-04 — Add keyboard-first workflows, accessibility labels, consistent focus, screen-reader status and responsive layout. | not_started | — | Not yet verified against this checklist. |
-| 08-05 — Show source-completeness status, unverified segments, uncertain doses and pending reviewer decisions before drafting. | not_started | — | Not yet verified against this checklist. |
+| 08-05 — Show source-completeness status, unverified segments, uncertain doses and pending reviewer decisions before drafting. | verified | [services/review_readiness.py](../services/review_readiness.py), [tests/test_review_readiness.py](../tests/test_review_readiness.py) | test_review_readiness_blocks_drafting_until_source_issues_are_reviewed; test_review_readiness_allows_clean_source |
 | 08-06 — Display generated-vs-deterministic note side-by-side and highlight changed meanings, omissions and extra claims. | not_started | — | Not yet verified against this checklist. |
 | 08-07 — Make every correction create an auditable immutable version; never silently alter an approved record. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/service.py](../services/review/service.py) | test_full_review_approval_export_and_amendment; test_transcript_edit_invalidates_old_note_approval_and_preserves_original; test_proposal_and_review_metrics_immutable_and_purged |
 | 08-08 — Make warnings severity ordered but not auto-dismissable when clinical-critical, and show exactly which fact blocks approval. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [apps/clinician-web/src/VerificationWarnings.tsx](../apps/clinician-web/src/VerificationWarnings.tsx) | clinician reviews evidence, corrects a blocking medication, approves and exports; test_ambiguous_medication_blocks_and_correction_creates_new_version |
