@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**164/247 verified (66.40%).**
+**165/247 verified (66.80%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -58,7 +58,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 03-02 — Make two-channel acquisition a first-class optional pathway when device inputs actually support it, with truthful per-channel hardware detection. | verified | [services/asr/channel_capability.py](../services/asr/channel_capability.py), [services/asr/channels.py](../services/asr/channels.py), [tests/test_channel_capability.py](../tests/test_channel_capability.py) | test_two_channel_path_requires_truthful_hardware_or_file_capability |
 | 03-03 — Add deterministic cross-talk, channel swap, empty channel, mono fake-stereo and desynchronization detectors. | verified | [services/channel_detectors.py](../services/channel_detectors.py), [services/channel_signal_audit.py](../services/channel_signal_audit.py), [tests/test_channel_detectors.py](../tests/test_channel_detectors.py) | test_channel_detectors_flag_cross_talk_swap_empty_fake_stereo_and_drift |
 | 03-04 — Construct a robust channel-first baseline using the existing channel-separated recordings; compare its speaker-duration metrics with the single-mic VAD/embedding pipeline. | not_started | — | Not yet verified against this checklist. |
-| 03-05 — Reproduce and pin the current weighted DER baseline (~50.91%) rather than claiming the heuristic clustering is reliable. | not_started | — | Not yet verified against this checklist. |
+| 03-05 — Reproduce and pin the current weighted DER baseline (~50.91%) rather than claiming the heuristic clustering is reliable. | verified | [services/diarization_baseline.py](../services/diarization_baseline.py), [tests/test_diarization_baseline.py](../tests/test_diarization_baseline.py) | test_weighted_der_baseline_is_pinned_without_reliability_claim |
 | 03-06 — Measure DER, missed speech, false alarm, confusion time, overlap errors and role-confirmation workload separately. | not_started | — | Not yet verified against this checklist. |
 | 03-07 — Implement minimum-turn duration, speaker-change boundary and false-split diagnostics; record high cluster counts as unresolved rather than normal. | verified | [services/turn_diagnostics.py](../services/turn_diagnostics.py), [tests/test_turn_diagnostics.py](../tests/test_turn_diagnostics.py) | test_turn_diagnostics_preserves_short_turns_and_high_cluster_uncertainty |
 | 03-08 — Investigate deterministic clustering constraints only on development cases, including expected speaker count as a declared experimental assumption. | not_started | — | Not yet verified against this checklist. |

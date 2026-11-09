@@ -1133,10 +1133,23 @@
     {
       "id": "03-05",
       "description": "Reproduce and pin the current weighted DER baseline (~50.91%) rather than claiming the heuristic clustering is reliable.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/diarization_baseline.py",
+          "sha256": "a8033a631e5c8d9dc207167bc2bcc69e333072ea610e3813314fc72b73d1a718",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_diarization_baseline.py",
+          "sha256": "0e333b856d46eef22955d37a23ca58d902e14f6b16dc6e6b1bf35d944d43342a",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_weighted_der_baseline_is_pinned_without_reliability_claim"
+      ],
+      "limitations": "Pinned 50.91% development baseline is not a reliability or clinical speaker-accuracy claim; independent scoring remains required."
     },
     {
       "id": "03-06",
