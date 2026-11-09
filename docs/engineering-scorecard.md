@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**141/247 verified (57.09%).**
+**142/247 verified (57.49%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -27,7 +27,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 01-07 — Implement stable schema versions and `migrate(x -> x+1)` tests for transcript, note, model proposal, report and audit records. | verified | [services/domain_contracts.py](../services/domain_contracts.py), [tests/test_schema_migrations.py](../tests/test_schema_migrations.py) | test_schema_migration_is_copy_only_and_stable; test_schema_migration_rejects_unknown_future_version |
 | 01-08 — Centralize deterministic hashing/canonical JSON; add golden cross-platform hash vectors for Unicode, decimals, nulls, sorted keys and line endings. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/canonical.py](../services/canonical.py) | test_canonical_golden_unicode_decimals_nulls_and_line_endings |
 | 01-09 — Ensure all ASR, diarization, extraction, drafting and verifier providers implement declared interfaces and surface provider-specific limitations. | verified | [services/provider_interfaces.py](../services/provider_interfaces.py), [tests/test_provider_interfaces.py](../tests/test_provider_interfaces.py) | test_all_provider_interfaces_are_declared; test_provider_result_without_limitations_is_rejected |
-| 01-10 — Introduce typed non-sensitive error codes with stable client mappings; never return prompt, token, secret, audio or source text in error strings. | not_started | — | Not yet verified against this checklist. |
+| 01-10 — Introduce typed non-sensitive error codes with stable client mappings; never return prompt, token, secret, audio or source text in error strings. | verified | [services/error_codes.py](../services/error_codes.py), [tests/test_error_codes.py](../tests/test_error_codes.py) | test_error_codes_have_stable_non_sensitive_public_mapping; test_unknown_error_does_not_echo_input |
 | 01-11 — Consolidate configuration validation in startup checks and render a redacted config fingerprint to local diagnostics. | not_started | — | Not yet verified against this checklist. |
 | 01-12 — Apply strict import boundaries so evaluation tools cannot mutate production database state or promote models. | not_started | — | Not yet verified against this checklist. |
 | 01-13 — Enforce format/lint/type checks for Python and TypeScript in reproducible CI, including an explicit no-network test lane. | blocked_missing_local_artifact | [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | Ruff and mypy are absent from the existing environment; no installation/download permitted. Existing TypeScript checks still run. |

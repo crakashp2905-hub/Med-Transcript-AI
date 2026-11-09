@@ -452,10 +452,24 @@
     {
       "id": "01-10",
       "description": "Introduce typed non-sensitive error codes with stable client mappings; never return prompt, token, secret, audio or source text in error strings.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/error_codes.py",
+          "sha256": "f7faf7d31b27bc77ba86cc97922962576efdc5069256f34294b6cc4a27eabaec",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_error_codes.py",
+          "sha256": "aea122ea9e53d7ce77e7ab4af8250061fbe8c38f93a43f7a5f62ce38799fcfe6",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_error_codes_have_stable_non_sensitive_public_mapping",
+        "test_unknown_error_does_not_echo_input"
+      ],
+      "limitations": "The canonical helper is verified; all legacy exception paths must migrate to this mapping before production activation."
     },
     {
       "id": "01-11",
