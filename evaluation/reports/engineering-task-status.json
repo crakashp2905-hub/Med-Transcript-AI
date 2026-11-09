@@ -123,10 +123,23 @@
     {
       "id": "00-07",
       "description": "Prevent test and demo fixtures from being mislabelled as clinical gold or independent human adjudication in exports, README, UI, dashboards and API schemas.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/fixture-label-policy.md",
+          "sha256": "fae518deab8195346345d2d2a733f567346f0d3a463b65e2aaf6c2f3a36dc115",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_fixture_label_policy.py",
+          "sha256": "aa2dc51d4669bd61dd8612e9c59c98168333d3e61120c2d04b8648c82ef7b19c",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_fixture_policy_explicitly_separates_clinical_gold"
+      ],
+      "limitations": "Policy and regression test cover the declared fixture boundary; every downstream export remains subject to its own reference-status validation."
     },
     {
       "id": "00-08",
