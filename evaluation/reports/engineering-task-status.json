@@ -813,10 +813,23 @@
     {
       "id": "02-12",
       "description": "Make clinical terminology hints opt-in and scoped to a fixed, non-leaking local lexicon; measure both benefit and medication-name hallucination risk.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/terminology_hints.py",
+          "sha256": "ef55761080f8eb533685fb64ae34a98745572c9e8276c560704beec817c76bda",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_terminology_hints.py",
+          "sha256": "42aa9d1343c15a16bb451984a6fb72b4b46c8ada9860a88d77e6c88720ad4a23",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_terminology_hints_are_opt_in_and_non_mutating"
+      ],
+      "limitations": "Hints use a fixed local lexicon and explicitly require review; no automatic medication insertion or clinical benefit claim is made."
     },
     {
       "id": "02-13",
