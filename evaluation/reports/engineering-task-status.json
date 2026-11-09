@@ -2239,10 +2239,23 @@
     {
       "id": "06-03",
       "description": "Expand relation tuples for medication-dose-route-frequency-duration-time, allergy-reaction, subject-diagnosis, anatomy-laterality and conditional instructions.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/relation_tuples.py",
+          "sha256": "42cd47b896751317c79ca7c109410707c3eda49c59314c5fa11c0bfa3ef596f9",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_relation_tuples.py",
+          "sha256": "c9f414afaba1752a2bd6285e657ed8a03905da7b53cffdd33de660f130644a14",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_relation_tuples_cover_required_clinical_categories"
+      ],
+      "limitations": "Tuple categories are typed and evidence-bearing; clinical extraction quality still requires evaluation data."
     },
     {
       "id": "06-04",
