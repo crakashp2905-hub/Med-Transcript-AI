@@ -2848,10 +2848,28 @@
     {
       "id": "09-19",
       "description": "Require `independent_clinical_gold=false` and `clinical_release=false` in all developer-only reports until genuinely changed by external evidence.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/report_safety.py",
+          "sha256": "96be92ab569fae43dd79cb51ca4be2eb22cb7a780a901f00966548ed5d7a79c0",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_report_safety.py",
+          "sha256": "20fc635cf1c64371a4ae2af0c5aac9fcec5b5e31dc992abde227c1b1379496e4",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/report-safety-labels.md",
+          "sha256": "74bc657a96f5292b46b963cd3fcbcae6131464349de51917271224403f7576d4",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_report_safety_accepts_explicit_developer_labels_and_rejects_omissions"
+      ],
+      "limitations": "Validator enforces developer report labels; external clinical evidence has not been supplied and cannot be enabled locally."
     },
     {
       "id": "09-20",
