@@ -874,10 +874,24 @@
     {
       "id": "02-18",
       "description": "Develop a safe `retranscribe_span` tool that produces a candidate transcript version linked to old audio offsets and requires explicit review.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/asr/retranscribe_span.py",
+          "sha256": "fd6ae1193ab295ed4a6c9cec4e89df852be1c1357e0b49161626cc9809194ae7",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_retranscribe_span.py",
+          "sha256": "b5b7aacdf4090126397100e1e7cbdd0d878088d1ba3f5b7aa771852393ead3e2",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_retranscribe_span_is_linked_candidate_only",
+        "test_retranscribe_span_rejects_invalid_offsets"
+      ],
+      "limitations": "Produces a linked candidate only; no automatic adoption or clinical release is possible without explicit review."
     },
     {
       "id": "02-19",
