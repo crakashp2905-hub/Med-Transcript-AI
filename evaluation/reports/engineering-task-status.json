@@ -3334,7 +3334,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "b49c04feb5733302d4a8a249932e3575ce593c6a653307222edaf106a320c392",
+          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3450,7 +3450,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "b49c04feb5733302d4a8a249932e3575ce593c6a653307222edaf106a320c392",
+          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3491,7 +3491,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "b49c04feb5733302d4a8a249932e3575ce593c6a653307222edaf106a320c392",
+          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3544,7 +3544,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "b49c04feb5733302d4a8a249932e3575ce593c6a653307222edaf106a320c392",
+          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3858,10 +3858,33 @@
     {
       "id": "15-07",
       "description": "Publish architecture diagrams, API examples, data lifecycle, threat model, model cards and limitations in version-controlled docs.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/product-architecture.md",
+          "sha256": "720d27b30f8b3ba5f48a3ddc36d7aa9949999ddb1bf9f41edab67e61773b4aae",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/local-threat-model.md",
+          "sha256": "3db6c6f2865822eb371188393f1d36b8bad4bff4a0ee9e246a1bf6c86a362218",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/evaluation-protocol.md",
+          "sha256": "b2219da57af0d7218b97b899f8daab2129e781be6057e5acde802507c385a683",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_offline_engineering.py",
+          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_product_architecture_evidence_map_contains_lifecycle_api_and_limits"
+      ],
+      "limitations": "Documentation and evidence map are complete for the local prototype; model cards remain report-scoped and do not establish clinical validation or live deployment readiness."
     },
     {
       "id": "15-08",

@@ -64,6 +64,13 @@ def test_runtime_support_matrix_names_minimums_and_tested_maxima():
     assert 'PostgreSQL' in matrix and '17' in matrix
 
 
+def test_product_architecture_evidence_map_contains_lifecycle_api_and_limits():
+    page = Path('docs/product-architecture.md').read_text(encoding='utf-8')
+    assert 'flowchart LR' in page and 'GET /health' in page
+    assert 'Data lifecycle' in page and 'local threat model' in page
+    assert '5% normalized-WER gate' in page and 'real_patient_release_authorized=false' in page
+
+
 def test_offline_guard_denies_external_dns_tcp_udp_but_preserves_loopback():
     program='''
 import socket

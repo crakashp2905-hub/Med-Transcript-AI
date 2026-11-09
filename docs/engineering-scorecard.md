@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**99/247 verified (40.08%).**
+**100/247 verified (40.49%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -247,7 +247,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 15-04 — Add a local read-only showcase account/session simulator without Google registration; never call it verified live OIDC. | verified | [docs/demo-runbook-offline.md](../docs/demo-runbook-offline.md), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
 | 15-05 — Offer a study dashboard comparing datasets and model variants with visible failures, no invented cost/accuracy, and model-not-admitted banners. | not_started | — | Not yet verified against this checklist. |
 | 15-06 — Generate screenshots and demo transcript using only locally available browser tooling and synthetic content. | not_started | — | Not yet verified against this checklist. |
-| 15-07 — Publish architecture diagrams, API examples, data lifecycle, threat model, model cards and limitations in version-controlled docs. | not_started | — | Not yet verified against this checklist. |
+| 15-07 — Publish architecture diagrams, API examples, data lifecycle, threat model, model cards and limitations in version-controlled docs. | verified | [docs/product-architecture.md](../docs/product-architecture.md), [docs/local-threat-model.md](../docs/local-threat-model.md), [docs/evaluation-protocol.md](../docs/evaluation-protocol.md), [tests/test_offline_engineering.py](../tests/test_offline_engineering.py) | test_product_architecture_evidence_map_contains_lifecycle_api_and_limits |
 | 15-08 — Document model license attribution and ensure redistributed fixtures and weights follow their actual licenses; do not distribute weight files by default. | not_started | — | Not yet verified against this checklist. |
 | 15-09 — Remove outdated README claims and stale metrics; make documentation links resolve and lead users to current frozen reports. | not_started | — | Not yet verified against this checklist. |
 | 15-10 — Build a 1-command status command that reports test pass/fail, offline mode, model availability, source hashes and clinical release blocked. | not_started | — | Not yet verified against this checklist. |
