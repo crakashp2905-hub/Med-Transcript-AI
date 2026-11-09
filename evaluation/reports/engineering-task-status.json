@@ -2284,10 +2284,23 @@
     {
       "id": "06-06",
       "description": "Treat quoted instructions, malicious prompts, HTML, markup, and user utterances as untrusted data throughout model and verifier prompts.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/untrusted_input.py",
+          "sha256": "f1713b3cf022855773c7c4b14dacd6e9747ed8b4afa90679b8b478e4dd8d7207",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_untrusted_input.py",
+          "sha256": "1b9691da795dfc49d37086af51f8621e0f328e518959797edd55afcac687e832",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_markup_and_prompt_like_utterances_remain_untrusted_data"
+      ],
+      "limitations": "Wrapper labels content as untrusted and non-executable; downstream prompt builders must preserve this boundary."
     },
     {
       "id": "06-07",
