@@ -2614,10 +2614,28 @@
     {
       "id": "09-10",
       "description": "Run novel synthetic tests separately from upstream human transcripts; never merge synthetic success into clinically valid performance estimates.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "tests/test_synthetic_separation.py",
+          "sha256": "635921aad1a9aa9010e8203eef100508f71cb792315ac5be9075f15507c1fdf6",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/completion-clinical-models-v2-2026-10-25.json",
+          "sha256": "5269ae62401454bce5b96bd1006987c9200beaa13a5ccf1cab116581ede53fa1",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "services/release_policy.py",
+          "sha256": "5a32cae8ca597a6be4105efb67145e8b8604a1d321b3ed11088fda2ef532ac42",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_synthetic_oracle_reports_are_separate_from_public_benchmark_claims"
+      ],
+      "limitations": "Synthetic developer oracle outputs remain separate from public benchmark reports and clinical estimates; no clinical gold is claimed."
     },
     {
       "id": "09-11",
