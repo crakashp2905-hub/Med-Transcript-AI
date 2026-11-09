@@ -3301,18 +3301,60 @@
     {
       "id": "12-09",
       "description": "Test database indexes and bounded list pagination for 1000 synthetic encounters, many note versions and multiple users.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/api/storage.py",
+          "sha256": "8d6435e3420cd8895fb5466cd3da5dbcab5a436f5b6bfb41cbdfeb4f449ce4d6",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/review/routers/history.py",
+          "sha256": "3bb31bcf4e39667fe559334320321dff750663ae7ca8575761fb6558af4effce",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_scale_storage.py",
+          "sha256": "8b9e7cabcbefc2a6df24ab268933979a2983729b7fd454777bcd824b0806a8bf",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/scale-stress.md",
+          "sha256": "7411186d3e73b1416eefb18f3324de2a7f060ddf0695eada5c3bba346c9ab98e",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_thousand_synthetic_encounters_use_bounded_indexed_queries",
+        "test_schema_exposes_bounded_history_limit_in_source"
+      ],
+      "limitations": "SQLite synthetic scale only; PostgreSQL query plans, multi-user production load and larger note-version populations require a provisioned database."
     },
     {
       "id": "12-10",
       "description": "Build resource-limit stress tests with fixed synthetic data seeds, repeatable durations and teardown guarantees.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/resource_stress.py",
+          "sha256": "76f0bcba7616b237c1ad95993b62e71262cb15827691d548c86e0ac1dde0f51e",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_resource_stress.py",
+          "sha256": "c26c54a4d766f69150ef96db6cd31f6f33e4e4fbca3a2eea4f9e47040204e170",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/scale-stress.md",
+          "sha256": "7411186d3e73b1416eefb18f3324de2a7f060ddf0695eada5c3bba346c9ab98e",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_resource_stress_is_seeded_bounded_and_tears_down"
+      ],
+      "limitations": "Harness-level resource checks are deterministic and bounded; they do not establish host capacity or clinical throughput."
     },
     {
       "id": "12-11",

@@ -178,6 +178,14 @@ MIGRATIONS = (
         session TEXT PRIMARY KEY REFERENCES model_proposals(id) ON DELETE CASCADE,
         metric_id TEXT NOT NULL UNIQUE, sha256 TEXT NOT NULL, origin TEXT NOT NULL);
     """,
+    """
+    CREATE INDEX IF NOT EXISTS transcript_versions_encounter_version
+        ON transcript_versions(encounter, version DESC);
+    CREATE INDEX IF NOT EXISTS documents_encounter_created
+        ON documents(encounter, created_at DESC);
+    CREATE INDEX IF NOT EXISTS audit_tenant_time
+        ON audit(tenant, time DESC);
+    """,
 )
 
 
