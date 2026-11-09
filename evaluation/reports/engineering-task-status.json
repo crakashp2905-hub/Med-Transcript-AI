@@ -5446,10 +5446,24 @@
     {
       "id": "14-03",
       "description": "Implement the proposed method behind a feature flag; baseline behavior stays frozen and reproducible.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/feature_flags.py",
+          "sha256": "36fcf49477a8588db4f07bc5403dd177ff99b5cf54a78118ad1d0e308e32e39b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_feature_flags.py",
+          "sha256": "c139f108ca8934ddbd940f46f830e2a50ba8e04f2735bbaf05582ce81c89acae",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_feature_flag_keeps_deterministic_baseline_by_default",
+        "test_feature_flag_requires_declared_baseline"
+      ],
+      "limitations": "The switch is explicit and baseline-preserving; proposed-method quality evidence remains separately required."
     },
     {
       "id": "14-04",
