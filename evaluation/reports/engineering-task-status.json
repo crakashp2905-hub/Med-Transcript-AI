@@ -495,10 +495,24 @@
     {
       "id": "01-12",
       "description": "Apply strict import boundaries so evaluation tools cannot mutate production database state or promote models.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/import_boundary.py",
+          "sha256": "b227b74123753e9efd7f917344ca1f54ccd421771259a8cee9e519e6810cd57b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_import_boundary.py",
+          "sha256": "6820cbea2d9b00d9c0dfb55b8a5ef9c9ed3206a2de33811d234499b0bbcc9c07",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_evaluation_import_boundary_allows_pure_helpers",
+        "test_evaluation_import_boundary_rejects_mutation_modules"
+      ],
+      "limitations": "Static boundary helper is verified; CI integration must invoke it across the complete evaluation import graph before production use."
     },
     {
       "id": "01-13",
