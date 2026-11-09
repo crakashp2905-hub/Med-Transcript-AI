@@ -769,10 +769,25 @@
     {
       "id": "02-10",
       "description": "Check timestamp monotonicity, duration bounds, gaps, drift, duplicates, repeated segments and hallucinations in long silence.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/asr/transcripts.py",
+          "sha256": "ee29137bc53d43cc2f046c2fa8d418055a906ab811017797712f67e016187269",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_transcript_timestamp_integrity.py",
+          "sha256": "ef007706cfb7c31902eaeebc2317ceb05c488d7bd41a6e51a1eab8ea66415857",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_transcript_records_gaps_and_preserves_original_timeline",
+        "test_transcript_rejects_invalid_or_nonmonotonic_timestamps",
+        "test_digital_silence_cannot_have_hallucinated_segments"
+      ],
+      "limitations": "Timestamp validation and silence hallucination rejection are verified; model-specific drift measurement remains benchmark-dependent."
     },
     {
       "id": "02-11",

@@ -18,6 +18,8 @@ def build_transcript(raw, metadata, encounter_id, upload_id, profile, transcript
     if not isinstance(rows, list) or len(rows) > 10000:
         raise ASRFailure("invalid_asr_output")
     segments, gaps, last_start, covered, total_chars = [], [], -1, 0, 0
+    seen_timestamps = set()
+    last_text = None
     for row in rows:
         if not isinstance(row, dict):
             raise ASRFailure("invalid_asr_output")
@@ -35,6 +37,9 @@ def build_transcript(raw, metadata, encounter_id, upload_id, profile, transcript
         if total_chars > 500_000 or start < 0 or end <= start or end * 1000 > duration + 1:
             raise ASRFailure("invalid_asr_output")
         start_ms, end_ms = round(start * 1000), round(end * 1000)
+        if (start_ms, end_ms) in seen_timestamps or (start_ms == last_start and text.strip() == last_text):
+            raise ASRFailure("invalid_asr_output")
+        seen_timestamps.add((start_ms, end_ms))
         if start_ms < last_start or end_ms <= start_ms or end_ms > duration:
             raise ASRFailure("invalid_asr_output")
         if start_ms > covered:
@@ -47,7 +52,7 @@ def build_transcript(raw, metadata, encounter_id, upload_id, profile, transcript
                          "language": "en", "language_status": "uncertain", "alignment_status": "model_estimated",
                          "uncertainties": uncertainties,
                          "raw_start_seconds": start, "raw_end_seconds": end})
-        covered, last_start = max(covered, end_ms), start_ms
+        covered, last_start, last_text = max(covered, end_ms), start_ms, text.strip()
     if covered < duration:
         gaps.append({"start_ms": covered, "end_ms": duration, "reason": "not_transcribed_unknown_cause"})
     flags = ["clinician_review_required", "language_support_unverified", "clinical_coverage_unverified"]
