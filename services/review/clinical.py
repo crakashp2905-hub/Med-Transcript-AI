@@ -22,6 +22,25 @@ def quantity_signature(text):
                    for m in QUANTITY.finditer(text))
 
 
+def medication_associations(text):
+    """Associate local dose/frequency spans only when each drug has one clear span."""
+    drugs = list(MEDICATION.finditer(text))
+    result = []
+    for index, drug in enumerate(drugs):
+        end = drugs[index + 1].start() if index + 1 < len(drugs) else len(text)
+        window = text[drug.end():end]
+        doses = list(QUANTITY.finditer(window))
+        frequencies = list(re.finditer(r'\b(?:once daily|twice daily|three times daily|daily|weekly)\b', window, re.I))
+        if len(doses) > 1 or len(frequencies) > 1:
+            result.append({'medication_name': drug.group(), 'dose': None, 'frequency': None, 'ambiguous': True})
+        else:
+            result.append({'medication_name': drug.group(),
+                           'dose': doses[0].group() if doses else None,
+                           'frequency': frequencies[0].group() if frequencies else None,
+                           'ambiguous': False})
+    return result
+
+
 def atomic_spans(text):
     # Only split explicit new assertions. Never distribute an implicit negation.
     boundary=re.compile(r'[;.!?](?=\s|$)(?!\d)|\b(?:and|but)\s+(?=(?:denies|denied|no|not|reports|has|takes|taking|stopped|restart|mother|father|metformin|warfarin|insulin|amoxicillin|penicillin)\b)',re.I)

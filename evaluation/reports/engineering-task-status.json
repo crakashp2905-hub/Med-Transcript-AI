@@ -1380,7 +1380,7 @@
       "evidence": [
         {
           "path": "services/review/clinical.py",
-          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "sha256": "6c8946ee0c06a637dc894e727065196050862c654b0c74d5f1fa6f506900c0b4",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -1407,7 +1407,7 @@
       "evidence": [
         {
           "path": "services/review/clinical.py",
-          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "sha256": "6c8946ee0c06a637dc894e727065196050862c654b0c74d5f1fa6f506900c0b4",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -1435,10 +1435,23 @@
     {
       "id": "04-03",
       "description": "Implement medication-to-dose and medication-to-frequency associations, including two drugs with different prescriptions in one sentence.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/clinical.py",
+          "sha256": "6c8946ee0c06a637dc894e727065196050862c654b0c74d5f1fa6f506900c0b4",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_medication_associations.py",
+          "sha256": "a6b7678a9e390df5041e9bc350470ea1fc9780a3895b3a55769d27c00fe651bd",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_two_medications_keep_distinct_dose_and_frequency_associations"
+      ],
+      "limitations": "Associations are conservative local heuristics; ambiguous spans remain marked and require clinician review."
     },
     {
       "id": "04-04",
@@ -1471,7 +1484,7 @@
       "evidence": [
         {
           "path": "services/review/clinical.py",
-          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "sha256": "6c8946ee0c06a637dc894e727065196050862c654b0c74d5f1fa6f506900c0b4",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -1514,7 +1527,7 @@
         },
         {
           "path": "services/review/clinical.py",
-          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "sha256": "6c8946ee0c06a637dc894e727065196050862c654b0c74d5f1fa6f506900c0b4",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -1532,7 +1545,7 @@
       "evidence": [
         {
           "path": "services/review/clinical.py",
-          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "sha256": "6c8946ee0c06a637dc894e727065196050862c654b0c74d5f1fa6f506900c0b4",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -1933,7 +1946,7 @@
       "evidence": [
         {
           "path": "services/review/clinical.py",
-          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "sha256": "6c8946ee0c06a637dc894e727065196050862c654b0c74d5f1fa6f506900c0b4",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -2007,7 +2020,7 @@
       "evidence": [
         {
           "path": "services/review/clinical.py",
-          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "sha256": "6c8946ee0c06a637dc894e727065196050862c654b0c74d5f1fa6f506900c0b4",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -2094,7 +2107,7 @@
       "evidence": [
         {
           "path": "services/review/clinical.py",
-          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "sha256": "6c8946ee0c06a637dc894e727065196050862c654b0c74d5f1fa6f506900c0b4",
           "hash_mode": "normalized_source_text"
         },
         {
