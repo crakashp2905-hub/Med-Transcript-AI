@@ -2090,10 +2090,24 @@
     {
       "id": "05-13",
       "description": "Prepare a locally runnable prompt-evaluation harness with frozen prompts and JSON-only reports; prohibit hidden modifications based on acceptance-only data.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/prompt_harness.py",
+          "sha256": "dcd26b482be396749ca1fd5a1fa8d5512c9c4fd1239201499760b817e50a5e61",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_prompt_harness.py",
+          "sha256": "99d6e9f67068f0a2bffef219ceb5de6476436df82368ccd7e608bc9230344c4c",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_prompt_harness_is_frozen_json_only_and_failure_preserving",
+        "test_prompt_harness_rejects_acceptance_only_data"
+      ],
+      "limitations": "Harness contract is local and JSON-only; acceptance-only data is rejected and no hidden prompt changes are permitted."
     },
     {
       "id": "05-14",
