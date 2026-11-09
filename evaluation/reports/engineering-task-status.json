@@ -2488,10 +2488,28 @@
     {
       "id": "09-06",
       "description": "Build paired-case comparisons with bootstrap over consultations rather than treating thousands of tokens as independent samples.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/detailed_campaign.py",
+          "sha256": "423000ada7da3a8bf4fd6e301c8e2259cd6949cd8b620a556e09f8beaeb201d3",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_paired_bootstrap.py",
+          "sha256": "a7f716ad4c2f006781054f185057c9646861f678e979d46f92c744590a7b54de",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/detailed-evaluation-2026-10-29.md",
+          "sha256": "77cdbfef6bf2eeac94c2dd5a5fa668c0bca1c21312f79933b752a4bc4eb0d187",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_paired_bootstrap_samples_consultation_rows_not_tokens"
+      ],
+      "limitations": "Deterministic development bootstrap over grouped rows; convenience-sampled intervals are not clinical acceptance confidence bounds."
     },
     {
       "id": "09-07",
