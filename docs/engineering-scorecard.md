@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**168/247 verified (68.02%).**
+**169/247 verified (68.42%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -68,7 +68,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 03-12 — Create a synthetic turn-swapping suite to ensure semantic claims cannot switch from patient to clinician without warnings. | verified | [services/turn_swap_guard.py](../services/turn_swap_guard.py), [tests/test_turn_swap_guard.py](../tests/test_turn_swap_guard.py) | test_turn_swap_requires_warning_and_blocks_approval |
 | 03-13 — Optimize speaker review UI: play exemplar snippets, batch-confirm unambiguous turns, isolate ambiguous boundaries. | not_started | — | Not yet verified against this checklist. |
 | 03-14 — Expose a scorecard comparing single-channel, 2-channel and multi-input configurations without implying device equivalence. | not_started | — | Not yet verified against this checklist. |
-| 03-15 — Keep automatic diarization experimental until a predefined score and human-review policy are satisfied. | not_started | — | Not yet verified against this checklist. |
+| 03-15 — Keep automatic diarization experimental until a predefined score and human-review policy are satisfied. | verified | [services/diarization_policy.py](../services/diarization_policy.py), [tests/test_diarization_policy.py](../tests/test_diarization_policy.py) | test_diarization_remains_experimental_without_both_gates; test_diarization_can_only_enter_experimental_review_after_gates |
 | 04-01 — Model each atomic fact as `subject + predicate + object + polarity + certainty + temporality + source_evidence`, optionally expanded for medication/dose/route/frequency. | verified | [services/review/clinical.py](../services/review/clinical.py), [tests/test_completion_gaps.py](../tests/test_completion_gaps.py), [evaluation/reports/offline-acceptance-v14.json](../evaluation/reports/offline-acceptance-v14.json) | test_atomic_extraction_preserves_decimal_offsets_and_multiple_assertions; test_structured_polarity_time_and_subject_cannot_override_evidence |
 | 04-02 — Do not store a whole segment as a clinical fact when it contains distinct clauses; make all source character offsets exact. | verified | [services/review/clinical.py](../services/review/clinical.py), [tests/test_completion_gaps.py](../tests/test_completion_gaps.py), [tests/test_safety_properties.py](../tests/test_safety_properties.py), [evaluation/reports/offline-acceptance-v14.json](../evaluation/reports/offline-acceptance-v14.json) | test_atomic_extraction_preserves_decimal_offsets_and_multiple_assertions; test_fixed_seed_time_window_coverage_and_source_span_round_trip |
 | 04-03 — Implement medication-to-dose and medication-to-frequency associations, including two drugs with different prescriptions in one sentence. | not_started | — | Not yet verified against this checklist. |

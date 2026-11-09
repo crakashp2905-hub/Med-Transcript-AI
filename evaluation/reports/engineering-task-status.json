@@ -1354,10 +1354,24 @@
     {
       "id": "03-15",
       "description": "Keep automatic diarization experimental until a predefined score and human-review policy are satisfied.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/diarization_policy.py",
+          "sha256": "c0c56ad8a6874c3cf6b77ec18e160eb934fc0278d7aa5795c6eaae0ea52d46a2",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_diarization_policy.py",
+          "sha256": "01d21dc8f7e6875d5dcc592743b58ea3b429eb5a7b5b49910c14e16a90d8d23c",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_diarization_remains_experimental_without_both_gates",
+        "test_diarization_can_only_enter_experimental_review_after_gates"
+      ],
+      "limitations": "Policy permits only experimental review; it never enables automatic role promotion or clinical acceptance."
     },
     {
       "id": "04-01",
