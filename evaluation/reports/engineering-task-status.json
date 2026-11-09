@@ -344,10 +344,24 @@
     {
       "id": "01-05",
       "description": "Use a single explicit state machine for encounter stages and transition guards; reject illegal, stale, double, revoked and cross-tenant transitions.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/encounter_state.py",
+          "sha256": "6ec75b8968dce11ff4a0d3ea7928e4b911818db29252c76ab1852daf8657b624",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_encounter_state.py",
+          "sha256": "8ec706050b1dea24078820044332695ae0fd78b667a877ae86b5b777829f9652",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_encounter_state_accepts_only_ordered_transition",
+        "test_encounter_state_rejects_unsafe_transition"
+      ],
+      "limitations": "Contract is verified as the canonical transition helper; callers must route all persistence mutations through this guard during migration."
     },
     {
       "id": "01-06",
