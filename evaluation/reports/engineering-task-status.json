@@ -1934,10 +1934,24 @@
     {
       "id": "05-07",
       "description": "Try smaller structured prompts, source-to-note subtask decomposition, grammar-constrained output and chunked fact sets only as separate ablations.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/prompt_ablations.py",
+          "sha256": "8b4f9b44156db5db00a9e055efeff750fa513f88ae494d1f40f064208a93449f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_prompt_ablations.py",
+          "sha256": "a5644a0b1449c5cc772682e5fe94bd7414fa261db904c198e7f33f9fd76132ba",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_prompt_ablations_are_separate_and_do_not_change_active_policy",
+        "test_unknown_prompt_ablation_rejected"
+      ],
+      "limitations": "Ablation definitions are frozen and separate; no ablation changes the active model policy or establishes clinical acceptance."
     },
     {
       "id": "05-08",
