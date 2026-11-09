@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**194/247 verified (78.54%).**
+**195/247 verified (78.95%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -124,7 +124,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 07-01 — Verify 30-minute browser recorder storage and playback for 1, 2, 4 and 8 channels using generated synthetic signals and bounded disk usage. | not_started | — | Not yet verified against this checklist. |
 | 07-02 — Run resume/upload interruption at each transition: capture, IndexedDB commit, server chunk ACK, finalize, ingest and ASR publication. | not_started | — | Not yet verified against this checklist. |
 | 07-03 — Ensure duplicate/idempotent uploads produce one stable asset hash and no extra job or partial publish. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/api/routers/audio.py](../services/api/routers/audio.py) | test_upload_session_retry_returns_same_session; test_concurrent_completion_commits_one_job; test_transcription_queue_deduplicates_different_keys; test_upload_resumes_and_replays_identical_chunk_without_duplication |
-| 07-04 — Test lost last chunk, truncated chunks, random chunk order, wrong offset, oversized request and digest mismatch. | not_started | — | Not yet verified against this checklist. |
+| 07-04 — Test lost last chunk, truncated chunks, random chunk order, wrong offset, oversized request and digest mismatch. | verified | [services/chunk_integrity.py](../services/chunk_integrity.py), [tests/test_chunk_integrity.py](../tests/test_chunk_integrity.py) | test_chunk_integrity_rejects_missing_offset_digest_and_size_faults; test_chunk_integrity_accepts_ordered_valid_chunk |
 | 07-05 — Add deterministic media format tests for WAV, MP3/M4A/WebM/Ogg where local codecs exist; unsupported codecs must fail safely. | not_started | — | Not yet verified against this checklist. |
 | 07-06 — Test browser quota exhaustion, storage eviction and microphone removal without claiming the recording was successfully retained. | not_started | — | Not yet verified against this checklist. |
 | 07-07 — Keep provisional previews separate from final transcript revisions; no preview segment may be approved. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/asr/worker.py](../services/asr/worker.py) | test_live_preview_never_becomes_a_saved_source_or_note |

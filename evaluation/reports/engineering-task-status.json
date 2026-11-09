@@ -2771,10 +2771,24 @@
     {
       "id": "07-04",
       "description": "Test lost last chunk, truncated chunks, random chunk order, wrong offset, oversized request and digest mismatch.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/chunk_integrity.py",
+          "sha256": "c2e9db3a67f55b8449a4b1aff7fc4b34f519d9a97f404fe7b3f53c5fcdda38ad",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_chunk_integrity.py",
+          "sha256": "1f06c616fb32908643105ca27fbcd682f8df11e998e262404cae5af821c5be27",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_chunk_integrity_rejects_missing_offset_digest_and_size_faults",
+        "test_chunk_integrity_accepts_ordered_valid_chunk"
+      ],
+      "limitations": "Validation is deterministic at the chunk boundary; full browser transport replay remains a separate integration task."
     },
     {
       "id": "07-05",
