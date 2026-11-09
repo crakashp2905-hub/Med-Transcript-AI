@@ -1477,10 +1477,23 @@
     {
       "id": "04-05",
       "description": "Distinguish family history from patient history, clinician speculation from diagnosis, patient denial from doctor question and plans from actions completed.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/clinical_attribution.py",
+          "sha256": "0e897129438ca204859aeb34cc161d1141e56c0b900d796fb6805fca0254e663",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_clinical_attribution.py",
+          "sha256": "49d59caa066b7712989e84a78956f1d1137cca9ab0ab598c14f4c583b2f5ae0e",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_attribution_distinguishes_family_speculation_questions_and_plans"
+      ],
+      "limitations": "Conservative text labels are not diagnoses; uncertain/questioned/unknown contexts remain review-required."
     },
     {
       "id": "04-06",
