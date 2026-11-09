@@ -1655,10 +1655,23 @@
     {
       "id": "04-12",
       "description": "Build a source-coverage analyzer that distinguishes clinical omissions from irrelevant fillers; do not claim that word-span coverage proves clinical completeness.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/source_coverage.py",
+          "sha256": "febf3102b7ef5e2032a1b73ef41d55c935987d657feb679db0d3e9efff3dc676",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_source_coverage.py",
+          "sha256": "833571c2eb4a8c34e4efc55d6de0332ca55d62752a750cd203a5745067e0a332",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_source_coverage_does_not_equate_audio_coverage_with_completeness"
+      ],
+      "limitations": "Analyzer distinguishes filler and candidate omissions but explicitly makes no clinical completeness claim."
     },
     {
       "id": "04-13",

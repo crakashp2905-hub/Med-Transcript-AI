@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**175/247 verified (70.85%).**
+**176/247 verified (71.26%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -80,7 +80,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 04-09 — Add drug dose value/unit/route/frequency/duration slots with confidence-by-validated-rule rather than unverifiable numeric model certainty. | verified | [services/review/clinical.py](../services/review/clinical.py), [tests/test_relationships.py](../tests/test_relationships.py), [tests/test_completion_gaps.py](../tests/test_completion_gaps.py), [evaluation/reports/offline-acceptance-v14.json](../evaluation/reports/offline-acceptance-v14.json) | test_structured_slots_cannot_borrow_another_drug_dose_or_reaction; test_exact_mass_conversion_does_not_create_a_false_dose_error; test_structured_dose_cannot_disagree_with_unchanged_source_text |
 | 04-10 — Implement anatomy/laterality relations and robust tests for left/right swaps and different entities in one utterance. | verified | [services/anatomy_relations.py](../services/anatomy_relations.py), [tests/test_anatomy_relations.py](../tests/test_anatomy_relations.py) | test_anatomy_relations_preserve_distinct_left_right_entities |
 | 04-11 — Create an `evidence graph` mapping original audio -> transcript segment -> exact span -> atomic fact -> note statement -> export. | verified | [services/evidence_graph.py](../services/evidence_graph.py), [tests/test_evidence_graph.py](../tests/test_evidence_graph.py) | test_evidence_graph_connects_audio_to_export |
-| 04-12 — Build a source-coverage analyzer that distinguishes clinical omissions from irrelevant fillers; do not claim that word-span coverage proves clinical completeness. | not_started | — | Not yet verified against this checklist. |
+| 04-12 — Build a source-coverage analyzer that distinguishes clinical omissions from irrelevant fillers; do not claim that word-span coverage proves clinical completeness. | verified | [services/source_coverage.py](../services/source_coverage.py), [tests/test_source_coverage.py](../tests/test_source_coverage.py) | test_source_coverage_does_not_equate_audio_coverage_with_completeness |
 | 04-13 — Add duplicate-fact detection that retains contradictory or temporally distinct assertions instead of deleting apparent duplicates. | not_started | — | Not yet verified against this checklist. |
 | 04-14 — Support unrecognized terminology with explicit `unmapped` status rather than expanding a short fixed dictionary into fabricated certainty. | not_started | — | Not yet verified against this checklist. |
 | 04-15 — Run deterministic and installed local-Qwen extraction in shadow mode on the same frozen synthetic corpus, with an exact output/schema failure table. | not_started | — | Not yet verified against this checklist. |
