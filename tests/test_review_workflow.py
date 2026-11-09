@@ -45,6 +45,9 @@ def test_full_review_approval_export_and_amendment(setup):
     client, path, _ = setup
     eid, tx, facts = prepare(client, path)
     result = draft(client, eid, tx, facts)
+    statement = next(item for section in result["note"]["sections"] for item in section["statements"])
+    assert statement["source_version_id"] == tx["id"]
+    assert statement["evidence"]["quote"] == statement["text"]
     assert result["verification"]["gate"] == "ready"
     approved = approve(client, eid, result["note"])
     assert approved.status_code == 201, approved.text

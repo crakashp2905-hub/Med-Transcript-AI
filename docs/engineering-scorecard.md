@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**92/247 verified (37.25%).**
+**93/247 verified (37.65%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -97,7 +97,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 05-08 — Measure note factuality, exact preservation, section correctness, length, duplication, omissions, unsafe claims, latency and timeout rate. | not_started | — | Not yet verified against this checklist. |
 | 05-09 — Add a configurable deterministic note-style layer, preserving the meaning and evidence of each assertion. | not_started | — | Not yet verified against this checklist. |
 | 05-10 — Ensure copied clinician-entered facts are visibly marked as clinician additions, not fabricated source citations. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/engine.py](../services/review/engine.py) | test_unreviewed_facts_and_invented_clinician_citation_block; test_full_review_approval_export_and_amendment |
-| 05-11 — Ensure every generated note statement exposes the underlying evidence and includes a source version watermark. | not_started | — | Not yet verified against this checklist. |
+| 05-11 — Ensure every generated note statement exposes the underlying evidence and includes a source version watermark. | verified | [services/review/engine.py](../services/review/engine.py), [services/review/service.py](../services/review/service.py), [tests/test_review_workflow.py](../tests/test_review_workflow.py) | test_full_review_approval_export_and_amendment |
 | 05-12 — Block contradictions, unmapped critical fields, stale facts and incomplete source coverage before note approval, even if a local model claims success. | verified | [evaluation/reports/ambiguity-guard-before-v1.json](../evaluation/reports/ambiguity-guard-before-v1.json), [evaluation/reports/ambiguity-guard-after-v1.json](../evaluation/reports/ambiguity-guard-after-v1.json), [evaluation/reports/offline-acceptance-v11.json](../evaluation/reports/offline-acceptance-v11.json), [services/review/engine.py](../services/review/engine.py), [services/review/routers/approvals.py](../services/review/routers/approvals.py) | test_ambiguous_source_cannot_clear_critical_contradiction; test_supportive_model_cannot_clear_a_dose_rule; test_actual_semantic_transport_timeout_preserves_blocking_note_and_approval; test_transcript_edit_invalidates_old_note_approval_and_preserves_original |
 | 05-13 — Prepare a locally runnable prompt-evaluation harness with frozen prompts and JSON-only reports; prohibit hidden modifications based on acceptance-only data. | not_started | — | Not yet verified against this checklist. |
 | 05-14 — Support `no LLM available` mode without degrading upload, transcription, manual editing, deterministic drafting or export. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/offline_demo.py](../services/offline_demo.py), [apps/clinician-web/src/ClinicalProposals.tsx](../apps/clinician-web/src/ClinicalProposals.tsx) | test_offline_scripted_workflow_blocks_dose_error_and_viewer_write; frontend_build |

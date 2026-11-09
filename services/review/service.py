@@ -99,7 +99,7 @@ class ReviewService:
             value["reviewed_at"] = created if value["reviewed"] else None
         body = {"schema_version": "1.0", "id": nid, "version": version, "encounter_id": str(eid),
                 "parent_version_id": parent, "transcript_version_id": tx_row["id"],
-                "transcript_sha256": tx_row["sha256"], "facts": values, "sections": render_sections(values),
+                "transcript_sha256": tx_row["sha256"], "facts": values, "sections": render_sections(values, tx_row["id"]),
                 "verification_report_id": rid, "creator": str(actor.clinician_id), "created_at": created,
                 "amendment_reason": amendment_reason, "template_id": "reviewed_facts_soap_v1",
                 "status": "review_required", "provenance": {"engine": "deterministic_reviewed_facts_template_v1"}}

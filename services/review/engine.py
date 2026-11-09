@@ -120,9 +120,12 @@ def current_safety_recheck(note,transcript,report):
             'findings':findings,'historical_approval_modified':False,'cannot_clear_saved_findings':True}
 
 
-def render_sections(facts):
+def render_sections(facts, transcript_version_id=None):
     return [{"key": key, "statements": [{"statement_id": fact["fact_id"], "text": fact["text"],
-        "fact_ids": [fact["fact_id"]], "origin": fact["origin"]} for fact in facts if fact["section"] == key and not fact.get("excluded")]}
+        "fact_ids": [fact["fact_id"]], "origin": fact["origin"],
+        "source_version_id": transcript_version_id,
+        "evidence": fact.get("evidence") if fact.get("origin") == "source_linked" else None}
+        for fact in facts if fact["section"] == key and not fact.get("excluded")]}
         for key in ("subjective", "objective", "assessment", "plan")]
 
 
