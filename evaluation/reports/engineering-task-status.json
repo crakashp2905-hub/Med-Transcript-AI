@@ -3212,10 +3212,28 @@
     {
       "id": "10-14",
       "description": "Fail the release build on any migration error, evidence mismatch, unsupported schema, stale approval or incomplete critical verification.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/release_gate.py",
+          "sha256": "ad6694729edc1555f2d822f9faf96ea301cfc00b8b42f0f9dcc6a73c7de9ed3b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_release_gate.py",
+          "sha256": "d766079823fc49ae19d4b7dd1cdbfe75f730b3b5952e4209e7eb22a87a94f126",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/release-gate.md",
+          "sha256": "5afa4db849a4024fd33b0960845c1780ec0d38919d6d48e49c4fc809f42f6002",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_release_gate_blocks_any_migration_evidence_schema_stale_or_critical_failure"
+      ],
+      "limitations": "Gate contract is verified independently; a passing local integrity state still cannot authorize clinical release without external evidence."
     },
     {
       "id": "11-01",
