@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**156/247 verified (63.16%).**
+**157/247 verified (63.56%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -49,7 +49,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 02-13 — Benchmark model throughput and memory on existing hardware under controlled warm and cold runs; record CPU threads, RAM, runtime and inference queue wait. | verified | [services/throughput_measurement.py](../services/throughput_measurement.py), [tests/test_throughput_measurement.py](../tests/test_throughput_measurement.py) | test_throughput_record_captures_warm_cold_hardware_and_queue_fields; test_throughput_record_rejects_invalid_mode |
 | 02-14 — Evaluate primary ASR on the existing short-clip, three-long and MedDistractAudio corpora separately; do not synthesize a single misleading universal WER. | verified | [services/corpus_partition.py](../services/corpus_partition.py), [tests/test_corpus_partition.py](../tests/test_corpus_partition.py) | test_corpus_results_remain_separate; test_corpus_partition_rejects_universal_wer |
 | 02-15 — Run all installed local ASR configurations with pinned artifacts and source hashes; preserve `unable_to_run` status where weights are absent. | verified | [services/asr/config_inventory.py](../services/asr/config_inventory.py), [services/asr/profiles.py](../services/asr/profiles.py), [tests/test_asr_config_inventory.py](../tests/test_asr_config_inventory.py) | test_missing_local_weights_remain_unable_to_run |
-| 02-16 — Add adversarial synthetic audio for silence, clipping, repeated prompts, numerical doses, medical homophones and intentionally ambiguous utterances. | not_started | — | Not yet verified against this checklist. |
+| 02-16 — Add adversarial synthetic audio for silence, clipping, repeated prompts, numerical doses, medical homophones and intentionally ambiguous utterances. | verified | [services/asr/adversarial_cases.py](../services/asr/adversarial_cases.py), [tests/test_adversarial_cases.py](../tests/test_adversarial_cases.py) | test_adversarial_manifest_covers_required_synthetic_cases |
 | 02-17 — Add metamorphic tests: volume change, added leading/trailing silence, mild resampling and split/rejoin should not silently corrupt source integrity. | verified | [services/asr/metamorphic.py](../services/asr/metamorphic.py), [tests/test_metamorphic_audio.py](../tests/test_metamorphic_audio.py) | test_metamorphic_transform_records_source_identity; test_metamorphic_transform_rejects_untracked_variant |
 | 02-18 — Develop a safe `retranscribe_span` tool that produces a candidate transcript version linked to old audio offsets and requires explicit review. | verified | [services/asr/retranscribe_span.py](../services/asr/retranscribe_span.py), [tests/test_retranscribe_span.py](../tests/test_retranscribe_span.py) | test_retranscribe_span_is_linked_candidate_only; test_retranscribe_span_rejects_invalid_offsets |
 | 02-19 — Compare keyword recovery from different ASR models without automatically merging unsupported medical terms; benchmark a candidate-selection policy before activating it. | not_started | — | Not yet verified against this checklist. |

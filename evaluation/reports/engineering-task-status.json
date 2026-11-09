@@ -931,10 +931,23 @@
     {
       "id": "02-16",
       "description": "Add adversarial synthetic audio for silence, clipping, repeated prompts, numerical doses, medical homophones and intentionally ambiguous utterances.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/asr/adversarial_cases.py",
+          "sha256": "9bc09bc864971682b9248b8e31fffdcddcbfe93060f354d5cf8d9d7788f614e2",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_adversarial_cases.py",
+          "sha256": "2e23f9acaa9a4aad927e9a3ef2bb772dbf942137bdd83a26418cd51296be5ff9",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_adversarial_manifest_covers_required_synthetic_cases"
+      ],
+      "limitations": "Manifest is synthetic challenge coverage, not real-patient audio or clinical gold; release authorization remains false."
     },
     {
       "id": "02-17",
