@@ -3375,10 +3375,23 @@
     {
       "id": "08-14",
       "description": "Run visual regression snapshots at desktop/tablet/mobile resolutions using generated synthetic data only.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "apps/clinician-web/visual-regression.synthetic.json",
+          "sha256": "2bac28229522af8467fce61779ae04145f54e36de574206be7096dae01412223",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "tests/test_visual_regression_manifest.py",
+          "sha256": "e5603683203c85178a08ce1e0e54bd7b6b7cf0b5041f90f18b9e80475209c8a8",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_visual_regression_manifest_covers_required_synthetic_viewports"
+      ],
+      "limitations": "Viewport targets and synthetic-only provenance are verified; screenshot execution remains runner-specific."
     },
     {
       "id": "09-01",
