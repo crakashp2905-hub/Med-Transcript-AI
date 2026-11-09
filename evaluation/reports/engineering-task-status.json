@@ -605,10 +605,16 @@
     {
       "id": "01-16",
       "description": "Remove dead paths and duplicative experiment helpers only after snapshot-based reproduction of historical reports succeeds.",
-      "status": "not_started",
-      "evidence": [],
+      "status": "blocked_missing_local_artifact",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+          "hash_mode": "bytes"
+        }
+      ],
       "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "limitations": "Historical snapshot artifacts needed for reproduction are not present locally; dead paths are intentionally retained."
     },
     {
       "id": "02-01",
@@ -1765,10 +1771,16 @@
     {
       "id": "04-15",
       "description": "Run deterministic and installed local-Qwen extraction in shadow mode on the same frozen synthetic corpus, with an exact output/schema failure table.",
-      "status": "not_started",
-      "evidence": [],
+      "status": "blocked_missing_local_artifact",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+          "hash_mode": "bytes"
+        }
+      ],
       "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "limitations": "No installed local-Qwen artifact is available; deterministic-only evidence cannot satisfy the shadow comparison."
     },
     {
       "id": "04-16",
@@ -1946,10 +1958,16 @@
     {
       "id": "05-05",
       "description": "Compare Qwen 1.5B and 7B already installed with identical prompts, inputs, timeout budgets, model digests and full failure accounting.",
-      "status": "not_started",
-      "evidence": [],
+      "status": "blocked_missing_local_artifact",
+      "evidence": [
+        {
+          "path": "evaluation/reports/offline-acceptance-v3.json",
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+          "hash_mode": "bytes"
+        }
+      ],
       "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "limitations": "Neither required local Qwen model artifact is available; no comparison or quality claim is made."
     },
     {
       "id": "05-06",
@@ -4237,7 +4255,8 @@
       "evidence": [
         {
           "path": "evaluation/reports/offline-acceptance-v3.json",
-          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+          "hash_mode": "bytes"
         }
       ],
       "tests": [],
@@ -5240,7 +5259,8 @@
       "evidence": [
         {
           "path": "evaluation/reports/offline-acceptance-v3.json",
-          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+          "hash_mode": "bytes"
         }
       ],
       "tests": [],
@@ -5489,7 +5509,8 @@
       "evidence": [
         {
           "path": "evaluation/reports/offline-acceptance-v3.json",
-          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+          "hash_mode": "bytes"
         }
       ],
       "tests": [],
@@ -6030,7 +6051,8 @@
       "evidence": [
         {
           "path": "evaluation/reports/offline-acceptance-v3.json",
-          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+          "hash_mode": "bytes"
         }
       ],
       "tests": [],
