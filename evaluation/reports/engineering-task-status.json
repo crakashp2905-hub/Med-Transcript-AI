@@ -1697,10 +1697,23 @@
     {
       "id": "04-14",
       "description": "Support unrecognized terminology with explicit `unmapped` status rather than expanding a short fixed dictionary into fabricated certainty.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/unmapped_terms.py",
+          "sha256": "385af6e78186802bb539085ada576b6cdf0816e8889ad161861063818cfe407d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_unmapped_terms.py",
+          "sha256": "734eb8e627c989a881c7cb65b2923a3153375b98e1024cedcd551e229e8db1bd",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_unrecognized_term_stays_unmapped"
+      ],
+      "limitations": "Unknown terms remain unmapped and review-required; the fixed local lexicon is not expanded automatically."
     },
     {
       "id": "04-15",
