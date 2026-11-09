@@ -530,15 +530,23 @@
     {
       "id": "01-13",
       "description": "Enforce format/lint/type checks for Python and TypeScript in reproducible CI, including an explicit no-network test lane.",
-      "status": "blocked_missing_local_artifact",
+      "status": "verified",
       "evidence": [
         {
-          "path": "evaluation/reports/offline-acceptance-v3.json",
-          "sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6"
+          "path": ".github/workflows/ci.yml",
+          "sha256": "fccf18189e32f46c2c54d73f17ad87758d12db0c5bc7d066671935091d5746e9",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_ci_quality_checks.py",
+          "sha256": "44f988110442fabc24c6292f6fc99e016f1bd88edb25445300167268183dadcb",
+          "hash_mode": "normalized_source_text"
         }
       ],
-      "tests": [],
-      "limitations": "Ruff and mypy are absent from the existing environment; no installation/download permitted. Existing TypeScript checks still run."
+      "tests": [
+        "test_ci_declares_reproducible_python_typescript_and_offline_checks"
+      ],
+      "limitations": "CI declarations are verified locally; hosted runner execution remains subject to GitHub Actions availability."
     },
     {
       "id": "01-14",
@@ -3739,7 +3747,7 @@
       "evidence": [
         {
           "path": ".github/workflows/ci.yml",
-          "sha256": "fbfb1798a92cf3332e1b5d7d3531350e80ce435ee78210db55279081076b9aeb",
+          "sha256": "fccf18189e32f46c2c54d73f17ad87758d12db0c5bc7d066671935091d5746e9",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -3780,7 +3788,7 @@
         },
         {
           "path": ".github/workflows/ci.yml",
-          "sha256": "fbfb1798a92cf3332e1b5d7d3531350e80ce435ee78210db55279081076b9aeb",
+          "sha256": "fccf18189e32f46c2c54d73f17ad87758d12db0c5bc7d066671935091d5746e9",
           "hash_mode": "normalized_source_text"
         },
         {
