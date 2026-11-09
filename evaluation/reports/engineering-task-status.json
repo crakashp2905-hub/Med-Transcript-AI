@@ -5490,10 +5490,23 @@
     {
       "id": "14-05",
       "description": "Compare at least four methods on identical cases: lexical rules, relation rules, LLM-only verdict, combined evidence-graph method.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/method_comparison.py",
+          "sha256": "03f4696d1d2cd5e054927c08e79c22fe921f76f652a85029c3090ecc9ec0a2ae",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_method_comparison.py",
+          "sha256": "6ba43de8b89506f7512183221430b51358d21b812e3e65d326aa4afdd5a4c969",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_method_comparison_requires_identical_case_coverage"
+      ],
+      "limitations": "The envelope enforces identical case coverage and avoids clinical sensitivity claims; actual method outputs remain dataset-dependent."
     },
     {
       "id": "14-06",
