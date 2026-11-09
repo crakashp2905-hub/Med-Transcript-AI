@@ -2399,10 +2399,23 @@
     {
       "id": "06-11",
       "description": "Run ablations: basic lexical rules; relational rules; local verifier alone; rules + local verifier; and deterministic source-only baseline.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/verification_ablations.py",
+          "sha256": "78c4052c40021cdb3646ecfa2088bc174f827232b8913ac00edfc354b0137328",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_verification_ablations.py",
+          "sha256": "e9fb941030ff2f0882580e5c046b6507c419958004faf4382a71aa5491f32ad3",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_ablation_report_requires_all_policy_arms_and_failure_dimensions"
+      ],
+      "limitations": "The report envelope enforces all five arms and failure dimensions; this fixture does not claim clinical sensitivity."
     },
     {
       "id": "06-12",
