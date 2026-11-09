@@ -1498,10 +1498,23 @@
     {
       "id": "04-06",
       "description": "Preserve uncertain, hedged and questioned statements as uncertain; missing information must stay `unknown`.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/uncertainty_classifier.py",
+          "sha256": "5a51619308f275c9017f4678df3e6df843f233cfeddfcd3784ae2f03942d7738",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_uncertainty_classifier.py",
+          "sha256": "03af740d6dc4158ea4e168a71b7130a89fc256cf4c31db48547baad213e13d26",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_uncertainty_classifier_does_not_promote_hedged_or_missing_data"
+      ],
+      "limitations": "Classifier is conservative and review-gated; it does not infer clinical truth from uncertain language."
     },
     {
       "id": "04-07",
