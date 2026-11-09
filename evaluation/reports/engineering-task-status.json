@@ -1165,10 +1165,29 @@
     {
       "id": "03-09",
       "description": "Use `unknown` for low-confidence source regions; block role-sensitive note claims until confirmed.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/role_guard.py",
+          "sha256": "5c1aa3b22a42eecc03c120c7d5dcaa5f5cd761a7eab7ffc8b1835202a236949d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/diarization.py",
+          "sha256": "08ae7e3e204f5f960ceb15a4cccc8f896b57e15b7cedec188454114af602e533",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_role_guard.py",
+          "sha256": "930ebabd4a66f119fdc708d569ea724ff651c2bef4158acee5559b308c98a5e8",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_low_confidence_role_is_unknown_and_blocks_claim",
+        "test_confirmed_role_allows_claim"
+      ],
+      "limitations": "Role-sensitive claims remain blocked until clinician/human confirmation; diarization confidence does not itself establish role."
     },
     {
       "id": "03-10",
