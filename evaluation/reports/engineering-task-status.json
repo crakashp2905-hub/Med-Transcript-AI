@@ -5703,10 +5703,23 @@
     {
       "id": "15-05",
       "description": "Offer a study dashboard comparing datasets and model variants with visible failures, no invented cost/accuracy, and model-not-admitted banners.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/study_dashboard.py",
+          "sha256": "61e9c01d8e4d6654df60f5eff98bd6b600cae9d645d4f6357c263da8ee186d84",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_study_dashboard.py",
+          "sha256": "acf836cde7b15fef66fa55f0ac1fcbefd71d32a7be82f5d01bd3872c2e7163c1",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_study_dashboard_keeps_failures_visible_and_claims_honest"
+      ],
+      "limitations": "The data contract preserves honest unknowns and admission banners; actual UI rendering remains frontend-specific."
     },
     {
       "id": "15-06",

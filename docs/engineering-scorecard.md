@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**225/247 verified (91.09%).**
+**226/247 verified (91.50%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -245,7 +245,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 15-02 — Record an audit-friendly demo scenario in which the model makes a deliberate drug-dose error and the deterministic gate blocks it. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/offline_demo.py](../services/offline_demo.py) | test_offline_scripted_workflow_blocks_dose_error_and_viewer_write; synthetic_walkthrough |
 | 15-03 — Show a second scenario of legitimate paraphrase and avoid implying all paraphrases are unsafe by construction. | verified | [services/paraphrase_cases.py](../services/paraphrase_cases.py), [tests/test_paraphrase_cases.py](../tests/test_paraphrase_cases.py) | test_legitimate_paraphrase_scenarios_are_not_marked_unsafe_by_construction |
 | 15-04 — Add a local read-only showcase account/session simulator without Google registration; never call it verified live OIDC. | verified | [docs/demo-runbook-offline.md](../docs/demo-runbook-offline.md), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
-| 15-05 — Offer a study dashboard comparing datasets and model variants with visible failures, no invented cost/accuracy, and model-not-admitted banners. | not_started | — | Not yet verified against this checklist. |
+| 15-05 — Offer a study dashboard comparing datasets and model variants with visible failures, no invented cost/accuracy, and model-not-admitted banners. | verified | [services/study_dashboard.py](../services/study_dashboard.py), [tests/test_study_dashboard.py](../tests/test_study_dashboard.py) | test_study_dashboard_keeps_failures_visible_and_claims_honest |
 | 15-06 — Generate screenshots and demo transcript using only locally available browser tooling and synthetic content. | not_started | — | Not yet verified against this checklist. |
 | 15-07 — Publish architecture diagrams, API examples, data lifecycle, threat model, model cards and limitations in version-controlled docs. | verified | [docs/product-architecture.md](../docs/product-architecture.md), [docs/local-threat-model.md](../docs/local-threat-model.md), [docs/evaluation-protocol.md](../docs/evaluation-protocol.md), [tests/test_offline_engineering.py](../tests/test_offline_engineering.py) | test_product_architecture_evidence_map_contains_lifecycle_api_and_limits |
 | 15-08 — Document model license attribution and ensure redistributed fixtures and weights follow their actual licenses; do not distribute weight files by default. | verified | [docs/model-licenses.md](../docs/model-licenses.md), [evaluation/candidate-access-audit.json](../evaluation/candidate-access-audit.json), [.gitignore](../.gitignore), [tests/test_offline_engineering.py](../tests/test_offline_engineering.py) | test_model_license_policy_excludes_weight_distribution |
