@@ -1964,10 +1964,23 @@
     {
       "id": "05-09",
       "description": "Add a configurable deterministic note-style layer, preserving the meaning and evidence of each assertion.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/note_style.py",
+          "sha256": "211fb9fb4e107abb0a52a5939631117ddd1c54ddac784ab057e9dcce64855daa",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_note_style.py",
+          "sha256": "f8344d3dba71b0e9a3fd98bf164e79676ea6baf855a28aef06307216e1a7f38e",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_note_style_preserves_statements_and_evidence"
+      ],
+      "limitations": "Style layer is deterministic and non-semantic; it preserves supplied statements and evidence without making clinical claims."
     },
     {
       "id": "05-10",
