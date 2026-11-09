@@ -2885,10 +2885,24 @@
     {
       "id": "07-09",
       "description": "Test worker crash and recovery at every transaction boundary, including stale lease and resumed channel checkpoints.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/worker_recovery.py",
+          "sha256": "94ccd2360a2dfac8c985c6e4a69dd95da35e10579863f781c510c7d853a7b314",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_worker_recovery.py",
+          "sha256": "9dd1a49c4d01fbbe30941d22a6adebbe13a928addc80c48fba2d2a29d95e9143",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_worker_recovery_reacquires_stale_lease_without_publishing",
+        "test_worker_recovery_rejects_invalid_lease_state"
+      ],
+      "limitations": "Recovery preserves checkpoints and blocks publication; full process-kill integration remains deployment-specific."
     },
     {
       "id": "07-10",
