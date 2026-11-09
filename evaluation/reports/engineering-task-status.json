@@ -2721,10 +2721,29 @@
     {
       "id": "09-14",
       "description": "Add model-independent reference quality diagnostics for uncertain labels, overlapping speakers, truncated transcripts and missing annotations.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/detailed_diagnostics.py",
+          "sha256": "81b9c56f994c9b3613d7124dca1e4bbbdef678b04c78050bca48d33cb1b36351",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_detailed_diagnostics.py",
+          "sha256": "254e4e235290741649b455f49ac1e24cc1f9d2fce618867c8ef4a6f9a8098a6f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/detailed-evaluation-2026-10-29.md",
+          "sha256": "77cdbfef6bf2eeac94c2dd5a5fa668c0bca1c21312f79933b752a4bc4eb0d187",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_lexical_counts_preserve_units_and_negation_but_do_not_claim_clinical_gold",
+        "test_donor_detector_excludes_phrases_already_in_foreground"
+      ],
+      "limitations": "Diagnostics are model-independent lexical/role/overlap signals; they do not adjudicate transcript truth, speaker accuracy or clinical correctness."
     },
     {
       "id": "09-15",
