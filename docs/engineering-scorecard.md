@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**219/247 verified (88.66%).**
+**220/247 verified (89.07%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -236,7 +236,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 14-05 — Compare at least four methods on identical cases: lexical rules, relation rules, LLM-only verdict, combined evidence-graph method. | not_started | — | Not yet verified against this checklist. |
 | 14-06 — Ablate each novel component: relations, negation scope, temporality, evidence coverage, model opinion and confidence/abstention. | not_started | — | Not yet verified against this checklist. |
 | 14-07 — Measure critical-error misses, benign false blocks, coverage, runtime, memory and reviewer-like correction events in simulated workflows. | not_started | — | Not yet verified against this checklist. |
-| 14-08 — Add perturbation stress tests with controlled surface paraphrases, speaker swaps, omitted clauses, reversed temporal qualifiers and misleading instructions. | not_started | — | Not yet verified against this checklist. |
+| 14-08 — Add perturbation stress tests with controlled surface paraphrases, speaker swaps, omitted clauses, reversed temporal qualifiers and misleading instructions. | verified | [services/perturbation_cases.py](../services/perturbation_cases.py), [tests/test_perturbation_cases.py](../tests/test_perturbation_cases.py) | test_perturbation_cases_cover_required_adversarial_variants |
 | 14-09 — Report uncertainty via exact denominators and case-level paired intervals; treat small synthetic data as mechanistic evidence only. | not_started | — | Not yet verified against this checklist. |
 | 14-10 — Document negative results where the novel method is slower or less accurate; do not modify reserved acceptance materials. | not_started | — | Not yet verified against this checklist. |
 | 14-11 — Prepare paper-ready method, experimental protocol, limitations, failure taxonomy and reproducibility appendices. | not_started | — | Not yet verified against this checklist. |

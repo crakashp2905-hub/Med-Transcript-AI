@@ -5486,10 +5486,23 @@
     {
       "id": "14-08",
       "description": "Add perturbation stress tests with controlled surface paraphrases, speaker swaps, omitted clauses, reversed temporal qualifiers and misleading instructions.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/perturbation_cases.py",
+          "sha256": "853315d18d4fed3b478e55082f604125be323307950e598ded4177ab44f6ba94",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_perturbation_cases.py",
+          "sha256": "7a5ef0e370557040661cb5b30ba9f2181cc5ebac082a3946c1bf138906832df6",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_perturbation_cases_cover_required_adversarial_variants"
+      ],
+      "limitations": "The case generator preserves untrusted source provenance; model-specific outcome scoring remains separate."
     },
     {
       "id": "14-09",
