@@ -3150,10 +3150,23 @@
     {
       "id": "08-06",
       "description": "Display generated-vs-deterministic note side-by-side and highlight changed meanings, omissions and extra claims.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/note_diff.py",
+          "sha256": "0c44cf8e3371da1784647cbff3c5cebd11ba83dedcac48365ff59b487621cb94",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_note_diff.py",
+          "sha256": "e8f681b604e6461965f9eeaae66e3d5c945cae137e42acd4e621f0ae44ae16ac",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_note_diff_highlights_changed_meanings_omissions_and_extra_claims"
+      ],
+      "limitations": "The structural diff preserves both note versions and requires approval for any difference; visual rendering remains frontend-specific."
     },
     {
       "id": "08-07",
