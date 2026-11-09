@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**147/247 verified (59.51%).**
+**148/247 verified (59.92%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -44,7 +44,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 02-08 — Add explicit start/end coverage accounting so every submitted audio sample is accounted for, including silence, incomplete inputs and failed windows. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/detailed_benchmark.py](../services/detailed_benchmark.py) | test_coverage_rejects_missing_prefix_gap_or_tail; test_one_failed_window_retains_all_reference_deletions_and_raw_success; test_chunk_windows_cover_all_samples_without_invalid_bounds |
 | 02-09 — Implement timestamp capability registry (`none`, `chunk`, `segment`, `word`) and prohibit a chunk bound being called a word timestamp. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/asr/timestamps.py](../services/asr/timestamps.py) | test_text_only_and_native_chunk_capabilities_never_claim_word_alignment |
 | 02-10 — Check timestamp monotonicity, duration bounds, gaps, drift, duplicates, repeated segments and hallucinations in long silence. | verified | [services/asr/transcripts.py](../services/asr/transcripts.py), [tests/test_transcript_timestamp_integrity.py](../tests/test_transcript_timestamp_integrity.py) | test_transcript_records_gaps_and_preserves_original_timeline; test_transcript_rejects_invalid_or_nonmonotonic_timestamps; test_digital_silence_cannot_have_hallucinated_segments |
-| 02-11 — Add a robust transcription postprocessor that preserves uncertainty, negation, doses and source words; any correction suggestion must be separately recorded, never overwrite ASR raw output. | not_started | — | Not yet verified against this checklist. |
+| 02-11 — Add a robust transcription postprocessor that preserves uncertainty, negation, doses and source words; any correction suggestion must be separately recorded, never overwrite ASR raw output. | verified | [services/asr/postprocess.py](../services/asr/postprocess.py), [tests/test_asr_postprocess.py](../tests/test_asr_postprocess.py) | test_postprocessor_keeps_raw_negation_and_dose_separate_from_suggestions |
 | 02-12 — Make clinical terminology hints opt-in and scoped to a fixed, non-leaking local lexicon; measure both benefit and medication-name hallucination risk. | not_started | — | Not yet verified against this checklist. |
 | 02-13 — Benchmark model throughput and memory on existing hardware under controlled warm and cold runs; record CPU threads, RAM, runtime and inference queue wait. | not_started | — | Not yet verified against this checklist. |
 | 02-14 — Evaluate primary ASR on the existing short-clip, three-long and MedDistractAudio corpora separately; do not synthesize a single misleading universal WER. | not_started | — | Not yet verified against this checklist. |

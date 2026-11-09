@@ -792,10 +792,23 @@
     {
       "id": "02-11",
       "description": "Add a robust transcription postprocessor that preserves uncertainty, negation, doses and source words; any correction suggestion must be separately recorded, never overwrite ASR raw output.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/asr/postprocess.py",
+          "sha256": "39a380ad571586d3e65f8c33b791234567713ba6a25b4ef39f3509edbcfeb1d7",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_asr_postprocess.py",
+          "sha256": "60c420f3eef0843bb83de85d640fb1cf2323cf958e200a471df495e2c06ecb16",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_postprocessor_keeps_raw_negation_and_dose_separate_from_suggestions"
+      ],
+      "limitations": "Advisory postprocessing is verified as non-destructive; it does not authorize automatic clinical correction or overwrite."
     },
     {
       "id": "02-12",
