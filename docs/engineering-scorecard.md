@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**121/247 verified (48.99%).**
+**122/247 verified (49.39%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -168,7 +168,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 09-15 — Create a model/experiment comparison view that discloses task, dataset and evaluation scopes, avoiding cross-dataset ranking errors. | verified | [services/comparison_scope.py](../services/comparison_scope.py), [tests/test_comparison_scope.py](../tests/test_comparison_scope.py), [docs/comparison-scope.md](../docs/comparison-scope.md) | test_comparison_keeps_failed_candidates_visible_and_ranks_only_complete_same_scope; test_comparison_rejects_cross_dataset_rows |
 | 09-16 — Re-run saved benchmarks through a read-only scorer from committed reports; verify scores match without model weights. | verified | [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_replay_rejects_score_reference_coverage_and_denominator_mutations |
 | 09-17 — Label every claimed method novelty as `hypothesis` until there is a distinct algorithm with an ablation improvement over a fair baseline. | verified | [services/novelty_policy.py](../services/novelty_policy.py), [tests/test_novelty_policy.py](../tests/test_novelty_policy.py), [docs/novelty-policy.md](../docs/novelty-policy.md), [docs/candidate-method.md](../docs/candidate-method.md) | test_novelty_stays_hypothesis_without_distinct_fair_ablation |
-| 09-18 — Generate a reproducibility bundle of model-free commands, artifact hashes, environment manifests and full negative results. | not_started | — | Not yet verified against this checklist. |
+| 09-18 — Generate a reproducibility bundle of model-free commands, artifact hashes, environment manifests and full negative results. | verified | [services/repro_bundle.py](../services/repro_bundle.py), [tests/test_repro_bundle.py](../tests/test_repro_bundle.py), [docs/reproducibility-bundle.md](../docs/reproducibility-bundle.md) | test_repro_bundle_has_hashes_commands_and_negative_results |
 | 09-19 — Require `independent_clinical_gold=false` and `clinical_release=false` in all developer-only reports until genuinely changed by external evidence. | not_started | — | Not yet verified against this checklist. |
 | 09-20 — Predefine what constitutes an inconclusive experiment and stop adding variants that cannot be evaluated under the resource budget. | verified | [evaluation/reports/offline-acceptance-v7.json](../evaluation/reports/offline-acceptance-v7.json), [services/experiment_contract.py](../services/experiment_contract.py) | test_missing_failed_timeout_and_unresolved_experiments_stay_inconclusive; test_endpoint_registry_matches_contract_and_budget_stops_unevaluable_variants |
 | 10-01 — Fix or triage the November 2 `pip-audit --strict` failure; if an advisory exists, update dependencies using tested constraints, and preserve evidence of the outcome. | verified | [evaluation/reports/dependency-audit-triage.json](../evaluation/reports/dependency-audit-triage.json), [docs/dependency-audit-triage.md](../docs/dependency-audit-triage.md), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_audit_configuration_keeps_strict_third_party_checks |

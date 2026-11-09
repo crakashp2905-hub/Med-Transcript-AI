@@ -2822,10 +2822,28 @@
     {
       "id": "09-18",
       "description": "Generate a reproducibility bundle of model-free commands, artifact hashes, environment manifests and full negative results.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/repro_bundle.py",
+          "sha256": "223cf9d9ac55ea2eda256a0f9f33103dbb1020861fd47278d076028c2d7b1be0",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_repro_bundle.py",
+          "sha256": "948cbd0a0bfd6bf0e72a49804a01a546b813663df4aa2bb609f0d38975c42029",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/reproducibility-bundle.md",
+          "sha256": "468942075e178a3cd7001176d37c243efce80b980e8618fbc838774e8d04e51c",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_repro_bundle_has_hashes_commands_and_negative_results"
+      ],
+      "limitations": "Bundle covers committed model-free replay artifacts; it does not provide missing weights, external infrastructure or clinical evidence."
     },
     {
       "id": "09-19",
