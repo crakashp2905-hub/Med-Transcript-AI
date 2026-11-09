@@ -4410,10 +4410,24 @@
     {
       "id": "11-07",
       "description": "Reject SSRF via provider endpoints and redirects; block private/non-loopback destinations in offline mode, including DNS rebinding where applicable.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/endpoint_policy.py",
+          "sha256": "22617ee4f70acb22c5e56f46ceb4f73e688f571b9bd6469dd2c585afe747ee7d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_endpoint_policy.py",
+          "sha256": "8dfb460dfe085e5f3b144cc9c399c9f70ae0af5d6a3f145f2fa2f2cee431be13",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_endpoint_policy_rejects_private_destinations_in_offline_mode",
+        "test_endpoint_policy_accepts_public_https_endpoint"
+      ],
+      "limitations": "The validator rejects private and malformed destinations; DNS-resolution and redirect enforcement require the HTTP client integration."
     },
     {
       "id": "11-08",

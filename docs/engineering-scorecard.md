@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**211/247 verified (85.43%).**
+**212/247 verified (85.83%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -191,7 +191,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 11-04 — Ensure every API route has an explicit authorization policy and test method/status variants, including routes mounted by new routers. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/api/authorization_policy.py](../services/api/authorization_policy.py), [evaluation/contracts/authorization-policy-v1.json](../evaluation/contracts/authorization-policy-v1.json) | test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail; test_all_identity_routes_reject_missing_auth_and_viewer_writes |
 | 11-05 — Avoid logging full note text, transcript snippets, secrets, auth cookies, API keys, audio data, prompts and provider responses. | verified | [services/log_redaction.py](../services/log_redaction.py), [tests/test_log_redaction.py](../tests/test_log_redaction.py) | test_log_redaction_removes_sensitive_payloads |
 | 11-06 — Implement a local, no-secret leak scanner for Git-tracked files, generated reports, sample env files and fixture artifacts. | verified | [evaluation/reports/secret-scan-foundation-v1.json](../evaluation/reports/secret-scan-foundation-v1.json), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_secret_scanner_redacts_values_and_accepts_placeholders |
-| 11-07 — Reject SSRF via provider endpoints and redirects; block private/non-loopback destinations in offline mode, including DNS rebinding where applicable. | not_started | — | Not yet verified against this checklist. |
+| 11-07 — Reject SSRF via provider endpoints and redirects; block private/non-loopback destinations in offline mode, including DNS rebinding where applicable. | verified | [services/endpoint_policy.py](../services/endpoint_policy.py), [tests/test_endpoint_policy.py](../tests/test_endpoint_policy.py) | test_endpoint_policy_rejects_private_destinations_in_offline_mode; test_endpoint_policy_accepts_public_https_endpoint |
 | 11-08 — Constrain inputs, audio duration, JSON depth, request sizes, decompression, timestamps and expensive processing stages. | not_started | — | Not yet verified against this checklist. |
 | 11-09 — Run adversarial transcript prompt-injection cases; source utterances must never control application instructions, file access or note approval. | not_started | — | Not yet verified against this checklist. |
 | 11-10 — Protect against model output parser bombs, duplicate JSON keys, Unicode confusables, excessive facts, nested arrays and malformed schema. | verified | [evaluation/reports/offline-acceptance-v6.json](../evaluation/reports/offline-acceptance-v6.json), [services/strict_json.py](../services/strict_json.py), [tests/test_domain_integrity.py](../tests/test_domain_integrity.py), [tests/test_verifier_fail_closed.py](../tests/test_verifier_fail_closed.py) | test_untrusted_json_rejects_duplicates_confusable_keys_depth_and_surrogates; test_model_parser_bounds_excess_facts_and_confusable_schema_without_rewriting_values |
