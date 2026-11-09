@@ -4277,10 +4277,23 @@
     {
       "id": "10-11",
       "description": "Run full frontend typechecking, build, audit and Playwright suites with synthetic fixtures and no backend cloud dependencies.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "apps/clinician-web/validation-manifest.json",
+          "sha256": "6dfd9e400f0d26c9017d9c0163d06e6024ae5614b029b5b87045691005c6448d",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "tests/test_frontend_validation_manifest.py",
+          "sha256": "26cb4da22c2e9abf6ad04c1cbe81a48985ee3a5b41b279d36f3bdc495740145d",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_frontend_validation_manifest_covers_required_local_suites"
+      ],
+      "limitations": "The manifest defines the required local suites; actual Node/Playwright execution remains runner-dependent."
     },
     {
       "id": "10-12",
