@@ -4927,10 +4927,24 @@
     {
       "id": "12-07",
       "description": "Evaluate context truncation and note batch size effects on omissions and hallucinations, not only speed.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/context_effects.py",
+          "sha256": "040c545e8b477f2cb6ccc4288e246a3ce6a18cacd50e23c60b39633e374042a5",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_context_effects.py",
+          "sha256": "87cfa41b9a541df4d29294fb2d0ab6c49644de2d096640a76cf51f5869981da9",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_context_effects_record_quality_and_speed_separately",
+        "test_context_effects_reject_negative_measurements"
+      ],
+      "limitations": "The record separates quality and speed dimensions; model execution results require installed artifacts."
     },
     {
       "id": "12-08",
