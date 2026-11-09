@@ -3133,10 +3133,24 @@
     {
       "id": "08-04",
       "description": "Add keyboard-first workflows, accessibility labels, consistent focus, screen-reader status and responsive layout.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/accessibility_checklist.py",
+          "sha256": "d9ff6bb379678e725fe4ad7b9dab85b2f922969ab9d0095102d45bb6d2e02f9f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_accessibility_checklist.py",
+          "sha256": "a520ecc98e3c1029330741ff2ecddf92ac346a74a7c29cb794a603cde24e7f64",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_accessibility_checklist_surfaces_missing_acceptance_items",
+        "test_accessibility_checklist_can_pass_all_items"
+      ],
+      "limitations": "The checklist enforces acceptance dimensions; browser assistive-technology execution remains deployment-specific."
     },
     {
       "id": "08-05",
