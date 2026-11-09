@@ -4883,10 +4883,24 @@
     {
       "id": "12-05",
       "description": "Detect and prevent oversubscription when local ASR and Qwen model requests compete for memory.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/resource_arbiter.py",
+          "sha256": "a5c43edf8437772a60b58780d7caa7168a376148c860423df5c9283ee4143d32",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_resource_arbiter.py",
+          "sha256": "87473694e709d717d885bfc2c620ad3ed559adad6d9a6d7f97924b88762fe0fb",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_resource_arbiter_defers_competing_model_request_before_oversubscription",
+        "test_resource_arbiter_admits_within_capacity"
+      ],
+      "limitations": "The arbiter uses explicit capacity inputs; runtime allocator telemetry remains environment-specific."
     },
     {
       "id": "12-06",
