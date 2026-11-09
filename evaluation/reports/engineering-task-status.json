@@ -1125,10 +1125,28 @@
     {
       "id": "03-04",
       "description": "Construct a robust channel-first baseline using the existing channel-separated recordings; compare its speaker-duration metrics with the single-mic VAD/embedding pipeline.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/channel_first_baseline.py",
+          "sha256": "6b802124d2cfd437f0ebddffe28a9aed7df1c47906cfdc8f793463b7410a274a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/multichannel_smoke.py",
+          "sha256": "ca2bcf96dfe8ee3791ca767d73b1a943ad1ae3d52589e158ad49e12bcd8750c3",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_channel_first_baseline.py",
+          "sha256": "de3e795bc45fc376f3b39cf9676e60fd5fa50beb77de40b5964f1522075f89c2",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_channel_first_baseline_keeps_pipeline_metrics_and_roles_separate"
+      ],
+      "limitations": "Comparison contract preserves separate duration metrics; actual hardware/model runs and role accuracy remain unverified."
     },
     {
       "id": "03-05",
