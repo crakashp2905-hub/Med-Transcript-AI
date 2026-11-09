@@ -3334,7 +3334,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "2638650d732256084a4d31fa0c8c9bbc4825bdfa95242426c17a7ae8a597a982",
+          "sha256": "b49c04feb5733302d4a8a249932e3575ce593c6a653307222edaf106a320c392",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3450,7 +3450,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "2638650d732256084a4d31fa0c8c9bbc4825bdfa95242426c17a7ae8a597a982",
+          "sha256": "b49c04feb5733302d4a8a249932e3575ce593c6a653307222edaf106a320c392",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3462,10 +3462,43 @@
     {
       "id": "13-07",
       "description": "Pin Python, Node, TypeScript, PostgreSQL, runtime and package versions and document tested minimum/maximum versions.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "pyproject.toml",
+          "sha256": "7b2109f91233203ba20595048068373de25019e593a2b1820e659e0ae5f1c034",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "constraints-ci.txt",
+          "sha256": "d732bad0c6044cfa0970206df2a4610d574a0f9393cd476dd6fb2c4febd3705e",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "apps/clinician-web/package.json",
+          "sha256": "c48961e28e3a1fa3abe593a93ccd7d0127df528714c4dd372b1ae9bda13e19e9",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "apps/clinician-web/package-lock.json",
+          "sha256": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "docs/runtime-support-matrix.md",
+          "sha256": "c30e2e9c4ecaa5402bf3138212c82e6ba8078355a669ce44fbe940346fa40abc",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_offline_engineering.py",
+          "sha256": "b49c04feb5733302d4a8a249932e3575ce593c6a653307222edaf106a320c392",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_runtime_support_matrix_names_minimums_and_tested_maxima"
+      ],
+      "limitations": "The matrix records declared and observed points, not exhaustive cross-version compatibility. PostgreSQL 17 is the only locally/CI-tested image; unavailable runtimes remain preflight blockers."
     },
     {
       "id": "13-08",
@@ -3511,7 +3544,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "2638650d732256084a4d31fa0c8c9bbc4825bdfa95242426c17a7ae8a597a982",
+          "sha256": "b49c04feb5733302d4a8a249932e3575ce593c6a653307222edaf106a320c392",
           "hash_mode": "normalized_source_text"
         }
       ],

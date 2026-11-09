@@ -56,6 +56,14 @@ def test_local_demo_launchers_are_isolated_and_loopback_bound():
     assert 'NoBrowser' in launcher and 'WithPostgres' in launcher
 
 
+def test_runtime_support_matrix_names_minimums_and_tested_maxima():
+    matrix = Path('docs/runtime-support-matrix.md').read_text(encoding='utf-8')
+    assert 'Python' in matrix and '3.11' in matrix and '3.13' in matrix
+    assert 'Node.js' in matrix and '22' in matrix and '24' in matrix
+    assert 'TypeScript' in matrix and '7.0.2' in matrix
+    assert 'PostgreSQL' in matrix and '17' in matrix
+
+
 def test_offline_guard_denies_external_dns_tcp_udp_but_preserves_loopback():
     program='''
 import socket
