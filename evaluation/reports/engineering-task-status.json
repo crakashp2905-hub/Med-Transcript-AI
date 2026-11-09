@@ -1099,10 +1099,28 @@
     {
       "id": "03-03",
       "description": "Add deterministic cross-talk, channel swap, empty channel, mono fake-stereo and desynchronization detectors.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/channel_detectors.py",
+          "sha256": "3f3f6ac771d431bc13003312ec67cd92d33aa341f4c599ad42884051a0654418",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/channel_signal_audit.py",
+          "sha256": "b5be6e1851fc6ea923853bff90f1e0eef0b8632f2ae88e5831d20dbecbff5b7c",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_channel_detectors.py",
+          "sha256": "73850f91d20910e971a7cad6dbe5a190aa5d4dbc94cd0da068e7581f986602e5",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_channel_detectors_flag_cross_talk_swap_empty_fake_stereo_and_drift"
+      ],
+      "limitations": "Detectors produce engineering review flags, not speaker or clinical accuracy claims; physical hardware validation remains separate."
     },
     {
       "id": "03-04",
