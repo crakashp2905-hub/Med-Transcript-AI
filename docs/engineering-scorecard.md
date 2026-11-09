@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**179/247 verified (72.47%).**
+**180/247 verified (72.87%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -88,7 +88,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 04-17 — Add structured evaluation of fact precision/recall, entity-relation correctness and clinically important omissions against developer-authored synthetic scenarios only. | not_started | — | Not yet verified against this checklist. |
 | 04-18 — Require human review on incomplete models, cross-utterance pronouns, ambiguous medication attachment or unknown speaker attribution. | verified | [services/review_gate.py](../services/review_gate.py), [tests/test_review_gate.py](../tests/test_review_gate.py) | test_review_gate_blocks_incomplete_and_ambiguous_cases |
 | 05-01 — Keep deterministic reviewed-fact SOAP generation as the always-available baseline and offline fallback. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/providers.py](../services/review/providers.py) | test_providers_cannot_enable_disclosure_or_invent_citations; test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
-| 05-02 — Formalize clinician-typed Objective vs reported Subjective facts; prevent invented examinations, vitals and assessments. | not_started | — | Not yet verified against this checklist. |
+| 05-02 — Formalize clinician-typed Objective vs reported Subjective facts; prevent invented examinations, vitals and assessments. | verified | [services/fact_provenance.py](../services/fact_provenance.py), [tests/test_fact_provenance.py](../tests/test_fact_provenance.py) | test_objective_fact_requires_clinician_source_and_subjective_is_reported |
 | 05-03 — Make an LLM draft an unapprovable proposal, never an approval or source-transcript replacement. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/routers/proposals.py](../services/review/routers/proposals.py) | test_proposal_is_separate_and_not_an_approvable_note; test_rule_fact_proposals_are_separate_and_clinical_models_default_disabled; test_proposal_baseline_source_edit_and_stale_approval |
 | 05-04 — Restrict drafting to cited reviewed fact IDs with a version hash and explicit bounded schema; fail closed on unknown IDs. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/providers.py](../services/review/providers.py) | test_providers_cannot_enable_disclosure_or_invent_citations; test_model_omission_retains_explicit_unreviewed_baseline; test_proposal_baseline_source_edit_and_stale_approval |
 | 05-05 — Compare Qwen 1.5B and 7B already installed with identical prompts, inputs, timeout budgets, model digests and full failure accounting. | not_started | — | Not yet verified against this checklist. |

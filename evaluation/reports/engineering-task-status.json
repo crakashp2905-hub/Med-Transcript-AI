@@ -1809,10 +1809,23 @@
     {
       "id": "05-02",
       "description": "Formalize clinician-typed Objective vs reported Subjective facts; prevent invented examinations, vitals and assessments.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/fact_provenance.py",
+          "sha256": "487b9eb5fb511dcd74eb25363dd5badbd3f447a2b9d34b96bdd603ed9140806b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_fact_provenance.py",
+          "sha256": "dd355037c20588663b43bdc6a4779fc432cb19c80ee39b278333c796466af11d",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_objective_fact_requires_clinician_source_and_subjective_is_reported"
+      ],
+      "limitations": "Guard blocks patient-sourced objective findings; clinician typing and independent review remain required for real clinical use."
     },
     {
       "id": "05-03",
