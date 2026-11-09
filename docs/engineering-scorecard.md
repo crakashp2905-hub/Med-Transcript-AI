@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**102/247 verified (41.30%).**
+**104/247 verified (42.11%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -215,8 +215,8 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 12-08 — Add streaming file hashing/processing to avoid loading entire 30-minute multichannel recordings into memory. | not_started | — | Not yet verified against this checklist. |
 | 12-09 — Test database indexes and bounded list pagination for 1000 synthetic encounters, many note versions and multiple users. | not_started | — | Not yet verified against this checklist. |
 | 12-10 — Build resource-limit stress tests with fixed synthetic data seeds, repeatable durations and teardown guarantees. | not_started | — | Not yet verified against this checklist. |
-| 12-11 — Calculate successful-consultation local cost from measured CPU-seconds, memory/disk and a user-configurable electricity assumption, without inventing live prices. | not_started | — | Not yet verified against this checklist. |
-| 12-12 — Define latency targets for each local development device class; measure and report failures rather than disguising them as fast successes. | not_started | — | Not yet verified against this checklist. |
+| 12-11 — Calculate successful-consultation local cost from measured CPU-seconds, memory/disk and a user-configurable electricity assumption, without inventing live prices. | verified | [services/local_cost.py](../services/local_cost.py), [docs/performance-accounting.md](../docs/performance-accounting.md), [tests/test_local_cost.py](../tests/test_local_cost.py) | test_local_cost_uses_measured_cpu_and_explicit_electricity_assumption; test_local_cost_preserves_incomplete_or_invalid_measurements |
+| 12-12 — Define latency targets for each local development device class; measure and report failures rather than disguising them as fast successes. | verified | [services/latency_targets.py](../services/latency_targets.py), [docs/performance-accounting.md](../docs/performance-accounting.md), [tests/test_latency_targets.py](../tests/test_latency_targets.py) | test_latency_targets_keep_unavailable_stages_unmet_without_inventing_values; test_latency_targets_reject_unknown_device_or_bad_success_measurement |
 | 13-01 — Provide `scripts/offline_preflight` that reports cached Python wheels, npm dependencies, model directories, codec availability and exact hashes before any build. | verified | [scripts/offline_preflight](../scripts/offline_preflight), [services/offline_preflight.py](../services/offline_preflight.py), [tests/test_offline_engineering.py](../tests/test_offline_engineering.py) | test_offline_preflight_reports_cached_capabilities_without_install_or_network; test_model_inventory_hashes_bytes_without_claiming_model_eligibility |
 | 13-02 — Provide a one-command offline model-free demo with bundled synthetic fixtures and no accounts, downloads or API calls. | verified | [docs/demo-runbook-offline.md](../docs/demo-runbook-offline.md), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
 | 13-03 — Build a reproducible offline wheelhouse/npm cache bundle from existing local installation *if present*; mark missing caches honestly. | blocked_missing_local_artifact | [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | No reusable local wheelhouse is present. Installed packages are not equivalent to an installable offline bundle. |

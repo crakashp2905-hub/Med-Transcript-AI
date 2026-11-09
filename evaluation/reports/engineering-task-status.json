@@ -3304,18 +3304,56 @@
     {
       "id": "12-11",
       "description": "Calculate successful-consultation local cost from measured CPU-seconds, memory/disk and a user-configurable electricity assumption, without inventing live prices.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/local_cost.py",
+          "sha256": "9d0c98c943448981075dccef620f71dcc928cad471d4d9e481bdbd487731e64e",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/performance-accounting.md",
+          "sha256": "a4e6974f74edd7728f3218e19ce5d9cf353f45a218708f897859ff2e78d603f7",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_local_cost.py",
+          "sha256": "a33c03c116bd1e334b46c7f9696c5ad2788d53971a186d7de10f63beeaf2dfd6",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_local_cost_uses_measured_cpu_and_explicit_electricity_assumption",
+        "test_local_cost_preserves_incomplete_or_invalid_measurements"
+      ],
+      "limitations": "Electricity cost is an operator-assumption estimate; hardware market cost remains unknown and no live prices are queried."
     },
     {
       "id": "12-12",
       "description": "Define latency targets for each local development device class; measure and report failures rather than disguising them as fast successes.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/latency_targets.py",
+          "sha256": "91ac8d0f8b61dfa1768e7fa0ee4a5839a04ce4c9344eb05da38c2f59c821366e",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/performance-accounting.md",
+          "sha256": "a4e6974f74edd7728f3218e19ce5d9cf353f45a218708f897859ff2e78d603f7",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_latency_targets.py",
+          "sha256": "3fd642d04b8b04d01975d801a277476a0738987c6f3e3ed72eef6ab16f79aa52",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_latency_targets_keep_unavailable_stages_unmet_without_inventing_values",
+        "test_latency_targets_reject_unknown_device_or_bad_success_measurement"
+      ],
+      "limitations": "Targets are development hypotheses; no real hardware benchmark or clinical time study is claimed."
     },
     {
       "id": "13-01",
