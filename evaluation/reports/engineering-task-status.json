@@ -3320,10 +3320,29 @@
     {
       "id": "13-01",
       "description": "Provide `scripts/offline_preflight` that reports cached Python wheels, npm dependencies, model directories, codec availability and exact hashes before any build.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "scripts/offline_preflight",
+          "sha256": "7cb177ece6d6b00b27d3cf9a1bfc2d0a6b34d3a8eacc154f2b08334433d22406",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "services/offline_preflight.py",
+          "sha256": "7bb783d18b3ffea881ab926369fb3329dc3730eb6f5d4a4a7bd38924c6fd7b36",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_offline_engineering.py",
+          "sha256": "3f09c082ca0983ee1c9a011577ba2ddda4205b2967b50383d967287eaa0c36a0",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_offline_preflight_reports_cached_capabilities_without_install_or_network",
+        "test_model_inventory_hashes_bytes_without_claiming_model_eligibility"
+      ],
+      "limitations": "Read-only inventory; absent wheelhouses, npm cache, codecs and model weights remain reported unavailable. It does not install or qualify models."
     },
     {
       "id": "13-02",
@@ -3362,10 +3381,24 @@
     {
       "id": "13-04",
       "description": "Use deterministic fake ASR, diarization, extraction and verifier adapters for smoke paths that must pass without installed weights.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/offline_adapters.py",
+          "sha256": "bb6df2abe42bfe3ba3f5b00c58e012cfb61101fab1ee831f32ea0cbc1ef46e1b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_offline_adapters.py",
+          "sha256": "c03a8ad7d955ee44c53ba1bb0b7d155ee6a7d491c25cd059a19a4977128ee044",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_model_free_adapters_are_deterministic_and_explicitly_synthetic",
+        "test_model_free_adapters_reject_implicit_non_synthetic_use"
+      ],
+      "limitations": "Adapters are synthetic transport fixtures only; they never establish ASR, diarization, extraction or verifier quality and never clear approval."
     },
     {
       "id": "13-05",

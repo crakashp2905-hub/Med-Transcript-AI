@@ -37,6 +37,16 @@ def test_full_baseline_inventory_has_no_missing_or_changed_paths():
     assert check_baseline(document)['evidence_files_checked']>=198
 
 
+def test_offline_preflight_reports_cached_capabilities_without_install_or_network(tmp_path):
+    from services.offline_preflight import inspect
+    report = inspect(tmp_path, hash_models=True)
+    assert report['schema_version'] == 'offline_preflight_v1'
+    assert report['new_installations_attempted'] == 0
+    assert report['external_calls_attempted'] == 0
+    assert {'tools', 'node', 'npm_dependencies', 'python_wheelhouse', 'models', 'packages', 'config_sha256'} <= set(report)
+    assert report['model_contents_hashed'] is True
+
+
 def test_offline_guard_denies_external_dns_tcp_udp_but_preserves_loopback():
     program='''
 import socket

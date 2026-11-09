@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**93/247 verified (37.65%).**
+**95/247 verified (38.46%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -217,10 +217,10 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 12-10 — Build resource-limit stress tests with fixed synthetic data seeds, repeatable durations and teardown guarantees. | not_started | — | Not yet verified against this checklist. |
 | 12-11 — Calculate successful-consultation local cost from measured CPU-seconds, memory/disk and a user-configurable electricity assumption, without inventing live prices. | not_started | — | Not yet verified against this checklist. |
 | 12-12 — Define latency targets for each local development device class; measure and report failures rather than disguising them as fast successes. | not_started | — | Not yet verified against this checklist. |
-| 13-01 — Provide `scripts/offline_preflight` that reports cached Python wheels, npm dependencies, model directories, codec availability and exact hashes before any build. | not_started | — | Not yet verified against this checklist. |
+| 13-01 — Provide `scripts/offline_preflight` that reports cached Python wheels, npm dependencies, model directories, codec availability and exact hashes before any build. | verified | [scripts/offline_preflight](../scripts/offline_preflight), [services/offline_preflight.py](../services/offline_preflight.py), [tests/test_offline_engineering.py](../tests/test_offline_engineering.py) | test_offline_preflight_reports_cached_capabilities_without_install_or_network; test_model_inventory_hashes_bytes_without_claiming_model_eligibility |
 | 13-02 — Provide a one-command offline model-free demo with bundled synthetic fixtures and no accounts, downloads or API calls. | verified | [docs/demo-runbook-offline.md](../docs/demo-runbook-offline.md), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
 | 13-03 — Build a reproducible offline wheelhouse/npm cache bundle from existing local installation *if present*; mark missing caches honestly. | blocked_missing_local_artifact | [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | No reusable local wheelhouse is present. Installed packages are not equivalent to an installable offline bundle. |
-| 13-04 — Use deterministic fake ASR, diarization, extraction and verifier adapters for smoke paths that must pass without installed weights. | not_started | — | Not yet verified against this checklist. |
+| 13-04 — Use deterministic fake ASR, diarization, extraction and verifier adapters for smoke paths that must pass without installed weights. | verified | [services/offline_adapters.py](../services/offline_adapters.py), [tests/test_offline_adapters.py](../tests/test_offline_adapters.py) | test_model_free_adapters_are_deterministic_and_explicitly_synthetic; test_model_free_adapters_reject_implicit_non_synthetic_use |
 | 13-05 — Implement model-presence checks that produce `unavailable` rather than auto-installing/downloading a model. | verified | [services/asr/profiles.py](../services/asr/profiles.py), [services/asr/worker.py](../services/asr/worker.py), [services/ollama_inventory.py](../services/ollama_inventory.py), [evaluation/reports/offline-acceptance-v11.json](../evaluation/reports/offline-acceptance-v11.json) | test_missing_model_is_unavailable_without_loading_or_downloading; test_worker_missing_model_preserves_audio_and_does_not_publish_transcript; test_configured_ollama_blobs_are_hashed_once_and_missing_or_corrupt_stays_visible |
 | 13-06 — Provide a Linux Docker Compose demo and Windows PowerShell local demo with isolated demo storage and cleanup. | not_started | — | Not yet verified against this checklist. |
 | 13-07 — Pin Python, Node, TypeScript, PostgreSQL, runtime and package versions and document tested minimum/maximum versions. | not_started | — | Not yet verified against this checklist. |
