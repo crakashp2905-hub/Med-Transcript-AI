@@ -3479,10 +3479,29 @@
     {
       "id": "13-09",
       "description": "Ensure test fixtures do not contain real patient identifiers, live auth credentials or secrets.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/secret_scan.py",
+          "sha256": "3d253b6e308c6d050a0387be0fac8374ab48947518e41d34d739a83ad15bbacb",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/secret-scan-v1.json",
+          "sha256": "782af40219201ba1fcc7d3358f45eac7cb2a0fcb8e70f1f53a0c93fdb6350e1a",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "tests/test_offline_engineering.py",
+          "sha256": "3f09c082ca0983ee1c9a011577ba2ddda4205b2967b50383d967287eaa0c36a0",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "python -m services.secret_scan --out evaluation/reports/secret-scan-v1.json",
+        "test_secret_scanner_redacts_values_and_accepts_placeholders"
+      ],
+      "limitations": "Pattern-based scan found no committed secret matches in 577 files; it cannot prove absence of unknown secrets or real identifiers."
     },
     {
       "id": "13-10",

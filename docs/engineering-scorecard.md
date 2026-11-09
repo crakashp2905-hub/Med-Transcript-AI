@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**95/247 verified (38.46%).**
+**96/247 verified (38.87%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -225,7 +225,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 13-06 — Provide a Linux Docker Compose demo and Windows PowerShell local demo with isolated demo storage and cleanup. | not_started | — | Not yet verified against this checklist. |
 | 13-07 — Pin Python, Node, TypeScript, PostgreSQL, runtime and package versions and document tested minimum/maximum versions. | not_started | — | Not yet verified against this checklist. |
 | 13-08 — Create a repeatability command that rebuilds published metrics solely from committed hypotheses and manifests, without inference. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/benchmark_integrity.py](../services/benchmark_integrity.py), [docs/benchmark-integrity.md](../docs/benchmark-integrity.md) | test_replay_rejects_score_reference_coverage_and_denominator_mutations; saved_metrics_replay |
-| 13-09 — Ensure test fixtures do not contain real patient identifiers, live auth credentials or secrets. | not_started | — | Not yet verified against this checklist. |
+| 13-09 — Ensure test fixtures do not contain real patient identifiers, live auth credentials or secrets. | verified | [services/secret_scan.py](../services/secret_scan.py), [evaluation/reports/secret-scan-v1.json](../evaluation/reports/secret-scan-v1.json), [tests/test_offline_engineering.py](../tests/test_offline_engineering.py) | python -m services.secret_scan --out evaluation/reports/secret-scan-v1.json; test_secret_scanner_redacts_values_and_accepts_placeholders |
 | 13-10 — Add disaster-recovery instructions for synthetic demo database, app config, encrypted backup drill and deleted-asset reconciliation. | not_started | — | Not yet verified against this checklist. |
 | 13-11 — Create an offline acceptance script: preflight -> tests -> mock full workflow -> metrics replay -> safety gates -> report. | verified | [docs/offline-acceptance-summary.md](../docs/offline-acceptance-summary.md), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_task_count_and_evidence_are_tamper_checked; test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
 | 13-12 — Test the actual packaged artifact on a clean isolated local environment, with cached dependencies only; report if unavailable. | blocked_missing_local_artifact | [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | No clean isolated cached-dependency packaging environment/wheelhouse is present. |
