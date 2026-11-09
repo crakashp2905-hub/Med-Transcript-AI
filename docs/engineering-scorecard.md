@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**226/247 verified (91.50%).**
+**227/247 verified (91.90%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -237,7 +237,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 14-06 — Ablate each novel component: relations, negation scope, temporality, evidence coverage, model opinion and confidence/abstention. | verified | [services/component_ablation.py](../services/component_ablation.py), [tests/test_component_ablation.py](../tests/test_component_ablation.py) | test_component_ablation_exposes_each_novel_component |
 | 14-07 — Measure critical-error misses, benign false blocks, coverage, runtime, memory and reviewer-like correction events in simulated workflows. | not_started | — | Not yet verified against this checklist. |
 | 14-08 — Add perturbation stress tests with controlled surface paraphrases, speaker swaps, omitted clauses, reversed temporal qualifiers and misleading instructions. | verified | [services/perturbation_cases.py](../services/perturbation_cases.py), [tests/test_perturbation_cases.py](../tests/test_perturbation_cases.py) | test_perturbation_cases_cover_required_adversarial_variants |
-| 14-09 — Report uncertainty via exact denominators and case-level paired intervals; treat small synthetic data as mechanistic evidence only. | not_started | — | Not yet verified against this checklist. |
+| 14-09 — Report uncertainty via exact denominators and case-level paired intervals; treat small synthetic data as mechanistic evidence only. | verified | [services/uncertainty_report.py](../services/uncertainty_report.py), [tests/test_uncertainty_report.py](../tests/test_uncertainty_report.py) | test_uncertainty_report_preserves_exact_denominator_and_synthetic_limit; test_uncertainty_report_rejects_invalid_counts |
 | 14-10 — Document negative results where the novel method is slower or less accurate; do not modify reserved acceptance materials. | not_started | — | Not yet verified against this checklist. |
 | 14-11 — Prepare paper-ready method, experimental protocol, limitations, failure taxonomy and reproducibility appendices. | not_started | — | Not yet verified against this checklist. |
 | 14-12 — Do not claim an independently novel or clinically effective method without external comparison/review; use `candidate contribution` language. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [docs/candidate-method.md](../docs/candidate-method.md), [docs/release-roadmap.md](../docs/release-roadmap.md) | test_lower_evidence_tiers_cannot_claim_independent_gold; test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence |

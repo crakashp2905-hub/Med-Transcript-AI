@@ -5561,10 +5561,24 @@
     {
       "id": "14-09",
       "description": "Report uncertainty via exact denominators and case-level paired intervals; treat small synthetic data as mechanistic evidence only.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/uncertainty_report.py",
+          "sha256": "4872caf91dc3eef5b307eb9ebaa10430c279758c77d749bd28317808ade358b2",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_uncertainty_report.py",
+          "sha256": "1a4a527b8686b5f4ba254b6f76cc87def5be4e710d81d543a28723f9147f3902",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_uncertainty_report_preserves_exact_denominator_and_synthetic_limit",
+        "test_uncertainty_report_rejects_invalid_counts"
+      ],
+      "limitations": "The report labels synthetic evidence as mechanistic and does not claim clinical generalization."
     },
     {
       "id": "14-10",
