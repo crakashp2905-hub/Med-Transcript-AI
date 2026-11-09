@@ -4839,10 +4839,24 @@
     {
       "id": "12-03",
       "description": "Measure cold and warm model initialization separately and quantify memory footprint and cache effectiveness.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/model_init_metrics.py",
+          "sha256": "0141cf6ffaa38be52a7d4eae15c48da6ee15fa6d21dc426bd43d5d9c8fe8a12d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_model_init_metrics.py",
+          "sha256": "8b8f2085eb069995716ed606d51f7aec8b7b2c14228f60d3f4dce330a21ef1fe",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_model_init_metrics_separate_cold_and_warm_measurements",
+        "test_model_init_metrics_reject_negative_values"
+      ],
+      "limitations": "The envelope records measurements and cache effects; actual model runs depend on installed local artifacts."
     },
     {
       "id": "12-04",
