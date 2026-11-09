@@ -2943,10 +2943,38 @@
     {
       "id": "10-03",
       "description": "Add dedicated test lanes for unit, integration, PostgreSQL, browser, property/fuzz, security and offline model-free simulation.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "fbfb1798a92cf3332e1b5d7d3531350e80ce435ee78210db55279081076b9aeb",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": ".github/workflows/dependency-audit.yml",
+          "sha256": "c6af42976615da2e21a459978ccda24a31f11071efe9eea4eb16213f1a58556f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": ".github/workflows/model-inference.yml",
+          "sha256": "d78ace1afa597ce4bac520f1ac2e435d7be2fa779d186f8378651337267dfa06",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/test-lanes.md",
+          "sha256": "a027c1bceb5759f829b18559475329ac51e9af07db9a47f0f5608ef309015db9",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_test_lanes.py",
+          "sha256": "7dfe352a488dbe154c1b4c9495a66c1fc16f2c9c215ce6b8cf0ed185c63403be",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_ci_defines_independent_backend_offline_frontend_postgres_and_container_lanes"
+      ],
+      "limitations": "Workflow definitions are verified locally; hosted PostgreSQL/container/browser execution remains dependent on CI or provisioned runtimes."
     },
     {
       "id": "10-04",
