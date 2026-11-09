@@ -5583,10 +5583,24 @@
     {
       "id": "14-10",
       "description": "Document negative results where the novel method is slower or less accurate; do not modify reserved acceptance materials.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/negative_results.py",
+          "sha256": "5070d9254df5e67c69e42800f4afa29a42fc2e976a6e53299694c04271feb43a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_negative_results.py",
+          "sha256": "7112043a7b077276a6741ec36102caf9388740606105284d6be3d161ff5177b5",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_negative_result_is_preserved_without_modifying_acceptance_materials",
+        "test_negative_result_rejects_reserved_material_mutation"
+      ],
+      "limitations": "The record preserves negative outcomes and rejects acceptance-material mutation; actual benchmark values are dataset-dependent."
     },
     {
       "id": "14-11",
