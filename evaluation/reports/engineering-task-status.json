@@ -3544,10 +3544,33 @@
     {
       "id": "11-16",
       "description": "Generate SBOMs and pin hash-verified dependencies where tooling exists; offline audit must distinguish stale advisories from proved clean status.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/sbom.py",
+          "sha256": "1e47ca75fdee209fcf154e453d67fc1de02aee877c500b8ffcf8bc491ff7f226",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_sbom.py",
+          "sha256": "efad191ba6af75df2e58c374936ec590aac6aa77f08bb4d97122975ac9f5e605",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/sbom.md",
+          "sha256": "4ee3e2abd00180b8d8f9cd32de429f21d413af0a209e35105ae5db495552455e",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "constraints-ci.txt",
+          "sha256": "d732bad0c6044cfa0970206df2a4610d574a0f9393cd476dd6fb2c4febd3705e",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_sbom_contains_pinned_components_and_distinguishes_audit_status"
+      ],
+      "limitations": "SBOM is generated from committed constraints without network access; vulnerability audit remains explicitly unrun when tooling is absent."
     },
     {
       "id": "11-17",
