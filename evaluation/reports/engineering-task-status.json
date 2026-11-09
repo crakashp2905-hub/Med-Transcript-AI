@@ -3186,10 +3186,28 @@
     {
       "id": "10-13",
       "description": "Make all test artifacts emit machine-readable JSON plus an accessible human-readable summary with failures at the top.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/artifact_summary.py",
+          "sha256": "cd9141f20c0092a769a72abf3e39046750b29882ca660e5459e0ea3cd06dffc5",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_artifact_summary.py",
+          "sha256": "096373f7a4b17610ff5ddecc6a8658a1603b3215385d1697da51120ddcf73953",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/artifact-reporting.md",
+          "sha256": "a89b013141dd50f3679b95bbaa7289edc24a9649efcd229977609a1386ee2935",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_artifact_summary_places_failures_first_and_keeps_release_blocked"
+      ],
+      "limitations": "Formatter contract is verified; individual historical receipts retain their original schemas and are not rewritten."
     },
     {
       "id": "10-14",

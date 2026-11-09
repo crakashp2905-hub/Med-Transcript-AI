@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**127/247 verified (51.42%).**
+**128/247 verified (51.82%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -183,7 +183,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 10-10 — Make Windows and Linux test setup deterministic; record any permitted platform-specific divergence explicitly. | verified | [docs/test-environment.md](../docs/test-environment.md), [docs/runbooks/ci.md](../docs/runbooks/ci.md), [tests/test_environment_contract.py](../tests/test_environment_contract.py), [constraints-ci.txt](../constraints-ci.txt) | test_windows_linux_environment_contract_is_pinned_and_explicit |
 | 10-11 — Run full frontend typechecking, build, audit and Playwright suites with synthetic fixtures and no backend cloud dependencies. | not_started | — | Not yet verified against this checklist. |
 | 10-12 — Add a daily offline release-readiness runner that reports `not established` rather than passing missing clinical requirements. | verified | [services/release_readiness.py](../services/release_readiness.py), [tests/test_independent_workflows.py](../tests/test_independent_workflows.py), [docs/release-roadmap.md](../docs/release-roadmap.md) | test_release_inventory_recomputes_all_candidates |
-| 10-13 — Make all test artifacts emit machine-readable JSON plus an accessible human-readable summary with failures at the top. | not_started | — | Not yet verified against this checklist. |
+| 10-13 — Make all test artifacts emit machine-readable JSON plus an accessible human-readable summary with failures at the top. | verified | [services/artifact_summary.py](../services/artifact_summary.py), [tests/test_artifact_summary.py](../tests/test_artifact_summary.py), [docs/artifact-reporting.md](../docs/artifact-reporting.md) | test_artifact_summary_places_failures_first_and_keeps_release_blocked |
 | 10-14 — Fail the release build on any migration error, evidence mismatch, unsupported schema, stale approval or incomplete critical verification. | not_started | — | Not yet verified against this checklist. |
 | 11-01 — Write a data-flow threat model covering browser audio, IndexedDB, resumable server prefixes, worker temp files, prompts, model outputs, notes, exports, audit and backups. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [docs/local-threat-model.md](../docs/local-threat-model.md) | test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail |
 | 11-02 — Test source-level cross-tenant and cross-role access across every route, including historical notes and generated proposal IDs. | not_started | — | Not yet verified against this checklist. |
