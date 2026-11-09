@@ -2622,10 +2622,29 @@
     {
       "id": "09-11",
       "description": "Implement pairwise regression checks to reject parameter changes that regress critical-safety synthetic tests even when aggregate WER improves.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/regression_gate.py",
+          "sha256": "edcf6d7347a7111d056aee2c45944ec6b7cacb775a5ad4d4e47249c2562b9326",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_regression_gate.py",
+          "sha256": "431b9d2ccc7433532420b70b6d3495fe37d39da0cf5140fea7a12d4f944a1104",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/regression-gate.md",
+          "sha256": "4f2986f4df65fdfe60fb4cd68327cd954822e6c623c8ad8306824e5266a8bda3",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_safety_regression_blocks_even_when_wer_improves",
+        "test_regression_gate_rejects_incomparable_or_incomplete_vectors"
+      ],
+      "limitations": "Synthetic vector gate only; metric labels and independent clinical adjudication remain external evidence requirements."
     },
     {
       "id": "09-12",

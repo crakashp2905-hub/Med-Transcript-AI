@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**114/247 verified (46.15%).**
+**115/247 verified (46.56%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -161,7 +161,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 09-08 — Use the reserved acceptance data only for existing provenance/packet preparation; do not score models or tune rules on it without external adjudication. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/detailed_benchmark.py](../services/detailed_benchmark.py) | test_detailed_selection_excludes_reserved_foreground_and_donor; test_reserved_cohort_leakage_is_rejected_before_network; test_reserved_audio_is_rejected_for_development_before_download |
 | 09-09 — Create explicit synthetic test suites with programmatic deterministic oracles for negation, medication swaps, dosage, roles and timestamps. | verified | [tests/test_completion_gaps.py](../tests/test_completion_gaps.py), [tests/test_relationships.py](../tests/test_relationships.py), [tests/test_safety_properties.py](../tests/test_safety_properties.py), [tests/test_scribe_workflow.py](../tests/test_scribe_workflow.py), [tests/test_channels.py](../tests/test_channels.py), [evaluation/reports/offline-acceptance-v15.json](../evaluation/reports/offline-acceptance-v15.json) | test_critical_scope_assignment_and_omission; test_atomic_extraction_preserves_decimal_offsets_and_multiple_assertions; test_speaker_role_scoring_keeps_wrong_roles_and_missing_boundaries; test_fixed_seed_time_window_coverage_and_source_span_round_trip; test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job |
 | 09-10 — Run novel synthetic tests separately from upstream human transcripts; never merge synthetic success into clinically valid performance estimates. | not_started | — | Not yet verified against this checklist. |
-| 09-11 — Implement pairwise regression checks to reject parameter changes that regress critical-safety synthetic tests even when aggregate WER improves. | not_started | — | Not yet verified against this checklist. |
+| 09-11 — Implement pairwise regression checks to reject parameter changes that regress critical-safety synthetic tests even when aggregate WER improves. | verified | [services/regression_gate.py](../services/regression_gate.py), [tests/test_regression_gate.py](../tests/test_regression_gate.py), [docs/regression-gate.md](../docs/regression-gate.md) | test_safety_regression_blocks_even_when_wer_improves; test_regression_gate_rejects_incomparable_or_incomplete_vectors |
 | 09-12 — Maintain exact provenance of full and partial benchmark runs with retry ancestry and per-case completion data. | not_started | — | Not yet verified against this checklist. |
 | 09-13 — Enforce bounds/consistency checks for all benchmark arithmetic: numerator, denominator, percentage, zero cases, timeouts, hash mismatch. | not_started | — | Not yet verified against this checklist. |
 | 09-14 — Add model-independent reference quality diagnostics for uncertain labels, overlapping speakers, truncated transcripts and missing annotations. | not_started | — | Not yet verified against this checklist. |
