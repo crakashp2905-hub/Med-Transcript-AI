@@ -3014,10 +3014,24 @@
     {
       "id": "07-15",
       "description": "Add a model-memory pressure probe that fails or queues before OOM while leaving completed source state intact.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/memory_admission.py",
+          "sha256": "75e747fcb8b92c66b16a32dfe7a67af343ca4fab40b99f9f8119dcf96640a581",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_memory_admission.py",
+          "sha256": "11dfedf2f5b1d7865e881536712d24c7bd184b022e66db6a59353ee1b6b22507",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_memory_pressure_queues_before_oom_and_preserves_source_state",
+        "test_memory_admission_runs_when_capacity_is_available"
+      ],
+      "limitations": "The admission policy is deterministic and preflight-only; actual model allocator telemetry remains runtime-specific."
     },
     {
       "id": "07-16",
