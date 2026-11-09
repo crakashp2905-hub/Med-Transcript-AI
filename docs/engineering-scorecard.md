@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**158/247 verified (63.97%).**
+**159/247 verified (64.37%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -54,7 +54,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 02-18 — Develop a safe `retranscribe_span` tool that produces a candidate transcript version linked to old audio offsets and requires explicit review. | verified | [services/asr/retranscribe_span.py](../services/asr/retranscribe_span.py), [tests/test_retranscribe_span.py](../tests/test_retranscribe_span.py) | test_retranscribe_span_is_linked_candidate_only; test_retranscribe_span_rejects_invalid_offsets |
 | 02-19 — Compare keyword recovery from different ASR models without automatically merging unsupported medical terms; benchmark a candidate-selection policy before activating it. | not_started | — | Not yet verified against this checklist. |
 | 02-20 — Keep the unchanged 5% WER gate; if none passes, retain `ASR_NOT_ADMITTED` and the already working manual transcript fallback. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/evaluation.py](../services/evaluation.py) | test_failure_keeps_reference_deletions_and_fails_gate; test_summary_reproduces_and_keeps_strict_gate; test_published_leaderboard_reproduces_from_committed_source_of_truth |
-| 03-01 — Separate `speaker clustering`, `role identification` and `channel assignment` into independent result types, avoiding implicit clinician/patient mapping. | not_started | — | Not yet verified against this checklist. |
+| 03-01 — Separate `speaker clustering`, `role identification` and `channel assignment` into independent result types, avoiding implicit clinician/patient mapping. | verified | [services/speaker_results.py](../services/speaker_results.py), [services/diarization.py](../services/diarization.py), [tests/test_speaker_results.py](../tests/test_speaker_results.py) | test_speaker_results_keep_clustering_roles_and_channels_independent |
 | 03-02 — Make two-channel acquisition a first-class optional pathway when device inputs actually support it, with truthful per-channel hardware detection. | not_started | — | Not yet verified against this checklist. |
 | 03-03 — Add deterministic cross-talk, channel swap, empty channel, mono fake-stereo and desynchronization detectors. | not_started | — | Not yet verified against this checklist. |
 | 03-04 — Construct a robust channel-first baseline using the existing channel-separated recordings; compare its speaker-duration metrics with the single-mic VAD/embedding pipeline. | not_started | — | Not yet verified against this checklist. |

@@ -1047,10 +1047,28 @@
     {
       "id": "03-01",
       "description": "Separate `speaker clustering`, `role identification` and `channel assignment` into independent result types, avoiding implicit clinician/patient mapping.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/speaker_results.py",
+          "sha256": "21864ce14edcf961eb31145e2ec7b1f33f4c09dfef5a1b8349a2e2c022f5b2d8",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/diarization.py",
+          "sha256": "08ae7e3e204f5f960ceb15a4cccc8f896b57e15b7cedec188454114af602e533",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_speaker_results.py",
+          "sha256": "beb694b31039c9a0847567181f56160c3359a22c9b22a88d4217e133aae44557",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_speaker_results_keep_clustering_roles_and_channels_independent"
+      ],
+      "limitations": "Result boundaries are independent and role assignment remains clinician-confirmation-required; no automatic patient/clinician mapping is claimed."
     },
     {
       "id": "03-02",
