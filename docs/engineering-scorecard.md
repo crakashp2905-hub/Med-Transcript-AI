@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**107/247 verified (43.32%).**
+**108/247 verified (43.72%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -230,7 +230,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 13-11 — Create an offline acceptance script: preflight -> tests -> mock full workflow -> metrics replay -> safety gates -> report. | verified | [docs/offline-acceptance-summary.md](../docs/offline-acceptance-summary.md), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_task_count_and_evidence_are_tamper_checked; test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
 | 13-12 — Test the actual packaged artifact on a clean isolated local environment, with cached dependencies only; report if unavailable. | blocked_missing_local_artifact | [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | No clean isolated cached-dependency packaging environment/wheelhouse is present. |
 | 14-01 — Select one narrow algorithmic contribution: e.g., uncertainty-aware source/evidence coverage and clinical-relation checking over deterministic and LLM baselines. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [docs/candidate-method.md](../docs/candidate-method.md) | test_relationship_quotes_are_exact_and_never_reviewed; test_lower_evidence_tiers_cannot_claim_independent_gold |
-| 14-02 — Specify the method mathematically: evidence graph, typed claims, relation signatures, contradiction and omission costs, abstention policy. | not_started | — | Not yet verified against this checklist. |
+| 14-02 — Specify the method mathematically: evidence graph, typed claims, relation signatures, contradiction and omission costs, abstention policy. | verified | [services/evaluation_method.py](../services/evaluation_method.py), [docs/evaluation-method.md](../docs/evaluation-method.md), [tests/test_evaluation_method.py](../tests/test_evaluation_method.py) | test_critical_contradiction_blocks_even_when_scalar_weights_change; test_omission_and_unresolved_are_explicit_and_unknown_kinds_fail_closed |
 | 14-03 — Implement the proposed method behind a feature flag; baseline behavior stays frozen and reproducible. | not_started | — | Not yet verified against this checklist. |
 | 14-04 — Use existing predeclared development data for optimization, and developer-authored synthetic adversarial oracles for reproducibility. | not_started | — | Not yet verified against this checklist. |
 | 14-05 — Compare at least four methods on identical cases: lexical rules, relation rules, LLM-only verdict, combined evidence-graph method. | not_started | — | Not yet verified against this checklist. |

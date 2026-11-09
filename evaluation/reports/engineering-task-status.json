@@ -3750,10 +3750,29 @@
     {
       "id": "14-02",
       "description": "Specify the method mathematically: evidence graph, typed claims, relation signatures, contradiction and omission costs, abstention policy.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/evaluation_method.py",
+          "sha256": "b49600e78607f2044274e14a7fd710c97bea42a5ea1d23ebe5954ee73721570f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/evaluation-method.md",
+          "sha256": "472ac6352df8f0938513bdc841b936d88bf36158819557bdcb5fd1a722334f5b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_evaluation_method.py",
+          "sha256": "f441791a66ef6442658c958939ca9b8c47069475dfccd20507b2c46354ef40a7",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_critical_contradiction_blocks_even_when_scalar_weights_change",
+        "test_omission_and_unresolved_are_explicit_and_unknown_kinds_fail_closed"
+      ],
+      "limitations": "Formal policy and safety invariants are mechanistic; weights, labels and independent clinical calibration remain research tasks."
     },
     {
       "id": "14-03",
