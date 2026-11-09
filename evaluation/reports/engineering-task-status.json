@@ -2610,10 +2610,23 @@
     {
       "id": "06-17",
       "description": "Add adversarial replay testing of old approved note versions after source correction and after a new model version is installed.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/adversarial_replay.py",
+          "sha256": "3c27a7d034d8f8734e6ecbd25eb741a32a9be81dbc4ad6af2b7e554f3a579887",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_adversarial_replay.py",
+          "sha256": "3910c67798bd6048015aecefab246cba4a3cb4006b8e85fb898ccd92e0dfc651",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_replay_marks_old_approval_stale_after_source_or_model_change"
+      ],
+      "limitations": "Replay correctly forces re-review and never authorizes publication automatically."
     },
     {
       "id": "06-18",
