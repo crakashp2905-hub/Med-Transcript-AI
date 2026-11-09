@@ -2378,10 +2378,23 @@
     {
       "id": "06-10",
       "description": "Report per-class TP, FP, FN, TN plus abstentions, timeouts, malformed output and incomplete checking.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/verification_metrics.py",
+          "sha256": "991d307dadf87635644f1102f9eef57b11991622cece039e023d18938f19d9e9",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_verification_metrics.py",
+          "sha256": "e43f5501e3294633d98fc7eac471a2859d5c996e649dfd16d00516bafe7d034a",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_verification_metrics_keep_abstentions_and_failures_separate"
+      ],
+      "limitations": "Per-class counts and failure/abstention dimensions are recorded; no clinical sensitivity claim is made."
     },
     {
       "id": "06-11",
