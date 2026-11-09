@@ -2305,10 +2305,23 @@
     {
       "id": "06-07",
       "description": "Implement mutation generators for each fact tuple: one change at a time, then pairwise mutations, then temporal and coreference swaps.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/mutation_generators.py",
+          "sha256": "f2d2e6548db9bce0ca9806e6767663f55ccc7ba884df4b518c0fa7450f3f137a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_mutation_generators.py",
+          "sha256": "531e32248b53b2a2f245c97489ca7ce5888206fbda75f19f4ca644ef82334bd6",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_mutation_generator_declares_kind_and_synthetic_scope"
+      ],
+      "limitations": "Mutation definitions are synthetic and provenance-labeled; they do not establish clinical sensitivity."
     },
     {
       "id": "06-08",
