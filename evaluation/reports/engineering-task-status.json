@@ -655,10 +655,24 @@
     {
       "id": "02-04",
       "description": "Perform oracle-free, source-only chunk selection; compare 30-second fixed, pause-aware, overlap-aware and source-time-only strategies with all parameters frozen before scoring.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/asr/chunk_selection.py",
+          "sha256": "f0bec1b5d7157642ba245121674c1ae8a206e1f6bdce347e4c3fbd144f64c287",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_chunk_selection.py",
+          "sha256": "f04eec1b56aa87bbc9ca94622af3076fcfc85145b754a99efb1eceda4f08ba32",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_chunk_selection_is_frozen_before_scoring",
+        "test_chunk_selection_rejects_oracle_or_unknown_strategy"
+      ],
+      "limitations": "Selection contract is verified as source-only and frozen; comparative benchmark results remain dependent on available local recordings and models."
     },
     {
       "id": "02-05",
