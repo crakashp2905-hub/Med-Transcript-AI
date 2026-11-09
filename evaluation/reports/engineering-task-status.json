@@ -1456,10 +1456,23 @@
     {
       "id": "04-04",
       "description": "Support stopped, restarted, reduced, planned, historical and patient-reported medications without inventing current prescription status.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/medication_status.py",
+          "sha256": "061d6a5f8b8a976f0e58dab5bef0c8d5322f1936abcc036e1c2023690308d5c8",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_medication_status.py",
+          "sha256": "72a1f5b8474bedb0f1f62b028b5ea0921dcc5c476b864a5b250d5be11a50c495",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_medication_status_preserves_temporality_without_current_prescription_inference"
+      ],
+      "limitations": "Classification is conservative text heuristics; unknown and ambiguous medication status remains review-required."
     },
     {
       "id": "04-05",
