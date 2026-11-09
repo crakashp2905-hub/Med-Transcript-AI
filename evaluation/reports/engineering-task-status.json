@@ -3552,10 +3552,33 @@
     {
       "id": "11-17",
       "description": "Run container security checks: non-root, read-only rootfs, no unnecessary capabilities, private DB, bounded memory, no exposed default credentials.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "compose.yaml",
+          "sha256": "aad1f808a2f98e8c2d6d81a9fa3981dd83d738d0bb058d4a948256013eb40736",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "compose.production.yaml",
+          "sha256": "48a1906c9fd1f8183701a008a53c03e851f53050fd6bbe596073e882ffbefe8c",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_container_security_contract.py",
+          "sha256": "27de623395ab360a0a6a8fb08326aa30e42ec4282dc04a2dca28668d1e2c8457",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/container-security.md",
+          "sha256": "e2e1bd6432fcf794206be8b738130bdf7fd6b4a41cf4ee2cdba4585ac15d66c7",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_compose_security_contract_is_restricted_and_private"
+      ],
+      "limitations": "Static Compose contract only; Docker runtime, TLS proxy and external security audit remain unverified."
     },
     {
       "id": "11-18",
@@ -3594,10 +3617,29 @@
     {
       "id": "11-19",
       "description": "Test timing and behavior after consent withdrawal mid-inference; discarded outputs must not reappear via cache/retry.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "tests/test_transcription.py",
+          "sha256": "a27fcc67b24aa5f4a8b3a13bdeb978dba9d364fcba3a38dc9be59883829fff4f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/api/ingest.py",
+          "sha256": "af6cc31229ee7b59e71631b155ed5cef123537bb46515a25216bd9cc801f85e3",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/runbooks/local-asr.md",
+          "sha256": "e55a50673fd131a0d3e12d4be4d9192e52a7ce49b4ef68b1e3208da18093ecfd",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_withdrawal_during_inference_discards_late_transcript",
+        "test_withdrawal_cancels_pending_job"
+      ],
+      "limitations": "Synthetic worker withdrawal/retry behavior is covered; no production clinician or external queue deployment is claimed."
     },
     {
       "id": "11-20",
