@@ -4032,10 +4032,34 @@
     {
       "id": "15-09",
       "description": "Remove outdated README claims and stale metrics; make documentation links resolve and lead users to current frozen reports.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/doc_integrity.py",
+          "sha256": "710b6aaa3cc446fa8e5a05907521a869756793288f98243f838174fab663630f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/doc-integrity-v1.json",
+          "sha256": "e9f45426fa245651ac1f470be817f6effdcd148f3af0886a387a9943cc998bb1",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "README.md",
+          "sha256": "ea856eeda36c6ecd023a451da025e5c1072fc5c2424c5fda2c2facaa091a9e7a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_doc_integrity.py",
+          "sha256": "e30200bdc962c6c81099604c2e65c20ba249af0299735f59e9b4b8562064ea59",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_documentation_links_and_current_release_claims_are_intact",
+        "python -m services.doc_integrity --out evaluation/reports/doc-integrity-v1.json"
+      ],
+      "limitations": "Checks 428 local Markdown links and headline README release claims; external URLs, prose semantics and historical report contents are not fetched or rewritten."
     },
     {
       "id": "15-10",
