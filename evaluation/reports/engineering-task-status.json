@@ -3036,10 +3036,24 @@
     {
       "id": "07-16",
       "description": "Introduce deterministic fault injection for slow disks, write failures, process kills, database busy errors and absent models.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/fault_injection.py",
+          "sha256": "26af531ceac9b6325c065bec802612076fc29f08fa7bf39a7fb95479d72c25cd",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_fault_injection.py",
+          "sha256": "3c547f7eb144628ebf4904e604affcf1abf79ad40c5a3cb144ac3a8464b5629a",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_fault_injection_preserves_source_and_blocks_publication",
+        "test_fault_injection_marks_retryable_faults"
+      ],
+      "limitations": "Fault outcomes are deterministic test controls; production process-kill orchestration remains environment-specific."
     },
     {
       "id": "08-01",
