@@ -1246,10 +1246,23 @@
     {
       "id": "03-12",
       "description": "Create a synthetic turn-swapping suite to ensure semantic claims cannot switch from patient to clinician without warnings.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/turn_swap_guard.py",
+          "sha256": "e51d836b1249b32ee59ea4b710aaff656fea353a3f80c470b3dda221113271e2",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_turn_swap_guard.py",
+          "sha256": "e3d67917f55aa37654cfdd0278e31e4493f1e2d55609ad3a5040212b71795f55",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_turn_swap_requires_warning_and_blocks_approval"
+      ],
+      "limitations": "Synthetic role-swap detection is verified; it is a safety mutation guard, not evidence of real-world diarization accuracy."
     },
     {
       "id": "03-13",

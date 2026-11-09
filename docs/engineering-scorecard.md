@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**162/247 verified (65.59%).**
+**163/247 verified (65.99%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -65,7 +65,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 03-09 — Use `unknown` for low-confidence source regions; block role-sensitive note claims until confirmed. | verified | [services/role_guard.py](../services/role_guard.py), [services/diarization.py](../services/diarization.py), [tests/test_role_guard.py](../tests/test_role_guard.py) | test_low_confidence_role_is_unknown_and_blocks_claim; test_confirmed_role_allows_claim |
 | 03-10 — Detect overlapping speech explicitly or mark it unsupported; never assign overlapping assertions to one speaker by guess. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/diarization.py](../services/diarization.py) | test_speaker_projection_keeps_boundary_crossings_unknown; test_diarization_never_assigns_roles_without_explicit_confirmation |
 | 03-11 — Test role reassignment after transcript corrections; downstream note evidence and approvals must become stale. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/routers/transcripts.py](../services/review/routers/transcripts.py) | test_optional_diarization_worker_and_versioned_clinician_roles; test_transcript_edit_invalidates_old_note_approval_and_preserves_original |
-| 03-12 — Create a synthetic turn-swapping suite to ensure semantic claims cannot switch from patient to clinician without warnings. | not_started | — | Not yet verified against this checklist. |
+| 03-12 — Create a synthetic turn-swapping suite to ensure semantic claims cannot switch from patient to clinician without warnings. | verified | [services/turn_swap_guard.py](../services/turn_swap_guard.py), [tests/test_turn_swap_guard.py](../tests/test_turn_swap_guard.py) | test_turn_swap_requires_warning_and_blocks_approval |
 | 03-13 — Optimize speaker review UI: play exemplar snippets, batch-confirm unambiguous turns, isolate ambiguous boundaries. | not_started | — | Not yet verified against this checklist. |
 | 03-14 — Expose a scorecard comparing single-channel, 2-channel and multi-input configurations without implying device equivalence. | not_started | — | Not yet verified against this checklist. |
 | 03-15 — Keep automatic diarization experimental until a predefined score and human-review policy are satisfied. | not_started | — | Not yet verified against this checklist. |
