@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**215/247 verified (87.04%).**
+**216/247 verified (87.45%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -208,7 +208,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 12-01 — Set a documented single-device CPU/16 GB RAM reference profile; avoid assuming an NVIDIA GPU or cloud account. | verified | [services/device_profile.py](../services/device_profile.py), [tests/test_device_profile.py](../tests/test_device_profile.py), [docs/device-profile.md](../docs/device-profile.md) | test_reference_device_profile_does_not_assume_gpu_or_cloud |
 | 12-02 — Collect stage-level latency: recording, transfer, normalization, ASR, diarization, extraction, drafting, verification, clinician review, export. | implemented | [services/stage_timing.py](../services/stage_timing.py), [services/offline_demo.py](../services/offline_demo.py), [tests/test_stage_timing.py](../tests/test_stage_timing.py) | python -m pytest tests/test_stage_timing.py tests/test_offline_engineering.py::test_offline_scripted_workflow_blocks_dose_error_and_viewer_write -q |
 | 12-03 — Measure cold and warm model initialization separately and quantify memory footprint and cache effectiveness. | verified | [services/model_init_metrics.py](../services/model_init_metrics.py), [tests/test_model_init_metrics.py](../tests/test_model_init_metrics.py) | test_model_init_metrics_separate_cold_and_warm_measurements; test_model_init_metrics_reject_negative_values |
-| 12-04 — Benchmark CPU thread settings and quantized local model runtime configurations only when model artifacts are already present. | not_started | — | Not yet verified against this checklist. |
+| 12-04 — Benchmark CPU thread settings and quantized local model runtime configurations only when model artifacts are already present. | verified | [services/runtime_benchmark.py](../services/runtime_benchmark.py), [tests/test_runtime_benchmark.py](../tests/test_runtime_benchmark.py) | test_runtime_benchmark_keeps_configuration_and_artifact_provenance; test_runtime_benchmark_rejects_invalid_configuration |
 | 12-05 — Detect and prevent oversubscription when local ASR and Qwen model requests compete for memory. | not_started | — | Not yet verified against this checklist. |
 | 12-06 — Use bounded queues and explicit rejection/deferral under overload rather than OOM or silently unbounded wait. | not_started | — | Not yet verified against this checklist. |
 | 12-07 — Evaluate context truncation and note batch size effects on omissions and hallucinations, not only speed. | not_started | — | Not yet verified against this checklist. |

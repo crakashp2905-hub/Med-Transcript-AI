@@ -4861,10 +4861,24 @@
     {
       "id": "12-04",
       "description": "Benchmark CPU thread settings and quantized local model runtime configurations only when model artifacts are already present.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/runtime_benchmark.py",
+          "sha256": "2bc0362c11bb698dd57b68fde2dfd56aa2b1353456f43e1b71a5b72635037d2e",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_runtime_benchmark.py",
+          "sha256": "fd5db6ac8c1c9d840241fba6f68288c60c7aaf177a3a667983df779338420356",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_runtime_benchmark_keeps_configuration_and_artifact_provenance",
+        "test_runtime_benchmark_rejects_invalid_configuration"
+      ],
+      "limitations": "The record requires model digest provenance but does not claim benchmark results without installed artifacts."
     },
     {
       "id": "12-05",
