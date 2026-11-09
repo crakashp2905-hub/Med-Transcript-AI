@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**207/247 verified (83.81%).**
+**208/247 verified (84.21%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -148,7 +148,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 08-09 — Treat plain-language patient summary as a separately reviewed draft with explicit non-delivery status. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [apps/clinician-web/src/PresentationTools.tsx](../apps/clinician-web/src/PresentationTools.tsx) | approved summary requires separate confirmation and edits reset it |
 | 08-10 — Preserve source attribution and version history in FHIR DocumentReference exports; label recipient-specific EHR conformance as untested. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/presentation.py](../services/review/presentation.py) | test_fhir_export_requires_real_approval_and_preserves_evidence; test_full_review_approval_export_and_amendment |
 | 08-11 — Add first-run onboarding using only a prebuilt synthetic example, without asking for Google or external accounts. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [docs/demo-runbook-offline.md](../docs/demo-runbook-offline.md) | detailed demo, review tools and measured dashboard preserve approval boundaries; test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
-| 08-12 — Provide a user-facing troubleshooting guide for no local model, no microphone, full disk, expired session, codec problem and failed job. | not_started | — | Not yet verified against this checklist. |
+| 08-12 — Provide a user-facing troubleshooting guide for no local model, no microphone, full disk, expired session, codec problem and failed job. | verified | [docs/troubleshooting.md](../docs/troubleshooting.md), [tests/test_troubleshooting_doc.py](../tests/test_troubleshooting_doc.py) | test_troubleshooting_guide_covers_required_failure_modes |
 | 08-13 — Add Playwright test flows for recovery, source edits, errors, keyboard-only review, role correction and local-demo walkthrough. | not_started | — | Not yet verified against this checklist. |
 | 08-14 — Run visual regression snapshots at desktop/tablet/mobile resolutions using generated synthetic data only. | not_started | — | Not yet verified against this checklist. |
 | 09-01 — Keep the 118-clip, 3-consultation and 8-foreground/16-condition datasets separately pinned; never claim mutually independent subjects from the paired clean/distracted samples. | verified | [evaluation/reports/dataset-ledger-v1.json](../evaluation/reports/dataset-ledger-v1.json), [docs/dataset-ledger.md](../docs/dataset-ledger.md), [tests/test_dataset_ledger.py](../tests/test_dataset_ledger.py) | test_dataset_ledger_keeps_cohorts_separate_and_paired_dependence_explicit |

@@ -3333,10 +3333,23 @@
     {
       "id": "08-12",
       "description": "Provide a user-facing troubleshooting guide for no local model, no microphone, full disk, expired session, codec problem and failed job.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/troubleshooting.md",
+          "sha256": "99ea9432c5a4d7bf6b222f718757b25d8c7e61065d3bc3ae33a889cd089c7ac0",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_troubleshooting_doc.py",
+          "sha256": "6f20cb16dde82cb436c9f1b6c3c56d3c2627fe9416327ec959898cf21d021a66",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_troubleshooting_guide_covers_required_failure_modes"
+      ],
+      "limitations": "The guide covers safe handling and state semantics; environment-specific support procedures remain deployment-specific."
     },
     {
       "id": "08-13",
