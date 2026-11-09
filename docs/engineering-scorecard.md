@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**196/247 verified (79.35%).**
+**197/247 verified (79.76%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -134,7 +134,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 07-11 — Retest the eight-channel 20/30-minute synthetic duration stress scenario; distinguish transport throughput from transcription accuracy. | not_started | — | Not yet verified against this checklist. |
 | 07-12 — Track exact original/normalized/isolated audio hashes so cross-channel confusion cannot corrupt source lineage. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/asr/channels.py](../services/asr/channels.py) | test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job; test_decoder_preserves_three_distinct_channels; test_changed_checkpoint_is_rejected |
 | 07-13 — Audit live server recording prefixes for safe expiry, recovery authorization, retained copies, and deletion after user discard. | not_started | — | Not yet verified against this checklist. |
-| 07-14 — Test consent revocation during capture, upload, audio normalization, diarization, ASR, drafting and verification; publication must be blocked. | not_started | — | Not yet verified against this checklist. |
+| 07-14 — Test consent revocation during capture, upload, audio normalization, diarization, ASR, drafting and verification; publication must be blocked. | verified | [services/consent_guard.py](../services/consent_guard.py), [tests/test_consent_guard.py](../tests/test_consent_guard.py) | test_revocation_blocks_every_processing_stage_and_publication; test_unknown_consent_stage_is_rejected |
 | 07-15 — Add a model-memory pressure probe that fails or queues before OOM while leaving completed source state intact. | not_started | — | Not yet verified against this checklist. |
 | 07-16 — Introduce deterministic fault injection for slow disks, write failures, process kills, database busy errors and absent models. | not_started | — | Not yet verified against this checklist. |
 | 08-01 — Provide a single encounter workspace with audio, source transcript, reviewed facts, SOAP note, warnings and evidence links in synchronized panes. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [apps/clinician-web/src/screens/NoteReviewScreen.tsx](../apps/clinician-web/src/screens/NoteReviewScreen.tsx) | clinician reviews evidence, corrects a blocking medication, approves and exports; fact source navigation requests the exact cited audio channel |

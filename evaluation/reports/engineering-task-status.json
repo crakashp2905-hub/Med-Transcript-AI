@@ -2936,10 +2936,24 @@
     {
       "id": "07-14",
       "description": "Test consent revocation during capture, upload, audio normalization, diarization, ASR, drafting and verification; publication must be blocked.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/consent_guard.py",
+          "sha256": "9edcadf43a231679d8c1cdc1dd90e5351fad8fe4fca40eb076d7e9b6940680a8",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_consent_guard.py",
+          "sha256": "9588e4bff75d8dff2762f55db5112c59356ce513de10127b2cac10dbeba89067",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_revocation_blocks_every_processing_stage_and_publication",
+        "test_unknown_consent_stage_is_rejected"
+      ],
+      "limitations": "The guard blocks all listed stages deterministically; integration wiring remains subject to deployment-specific adapters."
     },
     {
       "id": "07-15",
