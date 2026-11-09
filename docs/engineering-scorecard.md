@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**163/247 verified (65.99%).**
+**164/247 verified (66.40%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -60,7 +60,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 03-04 — Construct a robust channel-first baseline using the existing channel-separated recordings; compare its speaker-duration metrics with the single-mic VAD/embedding pipeline. | not_started | — | Not yet verified against this checklist. |
 | 03-05 — Reproduce and pin the current weighted DER baseline (~50.91%) rather than claiming the heuristic clustering is reliable. | not_started | — | Not yet verified against this checklist. |
 | 03-06 — Measure DER, missed speech, false alarm, confusion time, overlap errors and role-confirmation workload separately. | not_started | — | Not yet verified against this checklist. |
-| 03-07 — Implement minimum-turn duration, speaker-change boundary and false-split diagnostics; record high cluster counts as unresolved rather than normal. | not_started | — | Not yet verified against this checklist. |
+| 03-07 — Implement minimum-turn duration, speaker-change boundary and false-split diagnostics; record high cluster counts as unresolved rather than normal. | verified | [services/turn_diagnostics.py](../services/turn_diagnostics.py), [tests/test_turn_diagnostics.py](../tests/test_turn_diagnostics.py) | test_turn_diagnostics_preserves_short_turns_and_high_cluster_uncertainty |
 | 03-08 — Investigate deterministic clustering constraints only on development cases, including expected speaker count as a declared experimental assumption. | not_started | — | Not yet verified against this checklist. |
 | 03-09 — Use `unknown` for low-confidence source regions; block role-sensitive note claims until confirmed. | verified | [services/role_guard.py](../services/role_guard.py), [services/diarization.py](../services/diarization.py), [tests/test_role_guard.py](../tests/test_role_guard.py) | test_low_confidence_role_is_unknown_and_blocks_claim; test_confirmed_role_allows_claim |
 | 03-10 — Detect overlapping speech explicitly or mark it unsupported; never assign overlapping assertions to one speaker by guess. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/diarization.py](../services/diarization.py) | test_speaker_projection_keeps_boundary_crossings_unknown; test_diarization_never_assigns_roles_without_explicit_confirmation |

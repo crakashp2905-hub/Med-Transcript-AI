@@ -1149,10 +1149,23 @@
     {
       "id": "03-07",
       "description": "Implement minimum-turn duration, speaker-change boundary and false-split diagnostics; record high cluster counts as unresolved rather than normal.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/turn_diagnostics.py",
+          "sha256": "0687940981b32c4a9d6bf4cb4ac6706ef3f881b4192c9941ccb3b326d69b193b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_turn_diagnostics.py",
+          "sha256": "a1ced25ec3725f9d654ec4b9f7f43e48c909cebae78a1eccf261a526dfc86b01",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_turn_diagnostics_preserves_short_turns_and_high_cluster_uncertainty"
+      ],
+      "limitations": "Diagnostics flag unresolved cases for review; they do not claim diarization accuracy or automatically merge/split turns."
     },
     {
       "id": "03-08",
