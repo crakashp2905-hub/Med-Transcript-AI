@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**228/247 verified (92.31%).**
+**229/247 verified (92.71%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -235,7 +235,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 14-04 — Use existing predeclared development data for optimization, and developer-authored synthetic adversarial oracles for reproducibility. | verified | [services/data_provenance.py](../services/data_provenance.py), [tests/test_data_provenance.py](../tests/test_data_provenance.py) | test_data_provenance_distinguishes_development_and_synthetic_oracles; test_data_provenance_rejects_ambiguous_labels |
 | 14-05 — Compare at least four methods on identical cases: lexical rules, relation rules, LLM-only verdict, combined evidence-graph method. | verified | [services/method_comparison.py](../services/method_comparison.py), [tests/test_method_comparison.py](../tests/test_method_comparison.py) | test_method_comparison_requires_identical_case_coverage |
 | 14-06 — Ablate each novel component: relations, negation scope, temporality, evidence coverage, model opinion and confidence/abstention. | verified | [services/component_ablation.py](../services/component_ablation.py), [tests/test_component_ablation.py](../tests/test_component_ablation.py) | test_component_ablation_exposes_each_novel_component |
-| 14-07 — Measure critical-error misses, benign false blocks, coverage, runtime, memory and reviewer-like correction events in simulated workflows. | not_started | — | Not yet verified against this checklist. |
+| 14-07 — Measure critical-error misses, benign false blocks, coverage, runtime, memory and reviewer-like correction events in simulated workflows. | verified | [services/workflow_metrics.py](../services/workflow_metrics.py), [tests/test_workflow_metrics.py](../tests/test_workflow_metrics.py) | test_workflow_metrics_include_quality_runtime_memory_and_corrections; test_workflow_metrics_reject_invalid_coverage |
 | 14-08 — Add perturbation stress tests with controlled surface paraphrases, speaker swaps, omitted clauses, reversed temporal qualifiers and misleading instructions. | verified | [services/perturbation_cases.py](../services/perturbation_cases.py), [tests/test_perturbation_cases.py](../tests/test_perturbation_cases.py) | test_perturbation_cases_cover_required_adversarial_variants |
 | 14-09 — Report uncertainty via exact denominators and case-level paired intervals; treat small synthetic data as mechanistic evidence only. | verified | [services/uncertainty_report.py](../services/uncertainty_report.py), [tests/test_uncertainty_report.py](../tests/test_uncertainty_report.py) | test_uncertainty_report_preserves_exact_denominator_and_synthetic_limit; test_uncertainty_report_rejects_invalid_counts |
 | 14-10 — Document negative results where the novel method is slower or less accurate; do not modify reserved acceptance materials. | verified | [services/negative_results.py](../services/negative_results.py), [tests/test_negative_results.py](../tests/test_negative_results.py) | test_negative_result_is_preserved_without_modifying_acceptance_materials; test_negative_result_rejects_reserved_material_mutation |

@@ -5532,10 +5532,24 @@
     {
       "id": "14-07",
       "description": "Measure critical-error misses, benign false blocks, coverage, runtime, memory and reviewer-like correction events in simulated workflows.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/workflow_metrics.py",
+          "sha256": "cbaf0819e833a934a5cfa61f5c2353dc555c3ceb3f020ebd0d95a96e473fc7cf",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_workflow_metrics.py",
+          "sha256": "cb21da5f75658ed59e10519c74c245c1aa46db1cf7f4c5ad7c0f3a859a94d952",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_workflow_metrics_include_quality_runtime_memory_and_corrections",
+        "test_workflow_metrics_reject_invalid_coverage"
+      ],
+      "limitations": "The record supports simulated workflow measurement and does not claim clinical performance."
     },
     {
       "id": "14-08",
