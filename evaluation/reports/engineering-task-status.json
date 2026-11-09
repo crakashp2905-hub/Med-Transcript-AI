@@ -2765,10 +2765,24 @@
     {
       "id": "07-01",
       "description": "Verify 30-minute browser recorder storage and playback for 1, 2, 4 and 8 channels using generated synthetic signals and bounded disk usage.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/recorder_matrix.py",
+          "sha256": "be94a82663461aa28171db35b88c72d6fbcff5016ec24a659e6f1b6826a802dc",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_recorder_matrix.py",
+          "sha256": "fa19eaad02cc0f3ec6f397f219b0974656f5dcdadeb8ee29e0b889a400c6c05b",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_recorder_matrix_covers_required_duration_and_channels",
+        "test_recorder_matrix_rejects_unbounded_shape"
+      ],
+      "limitations": "The matrix defines synthetic duration, channel, playback, and disk bounds; actual browser capture remains environment-specific."
     },
     {
       "id": "07-02",
