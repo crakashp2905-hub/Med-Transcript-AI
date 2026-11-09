@@ -1073,10 +1073,28 @@
     {
       "id": "03-02",
       "description": "Make two-channel acquisition a first-class optional pathway when device inputs actually support it, with truthful per-channel hardware detection.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/asr/channel_capability.py",
+          "sha256": "0f5c6a31848ec4b9ffd4b127b8f0faabe10ba2f6d2f64adcd9d13b16d7f8d126",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/asr/channels.py",
+          "sha256": "15de03713f6c38e6ec2e76e11b3fc6030c29d28a4ca4ba79fcb4a6f954a045d3",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_channel_capability.py",
+          "sha256": "2385546ad654611ba6cca25308db5e162d2f9834dfde3d830fd3e587ee4e074b",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_two_channel_path_requires_truthful_hardware_or_file_capability"
+      ],
+      "limitations": "Two-channel support is optional and role assignment remains clinician-confirmation-required; generated fake stereo is not treated as hardware capability."
     },
     {
       "id": "03-03",
