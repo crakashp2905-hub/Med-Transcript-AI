@@ -1354,10 +1354,23 @@
     {
       "id": "03-14",
       "description": "Expose a scorecard comparing single-channel, 2-channel and multi-input configurations without implying device equivalence.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/channel_scorecard.py",
+          "sha256": "e482b5021d265eec9b7c60632fdfdc86f0926a7a3b7ac37c29755e662487d443",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_channel_scorecard.py",
+          "sha256": "a88e976a2b1590914248a8285fd2e26bd58e61c1fc9173ba8cf8ea1f35ffbddb",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_channel_scorecard_does_not_equate_generated_inputs_with_hardware"
+      ],
+      "limitations": "The scorecard records configuration metadata; generated channels are not treated as physical hardware validation."
     },
     {
       "id": "03-15",
