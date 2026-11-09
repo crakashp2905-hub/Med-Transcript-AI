@@ -2787,10 +2787,23 @@
     {
       "id": "07-02",
       "description": "Run resume/upload interruption at each transition: capture, IndexedDB commit, server chunk ACK, finalize, ingest and ASR publication.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/interruption_matrix.py",
+          "sha256": "a890f424bdf70c719aa2d05ee7705897806fbcd91bc20107a9c6dfe958510f50",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_interruption_matrix.py",
+          "sha256": "56c33c57f1f8199b3d8cec79e812e07885a57d0ec30d7df6b9bbd51b60c5573a",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_interruption_matrix_covers_all_boundaries_and_gates_publication"
+      ],
+      "limitations": "The matrix defines resumable transitions and publication gating; browser/network fault execution remains integration-specific."
     },
     {
       "id": "07-03",
