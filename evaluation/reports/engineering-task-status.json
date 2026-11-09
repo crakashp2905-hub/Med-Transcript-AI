@@ -1761,10 +1761,23 @@
     {
       "id": "04-18",
       "description": "Require human review on incomplete models, cross-utterance pronouns, ambiguous medication attachment or unknown speaker attribution.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review_gate.py",
+          "sha256": "757bfed38486cf15897aabe789e8934e7b488c66953eb4ba82b726b24e1f2849",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_review_gate.py",
+          "sha256": "654895b29e34d78dd5f574229a72ed64c548f1da1ef9fd1b8f37ab71b467536c",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_review_gate_blocks_incomplete_and_ambiguous_cases"
+      ],
+      "limitations": "Guard blocks approval pending human review; reviewer availability and clinical adjudication remain external requirements."
     },
     {
       "id": "05-01",

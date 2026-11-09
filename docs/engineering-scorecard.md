@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**178/247 verified (72.06%).**
+**179/247 verified (72.47%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -86,7 +86,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 04-15 — Run deterministic and installed local-Qwen extraction in shadow mode on the same frozen synthetic corpus, with an exact output/schema failure table. | not_started | — | Not yet verified against this checklist. |
 | 04-16 — Ensure the LLM cannot create fake segment IDs, span offsets or quotes; reject mismatches and preserve the rejected raw output only in redacted local developer diagnostics. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/clinical_models.py](../services/review/clinical_models.py) | test_model_fact_citations_reject_hallucinations_and_stay_unreviewed; test_model_transport_constrains_input_quotes_and_verifies_digest |
 | 04-17 — Add structured evaluation of fact precision/recall, entity-relation correctness and clinically important omissions against developer-authored synthetic scenarios only. | not_started | — | Not yet verified against this checklist. |
-| 04-18 — Require human review on incomplete models, cross-utterance pronouns, ambiguous medication attachment or unknown speaker attribution. | not_started | — | Not yet verified against this checklist. |
+| 04-18 — Require human review on incomplete models, cross-utterance pronouns, ambiguous medication attachment or unknown speaker attribution. | verified | [services/review_gate.py](../services/review_gate.py), [tests/test_review_gate.py](../tests/test_review_gate.py) | test_review_gate_blocks_incomplete_and_ambiguous_cases |
 | 05-01 — Keep deterministic reviewed-fact SOAP generation as the always-available baseline and offline fallback. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/providers.py](../services/review/providers.py) | test_providers_cannot_enable_disclosure_or_invent_citations; test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
 | 05-02 — Formalize clinician-typed Objective vs reported Subjective facts; prevent invented examinations, vitals and assessments. | not_started | — | Not yet verified against this checklist. |
 | 05-03 — Make an LLM draft an unapprovable proposal, never an approval or source-transcript replacement. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/routers/proposals.py](../services/review/routers/proposals.py) | test_proposal_is_separate_and_not_an_approvable_note; test_rule_fact_proposals_are_separate_and_clinical_models_default_disabled; test_proposal_baseline_source_edit_and_stale_approval |
