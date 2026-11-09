@@ -3280,10 +3280,23 @@
     {
       "id": "12-08",
       "description": "Add streaming file hashing/processing to avoid loading entire 30-minute multichannel recordings into memory.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/api/ingest.py",
+          "sha256": "af6cc31229ee7b59e71631b155ed5cef123537bb46515a25216bd9cc801f85e3",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_streaming_hash.py",
+          "sha256": "795b59bb4fdb4efba0d1a70115bf5a580cf22c13701620aa83a5dc5dbdc2f443",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_audio_hash_streams_bounded_chunks"
+      ],
+      "limitations": "Hashing is bounded in 1 MiB chunks; full end-to-end 30-minute multichannel inference still depends on available codecs/models and remains separately measured."
     },
     {
       "id": "12-09",

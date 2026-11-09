@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**104/247 verified (42.11%).**
+**105/247 verified (42.51%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -212,7 +212,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 12-05 — Detect and prevent oversubscription when local ASR and Qwen model requests compete for memory. | not_started | — | Not yet verified against this checklist. |
 | 12-06 — Use bounded queues and explicit rejection/deferral under overload rather than OOM or silently unbounded wait. | not_started | — | Not yet verified against this checklist. |
 | 12-07 — Evaluate context truncation and note batch size effects on omissions and hallucinations, not only speed. | not_started | — | Not yet verified against this checklist. |
-| 12-08 — Add streaming file hashing/processing to avoid loading entire 30-minute multichannel recordings into memory. | not_started | — | Not yet verified against this checklist. |
+| 12-08 — Add streaming file hashing/processing to avoid loading entire 30-minute multichannel recordings into memory. | verified | [services/api/ingest.py](../services/api/ingest.py), [tests/test_streaming_hash.py](../tests/test_streaming_hash.py) | test_audio_hash_streams_bounded_chunks |
 | 12-09 — Test database indexes and bounded list pagination for 1000 synthetic encounters, many note versions and multiple users. | not_started | — | Not yet verified against this checklist. |
 | 12-10 — Build resource-limit stress tests with fixed synthetic data seeds, repeatable durations and teardown guarantees. | not_started | — | Not yet verified against this checklist. |
 | 12-11 — Calculate successful-consultation local cost from measured CPU-seconds, memory/disk and a user-configurable electricity assumption, without inventing live prices. | verified | [services/local_cost.py](../services/local_cost.py), [docs/performance-accounting.md](../docs/performance-accounting.md), [tests/test_local_cost.py](../tests/test_local_cost.py) | test_local_cost_uses_measured_cpu_and_explicit_electricity_assumption; test_local_cost_preserves_incomplete_or_invalid_measurements |
