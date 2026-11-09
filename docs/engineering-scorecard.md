@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**109/247 verified (44.13%).**
+**110/247 verified (44.53%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -154,7 +154,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 09-01 — Keep the 118-clip, 3-consultation and 8-foreground/16-condition datasets separately pinned; never claim mutually independent subjects from the paired clean/distracted samples. | not_started | — | Not yet verified against this checklist. |
 | 09-02 — Add a canonical data ledger recording source licenses, dataset hashes, group splits, background donor identity and transformation functions. | not_started | — | Not yet verified against this checklist. |
 | 09-03 — Verify exact reference and hypothesis hashes before and after every reported metric computation. | not_started | — | Not yet verified against this checklist. |
-| 09-04 — Produce machine-generated model cards including language, hardware, decoding settings, failures, timeouts, WER, role metrics and limitations. | not_started | — | Not yet verified against this checklist. |
+| 09-04 — Produce machine-generated model cards including language, hardware, decoding settings, failures, timeouts, WER, role metrics and limitations. | verified | [services/model_cards.py](../services/model_cards.py), [evaluation/reports/model-cards-v1.json](../evaluation/reports/model-cards-v1.json), [docs/model-cards.md](../docs/model-cards.md), [tests/test_model_cards.py](../tests/test_model_cards.py) | test_machine_model_cards_retain_failures_roles_and_limitations; python -m services.model_cards --out evaluation/reports/model-cards-v1.json |
 | 09-05 — Publish a full confusion/error spreadsheet-like CSV without PHI and without omitting failed examples. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [evaluation/reports/error-taxonomy-v2/report.json](../evaluation/reports/error-taxonomy-v2/report.json), [evaluation/reports/error-taxonomy-v2/all-errors.csv.zip](../evaluation/reports/error-taxonomy-v2/all-errors.csv.zip) | test_failed_case_retains_all_deletions_and_csv_formula_is_escaped; test_exact_bitvector_traceback_matches_independent_dp_and_reconstructs_tokens |
 | 09-06 — Build paired-case comparisons with bootstrap over consultations rather than treating thousands of tokens as independent samples. | not_started | — | Not yet verified against this checklist. |
 | 09-07 — Add a `primary endpoint` registry freezing one ASR, one verification and one UX metric per experiment before evaluation. | verified | [evaluation/reports/offline-acceptance-v7.json](../evaluation/reports/offline-acceptance-v7.json), [services/experiment_contract.py](../services/experiment_contract.py), [evaluation/primary-endpoint-registry-v1.json](../evaluation/primary-endpoint-registry-v1.json) | test_prospective_lock_rejects_posthoc_registration_and_changed_endpoint_or_gate; test_endpoint_registry_matches_contract_and_budget_stops_unevaluable_variants |

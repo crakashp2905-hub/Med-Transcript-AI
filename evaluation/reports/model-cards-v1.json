@@ -1,0 +1,473 @@
+{
+  "schema_version": "model_cards_v1",
+  "cards": [
+    {
+      "model_id": "faster-whisper-large-v3",
+      "language": "English",
+      "status": "completed",
+      "license_metadata": null,
+      "report": "evaluation/runs/primock57-expanded-v1/faster-whisper-large-v3.json",
+      "report_available": true,
+      "hardware": "cpu",
+      "decoding": {
+        "engine": "whisper",
+        "profile_id": "large-v3-cpu-int8-eval-v1",
+        "revision": "edaa852ec7e145841d8ffdb056a99866b5f0a478",
+        "runtime_version": "1.2.1",
+        "artifacts": {
+          "config.json": "a9306624f5ec14270a014b647e5c316b6e03a662c369758d1b90697a7b0655b9",
+          "model.bin": "69f74147e3334731bc3a76048724833325d2ec74642fb52620eda87352e3d4f1",
+          "preprocessor_config.json": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711",
+          "tokenizer.json": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca",
+          "vocabulary.json": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1"
+        },
+        "device": "cpu",
+        "threads": 4,
+        "timestamp_support": "not_provided_text_only_evaluation",
+        "source_profile_sha256": "41f08c86824b407aa6bc4aefdfe096da2d060d33e3b2e960c8298c1bd9526659",
+        "beam_size": 5,
+        "compute_type": "int8",
+        "language": "en",
+        "temperature": 0.0,
+        "vad_filter": false,
+        "condition_on_previous_text": false
+      },
+      "sample_count": 118,
+      "reference_words": 2264,
+      "normalized_wer": 0.16563604240282687,
+      "failed_samples": 0,
+      "timeouts": 0,
+      "role_metrics": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 131,
+          "failed_samples": 0,
+          "normalized_wer": 0.11521547933157432
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 244,
+          "failed_samples": 0,
+          "normalized_wer": 0.21650399290150843
+        }
+      },
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "google-medasr-greedy",
+      "language": "English",
+      "status": "access_pending",
+      "license_metadata": null,
+      "report": null,
+      "report_available": false,
+      "hardware": null,
+      "decoding": {},
+      "sample_count": null,
+      "reference_words": null,
+      "normalized_wer": null,
+      "failed_samples": null,
+      "timeouts": 0,
+      "role_metrics": {},
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "google-medasr-approved-decoder",
+      "language": "English",
+      "status": "access_pending",
+      "license_metadata": null,
+      "report": null,
+      "report_available": false,
+      "hardware": null,
+      "decoding": {},
+      "sample_count": null,
+      "reference_words": null,
+      "normalized_wer": null,
+      "failed_samples": null,
+      "timeouts": 0,
+      "role_metrics": {},
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "eka-parrotlet-a-en-5b",
+      "language": "English",
+      "status": "access_pending",
+      "license_metadata": null,
+      "report": null,
+      "report_available": false,
+      "hardware": null,
+      "decoding": {},
+      "sample_count": null,
+      "reference_words": null,
+      "normalized_wer": null,
+      "failed_samples": null,
+      "timeouts": 0,
+      "role_metrics": {},
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "eka-parrotlet-a-2.5-pro-english",
+      "language": "English",
+      "status": "resource_preflight_blocked",
+      "license_metadata": null,
+      "report": null,
+      "report_available": false,
+      "hardware": null,
+      "decoding": {},
+      "sample_count": null,
+      "reference_words": null,
+      "normalized_wer": null,
+      "failed_samples": null,
+      "timeouts": 0,
+      "role_metrics": {},
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "omi-med-stt-v1",
+      "language": "English",
+      "status": "completed",
+      "license_metadata": null,
+      "report": "evaluation/runs/primock57-expanded-v1/omi-med-stt-v1.json",
+      "report_available": true,
+      "hardware": "cpu",
+      "decoding": {
+        "engine": "omi",
+        "profile_id": "omi-v1-gguf-q8-cpu-v1",
+        "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+        "runtime_version": "0.2.1",
+        "artifacts": {
+          "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+        },
+        "device": "cpu",
+        "threads": 4,
+        "timestamp_support": "not_provided_text_only_evaluation",
+        "adapter_revision": "reuse_capi_close_windows_dll_directories_v1"
+      },
+      "sample_count": 118,
+      "reference_words": 2264,
+      "normalized_wer": 0.08701413427561837,
+      "failed_samples": 0,
+      "timeouts": 0,
+      "role_metrics": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 50,
+          "failed_samples": 0,
+          "normalized_wer": 0.04397537379067722
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 147,
+          "failed_samples": 0,
+          "normalized_wer": 0.13043478260869565
+        }
+      },
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "multimed-whisper-small-english",
+      "language": "English",
+      "status": "completed",
+      "license_metadata": null,
+      "report": "evaluation/runs/primock57-expanded-v1/multimed-whisper-small-english.json",
+      "report_available": true,
+      "hardware": "cpu",
+      "decoding": {
+        "engine": "whisper",
+        "profile_id": "multimed-small-cpu-int8-v1",
+        "revision": "fb15edd1dfc68810a7d0c75e6cfc73c3e5ed01c1",
+        "runtime_version": "1.2.1",
+        "artifacts": {
+          "config.json": "aad198003f6676bb2aa9b1f58c43cab2e057d79ccb35613344168e390aed7dcb",
+          "model.bin": "88a4a65cabf75ea3a601b20d585b8075d28fbbee790df9728e883332f2560cfe",
+          "preprocessor_config.json": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d",
+          "tokenizer.json": "7b469ff15eb7816315aa45eec391f5943d639b9d73d110f5c003df5192fd54e3",
+          "vocabulary.json": "aa4e6188766a36f6a7f3e44db3f74823c6fee0bf33a9559247e18fedb3bc8d55"
+        },
+        "device": "cpu",
+        "threads": 4,
+        "timestamp_support": "not_provided_text_only_evaluation",
+        "source_profile_sha256": "b3b014a163c5968fa5430198ace0ca40b8467459ddcc138eb52269b001623b57",
+        "beam_size": 5,
+        "compute_type": "int8",
+        "language": "en",
+        "temperature": 0.0,
+        "vad_filter": false,
+        "condition_on_previous_text": false
+      },
+      "sample_count": 118,
+      "reference_words": 2264,
+      "normalized_wer": 0.4204946996466431,
+      "failed_samples": 0,
+      "timeouts": 0,
+      "role_metrics": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 191,
+          "failed_samples": 0,
+          "normalized_wer": 0.167985927880387
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 761,
+          "failed_samples": 0,
+          "normalized_wer": 0.6752440106477373
+        }
+      },
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "whisper-small",
+      "language": "English",
+      "status": "completed",
+      "license_metadata": null,
+      "report": "evaluation/runs/primock57-expanded-v1/whisper-small.json",
+      "report_available": true,
+      "hardware": "cpu",
+      "decoding": {
+        "engine": "whisper",
+        "profile_id": "small-cpu-int8-v1",
+        "revision": "536b0662742c02347bc0e980a01041f333bce120",
+        "runtime_version": "1.2.1",
+        "artifacts": {
+          "config.json": "b55496ac7940a7ae47d2c01eab40edfd8701feec1229d9cce3b40014383fb828",
+          "model.bin": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671",
+          "tokenizer.json": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab",
+          "vocabulary.txt": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913"
+        },
+        "device": "cpu",
+        "threads": 4,
+        "timestamp_support": "not_provided_text_only_evaluation",
+        "source_profile_sha256": "566c3b316045584eb28ce7102c9c05aaef38a47818cd2626ada184f98e82b512",
+        "beam_size": 5,
+        "compute_type": "int8",
+        "language": "en",
+        "temperature": 0.0,
+        "vad_filter": false,
+        "condition_on_previous_text": false
+      },
+      "sample_count": 118,
+      "reference_words": 2264,
+      "normalized_wer": 0.18065371024734983,
+      "failed_samples": 0,
+      "timeouts": 0,
+      "role_metrics": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 157,
+          "failed_samples": 0,
+          "normalized_wer": 0.13808267370272648
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 252,
+          "failed_samples": 0,
+          "normalized_wer": 0.2236024844720497
+        }
+      },
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "distil-whisper-large-v3",
+      "language": "English",
+      "status": "completed",
+      "license_metadata": null,
+      "report": "evaluation/runs/primock57-expanded-v1/distil-whisper-large-v3.json",
+      "report_available": true,
+      "hardware": "cpu",
+      "decoding": {
+        "engine": "whisper",
+        "profile_id": "distil-large-v3-cpu-int8-v1",
+        "revision": "c3058b475261292e64a0412df1d2681c06260fab",
+        "runtime_version": "1.2.1",
+        "artifacts": {
+          "config.json": "90c55f775cc4e0bb17293d0bf12f96557a486f20dea886fabd8e6075a3588b21",
+          "model.bin": "b79368e19b6623813609431a6e5ee309a71506701ebc49fd7820e692dec7c5f5",
+          "tokenizer.json": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca",
+          "vocabulary.json": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1",
+          "preprocessor_config.json": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711"
+        },
+        "device": "cpu",
+        "threads": 4,
+        "timestamp_support": "not_provided_text_only_evaluation",
+        "source_profile_sha256": "f1c9644ef49c78cd62282f3ca1fa182d326cd6866fc3bc183516c5c6c518aa65",
+        "beam_size": 5,
+        "compute_type": "int8",
+        "language": "en",
+        "temperature": 0.0,
+        "vad_filter": false,
+        "condition_on_previous_text": false
+      },
+      "sample_count": 118,
+      "reference_words": 2264,
+      "normalized_wer": 0.15724381625441697,
+      "failed_samples": 0,
+      "timeouts": 0,
+      "role_metrics": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 133,
+          "failed_samples": 0,
+          "normalized_wer": 0.1169744942832014
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 223,
+          "failed_samples": 0,
+          "normalized_wer": 0.19787045252883761
+        }
+      },
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "parakeet-tdt-0.6b-v2",
+      "language": "English",
+      "status": "completed",
+      "license_metadata": null,
+      "report": "evaluation/runs/primock57-expanded-v1/parakeet-tdt-0.6b-v2.json",
+      "report_available": true,
+      "hardware": "cpu",
+      "decoding": {
+        "engine": "onnx",
+        "profile_id": "parakeet-v2-onnx-cpu-int8-v1",
+        "revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+        "runtime_version": "0.12.0",
+        "artifacts": {
+          "config.json": "666903c76b9798caf2c210afd4f6cd60b08a8dbf9800ec8d7a3bc0d2148ac466",
+          "decoder_joint-model.int8.onnx": "a449f49acd68979d418651dd2dcb737cc0f1bf0225e009e29ee326354edbf7d3",
+          "encoder-model.int8.onnx": "3e0581fda6ab843888b51e56d7ee78b6d5bc3237ec113af1f732d1d5286aa155",
+          "nemo128.onnx": "a9fde1486ebfcc08f328d75ad4610c67835fea58c73ba57e3209a6f6cf019e9f",
+          "vocab.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+        },
+        "device": "cpu",
+        "threads": 4,
+        "timestamp_support": "not_provided_text_only_evaluation"
+      },
+      "sample_count": 118,
+      "reference_words": 2264,
+      "normalized_wer": 0.13250883392226148,
+      "failed_samples": 0,
+      "timeouts": 0,
+      "role_metrics": {
+        "doctor": {
+          "reference_words": 1137,
+          "normalized_edits": 118,
+          "failed_samples": 0,
+          "normalized_wer": 0.10378188214599825
+        },
+        "patient": {
+          "reference_words": 1127,
+          "normalized_edits": 182,
+          "failed_samples": 0,
+          "normalized_wer": 0.16149068322981366
+        }
+      },
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "canary-qwen-2.5b",
+      "language": "English",
+      "status": "resource_preflight_blocked",
+      "license_metadata": null,
+      "report": null,
+      "report_available": false,
+      "hardware": null,
+      "decoding": {},
+      "sample_count": null,
+      "reference_words": null,
+      "normalized_wer": null,
+      "failed_samples": null,
+      "timeouts": 0,
+      "role_metrics": {},
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "amazon-transcribe-medical",
+      "language": "English",
+      "status": "disabled_by_user",
+      "license_metadata": null,
+      "report": null,
+      "report_available": false,
+      "hardware": null,
+      "decoding": {},
+      "sample_count": null,
+      "reference_words": null,
+      "normalized_wer": null,
+      "failed_samples": null,
+      "timeouts": 0,
+      "role_metrics": {},
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    },
+    {
+      "model_id": "deepgram-nova-3-medical",
+      "language": "English",
+      "status": "disabled_by_user",
+      "license_metadata": null,
+      "report": null,
+      "report_available": false,
+      "hardware": null,
+      "decoding": {},
+      "sample_count": null,
+      "reference_words": null,
+      "normalized_wer": null,
+      "failed_samples": null,
+      "timeouts": 0,
+      "role_metrics": {},
+      "limitations": [
+        "Text-only development evidence; not clinical acceptance.",
+        "Missing reports and blocked candidates remain visible.",
+        "No candidate is promoted unless the immutable 5% gate is met."
+      ]
+    }
+  ],
+  "maximum_normalized_wer": 0.05,
+  "clinical_release_gate": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
+  "real_patient_release_authorized": false
+}

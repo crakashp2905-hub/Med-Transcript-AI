@@ -2375,10 +2375,34 @@
     {
       "id": "09-04",
       "description": "Produce machine-generated model cards including language, hardware, decoding settings, failures, timeouts, WER, role metrics and limitations.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/model_cards.py",
+          "sha256": "0a01ea4c1c2ea3bf311e2fafcdb3a3f19ac7517ee55f2671584f82badbd049ac",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/model-cards-v1.json",
+          "sha256": "cab90098c554cdbb1cb2897329ca6fb0bb7dd82b2509d08f06718a1b7d83c6fd",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "docs/model-cards.md",
+          "sha256": "f2cc45df34dd10d642b6c3d0aff30042231a879406772c0ec6536bb1cf82e81d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_model_cards.py",
+          "sha256": "14eda1bd14965377176a411ca68591f7371505345ed4dfc2c039ea8169f75383",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_machine_model_cards_retain_failures_roles_and_limitations",
+        "python -m services.model_cards --out evaluation/reports/model-cards-v1.json"
+      ],
+      "limitations": "Cards are generated from committed text-only development reports; missing/gated candidates remain unavailable and no card establishes clinical accuracy or admission."
     },
     {
       "id": "09-05",
