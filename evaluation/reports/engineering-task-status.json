@@ -2791,10 +2791,33 @@
     {
       "id": "09-17",
       "description": "Label every claimed method novelty as `hypothesis` until there is a distinct algorithm with an ablation improvement over a fair baseline.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/novelty_policy.py",
+          "sha256": "e942d23573834ef260245e5908a5aa9a7010bc51fc00485973580efa568928f7",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_novelty_policy.py",
+          "sha256": "5585679649375eac6fc889c4aaab3f4e46b99600b521d48dbbd6d3ceac2b6fb1",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/novelty-policy.md",
+          "sha256": "5e30aa703a16ab03e8897b0bae70ae4661e8cfd7a622727395498f2b40af7457",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/candidate-method.md",
+          "sha256": "27e021338e9bf318402d0266dc073e590baf691dba84214223785a5c3a5f74c9",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_novelty_stays_hypothesis_without_distinct_fair_ablation"
+      ],
+      "limitations": "Policy labels claims conservatively; no independent novelty or publication claim is made."
     },
     {
       "id": "09-18",
