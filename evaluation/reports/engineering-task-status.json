@@ -4905,10 +4905,24 @@
     {
       "id": "12-06",
       "description": "Use bounded queues and explicit rejection/deferral under overload rather than OOM or silently unbounded wait.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/bounded_queue.py",
+          "sha256": "8dd3284de32274de19040fc43aba1c04a2ce97eebf9dce957f12d267638e1f55",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_bounded_queue.py",
+          "sha256": "0d53236a4fbdff8445fc3709c0ac9ebc39c000466617abb30304b7024351dbc2",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_bounded_queue_rejects_overload_explicitly",
+        "test_bounded_queue_accepts_when_capacity_exists"
+      ],
+      "limitations": "The admission policy rejects at capacity; persistence and queue-worker integration remain deployment-specific."
     },
     {
       "id": "12-07",

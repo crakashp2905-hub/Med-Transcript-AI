@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**217/247 verified (87.85%).**
+**218/247 verified (88.26%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -210,7 +210,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 12-03 — Measure cold and warm model initialization separately and quantify memory footprint and cache effectiveness. | verified | [services/model_init_metrics.py](../services/model_init_metrics.py), [tests/test_model_init_metrics.py](../tests/test_model_init_metrics.py) | test_model_init_metrics_separate_cold_and_warm_measurements; test_model_init_metrics_reject_negative_values |
 | 12-04 — Benchmark CPU thread settings and quantized local model runtime configurations only when model artifacts are already present. | verified | [services/runtime_benchmark.py](../services/runtime_benchmark.py), [tests/test_runtime_benchmark.py](../tests/test_runtime_benchmark.py) | test_runtime_benchmark_keeps_configuration_and_artifact_provenance; test_runtime_benchmark_rejects_invalid_configuration |
 | 12-05 — Detect and prevent oversubscription when local ASR and Qwen model requests compete for memory. | verified | [services/resource_arbiter.py](../services/resource_arbiter.py), [tests/test_resource_arbiter.py](../tests/test_resource_arbiter.py) | test_resource_arbiter_defers_competing_model_request_before_oversubscription; test_resource_arbiter_admits_within_capacity |
-| 12-06 — Use bounded queues and explicit rejection/deferral under overload rather than OOM or silently unbounded wait. | not_started | — | Not yet verified against this checklist. |
+| 12-06 — Use bounded queues and explicit rejection/deferral under overload rather than OOM or silently unbounded wait. | verified | [services/bounded_queue.py](../services/bounded_queue.py), [tests/test_bounded_queue.py](../tests/test_bounded_queue.py) | test_bounded_queue_rejects_overload_explicitly; test_bounded_queue_accepts_when_capacity_exists |
 | 12-07 — Evaluate context truncation and note batch size effects on omissions and hallucinations, not only speed. | not_started | — | Not yet verified against this checklist. |
 | 12-08 — Add streaming file hashing/processing to avoid loading entire 30-minute multichannel recordings into memory. | verified | [services/api/ingest.py](../services/api/ingest.py), [tests/test_streaming_hash.py](../tests/test_streaming_hash.py) | test_audio_hash_streams_bounded_chunks |
 | 12-09 — Test database indexes and bounded list pagination for 1000 synthetic encounters, many note versions and multiple users. | verified | [services/api/storage.py](../services/api/storage.py), [services/review/routers/history.py](../services/review/routers/history.py), [tests/test_scale_storage.py](../tests/test_scale_storage.py), [docs/scale-stress.md](../docs/scale-stress.md) | test_thousand_synthetic_encounters_use_bounded_indexed_queries; test_schema_exposes_bounded_history_limit_in_source |
