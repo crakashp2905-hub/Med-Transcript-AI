@@ -88,10 +88,23 @@
     {
       "id": "00-05",
       "description": "Ensure every model/report uses all predeclared cases with failure-inclusive denominators; failed samples count as full-reference deletions where specified.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/benchmark_integrity.py",
+          "sha256": "0548456bbeb05529a829a5a8f8e4e6a668a881d9e1366744a1b24c0e723e4f1a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_failure_inclusive_denominator.py",
+          "sha256": "e4aee5bbb3edea9ee0e4e43b1f6f8f0f93ce0042b7f8f3ad98f8b034a294a980",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_replay_requires_all_predeclared_cases_and_keeps_failed_cases"
+      ],
+      "limitations": "Replay enforcement is verified for saved detailed reports; each benchmark runner remains responsible for emitting the required failure fields."
     },
     {
       "id": "00-06",
