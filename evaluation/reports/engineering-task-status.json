@@ -1634,10 +1634,23 @@
     {
       "id": "04-11",
       "description": "Create an `evidence graph` mapping original audio -> transcript segment -> exact span -> atomic fact -> note statement -> export.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/evidence_graph.py",
+          "sha256": "e0721c5aa4ab46aea5800bf800680b51120b82b323c1ff65c3688dd9e1f9fae9",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_evidence_graph.py",
+          "sha256": "88d722218362c66dac95779c5a503f3a35cdc8fb4ce37f470cf8d045a9172500",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_evidence_graph_connects_audio_to_export"
+      ],
+      "limitations": "Graph links are explicit and release-safe; source content and clinical adjudication remain separately governed."
     },
     {
       "id": "04-12",
