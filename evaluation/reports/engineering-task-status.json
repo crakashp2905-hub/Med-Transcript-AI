@@ -168,10 +168,24 @@
     {
       "id": "00-09",
       "description": "Add a provenance record for every derived artifact: source commit, dataset SHA, code SHA, model digest, config digest, date, status, limitations and validation scope.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/artifact_provenance.py",
+          "sha256": "6da79f219e790a67be6a3561233ec5c54704cf58349e7e14fc4a59c17a0e526d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_artifact_provenance.py",
+          "sha256": "4a3302702f397b0e18ccaaebf619bc58a791266d59de63dfa418c0b1a54d8e63",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_derived_artifact_provenance_is_complete_and_fail_closed",
+        "test_provenance_rejects_missing_fields"
+      ],
+      "limitations": "Provides and validates the canonical envelope; existing historical artifacts require migration and remain individually scoped."
     },
     {
       "id": "00-10",
