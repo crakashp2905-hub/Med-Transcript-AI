@@ -1613,10 +1613,23 @@
     {
       "id": "04-10",
       "description": "Implement anatomy/laterality relations and robust tests for left/right swaps and different entities in one utterance.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/anatomy_relations.py",
+          "sha256": "a08acdfac0fb37f2355ee437aedb6c2dd80ebf0ff3a27c91a3e2e45e3fc73b3e",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_anatomy_relations.py",
+          "sha256": "107feee7a2268a19e7c03ed548fbcb46d365549c60d37fe0499e8bbf8f6124ef",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_anatomy_relations_preserve_distinct_left_right_entities"
+      ],
+      "limitations": "Conservative relation extraction flags missing/duplicate entity-side alignment for review; it does not infer anatomy beyond the fixed lexicon."
     },
     {
       "id": "04-11",
