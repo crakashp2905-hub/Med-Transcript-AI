@@ -4368,10 +4368,23 @@
     {
       "id": "11-05",
       "description": "Avoid logging full note text, transcript snippets, secrets, auth cookies, API keys, audio data, prompts and provider responses.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/log_redaction.py",
+          "sha256": "4c94ed9258b572b8ddb7ffa3e610dd8f51b8da86c3b4f0ea5a4d2dc072faf1b6",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_log_redaction.py",
+          "sha256": "47ee8c1dee5cecc881302c32dc718931c24df9429807945c442c9fd05688329a",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_log_redaction_removes_sensitive_payloads"
+      ],
+      "limitations": "The sanitizer covers named sensitive fields; callers must apply it before emitting structured logs."
     },
     {
       "id": "11-06",

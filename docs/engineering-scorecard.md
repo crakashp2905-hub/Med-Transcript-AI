@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**210/247 verified (85.02%).**
+**211/247 verified (85.43%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -189,7 +189,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 11-02 — Test source-level cross-tenant and cross-role access across every route, including historical notes and generated proposal IDs. | not_started | — | Not yet verified against this checklist. |
 | 11-03 — Verify session-cookie security, CSRF, state/nonce/PKCE, invited-account membership, subject pinning and revocation under local simulated OIDC. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/api/auth.py](../services/api/auth.py) | test_google_session_cookie_csrf_roles_logout_and_replay; test_state_binding_replay_and_cookie_flags; test_invitation_revocation_idle_expiry_and_subject_pinning; test_clinician_cookie_writes_require_csrf_and_persist_across_restart |
 | 11-04 — Ensure every API route has an explicit authorization policy and test method/status variants, including routes mounted by new routers. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/api/authorization_policy.py](../services/api/authorization_policy.py), [evaluation/contracts/authorization-policy-v1.json](../evaluation/contracts/authorization-policy-v1.json) | test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail; test_all_identity_routes_reject_missing_auth_and_viewer_writes |
-| 11-05 — Avoid logging full note text, transcript snippets, secrets, auth cookies, API keys, audio data, prompts and provider responses. | not_started | — | Not yet verified against this checklist. |
+| 11-05 — Avoid logging full note text, transcript snippets, secrets, auth cookies, API keys, audio data, prompts and provider responses. | verified | [services/log_redaction.py](../services/log_redaction.py), [tests/test_log_redaction.py](../tests/test_log_redaction.py) | test_log_redaction_removes_sensitive_payloads |
 | 11-06 — Implement a local, no-secret leak scanner for Git-tracked files, generated reports, sample env files and fixture artifacts. | verified | [evaluation/reports/secret-scan-foundation-v1.json](../evaluation/reports/secret-scan-foundation-v1.json), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_secret_scanner_redacts_values_and_accepts_placeholders |
 | 11-07 — Reject SSRF via provider endpoints and redirects; block private/non-loopback destinations in offline mode, including DNS rebinding where applicable. | not_started | — | Not yet verified against this checklist. |
 | 11-08 — Constrain inputs, audio duration, JSON depth, request sizes, decompression, timestamps and expensive processing stages. | not_started | — | Not yet verified against this checklist. |
