@@ -3121,10 +3121,33 @@
     {
       "id": "10-10",
       "description": "Make Windows and Linux test setup deterministic; record any permitted platform-specific divergence explicitly.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/test-environment.md",
+          "sha256": "9bc6a536bcfd5d85dac774e6f62a4eeff0525f89f3923e609d97944826a937e9",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/runbooks/ci.md",
+          "sha256": "141a6984fa238f9baad1808e09e15cb6b0a443e10115f6d9ea02ea055d47d7eb",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_environment_contract.py",
+          "sha256": "0dc64d11c87221ba2df78a91850ae0f86d8bb0c1392478c82ccfcb8a15d7c636",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "constraints-ci.txt",
+          "sha256": "d732bad0c6044cfa0970206df2a4610d574a0f9393cd476dd6fb2c4febd3705e",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_windows_linux_environment_contract_is_pinned_and_explicit"
+      ],
+      "limitations": "Setup contract is documented and checked; unavailable platform services remain explicit skips/blockers."
     },
     {
       "id": "10-11",
@@ -3137,10 +3160,28 @@
     {
       "id": "10-12",
       "description": "Add a daily offline release-readiness runner that reports `not established` rather than passing missing clinical requirements.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/release_readiness.py",
+          "sha256": "e89df9607d17c38a4b2a1af70cbf9b9e1406cb18251706e32c897d29da79efcf",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_independent_workflows.py",
+          "sha256": "3d6ccb5ff989e519a1e1eef2035448cd4ec0f87818c96c57d5e1a1b7b751bfbb",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/release-roadmap.md",
+          "sha256": "4a127099d6005af2f4140219cc1b704c68efb24aa045741ef8de9021737770d7",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_release_inventory_recomputes_all_candidates"
+      ],
+      "limitations": "Readiness inventory is local/development evidence; it intentionally reports clinical gates as not established and does not authorize release."
     },
     {
       "id": "10-13",
