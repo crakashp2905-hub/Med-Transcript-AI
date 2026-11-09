@@ -2370,10 +2370,23 @@
     {
       "id": "06-09",
       "description": "Retain and reproduce the developer-authored 52-case retrospective result (13 -> 0 rule misses, four false alarms) without interpreting it as clinical sensitivity.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/retrospective_result.py",
+          "sha256": "dc63e5be04118aae6c621e08f8f99c89ed7be9d48d8410d1c8474c8b75ccb66b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_retrospective_result.py",
+          "sha256": "afb3f55ad363770e71f211930c08152a3a987d121d15080c235e18d540499648",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_retrospective_52_case_result_is_reproducible_without_sensitivity_claim"
+      ],
+      "limitations": "The result is a developer-authored retrospective envelope and is not a clinical sensitivity estimate."
     },
     {
       "id": "06-10",
