@@ -83,6 +83,13 @@ def test_one_command_status_report_is_read_only_and_keeps_release_blocked(tmp_pa
     assert report['source_hashes'] and report['engineering']['total'] == 247
 
 
+def test_model_license_policy_excludes_weight_distribution():
+    policy = Path('docs/model-licenses.md').read_text(encoding='utf-8')
+    ignore = Path('.gitignore').read_text(encoding='utf-8')
+    assert 'never redistributed' in policy and 'candidate access audit' in policy
+    assert 'models/' in ignore and 'data/' in ignore
+
+
 def test_offline_guard_denies_external_dns_tcp_udp_but_preserves_loopback():
     program='''
 import socket

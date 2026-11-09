@@ -3334,7 +3334,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
+          "sha256": "e8101d16468a65cfae42d4564cd9cab42f214cee7ab5a41d14d41a7fdce5ad2f",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3450,7 +3450,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
+          "sha256": "e8101d16468a65cfae42d4564cd9cab42f214cee7ab5a41d14d41a7fdce5ad2f",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3491,7 +3491,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
+          "sha256": "e8101d16468a65cfae42d4564cd9cab42f214cee7ab5a41d14d41a7fdce5ad2f",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3544,7 +3544,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
+          "sha256": "e8101d16468a65cfae42d4564cd9cab42f214cee7ab5a41d14d41a7fdce5ad2f",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3877,7 +3877,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
+          "sha256": "e8101d16468a65cfae42d4564cd9cab42f214cee7ab5a41d14d41a7fdce5ad2f",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3889,10 +3889,33 @@
     {
       "id": "15-08",
       "description": "Document model license attribution and ensure redistributed fixtures and weights follow their actual licenses; do not distribute weight files by default.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/model-licenses.md",
+          "sha256": "8c44d7ea7ac9090adb201526e450237f0bdd5e859f9578c67b367bbedc0faedd",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/candidate-access-audit.json",
+          "sha256": "c5fb67c36f9b62fd5fd0cfe0750511900d6c08fc9008aab724306b39dc631adf",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": ".gitignore",
+          "sha256": "f7b82eab517392b7d3c683ff86e0e861b8b092a849fdfae7337761d30e7706c5",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "tests/test_offline_engineering.py",
+          "sha256": "e8101d16468a65cfae42d4564cd9cab42f214cee7ab5a41d14d41a7fdce5ad2f",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_model_license_policy_excludes_weight_distribution"
+      ],
+      "limitations": "License metadata and distribution controls are documented; legal interpretation, owner approvals and third-party license compliance remain external responsibilities."
     },
     {
       "id": "15-09",
@@ -3919,7 +3942,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
+          "sha256": "e8101d16468a65cfae42d4564cd9cab42f214cee7ab5a41d14d41a7fdce5ad2f",
           "hash_mode": "normalized_source_text"
         }
       ],
