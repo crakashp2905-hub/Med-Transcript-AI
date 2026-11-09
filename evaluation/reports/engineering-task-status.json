@@ -2973,10 +2973,24 @@
     {
       "id": "07-11",
       "description": "Retest the eight-channel 20/30-minute synthetic duration stress scenario; distinguish transport throughput from transcription accuracy.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/stress_scenario.py",
+          "sha256": "ceb7997337e95089fdd22d4cd9813e07b70d63f9f9f5f9f75daa3080b08584e1",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_stress_scenario.py",
+          "sha256": "e4c6cf776480dbfa953a14f660cc7ec199295823df3db2869b456ce878eca0fb",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_stress_scenario_separates_transport_from_accuracy",
+        "test_stress_scenario_rejects_wrong_shape"
+      ],
+      "limitations": "The envelope constrains the synthetic workload and keeps transport separate from normalized WER; actual long recordings remain runtime-dependent."
     },
     {
       "id": "07-12",
