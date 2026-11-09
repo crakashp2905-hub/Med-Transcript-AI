@@ -4,6 +4,9 @@
 
 The [247-task engineering scorecard](docs/engineering-scorecard.md) records verified completion with hashed evidence. Start the account-free, model-free route with `python -m services.offline_demo`, or run `python -m services.offline_acceptance --version YOUR_NEW_VERSION`. See the [offline runbook](docs/demo-runbook-offline.md) and [external evidence limits](docs/remaining-external-evidence.md). No new installation, live OAuth activation or model download is required for this route.
 
+For a read-only local snapshot of checklist counts, saved test receipts, model
+availability, source hashes and release safeguards, run `python -m services.status_report`.
+
 The [cached-artifact preflight](docs/local-artifact-preflight.md) hashes existing weights without loading or downloading models. The [release roadmap](docs/release-roadmap.md) separates offline engineering, local research and independent clinical acceptance. The [candidate method](docs/candidate-method.md) is explicitly a hypothesis; [historical drafting failures](docs/drafting-screen-diagnosis.md) remain visible.
 
 

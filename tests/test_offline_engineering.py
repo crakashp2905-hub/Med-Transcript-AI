@@ -71,6 +71,18 @@ def test_product_architecture_evidence_map_contains_lifecycle_api_and_limits():
     assert '5% normalized-WER gate' in page and 'real_patient_release_authorized=false' in page
 
 
+def test_one_command_status_report_is_read_only_and_keeps_release_blocked(tmp_path, monkeypatch):
+    from services.status_report import build
+    monkeypatch.setenv('MED_TRANSCRIPT_OFFLINE', '1')
+    report = build('.')
+    assert report['schema_version'] == 'local_status_v1'
+    assert report['offline_mode'] is True
+    assert report['test_status']['inference_executed'] is False
+    assert report['clinical_release'] == 'BLOCKED_EXTERNAL_EVIDENCE_REQUIRED'
+    assert report['real_patient_release_authorized'] is False
+    assert report['source_hashes'] and report['engineering']['total'] == 247
+
+
 def test_offline_guard_denies_external_dns_tcp_udp_but_preserves_loopback():
     program='''
 import socket

@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**100/247 verified (40.49%).**
+**101/247 verified (40.89%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -250,6 +250,6 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 15-07 — Publish architecture diagrams, API examples, data lifecycle, threat model, model cards and limitations in version-controlled docs. | verified | [docs/product-architecture.md](../docs/product-architecture.md), [docs/local-threat-model.md](../docs/local-threat-model.md), [docs/evaluation-protocol.md](../docs/evaluation-protocol.md), [tests/test_offline_engineering.py](../tests/test_offline_engineering.py) | test_product_architecture_evidence_map_contains_lifecycle_api_and_limits |
 | 15-08 — Document model license attribution and ensure redistributed fixtures and weights follow their actual licenses; do not distribute weight files by default. | not_started | — | Not yet verified against this checklist. |
 | 15-09 — Remove outdated README claims and stale metrics; make documentation links resolve and lead users to current frozen reports. | not_started | — | Not yet verified against this checklist. |
-| 15-10 — Build a 1-command status command that reports test pass/fail, offline mode, model availability, source hashes and clinical release blocked. | not_started | — | Not yet verified against this checklist. |
+| 15-10 — Build a 1-command status command that reports test pass/fail, offline mode, model availability, source hashes and clinical release blocked. | verified | [services/status_report.py](../services/status_report.py), [README.md](../README.md), [tests/test_offline_engineering.py](../tests/test_offline_engineering.py) | test_one_command_status_report_is_read_only_and_keeps_release_blocked |
 | 15-11 — Provide a deployment simulation using the production Compose config with fake secrets and local TLS/proxy tests where cached tooling supports it. | blocked_missing_local_artifact | [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | Docker CLI and a cached production container/TLS harness are absent; existing historical hosted configuration checks do not prove a local deployment simulation. |
 | 15-12 — Add a concise roadmap separating next offline engineering release, independent clinical acceptance, and future optional imaging/TTS work. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [docs/release-roadmap.md](../docs/release-roadmap.md) | test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence; test_english_only_schema_rejects_other_languages_and_imaging |

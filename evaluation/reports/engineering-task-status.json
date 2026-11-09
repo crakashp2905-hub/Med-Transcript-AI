@@ -3189,7 +3189,7 @@
       "evidence": [
         {
           "path": "README.md",
-          "sha256": "5f211696dd92b22fa97ae612b68386459ab850121cd4448d1fbfe42091fcab1a",
+          "sha256": "ea856eeda36c6ecd023a451da025e5c1072fc5c2424c5fda2c2facaa091a9e7a",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -3334,7 +3334,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
+          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3450,7 +3450,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
+          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3491,7 +3491,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
+          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3544,7 +3544,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
+          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3877,7 +3877,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "1456b1bc2fb996f8e7f8c1696ac213e5ec7ab85ac4744c5cf597bb1cd01c3f0e",
+          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3905,10 +3905,28 @@
     {
       "id": "15-10",
       "description": "Build a 1-command status command that reports test pass/fail, offline mode, model availability, source hashes and clinical release blocked.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/status_report.py",
+          "sha256": "6c31ad6bcd4089edec28848a9a9e8a8057bb74116e21ba80b0f09b4e0c3b3727",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "README.md",
+          "sha256": "ea856eeda36c6ecd023a451da025e5c1072fc5c2424c5fda2c2facaa091a9e7a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_offline_engineering.py",
+          "sha256": "d826ff3c6ab7fba7f0275a279e6c7e0360907f0bac4a77cc665386484bd0e91a",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_one_command_status_report_is_read_only_and_keeps_release_blocked"
+      ],
+      "limitations": "Reports saved acceptance receipts and capability presence without running tests or inference; model presence is not eligibility and clinical release remains blocked."
     },
     {
       "id": "15-11",
