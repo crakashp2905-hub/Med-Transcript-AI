@@ -3059,10 +3059,28 @@
     {
       "id": "10-07",
       "description": "Add mutation tests around critical safety guards and prove tests detect deliberately injected bypasses.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/mutation_contract.py",
+          "sha256": "5342ee71a31773936b1cf72f800f1b3283e1a47c5598dd5fd51eae6e781b957b",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_mutation_contract.py",
+          "sha256": "b235bfc6b2c5cc33d14dc7bcad49f2d865ce9b3301197de869904d6de1e64374",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/mutation-testing.md",
+          "sha256": "9130e92f58bf2d420db49d531a6a36dbd8d0b299dd6a18bdb75a295141ad0c17",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_all_critical_mutants_require_a_blocked_guard_result"
+      ],
+      "limitations": "Deterministic named-mutant contract only; it does not replace exhaustive mutation tooling or clinical validation."
     },
     {
       "id": "10-08",
