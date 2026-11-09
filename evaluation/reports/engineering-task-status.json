@@ -366,10 +366,23 @@
     {
       "id": "01-06",
       "description": "Replace loosely coupled `dict` payloads with Pydantic data contracts at persistence boundaries, retaining migration-compatible serialization.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/domain_contracts.py",
+          "sha256": "2ed499abbd679d6b41498912a61b763aa9f354276aa4eab4bae127d58600436d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_pydantic_persistence_boundary.py",
+          "sha256": "f3303461bf32a11dc2582148bffc97e0d2b3595fbc8324d4ad069c484196acd5",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_persistence_records_are_typed_and_json_serializable"
+      ],
+      "limitations": "Core transcript and note records are typed and schema-backed; remaining legacy dict call sites are covered by the migration and contract tasks."
     },
     {
       "id": "01-07",

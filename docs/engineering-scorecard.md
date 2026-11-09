@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**138/247 verified (55.87%).**
+**139/247 verified (56.28%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -23,7 +23,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 01-03 — Refactor the approximately 48 KB `apps/clinician-web/src/main.tsx` into screens/hooks/API clients/stores without changing the existing clinician journey. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [docs/architecture-decisions/003-router-and-persistence-boundaries.md](../docs/architecture-decisions/003-router-and-persistence-boundaries.md) | frontend_build; clinician reviews evidence, corrects a blocking medication, approves and exports |
 | 01-04 — Introduce typed `ClinicalFact`, `TranscriptVersion`, `EvidenceSpan`, `ClaimRelation`, `VerificationFinding`, `NoteVersion`, `InferenceReceipt`, and `Approval` boundaries for all modules. | verified | [services/domain_contracts.py](../services/domain_contracts.py), [tests/test_typed_clinical_boundaries.py](../tests/test_typed_clinical_boundaries.py) | test_typed_clinical_boundary_exports_are_present_and_release_safe |
 | 01-05 — Use a single explicit state machine for encounter stages and transition guards; reject illegal, stale, double, revoked and cross-tenant transitions. | verified | [services/encounter_state.py](../services/encounter_state.py), [tests/test_encounter_state.py](../tests/test_encounter_state.py) | test_encounter_state_accepts_only_ordered_transition; test_encounter_state_rejects_unsafe_transition |
-| 01-06 — Replace loosely coupled `dict` payloads with Pydantic data contracts at persistence boundaries, retaining migration-compatible serialization. | not_started | — | Not yet verified against this checklist. |
+| 01-06 — Replace loosely coupled `dict` payloads with Pydantic data contracts at persistence boundaries, retaining migration-compatible serialization. | verified | [services/domain_contracts.py](../services/domain_contracts.py), [tests/test_pydantic_persistence_boundary.py](../tests/test_pydantic_persistence_boundary.py) | test_persistence_records_are_typed_and_json_serializable |
 | 01-07 — Implement stable schema versions and `migrate(x -> x+1)` tests for transcript, note, model proposal, report and audit records. | not_started | — | Not yet verified against this checklist. |
 | 01-08 — Centralize deterministic hashing/canonical JSON; add golden cross-platform hash vectors for Unicode, decimals, nulls, sorted keys and line endings. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/canonical.py](../services/canonical.py) | test_canonical_golden_unicode_decimals_nulls_and_line_endings |
 | 01-09 — Ensure all ASR, diarization, extraction, drafting and verifier providers implement declared interfaces and surface provider-specific limitations. | not_started | — | Not yet verified against this checklist. |
