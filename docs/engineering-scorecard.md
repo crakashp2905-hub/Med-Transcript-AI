@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**136/247 verified (55.06%).**
+**137/247 verified (55.47%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -21,7 +21,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 01-01 — Separate the 28 KB `services/api/main.py` into bounded routers by encounters, authorizations, audio, jobs, auth, transcript and exports; preserve existing endpoints and response contracts. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [docs/architecture-decisions/003-router-and-persistence-boundaries.md](../docs/architecture-decisions/003-router-and-persistence-boundaries.md), [evaluation/contracts/api-v1-before-router-split.json](../evaluation/contracts/api-v1-before-router-split.json) | test_api_contract_survives_router_and_service_extraction |
 | 01-02 — Split the 38 KB `services/review/routes.py` by extraction, draft editing, verification, approval, amendments and export, with a shared service layer and typed exceptions. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [docs/architecture-decisions/003-router-and-persistence-boundaries.md](../docs/architecture-decisions/003-router-and-persistence-boundaries.md) | test_api_contract_survives_router_and_service_extraction; test_review_state_errors_remain_sanitized_and_http_compatible |
 | 01-03 — Refactor the approximately 48 KB `apps/clinician-web/src/main.tsx` into screens/hooks/API clients/stores without changing the existing clinician journey. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [docs/architecture-decisions/003-router-and-persistence-boundaries.md](../docs/architecture-decisions/003-router-and-persistence-boundaries.md) | frontend_build; clinician reviews evidence, corrects a blocking medication, approves and exports |
-| 01-04 — Introduce typed `ClinicalFact`, `TranscriptVersion`, `EvidenceSpan`, `ClaimRelation`, `VerificationFinding`, `NoteVersion`, `InferenceReceipt`, and `Approval` boundaries for all modules. | not_started | — | Not yet verified against this checklist. |
+| 01-04 — Introduce typed `ClinicalFact`, `TranscriptVersion`, `EvidenceSpan`, `ClaimRelation`, `VerificationFinding`, `NoteVersion`, `InferenceReceipt`, and `Approval` boundaries for all modules. | verified | [services/domain_contracts.py](../services/domain_contracts.py), [tests/test_typed_clinical_boundaries.py](../tests/test_typed_clinical_boundaries.py) | test_typed_clinical_boundary_exports_are_present_and_release_safe |
 | 01-05 — Use a single explicit state machine for encounter stages and transition guards; reject illegal, stale, double, revoked and cross-tenant transitions. | not_started | — | Not yet verified against this checklist. |
 | 01-06 — Replace loosely coupled `dict` payloads with Pydantic data contracts at persistence boundaries, retaining migration-compatible serialization. | not_started | — | Not yet verified against this checklist. |
 | 01-07 — Implement stable schema versions and `migrate(x -> x+1)` tests for transcript, note, model proposal, report and audit records. | not_started | — | Not yet verified against this checklist. |

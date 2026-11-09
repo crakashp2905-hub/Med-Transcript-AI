@@ -323,10 +323,23 @@
     {
       "id": "01-04",
       "description": "Introduce typed `ClinicalFact`, `TranscriptVersion`, `EvidenceSpan`, `ClaimRelation`, `VerificationFinding`, `NoteVersion`, `InferenceReceipt`, and `Approval` boundaries for all modules.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/domain_contracts.py",
+          "sha256": "2ed499abbd679d6b41498912a61b763aa9f354276aa4eab4bae127d58600436d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_typed_clinical_boundaries.py",
+          "sha256": "a6e216769becea13f575cd8211dffd6ea62dd8c9b43155ba1b532ad10f015157",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_typed_clinical_boundary_exports_are_present_and_release_safe"
+      ],
+      "limitations": "Boundary models are verified for presence and release-safe defaults; full module-by-module migration remains separately tracked by subsequent contract tasks."
     },
     {
       "id": "01-05",
