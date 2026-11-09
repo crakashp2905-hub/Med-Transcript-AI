@@ -1408,10 +1408,40 @@
     {
       "id": "06-01",
       "description": "Write the claim-verification contract around supported / contradicted / insufficient-evidence / ambiguous, not unsupported free-text opinions.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/clinical.py",
+          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/review/clinical_models.py",
+          "sha256": "31f9aefbe460a91d43feea7608bb71b2bc77db0774f9bf051a014cc9a28538b0",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_completion_gaps.py",
+          "sha256": "e7f191bc8368b016521832c83524cffca38ccd6c1b29658493d992f78685b06a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_verifier_fail_closed.py",
+          "sha256": "12802df6e58f4651e90dc388ef4d1ee4dfa7157700a1ec1bfb058145a361b3d6",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v15.json",
+          "sha256": "f298805484d125bb5932258c4584bf832bec850f0dafdf5314d49b2127a9bef8",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_critical_scope_assignment_and_omission",
+        "test_supportive_model_cannot_clear_a_dose_rule",
+        "test_semantic_batches_reject_missing_duplicate_invented_ids_and_quotes"
+      ],
+      "limitations": "Deterministic findings use supported/contradicted/insufficient evidence outcomes through structured rule findings; advisory model verdicts remain separate and cannot clear gates."
     },
     {
       "id": "06-02",
@@ -1539,10 +1569,46 @@
     {
       "id": "06-08",
       "description": "Add metamorphic tests: safe paraphrase and exact unit-equivalent claims should stay admissible; critical reversals must require review.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/review/clinical.py",
+          "sha256": "ee54b625c9c42d492ebdb4be69fd0a722e20e16e956cf03c90049ff15b9aa57a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/review/relationships.py",
+          "sha256": "963a5468724d176ee477c7817c7782350c3ffc8fbe6c4c43c028aac50d2eb38c",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_completion_gaps.py",
+          "sha256": "e7f191bc8368b016521832c83524cffca38ccd6c1b29658493d992f78685b06a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_relationships.py",
+          "sha256": "f6cd2d1b87ce14819f1497a3b24dd585c89c5cb21790999b3c194e073f4848f4",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_safety_properties.py",
+          "sha256": "480fec88414159a32c0636baf345bc8741ce77e2b4a48d5fc7ebd0153da0866f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/offline-acceptance-v15.json",
+          "sha256": "f298805484d125bb5932258c4584bf832bec850f0dafdf5314d49b2127a9bef8",
+          "hash_mode": "bytes"
+        }
+      ],
+      "tests": [
+        "test_exact_mass_conversion_does_not_create_a_false_dose_error",
+        "test_clause_reordering_does_not_change_bindings",
+        "test_fixed_seed_exact_unit_equivalence_and_critical_unit_changes",
+        "test_critical_scope_assignment_and_omission"
+      ],
+      "limitations": "Metamorphic synthetic checks preserve exact unit equivalence and safe clause/paraphrase forms while requiring review for critical reversals."
     },
     {
       "id": "06-09",
