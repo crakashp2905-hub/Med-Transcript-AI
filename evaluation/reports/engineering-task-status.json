@@ -5619,10 +5619,23 @@
     {
       "id": "14-11",
       "description": "Prepare paper-ready method, experimental protocol, limitations, failure taxonomy and reproducibility appendices.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/reproducibility-appendix.md",
+          "sha256": "2e9f25584d1f1a1159331c786a893b74c1624ca20e5eb9ef7a612d192de13cb1",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_reproducibility_appendix.py",
+          "sha256": "10bfa143fc99ddd9885681fa02c5ad92b5bb5b78b7588bfdce127684c4ca3fad",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_reproducibility_appendix_covers_required_sections"
+      ],
+      "limitations": "The appendix outline documents reproducibility requirements and limitations; it is not a clinical publication claim."
     },
     {
       "id": "14-12",
