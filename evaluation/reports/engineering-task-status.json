@@ -712,10 +712,23 @@
     {
       "id": "02-07",
       "description": "Benchmark overlap stitching using audio-only alignment and deterministic text deduplication; reject accidentally dropped or duplicated words.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/overlap_reassembly.py",
+          "sha256": "daf1d1ee99ca871eba2bc9d537f657bdaafdee671e4ea6d444340d0ee683fd4e",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_overlap_stitch_integrity.py",
+          "sha256": "0175a45f885387a18788692d49193c0f82fb82f8e4bc78ab8b3bc3e0d3077343",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_overlap_stitch_retains_unmatched_clinical_words"
+      ],
+      "limitations": "Deterministic stitch behavior is verified; fuzzy overlap decisions remain advisory and require audio review, with no fresh timestamps generated."
     },
     {
       "id": "02-08",
