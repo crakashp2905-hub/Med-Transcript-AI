@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**110/247 verified (44.53%).**
+**113/247 verified (45.75%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -151,9 +151,9 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 08-12 — Provide a user-facing troubleshooting guide for no local model, no microphone, full disk, expired session, codec problem and failed job. | not_started | — | Not yet verified against this checklist. |
 | 08-13 — Add Playwright test flows for recovery, source edits, errors, keyboard-only review, role correction and local-demo walkthrough. | not_started | — | Not yet verified against this checklist. |
 | 08-14 — Run visual regression snapshots at desktop/tablet/mobile resolutions using generated synthetic data only. | not_started | — | Not yet verified against this checklist. |
-| 09-01 — Keep the 118-clip, 3-consultation and 8-foreground/16-condition datasets separately pinned; never claim mutually independent subjects from the paired clean/distracted samples. | not_started | — | Not yet verified against this checklist. |
-| 09-02 — Add a canonical data ledger recording source licenses, dataset hashes, group splits, background donor identity and transformation functions. | not_started | — | Not yet verified against this checklist. |
-| 09-03 — Verify exact reference and hypothesis hashes before and after every reported metric computation. | not_started | — | Not yet verified against this checklist. |
+| 09-01 — Keep the 118-clip, 3-consultation and 8-foreground/16-condition datasets separately pinned; never claim mutually independent subjects from the paired clean/distracted samples. | verified | [evaluation/reports/dataset-ledger-v1.json](../evaluation/reports/dataset-ledger-v1.json), [docs/dataset-ledger.md](../docs/dataset-ledger.md), [tests/test_dataset_ledger.py](../tests/test_dataset_ledger.py) | test_dataset_ledger_keeps_cohorts_separate_and_paired_dependence_explicit |
+| 09-02 — Add a canonical data ledger recording source licenses, dataset hashes, group splits, background donor identity and transformation functions. | verified | [services/dataset_ledger.py](../services/dataset_ledger.py), [evaluation/reports/dataset-ledger-v1.json](../evaluation/reports/dataset-ledger-v1.json), [docs/dataset-ledger.md](../docs/dataset-ledger.md) | test_dataset_ledger_keeps_cohorts_separate_and_paired_dependence_explicit |
+| 09-03 — Verify exact reference and hypothesis hashes before and after every reported metric computation. | verified | [services/dataset_ledger.py](../services/dataset_ledger.py), [tests/test_dataset_ledger.py](../tests/test_dataset_ledger.py), [docs/dataset-ledger.md](../docs/dataset-ledger.md) | test_metric_hashes_change_when_reference_or_hypothesis_changes |
 | 09-04 — Produce machine-generated model cards including language, hardware, decoding settings, failures, timeouts, WER, role metrics and limitations. | verified | [services/model_cards.py](../services/model_cards.py), [evaluation/reports/model-cards-v1.json](../evaluation/reports/model-cards-v1.json), [docs/model-cards.md](../docs/model-cards.md), [tests/test_model_cards.py](../tests/test_model_cards.py) | test_machine_model_cards_retain_failures_roles_and_limitations; python -m services.model_cards --out evaluation/reports/model-cards-v1.json |
 | 09-05 — Publish a full confusion/error spreadsheet-like CSV without PHI and without omitting failed examples. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [evaluation/reports/error-taxonomy-v2/report.json](../evaluation/reports/error-taxonomy-v2/report.json), [evaluation/reports/error-taxonomy-v2/all-errors.csv.zip](../evaluation/reports/error-taxonomy-v2/all-errors.csv.zip) | test_failed_case_retains_all_deletions_and_csv_formula_is_escaped; test_exact_bitvector_traceback_matches_independent_dp_and_reconstructs_tokens |
 | 09-06 — Build paired-case comparisons with bootstrap over consultations rather than treating thousands of tokens as independent samples. | not_started | — | Not yet verified against this checklist. |

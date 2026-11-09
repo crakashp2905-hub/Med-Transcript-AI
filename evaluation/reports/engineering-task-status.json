@@ -2351,26 +2351,80 @@
     {
       "id": "09-01",
       "description": "Keep the 118-clip, 3-consultation and 8-foreground/16-condition datasets separately pinned; never claim mutually independent subjects from the paired clean/distracted samples.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "evaluation/reports/dataset-ledger-v1.json",
+          "sha256": "fe7c706e056c110c9f02063ecd4057acd914d926af3fafea8f335ce35c375eb6",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "docs/dataset-ledger.md",
+          "sha256": "73803c6b881cf704aae628c32de8dac40a87f86c29fef86444058c1b24ea82d6",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_dataset_ledger.py",
+          "sha256": "cdc8c18f7c409df3b01af6e3ac49899129fc6eea450c271d9756cebcf4fbc9f6",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_dataset_ledger_keeps_cohorts_separate_and_paired_dependence_explicit"
+      ],
+      "limitations": "Manifest separation and dependence labeling are verified for committed public/synthetic cohorts; this does not establish subject or training independence."
     },
     {
       "id": "09-02",
       "description": "Add a canonical data ledger recording source licenses, dataset hashes, group splits, background donor identity and transformation functions.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/dataset_ledger.py",
+          "sha256": "118458e4bc611e43e5e2680f9617d3b82fea260cb0762e245f82492bbd415ab2",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "evaluation/reports/dataset-ledger-v1.json",
+          "sha256": "fe7c706e056c110c9f02063ecd4057acd914d926af3fafea8f335ce35c375eb6",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "docs/dataset-ledger.md",
+          "sha256": "73803c6b881cf704aae628c32de8dac40a87f86c29fef86444058c1b24ea82d6",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_dataset_ledger_keeps_cohorts_separate_and_paired_dependence_explicit"
+      ],
+      "limitations": "Ledger records fields available in committed manifests; missing upstream metadata stays null or not_applicable rather than being invented."
     },
     {
       "id": "09-03",
       "description": "Verify exact reference and hypothesis hashes before and after every reported metric computation.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/dataset_ledger.py",
+          "sha256": "118458e4bc611e43e5e2680f9617d3b82fea260cb0762e245f82492bbd415ab2",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_dataset_ledger.py",
+          "sha256": "cdc8c18f7c409df3b01af6e3ac49899129fc6eea450c271d9756cebcf4fbc9f6",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/dataset-ledger.md",
+          "sha256": "73803c6b881cf704aae628c32de8dac40a87f86c29fef86444058c1b24ea82d6",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_metric_hashes_change_when_reference_or_hypothesis_changes"
+      ],
+      "limitations": "Canonical input hashing is verified for report replay; existing historical reports are not rewritten and no new inference is implied."
     },
     {
       "id": "09-04",

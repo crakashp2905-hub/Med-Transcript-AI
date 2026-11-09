@@ -1,0 +1,111 @@
+{
+  "schema_version": "dataset_ledger_v1",
+  "datasets": [
+    {
+      "dataset_id": "meddistract-full-paired-development-v1",
+      "manifest": "evaluation/datasets/meddistract-detailed-v1/manifest.json",
+      "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+      "license_id": null,
+      "data_class": "approved_public",
+      "source_revision": "bcef38c2bc8404d52a2c66a799be778e28216102",
+      "protocol_sha256": "d0179b9db3be7b245f0eee3144d84cae925e5d473a4e39486b5ed7ee25d6fd4b",
+      "split_role": null,
+      "grouping": "group_id from consultation identifier; paired conditions are dependent",
+      "background_donor_identity": "not_applicable",
+      "transformation": null,
+      "sources": 0,
+      "limitations": [
+        "Controlled digital overlays of mock consultations, not real clinical overlap.",
+        "Eight foregrounds repeated across conditions are eight independent sampling units, not sixteen.",
+        "Upstream clinician notes are reference summaries, not exhaustive adjudicated atomic facts.",
+        "Day1 excerpts were previously used in development; this is not unseen acceptance.",
+        "Foreground-only WER on distracted audio measures selective-transcription robustness; donor words remain errors."
+      ]
+    },
+    {
+      "dataset_id": "primock57-20consultations-120clips-v1",
+      "manifest": "evaluation/datasets/primock57-expanded-v1/manifest.json",
+      "manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+      "license_id": "CC-BY-4.0",
+      "data_class": "approved_public",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "protocol_sha256": "5268d7cd6ce24b94ee435cbde97e980e2ff6f8c99550a48f859bf36945b3e95d",
+      "split_role": "new_consultation_group_development_validation_not_clinical_acceptance",
+      "grouping": "group_id from consultation identifier; paired conditions are dependent",
+      "background_donor_identity": "not_applicable",
+      "transformation": "Mono 16kHz PCM16; utterance crops with 250ms padding; references unchanged.",
+      "sources": 40,
+      "limitations": [
+        "Public mock consultations, selected clean utterances, separate speaker channels",
+        "New groups relative to the project screening set; speaker independence and model-training independence are not established",
+        "No prompt changes, model tuning, reference editing or exclusions based on inference results"
+      ]
+    },
+    {
+      "dataset_id": "primock57-full-expansion-development-v1",
+      "manifest": "evaluation/datasets/primock57-full-expansion-v1/manifest.json",
+      "manifest_sha256": "712f0ced8a18523e93941f5ec92f5a6ef0e8617aff4e55c509c5964ff82698bf",
+      "license_id": null,
+      "data_class": "approved_public",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "protocol_sha256": null,
+      "split_role": null,
+      "grouping": "group_id from consultation identifier; paired conditions are dependent",
+      "background_donor_identity": "not_applicable",
+      "transformation": null,
+      "sources": 0,
+      "limitations": "Source-channel roles are reference labels, not automatic diarization. Track clocks follow upstream annotations; synchronization and overlap require independent review. Uncertain references retained and flagged. No noise/device/speaker independence claim."
+    },
+    {
+      "dataset_id": "primock57-full-development-v1",
+      "manifest": "evaluation/datasets/primock57-full-v1/manifest.json",
+      "manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a",
+      "license_id": null,
+      "data_class": "approved_public",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "protocol_sha256": null,
+      "split_role": null,
+      "grouping": "group_id from consultation identifier; paired conditions are dependent",
+      "background_donor_identity": "not_applicable",
+      "transformation": null,
+      "sources": 0,
+      "limitations": "Source-channel roles are reference labels, not automatic diarization. Track clocks follow upstream annotations; synchronization and overlap require independent review. Uncertain references retained and flagged. No noise/device/speaker independence claim."
+    },
+    {
+      "dataset_id": "primock57-consultation01-six-utterance-smoke-v1",
+      "manifest": "evaluation/datasets/primock57-smoke-v1/manifest.json",
+      "manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+      "license_id": "CC-BY-4.0",
+      "data_class": "approved_public",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "protocol_sha256": null,
+      "split_role": "development_smoke_not_acceptance",
+      "grouping": "group_id from consultation identifier; paired conditions are dependent",
+      "background_donor_identity": "not_applicable",
+      "transformation": "Normalized to mono 16kHz PCM; first three 4\u201320 second untagged utterances per role, 250ms padding.",
+      "sources": 2,
+      "limitations": "One consultation, separate speaker tracks, selected clean utterances; not clinical validation or conversation diarization."
+    },
+    {
+      "dataset_id": "primock57-consultations02-06-validation-v1",
+      "manifest": "evaluation/datasets/primock57-validation-v1/manifest.json",
+      "manifest_sha256": "39e123830ba2dcff73b5621f1a4f10cbf76cd1eb8a7c56654c6d3d40e4cdbac7",
+      "license_id": "CC-BY-4.0",
+      "data_class": "approved_public",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "protocol_sha256": "1f27af071b426f785a9a467d6d583d53cc616ca61c0a2cac6bab7ce8b0d9e9aa",
+      "split_role": "new_consultation_group_development_validation_not_clinical_acceptance",
+      "grouping": "group_id from consultation identifier; paired conditions are dependent",
+      "background_donor_identity": "not_applicable",
+      "transformation": "Mono 16kHz PCM16; utterance crops with 250ms padding; references unchanged.",
+      "sources": 10,
+      "limitations": [
+        "Public mock consultations, selected clean utterances, separate speaker channels",
+        "New groups relative to the project screening set; speaker independence and model-training independence are not established",
+        "No prompt changes, model tuning, reference editing or exclusions based on inference results"
+      ]
+    }
+  ],
+  "paired_clean_distracted_independence": "not_claimed",
+  "clinical_acceptance": false
+}
