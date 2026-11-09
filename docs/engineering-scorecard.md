@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**224/247 verified (90.69%).**
+**225/247 verified (91.09%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -243,7 +243,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 14-12 — Do not claim an independently novel or clinically effective method without external comparison/review; use `candidate contribution` language. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [docs/candidate-method.md](../docs/candidate-method.md), [docs/release-roadmap.md](../docs/release-roadmap.md) | test_lower_evidence_tiers_cannot_claim_independent_gold; test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence |
 | 15-01 — Ship a five-minute local walkthrough from synthetic consultation upload through review, blocked claim, correction, exact approval and export. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/offline_demo.py](../services/offline_demo.py) | test_offline_scripted_workflow_blocks_dose_error_and_viewer_write; synthetic_walkthrough |
 | 15-02 — Record an audit-friendly demo scenario in which the model makes a deliberate drug-dose error and the deterministic gate blocks it. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/offline_demo.py](../services/offline_demo.py) | test_offline_scripted_workflow_blocks_dose_error_and_viewer_write; synthetic_walkthrough |
-| 15-03 — Show a second scenario of legitimate paraphrase and avoid implying all paraphrases are unsafe by construction. | not_started | — | Not yet verified against this checklist. |
+| 15-03 — Show a second scenario of legitimate paraphrase and avoid implying all paraphrases are unsafe by construction. | verified | [services/paraphrase_cases.py](../services/paraphrase_cases.py), [tests/test_paraphrase_cases.py](../tests/test_paraphrase_cases.py) | test_legitimate_paraphrase_scenarios_are_not_marked_unsafe_by_construction |
 | 15-04 — Add a local read-only showcase account/session simulator without Google registration; never call it verified live OIDC. | verified | [docs/demo-runbook-offline.md](../docs/demo-runbook-offline.md), [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_offline_scripted_workflow_blocks_dose_error_and_viewer_write |
 | 15-05 — Offer a study dashboard comparing datasets and model variants with visible failures, no invented cost/accuracy, and model-not-admitted banners. | not_started | — | Not yet verified against this checklist. |
 | 15-06 — Generate screenshots and demo transcript using only locally available browser tooling and synthetic content. | not_started | — | Not yet verified against this checklist. |

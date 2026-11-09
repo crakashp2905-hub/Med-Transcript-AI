@@ -5661,10 +5661,23 @@
     {
       "id": "15-03",
       "description": "Show a second scenario of legitimate paraphrase and avoid implying all paraphrases are unsafe by construction.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/paraphrase_cases.py",
+          "sha256": "d859ef50d684d5897540fa0c83f9fe6b80c305614894ac4ed316f94fffab15d5",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_paraphrase_cases.py",
+          "sha256": "aeacc8066da72fb0afdf9ad719498cb9a9b8f760398db374d41e974b1b6dc5c6",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_legitimate_paraphrase_scenarios_are_not_marked_unsafe_by_construction"
+      ],
+      "limitations": "Scenarios are synthetic examples and do not establish clinical equivalence."
     },
     {
       "id": "15-04",
