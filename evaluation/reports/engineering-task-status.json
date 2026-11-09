@@ -2970,10 +2970,24 @@
     {
       "id": "07-13",
       "description": "Audit live server recording prefixes for safe expiry, recovery authorization, retained copies, and deletion after user discard.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/storage_lifecycle.py",
+          "sha256": "53d4847ece74812af8a1a69fb28a71a6816cafe457f20922717fc74d0d2a1982",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_storage_lifecycle.py",
+          "sha256": "e2b9399ef82bfafabfb21c414d33987091c8d2d669615cd27c32796a3406670e",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_storage_lifecycle_deletes_only_after_explicit_user_discard",
+        "test_storage_lifecycle_keeps_authorized_recovery_copy"
+      ],
+      "limitations": "Lifecycle decisions are deterministic; actual object-store deletion requires deployment integration."
     },
     {
       "id": "07-14",

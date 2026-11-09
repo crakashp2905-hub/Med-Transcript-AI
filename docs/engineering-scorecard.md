@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**200/247 verified (80.97%).**
+**201/247 verified (81.38%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -133,7 +133,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 07-10 — Prevent two processes from processing the same heavyweight model slot, with a bounded worker lock and informative queue status. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/inference_slot.py](../services/inference_slot.py) | test_second_process_cannot_admit_inference_until_slot_is_released; test_single_heavy_worker_claim_is_enforced |
 | 07-11 — Retest the eight-channel 20/30-minute synthetic duration stress scenario; distinguish transport throughput from transcription accuracy. | not_started | — | Not yet verified against this checklist. |
 | 07-12 — Track exact original/normalized/isolated audio hashes so cross-channel confusion cannot corrupt source lineage. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/asr/channels.py](../services/asr/channels.py) | test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job; test_decoder_preserves_three_distinct_channels; test_changed_checkpoint_is_rejected |
-| 07-13 — Audit live server recording prefixes for safe expiry, recovery authorization, retained copies, and deletion after user discard. | not_started | — | Not yet verified against this checklist. |
+| 07-13 — Audit live server recording prefixes for safe expiry, recovery authorization, retained copies, and deletion after user discard. | verified | [services/storage_lifecycle.py](../services/storage_lifecycle.py), [tests/test_storage_lifecycle.py](../tests/test_storage_lifecycle.py) | test_storage_lifecycle_deletes_only_after_explicit_user_discard; test_storage_lifecycle_keeps_authorized_recovery_copy |
 | 07-14 — Test consent revocation during capture, upload, audio normalization, diarization, ASR, drafting and verification; publication must be blocked. | verified | [services/consent_guard.py](../services/consent_guard.py), [tests/test_consent_guard.py](../tests/test_consent_guard.py) | test_revocation_blocks_every_processing_stage_and_publication; test_unknown_consent_stage_is_rejected |
 | 07-15 — Add a model-memory pressure probe that fails or queues before OOM while leaving completed source state intact. | not_started | — | Not yet verified against this checklist. |
 | 07-16 — Introduce deterministic fault injection for slow disks, write failures, process kills, database busy errors and absent models. | not_started | — | Not yet verified against this checklist. |
