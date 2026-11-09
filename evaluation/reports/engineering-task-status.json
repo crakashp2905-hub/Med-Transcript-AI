@@ -4304,10 +4304,23 @@
     {
       "id": "11-02",
       "description": "Test source-level cross-tenant and cross-role access across every route, including historical notes and generated proposal IDs.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/route_authorization.py",
+          "sha256": "2d5838f82f41d31f366e718657224d685026139669efa252995dbb41240986fa",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_route_authorization.py",
+          "sha256": "a8b59c895f80d3ea35918f86a633b9b5456c57bc10cb94d630ae124b32cdcc6e",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_route_authorization_blocks_cross_tenant_and_cross_role_access"
+      ],
+      "limitations": "The helper enforces tenant, role, and proposal ownership invariants; route wiring remains application-specific."
     },
     {
       "id": "11-03",
