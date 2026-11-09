@@ -905,10 +905,28 @@
     {
       "id": "02-15",
       "description": "Run all installed local ASR configurations with pinned artifacts and source hashes; preserve `unable_to_run` status where weights are absent.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/asr/config_inventory.py",
+          "sha256": "51e698aa4cf71d80aa1afd4d34933e19762113429d3fe465f7c25a8213ce53d0",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/asr/profiles.py",
+          "sha256": "e2cd1049651824d6c3221a891cc5229735e736e2dca2a1dfd91cd017889d589d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_asr_config_inventory.py",
+          "sha256": "17d41181c4a1e62edff1144b1765a9d0d32025239b39f5753933cd11024b5a27",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_missing_local_weights_remain_unable_to_run"
+      ],
+      "limitations": "Inventory is local-only and fail-closed; unavailable weights remain unable_to_run and no automatic download or admission occurs."
     },
     {
       "id": "02-16",
