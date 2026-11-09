@@ -3506,10 +3506,40 @@
     {
       "id": "13-10",
       "description": "Add disaster-recovery instructions for synthetic demo database, app config, encrypted backup drill and deleted-asset reconciliation.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "docs/runbooks/operations.md",
+          "sha256": "cfe842d5df009457f3157cc6640c1bdb93fa93e6ecf7e682ba60bb84c287355a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/encrypted_backup.py",
+          "sha256": "ca16ea37975639cf98d99c3eb575152ef1fd671e67297a9c905dba752318f567",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/maintenance.py",
+          "sha256": "b197f5b8a51170c113a1b4e4adb9122962d8283c771469e8524ea2579e24db60",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_encrypted_backup.py",
+          "sha256": "2bc818cdea04e3750f1d57af15b930ab5234e0b6a7bb7915568c74cfb40afdf4",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_maintenance.py",
+          "sha256": "b210e46a46dffb62b1e8ebe02a99816e81ecdb8cae5156ab95023c1e2f540e0e",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_encrypted_database_backup_restore_roundtrip",
+        "test_backup_restore_and_post_backup_tombstone",
+        "test_reconcile_is_dry_run_and_does_not_delete_unrelated_files"
+      ],
+      "limitations": "Synthetic SQLite recovery only; key custody, production storage encryption, retention approval and external backup deletion remain operator dependencies."
     },
     {
       "id": "13-11",
