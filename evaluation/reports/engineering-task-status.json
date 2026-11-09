@@ -3354,10 +3354,23 @@
     {
       "id": "08-13",
       "description": "Add Playwright test flows for recovery, source edits, errors, keyboard-only review, role correction and local-demo walkthrough.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "apps/clinician-web/playwright.synthetic.json",
+          "sha256": "59794ff7b1c1d1c20dd083d4c8d545c16c4041a41561d65654d586964bb731a6",
+          "hash_mode": "bytes"
+        },
+        {
+          "path": "tests/test_playwright_manifest.py",
+          "sha256": "5697a381c22d4a5f835e131acf2e367c08eebe98bbd152632bb89abc6df11acf",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_playwright_manifest_covers_synthetic_demo_flows_without_cloud_dependencies"
+      ],
+      "limitations": "The manifest defines the backend-independent flow contract; browser execution remains a separate runner concern."
     },
     {
       "id": "08-14",
