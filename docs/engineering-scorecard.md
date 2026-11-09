@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**176/247 verified (71.26%).**
+**177/247 verified (71.66%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -81,7 +81,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 04-10 — Implement anatomy/laterality relations and robust tests for left/right swaps and different entities in one utterance. | verified | [services/anatomy_relations.py](../services/anatomy_relations.py), [tests/test_anatomy_relations.py](../tests/test_anatomy_relations.py) | test_anatomy_relations_preserve_distinct_left_right_entities |
 | 04-11 — Create an `evidence graph` mapping original audio -> transcript segment -> exact span -> atomic fact -> note statement -> export. | verified | [services/evidence_graph.py](../services/evidence_graph.py), [tests/test_evidence_graph.py](../tests/test_evidence_graph.py) | test_evidence_graph_connects_audio_to_export |
 | 04-12 — Build a source-coverage analyzer that distinguishes clinical omissions from irrelevant fillers; do not claim that word-span coverage proves clinical completeness. | verified | [services/source_coverage.py](../services/source_coverage.py), [tests/test_source_coverage.py](../tests/test_source_coverage.py) | test_source_coverage_does_not_equate_audio_coverage_with_completeness |
-| 04-13 — Add duplicate-fact detection that retains contradictory or temporally distinct assertions instead of deleting apparent duplicates. | not_started | — | Not yet verified against this checklist. |
+| 04-13 — Add duplicate-fact detection that retains contradictory or temporally distinct assertions instead of deleting apparent duplicates. | verified | [services/fact_duplicates.py](../services/fact_duplicates.py), [tests/test_fact_duplicates.py](../tests/test_fact_duplicates.py) | test_duplicate_fact_detection_preserves_temporal_or_contradictory_assertions |
 | 04-14 — Support unrecognized terminology with explicit `unmapped` status rather than expanding a short fixed dictionary into fabricated certainty. | not_started | — | Not yet verified against this checklist. |
 | 04-15 — Run deterministic and installed local-Qwen extraction in shadow mode on the same frozen synthetic corpus, with an exact output/schema failure table. | not_started | — | Not yet verified against this checklist. |
 | 04-16 — Ensure the LLM cannot create fake segment IDs, span offsets or quotes; reject mismatches and preserve the rejected raw output only in redacted local developer diagnostics. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/clinical_models.py](../services/review/clinical_models.py) | test_model_fact_citations_reject_hallucinations_and_stay_unreviewed; test_model_transport_constrains_input_quotes_and_verifies_digest |

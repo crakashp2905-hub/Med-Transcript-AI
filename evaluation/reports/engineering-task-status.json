@@ -1676,10 +1676,23 @@
     {
       "id": "04-13",
       "description": "Add duplicate-fact detection that retains contradictory or temporally distinct assertions instead of deleting apparent duplicates.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/fact_duplicates.py",
+          "sha256": "718ca3894c00b52b56808f1458869d0025c0177d054d57aed8337cce063fd833",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_fact_duplicates.py",
+          "sha256": "8eaf9fd6f2e8ef3bc0a2f810845776b0fb724ea95d84275c43a3bd3275373ee2",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_duplicate_fact_detection_preserves_temporal_or_contradictory_assertions"
+      ],
+      "limitations": "Detection reports duplicate groups but never deletes facts; contradictory and temporal variants remain available for review."
     },
     {
       "id": "04-14",
