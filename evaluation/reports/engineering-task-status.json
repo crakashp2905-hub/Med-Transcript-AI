@@ -3112,10 +3112,23 @@
     {
       "id": "08-03",
       "description": "Make speaker-identity uncertainty visible and offer source-linked bulk role correction with diff preview.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/role_correction.py",
+          "sha256": "d49e23722412949e6552fd25ed4f5d2eb00a4b74cda83d7cb81bdbe1f3fc5977",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_role_correction.py",
+          "sha256": "4a977e6234c66bbf1f8cc03284a5868a2cfa1ac00b4a25612a1f8e0da5d0a6ca",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_role_correction_preview_is_source_linked_and_requires_approval"
+      ],
+      "limitations": "The correction preview preserves source references and requires approval; UI rendering remains frontend-specific."
     },
     {
       "id": "08-04",

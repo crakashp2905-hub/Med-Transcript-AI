@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**205/247 verified (83.00%).**
+**206/247 verified (83.40%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -139,7 +139,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 07-16 — Introduce deterministic fault injection for slow disks, write failures, process kills, database busy errors and absent models. | verified | [services/fault_injection.py](../services/fault_injection.py), [tests/test_fault_injection.py](../tests/test_fault_injection.py) | test_fault_injection_preserves_source_and_blocks_publication; test_fault_injection_marks_retryable_faults |
 | 08-01 — Provide a single encounter workspace with audio, source transcript, reviewed facts, SOAP note, warnings and evidence links in synchronized panes. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [apps/clinician-web/src/screens/NoteReviewScreen.tsx](../apps/clinician-web/src/screens/NoteReviewScreen.tsx) | clinician reviews evidence, corrects a blocking medication, approves and exports; fact source navigation requests the exact cited audio channel |
 | 08-02 — Ensure clicking any note claim seeks to the correct source audio/segment and never pretends chunk bounds are aligned word timestamps. | verified | [evaluation/reports/offline-acceptance-v9.json](../evaluation/reports/offline-acceptance-v9.json), [evaluation/reports/browser-validation-receipts-v2.json](../evaluation/reports/browser-validation-receipts-v2.json), [apps/clinician-web/src/screens/NoteReviewScreen.tsx](../apps/clinician-web/src/screens/NoteReviewScreen.tsx) | fact source navigation requests the exact cited audio channel; clinician reviews evidence, corrects a blocking medication, approves and exports |
-| 08-03 — Make speaker-identity uncertainty visible and offer source-linked bulk role correction with diff preview. | not_started | — | Not yet verified against this checklist. |
+| 08-03 — Make speaker-identity uncertainty visible and offer source-linked bulk role correction with diff preview. | verified | [services/role_correction.py](../services/role_correction.py), [tests/test_role_correction.py](../tests/test_role_correction.py) | test_role_correction_preview_is_source_linked_and_requires_approval |
 | 08-04 — Add keyboard-first workflows, accessibility labels, consistent focus, screen-reader status and responsive layout. | not_started | — | Not yet verified against this checklist. |
 | 08-05 — Show source-completeness status, unverified segments, uncertain doses and pending reviewer decisions before drafting. | verified | [services/review_readiness.py](../services/review_readiness.py), [tests/test_review_readiness.py](../tests/test_review_readiness.py) | test_review_readiness_blocks_drafting_until_source_issues_are_reviewed; test_review_readiness_allows_clean_source |
 | 08-06 — Display generated-vs-deterministic note side-by-side and highlight changed meanings, omissions and extra claims. | verified | [services/note_diff.py](../services/note_diff.py), [tests/test_note_diff.py](../tests/test_note_diff.py) | test_note_diff_highlights_changed_meanings_omissions_and_extra_claims |
