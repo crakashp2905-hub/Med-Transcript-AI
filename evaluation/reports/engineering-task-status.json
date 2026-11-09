@@ -5511,10 +5511,23 @@
     {
       "id": "14-06",
       "description": "Ablate each novel component: relations, negation scope, temporality, evidence coverage, model opinion and confidence/abstention.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/component_ablation.py",
+          "sha256": "1d53e56905e40621967d04627785a13d626605ff4ba4ae2e7fd064f181df8a86",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_component_ablation.py",
+          "sha256": "8fb15c8fa68db0b4bdaeab203b7a83897196b5704854e3c6f571ad70517e59b8",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_component_ablation_exposes_each_novel_component"
+      ],
+      "limitations": "The configuration exposes all ablation dimensions; outcome measurement remains dependent on fixed evaluation cases."
     },
     {
       "id": "14-07",

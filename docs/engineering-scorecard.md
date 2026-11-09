@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**223/247 verified (90.28%).**
+**224/247 verified (90.69%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -234,7 +234,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 14-03 — Implement the proposed method behind a feature flag; baseline behavior stays frozen and reproducible. | verified | [services/feature_flags.py](../services/feature_flags.py), [tests/test_feature_flags.py](../tests/test_feature_flags.py) | test_feature_flag_keeps_deterministic_baseline_by_default; test_feature_flag_requires_declared_baseline |
 | 14-04 — Use existing predeclared development data for optimization, and developer-authored synthetic adversarial oracles for reproducibility. | verified | [services/data_provenance.py](../services/data_provenance.py), [tests/test_data_provenance.py](../tests/test_data_provenance.py) | test_data_provenance_distinguishes_development_and_synthetic_oracles; test_data_provenance_rejects_ambiguous_labels |
 | 14-05 — Compare at least four methods on identical cases: lexical rules, relation rules, LLM-only verdict, combined evidence-graph method. | verified | [services/method_comparison.py](../services/method_comparison.py), [tests/test_method_comparison.py](../tests/test_method_comparison.py) | test_method_comparison_requires_identical_case_coverage |
-| 14-06 — Ablate each novel component: relations, negation scope, temporality, evidence coverage, model opinion and confidence/abstention. | not_started | — | Not yet verified against this checklist. |
+| 14-06 — Ablate each novel component: relations, negation scope, temporality, evidence coverage, model opinion and confidence/abstention. | verified | [services/component_ablation.py](../services/component_ablation.py), [tests/test_component_ablation.py](../tests/test_component_ablation.py) | test_component_ablation_exposes_each_novel_component |
 | 14-07 — Measure critical-error misses, benign false blocks, coverage, runtime, memory and reviewer-like correction events in simulated workflows. | not_started | — | Not yet verified against this checklist. |
 | 14-08 — Add perturbation stress tests with controlled surface paraphrases, speaker swaps, omitted clauses, reversed temporal qualifiers and misleading instructions. | verified | [services/perturbation_cases.py](../services/perturbation_cases.py), [tests/test_perturbation_cases.py](../tests/test_perturbation_cases.py) | test_perturbation_cases_cover_required_adversarial_variants |
 | 14-09 — Report uncertainty via exact denominators and case-level paired intervals; treat small synthetic data as mechanistic evidence only. | not_started | — | Not yet verified against this checklist. |
