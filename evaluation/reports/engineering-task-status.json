@@ -2694,10 +2694,29 @@
     {
       "id": "09-13",
       "description": "Enforce bounds/consistency checks for all benchmark arithmetic: numerator, denominator, percentage, zero cases, timeouts, hash mismatch.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/metric_validation.py",
+          "sha256": "c46982c82f4b039604044de40f696503c86b667959367eef0c802b7dc256ea65",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_metric_validation.py",
+          "sha256": "51e4cbc52b90de0082b920cc7b44b7b58a1d1c2831d97ec6084a20912e8a1356",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/metric-validation.md",
+          "sha256": "95847dd88fa767f1a5d8a136efccae277d1d2ca67f568cc786aa5f05cd5c58d2",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_metric_validation_enforces_counts_percentages_and_failures",
+        "test_metric_validation_preserves_zero_case_and_hash_mismatch_failures"
+      ],
+      "limitations": "Validator covers report arithmetic and status fields; it does not independently establish reference quality or clinical correctness."
     },
     {
       "id": "09-14",

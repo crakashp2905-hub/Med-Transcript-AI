@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**117/247 verified (47.37%).**
+**118/247 verified (47.77%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -163,7 +163,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 09-10 — Run novel synthetic tests separately from upstream human transcripts; never merge synthetic success into clinically valid performance estimates. | verified | [tests/test_synthetic_separation.py](../tests/test_synthetic_separation.py), [evaluation/reports/completion-clinical-models-v2-2026-10-25.json](../evaluation/reports/completion-clinical-models-v2-2026-10-25.json), [services/release_policy.py](../services/release_policy.py) | test_synthetic_oracle_reports_are_separate_from_public_benchmark_claims |
 | 09-11 — Implement pairwise regression checks to reject parameter changes that regress critical-safety synthetic tests even when aggregate WER improves. | verified | [services/regression_gate.py](../services/regression_gate.py), [tests/test_regression_gate.py](../tests/test_regression_gate.py), [docs/regression-gate.md](../docs/regression-gate.md) | test_safety_regression_blocks_even_when_wer_improves; test_regression_gate_rejects_incomparable_or_incomplete_vectors |
 | 09-12 — Maintain exact provenance of full and partial benchmark runs with retry ancestry and per-case completion data. | verified | [services/benchmark_provenance.py](../services/benchmark_provenance.py), [tests/test_benchmark_provenance.py](../tests/test_benchmark_provenance.py), [services/detailed_benchmark.py](../services/detailed_benchmark.py) | test_provenance_retains_failed_partial_and_retry_ancestry; test_resume_rejects_altered_references_models_or_scores |
-| 09-13 — Enforce bounds/consistency checks for all benchmark arithmetic: numerator, denominator, percentage, zero cases, timeouts, hash mismatch. | not_started | — | Not yet verified against this checklist. |
+| 09-13 — Enforce bounds/consistency checks for all benchmark arithmetic: numerator, denominator, percentage, zero cases, timeouts, hash mismatch. | verified | [services/metric_validation.py](../services/metric_validation.py), [tests/test_metric_validation.py](../tests/test_metric_validation.py), [docs/metric-validation.md](../docs/metric-validation.md) | test_metric_validation_enforces_counts_percentages_and_failures; test_metric_validation_preserves_zero_case_and_hash_mismatch_failures |
 | 09-14 — Add model-independent reference quality diagnostics for uncertain labels, overlapping speakers, truncated transcripts and missing annotations. | not_started | — | Not yet verified against this checklist. |
 | 09-15 — Create a model/experiment comparison view that discloses task, dataset and evaluation scopes, avoiding cross-dataset ranking errors. | not_started | — | Not yet verified against this checklist. |
 | 09-16 — Re-run saved benchmarks through a read-only scorer from committed reports; verify scores match without model weights. | verified | [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_replay_rejects_score_reference_coverage_and_denominator_mutations |
