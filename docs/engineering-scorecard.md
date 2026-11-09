@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**150/247 verified (60.73%).**
+**151/247 verified (61.13%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -46,7 +46,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 02-10 — Check timestamp monotonicity, duration bounds, gaps, drift, duplicates, repeated segments and hallucinations in long silence. | verified | [services/asr/transcripts.py](../services/asr/transcripts.py), [tests/test_transcript_timestamp_integrity.py](../tests/test_transcript_timestamp_integrity.py) | test_transcript_records_gaps_and_preserves_original_timeline; test_transcript_rejects_invalid_or_nonmonotonic_timestamps; test_digital_silence_cannot_have_hallucinated_segments |
 | 02-11 — Add a robust transcription postprocessor that preserves uncertainty, negation, doses and source words; any correction suggestion must be separately recorded, never overwrite ASR raw output. | verified | [services/asr/postprocess.py](../services/asr/postprocess.py), [tests/test_asr_postprocess.py](../tests/test_asr_postprocess.py) | test_postprocessor_keeps_raw_negation_and_dose_separate_from_suggestions |
 | 02-12 — Make clinical terminology hints opt-in and scoped to a fixed, non-leaking local lexicon; measure both benefit and medication-name hallucination risk. | verified | [services/terminology_hints.py](../services/terminology_hints.py), [tests/test_terminology_hints.py](../tests/test_terminology_hints.py) | test_terminology_hints_are_opt_in_and_non_mutating |
-| 02-13 — Benchmark model throughput and memory on existing hardware under controlled warm and cold runs; record CPU threads, RAM, runtime and inference queue wait. | not_started | — | Not yet verified against this checklist. |
+| 02-13 — Benchmark model throughput and memory on existing hardware under controlled warm and cold runs; record CPU threads, RAM, runtime and inference queue wait. | verified | [services/throughput_measurement.py](../services/throughput_measurement.py), [tests/test_throughput_measurement.py](../tests/test_throughput_measurement.py) | test_throughput_record_captures_warm_cold_hardware_and_queue_fields; test_throughput_record_rejects_invalid_mode |
 | 02-14 — Evaluate primary ASR on the existing short-clip, three-long and MedDistractAudio corpora separately; do not synthesize a single misleading universal WER. | not_started | — | Not yet verified against this checklist. |
 | 02-15 — Run all installed local ASR configurations with pinned artifacts and source hashes; preserve `unable_to_run` status where weights are absent. | not_started | — | Not yet verified against this checklist. |
 | 02-16 — Add adversarial synthetic audio for silence, clipping, repeated prompts, numerical doses, medical homophones and intentionally ambiguous utterances. | not_started | — | Not yet verified against this checklist. |

@@ -834,10 +834,24 @@
     {
       "id": "02-13",
       "description": "Benchmark model throughput and memory on existing hardware under controlled warm and cold runs; record CPU threads, RAM, runtime and inference queue wait.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/throughput_measurement.py",
+          "sha256": "07a70020197f7bc7c9e003203ef6830003338f7968b0cc2cfdd51b8ffec55c7a",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_throughput_measurement.py",
+          "sha256": "3e25f41b801aaf290d9e862b45bcf5846110759a9bafd8c47bb35c44c40e820a",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_throughput_record_captures_warm_cold_hardware_and_queue_fields",
+        "test_throughput_record_rejects_invalid_mode"
+      ],
+      "limitations": "Measurement envelope is verified and explicitly disclaims clinical capacity; actual hardware runs remain environment-dependent."
     },
     {
       "id": "02-14",
