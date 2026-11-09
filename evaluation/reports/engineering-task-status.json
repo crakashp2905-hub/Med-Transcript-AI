@@ -880,10 +880,24 @@
     {
       "id": "02-17",
       "description": "Add metamorphic tests: volume change, added leading/trailing silence, mild resampling and split/rejoin should not silently corrupt source integrity.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/asr/metamorphic.py",
+          "sha256": "476f1e3af63cfb5a00cf17b6224c1a6b110033316f9f80a2fc15617e16c5a61d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_metamorphic_audio.py",
+          "sha256": "00bbd516a5dc226abd18bea4b771cee02fc6891a03ba3968858b3c70c1fa401d",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_metamorphic_transform_records_source_identity",
+        "test_metamorphic_transform_rejects_untracked_variant"
+      ],
+      "limitations": "The transform contract and provenance checks are verified; actual audio invariance measurements remain dependent on available local recordings and codecs."
     },
     {
       "id": "02-18",
