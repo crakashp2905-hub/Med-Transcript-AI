@@ -883,10 +883,24 @@
     {
       "id": "02-14",
       "description": "Evaluate primary ASR on the existing short-clip, three-long and MedDistractAudio corpora separately; do not synthesize a single misleading universal WER.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/corpus_partition.py",
+          "sha256": "523ee13dd67258c91885f8b69e1827880768051b1e309d20bed6f931707dc477",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_corpus_partition.py",
+          "sha256": "776196c59e795d49f6396c4d8c985b318bf8d06a47e56891281a0d0dd5b1b888",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_corpus_results_remain_separate",
+        "test_corpus_partition_rejects_universal_wer"
+      ],
+      "limitations": "Partition enforcement is verified; actual corpus runs remain constrained by available local audio/model artifacts."
     },
     {
       "id": "02-15",
