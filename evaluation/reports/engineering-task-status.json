@@ -634,10 +634,23 @@
     {
       "id": "02-03",
       "description": "Report WER/CER in both raw and normalized form and retain punctuation, units, numerals and drug spellings in clinical-term metrics.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/clinical_metrics.py",
+          "sha256": "02ab031bf02ae888fd75254b36ee6f7a4bc083102ecf51c55fe24efeff3b0e8c",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_clinical_metrics_report.py",
+          "sha256": "4575e2757854cdf545f63b416855de6465669bcec47b4eb955a6b09a1e019eca",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_metrics_report_raw_normalized_and_clinical_term_dimensions"
+      ],
+      "limitations": "Raw and normalized lexical/CER fields and annotated clinical-term counts are verified; automated metrics do not establish independent clinical adjudication."
     },
     {
       "id": "02-04",

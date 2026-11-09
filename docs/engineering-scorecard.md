@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**145/247 verified (58.70%).**
+**146/247 verified (59.11%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -36,7 +36,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 01-16 — Remove dead paths and duplicative experiment helpers only after snapshot-based reproduction of historical reports succeeds. | not_started | — | Not yet verified against this checklist. |
 | 02-01 — Build an error taxonomizer for substitution, deletion, insertion, silences, disfluency, boundary splits, uncertain references and overlap; export per-case diagnostics without editing the references. | not_started | — | Not yet verified against this checklist. |
 | 02-02 — Partition errors by patient/clinician reference roles, but explicitly mark that reference roles are not automatically predicted diarization. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [evaluation/reports/error-taxonomy-v2/report.json](../evaluation/reports/error-taxonomy-v2/report.json) | test_role_uncertainty_buckets_do_not_change_primary_denominator_or_invent_speaker |
-| 02-03 — Report WER/CER in both raw and normalized form and retain punctuation, units, numerals and drug spellings in clinical-term metrics. | not_started | — | Not yet verified against this checklist. |
+| 02-03 — Report WER/CER in both raw and normalized form and retain punctuation, units, numerals and drug spellings in clinical-term metrics. | verified | [services/clinical_metrics.py](../services/clinical_metrics.py), [tests/test_clinical_metrics_report.py](../tests/test_clinical_metrics_report.py) | test_metrics_report_raw_normalized_and_clinical_term_dimensions |
 | 02-04 — Perform oracle-free, source-only chunk selection; compare 30-second fixed, pause-aware, overlap-aware and source-time-only strategies with all parameters frozen before scoring. | not_started | — | Not yet verified against this checklist. |
 | 02-05 — Study whether reference uncertainty/overlap accounts for measured errors without excluding those words from the primary frozen score. | verified | [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [evaluation/reports/error-taxonomy-v2/report.json](../evaluation/reports/error-taxonomy-v2/report.json) | test_role_uncertainty_buckets_do_not_change_primary_denominator_or_invent_speaker |
 | 02-06 — Isolate native-empty outputs from actual decoder exceptions; allow empty speech only under a documented model-specific policy and preserve every missing word penalty. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/full_empty_reconstruction.py](../services/full_empty_reconstruction.py) | test_empty_output_opt_in_never_hides_other_runtime_failures; test_posthoc_empty_reconstruction_preserves_original_failures; test_other_failures_and_stale_proofs_cannot_be_admitted |

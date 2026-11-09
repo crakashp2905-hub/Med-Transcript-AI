@@ -41,9 +41,13 @@ def evaluate(reference, hypothesis, expected, observed, failed=False):
     chars = len(reference.lower())
     char_edits = character_distance(reference.lower(), hypothesis.lower())
     matched, missing, added = gold & actual, gold-actual, actual-gold
-    return {"metric_version": VERSION, **score(reference, hypothesis),
+    lexical = score(reference, hypothesis)
+    return {"metric_version": VERSION, **lexical,
+        "raw_wer": lexical['raw_edits'] / lexical['raw_reference_words'] if lexical['raw_reference_words'] else None,
+        "normalized_wer": lexical['normalized_edits'] / lexical['reference_words'] if lexical['reference_words'] else None,
         "character_edits": char_edits, "character_error_rate": char_edits/chars if chars else None,
-        "reference_characters": chars, "failed": failed,
+        "reference_characters": chars, "raw_cer": char_edits / chars if chars else None,
+        "normalized_cer": char_edits / chars if chars else None, "failed": failed,
         "concept_true_positive": hits, "concept_omissions": omissions, "concept_insertions": insertions,
         "concept_precision": hits/(hits+insertions) if hits+insertions else None,
         "concept_recall": hits/(hits+omissions) if hits+omissions else None,
