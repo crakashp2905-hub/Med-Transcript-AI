@@ -1956,10 +1956,23 @@
     {
       "id": "05-08",
       "description": "Measure note factuality, exact preservation, section correctness, length, duplication, omissions, unsafe claims, latency and timeout rate.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/note_quality_metrics.py",
+          "sha256": "48b38c030ee3430e61fe65cc239747c43ed45f78e716041cb187da5ab3eb1c0d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_note_quality_metrics.py",
+          "sha256": "747edde883628c29ecbab49e4db6dbd8ab56aa7b053caf0cc1d39a0f1a9adc97",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_note_quality_metrics_preserve_all_dimensions_and_timeout"
+      ],
+      "limitations": "Metric envelope records all requested dimensions and timeouts without claiming clinical accuracy."
     },
     {
       "id": "05-09",

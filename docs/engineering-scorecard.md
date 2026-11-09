@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**183/247 verified (74.09%).**
+**184/247 verified (74.49%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -94,7 +94,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 05-05 — Compare Qwen 1.5B and 7B already installed with identical prompts, inputs, timeout budgets, model digests and full failure accounting. | not_started | — | Not yet verified against this checklist. |
 | 05-06 — Diagnose and publish the 8-case drafting result (8/8 deterministic, 3/8 Qwen 1.5B with 2 failures, 0/8 Qwen 7B with 8 failures) without hiding poor models. | verified | [evaluation/reports/offline-acceptance-v7.json](../evaluation/reports/offline-acceptance-v7.json), [docs/drafting-screen-diagnosis.md](../docs/drafting-screen-diagnosis.md), [evaluation/reports/scope-separated-baselines-v1.json](../evaluation/reports/scope-separated-baselines-v1.json) | test_historical_scopes_reproduce_without_combining_datasets_or_qualifying_models; test_saved_draft_screen_summary_checks_outputs_instead_of_trusting_scalar_claims |
 | 05-07 — Try smaller structured prompts, source-to-note subtask decomposition, grammar-constrained output and chunked fact sets only as separate ablations. | verified | [services/prompt_ablations.py](../services/prompt_ablations.py), [tests/test_prompt_ablations.py](../tests/test_prompt_ablations.py) | test_prompt_ablations_are_separate_and_do_not_change_active_policy; test_unknown_prompt_ablation_rejected |
-| 05-08 — Measure note factuality, exact preservation, section correctness, length, duplication, omissions, unsafe claims, latency and timeout rate. | not_started | — | Not yet verified against this checklist. |
+| 05-08 — Measure note factuality, exact preservation, section correctness, length, duplication, omissions, unsafe claims, latency and timeout rate. | verified | [services/note_quality_metrics.py](../services/note_quality_metrics.py), [tests/test_note_quality_metrics.py](../tests/test_note_quality_metrics.py) | test_note_quality_metrics_preserve_all_dimensions_and_timeout |
 | 05-09 — Add a configurable deterministic note-style layer, preserving the meaning and evidence of each assertion. | verified | [services/note_style.py](../services/note_style.py), [tests/test_note_style.py](../tests/test_note_style.py) | test_note_style_preserves_statements_and_evidence |
 | 05-10 — Ensure copied clinician-entered facts are visibly marked as clinician additions, not fabricated source citations. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/review/engine.py](../services/review/engine.py) | test_unreviewed_facts_and_invented_clinician_citation_block; test_full_review_approval_export_and_amendment |
 | 05-11 — Ensure every generated note statement exposes the underlying evidence and includes a source version watermark. | verified | [services/review/engine.py](../services/review/engine.py), [services/review/service.py](../services/review/service.py), [tests/test_review_workflow.py](../tests/test_review_workflow.py) | test_full_review_approval_export_and_amendment |
