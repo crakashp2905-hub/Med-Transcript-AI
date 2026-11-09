@@ -39,27 +39,32 @@ def prepare(root):
 
 def walkthrough(app, config):
     from fastapi.testclient import TestClient
+    from services.stage_timing import StageTimer
     client = TestClient(app)
+    timing = StageTimer()
+    timing.mark_unavailable('recording', 'silent_fixture_no_microphone')
+    timing.mark_unavailable('asr', 'scripted_demo_no_asr')
+    timing.mark_unavailable('diarization', 'single_scripted_role')
     headers = {'Authorization': 'Bearer '+config['clinician_key']}
     def require(response, expected):
         if response.status_code != expected:
             raise ValueError(f'offline_workflow_unexpected_status_{response.status_code}')
         return response.json()
-    eid = require(client.post('/v1/demo', headers=headers), 201)['encounter_id']
+    eid = timing.measure('transfer', lambda: require(client.post('/v1/demo', headers=headers), 201)['encounter_id'])
     base = f'/v1/encounters/{eid}'
-    tx = require(client.get(base+'/workspace', headers=headers), 200)['transcript']
-    tx = require(client.patch(base+'/transcripts/'+tx['id'], headers={**headers, 'If-Match': '"'+tx['sha256']+'"'}, json={
+    tx = timing.measure('normalization', lambda: require(client.get(base+'/workspace', headers=headers), 200)['transcript'])
+    tx = timing.measure('extraction', lambda: require(client.patch(base+'/transcripts/'+tx['id'], headers={**headers, 'If-Match': '"'+tx['sha256']+'"'}, json={
         'segments': [{'segment_id': s['segment_id'], 'role': s['role'], 'text': s['text']} for s in tx['segments']],
         'english_confirmed': True, 'source_completeness_reviewed': True,
         'source_review_reason': 'Programmatic synthetic software check only; no human clinical attestation.',
-        'correction_reason': 'Programmatic developer-authored fixture review, not independent adjudication.'}), 201)
+        'correction_reason': 'Programmatic developer-authored fixture review, not independent adjudication.'}), 201))
     facts = require(client.get(base+'/facts', headers=headers), 200)['facts']
     for fact in facts:
         fact.update(reviewed=True, critical_reviewed=True, subject='patient', temporality='current')
     mutated = deepcopy(facts)
     dose = next(f for f in mutated if '0.5 mg' in f['text'])
     dose['text'] = dose['text'].replace('0.5 mg', '5 mg')
-    bad = require(client.post(base+'/drafts', headers=headers, json={'transcript_version_id': tx['id'], 'facts': mutated}), 201)
+    bad = timing.measure('drafting', lambda: require(client.post(base+'/drafts', headers=headers, json={'transcript_version_id': tx['id'], 'facts': mutated}), 201))
     if bad['verification']['gate'] == 'ready':
         raise ValueError('unsafe_synthetic_dose_mutation_admitted')
     def approval(note):
@@ -67,12 +72,12 @@ def walkthrough(app, config):
             'expected_note_sha256': note['sha256'], 'verification_report_id': note['verification_report_id'],
             'patient_identifiers_reconfirmed': True})
     require(approval(bad['note']), 409)
-    good = require(client.patch(base+'/notes/'+bad['note']['id'], headers={**headers, 'If-Match': '"'+bad['note']['sha256']+'"'},
-        json={'transcript_version_id': tx['id'], 'facts': facts}), 201)
-    approved = require(approval(good['note']), 201)
+    good = timing.measure('verification', lambda: require(client.patch(base+'/notes/'+bad['note']['id'], headers={**headers, 'If-Match': '"'+bad['note']['sha256']+'"'},
+        json={'transcript_version_id': tx['id'], 'facts': facts}), 201))
+    approved = timing.measure('clinician_review', lambda: require(approval(good['note']), 201))
     exports = []
     for format in ('markdown', 'text', 'json', 'fhir'):
-        receipt = require(client.post(base+'/exports', headers=headers, json={'approval_id': approved['id'], 'format': format}), 201)
+        receipt = timing.measure('export', lambda format=format: require(client.post(base+'/exports', headers=headers, json={'approval_id': approved['id'], 'format': format}), 201))
         body = client.get(receipt['download_url'], headers=headers)
         import hashlib
         if body.status_code != 200 or hashlib.sha256(body.content).hexdigest() != receipt['sha256']:
@@ -85,6 +90,7 @@ def walkthrough(app, config):
             'synthetic_dose_error_blocked': True, 'unsafe_approval_http_status': 409,
             'corrected_version_approved': True, 'exports': exports, 'viewer_write_denied': True,
             'provider_calls': 0, 'independent_clinical_gold': False, 'real_patient_release_authorized': False,
+            'stage_latency': timing.report(),
             'limitations': 'Programmatic scripted review flags exercise software only. Silent transport audio is not clinical speech or ASR accuracy evidence.'}
 
 

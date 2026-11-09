@@ -1408,7 +1408,7 @@
         },
         {
           "path": "services/offline_demo.py",
-          "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663",
+          "sha256": "57d2616d8d943db78dd2ca1de5c022a6d76b926c1ffe34be852a59377165fed2",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -3214,10 +3214,28 @@
     {
       "id": "12-02",
       "description": "Collect stage-level latency: recording, transfer, normalization, ASR, diarization, extraction, drafting, verification, clinician review, export.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "implemented",
+      "evidence": [
+        {
+          "path": "services/stage_timing.py",
+          "sha256": "b4fe926a3077c90dcd91dc30b3e61c0df98d525e0a24f45031e91cf96c3aec0c",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "services/offline_demo.py",
+          "sha256": "57d2616d8d943db78dd2ca1de5c022a6d76b926c1ffe34be852a59377165fed2",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_stage_timing.py",
+          "sha256": "a18a495ab92a96155fc75e01ee734dfa7ff78f5e426ad9f2283609517ae6599a",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "python -m pytest tests/test_stage_timing.py tests/test_offline_engineering.py::test_offline_scripted_workflow_blocks_dose_error_and_viewer_write -q"
+      ],
+      "limitations": "Synthetic workflow instrumentation only. Recording, ASR and diarization are explicitly reported unavailable; extraction is source-review telemetry. No real-device or clinical latency claim."
     },
     {
       "id": "12-03",
@@ -3448,7 +3466,7 @@
       "evidence": [
         {
           "path": "docs/offline-acceptance-summary.md",
-          "sha256": "13034d5097151219cc58b51db6edb01b3dc8918844a77db8613b0177c9b12c02",
+          "sha256": "1668a6a418bf5643c412408655ed81e7acbde0e68e5a9d7f564fcb1da2295f7f",
           "hash_mode": "normalized_source_text"
         },
         {
@@ -3627,7 +3645,7 @@
         },
         {
           "path": "services/offline_demo.py",
-          "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663",
+          "sha256": "57d2616d8d943db78dd2ca1de5c022a6d76b926c1ffe34be852a59377165fed2",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3649,7 +3667,7 @@
         },
         {
           "path": "services/offline_demo.py",
-          "sha256": "d33952dd87bdfdd9e49cd6f222bd31542ef4a802f72ca22a9ccaef7bba997663",
+          "sha256": "57d2616d8d943db78dd2ca1de5c022a6d76b926c1ffe34be852a59377165fed2",
           "hash_mode": "normalized_source_text"
         }
       ],

@@ -106,6 +106,9 @@ def test_offline_scripted_workflow_blocks_dose_error_and_viewer_write(tmp_path,m
     result=walkthrough(app,config)
     assert result['synthetic_dose_error_blocked'] and result['viewer_write_denied']
     assert result['corrected_version_approved'] and len(result['exports'])==4
+    assert set(result['stage_latency']['stages']) == {'recording','transfer','normalization','asr','diarization','extraction','drafting','verification','clinician_review','export'}
+    assert result['stage_latency']['stages']['recording']['status']=='unavailable'
+    assert result['stage_latency']['complete'] is False
     with pytest.raises(FileExistsError):prepare(tmp_path/'isolated')
 
 
