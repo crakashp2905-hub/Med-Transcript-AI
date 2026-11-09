@@ -5468,10 +5468,24 @@
     {
       "id": "14-04",
       "description": "Use existing predeclared development data for optimization, and developer-authored synthetic adversarial oracles for reproducibility.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/data_provenance.py",
+          "sha256": "65b02238d6990fb2d998a77e8b3654ad654639aca3af177d4fe3a315c2d0387f",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_data_provenance.py",
+          "sha256": "8705cc08429f4612402a931c5d713b6cfe20e2ec57132975a5f31acbdcd69ee6",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_data_provenance_distinguishes_development_and_synthetic_oracles",
+        "test_data_provenance_rejects_ambiguous_labels"
+      ],
+      "limitations": "Provenance labels constrain optimization eligibility; independent clinical annotation remains separate."
     },
     {
       "id": "14-05",
