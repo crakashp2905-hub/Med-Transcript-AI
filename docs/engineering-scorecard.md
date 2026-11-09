@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**198/247 verified (80.16%).**
+**199/247 verified (80.57%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -128,7 +128,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 07-05 — Add deterministic media format tests for WAV, MP3/M4A/WebM/Ogg where local codecs exist; unsupported codecs must fail safely. | verified | [services/media_formats.py](../services/media_formats.py), [tests/test_media_formats.py](../tests/test_media_formats.py) | test_media_formats_fail_safely_when_codec_is_missing_or_unknown; test_media_formats_accept_available_known_codec |
 | 07-06 — Test browser quota exhaustion, storage eviction and microphone removal without claiming the recording was successfully retained. | verified | [services/retention_state.py](../services/retention_state.py), [tests/test_retention_state.py](../tests/test_retention_state.py) | test_browser_retention_failures_never_claim_success; test_persisted_state_is_explicit |
 | 07-07 — Keep provisional previews separate from final transcript revisions; no preview segment may be approved. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/asr/worker.py](../services/asr/worker.py) | test_live_preview_never_becomes_a_saved_source_or_note |
-| 07-08 — Add a durable queue dashboard with per-stage state, attempts, lease owner, timeout and consent/revocation state. | not_started | — | Not yet verified against this checklist. |
+| 07-08 — Add a durable queue dashboard with per-stage state, attempts, lease owner, timeout and consent/revocation state. | verified | [services/queue_dashboard.py](../services/queue_dashboard.py), [tests/test_queue_dashboard.py](../tests/test_queue_dashboard.py) | test_queue_dashboard_exposes_operational_and_consent_fields; test_queue_dashboard_rejects_invalid_state |
 | 07-09 — Test worker crash and recovery at every transaction boundary, including stale lease and resumed channel checkpoints. | not_started | — | Not yet verified against this checklist. |
 | 07-10 — Prevent two processes from processing the same heavyweight model slot, with a bounded worker lock and informative queue status. | verified | [evaluation/reports/existing-capability-review-v1.json](../evaluation/reports/existing-capability-review-v1.json), [evaluation/reports/offline-acceptance-v4.json](../evaluation/reports/offline-acceptance-v4.json), [services/inference_slot.py](../services/inference_slot.py) | test_second_process_cannot_admit_inference_until_slot_is_released; test_single_heavy_worker_claim_is_enforced |
 | 07-11 — Retest the eight-channel 20/30-minute synthetic duration stress scenario; distinguish transport throughput from transcription accuracy. | not_started | — | Not yet verified against this checklist. |

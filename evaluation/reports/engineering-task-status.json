@@ -2863,10 +2863,24 @@
     {
       "id": "07-08",
       "description": "Add a durable queue dashboard with per-stage state, attempts, lease owner, timeout and consent/revocation state.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/queue_dashboard.py",
+          "sha256": "d5442c66d4e6c0c958afe1b41bbe8af9ffc85b333fdf6b4e0a2e4e0c94e0b40d",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_queue_dashboard.py",
+          "sha256": "e269282646d9d96b7f1ca882ef2b95b84b4eac7086632431e25da397a55f0319",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_queue_dashboard_exposes_operational_and_consent_fields",
+        "test_queue_dashboard_rejects_invalid_state"
+      ],
+      "limitations": "The snapshot is serializable and deterministic; persistence/UI wiring remains deployment-specific."
     },
     {
       "id": "07-09",
