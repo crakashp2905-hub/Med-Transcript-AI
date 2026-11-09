@@ -47,6 +47,15 @@ def test_offline_preflight_reports_cached_capabilities_without_install_or_networ
     assert report['model_contents_hashed'] is True
 
 
+def test_local_demo_launchers_are_isolated_and_loopback_bound():
+    compose = Path('compose.yaml').read_text(encoding='utf-8')
+    launcher = Path('scripts/start.ps1').read_text(encoding='utf-8')
+    assert "127.0.0.1:8000:8000" in compose
+    assert 'internal: true' in compose and 'read_only: true' in compose
+    assert 'data/local-config.json' in launcher and 'services.launch' in launcher
+    assert 'NoBrowser' in launcher and 'WithPostgres' in launcher
+
+
 def test_offline_guard_denies_external_dns_tcp_udp_but_preserves_loopback():
     program='''
 import socket

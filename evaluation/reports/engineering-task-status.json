@@ -3334,7 +3334,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "3f09c082ca0983ee1c9a011577ba2ddda4205b2967b50383d967287eaa0c36a0",
+          "sha256": "2638650d732256084a4d31fa0c8c9bbc4825bdfa95242426c17a7ae8a597a982",
           "hash_mode": "normalized_source_text"
         }
       ],
@@ -3436,10 +3436,28 @@
     {
       "id": "13-06",
       "description": "Provide a Linux Docker Compose demo and Windows PowerShell local demo with isolated demo storage and cleanup.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "compose.yaml",
+          "sha256": "aad1f808a2f98e8c2d6d81a9fa3981dd83d738d0bb058d4a948256013eb40736",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "scripts/start.ps1",
+          "sha256": "5fa4f39f5f22a5e4be26f05743397e6a742217bf48900e881084a0ed671fd680",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_offline_engineering.py",
+          "sha256": "2638650d732256084a4d31fa0c8c9bbc4825bdfa95242426c17a7ae8a597a982",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_local_demo_launchers_are_isolated_and_loopback_bound"
+      ],
+      "limitations": "Static launcher and Compose isolation verified; Docker runtime and physical Windows cleanup were not available in this environment."
     },
     {
       "id": "13-07",
@@ -3493,7 +3511,7 @@
         },
         {
           "path": "tests/test_offline_engineering.py",
-          "sha256": "3f09c082ca0983ee1c9a011577ba2ddda4205b2967b50383d967287eaa0c36a0",
+          "sha256": "2638650d732256084a4d31fa0c8c9bbc4825bdfa95242426c17a7ae8a597a982",
           "hash_mode": "normalized_source_text"
         }
       ],
