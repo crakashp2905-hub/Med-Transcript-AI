@@ -2748,10 +2748,29 @@
     {
       "id": "09-15",
       "description": "Create a model/experiment comparison view that discloses task, dataset and evaluation scopes, avoiding cross-dataset ranking errors.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/comparison_scope.py",
+          "sha256": "1c808f469c50cfb31356c24786e85a27d3508eceafef9f62729a44d8e40794f1",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_comparison_scope.py",
+          "sha256": "6c3e65df09baeb991a896a331580afb0ea1f27b93bfc2d775aa39a2740d1f2fb",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "docs/comparison-scope.md",
+          "sha256": "cf3963f5a631dd503573fbb4e0c6934b7ef11faef72c4f63338e6ce253ac4f7f",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_comparison_keeps_failed_candidates_visible_and_ranks_only_complete_same_scope",
+        "test_comparison_rejects_cross_dataset_rows"
+      ],
+      "limitations": "Scope guard covers comparison preparation; it does not create independent clinical estimates or alter frozen benchmark results."
     },
     {
       "id": "09-16",

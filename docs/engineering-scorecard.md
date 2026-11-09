@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**119/247 verified (48.18%).**
+**120/247 verified (48.58%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -165,7 +165,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 09-12 — Maintain exact provenance of full and partial benchmark runs with retry ancestry and per-case completion data. | verified | [services/benchmark_provenance.py](../services/benchmark_provenance.py), [tests/test_benchmark_provenance.py](../tests/test_benchmark_provenance.py), [services/detailed_benchmark.py](../services/detailed_benchmark.py) | test_provenance_retains_failed_partial_and_retry_ancestry; test_resume_rejects_altered_references_models_or_scores |
 | 09-13 — Enforce bounds/consistency checks for all benchmark arithmetic: numerator, denominator, percentage, zero cases, timeouts, hash mismatch. | verified | [services/metric_validation.py](../services/metric_validation.py), [tests/test_metric_validation.py](../tests/test_metric_validation.py), [docs/metric-validation.md](../docs/metric-validation.md) | test_metric_validation_enforces_counts_percentages_and_failures; test_metric_validation_preserves_zero_case_and_hash_mismatch_failures |
 | 09-14 — Add model-independent reference quality diagnostics for uncertain labels, overlapping speakers, truncated transcripts and missing annotations. | verified | [services/detailed_diagnostics.py](../services/detailed_diagnostics.py), [tests/test_detailed_diagnostics.py](../tests/test_detailed_diagnostics.py), [docs/detailed-evaluation-2026-10-29.md](../docs/detailed-evaluation-2026-10-29.md) | test_lexical_counts_preserve_units_and_negation_but_do_not_claim_clinical_gold; test_donor_detector_excludes_phrases_already_in_foreground |
-| 09-15 — Create a model/experiment comparison view that discloses task, dataset and evaluation scopes, avoiding cross-dataset ranking errors. | not_started | — | Not yet verified against this checklist. |
+| 09-15 — Create a model/experiment comparison view that discloses task, dataset and evaluation scopes, avoiding cross-dataset ranking errors. | verified | [services/comparison_scope.py](../services/comparison_scope.py), [tests/test_comparison_scope.py](../tests/test_comparison_scope.py), [docs/comparison-scope.md](../docs/comparison-scope.md) | test_comparison_keeps_failed_candidates_visible_and_ranks_only_complete_same_scope; test_comparison_rejects_cross_dataset_rows |
 | 09-16 — Re-run saved benchmarks through a read-only scorer from committed reports; verify scores match without model weights. | verified | [evaluation/reports/offline-acceptance-v3.json](../evaluation/reports/offline-acceptance-v3.json) | test_replay_rejects_score_reference_coverage_and_denominator_mutations |
 | 09-17 — Label every claimed method novelty as `hypothesis` until there is a distinct algorithm with an ablation improvement over a fair baseline. | not_started | — | Not yet verified against this checklist. |
 | 09-18 — Generate a reproducibility bundle of model-free commands, artifact hashes, environment manifests and full negative results. | not_started | — | Not yet verified against this checklist. |
