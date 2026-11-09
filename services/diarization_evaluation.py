@@ -43,6 +43,13 @@ def score_turns(reference, predicted):
         'scoring_mapping_is_not_clinician_role_confirmation':True}
 
 
+def separate_workload_metrics(score, *, overlap_error_ms=0, role_confirmation_turns=0):
+    """Keep acoustic error measures separate from clinician confirmation work."""
+    return {**{key: score.get(key) for key in ('diarization_error_rate', 'missed_speaker_ms', 'false_alarm_speaker_ms', 'confused_speaker_ms')},
+            'overlap_error_ms': overlap_error_ms, 'role_confirmation_turns': role_confirmation_turns,
+            'clinical_role_accuracy': None}
+
+
 def run(manifest_path, model_path, output, threshold=None):
     manifest=json.loads(Path(manifest_path).read_text(encoding='utf-8'))
     model=json.loads(Path(model_path).read_text(encoding='utf-8'))

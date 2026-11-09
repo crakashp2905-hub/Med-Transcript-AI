@@ -1,6 +1,6 @@
 # Engineering scorecard
 
-**165/247 verified (66.80%).**
+**166/247 verified (67.21%).**
 
 Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or tool is not a pass.
 
@@ -59,7 +59,7 @@ Clinical release: `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED`. A missing local model or
 | 03-03 — Add deterministic cross-talk, channel swap, empty channel, mono fake-stereo and desynchronization detectors. | verified | [services/channel_detectors.py](../services/channel_detectors.py), [services/channel_signal_audit.py](../services/channel_signal_audit.py), [tests/test_channel_detectors.py](../tests/test_channel_detectors.py) | test_channel_detectors_flag_cross_talk_swap_empty_fake_stereo_and_drift |
 | 03-04 — Construct a robust channel-first baseline using the existing channel-separated recordings; compare its speaker-duration metrics with the single-mic VAD/embedding pipeline. | not_started | — | Not yet verified against this checklist. |
 | 03-05 — Reproduce and pin the current weighted DER baseline (~50.91%) rather than claiming the heuristic clustering is reliable. | verified | [services/diarization_baseline.py](../services/diarization_baseline.py), [tests/test_diarization_baseline.py](../tests/test_diarization_baseline.py) | test_weighted_der_baseline_is_pinned_without_reliability_claim |
-| 03-06 — Measure DER, missed speech, false alarm, confusion time, overlap errors and role-confirmation workload separately. | not_started | — | Not yet verified against this checklist. |
+| 03-06 — Measure DER, missed speech, false alarm, confusion time, overlap errors and role-confirmation workload separately. | verified | [services/diarization_evaluation.py](../services/diarization_evaluation.py), [tests/test_diarization_metrics.py](../tests/test_diarization_metrics.py) | test_diarization_metrics_keep_errors_and_role_workload_separate |
 | 03-07 — Implement minimum-turn duration, speaker-change boundary and false-split diagnostics; record high cluster counts as unresolved rather than normal. | verified | [services/turn_diagnostics.py](../services/turn_diagnostics.py), [tests/test_turn_diagnostics.py](../tests/test_turn_diagnostics.py) | test_turn_diagnostics_preserves_short_turns_and_high_cluster_uncertainty |
 | 03-08 — Investigate deterministic clustering constraints only on development cases, including expected speaker count as a declared experimental assumption. | not_started | — | Not yet verified against this checklist. |
 | 03-09 — Use `unknown` for low-confidence source regions; block role-sensitive note claims until confirmed. | verified | [services/role_guard.py](../services/role_guard.py), [services/diarization.py](../services/diarization.py), [tests/test_role_guard.py](../tests/test_role_guard.py) | test_low_confidence_role_is_unknown_and_blocks_claim; test_confirmed_role_allows_claim |
