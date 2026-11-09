@@ -4432,10 +4432,24 @@
     {
       "id": "11-08",
       "description": "Constrain inputs, audio duration, JSON depth, request sizes, decompression, timestamps and expensive processing stages.",
-      "status": "not_started",
-      "evidence": [],
-      "tests": [],
-      "limitations": "Not yet verified against this checklist."
+      "status": "verified",
+      "evidence": [
+        {
+          "path": "services/input_limits.py",
+          "sha256": "f371813f6a81299eb0520bdf87ea1c9dc424d3c53a286a56b6591ddf57b43ea2",
+          "hash_mode": "normalized_source_text"
+        },
+        {
+          "path": "tests/test_input_limits.py",
+          "sha256": "a75e11dc37a02bebc742c54089de9c6278c6c4a7c9da5a632554044354b21d89",
+          "hash_mode": "normalized_source_text"
+        }
+      ],
+      "tests": [
+        "test_input_limits_reject_expensive_or_oversized_inputs",
+        "test_input_limits_accept_bounded_request"
+      ],
+      "limitations": "The validator enforces configurable bounds before processing; endpoint integration remains adapter-specific."
     },
     {
       "id": "11-09",
