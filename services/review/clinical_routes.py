@@ -26,6 +26,14 @@ class VerifyRequest(Strict):
     fact_ids:list[UUID]|None=Field(default=None,min_length=1,max_length=300)
 
 
+class RetranscribeRequest(Strict):
+    audio_asset_id:str=Field(min_length=1,max_length=200)
+    transcript_version_id:UUID
+    start_ms:int=Field(ge=0)
+    end_ms:int=Field(gt=0)
+    candidate_text:str=Field(min_length=1,max_length=4000)
+
+
 def run_semantic_batches(provider,claims):
     """All-or-nothing advisory verification over bounded, exact-ID batches."""
     identifiers=[str(claim['fact_id']) for claim in claims]
@@ -93,10 +101,29 @@ def register(app,database,identity,encounter,require_processing,get_tx,document,
         from services.review.relationships import analyze_transcript
         try:result['source_relationships']=analyze_transcript(analysis_tx)
         except ValueError:raise HTTPException(422,'clinical_relationship_output_rejected') from None
+        from services.application_pipeline import enrich_fact_proposal
+        result['application_enrichment']=enrich_fact_proposal(
+            transcript_id=tx['id'], facts=result.get('facts', []),
+            relationships=result.get('source_relationships', {}))
+        result['facts']=result['application_enrichment']['facts']
         result['source_batch']={'segment_ids':[s['segment_id'] for s in analysis_tx['segments']],
             'total_source_segments':len(tx['segments']),'unselected_segment_ids':[s['segment_id'] for s in tx['segments'] if s['segment_id'] not in selected],
             'scope':'processed_source_batch_not_clinician_completeness_review'}
         with database() as con:return save(con,eid,actor,'fact_proposal',result,tx,tr['sha256'])
+
+    @app.post('/v1/encounters/{eid}/retranscriptions',status_code=201)
+    def retranscribe(eid:UUID,body:RetranscribeRequest,actor=Depends(identity)):
+        from services.asr.retranscribe_span import retranscribe_span
+        with database() as con:
+            row=encounter(con,eid,actor); require_processing(con,eid)
+            if row['current_transcript'] != str(body.transcript_version_id):
+                raise HTTPException(412,'stale_transcript')
+            candidate=retranscribe_span(audio_asset_id=body.audio_asset_id,
+                start_ms=body.start_ms,end_ms=body.end_ms,
+                source_transcript_version=str(body.transcript_version_id),
+                candidate_text=body.candidate_text)
+            audit(con,actor,'retranscription_candidate_created',body.audio_asset_id)
+            return candidate
 
     @app.post('/v1/encounters/{eid}/semantic-checks',status_code=201)
     def verify(eid:UUID,body:VerifyRequest,actor=Depends(identity)):
