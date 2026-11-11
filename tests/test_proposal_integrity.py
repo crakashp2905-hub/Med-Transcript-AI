@@ -67,8 +67,14 @@ def test_legacy_metric_seals_are_one_time_snapshots_without_rewriting_bodies(set
     with sqlite3.connect(path) as con:
         before=con.execute('SELECT body FROM review_metrics').fetchone()[0]
         con.execute('DROP TABLE review_metric_integrity')
-        con.execute(f'PRAGMA user_version={len(MIGRATIONS)-1}')
-    Store(path);Store(path)
+        seal_version=next(i for i,sql in enumerate(MIGRATIONS,1) if 'CREATE TABLE review_metric_integrity' in sql)
+        con.execute(f'PRAGMA user_version={seal_version-1}')
+    # Replay only the migration under test; later migrations already exist.
+    from unittest.mock import patch
+    with patch('services.api.storage.MIGRATIONS', MIGRATIONS[:seal_version]):
+        Store(path);Store(path)
+    with sqlite3.connect(path) as con:
+        con.execute(f'PRAGMA user_version={len(MIGRATIONS)}')
     with sqlite3.connect(path) as con:
         assert con.execute('SELECT body FROM review_metrics').fetchone()[0]==before
         assert con.execute('SELECT origin FROM review_metric_integrity').fetchone()[0]=='legacy_snapshot_not_external_attestation'

@@ -186,6 +186,12 @@ MIGRATIONS = (
     CREATE INDEX IF NOT EXISTS audit_tenant_time
         ON audit(tenant, time DESC);
     """,
+    """
+    ALTER TABLE jobs ADD COLUMN retranscription TEXT;
+    DROP INDEX jobs_transcription_input;
+    CREATE UNIQUE INDEX jobs_transcription_input ON jobs(upload,profile_sha256)
+        WHERE stage='transcription' AND retranscription IS NULL;
+    """,
 )
 
 

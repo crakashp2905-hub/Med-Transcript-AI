@@ -12,7 +12,12 @@ from services.offline_preflight import inspect
 def build(root='.'):
     root = Path(root).resolve()
     ledger = json.loads((root / 'evaluation/reports/engineering-task-status.json').read_text(encoding='utf-8'))
-    counts = validate(ledger, root)
+    try:
+        counts = validate(ledger, root)
+    except ValueError as exc:
+        counts = {'total': ledger['total'], 'verified': None,
+                  'status': 'evidence_requires_revalidation', 'error_code': str(exc),
+                  'real_patient_release_authorized': False}
     acceptance_path = root / 'data/offline-acceptance-summary.json'
     acceptance = json.loads(acceptance_path.read_text(encoding='utf-8')) if acceptance_path.is_file() else None
     checks = acceptance.get('checks', {}) if isinstance(acceptance, dict) else {}

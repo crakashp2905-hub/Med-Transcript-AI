@@ -19,7 +19,9 @@ def source_inventory():
     patterns=('services/**/*.py','tests/**/*.py','apps/clinician-web/src/**/*',
               'apps/clinician-web/e2e/**/*.ts','apps/clinician-web/*.json','apps/clinician-web/*.ts',
               '.github/workflows/*.yml','pyproject.toml','constraints-ci.txt',
-              'evaluation/primary-endpoint-registry-v1.json','scripts/*','Dockerfile','compose*.yaml')
+              'evaluation/primary-endpoint-registry-v1.json',
+              'evaluation/clinical-bindings-development-v1.json',
+              'evaluation/contracts/*.json','scripts/*','Dockerfile','compose*.yaml')
     return {p.as_posix():sha256(p) for pattern in patterns for p in Path('.').glob(pattern)
             if p.is_file() and '__pycache__' not in p.parts}
 
@@ -75,7 +77,9 @@ def acceptance(version, run_tests=True, run_build=True):
         def tests():
             env = dict(os.environ)
             env.pop('MED_TRANSCRIPT_PROFILE', None)
-            result = subprocess.run([sys.executable, '-m', 'pytest', '-q'], env=env, capture_output=True, text=True, timeout=600)
+            temp=Path('data')/f'pytest-acceptance-{version}-{uuid4()}'
+            result = subprocess.run([sys.executable, '-m', 'pytest', '-q', '--basetemp', str(temp)],
+                                    env=env, capture_output=True, text=True, timeout=600)
             return test_result_summary(result)
         step('backend_tests', tests)
     else:
@@ -97,6 +101,16 @@ def acceptance(version, run_tests=True, run_build=True):
     else:
         results['frontend_build'] = {'status': 'not_run', 'reason': 'explicitly_skipped'}
     step('synthetic_walkthrough', demo)
+    # This fixture is exercised through the same independent rule checker used
+    # by saved notes; it is a development diagnostic, never clinical gold.
+    from services.clinical_evaluation import adversarial
+    def clinical_binding_development():
+        report=adversarial('evaluation/clinical-bindings-development-v1.json')
+        counts=report['confusion_matrix']
+        if counts['false_negative'] or counts['false_positive'] or counts['true_positive']!=6 or counts['true_negative']!=6:
+            raise ValueError('clinical_binding_development_failed')
+        return report
+    step('clinical_binding_development', clinical_binding_development)
     if source_inventory()!=source_hashes:
         results['source_integrity'] = {'status': 'fail', 'reason': 'source_changed_during_acceptance'}
     else:

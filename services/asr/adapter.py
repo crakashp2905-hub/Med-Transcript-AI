@@ -13,7 +13,8 @@ from services.asr.profiles import ASRProfile
 class ASRFailure(Exception):
     SAFE_CODES = {"asr_dependency_missing", "asr_runtime_mismatch", "model_integrity_failure", "model_unavailable",
                   "unsupported_asr_input", "invalid_asr_output", "asset_integrity_failure",
-                  "asset_unavailable", "authorization_required", "worker_lease_lost", "asr_failed"}
+                  "asset_unavailable", "authorization_required", "worker_lease_lost", "asr_failed",
+                  "resource_capacity_exceeded"}
 
     def __init__(self, code):
         self.code = code if code in self.SAFE_CODES else "asr_failed"

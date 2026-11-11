@@ -27,11 +27,12 @@ class VerifyRequest(Strict):
 
 
 class RetranscribeRequest(Strict):
-    audio_asset_id:str=Field(min_length=1,max_length=200)
+    audio_asset_id:UUID
     transcript_version_id:UUID
-    start_ms:int=Field(ge=0)
-    end_ms:int=Field(gt=0)
-    candidate_text:str=Field(min_length=1,max_length=4000)
+    inference_profile_id:str=Field(pattern=r'^[a-zA-Z0-9_.-]{1,80}$')
+    start_ms:int=Field(ge=0,le=3600000,strict=True)
+    end_ms:int=Field(gt=0,le=3600000,strict=True)
+    channel_index:int|None=Field(default=None,ge=0,le=7,strict=True)
 
 
 def run_semantic_batches(provider,claims):
@@ -63,7 +64,7 @@ def run_semantic_batches(provider,claims):
             'batch_count':len(provenance),'cannot_clear_existing_findings':True}
 
 
-def register(app,database,identity,encounter,require_processing,get_tx,document,audit):
+def register(app,database,identity,encounter,require_processing,get_tx,document,audit,profiles):
     app.state.clinical_models=LocalClinicalModels(os.environ.get('MED_TRANSCRIPT_LOCAL_CLINICAL_MODELS')=='1')
 
     def save(con,eid,actor,kind,result,tx,transcript_hash,note_id=None):
@@ -102,28 +103,46 @@ def register(app,database,identity,encounter,require_processing,get_tx,document,
         try:result['source_relationships']=analyze_transcript(analysis_tx)
         except ValueError:raise HTTPException(422,'clinical_relationship_output_rejected') from None
         from services.application_pipeline import enrich_fact_proposal
-        result['application_enrichment']=enrich_fact_proposal(
-            transcript_id=tx['id'], facts=result.get('facts', []),
-            relationships=result.get('source_relationships', {}))
-        result['facts']=result['application_enrichment']['facts']
+        try:
+            result['application_enrichment']=enrich_fact_proposal(
+                transcript=tx, facts=result.get('facts', []),
+                relationships=result['source_relationships'])
+        except ValueError:
+            raise HTTPException(422,'clinical_evidence_graph_rejected') from None
         result['source_batch']={'segment_ids':[s['segment_id'] for s in analysis_tx['segments']],
             'total_source_segments':len(tx['segments']),'unselected_segment_ids':[s['segment_id'] for s in tx['segments'] if s['segment_id'] not in selected],
             'scope':'processed_source_batch_not_clinician_completeness_review'}
         with database() as con:return save(con,eid,actor,'fact_proposal',result,tx,tr['sha256'])
 
-    @app.post('/v1/encounters/{eid}/retranscriptions',status_code=201)
+    @app.post('/v1/encounters/{eid}/retranscriptions',status_code=202)
     def retranscribe(eid:UUID,body:RetranscribeRequest,actor=Depends(identity)):
-        from services.asr.retranscribe_span import retranscribe_span
         with database() as con:
             row=encounter(con,eid,actor); require_processing(con,eid)
             if row['current_transcript'] != str(body.transcript_version_id):
                 raise HTTPException(412,'stale_transcript')
-            candidate=retranscribe_span(audio_asset_id=body.audio_asset_id,
-                start_ms=body.start_ms,end_ms=body.end_ms,
-                source_transcript_version=str(body.transcript_version_id),
-                candidate_text=body.candidate_text)
-            audit(con,actor,'retranscription_candidate_created',body.audio_asset_id)
-            return candidate
+            tr,tx=get_tx(con,eid,body.transcript_version_id)
+            if str(body.audio_asset_id)!=tx['audio_asset_id']:
+                raise HTTPException(422,'retranscription_source_mismatch')
+            if not 0<=body.start_ms<body.end_ms<=tx['duration_ms'] or body.end_ms-body.start_ms>120000:
+                raise HTTPException(422,'invalid_retranscription_span')
+            profile=profiles.get(body.inference_profile_id)
+            if profile is None:raise HTTPException(503,'asr_profile_unavailable')
+            ingest=con.execute("SELECT result FROM jobs WHERE upload=? AND encounter=? AND stage='audio_ingest' AND status='succeeded'",
+                (str(body.audio_asset_id),str(eid))).fetchone()
+            if ingest is None:raise HTTPException(409,'audio_ingest_required')
+            meta=json.loads(ingest['result']);channels=meta.get('asr_channels',meta['channels'])
+            if (channels>1 and body.channel_index is None or
+                    body.channel_index is not None and body.channel_index>=channels):
+                raise HTTPException(422,'retranscription_channel_required')
+            request={**body.model_dump(mode='json'),'transcript_sha256':tr['sha256']}
+            jid=str(uuid4());stamp=datetime.now(timezone.utc).isoformat()
+            con.execute("""INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,
+                profile_sha256,expected_transcript_id,retranscription)
+                VALUES (?,?,?,'queued',?,?,'transcription',?,?,?)""",
+                (jid,str(body.audio_asset_id),str(eid),stamp,stamp,profile.sha256,
+                 str(body.transcript_version_id),canonical_json(request)))
+            audit(con,actor,'retranscription_queued',jid)
+            return {'job_id':jid,'status_url':f'/v1/jobs/{jid}'}
 
     @app.post('/v1/encounters/{eid}/semantic-checks',status_code=201)
     def verify(eid:UUID,body:VerifyRequest,actor=Depends(identity)):
@@ -139,7 +158,7 @@ def register(app,database,identity,encounter,require_processing,get_tx,document,
                 raise HTTPException(422,'invalid_semantic_fact_selection')
             claims=[{'fact_id':f['fact_id'],'text':f['text'],'evidence':f['evidence']['quote']} for f in note['facts'] if f['fact_id'] in selected]
         try:
-            with local_inference_slot() as ready:
+            with local_inference_slot(requested_bytes=6 * 1024**3) as ready:
                 if not ready:raise HTTPException(503,'local_inference_busy')
                 result=run_semantic_batches(app.state.clinical_models,claims)
         except ValueError:raise HTTPException(422,'semantic_check_failed_no_output_admitted') from None

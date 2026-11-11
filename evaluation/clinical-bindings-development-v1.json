@@ -1,0 +1,18 @@
+{
+  "schema_version": "clinical_challenge_v1",
+  "annotation_status": "developer_authored_synthetic_mechanistic_evidence_not_independent_clinical_gold",
+  "cases": [
+    {"id":"aspirin_amlodipine_dose_swap","category":"medication_binding","source":"Take aspirin 75 mg and amlodipine 5 mg daily.","claim":"Take aspirin 5 mg and amlodipine 75 mg daily.","expected_unsafe":true},
+    {"id":"losartan_apixaban_dose_swap","category":"medication_binding","source":"Taking losartan 50 mg and apixaban 5 mg.","claim":"Taking losartan 5 mg and apixaban 50 mg.","expected_unsafe":true},
+    {"id":"levothyroxine_omeprazole_timing_swap","category":"medication_binding","source":"Take levothyroxine before breakfast and omeprazole at bedtime.","claim":"Take levothyroxine at bedtime and omeprazole before breakfast.","expected_unsafe":true},
+    {"id":"prednisone_furosemide_action_swap","category":"medication_binding","source":"Stop prednisone and continue furosemide.","claim":"Continue prednisone and stop furosemide.","expected_unsafe":true},
+    {"id":"wheeze_dizziness_negation_swap","category":"negation_scope","source":"Patient denies wheeze but reports dizziness.","claim":"Patient reports wheeze but denies dizziness.","expected_unsafe":true},
+    {"id":"swelling_syncope_negation_swap","category":"negation_scope","source":"Patient denies swelling but reports syncope.","claim":"Patient reports swelling but denies syncope.","expected_unsafe":true},
+    {"id":"aspirin_amlodipine_exact","category":"safe_control","source":"Take aspirin 75 mg and amlodipine 5 mg daily.","claim":"Take aspirin 75 mg and amlodipine 5 mg daily.","expected_unsafe":false},
+    {"id":"losartan_apixaban_exact","category":"safe_control","source":"Taking losartan 50 mg and apixaban 5 mg.","claim":"Taking losartan 50 mg and apixaban 5 mg.","expected_unsafe":false},
+    {"id":"timing_exact","category":"safe_control","source":"Take levothyroxine before breakfast and omeprazole at bedtime.","claim":"Take levothyroxine before breakfast and omeprazole at bedtime.","expected_unsafe":false},
+    {"id":"wheeze_negation_exact","category":"safe_control","source":"Patient denies wheeze but reports dizziness.","claim":"Patient denies wheeze but reports dizziness.","expected_unsafe":false},
+    {"id":"swelling_negation_exact","category":"safe_control","source":"Patient denies swelling but reports syncope.","claim":"Patient denies swelling but reports syncope.","expected_unsafe":false},
+    {"id":"equivalent_mass_conversion","category":"safe_control","source":"Take 500 mcg of the medication.","claim":"Take 0.5 mg of the medication.","expected_unsafe":false}
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "fixture_sha256": "f46e319e65d2d0f54ecf0305e7ae9d406cb6cfd1fb3e83f5f19a3fe1ef9e7bec",
+  "scope": "developer_authored_synthetic_mechanistic_evidence_not_independent_clinical_gold",
+  "validator": "independent_clinical_rules_v2+explicit_relationships_v1",
+  "limitation": "Small synthetic developer fixture; not an estimate of clinical sensitivity or specificity.",
+  "confusion_matrix": {
+    "true_positive": 6,
+    "false_positive": 0,
+    "true_negative": 6,
+    "false_negative": 0
+  },
+  "cases": [
+    {
+      "id": "aspirin_amlodipine_dose_swap",
+      "category": "medication_binding",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "medication_dose_assignment_disagreement",
+        "clinical_relationship_disagreement"
+      ]
+    },
+    {
+      "id": "losartan_apixaban_dose_swap",
+      "category": "medication_binding",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "medication_dose_assignment_disagreement",
+        "clinical_relationship_disagreement"
+      ]
+    },
+    {
+      "id": "levothyroxine_omeprazole_timing_swap",
+      "category": "medication_binding",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "clinical_relationship_disagreement"
+      ]
+    },
+    {
+      "id": "prednisone_furosemide_action_swap",
+      "category": "medication_binding",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "clinical_relationship_disagreement"
+      ]
+    },
+    {
+      "id": "wheeze_dizziness_negation_swap",
+      "category": "negation_scope",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "negation_scope_disagreement",
+        "clinical_relationship_disagreement"
+      ]
+    },
+    {
+      "id": "swelling_syncope_negation_swap",
+      "category": "negation_scope",
+      "expected_unsafe": true,
+      "detected_unsafe": true,
+      "findings": [
+        "negation_scope_disagreement",
+        "clinical_relationship_disagreement"
+      ]
+    },
+    {
+      "id": "aspirin_amlodipine_exact",
+      "category": "safe_control",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "losartan_apixaban_exact",
+      "category": "safe_control",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "timing_exact",
+      "category": "safe_control",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "wheeze_negation_exact",
+      "category": "safe_control",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "swelling_negation_exact",
+      "category": "safe_control",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    },
+    {
+      "id": "equivalent_mass_conversion",
+      "category": "safe_control",
+      "expected_unsafe": false,
+      "detected_unsafe": false,
+      "findings": []
+    }
+  ]
+}

@@ -205,7 +205,8 @@ def test_single_heavy_worker_claim_is_enforced(environment):
     queued = enqueue(env)
     class NestedAdapter(SyntheticAdapter):
         def transcribe(self, source, metadata, checkpoint):
-            assert transcribe_once(env.path, env.assets, SyntheticAdapter) is None
+            nested = transcribe_once(env.path, env.assets, SyntheticAdapter)
+            assert nested == {"status": "deferred", "error_code": "local_inference_busy"}
             return super().transcribe(source, metadata, checkpoint)
     assert transcribe_once(env.path, env.assets, NestedAdapter)["status"] == "succeeded"
     assert env.client.get(queued.job["status_url"], headers=headers()).json()["attempts"] == 1

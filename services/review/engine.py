@@ -9,7 +9,7 @@ from fastapi import HTTPException
 
 AMBIGUITY = re.compile(r"\b(?:unclear|inaudible|maybe|unsure|not sure)\b|\d+(?:\.\d+)?\s*(?:or|/)\s*\d+", re.I)
 CRITICAL = re.compile(r"\b(?:mg|mcg|ml|units|insulin|allerg\w*|metformin|warfarin|dose|dosage)\b|\d", re.I)
-RULES_VERSION = 'rules_v4'
+RULES_VERSION = 'rules_v5'
 
 
 def validate_evidence(facts, transcript):

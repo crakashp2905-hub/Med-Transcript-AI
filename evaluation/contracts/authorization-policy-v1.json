@@ -406,5 +406,11 @@
     "path": "/v1/study-dashboard",
     "policy": "authenticated_scoped_identity",
     "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/retranscriptions",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
   }
 ]

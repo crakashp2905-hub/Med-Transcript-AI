@@ -79,7 +79,7 @@ def register(app, services: ApiServices):
                     raise HTTPException(409,"preview_already_pending")
             elif body.timeline_offset_ms:
                 raise HTTPException(422,"offset_requires_preview_mode")
-            existing = con.execute("SELECT id,preview_only,timeline_offset_ms FROM jobs WHERE upload=? AND stage='transcription' AND profile_sha256=?",
+            existing = con.execute("SELECT id,preview_only,timeline_offset_ms FROM jobs WHERE upload=? AND stage='transcription' AND profile_sha256=? AND retranscription IS NULL",
                                    (upload["id"], profile.sha256)).fetchone()
             if existing and (bool(existing["preview_only"])!=body.preview_only or existing["timeline_offset_ms"]!=body.timeline_offset_ms):
                 raise HTTPException(409,"transcription_mode_mismatch")

@@ -10,6 +10,9 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from threading import Event, Thread, Lock
 from uuid import uuid4
+from contextlib import ExitStack
+import tempfile
+import wave
 
 from services.api.ingest import MAX_CHANNELS, file_sha256, inspect_pcm_wav
 from services.api.storage import Store, processing_allowed, default_asset_root
@@ -68,6 +71,14 @@ class Lease:
 
 
 def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarization_manifest=None):
+    from services.inference_slot import local_inference_slot
+    with local_inference_slot(requested_bytes=512 * 1024**2) as ready:
+        if not ready:
+            return {'status': 'deferred', 'error_code': 'local_inference_busy'}
+        return _run_once(db_path, asset_root, adapter_factory, diarization_manifest)
+
+
+def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
     store = Store(db_path)
     stamp, token = datetime.now(timezone.utc), str(uuid4())
     with store.transaction() as con:
@@ -97,7 +108,9 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
 
     raw, metadata, profile, error, speaker_report = None, None, None, None, None
     work_started=time.perf_counter()
-    with Lease(store, job["id"], token, job["encounter"]) as lease:
+    span_request = json.loads(job['retranscription']) if job['retranscription'] else None
+    with ExitStack() as stack:
+        lease = stack.enter_context(Lease(store, job["id"], token, job["encounter"]))
         try:
             profile = ASRProfile.model_validate_json(profile_body)
             if profile.sha256 != job["profile_sha256"]:
@@ -122,7 +135,34 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
             metadata["timeline_mapping_status"] = ingest.get("timeline_mapping_status", "original_pcm_timeline")
             if not 1 <= metadata["channels"] <= MAX_CHANNELS or metadata["sample_rate"] != 16000:
                 raise ASRFailure("unsupported_asr_input")
+            if span_request:
+                with store.transaction() as con:
+                    saved=con.execute('SELECT sha256 FROM transcript_versions WHERE id=? AND encounter=?',
+                        (job['expected_transcript_id'],job['encounter'])).fetchone()
+                    if saved is None or saved['sha256']!=span_request['transcript_sha256']:
+                        raise ASRFailure('asset_integrity_failure')
+                start,end=span_request['start_ms'],span_request['end_ms']
+                channel=span_request['channel_index'] if span_request['channel_index'] is not None else 0
+                if not 0<=start<end<=metadata['duration_ms'] or end-start>120000 or channel>=metadata['channels']:
+                    raise ASRFailure('unsupported_asr_input')
+                directory=stack.enter_context(tempfile.TemporaryDirectory(prefix='scribe-retranscribe-'))
+                cropped=Path(directory)/'span.wav'
+                with wave.open(str(source),'rb') as audio, wave.open(str(cropped),'wb') as out:
+                    audio.setpos(start*16)
+                    pcm=audio.readframes((end-start)*16)
+                    if metadata['channels']>1:
+                        import numpy as np
+                        pcm=np.frombuffer(pcm,dtype='<i2').reshape(-1,metadata['channels'])[:,channel].tobytes()
+                    out.setparams((1,2,16000,0,'NONE','not compressed'));out.writeframes(pcm)
+                source=cropped
+                metadata={**metadata,**inspect_pcm_wav(source),'span_audio_sha256':file_sha256(source)}
             lease.checkpoint()
+            from services.inference_slot import available_memory_bytes
+            from services.resource_arbiter import decide
+            required=sum((Path(profile.model_dir)/name).stat().st_size for name in profile.artifacts)*2+512*1024**2
+            budget=min(available_memory_bytes(),int(os.environ.get('MED_TRANSCRIPT_LOCAL_MEMORY_BYTES',str(2**63-1))))
+            if decide(active_bytes=0,request_bytes=required,capacity_bytes=budget)['action']!='admit':
+                raise ASRFailure('resource_capacity_exceeded')
             adapter = adapter_factory(profile)
             if metadata["channels"] > 1:
                 from services.asr.channels import transcribe_channels
@@ -153,7 +193,7 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
             else:
                 raw = adapter.transcribe(source, metadata, lease.checkpoint)
             manifest_path = diarization_manifest or os.environ.get('MED_TRANSCRIPT_DIARIZATION_MANIFEST')
-            if manifest_path and metadata["channels"] == 1 and not job["preview_only"]:
+            if manifest_path and metadata["channels"] == 1 and not job["preview_only"] and not span_request:
                 from services.diarization import diarize
                 speaker_report = diarize(source, json.loads(Path(manifest_path).read_text(encoding='utf-8')), lease.checkpoint)
             lease.checkpoint()
@@ -193,7 +233,17 @@ def run_once(db_path, asset_root, adapter_factory=FasterWhisperAdapter, diarizat
                     if speaker_report is not None:
                         from services.diarization import attach_speakers
                         body = attach_speakers(body, speaker_report)
-                    if job["preview_only"]:
+                    if span_request:
+                        from services.asr.retranscribe_span import retranscribe_span
+                        text=' '.join(s['text'].strip() for s in body['segments'])
+                        if not text:raise ASRFailure('invalid_asr_output')
+                        result=retranscribe_span(audio_asset_id=job['upload'],start_ms=span_request['start_ms'],
+                            end_ms=span_request['end_ms'],source_transcript_version=job['expected_transcript_id'],candidate_text=text)
+                        result.update(transcript_sha256=span_request['transcript_sha256'],profile_sha256=profile.sha256,
+                            span_audio_sha256=metadata['span_audio_sha256'],channel_index=span_request['channel_index'],
+                            candidate_segments=[{**s,'start_ms':s['start_ms']+span_request['start_ms'],
+                                'end_ms':s['end_ms']+span_request['start_ms']} for s in body['segments']])
+                    elif job["preview_only"]:
                         offset=job["timeline_offset_ms"]
                         result={"status":"provisional_not_a_source_version","approvable":False,
                             "profile_sha256":profile.sha256,"input_sha256":metadata["sha256"],

@@ -19,7 +19,12 @@ def test_api_contract_survives_router_and_service_extraction(setup):
     verifier_limit=expected['components']['schemas']['VerifyRequest']['properties']['fact_ids']['anyOf'][0]
     assert verifier_limit['maxItems']==20
     verifier_limit['maxItems']=300
-    assert contract_matches(client.app.openapi(),expected)
+    actual=deepcopy(client.app.openapi())
+    extension=actual['paths'].pop('/v1/encounters/{eid}/retranscriptions')
+    schema=actual['components']['schemas'].pop('RetranscribeRequest')
+    assert '202' in extension['post']['responses']
+    assert set(schema['required'])=={'audio_asset_id','transcript_version_id','inference_profile_id','start_ms','end_ms'}
+    assert contract_matches(actual,expected)
     mutated=deepcopy(expected);mutated['paths'].pop('/v1/encounters')
     with pytest.raises(ValueError):contract_matches(client.app.openapi(),mutated)
 

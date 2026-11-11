@@ -15,4 +15,14 @@ def decode_proposal(con,row,eid):
         source=con.execute('SELECT sha256 FROM transcript_versions WHERE id=? AND encounter=?',(body['transcript_version_id'],str(eid))).fetchone()
         if source is None or source['sha256']!=body['transcript_sha256']:
             raise HTTPException(409,'persisted_artifact_integrity_failure')
+    if row['kind']=='fact_proposal' and body.get('application_enrichment'):
+        from services.evidence_graph import validate_proposal
+        saved=con.execute('SELECT * FROM transcript_versions WHERE id=? AND encounter=?',
+            (body['transcript_version_id'],str(eid))).fetchone()
+        try:
+            graph=validate_proposal(decode_record(saved,'transcript'),body['facts'])
+            if graph!=body['application_enrichment']['evidence_graph']:
+                raise ValueError('graph_binding_mismatch')
+        except (ValueError,KeyError,TypeError):
+            raise HTTPException(409,'persisted_artifact_integrity_failure') from None
     return body

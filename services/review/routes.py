@@ -10,6 +10,6 @@ def register_review_routes(app, database, identity, encounter, audit, require_pr
     app.state.drafting_provider = configured_provider()
     services = ReviewService(database, identity, encounter, audit, require_processing, assets, profiles)
     register_metrics(app, database, identity, encounter, require_processing, services.document, audit)
-    register_clinical(app, database, identity, encounter, require_processing, services.get_tx, services.document, audit)
+    register_clinical(app, database, identity, encounter, require_processing, services.get_tx, services.document, audit, profiles)
     for router in (workspace, proposals, transcripts, notes, verification, approvals, amendments, exports, history):
         router.register(app, services)

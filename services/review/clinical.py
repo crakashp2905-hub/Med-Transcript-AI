@@ -9,8 +9,12 @@ from uuid import uuid4
 
 NEGATION = re.compile(r"\b(no|not|denies|denied|without|never)\b", re.I)
 QUANTITY = re.compile(r"(?<![\w.])(?P<value>\d+(?:\.\d+)?|\.\d+)\s*(?P<unit>mcg|mg|kg|g|ml|l|units)\b", re.I)
-MEDICATION = re.compile(r"\b(?:metformin|warfarin|insulin|amoxicillin|penicillin|ibuprofen|paracetamol|lisinopril|atorvastatin)\b", re.I)
-SYMPTOMS = re.compile(r'\b(?:pain|cough|fever|headache|nausea|breathlessness|rash|vomiting|diarrhea)\b',re.I)
+MEDICATION = re.compile(
+    r'\b(?:metformin|warfarin|insulin|amoxicillin|penicillin|ibuprofen|paracetamol|lisinopril|atorvastatin'
+    r'|aspirin|amlodipine|losartan|apixaban|rivaroxaban|levothyroxine|omeprazole|salbutamol|albuterol|prednisolone|prednisone|furosemide)\b', re.I)
+SYMPTOMS = re.compile(
+    r'\b(?:pain|cough|fever|headache|nausea|breathlessness|rash|vomiting|diarrhea'
+    r'|wheeze|wheezing|dizziness|syncope|swelling)\b', re.I)
 
 
 def quantity_signature(text):
