@@ -173,11 +173,26 @@
       "id": "MTA-00-08",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Freeze the maximum 5% normalized WER admission threshold; forbid lowering, relabelling, rounding or changing the denominator.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/evaluation.py",
+        "services/experiment_contract.py",
+        "evaluation/datasets/primock57-expanded-v1/lock.json",
+        "evaluation/datasets/meddistract-detailed-v1/protocol.json",
+        "tests/test_evaluation.py",
+        "tests/test_experiment_contract.py",
+        "evaluation/reports/master-task-mta-00-08-cdb7b0b.json"
+      ],
+      "source_commit": "cdb7b0b43eed389cc52550b01f512c30f47c67b0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-00-08-cdb7b0b.json",
+          "report_sha256": "da352fa72e7cfee4bea7c1914c1b1cde46ef06dfb691e531db3b3762b45390c6",
+          "check": "fixed_wer_gate_tests",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

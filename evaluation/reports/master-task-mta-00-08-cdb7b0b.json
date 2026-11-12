@@ -1,0 +1,26 @@
+{
+  "schema_version": "master_task_wer_gate_v1",
+  "task_id": "MTA-00-08",
+  "source_commit": "cdb7b0b43eed389cc52550b01f512c30f47c67b0",
+  "checks": {
+    "fixed_wer_gate_tests": {
+      "status": "pass",
+      "result": "6 passed; rejects loosening above 5%, checks the exact unrounded 5% boundary, counts failed samples as failures, rejects post-hoc gate changes, and keeps historical 3% and current 5% locks distinct"
+    },
+    "frozen_threshold_sources": {
+      "status": "pass",
+      "sources": [
+        "services/evaluation.py",
+        "services/experiment_contract.py",
+        "evaluation/datasets/primock57-expanded-v1/lock.json",
+        "evaluation/datasets/meddistract-detailed-v1/protocol.json"
+      ],
+      "result": "Current project admission maximum is 0.05; historical 3% datasets remain separate locked protocols"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "ruff check and ruff format --check passed for seven affected source/test files"
+    }
+  },
+  "clinical_release_authorized": false
+}

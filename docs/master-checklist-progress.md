@@ -50,6 +50,10 @@ those claims. At import, all 369 entries were `not_started`; this meant
   for work requiring clinical reviewers or a deployment owner. Its coverage
   test passed; the register remains engineering triage, not clinical risk
   approval.
+- MTA-00-08 is implemented at source commit `cdb7b0b43eed389cc52550b01f512c30f47c67b0`.
+  The 5% project ceiling cannot be relaxed, boundary scoring uses unrounded
+  counts, failed samples remain failures, and frozen historical 3% protocols
+  stay separate. Six focused threshold and contract tests passed.
 - The prior source-bound offline report, [`v21`](../evaluation/reports/offline-acceptance-v21.json),
   passed its seven software checks at `b939377`. It does not prove current
   post-format source, 5% ASR accuracy, or independent clinical performance.
