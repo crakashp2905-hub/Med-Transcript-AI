@@ -130,3 +130,13 @@ the raw ledger SHA-256 is
 `e545dde4529c419cb0a14654653c67d1f5a283fef086e279fc2023ae3d926886`.
 It records two implemented tasks and 367 not started. Task-level dependency
 edges remain unmapped, and clinical release remains unauthorized.
+
+## Fresh offline acceptance
+
+[`offline-acceptance-v24.json`](../evaluation/reports/offline-acceptance-v24.json)
+is bound to source commit `474e77dbe1ec0781f204fef2956701d278e55752` and hashes
+523 source files. Baseline integrity, saved-metric replay, frontend build,
+synthetic walkthrough and clinical-binding development checks passed. The
+full backend pytest command timed out at its 600-second limit, so the overall
+acceptance failed. The failed run is retained; it does not qualify the source
+for engineering verification or research/clinical release.
