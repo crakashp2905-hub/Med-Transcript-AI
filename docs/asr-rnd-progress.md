@@ -490,3 +490,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   calibrated acoustic scores or a disjoint group-level calibration corpus;
   current backend confidence is explicitly unsupported. F09 records the same
   evidence gap. No reliability curves or selection thresholds are fabricated.
+- **MTA-ASR-H08:** `BLOCKED_MISSING_RESOURCE`. No independently verified
+  clinician-confirmed correction set is available. Existing UI edits are
+  source-versioned operational corrections, not research training labels;
+  synthetic fixtures and developer-authored proposals are never treated as
+  clinician signatures or automatic self-training input.
