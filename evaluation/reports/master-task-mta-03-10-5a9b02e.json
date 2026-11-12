@@ -1,0 +1,46 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-10",
+  "status": "pass",
+  "source_commit": "5a9b02eb83039ea6de43ec30788db79d8dadc6cd",
+  "source_tree": "3ae0fc59b9b36521bd4e4c9c488c13c3833e38b2",
+  "checks": {
+    "unsealed_prefix_cannot_publish_transcript_or_note": {
+      "status": "pass",
+      "controls": [
+        "An unsealed live-audio prefix cannot be completed into an ingest job; the endpoint responds with conflict.",
+        "The encounter has no transcript, note or approval after the rejected completion attempt.",
+        "Recovery requires a separate explicit seal request with exact byte count and SHA-256; it is not implicit completion.",
+        "The application preserves review-required and clinician approval gates after audio processing."
+      ],
+      "ci_run_id": 43300051093,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43300051093",
+      "ci_jobs": {
+        "test_dev_security": "success; 845 passed, 17 skipped, 3 warnings",
+        "test_dev_asr_security": "success; 873 passed, 3 skipped, 2 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43300051093
+  },
+  "runtime_sha256": "10acc395aa5d74afd504d5611a4dc170c938fef721558eca1810b52272ebbabe",
+  "source_sha256": {
+    "tests/test_live_uploads.py": "4af3aec6b33aa798d97e0a4a6b9906bb0342ba2bf62717ca8bfb588c64d525d8",
+    "services/api/live_uploads.py": "3107672e74577ee1170510938588582eb4150d5701b5db855c7cd1dd5de0dc54",
+    "services/api/routers/audio.py": "174e8f12e802dd4d034b8e4f303e11f0b27177844c6e0632f26f07e725b79891"
+  },
+  "limitations": [
+    "The test covers software flow for incomplete live upload, not physical device interruption or clinical review behavior.",
+    "Explicitly recovered and sealed prefixes still require ordinary transcription source review before clinical use.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}

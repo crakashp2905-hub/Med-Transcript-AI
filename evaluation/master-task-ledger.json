@@ -1650,11 +1650,20 @@
       "id": "MTA-03-10",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Never auto-publish partial/truncated audio as a complete transcript.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-10-5a9b02e.json"
+      ],
+      "source_commit": "5a9b02eb83039ea6de43ec30788db79d8dadc6cd",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-10-5a9b02e.json",
+          "report_sha256": "eeb90b42ea94ab7343ebb7d68aadaa513617b47bb1e22a92cf3ecd610f71e839",
+          "check": "unsealed_prefix_cannot_publish_transcript_or_note",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
