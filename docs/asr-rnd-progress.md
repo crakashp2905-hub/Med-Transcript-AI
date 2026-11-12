@@ -504,3 +504,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   No correction model, LoRA adapter or rescoring model was trained. The E08
   hotword pilot changes decoding only and worsened aggregate WER on its small
   matched subset; it cannot be credited as an adaptation gain.
+- **MTA-ASR-I01:** Partial. `evaluation/selection-policy.json` and frozen
+  evaluation contracts predeclare failure-inclusive normalized WER and retain
+  the unchanged <=5% ceiling; existing reports cannot weaken it. Clinical
+  critical-error and patient-role non-inferiority tolerances are still pending
+  a clinical owner, and no independent adjudicated acceptance set is available.
+  The primary WER endpoint is frozen, but the safety-gate preregistration is
+  incomplete.
