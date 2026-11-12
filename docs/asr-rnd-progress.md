@@ -573,3 +573,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   audio-level suite for low-volume patient denial, deceptive spoken prompts and
   corrupt media through the real ASR worker; resulting-note non-approval is
   therefore not established across the requested challenge set.
+- **MTA-ASR-I12:** Defined in `evaluation/asr-capability-matrix-v1.json`.
+  It distinguishes verified local CPU profiles, conditional/unqualified CUDA
+  profiles, and missing/corrupt weights (unavailable, no automatic download).
+  All rows preserve the independent clinical/WER admission gate. CUDA remains
+  a conditional statement, not a hardware validation result.

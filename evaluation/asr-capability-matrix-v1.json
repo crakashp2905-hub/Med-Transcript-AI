@@ -1,0 +1,41 @@
+{
+  "schema_version": "asr_capability_matrix_v1",
+  "scope": "local Faster Whisper profile/runtime capability; clinical admission is separate",
+  "automatic_download": false,
+  "clinical_validation": "not_validated",
+  "capabilities": [
+    {
+      "profile": "registered local profile with verified artifacts",
+      "hardware": "CPU",
+      "device_values": ["cpu"],
+      "compute_types": ["int8", "float32"],
+      "status": "supported when the pinned runtime and local artifacts verify",
+      "limits": ["mono 16 kHz PCM S16LE input", "English transcription only", "not clinical qualification"]
+    },
+    {
+      "profile": "registered local profile with verified artifacts",
+      "hardware": "optional CUDA accelerator",
+      "device_values": ["cuda"],
+      "compute_types": ["float16", "int8_float16", "int8", "float32"],
+      "status": "conditional on compatible CUDA runtime, driver, device and CTranslate2 build; not verified by this matrix",
+      "limits": ["deployment must fail closed when runtime prerequisites are unavailable", "not clinical qualification"]
+    },
+    {
+      "profile": "missing, corrupt or mismatched local weights",
+      "hardware": "CPU or accelerator",
+      "device_values": ["cpu", "cuda"],
+      "compute_types": ["int8", "float32", "float16", "int8_float16"],
+      "status": "unavailable or integrity_failed; no inference and no automatic download",
+      "limits": ["never report empty transcript as successful inference", "candidate remains unavailable"]
+    }
+  ],
+  "source": {
+    "profile_contract": "services/asr/profiles.py",
+    "runtime_adapter": "services/asr/adapter.py",
+    "worker": "services/asr/worker.py"
+  },
+  "limitations": [
+    "Hardware compatibility is conditional and must be qualified on the target deployment host.",
+    "Artifact presence or successful inference does not pass the frozen ASR WER or clinical safety gates."
+  ]
+}
