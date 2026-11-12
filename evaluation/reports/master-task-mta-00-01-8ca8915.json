@@ -1,0 +1,22 @@
+{
+  "schema_version": "master_task_baseline_receipt_audit_v1",
+  "task_id": "MTA-00-01",
+  "source_commit": "b93937756427d1ae86adf847c680ed52c187b9ed",
+  "audit_source_commit": "8ca8915437634290899c818a1a6508d5ffa3e1e9",
+  "baseline_source_commit": "b93937756427d1ae86adf847c680ed52c187b9ed",
+  "checks": {
+    "immutable_baseline_receipt": {
+      "status": "pass",
+      "report": "evaluation/reports/master-baseline-b939377.json",
+      "report_sha256": "2f563a5ef19c1b379e708ecc14ed4e94a5ac32d91a4243440d9d16f6ad0df4b9",
+      "result": "369-task ledger SHA, 94 local model file hashes, six development dataset manifest hashes, frozen acceptance report hashes, Python/Node/npm/package versions, original audit status and last recorded CI failure are present"
+    },
+    "receipt_integrity": {
+      "status": "pass",
+      "result": "Baseline receipt matches the historical baseline commit and the ledger's declared baseline_commit; no reserved acceptance cohort contents were read"
+    }
+  },
+  "new_installations_attempted": 0,
+  "external_calls_attempted": 0,
+  "clinical_release_authorized": false
+}

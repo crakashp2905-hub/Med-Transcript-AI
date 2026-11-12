@@ -11,11 +11,21 @@
       "id": "MTA-00-01",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Capture HEAD SHA, clean git status, build environment, dataset/model digests, last CI run and current task ledger in an immutable baseline receipt.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-baseline-b939377.json",
+        "evaluation/reports/master-task-mta-00-01-8ca8915.json"
+      ],
+      "source_commit": "b93937756427d1ae86adf847c680ed52c187b9ed",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-00-01-8ca8915.json",
+          "report_sha256": "1dc7cd57389a77b7b937deee5b3577d7af6ec0e4a3cce92ee1298f76ea219be6",
+          "check": "immutable_baseline_receipt",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

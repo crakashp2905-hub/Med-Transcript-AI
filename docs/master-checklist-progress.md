@@ -5,8 +5,8 @@ This is an engineering progress record for the 369-task in-house ledger at
 The JSON file is the tracking source. A feature present in the repository is
 not automatically a verified task: the task needs a passing, hash-matched
 receipt tied to its source commit. `python -m services.master_ledger` checks
-those claims. As imported, all 369 entries are `not_started`; this means
-**unreconciled in the new ledger**, not that the repository has no features.
+those claims. At import, all 369 entries were `not_started`; this meant
+**unreconciled in the new ledger**, not that the repository had no features.
 
 ## Starting evidence
 
@@ -16,6 +16,10 @@ those claims. As imported, all 369 entries are `not_started`; this means
   development dataset manifests, frozen report hashes, local tool versions,
   and the latest CI failure. Reserved acceptance cohort contents were not
   read during baseline capture.
+- [`master-task-mta-00-01-8ca8915.json`](../evaluation/reports/master-task-mta-00-01-8ca8915.json)
+  audits the immutable baseline receipt and its SHA-256 against the declared
+  baseline commit. MTA-00-01 is implemented; the initial CI failure remains
+  recorded as a failure in the baseline receipt.
 - The prior source-bound offline report, [`v21`](../evaluation/reports/offline-acceptance-v21.json),
   passed its seven software checks at `b939377`. It does not prove current
   post-format source, 5% ASR accuracy, or independent clinical performance.
