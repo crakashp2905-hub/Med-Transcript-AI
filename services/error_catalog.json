@@ -1,0 +1,502 @@
+{
+  "schema_version": "med_transcript_error_catalog_v1",
+  "fallback": "request_failed",
+  "errors": {
+    "active_time_exceeds_observed_session": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "all_speaker_clusters_require_explicit_roles": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "amend_current_approved_version_only": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "amendment_required": {
+      "category": "conflict",
+      "message": "Start an amendment to change an approved record."
+    },
+    "approval_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "approval_replay_conflict": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "approved_artifact_integrity_failure": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "asr_dependency_missing": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "asr_failed": {
+      "category": "availability",
+      "message": "asr failed"
+    },
+    "asr_profile_unavailable": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "asr_runtime_mismatch": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "asset_integrity_failure": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "asset_storage_unavailable": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "asset_unavailable": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "audio_ingest_required": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "audio_source_metadata_invalid": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "audio_unavailable": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "authentication_required": {
+      "category": "authorization",
+      "message": "That access key was not accepted."
+    },
+    "authorization_not_found": {
+      "category": "authorization",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "authorization_required": {
+      "category": "authorization",
+      "message": "Active recording and local-processing authorization is required."
+    },
+    "blocking_findings": {
+      "category": "validation",
+      "message": "Resolve the blocking findings before approval."
+    },
+    "channel_unavailable": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "chunk_integrity_failure": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "chunk_size_exceeded": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "clinical_correction_required": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "clinical_evidence_graph_rejected": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "clinical_extraction_failed_no_output_admitted": {
+      "category": "validation",
+      "message": "The local model did not return usable evidence-linked facts. Your saved note was not changed."
+    },
+    "clinical_proposal_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "clinical_proposal_schema_rejected": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "clinical_relationship_output_rejected": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "csrf_validation_failed": {
+      "category": "authorization",
+      "message": "The session check failed. Reload before making changes."
+    },
+    "current_safety_review_required": {
+      "category": "conflict",
+      "message": "Current safety checks found blocking issues. Review and amend this note before a new export."
+    },
+    "deletion_request_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "diarization_required": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "draft_proposal_failed_no_output_admitted": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "draft_proposal_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "duplicate_fact_id": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "empty_recording_prefix": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "encounter_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "export_metadata_invalid": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "export_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "finding_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "google_identity_validation_failed": {
+      "category": "authorization",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "google_sign_in_not_configured": {
+      "category": "authorization",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "hosted_text_authorization_withdrawn": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "hosted_text_disclosure_and_scope_required": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "idempotency_conflict": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "idempotency_in_progress": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "idempotency_record_unavailable": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "internal_error": {
+      "category": "internal",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_asr_output": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_evidence_reference": {
+      "category": "conflict",
+      "message": "A source quote no longer matches. Reload the facts from the transcript."
+    },
+    "invalid_extraction_source_batch": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_idempotency_key": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_json_structure": {
+      "category": "validation",
+      "message": "The submitted data has an invalid structure."
+    },
+    "invalid_or_expired_sign_in_state": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_pcm_frame_count": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_request": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_retranscription_span": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_semantic_fact_selection": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_sign_in_response": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invalid_source_interval": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invitation_configuration_unavailable": {
+      "category": "authorization",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invitation_required": {
+      "category": "authorization",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "invitation_subject_changed": {
+      "category": "authorization",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "job_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "job_not_retryable": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "live_upload_incomplete": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "live_upload_requires_seal": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "live_upload_seal_changed": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "live_upload_sealing": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "local_inference_busy": {
+      "category": "availability",
+      "message": "Another local model request is running. Your saved note is unchanged; retry after it finishes."
+    },
+    "model_integrity_failure": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "model_unavailable": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "not_a_live_upload": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "not_an_unfinished_live_upload": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "note_required": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "offset_requires_preview_mode": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "partial_recording_unavailable": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "pcm_stream_requires_wav": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "persisted_artifact_integrity_failure": {
+      "category": "conflict",
+      "message": "This record failed an integrity check. Editing and approval are blocked."
+    },
+    "preview_already_pending": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "preview_window_limit_exceeded": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "processing_consent_invalid": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "public_demo_unavailable_or_integrity_failure": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "read_only_account": {
+      "category": "authorization",
+      "message": "This account has read-only access."
+    },
+    "record_retention_review_required": {
+      "category": "conflict",
+      "message": "This record has an approval or a legal hold. Retention review is required."
+    },
+    "request_too_large": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "resource_capacity_exceeded": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "retranscription_channel_required": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "retranscription_source_mismatch": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "review_completion_request_conflict": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "review_session_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "review_session_request_conflict": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "sealed_source_changed": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "segment_set_mismatch": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "semantic_check_failed_no_output_admitted": {
+      "category": "validation",
+      "message": "The independent model check did not complete. Existing verification findings remain in effect."
+    },
+    "session_expired": {
+      "category": "authorization",
+      "message": "Your session expired. Sign in again."
+    },
+    "sign_in_rate_limited": {
+      "category": "authorization",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "source_changed_during_clinical_inference": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "stale_inputs_or_verification": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "stale_note": {
+      "category": "conflict",
+      "message": "The note changed. Reload before continuing."
+    },
+    "stale_transcript": {
+      "category": "conflict",
+      "message": "The transcript changed. Build a new draft from its current version."
+    },
+    "stale_verification": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "storage_unavailable": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "synthetic_example_not_installed": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "too_many_facts_split_review": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "transcript_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "transcript_required": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "transcription_mode_mismatch": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "unsupported_asr_input": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "unsupported_media": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "untrusted_host": {
+      "category": "internal",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "upload_expired": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "upload_integrity_failure": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "upload_not_found": {
+      "category": "not_found",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "upload_not_open": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "upload_not_received": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "upload_offset_mismatch": {
+      "category": "conflict",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "upload_partial_unavailable": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "upload_size_exceeded": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "wav_stream_requires_pcm": {
+      "category": "validation",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "worker_lease_lost": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "worker_retry_exhausted": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    }
+  }
+}

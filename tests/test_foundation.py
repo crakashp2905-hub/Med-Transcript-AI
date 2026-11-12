@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, timezone
 from uuid import uuid4
 
 import pytest
+from fastapi import HTTPException
 from fastapi.testclient import TestClient
 
 from services.api.main import Identity, create_app
@@ -199,6 +200,24 @@ def test_errors_do_not_echo_content_and_responses_disable_cache(setup):
     assert "sensitive-patient-text" not in response.text
     assert response.headers["cache-control"] == "no-store"
     assert response.json()["request_id"] == response.headers["x-request-id"]
+
+
+def test_http_exception_details_are_sanitized(setup):
+    client, _, _ = setup
+
+    async def raise_sensitive_detail():
+        raise HTTPException(
+            status_code=400,
+            detail="patient-name audio-payload secret-provider-prompt",
+        )
+
+    client.app.add_api_route("/_test/sensitive-error", raise_sensitive_detail)
+    response = client.get("/_test/sensitive-error")
+    assert response.status_code == 400
+    assert response.json()["code"] == "internal_error"
+    assert "patient-name" not in response.text
+    assert "audio-payload" not in response.text
+    assert "secret-provider-prompt" not in response.text
 
 
 def test_authorization_cannot_be_withdrawn_through_different_encounter(setup):

@@ -13,6 +13,7 @@ from uuid import uuid4
 from urllib.parse import urlsplit
 
 from fastapi import Depends, FastAPI, HTTPException, Request
+from services.error_codes import public_error
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -116,9 +117,13 @@ def create_app(
 
     @app.exception_handler(HTTPException)
     async def http_error(request, exc):
+        safe_error = public_error(exc.detail)
         return JSONResponse(
             status_code=exc.status_code,
-            content={"code": exc.detail, "request_id": request.state.request_id},
+            content={
+                "code": safe_error["error_code"],
+                "request_id": request.state.request_id,
+            },
             headers=exc.headers,
         )
 

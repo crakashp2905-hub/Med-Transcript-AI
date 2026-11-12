@@ -19,6 +19,9 @@ media = ["av>=11,<20", "numpy>=2,<3"]
 [tool.setuptools.packages.find]
 include = ["services*"]
 
+[tool.setuptools.package-data]
+services = ["error_catalog.json"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
