@@ -255,3 +255,13 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   Ruff and format checks pass. Status: partial; the seed inventory is only the
   existing five generic opt-in hints, this artifact does not validate clinical
   terminology, and no backend consumes it for decoding or reranking.
+- **MTA-ASR-E02:** Added strict, immutable ASR clinical-entity schema kinds for
+  drug name, strength, route, frequency, allergy, negation, anatomy, measurement
+  and temporal relation. The current deterministic extractor emits only
+  source-spanned medication and strength candidates, binds each strength to a
+  medication, and keeps simple negated/uncertain clause status explicit.
+  Tests disambiguate aspirin 75 mg from amlodipine 5 mg and a denied drug from
+  an affirmed one; tests/test_asr_clinical_entities.py: 3 passed. Ruff and
+  format checks pass. Status: partial; this heuristic covers only simple
+  English clauses, is not clinically validated, and does not yet emit the
+  other declared entity types or route/frequency relations.
