@@ -151,11 +151,22 @@
       "id": "MTA-00-07",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add risk register listing source corruption, missed critical facts, incorrect medication bindings, speaker swaps, secrets exposure, export leakage, stale approvals and deployment failure.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/risk-register.md",
+        "tests/test_risk_register.py",
+        "evaluation/reports/master-task-mta-00-07-c158cca.json"
+      ],
+      "source_commit": "c158cca2a6c382ed538de4dee256187d8e2f52ec",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-00-07-c158cca.json",
+          "report_sha256": "4dccae015e5d213a4fd2538a767dea84abfda10781283a2db22f0eed0d60a7a3",
+          "check": "risk_register_coverage",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

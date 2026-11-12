@@ -1,0 +1,20 @@
+{
+  "schema_version": "master_task_risk_register_v1",
+  "task_id": "MTA-00-07",
+  "source_commit": "c158cca2a6c382ed538de4dee256187d8e2f52ec",
+  "checks": {
+    "risk_register_coverage": {
+      "status": "pass",
+      "result": "1 test passed; all eight required risk classes, severities, controls, unresolved actions, owners and states are present"
+    },
+    "clinical_scope": {
+      "status": "pass",
+      "result": "The register states that ratings are engineering triage and do not authorize real-patient use; external clinician and deployment review blockers remain visible"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "ruff check and ruff format --check passed"
+    }
+  },
+  "clinical_release_authorized": false
+}

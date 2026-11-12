@@ -44,6 +44,12 @@ those claims. At import, all 369 entries were `not_started`; this meant
   task-to-task dependency edges remain unmapped; section-order hints are labeled
   as unaudited, not presented as a verified graph. The current matrix is
   [`master-implementation-matrix-v9.json`](../evaluation/reports/master-implementation-matrix-v9.json).
+- MTA-00-07 is implemented at source commit `c158cca2a6c382ed538de4dee256187d8e2f52ec`.
+  The risk register covers all eight required failure classes with severity,
+  existing controls, unresolved actions, owners and explicit blocked states
+  for work requiring clinical reviewers or a deployment owner. Its coverage
+  test passed; the register remains engineering triage, not clinical risk
+  approval.
 - The prior source-bound offline report, [`v21`](../evaluation/reports/offline-acceptance-v21.json),
   passed its seven software checks at `b939377`. It does not prove current
   post-format source, 5% ASR accuracy, or independent clinical performance.
