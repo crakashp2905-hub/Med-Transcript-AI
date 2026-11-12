@@ -1,0 +1,108 @@
+{
+  "schema_version": "master_task_frontend_validation_v1",
+  "task_id": "MTA-01-04",
+  "source_commit": "aef2a7b25291c1900cf31e8952ab3822cec4091a",
+  "status": "blocked_missing_asset",
+  "source_files_sha256": {
+    "apps/clinician-web/e2e/clinical-batches.spec.ts": "959468139137512863293427bcf09b8ab8b471d93afb7188e0f2307d7faa64ba",
+    "apps/clinician-web/e2e/device-check.spec.ts": "475434108c39fc012cce35e71928257d3c14b398f0b6e2606cc29012d73f2dc5",
+    "apps/clinician-web/e2e/dictation.spec.ts": "5faadbd0a9346d2849bf079e123c003a681b1f962931951505bea6ed54972f26",
+    "apps/clinician-web/e2e/evidence-channel.spec.ts": "bbe14aff6f1fe7908430f6f5eb27cbce2d305694993355320432d51c1c57bd2b",
+    "apps/clinician-web/e2e/fixtures/offline.ts": "77f21ec35945ec8bd809d3d68c84441c1b127dc8107132de366eaab68dd7e251",
+    "apps/clinician-web/e2e/google-auth.spec.ts": "48898a14352bd4815657a4b1193d7bc5daba652334baa49dfbadce10adb5a894",
+    "apps/clinician-web/e2e/presentation.spec.ts": "4ed49799e9b407e74dc46b272848daf2c3d30d8c268b27a7f35872a6cf604d24",
+    "apps/clinician-web/e2e/recovery.spec.ts": "b85b206d048d96b0c1b755869484f79cd142d4e62989ace39e7e5d52be0453cb",
+    "apps/clinician-web/e2e/workflow.spec.ts": "77300cff91ac0218da9eabd798cb56391bd9a4020554aeedebfdb15d55288515",
+    "apps/clinician-web/package-lock.json": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27",
+    "apps/clinician-web/package.json": "c48961e28e3a1fa3abe593a93ccd7d0127df528714c4dd372b1ae9bda13e19e9",
+    "apps/clinician-web/playwright.config.ts": "e483e7c866c0c9be9d0623e783a2d23b3271c33a85332017bab714e5a39ec797",
+    "apps/clinician-web/src/App.tsx": "f00b86b3b28fbaa217057af9f1cb6d1ecaafd5bc7503d4992e89000a40d33e79",
+    "apps/clinician-web/src/CaptureSync.ts": "e906b866ca0b6e0a6129da681392071196fec7a46564d02d78b7df80c3b1f2d1",
+    "apps/clinician-web/src/ClinicalBatch.tsx": "990cbc01022fc1061829d5b90faf355a9dc7d4886be67cb5408229a7e87c6963",
+    "apps/clinician-web/src/ClinicalFields.tsx": "8208384db65fb6c5606713de478941bdebc278a80a1c060cef63cab297fe4eb4",
+    "apps/clinician-web/src/ClinicalProposals.tsx": "42a4ac8920a4f9b9745962f64d732881ce336b1abb8756bd5bb4a23de062b641",
+    "apps/clinician-web/src/ClinicianCorrection.tsx": "62d7da8b0a58bf94fd7a83c0e87a581497192a8027439c47c2154cda519b41ae",
+    "apps/clinician-web/src/DetailedDemo.tsx": "269bab7524ee4c82efcfb45adfe3073a51b7551bc189e2f027c808b3a6e457ce",
+    "apps/clinician-web/src/DeviceCheck.tsx": "12550b3e5ce8d3c8ed2aac464021d48141ac14b70b1d74a2d88b7837f0475ab2",
+    "apps/clinician-web/src/Dictation.tsx": "654ec5c0e05938a969570122533828ce4819b3dd1261727da8b6e08d2bf4ff84",
+    "apps/clinician-web/src/DraftProposal.tsx": "37b49aab0c7a39162a9ee27fabec29fcbdf2d3a8086fc8dc74f2102819ee0d76",
+    "apps/clinician-web/src/PcmCapture.ts": "addaeee74dac77e8c64d24c78ad732f98ea138960266832f0473e83caec1d7b4",
+    "apps/clinician-web/src/PresentationTools.tsx": "4c0a24ae75c568cbf8ddf75f9653019a8735a1b4d44533856f83ef73054d505b",
+    "apps/clinician-web/src/RecordingVault.ts": "7ab991e84eca9821ef5c8cb8155d9e220e5151f9cb71d20393162eeedb5ce588",
+    "apps/clinician-web/src/ReviewTiming.tsx": "3a6d2d4527354325f53daf80a708630c961630061b7509d8e098f2fa5311a7b8",
+    "apps/clinician-web/src/ServerRecovery.tsx": "071f115e560cd3d55442e844dafbd8dad31613c6eb16d7d5e5ae92fc36158f1a",
+    "apps/clinician-web/src/SourceContext.tsx": "0fe856b3340b5279133d9263e216c66ee6b49e3c63a8cb72c37dfcad70475fdc",
+    "apps/clinician-web/src/SpeakerRoles.tsx": "4d8cf6423608c541f7f9f60b22fd9e0f045dd25868c972ef98772b88c181a112",
+    "apps/clinician-web/src/VerificationWarnings.tsx": "9d85e96a02ece5f70591087c3daf5b8285bd23900db9e889f8b1b99c3a94b7ce",
+    "apps/clinician-web/src/VersionComparison.tsx": "55c172952778f8adc2e69733326f14f933b819c2a1cea57552a91fd96133d757",
+    "apps/clinician-web/src/client/api.ts": "6045694491bc62e4e1d28138328771435ecce5da6b8e977b36027636e0ae0633",
+    "apps/clinician-web/src/client/errorCodes.ts": "fda87ce1945f9a0e1214348fbfc9f637711952bb80d8ac14a0fac5efdff5535b",
+    "apps/clinician-web/src/components/Icon.tsx": "3c8e2e1dc7527bd956426219fa3478c3ecdeaf9455a9e57e3ca879f74b7a60b7",
+    "apps/clinician-web/src/facts.ts": "7500f381f639f861649751dc1764cd900bdd4a50c754c18dcc7a56f73b555e7d",
+    "apps/clinician-web/src/fileHash.ts": "7e72ed03f29c5b7b2313927a000093c473c1e6dd3e681c2f18014887c6d06b9e",
+    "apps/clinician-web/src/format.ts": "d8410958a012ed6690e786cb0c4633a1ed4260a4491f8dc4a1ef35ab3ec98841",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "402ccbb982a4bcb94b69dde4107bfed285404b214194ca6225ac0d81f9366d2c",
+    "apps/clinician-web/src/main.tsx": "d607130ce852076f813659f04bd57b5e342fc489a809dc8376a82fae7239f32c",
+    "apps/clinician-web/src/screens/LoginScreen.tsx": "21f09000268a368ba728f66596abe815bc46e35516f0e547d21d8ad28500f36a",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "5e432216a546bc0f8a2dc6481bb9951f694c7f1f42613ccb50044ca41f63abe4",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "6e5d9ba1d0ac14faa266b03d701a61e63f1e6fb6b27241e0d2879918b76db204",
+    "apps/clinician-web/src/style.css": "ae0eb16abf710d7bc23ae8337678bd6511a48c80c601fca2994472757246ff75",
+    "apps/clinician-web/src/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+    "apps/clinician-web/src/workspaceTypes.ts": "b4519a42b4b5f94ae14cdde88c0b54d4ae857155609a3b18f5005bb061d0b587",
+    "apps/clinician-web/tsconfig.json": "c904f7667b845b93bf5e2a5ffb4c7e5f1c4cfbab768e0f6f53ed6682a84e4d50",
+    "apps/clinician-web/vite.config.ts": "ab206fa054331b1693c7d96706878fb44cc11d300fd1e831c12fd48cf2911ea0"
+  },
+  "locked_dependencies": {
+    "package_lock_sha256": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27",
+    "node_version": "v22.16.0",
+    "npm_version": "10.9.2",
+    "declared_scripts": {
+      "dev": "vite --host 127.0.0.1",
+      "build": "tsc --noEmit && vite build",
+      "preview": "vite preview --host 127.0.0.1"
+    },
+    "playwright": "1.64.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "eslint_declared": false,
+    "local_lint_binary": false
+  },
+  "checks": {
+    "typecheck_and_production_build": {
+      "status": "pass",
+      "result": "npm run build: tsc --noEmit and Vite production build succeeded",
+      "build_artifact_sha256": {
+        "apps/clinician-web/dist/index.html": "edbf70aa9bae607911985b3f2bade536edf308e26019f73d7b7b5d1cedf3c000",
+        "apps/clinician-web/dist/assets/index-Cp0sexe3.js": "e0862390af817ff350a595485262f7eac6ffcb7510677306d6e086b13ba4a46e",
+        "apps/clinician-web/dist/assets/index-Dg4W90Wq.css": "5c5e82faddf30cf4f4ca8138225d5662fd4c66881bd213d42c68ae2c7aab3067",
+        "apps/clinician-web/dist/assets/pcm-worklet.js": "c4d79d737c317d0c26d6ae8711602f8d82e9875ee8fc258749f2bb10d77fb1bf",
+        "apps/clinician-web/dist/assets/THIRD_PARTY_NOTICES.txt": "d1d3e5633ffc0999f283fca5ba980ef3aa455c6398ed9ab805e894dc30dba8de"
+      }
+    },
+    "frontend_lint": {
+      "status": "blocked",
+      "reason": "No lint script, linter configuration, linter package or linter binary exists in the committed package manifest, lockfile, or local node_modules."
+    },
+    "browser_workflows": {
+      "status": "pass",
+      "result": "26 passed, 0 failed, 1 skipped across 27 non-Google Playwright cases",
+      "command": "MED_TRANSCRIPT_TEST_URL=http://127.0.0.1:8004; npm_config_offline=true; npx --offline playwright test --grep-invert Google|google",
+      "runner": "Playwright 1.64.1, Chromium 157.0.0.0",
+      "fixture": "tests.offline_browser_server isolated synthetic fixture; scripted non-ASR, no model inference; loopback-only request interception"
+    },
+    "compressed_audio_browser": {
+      "status": "blocked",
+      "reason": "workflow.spec.ts skips compressed normalization because PyAV import is unavailable; synthetic-asr-smoke.mp3 was not processed."
+    },
+    "clinical_or_asr_quality": {
+      "status": "blocked",
+      "reason": "This browser fixture uses developer-scripted text and provides no ASR accuracy evidence."
+    }
+  },
+  "limitations": [
+    "Frontend lint lane is unavailable in the already locked local dependency tree.",
+    "One compressed-audio browser test was skipped for absent PyAV.",
+    "No network installation, external requests, paid calls, or ASR inference were performed.",
+    "An earlier run had one evidence-channel timeout; the test now polls asynchronously for up to 20 seconds and the exact frontend-source rerun passed that case."
+  ]
+}

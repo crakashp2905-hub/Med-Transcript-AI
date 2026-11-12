@@ -267,12 +267,44 @@
       "id": "MTA-01-04",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "not_started",
+      "status": "blocked_missing_asset",
       "description": "Run frontend build, TypeScript type check, lint and browser tests with the existing locked frontend dependency tree.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/package.json",
+        "apps/clinician-web/package-lock.json",
+        "apps/clinician-web/tsconfig.json",
+        "apps/clinician-web/e2e/evidence-channel.spec.ts",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "evaluation/reports/master-task-mta-01-04-aef2a7b.json"
+      ],
+      "source_commit": "aef2a7b25291c1900cf31e8952ab3822cec4091a",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-04-aef2a7b.json",
+          "report_sha256": "ba74eaecec8d0598a5e3c4a6a1f6445ffda85110e08158dc7649f3f258ac29c3",
+          "check": "typecheck_and_production_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-04-aef2a7b.json",
+          "report_sha256": "ba74eaecec8d0598a5e3c4a6a1f6445ffda85110e08158dc7649f3f258ac29c3",
+          "check": "browser_workflows",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-04-aef2a7b.json",
+          "report_sha256": "ba74eaecec8d0598a5e3c4a6a1f6445ffda85110e08158dc7649f3f258ac29c3",
+          "check": "frontend_lint",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-04-aef2a7b.json",
+          "report_sha256": "ba74eaecec8d0598a5e3c4a6a1f6445ffda85110e08158dc7649f3f258ac29c3",
+          "check": "compressed_audio_browser",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "Frontend lint is not configured or present in the locked local dependency tree; compressed audio normalization browser test is skipped because PyAV is missing."
     },
     {
       "id": "MTA-01-05",
