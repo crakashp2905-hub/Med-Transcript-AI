@@ -511,3 +511,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   a clinical owner, and no independent adjudicated acceptance set is available.
   The primary WER endpoint is frozen, but the safety-gate preregistration is
   incomplete.
+- **MTA-ASR-I02:** Partial. Existing frozen reports provide identical-input
+  comparisons for fixed/overlap/speech-aware/context segmentation and for
+  matched decoder/consensus arms; the E08 term-bias pilot also pairs baseline
+  and biased decoding on identical crops. The full declared matrix (VAD-only,
+  terminology-only, repair-only and full pipeline under equal compute) has not
+  been run on one frozen cohort, so no end-to-end method attribution is claimed.
