@@ -537,3 +537,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   approved-export run. Scripted fixture approval is not clinician review. No
   test currently binds one real local ASR invocation to the complete chain, so
   this task remains incomplete and does not establish clinical readiness.
+- **MTA-ASR-I06:** Partial. High-risk medication, dose/unit, negation and
+  allergy edits are emitted as pending, non-adopted suggestions while original
+  ASR text remains intact (`tests/test_asr_postprocess.py`: 5 passed). Transcript
+  edits create immutable child versions and stale approvals fail closed; span
+  retranscription checks bind to the current source/audio. This is software
+  guard coverage only: the broader review/retranscription workflow test command
+  did not finish in this run, and coverage does not establish clinician review
+  quality. No automatic adoption path was found in these reviewed correction
+  modules.
