@@ -1111,12 +1111,23 @@
       "id": "MTA-02-04",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-      "status": "not_started",
+        "status": "implemented",
       "description": "Keep schema versions and explicit migration functions; test forward/backward compatibility against historical saved records.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+        "evidence": [
+          "evaluation/reports/master-task-mta-02-04-34d08a2.json",
+          "services/domain_contracts.py",
+          "tests/test_domain_migrations.py",
+          "tests/fixtures/domain_records/legacy_note_v0.json"
+        ],
+        "source_commit": "34d08a2228791bdd710b14ac788066c6436970f0",
+        "test_results": [
+          {
+            "report": "evaluation/reports/master-task-mta-02-04-34d08a2.json",
+            "report_sha256": "744a808321e40e882249e3b3975951b463cff59c21b912cc779bf1d184855930",
+            "status": "pass"
+          }
+        ],
+        "blocker": "Historical compatibility fixture is synthetic; no historical production records were present in the repository."
     },
     {
       "id": "MTA-02-05",

@@ -1,0 +1,38 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-04",
+  "status": "pass",
+  "source_commit": "34d08a2228791bdd710b14ac788066c6436970f0",
+  "checks": {
+    "versioned_record_migrations": {
+      "status": "pass",
+      "supported_paths": ["legacy-0 -> 1.0", "1.0 -> 1.0 copy-only"],
+      "registered_record_kind_count": 18,
+      "fixture": "tests/fixtures/domain_records/legacy_note_v0.json",
+      "fixture_is_synthetic": true,
+      "legacy_input_mutated": false,
+      "current_input_mutated": false,
+      "unknown_future_version_rejected": true,
+      "focused_tests": "7 passed",
+      "ci_run_id": 43258985838,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43258985838",
+      "ci_jobs": {
+        "test_dev_security": "success; 788 passed, 17 skipped",
+        "test_dev_asr_security": "success; 816 passed, 3 skipped",
+        "frontend": "success",
+        "postgres": "success",
+        "container": "success",
+        "release-summary": "success"
+      },
+      "source_sha256": {
+        "services/domain_contracts.py": "d07394a7f00eb7327faec3aae80d5ab7528da329b799a843bad90c179754c558",
+        "tests/test_domain_migrations.py": "4eb863bc498aff9b522a2b91bc2c18af471963b2910ed61c231ae0c7760c7e47",
+        "tests/fixtures/domain_records/legacy_note_v0.json": "977805b1012edde984b0fc1c77b3166fcf286664cbe61dafe86846774aea1195"
+      }
+    }
+  },
+  "limitations": [
+    "Compatibility was checked against a synthetic legacy record fixture and the existing integration test that creates, saves, strips the version tag from, then reads a generated note. No independent historical production database or external records were available or used.",
+    "No downgrade path from schema 1.0 to an earlier format is provided; unknown future versions are rejected to prevent silent rewriting."
+  ]
+}
