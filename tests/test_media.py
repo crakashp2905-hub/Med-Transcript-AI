@@ -114,6 +114,27 @@ def test_decoder_child_failure_report_preserves_error_code_and_output_hash(
     assert receipt["stdout_sha256"] == hashlib.sha256(child_output).hexdigest()
 
 
+def test_decoder_malformed_child_report_is_preserved_as_failure(tmp_path, monkeypatch):
+    import services.media_decoder as decoder
+
+    source, target = tmp_path / "source.wav", tmp_path / "normalized.wav"
+    source.write_bytes(stereo_wav())
+    child_output = b"[]"
+    monkeypatch.setattr(
+        decoder.subprocess,
+        "run",
+        lambda *args, **kwargs: SimpleNamespace(returncode=0, stdout=child_output),
+    )
+
+    result = normalize(source, target, "audio/wav")
+    assert result["error_code"] == "decoder_process_failed"
+    assert result["failure_report"]["stage"] == "decoder_child_report"
+    assert (
+        result["failure_report"]["stdout_sha256"]
+        == hashlib.sha256(child_output).hexdigest()
+    )
+
+
 def test_dataset_prep_persists_decoder_failure_and_keeps_both_audio_files(tmp_path):
     from services.prepare_full_consultations import _persist_decoder_failure_report
 
@@ -143,6 +164,46 @@ def test_dataset_prep_persists_decoder_failure_and_keeps_both_audio_files(tmp_pa
     assert failure["partial_output_sha256"] == hashlib.sha256(partial_bytes).hexdigest()
     assert failure["failure"]["error_code"] == "decoder_timeout"
     assert source.read_bytes() == source_bytes and target.read_bytes() == partial_bytes
+
+
+def test_ingest_job_preserves_decoder_failure_report_when_partial_is_removed(
+    setup, monkeypatch
+):
+    client, db, _ = setup
+    original = stereo_wav()
+    _, upload, _, queued = queue_upload(client, original)
+    root = Path(db).parent / "assets"
+    partial = b"synthetic partial decoder output"
+
+    def failed_normalize(source, destination, media_type):
+        Path(destination).write_bytes(partial)
+        return {
+            "error_code": "decoder_timeout",
+            "failure_report": {
+                "schema_version": "audio_decoder_failure_v1",
+                "status": "failed",
+                "stage": "decoder_process",
+                "error_code": "decoder_timeout",
+                "source_sha256": hashlib.sha256(original).hexdigest(),
+                "partial_output_bytes": len(partial),
+                "partial_output_sha256": hashlib.sha256(partial).hexdigest(),
+                "timed_out": True,
+            },
+        }
+
+    monkeypatch.setattr("services.media_decoder.normalize", failed_normalize)
+    assert run_once(db, str(root))["status"] == "failed"
+    job = client.get(queued["status_url"], headers=headers()).json()
+    source = root / f"{upload['id']}.wav"
+    attempted_working = list(root.glob(f"{upload['id']}.*.normalized.wav"))
+    assert job["error_code"] == "decoder_timeout"
+    assert job["result"]["failure_report"]["timed_out"] is True
+    assert (
+        job["result"]["failure_report"]["partial_output_sha256"]
+        == hashlib.sha256(partial).hexdigest()
+    )
+    assert source.read_bytes() == original
+    assert attempted_working == []
 
 
 def test_normalizer_keeps_original_bytes_and_links_distinct_output(

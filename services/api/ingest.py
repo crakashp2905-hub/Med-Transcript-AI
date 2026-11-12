@@ -155,6 +155,18 @@ def run_once(db_path: str, asset_root: str):
             working = Path(asset_root) / f"{upload['id']}.{token}.normalized.wav"
             decoded = normalize(source, working, upload["media_type"])
             if decoded.get("error_code"):
+                failure_report = decoded.get("failure_report")
+                result = {
+                    "failure_report": failure_report
+                    if isinstance(failure_report, dict)
+                    else {
+                        "schema_version": "audio_decoder_failure_v1",
+                        "status": "failed",
+                        "stage": "decoder_adapter",
+                        "error_code": decoded["error_code"],
+                        "source_sha256": upload["expected_sha256"],
+                    }
+                }
                 working.unlink(missing_ok=True)
                 raise InvalidAudio(decoded["error_code"])
             normalized = inspect_pcm_wav(working)

@@ -240,6 +240,20 @@ def normalize(source, destination, media_type):
                 stdout=result.stdout,
             )
         decoded = json.loads(result.stdout)
+        if not isinstance(decoded, dict) or not isinstance(
+            decoded.get("error_code"), (str, type(None))
+        ):
+            return _failure_result(
+                "decoder_process_failed",
+                "decoder_child_report",
+                source,
+                destination,
+                media_type,
+                started,
+                source_sha256=parent["asset_sha256"],
+                process_returncode=result.returncode,
+                stdout=result.stdout,
+            )
         if decoded.get("error_code"):
             return _failure_result(
                 decoded["error_code"],
