@@ -33,6 +33,9 @@ def test_live_prefix_requires_sealing_and_recovers_valid_wav(setup):
         ).status_code
         == 409
     )
+    workspace = client.get(route + "/workspace", headers=headers()).json()
+    assert workspace["transcript"] is None
+    assert workspace["note"] is None and workspace["approval"] is None
     recovery = client.get(
         route + f"/stream-uploads/{item['id']}/recovery", headers=headers()
     )
