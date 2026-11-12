@@ -475,3 +475,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   processing with source provenance; it is not relabeled training data or a
   training augmentation gain. Any future licensed development augmentation
   needs reproducible seeds, parent/derived hashes and label-preservation checks.
+- **MTA-ASR-H05:** Not run. Existing ROVER and hotword experiments are
+  inference-time candidate generation/decoding comparisons, not trained
+  correction or reranking components. No cross-fitted training table was
+  created; reserved acceptance groups remain excluded. A future confusion
+  table would need group-level train/development boundaries and source-linked
+  labels before any component is fit.
