@@ -1670,11 +1670,21 @@
       "id": "MTA-03-11",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Test worst-case resource footprint and input rejection on hardware-constrained CPU/16-GB environment.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-11-e0fc47e.json",
+        "evaluation/reports/master-task-mta-03-11-format-failure-07ef53e.json"
+      ],
+      "source_commit": "e0fc47e59170695472b519ed0d499e007024c521",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-11-e0fc47e.json",
+          "report_sha256": "184984b00e598be04ae6fbd52e9fe5dcaf5984372479233f3e92a44df988ef40",
+          "check": "maximum_multichannel_pcm_resource_and_input_limits",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

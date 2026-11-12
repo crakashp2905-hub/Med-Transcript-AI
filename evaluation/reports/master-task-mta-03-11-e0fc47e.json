@@ -1,0 +1,71 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-11",
+  "status": "pass",
+  "source_commit": "e0fc47e59170695472b519ed0d499e007024c521",
+  "source_tree": "7e7a78762a6d63179ce0f258c3e99ccc97059af0",
+  "checks": {
+    "maximum_multichannel_pcm_resource_and_input_limits": {
+      "status": "pass",
+      "controls": [
+        "Inspect and stream-hash a sparse synthetic file representing the maximum 30-minute 8-channel 16 kHz PCM recording without materializing the payload in Python memory.",
+        "Reject a 3601-second WAV with duration_limit_exceeded.",
+        "Reject a file larger than the 512,000,000-byte upload cap before parsing or reading its payload.",
+        "The committed test enforces an 8 MiB Python allocation ceiling and 120-second upper bound."
+      ],
+      "local_checks": {
+        "focused_pytest": "3 passed, 1 warning in 3.51s",
+        "ruff_format": "pass",
+        "ruff_check": "pass"
+      },
+      "local_measurement": {
+        "audio_shape": "30 minutes, 16 kHz, 8-channel PCM",
+        "bytes": 460800044,
+        "inspection_and_streaming_sha256_seconds": 0.767,
+        "python_tracemalloc_peak_bytes": 2107231
+      },
+      "ci_run_id": 43301197550,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43301197550",
+      "ci_jobs": {
+        "test_dev_security": "success; 848 passed, 17 skipped, 3 warnings",
+        "test_dev_asr_security": "success; 876 passed, 3 skipped, 3 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43301197550,
+    "local_machine": {
+      "os": "Windows 11 build 26200",
+      "cpu": "Intel64 Family 6 Model 140 Stepping 1",
+      "logical_cpus": 8,
+      "physical_ram_gib": 15.75,
+      "available_ram_before_test_gib": 4.41
+    },
+    "local_measurement": {
+      "audio_shape": "30 minutes, 16 kHz, 8-channel PCM",
+      "bytes": 460800044,
+      "inspection_and_streaming_sha256_seconds": 0.767,
+      "python_tracemalloc_peak_bytes": 2107231
+    }
+  },
+  "runtime_sha256": "415d8713a7af1d93e34b6f3184a00615adf69b4af0cdd76a02dd2eaf99576ca0",
+  "source_sha256": {
+    "tests/test_worst_case_audio_resources.py": "e587b75c4956dfc4fbd298594d16ffe148d01e75e119e23e079290927b68a0bf",
+    "services/api/ingest.py": "7fca3d30f2b78d0c702321dba56e1e99fa7a8f7fa0216a35b3e3009d4c6f4a23"
+  },
+  "prior_failed_ci_report": "evaluation/reports/master-task-mta-03-11-format-failure-07ef53e.json",
+  "limitations": [
+    "This exercises header inspection and streaming hash only. PyAV was unavailable locally, so decoder and ASR inference peak resource usage remain unmeasured.",
+    "Synthetic sparse silence is a resource-boundary fixture, not a speech recording or ASR quality sample.",
+    "The local host has 15.75 GiB RAM and 8 logical CPUs; results do not cover lower-spec hardware.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}
