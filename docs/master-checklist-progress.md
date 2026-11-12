@@ -85,6 +85,15 @@ real-patient pilot approval are currently evidenced. Paid model calls and
 missing-asset downloads are out of scope. Real-patient release remains
 unauthorized.
 
+## Task-specific status update
+
+`MTA-04-06` is now `implemented` in the source ledger. Its receipt binds the
+metric code, endpoint registry and passing tests to source commit
+`7c6102499980a0a8095ffc3a403809e3da23f69e` in
+[`master-task-mta-04-06-7c61024.json`](../evaluation/reports/master-task-mta-04-06-7c61024.json).
+The current ledger audit accepts the receipt. The metric implementation does
+not establish clinical validity; the 5% normalized WER gate remains unchanged.
+
 ## Current execution matrix
 
 [`master-implementation-matrix-v1.json`](../evaluation/reports/master-implementation-matrix-v1.json)

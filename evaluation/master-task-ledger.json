@@ -847,12 +847,42 @@
       "id": "MTA-04-06",
       "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Separate ASR lexical accuracy from punctuation/casing and from clinical concept accuracy.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/clinical_metrics.py",
+        "services/clinical_evaluation.py",
+        "evaluation/clinical-asr-secondary-endpoints-v1.json",
+        "tests/test_clinical_weighted_metrics.py"
+      ],
+      "source_commit": "7c6102499980a0a8095ffc3a403809e3da23f69e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-04-06-7c61024.json",
+          "report_sha256": "f046e6b80cf02415aba14ae1e1b2acaab4452b2ea3d9839d582df9683169b49a",
+          "check": "surface_metric_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-06-7c61024.json",
+          "report_sha256": "f046e6b80cf02415aba14ae1e1b2acaab4452b2ea3d9839d582df9683169b49a",
+          "check": "ruff_format",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-06-7c61024.json",
+          "report_sha256": "f046e6b80cf02415aba14ae1e1b2acaab4452b2ea3d9839d582df9683169b49a",
+          "check": "ruff_check",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-06-7c61024.json",
+          "report_sha256": "f046e6b80cf02415aba14ae1e1b2acaab4452b2ea3d9839d582df9683169b49a",
+          "check": "primary_wer_unchanged",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Independent clinical concept and surface-form evaluation data are unavailable; implementation is recorded without clinical validation."
     },
     {
       "id": "MTA-04-07",
