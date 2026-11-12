@@ -5,6 +5,7 @@ from uuid import uuid4
 
 from services.asr.adapter import ASRFailure
 from services.asr.provenance import execution_mode
+from services.asr.timeline import build_audio_segment_trace
 
 
 def build_transcript(
@@ -149,7 +150,7 @@ def build_transcript(
         flags.append("digital_silence")
     if gaps:
         flags.append("untranscribed_intervals_require_review")
-    return {
+    result = {
         "schema_version": "1.0",
         "id": transcript_id,
         "version": version,
@@ -191,3 +192,7 @@ def build_transcript(
             "clinical_coverage": "unverified",
         },
     }
+    result["timeline_trace"] = build_audio_segment_trace(
+        duration, metadata["sha256"], segments, gaps, flags
+    )
+    return result

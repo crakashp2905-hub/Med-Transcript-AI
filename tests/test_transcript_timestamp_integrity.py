@@ -37,6 +37,40 @@ def test_transcript_records_gaps_and_preserves_original_timeline():
     assert result["provenance"]["word_alignment_status"] == "not_provided"
 
 
+def test_audio_segment_trace_reports_union_coverage_gaps_and_uncertainty():
+    result = build_transcript(
+        {
+            "duration_seconds": 2,
+            "segments": [
+                {"start_seconds": 0, "end_seconds": 0.5, "text": "first"},
+                {"start_seconds": 0.4, "end_seconds": 0.75, "text": "overlap"},
+                {"start_seconds": 1, "end_seconds": 1.5, "text": "later"},
+            ],
+        },
+        META,
+        "e",
+        "u",
+        PROFILE,
+        "t",
+        1,
+    )
+
+    trace = result["timeline_trace"]
+    assert trace["input_sha256"] == META["sha256"]
+    assert trace["duration_ms"] == 2000
+    assert trace["covered_ms"] == 1250
+    assert trace["uncovered_ms"] == 750
+    assert trace["coverage_percent"] == 62.5
+    assert [(gap["start_ms"], gap["end_ms"]) for gap in trace["gaps"]] == [
+        (750, 1000),
+        (1500, 2000),
+    ]
+    assert len(trace["segments"]) == 3
+    assert "overlapping_model_timestamps" in trace["uncertainty_flags"]
+    assert "untranscribed_intervals_require_review" in trace["uncertainty_flags"]
+    assert trace["clinical_completeness"] == "unverified"
+
+
 def test_native_whisper_segment_times_are_not_claimed_as_word_alignment():
     profile = SimpleNamespace(**{**PROFILE.__dict__, "engine": "faster-whisper"})
     result = build_transcript(

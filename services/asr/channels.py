@@ -9,6 +9,7 @@ from services.api.ingest import MAX_CHANNELS, inspect_pcm_wav, file_sha256
 from services.asr.adapter import ASRFailure
 from services.asr.transcripts import build_transcript
 from services.asr.provenance import aggregate_channel_modes
+from services.asr.timeline import build_audio_segment_trace
 from services.audio_provenance import (
     channel_timeline,
     derive_provenance,
@@ -178,4 +179,11 @@ def build_channels(
             for s in body["segments"]
         ],
     }
+    body["timeline_trace"] = build_audio_segment_trace(
+        body["duration_ms"],
+        body["input_sha256"],
+        body["segments"],
+        body["untranscribed_intervals"],
+        body["review_flags"],
+    )
     return body

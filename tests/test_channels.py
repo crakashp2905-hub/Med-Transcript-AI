@@ -245,3 +245,10 @@ def test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job(
     assert value["channels"][0]["provenance"]["timing"] == {}
     assert value["provenance"]["timing"]["summed_channel_inference_seconds"] == 3
     assert "isolated_channel_pcm_sha256" not in value["provenance"]
+    trace = value["timeline_trace"]
+    assert trace["duration_ms"] == 100
+    assert trace["covered_ms"] == 80
+    assert trace["uncovered_ms"] == 20
+    assert trace["coverage_percent"] == 80.0
+    assert [channel["covered_ms"] for channel in trace["channels"]] == [0, 80]
+    assert trace["clinical_completeness"] == "unverified"
