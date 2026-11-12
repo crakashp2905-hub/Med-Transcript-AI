@@ -10,6 +10,8 @@ from services.usability_metrics import note_correction
 from services.domain_contracts import validate_record
 from services.proposal_integrity import decode_proposal
 from services.metric_integrity import decode_metric, seal as seal_metric
+from services.api.idempotency import idempotent
+from services.api.contracts import IdempotencyKey
 
 
 class StartReview(Strict):
@@ -27,7 +29,12 @@ class FinishReview(Strict):
     )
 
 
-def register(app, database, identity, encounter, require_processing, document, audit):
+def register(
+    app, database, identity, encounter, require_processing, document, audit, replay
+):
+    def idem(operation):
+        return idempotent(database, replay, operation)
+
     @app.get("/v1/encounters/{eid}/review-sessions")
     def sessions(eid: UUID, actor=Depends(identity)):
         with database() as con:
@@ -48,7 +55,13 @@ def register(app, database, identity, encounter, require_processing, document, a
             return {"items": values, "limit": 100, "active_time_verified": False}
 
     @app.post("/v1/encounters/{eid}/review-sessions", status_code=201)
-    def start(eid: UUID, body: StartReview, actor=Depends(identity)):
+    @idem("review-session-start")
+    def start(
+        eid: UUID,
+        body: StartReview,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         with database() as con:
             row = encounter(con, eid, actor)
             require_processing(con, eid)
@@ -97,7 +110,14 @@ def register(app, database, identity, encounter, require_processing, document, a
             return value
 
     @app.post("/v1/encounters/{eid}/review-sessions/{sid}/complete")
-    def finish(eid: UUID, sid: UUID, body: FinishReview, actor=Depends(identity)):
+    @idem("review-session-complete")
+    def finish(
+        eid: UUID,
+        sid: UUID,
+        body: FinishReview,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         with database() as con:
             row = encounter(con, eid, actor)
             require_processing(con, eid)

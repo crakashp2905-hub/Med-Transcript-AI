@@ -6,7 +6,7 @@ import {createHash,randomUUID} from 'node:crypto';
 const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
 
 test('fact source navigation requests the exact cited audio channel',async({page})=>{
- const headers={Authorization:`Bearer ${token}`};
+ const headers={Authorization:`Bearer ${token}`,'Idempotency-Key':randomUUID()};
  const session=await(await page.request.get('/v1/session',{headers})).json();
  expect(session.asr_profiles).toContain('scripted-non-asr-test-only');
  const demo=await page.request.post('/v1/demo',{headers});expect(demo.ok()).toBe(true);

@@ -14,6 +14,8 @@ from services.review.models import (
 
 
 from services.review.service import ReviewService
+from services.api.contracts import IdempotencyKey
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ReviewService):
@@ -25,9 +27,16 @@ def register(app, services: ReviewService):
     current = services.current
     if_current = services.if_current
     store_tx = services.store_tx
+    replay = services.replay
 
     @app.post("/v1/encounters/{eid}/manual-transcripts", status_code=201)
-    def manual_transcript(eid: UUID, body: ManualTranscript, actor=Depends(identity)):
+    @idempotent(database, replay, "POST:/v1/encounters/{eid}/manual-transcripts")
+    def manual_transcript(
+        eid: UUID,
+        body: ManualTranscript,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         with database() as con:
             row = current(con, eid, actor)
             require_processing(con, eid)
@@ -108,10 +117,12 @@ def register(app, services: ReviewService):
             )
 
     @app.patch("/v1/encounters/{eid}/transcripts/{tid}", status_code=201)
+    @idempotent(database, replay, "PATCH:/v1/encounters/{eid}/transcripts/{tid}")
     def edit_transcript(
         eid: UUID,
         tid: UUID,
         body: TranscriptEdit,
+        idempotency_key: IdempotencyKey,
         if_match: str = Header(alias="If-Match"),
         actor=Depends(identity),
     ):
@@ -151,10 +162,14 @@ def register(app, services: ReviewService):
             return store_tx(con, eid, tr["upload"], tx, actor, str(tid))
 
     @app.post("/v1/encounters/{eid}/transcripts/{tid}/speaker-roles", status_code=201)
+    @idempotent(
+        database, replay, "POST:/v1/encounters/{eid}/transcripts/{tid}/speaker-roles"
+    )
     def speaker_roles(
         eid: UUID,
         tid: UUID,
         body: SpeakerRoleConfirmation,
+        idempotency_key: IdempotencyKey,
         if_match: str = Header(alias="If-Match"),
         actor=Depends(identity),
     ):

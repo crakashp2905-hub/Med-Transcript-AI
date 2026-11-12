@@ -16,6 +16,8 @@ from services.review.models import ApprovalInput
 
 from services.review.service import ReviewService
 from services.encounter_state import Stage, advance_persisted
+from services.api.contracts import IdempotencyKey
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ReviewService):
@@ -27,9 +29,16 @@ def register(app, services: ReviewService):
     get_tx = services.get_tx
     document = services.document
     current = services.current
+    replay = services.replay
 
     @app.post("/v1/encounters/{eid}/approvals", status_code=201)
-    def approve(eid: UUID, body: ApprovalInput, actor=Depends(identity)):
+    @idempotent(database, replay, "POST:/v1/encounters/{eid}/approvals")
+    def approve(
+        eid: UUID,
+        body: ApprovalInput,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         with database() as con:
             row = current(con, eid, actor)
             verify_audit(con)
@@ -58,7 +67,15 @@ def register(app, services: ReviewService):
                 "SELECT * FROM approvals WHERE note=?", (nr["id"],)
             ).fetchone()
             if existing:
-                return approval_body(con, existing)
+                saved = approval_body(con, existing)
+                if (
+                    saved["clinician_id"] != str(actor.clinician_id)
+                    or saved["attestation_version"] != body.attestation_version
+                    or saved["verification_report_id"]
+                    != str(body.verification_report_id)
+                ):
+                    raise HTTPException(409, "approval_replay_conflict")
+                return saved
             aid, created = str(uuid4()), stamp()
             approved = {
                 "id": aid,

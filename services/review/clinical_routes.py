@@ -14,6 +14,8 @@ from services.review.clinical_models import LocalClinicalModels, RuleExtractor
 from services.asr.profiles import canonical_json, content_sha256
 from services.domain_contracts import validate_record
 from services.proposal_integrity import decode_proposal
+from services.api.idempotency import idempotent
+from services.api.contracts import IdempotencyKey
 
 
 class ExtractRequest(Strict):
@@ -100,7 +102,11 @@ def register(
     document,
     audit,
     profiles,
+    replay,
 ):
+    def idem(operation):
+        return idempotent(database, replay, operation)
+
     app.state.clinical_models = LocalClinicalModels(
         os.environ.get("MED_TRANSCRIPT_LOCAL_CLINICAL_MODELS") == "1"
     )
@@ -145,7 +151,13 @@ def register(
         return result
 
     @app.post("/v1/encounters/{eid}/fact-proposals", status_code=201)
-    def extract(eid: UUID, body: ExtractRequest, actor=Depends(identity)):
+    @idem("clinical-fact-proposal")
+    def extract(
+        eid: UUID,
+        body: ExtractRequest,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         with database() as con:
             row = encounter(con, eid, actor)
             require_processing(con, eid)
@@ -215,7 +227,13 @@ def register(
             return save(con, eid, actor, "fact_proposal", result, tx, tr["sha256"])
 
     @app.post("/v1/encounters/{eid}/retranscriptions", status_code=202)
-    def retranscribe(eid: UUID, body: RetranscribeRequest, actor=Depends(identity)):
+    @idem("clinical-retranscription")
+    def retranscribe(
+        eid: UUID,
+        body: RetranscribeRequest,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         with database() as con:
             row = encounter(con, eid, actor)
             require_processing(con, eid)
@@ -272,7 +290,13 @@ def register(
             return {"job_id": jid, "status_url": f"/v1/jobs/{jid}"}
 
     @app.post("/v1/encounters/{eid}/semantic-checks", status_code=201)
-    def verify(eid: UUID, body: VerifyRequest, actor=Depends(identity)):
+    @idem("clinical-semantic-check")
+    def verify(
+        eid: UUID,
+        body: VerifyRequest,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         with database() as con:
             row = encounter(con, eid, actor)
             require_processing(con, eid)

@@ -7,6 +7,8 @@ from fastapi import Depends, HTTPException
 
 
 from services.review.service import ReviewService
+from services.api.idempotency import idempotent
+from services.api.contracts import IdempotencyKey
 
 
 def register(app, services: ReviewService):
@@ -17,6 +19,9 @@ def register(app, services: ReviewService):
     stamp = services.stamp
     document = services.document
     current = services.current
+
+    def idem(operation):
+        return idempotent(database, services.replay, operation)
 
     @app.get("/v1/encounters/{eid}/versions")
     def versions(eid: UUID, actor=Depends(identity)):
@@ -82,7 +87,10 @@ def register(app, services: ReviewService):
             }
 
     @app.post("/v1/encounters/{eid}/deletion-requests", status_code=202)
-    def delete_request(eid: UUID, actor=Depends(identity)):
+    @idem("encounter-deletion-request")
+    def delete_request(
+        eid: UUID, idempotency_key: IdempotencyKey, actor=Depends(identity)
+    ):
         with database() as con:
             row = current(con, eid, actor)
             if (

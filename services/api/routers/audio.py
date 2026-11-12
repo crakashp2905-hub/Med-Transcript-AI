@@ -4,13 +4,14 @@ import hashlib
 import os
 from datetime import datetime, timedelta, timezone
 from uuid import UUID, uuid4
-from fastapi import Depends, HTTPException, Request
+from fastapi import Depends, HTTPException, Request, Header
 from services.api.ingest import file_sha256
 from services.api.contracts import Identity, IdempotencyKey, UploadInput
 from services.api.router_context import ApiServices
 from services.api.time_utils import now
 from services.domain_contracts import validate_record
 from services.encounter_state import Stage, advance_persisted
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ApiServices):
@@ -26,6 +27,7 @@ def register(app, services: ApiServices):
     assets = services.assets
 
     @app.post("/v1/encounters/{encounter_id}/audio-uploads", status_code=201)
+    @idempotent(database, replay, "POST:/v1/encounters/{encounter_id}/audio-uploads")
     def create_upload(
         encounter_id: UUID,
         body: UploadInput,
@@ -95,10 +97,21 @@ def register(app, services: ApiServices):
             }
 
     @app.put("/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content")
+    @idempotent(
+        database,
+        replay,
+        "PUT:/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content",
+    )
     async def upload_content(
         encounter_id: UUID,
         upload_id: UUID,
         request: Request,
+        idempotency_key: str = Header(
+            alias="Idempotency-Key",
+            min_length=8,
+            max_length=128,
+            pattern=r"^[a-zA-Z0-9_.-]+$",
+        ),
         actor: Identity = Depends(identity),
     ):
         with database() as con:
@@ -168,8 +181,21 @@ def register(app, services: ApiServices):
         "/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/complete",
         status_code=202,
     )
+    @idempotent(
+        database,
+        replay,
+        "POST:/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/complete",
+    )
     def complete_upload(
-        encounter_id: UUID, upload_id: UUID, actor: Identity = Depends(identity)
+        encounter_id: UUID,
+        upload_id: UUID,
+        idempotency_key: str = Header(
+            alias="Idempotency-Key",
+            min_length=8,
+            max_length=128,
+            pattern=r"^[a-zA-Z0-9_.-]+$",
+        ),
+        actor: Identity = Depends(identity),
     ):
         with database() as con:
             row = upload_row(con, encounter_id, upload_id, actor)

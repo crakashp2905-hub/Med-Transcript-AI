@@ -6,6 +6,7 @@ from uuid import UUID
 from fastapi import Depends, Header, HTTPException, Request
 from starlette.concurrency import run_in_threadpool
 from services.api.ingest import file_sha256
+from services.api.idempotency import idempotent
 
 MAX_CHUNK_BYTES = 4 * 1024 * 1024
 
@@ -19,8 +20,13 @@ def register(
     require_live_upload,
     assets,
     audit,
+    replay,
 ):
+    def idem(operation):
+        return idempotent(database, replay, operation)
+
     @app.patch("/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content")
+    @idem("audio-upload-chunk")
     async def append(
         encounter_id: UUID,
         upload_id: UUID,
@@ -28,6 +34,13 @@ def register(
         offset: int = Header(alias="Upload-Offset", ge=0),
         chunk_sha256: str = Header(
             alias="Upload-Chunk-SHA256", pattern="^[a-f0-9]{64}$"
+        ),
+        idempotency_key: str = Header(
+            ...,
+            alias="Idempotency-Key",
+            min_length=8,
+            max_length=128,
+            pattern="^[a-zA-Z0-9_.-]+$",
         ),
         actor=Depends(identity),
     ):

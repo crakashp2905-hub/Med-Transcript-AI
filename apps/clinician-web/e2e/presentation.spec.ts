@@ -1,6 +1,7 @@
 import {test,expect} from './fixtures/offline';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
+import {randomUUID} from 'node:crypto';
 const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
 test('current correction comparison and uncertainty queue retain unreviewed proposals',async({page})=>{
  await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
@@ -29,7 +30,7 @@ test('detailed demo, review tools and measured dashboard preserve approval bound
  await page.getByRole('button',{name:'Study dashboard',exact:true}).click();await expect(page.getByRole('heading',{name:'Study dashboard'})).toBeVisible();await expect(page.getByText('Quality gate: 5% normalized WER.',{exact:false})).toBeVisible();
 });
 test('approved summary requires separate confirmation and edits reset it',async({page})=>{
- const headers={Authorization:`Bearer ${token}`};
+ const headers={Authorization:`Bearer ${token}`,'Idempotency-Key':randomUUID()};
  const demo=await page.request.post('/v1/demo',{headers});expect(demo.ok()).toBeTruthy();const eid=(await demo.json()).encounter_id;
  const ws=await(await page.request.get(`/v1/encounters/${eid}/workspace`,{headers})).json();
  const source=await page.request.post(`/v1/encounters/${eid}/manual-transcripts`,{headers,data:{audio_asset_id:ws.transcript.audio_asset_id,segments:[{start_ms:0,end_ms:100,text:'Patient reports cough.',role:'patient'}],english_confirmed:true,source_completeness_reviewed:true,source_review_reason:'Synthetic test source reviewed in full.'}});expect(source.ok()).toBeTruthy();const tx=await source.json();

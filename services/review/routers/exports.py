@@ -15,6 +15,8 @@ from services.review.service import ReviewService
 from services.clinical_limitations import CLINICAL_LIMITATIONS
 from services.domain_contracts import validate_record
 from services.evidence_graph import validate_approved_export
+from services.api.contracts import IdempotencyKey
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ReviewService):
@@ -25,9 +27,16 @@ def register(app, services: ReviewService):
     document = services.document
     get_tx = services.get_tx
     current = services.current
+    replay = services.replay
 
     @app.post("/v1/encounters/{eid}/exports", status_code=201)
-    def export(eid: UUID, body: ExportInput, actor=Depends(identity)):
+    @idempotent(database, replay, "POST:/v1/encounters/{eid}/exports")
+    def export(
+        eid: UUID,
+        body: ExportInput,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         with database() as con:
             current(con, eid, actor)
             ar = con.execute(

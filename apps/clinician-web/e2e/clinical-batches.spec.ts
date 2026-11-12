@@ -1,9 +1,10 @@
 import {test,expect} from './fixtures/offline';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
+import {randomUUID} from 'node:crypto';
 const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
 test('long source proposal batches preserve earlier editor selections and require review',async({page})=>{
- const headers={Authorization:`Bearer ${token}`};
+ const headers={Authorization:`Bearer ${token}`,'Idempotency-Key':randomUUID()};
  const demo=await page.request.post('/v1/demo',{headers});expect(demo.ok()).toBe(true);const eid=(await demo.json()).encounter_id;
  const workspace=await(await page.request.get(`/v1/encounters/${eid}/workspace`,{headers})).json();
  const source=await page.request.post(`/v1/encounters/${eid}/manual-transcripts`,{headers,data:{audio_asset_id:workspace.transcript.audio_asset_id,segments:Array.from({length:25},(_,i)=>({start_ms:i*100,end_ms:i*100+90,text:`Patient reports cough ${i}.`,role:'unknown'}))}});expect(source.ok()).toBe(true);

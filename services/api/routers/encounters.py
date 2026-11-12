@@ -7,6 +7,7 @@ from services.encounter_state import Stage
 from services.api.contracts import Identity, IdempotencyKey, EncounterInput
 from services.api.router_context import ApiServices
 from services.api.time_utils import now
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ApiServices):
@@ -29,6 +30,7 @@ def register(app, services: ApiServices):
         }
 
     @app.post("/v1/encounters", status_code=201)
+    @idempotent(database, replay, "POST:/v1/encounters")
     def create_encounter(
         body: EncounterInput,
         idempotency_key: IdempotencyKey,

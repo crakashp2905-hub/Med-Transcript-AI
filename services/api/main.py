@@ -269,6 +269,7 @@ def create_app(
         require_live_upload,
         assets,
         audit,
+        replay,
     )
     from services.api.live_uploads import register as register_live_uploads
 
@@ -289,7 +290,7 @@ def create_app(
     from services.review.routes import register_review_routes
 
     register_review_routes(
-        app, database, identity, encounter, audit, require_processing, assets, profiles
+        app, database, identity, encounter, audit, require_processing, assets, profiles, replay
     )
     from fastapi.staticfiles import StaticFiles
     from fastapi.responses import FileResponse

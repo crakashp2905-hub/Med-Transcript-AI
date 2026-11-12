@@ -4,7 +4,15 @@ from services.review.service import ReviewService
 
 
 def register_review_routes(
-    app, database, identity, encounter, audit, require_processing, assets, profiles
+    app,
+    database,
+    identity,
+    encounter,
+    audit,
+    require_processing,
+    assets,
+    profiles,
+    replay,
 ):
     from services.review.providers import configured_provider
     from services.review.metrics_routes import register as register_metrics
@@ -23,10 +31,24 @@ def register_review_routes(
 
     app.state.drafting_provider = configured_provider()
     services = ReviewService(
-        database, identity, encounter, audit, require_processing, assets, profiles
+        database,
+        identity,
+        encounter,
+        audit,
+        require_processing,
+        assets,
+        profiles,
+        replay,
     )
     register_metrics(
-        app, database, identity, encounter, require_processing, services.document, audit
+        app,
+        database,
+        identity,
+        encounter,
+        require_processing,
+        services.document,
+        audit,
+        replay,
     )
     register_clinical(
         app,
@@ -38,6 +60,7 @@ def register_review_routes(
         services.document,
         audit,
         profiles,
+        replay,
     )
     for router in (
         workspace,

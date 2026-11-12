@@ -8,6 +8,8 @@ from services.review.models import ResolutionInput
 
 
 from services.review.service import ReviewService
+from services.api.contracts import IdempotencyKey
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ReviewService):
@@ -19,6 +21,7 @@ def register(app, services: ReviewService):
     document = services.document
     current = services.current
     save_note = services.save_note
+    replay = services.replay
 
     @app.get("/v1/encounters/{eid}/verification")
     def verification(eid: UUID, actor=Depends(identity)):
@@ -36,7 +39,14 @@ def register(app, services: ReviewService):
             }
 
     @app.post("/v1/encounters/{eid}/findings/{fid}/resolve", status_code=201)
-    def resolve(eid: UUID, fid: UUID, body: ResolutionInput, actor=Depends(identity)):
+    @idempotent(database, replay, "POST:/v1/encounters/{eid}/findings/{fid}/resolve")
+    def resolve(
+        eid: UUID,
+        fid: UUID,
+        body: ResolutionInput,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         from services.review.models import Fact
         from services.review.clinical import extract
 

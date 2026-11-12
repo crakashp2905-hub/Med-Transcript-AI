@@ -7,7 +7,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 from uuid import UUID, uuid4
 
-from fastapi import Depends, HTTPException, Query
+from fastapi import Depends, HTTPException, Query, Header
 from fastapi.responses import FileResponse
 
 from services.asr.profiles import canonical_json
@@ -16,6 +16,7 @@ from services.asr.profiles import canonical_json
 from services.review.service import ReviewService
 from services.review.engine import current_safety_recheck
 from services.encounter_state import Stage, advance_persisted
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ReviewService):
@@ -29,6 +30,9 @@ def register(app, services: ReviewService):
     document = services.document
     current = services.current
     store_tx = services.store_tx
+
+    def idem(operation):
+        return idempotent(database, services.replay, operation)
 
     @app.get("/v1/study-dashboard")
     def study_dashboard(actor=Depends(identity)):
@@ -66,8 +70,16 @@ def register(app, services: ReviewService):
         }
 
     @app.post("/v1/demo", status_code=201)
+    @idem("demo-encounter-create")
     def demo(
         public_case: str | None = Query(default=None, max_length=100),
+        idempotency_key: str = Header(
+            ...,
+            alias="Idempotency-Key",
+            min_length=8,
+            max_length=128,
+            pattern="^[a-zA-Z0-9_.-]+$",
+        ),
         actor=Depends(identity),
     ):
         from services.api.ingest import file_sha256, inspect_pcm_wav

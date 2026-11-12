@@ -10,6 +10,8 @@ from services.review.models import AmendmentInput
 
 
 from services.review.service import ReviewService
+from services.api.contracts import IdempotencyKey
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ReviewService):
@@ -20,9 +22,16 @@ def register(app, services: ReviewService):
     document = services.document
     current = services.current
     save_note = services.save_note
+    replay = services.replay
 
     @app.post("/v1/encounters/{eid}/amendments", status_code=201)
-    def amend(eid: UUID, body: AmendmentInput, actor=Depends(identity)):
+    @idempotent(database, replay, "POST:/v1/encounters/{eid}/amendments")
+    def amend(
+        eid: UUID,
+        body: AmendmentInput,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         from services.review.models import Fact
 
         with database() as con:

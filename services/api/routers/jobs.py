@@ -8,6 +8,7 @@ from services.api.contracts import Identity, IdempotencyKey, TranscriptionInput
 from services.api.router_context import ApiServices
 from services.api.time_utils import now
 from services.api.job_state import progress as job_progress, retryable as job_retryable
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ApiServices):
@@ -56,7 +57,12 @@ def register(app, services: ApiServices):
             }
 
     @app.post("/v1/jobs/{job_id}/retry", status_code=202)
-    def retry_transcription(job_id: UUID, actor: Identity = Depends(identity)):
+    @idempotent(database, replay, "POST:/v1/jobs/{job_id}/retry")
+    def retry_transcription(
+        job_id: UUID,
+        idempotency_key: IdempotencyKey,
+        actor: Identity = Depends(identity),
+    ):
         with database() as con:
             job = con.execute(
                 "SELECT * FROM jobs WHERE id=?", (str(job_id),)
@@ -83,6 +89,7 @@ def register(app, services: ApiServices):
             return {"job_id": str(job_id), "status_url": f"/v1/jobs/{job_id}"}
 
     @app.post("/v1/encounters/{encounter_id}/transcriptions", status_code=202)
+    @idempotent(database, replay, "POST:/v1/encounters/{encounter_id}/transcriptions")
     def create_transcription(
         encounter_id: UUID,
         body: TranscriptionInput,

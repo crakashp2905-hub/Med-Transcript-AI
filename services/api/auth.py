@@ -377,12 +377,22 @@ class GoogleSessions:
         def logout(request: Request):
             if settings.mode != "google":
                 raise HTTPException(404, "google_sign_in_not_configured")
-            self.principal(request)
-            with self.database() as con:
-                con.execute(
-                    "DELETE FROM auth_sessions WHERE token_hash=?",
-                    (digest(request.cookies[settings.cookie]),),
-                )
+            token = request.cookies.get(settings.cookie, "")
+            if token:
+                if len(token) > 256:
+                    raise HTTPException(401, "authentication_required")
+                if request.headers.get(
+                    "origin"
+                ) != settings.origin or not secrets.compare_digest(
+                    request.headers.get("x-csrf-token", ""), digest(token + ":csrf")
+                ):
+                    raise HTTPException(403, "csrf_validation_failed")
+                # Repeated logout is safe even when the first response was lost.
+                with self.database() as con:
+                    con.execute(
+                        "DELETE FROM auth_sessions WHERE token_hash=?",
+                        (digest(token),),
+                    )
             response = JSONResponse({"signed_out": True})
             response.delete_cookie(
                 settings.cookie,

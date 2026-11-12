@@ -324,6 +324,35 @@ def test_idempotency_is_actor_scoped_and_required(setup):
     )
 
 
+def test_authorization_mutation_replays_and_rejects_incompatible_key(setup):
+    client, path, _ = setup
+    auth = headers()
+    encounter_id = client.post("/v1/encounters", json=payload(), headers=auth).json()[
+        "id"
+    ]
+    key = str(uuid4())
+    request_headers = {**auth, "Idempotency-Key": key}
+    consent = {
+        "scopes": ["recording", "local_processing"],
+        "method": "written",
+        "policy_version": "test-v1",
+        "expires_at": (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat(),
+    }
+    route = f"/v1/encounters/{encounter_id}/authorizations"
+    first = client.post(route, json=consent, headers=request_headers)
+    assert first.status_code == 201
+    replayed = client.post(route, json=consent, headers=request_headers)
+    assert replayed.status_code == 201
+    assert replayed.json() == first.json()
+    incompatible = {**consent, "scopes": ["recording"]}
+    assert (
+        client.post(route, json=incompatible, headers=request_headers).status_code
+        == 409
+    )
+    with sqlite3.connect(path) as con:
+        assert con.execute("SELECT COUNT(*) FROM authorizations").fetchone()[0] == 1
+
+
 def test_legacy_database_migrates_without_losing_encounters(tmp_path):
     path = str(tmp_path / "legacy.sqlite3")
     with sqlite3.connect(path) as con:

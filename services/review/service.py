@@ -36,6 +36,7 @@ class ReviewService:
     require_processing: Callable[..., None]
     assets: Path
     profiles: dict[str, ASRProfile]
+    replay: Callable[..., Any]
 
     def stamp(self):
         return datetime.now(timezone.utc).isoformat()

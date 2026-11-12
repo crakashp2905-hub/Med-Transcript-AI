@@ -3,10 +3,11 @@
 from uuid import UUID, uuid4
 from fastapi import Depends, HTTPException
 from services.api.storage import active_scopes, processing_allowed
-from services.api.contracts import Identity, AuthorizationInput
+from services.api.contracts import Identity, AuthorizationInput, IdempotencyKey
 from services.domain_contracts import validate_record
 from services.api.router_context import ApiServices
 from services.api.time_utils import now
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ApiServices):
@@ -15,11 +16,14 @@ def register(app, services: ApiServices):
     encounter = services.encounter
     audit = services.audit
     profiles = services.profiles
+    replay = services.replay
 
     @app.post("/v1/encounters/{encounter_id}/authorizations", status_code=201)
+    @idempotent(database, replay, "POST:/v1/encounters/{encounter_id}/authorizations")
     def authorize(
         encounter_id: UUID,
         body: AuthorizationInput,
+        idempotency_key: IdempotencyKey,
         actor: Identity = Depends(identity),
     ):
         resource, created = str(uuid4()), now()
@@ -47,8 +51,16 @@ def register(app, services: ApiServices):
     @app.post(
         "/v1/encounters/{encounter_id}/authorizations/{authorization_id}/withdraw"
     )
+    @idempotent(
+        database,
+        replay,
+        "POST:/v1/encounters/{encounter_id}/authorizations/{authorization_id}/withdraw",
+    )
     def withdraw(
-        encounter_id: UUID, authorization_id: UUID, actor: Identity = Depends(identity)
+        encounter_id: UUID,
+        authorization_id: UUID,
+        idempotency_key: IdempotencyKey,
+        actor: Identity = Depends(identity),
     ):
         with database() as con:
             encounter(con, encounter_id, actor)

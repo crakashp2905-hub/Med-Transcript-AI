@@ -9,6 +9,8 @@ from services.review.models import DraftInput, NoteEdit
 
 
 from services.review.service import ReviewService
+from services.api.contracts import IdempotencyKey
+from services.api.idempotency import idempotent
 
 
 def register(app, services: ReviewService):
@@ -20,9 +22,16 @@ def register(app, services: ReviewService):
     current = services.current
     if_current = services.if_current
     save_note = services.save_note
+    replay = services.replay
 
     @app.post("/v1/encounters/{eid}/drafts", status_code=201)
-    def draft(eid: UUID, body: DraftInput, actor=Depends(identity)):
+    @idempotent(database, replay, "POST:/v1/encounters/{eid}/drafts")
+    def draft(
+        eid: UUID,
+        body: DraftInput,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         with database() as con:
             row = current(con, eid, actor)
             require_processing(con, eid)
@@ -49,10 +58,12 @@ def register(app, services: ReviewService):
             )
 
     @app.patch("/v1/encounters/{eid}/notes/{nid}", status_code=201)
+    @idempotent(database, replay, "PATCH:/v1/encounters/{eid}/notes/{nid}")
     def edit_note(
         eid: UUID,
         nid: UUID,
         body: NoteEdit,
+        idempotency_key: IdempotencyKey,
         if_match: str = Header(alias="If-Match"),
         actor=Depends(identity),
     ):

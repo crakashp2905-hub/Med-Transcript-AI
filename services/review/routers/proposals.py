@@ -14,6 +14,8 @@ from services.review.engine import validate_evidence
 from services.review.providers import JSONProvider, DeterministicProvider
 from services.review.models import DraftProposalInput
 from services.review.service import ReviewService
+from services.api.contracts import IdempotencyKey
+from services.api.idempotency import idempotent
 from services.domain_contracts import validate_record
 from services.proposal_integrity import decode_proposal
 
@@ -26,6 +28,7 @@ def register(app, services: ReviewService):
     require_processing = services.require_processing
     stamp = services.stamp
     get_tx = services.get_tx
+    replay = services.replay
 
     @app.get("/v1/encounters/{eid}/draft-proposals/{did}")
     def get_draft_proposal(eid: UUID, did: UUID, actor=Depends(identity)):
@@ -42,7 +45,13 @@ def register(app, services: ReviewService):
             return value
 
     @app.post("/v1/encounters/{eid}/draft-proposals", status_code=201)
-    def draft_proposal(eid: UUID, body: DraftProposalInput, actor=Depends(identity)):
+    @idempotent(database, replay, "POST:/v1/encounters/{eid}/draft-proposals")
+    def draft_proposal(
+        eid: UUID,
+        body: DraftProposalInput,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         from services.api.storage import active_scopes
 
         provider = app.state.drafting_provider

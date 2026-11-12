@@ -9,6 +9,8 @@ from fastapi import Depends, Header, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 from services.api.ingest import MAX_UPLOAD_BYTES, file_sha256
+from services.api.idempotency import idempotent
+from services.api.contracts import IdempotencyKey
 
 
 class StreamInput(BaseModel):
@@ -56,6 +58,9 @@ def register(
     replay,
     remember,
 ):
+    def idem(operation):
+        return idempotent(database, replay, operation)
+
     @app.post("/v1/encounters/{eid}/stream-uploads", status_code=201)
     def create(
         eid: UUID,
@@ -125,7 +130,14 @@ def register(
             raise
 
     @app.post("/v1/encounters/{eid}/stream-uploads/{uid}/seal")
-    def seal(eid: UUID, uid: UUID, body: SealInput, actor=Depends(identity)):
+    @idem("stream-upload-seal")
+    def seal(
+        eid: UUID,
+        uid: UUID,
+        body: SealInput,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
         stamp = datetime.now(timezone.utc)
         token = str(uuid4())
         partial = assets / f"{uid}.resume.part"
