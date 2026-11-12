@@ -1,0 +1,35 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-11",
+  "status": "fail",
+  "source_commit": "07ef53e51fadbbfde5c56342fc9ab8ab71e4bb0e",
+  "source_tree": "f24dbdd8a51016f070c0c50c57bff238e7a25adb",
+  "checks": {
+    "worst_case_audio_resource_ci_format_gate": {
+      "status": "fail",
+      "ci_run_id": 43300867788,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43300867788",
+      "ci_jobs": {
+        "test_dev_security": "failure: python_format failed before pytest",
+        "test_dev_asr_security": "cancelled after sibling failure",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success"
+      },
+      "failure": "Ruff format check reported tests/test_worst_case_audio_resources.py would be reformatted.",
+      "local_checks": {
+        "focused_pytest": "3 passed in 4.21s",
+        "ruff_check": "pass",
+        "ruff_format_check": "fail; corrected in follow-up source commit"
+      },
+      "failed_tests": []
+    }
+  },
+  "limitations": [
+    "The failing run did not execute the CI Python test sequence.",
+    "No ledger status is advanced from this failed source commit."
+  ],
+  "source_sha256": {
+    "tests/test_worst_case_audio_resources.py": "09d2a95100475d13c6ad1f5ebb5cc3f26f0180f9f28f0deaea5753be4c36c002"
+  }
+}

@@ -14,9 +14,19 @@ def _sparse_pcm_wav(path, *, channels, sample_rate, frames):
     data_bytes = channels * 2 * frames
     with path.open("wb") as output:
         output.write(b"RIFF" + struct.pack("<I", 36 + data_bytes) + b"WAVE")
-        output.write(b"fmt " + struct.pack("<IHHIIHH", 16, 1, channels, sample_rate,
-                                             sample_rate * channels * 2,
-                                             channels * 2, 16))
+        output.write(
+            b"fmt "
+            + struct.pack(
+                "<IHHIIHH",
+                16,
+                1,
+                channels,
+                sample_rate,
+                sample_rate * channels * 2,
+                channels * 2,
+                16,
+            )
+        )
         output.write(b"data" + struct.pack("<I", data_bytes))
         output.seek(44 + data_bytes - 1)
         output.write(b"\0")
