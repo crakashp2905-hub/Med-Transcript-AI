@@ -614,3 +614,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   the pre-existing synthetic transcription workflow; the added integration
   attempt was removed rather than retaining a hanging test. The full
   audio-to-approved-export acceptance remains incomplete.
+- **MTA-ASR-C02:** Verified and regression-pinned the current full-consultation
+  fixed-window baseline before further segmentation claims. The source-bound
+  ranking identifies `omi-med-stt-v1-native-empty` first at 16.41% clean / 17.22%
+  distracted WER. Its matched overlap and speech-aware arms score worse in both
+  conditions; each arm has 8 foregrounds, 13,683 reference words and zero failed
+  samples. `tests/test_fixed_window_baseline.py`: 1 passed; it checks exact report
+  hashes, manifest/suite bindings, common denominators, and the unchanged 5% gate.
+  This confirms only the development baseline; every arm still fails admission,
+  and it does not qualify Omi for clinical use.
