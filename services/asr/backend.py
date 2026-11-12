@@ -1,6 +1,6 @@
 """Truthful backend capability protocol and fail-closed invocation boundary."""
 
-from typing import Protocol, runtime_checkable
+from services.provider_interfaces import ASRProvider
 
 
 class BackendError(RuntimeError):
@@ -9,19 +9,7 @@ class BackendError(RuntimeError):
         super().__init__(code)
 
 
-@runtime_checkable
-class ASRBackend(Protocol):
-    def transcribe(self, source, metadata, checkpoint): ...
-
-    def availability(self): ...
-
-    def timestamp_capability(self): ...
-
-    def n_best_capability(self): ...
-
-    def confidence_capability(self): ...
-
-    def runtime_receipt(self): ...
+ASRBackend = ASRProvider
 
 
 def inspect_backend(backend):

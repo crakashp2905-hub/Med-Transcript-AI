@@ -1,30 +1,54 @@
-"""Provider contracts with explicit limitation disclosure."""
+"""Provider-neutral adapter contracts; implementations disclose limitations."""
 
-from typing import Protocol
+from collections.abc import Callable, Mapping
+from typing import Any, Protocol, runtime_checkable
 
 
 class ProviderResult(Protocol):
     limitations: list[str]
 
 
+@runtime_checkable
 class ASRProvider(Protocol):
-    def transcribe(self, audio_path: str) -> ProviderResult: ...
+    """Local or hosted ASR capability contract used by the worker router."""
+
+    def transcribe(
+        self, source: Any, metadata: Mapping[str, Any], checkpoint: Callable[[], None]
+    ) -> Mapping[str, Any]: ...
+
+    def availability(self) -> Mapping[str, Any]: ...
+
+    def timestamp_capability(self) -> Mapping[str, Any]: ...
+
+    def n_best_capability(self) -> Mapping[str, Any]: ...
+
+    def confidence_capability(self) -> Mapping[str, Any]: ...
+
+    def runtime_receipt(self) -> Mapping[str, Any]: ...
 
 
+@runtime_checkable
 class DiarizationProvider(Protocol):
-    def assign_speakers(self, transcript: ProviderResult) -> ProviderResult: ...
+    def diarize(
+        self, audio: Any, manifest: Mapping[str, Any], checkpoint: Callable[[], None]
+    ) -> Mapping[str, Any]: ...
 
 
+@runtime_checkable
 class ExtractionProvider(Protocol):
-    def extract(self, transcript: ProviderResult) -> ProviderResult: ...
+    def extract(self, transcript: Mapping[str, Any]) -> Any: ...
 
 
+@runtime_checkable
 class DraftingProvider(Protocol):
-    def draft(self, facts: ProviderResult) -> ProviderResult: ...
+    def draft(
+        self, facts: list[dict], *, authorized: bool, synthetic: bool
+    ) -> dict: ...
 
 
+@runtime_checkable
 class VerificationProvider(Protocol):
-    def verify(self, draft: ProviderResult) -> ProviderResult: ...
+    def verify(self, claims: Any, *, synthetic: bool = False) -> Mapping[str, Any]: ...
 
 
 def require_limitations(result):
