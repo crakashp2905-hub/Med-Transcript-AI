@@ -4,6 +4,7 @@ import {resolve} from 'node:path';
 const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
 test('current correction comparison and uncertainty queue retain unreviewed proposals',async({page})=>{
  await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+ await expect(page.getByRole('note')).toContainText('developer-authored synthetic rules and public-mock labels are not independent clinician gold');
  await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
  await expect(page.locator('.fact-card')).toHaveCount(6);
  await page.locator('.fact-card').first().getByRole('textbox',{name:'Note statement',exact:true}).fill('Clinician correction pending review.');
