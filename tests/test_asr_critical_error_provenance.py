@@ -1,5 +1,8 @@
 import csv
+import hashlib
 import json
+import io
+import zipfile
 from pathlib import Path
 
 from services.api.ingest import file_sha256
@@ -9,7 +12,7 @@ from services.review.clinical import MEDICATION, NEGATION, QUANTITY
 def test_saved_critical_token_errors_resolve_to_frozen_reference_turns():
     manifest_path = Path("evaluation/datasets/meddistract-detailed-v1/manifest.json")
     report_path = Path("evaluation/reports/error-taxonomy-v2/report.json")
-    csv_path = Path("evaluation/reports/error-taxonomy-v2/all-errors.csv")
+    csv_path = Path("evaluation/reports/error-taxonomy-v2/all-errors.csv.zip")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     report = json.loads(report_path.read_text(encoding="utf-8"))
     protocol = json.loads(
@@ -17,7 +20,7 @@ def test_saved_critical_token_errors_resolve_to_frozen_reference_turns():
     )
     assert report["manifest_sha256"] == file_sha256(manifest_path)
     assert protocol["manifest_sha256"] == file_sha256(manifest_path)
-    assert report["csv_sha256"] == file_sha256(csv_path)
+    assert report["csv_archive_sha256"] == file_sha256(csv_path)
 
     source = {case["group_id"]: case for case in manifest["cases"]}
     declared_reports = {
@@ -30,7 +33,10 @@ def test_saved_critical_token_errors_resolve_to_frozen_reference_turns():
         assert file_sha256(path) == digest
     seen_reports = set()
     reference_errors = critical_errors = insertion_errors = 0
-    with csv_path.open(encoding="utf-8", newline="") as stream:
+    with zipfile.ZipFile(csv_path) as archive:
+        raw_csv = archive.read("all-errors.csv")
+    assert hashlib.sha256(raw_csv).hexdigest() == report["csv_sha256"]
+    with io.TextIOWrapper(io.BytesIO(raw_csv), encoding="utf-8", newline="") as stream:
         for row in csv.DictReader(stream):
             case = source.get(row["case"])
             assert case is not None

@@ -210,6 +210,8 @@ def acceptance(version, run_tests=True, run_build=True):
             "status": "pass",
             "files_checked": len(source_hashes),
         }
+    from services.master_release import assess
+
     report = {
         "schema_version": "offline_acceptance_v1",
         "version": version,
@@ -229,6 +231,10 @@ def acceptance(version, run_tests=True, run_build=True):
             "research_evidence_complete": "not_established",
             "clinical_approved": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
         },
+        "master_release": assess(
+            current_demo_pass=results["synthetic_walkthrough"]["status"] == "pass"
+            and results["source_integrity"]["status"] == "pass"
+        ),
         "maximum_normalized_wer": 0.05,
         "independent_clinical_gold": False,
         "real_patient_release_authorized": False,

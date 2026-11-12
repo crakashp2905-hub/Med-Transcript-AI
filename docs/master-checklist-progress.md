@@ -52,7 +52,7 @@ source receipts must be mapped individually before the JSON changes.
 | 00-02 | README and offline scope ADR state English-only, clinician-supervised documentation assistance. | Exact source and scope assertion. |
 | 00-03 | Baseline records local model and development manifest hashes. | Artifact policy test against the frozen inventory. |
 | 00-04 | `STRICT_OFFLINE=1` now enables Python network denial and rejects Google sign-in and hosted drafting configuration. | Commit-bound tests and a native-process containment boundary remain required for a stronger guarantee. |
-| 00-05 | Existing release matrix has four dimensions; the new ledger requires five named tiers. | Schema and no-promotion tests. |
+| 00-05 | The historical four-dimension matrix remains for old reports. A five-tier assessment is now used by the readiness CLI and new offline acceptance reports. | Exact-commit CI and research evidence are still needed before promoting higher tiers. |
 | 00-06 | Imported ledger has priorities but lacks owner, dependencies and executable receipt fields. | Extend schema and validate dependency links. |
 | 00-07 | A local threat model exists. | Explicit risk register with the requested eight risks and owners. |
 | 00-08 | Selection policy fixes maximum normalized WER at 5%. | Gate test and immutable denominator evidence. |
