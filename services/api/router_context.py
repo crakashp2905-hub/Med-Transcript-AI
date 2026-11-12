@@ -1,4 +1,5 @@
 """Explicit capabilities shared by bounded API routers; no global database state."""
+
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, ContextManager

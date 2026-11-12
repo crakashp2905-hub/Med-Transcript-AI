@@ -12,9 +12,13 @@ CORPUS = ROOT / "evaluation/datasets/primock57-validation-v1"
 
 
 def rebuild(ledger=None, initial=None):
-    return summarize(CORPUS / "manifest.json", CORPUS / "lock.json",
+    return summarize(
+        CORPUS / "manifest.json",
+        CORPUS / "lock.json",
         ledger or ROOT / "evaluation/validation-ledger.json",
-        initial or ROOT / "evaluation/leaderboard.json", ROOT)
+        initial or ROOT / "evaluation/leaderboard.json",
+        ROOT,
+    )
 
 
 def test_frozen_validation_audio_protocol_and_consultation_separation():
@@ -22,8 +26,15 @@ def test_frozen_validation_audio_protocol_and_consultation_separation():
     manifest = json.loads(raw)
     lock = json.loads((CORPUS / "lock.json").read_text())
     assert hashlib.sha256(raw).hexdigest() == lock["manifest_sha256"]
-    assert manifest["protocol_sha256"] == hashlib.sha256((ROOT / "evaluation/validation-protocol-v1.json").read_bytes()).hexdigest()
-    old = json.loads((ROOT / "evaluation/datasets/primock57-smoke-v1/manifest.json").read_text())
+    assert (
+        manifest["protocol_sha256"]
+        == hashlib.sha256(
+            (ROOT / "evaluation/validation-protocol-v1.json").read_bytes()
+        ).hexdigest()
+    )
+    old = json.loads(
+        (ROOT / "evaluation/datasets/primock57-smoke-v1/manifest.json").read_text()
+    )
     groups = {s["group_id"] for s in manifest["samples"]}
     assert groups.isdisjoint({s["group_id"] for s in old["samples"]})
     assert len(groups) == 5 and len(manifest["samples"]) == 30
@@ -31,17 +42,26 @@ def test_frozen_validation_audio_protocol_and_consultation_separation():
         audio = CORPUS / sample["audio"]
         assert hashlib.sha256(audio.read_bytes()).hexdigest() == sample["audio_sha256"]
         with wave.open(str(audio), "rb") as stream:
-            assert (stream.getnchannels(), stream.getsampwidth(), stream.getframerate()) == (1, 2, 16000)
+            assert (
+                stream.getnchannels(),
+                stream.getsampwidth(),
+                stream.getframerate(),
+            ) == (1, 2, 16000)
 
 
 def test_summary_reproduces_and_keeps_strict_gate():
     result = rebuild()
-    published = json.loads((ROOT / "evaluation/reports/follow-up-validation-2026-10-24.json").read_text())
+    published = json.loads(
+        (ROOT / "evaluation/reports/follow-up-validation-2026-10-24.json").read_text()
+    )
     assert result == published
     assert result["reference_words"] == 575
     assert all(row["wer_gate"]["status"] == "fail" for row in result["models"])
     for row in result["models"]:
-        assert sum(g["normalized_edits"] for g in row["by_consultation"].values()) == row["normalized_edits"]
+        assert (
+            sum(g["normalized_edits"] for g in row["by_consultation"].values())
+            == row["normalized_edits"]
+        )
         assert sum(g["reference_words"] for g in row["by_role"].values()) == 575
 
 

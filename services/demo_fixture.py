@@ -16,9 +16,24 @@ def create_fixture(root="data"):
     if sys.platform != "win32":
         return False
     parts = root / "synthetic-voice-parts"
-    script = Path(__file__).resolve().parents[1] / "scripts" / "create_synthetic_audio.ps1"
-    result = subprocess.run([shutil.which("pwsh") or "powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(script),
-        "-OutputDirectory", str(parts)], timeout=120, capture_output=True, creationflags=subprocess.CREATE_NO_WINDOW)
+    script = (
+        Path(__file__).resolve().parents[1] / "scripts" / "create_synthetic_audio.ps1"
+    )
+    result = subprocess.run(
+        [
+            shutil.which("pwsh") or "powershell.exe",
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            str(script),
+            "-OutputDirectory",
+            str(parts),
+        ],
+        timeout=120,
+        capture_output=True,
+        creationflags=subprocess.CREATE_NO_WINDOW,
+    )
     if result.returncode:
         return False
     source = json.loads((parts / "segments.json").read_text(encoding="utf-8-sig"))
@@ -29,11 +44,26 @@ def create_fixture(root="data"):
             with wave.open(str(parts / f"{index}.wav"), "rb") as part:
                 count = part.getnframes()
                 target.writeframes(part.readframes(count))
-            segments.append({"start_ms": frames * 1000 // 16000, "end_ms": (frames + count) * 1000 // 16000,
-                             "text": item["text"], "role": item["role"]})
+            segments.append(
+                {
+                    "start_ms": frames * 1000 // 16000,
+                    "end_ms": (frames + count) * 1000 // 16000,
+                    "text": item["text"],
+                    "role": item["role"],
+                }
+            )
             frames += count
-    (root / "demo-sample.json").write_text(json.dumps({"fixture_id": "outpatient_english_v1", "synthetic": True,
-        "segments": segments}, indent=2), encoding="utf-8")
+    (root / "demo-sample.json").write_text(
+        json.dumps(
+            {
+                "fixture_id": "outpatient_english_v1",
+                "synthetic": True,
+                "segments": segments,
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
     return True
 
 

@@ -16,16 +16,30 @@ def test_backup_restore_and_post_backup_tombstone(setup, tmp_path):
     assets = str(Path(path).parent / "assets")
     snapshot = str(tmp_path / "snapshot")
     assert backup(path, assets, snapshot)["status"] == "backed_up"
-    assert client.post(f"/v1/encounters/{eid}/deletion-requests", headers=headers()).status_code == 202
+    assert (
+        client.post(
+            f"/v1/encounters/{eid}/deletion-requests", headers=headers()
+        ).status_code
+        == 202
+    )
     target = str(tmp_path / "restored")
     assert restore(snapshot, target, path)["tombstones_applied"] == 1
-    with Store(str(Path(target)/"database.sqlite3")).transaction() as con:
-        assert con.execute("SELECT deleted_at FROM encounters WHERE id=?", (eid,)).fetchone()[0]
-    assert not list((Path(target)/"assets").glob("*.wav"))
-    assert purge(path, assets)["requests"][0]["status"] == "primary_purged_backups_pending"
+    with Store(str(Path(target) / "database.sqlite3")).transaction() as con:
+        assert con.execute(
+            "SELECT deleted_at FROM encounters WHERE id=?", (eid,)
+        ).fetchone()[0]
+    assert not list((Path(target) / "assets").glob("*.wav"))
+    assert (
+        purge(path, assets)["requests"][0]["status"] == "primary_purged_backups_pending"
+    )
     with Store(path).transaction() as con:
-        assert con.execute("SELECT body FROM encounters WHERE id=?", (eid,)).fetchone()[0] == "{}"
-        assert con.execute("SELECT COUNT(*) FROM transcript_versions").fetchone()[0] == 0
+        assert (
+            con.execute("SELECT body FROM encounters WHERE id=?", (eid,)).fetchone()[0]
+            == "{}"
+        )
+        assert (
+            con.execute("SELECT COUNT(*) FROM transcript_versions").fetchone()[0] == 0
+        )
 
 
 def test_restore_rejects_modified_backup(setup, tmp_path):

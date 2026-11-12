@@ -155,7 +155,6 @@ MIGRATIONS = (
     ALTER TABLE uploads ADD COLUMN stream_seal_token TEXT;
     ALTER TABLE uploads ADD COLUMN stream_seal_expires_at TEXT;
     """,
-
     """
     CREATE TABLE auth_flows (state_hash TEXT PRIMARY KEY, binding_hash TEXT NOT NULL,
         verifier TEXT NOT NULL, nonce TEXT NOT NULL, expires_at INTEGER NOT NULL);
@@ -201,6 +200,7 @@ class Store:
         self.backend = None
         if path.startswith(("postgresql://", "postgres://")):
             from services.api.postgres import PostgresStore
+
             self.backend = PostgresStore(path, MIGRATIONS)
             return
         Path(path).parent.mkdir(parents=True, exist_ok=True)
@@ -217,11 +217,13 @@ class Store:
                             con.execute(statement)
                             statement = ""
                     con.execute(f"PRAGMA user_version={version}")
-                    if 'CREATE TABLE audit_chain' in migration:
+                    if "CREATE TABLE audit_chain" in migration:
                         from services.audit_integrity import initialize
+
                         initialize(con)
-                    if 'CREATE TABLE review_metric_integrity' in migration:
+                    if "CREATE TABLE review_metric_integrity" in migration:
                         from services.metric_integrity import initialize
+
                         initialize(con)
 
     @contextmanager
@@ -246,8 +248,10 @@ class Store:
 
 
 def active_scopes(con, encounter_id):
-    rows = con.execute("SELECT body FROM authorizations WHERE encounter=? AND withdrawn_at IS NULL",
-                       (str(encounter_id),)).fetchall()
+    rows = con.execute(
+        "SELECT body FROM authorizations WHERE encounter=? AND withdrawn_at IS NULL",
+        (str(encounter_id),),
+    ).fetchall()
     scopes = set()
     for row in rows:
         body = json.loads(row["body"])
@@ -257,11 +261,17 @@ def active_scopes(con, encounter_id):
 
 
 def processing_allowed(con, encounter_id):
-    row = con.execute("SELECT deleted_at FROM encounters WHERE id=?", (str(encounter_id),)).fetchone()
+    row = con.execute(
+        "SELECT deleted_at FROM encounters WHERE id=?", (str(encounter_id),)
+    ).fetchone()
     if row is None or row["deleted_at"]:
         return False
     return {"recording", "local_processing"} <= active_scopes(con, encounter_id)
 
 
 def default_asset_root(db):
-    return "data/assets" if db.startswith(("postgresql://", "postgres://")) else str(Path(db).parent / "assets")
+    return (
+        "data/assets"
+        if db.startswith(("postgresql://", "postgres://"))
+        else str(Path(db).parent / "assets")
+    )

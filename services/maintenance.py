@@ -29,24 +29,46 @@ def backup(db, assets, destination):
     target.mkdir(parents=True, exist_ok=False)
     try:
         with Store(db).transaction() as con:
-            with closing(sqlite3.connect(db)) as source, closing(sqlite3.connect(target / "database.sqlite3")) as output:
+            with (
+                closing(sqlite3.connect(db)) as source,
+                closing(sqlite3.connect(target / "database.sqlite3")) as output,
+            ):
                 source.backup(output)
                 output.commit()
             (target / "assets").mkdir()
-            for row in con.execute("SELECT id,status,stream_format,stream_sealed,received_bytes FROM uploads"):
-                if row['stream_format'] and not row['stream_sealed'] and row['received_bytes']:
+            for row in con.execute(
+                "SELECT id,status,stream_format,stream_sealed,received_bytes FROM uploads"
+            ):
+                if (
+                    row["stream_format"]
+                    and not row["stream_sealed"]
+                    and row["received_bytes"]
+                ):
                     source = Path(assets) / f"{row['id']}.resume.part"
-                    if not source.is_file():source = Path(assets) / f"{row['id']}.wav"
-                    if not source.is_file() or source.stat().st_size < row['received_bytes']:
-                        raise ValueError('Committed recording prefix unavailable for backup')
+                    if not source.is_file():
+                        source = Path(assets) / f"{row['id']}.wav"
+                    if (
+                        not source.is_file()
+                        or source.stat().st_size < row["received_bytes"]
+                    ):
+                        raise ValueError(
+                            "Committed recording prefix unavailable for backup"
+                        )
                     # Copy only committed bytes. A sealing worker may concurrently
                     # repair the PCM header; recovery reconstructs that header.
-                    with source.open('rb') as incoming, (target/'assets'/f"{row['id']}.resume.part").open('xb') as output:
-                        left = row['received_bytes']
+                    with (
+                        source.open("rb") as incoming,
+                        (target / "assets" / f"{row['id']}.resume.part").open(
+                            "xb"
+                        ) as output,
+                    ):
+                        left = row["received_bytes"]
                         while left:
-                            chunk = incoming.read(min(left,1024*1024))
-                            if not chunk:raise ValueError('Committed recording prefix truncated')
-                            output.write(chunk);left -= len(chunk)
+                            chunk = incoming.read(min(left, 1024 * 1024))
+                            if not chunk:
+                                raise ValueError("Committed recording prefix truncated")
+                            output.write(chunk)
+                            left -= len(chunk)
                     continue
                 if row["status"] not in ("uploaded", "complete"):
                     continue
@@ -54,11 +76,24 @@ def backup(db, assets, destination):
                     source = Path(assets) / f"{row['id']}{suffix}"
                     if source.is_file():
                         shutil.copyfile(source, target / "assets" / source.name)
-        manifest = {"schema_version": "1.0", "created_at": now(), "encrypted": False,
-            "files": {str(path.relative_to(target)).replace("\\", "/"): file_sha256(path)
-                      for path in target.rglob("*") if path.is_file()}}
-        (target / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-        return {"status": "backed_up", "files": len(manifest["files"]), "encrypted": False}
+        manifest = {
+            "schema_version": "1.0",
+            "created_at": now(),
+            "encrypted": False,
+            "files": {
+                str(path.relative_to(target)).replace("\\", "/"): file_sha256(path)
+                for path in target.rglob("*")
+                if path.is_file()
+            },
+        }
+        (target / "manifest.json").write_text(
+            json.dumps(manifest, indent=2), encoding="utf-8"
+        )
+        return {
+            "status": "backed_up",
+            "files": len(manifest["files"]),
+            "encrypted": False,
+        }
     except BaseException:
         # Keep incomplete backups identifiable rather than advertising a successful receipt.
         (target / "INCOMPLETE").write_text("Backup did not finish.", encoding="utf-8")
@@ -76,7 +111,12 @@ def restore(source, destination, tombstones_from):
     if "database.sqlite3" not in manifest["files"]:
         raise ValueError("Backup database is missing")
     with Store(tombstones_from).transaction() as con:
-        deleted = {row["id"]: row["deleted_at"] for row in con.execute("SELECT id,deleted_at FROM encounters WHERE deleted_at IS NOT NULL")}
+        deleted = {
+            row["id"]: row["deleted_at"]
+            for row in con.execute(
+                "SELECT id,deleted_at FROM encounters WHERE deleted_at IS NOT NULL"
+            )
+        }
     target.mkdir(parents=True, exist_ok=False)
     for relative in manifest["files"]:
         output = checked(target, relative)
@@ -85,14 +125,22 @@ def restore(source, destination, tombstones_from):
     db = str(target / "database.sqlite3")
     with Store(db).transaction() as con:
         for eid, deleted_at in deleted.items():
-            con.execute("UPDATE encounters SET deleted_at=? WHERE id=?", (deleted_at, eid))
-            con.execute("UPDATE jobs SET status='cancelled',lease_token=NULL,lease_expires_at=NULL WHERE encounter=? AND status IN ('queued','running')", (eid,))
+            con.execute(
+                "UPDATE encounters SET deleted_at=? WHERE id=?", (deleted_at, eid)
+            )
+            con.execute(
+                "UPDATE jobs SET status='cancelled',lease_token=NULL,lease_expires_at=NULL WHERE encounter=? AND status IN ('queued','running')",
+                (eid,),
+            )
             for row in con.execute("SELECT id FROM uploads WHERE encounter=?", (eid,)):
                 for suffix in (".wav", ".normalized.wav", ".resume.part"):
                     (target / "assets" / f"{row['id']}{suffix}").unlink(missing_ok=True)
         if con.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
             raise ValueError("Restored database failed integrity check")
-    return {"status": "restored_for_operator_review", "tombstones_applied": len(deleted)}
+    return {
+        "status": "restored_for_operator_review",
+        "tombstones_applied": len(deleted),
+    }
 
 
 def purge(db, assets):
@@ -100,61 +148,137 @@ def purge(db, assets):
     with Store(db).transaction() as con:
         if not db.startswith(("postgresql://", "postgres://")):
             con.execute("PRAGMA secure_delete=ON")
-        requests = con.execute("SELECT * FROM deletion_requests WHERE status='pending'").fetchall()
+        requests = con.execute(
+            "SELECT * FROM deletion_requests WHERE status='pending'"
+        ).fetchall()
         for request in requests:
             eid = request["encounter"]
             row = con.execute("SELECT * FROM encounters WHERE id=?", (eid,)).fetchone()
-            if row["legal_hold"] or con.execute("SELECT 1 FROM approvals WHERE encounter=?", (eid,)).fetchone():
-                results.append({"id": request["id"], "status": "held_for_retention_review"})
+            if (
+                row["legal_hold"]
+                or con.execute(
+                    "SELECT 1 FROM approvals WHERE encounter=?", (eid,)
+                ).fetchone()
+            ):
+                results.append(
+                    {"id": request["id"], "status": "held_for_retention_review"}
+                )
                 continue
             try:
-                for upload in con.execute("SELECT id FROM uploads WHERE encounter=?", (eid,)):
+                for upload in con.execute(
+                    "SELECT id FROM uploads WHERE encounter=?", (eid,)
+                ):
                     for suffix in (".wav", ".normalized.wav", ".resume.part"):
-                        checked(Path(assets), f"{upload['id']}{suffix}").unlink(missing_ok=True)
+                        checked(Path(assets), f"{upload['id']}{suffix}").unlink(
+                            missing_ok=True
+                        )
             except OSError:
-                results.append({"id": request["id"], "status": "asset_deletion_pending"})
+                results.append(
+                    {"id": request["id"], "status": "asset_deletion_pending"}
+                )
                 continue
-            for table in ("job_attempts", "asr_checkpoints", "review_metrics", "model_proposals", "exports", "approvals", "documents", "transcript_versions", "jobs", "uploads", "authorizations"):
+            for table in (
+                "job_attempts",
+                "asr_checkpoints",
+                "review_metrics",
+                "model_proposals",
+                "exports",
+                "approvals",
+                "documents",
+                "transcript_versions",
+                "jobs",
+                "uploads",
+                "authorizations",
+            ):
                 con.execute(f"DELETE FROM {table} WHERE encounter=?", (eid,))
-            con.execute("DELETE FROM idempotency WHERE operation LIKE ? OR response LIKE ?", (f"%{eid}%", f"%{eid}%"))
-            con.execute("UPDATE encounters SET body='{}',current_note=NULL,current_transcript=NULL WHERE id=?", (eid,))
-            con.execute("UPDATE deletion_requests SET status='primary_purged_backups_pending' WHERE id=?", (request["id"],))
-            results.append({"id": request["id"], "status": "primary_purged_backups_pending"})
+            con.execute(
+                "DELETE FROM idempotency WHERE operation LIKE ? OR response LIKE ?",
+                (f"%{eid}%", f"%{eid}%"),
+            )
+            con.execute(
+                "UPDATE encounters SET body='{}',current_note=NULL,current_transcript=NULL WHERE id=?",
+                (eid,),
+            )
+            con.execute(
+                "UPDATE deletion_requests SET status='primary_purged_backups_pending' WHERE id=?",
+                (request["id"],),
+            )
+            results.append(
+                {"id": request["id"], "status": "primary_purged_backups_pending"}
+            )
     return {"requests": results, "backup_expiry": "requires_operator_confirmation"}
 
 
-def expire_previews(db,assets,ttl_seconds=900):
+def expire_previews(db, assets, ttl_seconds=900):
     """Synthetic preview cache only; preserve any source referenced by a saved version."""
-    if not 60<=ttl_seconds<=86400:raise ValueError('Preview cache TTL outside allowed bounds')
-    cutoff=(datetime.now(timezone.utc)-timedelta(seconds=ttl_seconds)).isoformat()
-    removed=0
+    if not 60 <= ttl_seconds <= 86400:
+        raise ValueError("Preview cache TTL outside allowed bounds")
+    cutoff = (datetime.now(timezone.utc) - timedelta(seconds=ttl_seconds)).isoformat()
+    removed = 0
     with Store(db).transaction() as con:
-        rows=con.execute("SELECT jobs.* FROM jobs JOIN encounters ON encounters.id=jobs.encounter WHERE jobs.preview_only=1 AND jobs.preview_cache_expired=0 AND jobs.status IN ('succeeded','failed','cancelled') AND jobs.updated_at<? AND encounters.legal_hold=0",(cutoff,)).fetchall()
+        rows = con.execute(
+            "SELECT jobs.* FROM jobs JOIN encounters ON encounters.id=jobs.encounter WHERE jobs.preview_only=1 AND jobs.preview_cache_expired=0 AND jobs.status IN ('succeeded','failed','cancelled') AND jobs.updated_at<? AND encounters.legal_hold=0",
+            (cutoff,),
+        ).fetchall()
         for row in rows:
-            if con.execute('SELECT 1 FROM transcript_versions WHERE upload=?',(row['upload'],)).fetchone():continue
+            if con.execute(
+                "SELECT 1 FROM transcript_versions WHERE upload=?", (row["upload"],)
+            ).fetchone():
+                continue
             try:
-                for suffix in ('.wav','.normalized.wav','.resume.part'):
-                    checked(Path(assets),f"{row['upload']}{suffix}").unlink(missing_ok=True)
-            except OSError:continue
-            con.execute('DELETE FROM asr_checkpoints WHERE job=?',(row['id'],))
-            con.execute("UPDATE jobs SET result=?,preview_cache_expired=1 WHERE id=?",(json.dumps({'status':'expired_provisional_preview','approvable':False}),row['id']))
-            removed+=1
-    return {'expired_preview_caches':removed,'ttl_seconds':ttl_seconds}
+                for suffix in (".wav", ".normalized.wav", ".resume.part"):
+                    checked(Path(assets), f"{row['upload']}{suffix}").unlink(
+                        missing_ok=True
+                    )
+            except OSError:
+                continue
+            con.execute("DELETE FROM asr_checkpoints WHERE job=?", (row["id"],))
+            con.execute(
+                "UPDATE jobs SET result=?,preview_cache_expired=1 WHERE id=?",
+                (
+                    json.dumps(
+                        {"status": "expired_provisional_preview", "approvable": False}
+                    ),
+                    row["id"],
+                ),
+            )
+            removed += 1
+    return {"expired_preview_caches": removed, "ttl_seconds": ttl_seconds}
 
 
 def reconcile(db, assets, apply=False):
     root = Path(assets).resolve()
     candidates = []
     with Store(db).transaction() as con:
-        uploads = {row["id"]: row for row in con.execute("SELECT uploads.*,encounters.legal_hold FROM uploads JOIN encounters ON encounters.id=uploads.encounter")}
+        uploads = {
+            row["id"]: row
+            for row in con.execute(
+                "SELECT uploads.*,encounters.legal_hold FROM uploads JOIN encounters ON encounters.id=uploads.encounter"
+            )
+        }
         for path in root.glob("*"):
-            match = re.fullmatch(r"([a-f0-9-]{36})(?:\.[a-f0-9-]{36}(?:\.part|\.normalized\.wav)|(?:\.normalized)?\.wav|\.resume\.part)", path.name)
+            match = re.fullmatch(
+                r"([a-f0-9-]{36})(?:\.[a-f0-9-]{36}(?:\.part|\.normalized\.wav)|(?:\.normalized)?\.wav|\.resume\.part)",
+                path.name,
+            )
             if not match or not path.is_file() or path.is_symlink():
                 continue
             row = uploads.get(match[1])
-            safe = row is None or (not row["legal_hold"] and row["status"] != "complete" and row["expires_at"] <= now())
-            if row is not None and not row["legal_hold"] and path.name.endswith(".normalized.wav") and len(path.name) > 52:
-                live = con.execute("SELECT 1 FROM jobs WHERE upload=? AND stage='audio_ingest' AND status='running' AND lease_expires_at>?", (row["id"], now())).fetchone()
+            safe = row is None or (
+                not row["legal_hold"]
+                and row["status"] != "complete"
+                and row["expires_at"] <= now()
+            )
+            if (
+                row is not None
+                and not row["legal_hold"]
+                and path.name.endswith(".normalized.wav")
+                and len(path.name) > 52
+            ):
+                live = con.execute(
+                    "SELECT 1 FROM jobs WHERE upload=? AND stage='audio_ingest' AND status='running' AND lease_expires_at>?",
+                    (row["id"], now()),
+                ).fetchone()
                 safe = not live
             if safe:
                 candidates.append(path.name)
@@ -164,8 +288,12 @@ def reconcile(db, assets, apply=False):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Synthetic development maintenance; protect plaintext backups")
-    parser.add_argument("action", choices=["backup", "restore", "purge", "reconcile", "integrity"])
+    parser = argparse.ArgumentParser(
+        description="Synthetic development maintenance; protect plaintext backups"
+    )
+    parser.add_argument(
+        "action", choices=["backup", "restore", "purge", "reconcile", "integrity"]
+    )
     parser.add_argument("--db", default="data/development.sqlite3")
     parser.add_argument("--assets", default="data/assets")
     parser.add_argument("--destination")
@@ -174,19 +302,31 @@ def main():
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
     if args.db.startswith(("postgres://", "postgresql://")):
-        raise SystemExit("Use PostgreSQL-native backup/restore and the deployment runbook.")
+        raise SystemExit(
+            "Use PostgreSQL-native backup/restore and the deployment runbook."
+        )
     if args.action == "backup":
-        if not args.destination: parser.error("backup requires --destination")
+        if not args.destination:
+            parser.error("backup requires --destination")
         result = backup(args.db, args.assets, args.destination)
     elif args.action == "restore":
         if not args.source or not args.destination or not args.tombstones_from:
-            parser.error("restore requires --source, --destination and --tombstones-from")
+            parser.error(
+                "restore requires --source, --destination and --tombstones-from"
+            )
         result = restore(args.source, args.destination, args.tombstones_from)
-    elif args.action == "purge": result = purge(args.db, args.assets)
-    elif args.action == "reconcile": result = reconcile(args.db, args.assets, args.apply)
+    elif args.action == "purge":
+        result = purge(args.db, args.assets)
+    elif args.action == "reconcile":
+        result = reconcile(args.db, args.assets, args.apply)
     else:
         with Store(args.db).transaction() as con:
-            result = {"integrity": con.execute("PRAGMA integrity_check").fetchone()[0], "foreign_key_violations": len(con.execute("PRAGMA foreign_key_check").fetchall())}
+            result = {
+                "integrity": con.execute("PRAGMA integrity_check").fetchone()[0],
+                "foreign_key_violations": len(
+                    con.execute("PRAGMA foreign_key_check").fetchall()
+                ),
+            }
     print(json.dumps(result))
 
 

@@ -1,4 +1,5 @@
 """Bounded PCM WAV inspection. No general codec decoder or inference."""
+
 from services.audit_integrity import append as append_audit
 
 import argparse
@@ -36,7 +37,11 @@ def inspect_pcm_wav(path):
         raise InvalidAudio("invalid_media")
     with open(path, "rb") as source:
         header = source.read(12)
-        if header[:4] != b"RIFF" or header[8:] != b"WAVE" or struct.unpack("<I", header[4:8])[0] + 8 != size:
+        if (
+            header[:4] != b"RIFF"
+            or header[8:] != b"WAVE"
+            or struct.unpack("<I", header[4:8])[0] + 8 != size
+        ):
             raise InvalidAudio("invalid_media")
         fmt, data_size, chunks = None, None, 0
         while source.tell() < size:
@@ -62,7 +67,12 @@ def inspect_pcm_wav(path):
         if fmt is None or data_size is None:
             raise InvalidAudio("invalid_media")
         codec, channels, sample_rate, byte_rate, block_align, bits = fmt
-        if codec != 1 or not 1 <= channels <= MAX_CHANNELS or bits != 16 or not 8000 <= sample_rate <= 48000:
+        if (
+            codec != 1
+            or not 1 <= channels <= MAX_CHANNELS
+            or bits != 16
+            or not 8000 <= sample_rate <= 48000
+        ):
             raise InvalidAudio("unsupported_media")
         if block_align != channels * 2 or byte_rate != sample_rate * block_align:
             raise InvalidAudio("invalid_media")
@@ -71,9 +81,15 @@ def inspect_pcm_wav(path):
         frames = data_size // block_align
         if frames > sample_rate * MAX_DURATION_SECONDS:
             raise InvalidAudio("duration_limit_exceeded")
-        return {"codec": "pcm_s16le", "channels": channels, "sample_rate": sample_rate,
-                "frames": frames, "duration_ms": frames * 1000 // sample_rate,
-                "bytes": size, "source_availability": "available"}
+        return {
+            "codec": "pcm_s16le",
+            "channels": channels,
+            "sample_rate": sample_rate,
+            "frames": frames,
+            "duration_ms": frames * 1000 // sample_rate,
+            "bytes": size,
+            "source_availability": "available",
+        }
 
 
 def run_once(db_path: str, asset_root: str):
@@ -83,28 +99,46 @@ def run_once(db_path: str, asset_root: str):
     token = str(uuid4())
     with store.transaction() as con:
         # Recover jobs abandoned by a stopped process, up to a bounded attempt count.
-        con.execute("""UPDATE jobs SET status=CASE WHEN attempts >= ? THEN 'failed' ELSE 'queued' END,
+        con.execute(
+            """UPDATE jobs SET status=CASE WHEN attempts >= ? THEN 'failed' ELSE 'queued' END,
             error_code=CASE WHEN attempts >= ? THEN 'worker_retry_exhausted' ELSE NULL END,
             lease_token=NULL, lease_expires_at=NULL, updated_at=?
             WHERE stage='audio_ingest' AND status='running' AND lease_expires_at <= ?""",
-            (MAX_ATTEMPTS, MAX_ATTEMPTS, stamp.isoformat(), stamp.isoformat()))
-        row = con.execute("SELECT * FROM jobs WHERE stage='audio_ingest' AND status='queued' ORDER BY created_at, id LIMIT 1").fetchone()
+            (MAX_ATTEMPTS, MAX_ATTEMPTS, stamp.isoformat(), stamp.isoformat()),
+        )
+        row = con.execute(
+            "SELECT * FROM jobs WHERE stage='audio_ingest' AND status='queued' ORDER BY created_at, id LIMIT 1"
+        ).fetchone()
         if row is None:
             return None
         job_id = row["id"]
         if not processing_allowed(con, row["encounter"]):
-            con.execute("UPDATE jobs SET status='cancelled', error_code='authorization_required', updated_at=? WHERE id=?",
-                        (stamp.isoformat(), job_id))
+            con.execute(
+                "UPDATE jobs SET status='cancelled', error_code='authorization_required', updated_at=? WHERE id=?",
+                (stamp.isoformat(), job_id),
+            )
             return {"id": job_id, "status": "cancelled"}
-        con.execute("""UPDATE jobs SET status='running', attempts=attempts+1,
+        con.execute(
+            """UPDATE jobs SET status='running', attempts=attempts+1,
             lease_token=?, lease_expires_at=?, updated_at=? WHERE id=?""",
-            (token, (stamp + timedelta(minutes=5)).isoformat(), stamp.isoformat(), job_id))
-        upload = con.execute("SELECT * FROM uploads WHERE id=?", (row["upload"],)).fetchone()
+            (
+                token,
+                (stamp + timedelta(minutes=5)).isoformat(),
+                stamp.isoformat(),
+                job_id,
+            ),
+        )
+        upload = con.execute(
+            "SELECT * FROM uploads WHERE id=?", (row["upload"],)
+        ).fetchone()
 
     result, error, working = None, None, None
     try:
         source = Path(asset_root) / f"{upload['id']}.wav"
-        if source.stat().st_size != upload["expected_bytes"] or file_sha256(source) != upload["expected_sha256"]:
+        if (
+            source.stat().st_size != upload["expected_bytes"]
+            or file_sha256(source) != upload["expected_sha256"]
+        ):
             raise InvalidAudio("asset_integrity_failure")
         try:
             if upload["media_type"] != "audio/wav":
@@ -117,6 +151,7 @@ def run_once(db_path: str, asset_root: str):
             needs_decode = True
         if needs_decode:
             from services.media_decoder import normalize
+
             working = Path(asset_root) / f"{upload['id']}.{token}.normalized.wav"
             decoded = normalize(source, working, upload["media_type"])
             if decoded.get("error_code"):
@@ -130,9 +165,15 @@ def run_once(db_path: str, asset_root: str):
                     result = {**normalized, "bytes": upload["expected_bytes"]}
             else:
                 result = {**normalized, "bytes": upload["expected_bytes"]}
-            result.update(working_sha256=file_sha256(working), working_filename=working.name,
-                          asr_sample_rate=16000, asr_channels=normalized["channels"], normalized_duration_ms=normalized["duration_ms"],
-                          original_media_type=upload["media_type"], timeline_mapping_status="decoded_media_requires_review")
+            result.update(
+                working_sha256=file_sha256(working),
+                working_filename=working.name,
+                asr_sample_rate=16000,
+                asr_channels=normalized["channels"],
+                normalized_duration_ms=normalized["duration_ms"],
+                original_media_type=upload["media_type"],
+                timeline_mapping_status="decoded_media_requires_review",
+            )
         result["sha256"] = upload["expected_sha256"]
     except InvalidAudio as exc:
         error = str(exc)
@@ -149,7 +190,10 @@ def run_once(db_path: str, asset_root: str):
                 working.unlink(missing_ok=True)
             return {"id": job_id, "status": current["status"]}
         if datetime.fromisoformat(current["lease_expires_at"]) <= finished:
-            return {"id": job_id, "status": "running"}  # Later claim recovers the expired lease.
+            return {
+                "id": job_id,
+                "status": "running",
+            }  # Later claim recovers the expired lease.
         if not processing_allowed(con, row["encounter"]):
             status, error, result = "cancelled", "authorization_required", None
             if working:
@@ -160,21 +204,43 @@ def run_once(db_path: str, asset_root: str):
                 destination = Path(asset_root) / f"{upload['id']}.normalized.wav"
                 try:
                     import os
+
                     os.replace(working, destination)
                     result["working_filename"] = destination.name
                 except OSError:
                     status, error, result = "failed", "asset_unavailable", None
-        con.execute("""UPDATE jobs SET status=?, error_code=?, result=?, lease_token=NULL,
+        con.execute(
+            """UPDATE jobs SET status=?, error_code=?, result=?, lease_token=NULL,
             lease_expires_at=NULL, updated_at=? WHERE id=?""",
-            (status, error, json.dumps(result) if result else None, finished.isoformat(), job_id))
-        owner = con.execute("SELECT tenant, clinician FROM encounters WHERE id=?", (row["encounter"],)).fetchone()
-        append_audit(con, (str(uuid4()), owner["tenant"],
-                    "local_ingest_worker", f"ingest_{status}", job_id, finished.isoformat()))
+            (
+                status,
+                error,
+                json.dumps(result) if result else None,
+                finished.isoformat(),
+                job_id,
+            ),
+        )
+        owner = con.execute(
+            "SELECT tenant, clinician FROM encounters WHERE id=?", (row["encounter"],)
+        ).fetchone()
+        append_audit(
+            con,
+            (
+                str(uuid4()),
+                owner["tenant"],
+                "local_ingest_worker",
+                f"ingest_{status}",
+                job_id,
+                finished.isoformat(),
+            ),
+        )
     return {"id": job_id, "status": status}
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Inspect one queued synthetic PCM WAV upload; no ASR")
+    parser = argparse.ArgumentParser(
+        description="Inspect one queued synthetic PCM WAV upload; no ASR"
+    )
     parser.add_argument("--db", default="data/development.sqlite3")
     parser.add_argument("--assets", default=None)
     args = parser.parse_args()

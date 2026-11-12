@@ -7,9 +7,14 @@ from uuid import uuid4
 from fastapi import HTTPException
 
 
-AMBIGUITY = re.compile(r"\b(?:unclear|inaudible|maybe|unsure|not sure)\b|\d+(?:\.\d+)?\s*(?:or|/)\s*\d+", re.I)
-CRITICAL = re.compile(r"\b(?:mg|mcg|ml|units|insulin|allerg\w*|metformin|warfarin|dose|dosage)\b|\d", re.I)
-RULES_VERSION = 'rules_v5'
+AMBIGUITY = re.compile(
+    r"\b(?:unclear|inaudible|maybe|unsure|not sure)\b|\d+(?:\.\d+)?\s*(?:or|/)\s*\d+",
+    re.I,
+)
+CRITICAL = re.compile(
+    r"\b(?:mg|mcg|ml|units|insulin|allerg\w*|metformin|warfarin|dose|dosage)\b|\d", re.I
+)
+RULES_VERSION = "rules_v5"
 
 
 def validate_evidence(facts, transcript):
@@ -22,135 +27,349 @@ def validate_evidence(facts, transcript):
         if fact.origin == "source_linked":
             evidence = fact.evidence
             segment = segments.get(str(evidence.segment_id))
-            if (not segment or evidence.end_char <= evidence.start_char or evidence.end_char > len(segment["text"])
-                    or segment["text"][evidence.start_char:evidence.end_char] != evidence.quote):
+            if (
+                not segment
+                or evidence.end_char <= evidence.start_char
+                or evidence.end_char > len(segment["text"])
+                or segment["text"][evidence.start_char : evidence.end_char]
+                != evidence.quote
+            ):
                 raise HTTPException(422, "invalid_evidence_reference")
 
 
 def propose_facts(transcript):
     from services.review.clinical import extract
+
     return extract(transcript)
 
 
 def findings_for(note, transcript):
     findings = []
-    facts_by_id={f['fact_id']:f for f in note['facts']}
-    fields_by_code={'dose_or_unit_disagreement':['dose_value','dose_unit'],
-                    'medication_or_allergen_disagreement':['medication_name','allergen'],
-                    'negation_disagreement':['assertion'],'negation_scope_disagreement':['assertion'],
-                    'incorrect_attribution':['subject'],'temporality_disagreement':['temporality'],
-                    'laterality_disagreement':['laterality'],'ambiguous_source':['source_uncertainty'],
-                    'ambiguous_statement':['statement_text'],'critical_field_review_required':['critical_reviewed'],
-                    'critical_source_omission':['source_coverage'],'unaccounted_source_content':['source_coverage'],
-                    'source_omission':['source_coverage']}
-    def add(code, message, fact_id=None, severity="major",validator=RULES_VERSION,fields=None,source_span=None):
-        fact=facts_by_id.get(fact_id);evidence=fact.get('evidence') if fact else None
+    facts_by_id = {f["fact_id"]: f for f in note["facts"]}
+    fields_by_code = {
+        "dose_or_unit_disagreement": ["dose_value", "dose_unit"],
+        "medication_or_allergen_disagreement": ["medication_name", "allergen"],
+        "negation_disagreement": ["assertion"],
+        "negation_scope_disagreement": ["assertion"],
+        "incorrect_attribution": ["subject"],
+        "temporality_disagreement": ["temporality"],
+        "laterality_disagreement": ["laterality"],
+        "ambiguous_source": ["source_uncertainty"],
+        "ambiguous_statement": ["statement_text"],
+        "critical_field_review_required": ["critical_reviewed"],
+        "critical_source_omission": ["source_coverage"],
+        "unaccounted_source_content": ["source_coverage"],
+        "source_omission": ["source_coverage"],
+    }
+
+    def add(
+        code,
+        message,
+        fact_id=None,
+        severity="major",
+        validator=RULES_VERSION,
+        fields=None,
+        source_span=None,
+    ):
+        fact = facts_by_id.get(fact_id)
+        evidence = fact.get("evidence") if fact else None
         if source_span is not None:
-            segment,start,end=source_span
-            evidence={'segment_id':segment['segment_id'],'start_char':start,'end_char':end,
-                      'quote':segment['text'][start:end]}
-        reference=None if not evidence else {'transcript_version_id':transcript.get('id'),
-            'segment_id':evidence['segment_id'],'start_char':evidence['start_char'],'end_char':evidence['end_char'],
-            'quote_sha256':hashlib.sha256(evidence['quote'].encode('utf-8')).hexdigest()}
-        findings.append({"finding_id": str(uuid4()), "code": code, "message": message,
-                         "severity": severity, "fact_id": fact_id, "state": "open", "blocks_approval": True,
-                         'validator_version':validator,'mismatch_fields':fields or fields_by_code.get(code,['statement_text']),
-                         'source_reference':reference})
+            segment, start, end = source_span
+            evidence = {
+                "segment_id": segment["segment_id"],
+                "start_char": start,
+                "end_char": end,
+                "quote": segment["text"][start:end],
+            }
+        reference = (
+            None
+            if not evidence
+            else {
+                "transcript_version_id": transcript.get("id"),
+                "segment_id": evidence["segment_id"],
+                "start_char": evidence["start_char"],
+                "end_char": evidence["end_char"],
+                "quote_sha256": hashlib.sha256(
+                    evidence["quote"].encode("utf-8")
+                ).hexdigest(),
+            }
+        )
+        findings.append(
+            {
+                "finding_id": str(uuid4()),
+                "code": code,
+                "message": message,
+                "severity": severity,
+                "fact_id": fact_id,
+                "state": "open",
+                "blocks_approval": True,
+                "validator_version": validator,
+                "mismatch_fields": fields
+                or fields_by_code.get(code, ["statement_text"]),
+                "source_reference": reference,
+            }
+        )
+
     review = transcript.get("review", {})
     if not review.get("english_confirmed"):
-        add("language_support_unverified", "Confirm supported English against the original source.")
-    if not review.get("source_completeness_reviewed") or len(review.get("source_review_reason", "").strip()) < 10:
-        add("source_review_required", "Review the complete source, including untranscribed intervals.")
-    if any(row.get("role") == "unknown" and row["text"].strip() for row in transcript["segments"]):
-        add("speaker_roles_unconfirmed", "Confirm source speaker roles before attribution.")
+        add(
+            "language_support_unverified",
+            "Confirm supported English against the original source.",
+        )
+    if (
+        not review.get("source_completeness_reviewed")
+        or len(review.get("source_review_reason", "").strip()) < 10
+    ):
+        add(
+            "source_review_required",
+            "Review the complete source, including untranscribed intervals.",
+        )
+    if any(
+        row.get("role") == "unknown" and row["text"].strip()
+        for row in transcript["segments"]
+    ):
+        add(
+            "speaker_roles_unconfirmed",
+            "Confirm source speaker roles before attribution.",
+        )
     for fact in note["facts"]:
         fid = fact["fact_id"]
-        if not fact["reviewed"] or fact["subject"] == "unknown" or fact["temporality"] == "unknown":
-            add("fact_review_required", "Review content, subject and chronology against its evidence.", fid)
-        if fact['assertion']=='not_stated' and not fact.get('excluded'):
-            add('fact_review_required','A documented assertion cannot retain a not-stated polarity label.',fid)
+        if (
+            not fact["reviewed"]
+            or fact["subject"] == "unknown"
+            or fact["temporality"] == "unknown"
+        ):
+            add(
+                "fact_review_required",
+                "Review content, subject and chronology against its evidence.",
+                fid,
+            )
+        if fact["assertion"] == "not_stated" and not fact.get("excluded"):
+            add(
+                "fact_review_required",
+                "A documented assertion cannot retain a not-stated polarity label.",
+                fid,
+            )
         quote = fact["evidence"]["quote"] if fact["evidence"] else ""
         if fact["origin"] == "source_linked" and not fact.get("excluded"):
             from services.review.clinical import check_claim
+
             for disagreement in check_claim(quote, fact["text"]):
-                add(disagreement["code"], "The saved claim is not established by its quoted source. Correct the source or record a separate clinician addition.", fid, "critical",validator=disagreement.get('validator',RULES_VERSION))
+                add(
+                    disagreement["code"],
+                    "The saved claim is not established by its quoted source. Correct the source or record a separate clinician addition.",
+                    fid,
+                    "critical",
+                    validator=disagreement.get("validator", RULES_VERSION),
+                )
             from services.review.clinical import check_fact_slots
-            for disagreement in check_fact_slots(quote,fact):
-                add(disagreement['code'],f"Structured field {disagreement['field']} is not supported by the selected evidence.",fid,'critical',validator='typed_clinical_fields_v1',fields=[disagreement['field']])
-        critical = fact["category"] in ("medication", "allergy", "measurement") or CRITICAL.search(quote + " " + fact["text"])
+
+            for disagreement in check_fact_slots(quote, fact):
+                add(
+                    disagreement["code"],
+                    f"Structured field {disagreement['field']} is not supported by the selected evidence.",
+                    fid,
+                    "critical",
+                    validator="typed_clinical_fields_v1",
+                    fields=[disagreement["field"]],
+                )
+        critical = fact["category"] in (
+            "medication",
+            "allergy",
+            "measurement",
+        ) or CRITICAL.search(quote + " " + fact["text"])
         if critical and not fact["critical_reviewed"]:
-            add("critical_field_review", "Explicitly check medication, allergy and numeric details.", fid, "critical")
+            add(
+                "critical_field_review",
+                "Explicitly check medication, allergy and numeric details.",
+                fid,
+                "critical",
+            )
         if fact.get("excluded"):
             if len(fact["clarification"].strip()) < 20:
-                add("exclusion_requires_reason", "Document why this source content is excluded.", fid, "critical")
+                add(
+                    "exclusion_requires_reason",
+                    "Document why this source content is excluded.",
+                    fid,
+                    "critical",
+                )
             continue
         if AMBIGUITY.search(fact["text"]):
-            add("ambiguous_statement", "Clarify the ambiguous statement through a documented clinical correction.", fid, "critical")
-        elif AMBIGUITY.search(quote) and (len(fact["clarification"].strip()) < 20 or fact["text"] == quote):
-            add("ambiguous_source", "Record the clarified content and clinical basis; the original source remains ambiguous.", fid, "critical")
-        elif fact["origin"] == "source_linked" and fact["text"] != quote and len(fact["clarification"].strip()) < 10:
-            add("edited_claim_requires_reason", "Document the clinical basis for changing the quoted wording.", fid)
+            add(
+                "ambiguous_statement",
+                "Clarify the ambiguous statement through a documented clinical correction.",
+                fid,
+                "critical",
+            )
+        elif AMBIGUITY.search(quote) and (
+            len(fact["clarification"].strip()) < 20 or fact["text"] == quote
+        ):
+            add(
+                "ambiguous_source",
+                "Record the clarified content and clinical basis; the original source remains ambiguous.",
+                fid,
+                "critical",
+            )
+        elif (
+            fact["origin"] == "source_linked"
+            and fact["text"] != quote
+            and len(fact["clarification"].strip()) < 10
+        ):
+            add(
+                "edited_claim_requires_reason",
+                "Document the clinical basis for changing the quoted wording.",
+                fid,
+            )
     for segment in transcript["segments"]:
-        relevant = [fact for fact in note["facts"] if fact["evidence"] and fact["evidence"]["segment_id"] == segment["segment_id"]]
+        relevant = [
+            fact
+            for fact in note["facts"]
+            if fact["evidence"]
+            and fact["evidence"]["segment_id"] == segment["segment_id"]
+        ]
         if segment["text"].strip() and not relevant:
-            add("source_omission", "This source segment has no reviewed fact or explicit exclusion.",
-                source_span=(segment,0,len(segment['text'])))
+            add(
+                "source_omission",
+                "This source segment has no reviewed fact or explicit exclusion.",
+                source_span=(segment, 0, len(segment["text"])),
+            )
         for match in CRITICAL.finditer(segment["text"]):
-            if not any(fact["evidence"]["start_char"] <= match.start() and fact["evidence"]["end_char"] >= match.end() for fact in relevant):
-                add("critical_source_omission", "This medication, allergy or number in the source has no reviewed fact or explicit exclusion.",
-                    severity="critical",source_span=(segment,match.start(),match.end()))
+            if not any(
+                fact["evidence"]["start_char"] <= match.start()
+                and fact["evidence"]["end_char"] >= match.end()
+                for fact in relevant
+            ):
+                add(
+                    "critical_source_omission",
+                    "This medication, allergy or number in the source has no reviewed fact or explicit exclusion.",
+                    severity="critical",
+                    source_span=(segment, match.start(), match.end()),
+                )
                 break
-        ignored={'and','but','the','a','an','patient','reports','report','states','state','i','has','have','is','was','takes','take','taking'}
-        for match in re.finditer(r"\b[\w]+(?:[.'-][\w]+)*\b",segment['text']):
+        ignored = {
+            "and",
+            "but",
+            "the",
+            "a",
+            "an",
+            "patient",
+            "reports",
+            "report",
+            "states",
+            "state",
+            "i",
+            "has",
+            "have",
+            "is",
+            "was",
+            "takes",
+            "take",
+            "taking",
+        }
+        for match in re.finditer(r"\b[\w]+(?:[.'-][\w]+)*\b", segment["text"]):
             if match.group().lower() in ignored:
                 continue
-            if not any(f['evidence']['start_char']<=match.start() and f['evidence']['end_char']>=match.end() for f in relevant):
-                add('unaccounted_source_content','This source word falls outside all included or explicitly excluded evidence spans.',
-                    severity='critical',source_span=(segment,match.start(),match.end()))
+            if not any(
+                f["evidence"]["start_char"] <= match.start()
+                and f["evidence"]["end_char"] >= match.end()
+                for f in relevant
+            ):
+                add(
+                    "unaccounted_source_content",
+                    "This source word falls outside all included or explicitly excluded evidence spans.",
+                    severity="critical",
+                    source_span=(segment, match.start(), match.end()),
+                )
                 break
     return findings
 
 
-def current_safety_recheck(note,transcript,report):
+def current_safety_recheck(note, transcript, report):
     """Additional current-rule findings never rewrite or clear historical reports."""
-    if report.get('validator_version')==RULES_VERSION:return None
-    findings=findings_for(note,transcript)
-    return {'validator_version':RULES_VERSION,'saved_validator_version':report.get('validator_version'),
-            'scope':'current_rules_against_exact_saved_source','gate':'blocked' if findings else 'ready',
-            'findings':findings,'historical_approval_modified':False,'cannot_clear_saved_findings':True}
+    if report.get("validator_version") == RULES_VERSION:
+        return None
+    findings = findings_for(note, transcript)
+    return {
+        "validator_version": RULES_VERSION,
+        "saved_validator_version": report.get("validator_version"),
+        "scope": "current_rules_against_exact_saved_source",
+        "gate": "blocked" if findings else "ready",
+        "findings": findings,
+        "historical_approval_modified": False,
+        "cannot_clear_saved_findings": True,
+    }
 
 
 def render_sections(facts, transcript_version_id=None):
-    return [{"key": key, "statements": [{"statement_id": fact["fact_id"], "text": fact["text"],
-        "fact_ids": [fact["fact_id"]], "origin": fact["origin"],
-        "source_version_id": transcript_version_id,
-        "evidence": fact.get("evidence") if fact.get("origin") == "source_linked" else None}
-        for fact in facts if fact["section"] == key and not fact.get("excluded")]}
-        for key in ("subjective", "objective", "assessment", "plan")]
+    return [
+        {
+            "key": key,
+            "statements": [
+                {
+                    "statement_id": fact["fact_id"],
+                    "text": fact["text"],
+                    "fact_ids": [fact["fact_id"]],
+                    "origin": fact["origin"],
+                    "source_version_id": transcript_version_id,
+                    "evidence": fact.get("evidence")
+                    if fact.get("origin") == "source_linked"
+                    else None,
+                }
+                for fact in facts
+                if fact["section"] == key and not fact.get("excluded")
+            ],
+        }
+        for key in ("subjective", "objective", "assessment", "plan")
+    ]
 
 
 def render_export(note, approval, format, source=None):
     import json
+
     if format == "fhir":
         from services.review.presentation import fhir_document
+
         return fhir_document(note, approval, source)
-    payload = {"schema_version": "1.0", "status": "approved", "approval": approval, "note": note}
+    payload = {
+        "schema_version": "1.0",
+        "status": "approved",
+        "approval": approval,
+        "note": note,
+    }
     if source is not None:
-        payload['source'] = source
+        payload["source"] = source
     if format == "json":
         return json.dumps(payload, ensure_ascii=False, indent=2)
-    lines = ["# Approved clinical note" if format == "markdown" else "APPROVED CLINICAL NOTE",
-             f"Encounter: {note['encounter_id']}", f"Version: {note['version']} ({note['id']})",
-             f"Approved: {approval['approved_at']}", f"SHA-256: {approval['note_sha256']}", ""]
+    lines = [
+        "# Approved clinical note"
+        if format == "markdown"
+        else "APPROVED CLINICAL NOTE",
+        f"Encounter: {note['encounter_id']}",
+        f"Version: {note['version']} ({note['id']})",
+        f"Approved: {approval['approved_at']}",
+        f"SHA-256: {approval['note_sha256']}",
+        "",
+    ]
     if source is not None:
-        attribution = source.get('provenance', {}).get('attribution', 'No source-license attribution recorded.')
-        lines.extend(['Source transcript: '+source['transcript_version_id'],
-                      escape_markdown(attribution) if format == 'markdown' else attribution,
-                      'Independent clinical gold: false; recipient EHR conformance: untested.', ''])
+        attribution = source.get("provenance", {}).get(
+            "attribution", "No source-license attribution recorded."
+        )
+        lines.extend(
+            [
+                "Source transcript: " + source["transcript_version_id"],
+                escape_markdown(attribution) if format == "markdown" else attribution,
+                "Independent clinical gold: false; recipient EHR conformance: untested.",
+                "",
+            ]
+        )
     for section in note["sections"]:
         lines.append(("## " if format == "markdown" else "") + section["key"].title())
         for statement in section["statements"]:
-            lines.append(escape_markdown(statement['text']) if format == 'markdown' else statement['text'])
+            lines.append(
+                escape_markdown(statement["text"])
+                if format == "markdown"
+                else statement["text"]
+            )
             if statement["origin"] == "clinician_entered":
                 lines.append("[Clinician-entered addition; not audio-derived.]")
         if not section["statements"]:
@@ -161,4 +380,5 @@ def render_export(note, approval, format, source=None):
 
 def escape_markdown(text):
     import html
-    return re.sub(r'([\\`*_{}\[\]()#+.!|])', r'\\\1', html.escape(text, quote=False))
+
+    return re.sub(r"([\\`*_{}\[\]()#+.!|])", r"\\\1", html.escape(text, quote=False))

@@ -16,10 +16,6 @@ from services.canonical import canonical_json, content_sha256
 REQUIRED_FILES = {"model.bin", "config.json", "tokenizer.json"}
 
 
-
-
-
-
 class ASRProfile(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
     schema_version: Literal["1.0"] = "1.0"
@@ -42,8 +38,8 @@ class ASRProfile(BaseModel):
     @field_validator("model_dir")
     @classmethod
     def absolute_directory(cls, value):
-        if value.startswith(('\\\\','//')):
-            raise ValueError('Network model directories are forbidden')
+        if value.startswith(("\\\\", "//")):
+            raise ValueError("Network model directories are forbidden")
         if not Path(value).is_absolute():
             raise ValueError("An absolute local model directory is required")
         return value
@@ -68,7 +64,9 @@ class ASRProfile(BaseModel):
         root = Path(self.model_dir)
         if not root.is_dir() or root.is_symlink():
             raise ValueError("model_integrity_failure")
-        files = {item.name for item in root.iterdir() if item.is_file() or item.is_symlink()}
+        files = {
+            item.name for item in root.iterdir() if item.is_file() or item.is_symlink()
+        }
         if files != self.artifacts.keys():
             raise ValueError("model_integrity_failure")
         for name, expected in self.artifacts.items():
@@ -77,14 +75,29 @@ class ASRProfile(BaseModel):
                 raise ValueError("model_integrity_failure")
 
     def availability(self):
-        root=Path(self.model_dir)
-        result={'automatic_download':False,'admission':'not_established_by_file_presence'}
-        if not root.is_symlink() and (not root.is_dir() or any(not (root/name).exists() for name in self.artifacts)):
-            return {**result,'status':'unavailable','reason_code':'model_unavailable'}
-        try:self.verify_artifacts()
-        except (ValueError,OSError):
-            return {**result,'status':'integrity_failed','reason_code':'model_integrity_failure'}
-        return {**result,'status':'available_not_admitted','reason_code':None}
+        root = Path(self.model_dir)
+        result = {
+            "automatic_download": False,
+            "admission": "not_established_by_file_presence",
+        }
+        if not root.is_symlink() and (
+            not root.is_dir()
+            or any(not (root / name).exists() for name in self.artifacts)
+        ):
+            return {
+                **result,
+                "status": "unavailable",
+                "reason_code": "model_unavailable",
+            }
+        try:
+            self.verify_artifacts()
+        except (ValueError, OSError):
+            return {
+                **result,
+                "status": "integrity_failed",
+                "reason_code": "model_integrity_failure",
+            }
+        return {**result, "status": "available_not_admitted", "reason_code": None}
 
 
 def load_profiles(path):
@@ -98,7 +111,9 @@ def load_profiles(path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Manifest already provisioned local faster-whisper artifacts")
+    parser = argparse.ArgumentParser(
+        description="Manifest already provisioned local faster-whisper artifacts"
+    )
     parser.add_argument("--model-dir", required=True)
     parser.add_argument("--profile-id", required=True)
     parser.add_argument("--source", required=True)
@@ -107,16 +122,32 @@ def main():
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
     root = Path(args.model_dir).resolve(strict=True)
-    artifacts = {item.name: file_sha256(item) for item in root.iterdir() if item.is_file()}
-    profile = ASRProfile(profile_id=args.profile_id, model_dir=str(root), source=args.source,
-                         revision=args.revision, license_id=args.license_id, artifacts=artifacts)
+    artifacts = {
+        item.name: file_sha256(item) for item in root.iterdir() if item.is_file()
+    }
+    profile = ASRProfile(
+        profile_id=args.profile_id,
+        model_dir=str(root),
+        source=args.source,
+        revision=args.revision,
+        license_id=args.license_id,
+        artifacts=artifacts,
+    )
     profile.verify_artifacts()
     output = Path(args.out)
     output.parent.mkdir(parents=True, exist_ok=True)
     # Avoid overwriting an existing profile configuration by mistake.
     with output.open("x", encoding="utf-8") as target:
         json.dump([profile.model_dump(mode="json")], target, indent=2)
-    print(json.dumps({"profile_id": profile.profile_id, "sha256": profile.sha256, "status": "manifested_not_validated"}))
+    print(
+        json.dumps(
+            {
+                "profile_id": profile.profile_id,
+                "sha256": profile.sha256,
+                "status": "manifested_not_validated",
+            }
+        )
+    )
 
 
 if __name__ == "__main__":

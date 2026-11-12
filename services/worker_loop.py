@@ -16,7 +16,9 @@ from services.maintenance import purge, expire_previews
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--db", default=os.environ.get("MED_TRANSCRIPT_DB", "data/development.sqlite3"))
+    parser.add_argument(
+        "--db", default=os.environ.get("MED_TRANSCRIPT_DB", "data/development.sqlite3")
+    )
     parser.add_argument("--assets", default=os.environ.get("MED_TRANSCRIPT_ASSETS"))
     parser.add_argument("--once", action="store_true")
     args = parser.parse_args()
@@ -25,12 +27,20 @@ def main():
     while True:
         try:
             for function in (ingest_once, asr_once):
-                with (local_inference_slot() if function is asr_once else nullcontext(True)) as ready:
+                with (
+                    local_inference_slot()
+                    if function is asr_once
+                    else nullcontext(True)
+                ) as ready:
                     result = function(args.db, assets) if ready else None
                 if result:
                     print(json.dumps(result), flush=True)
             if time.monotonic() - last_maintenance > 15:
-                expire_previews(args.db,assets,int(os.environ.get('MED_TRANSCRIPT_PREVIEW_CACHE_SECONDS','900')))
+                expire_previews(
+                    args.db,
+                    assets,
+                    int(os.environ.get("MED_TRANSCRIPT_PREVIEW_CACHE_SECONDS", "900")),
+                )
                 result = purge(args.db, assets)
                 if result["requests"]:
                     print(json.dumps(result), flush=True)

@@ -1,28 +1,39 @@
 """Hash, schema and encounter/source binding checks for persisted proposals."""
+
 from fastapi import HTTPException
 from services.api.record_integrity import decode_record
 
 
-def decode_proposal(con,row,eid):
-    if row['encounter']!=str(eid):
-        raise HTTPException(409,'persisted_artifact_integrity_failure')
-    body=decode_record(row,row['kind'])
-    note_id=body.get('note_version_id')
+def decode_proposal(con, row, eid):
+    if row["encounter"] != str(eid):
+        raise HTTPException(409, "persisted_artifact_integrity_failure")
+    body = decode_record(row, row["kind"])
+    note_id = body.get("note_version_id")
     if note_id:
-        note=con.execute("SELECT id FROM documents WHERE id=? AND encounter=? AND kind='note'",(note_id,str(eid))).fetchone()
-        if note is None:raise HTTPException(409,'persisted_artifact_integrity_failure')
-    if row['kind']!='review_session':
-        source=con.execute('SELECT sha256 FROM transcript_versions WHERE id=? AND encounter=?',(body['transcript_version_id'],str(eid))).fetchone()
-        if source is None or source['sha256']!=body['transcript_sha256']:
-            raise HTTPException(409,'persisted_artifact_integrity_failure')
-    if row['kind']=='fact_proposal' and body.get('application_enrichment'):
+        note = con.execute(
+            "SELECT id FROM documents WHERE id=? AND encounter=? AND kind='note'",
+            (note_id, str(eid)),
+        ).fetchone()
+        if note is None:
+            raise HTTPException(409, "persisted_artifact_integrity_failure")
+    if row["kind"] != "review_session":
+        source = con.execute(
+            "SELECT sha256 FROM transcript_versions WHERE id=? AND encounter=?",
+            (body["transcript_version_id"], str(eid)),
+        ).fetchone()
+        if source is None or source["sha256"] != body["transcript_sha256"]:
+            raise HTTPException(409, "persisted_artifact_integrity_failure")
+    if row["kind"] == "fact_proposal" and body.get("application_enrichment"):
         from services.evidence_graph import validate_proposal
-        saved=con.execute('SELECT * FROM transcript_versions WHERE id=? AND encounter=?',
-            (body['transcript_version_id'],str(eid))).fetchone()
+
+        saved = con.execute(
+            "SELECT * FROM transcript_versions WHERE id=? AND encounter=?",
+            (body["transcript_version_id"], str(eid)),
+        ).fetchone()
         try:
-            graph=validate_proposal(decode_record(saved,'transcript'),body['facts'])
-            if graph!=body['application_enrichment']['evidence_graph']:
-                raise ValueError('graph_binding_mismatch')
-        except (ValueError,KeyError,TypeError):
-            raise HTTPException(409,'persisted_artifact_integrity_failure') from None
+            graph = validate_proposal(decode_record(saved, "transcript"), body["facts"])
+            if graph != body["application_enrichment"]["evidence_graph"]:
+                raise ValueError("graph_binding_mismatch")
+        except (ValueError, KeyError, TypeError):
+            raise HTTPException(409, "persisted_artifact_integrity_failure") from None
     return body

@@ -1,4 +1,5 @@
 """Amendments routes with preserved exact-version review contracts."""
+
 from services.audit_integrity import approval_body
 from uuid import UUID
 
@@ -9,6 +10,7 @@ from services.review.models import AmendmentInput
 
 
 from services.review.service import ReviewService
+
 
 def register(app, services: ReviewService):
     database = services.database
@@ -22,10 +24,14 @@ def register(app, services: ReviewService):
     @app.post("/v1/encounters/{eid}/amendments", status_code=201)
     def amend(eid: UUID, body: AmendmentInput, actor=Depends(identity)):
         from services.review.models import Fact
+
         with database() as con:
             row = current(con, eid, actor)
             require_processing(con, eid)
-            ar = con.execute("SELECT * FROM approvals WHERE id=? AND encounter=?", (str(body.approval_id), str(eid))).fetchone()
+            ar = con.execute(
+                "SELECT * FROM approvals WHERE id=? AND encounter=?",
+                (str(body.approval_id), str(eid)),
+            ).fetchone()
             if not ar:
                 raise HTTPException(404, "approval_not_found")
             approval_body(con, ar)
@@ -37,5 +43,10 @@ def register(app, services: ReviewService):
                 # Fresh evidence must be selected against the corrected transcript.
                 values = [Fact.model_validate(item) for item in propose_facts(tx)]
             else:
-                values = [Fact.model_validate({key: value[key] for key in Fact.model_fields if key in value}) for value in old["facts"]]
+                values = [
+                    Fact.model_validate(
+                        {key: value[key] for key in Fact.model_fields if key in value}
+                    )
+                    for value in old["facts"]
+                ]
             return save_note(con, eid, tr, tx, values, actor, old["id"], body.reason)

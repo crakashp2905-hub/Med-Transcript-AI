@@ -27,7 +27,9 @@ class Evidence(Strict):
 
 class Fact(Strict):
     fact_id: UUID
-    category: Literal["symptom", "medication", "allergy", "measurement", "assessment", "plan", "other"] = "other"
+    category: Literal[
+        "symptom", "medication", "allergy", "measurement", "assessment", "plan", "other"
+    ] = "other"
     section: Literal["subjective", "objective", "assessment", "plan"] = "subjective"
     text: str = Field(min_length=1, max_length=4000)
     subject: Literal["patient", "family", "caregiver", "other", "unknown"] = "unknown"
@@ -42,7 +44,9 @@ class Fact(Strict):
     concept: str | None = Field(default=None, max_length=300)
     anatomical_site: str | None = Field(default=None, max_length=200)
     laterality: Literal["left", "right", "bilateral", "unknown"] = "unknown"
-    clinical_source: Literal["patient_report", "clinician_statement", "unknown"] = "unknown"
+    clinical_source: Literal["patient_report", "clinician_statement", "unknown"] = (
+        "unknown"
+    )
     extraction_version: str = Field(default="manual_or_legacy", max_length=100)
     medication_name: str | None = Field(default=None, max_length=200)
     dose_value: str | None = Field(default=None, max_length=100)
@@ -57,8 +61,12 @@ class Fact(Strict):
     def provenance(self):
         if self.origin == "source_linked" and self.evidence is None:
             raise ValueError("Source-linked facts require evidence")
-        if self.origin == "clinician_entered" and (self.evidence is not None or len(self.clarification.strip()) < 10):
-            raise ValueError("Clinician additions require a reason and cannot invent source evidence")
+        if self.origin == "clinician_entered" and (
+            self.evidence is not None or len(self.clarification.strip()) < 10
+        ):
+            raise ValueError(
+                "Clinician additions require a reason and cannot invent source evidence"
+            )
         self.text.encode("utf-8")
         return self
 
@@ -79,12 +87,17 @@ class NoteEdit(DraftInput):
 class SegmentEdit(Strict):
     segment_id: UUID
     text: str = Field(max_length=4000)
-    role: Literal["patient", "clinician", "caregiver", "interpreter", "other", "unknown"] = "unknown"
+    role: Literal[
+        "patient", "clinician", "caregiver", "interpreter", "other", "unknown"
+    ] = "unknown"
 
 
 class SpeakerRoleConfirmation(Strict):
     clinician_confirmed: Literal[True]
-    assignments: dict[str, Literal['patient', 'clinician', 'caregiver', 'interpreter', 'other', 'unknown']] = Field(min_length=1, max_length=100)
+    assignments: dict[
+        str,
+        Literal["patient", "clinician", "caregiver", "interpreter", "other", "unknown"],
+    ] = Field(min_length=1, max_length=100)
 
 
 class ReviewAttestation(Strict):
@@ -102,7 +115,9 @@ class ManualSegment(Strict):
     start_ms: int = Field(ge=0, strict=True)
     end_ms: int = Field(gt=0, strict=True)
     text: str = Field(min_length=1, max_length=4000)
-    role: Literal["patient", "clinician", "caregiver", "interpreter", "other", "unknown"] = "unknown"
+    role: Literal[
+        "patient", "clinician", "caregiver", "interpreter", "other", "unknown"
+    ] = "unknown"
 
 
 class ManualTranscript(ReviewAttestation):

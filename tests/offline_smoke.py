@@ -16,7 +16,9 @@ def main():
     def guarded_connect(sock, address):
         if isinstance(address, tuple) and not local_host(address[0]):
             attempts.append("external_connect")
-            raise RuntimeError("External networking blocked for synthetic offline smoke")
+            raise RuntimeError(
+                "External networking blocked for synthetic offline smoke"
+            )
         return original_connect(sock, address)
 
     def guarded_getaddrinfo(host, *args, **kwargs):
@@ -30,8 +32,18 @@ def main():
         sys.argv[0] = "services.demo_ingest"
         runpy.run_module("services.demo_ingest", run_name="__main__")
     finally:
-        socket.socket.connect, socket.getaddrinfo = original_connect, original_getaddrinfo
-    print(json.dumps({"python_socket_guard": "external_network_blocked", "blocked_attempts": len(attempts)}))
+        socket.socket.connect, socket.getaddrinfo = (
+            original_connect,
+            original_getaddrinfo,
+        )
+    print(
+        json.dumps(
+            {
+                "python_socket_guard": "external_network_blocked",
+                "blocked_attempts": len(attempts),
+            }
+        )
+    )
 
 
 if __name__ == "__main__":

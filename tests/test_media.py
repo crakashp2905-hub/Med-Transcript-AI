@@ -12,14 +12,14 @@ from tests.test_foundation import setup, queue_upload, headers
 def stereo_wav():
     buffer = io.BytesIO()
     with wave.open(buffer, "wb") as target:
-        target.setparams((2,2,48000,0,"NONE","not compressed"))
-        target.writeframes(b"\1\0\1\0"*4800)
+        target.setparams((2, 2, 48000, 0, "NONE", "not compressed"))
+        target.writeframes(b"\1\0\1\0" * 4800)
     return buffer.getvalue()
 
 
 def test_separate_decoder_normalizes_stereo_48k(tmp_path):
     pytest.importorskip("av")
-    source, target = tmp_path/"source.wav", tmp_path/"normalized.wav"
+    source, target = tmp_path / "source.wav", tmp_path / "normalized.wav"
     source.write_bytes(stereo_wav())
     result = normalize(source, target, "audio/wav")
     assert result["error_code"] is None, result
@@ -42,6 +42,8 @@ def test_ingest_publishes_normalized_asset_after_authorization_check(setup):
 
 def test_declared_type_mismatch_is_rejected(tmp_path):
     pytest.importorskip("av")
-    source, target = tmp_path/"source.wav", tmp_path/"normalized.wav"
+    source, target = tmp_path / "source.wav", tmp_path / "normalized.wav"
     source.write_bytes(stereo_wav())
-    assert normalize(source, target, "audio/mpeg")["error_code"] == "media_type_mismatch"
+    assert (
+        normalize(source, target, "audio/mpeg")["error_code"] == "media_type_mismatch"
+    )

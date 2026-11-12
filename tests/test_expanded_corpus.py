@@ -17,13 +17,19 @@ def test_expanded_audio_protocol_and_prior_group_separation():
     lock = json.loads((CORPUS / "lock.json").read_text())
     assert hashlib.sha256(raw).hexdigest() == lock["manifest_sha256"]
     protocol = ROOT / "evaluation/expanded-protocol-v1.json"
-    assert manifest["protocol_sha256"] == hashlib.sha256(protocol.read_bytes()).hexdigest()
+    assert (
+        manifest["protocol_sha256"] == hashlib.sha256(protocol.read_bytes()).hexdigest()
+    )
     assert len(manifest["samples"]) == lock["sample_count"] == 118
     groups = {s["group_id"] for s in manifest["samples"]}
     assert len(groups) == 20
-    assert Counter(g.split("_")[0] for g in groups) == {f"day{i}": 4 for i in range(1, 6)}
+    assert Counter(g.split("_")[0] for g in groups) == {
+        f"day{i}": 4 for i in range(1, 6)
+    }
     for folder in ("primock57-smoke-v1", "primock57-validation-v1"):
-        old = json.loads((ROOT / f"evaluation/datasets/{folder}/manifest.json").read_text())
+        old = json.loads(
+            (ROOT / f"evaluation/datasets/{folder}/manifest.json").read_text()
+        )
         assert groups.isdisjoint({s["group_id"] for s in old["samples"]})
     duration = 0
     for sample in manifest["samples"]:
@@ -31,41 +37,69 @@ def test_expanded_audio_protocol_and_prior_group_separation():
         assert "<" not in sample["reference"]
         assert hashlib.sha256(audio.read_bytes()).hexdigest() == sample["audio_sha256"]
         with wave.open(str(audio), "rb") as stream:
-            assert (stream.getnchannels(), stream.getsampwidth(), stream.getframerate()) == (1, 2, 16000)
+            assert (
+                stream.getnchannels(),
+                stream.getsampwidth(),
+                stream.getframerate(),
+            ) == (1, 2, 16000)
             duration += stream.getnframes() / stream.getframerate()
-    assert abs(duration - lock["audio_seconds"]) < .0001
-    assert lock["maximum_normalized_wer"] == PROJECT_MAX_NORMALIZED_WER == .05
+    assert abs(duration - lock["audio_seconds"]) < 0.0001
+    assert lock["maximum_normalized_wer"] == PROJECT_MAX_NORMALIZED_WER == 0.05
 
 
 def test_all_locally_measured_configurations_are_predeclared_without_hosted_jobs():
     suite = json.loads((ROOT / "evaluation/expanded-suite-v1.json").read_text())
     previous = json.loads((ROOT / "evaluation/leaderboard.json").read_text())
-    assert {j["candidate_id"] for j in suite["jobs"]} == {r["candidate_id"] for r in previous["ranked"]}
+    assert {j["candidate_id"] for j in suite["jobs"]} == {
+        r["candidate_id"] for r in previous["ranked"]
+    }
     assert len(suite["jobs"]) == 7
     assert {j["runtime"] for j in suite["jobs"]} == {"whisper", "onnx", "omi"}
     # Historical 3% and current 5% locks remain separately reproducible.
-    assert rank(CORPUS / "manifest.json", CORPUS / "lock.json", [], ROOT)["maximum_normalized_wer"] == .05
+    assert (
+        rank(CORPUS / "manifest.json", CORPUS / "lock.json", [], ROOT)[
+            "maximum_normalized_wer"
+        ]
+        == 0.05
+    )
 
 
 def test_published_expanded_ranking_and_grouped_report_reproduce():
     from services.expanded_summary import summarize
 
     ledger = json.loads((ROOT / "evaluation/expanded-ledger.json").read_text())
-    rebuilt = rank(CORPUS / "manifest.json", CORPUS / "lock.json", ledger["candidates"], ROOT)
-    assert rebuilt == json.loads((ROOT / "evaluation/expanded-leaderboard.json").read_text())
+    rebuilt = rank(
+        CORPUS / "manifest.json", CORPUS / "lock.json", ledger["candidates"], ROOT
+    )
+    assert rebuilt == json.loads(
+        (ROOT / "evaluation/expanded-leaderboard.json").read_text()
+    )
     assert len(rebuilt["ranked"]) == len(rebuilt["unranked"]) == 7
     assert not any(r["status"] == "invalid_report" for r in rebuilt["unranked"])
-    assert all(r["sample_count"] == 118 and r["reference_words"] == 2264 for r in rebuilt["ranked"])
-    assert summarize(ROOT) == json.loads((ROOT / "evaluation/reports/expanded-comparison-2026-10-24.json").read_text())
+    assert all(
+        r["sample_count"] == 118 and r["reference_words"] == 2264
+        for r in rebuilt["ranked"]
+    )
+    assert summarize(ROOT) == json.loads(
+        (ROOT / "evaluation/reports/expanded-comparison-2026-10-24.json").read_text()
+    )
 
 
 def test_repaired_omi_preserves_earlier_successes_without_partial_selection():
     folder = ROOT / "evaluation/runs/primock57-expanded-v1"
-    first = json.loads((folder / "attempts/omi-med-stt-v1-windows-dll-registration-failure.json").read_text())
+    first = json.loads(
+        (
+            folder / "attempts/omi-med-stt-v1-windows-dll-registration-failure.json"
+        ).read_text()
+    )
     repaired = json.loads((folder / "omi-med-stt-v1.json").read_text())
-    earlier = {s["sample_id"]: s for s in first["samples"] if s["status"] == "completed"}
+    earlier = {
+        s["sample_id"]: s for s in first["samples"] if s["status"] == "completed"
+    }
     latest = {s["sample_id"]: s for s in repaired["samples"]}
     assert len(earlier) == 36 and len(latest) == 118
     assert first["failed_samples"] == 82 and repaired["failed_samples"] == 0
-    assert all(s["hypothesis"] == latest[sid]["hypothesis"] for sid, s in earlier.items())
+    assert all(
+        s["hypothesis"] == latest[sid]["hypothesis"] for sid, s in earlier.items()
+    )
     assert first["profile_sha256"] != repaired["profile_sha256"]

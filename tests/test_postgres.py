@@ -18,16 +18,20 @@ def test_postgres_migrations_transform_immutable_triggers():
     assert "ON transcript_versions;" in sql
 
 
-@pytest.mark.skipif(not os.environ.get("MED_TRANSCRIPT_TEST_POSTGRES"), reason="PostgreSQL integration DSN not configured")
+@pytest.mark.skipif(
+    not os.environ.get("MED_TRANSCRIPT_TEST_POSTGRES"),
+    reason="PostgreSQL integration DSN not configured",
+)
 def test_real_postgres_encounter_authorization_review(tmp_path):
     dsn = os.environ["MED_TRANSCRIPT_TEST_POSTGRES"]
-    credentials = {"a"*40:Identity(tenant_id=uuid4(),clinician_id=uuid4())}
+    credentials = {"a" * 40: Identity(tenant_id=uuid4(), clinician_id=uuid4())}
     client = TestClient(create_app(dsn, credentials, str(tmp_path / "assets")))
     body, auth = payload(), headers()
     first = client.post("/v1/encounters", json=body, headers=auth)
     assert first.status_code == 201, first.text
     assert client.post("/v1/encounters", json=body, headers=auth).json() == first.json()
     from tests.test_review_workflow import prepare, draft, approve
+
     eid, tx, facts = prepare(client, dsn, assets=str(tmp_path / "assets"))
     result = draft(client, eid, tx, facts)
     assert approve(client, eid, result["note"]).status_code == 201

@@ -28,7 +28,11 @@ class VerificationProvider(Protocol):
 
 
 def require_limitations(result):
-    limitations = getattr(result, 'limitations', None)
-    if not isinstance(limitations, list) or not limitations or not all(isinstance(x, str) and x.strip() for x in limitations):
-        raise ValueError('provider_limitations_required')
+    limitations = getattr(result, "limitations", None)
+    if (
+        not isinstance(limitations, list)
+        or not limitations
+        or not all(isinstance(x, str) and x.strip() for x in limitations)
+    ):
+        raise ValueError("provider_limitations_required")
     return result
