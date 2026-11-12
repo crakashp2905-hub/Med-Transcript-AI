@@ -1,0 +1,56 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-03",
+  "status": "pass",
+  "source_commit": "0520ea2899b7c92bcbe9baa6633b36979170b503",
+  "checks": {
+    "typed_domain_schemas": {
+      "status": "pass",
+      "registered_contracts": [
+        "audio_source",
+        "processing_consent",
+        "evidence",
+        "fact",
+        "relationship",
+        "transcript",
+        "note",
+        "verification",
+        "approval",
+        "export",
+        "inference_receipt",
+        "proposal",
+        "audit"
+      ],
+      "application_boundaries": [
+        "audio upload seal metadata",
+        "processing consent before persistence",
+        "export metadata before persistence"
+      ],
+      "source_sha256": {
+        "services/domain_contracts.py": "3e0ddd3bbcf0cebc1dffe6fc20c70f291d64b8b900d636629b4a31deb882963a",
+        "services/review/models.py": "91af7eb57a1f110276d052da85df894768720d930f453343afd92fd6cc6a4186",
+        "services/api/routers/audio.py": "c14e01ede39b51209fa7fc4607aa0b15130588f304f50fe3b0407a8d60338a33",
+        "services/api/routers/authorizations.py": "d79b3ee4ca14bb0463a3ca9b91dc299850134a877f28826f83320441e64169ed",
+        "services/review/routers/exports.py": "254b9f1eedc20ed213f632329f439f0379f4135dc66fcae2fac7339c5262bdb1",
+        "tests/test_typed_clinical_boundaries.py": "c9eab31f51fc2e002deb1efcf1d32f0fc805d36792206ab61d2d93182a349de1",
+        "tests/test_foundation.py": "516b9fc3cf206ff7f6e03e4ac5ad0ad39aa017dbe925ae0eaa74e514d5ea3599"
+      },
+      "focused_local_tests": "8 passed",
+      "local_ruff": "pass",
+      "ci_run_id": 43257230344,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43257230344",
+      "ci_jobs": {
+        "test_dev_security": "success; 785 passed, 17 skipped",
+        "test_dev_asr_security": "success; 813 passed, 3 skipped",
+        "frontend": "success",
+        "postgres": "success",
+        "container": "success",
+        "release-summary": "success"
+      }
+    }
+  },
+  "limitations": [
+    "Schemas validate the supported record shapes and selected application persistence boundaries; they do not establish clinical correctness or independent clinical validation.",
+    "The release summary reports offline acceptance as unavailable for this commit; no clinical release authorization is implied."
+  ]
+}

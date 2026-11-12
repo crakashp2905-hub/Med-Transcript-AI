@@ -1085,11 +1085,26 @@
       "id": "MTA-02-03",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-      "status": "not_started",
+        "status": "implemented",
       "description": "Consolidate Pydantic/typed schemas for source, transcript, evidence, fact, relationship, note, approval, export, model receipt and processing consent.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+        "evidence": [
+          "evaluation/reports/master-task-mta-02-03-0520ea2.json",
+          "services/domain_contracts.py",
+          "services/review/models.py",
+          "services/api/routers/audio.py",
+          "services/api/routers/authorizations.py",
+          "services/review/routers/exports.py",
+          "tests/test_typed_clinical_boundaries.py",
+          "tests/test_foundation.py"
+        ],
+        "source_commit": "0520ea2899b7c92bcbe9baa6633b36979170b503",
+        "test_results": [
+          {
+            "report": "evaluation/reports/master-task-mta-02-03-0520ea2.json",
+            "report_sha256": "ee6803b10cdc89cc61622c163a7b1d67e294098005c830ef80e022032e249b69",
+            "status": "pass"
+          }
+        ],
       "blocker": null
     },
     {
