@@ -171,8 +171,7 @@ def test_detailed_suite_v4_binds_source_and_memory_budget():
 
 def test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline():
     report_path = Path(
-        "evaluation/runs/meddistract-detailed-v4/"
-        "faster-whisper-large-v3.fixed.json"
+        "evaluation/runs/meddistract-detailed-v4/faster-whisper-large-v3.fixed.json"
     )
     report = json.loads(report_path.read_text(encoding="utf-8"))
     suite_path = Path("evaluation/detailed-suite-v4.json")
@@ -180,8 +179,7 @@ def test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline():
     manifest = json.loads(Path(suite["manifest"]).read_text(encoding="utf-8"))
     baseline = json.loads(
         Path(
-            "evaluation/runs/meddistract-detailed-v2/"
-            "faster-whisper-large-v3.fixed.json"
+            "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json"
         ).read_text(encoding="utf-8")
     )
 
@@ -199,9 +197,7 @@ def test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline():
     assert all(not case["failed"] for case in report["cases"])
     assert all(case["input_coverage_complete"] for case in report["cases"])
     assert all(
-        not chunk["failed"]
-        for case in report["cases"]
-        for chunk in case["chunks"]
+        not chunk["failed"] for case in report["cases"] for chunk in case["chunks"]
     )
     for condition in ("clean", "distracted"):
         observed = report["conditions"][condition]
