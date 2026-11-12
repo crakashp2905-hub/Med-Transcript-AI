@@ -62,6 +62,21 @@ def score(reference, hypothesis):
     }
 
 
+def classify_output(error, raw, hypothesis):
+    """Classify evaluation output only from explicit processing/audio evidence."""
+    if error:
+        return "processing_failure"
+    if not isinstance(raw, dict):
+        return "indeterminate_empty_output"
+    if raw.get("digital_silence") is True:
+        return "measured_digital_silence"
+    if hypothesis.strip():
+        return "nonempty_output"
+    if raw.get("inference_executed") is True:
+        return "successful_empty_output"
+    return "indeterminate_empty_output"
+
+
 def wer_gate(report, maximum):
     if (
         not isinstance(maximum, (int, float))
@@ -119,6 +134,7 @@ def run(
     adapter = FasterWhisperAdapter(profile)
     for sample in samples:
         started, hypothesis, error = time.perf_counter(), "", None
+        raw = None
         audio = sample_paths[sample["sample_id"]]
         metadata = None
         audio_integrity_verified = False
@@ -167,6 +183,8 @@ def run(
             ).hexdigest(),
             "status": "failed" if error else "completed",
             "error_code": error,
+            "output_classification": classify_output(error, raw, hypothesis),
+            "speech_activity": "not_measured",
             "elapsed_seconds": round(time.perf_counter() - started, 4),
             **metrics,
         }

@@ -56,6 +56,17 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   not measured active speech time, channel metadata is unavailable, and there
   is no audio for validating channel or speech-time subgroups. These are
   descriptive saved-development diagnostics, not clinical acceptance.
+- **MTA-ASR-A06:** Evaluation reports now label each sample as a processing
+  failure, measured digital silence, successful empty output, nonempty output,
+  or indeterminate legacy empty output. Empty text alone never implies silence;
+  speech activity is explicitly `not_measured`. `tests/test_evaluation.py` and
+  `tests/test_asr_evaluation_contract.py`: 23 passed, including denominator
+  and contract checks. Existing frozen smoke evidence records two failed
+  windows as failures and retains their references under the
+  `empty_hypothesis_full_reference_deletions` policy. Status: partial; no
+  available fixture establishes true empty speech versus non-silent silence,
+  because no VAD evidence or source WAVs are available for those historical
+  windows.
 
 ## Open gates
 

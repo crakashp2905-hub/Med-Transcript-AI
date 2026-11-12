@@ -7,6 +7,7 @@ from services.evaluation import (
     score,
     wer_gate,
     run,
+    classify_output,
 )
 
 
@@ -21,6 +22,23 @@ def test_failed_sample_empty_hypothesis_counts_all_reference_deletions():
     metrics = score("Patient denies drug allergies", "")
     assert metrics["reference_words"] == metrics["normalized_edits"] == 4
     assert distance([], ["hallucinated", "speech"]) == 2
+
+
+def test_empty_output_classification_requires_processing_or_audio_evidence():
+    assert classify_output("asr_failed", None, "") == "processing_failure"
+    assert (
+        classify_output(None, {"digital_silence": True}, "")
+        == "measured_digital_silence"
+    )
+    assert (
+        classify_output(None, {"inference_executed": True}, "")
+        == "successful_empty_output"
+    )
+    assert (
+        classify_output(None, {"inference_executed": True}, "spoken words")
+        == "nonempty_output"
+    )
+    assert classify_output(None, {}, "") == "indeterminate_empty_output"
 
 
 def test_strict_three_percent_gate_uses_unrounded_counts():
