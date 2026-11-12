@@ -28,6 +28,12 @@ jobs:
           python -m ruff check services tests
           python -m mypy services --ignore-missing-imports
       - run: python -m pytest -q
+      - name: Measure critical adversarial input-mutation cases
+        if: matrix.extras == 'dev,security'
+        run: >-
+          python -m services.critical_mutation_campaign
+          --source-commit "$GITHUB_SHA"
+          --output "$RUNNER_TEMP/critical-mutation-campaign.json"
       - name: Enforced offline model-free safety lane
         run: python -m pytest -q tests/test_offline_engineering.py tests/test_domain_integrity.py tests/test_audit_integrity.py tests/test_router_contracts.py tests/test_safety_properties.py tests/test_error_taxonomy.py tests/test_timestamp_registry.py
         env:

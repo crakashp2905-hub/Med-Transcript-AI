@@ -1,37 +1,33 @@
+import pytest
+
 from services.route_authorization import authorize
 
 
-def test_route_authorization_blocks_cross_tenant_and_cross_role_access():
-    assert (
-        authorize(
-            actor_tenant="a",
-            resource_tenant="b",
-            actor_role="clinician",
-            allowed_roles={"clinician"},
-            proposal_owner="u",
-            actor_id="u",
-        )["reason"]
-        == "tenant_mismatch"
+@pytest.mark.parametrize(
+    ("mutation", "expected_reason"),
+    [
+        ("tenant", "tenant_mismatch"),
+        ("role", "role_forbidden"),
+        ("proposal_owner", "proposal_owner_mismatch"),
+    ],
+)
+def test_route_authorization_blocks_scope_mutations(mutation, expected_reason):
+    actor_tenant = resource_tenant = "tenant-a"
+    actor_role = "clinician"
+    proposal_owner = actor_id = "clinician-a"
+    if mutation == "tenant":
+        resource_tenant = "tenant-b"
+    elif mutation == "role":
+        actor_role = "viewer"
+    else:
+        proposal_owner = "clinician-b"
+
+    result = authorize(
+        actor_tenant=actor_tenant,
+        resource_tenant=resource_tenant,
+        actor_role=actor_role,
+        allowed_roles={"clinician"},
+        proposal_owner=proposal_owner,
+        actor_id=actor_id,
     )
-    assert (
-        authorize(
-            actor_tenant="a",
-            resource_tenant="a",
-            actor_role="viewer",
-            allowed_roles={"clinician"},
-            proposal_owner="u",
-            actor_id="u",
-        )["reason"]
-        == "role_forbidden"
-    )
-    assert (
-        authorize(
-            actor_tenant="a",
-            resource_tenant="a",
-            actor_role="clinician",
-            allowed_roles={"clinician"},
-            proposal_owner="other",
-            actor_id="u",
-        )["reason"]
-        == "proposal_owner_mismatch"
-    )
+    assert result == {"allowed": False, "reason": expected_reason}
