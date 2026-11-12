@@ -445,12 +445,28 @@
       "id": "MTA-01-09",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "not_started",
+      "status": "blocked_missing_asset",
       "description": "Pin runtime/compiler/dependency/tool versions and record checksums for every locally cached artifact.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-01-09-9093e5f.json",
+        "evaluation/reports/offline-artifact-inventory-mta-01-09.json"
+      ],
+      "source_commit": "9093e5ffd863697618eeb2eef80171b430105684",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-09-9093e5f.json",
+          "report_sha256": "4b5ff4088c61ae056f14019fc45d57c67fc7991b6d4c599f1d4367a1cadbddd8",
+          "check": "targeted_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-09-9093e5f.json",
+          "report_sha256": "4b5ff4088c61ae056f14019fc45d57c67fc7991b6d4c599f1d4367a1cadbddd8",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Local Python/npm package caches, optional Ollama cache and Docker image digests remain unenumerated or unavailable; the local wheelhouse is absent. The runtime inventory does not yet cover every locally cached artifact."
     },
     {
       "id": "MTA-01-10",

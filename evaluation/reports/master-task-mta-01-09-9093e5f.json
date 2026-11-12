@@ -1,0 +1,33 @@
+{
+  "schema_version": "master_task_runtime_artifact_inventory_v1",
+  "task_id": "MTA-01-09",
+  "source_commit": "9093e5ffd863697618eeb2eef80171b430105684",
+  "checks": {
+    "targeted_tests": {
+      "status": "pass",
+      "result": "6 passed, 20 deselected; cache hashing, absent cache, symlink rejection and offline preflight checks"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "ruff check and ruff format --check passed for the changed Python files"
+    },
+    "runtime_pins": {
+      "status": "pass",
+      "result": "CI and container use Python 3.13.5 and Node 22.16.0; Python dependency constraints and npm lockfile are present"
+    },
+    "local_cache_inventory": {
+      "status": "partial",
+      "report": "evaluation/reports/offline-artifact-inventory-mta-01-09.json",
+      "report_sha256": "d5672a5ddf638e1d552af1981a1066645fb3d838b7741a181d01c268d14db638",
+      "result": "94 model files totaling 12,337,648,508 bytes and 1,177 node_modules files totaling 96,008,255 bytes hashed; wheelhouse absent; npm version could not be invoked by the Windows subprocess probe; external pip/npm caches and optional Ollama cache were not inventoried"
+    },
+    "external_runtime_images": {
+      "status": "blocked_missing_asset",
+      "result": "Docker is not installed locally; container image digests and database image digest were not verified"
+    }
+  },
+  "new_installations_attempted": 0,
+  "external_calls_attempted": 0,
+  "paid_calls_attempted": 0,
+  "clinical_release_authorized": false
+}

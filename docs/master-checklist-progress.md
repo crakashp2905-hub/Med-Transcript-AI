@@ -214,3 +214,18 @@ synthetic walkthrough, and clinical-binding development check also passed.
 However, v25 predates the critical-skip gate. The exact skip audit in the
 MTA-01-11 receipt shows that the same skipped lanes fail admission under the
 current policy. Engineering verification is therefore not established.
+
+## MTA-01-09 runtime and cache inventory
+
+Source implementation is committed at `9093e5ffd863697618eeb2eef80171b430105684`.
+CI and the container build now request exact Python 3.13.5 and Node 22.16.0
+versions. The offline preflight records the runtime and can hash all regular
+files in the local model tree, npm dependency tree, and wheelhouse without
+following symlinks. Receipt
+[`master-task-mta-01-09-9093e5f.json`](../evaluation/reports/master-task-mta-01-09-9093e5f.json)
+is hash-bound in the task ledger. It records 94 model files and 1,177 frontend
+dependency files hashed, but leaves the task blocked: no wheelhouse is present,
+the Windows npm-version subprocess probe could not invoke npm, external Python
+and npm caches were not inventoried, and Docker image digests cannot be
+verified because Docker is unavailable. No package installation, network
+fetch, or paid call was made.
