@@ -554,3 +554,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   clinical term or speaker, and preserved failure statuses are not adjudicated
   clinical error estimates; the requested full uncertainty analysis remains
   incomplete.
+- **MTA-ASR-I08:** Partial. Existing compute Pareto receipts report measured
+  case wall time and RTF percentiles for selected inference profiles; worker
+  receipts also retain per-job wall time. The Pareto report explicitly leaves
+  ASR peak memory unknown, and no end-to-end successfully completed consultation
+  cost (including resource amortization) is measured. These profile-level
+  inference timings do not satisfy the requested full consultation metrics.
