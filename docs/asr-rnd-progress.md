@@ -157,3 +157,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   speech-span coverage. tests/test_asr_segmentation.py exercises short-span
   padding, duration limits, and coverage failures. Status: partial; thresholds
   have not been ablated against matched frozen conversations.
+- **MTA-ASR-C06:** Added source-span diagnostics for omitted short turns,
+  window-edge clips, partial coverage, joined known roles, and windows carrying
+  unknown-role turns. tests/test_asr_segmentation.py verifies each category.
+  Status: partial; no annotated conversation audio is available to generate
+  measured boundary reports.

@@ -165,6 +165,131 @@ def stitch_window_outputs(plan, outputs):
     }
 
 
+def diagnose_boundaries(turns, windows, short_turn_frames=1600):
+    """Measure annotation/window intersections without coercing unknown roles."""
+    if type(short_turn_frames) is not int or short_turn_frames < 0:
+        raise ValueError("invalid_short_turn_threshold")
+    normalized_turns = []
+    for turn in turns:
+        start, end = turn.get("start_frame"), turn.get("end_frame")
+        if (
+            not isinstance(turn.get("turn_id"), str)
+            or not turn["turn_id"]
+            or type(start) is not int
+            or type(end) is not int
+            or start < 0
+            or end <= start
+        ):
+            raise ValueError("invalid_annotated_turn")
+        normalized_turns.append(turn)
+    if len({turn["turn_id"] for turn in normalized_turns}) != len(normalized_turns):
+        raise ValueError("duplicate_annotated_turn_id")
+    normalized_windows = []
+    for window in windows:
+        start, end = window.get("start_frame"), window.get("end_frame_exclusive")
+        if (
+            not isinstance(window.get("window_id"), str)
+            or type(start) is not int
+            or type(end) is not int
+            or start < 0
+            or end <= start
+        ):
+            raise ValueError("invalid_source_window")
+        normalized_windows.append(window)
+
+    turn_rows = []
+    for turn in normalized_turns:
+        start, end = turn["start_frame"], turn["end_frame"]
+        intersections = [
+            window
+            for window in normalized_windows
+            if window["start_frame"] < end and window["end_frame_exclusive"] > start
+        ]
+        covered = []
+        for window in sorted(intersections, key=lambda row: row["start_frame"]):
+            left = max(start, window["start_frame"])
+            right = min(end, window["end_frame_exclusive"])
+            if right > left:
+                covered.append((left, right))
+        cursor = start
+        for left, right in covered:
+            if left > cursor:
+                break
+            cursor = max(cursor, right)
+        fully_covered = cursor >= end
+        clipped = any(
+            start < window["start_frame"] < end
+            or start < window["end_frame_exclusive"] < end
+            for window in intersections
+        )
+        duration = end - start
+        turn_rows.append(
+            {
+                "turn_id": turn["turn_id"],
+                "role": turn.get("role"),
+                "duration_frames": duration,
+                "window_ids": [window["window_id"] for window in intersections],
+                "status": (
+                    "omitted_short_turn"
+                    if not intersections and duration <= short_turn_frames
+                    else "omitted"
+                    if not intersections
+                    else "clipped_at_window_boundary"
+                    if clipped
+                    else "covered"
+                    if fully_covered
+                    else "partially_uncovered"
+                ),
+            }
+        )
+    window_rows = []
+    for window in normalized_windows:
+        roles = {
+            turn.get("role")
+            for turn in normalized_turns
+            if turn.get("role") is not None
+            and turn["start_frame"] < window["end_frame_exclusive"]
+            and turn["end_frame"] > window["start_frame"]
+        }
+        unknown_turns = sum(
+            turn.get("role") is None
+            and turn["start_frame"] < window["end_frame_exclusive"]
+            and turn["end_frame"] > window["start_frame"]
+            for turn in normalized_turns
+        )
+        window_rows.append(
+            {
+                "window_id": window["window_id"],
+                "known_roles": sorted(roles),
+                "joined_known_roles": len(roles) > 1,
+                "unknown_role_turn_count": unknown_turns,
+            }
+        )
+    return {
+        "schema_version": "segmentation_boundary_diagnostics_v1",
+        "turns": turn_rows,
+        "windows": window_rows,
+        "summary": {
+            "annotated_turns": len(turn_rows),
+            "omitted_short_turns": sum(
+                row["status"] == "omitted_short_turn" for row in turn_rows
+            ),
+            "clipped_turns": sum(
+                row["status"] == "clipped_at_window_boundary" for row in turn_rows
+            ),
+            "partially_uncovered_turns": sum(
+                row["status"] == "partially_uncovered" for row in turn_rows
+            ),
+            "windows_joining_known_roles": sum(
+                row["joined_known_roles"] for row in window_rows
+            ),
+            "windows_with_unknown_role_turns": sum(
+                row["unknown_role_turn_count"] > 0 for row in window_rows
+            ),
+        },
+    }
+
+
 def plan_segments(
     total_frames,
     sample_rate,

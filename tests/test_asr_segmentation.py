@@ -2,6 +2,7 @@ import pytest
 
 from services.asr.segmentation import (
     build_coverage_ledger,
+    diagnose_boundaries,
     plan_segments,
     stitch_window_outputs,
 )
@@ -122,3 +123,30 @@ def test_stitch_rejects_missing_or_duplicate_window_outputs():
     first = {"window_id": plan["windows"][0]["window_id"], "text": "one"}
     with pytest.raises(ValueError, match="complete_window_output_set_required"):
         stitch_window_outputs(plan, [first])
+
+
+def test_boundary_diagnostics_separate_short_misses_clips_roles_and_unknowns():
+    report = diagnose_boundaries(
+        [
+            {"turn_id": "short", "start_frame": 10, "end_frame": 20, "role": "patient"},
+            {"turn_id": "clip", "start_frame": 90, "end_frame": 110, "role": "doctor"},
+            {
+                "turn_id": "patient",
+                "start_frame": 40,
+                "end_frame": 60,
+                "role": "patient",
+            },
+            {"turn_id": "unknown", "start_frame": 70, "end_frame": 80, "role": None},
+        ],
+        [
+            {"window_id": "w1", "start_frame": 30, "end_frame_exclusive": 100},
+            {"window_id": "w2", "start_frame": 100, "end_frame_exclusive": 200},
+        ],
+        short_turn_frames=15,
+    )
+    assert report["turns"][0]["status"] == "omitted_short_turn"
+    assert report["turns"][1]["status"] == "clipped_at_window_boundary"
+    assert report["windows"][0]["joined_known_roles"]
+    assert report["windows"][0]["unknown_role_turn_count"] == 1
+    assert report["summary"]["omitted_short_turns"] == 1
+    assert report["summary"]["clipped_turns"] == 1
