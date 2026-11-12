@@ -463,3 +463,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   local runs, and no derived training artifact exists. This is a preflight for
   the evaluated assets, not authorization to train on any additional source;
   each future training input and derived artifact needs its own rights review.
+- **MTA-ASR-H03:** Partial. Development manifests identify consultation-group
+  IDs, and `evaluation/acceptance-reservation-v1.json` reserves three groups
+  before inference for future independent annotation. Current evaluation uses
+  development groups only; there is no training split or training manifest
+  because no adaptation has been run. Group separation does not prove speaker,
+  site, device or model-training independence, and no shared-speaker leakage
+  check is possible from the available metadata.
