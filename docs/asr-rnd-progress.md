@@ -145,3 +145,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   overlap duplication. Status: partial; no annotated speech-span WAV set is
   available for measuring real source coverage, and the current ledger is a
   pure planner primitive rather than a runtime publication gate.
+- **MTA-ASR-C04:** Added stitching that requires one output per stable segment
+  ID, orders by source offsets, and deduplicates exact suffix/prefix tokens
+  only when the windows overlap. Every removal is marked for audio review;
+  non-overlapping repeated words are preserved. tests/test_asr_segmentation.py
+  covers repeated edges, true non-overlap repetitions, and missing outputs.
+  Status: partial; no measured word timestamps exist to disambiguate a true
+  repeated word that happens at an overlapping window edge.

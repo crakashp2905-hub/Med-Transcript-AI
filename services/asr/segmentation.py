@@ -1,5 +1,7 @@
 """Source-only segmentation plans with explicit source-time coverage."""
 
+from services.conversation_experiment import join_text
+
 STRATEGIES = frozenset(
     {"fixed_window", "overlap_aware", "pause_aware", "vad_cut_merge", "channel_first"}
 )
@@ -100,6 +102,53 @@ def build_coverage_ledger(source_spans, windows):
         "missing_source_spans": missing,
         "duplicated_source_spans": duplicate,
         "complete": not missing,
+    }
+
+
+def stitch_window_outputs(plan, outputs):
+    """Join outputs by stable window identity and source offsets."""
+    expected = {row["window_id"]: row for row in plan.get("windows", [])}
+    if not expected or len(outputs) != len(expected):
+        raise ValueError("complete_window_output_set_required")
+    received = {}
+    for output in outputs:
+        window_id = output.get("window_id")
+        if window_id not in expected or window_id in received:
+            raise ValueError("unknown_or_duplicate_window_output")
+        text = output.get("text")
+        if not isinstance(text, str):
+            raise ValueError("window_text_output_required")
+        received[window_id] = text
+    if set(received) != set(expected):
+        raise ValueError("missing_window_output")
+
+    ordered = sorted(
+        expected.values(), key=lambda row: (row["start_frame"], row["window_id"])
+    )
+    transcript, previous_end, events = "", None, []
+    for row in ordered:
+        text = received[row["window_id"]]
+        overlaps = previous_end is not None and row["start_frame"] < previous_end
+        if overlaps:
+            transcript, removed = join_text(transcript, text, True)
+        else:
+            transcript, removed = (transcript + " " + text).strip(), 0
+        events.append(
+            {
+                "window_id": row["window_id"],
+                "start_frame": row["start_frame"],
+                "end_frame_exclusive": row["end_frame_exclusive"],
+                "overlapping_source_window": overlaps,
+                "removed_tokens": removed,
+                "requires_audio_review": removed > 0,
+            }
+        )
+        previous_end = max(previous_end or 0, row["end_frame_exclusive"])
+    return {
+        "text": transcript,
+        "stitch_events": events,
+        "review_required": any(event["requires_audio_review"] for event in events),
+        "timestamp_kind": "window_approximation_only",
     }
 
 

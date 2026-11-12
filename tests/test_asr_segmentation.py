@@ -1,6 +1,10 @@
 import pytest
 
-from services.asr.segmentation import build_coverage_ledger, plan_segments
+from services.asr.segmentation import (
+    build_coverage_ledger,
+    plan_segments,
+    stitch_window_outputs,
+)
 
 
 def test_fixed_and_overlap_plans_cover_source_and_report_duplicates():
@@ -56,3 +60,43 @@ def test_vad_plan_rejects_uncovered_speech_and_ledger_identifies_gap():
     ledger = build_coverage_ledger([(10, 20)], [(10, 15)])
     assert not ledger["complete"]
     assert ledger["missing_source_spans"] == [(15, 20)]
+
+
+def test_stitch_uses_stable_window_ids_and_only_deduplicates_overlaps():
+    plan = plan_segments(
+        10000, 1000, "overlap_aware", max_window_ms=4000, overlap_ms=1000
+    )
+    outputs = [
+        {"window_id": row["window_id"], "text": text}
+        for row, text in zip(
+            plan["windows"],
+            (
+                "patient takes 5 mg",
+                "5 mg daily then stop",
+                "then stop tomorrow",
+            ),
+        )
+    ]
+    result = stitch_window_outputs(plan, outputs)
+    assert result["text"] == "patient takes 5 mg daily then stop tomorrow"
+    assert result["review_required"]
+    assert [event["removed_tokens"] for event in result["stitch_events"]] == [0, 2, 2]
+    assert result["timestamp_kind"] == "window_approximation_only"
+
+
+def test_stitch_preserves_repetitions_across_non_overlapping_windows():
+    plan = plan_segments(8000, 1000, "fixed_window", max_window_ms=4000)
+    outputs = [
+        {"window_id": plan["windows"][0]["window_id"], "text": "no"},
+        {"window_id": plan["windows"][1]["window_id"], "text": "no"},
+    ]
+    result = stitch_window_outputs(plan, outputs)
+    assert result["text"] == "no no"
+    assert not result["review_required"]
+
+
+def test_stitch_rejects_missing_or_duplicate_window_outputs():
+    plan = plan_segments(8000, 1000, "fixed_window", max_window_ms=4000)
+    first = {"window_id": plan["windows"][0]["window_id"], "text": "one"}
+    with pytest.raises(ValueError, match="complete_window_output_set_required"):
+        stitch_window_outputs(plan, [first])
