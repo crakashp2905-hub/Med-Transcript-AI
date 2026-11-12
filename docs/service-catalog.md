@@ -8,7 +8,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | --- | ---: |
 | integrated-in-production-flow | 84 |
 | candidate-only | 12 |
-| test-only | 185 |
+| test-only | 186 |
 | documentation-only | 11 |
 
 ## Service modules
@@ -114,6 +114,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/ci_provenance.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/clinical_attribution.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/clinical_evaluation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/clinical_impact_triage.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/clinical_limitations.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/clinical_metrics.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/clustering_constraints.py` | `test-only` | imported by tests but not reachable from configured runtime roots |

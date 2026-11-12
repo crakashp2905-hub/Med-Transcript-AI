@@ -1,0 +1,41 @@
+{
+  "schema_version": "clinical_error_review_triage_v1",
+  "status": "provisional_unvalidated_review_order",
+  "priority_basis": "conservative reviewer queue order; not estimated harm probability or clinical severity",
+  "tiers": [
+    {
+      "tier": 1,
+      "label": "review_first",
+      "categories": [
+        "identity_or_speaker_attribution",
+        "medication_name",
+        "dose_or_strength_value",
+        "allergy",
+        "negation_or_assertion"
+      ]
+    },
+    {
+      "tier": 2,
+      "label": "review_next",
+      "categories": [
+        "dosing_frequency",
+        "number_or_unit",
+        "chronology"
+      ]
+    },
+    {
+      "tier": 3,
+      "label": "other_lexical_error",
+      "categories": ["other_lexical_error"]
+    }
+  ],
+  "category_match_policy": "case_insensitive_literal_or_bounded_regex_v1",
+  "identity_policy": "only explicit independent annotation flags count; lexical tokens and reference speaker labels do not establish an identity or role error",
+  "dose_policy": "a dose or strength cue requires an explicit numeric-unit span or independent dose_context annotation; a bare number is counted only as number_or_unit",
+  "overlap_policy": "one edit may match multiple categories; category counts are not additive",
+  "validation": {
+    "independent_clinical_review": false,
+    "clinical_harm_labels_available": false,
+    "release_authorization": false
+  }
+}

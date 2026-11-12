@@ -1,0 +1,75 @@
+{
+  "schema_version": "clinical_error_review_triage_receipt_v1",
+  "policy": "evaluation/clinical-impact-triage-v1.json",
+  "policy_sha256": "dedf901c832e6c5e67825e8dc73a04dd22eaa32065d96e377f9c5697532cc250",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "taxonomy_report_sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2",
+  "csv_archive_sha256": "159e05a0c9415febc08a325bbbba8066ec043d67612ce978f10a564a99a6c280",
+  "csv_sha256": "3896cc88a1175215cf131af7e4199418a16988527b548a22774df24bf44817b2",
+  "source_report_count": 17,
+  "source_reports_sha256": {
+    "evaluation/runs/meddistract-detailed-v1/faster-whisper-tiny.en.fixed.json": "10f686122259a473b4872fee69a71dbbf9d70be9df3d18dc11f04eb2fc4d9d23",
+    "evaluation/runs/meddistract-detailed-v2/distil-whisper-large-v3.fixed.json": "9062cbdd6b4947ecb78c437f1b18384f19f69447845ef7e909e9043d277a432c",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.context.json": "2a2094ee5a1df04aef3a97394a8cf7ed02d44082401d31f08438f0f6ead8d7e2",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json": "97480843cb1585523621ecc3b88149c4c62246380c1571a8abcb3f41cc19c1f3",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.overlap.json": "d616df38a47a7b8125f841524bd247a70516f184148122ab99b4cafbfac2ae52",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.speech_aware.json": "f9af11b53b314749cbe70f40180bf60f6c7eb35d2f85363994c1bb918afa96bb",
+    "evaluation/runs/meddistract-detailed-v2/faster-whisper-tiny.en.fixed.json": "21de3bbc2dd4812d135aaf5c2a6256ab1b8e9a047bd8f56142621156a01c3ece",
+    "evaluation/runs/meddistract-detailed-v2/multimed-whisper-small-english.fixed.json": "54ffac5180683367bdf222997890b3f5273eae859d645ca3256ceae09d869a40",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.fixed.json": "f5ee39e09eb0da5f56aec1950a7bc5c0f3c22a4b689282c221b6f35e9a8c12e9",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.overlap.json": "58d623d0c2af180dc021b8c7af2184082410e23a95c6a81f305ea428dff80482",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.speech_aware.json": "56943c0600fa305152af714149bc39a8c76b81d38fb8c3c3664b18bedf1577c9",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
+    "evaluation/runs/meddistract-detailed-v2/parakeet-tdt-0.6b-v2.fixed.json": "9becc22cd583cde4f27f48a4d1fc5fc95f36a4ebe11a18ba29e68ac8a0fea7c1",
+    "evaluation/runs/meddistract-detailed-v2/qwen3-asr-0.6b-int8.fixed.json": "36bb5b4d0ccf2a2dcb0f4a8000d0797a9ceec399f9d5bdd496ee3f64827dc1d4",
+    "evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json": "e31e210dce79f247ab65ac49d4543866166d6cf5be7b73e228d9d1b8fd02e035",
+    "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.context.json": "cab742638fc7af9768ac000a59e605591f51f508cf57b2dc2810ed3ae564a841",
+    "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.speech_aware.json": "468bdc1826676cb55c897076cd4300f6ad9ed8a812e4e45b425991de4e8174e0"
+  },
+  "inference_calls": 0,
+  "status": "unvalidated_review_order",
+  "error_rows": 137356,
+  "category_counts_overlap": true,
+  "by_priority_tier": {
+    "1": [
+      "allergy",
+      "dose_or_strength_value",
+      "identity_or_speaker_attribution",
+      "medication_name",
+      "negation_or_assertion"
+    ],
+    "2": [
+      "chronology",
+      "dosing_frequency",
+      "number_or_unit"
+    ],
+    "3": [
+      "other_lexical_error"
+    ]
+  },
+  "category_counts": {
+    "allergy": 95,
+    "chronology": 1912,
+    "dose_or_strength_value": 0,
+    "dosing_frequency": 58,
+    "identity_or_speaker_attribution": 0,
+    "medication_name": 326,
+    "negation_or_assertion": 4331,
+    "number_or_unit": 354,
+    "other_lexical_error": 130331
+  },
+  "operation_counts": {
+    "deletion": 54219,
+    "insertion": 38463,
+    "substitution": 44674
+  },
+  "reference_role_counts": {
+    "clinician": 58317,
+    "patient": 40576,
+    "unattributed_insertion": 38463
+  },
+  "identity_attribution": "only explicit independent annotation flags are counted",
+  "clinical_harm_labels_available": false,
+  "clinical_severity_validated": false,
+  "release_authorized": false
+}
