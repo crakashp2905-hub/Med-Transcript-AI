@@ -203,3 +203,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   been tuned against labeled disagreement cases and the diagnostic is not
   wired into runtime routing. Ruff and a direct substitution smoke check pass;
   focused pytest stalled before collection in this environment.
+- **MTA-ASR-D10:** Added a fail-closed candidate admission gate that requires
+  failure-inclusive WER at or below the unchanged 5% maximum, validated source
+  timing, reviewed licensing, passed critical-safety review, and matched
+  evaluation. Tests cover exact gate boundary and each denial reason. Status:
+  partial; no deployment promotion command is wired to this policy, so current
+  profiles remain explicitly not admitted.
