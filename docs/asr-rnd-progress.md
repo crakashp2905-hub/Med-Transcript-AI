@@ -566,3 +566,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   currently provide one reproducible publication package with every requested
   ablation/error table regenerated from source-bound receipts. Clinical-gold
   and admission claims remain explicitly absent.
+- **MTA-ASR-I10:** Partial. Synthetic tests cover digital-silence hallucination
+  rejection, cross-talk detection, repeated-token stitching integrity, and
+  source/candidate safety guards. `tests/test_adversarial_cases.py` records only
+  synthetic cases and explicitly has no clinical gold. There is no complete
+  audio-level suite for low-volume patient denial, deceptive spoken prompts and
+  corrupt media through the real ASR worker; resulting-note non-approval is
+  therefore not established across the requested challenge set.
