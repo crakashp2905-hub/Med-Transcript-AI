@@ -91,7 +91,7 @@ downloads model files. Without an admission record it reports the verified
 local profile status and skips inference:
 
 ```powershell
-python -m services.asr.offline_smoke --profiles data/asr-smoke-profiles.json --profile-id tiny-en-smoke-v1 --out evaluation/runs/primock57-smoke-v1/admitted-smoke.json
+python -m services.asr.offline_smoke --profiles data/asr-smoke-profiles.json --profile-id tiny-en-smoke-v1 --out "$env:TEMP\admitted-smoke.json"
 ```
 
 To run inference, pass `--admission PATH` to a reviewed

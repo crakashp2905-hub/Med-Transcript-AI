@@ -8,7 +8,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | --- | ---: |
 | integrated-in-production-flow | 84 |
 | candidate-only | 12 |
-| test-only | 184 |
+| test-only | 185 |
 | documentation-only | 11 |
 
 ## Service modules
@@ -70,6 +70,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/lexicon_bias_eval.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/metamorphic.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/number_format.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/offline_smoke.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/omi_backend.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/parakeet_backend.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/pareto.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
