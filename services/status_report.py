@@ -10,6 +10,7 @@ from pathlib import Path
 from services.engineering_status import evidence_record, validate
 from services.offline_preflight import inspect
 from services.master_release import assess
+from services.capability_manifest import build as capability_manifest
 
 
 def build(root="."):
@@ -70,6 +71,8 @@ def build(root="."):
         "constraints-ci.txt",
         "services/engineering_status.py",
         "services/offline_preflight.py",
+        "services/capability_manifest.py",
+        "services/asr/provenance.py",
         "services/release_policy.py",
     )
     return {
@@ -85,6 +88,7 @@ def build(root="."):
             "inference_executed": False,
         },
         "model_availability": inspect(root)["models"],
+        "subsystem_capabilities": capability_manifest(),
         "source_hashes": [
             evidence_record(name, root)
             for name in source_files

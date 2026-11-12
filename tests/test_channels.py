@@ -187,6 +187,7 @@ def test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job(
         1,
     )
     assert value["provenance"]["inference_executed"] is True
+    assert value["provenance"]["inference_mode"] == "real_model_inference"
     assert "digital_silence" not in value["review_flags"]
     assert value["channels"][0]["provenance"]["inference_executed"] is False
     assert value["channels"][0]["provenance"]["timing"] == {}

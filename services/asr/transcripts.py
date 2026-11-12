@@ -4,6 +4,7 @@ import math
 from uuid import uuid4
 
 from services.asr.adapter import ASRFailure
+from services.asr.provenance import execution_mode
 
 
 def build_transcript(
@@ -11,6 +12,7 @@ def build_transcript(
 ):
     if not isinstance(raw, dict):
         raise ASRFailure("invalid_asr_output")
+    inference_mode = execution_mode(raw)
     duration = metadata["duration_ms"]
     reported = raw.get("duration_seconds")
     if (
@@ -184,6 +186,7 @@ def build_transcript(
             "word_timestamps": False,
             "word_alignment_status": "not_provided",
             "inference_executed": raw.get("inference_executed") is True,
+            "inference_mode": inference_mode,
             "adapter_iteration": "finished",
             "clinical_coverage": "unverified",
         },

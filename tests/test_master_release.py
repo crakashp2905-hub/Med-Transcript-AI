@@ -77,9 +77,11 @@ def test_readiness_report_rejects_stale_or_corrupt_saved_demo_receipt(
         )
 
     save("a" * 40)
+    first = status_report.build(tmp_path)
+    assert first["master_release"]["tiers"]["local_demo"]["status"] == "verified"
     assert (
-        status_report.build(tmp_path)["master_release"]["tiers"]["local_demo"]["status"]
-        == "verified"
+        first["subsystem_capabilities"]["schema_version"]
+        == "subsystem_capability_manifest_v1"
     )
     save("b" * 40)
     assert (

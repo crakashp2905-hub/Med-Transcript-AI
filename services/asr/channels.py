@@ -8,6 +8,7 @@ from pathlib import Path
 from services.api.ingest import MAX_CHANNELS, inspect_pcm_wav, file_sha256
 from services.asr.adapter import ASRFailure
 from services.asr.transcripts import build_transcript
+from services.asr.provenance import aggregate_channel_modes
 from services.audio_provenance import (
     channel_timeline,
     derive_provenance,
@@ -142,6 +143,9 @@ def build_channels(
     body["provenance"].pop("isolated_channel_pcm_sha256", None)
     body["provenance"]["inference_executed"] = any(
         c["provenance"]["inference_executed"] for c in channels
+    )
+    body["provenance"]["inference_mode"] = aggregate_channel_modes(
+        c["provenance"]["inference_mode"] for c in channels
     )
     timings = [c["provenance"].get("timing", {}) for c in channels]
     body["provenance"]["timing"] = {

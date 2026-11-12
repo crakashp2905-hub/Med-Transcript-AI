@@ -6,9 +6,9 @@ Generated from the Python source tree. Runtime reachability is a static import a
 
 | Classification | Modules |
 | --- | ---: |
-| integrated-in-production-flow | 82 |
+| integrated-in-production-flow | 83 |
 | candidate-only | 12 |
-| test-only | 183 |
+| test-only | 184 |
 | documentation-only | 11 |
 
 ## Service modules
@@ -75,6 +75,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/pareto.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/postprocess.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/profiles.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
+| `services/asr/provenance.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/removal_propagation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/resource_router.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/retranscribe_span.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -101,6 +102,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/benchmark_text.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/bounded_queue.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/canonical.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
+| `services/capability_manifest.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/channel_detectors.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/channel_diarization.py` | `documentation-only` | referenced by documentation but absent from runtime and test import graphs |
 | `services/channel_first_baseline.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
