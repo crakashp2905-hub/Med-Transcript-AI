@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -72,13 +73,29 @@ def run(source_commit, output):
         ]
         try:
             test_result = subprocess.run(
-                command, cwd=ROOT, env=env, check=False, timeout=180
+                command,
+                cwd=ROOT,
+                env=env,
+                check=False,
+                timeout=180,
+                capture_output=True,
+                text=True,
             )
         except subprocess.TimeoutExpired:
             print("Critical module coverage test run timed out after 180 seconds.")
             return 124
         if test_result.returncode:
+            print("Critical module coverage tests failed; assertion output suppressed.")
             return test_result.returncode
+        terminal = next(
+            (
+                line.strip()
+                for line in reversed((test_result.stdout or "").splitlines())
+                if re.search(r"\b\d+ passed\b", line)
+            ),
+            "pytest passed; detailed output suppressed",
+        )
+        print(json.dumps({"coverage_tests": "pass", "summary": terminal}))
         export = subprocess.run(
             [sys.executable, "-m", "coverage", "json", "-o", str(raw_json)],
             cwd=ROOT,

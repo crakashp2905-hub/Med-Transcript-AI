@@ -45,7 +45,9 @@ def run_verification(*, python_only=False, runner=subprocess.run):
     for name, command, cwd in verification_steps(python_only=python_only):
         print(json.dumps({"check": name, "status": "running"}), flush=True)
         try:
-            result = runner(command, cwd=cwd, check=False)
+            result = runner(
+                command, cwd=cwd, check=False, capture_output=True, text=True
+            )
             returncode = result.returncode
         except OSError as exc:
             returncode = 127

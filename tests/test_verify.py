@@ -29,7 +29,8 @@ def test_verification_fails_fast_in_dependency_order(capsys):
         def __init__(self, returncode):
             self.returncode = returncode
 
-    def runner(command, *, cwd, check):
+    def runner(command, *, cwd, check, capture_output, text):
+        assert capture_output is True and text is True
         calls.append((command, cwd, check))
         return Result(1 if len(calls) == 2 else 0)
 
