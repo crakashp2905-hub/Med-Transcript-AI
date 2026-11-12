@@ -94,12 +94,22 @@ metric code, endpoint registry and passing tests to source commit
 The current ledger audit accepts the receipt. The metric implementation does
 not establish clinical validity; the 5% normalized WER gate remains unchanged.
 
-## Current execution matrix
+## Initial execution matrix snapshot (superseded)
 
 [`master-implementation-matrix-v1.json`](../evaluation/reports/master-implementation-matrix-v1.json)
 was generated from source commit `4b2d82106423046cff9b841a386f5d20ea4a6ea7`.
 Its SHA-256 is `09a46f134d2d16793f39431c1deffbb790fe01a379db9d7c022d43b14ca64d4a`;
 the raw ledger SHA-256 is
 `0a146204187c9e70ca420bf6997db5e3519a154bd607dcfaf7745bea4ac34f2b`.
-All 369 entries remain `not_started` because this matrix is an organization
-artifact, not task completion evidence. Clinical release remains unauthorized.
+At generation, all 369 entries were `not_started`. This immutable snapshot is
+superseded by the current version below.
+
+## Current execution matrix
+
+[`master-implementation-matrix-v2.json`](../evaluation/reports/master-implementation-matrix-v2.json)
+was generated from source commit `f386b0428c915f21e4e2bdeed0164407b9cf3953`.
+Its SHA-256 is `6f6ef6ac246970ffec9e2f1d72ce7a3513e721093c0500a2bc1ad99e0354bb1d`;
+the raw ledger SHA-256 is
+`a55f59cd037b788662a341d27b60ddbcfc14c956ab38f29cbcf41c5e4c65320b`.
+It records one implemented task and 368 not started. Task-level dependency
+edges remain unmapped, and clinical release remains unauthorized.
