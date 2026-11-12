@@ -281,3 +281,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   passed; Ruff and format checks pass. Status: partial; this permits only the
   single term currently present in the lexicon, and no paired bias/no-bias WER
   or false-insertion evaluation has been run, so it is not an admitted profile.
+- **MTA-ASR-E05:** Partial, resource-limited. The existing synthetic ASR
+  challenge lists a generic `medical_homophone` case but contains no reviewed
+  drug-name confusable pairs or clinical gold. The licensed development
+  lexicon currently has one observed term, so it cannot support a meaningful
+  sound-alike/abbreviation subgroup evaluation. Existing medication-binding
+  checks cover explicit medication and dose swaps, but are not phonetic
+  confusability evidence. No clinical correctness claim is made; completion
+  requires an approved, rights-reviewed confusable set and reference labels.
