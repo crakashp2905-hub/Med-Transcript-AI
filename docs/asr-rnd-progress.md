@@ -323,3 +323,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   5 passed. Ruff and format checks pass. Status: partial; this comparison is
   rule-based, not clinically validated, and is not yet connected to every
   candidate workflow.
+- **MTA-ASR-E10:** Extended correction-suggestion records to require a source
+  audio ID and non-empty rationale, and to retain both original and proposed
+  text with `human_review_state=pending`, `reviewed_by=null`, and
+  `adopted=false`. Missing provenance or rationale fails closed.
+  tests/test_asr_postprocess.py: 4 passed; Ruff and format checks pass. Status:
+  partial; the helper is not yet connected to every app candidate/version
+  workflow, and no human-reviewed terminology correction lifecycle is active.

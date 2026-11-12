@@ -15,6 +15,7 @@ def test_postprocessor_keeps_raw_negation_and_dose_separate_from_suggestions():
                 "reason": "review",
             }
         ],
+        source_audio_id="audio-asset-1",
     )
     assert result["raw_segments"][0]["text"] == raw[0]["text"]
     assert result["correction_suggestions"][0]["suggested_text"].endswith("5 mg")
@@ -24,6 +25,9 @@ def test_postprocessor_keeps_raw_negation_and_dose_separate_from_suggestions():
     ]
     assert result["correction_suggestions"][0]["review_required"] is True
     assert result["correction_suggestions"][0]["adopted"] is False
+    assert result["correction_suggestions"][0]["source_audio_id"] == "audio-asset-1"
+    assert result["correction_suggestions"][0]["rationale"] == "review"
+    assert result["correction_suggestions"][0]["human_review_state"] == "pending"
 
 
 def test_medication_and_dose_substitutions_are_flagged_without_adoption():
@@ -36,6 +40,7 @@ def test_medication_and_dose_substitutions_are_flagged_without_adoption():
                 "reason": "synthetic safety test",
             }
         ],
+        source_audio_id="audio-asset-1",
     )
     proposal = result["correction_suggestions"][0]
     assert proposal["original_text"] == "Take aspirin 75 mg daily."
@@ -53,4 +58,21 @@ def test_invalid_suggestion_index_fails_closed():
         suggest(
             [{"text": "Take aspirin."}],
             [{"segment_index": 1, "suggested_text": "Take amlodipine."}],
+            source_audio_id="audio-asset-1",
+        )
+
+
+def test_suggestions_require_source_audio_id_and_rationale():
+    suggestion = {
+        "segment_index": 0,
+        "suggested_text": "Take aspirin 5 mg.",
+        "reason": "synthetic review example",
+    }
+    with pytest.raises(ValueError, match="source_audio_id_required"):
+        suggest([{"text": "Take aspirin 0.5 mg."}], [suggestion])
+    with pytest.raises(ValueError, match="suggestion_rationale_required"):
+        suggest(
+            [{"text": "Take aspirin 0.5 mg."}],
+            [{**suggestion, "reason": ""}],
+            source_audio_id="audio-asset-1",
         )

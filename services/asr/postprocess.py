@@ -5,12 +5,16 @@ from copy import deepcopy
 from services.review.clinical import MEDICATION, quantity_signature
 
 
-def suggest(raw_segments, suggestions=None):
+def suggest(raw_segments, suggestions=None, *, source_audio_id=None):
     if not isinstance(raw_segments, list):
         raise ValueError("raw_segments_required")
     suggestions = [] if suggestions is None else suggestions
     if not isinstance(suggestions, list):
         raise ValueError("suggestions_must_be_list")
+    if suggestions and (
+        not isinstance(source_audio_id, str) or not source_audio_id.strip()
+    ):
+        raise ValueError("source_audio_id_required_for_suggestion")
     output_suggestions = []
     for item in suggestions:
         if not isinstance(item, dict):
@@ -21,6 +25,9 @@ def suggest(raw_segments, suggestions=None):
             raise ValueError("suggestion_segment_index_invalid")
         if not isinstance(proposed, str):
             raise ValueError("suggestion_text_required")
+        rationale = item.get("reason")
+        if not isinstance(rationale, str) or not rationale.strip():
+            raise ValueError("suggestion_rationale_required")
         original = raw_segments[index].get("text")
         if not isinstance(original, str):
             raise ValueError("raw_segment_text_required")
@@ -35,6 +42,10 @@ def suggest(raw_segments, suggestions=None):
             {
                 **deepcopy(item),
                 "original_text": original,
+                "source_audio_id": source_audio_id,
+                "rationale": rationale,
+                "human_review_state": "pending",
+                "reviewed_by": None,
                 "review_required": True,
                 "risk_reasons": reasons,
                 "adopted": False,
