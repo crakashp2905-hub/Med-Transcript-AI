@@ -1387,11 +1387,20 @@
       "id": "MTA-02-16",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Validate notes and exports under original historical versions, including post-rule-change rechecks and safety quarantine.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-16-cf5ac2a.json"
+      ],
+      "source_commit": "cf5ac2ac8280357fb99eb388e6c18bb38b321aa5",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-16-cf5ac2a.json",
+          "report_sha256": "e48c014be9262941fadd9a11a637f4e8d05844581f01f616d9e047c17075c39c",
+          "check": "historical_note_and_export_safety_recheck",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

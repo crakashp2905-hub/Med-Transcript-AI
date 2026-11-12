@@ -1,0 +1,46 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-16",
+  "status": "pass",
+  "source_commit": "cf5ac2ac8280357fb99eb388e6c18bb38b321aa5",
+  "source_tree": "73bc1af14c5fa8acc2ef62958ffd4450a4cbc404",
+  "checks": {
+    "historical_note_and_export_safety_recheck": {
+      "status": "pass",
+      "controls": [
+        "Historical approvals, note bytes, transcript references and verification reports remain unchanged after a rule-version change.",
+        "Current rules are re-evaluated against the exact saved source transcript for historical notes.",
+        "New exports are blocked when a post-change safety recheck finds a critical issue.",
+        "Previously generated exports are quarantined from download by a current-rule recheck; immutable stored export bytes are not rewritten or deleted.",
+        "The regression test simulates an old unsafe approval and export, then confirms workspace recheck blocks and download returns current_safety_review_required."
+      ],
+      "local_checks": {
+        "ruff": "pass",
+        "mypy_ignore_missing_imports": "pass",
+        "windows_integration_test": "runner_stalled_before_result"
+      },
+      "ci_run_id": 43286924436,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43286924436",
+      "ci_jobs": {
+        "test_dev_security": "success; 808 passed, 17 skipped",
+        "test_dev_asr_security": "success; 836 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "source_sha256": {
+    "services/review/routers/exports.py": "2e3d07a2962be1c9f3022cb5dd1be67ce4233f889c8818c7883f967c4b82faa8",
+    "services/review/engine.py": "2ee693fb24d742c865eb7cf6c3414cbdcc5eedbb329235e06e0d9d2c81eae041",
+    "tests/test_review_workflow.py": "376be1771159a887ae003b68672ff14cd24b8a55f5d46fe936d37789ff980635"
+  },
+  "limitations": [
+    "Rule-change quarantine depends on maintaining and incrementing RULES_VERSION when material safety rules change.",
+    "Quarantined artifacts remain stored as immutable historical records; download is blocked until the appropriate clinician workflow creates a current safe note/export.",
+    "CI synthetic fixtures do not establish independent clinical validation or authorize release."
+  ],
+  "clinical_release_authorized": false
+}
