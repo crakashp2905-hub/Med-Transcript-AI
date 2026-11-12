@@ -1,18 +1,18 @@
-import copy
 import hashlib
 import json
 
 import pytest
 
-from services.master_ledger import LEDGER, ROOT, audit
+from services import master_ledger
+from services.master_ledger import LEDGER, audit
 
 
 def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     result = audit()
     assert result["total"] == 369
-    assert result["statuses"]["not_started"] == 351
+    assert result["statuses"]["not_started"] == 349
     assert result["statuses"]["blocked_missing_asset"] == 3
-    assert result["statuses"]["implemented"] == 15
+    assert result["statuses"]["implemented"] == 17
     assert result["verified_at_current_commit"] == 0
     assert result["clinical_release_authorized"] is False
     document = json.loads(LEDGER.read_text(encoding="utf-8"))
@@ -87,34 +87,53 @@ def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     assert skip_task["source_commit"] == "c15c2b896e69e66c110d59b2f805b59ce9c165e1"
 
 
-def test_verified_task_requires_matching_commit_and_hashed_passing_result(tmp_path):
-    document = json.loads(LEDGER.read_text(encoding="utf-8"))
-    task = document["tasks"][0]
-    task.update(
-        status="verified",
-        source_commit="a" * 40,
-        evidence=["evaluation/master-task-ledger.json"],
-    )
+def test_verified_task_requires_exact_commit_test_and_runtime_hashes(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(master_ledger, "ROOT", tmp_path)
+    (tmp_path / "evaluation/reports").mkdir(parents=True)
+    (tmp_path / "evaluation/master-task-ledger.json").write_text("{}")
+    task = {
+        "id": "MTA-TEST",
+        "status": "verified",
+        "source_commit": "a" * 40,
+        "evidence": ["evaluation/master-task-ledger.json"],
+        "test_results": [],
+    }
+    document = {"total": 1, "tasks": [task]}
     path = tmp_path / "ledger.json"
     path.write_text(json.dumps(document), encoding="utf-8")
     with pytest.raises(ValueError, match="missing_test_receipt"):
         audit(path, head="a" * 40)
 
-    source = ROOT / "evaluation/reports/offline-acceptance-v21.json"
-    report = json.loads(source.read_text(encoding="utf-8"))
-    task["source_commit"] = report["source_commit"]
+    runtime = {"python": "3.x", "platform": "test"}
+    runtime_hash = hashlib.sha256(
+        json.dumps(runtime, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    report = {
+        "source_commit": "a" * 40,
+        "runtime": runtime,
+        "runtime_sha256": runtime_hash,
+        "checks": {"unit_tests": {"status": "pass"}},
+    }
+    report_path = tmp_path / "evaluation/reports/run.json"
+    report_path.write_text(json.dumps(report), encoding="utf-8")
     task["test_results"] = [
         {
-            "report": source.relative_to(ROOT).as_posix(),
-            "report_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
-            "check": "backend_tests",
+            "report": "evaluation/reports/run.json",
+            "report_sha256": hashlib.sha256(report_path.read_bytes()).hexdigest(),
+            "check": "unit_tests",
             "status": "pass",
         }
     ]
     path.write_text(json.dumps(document), encoding="utf-8")
     assert audit(path, head=task["source_commit"])["verified_at_current_commit"] == 1
-    broken = copy.deepcopy(document)
-    broken["tasks"][0]["test_results"][0]["report_sha256"] = "0" * 64
-    path.write_text(json.dumps(broken), encoding="utf-8")
-    with pytest.raises(ValueError, match="report_hash_mismatch"):
+
+    report["runtime_sha256"] = "0" * 64
+    report_path.write_text(json.dumps(report), encoding="utf-8")
+    task["test_results"][0]["report_sha256"] = hashlib.sha256(
+        report_path.read_bytes()
+    ).hexdigest()
+    path.write_text(json.dumps(document), encoding="utf-8")
+    with pytest.raises(ValueError, match="runtime_hash_mismatch"):
         audit(path, head=task["source_commit"])

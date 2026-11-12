@@ -30,7 +30,7 @@ def _local_file(relative):
     return path
 
 
-def _receipt(task, result):
+def _receipt(task, result, *, require_runtime=False):
     if not isinstance(result, dict) or result.get("status") not in {
         "pass",
         "fail",
@@ -44,6 +44,19 @@ def _receipt(task, result):
     report = json.loads(report_path.read_text(encoding="utf-8"))
     if report.get("source_commit") != task["source_commit"]:
         raise ValueError(f"{task['id']}: report_commit_mismatch")
+    if require_runtime:
+        runtime = report.get("runtime")
+        runtime_hash = report.get("runtime_sha256")
+        if not isinstance(runtime, dict) or not runtime:
+            raise ValueError(f"{task['id']}: missing_runtime_receipt")
+        expected_runtime_hash = hashlib.sha256(
+            json.dumps(runtime, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+        # Accept only the canonical JSON digest so receipt serialization is stable.
+        if runtime_hash != expected_runtime_hash:
+            raise ValueError(f"{task['id']}: runtime_hash_mismatch")
+        if not result.get("check"):
+            raise ValueError(f"{task['id']}: verified_test_name_required")
     check = result.get("check")
     if (
         check is not None
@@ -85,7 +98,7 @@ def audit(path=LEDGER, head=None):
         if not isinstance(results, list) or not results:
             raise ValueError(f"{task['id']}: missing_test_receipt")
         for result in results:
-            _receipt(task, result)
+            _receipt(task, result, require_runtime=status == "verified")
         if status == "verified":
             if any(result["status"] != "pass" for result in results):
                 raise ValueError(f"{task['id']}: failed_result_claimed_verified")
