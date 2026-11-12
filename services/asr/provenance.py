@@ -33,7 +33,7 @@ def is_quality_evidence(report):
         isinstance(report.get("profile_id"), str)
         and report["profile_id"]
         and isinstance(report.get("model_revision"), str)
-        and len(report["model_revision"]) == 40
+        and len(report["model_revision"]) in (40, 64)
         and isinstance(report.get("profile_sha256"), str)
         and len(report["profile_sha256"]) == 64
         and isinstance(samples, list)

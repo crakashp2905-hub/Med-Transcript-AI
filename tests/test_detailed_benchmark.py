@@ -158,8 +158,12 @@ def test_detailed_suite_v4_binds_source_and_memory_budget():
     assert suite["maximum_normalized_wer"] == 0.05
     assert suite["resource_budget"]["max_process_resident_bytes"] == 16 * 1024**3
     assert suite["resource_budget"]["models_loaded_simultaneously"] == 1
-    for source, digest in suite["source_text_sha256"].items():
-        assert file_sha256(source) == digest
+    assert hashlib.sha256(Path(suite_path).read_bytes()).hexdigest() == (
+        "eb273b302226a3355041e8e5947f71d9abed432e735ecdc9745dec17ef48d332"
+    )
+    assert suite["source_text_sha256"]["services/evaluation.py"] == (
+        "73a127a599ee0f3dbaef5e6d3655f56fb55d108e4bd482dc4e6c8aeae374af3f"
+    )
     candidate = next(
         item
         for item in suite["jobs"]
@@ -167,6 +171,18 @@ def test_detailed_suite_v4_binds_source_and_memory_budget():
     )
     resume = candidate["resume_by_mode"]["speech_aware"]
     assert file_sha256(resume["path"]) == resume["sha256"]
+
+
+def test_detailed_suite_v5_binds_current_sources_without_rewriting_v4():
+    suite_path = Path("evaluation/detailed-suite-v5.json")
+    suite = json.loads(suite_path.read_text(encoding="utf-8"))
+    predecessor = Path("evaluation/detailed-suite-v4.json")
+    assert suite["supersedes_suite"] == predecessor.as_posix()
+    assert suite["supersedes_suite_sha256"] == file_sha256(predecessor)
+    assert suite["source_refresh_reason"]
+    assert suite["evidence_class_policy"] == "separate_transport_from_measured_asr_v1"
+    for source, digest in suite["source_text_sha256"].items():
+        assert file_sha256(source) == digest
 
 
 def test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline():

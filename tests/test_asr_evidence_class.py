@@ -35,7 +35,7 @@ def test_actual_model_inference_is_quality_evidence():
     assert is_quality_evidence(report)
 
 
-def test_legacy_quality_report_needs_model_runtime_and_all_hypotheses():
+def test_legacy_quality_report_needs_model_attribution_and_complete_scores():
     legacy = {
         "profile_id": "historic-model",
         "model_revision": "b" * 40,
@@ -53,3 +53,21 @@ def test_legacy_quality_report_needs_model_runtime_and_all_hypotheses():
     assert is_quality_evidence(legacy)
     legacy.pop("profile_sha256")
     assert not is_quality_evidence(legacy)
+
+
+def test_legacy_model_revision_may_be_a_sha256_digest():
+    report = {
+        "profile_id": "historic-model",
+        "model_revision": "b" * 64,
+        "profile_sha256": "a" * 64,
+        "sample_count": 1,
+        "samples": [
+            {
+                "sample_id": "sample-1",
+                "status": "completed",
+                "reference_words": 4,
+                "normalized_edits": 1,
+            }
+        ],
+    }
+    assert is_quality_evidence(report)
