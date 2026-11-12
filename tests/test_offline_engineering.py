@@ -58,6 +58,8 @@ def test_baseline_paths_and_model_directories_must_exist(tmp_path):
     assert check_baseline(document, tmp_path)["missing_local_model_directories"] == [
         "absent"
     ]
+    assert not (tmp_path / "absent").exists()
+    assert check_baseline(document, tmp_path)["model_inference_performed"] is False
 
 
 def test_full_baseline_inventory_has_no_missing_or_changed_paths():
@@ -77,6 +79,7 @@ def test_offline_preflight_reports_cached_capabilities_without_install_or_networ
     assert report["artifact_scope"]["status"] == "blocked_missing_local_artifact"
     assert report["new_installations_attempted"] == 0
     assert report["external_calls_attempted"] == 0
+    assert report["models"] == []
     assert {
         "tools",
         "node",
