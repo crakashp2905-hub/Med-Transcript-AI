@@ -593,3 +593,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   research/development tool, not the clinician queue. The clinician screen does
   not present reason-coded ASR alternatives as an uncertain-span queue, and no
   scripted usability acceptance was run for that workflow.
+- **MTA-ASR-I14:** Published `evaluation/reports/asr-objective-release-v1.json`
+  with objective-level `FAIL`/`BLOCKED_MISSING_RESOURCE` decisions for model
+  qualification, clinical safety, end-to-end product acceptance and engineering
+  CI. Missing evidence is never treated as PASS; the report authorizes no model
+  promotion or clinical use.
