@@ -37,8 +37,10 @@ def stitch(left, right):
     if removed or not left:
         return exact, {"method": "exact", "removed_tokens": removed}
     a, b = left.split(), right.split()
+
     def normal(text):
         return re.sub(r"[^\w.]", "", text.lower())
+
     best = None
     for m in range(3, min(12, len(a)) + 1):
         lhs = [normal(x) for x in a[-m:]]

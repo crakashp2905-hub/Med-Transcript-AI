@@ -123,6 +123,7 @@ def load(job):
             sess_options=options,
             providers=["CPUExecutionProvider"],
         )
+
         def model(path):
             return recognizer.recognize(str(path))
     elif runtime == "sherpa-qwen3":

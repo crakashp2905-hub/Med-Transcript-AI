@@ -2,6 +2,8 @@
 
 import pytest
 
+pytest_plugins = ("tests.test_foundation", "tests.test_transcription")
+
 
 @pytest.fixture(autouse=True)
 def isolated_inference_lock(tmp_path, monkeypatch):

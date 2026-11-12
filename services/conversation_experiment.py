@@ -50,8 +50,10 @@ def join_text(left, right, overlap):
     if not overlap or not left:
         return (left + " " + right).strip(), 0
     a, b = left.split(), right.split()
+
     def normalize(text):
         return re.sub(r"[^\w.]", "", text.lower())
+
     for length in range(min(30, len(a), len(b)), 0, -1):
         if [normalize(x) for x in a[-length:]] == [normalize(x) for x in b[:length]]:
             return " ".join(a + b[length:]), length

@@ -23,8 +23,10 @@ def reconstruct(experiment, probe_path, output):
         or proof["model"] != original["model"]
     ):
         raise ValueError("Complete matching hash-bound proof required")
+
     def keys(row):
         return (row["id"], row["input_start_ms"], row["input_end_ms"])
+
     proofs = {keys(p): p for p in proof["probes"]}
     if len(proofs) != len(proof["probes"]):
         raise ValueError("Duplicate proof")
