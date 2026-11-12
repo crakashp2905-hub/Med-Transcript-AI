@@ -6,7 +6,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from services.api.main import Identity, create_app
-from services.api.postgres import postgres_migration
+from services.api.postgres import Cursor, postgres_migration
 from services.api.storage import MIGRATIONS
 from tests.test_foundation import headers, payload
 
@@ -23,6 +23,13 @@ def test_postgres_migration_keeps_lifecycle_transition_guard_writable():
     assert "validate_encounter_lifecycle_update()" in sql
     assert "forbid_version_update()" not in sql
     assert "SELECT RAISE" not in sql
+
+
+def test_postgres_cursor_exposes_rowcount_for_lifecycle_compare_and_swap():
+    class RawCursor:
+        rowcount = 1
+
+    assert Cursor(RawCursor()).rowcount == 1
 
 
 @pytest.mark.skipif(

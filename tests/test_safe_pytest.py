@@ -7,7 +7,7 @@ def test_pytest_wrapper_logs_only_counts_and_never_payload_or_traceback(capsys):
     secret = "PRIVATE_CLINICAL_FIXTURE_CANARY"
     result = SimpleNamespace(
         returncode=1,
-        stdout=f"FAILED test_case.py::test_x - {secret}\n1 failed, 2 passed in 1.0s\n",
+        stdout=f"FAILED test_case.py::test_x[private fixture] - {secret}\n1 failed, 2 passed in 1.0s\n",
         stderr=f"AssertionError: {secret}\n{secret}\n",
     )
 
@@ -22,3 +22,4 @@ def test_pytest_wrapper_logs_only_counts_and_never_payload_or_traceback(capsys):
     assert "AssertionError" not in logged
     assert '"raw_output_logged": false' in logged
     assert "1 failed, 2 passed" in logged
+    assert '"failed_tests": ["test_case.py::test_x"]' in logged

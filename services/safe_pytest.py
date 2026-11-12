@@ -10,6 +10,7 @@ import sys
 SUMMARY = re.compile(
     r"\b\d+ (?:passed|failed|skipped|warnings?|errors?|deselected|xfailed|xpassed)\b"
 )
+FAILURE = re.compile(r"^FAILED ([A-Za-z0-9_./-]+)::([A-Za-z_][A-Za-z0-9_]*)")
 
 
 def run(paths, *, runner=subprocess.run):
@@ -22,6 +23,13 @@ def run(paths, *, runner=subprocess.run):
     lines = (result.stdout or "").splitlines()
     terminal = next((line for line in reversed(lines) if SUMMARY.search(line)), "")
     safe_counts = ", ".join(SUMMARY.findall(terminal)) or "summary unavailable"
+    failed_tests = sorted(
+        {
+            f"{match.group(1)}::{match.group(2)}"
+            for line in lines
+            if (match := FAILURE.match(line))
+        }
+    )[:50]
     status = "pass" if result.returncode == 0 else "fail"
     print(
         json.dumps(
@@ -30,6 +38,7 @@ def run(paths, *, runner=subprocess.run):
                 "status": status,
                 "exit_code": result.returncode,
                 "summary": safe_counts,
+                "failed_tests": failed_tests,
                 "raw_output_logged": False,
             },
             sort_keys=True,
