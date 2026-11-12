@@ -1,0 +1,56 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-11",
+  "status": "pass",
+  "source_commit": "ee2e1a38fcf69b71c548beec03358d3f004855ae",
+  "source_tree": "1786f7fdba169d0e1d9ff048b8a8ed3f830402ed",
+  "checks": {
+    "stale_source_and_optimistic_concurrency": {
+      "status": "pass",
+      "controls": [
+        "transcript edits and speaker-role corrections require matching If-Match ETags and current transcript versions",
+        "ASR/retranscription results are fenced against changed transcript and audio versions",
+        "fact extraction rechecks captured transcript ID and source hash after inference before persistence",
+        "draft, note edit, semantic verification, finding resolution, review-session completion, and approval enforce current source/note versions",
+        "amendments only extend the current approved note and select fresh source facts when its transcript changed",
+        "exports validate immutable approval, note, transcript and evidence-graph hashes before creation or retrieval",
+        "stale ETags and mismatched sources produce 412/409 outcomes without changing the approved version"
+      ],
+      "ci_run_id": 43277311799,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43277311799",
+      "ci_jobs": {
+        "test_dev_security": "success; 802 passed, 17 skipped",
+        "test_dev_asr_security": "success; 830 passed, 3 skipped",
+        "postgres": "success; 4 passed",
+        "review_auxiliary_suites": "success; 59 passed in each configured lane",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": [],
+      "source_sha256": {
+        "services/api/routers/jobs.py": "eb111b139e960b71369fe2929851e80c60f90993daa188e57c9be32359c48704",
+        "services/review/clinical_routes.py": "9b325f0ec55859c889dc3605c19fbc51d5d53a2a607ee6ff64d747de89bb3315",
+        "services/review/metrics_routes.py": "03840d33ea92d57eb33e1d87e71b45d1dccab567486bedf094b29f2acde58fc2",
+        "services/review/service.py": "d8d4bc0c28f1ce3f9ee4a854e97d94e3a771602ab90a6387c453f5acfd002d29",
+        "services/review/routers/proposals.py": "68275f50fd62128a9d0525eab87c09c1a635ae59ea336b1b3cd1537bcd141a8e",
+        "services/review/routers/notes.py": "f329db807decbb808a2491f1ac94d3a7f504759d7781bbbc326221db5f7fce8d",
+        "services/review/routers/transcripts.py": "4a9e722230b1d628c55348c75e0f28a73eb9300f17444b65ed455a039ce3f33f",
+        "services/review/routers/verification.py": "9046ed9e68f58f7cb267a32b88ffc676ba1a2ce4a5ba528fb749eb0eba94fd03",
+        "services/review/routers/approvals.py": "aeaf3ee2114d62783b44a134b7c82e27b450e3cad8da09c259c2ba85d3eee5f5",
+        "services/review/routers/amendments.py": "2e2c88248910a3fce7dbfbdbd99387c2f0549f79b43de17f54f2386616bf0f99",
+        "services/review/routers/exports.py": "cde999419f7f00d5218a407e360a48d692b8f8829651cbbc9c394d0c4211bd4a",
+        "tests/test_scribe_workflow.py": "8f617fe1be4164420a111067bca6158e399b2b37deceaac60d412d2085850fb5",
+        "tests/test_retranscription_workflow.py": "3663e29658ca195b85e75f54093c9635e6d87afa3cd52879fffae96dc15f13f9",
+        "tests/test_completion_gaps.py": "52a060d2821fe9cfd52d6724e3d669671a6ee164df05f8adc54aad32183dd4b4",
+        "tests/test_review_workflow.py": "e4e57e07d8255029d7c87d0d60291004082edba793e9c83ef48041857c357aea",
+        "tests/test_transcription.py": "a0a2da1f8411fe3c6fda39f815d4baf278d0d9936144682da158d0ef51bab375"
+      }
+    }
+  },
+  "limitations": [
+    "These concurrency fences preserve exact software source versions; they do not establish clinical correctness or independent adjudication.",
+    "Previously approved immutable versions remain historical records; amendment creates a new version."
+  ],
+  "clinical_release_authorized": false
+}

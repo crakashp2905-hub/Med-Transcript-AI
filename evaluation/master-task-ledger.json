@@ -1277,11 +1277,30 @@
       "id": "MTA-02-11",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Implement optimistic concurrency and stale-source fences for each ASR, extraction, draft, review, amendment, verification and export path.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-11-ee2e1a3.json",
+        "services/api/routers/jobs.py",
+        "services/review/clinical_routes.py",
+        "services/review/routers/transcripts.py",
+        "services/review/routers/notes.py",
+        "services/review/routers/approvals.py",
+        "services/review/routers/amendments.py",
+        "services/review/routers/exports.py",
+        "tests/test_scribe_workflow.py",
+        "tests/test_retranscription_workflow.py",
+        "tests/test_completion_gaps.py"
+      ],
+      "source_commit": "ee2e1a38fcf69b71c548beec03358d3f004855ae",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-11-ee2e1a3.json",
+          "report_sha256": "1e86f93008f0af17a2629caadf4925207fcd17b6dd6a2f5468c28a350614da42",
+          "check": "stale_source_and_optimistic_concurrency",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
