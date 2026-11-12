@@ -522,3 +522,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   short-clip model result is still 8.70%, and full-consultation/detailed runs
   are worse. D10's gate remains fail-closed and no inference-mode promotion is
   allowed. Relative improvement does not change this result.
+- **MTA-ASR-I04:** `BLOCKED_MISSING_RESOURCE`. The admission policy requires
+  separate critical insertion/substitution/omission and role-safety review,
+  but no independently adjudicated clinical annotations or owner-approved
+  tolerances are available. The E08 pilot's false insertion is a development
+  signal, not a clinical error rate. Abstentions remain review-required and
+  cannot be counted as successful corrections.
