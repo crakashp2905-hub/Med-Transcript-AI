@@ -209,12 +209,59 @@
       "id": "MTA-01-03",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "not_started",
+      "status": "blocked_missing_asset",
       "description": "Run all existing pytest lanes: core, optional ASR, security, PostgreSQL and container integration using frozen constraints.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "evaluation/reports/offline-acceptance-v26.json",
+        "evaluation/reports/master-task-mta-01-03-c15c2b8.json",
+        "evaluation/reports/master-task-mta-01-11-c15c2b8.json",
+        "tests/test_acceptance_reporting.py",
+        "tests/test_channels.py",
+        "tests/test_encrypted_backup.py",
+        "tests/test_media.py",
+        "tests/test_postgres.py"
+      ],
+      "source_commit": "c15c2b896e69e66c110d59b2f805b59ce9c165e1",
+      "test_results": [
+        {
+          "report": "evaluation/reports/offline-acceptance-v26.json",
+          "report_sha256": "37e320aa915a9df751f34f2aec3622b50a2b05d7631f78bf2785d3d9de6067b3",
+          "check": "backend_tests",
+          "status": "fail"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-03-c15c2b8.json",
+          "report_sha256": "9ee68a64b6662a1e73dad521e8ae7796ebe845862330db485b11ea3f8f9bec5a",
+          "check": "critical_skip_audit",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-03-c15c2b8.json",
+          "report_sha256": "9ee68a64b6662a1e73dad521e8ae7796ebe845862330db485b11ea3f8f9bec5a",
+          "check": "optional_asr_dependency",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-03-c15c2b8.json",
+          "report_sha256": "9ee68a64b6662a1e73dad521e8ae7796ebe845862330db485b11ea3f8f9bec5a",
+          "check": "encrypted_backup_dependency",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-03-c15c2b8.json",
+          "report_sha256": "9ee68a64b6662a1e73dad521e8ae7796ebe845862330db485b11ea3f8f9bec5a",
+          "check": "postgres_integration",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-03-c15c2b8.json",
+          "report_sha256": "9ee68a64b6662a1e73dad521e8ae7796ebe845862330db485b11ea3f8f9bec5a",
+          "check": "container_integration",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "Exact-source full backend acceptance timed out after 1200 seconds. PyAV and cryptography.cobblestone are unavailable, PostgreSQL DSN is unset, and Docker is not installed; critical skipped lanes fail acceptance."
     },
     {
       "id": "MTA-01-04",

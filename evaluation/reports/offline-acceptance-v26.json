@@ -1,0 +1,4149 @@
+{
+  "schema_version": "offline_acceptance_v1",
+  "version": "v26",
+  "recorded_at": "2026-11-12T10:17:24.916498+00:00",
+  "source_commit": "c15c2b896e69e66c110d59b2f805b59ce9c165e1",
+  "source_sha256": {
+    "services/acceptance_audit.py": "5964d90feb99b3d6fc6789b7621d5e0a19cff496210eab25673e9681002456b8",
+    "services/acceptance_materials.py": "336f4a2f85b23818e6953db92f98139429922e24e887adbdc2859279300e4c27",
+    "services/accessibility_checklist.py": "e2a0aa1a12e3256780a899b2be6e51892b490361754dec8cb39c5cfbf1acd051",
+    "services/adversarial_replay.py": "3d8caf7322b6982f98016ed49cbc8f0b856f7389c80edbf2d26e39fd47757a19",
+    "services/anatomy_relations.py": "f4e39904eeb03ebb5aae225b26adaaeb51324d666b8f647ec2d45c0409848201",
+    "services/annotation_workflow.py": "dfce3d9379c2ac4830103551eee0160fd32cce40980f3c054af7d4620f724f4e",
+    "services/application_pipeline.py": "1f71faa77e0c87b49bc1fbe276df6dad0469214b53849095bbdd8fd19b2ddd67",
+    "services/artifact_provenance.py": "260ad751067ded094d7a6031c98940b55b08e0187839221c55c6a57d00dee662",
+    "services/artifact_summary.py": "22e4f784c851234885b34358b38a7da345b91194aa2ef5e970e92b2f1353b68e",
+    "services/audio_enhancement.py": "7a99ff2734ab46b0d6baa8aac0ccb7a627e2a8450383135c8a9161bbfee1e9bb",
+    "services/audio_enhancement_eval.py": "bf3f792d4f5327a318d2733104efc6797739eef691541c9a2e811f068d4f8ee6",
+    "services/audio_filter_benchmark.py": "80bc2d565eb1b1e33adae4ea7fbb556e85173711af4a696e55a78bcd1a6d21fb",
+    "services/audio_provenance.py": "e52a3e34be4e18233973fa0aa74bfe50f201c38196eed03e4927a7ff0fde5541",
+    "services/audit_integrity.py": "b4edd727a035baa225fd7cb5e68966ea8fdd6ae71179c0e7d46e6945fef7748c",
+    "services/baseline_summary.py": "8539b2ee60b873885fcf0d62880e9142c5a25e36a9d16f82d850bc2df6cb4bd3",
+    "services/benchmark_integrity.py": "65abc7cf7baf0ff0f41e0f383f8b8496ec21944d5d11b7925cdcf410bef80cf9",
+    "services/benchmark_progress.py": "2446c32f534a21dee6b7906aa6b583d1ac5935a086ca5b09e9ffc7494f977779",
+    "services/benchmark_provenance.py": "35cd3091719423477a4ea1678871eefeb5d3ec53c9e220da2f65805df90bd396",
+    "services/benchmark_ranking.py": "b5f60ab4bd46e6e1c2d96d53dbc695d7d156094d58ef55ed4e075090cb139ca5",
+    "services/benchmark_suite.py": "b4787d966a5580b45897d8db00f6e874963f9e4757f64e26369172a85b30f57a",
+    "services/benchmark_text.py": "752a749188ca49bd8c84da5c73ecb011fcd4efee0e565e33edc176ed14dd3d81",
+    "services/bounded_queue.py": "652c110f4c04b1bc3a430681d23e934783a32b242adb6755cde52b9985feff85",
+    "services/canonical.py": "379d15395307848ae2695c3e451b13be278ccdba67739395ddc0b8a355a74e94",
+    "services/channel_detectors.py": "662edd2fe3191a949da3c7aae17f020b52e5f68f80aa57607b5a4c6856fb7756",
+    "services/channel_diarization.py": "cbfe0ba98d58f8e14b7911e889185717adb2cf1c86677f35c749601bd9579427",
+    "services/channel_first_baseline.py": "cb17e015543b05cf7e2f27c80085fd38211e4d386ef1eb45f7953c61d8dfd3ea",
+    "services/channel_scorecard.py": "1b06ceb3507e4f61e5dd7401082d30b80312788608157fbb66060ac7200c8fa4",
+    "services/channel_signal_audit.py": "44ed1ecd24c384f1b46e54a546e8d8fe861b696c608d819a77cc775b53181e1d",
+    "services/chunk_integrity.py": "3ea5ee5b83e58460189cb5346dca24940b3b328ddcdf7c1f712f2b42133ce25c",
+    "services/clinical_attribution.py": "7a9a3ffc98f3937fdb828acef072ef863b64bfa257c615cee61c2d3dcd9c5465",
+    "services/clinical_evaluation.py": "a7896a081afc89003966e94c69c5f4d893fba068a5873547fe0df05818d2df17",
+    "services/clinical_metrics.py": "58de3ca64ed4755eb586b56dd8c8fefb3240dd851a6056ce1fc45bd9a98a220d",
+    "services/clustering_constraints.py": "0ae8be79933dc94e4926a7ff86760333d7da1f1f8c08891e191573b5bc48368b",
+    "services/comparison_scope.py": "967d281e33cd149e5d2ea873cd5758894817d572c97b2c368fccd2c3944e76c3",
+    "services/completion_evaluation.py": "c2a10bbbc9e3e2264c0148aa97ab17c2d4d910d9072688eb167f40e884d8a0d9",
+    "services/component_ablation.py": "b7ea3440ec93ea9d381f58dd2b65a9dd7b1df821c414900e7fb5e115d3bc1758",
+    "services/config_fingerprint.py": "514c3a14c3baca4ba4e91068ce7c94cd21ecc7a0896ce28fb048ee39ad7f955d",
+    "services/consent_guard.py": "6d5a1db76bde8cfdb688b7bda18e077e6db663eb30b62dec60fd2da1f9c38ba3",
+    "services/context_effects.py": "3613db0b16a3ae971aa5bca776a597bc038db04a2adca05383c1f65602054996",
+    "services/conversation_errors.py": "f70635a77b6aa565445fdfc60af016878a7d8472630641413c9236a9374da61c",
+    "services/conversation_experiment.py": "5d0324ec9be59153fa2cebccb7612525ca7c0071a74b5c6af0eae58ee78f3963",
+    "services/corpus_partition.py": "b1c152c9d74d60341fdc46c90f1577561d7ee8e6963ddcd0a1de598c9e015ce3",
+    "services/dataset_ledger.py": "748a9b2ae0e41846fb4acb14ed0f9295ffef326bd095e098c2949a442273b27a",
+    "services/data_provenance.py": "3df1cdada9946b92d04ff6f60e9b80c6552eebe93ffb078de31646e18b9936de",
+    "services/demo_fixture.py": "6364e44cfd5629ccf90cf943d60809fb043191a30de934661a9acb85354216b7",
+    "services/demo_ingest.py": "d63e15a6cb7fcfdf402d00abab2522df6edba981e767e3a772ffa6e2fd189c6e",
+    "services/detailed_benchmark.py": "aabe9406e3150c708b46ae76d229bccd9ab7a53c461e33be1ebaf051a7561365",
+    "services/detailed_campaign.py": "370cb2cedf85dbb01a05066ded10cd7026e061686a0ea06ed3deb3cbee073917",
+    "services/detailed_diagnostics.py": "cd3dae0c249dd5797bc923f91619c3051d96f101adc1c680ed792d58bd76752c",
+    "services/detailed_drafting.py": "59ed77768a158e6fdeed5e959162305855fb6c3f490ee9e949273a2d52e0fe59",
+    "services/detailed_finalize.py": "8eddfd636aa307989b9d58c3050ac216f73a3039ab30a2e8eaaf886182b7a59e",
+    "services/detailed_recovery.py": "50c938002b61ef0c7a79ae65f25744ac28a44e18029b5b7c543e19270ab19324",
+    "services/detailed_review_materials.py": "11a54ad85f951bb769f42f50c104e9aa571e5069971bd5f76271bd9caa3e8fe5",
+    "services/device_profile.py": "5f8877601124512cdfbc9441e60a61246ece4064f558ea35f5d427d0aba183ba",
+    "services/diarization.py": "06f6e27f8f945ea302ef4ada3dabc41d423638a2a8a15305ae474c213cd21143",
+    "services/diarization_baseline.py": "d30c0c13af01a1f07bc738a8e7461884bd0b720b1b2b986cdcda9679847a6609",
+    "services/diarization_evaluation.py": "9ff5618b46b937b0dc98aa161af7de409f497ffc1eff5f89e5ee4d1474f67859",
+    "services/diarization_policy.py": "66a9432a2ab26ab9414244dde94addd4d81363d658772954d98afa3a3a3156ce",
+    "services/doc_integrity.py": "2781bd953d7a65945b2960cd6edc8b1cb9681c351574ff48d60410659da34556",
+    "services/domain_contracts.py": "ff8b0137df0fe73c716b5fb322e07e9a467c1e8113609b4f49fd33ef85fc4b04",
+    "services/encounter_state.py": "ab96c0130cd8301535de6df561ffce10e8e7a97dbdcc17acec12fd1829016ba6",
+    "services/encrypted_backup.py": "7be3a75d3f81740237106e01898b64fdedd87151ecf23777be131ccdc7677a70",
+    "services/endpoint_policy.py": "29899cda9d402dab3565a164051bfc48093b89b1235fbd3513098f52af1c8a9d",
+    "services/engineering_status.py": "b49a53feaf6ddca557770c4bb6d063db9f0f3d5b1c617748abad57b73f1d1f60",
+    "services/error_codes.py": "64670ec411ace9e7dd1a2ca6af573aebcfdcead9be12e0ceebb4b5329650d58b",
+    "services/error_taxonomy.py": "e23ae75f94b56e3a8d097ff371ada5437e95109956db7b86ac5a7465201d2607",
+    "services/evaluation.py": "52ffe708c08ea1cdb7f372be66b1a3e14669e27149122de37cca3091f9b173b9",
+    "services/evaluation_method.py": "de97e29acf4d7e02098f5206f39ada59a40d2be4274c6321e644aea600be4c58",
+    "services/evidence_graph.py": "d5b27a1361cccf19f93a7fac88805c39ec310f9bc11bc995e6891a61e8a13449",
+    "services/evidence_io.py": "bd3844b38dc8ac7209c2911660ffdb0b1c567444a4718f79be3adf18f30ce374",
+    "services/expanded_summary.py": "03d134744056d9b83b0a2b258e03edbcb946d3087ccdb6d6d686735668e766bf",
+    "services/experiment_contract.py": "0aba7299f89f2f51af84e2721b0498bc9545f12ce101d72766d9b7cc1ed226c4",
+    "services/fact_duplicates.py": "814d0454eca29cfa72d3154ecda71f2fc6a67724566b74b907b3011066c76ddc",
+    "services/fact_provenance.py": "60304367858898151a65054dcfaf5abb1232a46c4ececfce98fcd6d0a0f51909",
+    "services/fault_injection.py": "acd3e7c63e161e55bf72c7d7f894ac53c7f3b6adfa5c0a632df797d2d7e23337",
+    "services/feature_flags.py": "e12765413af2435e1a5aade1fe71d2510bafa7945aa482c72f140b08c8a1ab21",
+    "services/full_consultation_asr.py": "8e843ecaaafe11d9494f65b10e190e51e75e5eaccfbfb5282fd79fa140634c3f",
+    "services/full_empty_reconstruction.py": "0d5eb4535a69e63e84ac3c399e9d633bbfe24de457489398994b67b08083eed4",
+    "services/import_boundary.py": "7e628c4be60e2a81ee8706f5c675781bacc89fd9f5fc2e58faec5da1a4114359",
+    "services/inference_slot.py": "e276fab7ab180f2c1e8302689795e31ed5857b6568bea4ac7aca6b433cfabcf0",
+    "services/input_limits.py": "cb13039ace84cc461d73e9dc862d8f697aa5c064c7b1170d2ce700b6a8fc3e18",
+    "services/interruption_matrix.py": "82854bf62dcb8a03ac0284ebd1be258b302ad323de1c0b4b46cabe0aa00f82de",
+    "services/keyword_recovery.py": "05603f2660c0ca8eeb23059f5ee867a558f17b6e01a1e539fc1dd27e62aa56e8",
+    "services/latency_targets.py": "62f97d28b4c7d7425b547b3ea0779346d52906993e900912e3899fc044900fe1",
+    "services/launch.py": "eaa2f76c51ed025582b03b420a644422b3fd5bcf3821ba5b013c9a562e08e6cf",
+    "services/local_cost.py": "b2e1f42af2d61ca594ccf7cb9744e0ff26a1dbf32affab1ea1cc7568262d0382",
+    "services/local_drafting_evaluation.py": "f8b768b9c2040dd66d9ecc6a9ec5300af6d63a9c439d6ce13578f9599642e303",
+    "services/log_redaction.py": "1385f3e1dc1eac2016acc5020858585a72d6e77e6aca850909a0e8ef10d170e5",
+    "services/long_recording_smoke.py": "98ba331f3a1ff06c703bbbe5fb816ffec4faf3253c27e8d4328fbeb2fa6a5e3b",
+    "services/maintenance.py": "4bfc350d4f3262597efd9b0793731502382d3e72ee1d7415b2129aa4ace03638",
+    "services/master_ledger.py": "80a5aaf704ccec35a6f15706c6ebe619309c5a86e48c853251e3c361503de361",
+    "services/master_matrix.py": "d0625df68f4615ccfe5fa196049911ba7ed97d8259157e318b801853b7a3b771",
+    "services/master_release.py": "61a8c6768e4f0f621cc5dfd2aef3d3409564129aa66a4d649ca6451487c18325",
+    "services/media_decoder.py": "1fb9f38811c17cfee03083463907d5ad0f136ad6d7ab0b5a5d944247ad9a3dfa",
+    "services/media_formats.py": "26660db25dcb85f367cd2b4b94185d65860d2cca23c8e84fcdfe70b384d8d4f7",
+    "services/medication_status.py": "d9c8a8197fd4a4293b3f219ab37f47747f7cd25cd1660c60e3e04b3cabd3b316",
+    "services/memory_admission.py": "b68062e3530ead23bbbf16228a77aec1a233ba437c99270c0ed3e984cdcff1c0",
+    "services/method_comparison.py": "061d4d17c76bc4bf50d236e7e82fdb3321be31a911706c8e71483ad4d4fc7886",
+    "services/metric_integrity.py": "14a9909548e95f84766efc174ad9c53b509fd442244df4752ec29b4bfca29726",
+    "services/metric_validation.py": "5188fd12339eb65e943eb1b658825855eab42aa546b286313bf26522fd3c96fb",
+    "services/model_cards.py": "5ff3cc65f9dd5c0e856616e74e6e42442368b824fa760f5f9b640d144a43df4f",
+    "services/model_init_metrics.py": "3360c453108e428b79b30d052d1b03ddffe65b5d1623c989cade502f4669bb53",
+    "services/multichannel_smoke.py": "ef9b31020689f25e8b23a483fb582883d9fd4746b0fbf5b063c3b80feed336fa",
+    "services/mutation_contract.py": "177344bee3005b2bdc6b87982ce939c9d693f314ba3655e54db1191919b057a1",
+    "services/mutation_generators.py": "8cf4f7ef73d6a6117ca51d5fc2a9e20f0cd71bd1607e5aa16a781f47498ee1a6",
+    "services/negative_index.py": "d789f19f9ac2c1c1c3e18757f3487620d2ac048cc5f9be599295842213a509fa",
+    "services/negative_results.py": "f4977c042f7a653b9628733d9752c3890820603677083111ba24f80b7b90060a",
+    "services/note_diff.py": "1d6160f8097c6e46f319797920ac3eeba1793fe09d297797794acda59704ad3c",
+    "services/note_quality_metrics.py": "2d5177329be45a02f1b18b2dd40eb18968478c1eda7929a4001550fc10614993",
+    "services/note_style.py": "fc31cf06106be7aa55b14258737c87b373531cd261e555f83e03f6c45032b7b9",
+    "services/novelty_policy.py": "3dc8639dbac9e3e89bfa9a1845fef834c5519d9a8a775769fc6883d98fb2e72d",
+    "services/offline.py": "b30e883e02bdc7a9d52a1c4b48644e0a14ac1de976acc7588c52d8ba422ee25a",
+    "services/offline_acceptance.py": "0b72e5116d8069665d38faa229d8c243b999417d4dff4c9fd8515868e7b55e16",
+    "services/offline_adapters.py": "67d27333c7b9fb7ab8692fc3a62f73f7c1686e0798f00530fba41e8aa1e57fe1",
+    "services/offline_demo.py": "a75db6e4e08d08372c248d58aadd685993261af5010f324d5f362de27f10a0dc",
+    "services/offline_preflight.py": "f1c197b21240f1b1cdc1cb6a54d1ebe71a8140fc02301b596182b29f5d785aa6",
+    "services/ollama_inventory.py": "38721bb0ccdf7d99695c121c49764306e5b2a7f428b1e9e7338980705fc1dbf8",
+    "services/omi_adapter.py": "0476be74f15551a297508b092838a534bff791e9e308629d5c235672f4fb91f7",
+    "services/omi_empty_reconstruction.py": "65eab3d42c5f9d4e7001f25f3118fdb3f2f88cc4ef71b0fe7252a14d6a2beb21",
+    "services/omi_failure_probe.py": "a0f2b1a1db651b5761a8acd80b8738ab6de98e57258e8610a360797376588978",
+    "services/overlap_reassembly.py": "a9d347d032931783269bcf5ec5cc4dec89ce40f4544b090beba878736eb05a27",
+    "services/paired_asr_bootstrap.py": "4b4aed2321cb1753fdb495a4235f794dea29767974d08bb04150f454fb6cf53c",
+    "services/paraphrase_cases.py": "4965c218867cbb8f9c7f65a69ca0f864351c3dde1a6b156492bbd330b36613eb",
+    "services/perturbation_cases.py": "f560c06e2a7210350762128b2ade4395073d21bcdb904e3df29fe0a7fff358e9",
+    "services/prepare_detailed.py": "65c2fabadd43ff135b3516a41cd0410f46be99ec80a1fae23d460f6531a1cfec",
+    "services/prepare_full_consultations.py": "05da076f8e55cdcc90815be1cb2693d9d5d912a585a966f7ce4dd4be2800c620",
+    "services/prepare_primock.py": "a7d460dbd7da9162c40d723bab7b1e1eae9170f5917bc61196d6b358c8c45d4d",
+    "services/prepare_validation.py": "6cf4bff94a188e76282fb4de1021b3b5f79aed91647348ccd07362ad2474d837",
+    "services/prompt_ablations.py": "98c6e7c1a2c708bca93d9a86f106c628fa5e97f08c1a448747cc4425fbcc7e9a",
+    "services/prompt_harness.py": "71a6d441f40f343540beff9d4a9aec849c0d769dac79d456ce91524e581161ad",
+    "services/prompt_injection.py": "5f89a0c53c46ca57de95edb52a5f5cfc2362f7ddf0d5904d52eafb0559c87803",
+    "services/proposal_integrity.py": "47c9f6e6ce8119848908ac85f1d81f883bb37aa75badfb5a3952d813f0c6b246",
+    "services/provider_interfaces.py": "7ee644dad4dde42fc78adfaaa5682e8ba3ff4beb37005d2711a5a506260cd1d9",
+    "services/provision_benchmark.py": "929fe8ff9d05071feb79e1114bddfc88b53b740f971fead3cfe56ea726cd4aec",
+    "services/provision_public_diarization.py": "dcb3dd01971bf62fef9c86223c567a7f927c8f4f8afc70557d683f72fb8782dc",
+    "services/provision_qwen_asr.py": "0ed7a96118833e0e03731982387a031ef5353abe16603c031eef2fb417105c8f",
+    "services/publish_expanded.py": "cedc8e3a15178ebc83f2d4c5e0fb0073d64bcff189a60f219bfea91e4b5db866",
+    "services/queue_dashboard.py": "288392b4ded6ea1d2748ea55d0f2dd27c644b1c3d6e22e2628894b7d2c171a47",
+    "services/qwen_adapter.py": "09ba7e2d368fe9931ba0c87f74db795d3413a775b81ecfecbab1d2ef554d84db",
+    "services/recorder_matrix.py": "0d2f2a0f81d25a90eb3683e209d57452e18ff4cb6cca153dd58e7e9fddb69887",
+    "services/recovered_job_receipt.py": "f68693b5dbda6ca7e9a3e9abdda5af65af07a33d3c94d8f7708f3f95db011d52",
+    "services/regression_gate.py": "b8e8300366d9b93f0e4866b4b500da256db72fedc1870ff06d3f1de825ae4a03",
+    "services/relationship_evaluation.py": "30410c1de873910c46816d6b701d4579c27269c756fe65f083e6a63f73f942bf",
+    "services/relation_tuples.py": "a61667b8274d40f35f3a4b1d5df11abe79e49bc3f5e346b1089f237132a9d2c7",
+    "services/release_gate.py": "88d04c7c5170d48f915c40a402dc91ef745a9015923d5c9e49737bebb095c638",
+    "services/release_policy.py": "a8c4a5e279c66c3946eb83e735cee6d29f6cf49be7c1de20f15a53afea64067e",
+    "services/release_readiness.py": "40a9bd8024c93a903159d9a07539cd61019d7f06599db1f24644d4d3b4e3e423",
+    "services/report_safety.py": "7ae4e28787b7cc4da1da0531b94016aaa48982e4c5eabb3c7515ed055e255392",
+    "services/repro_bundle.py": "96ec9bf0e34a3fd519ae09cbce688254629d43dc661e6f9c487f9c2795c8a34d",
+    "services/resource_arbiter.py": "2648b9bf7c1633db1d2ae052f95fa6cc14b41099a948f62c2173bddc5e9fd4c8",
+    "services/resource_stress.py": "0b6ce5330ef2c87394335db2e5f72e3acb5585348873dfd1717468a34c60cbc2",
+    "services/retention_state.py": "940d26e8872694031f23c9594378f8ad5daa1f97d04b48e3048a41a6d79f2cdf",
+    "services/retrospective_result.py": "38a5e3ab05e954686ecf815ac3f187d8ecc867233075ed3cc985982110283bcd",
+    "services/review_gate.py": "32c6e2362f6ceb8ed13dec816b019173e06e5c17996b2fd7c2d0e89d033470fb",
+    "services/review_readiness.py": "f6c149b7e0af9b03218663c1f51acdacee6ac9038b0e63c7ad3bfca9d19f5ce1",
+    "services/role_correction.py": "ba0ea7e99a97a8a7090ba925b74bc2d9d67979132d2a39a64794d2eb028ef93d",
+    "services/role_guard.py": "55858f3f8f3790a12d6efe68f4b516aec57e30b46a4dfc8005a618b4d2788e8a",
+    "services/route_authorization.py": "315d202e17d429258d154a155b3af78db532bf9f5f298dc0431e977dedca7354",
+    "services/runtime_benchmark.py": "cfef99935fc2548c05f1f47519164ad40ff19caeb647e66811d1c22535e22715",
+    "services/sbom.py": "ee4d5938eab383dea2eb4eb3b4cd60a2e9db88d4fd69e6e230e3ec46de6ddb6c",
+    "services/secret_scan.py": "6e19b1bb388015d6654152422b68ebb82ef858a35d64ca499226cd629c9b1a00",
+    "services/source_coverage.py": "aeeaa34859b4da3fbb243267cc5079038b851238b7049b116439cbdcde7d95eb",
+    "services/speaker_comparison.py": "69e6555216349da1f6e77c25a16ce84b372d9a85e1a7e0b60ddcd2c482f74067",
+    "services/speaker_results.py": "8ee5cec1350e79138bb9cb4b61a7eeef3aac3c34f239a7bde45bda1dab84e917",
+    "services/speaker_review.py": "a930d3c5f2eb2bb0e0ad8972650841de44b973d6db3d46fa0ef6613bdf4b6b49",
+    "services/stage_timing.py": "a9b2a31a6198ae346d2885d15370895c39f890602b0806df140fe41e219644a6",
+    "services/status_report.py": "30e94ebb66c453555289ee22e6d182f56e77eb908f964219f8acff9b1e8e0032",
+    "services/storage_lifecycle.py": "9204b24c1f96f9f8cc3265968316515532b24290714b7c51931a4b63b2a4cb91",
+    "services/stress_scenario.py": "64d25643b030d24bf7261412c0786b054ca6c233b18e32843c0b8ae91b853e50",
+    "services/strict_json.py": "924592c7bde510d0269ed1a1b03dc8ad910f041b14bccd6b9db4730f0c57a710",
+    "services/study_analysis.py": "2590292950075c7e431a18bf9804e9a7e1e855e3b86cad781d15c22e0d039c41",
+    "services/study_dashboard.py": "5d0b0bb017e9742df755c299052e73a9cafc62e702aa667aab294ed618dc820b",
+    "services/terminology_hints.py": "b1c535ddc98298656b867e3d69e6cfd071a24727e2bbb106b75e3af0dd01c2ef",
+    "services/throughput_measurement.py": "8d9a46e43c741de4aad4ebc3c22b705ba350a5b8b9091c852c579038f1e63a5c",
+    "services/turn_diagnostics.py": "10b0d79e2383fad9de8e9091f74592fbd608fba17d15eac160689a87f0cac52a",
+    "services/turn_swap_guard.py": "8ad5848451dc9dea0ea631243abb1e22a22975d031b053d58be2f660e6fb0fd8",
+    "services/uncertainty_classifier.py": "fad556031f922033326f1273b079ebd18a5a327bf89c9f55ceb2565def6b798f",
+    "services/uncertainty_report.py": "094c1ce05b44fd7a02d99c8fd3850cac52468d70d5d62da2d7ed01f99f99776a",
+    "services/unmapped_terms.py": "0f02acd7890076cf283f10d442615d07dfebe95d429c6b78af953e5375df0fca",
+    "services/untrusted_input.py": "27427886356f8db0ea7af3e8fbb1a773d4ed5acd7f5b7ffb37097c7223521e24",
+    "services/usability_metrics.py": "a807d3dcea4abaf2cbfda5262b929bb7fe825730e752621275156f587e3493d7",
+    "services/validation_summary.py": "95e90bef4e1845d28b8ab2574ddf13b1546a15e62e41bae288d583299ec8afe7",
+    "services/verification_ablations.py": "89b734a338c2e5724e3a12248ad24f2f567aff9fea7b866c1f48f31c7a336d85",
+    "services/verification_challenge.py": "399d4c96f5133dafb6d3cd7c925132a53f839eec77b4ce32f11e0648b9bb6a0a",
+    "services/verification_metrics.py": "4fea221d3fdb482b303644c2ecd19ec8ddccbd8fbf30964538ebf6a45d5d87be",
+    "services/verifier_selection.py": "d84573ba6e5fa53921a56e3525774f51a23fc804304dc9e3a11fdd7efff69b02",
+    "services/verify_scribe_evidence.py": "ffdc194b992478744e45f040e933f48830909180a84a1372ba0da12562f3bd0e",
+    "services/worker_loop.py": "6a91671fe8b8c1a5bddd8744499f6c537c67b8ce585cecfb3f70ba4d33200444",
+    "services/worker_recovery.py": "aa758cfee2bcda829b3d7fe866c5a6dd9088b960b987d5e9c03b9f5d0f6ccc32",
+    "services/workflow_metrics.py": "997694e17314e695879767edee031bb0b07812a3af698be0acf9331244e2862a",
+    "services/__init__.py": "30c96903954256e01bc70e1bb1c3b18adb2a2496cf9ff947069778e904455bce",
+    "services/api/auth.py": "884c83328aca7e0d69214a6fe4e3af09e1e8a82c56704f10175f90cddaf0cdd1",
+    "services/api/authorization_policy.py": "1a0b4c2c815eecf42ddb3f23620084bac5fa8dd5bf1d0617b30b6c7adc8c5daf",
+    "services/api/contracts.py": "fe5c65f1ba9ea574523be99b7ef2e0e2fe29ce85a364e7dbf156bc3335c81fbb",
+    "services/api/ingest.py": "3b73ceab497e961b95d343ba05cb852e8f197ccbd2d2b38e2c19a18fe78bead6",
+    "services/api/job_state.py": "7e9a5c88b88d3c2de39df907375d905a85836e5a7c9df056f6e473bac52aaff0",
+    "services/api/live_uploads.py": "b7e071925b3fd84162dd91329a6d8765eda1ca34f82d8fba8a515001390de8a8",
+    "services/api/main.py": "64f8d1441a49cc53696745fea00e32db8fa4792b840001609d54c7a67e1edb3f",
+    "services/api/postgres.py": "2ec80efb258efa0044649733be8626e6da52104b1a8ea672aa20fd93f785aa80",
+    "services/api/record_integrity.py": "ebd467a99f50707a4f742b12d00290cb462d92c8de1625dcda8549bc5e21ecbc",
+    "services/api/request_limits.py": "f224467a93a51f57fe177fab11c5b07177a0ffe4a834e36a4818862b34564e54",
+    "services/api/resumable.py": "c492d7737f8e9a5f3e603ef7eafc070cbc1c7a884f2dd90e3559e0431cd550b2",
+    "services/api/router_context.py": "f78551be74d9f909c11643e49162d978976da54b56ffbf8ec9ecdde179ff59fb",
+    "services/api/storage.py": "22bbf069d672ecbb8b8c5fbacd7cd144853f3b415c916dcff4acae3778608a63",
+    "services/api/time_utils.py": "889a2d63ef495efbca98f5e599a4302e33d2e96ff70b815bd444ea5f4e4c893f",
+    "services/api/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "services/asr/adapter.py": "33fe973f4decb624654f3dce2e66f0214e7a8c97c6f36f6dc020f4c0039fa8b8",
+    "services/asr/adversarial_cases.py": "8786bd24fc9bd1746305f5006e0f6be017757b93ed0e2cc47e799a15c97481f0",
+    "services/asr/audio_quality.py": "47873aa04a4d43f0721d09159e737debf30375635dd5dae50e04f23f8b685dab",
+    "services/asr/audio_router.py": "28a1a05894ab6b64025b0e157ded642579b32297e4c41208198c307ae4eec819",
+    "services/asr/channels.py": "b70e6e18af5f7cb3a7ba3788bec7b04bef5b912867368bd1e5f1d291fe167685",
+    "services/asr/channel_capability.py": "e8ec5b38be562b9406eb250bef2fced19c02563ef84c9b3005e4c489a06264ff",
+    "services/asr/chunk_selection.py": "00cd9d95f3e739e02186ceee24187bf338093abf0b75c279c220fa47a2032d2a",
+    "services/asr/config_inventory.py": "c75baead1d7217fbaec5853b5e0961d8d5978bd5feaeb85926de116c650d074a",
+    "services/asr/error_review.py": "0b1d1444f047d59a6a20eee5d9ca1efe39800a658564461ffa17f6cf1ae894de",
+    "services/asr/evaluation_contract.py": "7ff5a21045c4b8406a19bd2a24e84730c775702816c722487edd8b2f29158ad0",
+    "services/asr/metamorphic.py": "019b538798df72930d8efdede08a0b4db8e77b2eab3bfef21c320e85ac0af44c",
+    "services/asr/postprocess.py": "83f432abe4a69614a0bba0f9c88b347cb27933eb6be209de11f1fbb1a78070c2",
+    "services/asr/profiles.py": "721f30df9da84342d93e27b9cf62dc49ea0f7db1146efaf3e6baf785222aaa80",
+    "services/asr/retranscribe_span.py": "4d0d15b1f900b12b7eca4992ff4277c4fa2b11a9cc9162014198f56fae731b6e",
+    "services/asr/risk_selector.py": "801f101a4faa653075fe758fdc9fae9d1f7d20dfaebaa8782726f4b4e73f6025",
+    "services/asr/segmentation.py": "d300ab223e25758ce24aae78a59ab901a4e13b72367749174e440fc5d4ea3d92",
+    "services/asr/subgroup_diagnostics.py": "582e984d2bdd34e078db763f43821e98947dde975f280373e067a599faa37305",
+    "services/asr/timestamps.py": "6a8c5dc65651a0e7a577828cdcd048da243eb0899dd6b545dfed0d3616497f55",
+    "services/asr/transcripts.py": "fb12444391a78b2d594ca0ff19d01b5e2733f0b81700909b58fffd6c25dd3cf2",
+    "services/asr/vad_candidates.py": "93b61ac22375fe403b1bbcce391d8c007bb8bf54a4c434de91116ff28b688b4b",
+    "services/asr/worker.py": "06259bd9aa1d3c9a46a45582412da1d34f77551d24fe88530f95e7fedac91824",
+    "services/asr/__init__.py": "1b148c10616272ed85f602a7265f187892b34d2f2d36dd5b1b642ef34e99c95f",
+    "services/review/clinical.py": "d9712c64dcbebe12443e91206deff9add94fadf855c1f4a9dbe84140b4968404",
+    "services/review/clinical_models.py": "a6ebf8d6fdca8ff81eef8d2323475b479cf6edaec0271a5be8198bc801f3e782",
+    "services/review/clinical_routes.py": "86544081fe50344594c92fa448aec9659f1f951af657c042049b0a2e9a5e4c89",
+    "services/review/comparison.py": "cbc4f7a04aba9dd78baa8d038f281e354ec924dd5ddc026aa0f09ae77d7e7e3f",
+    "services/review/engine.py": "c543c183dad99aa5cdd7ea47986dfe7587804d0703908ff7c90d89d0438c3eee",
+    "services/review/metrics_routes.py": "fc5ccfdac3e6213dd6f6e0f0201533cced30860f25c0b16851a64d848fcf171e",
+    "services/review/models.py": "7004d2d6223cc5cbecdd883ff847ad9f513370fd869073809a7e99012330b5a7",
+    "services/review/presentation.py": "0a7710cb0634f2bbf883072a052ead86d17e562183ecf7033c2095d2cf0ad491",
+    "services/review/providers.py": "686713ad889f78e0f9a1c73bd9a7df80b2df3efddcf40fb04524729ab93755b8",
+    "services/review/relationships.py": "771f7a4301af8e3b74d74f455d40fc7076c06395fb57d332e1a4e74ca5193b22",
+    "services/review/routes.py": "6b256a588bb26a651b456d8a92d72402b06169ec247ff568a98d4b2ff340eee6",
+    "services/review/service.py": "06e6016f562f6aba71ca629097af98247f3a1997320265dd888bc34be36f4e05",
+    "services/review/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "services/review/routers/amendments.py": "7bda5eb37b0bd21ebbd26d1ccaa85d563d00c7fba79436a3f71f87d202bfa391",
+    "services/review/routers/approvals.py": "1e462afcad894c4f9e800e6b5166df5cff36f5d2a10dc2200792fbcf02884b83",
+    "services/review/routers/exports.py": "5507725f36e7f030ebafccf085b2d9436f98c6b22e4f74e68fda4528cf11c76d",
+    "services/review/routers/history.py": "4cb1480afda137b10cc5b05220983a49dcd953a218eb73b9bbe3474a57b5087f",
+    "services/review/routers/notes.py": "345b3c26c28497beb01a8ebfe45665efef7a9ad152f6d6812fcbfb24af32e551",
+    "services/review/routers/proposals.py": "adc13f68e9bf345c834a639a39b1d81f4bc6222f84da1d2ae04e55bc9a885db3",
+    "services/review/routers/transcripts.py": "965715869b18368b546a11445c3267c6d93e705113c59650ff5cfab6d7842d18",
+    "services/review/routers/verification.py": "f27e893ddfaab81561446abaab3aabe2e5021a88f0c55b3471e7733dc7ec0405",
+    "services/review/routers/workspace.py": "8233286516c28701816d92e83c1a88446d9ec4cbd46699c769eaa3a0878d2d69",
+    "services/review/routers/__init__.py": "4c2dd6308530f5ac4b3c77bbc85aa1538dd81480051807dfb18eaa974324929a",
+    "services/api/routers/audio.py": "fb2648beab7c50f1a868ea78c5152cbf35162cfe0c2b3e8c794bc3e668359b6d",
+    "services/api/routers/authorizations.py": "90f4fc755aa15e3da1b810b78e96e0c2f436dacec19b8f8d969d817f6ed49b88",
+    "services/api/routers/encounters.py": "4ad52ed410f7196c0708149e4cbecb6f98e23fa34de7cd0a6ad574853563d19c",
+    "services/api/routers/jobs.py": "c95c45ba3d9c3f9e60e167c3103283066056f9b8e3cadf94318192b4692d4124",
+    "services/api/routers/transcripts.py": "30ec58104114fe70b00242761c74945a9121c3c80f5c9b1a07a046d8dc39bbc1",
+    "services/api/routers/__init__.py": "fefb36e0364a77410281ad51f1c28bed6559704edbecb901ab855208cf720da1",
+    "tests/conftest.py": "87c87d3945318bd34e7415912bf5de58db887d0e4bb5d750f1209196d20aa696",
+    "tests/google_browser_server.py": "ca51b453046a52cfcc752772036081c4bf88ff8187d0e3b4117db46b4da98e48",
+    "tests/offline_browser_server.py": "01c9a9bd976a2881e9eff10eb7813cdba0191f336ac2d764a0127cea657c2233",
+    "tests/offline_smoke.py": "b5e4e07328d50bdd90efbc09215587bd03e7bf29f3add4e08c110437dfc3d113",
+    "tests/test_acceptance_reporting.py": "7e51317e37ba583cf2506e3d0de21605bc2d603e48cc7697919ce5920847d446",
+    "tests/test_accessibility_checklist.py": "029b6fabf58ed590050f16244798e902e7a7a15eba2841ac360472e3c274f37a",
+    "tests/test_adversarial_cases.py": "f2dce9c5facdf3c177050c22721f484423da49fab5a2ea4e488098ac738abda4",
+    "tests/test_adversarial_replay.py": "9603864ade62563c21a7929cedc8bde118589420f8949861e50605b761fae7f6",
+    "tests/test_anatomy_relations.py": "5a9e8aafb171debb9da80fd6acdbbcc99cd1766ce439cb9238eb0de6ae81c208",
+    "tests/test_application_pipeline.py": "a5153dbfb23f63bd4f49a98d2250c702c2f9977d0fa8bcfd37c48eb0cf1b7eb3",
+    "tests/test_artifact_provenance.py": "e79d4cc581cb014340ad51127f1249ebf10813e636b3ca76a8634113668f7010",
+    "tests/test_artifact_summary.py": "6a21842186e6e1b0039ab8f06e40a5885b704cc4b595aa2b8c86e57fd53aaa43",
+    "tests/test_asr_config_inventory.py": "1d544d0cb8c1b90c0d2dbc5127c58d02c68a0157061dd39c469a3b4947d8333f",
+    "tests/test_asr_critical_error_provenance.py": "711a49e4353c460f6011d9c5be7c18d9a0ea5e83376053eaebf2c51907b292da",
+    "tests/test_asr_error_review.py": "8f711ccb4b0e911ed8c43960809f7d356959d89f5dc315ccbfd1d077093e0103",
+    "tests/test_asr_evaluation_contract.py": "a645b4941063643696be01b3716c87cfd181e712e073eac7f2498fdc6c6dee45",
+    "tests/test_asr_postprocess.py": "3741f6b602132b35ba7914d3806e55834dc284d5dc7219989dc5c01cfa17eedf",
+    "tests/test_asr_risk_selector.py": "2e8dd79d8797344fc8654259d5ef6bacd8ab5efecac5fc10e0e77ffb8bb07bd0",
+    "tests/test_asr_segmentation.py": "be07d159cbadac4a0e2d35528a2b9aa33440db9a5f882ae96ef4e0e87d323e65",
+    "tests/test_asr_subgroup_diagnostics.py": "267a31c16c97bb4d4418f0ba904e9cef0355f7c09282bf6beb25fc99ffe72a3b",
+    "tests/test_asr_word_error_replay.py": "5f6c4ce8ebedf56f5e4743df26b9a58b3d3495550da31d0afa5759511ad7c61f",
+    "tests/test_audio_enhancement.py": "4c777adb62232a847bab495608d77eca2147147340917702ff197f8a3485986e",
+    "tests/test_audio_provenance.py": "788250a257be8fdcbabac1cb1eed8943139ef82689016150c706ceca24845386",
+    "tests/test_audio_quality.py": "bb1c1e0ff36b730c65f9a03f0af10de0a622cf2daff881001aface06084cb4ac",
+    "tests/test_audio_router.py": "61fe3676ccebb95decab09f78b7a4502847e4e0c95e2af8f070dac6094f90874",
+    "tests/test_audit_integrity.py": "e0a4456d3b7a5945ae830a2de6c15201bd2d079e801f4003e320c008e287e7c8",
+    "tests/test_baseline_summary.py": "7b7d8c96737d26aa189bc30acdbd506c757f43cce958213b3cb46b861599f0b3",
+    "tests/test_benchmark_provenance.py": "88976975dd3c724d37d35d2799b92102205c866dde406164858aab6ab5caf21e",
+    "tests/test_benchmark_ranking.py": "e8e5d1fe1f826a96220e7db595a268288ba2acbbc4021f26866603fae7e1e9ad",
+    "tests/test_benchmark_text.py": "2f45085c7eb505f1030210fe6e00a86b4dba6746fdfaff5f6d7946dbf0214db8",
+    "tests/test_bounded_queue.py": "56bf31c5b5071d6a84fa35c2b077cf3b1085934f3bef73f2798abbf4880ca83c",
+    "tests/test_channels.py": "ae26c0e581710caa611d32ebb565ed6a7d2d36cc5ff5f0380da6cee1aebafef0",
+    "tests/test_channel_capability.py": "d92c84c3b54f793574a7029bf8e266090e9b69d3177bd91d6fbf11952c060757",
+    "tests/test_channel_detectors.py": "6cd792cd1fd6a6770e8af8b70609fb7b08ed071a2d489f2ce0ea90a794a0e731",
+    "tests/test_channel_first_baseline.py": "c14ed15e0dd1d0e3a45bb6f20816b01d8793a7e2018eb86893452bce68c9cc7f",
+    "tests/test_channel_scorecard.py": "d421577179660b11ed2a035c6151381fb8743594e072e4abad0d16f212eb61d2",
+    "tests/test_channel_signal_audit.py": "8b332daac80af1e1951b61457434b294c949d4fabf9c666bb447de84e444dd86",
+    "tests/test_chunk_integrity.py": "eee94073ff592437fc69b5480e5098d0417052f4ebe543f0993bd63a376f10ea",
+    "tests/test_chunk_selection.py": "294e581500d57132c48b2de12d844c6c719f9f4db9ae42a57a3282d2d7781fea",
+    "tests/test_ci_quality_checks.py": "60e681c4d5c9e17e9a254fa38461a6eb7da684d6f7da96734a2aa69ba5ff1d3a",
+    "tests/test_clinical_attribution.py": "fec29b52f38a068c8b29bc484ba83e230d40aea0214434343f59d6b7f4a4a26a",
+    "tests/test_clinical_batches.py": "be87e7f44d875892e234ab5b79eb159d975c06ee6782636333136b709a2ce497",
+    "tests/test_clinical_bindings_development.py": "29c61330724898089beed44d9a6d3a370ceac6753dcc2ac5bebf7cce581cb8e9",
+    "tests/test_clinical_intelligence.py": "0b47adba703148d2e4441da8b7b6cdcab79d782d5511ff4d06b6acd8f5726c39",
+    "tests/test_clinical_metrics_report.py": "69a033261bac1b65bc1f83159d2513032ac63a9a9c38a171afceca8c90010fa6",
+    "tests/test_clinical_weighted_metrics.py": "81dff1d05cf3f381588f55905e794867a1d7965f3b4ec3c8b3b95697b6772fe5",
+    "tests/test_clustering_constraints.py": "5a536751d5091322273ff0d3bd8427e8cba758ee97cffbf7202ad4dfa5a475bc",
+    "tests/test_comparison_scope.py": "1932b176afebc01e1bb960fbfaa4275f8942ffcc52db33e891bbc9ac21d3b61f",
+    "tests/test_completion_gaps.py": "3f061e20f92eb8d477efd6299f84ff65651a308d571dcf03c447d304dd96f948",
+    "tests/test_component_ablation.py": "ca80dbc4bbc7f6a7267ff274317c802bf38bc390c0f2118c4e6616cecbabfca2",
+    "tests/test_config_fingerprint.py": "0011c8fd0a6c5cfdf64d3aec6614976ccab4dabda3df3400c9739cc0e28c5095",
+    "tests/test_consent_guard.py": "e18533468f6019633c3e1ec0e6dc0936ca8a839dae697367b9f0df3896a5a4e7",
+    "tests/test_container_security_contract.py": "781c3b6e0c9e0a308f3d0a2416465af784237ffa45a7e72d2c287e3f091d364e",
+    "tests/test_context_effects.py": "64817941ef7818334979b57265debae39a495958e180016bb17e0da64ec315e6",
+    "tests/test_corpus_partition.py": "21fd88f5cab9255521d62a2fe7839b4de505e89591c3d605353b0c39a5ead083",
+    "tests/test_dataset_ledger.py": "f4ebcd61f2d073510fef8c5054c3a0e9aee60a327e232e446fd3d7c6ba8c9874",
+    "tests/test_data_provenance.py": "638eb3cce2a2e90bbd5e9d56d9cf0d65b8917f7d7d69d2f26eba49707e02a2dd",
+    "tests/test_demo_artifacts.py": "72ac0beb6cbc1acb2df577374a0b37ca040cb8117ebef98cb20868572c5752cf",
+    "tests/test_detailed_benchmark.py": "7f59d4ca4c5a38434081876921eb742ca60b05a16edd8ffbd2e8684c05aa908d",
+    "tests/test_detailed_diagnostics.py": "29734301a6d6ad16b87c05f2346cc101b92b7d1ce584c20ece99d19b19f90904",
+    "tests/test_detailed_finalize.py": "ac86f6f588efc8c0bce15dae98babe4068c109285b379721b04d897d981a78d5",
+    "tests/test_detailed_recovery.py": "d27fe3a6ddde8b83e68528753a870d37d9400d11beb820e4f056d9829df0a81d",
+    "tests/test_detailed_review.py": "b648cf7f997a869a1fd3abc63da4f05780f9228899e9dde6ac033cf96841d213",
+    "tests/test_device_profile.py": "6b3a5932e033a7c725e4802b80570bbd379e6f425c850d1611d052fb345e3f3d",
+    "tests/test_diarization_baseline.py": "4406b0006c0b3f74fcdc7130a19c377fc9d2be5f2621debe7d7cd6c76e6bdace",
+    "tests/test_diarization_metrics.py": "c498adbfdf86104640dc7ca6608b0a461bd852aacfe7a1863e9a493a374205fc",
+    "tests/test_diarization_policy.py": "b744173f58fec9ce88d088573d47e74a73fc6eaf7cf12c1eae591e2a14fe1685",
+    "tests/test_doc_integrity.py": "9362f256ff7210326af22a9d3956fa94529f0ca2454bdd897a7f4c0cefed35d3",
+    "tests/test_domain_integrity.py": "28716041802e4644b0a80db11bc5986520bf1f51dcb42d188b627ba6eaf740d5",
+    "tests/test_encounter_state.py": "56c6720e4cb82d0a9521c3ab0f380cff40c57f8d63f5cafa6c2915b95337f2fd",
+    "tests/test_encrypted_backup.py": "147f53a7fa729fc0ae79be9635ed45ccdab078702186948e2c0abe92e0d50135",
+    "tests/test_endpoint_policy.py": "807cfb63e4d1ae48f69ba1c9216c6beedaa33d4949edc4cdc49ada815b4d9c7c",
+    "tests/test_environment_contract.py": "19bcd1fed7e0cbb482065fa6b14522433a511e9d33136537c65ce1eb36beae06",
+    "tests/test_error_codes.py": "f5e054eb30d1cb91da71fc701a23c13cf69f0d84236c43a3a2c6154562bff12c",
+    "tests/test_error_taxonomy.py": "a20ec7e72146454c099e4841a0222ce9228da8c146731e664a6bfa5ddf139b00",
+    "tests/test_evaluation.py": "42f5add8f13601c6799677a4be152cf80c20e1c581641bd5384bb0fb465419b6",
+    "tests/test_evaluation_method.py": "cf2333b606001d24f11278635b7a15c8081e9122442ed24059ef2469276a9394",
+    "tests/test_evidence_graph.py": "ddd4f21f9edcf25f593e963847baea73d6faef167e1556e559e86f64e3b98749",
+    "tests/test_evidence_integrity.py": "ac255f2e6623685e8188645daedc72dc14ed957f9c5a8db472811805bb19bc63",
+    "tests/test_evidence_io.py": "f04e2ab9c6c592fc2cc2bfb2c57d082f869895c114e0015a121e4eacfe2ef7f9",
+    "tests/test_expanded_corpus.py": "04cf69395d40b3a0cc7f4beca48afa90044ace6179ea754d7cdd860e1f91471f",
+    "tests/test_expanded_summary.py": "8a288c8dad335b36df87a2ad0934d2c638ab23000cd8437e6fce377ea18e89c3",
+    "tests/test_experiment_contract.py": "3b9333cb82f96d7efa16444a799a6f521f9837a2128df599031d1f5a7b950303",
+    "tests/test_fact_duplicates.py": "693f42d15b737baa1a56d6910de01abe9adcb70f0546d69944294b203de8f214",
+    "tests/test_fact_evaluation_synthetic.py": "302db56c0855396d73de2e7dc5a0105da8d831708f07017f6234bd24ac587975",
+    "tests/test_fact_provenance.py": "17a7b20fbdd60e4ef978fb97c2214f4619efcbac569a95aa549eeac715667131",
+    "tests/test_failure_inclusive_denominator.py": "45768f8c713804d45ab7380e55c42257cb95fcfb7c84f2f27b5aa9eaf1b9ead2",
+    "tests/test_fault_injection.py": "d99d9c72a4e408e7d54fc0420fcd13987613c65897c09ae8fa9281362900b389",
+    "tests/test_feature_flags.py": "ddc1eec539f88bbf9ae021773b7e664a53aa8ad47d23ac95eb7974defe0fb9c2",
+    "tests/test_fixture_label_policy.py": "a3e6ecba5e578fb360350e4ea09eb62d0a8d61ee7412889d9bde76c22f0fb2cd",
+    "tests/test_foundation.py": "c6482d90e95cb7bfb38a0db0c48db86a9e1dd5b2a15edfd44ea22465e0478cac",
+    "tests/test_frontend_validation_manifest.py": "5dff16ebd91c0e1cc951e53a205a30be1a669bb98240b0c623694538543a05b6",
+    "tests/test_full_reconstruction.py": "3e1485f02d98bc906052b6de73de7b087355fc471b4f36bef9a3262db41ec834",
+    "tests/test_google_auth.py": "45261973222f8d190363e55e1db328671629d25fc3eafb0f1b2498b2a9e3ee23",
+    "tests/test_import_boundary.py": "44a601f8117f438a4270c9575d909d9889c7956ccacd4aef446dac518603c43d",
+    "tests/test_independent_workflows.py": "b38cc3bac7798e1d8e4b704f28f0f12fc9ede7402ab021fae2e5362090e8f36d",
+    "tests/test_inference_slot.py": "c1e4fdd21b54892cf5619139e4967338e5d0d5fdc180cbd20064f6cbe1920e94",
+    "tests/test_input_limits.py": "b141078eaa70be438c879408129a3d3750393084d66bd069fdd4e59c5601f1ae",
+    "tests/test_interruption_matrix.py": "9e0a5ead0888eaaf138a18efa1ac959b9a3062c9ccc9ef32e27b2b0af9c60b9b",
+    "tests/test_keyword_recovery.py": "c6e48b6b4f926914611cbed98acac1a25fc1e645cc55f564bae154ed9542f902",
+    "tests/test_latency_targets.py": "32de2a8172e9a9d4e04f005960502d4eba50d6ab87074537d86dd643aefa767e",
+    "tests/test_live_uploads.py": "e8908e3c7a42fc04ae0005b2baec6c5a448bc76bee63b24b9adb4095a102a654",
+    "tests/test_local_cost.py": "648197491ca5255e4b076e0971db4b56cd63d33a0fe436e6d8b3fbab54a34737",
+    "tests/test_log_redaction.py": "71f0de8db536059fb3cf502c5e354492d81ad8bbceefc9dd71c32cedf72e5f6c",
+    "tests/test_maintenance.py": "13cfc0bda1f20eb8715cc29d8abe6f33b9177069967c435a5bf63ff493594041",
+    "tests/test_master_ledger.py": "e809f62a734fde6a5b5033e17015f1a9d213631c7f3553f2f0294e211deaf954",
+    "tests/test_master_matrix.py": "bb732c2d85bff505dfc6a5f78cedf2f0020f57efe6b7df5dce91b67b45b40ec3",
+    "tests/test_master_release.py": "b43b0600901d0b31fe1959365a48a232e3dd2b1c17c991ee642768b7fbb13ba2",
+    "tests/test_media.py": "6dd60832799cd7417b3ef30920e989128f0d4cdfca91d9d4ac47e68bb5e7802c",
+    "tests/test_media_formats.py": "d7e2a7762b8bb975f31df5a9dc7842327a98dc804a5160331f7708dfe53ef84f",
+    "tests/test_medication_associations.py": "cd1af88588ceaf1060f65e6b93da2e87a3c702436648ec477e625c25b7f1d934",
+    "tests/test_medication_status.py": "86645e1559103a5cf00d02975fb9de95003a1eac031a58bfd464e7579463fbe8",
+    "tests/test_memory_admission.py": "5d3c00c42ec6fe24eb286fa36f0b72e527ecc3f962014ad4938b0c086d3f9e1f",
+    "tests/test_metamorphic_audio.py": "9fcd7aaaf402c94f3e045d4bb8c557138019933bbab416c3a7c0389154355bfa",
+    "tests/test_method_comparison.py": "f9f55faa1c09c9775b4a7d5037e34c1ccc1819f0602d8c9fac0972f5994af3aa",
+    "tests/test_metric_validation.py": "59efbfdcee24298638987e977c755160568500dc077b5263a2f17a27aa82e85e",
+    "tests/test_model_availability.py": "0e4fb518c61db66c9bcece2c452429f61c1db2e8239ae632850a09306e91722a",
+    "tests/test_model_cards.py": "05804d7471ec2bef37089dd2eea0303f18c18b9089bb6519362634adacc20fad",
+    "tests/test_model_init_metrics.py": "09c7144511795eaa2822ca8cc629a439fa6e890b8bffac12a1cb5f4a6195d6e1",
+    "tests/test_model_inventory.py": "2f3e432d038c180201904ab995fc0fe32746d6510fe386afca7b1f5484903cea",
+    "tests/test_mutation_contract.py": "893fd0ad7ee06811a006827280effc8c1ca5fc2e3ebf1ed6e5816782faa530a4",
+    "tests/test_mutation_generators.py": "f5586ce33f564d543a488590e308b8b5fe7d89ffa5daab9f319951382e0b3d3c",
+    "tests/test_negative_results.py": "b065946182d1e79293126c945db6473f56b63eda0b99be015478f19367c836f2",
+    "tests/test_note_diff.py": "a396ce6ccabc2d2ecfe7b86a5918c8a3ff8a7ab7814bbdbe1ded6ec244090368",
+    "tests/test_note_quality_metrics.py": "fa030327c22856807070ba26aa5e045f65a98e7ec55e6a96c05cf3f835a5099f",
+    "tests/test_note_style.py": "b032d08028b94ca9861e72c66cb6bbe986e1894901ef95ecae7eed9ef2f88abd",
+    "tests/test_novelty_policy.py": "6abe110b323eb200339e36bf1e24253cc1ff227b7b50b72d47e0162c3b6b8fa4",
+    "tests/test_offline_adapters.py": "c0784c379311436bad1e3d8f73371e51a1d5cdd957dfbc5a9ca53f3e22c77d80",
+    "tests/test_offline_engineering.py": "85b31438bfcbac11dd9fe8397c3a0972e99339c461f3b0efea11712e43189bdd",
+    "tests/test_ollama_inventory.py": "085056b8e4250c4d9cd492237ac5fc2ce5d96b92e1b1b595f5f012a90fb8bf48",
+    "tests/test_omi_adapter.py": "76a65ff84e05a5966d37855a4a9c884c81c9bc08f3bd8e374d7afde643044550",
+    "tests/test_overlap_stitch_integrity.py": "85d1f049f8458549a4056e775592246397aec6dd50a004d468f87e0425b4b995",
+    "tests/test_paired_asr_bootstrap.py": "b32db1be8eaf242bb71951acb3b0d4b29c927c2512a2d0cb0e869201b47a6163",
+    "tests/test_paired_bootstrap.py": "d88af9040120f6b1aea61f5f38f437a9507a520894dc836eaadb772dd4a74651",
+    "tests/test_paraphrase_cases.py": "8f96dcec26e7e461c9241e222d3b36370cff99e616ca69dcb194fb29508739d4",
+    "tests/test_perturbation_cases.py": "c046745324fae86cd4ff4a3d5a6ab0de6eb0017a5ff5dc9d5bc3735160334735",
+    "tests/test_playwright_manifest.py": "83757ae6e0b79a3fa7366116701504188b83daf5826a9c77cd13a07bd78a4676",
+    "tests/test_portable_status_evidence.py": "32ce3e6ced303c8a020e6547a88a6a26c56ca892bca7852770e80b94f9d2233d",
+    "tests/test_postgres.py": "d21d0804057d2136af379b568fa2c5995f5547d5bc13d6bf7d7331c8d0ba42c0",
+    "tests/test_presentation_tools.py": "98da8441b6281b059a9294797d587c013f363299d3906cd08af029d5d64d151e",
+    "tests/test_prompt_ablations.py": "5f63b939a7b0da9faef798fb01136d59e698a9e7cbe8c9df0c48e4d626eb507b",
+    "tests/test_prompt_harness.py": "f844ad27acd0f73a41dbbff09f6002eff5e7ee44591ff0d44bf842d348e30932",
+    "tests/test_prompt_injection.py": "c211696170299764e0a98316354700984a91589e898f5a68c364bc7409a208a9",
+    "tests/test_proposal_integrity.py": "528e25a20d038152f4a4a263f3f25c095f0a20ffa7f53cdd0ad3342929faeec1",
+    "tests/test_provider_interfaces.py": "65a9eb242d4fb1f90ec95aec9dcb74cd71fb787976e7564e3557ae1593a55801",
+    "tests/test_pydantic_persistence_boundary.py": "38626e12fa46afbc492e646a5bdea7e39f046dfe20d04a05885b2b45964d2c69",
+    "tests/test_queue_dashboard.py": "1ad67914f131aa6432e59a44d33db46413b184d2d81fbb13d728a0e299015143",
+    "tests/test_recorder_matrix.py": "43c04de030ea62326e8ca65c9f05a8c0ce84cf63b3f7852a2b2109acc1bd64e6",
+    "tests/test_recovery.py": "f3c38b25a238a9058b069a8227fba88fc377cfeb10de980576004aef49fb1b52",
+    "tests/test_regression_gate.py": "60142b1abb7b31fa52d1f6ecffec05ccf2908ae4d38bb93c7a7dc0d6dd250eed",
+    "tests/test_relationships.py": "e7ecf4f87ca4f1212d1144e01969f6671b3505c5ee36e98c49cf458b14654806",
+    "tests/test_relation_tuples.py": "3e67634e06b22e36064e83650cf82a4afb5d267e6638981ff8c08d0b03e6236a",
+    "tests/test_release_gate.py": "5f78a0171c96b27a7be98e134fb7cec9dd794f69ac8f003793a688b9598af5f8",
+    "tests/test_report_safety.py": "c8e02fd82f7a1e5e9b9962e5db8fb98ef5539e6ae7a15b7abc8d37c319a4f97b",
+    "tests/test_reproducibility_appendix.py": "543cff24da60369a3a4cfefad0117906cf7be0329d683a3fb3482c3b8e66dce8",
+    "tests/test_repro_bundle.py": "0dc8682e208a5732c592fb5e156cac552d60e32199a5a9c4a141fff06dc0d987",
+    "tests/test_resource_arbiter.py": "7be39afc793b72f4b22721c98cc11a86840db6ec6f6ff454fa56f0cbe46bd623",
+    "tests/test_resource_stress.py": "3c38d8860c66d49dba532465ab19be9e5e8c79b894be471cf28817a5c18734fb",
+    "tests/test_retention_coverage.py": "41acebf021d86d174c1ff232b3695a80369c974be84f9113dcddbabaacdfd99d",
+    "tests/test_retention_state.py": "ad8c01a247d77088f32fa07b178fc1f9b5d8aed86e0cb121a20301eaf25657c2",
+    "tests/test_retranscribe_span.py": "5f8084a1c8c75587a468152001e67828c2eeb88af18b308f362f26be997f0f0f",
+    "tests/test_retranscription_workflow.py": "c07799a110aff98249f658f4ac3084d02f9f57139f149b719d992776cf88cf87",
+    "tests/test_retrospective_result.py": "d5ccf20a85a50201d454bcdfe20417195149e3c52f41445a9a1f9bd26ebd46c1",
+    "tests/test_review_gate.py": "48ed24b6c255562fa202507e0b7452dd38da105820356878ee189225e256ce2c",
+    "tests/test_review_readiness.py": "e3e4a7a27a92177f208c01d9627cc505458511002a903fe0ff94809f2b5572ea",
+    "tests/test_review_workflow.py": "7ca6f30dd9e2c1632b0d0414128d63536959aba43f159e66bd792bb626efff9d",
+    "tests/test_risk_register.py": "761d4a5030c505e15beffe65e15272f77ed6607571788af99b5f6b5d2bd0c947",
+    "tests/test_role_correction.py": "0edf51a50a5a3fad27cdac1ae3b62e8dcc2cf72d80369b6e3792deb83fc6095a",
+    "tests/test_role_guard.py": "5b1dbe16187ded23ae34713f68bf6d98cd193efe8c8a591a9b3dcc3223568cca",
+    "tests/test_router_contracts.py": "063c17e29123a20a3f92948febd3b57045218253c6405048b79da43859115db3",
+    "tests/test_route_authorization.py": "4e1126a84625a23a0b69d5fbb29663e7984faa7fd8805f8ce31e446232dd2d7f",
+    "tests/test_runtime_benchmark.py": "bffca78985b0891655827ba9a23950adffd1d490fb1ad7ec8cdb7d8307824f84",
+    "tests/test_safety_properties.py": "a4506c453597509117fee22596ff09868e9afa53c96ab03b52a616918e0edf40",
+    "tests/test_sbom.py": "2fccec0fe6faa62c7ea3e5814531e9730574a0a3e75c9e7d9a5ad6ed333694c2",
+    "tests/test_scale_storage.py": "6277c7d0a38e59c8acafcb31e996756fadfaf808dc7a827f6d98c7c43508ca6f",
+    "tests/test_schema_migrations.py": "bca37fa163d1b6be4ae25078a611fc55415fe1dc9ca7380296194ea67146cb0f",
+    "tests/test_scribe_workflow.py": "01f8b8d6fc8eff14e6dc663fe5680c7a99551ab8c2ced8bb6f575188decd8647",
+    "tests/test_semantic_batches.py": "c0a8fa142295c09975ce5e7cf7d74cf7e756dcef9699eef2a57e850264cc84ea",
+    "tests/test_source_coverage.py": "913ca81c7316bdce7831d83d53a8bff11e7b2d0691ae79a8eed82832f0fe57f1",
+    "tests/test_source_warning_context.py": "9fdc8227496181bf1042c1a1d69b0e26d9fc351f47a008c51a6e5d40316b0ff6",
+    "tests/test_speaker_results.py": "9cf47e1e543d97f2fb948d92d0ef397c6218058879e482ed7caab34cb643145d",
+    "tests/test_speaker_review.py": "d7d9a13167bbd60d267e68b711d81a0f3c3cfc274f20de161d85afb3173d56d8",
+    "tests/test_stage_timing.py": "b3eb2a87480b4fe4eda7bf734bc1301263d336f76200d91ab9540bc39584d9dd",
+    "tests/test_storage_lifecycle.py": "d2109ba69cb7582fcfcbf7d8bef9454952130c8808a9ef38add96c59e19acb2b",
+    "tests/test_streaming_hash.py": "9a99200a76b1db2761040b0ed63a9236dd357cb6c975a1e180d535abdeba605b",
+    "tests/test_stress_scenario.py": "d63b1589c7d4767fe096279cd40c458de46bd633723299ab0b26e874ad6d1e2c",
+    "tests/test_strict_offline.py": "cf7e11c683c8bbf7a9a9a460035668e463ccfd3a43c44343f7191b327a98c44f",
+    "tests/test_study_dashboard.py": "b9f351dc18cae0888103a887c9ff25c0539512d0d1e61d387895326b7c1e6886",
+    "tests/test_synthetic_separation.py": "6031266175c45473633c9a540db4c676cd0e3ccec9cbafe0184349649631062e",
+    "tests/test_terminology_hints.py": "cdaa14473cd29500cc485039b2858ef736c87d3293ff6f09d730a27543cd501b",
+    "tests/test_test_lanes.py": "b11a8bf1e43ec890b6087088d0193e52bf4138e252c450290ab732b76f1f6e78",
+    "tests/test_throughput_measurement.py": "c5f02e1535d03c66a494a1210618e129714fb290dcd1a259abffc79875081aa6",
+    "tests/test_timestamp_registry.py": "39371dae7dd7fc3b989ac05571dc9cb9c2ef461bc3b4480ff9ed46e3e9d30149",
+    "tests/test_transcription.py": "8dc0231d849a7c0432bf1f83524ae91d9230d434d7eb57ba0818cd039df0cfee",
+    "tests/test_transcript_timestamp_integrity.py": "349b318ad879f9cf07b61592b162ec023fd5bf238fbb733f4cef57416ac997ad",
+    "tests/test_troubleshooting_doc.py": "0c0bcebe229a4042b95f0729aa4eaa6b561a79e964b7dad93878cb69e6630cf8",
+    "tests/test_turn_diagnostics.py": "95f84a72279dfe2457a7e5ddf5eb622f0e86eee23d114cec0d5fcf72433fdec7",
+    "tests/test_turn_swap_guard.py": "f93cff585f01155713af1eb24c57112d27e4c401aea7a00e28a125d55a60714a",
+    "tests/test_typed_clinical_boundaries.py": "2f52b80dc23997448115935ea46faf2398b87c8f800194b401c5460a51b84a72",
+    "tests/test_uncertainty_classifier.py": "1b210750d6bb5e07f212f232882b18348bc2e385a0039f81119c34ace5202523",
+    "tests/test_uncertainty_report.py": "67d8ff7e8996226961275939eeb7c6ba4894167aa18cd435200408d96ef1d53f",
+    "tests/test_unmapped_terms.py": "f6d9a5c9df02fce827d4691ab35db4d0e5a8581957c82c1b6b092be69a1e7644",
+    "tests/test_untrusted_input.py": "d9ff64a5497a5174a3f59a0a9641938d3b968e590b5aed32bbb79456e88c9d6c",
+    "tests/test_vad_candidates.py": "8efa5f691d90ea4659a6873b75d0cfe6bc7094002c6513448b9d1d6db5b0aceb",
+    "tests/test_validation_summary.py": "64d410ee98974e02884454630e298eb032697338e64cafb329a53ae3454dab14",
+    "tests/test_verification_ablations.py": "a8526821261917d76b9493ab8414123a8413af9348acfdf0e6612f73eefbbe58",
+    "tests/test_verification_metrics.py": "ef85a633b177c49c88ae407f68ba39bd961ce7b4243dd3061faaef8520815239",
+    "tests/test_verifier_fail_closed.py": "ccab5e9f69414c0f5af6d6dda1a2e72206ccedbce7f1d3e5638dd511eac828cc",
+    "tests/test_verifier_selection.py": "287ad1351269dd0d627665c899dbf9dd4a8c2b3e9719cb2de0910792742a61e1",
+    "tests/test_visual_regression_manifest.py": "bbf6c503ee04d2fc3f132cd27aeb75820719b566d204ef9de2cca58c389b70cc",
+    "tests/test_wav_validation.py": "a3c4203c98b9c464806ac336312481217b93bba5b8b40cfa1afa35ee2b1e50b0",
+    "tests/test_worker_recovery.py": "a69ab27ee4f21aeadfe8600dd906408a5ccecdb485880c9333cf19095e110b53",
+    "tests/test_workflow_metrics.py": "5bcaafe0e6c66cdceb8da48166d112657c1dedd67bb7a1c421caba4d22f3d4d0",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "apps/clinician-web/src/App.tsx": "aa4e34ade87ea5fe59110c0c5105ea99da2d78aebbd3651a90a76e067570ec4a",
+    "apps/clinician-web/src/CaptureSync.ts": "9b36f09d5958f53a6008d357c3890b98423ceff8849f5033e0a51b9c5741a0d2",
+    "apps/clinician-web/src/ClinicalBatch.tsx": "11e01e4bcf98d7d35339bb4816203aa667384a1f38a3af8fe46703168420d8d4",
+    "apps/clinician-web/src/ClinicalFields.tsx": "4df94131d3ab764d36de4e50ff0fa324c6f0076bb31c05173f82d062eec30541",
+    "apps/clinician-web/src/ClinicalProposals.tsx": "43ac87dae2caba6df14a9f1368cd9cf6a2894bd9e0b59a48965e8610cb0ce2e9",
+    "apps/clinician-web/src/ClinicianCorrection.tsx": "cd4cdf95e2e35d66710283f28eaab09df1ad2c6552246d0148b91ff04f8da590",
+    "apps/clinician-web/src/DetailedDemo.tsx": "13b8c691effdaf032efbcab2b3cfe92ec8b06b9314c47cc855cf5b7fac469e88",
+    "apps/clinician-web/src/DeviceCheck.tsx": "0fdaa60251ab65e34cf55ba9e5cfc0189e6e92ca22de4abc3050a7daf7c668e5",
+    "apps/clinician-web/src/Dictation.tsx": "ad3504a30bba6185f99ea2b63e1315b9cb9717e6102b2564ffc4966a65ce3c9a",
+    "apps/clinician-web/src/DraftProposal.tsx": "5693a8ab42c8f7530cd7097a0390159956f270f81136de3f602caca0b71090b5",
+    "apps/clinician-web/src/facts.ts": "dc20cf0dfef84aea67bbfeb250aaa31d5668dae6d24a454f38b7d230a9bceda6",
+    "apps/clinician-web/src/fileHash.ts": "22ee32632aa2f2cbffc5fd02ca600cac3609f4d222fd9f64a6fb44963082dc57",
+    "apps/clinician-web/src/format.ts": "6441fa78890e9c634435ce1efa6ccfcfc19832c73baea3be07e84791450f2227",
+    "apps/clinician-web/src/main.tsx": "82f8eac1b7d24e0a34004cfc9afe091f8aef5fba4825f2072fbbcfb79a7a56a1",
+    "apps/clinician-web/src/PcmCapture.ts": "e8743ec5ef51883ba9cf77c867cfff3715e7ac4b5763450aa8da04ad8f5cc2aa",
+    "apps/clinician-web/src/PresentationTools.tsx": "b80313f67311ae2f243ecc9f772e6e6fd6a48fc8148aa139b5ead71ce43840be",
+    "apps/clinician-web/src/RecordingVault.ts": "c86140c43b327bc3ee78f847b309796f3f1c9bb3d59a43b20589e45af30de659",
+    "apps/clinician-web/src/ReviewTiming.tsx": "7712cf5ce50a40d0034220b0727961f0d45a5ad278c4168e5d7e4bebec82ec5e",
+    "apps/clinician-web/src/ServerRecovery.tsx": "43f66cc63539002471938997a0e131f32441772c147f37effe818c1601ac5cc6",
+    "apps/clinician-web/src/SourceContext.tsx": "6ff9154372605ea5a2fd527f81cd78925eb9d770001b096c22277af7b1f0d3cc",
+    "apps/clinician-web/src/SpeakerRoles.tsx": "87dd567feb4503f599ea55f4774b6b2d6470634f08362bf6791858ad63e6d0e6",
+    "apps/clinician-web/src/style.css": "8456489e41662de27c131582ef5e355b39d1623400f67445dcc0c04da682cc5f",
+    "apps/clinician-web/src/VerificationWarnings.tsx": "15db69cc979464ad32cf8073611729e9a8b558d8f334a5da2d0e6e78e0b5bbb5",
+    "apps/clinician-web/src/VersionComparison.tsx": "782bfc63706b67a79d2785057307cfabdabe5f890da148010a756487f6e01971",
+    "apps/clinician-web/src/vite-env.d.ts": "424faf9241dd699dda995b367ed36665732da1e6ec1f33b2fd40394488ecac92",
+    "apps/clinician-web/src/workspaceTypes.ts": "8ba70aa0309a67f24722a997cf4ee005501f02800ad842fa6e8a1085f701e8a5",
+    "apps/clinician-web/src/client/api.ts": "0e6a7ba781cdfb02987775ab53d3cf5f5087fb26c45e45e7d8a0a579bc5727f8",
+    "apps/clinician-web/src/client/errorCodes.ts": "a0ba5430625c4459d6d524c90b2eee118775be8c8ee3e2812c1915daa08ac846",
+    "apps/clinician-web/src/components/Icon.tsx": "148a4fec7ce363e09f5cfb192962a5e6dd13ab50e4f4ea0352073bbd58642bc1",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "a4957f873eabaa242c03e07d0e04d91338c7982171560aa6cefb18d9ba29274e",
+    "apps/clinician-web/src/screens/LoginScreen.tsx": "21050a38ab3f9a3c346c743e13aac37c28bccf2e25703ce93f46be288f6bdf7a",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "c13a5bd8639501d12b6ee64073ecbf24d77688c286084acef526464ef482aa6b",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "d719471e84d6ea05e9839de4cb6d1cc1a3e0e5d94a94eeb8050512b497a8534a",
+    "apps/clinician-web/e2e/clinical-batches.spec.ts": "86f3142ee38dbae8695e6219a759bebce3d8c3cd4a170ae966104c53af0dccd5",
+    "apps/clinician-web/e2e/device-check.spec.ts": "88eade7f63686bb7d314e374b51b30cb65f8940712c3eaffa59903b1adff1314",
+    "apps/clinician-web/e2e/dictation.spec.ts": "0561f75d9f44cf90857c5e29c0e0a9e053934a2b7562a33e4a851f0a472eaa70",
+    "apps/clinician-web/e2e/evidence-channel.spec.ts": "8c4b9e7fbb34e26f4df1d6c4a96b701d9c549bd98df4ba351e4bd979fc2df3ab",
+    "apps/clinician-web/e2e/google-auth.spec.ts": "26384393a8888f93c233342c4fc1abdee00e0d93341e0df79e920234c9c0d478",
+    "apps/clinician-web/e2e/presentation.spec.ts": "517ab95b611105eba7a7a765ef027142626f4ecbd84370fbf7f664b39d710613",
+    "apps/clinician-web/e2e/recovery.spec.ts": "6939b40fd20046d61411c6860c5663fee6d5895bf2cb8fee39e5aa5f98a048a0",
+    "apps/clinician-web/e2e/workflow.spec.ts": "f45f577f2c01bd9072b701c580e16ded083e2b7e042f97a927a28669a3c77663",
+    "apps/clinician-web/e2e/fixtures/offline.ts": "ba0a2855b611eb35e2c494d8a3626283081ef8ca37a6f90e3d98e6286e1b9c22",
+    "apps/clinician-web/package-lock.json": "196abd4b947c1fc7e9252534c15a98143a0f78b3eea353ee51dd49c673df4e95",
+    "apps/clinician-web/package.json": "1a5e072d732cdd457cd345283d0ac34870656aadb19ce4991926e6025512e128",
+    "apps/clinician-web/playwright.synthetic.json": "e600ef46fd80941c129850390818400c6405787c462f7778e363c7087eb13d1f",
+    "apps/clinician-web/tsconfig.json": "41809b8c66dc6116e87bcca82c8f404ff4cd2952a0b77af1ea221a79f8d3fdb4",
+    "apps/clinician-web/validation-manifest.json": "509eb61face9c794c2eab662d612cb23007fddbe31e1fda4d8482c3dbd02d875",
+    "apps/clinician-web/visual-regression.synthetic.json": "f494efc6b1e07ac9cd83c029445793ad8e5a24f5d6f4819bc6ac6e9fe5d56384",
+    "apps/clinician-web/playwright.config.ts": "af29a7bdb4ada3e1dca51e63dea31c20324ca08af0141338405de8f694e74f38",
+    "apps/clinician-web/vite.config.ts": "95a9ffb44551147455246c711c687f793076f4137ccd62da548ec3e926a244a0",
+    ".github/workflows/ci.yml": "9a14dfb7613621dac00b981577ec549ec6ce4289c9c9c11a35f0bb2a8de56c1b",
+    ".github/workflows/dependency-audit.yml": "f47c92bf6781005fea44cfe7004b93acf078200820a2421c92b0c09ea7a2b399",
+    ".github/workflows/model-inference.yml": "39b3dde4297bdedd9eaf308cf605a644c5944628a918be7803154ea792042116",
+    "pyproject.toml": "7b2109f91233203ba20595048068373de25019e593a2b1820e659e0ae5f1c034",
+    "constraints-ci.txt": "d732bad0c6044cfa0970206df2a4610d574a0f9393cd476dd6fb2c4febd3705e",
+    "evaluation/primary-endpoint-registry-v1.json": "83ae08ff984cdf1d95150df5be8bccc723ea286099ee78a2580e2a30ae9ce772",
+    "evaluation/clinical-bindings-development-v1.json": "f46e319e65d2d0f54ecf0305e7ae9d406cb6cfd1fb3e83f5f19a3fe1ef9e7bec",
+    "evaluation/contracts/api-v1-before-router-split.json": "81ccc5bd8b583bb5558f903cb0acdd58e85f0ff9390983c3702266be20e603b8",
+    "evaluation/contracts/authorization-policy-v1.json": "6e659c77a7900a0d87372083e0e7eca804d5ca6ca8b88a0cfdbd6d2a37d24940",
+    "scripts/capture_master_baseline.py": "cf0a403134b4c7742edaa1a04d87ef9c45b392effad1be4ecf202e282e03d593",
+    "scripts/create_synthetic_audio.ps1": "957ba693fad725cd10c4dcbf663deb31ccb915b679798ecbe308a6bb12a663be",
+    "scripts/offline_preflight": "7cb177ece6d6b00b27d3cf9a1bfc2d0a6b34d3a8eacc154f2b08334433d22406",
+    "scripts/offline_preflight.ps1": "695816002d8c550e5ee77e45091d299634b76aa08f273dc6daec19666a0ee091",
+    "scripts/start.ps1": "b6dfe6c22addc1f619bbacb886297d7f08d52d9d0078606de01d5486c5561d06",
+    "Dockerfile": "3ac27c7236b5f5c642cbcfae742163565447eb5fa39ab1acc751f6fc197431cf",
+    "compose.production.yaml": "a27ebcd37ded839045cb7157de59242583cb2b7fa25911ba8ef50158a63a19b7",
+    "compose.yaml": "f7acc6c46f71628f390980abb805a6530b1863b1234b61926d40ab562c539459"
+  },
+  "preflight": {
+    "schema_version": "offline_preflight_v1",
+    "tools": {
+      "pytest": "available",
+      "codec_av": "blocked_missing_local_artifact",
+      "coverage": "available",
+      "ruff": "available",
+      "mypy": "available",
+      "pip_audit": "blocked_missing_local_artifact"
+    },
+    "configured_ollama_cache": {
+      "status": "not_requested",
+      "hint": "Use --ollama-root for the configured Qwen blob cache."
+    },
+    "node": "available",
+    "npm_dependencies": "available",
+    "python_wheelhouse": "blocked_missing_local_artifact",
+    "models": [],
+    "model_contents_hashed": false,
+    "packages": [
+      {
+        "name": "absl-py",
+        "version": "2.3.1"
+      },
+      {
+        "name": "agno",
+        "version": "1.8.1"
+      },
+      {
+        "name": "aiofiles",
+        "version": "24.1.0"
+      },
+      {
+        "name": "aiohappyeyeballs",
+        "version": "2.6.2"
+      },
+      {
+        "name": "aiohttp",
+        "version": "3.13.5"
+      },
+      {
+        "name": "aiosignal",
+        "version": "1.4.0"
+      },
+      {
+        "name": "aiosqlite",
+        "version": "0.21.0"
+      },
+      {
+        "name": "altair",
+        "version": "5.5.0"
+      },
+      {
+        "name": "anaconda",
+        "version": "0.0.1.1"
+      },
+      {
+        "name": "annotated-doc",
+        "version": "0.0.4"
+      },
+      {
+        "name": "annotated-types",
+        "version": "0.7.0"
+      },
+      {
+        "name": "anyio",
+        "version": "4.15.0"
+      },
+      {
+        "name": "apexgrid-ai",
+        "version": "0.1.0"
+      },
+      {
+        "name": "appdirs",
+        "version": "1.4.4"
+      },
+      {
+        "name": "argon2-cffi",
+        "version": "23.1.0"
+      },
+      {
+        "name": "argon2-cffi-bindings",
+        "version": "21.2.0"
+      },
+      {
+        "name": "argparse-addons",
+        "version": "0.12.0"
+      },
+      {
+        "name": "args",
+        "version": "0.1.0"
+      },
+      {
+        "name": "arrow",
+        "version": "1.3.0"
+      },
+      {
+        "name": "asgiref",
+        "version": "3.8.1"
+      },
+      {
+        "name": "ast_serialize",
+        "version": "0.4.0"
+      },
+      {
+        "name": "asttokens",
+        "version": "3.0.0"
+      },
+      {
+        "name": "astunparse",
+        "version": "1.6.3"
+      },
+      {
+        "name": "async-lru",
+        "version": "2.0.4"
+      },
+      {
+        "name": "attrs",
+        "version": "26.1.0"
+      },
+      {
+        "name": "autogen-agentchat",
+        "version": "0.7.5"
+      },
+      {
+        "name": "autogen-core",
+        "version": "0.7.5"
+      },
+      {
+        "name": "autogen-ext",
+        "version": "0.7.5"
+      },
+      {
+        "name": "azure-ai-ml",
+        "version": "1.27.1"
+      },
+      {
+        "name": "azure-common",
+        "version": "1.1.28"
+      },
+      {
+        "name": "azure-core",
+        "version": "1.34.0"
+      },
+      {
+        "name": "azure-core-tracing-opentelemetry",
+        "version": "1.0.0b12"
+      },
+      {
+        "name": "azure-identity",
+        "version": "1.23.0"
+      },
+      {
+        "name": "azure-mgmt-core",
+        "version": "1.5.0"
+      },
+      {
+        "name": "azure-monitor-opentelemetry",
+        "version": "1.6.10"
+      },
+      {
+        "name": "azure-monitor-opentelemetry-exporter",
+        "version": "1.0.0b37"
+      },
+      {
+        "name": "azure-storage-blob",
+        "version": "12.25.1"
+      },
+      {
+        "name": "azure-storage-file-datalake",
+        "version": "12.20.0"
+      },
+      {
+        "name": "azure-storage-file-share",
+        "version": "12.21.0"
+      },
+      {
+        "name": "babel",
+        "version": "2.17.0"
+      },
+      {
+        "name": "backoff",
+        "version": "2.2.1"
+      },
+      {
+        "name": "backrefs",
+        "version": "8.0"
+      },
+      {
+        "name": "bcrypt",
+        "version": "5.0.0"
+      },
+      {
+        "name": "beautifulsoup4",
+        "version": "4.13.5"
+      },
+      {
+        "name": "bitstruct",
+        "version": "8.23.0"
+      },
+      {
+        "name": "bleach",
+        "version": "6.2.0"
+      },
+      {
+        "name": "blinker",
+        "version": "1.9.0"
+      },
+      {
+        "name": "bokeh",
+        "version": "3.8.1"
+      },
+      {
+        "name": "build",
+        "version": "1.6.1"
+      },
+      {
+        "name": "cachetools",
+        "version": "5.5.2"
+      },
+      {
+        "name": "cantools",
+        "version": "43.0.2"
+      },
+      {
+        "name": "catboost",
+        "version": "1.2.8"
+      },
+      {
+        "name": "cattrs",
+        "version": "26.1.0"
+      },
+      {
+        "name": "certifi",
+        "version": "2025.1.31"
+      },
+      {
+        "name": "cffi",
+        "version": "1.17.1"
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.4.1"
+      },
+      {
+        "name": "chromadb",
+        "version": "1.1.1"
+      },
+      {
+        "name": "click",
+        "version": "8.1.8"
+      },
+      {
+        "name": "clint",
+        "version": "0.5.1"
+      },
+      {
+        "name": "cloudpickle",
+        "version": "3.1.2"
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6"
+      },
+      {
+        "name": "comm",
+        "version": "0.2.2"
+      },
+      {
+        "name": "contourpy",
+        "version": "1.3.1"
+      },
+      {
+        "name": "coverage",
+        "version": "7.10.6"
+      },
+      {
+        "name": "cramjam",
+        "version": "2.11.0"
+      },
+      {
+        "name": "crccheck",
+        "version": "1.3.1"
+      },
+      {
+        "name": "crewai",
+        "version": "1.14.5"
+      },
+      {
+        "name": "crewai-cli",
+        "version": "1.14.5"
+      },
+      {
+        "name": "crewai-core",
+        "version": "1.14.5"
+      },
+      {
+        "name": "crewai-tools",
+        "version": "1.14.5"
+      },
+      {
+        "name": "cryptography",
+        "version": "45.0.4"
+      },
+      {
+        "name": "cycler",
+        "version": "0.12.1"
+      },
+      {
+        "name": "dask",
+        "version": "2025.12.0"
+      },
+      {
+        "name": "debugpy",
+        "version": "1.8.13"
+      },
+      {
+        "name": "decorator",
+        "version": "5.2.1"
+      },
+      {
+        "name": "defusedxml",
+        "version": "0.7.1"
+      },
+      {
+        "name": "Deprecated",
+        "version": "1.2.18"
+      },
+      {
+        "name": "deprecation",
+        "version": "2.1.0"
+      },
+      {
+        "name": "distributed",
+        "version": "2025.12.0"
+      },
+      {
+        "name": "distro",
+        "version": "1.9.0"
+      },
+      {
+        "name": "docstring_parser",
+        "version": "0.17.0"
+      },
+      {
+        "name": "docutils",
+        "version": "0.23"
+      },
+      {
+        "name": "duckdb",
+        "version": "1.5.4"
+      },
+      {
+        "name": "durationpy",
+        "version": "0.10"
+      },
+      {
+        "name": "easyocr",
+        "version": "1.7.2"
+      },
+      {
+        "name": "ecdsa",
+        "version": "0.19.2"
+      },
+      {
+        "name": "et_xmlfile",
+        "version": "2.0.0"
+      },
+      {
+        "name": "executing",
+        "version": "2.2.0"
+      },
+      {
+        "name": "fastapi",
+        "version": "0.136.1"
+      },
+      {
+        "name": "fastf1",
+        "version": "3.8.3"
+      },
+      {
+        "name": "fastjsonschema",
+        "version": "2.21.1"
+      },
+      {
+        "name": "fastparquet",
+        "version": "2024.11.0"
+      },
+      {
+        "name": "filelock",
+        "version": "3.29.0"
+      },
+      {
+        "name": "filetype",
+        "version": "1.2.0"
+      },
+      {
+        "name": "filterpy",
+        "version": "1.4.5"
+      },
+      {
+        "name": "fixedint",
+        "version": "0.1.6"
+      },
+      {
+        "name": "flatbuffers",
+        "version": "25.2.10"
+      },
+      {
+        "name": "fonttools",
+        "version": "4.56.0"
+      },
+      {
+        "name": "fqdn",
+        "version": "1.5.1"
+      },
+      {
+        "name": "frozenlist",
+        "version": "1.8.0"
+      },
+      {
+        "name": "fsspec",
+        "version": "2025.12.0"
+      },
+      {
+        "name": "gast",
+        "version": "0.6.0"
+      },
+      {
+        "name": "ghp-import",
+        "version": "2.1.0"
+      },
+      {
+        "name": "gitdb",
+        "version": "4.0.12"
+      },
+      {
+        "name": "GitPython",
+        "version": "3.1.44"
+      },
+      {
+        "name": "google-ai-generativelanguage",
+        "version": "0.6.15"
+      },
+      {
+        "name": "google-api-core",
+        "version": "2.30.3"
+      },
+      {
+        "name": "google-api-python-client",
+        "version": "2.196.0"
+      },
+      {
+        "name": "google-auth",
+        "version": "2.53.0"
+      },
+      {
+        "name": "google-auth-httplib2",
+        "version": "0.4.0"
+      },
+      {
+        "name": "google-genai",
+        "version": "2.4.0"
+      },
+      {
+        "name": "google-generativeai",
+        "version": "0.8.6"
+      },
+      {
+        "name": "google-pasta",
+        "version": "0.2.0"
+      },
+      {
+        "name": "googleapis-common-protos",
+        "version": "1.75.0"
+      },
+      {
+        "name": "graphviz",
+        "version": "0.21"
+      },
+      {
+        "name": "grpcio",
+        "version": "1.74.0"
+      },
+      {
+        "name": "grpcio-status",
+        "version": "1.71.2"
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0"
+      },
+      {
+        "name": "h5py",
+        "version": "3.14.0"
+      },
+      {
+        "name": "hf-xet",
+        "version": "1.5.0"
+      },
+      {
+        "name": "httpcore",
+        "version": "1.0.9"
+      },
+      {
+        "name": "httpcore2",
+        "version": "2.12.0"
+      },
+      {
+        "name": "httplib2",
+        "version": "0.31.2"
+      },
+      {
+        "name": "httptools",
+        "version": "0.7.1"
+      },
+      {
+        "name": "httpx",
+        "version": "0.28.1"
+      },
+      {
+        "name": "httpx-sse",
+        "version": "0.4.3"
+      },
+      {
+        "name": "httpx2",
+        "version": "2.12.0"
+      },
+      {
+        "name": "huggingface_hub",
+        "version": "1.16.1"
+      },
+      {
+        "name": "hypothesis",
+        "version": "6.167.1"
+      },
+      {
+        "name": "id",
+        "version": "1.6.1"
+      },
+      {
+        "name": "idna",
+        "version": "3.19"
+      },
+      {
+        "name": "ImageIO",
+        "version": "2.37.4"
+      },
+      {
+        "name": "importlib_metadata",
+        "version": "8.6.1"
+      },
+      {
+        "name": "importlib_resources",
+        "version": "7.1.0"
+      },
+      {
+        "name": "imutils",
+        "version": "0.5.4"
+      },
+      {
+        "name": "iniconfig",
+        "version": "2.3.0"
+      },
+      {
+        "name": "instructor",
+        "version": "1.15.1"
+      },
+      {
+        "name": "ipykernel",
+        "version": "6.29.5"
+      },
+      {
+        "name": "ipython",
+        "version": "9.0.1"
+      },
+      {
+        "name": "ipython_pygments_lexers",
+        "version": "1.1.1"
+      },
+      {
+        "name": "ipywidgets",
+        "version": "8.1.7"
+      },
+      {
+        "name": "isodate",
+        "version": "0.7.2"
+      },
+      {
+        "name": "isoduration",
+        "version": "20.11.0"
+      },
+      {
+        "name": "jaraco.classes",
+        "version": "3.4.0"
+      },
+      {
+        "name": "jaraco.context",
+        "version": "6.1.2"
+      },
+      {
+        "name": "jaraco.functools",
+        "version": "4.6.0"
+      },
+      {
+        "name": "jedi",
+        "version": "0.19.2"
+      },
+      {
+        "name": "Jinja2",
+        "version": "3.1.5"
+      },
+      {
+        "name": "jiter",
+        "version": "0.13.0"
+      },
+      {
+        "name": "joblib",
+        "version": "1.5.1"
+      },
+      {
+        "name": "json5",
+        "version": "0.10.0"
+      },
+      {
+        "name": "json_repair",
+        "version": "0.25.3"
+      },
+      {
+        "name": "jsonpatch",
+        "version": "1.33"
+      },
+      {
+        "name": "jsonpointer",
+        "version": "3.0.0"
+      },
+      {
+        "name": "jsonref",
+        "version": "1.1.0"
+      },
+      {
+        "name": "jsonschema",
+        "version": "4.23.0"
+      },
+      {
+        "name": "jsonschema-specifications",
+        "version": "2024.10.1"
+      },
+      {
+        "name": "jupyter",
+        "version": "1.1.1"
+      },
+      {
+        "name": "jupyter-console",
+        "version": "6.6.3"
+      },
+      {
+        "name": "jupyter-events",
+        "version": "0.12.0"
+      },
+      {
+        "name": "jupyter-lsp",
+        "version": "2.2.5"
+      },
+      {
+        "name": "jupyter_client",
+        "version": "8.6.3"
+      },
+      {
+        "name": "jupyter_core",
+        "version": "5.7.2"
+      },
+      {
+        "name": "jupyter_server",
+        "version": "2.15.0"
+      },
+      {
+        "name": "jupyter_server_terminals",
+        "version": "0.5.3"
+      },
+      {
+        "name": "jupyterlab",
+        "version": "4.4.5"
+      },
+      {
+        "name": "jupyterlab_pygments",
+        "version": "0.3.0"
+      },
+      {
+        "name": "jupyterlab_server",
+        "version": "2.27.3"
+      },
+      {
+        "name": "jupyterlab_widgets",
+        "version": "3.0.15"
+      },
+      {
+        "name": "jupytext",
+        "version": "1.19.5"
+      },
+      {
+        "name": "kaggle",
+        "version": "2.2.4"
+      },
+      {
+        "name": "kagglesdk",
+        "version": "0.1.37"
+      },
+      {
+        "name": "keras",
+        "version": "3.11.3"
+      },
+      {
+        "name": "keyring",
+        "version": "25.7.0"
+      },
+      {
+        "name": "kiwisolver",
+        "version": "1.4.8"
+      },
+      {
+        "name": "kubernetes",
+        "version": "36.0.0"
+      },
+      {
+        "name": "lab",
+        "version": "8.4"
+      },
+      {
+        "name": "lance-namespace",
+        "version": "0.7.7"
+      },
+      {
+        "name": "lance-namespace-urllib3-client",
+        "version": "0.7.7"
+      },
+      {
+        "name": "lancedb",
+        "version": "0.30.0"
+      },
+      {
+        "name": "langchain",
+        "version": "1.4.0"
+      },
+      {
+        "name": "langchain-core",
+        "version": "1.6.2"
+      },
+      {
+        "name": "langchain-ollama",
+        "version": "1.1.0"
+      },
+      {
+        "name": "langchain-protocol",
+        "version": "0.0.19"
+      },
+      {
+        "name": "langgraph",
+        "version": "1.2.11"
+      },
+      {
+        "name": "langgraph-checkpoint",
+        "version": "4.2.0"
+      },
+      {
+        "name": "langgraph-prebuilt",
+        "version": "1.1.0"
+      },
+      {
+        "name": "langgraph-sdk",
+        "version": "0.4.4"
+      },
+      {
+        "name": "langserve",
+        "version": "0.3.3"
+      },
+      {
+        "name": "langsmith",
+        "version": "0.12.1"
+      },
+      {
+        "name": "lazy-loader",
+        "version": "0.5"
+      },
+      {
+        "name": "libclang",
+        "version": "18.1.1"
+      },
+      {
+        "name": "librt",
+        "version": "0.11.0"
+      },
+      {
+        "name": "lightgbm",
+        "version": "4.6.0"
+      },
+      {
+        "name": "linkify-it-py",
+        "version": "2.1.0"
+      },
+      {
+        "name": "locket",
+        "version": "1.0.0"
+      },
+      {
+        "name": "lxml",
+        "version": "6.1.1"
+      },
+      {
+        "name": "lz4",
+        "version": "4.4.5"
+      },
+      {
+        "name": "mamba",
+        "version": "0.11.3"
+      },
+      {
+        "name": "Markdown",
+        "version": "3.9"
+      },
+      {
+        "name": "markdown-it-py",
+        "version": "4.0.0"
+      },
+      {
+        "name": "MarkupSafe",
+        "version": "3.0.2"
+      },
+      {
+        "name": "marshmallow",
+        "version": "3.26.1"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.10.3"
+      },
+      {
+        "name": "matplotlib-inline",
+        "version": "0.1.7"
+      },
+      {
+        "name": "mcp",
+        "version": "1.26.0"
+      },
+      {
+        "name": "mcphorizon",
+        "version": "1.0.0"
+      },
+      {
+        "name": "mdit-py-plugins",
+        "version": "0.6.1"
+      },
+      {
+        "name": "mdurl",
+        "version": "0.1.2"
+      },
+      {
+        "name": "mergedeep",
+        "version": "1.3.4"
+      },
+      {
+        "name": "mistune",
+        "version": "3.1.2"
+      },
+      {
+        "name": "mkdocs",
+        "version": "1.6.1"
+      },
+      {
+        "name": "mkdocs-get-deps",
+        "version": "0.2.2"
+      },
+      {
+        "name": "mkdocs-material",
+        "version": "9.7.7"
+      },
+      {
+        "name": "mkdocs-material-extensions",
+        "version": "1.3.1"
+      },
+      {
+        "name": "ml_dtypes",
+        "version": "0.5.3"
+      },
+      {
+        "name": "mmh3",
+        "version": "5.2.1"
+      },
+      {
+        "name": "more-itertools",
+        "version": "11.1.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      },
+      {
+        "name": "msal",
+        "version": "1.32.3"
+      },
+      {
+        "name": "msal-extensions",
+        "version": "1.3.1"
+      },
+      {
+        "name": "msgpack",
+        "version": "1.1.2"
+      },
+      {
+        "name": "msrest",
+        "version": "0.7.1"
+      },
+      {
+        "name": "multidict",
+        "version": "6.7.1"
+      },
+      {
+        "name": "mypy",
+        "version": "2.1.0"
+      },
+      {
+        "name": "mypy_extensions",
+        "version": "1.1.0"
+      },
+      {
+        "name": "namex",
+        "version": "0.1.0"
+      },
+      {
+        "name": "narwhals",
+        "version": "1.30.0"
+      },
+      {
+        "name": "nbclient",
+        "version": "0.10.2"
+      },
+      {
+        "name": "nbconvert",
+        "version": "7.16.6"
+      },
+      {
+        "name": "nbformat",
+        "version": "5.10.4"
+      },
+      {
+        "name": "nest-asyncio",
+        "version": "1.6.0"
+      },
+      {
+        "name": "networkx",
+        "version": "3.6.1"
+      },
+      {
+        "name": "nh3",
+        "version": "0.3.7"
+      },
+      {
+        "name": "ninja",
+        "version": "1.13.0"
+      },
+      {
+        "name": "notebook",
+        "version": "7.4.4"
+      },
+      {
+        "name": "notebook_shim",
+        "version": "0.2.4"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "oauthlib",
+        "version": "3.2.2"
+      },
+      {
+        "name": "ollama",
+        "version": "0.6.2"
+      },
+      {
+        "name": "onnxruntime",
+        "version": "1.26.0"
+      },
+      {
+        "name": "openai",
+        "version": "2.38.0"
+      },
+      {
+        "name": "opencv-python",
+        "version": "4.11.0.86"
+      },
+      {
+        "name": "opencv-python-headless",
+        "version": "4.11.0.86"
+      },
+      {
+        "name": "openpyxl",
+        "version": "3.1.5"
+      },
+      {
+        "name": "opentelemetry-api",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-common",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-grpc",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-exporter-otlp-proto-http",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-instrumentation",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-asgi",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-dbapi",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-django",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-fastapi",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-flask",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-psycopg2",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-requests",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-urllib",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-urllib3",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-instrumentation-wsgi",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opentelemetry-proto",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-resource-detector-azure",
+        "version": "0.1.5"
+      },
+      {
+        "name": "opentelemetry-sdk",
+        "version": "1.34.1"
+      },
+      {
+        "name": "opentelemetry-semantic-conventions",
+        "version": "0.55b1"
+      },
+      {
+        "name": "opentelemetry-util-http",
+        "version": "0.52b1"
+      },
+      {
+        "name": "opt_einsum",
+        "version": "3.4.0"
+      },
+      {
+        "name": "optree",
+        "version": "0.17.0"
+      },
+      {
+        "name": "orjson",
+        "version": "3.11.9"
+      },
+      {
+        "name": "ormsgpack",
+        "version": "1.12.2"
+      },
+      {
+        "name": "overrides",
+        "version": "7.7.0"
+      },
+      {
+        "name": "packaging",
+        "version": "26.3"
+      },
+      {
+        "name": "paginate",
+        "version": "0.5.7"
+      },
+      {
+        "name": "paho-mqtt",
+        "version": "2.1.0"
+      },
+      {
+        "name": "pandas",
+        "version": "2.3.1"
+      },
+      {
+        "name": "pandocfilters",
+        "version": "1.5.1"
+      },
+      {
+        "name": "parso",
+        "version": "0.8.4"
+      },
+      {
+        "name": "partd",
+        "version": "1.4.2"
+      },
+      {
+        "name": "pathspec",
+        "version": "1.1.1"
+      },
+      {
+        "name": "pdfminer.six",
+        "version": "20251230"
+      },
+      {
+        "name": "pdfplumber",
+        "version": "0.11.9"
+      },
+      {
+        "name": "pillow",
+        "version": "10.4.0"
+      },
+      {
+        "name": "pip",
+        "version": "25.2"
+      },
+      {
+        "name": "platformdirs",
+        "version": "4.3.6"
+      },
+      {
+        "name": "plotly",
+        "version": "6.3.0"
+      },
+      {
+        "name": "pluggy",
+        "version": "1.6.0"
+      },
+      {
+        "name": "portalocker",
+        "version": "2.7.0"
+      },
+      {
+        "name": "posthog",
+        "version": "5.4.0"
+      },
+      {
+        "name": "prometheus_client",
+        "version": "0.21.1"
+      },
+      {
+        "name": "prompt_toolkit",
+        "version": "3.0.50"
+      },
+      {
+        "name": "propcache",
+        "version": "0.5.2"
+      },
+      {
+        "name": "proto-plus",
+        "version": "1.28.0"
+      },
+      {
+        "name": "protobuf",
+        "version": "5.29.3"
+      },
+      {
+        "name": "psutil",
+        "version": "7.0.0"
+      },
+      {
+        "name": "psycopg",
+        "version": "3.3.6"
+      },
+      {
+        "name": "psycopg-binary",
+        "version": "3.3.6"
+      },
+      {
+        "name": "pure_eval",
+        "version": "0.2.3"
+      },
+      {
+        "name": "pyarrow",
+        "version": "19.0.1"
+      },
+      {
+        "name": "pyasn1",
+        "version": "0.6.3"
+      },
+      {
+        "name": "pyasn1_modules",
+        "version": "0.4.2"
+      },
+      {
+        "name": "pybase64",
+        "version": "1.4.3"
+      },
+      {
+        "name": "pyclipper",
+        "version": "1.4.0"
+      },
+      {
+        "name": "pycparser",
+        "version": "2.22"
+      },
+      {
+        "name": "pyctcdecode",
+        "version": "0.5.0"
+      },
+      {
+        "name": "pydantic",
+        "version": "2.12.5"
+      },
+      {
+        "name": "pydantic-settings",
+        "version": "2.10.1"
+      },
+      {
+        "name": "pydantic_core",
+        "version": "2.41.5"
+      },
+      {
+        "name": "pydash",
+        "version": "8.0.5"
+      },
+      {
+        "name": "pydeck",
+        "version": "0.9.1"
+      },
+      {
+        "name": "Pygments",
+        "version": "2.20.0"
+      },
+      {
+        "name": "pygtrie",
+        "version": "2.6.1"
+      },
+      {
+        "name": "PyJWT",
+        "version": "2.10.1"
+      },
+      {
+        "name": "pymdown-extensions",
+        "version": "12.0.1"
+      },
+      {
+        "name": "PyMuPDF",
+        "version": "1.26.7"
+      },
+      {
+        "name": "pyparsing",
+        "version": "3.2.1"
+      },
+      {
+        "name": "pypdf",
+        "version": "6.19.0"
+      },
+      {
+        "name": "pypdfium2",
+        "version": "5.12.1"
+      },
+      {
+        "name": "PyPika",
+        "version": "0.51.1"
+      },
+      {
+        "name": "pyproject_hooks",
+        "version": "1.2.0"
+      },
+      {
+        "name": "pytest",
+        "version": "9.0.3"
+      },
+      {
+        "name": "pytest-asyncio",
+        "version": "1.3.0"
+      },
+      {
+        "name": "pytest-cov",
+        "version": "7.1.0"
+      },
+      {
+        "name": "python-bidi",
+        "version": "0.6.11"
+      },
+      {
+        "name": "python-can",
+        "version": "4.6.1"
+      },
+      {
+        "name": "python-dateutil",
+        "version": "2.9.0.post0"
+      },
+      {
+        "name": "python-docx",
+        "version": "1.2.0"
+      },
+      {
+        "name": "python-dotenv",
+        "version": "1.2.2"
+      },
+      {
+        "name": "python-jose",
+        "version": "3.5.0"
+      },
+      {
+        "name": "python-json-logger",
+        "version": "3.2.1"
+      },
+      {
+        "name": "python-multipart",
+        "version": "0.0.20"
+      },
+      {
+        "name": "python-slugify",
+        "version": "8.0.4"
+      },
+      {
+        "name": "pytube",
+        "version": "15.0.0"
+      },
+      {
+        "name": "pytz",
+        "version": "2025.1"
+      },
+      {
+        "name": "pywin32",
+        "version": "311"
+      },
+      {
+        "name": "pywin32-ctypes",
+        "version": "0.2.3"
+      },
+      {
+        "name": "pywinpty",
+        "version": "2.0.15"
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.2"
+      },
+      {
+        "name": "pyyaml_env_tag",
+        "version": "1.1"
+      },
+      {
+        "name": "pyzmq",
+        "version": "26.2.1"
+      },
+      {
+        "name": "RapidFuzz",
+        "version": "3.14.5"
+      },
+      {
+        "name": "readme_renderer",
+        "version": "46.0"
+      },
+      {
+        "name": "referencing",
+        "version": "0.36.2"
+      },
+      {
+        "name": "regex",
+        "version": "2026.1.15"
+      },
+      {
+        "name": "requests",
+        "version": "2.34.2"
+      },
+      {
+        "name": "requests-cache",
+        "version": "1.3.2"
+      },
+      {
+        "name": "requests-oauthlib",
+        "version": "2.0.0"
+      },
+      {
+        "name": "requests-toolbelt",
+        "version": "1.0.0"
+      },
+      {
+        "name": "rfc3339-validator",
+        "version": "0.1.4"
+      },
+      {
+        "name": "rfc3986",
+        "version": "2.0.0"
+      },
+      {
+        "name": "rfc3986-validator",
+        "version": "0.1.1"
+      },
+      {
+        "name": "rich",
+        "version": "14.3.4"
+      },
+      {
+        "name": "rpds-py",
+        "version": "0.23.1"
+      },
+      {
+        "name": "rsa",
+        "version": "4.9.1"
+      },
+      {
+        "name": "ruff",
+        "version": "0.15.13"
+      },
+      {
+        "name": "safetensors",
+        "version": "0.8.0"
+      },
+      {
+        "name": "scikit-image",
+        "version": "0.26.0"
+      },
+      {
+        "name": "scikit-learn",
+        "version": "1.7.1"
+      },
+      {
+        "name": "scipy",
+        "version": "1.16.1"
+      },
+      {
+        "name": "seaborn",
+        "version": "0.13.2"
+      },
+      {
+        "name": "Send2Trash",
+        "version": "1.8.3"
+      },
+      {
+        "name": "sentencepiece",
+        "version": "0.2.2"
+      },
+      {
+        "name": "setuptools",
+        "version": "80.9.0"
+      },
+      {
+        "name": "shapely",
+        "version": "2.1.2"
+      },
+      {
+        "name": "shellingham",
+        "version": "1.5.4"
+      },
+      {
+        "name": "signalrcore",
+        "version": "1.0.2"
+      },
+      {
+        "name": "simplejson",
+        "version": "3.20.1"
+      },
+      {
+        "name": "six",
+        "version": "1.17.0"
+      },
+      {
+        "name": "smmap",
+        "version": "5.0.2"
+      },
+      {
+        "name": "sniffio",
+        "version": "1.3.1"
+      },
+      {
+        "name": "sortedcontainers",
+        "version": "2.4.0"
+      },
+      {
+        "name": "soundfile",
+        "version": "0.14.0"
+      },
+      {
+        "name": "soupsieve",
+        "version": "2.6"
+      },
+      {
+        "name": "sse-starlette",
+        "version": "1.8.2"
+      },
+      {
+        "name": "stack-data",
+        "version": "0.6.3"
+      },
+      {
+        "name": "starlette",
+        "version": "1.0.0"
+      },
+      {
+        "name": "streamlit",
+        "version": "1.43.2"
+      },
+      {
+        "name": "strictyaml",
+        "version": "1.7.3"
+      },
+      {
+        "name": "surya-ocr",
+        "version": "0.22.1"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "tblib",
+        "version": "3.2.2"
+      },
+      {
+        "name": "tenacity",
+        "version": "9.0.0"
+      },
+      {
+        "name": "tensorboard",
+        "version": "2.20.0"
+      },
+      {
+        "name": "tensorboard-data-server",
+        "version": "0.7.2"
+      },
+      {
+        "name": "tensorflow",
+        "version": "2.20.0"
+      },
+      {
+        "name": "termcolor",
+        "version": "3.1.0"
+      },
+      {
+        "name": "terminado",
+        "version": "0.18.1"
+      },
+      {
+        "name": "text-unidecode",
+        "version": "1.3"
+      },
+      {
+        "name": "textparser",
+        "version": "0.26.2"
+      },
+      {
+        "name": "textual",
+        "version": "8.2.7"
+      },
+      {
+        "name": "threadpoolctl",
+        "version": "3.6.0"
+      },
+      {
+        "name": "tifffile",
+        "version": "2026.7.31"
+      },
+      {
+        "name": "tiktoken",
+        "version": "0.12.0"
+      },
+      {
+        "name": "timple",
+        "version": "0.1.8"
+      },
+      {
+        "name": "tinycss2",
+        "version": "1.4.0"
+      },
+      {
+        "name": "tokenizers",
+        "version": "0.22.2"
+      },
+      {
+        "name": "toml",
+        "version": "0.10.2"
+      },
+      {
+        "name": "tomli",
+        "version": "2.0.2"
+      },
+      {
+        "name": "tomli_w",
+        "version": "1.1.0"
+      },
+      {
+        "name": "toolz",
+        "version": "1.1.0"
+      },
+      {
+        "name": "torch",
+        "version": "2.13.0"
+      },
+      {
+        "name": "torchvision",
+        "version": "0.28.0"
+      },
+      {
+        "name": "tornado",
+        "version": "6.4.2"
+      },
+      {
+        "name": "tqdm",
+        "version": "4.67.1"
+      },
+      {
+        "name": "traitlets",
+        "version": "5.14.3"
+      },
+      {
+        "name": "transformers",
+        "version": "5.15.0"
+      },
+      {
+        "name": "truststore",
+        "version": "0.10.4"
+      },
+      {
+        "name": "twine",
+        "version": "7.0.0"
+      },
+      {
+        "name": "txt2tags",
+        "version": "3.9"
+      },
+      {
+        "name": "typer",
+        "version": "0.23.1"
+      },
+      {
+        "name": "types-pyasn1",
+        "version": "0.6.0.20260408"
+      },
+      {
+        "name": "types-python-dateutil",
+        "version": "2.9.0.20241206"
+      },
+      {
+        "name": "types-python-jose",
+        "version": "3.5.0.20260408"
+      },
+      {
+        "name": "typing-inspection",
+        "version": "0.4.2"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0"
+      },
+      {
+        "name": "tzdata",
+        "version": "2025.1"
+      },
+      {
+        "name": "uc-micro-py",
+        "version": "2.0.0"
+      },
+      {
+        "name": "uri-template",
+        "version": "1.3.0"
+      },
+      {
+        "name": "uritemplate",
+        "version": "4.2.0"
+      },
+      {
+        "name": "url-normalize",
+        "version": "3.0.0"
+      },
+      {
+        "name": "urllib3",
+        "version": "2.3.0"
+      },
+      {
+        "name": "uuid_utils",
+        "version": "0.16.0"
+      },
+      {
+        "name": "uv",
+        "version": "0.11.16"
+      },
+      {
+        "name": "uvicorn",
+        "version": "0.47.0"
+      },
+      {
+        "name": "watchdog",
+        "version": "6.0.0"
+      },
+      {
+        "name": "watchfiles",
+        "version": "1.1.1"
+      },
+      {
+        "name": "wcwidth",
+        "version": "0.2.13"
+      },
+      {
+        "name": "webcolors",
+        "version": "24.11.1"
+      },
+      {
+        "name": "webencodings",
+        "version": "0.5.1"
+      },
+      {
+        "name": "websocket-client",
+        "version": "1.8.0"
+      },
+      {
+        "name": "websockets",
+        "version": "16.0"
+      },
+      {
+        "name": "Werkzeug",
+        "version": "3.1.3"
+      },
+      {
+        "name": "wheel",
+        "version": "0.45.1"
+      },
+      {
+        "name": "widgetsnbextension",
+        "version": "4.0.14"
+      },
+      {
+        "name": "wrapt",
+        "version": "1.17.2"
+      },
+      {
+        "name": "xgboost",
+        "version": "3.0.5"
+      },
+      {
+        "name": "xxhash",
+        "version": "3.7.0"
+      },
+      {
+        "name": "xyzservices",
+        "version": "2025.11.0"
+      },
+      {
+        "name": "yarl",
+        "version": "1.24.2"
+      },
+      {
+        "name": "youtube-transcript-api",
+        "version": "1.2.4"
+      },
+      {
+        "name": "zict",
+        "version": "3.0.0"
+      },
+      {
+        "name": "zipp",
+        "version": "3.23.0"
+      },
+      {
+        "name": "zstandard",
+        "version": "0.25.0"
+      }
+    ],
+    "config_sha256": {
+      "pyproject.toml": "7b2109f91233203ba20595048068373de25019e593a2b1820e659e0ae5f1c034",
+      "constraints-ci.txt": "d732bad0c6044cfa0970206df2a4610d574a0f9393cd476dd6fb2c4febd3705e",
+      "apps/clinician-web/package-lock.json": "196abd4b947c1fc7e9252534c15a98143a0f78b3eea353ee51dd49c673df4e95"
+    },
+    "new_installations_attempted": 0,
+    "external_calls_attempted": 0,
+    "independent_clinical_gold": false,
+    "real_patient_release_authorized": false
+  },
+  "checks": {
+    "baseline_integrity": {
+      "status": "pass",
+      "result": {
+        "evidence_files_checked": 198,
+        "model_directories_checked": 0,
+        "missing_local_model_directories": [
+          "data/models/faster-distil-whisper-large-v3",
+          "data/models/faster-whisper-large-v3",
+          "data/models/faster-whisper-small",
+          "data/models/faster-whisper-tiny.en",
+          "data/models/multimed-small-int8",
+          "data/models/multimed-source",
+          "data/models/multimed-transformers",
+          "data/models/omi-med-stt-v1-gguf",
+          "data/models/parakeet-tdt-v2-onnx",
+          "data/models/public-diarization-v1",
+          "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25"
+        ],
+        "model_inference_performed": false
+      }
+    },
+    "saved_metrics_replay": {
+      "status": "pass",
+      "result": {
+        "schema_version": "saved_benchmark_replay_v1",
+        "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+        "reports": [
+          {
+            "path": "evaluation/runs/meddistract-detailed-v1/faster-whisper-tiny.en.fixed.json",
+            "sha256": "10f686122259a473b4872fee69a71dbbf9d70be9df3d18dc11f04eb2fc4d9d23",
+            "candidate": "faster-whisper-tiny.en",
+            "mode": "fixed",
+            "completed_cases": 12,
+            "predeclared_cases": 16,
+            "complete": false,
+            "reference_words": 19596,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "0581cb4169fbabe85515ea983efa2952fbb625eecba950b8445cda526ae2a665"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7bfb9cf77f51ea501f22894c42cba7e961c32eeb59fdc7c051cec01bfd018349"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "5b1aa2667bfd70b8c445398ffe7fbff9418b3f08b07f47ae21c1f6c70a83015e"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "abe530df00dc8eb1986bf7aed4849a3a1ca35a8a94b2e2fb6ebaafa27151b492"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8b604fa4febaec4aee7569e3723d0dddf8eb18cba9a124268ab5082e6d845015"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "cde1a38e177c845de79c335683d048c33f4ab3a18d45b6285701aaa81cdc00f5"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "94f40de64ee8e5eea9e754fe46018d07c9bb3ae26083668d5383adcf59f4295e"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "2674825cd4d221c51c2ee9a48b7ae308557819505520c47e2c5a799c9d867910"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "61cb87df46f6c66e9aa7fc01537c9573a6a2de2a655110d35dafbf5b7b5fc7e4"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "e15d6fc78a640b974a5d7cd55baa33c82cc3696403a463e14e1dc176c650dd20"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "6316bd038a8b4d06ce8c9ddb24932aaf07772ac7be3f5f43b98b48030b67c954"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "08acb564b456a0ff304f6cee0f876a70ab9039bacc2df82a3590359b8a9aa531"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/distil-whisper-large-v3.fixed.json",
+            "sha256": "9062cbdd6b4947ecb78c437f1b18384f19f69447845ef7e909e9043d277a432c",
+            "candidate": "distil-whisper-large-v3",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7b69c2e7fe69d1cf8f930d9fe4bcaee4bdf6e3c61ed14d20fe091b9889faffd1"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "77eaabdd3cbea7ab835831ac7c4eaf3a0bc72b9895bb8221192cb13708863841"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "ce131fa9674a14e72dd43b08f22ead29ab1b4a204f0af68fd67da1df1634b840"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "694fcdae1eda55b46a27b157a7ab222afd7491c48c9986dbd05461efc09b0422"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8e33a36da896a993cacd36fefaf9ff35859c3f4de96875bbba93debf4e996597"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "3852364e966eb0f4c957675bc346c30394c2cbd4b4982ec47a992815c4ff908e"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0d86d8092b8b3f8ba8f98e7c3ee9c179449ce5f0efdf1ec931608e361c49f87c"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "d14cf27c9d2cc89428a3b67ea60a0d5e61b149e76619c4200cd87f8683ce27cb"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "a547886ec604a2e96dcbfcbfe044dfaa92af7911e33c7522ff73d548bff7a2f8"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "e6a390bb4f656ff773063630ed5f297acca74a15b5815754cb52ccb0f0efd75b"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "c9b03ad8e375c5ad09fae2cbf4a1230924a6f785833d3aa80e9f1a95cbc46c71"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "106f2d2ea5d36ee94503f4076c7a70d944790c0510b921f02e9107ee696709cd"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f51981b198024a45509035715c58a32f82e8d614a3135c52c6ef4f4578791393"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "e6efd5439f072d483f3f05886a2d2365a7ef95f4176c76b2faf9f8533ed4c98c"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "8c78766480e0dc6989659e854dcab59663371020f0d2436e286f47d45eabeaf0"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "71c540e03adecf4a847b83942be9a239138d48842f6aabe57a6dc7c4313a3bf9"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.context.json",
+            "sha256": "2a2094ee5a1df04aef3a97394a8cf7ed02d44082401d31f08438f0f6ead8d7e2",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "context",
+            "completed_cases": 7,
+            "predeclared_cases": 16,
+            "complete": false,
+            "reference_words": 10969,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "97442c64312adf905b03514f30800c0572be475c0fa2afbebbff694079479c3f"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "1d18e7ee987552353f569ed9427706c89d4e3f3288ea5e00274c334797a3fd68"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "950c36f318ce668eb3984651c5ddf5e321685417b8dc07b7ceecc51725d791d0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "d3f342ebeec9a87d1167aa7e6a96a6d68b25fd34f4e26b5a2502f1861a457e95"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "0d23764eec2695313c62dfa1fa9d17789449c5795874a9ca87ebe3be3d038eb9"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "90f9c0beaf3a47c71b2d3bc275bc5c8e5abbab4eb230413df70d27fa6cb32417"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0a2e92fb0bb939f47b40010849ba544970b617a314c69af99a0cd78327ca8b09"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json",
+            "sha256": "97480843cb1585523621ecc3b88149c4c62246380c1571a8abcb3f41cc19c1f3",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "50eb53164eb823fc9542091cdf5029d823ceb878516f6fdb3d0d2c23e98637b9"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "aff88ab9a2ea38c2a4647198cc8ea06886b3a532ea128c178b2b04da75ac650e"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "3bd432b14e39552079398ac6146096d8318951697e7bfe2b6d7523673c651407"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "29d48016e8ffadb09e767bdebfd48b1002b44572079ca0982fa937e3da4c13fe"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "80e2eb9dcdd1260eef0629027b28cd9c8c4d0ce093b3e8774b4f49d32281fc6a"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "7d04728597f3d2f0272b36da91344ed2e15ee61ff4c869e612d581d26b4f1cb9"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "dc3d92fed04d96fbe61f9c09966ca8ae5501fe88ef570208a75262841b3120cb"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "21e17bed22e2786136bc51e8ffc617d2942abbbcd7800186c52a7538dc0c5f6b"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "f13ca03a620387eea83fe0d8610a140716e56541420651b840e1252922591b54"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "837e217b3cd63e8d5729b0568b6e730abea0eb391952bfc09b25414dbdcfc075"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "2f6b9902f8813516fc0087c92d688dbc89cc84d46e72273936b5a6e398a8307a"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "08ac8e6eec257d86709a11710aa207f6522c092438d6fa8c3b73e3b912605ea7"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "6d1253cb020fe15e016e8b64197deef9db360e10d066a543c58ea415fc5a1171"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "b7778c3f87b099535176326ad002ef892ea70ebcb3628307b05c4c54bc9e1ac8"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "f7c175874e0b38e73b55e7d8a155661b2f2f4bf1357d391ed06297830d844741"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "31f8b85a7c11d5db3351c0ef53999227f3f9ea3a4d1dca8974a5137cb73805bf"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.overlap.json",
+            "sha256": "d616df38a47a7b8125f841524bd247a70516f184148122ab99b4cafbfac2ae52",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "overlap",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "648e5b4a8664fd7b87ad7a4ea63151d987a996002e4ac216c1158108f2a6449a"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "6139e68e15b67f3a844b8930f0c1b42b3c4200851c8fd8c286a298a9b416f720"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "b06c232c76d980dee17794a49c328e809d14cb797f9d78c82e958c27aaa7b83e"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "a593e8ca98cf45b94b442ba04e184ab9bba2f5a8ecea046df551e6dab985951f"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "f641a650d5ca3423c38237b37029fd0aeb6368483b385cc07115cfa510070d43"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "c1f4f89b6eb865c6e7e9a9c7566bf4933db667e4a1f3d7f3ed620fd0c2e96d6e"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0c49061f0bba602ff26ebf991ad64245f6d09e8d5e85c150c4b0518c71b2a201"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "9f80800fbb94477a4e1d30d8877635b1daf90b114cbeddb12e91a92f453302aa"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "9cb76b9cc5e12a4c9e64c7c8d8e8c06707143afb9758997c79ccb286f62bb65a"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "00dd8bcca241a1a701fc25dc78e728832ed152d51050d4fcafaa69a509e00189"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "639a92f15cf603fbb900925b7f6a9119df6915f93fc815b0c8ef81ef1a694c04"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "22549875d9773318717d6ddb632a421cd13cb7831b534ec4c3effc405c7b2f40"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "8d9856e01494288fa88a8e2bcd627151dbf4d9d308336a9b3c392303c81f12a8"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "8fb1c1613b93961fc9534c8b434d920368e6af3319fe0a268be18230ad8f421e"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "60e8d65ffd942902fceeb74d281e1a5ac925fa579fce42f88ae7a372f783c667"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "113ff4fcc99ef681688987ca2aac97ce30fa427557e0d830ff84b268b473fb5d"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.speech_aware.json",
+            "sha256": "f9af11b53b314749cbe70f40180bf60f6c7eb35d2f85363994c1bb918afa96bb",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "speech_aware",
+            "completed_cases": 14,
+            "predeclared_cases": 16,
+            "complete": false,
+            "reference_words": 25002,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "10f7e5a788c0c1ff23652bc5df8d6ba9cf72656ff192ba24470f48d4466b7bd7"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "5c0ffad7562ef9a0087fae623f1c15bc06fa6a8151702c8009e263ab4a12e2c6"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "f6b237b2bd6d569b2b70f5749b00bb872e2020917b0a368ff0a559db9d2290b0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "392d237ab99c454c8e059caa96d637e3b1271b81bfe47e86777bc5449caa9336"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "050cd4537d85ccd6666cd7f1f03e1cb47a0facfbe39c7986c409b6226801333e"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "e93559212be45431527159f0af3e844b44a8b8aa593fe89109f610e43aa0f7ad"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "ed003fc1cc6855f95c079c2538ee56b3247d9555f64f00ada7d5a8410ee8607a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "52b0a3ee339401b2d2c46f4ec6e234376c0d57a2b50bc84dfe0415fbb19f578c"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8feabc3ed96d1f89456b9a8f8fa45bbe0ab8ebff52fb742b01fe9f10f5cbb8cc"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "2ffe6b6471d9b80bd15b9035aaabe326954cbf8a51ec88f0d77ed13160484bed"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "8ae78ba06dce82698db8c5fa9cec2dfb042f95eebc63fad91fcb13573e6b8da8"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "57f68f8202148415e3b12a196182fd5b3e203013a295248a0f4e68346f1aec7b"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "5af448cadabeee5f28fa44401907c34bff33dc4a4c31c6777e33c37c1658c3ca"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "6fb8e88e506298e036a92d2dc7fbeaac2aeb67fa5cfa5b5b320eb3a828b9a3bd"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-tiny.en.fixed.json",
+            "sha256": "21de3bbc2dd4812d135aaf5c2a6256ab1b8e9a047bd8f56142621156a01c3ece",
+            "candidate": "faster-whisper-tiny.en",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "0581cb4169fbabe85515ea983efa2952fbb625eecba950b8445cda526ae2a665"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7bfb9cf77f51ea501f22894c42cba7e961c32eeb59fdc7c051cec01bfd018349"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "5b1aa2667bfd70b8c445398ffe7fbff9418b3f08b07f47ae21c1f6c70a83015e"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "abe530df00dc8eb1986bf7aed4849a3a1ca35a8a94b2e2fb6ebaafa27151b492"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8b604fa4febaec4aee7569e3723d0dddf8eb18cba9a124268ab5082e6d845015"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "cde1a38e177c845de79c335683d048c33f4ab3a18d45b6285701aaa81cdc00f5"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "94f40de64ee8e5eea9e754fe46018d07c9bb3ae26083668d5383adcf59f4295e"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "2674825cd4d221c51c2ee9a48b7ae308557819505520c47e2c5a799c9d867910"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "61cb87df46f6c66e9aa7fc01537c9573a6a2de2a655110d35dafbf5b7b5fc7e4"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "e15d6fc78a640b974a5d7cd55baa33c82cc3696403a463e14e1dc176c650dd20"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "6316bd038a8b4d06ce8c9ddb24932aaf07772ac7be3f5f43b98b48030b67c954"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "08acb564b456a0ff304f6cee0f876a70ab9039bacc2df82a3590359b8a9aa531"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "0adb2e5bc69213102b3360f06a2b754a5d41483eeb1b0d6d4342bb4a4dd2eb5c"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "bc7af13c0f9628e040f5789e66f43c9bc499b927c81438a8c6edadd4e9670cf8"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e587ebe9ce78d51e850ea44a1a751b452ae18acf6b477f3441b97a1e9dd5c7f6"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "69e4face97c3bf776ab37d1e9cbe1a3823fe3ef8b45fb2e49b67a36993afbdea"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/multimed-whisper-small-english.fixed.json",
+            "sha256": "54ffac5180683367bdf222997890b3f5273eae859d645ca3256ceae09d869a40",
+            "candidate": "multimed-whisper-small-english",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "b29387c46550460527a5f0b7c89ef0d17d9c6b9f6e80ad497b52b7f2db9dfae4"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "ae24a825bd2815177da0ee417e71f4c3d09cd398da1d01db95e5d20c5a7cac0f"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "3f260bde6d3a18ec94b1d7685dea6a70f01f663a8a3e9cf2fc86403c5f6db28f"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "5c3d744da7e945caa9918bbffaffe36e60546fbc81b07443d433cfc082bc23e8"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8cde1339143c76c4fad6db19bc6d32d06e167fb992175be63d98fd5dcd97d29c"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "089892460b0667794c447712ae5d5b8009950b41d7fce9c32e859deb97e5f0c3"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "641badce5915c16494454b9ad19afa6f5a357a08231c9b078ef56941c0616fc7"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "881145cf53dda1708898df46f10d8d78dc9b7e945d4d296e7caf0f3cc10ff639"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "3ee4e1fe73f9ed4c0768d144a6efdf147f9fe65ecc8126efead0b10a10185203"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "59e3df1d054fcc80c521b2aaa47e601695d2757333e1da13283d58a6b546689a"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "fe1a41247ab3feb0fcf9237e17a9963758a08487deaa4a74a10ad8d00f54be9c"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "75c0268bdc1b4bba947aaa3ab2bf281ea030c4067bb4870406aabfae9bcf2d5b"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "4aa4573293ea666cf2525349c26ef7d9741f3a6a75c520bff915222fa152441b"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "7a4ee2327eb11c6ccb238065167c0a62d0b61296f9e366c32f8a27ea451fa9aa"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "28887fcced1331503936cbc57fc350deb6926e49fcf6b9f2a4fff00b242fb75d"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "4a973e186878c23e21515aae41780b504abfa2a0e60a331eecfac8db66c4e1be"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.fixed.json",
+            "sha256": "f5ee39e09eb0da5f56aec1950a7bc5c0f3c22a4b689282c221b6f35e9a8c12e9",
+            "candidate": "omi-med-stt-v1-native-empty",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "9de9e5c154f7868c772e6f8c5f1273fa052ca376abdc4b7f6fa30c502866af36"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "2aba6cf702a9754e1146d7d575e8e18a82661c6a2523b27c897655756203ce79"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "86c410a448c78424d4be842e6feaf69fc2b2da3f9d9bde64d8e733788b8cc673"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "1bff4d25c028b9346bcfe743a1778e8c32f6cefcd4cadb98dbc76b70f80ce740"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "ac2f051e77e1f0538fca8b4cf6275861cd6d14fb0b8d7aed77998766120cfafd"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "7804998ef739da9a35bd8c3d35c1a58841bd25a7d6f579c5b781ec7b8aee243c"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a884063783f5b66bcb8db788ce9a9556b1699e4808f4806bcb3008ec86e96a9c"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a8f7527ae893c9064e67bd314624fb4bbe4d15615b95c828501337d863d331ed"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "ea20ab98f88e03ff8c0e8a3984f175cbfbd9452246a84ae166b7d71d5eb7d2f7"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "d28afca24eba16977d4d852eb1ccd27a88ceff355e6147f5954b93f13f9778d6"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "6ed426d9dfed864d52b238c7465a422975e11cd15d1886237498c0b164fdde80"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "06324f3ef660daa5b0d61ea7f5e6339ea4b58668534a457a5c0885d7832469dd"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f3d9ca5883d36b172a5140094b6d14ee73790679d7652352c07a2f95af35d1d4"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "07189884c5b3320be7d27fe9f25bbb485a9ce44d57dfafd724cb374e0f4d5d17"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "ba7f3cbe35f96376badd53ab28df97d607f157f0078794282b097eb60050c218"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e2e8091e96dd94b5373ce3c620929f1bdfa2372f46d7de38c96f3c1b28feb054"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.overlap.json",
+            "sha256": "58d623d0c2af180dc021b8c7af2184082410e23a95c6a81f305ea428dff80482",
+            "candidate": "omi-med-stt-v1-native-empty",
+            "mode": "overlap",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "2864fa7311b9ea42a2c59c3e56679960de72767cd617f3c05801639297f66c22"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "d02b7494e0395d2561f625930a3a2697141dffa3a909d57de06b6607ebc84219"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "fd6a52e7e7806f85651bd892a28cb61a0ae3794e5bb6a76d3879541a5e3871f0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "66f3768549b5ae7096f4dc61d12a026830ed3702acae4f0333d81aa3ed7c91b0"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "0197f743f3c40dee970a0c19c574a0dcc1dce8c69d94deba20c3ddd27c96b073"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "3b9472699c2cff6ce0e6f3265255083e468b47f2f7e46850a884f65731f9826f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "62ccc029ed4b92c60d7edd641c7dfd0f3d42f744de49e2f7ecc5b08c9446060a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "19d532fa696b24e19f08b19208517cbf8492e51b6354436cbf9300e8dd97f219"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "6a455f089fc326d3f2824961331564a80c54e0f0e1ea56b46ae047979a8308b4"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "1e98d9d9cd295fc6452e33a93bdb25398879b6579ec9f90b5f72baacccd454ad"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "eb3703ce232727414d3081fb510f52c8359d4b9dda449b0b307b6438d3bc2df4"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "fd0d3fee79275674ad18983d6b93656afd6bc372aef5d9945438b7f2a6f2c2a2"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f9ac0e970b3af2861a0adbb98e36144aa03fde895d0bea5c5af93818972d8223"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "9abaac47c9ec04a1e2c037caa39d0fa437f20b4c3c204ee33ddf38026fc2d169"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "a2466029b11edcba5543cccf7971bcdda78320b7139a156c136380bd8a435adb"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "0543edf351b0830c2b7b98ed509b5275314bc4560b0cf18aa5d43928da86def5"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.speech_aware.json",
+            "sha256": "56943c0600fa305152af714149bc39a8c76b81d38fb8c3c3664b18bedf1577c9",
+            "candidate": "omi-med-stt-v1-native-empty",
+            "mode": "speech_aware",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "fc6b5d04ce85aacf0565e2dbda0543ac1fcd300e0dafeaaaeb06983e54e65966"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "68543a12c23be86ba95909e05c5ed36f60cff9560fecf9f27b51133bbd061cc5"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "c818efe7ee5663497c5f51cc02978676fa920ba665133b28d488ed44a79ef89d"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "ae3d058e9b74432887da05b8212cb22f6556811881ae2e51aaf4979dbddeccb0"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "42757da38941b8ed476c27015ffc21928ba99c11446aebc247e2cd5e2f4f5733"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "663d21849370dee66f47262e1874623528c483b47af87af54c12bbfa2c0b5b9f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "248ec4cbe9b8424c1145336fe08afe1858aca9d146e11055d2bed4233c51fb9a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "58a54d04323be6f49540f22a71d06c39838fcf3a9c0370a692c8716ef3e13aa6"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "75c4f98f3103218fbdbbdb77de4d3992cb71e4a68d7d6d45acf6417845df9412"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "a3c791f7e8c1c7bd26c5d3dc03b894c5d81a9adff6f8032f73d4a6509151a643"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "01a8407c6adacdb2e9d18f9a84fa0f422131cdce2a4a9577447d4123ed39b871"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "da7939fd89030f1ab5e09835c2544fb93d199ad4a11861e3d22a8af849576915"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "93a38f8f710df5110e4cb0d6e722989db60c9bb5412418859ddf8b046293fe4e"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "3da97bdcf77bb01bb91ba8bf9c93d8e1db5f849469db8af1a608a1fccb5a748e"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "87acbc28578dac7b28e887968c67a886d9c96406a3cc8ad3902ead3ea2197ff7"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "9106553024b342346e3110b98cd4bd8b4dca1dc84f67974c96c6845bf85afc41"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json",
+            "sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
+            "candidate": "omi-med-stt-v1",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 2,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "9de9e5c154f7868c772e6f8c5f1273fa052ca376abdc4b7f6fa30c502866af36"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "2aba6cf702a9754e1146d7d575e8e18a82661c6a2523b27c897655756203ce79"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "86c410a448c78424d4be842e6feaf69fc2b2da3f9d9bde64d8e733788b8cc673"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "1bff4d25c028b9346bcfe743a1778e8c32f6cefcd4cadb98dbc76b70f80ce740"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "ac2f051e77e1f0538fca8b4cf6275861cd6d14fb0b8d7aed77998766120cfafd"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "7804998ef739da9a35bd8c3d35c1a58841bd25a7d6f579c5b781ec7b8aee243c"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a884063783f5b66bcb8db788ce9a9556b1699e4808f4806bcb3008ec86e96a9c"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a8f7527ae893c9064e67bd314624fb4bbe4d15615b95c828501337d863d331ed"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "ea20ab98f88e03ff8c0e8a3984f175cbfbd9452246a84ae166b7d71d5eb7d2f7"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "d28afca24eba16977d4d852eb1ccd27a88ceff355e6147f5954b93f13f9778d6"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "f3d9ca5883d36b172a5140094b6d14ee73790679d7652352c07a2f95af35d1d4"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "07189884c5b3320be7d27fe9f25bbb485a9ce44d57dfafd724cb374e0f4d5d17"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "ba7f3cbe35f96376badd53ab28df97d607f157f0078794282b097eb60050c218"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e2e8091e96dd94b5373ce3c620929f1bdfa2372f46d7de38c96f3c1b28feb054"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/parakeet-tdt-0.6b-v2.fixed.json",
+            "sha256": "9becc22cd583cde4f27f48a4d1fc5fc95f36a4ebe11a18ba29e68ac8a0fea7c1",
+            "candidate": "parakeet-tdt-0.6b-v2",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "7ee6fb718ac73132e1e14ee60097c7d1eefd4869d4a80848115feacbc42314e8"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "ad929040fd59c4ff448f2a1b6b6440289b0b907476d59c2c155e536197ca225e"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "fd2b2bb8e8ff74e291aadc4148ce1246e00fd2d06dfeb991cf0cb72e1a2ab5eb"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "92e64ddc9b0e76c81701e1b338f16aed5a520a6b69261139bcf1cd09255d8385"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "70f95abbc125e9dda0756e393af9500c60d2f678280026b775965a212ee38d7f"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "5bb4da1e2a046e6ce2cf58c0834d06904cf9b82765e2f8cc92444a3612a2785f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "f5874150a71f845381359fc514c0ee30506eb71124601f1f0eb23fd691e64af8"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "d5d519125e55fec3dfa7b2cad29a04b05c852cf6311704f5a3771d15a5263460"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "457de8a81ed5cec463032b0fe368b1fb6dbd787047b52696b89ee11e2db2807f"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "c2d9258c3ad8ade2a27063d92d035d77a735f28a31a99381b3f195f8835ac5fe"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "5d18c4c7720afd476e728a7ae654d44c4029f93e374760515156568a21474ee6"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "efa95295d1dbe55835c7b0180d4c723e33b92797bfc28c2735293ef949eb1f91"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "4ec2a96231f869c2f15c0842b833ccd98e31eda71d9144a79b1b723bdaca7105"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "c3b57bb05b37f0fa5fc79f3c38734bf039ea14a18bbf3d4cffbe6a7bcf4f8b6d"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "36e2fe6ce0ad9da673b074d44a2de763abb22975bb0d19d0789f0831f16433e6"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "c4d8f0450b591d69bf4ba7935c1ed2c4d7369fb66abebc23c16cd26e431f5539"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/qwen3-asr-0.6b-int8.fixed.json",
+            "sha256": "36bb5b4d0ccf2a2dcb0f4a8000d0797a9ceec399f9d5bdd496ee3f64827dc1d4",
+            "candidate": "qwen3-asr-0.6b-int8",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "02d173ea14f6ae08fabd1593426f1248ee1dc2120b33b94e3c8f481afa184c45"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "d8f3a1fe9d202a5363cccaa6ea7a1b5228e5d46736e6ebbe79ffbd41a5b5a36d"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "afa842e821b1619141185d545c23ac5c713c41c23b07cd3c5f91b7d6d7c785e5"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "15fda110c1c89672ab58f926f80b4f2c46c696443068255b005a406509b10ce7"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "5ad8b83d45e6865556854a72fa1cc1c16ea4271217d0dd7bd7e9a0485e5d23ac"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "cdc92780954b83d71d236d3836deca09e495bf04a74e515f47c462750e8882b0"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "38d7fe8d5737c7eec8a5d1495b9793bf3daf83ca419ec0a00868443feecd2e80"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "27430b91d0d3d8393ad70eb41adc187f08a2a39e48c0d90919dbabbdcf84ab91"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8ae0fa21b15544bb6329b0bf50f9227d6faf4c7db72f84c7c8fa1920bcd522e0"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "98c33a39074fe5c87d32d21fa230daf8f0f38a0a2c89f91e6d4881b42007bec5"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "561edc5412a808651bb9b0b571c538c33d8fd12de20a7708e7c21bffc1a4e01a"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "47533e579dc5553de7e8cb2bcfda4f6f1d6fee0bae285505e8546c6643510b43"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "54e3d15eb62e52f8e1cfac9de729e7785eeeae51efd3c5605005502c429e0c8e"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "3c308810375a16bd8a2fec7551904be34fd8acab1e26e40e814b632255cc28af"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "e266883249a9ba4be236700580464992b0682779ed1a83ab16cef59d884c0a4e"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "a4fbe0f0266bc0a7c745ba5fa76eaec476fe691934734ef20dcb73577e361328"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json",
+            "sha256": "e31e210dce79f247ab65ac49d4543866166d6cf5be7b73e228d9d1b8fd02e035",
+            "candidate": "whisper-small",
+            "mode": "fixed",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "fd440fc0a36f2538f6534c0d6acc8ad428b76ad9c37ee3e6ec8fa4eb002448ff"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "8e0d2674e38ddfd251f1b000432d781f94551a82eecb8472ae1cc1c5786e6620"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "e04e47a83e4f5db84ae34d5d258c2694f6be7c3fb03de6da4ee39c874860b9d8"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "ff52203e3d6066cf1e696d216d5d2dd72615de46c679a3c72cec99c47fb79a56"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "8b3d294277b01051c5a66ccbb10a4f488f3b80e196e67c1f818aa4a9149648f2"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "c7203b81491787a2cfd24c5d3c98cec4747e37ef42596776750cc20e2158741f"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "c819e3de28716737728aed3569dbe98965c6057094327ba97b4ed9f5e7263537"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "1feadb560c5f7815f7b8631f476e1fbd3648aa7a80a3ff073dcc853806d31b85"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "de1bc303d2affe1e1775f8bfff1b91c8b5345e8279b04bdd653bb81daafc72e7"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "b9e2e5ba83859ce00c196bd5704672dc42456a34d04176eeff4e6eba9ab0a000"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "aa1c077f5c053bf3094585efe37f5a2bbcf3b42485c9924393ba5f2a2fdb1451"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "2ed6cdec7fa93c017fcf04daf2a0a1bb553ab5041ccbe97434044927706bc153"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "ec14e097dd9e85be451ec59c0a95f0c4259785cb5696c37a0239e85e376e1241"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "0bd2109991b92d636e1694e109f00f58e3b71ea5ba8dbb22394670d9573765df"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "0df4274ee42dc1c0beb80416a172912eecbebb6b05297a44942ca19522842608"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "43cc2ba75f2c35fe863073f4e0557fd611591529284b1193d8a5c9b3d80c7551"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.context.json",
+            "sha256": "cab742638fc7af9768ac000a59e605591f51f508cf57b2dc2810ed3ae564a841",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "context",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "97442c64312adf905b03514f30800c0572be475c0fa2afbebbff694079479c3f"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "1d18e7ee987552353f569ed9427706c89d4e3f3288ea5e00274c334797a3fd68"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "950c36f318ce668eb3984651c5ddf5e321685417b8dc07b7ceecc51725d791d0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "d3f342ebeec9a87d1167aa7e6a96a6d68b25fd34f4e26b5a2502f1861a457e95"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "0d23764eec2695313c62dfa1fa9d17789449c5795874a9ca87ebe3be3d038eb9"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "90f9c0beaf3a47c71b2d3bc275bc5c8e5abbab4eb230413df70d27fa6cb32417"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "0a2e92fb0bb939f47b40010849ba544970b617a314c69af99a0cd78327ca8b09"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "a4fccfe6d86f819b0b6d5fa360acd28e00eb849cb3e985e635e4cc6108ed43c6"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8e822173a227184716d06ee3d72245f21b801c69a32574461818e898a863ea86"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "5a0ab09aac9d1f7f3b76dbf7c4c795a11a38a00dc04a4c324576e9dacd1c34a5"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "ba0de288181cb1f960de31858fe13e9910d2be63235336aeafa8b2299fb31c65"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "f1f7fcac28ac35c3e88f7507e6044faea71cda20131d81f16953763995b99f28"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "0bb994b54b4d24685fac2cbfd146dcbe2cb2ca9edd6eaf2773c5adf9475191ff"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "69f7aa56565b77a898e7b2e494ebdd2ad12659f42775116a1a0c41660d14d6e5"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "7b8114ef306d083f5582ad7dff4e832475a68fbf850d04ac54a867ae034455b9"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "d9a26f0d383ef6d423b2cf1f7cc19c01ee46a475b17d892444e8ec4727631f68"
+              }
+            ]
+          },
+          {
+            "path": "evaluation/runs/meddistract-recovery-v3/faster-whisper-large-v3.speech_aware.json",
+            "sha256": "468bdc1826676cb55c897076cd4300f6ad9ed8a812e4e45b425991de4e8174e0",
+            "candidate": "faster-whisper-large-v3",
+            "mode": "speech_aware",
+            "completed_cases": 16,
+            "predeclared_cases": 16,
+            "complete": true,
+            "reference_words": 27366,
+            "failed_cases": 0,
+            "per_case_text_sha256": [
+              {
+                "id": "day1_consultation01__audio_-10dB_d0",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "10f7e5a788c0c1ff23652bc5df8d6ba9cf72656ff192ba24470f48d4466b7bd7"
+              },
+              {
+                "id": "day1_consultation01__clean",
+                "reference": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+                "hypothesis": "5c0ffad7562ef9a0087fae623f1c15bc06fa6a8151702c8009e263ab4a12e2c6"
+              },
+              {
+                "id": "day1_consultation02__audio_-10dB_d0",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "f6b237b2bd6d569b2b70f5749b00bb872e2020917b0a368ff0a559db9d2290b0"
+              },
+              {
+                "id": "day1_consultation02__clean",
+                "reference": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+                "hypothesis": "392d237ab99c454c8e059caa96d637e3b1271b81bfe47e86777bc5449caa9336"
+              },
+              {
+                "id": "day1_consultation03__audio_-10dB_d0",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "050cd4537d85ccd6666cd7f1f03e1cb47a0facfbe39c7986c409b6226801333e"
+              },
+              {
+                "id": "day1_consultation03__clean",
+                "reference": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+                "hypothesis": "e93559212be45431527159f0af3e844b44a8b8aa593fe89109f610e43aa0f7ad"
+              },
+              {
+                "id": "day1_consultation04__audio_-10dB_d0",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "ed003fc1cc6855f95c079c2538ee56b3247d9555f64f00ada7d5a8410ee8607a"
+              },
+              {
+                "id": "day1_consultation04__clean",
+                "reference": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+                "hypothesis": "52b0a3ee339401b2d2c46f4ec6e234376c0d57a2b50bc84dfe0415fbb19f578c"
+              },
+              {
+                "id": "day1_consultation05__audio_-10dB_d0",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "8feabc3ed96d1f89456b9a8f8fa45bbe0ab8ebff52fb742b01fe9f10f5cbb8cc"
+              },
+              {
+                "id": "day1_consultation05__clean",
+                "reference": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+                "hypothesis": "2ffe6b6471d9b80bd15b9035aaabe326954cbf8a51ec88f0d77ed13160484bed"
+              },
+              {
+                "id": "day1_consultation06__audio_-10dB_d0",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "8ae78ba06dce82698db8c5fa9cec2dfb042f95eebc63fad91fcb13573e6b8da8"
+              },
+              {
+                "id": "day1_consultation06__clean",
+                "reference": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+                "hypothesis": "57f68f8202148415e3b12a196182fd5b3e203013a295248a0f4e68346f1aec7b"
+              },
+              {
+                "id": "day1_consultation07__audio_-10dB_d0",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "5af448cadabeee5f28fa44401907c34bff33dc4a4c31c6777e33c37c1658c3ca"
+              },
+              {
+                "id": "day1_consultation07__clean",
+                "reference": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+                "hypothesis": "6fb8e88e506298e036a92d2dc7fbeaac2aeb67fa5cfa5b5b320eb3a828b9a3bd"
+              },
+              {
+                "id": "day1_consultation08__audio_-10dB_d0",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "28ff54703c91ace5b8076f1d854ea671ade2549473459c70b94d9a7f6c5c61b5"
+              },
+              {
+                "id": "day1_consultation08__clean",
+                "reference": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+                "hypothesis": "b0f850fee69a3a3aac018f22d005e8ac6fee7ebfc1bfb1fee5e89c0f606ac94a"
+              }
+            ]
+          }
+        ],
+        "inference_calls": 0,
+        "references_modified": false,
+        "maximum_normalized_wer": 0.05,
+        "independent_clinical_gold": false,
+        "clinical_release": false,
+        "real_patient_release_authorized": false
+      }
+    },
+    "backend_tests": {
+      "status": "fail",
+      "error_type": "TimeoutExpired"
+    },
+    "frontend_build": {
+      "status": "pass",
+      "result": {
+        "exit_code": 0,
+        "dependency_installation": false,
+        "built_index_sha256": "f8464f9930c4e8792e6b5675d3a5ded772677f431658c88a3c47e7a7ced1d050"
+      }
+    },
+    "synthetic_walkthrough": {
+      "status": "pass",
+      "result": {
+        "schema_version": "offline_walkthrough_v1",
+        "encounter_id": "a8a090af-ce2d-4cf0-80f1-0111793136a8",
+        "synthetic_dose_error_blocked": true,
+        "unsafe_approval_http_status": 409,
+        "corrected_version_approved": true,
+        "exports": [
+          {
+            "format": "markdown",
+            "sha256": "1be8e4bc593a3abb303284528e7cdd774575c7b2c8f0fe4534abc2618661b7f2"
+          },
+          {
+            "format": "text",
+            "sha256": "314f2ac7469a40b0308aaa3e6222680baa1ce3c2eb71108974de4c9e13ca4951"
+          },
+          {
+            "format": "json",
+            "sha256": "a4d6f314ba69a3e0d14995b53c3c25f6070a273256c933d0888f281563caca26"
+          },
+          {
+            "format": "fhir",
+            "sha256": "ae4e4107b5fffde75cfa3a93fb63cd0fd922d18ec66f71002e3da8e25a497195"
+          }
+        ],
+        "viewer_write_denied": true,
+        "provider_calls": 0,
+        "independent_clinical_gold": false,
+        "real_patient_release_authorized": false,
+        "stage_latency": {
+          "schema_version": "stage_timing_v1",
+          "stages": {
+            "recording": {
+              "status": "unavailable",
+              "wall_seconds": null,
+              "error_code": "silent_fixture_no_microphone"
+            },
+            "transfer": {
+              "status": "succeeded",
+              "wall_seconds": 0.9883941999869421,
+              "error_code": null
+            },
+            "normalization": {
+              "status": "succeeded",
+              "wall_seconds": 0.6733631000097375,
+              "error_code": null
+            },
+            "asr": {
+              "status": "unavailable",
+              "wall_seconds": null,
+              "error_code": "scripted_demo_no_asr"
+            },
+            "diarization": {
+              "status": "unavailable",
+              "wall_seconds": null,
+              "error_code": "single_scripted_role"
+            },
+            "extraction": {
+              "status": "succeeded",
+              "wall_seconds": 0.4329100000031758,
+              "error_code": null
+            },
+            "drafting": {
+              "status": "succeeded",
+              "wall_seconds": 0.4389732999843545,
+              "error_code": null
+            },
+            "verification": {
+              "status": "succeeded",
+              "wall_seconds": 0.9114295000035781,
+              "error_code": null
+            },
+            "clinician_review": {
+              "status": "succeeded",
+              "wall_seconds": 1.0527799999981653,
+              "error_code": null
+            },
+            "export": {
+              "status": "succeeded",
+              "wall_seconds": 0.6766187000030186,
+              "error_code": null
+            }
+          },
+          "complete": false,
+          "limitations": "Timing records software wall time only; it does not establish clinical performance or hardware equivalence."
+        },
+        "limitations": "Programmatic scripted review flags exercise software only. Silent transport audio is not clinical speech or ASR accuracy evidence."
+      }
+    },
+    "clinical_binding_development": {
+      "status": "pass",
+      "result": {
+        "fixture_sha256": "f46e319e65d2d0f54ecf0305e7ae9d406cb6cfd1fb3e83f5f19a3fe1ef9e7bec",
+        "scope": "developer_authored_synthetic_mechanistic_evidence_not_independent_clinical_gold",
+        "validator": "independent_clinical_rules_v2+explicit_relationships_v1",
+        "limitation": "Small synthetic developer fixture; not an estimate of clinical sensitivity or specificity.",
+        "confusion_matrix": {
+          "true_positive": 6,
+          "false_positive": 0,
+          "true_negative": 6,
+          "false_negative": 0
+        },
+        "cases": [
+          {
+            "id": "aspirin_amlodipine_dose_swap",
+            "category": "medication_binding",
+            "expected_unsafe": true,
+            "detected_unsafe": true,
+            "findings": [
+              "medication_dose_assignment_disagreement",
+              "clinical_relationship_disagreement"
+            ]
+          },
+          {
+            "id": "losartan_apixaban_dose_swap",
+            "category": "medication_binding",
+            "expected_unsafe": true,
+            "detected_unsafe": true,
+            "findings": [
+              "medication_dose_assignment_disagreement",
+              "clinical_relationship_disagreement"
+            ]
+          },
+          {
+            "id": "levothyroxine_omeprazole_timing_swap",
+            "category": "medication_binding",
+            "expected_unsafe": true,
+            "detected_unsafe": true,
+            "findings": [
+              "clinical_relationship_disagreement"
+            ]
+          },
+          {
+            "id": "prednisone_furosemide_action_swap",
+            "category": "medication_binding",
+            "expected_unsafe": true,
+            "detected_unsafe": true,
+            "findings": [
+              "clinical_relationship_disagreement"
+            ]
+          },
+          {
+            "id": "wheeze_dizziness_negation_swap",
+            "category": "negation_scope",
+            "expected_unsafe": true,
+            "detected_unsafe": true,
+            "findings": [
+              "negation_scope_disagreement",
+              "clinical_relationship_disagreement"
+            ]
+          },
+          {
+            "id": "swelling_syncope_negation_swap",
+            "category": "negation_scope",
+            "expected_unsafe": true,
+            "detected_unsafe": true,
+            "findings": [
+              "negation_scope_disagreement",
+              "clinical_relationship_disagreement"
+            ]
+          },
+          {
+            "id": "aspirin_amlodipine_exact",
+            "category": "safe_control",
+            "expected_unsafe": false,
+            "detected_unsafe": false,
+            "findings": []
+          },
+          {
+            "id": "losartan_apixaban_exact",
+            "category": "safe_control",
+            "expected_unsafe": false,
+            "detected_unsafe": false,
+            "findings": []
+          },
+          {
+            "id": "timing_exact",
+            "category": "safe_control",
+            "expected_unsafe": false,
+            "detected_unsafe": false,
+            "findings": []
+          },
+          {
+            "id": "wheeze_negation_exact",
+            "category": "safe_control",
+            "expected_unsafe": false,
+            "detected_unsafe": false,
+            "findings": []
+          },
+          {
+            "id": "swelling_negation_exact",
+            "category": "safe_control",
+            "expected_unsafe": false,
+            "detected_unsafe": false,
+            "findings": []
+          },
+          {
+            "id": "equivalent_mass_conversion",
+            "category": "safe_control",
+            "expected_unsafe": false,
+            "detected_unsafe": false,
+            "findings": []
+          }
+        ]
+      }
+    },
+    "source_integrity": {
+      "status": "pass",
+      "files_checked": 538
+    }
+  },
+  "wall_seconds": 1331.970232000007,
+  "release_matrix": {
+    "offline_demo": "verified",
+    "engineering_verified": "not_established",
+    "research_evidence_complete": "not_established",
+    "clinical_approved": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED"
+  },
+  "master_release": {
+    "schema_version": "master_release_tiers_v1",
+    "tiers": {
+      "local_demo": {
+        "status": "verified",
+        "reason": "current_source_demo_required"
+      },
+      "engineering_verified": {
+        "status": "not_established",
+        "reason": "exact_commit_ci_required"
+      },
+      "research_supported": {
+        "status": "not_established",
+        "reason": "independent_clinical_gold_and_five_percent_asr_required"
+      },
+      "pilot_candidate": {
+        "status": "not_established",
+        "reason": "institutional_pilot_signoff_required"
+      },
+      "clinical_approved": {
+        "status": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
+        "reason": "external_clinical_and_regulatory_review_not_performed"
+      }
+    },
+    "real_patient_release_authorized": false
+  },
+  "maximum_normalized_wer": 0.05,
+  "independent_clinical_gold": false,
+  "real_patient_release_authorized": false,
+  "limitations": [
+    "Python sockets are restricted to loopback; this is not an operating-system firewall or native process sandbox.",
+    "Skipped checks, missing cached tools and unavailable independent evidence are not passes.",
+    "The scripted silent-audio workflow tests software invariants, not speech recognition or clinician performance."
+  ]
+}

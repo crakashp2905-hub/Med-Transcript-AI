@@ -1,0 +1,47 @@
+{
+  "schema_version": "master_task_blocker_receipt_v1",
+  "task_id": "MTA-01-03",
+  "source_commit": "c15c2b896e69e66c110d59b2f805b59ce9c165e1",
+  "source_sha256": {
+    ".github/workflows/ci.yml": "75c6a99cbaee5ee2a230380e665a2c2027057b8087f45b876de2851b5ce2f109",
+    "constraints-ci.txt": "8f62582e18dddfeaec97ad1d98bfaaf9b5507ee5e31e06ab4d4e1ceef625a86a",
+    "services/offline_acceptance.py": "bd907ac855c73f42a21335282ed92395cfd5ec1c01877a5d24d6005283eb97ff",
+    "tests/test_acceptance_reporting.py": "92dd45bfa92c11b4cee8d47578a45d3c2ae5b6ae3425715bd2925d718f498db0",
+    "tests/test_asr_subgroup_diagnostics.py": "c185af68f67d9f511fb53eed7749921028eb2932b20433f5722645806ee0a028"
+  },
+  "checks": {
+    "backend_suite": {
+      "status": "fail",
+      "result": "TimeoutExpired after 1200 seconds",
+      "report_sha256": "37e320aa915a9df751f34f2aec3622b50a2b05d7631f78bf2785d3d9de6067b3"
+    },
+    "critical_skip_audit": {
+      "status": "pass",
+      "report_sha256": "a0a6bbed7d2884f731be2ab7322b12d50399660c43c94d979611def8beb1687b",
+      "skipped_lanes": 6,
+      "critical_skip_policy": "fails_acceptance"
+    },
+    "optional_asr_dependency": {
+      "status": "blocked",
+      "missing": "av (PyAV)",
+      "consequence": "media and channel decode tests did not execute"
+    },
+    "encrypted_backup_dependency": {
+      "status": "blocked",
+      "missing": "cryptography.cobblestone",
+      "consequence": "encrypted backup module skipped"
+    },
+    "postgres_integration": {
+      "status": "blocked",
+      "reason": "MED_TRANSCRIPT_TEST_POSTGRES DSN not configured"
+    },
+    "container_integration": {
+      "status": "blocked",
+      "reason": "Docker CLI not installed locally"
+    }
+  },
+  "limitations": [
+    "No packages, assets, DSNs, containers, or external resources were fetched or configured.",
+    "The exact source full-suite run timed out; optional and service integration lanes remain incomplete."
+  ]
+}

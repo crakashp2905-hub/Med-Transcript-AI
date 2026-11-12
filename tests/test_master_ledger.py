@@ -10,7 +10,8 @@ from services.master_ledger import LEDGER, ROOT, audit
 def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     result = audit()
     assert result["total"] == 369
-    assert result["statuses"]["not_started"] == 366
+    assert result["statuses"]["not_started"] == 365
+    assert result["statuses"]["blocked_missing_asset"] == 1
     assert result["statuses"]["implemented"] == 3
     assert result["verified_at_current_commit"] == 0
     assert result["clinical_release_authorized"] is False
@@ -21,6 +22,9 @@ def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     format_task = next(item for item in document["tasks"] if item["id"] == "MTA-01-06")
     assert format_task["status"] == "implemented"
     assert format_task["source_commit"] == "796a9d9b07338b3bb7d1735df43a7cc916aa2231"
+    blocked_task = next(item for item in document["tasks"] if item["id"] == "MTA-01-03")
+    assert blocked_task["status"] == "blocked_missing_asset"
+    assert blocked_task["source_commit"] == "c15c2b896e69e66c110d59b2f805b59ce9c165e1"
     skip_task = next(item for item in document["tasks"] if item["id"] == "MTA-01-11")
     assert skip_task["status"] == "implemented"
     assert skip_task["source_commit"] == "c15c2b896e69e66c110d59b2f805b59ce9c165e1"
