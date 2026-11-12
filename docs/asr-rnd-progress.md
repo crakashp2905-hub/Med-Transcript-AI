@@ -495,3 +495,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   source-versioned operational corrections, not research training labels;
   synthetic fixtures and developer-authored proposals are never treated as
   clinician signatures or automatic self-training input.
+- **MTA-ASR-H09:** Not implemented. There is no training/adapter corpus or
+  clinician-correction lexicon state to remove, and no future-training lineage
+  deletion mechanism has been tested. Current E01 lexicon entries bind to
+  licensed development-manifest digests and are write-once artifacts; that
+  provenance is not equivalent to revocation/unlearning propagation.
