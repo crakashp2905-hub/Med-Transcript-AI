@@ -1,6 +1,8 @@
 import hashlib
+import json
 import random
 import wave
+from pathlib import Path
 
 import pytest
 
@@ -9,6 +11,7 @@ from services.detailed_benchmark import validated_resume
 from services.evaluation import score
 from services.prepare_detailed import select
 from services.audio_provenance import validate_provenance
+from services.api.ingest import file_sha256
 
 
 def test_bitvector_token_scoring_matches_original_normalization_and_edit_counts():
@@ -140,3 +143,19 @@ def test_resume_rejects_altered_references_models_or_scores():
         validated_resume(
             prior, {"cases": [case]}, {"revision": "changed"}, "model", "fixed"
         )
+
+
+def test_detailed_suite_v3_binds_source_and_memory_budget():
+    suite_path = "evaluation/detailed-suite-v3.json"
+    suite = json.loads(Path(suite_path).read_text(encoding="utf-8"))
+    assert suite["schema_version"] == "detailed_campaign_v2"
+    assert suite["maximum_normalized_wer"] == 0.05
+    assert suite["resource_budget"]["max_process_resident_bytes"] == 16 * 1024**3
+    assert suite["resource_budget"]["models_loaded_simultaneously"] == 1
+    for source, digest in suite["source_text_sha256"].items():
+        assert file_sha256(source) == digest
+    candidate = next(
+        item for item in suite["jobs"] if item["candidate_id"] == "faster-whisper-large-v3"
+    )
+    resume = candidate["resume_by_mode"]["speech_aware"]
+    assert file_sha256(resume["path"]) == resume["sha256"]

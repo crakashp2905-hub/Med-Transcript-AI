@@ -666,6 +666,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   benchmark run. No missing samples are imputed and no C10 completion claim is
   made. Peak RAM is also absent from the historical mode receipts, so it must
   be measured in any accepted rerun.
+- **MTA-ASR-C10 instrumentation update:** New benchmark receipts now capture
+  process peak resident bytes, measurement method, model-load-inclusive scope,
+  resumed/full cohort scope, and the budget verdict. The source-bound
+  detailed-suite-v3 fixes a 16 GiB process RSS ceiling with one local model
+  process. Historical reports are unchanged; no C10 mode is considered complete
+  from instrumentation alone.
 - **MTA-ASR-D01:** The operational application path remains the pinned
   Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration
   (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are

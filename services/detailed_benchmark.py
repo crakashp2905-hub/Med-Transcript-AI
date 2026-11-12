@@ -23,6 +23,82 @@ from services.evaluation import tokens, wer_gate
 from services.evidence_io import atomic_json
 
 
+def process_peak_resident_bytes():
+    """Return this benchmark process's OS high-water resident set in bytes."""
+    if os.name == "nt":
+        import ctypes
+        from ctypes import wintypes
+
+        class ProcessMemoryCountersEx(ctypes.Structure):
+            _fields_ = [
+                ("cb", wintypes.DWORD),
+                ("PageFaultCount", wintypes.DWORD),
+                ("PeakWorkingSetSize", ctypes.c_size_t),
+                ("WorkingSetSize", ctypes.c_size_t),
+                ("QuotaPeakPagedPoolUsage", ctypes.c_size_t),
+                ("QuotaPagedPoolUsage", ctypes.c_size_t),
+                ("QuotaPeakNonPagedPoolUsage", ctypes.c_size_t),
+                ("QuotaNonPagedPoolUsage", ctypes.c_size_t),
+                ("PagefileUsage", ctypes.c_size_t),
+                ("PeakPagefileUsage", ctypes.c_size_t),
+                ("PrivateUsage", ctypes.c_size_t),
+            ]
+
+        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        psapi = ctypes.WinDLL("psapi", use_last_error=True)
+        kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+        counters = ProcessMemoryCountersEx()
+        counters.cb = ctypes.sizeof(counters)
+        get_memory = psapi.GetProcessMemoryInfo
+        get_memory.argtypes = [
+            wintypes.HANDLE,
+            ctypes.POINTER(ProcessMemoryCountersEx),
+            wintypes.DWORD,
+        ]
+        get_memory.restype = wintypes.BOOL
+        if not get_memory(
+            kernel32.GetCurrentProcess(),
+            ctypes.byref(counters),
+            counters.cb,
+        ):
+            raise OSError(ctypes.get_last_error(), "GetProcessMemoryInfo failed")
+        return int(counters.PeakWorkingSetSize), "windows_peak_working_set"
+
+    if sys.platform.startswith("linux") or sys.platform == "darwin":
+        import resource
+
+        peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        multiplier = 1 if sys.platform == "darwin" else 1024
+        return int(peak * multiplier), "rusage_peak_rss"
+    raise OSError("peak_resident_memory_unavailable")
+
+
+def resource_receipt(budget_bytes, resumed):
+    try:
+        peak_bytes, method = process_peak_resident_bytes()
+        status = "measured"
+        budget_status = (
+            "not_configured"
+            if budget_bytes is None
+            else "within_budget"
+            if peak_bytes <= budget_bytes
+            else "exceeded"
+        )
+    except (OSError, ImportError, AttributeError):
+        peak_bytes, method = None, None
+        status = "unavailable"
+        budget_status = "unverified" if budget_bytes is not None else "not_configured"
+    return {
+        "status": status,
+        "peak_resident_bytes": peak_bytes,
+        "method": method,
+        "scope": "benchmark_process_high_water_including_model_load",
+        "cohort_scope": "resumed_suffix" if resumed else "full_process_run",
+        "budget_bytes": budget_bytes,
+        "budget_status": budget_status,
+    }
+
+
 def fast_score(reference, hypothesis):
     a, b = tokens(reference), tokens(hypothesis)
     raw_a, raw_b = tokens(reference, False), tokens(hypothesis, False)
@@ -374,6 +450,7 @@ def run(suite_path, candidate, output, mode="fixed"):
         "clinical_acceptance": False,
         "runtime": None,
         "active_case": None,
+        "resource_measurement": None,
     }
 
     def save():
@@ -444,7 +521,16 @@ def run(suite_path, candidate, output, mode="fixed"):
             report["complete"] = len(report["cases"]) == len(manifest["cases"])
             save()
     finally:
-        close()
+        try:
+            close()
+        finally:
+            budget = suite.get("resource_budget", {}).get(
+                "max_process_resident_bytes"
+            )
+            report["resource_measurement"] = resource_receipt(
+                budget, bool(report.get("resumed_from"))
+            )
+            save()
     return report
 
 
