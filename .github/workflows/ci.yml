@@ -36,6 +36,10 @@ jobs:
         run: python -m services.engineering_status
         env:
           MED_TRANSCRIPT_OFFLINE: '1'
+      - name: Emit commit and manifest provenance to CI log
+        run: python -m services.ci_provenance
+        env:
+          MED_TRANSCRIPT_CI_JOB: "${{ matrix.extras == 'dev,security' && 'test-dev-security' || 'test-dev-asr-security' }}"
   frontend:
     runs-on: ubuntu-24.04
     defaults:
@@ -45,6 +49,9 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.13'
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '22'
@@ -55,6 +62,11 @@ jobs:
         run: npm run build -- --emptyOutDir=false
       - run: npm run build
       - run: npm audit --omit=dev
+      - name: Emit commit and manifest provenance to CI log
+        run: python -m services.ci_provenance
+        working-directory: ../..
+        env:
+          MED_TRANSCRIPT_CI_JOB: frontend
   postgres:
     runs-on: ubuntu-24.04
     services:
@@ -80,12 +92,19 @@ jobs:
       - run: python -m pytest -q tests/test_postgres.py
         env:
           MED_TRANSCRIPT_TEST_POSTGRES: postgresql://med_test:synthetic-ci-password@localhost:5432/med_test
+      - name: Emit commit and manifest provenance to CI log
+        run: python -m services.ci_provenance
+        env:
+          MED_TRANSCRIPT_CI_JOB: postgres
   container:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.13'
       - run: docker compose config --quiet
         env:
           POSTGRES_PASSWORD: synthetic-ci-password
@@ -101,3 +120,7 @@ jobs:
           GOOGLE_WORKSPACE_DOMAIN: example.org
           MED_TRANSCRIPT_PUBLIC_ORIGIN: https://scribe.example.org
           MED_TRANSCRIPT_MEMBERS_FILE: ./config/members.example.json
+      - name: Emit commit and manifest provenance to CI log
+        run: python -m services.ci_provenance
+        env:
+          MED_TRANSCRIPT_CI_JOB: container

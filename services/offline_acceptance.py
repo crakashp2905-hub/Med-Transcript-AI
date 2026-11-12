@@ -14,6 +14,7 @@ from uuid import uuid4
 
 from services.offline import install
 from services.engineering_status import sha256
+from services.release_provenance import build_acceptance_provenance
 
 PYTEST_ACCEPTANCE_TIMEOUT_SECONDS = 1200
 CRITICAL_SKIPPED_TEST_PATHS = frozenset(
@@ -144,7 +145,14 @@ def acceptance(version, run_tests=True, run_build=True):
     from services.offline_demo import prepare, walkthrough
 
     start = time.perf_counter()
+    source_commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], text=True
+    ).strip()
     source_hashes = source_inventory()
+    inventory_commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], text=True
+    ).strip()
+    inventory_matches_commit = inventory_commit == source_commit
     results = {}
     preflight = inspect()
 
@@ -269,10 +277,17 @@ def acceptance(version, run_tests=True, run_build=True):
         return report
 
     step("clinical_binding_development", clinical_binding_development)
-    if source_inventory() != source_hashes:
+    final_commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], text=True
+    ).strip()
+    if (
+        not inventory_matches_commit
+        or source_inventory() != source_hashes
+        or final_commit != source_commit
+    ):
         results["source_integrity"] = {
             "status": "fail",
-            "reason": "source_changed_during_acceptance",
+            "reason": "source_or_commit_changed_during_acceptance",
         }
     else:
         results["source_integrity"] = {
@@ -281,14 +296,70 @@ def acceptance(version, run_tests=True, run_build=True):
         }
     from services.master_release import assess
 
+    replay = results.get("saved_metrics_replay", {}).get("result", {})
+    dataset_manifest_sha = replay.get("manifest_sha256")
+    dataset_lock = json.loads(
+        Path("evaluation/datasets/meddistract-detailed-v1/lock.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    if (
+        dataset_manifest_sha != dataset_lock.get("manifest_sha256")
+        or sha256("evaluation/datasets/meddistract-detailed-v1/manifest.json")
+        != dataset_manifest_sha
+        or sha256("evaluation/datasets/meddistract-detailed-v1/protocol.json")
+        != dataset_lock.get("protocol_sha256")
+    ):
+        results["saved_metrics_replay"] = {
+            "status": "fail",
+            "error_code": "dataset_provenance_mismatch",
+        }
+        dataset_manifest_sha = None
+    dataset_manifests = (
+        [
+            {
+                "path": "evaluation/datasets/meddistract-detailed-v1/manifest.json",
+                "sha256": dataset_manifest_sha,
+            }
+        ]
+        if dataset_manifest_sha
+        else []
+    )
+    ci_context = None
+    if os.getenv("GITHUB_RUN_ID") or os.getenv("GITHUB_JOB") or os.getenv("GITHUB_SHA"):
+        ci_context = {
+            "provider": "github-actions",
+            "run_id": os.getenv("GITHUB_RUN_ID"),
+            "attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
+            "job": os.getenv("GITHUB_JOB"),
+            "workflow": os.getenv("GITHUB_WORKFLOW"),
+            "ref": os.getenv("GITHUB_REF"),
+            "source_commit": os.getenv("GITHUB_SHA"),
+        }
+    try:
+        provenance = build_acceptance_provenance(
+            source_commit, source_hashes, dataset_manifests, ci_context
+        )
+    except ValueError as exc:
+        provenance = {
+            "source_commit": source_commit,
+            "status": "fail",
+            "error_code": str(exc),
+            "real_patient_release_authorized": False,
+        }
+        results["source_integrity"] = {
+            "status": "fail",
+            "reason": "acceptance_provenance_binding_failed",
+        }
+
     report = {
         "schema_version": "offline_acceptance_v1",
         "version": version,
         "recorded_at": datetime.now(timezone.utc).isoformat(),
-        "source_commit": subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], text=True
-        ).strip(),
+        "source_commit": source_commit,
         "source_sha256": source_hashes,
+        "code_manifest_sha256": provenance.get("code_manifest_sha256"),
+        "provenance": provenance,
         "preflight": preflight,
         "checks": results,
         "wall_seconds": time.perf_counter() - start,
