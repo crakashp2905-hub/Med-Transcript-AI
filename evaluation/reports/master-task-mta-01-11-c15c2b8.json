@@ -1,0 +1,75 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-01-11",
+  "source_commit": "c15c2b896e69e66c110d59b2f805b59ce9c165e1",
+  "source_sha256": {
+    "services/offline_acceptance.py": "bd907ac855c73f42a21335282ed92395cfd5ec1c01877a5d24d6005283eb97ff",
+    "tests/test_acceptance_reporting.py": "92dd45bfa92c11b4cee8d47578a45d3c2ae5b6ae3425715bd2925d718f498db0"
+  },
+  "checks": {
+    "acceptance_reporting_tests": {
+      "status": "pass",
+      "result": "4 passed"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "version": "0.15.13"
+    },
+    "ruff_check": {
+      "status": "pass",
+      "version": "0.15.13"
+    },
+    "critical_skips_fail_acceptance": {
+      "status": "pass",
+      "observed_pytest": "7 passed, 6 skipped",
+      "acceptance_status": "fail",
+      "critical_skipped_paths": [
+        "tests/test_channels.py",
+        "tests/test_encrypted_backup.py",
+        "tests/test_media.py",
+        "tests/test_postgres.py"
+      ]
+    }
+  },
+  "skip_audit": [
+    {
+      "path": "tests/test_encrypted_backup.py",
+      "line": 4,
+      "reason_category": "optional_dependency_unavailable",
+      "consequence": "tests using this dependency were not executed"
+    },
+    {
+      "path": "tests/test_media.py",
+      "line": 21,
+      "reason_category": "optional_dependency_unavailable",
+      "consequence": "tests using this dependency were not executed"
+    },
+    {
+      "path": "tests/test_media.py",
+      "line": 32,
+      "reason_category": "optional_dependency_unavailable",
+      "consequence": "tests using this dependency were not executed"
+    },
+    {
+      "path": "tests/test_media.py",
+      "line": 44,
+      "reason_category": "optional_dependency_unavailable",
+      "consequence": "tests using this dependency were not executed"
+    },
+    {
+      "path": "tests/test_channels.py",
+      "line": 140,
+      "reason_category": "optional_dependency_unavailable",
+      "consequence": "tests using this dependency were not executed"
+    },
+    {
+      "path": "tests/test_postgres.py",
+      "line": 21,
+      "reason_category": "integration_service_not_configured",
+      "consequence": "service integration behavior was not exercised"
+    }
+  ],
+  "limitations": [
+    "Skip evidence is local engineering evidence only. Missing PyAV, cryptography.cobblestone and a PostgreSQL integration DSN remain unresolved; container lane availability is independent."
+  ]
+}
