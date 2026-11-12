@@ -528,15 +528,15 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   tolerances are available. The E08 pilot's false insertion is a development
   signal, not a clinical error rate. Abstentions remain review-required and
   cannot be counted as successful corrections.
-- **MTA-ASR-I05:** Partial; not accepted as the required system-level test.
-  The application worker executes local ASR and builds immutable, timestamped
-  transcript versions, and the review service supports candidate-note review,
-  approval and integrity-checked exports. However, the existing end-to-end
-  transcription test injects `SyntheticAdapter`; the real tiny.en invocation
-  evidenced by E08 is a separate development decoding pilot, not an audio-to-
-  approved-export run. Scripted fixture approval is not clinician review. No
-  test currently binds one real local ASR invocation to the complete chain, so
-  this task remains incomplete and does not establish clinical readiness.
+- **MTA-ASR-I05:** Engineering system path is now exercised by
+  `tests/test_real_local_asr_workflow.py`: the existing licensed PriMock57
+  patient utterance passes through upload, PCM ingest, the actual locally
+  installed tiny.en Faster Whisper model, immutable native-timestamped
+  transcript, versioned source review, note verification, approval and
+  integrity-checked JSON export. The test passed against the current local
+  model artifacts. Review and approval actions are scripted for this public
+  mock fixture; they do not represent clinician review, clinical validity or
+  user acceptance. The frozen WER and independent safety gates remain separate.
 - **MTA-ASR-I06:** Partial. High-risk medication, dose/unit, negation and
   allergy edits are emitted as pending, non-adopted suggestions while original
   ASR text remains intact (`tests/test_asr_postprocess.py`: 5 passed). Transcript
@@ -614,6 +614,13 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   the pre-existing synthetic transcription workflow; the added integration
   attempt was removed rather than retaining a hanging test. The full
   audio-to-approved-export acceptance remains incomplete.
+- **MTA-ASR-I05 integration update:** The prior transport stall was traced to
+  the sandbox denying the Windows asyncio loopback socket used by Starlette's
+  `TestClient`; it was not an application-route deadlock. With permitted
+  loopback for the isolated test, the new real-model workflow test completed
+  audio upload through integrity-checked approved export (1 passed). This is
+  reproducible engineering-path evidence only: the review/approval actions are
+  scripted and do not close independent clinical acceptance.
 - **MTA-ASR-C02:** Verified and regression-pinned the current full-consultation
   fixed-window baseline before further segmentation claims. The source-bound
   ranking identifies `omi-med-stt-v1-native-empty` first at 16.41% clean / 17.22%
