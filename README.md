@@ -50,6 +50,11 @@ python -m services.expanded_summary
 
 Paid medical services may improve accuracy, but have not been measured on this corpus. See the [hosted-model evidence and comparison constraints](evaluation/reports/hosted-model-evidence-2026-10-24.md). The application dictation model remains unchanged; these text-only benchmarks do not establish clinical admission.
 
+Benchmark ranking now rejects reports explicitly classified as software
+transport or transcript replay. New offline ASR reports record whether real
+model inference ran; older hashed benchmark receipts remain labeled as legacy
+evidence when they bind a model revision and complete per-sample scores.
+
 The user revised the maximum normalized WER to **5%**. The expanded comparison uses **118 frozen clips from 20 new consultations across all five recording days: 2,264 reference words and 13m 50s of audio**, with all seven local configurations evaluated as text-only recognizers. The initial target was 120 clips; one sparse role supplied one eligible utterance instead of three. Historical datasets and results remain unchanged.
 
 During execution, [local progress](http://127.0.0.1:8766/expanded-progress.html) refreshes automatically. To serve it after restarting: run `python -m services.benchmark_progress --watch` and, in another terminal, `python -m http.server 8766 --bind 127.0.0.1 --directory evaluation`. The public evaluation directory is served locally; the private application data directory is excluded. Scores appear only for complete integrity-checked runs.

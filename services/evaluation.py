@@ -11,6 +11,7 @@ from uuid import uuid4
 
 from services.api.ingest import file_sha256, inspect_pcm_wav
 from services.asr.adapter import ASRFailure, FasterWhisperAdapter
+from services.asr.provenance import evaluation_evidence_class, execution_mode
 from services.asr.profiles import load_profiles
 from services.asr.transcripts import build_transcript
 from services.asr.evaluation_contract import (
@@ -150,6 +151,7 @@ def run(
     for sample in samples:
         started, hypothesis, error = time.perf_counter(), "", None
         raw = None
+        inference_mode = None
         audio = sample_paths[sample["sample_id"]]
         metadata = None
         audio_integrity_verified = False
@@ -160,6 +162,7 @@ def run(
             metadata = inspect_pcm_wav(audio)
             metadata["sha256"] = sample["audio_sha256"]
             raw = adapter.transcribe(audio, metadata, lambda: None)
+            inference_mode = execution_mode(raw)
             transcript = build_transcript(
                 raw,
                 metadata,
@@ -206,6 +209,7 @@ def run(
             "status": "failed" if error else "completed",
             "error_code": error,
             "output_classification": classify_output(error, raw, hypothesis),
+            "inference_mode": inference_mode or "processing_failure_before_inference",
             "speech_activity": "not_measured",
             "reference_uncertain": sample.get("reference_uncertain", False),
             "elapsed_seconds": round(time.perf_counter() - started, 4),
@@ -221,6 +225,7 @@ def run(
         "split_role": manifest["split_role"],
         "data_class": manifest["data_class"],
         "profile_id": profile.profile_id,
+        "evidence_class": evaluation_evidence_class(rows),
         "profile_sha256": profile.sha256,
         "model_revision": profile.revision,
         "scoring_profile": NORMALIZATION_POLICY,

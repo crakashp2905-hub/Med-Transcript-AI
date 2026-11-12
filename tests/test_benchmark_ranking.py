@@ -42,6 +42,7 @@ def corpus(tmp_path):
         "failed_samples": 0,
         "sample_count": 2,
         "normalized_wer": 0,
+        "evidence_class": "measured_transcription_quality",
         "profile_id": "test-profile",
         "profile_sha256": "a" * 64,
         "model_revision": "b" * 40,
@@ -126,6 +127,15 @@ def test_dataset_lock_cannot_relax_user_wer_limit(corpus):
     lock.write_text(json.dumps(body))
     with pytest.raises(ValueError, match="above 5%"):
         rank(path, lock, [], root)
+
+
+def test_transport_receipt_cannot_be_ranked_as_transcription_quality(corpus):
+    report = corpus[2]
+    report["evidence_class"] = "software_transport_test"
+    result = execute(corpus, {"transport-only": report})
+    assert result["ranked"] == []
+    assert result["unranked"][0]["status"] == "invalid_report"
+    assert "transport" in result["unranked"][0]["reason"]
 
 
 def test_committed_reference_audio_matches_frozen_manifest():

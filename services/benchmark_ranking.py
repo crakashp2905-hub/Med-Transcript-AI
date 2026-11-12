@@ -9,6 +9,7 @@ from fractions import Fraction
 from pathlib import Path
 
 from services.evaluation import PROJECT_MAX_NORMALIZED_WER, score, tokens, wer_gate
+from services.asr.provenance import is_quality_evidence
 from services.immutable_reports import publish_json_once, write_text_once
 
 
@@ -45,6 +46,10 @@ def rank(manifest_path, lock_path, entries, root):
             report_path = (Path(root) / entry["report"]).resolve()
             report_body = report_path.read_bytes()
             report = json.loads(report_body)
+            if not is_quality_evidence(report):
+                raise ValueError(
+                    "software_transport_is_not_transcription_quality_evidence"
+                )
             if (
                 report.get("manifest_sha256") != digest
                 or report.get("dataset_id") != manifest["dataset_id"]
