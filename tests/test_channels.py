@@ -149,6 +149,45 @@ def test_ninth_channel_rejected(tmp_path):
         inspect_pcm_wav(source)
 
 
+@pytest.mark.parametrize("swapped", [False, True])
+def test_channel_isolation_preserves_cross_talk_gain_and_physical_order(
+    tmp_path, swapped
+):
+    """Isolation must preserve the recording, not infer speakers or undo bleed."""
+    from array import array
+
+    from services.asr.channels import write_channel
+
+    rate = 16000
+    left_voice = [900, -900, 450, -450] * 4
+    right_voice = [120, 240, -120, -240] * 4  # deliberately asymmetric mic gain
+    left, right = left_voice.copy(), right_voice.copy()
+    # A synthetic overlap interval contains cross-talk in both physical channels.
+    left[4:8] = [left_voice[i] + right_voice[i] for i in range(4, 8)]
+    right[4:8] = [right_voice[i] + left_voice[i] // 10 for i in range(4, 8)]
+    channels = [right, left] if swapped else [left, right]
+    interleaved = array("h", (sample for frame in zip(*channels) for sample in frame))
+    source = tmp_path / f"cross-talk-{swapped}.wav"
+    with wave.open(str(source), "wb") as audio:
+        audio.setparams((2, 2, rate, 0, "NONE", "not compressed"))
+        audio.writeframes(interleaved.tobytes())
+
+    isolated = []
+    for channel in range(2):
+        target = tmp_path / f"isolated-{swapped}-{channel}.wav"
+        provenance = write_channel(source, target, channel)
+        with wave.open(str(target), "rb") as audio:
+            assert audio.getnchannels() == 1
+            assert audio.getframerate() == rate
+            isolated.append(audio.readframes(audio.getnframes()))
+        assert provenance["timeline_mapping"]["channel_index"] == channel
+
+    expected = [array("h", values).tobytes() for values in channels]
+    assert isolated == expected
+    # The two channels remain distinct despite overlap and unequal gain.
+    assert isolated[0] != isolated[1]
+
+
 def test_decoder_preserves_three_distinct_channels(tmp_path):
     pytest.importorskip("av")
     from services.media_decoder import normalize
