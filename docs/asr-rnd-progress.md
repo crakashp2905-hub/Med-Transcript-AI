@@ -441,3 +441,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   Status: partial; policy behavior is covered by transcript/review tests, but
   there is no comprehensive UI test proving every clinically role-dependent
   workflow blocks on unknown timing and role metadata.
+- **MTA-ASR-G10:** Partial. Current HTTP-to-worker integration tests exercise
+  crop, cancellation, resource contention and candidate publication using
+  generated fixtures/stub adapters; public-audio benchmark runs are separate
+  offline evaluation jobs. The full real-worker matrix across mono/stereo,
+  silence, clipping, crosstalk and interrupted model inference has not been
+  executed, so no real-worker speaker/timing accuracy claim is made.
