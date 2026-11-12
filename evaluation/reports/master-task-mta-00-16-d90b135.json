@@ -1,0 +1,52 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-00-16",
+  "source_commit": "d90b13558342cafd8b069e86c9e08d9aeeefe427",
+  "runtime": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "pytest 9.0.3",
+    "ruff": "ruff 0.15.13",
+    "web_build": "npm run build --prefix apps/clinician-web; TypeScript and Vite succeeded"
+  },
+  "runtime_sha256": "2a4e5be3babf1b47c1816ac458eaf76cf7bf89c9b11a686661ca6016891a6e6c",
+  "source_file_sha256": {
+    "README.md": "1d10ac23cdc633ae6ea42fb3ce8467432aa03e6339a0ba87af29b9389bafa2da",
+    "apps/clinician-web/src/App.tsx": "b6f438231c57f6b608974aff88df8ccd24d33aa9f0d677e5a1045fd63ed72428",
+    "docs/clinical-limitations.md": "bfa7a7576c5755e2865a642e8c5a1dd3af0a964fafe6d006bf180bbd708cd839",
+    "docs/model-cards.md": "f1c0291d215778e8123115a12612ac8b47374b8b3957688862d906d5df601aa9",
+    "services/clinical_limitations.py": "739d6eb8101a761a97f8407dfda5f069a8f92ce588463dbb29fd92f71eb0b219",
+    "services/model_cards.py": "2beed4679088ef193cfe7546763dd45e08de7462f2995fa530ffac8afd8f5372",
+    "services/review/engine.py": "321f1f0b8925da592374fc1ee5966bba063e5ea11831ef15f0070e82d1258d47",
+    "services/review/routers/exports.py": "0bc74322d21d240dcd3912a49464d0764ad7573a0a8b36c8e76d24bc9ffe1381",
+    "tests/test_clinical_limitations.py": "9602cb0773faa4ca6f366cd7289ef97b704ea84d27f6ecdd9941f2b334793950"
+  },
+  "checks": {
+    "limitations_consistency": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_clinical_limitations.py tests/test_model_cards.py -q",
+      "result": "2 passed, 1 upstream deprecation warning",
+      "coverage": [
+        "canonical wording present in README, UI, model-card docs",
+        "JSON and Markdown exports include limitations",
+        "FHIR attachment source carries the same limitations",
+        "generated model cards include canonical limitations"
+      ]
+    },
+    "lint": {
+      "status": "pass",
+      "command": "python -m ruff check services/clinical_limitations.py services/model_cards.py services/review/engine.py services/review/routers/exports.py tests/test_clinical_limitations.py",
+      "result": "All checks passed"
+    },
+    "web_build": {
+      "status": "pass",
+      "command": "npm run build --prefix apps/clinician-web",
+      "result": "TypeScript and Vite production build succeeded"
+    },
+    "loopback_export_e2e": {
+      "status": "blocked",
+      "command": "python -m pytest tests/test_review_workflow.py::test_full_review_approval_export_and_amendment -vv -o faulthandler_timeout=20",
+      "result": "Interrupted after faulthandler showed Windows asyncio TestClient blocked in socket accept while creating its loopback self-pipe; no endpoint assertion executed"
+    }
+  }
+}

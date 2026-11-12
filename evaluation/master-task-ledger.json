@@ -358,12 +358,36 @@
       "id": "MTA-00-16",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Document all limitations in README, product UI, exports and model cards in consistent language.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "README.md",
+        "apps/clinician-web/src/App.tsx",
+        "docs/clinical-limitations.md",
+        "docs/model-cards.md",
+        "services/clinical_limitations.py",
+        "services/model_cards.py",
+        "services/review/engine.py",
+        "services/review/routers/exports.py",
+        "tests/test_clinical_limitations.py",
+        "evaluation/reports/master-task-mta-00-16-d90b135.json"
+      ],
+      "source_commit": "d90b13558342cafd8b069e86c9e08d9aeeefe427",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-00-16-d90b135.json",
+          "report_sha256": "7964b60c49654f423afdcfd082abfd592806fd8f6bcac0ff4f91aba3fb1cf3f3",
+          "check": "limitations_consistency"
+        },
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-00-16-d90b135.json",
+          "report_sha256": "7964b60c49654f423afdcfd082abfd592806fd8f6bcac0ff4f91aba3fb1cf3f3",
+          "check": "web_build"
+        }
+      ],
+      "blocker": "The isolated copy/model-card tests and web production build pass. Existing end-to-end HTTP export workflow was blocked by this Windows environment stalling TestClient socketpair setup; no route-level loopback assertion ran."
     },
     {
       "id": "MTA-01-01",
