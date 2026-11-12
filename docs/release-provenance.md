@@ -19,7 +19,8 @@ the code and dataset digests; every acceptance check and CI job must pass. Run
 the check with:
 
 ```powershell
-python -m services.release_provenance evaluation/reports/release-candidate.json --root .
+$env:RELEASE_CANDIDATE_JSON = Read-Host "Path to the exported release candidate binding JSON"
+python -m services.release_provenance $env:RELEASE_CANDIDATE_JSON --root .
 ```
 
 This validates local byte integrity and linked metadata. It does not
