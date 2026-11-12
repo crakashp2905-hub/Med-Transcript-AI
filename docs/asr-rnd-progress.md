@@ -378,3 +378,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   tests/test_asr_candidate_receipt.py: 3 passed; Ruff and format checks pass.
   Status: partial; current application retranscription does not yet persist
   this unified receipt, and deterministic inference replay is unverified.
+- **MTA-ASR-G01:** Transcript segments now persist `timestamp_kind` separately
+  from model-estimated segment bounds. Faster-whisper output is labeled
+  `native_segment`; other engines default to `unknown`, and transcript-level
+  word alignment is explicitly `not_provided`. tests/test_transcript_timestamp_integrity.py
+  and test_timestamp_registry.py: 7 passed; Ruff and format checks pass.
+  Status: partial; no native word timestamps or validated forced aligner are
+  available, and segment bounds do not establish word alignment.

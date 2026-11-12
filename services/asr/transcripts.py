@@ -90,6 +90,9 @@ def build_transcript(
                 "language": "en",
                 "language_status": "uncertain",
                 "alignment_status": "model_estimated",
+                "timestamp_kind": "native_segment"
+                if profile.engine == "faster-whisper"
+                else "unknown",
                 "uncertainties": uncertainties,
                 "raw_start_seconds": start,
                 "raw_end_seconds": end,
@@ -152,6 +155,7 @@ def build_transcript(
             else "faster_whisper_1.2.1_defaults",
             "vad_filter": False,
             "word_timestamps": False,
+            "word_alignment_status": "not_provided",
             "inference_executed": raw.get("inference_executed") is True,
             "adapter_iteration": "finished",
             "clinical_coverage": "unverified",

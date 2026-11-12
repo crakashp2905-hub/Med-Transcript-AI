@@ -33,6 +33,27 @@ def test_transcript_records_gaps_and_preserves_original_timeline():
     )
     assert result["untranscribed_intervals"]
     assert result["provenance"]["timeline_mapping_status"] == "original_pcm_timeline"
+    assert result["segments"][0]["timestamp_kind"] == "unknown"
+    assert result["provenance"]["word_alignment_status"] == "not_provided"
+
+
+def test_native_whisper_segment_times_are_not_claimed_as_word_alignment():
+    profile = SimpleNamespace(**{**PROFILE.__dict__, "engine": "faster-whisper"})
+    result = build_transcript(
+        {
+            "duration_seconds": 2,
+            "segments": [{"start_seconds": 0, "end_seconds": 0.5, "text": "hello"}],
+        },
+        META,
+        "e",
+        "u",
+        profile,
+        "t",
+        1,
+    )
+    assert result["segments"][0]["timestamp_kind"] == "native_segment"
+    assert result["segments"][0]["alignment_status"] == "model_estimated"
+    assert result["provenance"]["word_alignment_status"] == "not_provided"
 
 
 @pytest.mark.parametrize(
