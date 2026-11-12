@@ -237,3 +237,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   unknown; targeted fallback was not evaluated. tests/test_asr_pareto.py:
   2 passed; Ruff and format checks pass. Status: partial; fresh resource
   measurements and a targeted-fallback arm remain outstanding.
+- **MTA-ASR-D04:** Added a Parakeet ONNX backend implementing the common
+  backend contract. It verifies the exact local artifact set and digests,
+  requires onnx-asr 0.12.0, uses CPU execution, disables downloads, and
+  declares text-only output without timestamps or confidence. Tests cover
+  missing weights and truthful capability receipts. Status: partial; although
+  frozen Parakeet benchmark outputs exist, this new adapter is not integrated
+  into application selected-window routing.
