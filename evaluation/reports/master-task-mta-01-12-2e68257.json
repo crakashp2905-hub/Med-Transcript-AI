@@ -1,0 +1,37 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-12",
+  "status": "pass",
+  "source_commit": "2e682579fc2ad7b3e76a1d8e51933b7c33ed28fd",
+  "checks": {
+    "critical_adversarial_scenarios": {
+      "status": "pass",
+      "mutation_kind": "synthetic_adversarial_input_mutation",
+      "killed_scenarios": 23,
+      "total_scenarios": 23,
+      "score_percent": 100.0,
+      "surviving_mutations": [],
+      "not_executed": [],
+      "pytest_exit_code": 0
+    },
+    "ci": {
+      "status": "pass",
+      "run_id": 43242836855,
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43242836855",
+      "jobs": {
+        "postgres": "success",
+        "test (dev,security)": "success",
+        "container": "success",
+        "test (dev,asr,security)": "success",
+        "frontend": "success"
+      }
+    }
+  },
+  "limitations": [
+    "This score measures rejection of developer-authored synthetic adversarial input scenarios, not source-code mutation coverage.",
+    "The identity-route case aggregates at least 50 assertions into one scenario.",
+    "The campaign is not independent clinical validation; model verdicts do not clear clinical approval gates.",
+    "A source-code mutation engine was not available locally and no external assets were fetched."
+  ],
+  "clinical_release_authorized": false
+}

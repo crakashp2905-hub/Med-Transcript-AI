@@ -821,12 +821,22 @@
       "id": "MTA-01-12",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add mutation tests for critical approval, auth, evidence, and retention rules; publish mutation score and surviving mutations.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-01-12-2e68257.json",
+        "services/critical_mutation_campaign.py",
+        "tests/test_critical_mutation_campaign.py"
+      ],
+      "source_commit": "2e682579fc2ad7b3e76a1d8e51933b7c33ed28fd",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-12-2e68257.json",
+          "report_sha256": "792e5d4dd22c494237241307271b7dc01a5b320a72ba18d30fdb96780347026f",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Source-code mutation score remains unmeasured because no mutation engine is installed; the measured score covers synthetic adversarial input scenarios only, and independent clinical validation is not available."
     },
     {
       "id": "MTA-01-13",
