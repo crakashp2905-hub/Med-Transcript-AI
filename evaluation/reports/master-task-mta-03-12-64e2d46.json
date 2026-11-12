@@ -1,0 +1,59 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-12",
+  "status": "pass",
+  "source_commit": "64e2d46dcec6e1156f4bf4cc5188418a0aebb83e",
+  "source_tree": "e13aacca1a7e9be5cd00d1c2c35c23b973a88e51",
+  "checks": {
+    "application_audio_segment_timeline_trace": {
+      "status": "pass",
+      "controls": [
+        "ASR transcript construction emits a timeline trace bound to the original audio SHA-256.",
+        "Trace lists segment IDs and source offsets with channel index, speaker, clinician-confirmed role state and uncertainty flags.",
+        "Coverage is computed as the union of segment time intervals so overlapping timestamps are not double-counted.",
+        "Untranscribed intervals and per-channel coverage are included for multichannel transcripts.",
+        "The trace labels clinical completeness unverified; timestamps are model estimates and remain subject to human source review.",
+        "Generated service catalog identifies the timeline module as reachable in the production flow."
+      ],
+      "local_checks": {
+        "transcript_timestamp_trace_tests": "6 passed",
+        "multichannel_trace_test": "1 passed",
+        "ruff": "pass",
+        "ruff_format": "pass",
+        "service_catalog_test": "2 passed"
+      },
+      "ci_run_id": 43302780656,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43302780656",
+      "ci_jobs": {
+        "test_dev_security": "success; 849 passed, 17 skipped, 2 warnings",
+        "test_dev_asr_security": "success; 877 passed, 3 skipped, 2 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43302780656
+  },
+  "runtime_sha256": "986475e2f3bbdc3c3ce51ca1118bf935815a8500a99c0db6206e5ee2b7a92976",
+  "source_sha256": {
+    "services/asr/timeline.py": "1621e0763a282a6801d35fa5e036bf1fadf33020cde9035c11ddd20203caf0f2",
+    "services/asr/transcripts.py": "58571fdc77632aadb02db36bebafd507db706ead72ef5f5e434cce4a32759ac5",
+    "services/asr/channels.py": "6641ccd2e2699c1a069dbc061aff9639f3321b82579b86729e521b2c4235a185",
+    "tests/test_transcript_timestamp_integrity.py": "e7f961986065a5b9ab59143c84d08bd5698b14fce4001a5e5961488d01c02e16",
+    "tests/test_channels.py": "0e4ae2ef6544f6bf7ad670ec34607a20d3a88a255c21277f2c3ac644aa6395af",
+    "docs/service-catalog.md": "a0062524799f9cc74577a1b8d769c87071269f7911307ee738c6c82d54531766"
+  },
+  "prior_failed_ci_report": "evaluation/reports/master-task-mta-03-12-catalog-failure-fc5a3de.json",
+  "limitations": [
+    "Coverage is timestamp occupancy only; it does not prove speech recognition completeness, word alignment, speaker attribution or clinical content correctness.",
+    "For multichannel audio, overall union coverage counts simultaneous channels once; per-channel coverage is reported separately.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}

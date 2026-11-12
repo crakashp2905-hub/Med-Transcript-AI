@@ -1691,11 +1691,21 @@
       "id": "MTA-03-12",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Generate audio-to-segment timeline trace with total coverage, gaps and uncertainty flags.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-12-64e2d46.json",
+        "evaluation/reports/master-task-mta-03-12-catalog-failure-fc5a3de.json"
+      ],
+      "source_commit": "64e2d46dcec6e1156f4bf4cc5188418a0aebb83e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-12-64e2d46.json",
+          "report_sha256": "3895d8fb3d973afbec20dfdaabfee64d8a1b33ae2730e7040c6a1dcccc17f668",
+          "check": "application_audio_segment_timeline_trace",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
