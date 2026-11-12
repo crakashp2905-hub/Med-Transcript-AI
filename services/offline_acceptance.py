@@ -15,6 +15,10 @@ from uuid import uuid4
 from services.offline import install
 from services.engineering_status import sha256
 from services.release_provenance import build_acceptance_provenance
+from services.artifact_provenance import (
+    acceptance_artifact_provenance,
+    validate_provenance,
+)
 
 PYTEST_ACCEPTANCE_TIMEOUT_SECONDS = 1200
 CRITICAL_SKIPPED_TEST_PATHS = frozenset(
@@ -384,6 +388,20 @@ def acceptance(version, run_tests=True, run_build=True):
             "The scripted silent-audio workflow tests software invariants, not speech recognition or clinician performance.",
         ],
     }
+    report["artifact_provenance"] = acceptance_artifact_provenance(
+        source_commit=source_commit,
+        dataset_manifests=dataset_manifests,
+        code_sha=provenance.get("code_manifest_sha256"),
+        config_hashes=preflight.get("config_sha256", {}),
+        created_at=report["recorded_at"],
+        status=(
+            "pass"
+            if all(check["status"] == "pass" for check in results.values())
+            else "fail"
+        ),
+        limitations=report["limitations"],
+    )
+    validate_provenance(report["artifact_provenance"])
     from services.release_policy import validate_matrix, validate_evidence_scope
 
     validate_matrix(report["release_matrix"])
