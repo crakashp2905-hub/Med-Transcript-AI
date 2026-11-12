@@ -168,3 +168,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   helper covers same-rate sample-index crops; resampled audio must use the
   separate measured-delay mapping contract, and runtime transcript integration
   remains pending.
+- **MTA-ASR-C08:** Added regression cases for exact shared suffix/prefix,
+  backtracking around a shared medical phrase, and repeated metformin mentions
+  in an overlap. tests/test_overlap_stitch_integrity.py exercises the existing
+  sequence-alignment reassembler. Status: partial; alignment remains
+  hypothesis-text-only and ambiguous repeated edge speech still requires
+  original-audio review.
