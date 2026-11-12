@@ -1,0 +1,86 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-15",
+  "status": "pass",
+  "source_commit": "09272a804c516d755770be1b0616a53ec4e1100c",
+  "source_tree": "665c59d5c747d257e4063ebdaea3669290b5d268",
+  "checks": {
+    "separate_transport_and_quality": {
+      "status": "pass",
+      "controls": [
+        "Transcript replay output is classified as software_transport_test.",
+        "New ASR evaluations attach row-level inference_mode and a report evidence_class.",
+        "Leaderboard rejects explicit transport/replay classifications.",
+        "Legacy reports require model/profile attribution and complete per-sample score receipts."
+      ]
+    },
+    "baseline_preservation": {
+      "status": "pass",
+      "controls": [
+        "Published PriMock57 screening leaderboard reproduces from unchanged source ledger and reports.",
+        "Detailed suite v4 and its v4 full-run receipt remain byte-for-byte unchanged.",
+        "Detailed suite v5 binds current execution source and explicitly does not claim a new inference run."
+      ]
+    },
+    "focused_tests": {
+      "status": "pass",
+      "summary": "63 passed",
+      "coverage": [
+        "ASR evidence classification",
+        "benchmark transport rejection",
+        "historical ranking reproduction",
+        "detailed suite v4/v5 provenance",
+        "release inventory"
+      ]
+    },
+    "ruff": {
+      "status": "pass",
+      "checks": [
+        "ruff check",
+        "ruff format --check"
+      ]
+    },
+    "ci_exact_commit": {
+      "status": "pass",
+      "run_id": 43309784164,
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43309784164",
+      "jobs": {
+        "test (dev,security)": "success; 865 passed, 17 skipped",
+        "test (dev,asr,security)": "success; 893 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release-summary": "success"
+      }
+    },
+    "failed_attempt_preserved": {
+      "status": "pass",
+      "run_id": 43308883117,
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43308883117",
+      "summary": "2 failures: frozen suite v4 pinned services/evaluation.py and release inventory excluded a legacy 64-character model digest; v4 retained and v5 added; digest validator corrected."
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43309784164,
+    "workflow_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43309784164"
+  },
+  "runtime_sha256": "86b6d185c713d259fc4b09b82c2a8032f1adb3571b79001a54f141bc7a6b12e7",
+  "source_sha256": {
+    "services/asr/provenance.py": "6498be53972cce8fba35fe9bb3a8bbe363270c90a71bc63917b050d533985e58",
+    "services/evaluation.py": "695d34c471f8c754af8bcfae8233235122e624f282206b1b4b2748dd5c74f012",
+    "services/benchmark_ranking.py": "53c8e05f0229dea097a9d7a8d24a5670bacbbebfdb3f0e24e1ff74f633c41116",
+    "tests/test_asr_evidence_class.py": "81550662c897ec5204f2b8ef8c4889ea2750fbf54a24b24812b29a107d68c563",
+    "tests/test_benchmark_ranking.py": "4debe4017428817a8da4b6b11a14057385688db96016a305d72341eb90645f5c",
+    "tests/test_detailed_benchmark.py": "4a3442335f04c40b26fa38a15454cc8a04a8c09f55a781d74bf5b0ebc31d4bb3",
+    "evaluation/detailed-suite-v4.json": "eb273b302226a3355041e8e5947f71d9abed432e735ecdc9745dec17ef48d332",
+    "evaluation/detailed-suite-v5.json": "6c88de86503726ef1ed71fb831ef02c01c3920c929f96bae6157b055f94e0ed4",
+    "evaluation/benchmark-ledger.json": "125092be4ddbc833e4b9badac96d964c72597e26bd327c2678429e0797b87430",
+    "evaluation/leaderboard.json": "0384cb46d5aea1e037b0219dfaa74bf6142f3408bff7e284dd10fdb56058c703"
+  },
+  "limitations": [
+    "Historical reports without an explicit evidence_class are retained as legacy measurements only when they bind a model/profile and complete sample score counts; they are not retroactively marked as real inference at row level.",
+    "This evidence distinction does not establish clinical quality, clinical acceptance, or release authorization."
+  ]
+}

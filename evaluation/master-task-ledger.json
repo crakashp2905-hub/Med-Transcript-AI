@@ -1762,11 +1762,32 @@
       "id": "MTA-03-15",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create clean separation between software transport test receipts and actual transcription-quality evidence.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/asr/provenance.py",
+        "services/evaluation.py",
+        "services/benchmark_ranking.py",
+        "tests/test_asr_evidence_class.py",
+        "tests/test_benchmark_ranking.py",
+        "evaluation/detailed-suite-v5.json",
+        "evaluation/reports/master-task-mta-03-15-09272a8.json"
+      ],
+      "source_commit": "09272a804c516d755770be1b0616a53ec4e1100c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-15-09272a8.json",
+          "report_sha256": "989b4f6bb543701c2c833bd528680e01b86aca2864b02527b6e052a2c68d2885",
+          "check": "separate_transport_and_quality",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-03-15-09272a8.json",
+          "report_sha256": "989b4f6bb543701c2c833bd528680e01b86aca2864b02527b6e052a2c68d2885",
+          "check": "ci_exact_commit",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
