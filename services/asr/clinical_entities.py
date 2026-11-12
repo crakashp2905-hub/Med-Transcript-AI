@@ -60,7 +60,9 @@ def extract_medication_entities(text: str) -> list[ClinicalEntity]:
         uncertain = bool(
             re.search(r"\b(?:maybe|possibly|perhaps|might)\b", clause, re.I)
         )
-        assertion = "uncertain" if uncertain else "negated" if negated else "affirmed"
+        assertion: Literal["affirmed", "negated", "uncertain"] = (
+            "uncertain" if uncertain else "negated" if negated else "affirmed"
+        )
         binding_id = f"medication-{index}"
         entities.append(
             ClinicalEntity(
