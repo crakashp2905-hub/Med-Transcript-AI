@@ -472,12 +472,23 @@
       "id": "MTA-01-10",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add clean-directory repro script which never mutates developer data, old evidence or production-like fixtures.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "scripts/repro_clean.py",
+        "tests/test_clean_repro.py",
+        "evaluation/reports/master-task-mta-01-10-45b8f07.json"
+      ],
+      "source_commit": "45b8f07bea3bac574b18a6596acd128eea4a8ac9",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-10-45b8f07.json",
+          "report_sha256": "f92a27a4ee033dab10db760058c169369785cd4c896eda532c2132815b133744",
+          "check": "clean_snapshot_self_tests",
+          "status": "pass"
+        }
+      ],
+      "blocker": "The broader isolated test attempt timed out at 180 seconds; a full isolated test-suite pass remains unestablished."
     },
     {
       "id": "MTA-01-11",

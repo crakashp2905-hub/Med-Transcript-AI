@@ -229,3 +229,17 @@ the Windows npm-version subprocess probe could not invoke npm, external Python
 and npm caches were not inventoried, and Docker image digests cannot be
 verified because Docker is unavailable. No package installation, network
 fetch, or paid call was made.
+
+## MTA-01-10 clean-directory reproduction
+
+The clean runner is committed at `45b8f07bea3bac574b18a6596acd128eea4a8ac9`.
+[`scripts/repro_clean.py`](../scripts/repro_clean.py) exports only committed
+files with `git archive` into an OS temporary directory, rejects links and
+path traversal, sets offline flags, disables pytest cache writes, and removes
+the temporary snapshot after the run. Its exact-commit self-test passed 2
+tests in 2.98 seconds and reported no mutation of the checkout, prior evidence
+or original fixtures. The receipt
+[`master-task-mta-01-10-45b8f07.json`](../evaluation/reports/master-task-mta-01-10-45b8f07.json)
+also retains a broader two-module isolated run that hit the 180-second timeout;
+the full test suite is therefore not claimed as passing. `--all-tests` exposes
+that longer run with a 1,200-second cap.

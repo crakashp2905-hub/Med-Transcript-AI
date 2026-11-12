@@ -1,0 +1,34 @@
+{
+  "schema_version": "master_task_clean_directory_repro_v1",
+  "task_id": "MTA-01-10",
+  "source_commit": "45b8f07bea3bac574b18a6596acd128eea4a8ac9",
+  "checks": {
+    "clean_snapshot_self_tests": {
+      "status": "pass",
+      "result": "2 passed in 2.98s from a git archive extracted outside the checkout; committed files only; temporary directory removed"
+    },
+    "local_targeted_tests": {
+      "status": "pass",
+      "result": "2 passed in 3.55s"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "ruff check and ruff format --check passed for scripts/repro_clean.py and tests/test_clean_repro.py"
+    },
+    "broader_clean_directory_tests": {
+      "status": "timeout",
+      "source_commit": "7a88b3b7445d9f1427d74210b9376801d7288255",
+      "result": "The two-module clean snapshot run exceeded 180 seconds; runner returned exit code 124. No test summary was available and no pass is claimed."
+    }
+  },
+  "isolation": {
+    "repository_modified": false,
+    "previous_evidence_modified": false,
+    "original_production_fixtures_modified": false,
+    "network_fetches_allowed": false,
+    "source_snapshot": "git archive of committed HEAD"
+  },
+  "new_installations_attempted": 0,
+  "external_calls_attempted": 0,
+  "clinical_release_authorized": false
+}
