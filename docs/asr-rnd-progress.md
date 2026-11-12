@@ -209,3 +209,14 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   evaluation. Tests cover exact gate boundary and each denial reason. Status:
   partial; no deployment promotion command is wired to this policy, so current
   profiles remain explicitly not admitted.
+- **MTA-ASR-D07:** Implemented and ran a post-hoc ROVER-style confusion-network
+  vote on three frozen fixed-window engines over the same 16 consultation
+  cases. Report evaluation/reports/rover-meddistract-detailed-v2-final.json
+  SHA-256 4a47684f4b148bc57e8ce0bdde18665a108dfbc51e8cf39a3fae0063174b3f93
+  binds all source report hashes, model configuration digests, the frozen
+  suite, and the ROVER/scorer code hashes. ROVER: 5,617/27,366 edits (20.525%);
+  faster-whisper large-v3: 5,798 (21.187%); Parakeet: 6,071 (22.184%); Omi:
+  7,708 (28.166%). Two Omi failures are retained and mark those ROVER cases
+  failed. tests/test_rover.py: 5 passed; Ruff and format checks pass. Status:
+  partial; this unweighted voting baseline remains far above the 5% gate and
+  has no clinical critical-token validation or inference-mode promotion.
