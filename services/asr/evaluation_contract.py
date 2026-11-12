@@ -10,6 +10,10 @@ SHA256 = re.compile(r"^[a-f0-9]{64}$")
 NORMALIZATION_POLICY = "lowercase_words_preserve_decimals_units_negation_v1"
 FAILURE_POLICY = "empty_hypothesis_full_reference_deletions"
 NORMALIZATION_PATTERN = r"\d+(?:\.\d+)?|[a-z]+(?:['-][a-z]+)*"
+REFERENCE_UNCERTAINTY_POLICIES = {
+    "all_words_v1",
+    "all_words_with_uncertainty_strata_v1",
+}
 
 
 def _reference_word_count(text):
@@ -57,6 +61,11 @@ def validate_manifest(manifest):
             or SHA256.fullmatch(sample["audio_sha256"]) is None
         ):
             raise ValueError("incomplete_evaluation_sample")
+        if (
+            "reference_uncertain" in sample
+            and type(sample["reference_uncertain"]) is not bool
+        ):
+            raise ValueError("invalid_reference_uncertainty_flag")
         role = sample.get("speaker_role", "unknown")
         if role not in ("doctor", "clinician", "patient", "unknown"):
             raise ValueError("invalid_reference_role")
@@ -121,9 +130,20 @@ def observed_channel_map(sample, channel_count):
     ]
 
 
-def make_contract(*, manifest, manifest_sha256, profile, recordings):
+def make_contract(
+    *,
+    manifest,
+    manifest_sha256,
+    profile,
+    recordings,
+    reference_uncertainty_policy="all_words_v1",
+):
     samples = validate_manifest(manifest)
     sample_by_id = {sample["sample_id"]: sample for sample in samples}
+    if not isinstance(reference_uncertainty_policy, str) or (
+        reference_uncertainty_policy not in REFERENCE_UNCERTAINTY_POLICIES
+    ):
+        raise ValueError("unsupported_reference_uncertainty_policy")
     if len(recordings) != len(samples):
         raise ValueError("incomplete_evaluation_run")
     for row in recordings:
@@ -136,6 +156,8 @@ def make_contract(*, manifest, manifest_sha256, profile, recordings):
             or row.get("reference_sha256")
             != hashlib.sha256(sample["reference"].encode("utf-8")).hexdigest()
             or row.get("reference_words") != _reference_word_count(sample["reference"])
+            or row.get("reference_uncertain", sample.get("reference_uncertain", False))
+            != sample.get("reference_uncertain", False)
         ):
             raise ValueError("evaluation_recording_manifest_mismatch")
     decoder = {
@@ -149,6 +171,19 @@ def make_contract(*, manifest, manifest_sha256, profile, recordings):
         "word_timestamps": False,
         "condition_on_previous_text": False,
     }
+    bound_recordings = [
+        {
+            **row,
+            "reference_uncertain": sample_by_id[row["sample_id"]].get(
+                "reference_uncertain", False
+            ),
+        }
+        for row in recordings
+    ]
+    uncertainty_policy = {
+        "id": reference_uncertainty_policy,
+        "primary_scoring": "all_reference_words_v1",
+    }
     contract = {
         "schema_version": "offline_asr_evaluation_contract_v1",
         "dataset_id": manifest["dataset_id"],
@@ -158,7 +193,11 @@ def make_contract(*, manifest, manifest_sha256, profile, recordings):
         "license_id": manifest["license_id"],
         "rights_reviewed": manifest["rights_reviewed"],
         "manifest_sha256": manifest_sha256,
-        "recordings": recordings,
+        "recordings": bound_recordings,
+        "reference_uncertainty_policy": {
+            **uncertainty_policy,
+            "sha256": content_sha256(uncertainty_policy),
+        },
         "model": {
             "profile_id": profile.profile_id,
             "revision": profile.revision,
@@ -274,6 +313,8 @@ def validate_contract(contract):
             or row["reference_words"] < 0
             or row.get("status") not in ("completed", "failed")
             or type(row.get("audio_integrity_verified")) is not bool
+            or "reference_uncertain" in row
+            and type(row["reference_uncertain"]) is not bool
             or row.get("status") == "completed"
             and not row["audio_integrity_verified"]
         ):
@@ -300,6 +341,21 @@ def validate_contract(contract):
             failed_total += 1
         reference_total += row["reference_words"]
         ids.add(row["sample_id"])
+
+    uncertainty = contract.get("reference_uncertainty_policy")
+    if uncertainty is not None:
+        policy = uncertainty.get("id") if isinstance(uncertainty, dict) else None
+        policy_body = {
+            "id": policy,
+            "primary_scoring": "all_reference_words_v1",
+        }
+        if (
+            not isinstance(policy, str)
+            or policy not in REFERENCE_UNCERTAINTY_POLICIES
+            or uncertainty.get("primary_scoring") != policy_body["primary_scoring"]
+            or uncertainty.get("sha256") != content_sha256(policy_body)
+        ):
+            raise ValueError("invalid_reference_uncertainty_policy")
 
     denominator = contract.get("denominator")
     if (

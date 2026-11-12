@@ -16,6 +16,7 @@ from services.asr.transcripts import build_transcript
 from services.asr.evaluation_contract import (
     FAILURE_POLICY,
     NORMALIZATION_POLICY,
+    REFERENCE_UNCERTAINTY_POLICIES,
     make_contract,
     observed_channel_map,
     validate_manifest,
@@ -112,6 +113,7 @@ def run(
     output_path,
     retain_hypotheses=False,
     max_normalized_wer=PROJECT_MAX_NORMALIZED_WER,
+    reference_uncertainty_policy="all_words_v1",
 ):
     wer_gate(
         {"reference_words": 1, "normalized_edits": 0, "failed_samples": 0},
@@ -119,7 +121,16 @@ def run(
     )
     if max_normalized_wer > PROJECT_MAX_NORMALIZED_WER:
         raise ValueError("Project policy forbids a normalized WER maximum above 5%")
+    if not isinstance(reference_uncertainty_policy, str) or (
+        reference_uncertainty_policy not in REFERENCE_UNCERTAINTY_POLICIES
+    ):
+        raise ValueError("Unsupported reference uncertainty policy")
     source = Path(manifest_path).resolve()
+    output = Path(output_path)
+    if output.exists():
+        raise FileExistsError(
+            "Evaluation reports are immutable; choose a new output path"
+        )
     manifest = json.loads(source.read_text(encoding="utf-8"))
     samples = validate_manifest(manifest)
     manifest_sha256 = file_sha256(source)
@@ -131,6 +142,10 @@ def run(
         sample_paths[sample["sample_id"]] = audio
     profile.verify_artifacts()
     rows, total_words, total_edits, raw_words, raw_edits, failures = [], 0, 0, 0, 0, 0
+    uncertainty_strata = {
+        "uncertain": {"reference_words": 0, "normalized_edits": 0, "samples": 0},
+        "not_flagged": {"reference_words": 0, "normalized_edits": 0, "samples": 0},
+    }
     adapter = FasterWhisperAdapter(profile)
     for sample in samples:
         started, hypothesis, error = time.perf_counter(), "", None
@@ -164,6 +179,13 @@ def run(
         if error:
             failures += 1
         metrics = score(sample["reference"], hypothesis)
+        uncertainty_label = (
+            "uncertain" if sample.get("reference_uncertain", False) else "not_flagged"
+        )
+        stratum = uncertainty_strata[uncertainty_label]
+        stratum["reference_words"] += metrics["reference_words"]
+        stratum["normalized_edits"] += metrics["normalized_edits"]
+        stratum["samples"] += 1
         total_words += metrics["reference_words"]
         total_edits += metrics["normalized_edits"]
         raw_words += metrics["raw_reference_words"]
@@ -185,6 +207,7 @@ def run(
             "error_code": error,
             "output_classification": classify_output(error, raw, hypothesis),
             "speech_activity": "not_measured",
+            "reference_uncertain": sample.get("reference_uncertain", False),
             "elapsed_seconds": round(time.perf_counter() - started, 4),
             **metrics,
         }
@@ -201,6 +224,17 @@ def run(
         "profile_sha256": profile.sha256,
         "model_revision": profile.revision,
         "scoring_profile": NORMALIZATION_POLICY,
+        "reference_uncertainty_analysis": {
+            "policy": reference_uncertainty_policy,
+            "primary_scoring_includes_all_reference_words": True,
+            "flagged_samples": uncertainty_strata["uncertain"]["samples"],
+            "flagged_reference_words": uncertainty_strata["uncertain"][
+                "reference_words"
+            ],
+            "strata": uncertainty_strata
+            if reference_uncertainty_policy == "all_words_with_uncertainty_strata_v1"
+            else None,
+        },
         "sample_count": len(rows),
         "failed_samples": failures,
         "reference_words": total_words,
@@ -212,21 +246,26 @@ def run(
         "clinical_release_gate": "not_evaluated",
         "samples": rows,
     }
+    if reference_uncertainty_policy == "all_words_with_uncertainty_strata_v1":
+        for stratum in uncertainty_strata.values():
+            words = stratum["reference_words"]
+            stratum["normalized_wer"] = (
+                stratum["normalized_edits"] / words if words else None
+            )
     report["evaluation_contract"] = make_contract(
         manifest=manifest,
         manifest_sha256=manifest_sha256,
         profile=profile,
         recordings=rows,
+        reference_uncertainty_policy=reference_uncertainty_policy,
     )
     validate_contract(report["evaluation_contract"])
     if file_sha256(source) != manifest_sha256:
         raise ValueError("evaluation_manifest_changed_during_run")
     report["wer_gate"] = wer_gate(report, max_normalized_wer)
-    output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
+    with output.open("x", encoding="utf-8", newline="\n") as destination:
+        destination.write(json.dumps(report, ensure_ascii=False, indent=2))
     return {key: value for key, value in report.items() if key != "samples"}
 
 
@@ -239,6 +278,12 @@ def main():
     parser.add_argument("--profile-id", required=True)
     parser.add_argument("--out", default="data/evaluation-results.json")
     parser.add_argument("--retain-hypotheses", action="store_true")
+    parser.add_argument(
+        "--reference-uncertainty-policy",
+        choices=sorted(REFERENCE_UNCERTAINTY_POLICIES),
+        default="all_words_v1",
+        help="Versioned secondary analysis policy; primary scoring always includes every reference word.",
+    )
     parser.add_argument(
         "--max-normalized-wer",
         type=float,
@@ -255,6 +300,7 @@ def main():
         args.out,
         args.retain_hypotheses,
         args.max_normalized_wer,
+        args.reference_uncertainty_policy,
     )
     print(json.dumps(report))
     if report.get("wer_gate", {}).get("status") == "fail":

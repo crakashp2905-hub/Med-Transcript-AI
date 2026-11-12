@@ -82,6 +82,7 @@ def test_duplicate_case_missing_reference_bad_digest_and_role_are_rejected():
         ("reference", None),
         ("audio_sha256", "not-a-digest"),
         ("speaker_role", "clinician-or-patient-guessed"),
+        ("reference_uncertain", "maybe"),
     ):
         manifest = manifest_for("d" * 64)
         manifest["samples"][1][key] = value
@@ -168,6 +169,7 @@ def test_evaluation_run_emits_contract_and_keeps_failed_reference_words(
         target.setframerate(16000)
         target.writeframes(b"\x00\x00" * 1600)
     manifest = manifest_for(file_sha256(audio))
+    manifest["samples"][0]["reference_uncertain"] = True
     manifest_path = tmp_path / "manifest.json"
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     output_path = tmp_path / "result.json"
@@ -201,7 +203,35 @@ def test_evaluation_run_emits_contract_and_keeps_failed_reference_words(
     ]
     assert contract["denominator"]["reference_words"] == 5
     assert contract["denominator"]["failed_samples"] == 1
+    assert report["reference_words"] == 5
+    assert report["reference_uncertainty_analysis"][
+        "primary_scoring_includes_all_reference_words"
+    ]
+    assert contract["recordings"][0]["reference_uncertain"] is True
     assert report["wer_gate"]["status"] == "fail"
+
+    alternate_path = tmp_path / "result-with-uncertainty-strata.json"
+    run(
+        manifest_path,
+        Profile(),
+        alternate_path,
+        reference_uncertainty_policy="all_words_with_uncertainty_strata_v1",
+    )
+    alternate = json.loads(alternate_path.read_text(encoding="utf-8"))
+    assert alternate["reference_words"] == report["reference_words"]
+    assert (
+        alternate["evaluation_contract"]["contract_sha256"]
+        != contract["contract_sha256"]
+    )
+    assert (
+        alternate["reference_uncertainty_analysis"]["strata"]["uncertain"][
+            "reference_words"
+        ]
+        == 2
+    )
+
+    with pytest.raises(FileExistsError, match="immutable"):
+        run(manifest_path, Profile(), output_path)
 
 
 def test_malformed_manifest_fails_before_model_admission_or_report(
