@@ -126,6 +126,13 @@ class ReviewService:
     ):
         audit = self.audit
         stamp = self.stamp
+        if parent is not None:
+            parent_row = con.execute(
+                "SELECT id FROM documents WHERE id=? AND encounter=? AND kind='note'",
+                (str(parent), str(eid)),
+            ).fetchone()
+            if parent_row is None:
+                raise ReviewStateError(409, "amendment_parent_not_found")
         validate_evidence(facts, tx)
         version = con.execute(
             "SELECT COALESCE(MAX(version),0)+1 FROM documents WHERE encounter=? AND kind='note'",

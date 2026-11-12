@@ -310,7 +310,9 @@ def render_sections(facts, transcript_version_id=None):
                     "text": fact["text"],
                     "fact_ids": [fact["fact_id"]],
                     "origin": fact["origin"],
-                    "source_version_id": transcript_version_id,
+                    "source_version_id": transcript_version_id
+                    if fact["origin"] == "source_linked"
+                    else None,
                     "evidence": fact.get("evidence")
                     if fact.get("origin") == "source_linked"
                     else None,

@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta, timezone
+import json
+from pathlib import Path
 from uuid import uuid4
 
 import pytest
@@ -135,3 +137,54 @@ def test_note_statements_and_model_receipts_have_typed_source_and_digest_fields(
             end_char=4,
             quote="words",
         )
+
+
+def test_typed_records_reject_duplicate_segments_and_unresolved_note_links():
+    transcript_id = uuid4()
+    encounter_id = uuid4()
+    segment_id = uuid4()
+    transcript = {
+        "id": transcript_id,
+        "encounter_id": encounter_id,
+        "audio_asset_id": uuid4(),
+        "version": 1,
+        "duration_ms": 100,
+        "segments": [
+            {
+                "segment_id": segment_id,
+                "start_ms": 0,
+                "end_ms": 50,
+                "text": "Cough",
+                "role": "patient",
+            },
+            {
+                "segment_id": segment_id,
+                "start_ms": 50,
+                "end_ms": 100,
+                "text": "Fever",
+                "role": "patient",
+            },
+        ],
+    }
+    with pytest.raises(ValueError, match="invalid_persisted_record_schema"):
+        contracts.validate_record("transcript", transcript)
+
+    fixture = Path(__file__).parent / "fixtures/domain_records/legacy_note_v0.json"
+    note = json.loads(fixture.read_text(encoding="utf-8"))
+    note["sections"][0]["statements"][0]["fact_ids"] = [str(uuid4())]
+    with pytest.raises(ValueError, match="invalid_persisted_record_schema"):
+        contracts.validate_record("note", note)
+
+
+def test_note_statement_ids_and_amendment_parent_references_are_consistent():
+    fixture = Path(__file__).parent / "fixtures/domain_records/legacy_note_v0.json"
+    note = json.loads(fixture.read_text(encoding="utf-8"))
+    duplicate = json.loads(json.dumps(note["sections"][0]["statements"][0]))
+    note["sections"].append({"key": "objective", "statements": [duplicate]})
+    with pytest.raises(ValueError, match="invalid_persisted_record_schema"):
+        contracts.validate_record("note", note)
+
+    note = json.loads(fixture.read_text(encoding="utf-8"))
+    note["parent_version_id"] = note["id"]
+    with pytest.raises(ValueError, match="invalid_persisted_record_schema"):
+        contracts.validate_record("note", note)

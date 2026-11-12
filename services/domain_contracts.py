@@ -96,6 +96,13 @@ class TranscriptVersion(StableRecord):
     duration_ms: float = Field(gt=0, le=3600000)
     segments: list[TranscriptSegment] = Field(max_length=10000)
 
+    @model_validator(mode="after")
+    def unique_segment_ids(self):
+        segment_ids = [segment.segment_id for segment in self.segments]
+        if len(segment_ids) != len(set(segment_ids)):
+            raise ValueError("duplicate_transcript_segment_id")
+        return self
+
 
 class NoteStatement(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -117,6 +124,7 @@ class NoteVersion(StableRecord):
     id: UUID
     encounter_id: UUID
     version: int = Field(gt=0)
+    parent_version_id: UUID | None = None
     transcript_version_id: UUID
     transcript_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     verification_report_id: UUID
@@ -128,6 +136,52 @@ class NoteVersion(StableRecord):
         keys = [section.key for section in self.sections]
         if len(keys) != len(set(keys)):
             raise ValueError("duplicate_note_section")
+        return self
+
+    @model_validator(mode="after")
+    def note_references_are_consistent(self):
+        if self.parent_version_id == self.id:
+            raise ValueError("note_cannot_amend_itself")
+        facts = {fact.fact_id: fact for fact in self.facts}
+        if len(facts) != len(self.facts):
+            raise ValueError("duplicate_note_fact_id")
+        statements = [
+            statement for section in self.sections for statement in section.statements
+        ]
+        statement_ids = [statement.statement_id for statement in statements]
+        if len(statement_ids) != len(set(statement_ids)):
+            raise ValueError("duplicate_note_statement_id")
+        linked_facts = []
+        for statement in statements:
+            if len(statement.fact_ids) != len(set(statement.fact_ids)):
+                raise ValueError("duplicate_statement_fact_reference")
+            referenced = [facts.get(fact_id) for fact_id in statement.fact_ids]
+            if any(fact is None for fact in referenced):
+                raise ValueError("note_statement_fact_reference_missing")
+            origins = {fact.origin for fact in referenced if fact is not None}
+            if len(origins) != 1 or statement.origin not in origins:
+                raise ValueError("note_statement_origin_mismatch")
+            origin = next(iter(origins))
+            if origin == "source_linked":
+                if statement.source_version_id != self.transcript_version_id:
+                    raise ValueError("note_statement_source_version_mismatch")
+                if statement.evidence is None or any(
+                    fact is None or fact.evidence != statement.evidence
+                    for fact in referenced
+                ):
+                    raise ValueError("note_statement_evidence_mismatch")
+            elif statement.evidence is not None or any(
+                fact is None or fact.evidence is not None for fact in referenced
+            ):
+                raise ValueError("clinician_statement_evidence_mismatch")
+            linked_facts.extend(statement.fact_ids)
+        if len(linked_facts) != len(set(linked_facts)):
+            raise ValueError("duplicate_note_fact_statement_link")
+        active_facts = {
+            fact.fact_id for fact in self.facts if not getattr(fact, "excluded", False)
+        }
+        if set(linked_facts) != active_facts:
+            raise ValueError("note_statement_fact_coverage_mismatch")
         return self
 
 
