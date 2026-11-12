@@ -1367,11 +1367,20 @@
       "id": "MTA-02-15",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Keep `unknown` and `not stated` distinct from affirmative and negative claims in every serialized contract.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-15-a1a74e9.json"
+      ],
+      "source_commit": "a1a74e92ec97c338fc0c4d5e4ed7411f278660bd",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-15-a1a74e9.json",
+          "report_sha256": "b335b5c19ffb8bfa426080d4902630c921bb372d9027cadc64d1a090d9c6fe95",
+          "check": "serialized_clinical_assertion_states",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

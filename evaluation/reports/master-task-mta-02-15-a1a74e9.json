@@ -1,0 +1,61 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-15",
+  "status": "pass",
+  "source_commit": "a1a74e92ec97c338fc0c4d5e4ed7411f278660bd",
+  "source_tree": "005c81c1555edb474e224dc9e1cda78e9a3df803",
+  "checks": {
+    "serialized_clinical_assertion_states": {
+      "status": "pass",
+      "canonical_values": [
+        "affirmed",
+        "negated",
+        "uncertain",
+        "not_stated"
+      ],
+      "controls": [
+        "A shared ClinicalAssertion Literal is used by facts, local extraction proposals, medication entities, relationship analysis and evaluation claim signatures.",
+        "Independent annotation intake derives its accepted assertion vocabulary from the canonical type.",
+        "Unknown subject remains a separate field value; blank or explicitly undocumented assertion content maps to not_stated.",
+        "Questions and hedges map to uncertain; explicit negative language maps to negated; positive reports map to affirmed.",
+        "No not-stated or unknown assertion is converted into a negative claim."
+      ],
+      "local_checks": {
+        "clinical_state_and_regression_suite": "44 passed",
+        "ruff": "pass",
+        "mypy_ignore_missing_imports": "pass"
+      },
+      "ci_run_id": 43286296101,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43286296101",
+      "ci_jobs": {
+        "test_dev_security": "success; 808 passed, 17 skipped",
+        "test_dev_asr_security": "success; 836 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "source_sha256": {
+    "services/review/models.py": "4d14db8fc78e50103ee5433a16c030b77ed3809d664af993aa0fe3ab83017dac",
+    "services/review/clinical_models.py": "00166adf533c5bb62755f749e20bc69b9ffb21a81c41b3a20ada1a769efc4ff5",
+    "services/asr/clinical_entities.py": "be2f22460544ef47fcb02fe6a51452e25d800c0f400496a15e12c028a01b2f02",
+    "services/review/relationships.py": "2e93336fb286dd78294df46e46a9ca816bb9c37eac41777c74090105dd9ddaba",
+    "services/evaluation_method.py": "11c9661d46bafd36d5528bf6936446b21bc95fd507ddf53f024a1c0ecc5838a9",
+    "services/uncertainty_classifier.py": "7640cdc7377e62612980d7cc1ae83f57b270dd5b2b5bec11ffb5727f110737b9",
+    "services/clinical_attribution.py": "278339f3e1258042224eb59023c18d3f84849ad17319b1f8ffc953a944fd7797",
+    "services/annotation_workflow.py": "39f1bb5814ba29a7eeffc9470a2681ad23c4c94acc3004c93373571ed1733b47",
+    "tests/test_clinical_assertion_states.py": "1d4d12d7d284c5be25d9d8c05f5120fae7de62eedc0e28cda7b06920c59194b4",
+    "tests/test_uncertainty_classifier.py": "f093daf49cd65c152ff89d1e2c7147a95c9bb4e95dffad36ef45f8f05c2e5029",
+    "tests/test_clinical_attribution.py": "ca48106daeb9b5d3b4c49475150d64f76565fefb95dbf69bfbb868e804eb87c7",
+    "tests/test_application_pipeline.py": "240cc4bb25b537f6ca7ed25557508222a9f671e46d09a4a1c5fcd21800582b5c"
+  },
+  "limitations": [
+    "Assertion labels are conservative rule outputs and are not independent clinical truth.",
+    "A `not_stated` assertion blocks note approval unless explicitly excluded or corrected by the clinician.",
+    "CI success does not authorize clinical release."
+  ],
+  "clinical_release_authorized": false
+}
