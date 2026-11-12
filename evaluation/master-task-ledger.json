@@ -1085,141 +1085,141 @@
       "id": "MTA-02-03",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-        "status": "implemented",
+      "status": "implemented",
       "description": "Consolidate Pydantic/typed schemas for source, transcript, evidence, fact, relationship, note, approval, export, model receipt and processing consent.",
-        "evidence": [
-          "evaluation/reports/master-task-mta-02-03-0520ea2.json",
-          "services/domain_contracts.py",
-          "services/review/models.py",
-          "services/api/routers/audio.py",
-          "services/api/routers/authorizations.py",
-          "services/review/routers/exports.py",
-          "tests/test_typed_clinical_boundaries.py",
-          "tests/test_foundation.py"
-        ],
-        "source_commit": "0520ea2899b7c92bcbe9baa6633b36979170b503",
-        "test_results": [
-          {
-            "report": "evaluation/reports/master-task-mta-02-03-0520ea2.json",
-            "report_sha256": "ee6803b10cdc89cc61622c163a7b1d67e294098005c830ef80e022032e249b69",
-            "status": "pass"
-          }
-        ],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-03-0520ea2.json",
+        "services/domain_contracts.py",
+        "services/review/models.py",
+        "services/api/routers/audio.py",
+        "services/api/routers/authorizations.py",
+        "services/review/routers/exports.py",
+        "tests/test_typed_clinical_boundaries.py",
+        "tests/test_foundation.py"
+      ],
+      "source_commit": "0520ea2899b7c92bcbe9baa6633b36979170b503",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-03-0520ea2.json",
+          "report_sha256": "ee6803b10cdc89cc61622c163a7b1d67e294098005c830ef80e022032e249b69",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-02-04",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-        "status": "implemented",
+      "status": "implemented",
       "description": "Keep schema versions and explicit migration functions; test forward/backward compatibility against historical saved records.",
-        "evidence": [
-          "evaluation/reports/master-task-mta-02-04-34d08a2.json",
-          "services/domain_contracts.py",
-          "tests/test_domain_migrations.py",
-          "tests/fixtures/domain_records/legacy_note_v0.json"
-        ],
-        "source_commit": "34d08a2228791bdd710b14ac788066c6436970f0",
-        "test_results": [
-          {
-            "report": "evaluation/reports/master-task-mta-02-04-34d08a2.json",
-            "report_sha256": "744a808321e40e882249e3b3975951b463cff59c21b912cc779bf1d184855930",
-            "status": "pass"
-          }
-        ],
-        "blocker": "Historical compatibility fixture is synthetic; no historical production records were present in the repository."
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-04-34d08a2.json",
+        "services/domain_contracts.py",
+        "tests/test_domain_migrations.py",
+        "tests/fixtures/domain_records/legacy_note_v0.json"
+      ],
+      "source_commit": "34d08a2228791bdd710b14ac788066c6436970f0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-04-34d08a2.json",
+          "report_sha256": "744a808321e40e882249e3b3975951b463cff59c21b912cc779bf1d184855930",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Historical compatibility fixture is synthetic; no historical production records were present in the repository."
     },
     {
       "id": "MTA-02-05",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-        "status": "implemented",
+      "status": "implemented",
       "description": "Integrate `services/application_pipeline.py` through actual API routes rather than only direct unit tests.",
-        "evidence": [
-          "evaluation/reports/master-task-mta-02-05-34d08a2.json",
-          "services/application_pipeline.py",
-          "services/review/clinical_routes.py",
-          "tests/test_application_pipeline.py"
-        ],
-        "source_commit": "34d08a2228791bdd710b14ac788066c6436970f0",
-        "test_results": [
-          {
-            "report": "evaluation/reports/master-task-mta-02-05-34d08a2.json",
-            "report_sha256": "78f474a5f5d3c17c08b0415d80544f109a2dc074958089f3c492ebc771778be5",
-            "status": "pass"
-          }
-        ],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-05-34d08a2.json",
+        "services/application_pipeline.py",
+        "services/review/clinical_routes.py",
+        "tests/test_application_pipeline.py"
+      ],
+      "source_commit": "34d08a2228791bdd710b14ac788066c6436970f0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-05-34d08a2.json",
+          "report_sha256": "78f474a5f5d3c17c08b0415d80544f109a2dc074958089f3c492ebc771778be5",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-02-06",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-        "status": "implemented",
+      "status": "implemented",
       "description": "Integrate validated source-to-fact graph and extend coverage through fact-to-note and note-to-export with exact immutable hashes.",
-        "evidence": [
-          "evaluation/reports/master-task-mta-02-06-0b401cc.json",
-          "services/evidence_graph.py",
-          "services/review/routers/exports.py",
-          "tests/test_evidence_graph.py",
-          "tests/test_review_workflow.py"
-        ],
-        "source_commit": "0b401cc6d8de23f37fb0308c9da1190e73c84dcf",
-        "test_results": [
-          {
-            "report": "evaluation/reports/master-task-mta-02-06-0b401cc.json",
-            "report_sha256": "1144dc5b25661c34761bd024452fa99faea23a4c52833518ea83a1246162da8d",
-            "status": "pass"
-          }
-        ],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-06-0b401cc.json",
+        "services/evidence_graph.py",
+        "services/review/routers/exports.py",
+        "tests/test_evidence_graph.py",
+        "tests/test_review_workflow.py"
+      ],
+      "source_commit": "0b401cc6d8de23f37fb0308c9da1190e73c84dcf",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-06-0b401cc.json",
+          "report_sha256": "1144dc5b25661c34761bd024452fa99faea23a4c52833518ea83a1246162da8d",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-02-07",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-        "status": "implemented",
+      "status": "implemented",
       "description": "Prove every approved statement has an explicit source origin or a visibly flagged clinician-entered annotation, never a fabricated citation.",
-        "evidence": [
-          "evaluation/reports/master-task-mta-02-07-bf0a1ac.json",
-          "services/review/engine.py",
-          "services/evidence_graph.py",
-          "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
-          "tests/test_export_attribution.py",
-          "tests/test_review_workflow.py"
-        ],
-        "source_commit": "bf0a1ace07fd812d1bbd1826e8e78b9f2fa59bc8",
-        "test_results": [
-          {
-            "report": "evaluation/reports/master-task-mta-02-07-bf0a1ac.json",
-            "report_sha256": "a82329be9951f083ef5212c566431bb10877298772cd2ba8b8cd8e2ec5d7fb99",
-            "status": "pass"
-          }
-        ],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-07-bf0a1ac.json",
+        "services/review/engine.py",
+        "services/evidence_graph.py",
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+        "tests/test_export_attribution.py",
+        "tests/test_review_workflow.py"
+      ],
+      "source_commit": "bf0a1ace07fd812d1bbd1826e8e78b9f2fa59bc8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-07-bf0a1ac.json",
+          "report_sha256": "a82329be9951f083ef5212c566431bb10877298772cd2ba8b8cd8e2ec5d7fb99",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-02-08",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-        "status": "implemented",
+      "status": "implemented",
       "description": "Enforce referential integrity for transcript segments, evidence spans, fact IDs, note statement IDs, amendments and exports.",
-        "evidence": [
-          "evaluation/reports/master-task-mta-02-08-64ac475.json",
-          "services/domain_contracts.py",
-          "services/review/engine.py",
-          "services/review/service.py",
-          "tests/test_typed_clinical_boundaries.py"
-        ],
-        "source_commit": "64ac475de1f68494f335d91280d99d0313e6fc98",
-        "test_results": [
-          {
-            "report": "evaluation/reports/master-task-mta-02-08-64ac475.json",
-            "report_sha256": "b0da16a8337bb77dec6c700cd4c0979d63d40fcbf8703cd41a58012a2f8f505a",
-            "status": "pass"
-          }
-        ],
-        "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-08-64ac475.json",
+        "services/domain_contracts.py",
+        "services/review/engine.py",
+        "services/review/service.py",
+        "tests/test_typed_clinical_boundaries.py"
+      ],
+      "source_commit": "64ac475de1f68494f335d91280d99d0313e6fc98",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-08-64ac475.json",
+          "report_sha256": "b0da16a8337bb77dec6c700cd4c0979d63d40fcbf8703cd41a58012a2f8f505a",
+          "status": "pass"
+        }
+      ],
+      "blocker": null
     },
     {
       "id": "MTA-02-09",
@@ -1307,11 +1307,20 @@
       "id": "MTA-02-12",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Implement a single domain error taxonomy with safe API/UI mapping; errors must not leak audio, PHI, prompts or secrets.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-12-bdff4e9.json"
+      ],
+      "source_commit": "bdff4e9fd7c268454c59e74e1c0f7b1f9efea037",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-12-bdff4e9.json",
+          "report_sha256": "7ae8199288b421d70af49b304cc63f92d2b888af32c80f7fe2f4cb944a9a3f2b",
+          "check": "shared_error_taxonomy_and_safe_mapping",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

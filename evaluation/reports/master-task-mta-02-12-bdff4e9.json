@@ -1,0 +1,65 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-12",
+  "status": "pass",
+  "source_commit": "bdff4e9fd7c268454c59e74e1c0f7b1f9efea037",
+  "source_tree": "52be70216e48731e89be076daacab551329229e8",
+  "checks": {
+    "shared_error_taxonomy_and_safe_mapping": {
+      "status": "pass",
+      "catalog_schema": "med_transcript_error_catalog_v1",
+      "catalog_entries": 125,
+      "controls": [
+        "Python API and TypeScript UI load the same checked-in error catalog.",
+        "HTTPException details are emitted only when they match a catalog code; unknown details map to internal_error.",
+        "Request validation and storage handlers continue returning bounded non-sensitive codes.",
+        "Frontend unknown codes map to the catalog fallback message.",
+        "Catalog is included in Python package data and the frontend Docker build context.",
+        "Audit integrity failures remain a specific safe conflict code."
+      ],
+      "local_checks": {
+        "error_code_tests": "3 passed",
+        "service_catalog_tests": "2 passed",
+        "ruff": "pass",
+        "frontend_build": "pass"
+      },
+      "ci_run_id": 43281672906,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43281672906",
+      "ci_jobs": {
+        "test_dev_security": "success; 804 passed, 17 skipped",
+        "test_dev_asr_security": "success; 832 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": [],
+      "ci_history": [
+        {
+          "run_id": 43281034265,
+          "source_commit": "313996fccc24798f51bbf24a8ae44a03becd8ae6",
+          "status": "fail",
+          "finding": "Container frontend build could not resolve the shared catalog; four audit-integrity assertions and the generated service-catalog freshness assertion also failed. Catalog registration, generated docs and Docker build context were corrected."
+        }
+      ]
+    }
+  },
+  "source_sha256": {
+    "Dockerfile": "24a03201ea8c290295f21a14b9c2e91e417f3dd1a0864376da126b18325a397d",
+    "pyproject.toml": "19b98099bf412671a533fc8656001ae39fdb0d87dd85189e473290c44c5d291e",
+    "services/error_catalog.json": "9e956be6eaa7c5dfb1e1bb493f4f4e847c412353089344b40aa917faf423d893",
+    "services/error_codes.py": "5a6f28d870986f1f7e3d71724f6bc00d16df1659bfcc7462f6c6162fbda0f3d1",
+    "services/api/main.py": "972ba9f2c48356ca9d0305e83f5b679b29c341dc180154dc033dac4029fa26ad",
+    "apps/clinician-web/src/client/errorCodes.ts": "418384e350d2efff3cad2c4619b06fa11ee50fa7e8848c0485c48497dd452143",
+    "apps/clinician-web/tsconfig.json": "24fb6c48cc284cf0460937937b7a40e993be65247900bc7c4d9ce249adc3f118",
+    "tests/test_error_codes.py": "159fc69f10467c4699eedf9bab8c9c1911c37a61441d5cf81bba192627f4cf85",
+    "tests/test_foundation.py": "4cb6a0295ccf2b6736837867ffd7f9f26779783c3324491c61c3bd89ecf9de23",
+    "docs/service-catalog.md": "dee37a491f20ba8c6241dc9fc4377ee4cb9907ce1402a09906dae847587426e0"
+  },
+  "limitations": [
+    "The catalog is a safe presentation taxonomy, not a clinical error classifier.",
+    "Generic unmapped errors intentionally lose their provider detail and map to internal_error.",
+    "CI and synthetic regression tests do not establish clinical validation or authorize deployment."
+  ],
+  "clinical_release_authorized": false
+}
