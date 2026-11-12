@@ -17,4 +17,4 @@ def test_architecture_sequence_covers_the_required_clinical_lifecycle_in_order()
     assert positions == sorted(positions)
     assert "never an approved note" in page
     assert "cannot approve or clear gates" in page
-    assert "AI-generated content never replaces" in page
+    assert "AI-generated content never replaces" in " ".join(page.split())
