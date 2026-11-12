@@ -26,6 +26,12 @@ those claims. At import, all 369 entries were `not_started`; this meant
   acceptance v3 receipt records 287 backend tests passed and one skipped,
   including the English-only schema rejection test; that skip is retained as
   a limitation, not counted as an additional pass.
+- MTA-00-03 is implemented at source commit `97572f7cf47523df64d7e1470aa17865809d8ae6`.
+  [`artifact-scope-v1.json`](../evaluation/contracts/artifact-scope-v1.json)
+  names the permitted local/public-mock artifact classes and prohibited inputs.
+  The preflight reports the policy digest; path tests reject traversal and
+  leave unclassified paths prohibited. No model eligibility or clinical
+  performance is inferred from file presence or hashes.
 - The prior source-bound offline report, [`v21`](../evaluation/reports/offline-acceptance-v21.json),
   passed its seven software checks at `b939377`. It does not prove current
   post-format source, 5% ASR accuracy, or independent clinical performance.

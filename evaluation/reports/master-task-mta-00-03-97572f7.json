@@ -1,0 +1,28 @@
+{
+  "schema_version": "master_task_artifact_scope_v1",
+  "task_id": "MTA-00-03",
+  "source_commit": "97572f7cf47523df64d7e1470aa17865809d8ae6",
+  "checks": {
+    "artifact_scope_tests": {
+      "status": "pass",
+      "result": "10 passed; validates policy categories, prohibited sources, path classifications and path-escape rejection"
+    },
+    "offline_preflight_integration": {
+      "status": "pass",
+      "result": "1 passed; preflight reports missing local policy as blocked and binds the present policy hash"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "ruff check and ruff format --check passed for changed Python files"
+    },
+    "policy": {
+      "status": "pass",
+      "path": "evaluation/contracts/artifact-scope-v1.json",
+      "clinical_release_authorized": false,
+      "external_fetches_attempted": 0
+    }
+  },
+  "new_installations_attempted": 0,
+  "external_calls_attempted": 0,
+  "clinical_release_authorized": false
+}

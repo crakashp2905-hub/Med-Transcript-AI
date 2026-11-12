@@ -54,11 +54,30 @@
       "id": "MTA-00-03",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Declare exactly which artifacts may be used: committed synthetic/public-mock audio, existing frozen benchmark results, verified local model weights, installed libraries and cached dependencies.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/contracts/artifact-scope-v1.json",
+        "services/artifact_scope.py",
+        "services/offline_preflight.py",
+        "tests/test_artifact_scope.py",
+        "evaluation/reports/master-task-mta-00-03-97572f7.json"
+      ],
+      "source_commit": "97572f7cf47523df64d7e1470aa17865809d8ae6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-00-03-97572f7.json",
+          "report_sha256": "a0b07fd194976ccda9df46bad8e9262c2ed2aea6aac246b4d5a9c7addf9d4bc5",
+          "check": "artifact_scope_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-00-03-97572f7.json",
+          "report_sha256": "a0b07fd194976ccda9df46bad8e9262c2ed2aea6aac246b4d5a9c7addf9d4bc5",
+          "check": "offline_preflight_integration",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
