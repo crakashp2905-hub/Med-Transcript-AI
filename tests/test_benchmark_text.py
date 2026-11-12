@@ -105,6 +105,8 @@ def test_whisper_text_comparison_reuses_model_and_counts_failures(
     assert result["samples"][1]["hypothesis"] == ""
     assert result["wer_gate"]["maximum_normalized_wer"] == 0.05
     assert result["wer_gate"]["status"] == "fail"
+    assert result["publication"]["schema_version"] == "immutable_report_publication_v1"
+    assert result["publication"]["supersedes"] is None
     assert (
         result["api_integration_gate"]
         == "text_only_adapter_not_admitted_for_clinical_publication"

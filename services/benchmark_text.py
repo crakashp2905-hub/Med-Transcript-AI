@@ -12,6 +12,7 @@ from pathlib import Path
 from services.api.ingest import file_sha256, inspect_pcm_wav
 from services.asr.profiles import canonical_json
 from services.evaluation import PROJECT_MAX_NORMALIZED_WER, score, wer_gate
+from services.immutable_reports import publish_json_once
 
 
 def run(
@@ -25,6 +26,7 @@ def run(
     maximum=PROJECT_MAX_NORMALIZED_WER,
     profiles=None,
     profile_id=None,
+    supersedes=None,
 ):
     wer_gate(
         {"reference_words": 1, "normalized_edits": 0, "failed_samples": 0}, maximum
@@ -223,8 +225,7 @@ def run(
         "samples": rows,
     }
     report["wer_gate"] = wer_gate(report, maximum)
-    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-    Path(output_path).write_text(json.dumps(report, indent=2), encoding="utf-8")
+    report = publish_json_once(output_path, report, supersedes=supersedes)
     print(
         json.dumps(
             {
@@ -252,6 +253,9 @@ def main():
         "--max-normalized-wer", type=float, default=PROJECT_MAX_NORMALIZED_WER
     )
     parser.add_argument("--out", required=True)
+    parser.add_argument(
+        "--supersedes", help="Existing report path this new report succeeds"
+    )
     args = parser.parse_args()
     if args.runtime == "whisper" and not (args.profiles and args.profile_id):
         parser.error("Whisper requires --profiles and --profile-id")
@@ -269,6 +273,7 @@ def main():
         maximum=args.max_normalized_wer,
         profiles=args.profiles,
         profile_id=args.profile_id,
+        supersedes=args.supersedes,
     )
     raise SystemExit(0 if report["wer_gate"]["status"] == "pass" else 2)
 

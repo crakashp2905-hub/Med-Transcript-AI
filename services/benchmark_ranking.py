@@ -9,6 +9,7 @@ from fractions import Fraction
 from pathlib import Path
 
 from services.evaluation import PROJECT_MAX_NORMALIZED_WER, score, tokens, wer_gate
+from services.immutable_reports import publish_json_once, write_text_once
 
 
 SCORING = "lowercase_words_preserve_decimals_units_negation_v1"
@@ -228,6 +229,9 @@ def main():
     parser.add_argument("--ledger", default="evaluation/benchmark-ledger.json")
     parser.add_argument("--root", default=".")
     parser.add_argument("--out", default="evaluation/leaderboard.json")
+    parser.add_argument(
+        "--supersedes", help="Existing JSON leaderboard this report succeeds"
+    )
     args = parser.parse_args()
     result = rank(
         args.manifest,
@@ -236,16 +240,15 @@ def main():
         args.root,
     )
     path = Path(args.out)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    path.with_suffix(".md").write_text(render(result), encoding="utf-8")
+    result = publish_json_once(path, result, supersedes=args.supersedes)
+    write_text_once(path.with_suffix(".md"), render(result))
     # Standalone file is intentionally self-contained and can be opened directly.
     dataset_path = Path(
         os.path.relpath(Path(args.manifest).resolve().parent, path.resolve().parent)
     ).as_posix()
-    path.with_suffix(".html").write_text(
+    write_text_once(
+        path.with_suffix(".html"),
         render_html(result, json.loads(Path(args.manifest).read_text()), dataset_path),
-        encoding="utf-8",
     )
     print(
         json.dumps(
