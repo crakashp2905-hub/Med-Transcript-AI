@@ -60,6 +60,19 @@ def test_isolated_channels_overlap_and_scoped_playback(environment, count):
     ]
     assert len(tx["channels"]) == count
     assert [s["channel_index"] for s in tx["segments"]] == list(range(count))
+    source_provenance = tx["provenance"]["audio_provenance"]
+    assert source_provenance["asset_sha256"] == tx["input_sha256"]
+    for index, channel in enumerate(tx["channels"]):
+        lineage = channel["provenance"]["derived_audio_provenance"]
+        timeline = lineage["timeline_mapping"]
+        assert lineage["parent_sha256"] == source_provenance["asset_sha256"]
+        assert (
+            lineage["asset_sha256"]
+            == channel["provenance"]["isolated_channel_pcm_sha256"]
+        )
+        assert timeline["channel_index"] == index
+        assert timeline["channel_count"] == count
+        assert timeline["parent_frames"] == timeline["output_frames"] == 1600
     assert all(
         s["start_ms"] == 0
         and s["end_ms"] == 80
