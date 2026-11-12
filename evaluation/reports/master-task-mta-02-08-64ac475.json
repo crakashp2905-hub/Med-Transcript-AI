@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-08",
+  "status": "pass",
+  "source_commit": "64ac475de1f68494f335d91280d99d0313e6fc98",
+  "checks": {
+    "clinical_record_referential_integrity": {
+      "status": "pass",
+      "constraints": [
+        "transcript segment IDs are unique",
+        "evidence spans must match their exact source text and character width",
+        "note fact IDs must be unique and every active fact must be referenced exactly once",
+        "note statements have unique IDs, reference exactly one existing fact, and preserve that fact text",
+        "source-linked note statements must reference the exact transcript version and evidence span",
+        "clinician-entered facts and statements cannot carry audio evidence",
+        "amendments must reference an existing note in the same encounter and cannot amend themselves",
+        "approval, note, transcript and export references are checked at route/transaction boundaries"
+      ],
+      "focused_local_tests": "12 passed",
+      "ci_run_id": 43264737330,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43264737330",
+      "ci_jobs": {
+        "test_dev_security": "success; 796 passed, 17 skipped",
+        "test_dev_asr_security": "success; 824 passed, 3 skipped",
+        "frontend": "success",
+        "postgres": "success",
+        "container": "success",
+        "release-summary": "success"
+      },
+      "source_sha256": {
+        "services/domain_contracts.py": "1fdb6b4a1218ea4066e52442e1a176aac6195de468a9254cf8bf5a3861331729",
+        "services/review/engine.py": "efad521edda33234c8548c17a7bbfa0e6d57cc365987a662c99a7a73e6660066",
+        "services/review/service.py": "7271a4f087ea08d5a8f0dfc3a9db80f99df6a2e865716b2f2e53fadda1fd0f9e",
+        "tests/test_typed_clinical_boundaries.py": "fcadf534fcc9f669e06052c2fa64bb5e97ad7e83644cf961d7335112c4a98672"
+      }
+    }
+  },
+  "limitations": [
+    "Domain referential checks validate saved structures and source links; they do not establish clinical truth.",
+    "The migration and route tests use synthetic records. No production database or patient data was used."
+  ]
+}

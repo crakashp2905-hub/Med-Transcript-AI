@@ -149,6 +149,14 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
     attribution = next(item for item in document["tasks"] if item["id"] == "MTA-02-07")
     assert attribution["status"] == "implemented"
     assert attribution["source_commit"] == "bf0a1ace07fd812d1bbd1826e8e78b9f2fa59bc8"
+    referential_integrity = next(
+        item for item in document["tasks"] if item["id"] == "MTA-02-08"
+    )
+    assert referential_integrity["status"] == "implemented"
+    assert (
+        referential_integrity["source_commit"]
+        == "64ac475de1f68494f335d91280d99d0313e6fc98"
+    )
 
 
 def test_verified_task_requires_exact_commit_test_and_runtime_hashes(

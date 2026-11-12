@@ -1202,12 +1202,24 @@
       "id": "MTA-02-08",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-      "status": "not_started",
+        "status": "implemented",
       "description": "Enforce referential integrity for transcript segments, evidence spans, fact IDs, note statement IDs, amendments and exports.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+        "evidence": [
+          "evaluation/reports/master-task-mta-02-08-64ac475.json",
+          "services/domain_contracts.py",
+          "services/review/engine.py",
+          "services/review/service.py",
+          "tests/test_typed_clinical_boundaries.py"
+        ],
+        "source_commit": "64ac475de1f68494f335d91280d99d0313e6fc98",
+        "test_results": [
+          {
+            "report": "evaluation/reports/master-task-mta-02-08-64ac475.json",
+            "report_sha256": "b0da16a8337bb77dec6c700cd4c0979d63d40fcbf8703cd41a58012a2f8f505a",
+            "status": "pass"
+          }
+        ],
+        "blocker": null
     },
     {
       "id": "MTA-02-09",
