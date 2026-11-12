@@ -66,6 +66,10 @@ def test_multiple_evidence_spans_remain_exact_and_unreviewed():
 
 
 def test_providers_cannot_enable_disclosure_or_invent_citations():
+    with pytest.raises(ValueError, match="synthetic_data_required_for_model_drafting"):
+        JSONProvider("http://localhost", "test", enabled=True).draft(
+            [], authorized=True, synthetic=False
+        )
     with pytest.raises(ValueError):
         JSONProvider("https://example.com", "test", mode="hosted", enabled=True).draft(
             [], authorized=True, synthetic=False

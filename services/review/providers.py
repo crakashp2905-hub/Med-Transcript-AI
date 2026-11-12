@@ -127,6 +127,8 @@ class JSONProvider:
     structured_schema: bool = False
 
     def draft(self, facts, *, authorized, synthetic):
+        if not synthetic:
+            raise ValueError("synthetic_data_required_for_model_drafting")
         if not self.enabled or not authorized:
             raise ValueError("Explicit provider and processing opt-in required")
         if self.mode == "hosted" and (not synthetic or not self.billing_cap_confirmed):
