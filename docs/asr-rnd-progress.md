@@ -421,3 +421,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   passed; Ruff passes. Status: partial; upstream mock annotations are not
   adjudicated, and no standalone overlap detector or validated missed-short-
   patient-turn rate has been established.
+- **MTA-ASR-G07:** Existing `SpeakerRoles` UI provides audio preview and
+  explicit role assignment; the API requires clinician confirmation and
+  `If-Match` against the current transcript before creating a new version.
+  UI and backend preserve the historical source versions. Status: partial;
+  reviewers cannot yet split, merge or reassign individual turns between
+  anonymous speaker clusters, and a complete stale-note invalidation workflow
+  has not been verified end to end for these edits.
