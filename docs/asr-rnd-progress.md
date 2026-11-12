@@ -632,6 +632,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   installed ASR backends do not provide alternate hypotheses; no alternatives
   are invented.
 - **MTA-ASR-I14 update:** Published
+  evaluation/reports/asr-objective-release-v3.json, source-bound to commit
+  e5da4cd5258d25cd6ffe908eeb3cb81f73d9b113. It adds the waveform browser
+  evidence while retaining FAIL for model qualification and product acceptance,
+  and BLOCKED_MISSING_RESOURCE for clinical safety and exact-HEAD release CI.
+  Versions v1 and v2 remain preserved.
+- **MTA-ASR-I14 update:** Published
   evaluation/reports/asr-objective-release-v2.json, source-bound to commit
   cf538fc33a1975121af7add8ee70438aca87c561. It records the real-model
   engineering-path result while retaining FAIL for product acceptance and

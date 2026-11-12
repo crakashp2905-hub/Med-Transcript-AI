@@ -1,0 +1,49 @@
+{
+  "schema_version": "asr_objective_release_v3",
+  "evidence_source_commit": "e5da4cd5258d25cd6ffe908eeb3cb81f73d9b113",
+  "decision_scope": "research and engineering readiness; no clinical deployment approval",
+  "objectives": [
+    {
+      "objective": "asr_model_qualification",
+      "status": "FAIL",
+      "basis": "Every evaluated profile fails the frozen failure-inclusive normalized WER <= 5% admission gate; best expanded short-clip result is 8.70%.",
+      "promotion_allowed": false,
+      "evidence": [
+        "docs/asr-rnd-progress.md#MTA-ASR-I03",
+        "evaluation/selection-policy.json"
+      ]
+    },
+    {
+      "objective": "clinical_safety_acceptance",
+      "status": "BLOCKED_MISSING_RESOURCE",
+      "basis": "No independent clinician-adjudicated acceptance set, approved critical-error and role-safety tolerances, or qualified clinical acceptance review is available.",
+      "promotion_allowed": false,
+      "evidence": [
+        "docs/asr-rnd-progress.md#MTA-ASR-I04",
+        "evaluation/acceptance-reservation-v1.json"
+      ]
+    },
+    {
+      "objective": "end_to_end_asr_product_acceptance",
+      "status": "FAIL",
+      "basis": "A real local tiny.en run passes through upload, PCM ingest, immutable transcript, scripted review, note verification, approval and integrity-checked export in a system-level test. The clinician uncertain-span queue also renders a source-hash-checked waveform and selected interval in a scripted browser test. Review actions remain scripted, alternate hypotheses are unavailable, and no independent clinical acceptance exists; this proves the engineering path, not product or clinical acceptance.",
+      "promotion_allowed": false,
+      "evidence": [
+        "docs/asr-rnd-progress.md#MTA-ASR-I05",
+        "tests/test_real_local_asr_workflow.py",
+        "apps/clinician-web/e2e/uncertain-span-waveform.spec.ts"
+      ]
+    },
+    {
+      "objective": "engineering_release_ci",
+      "status": "BLOCKED_MISSING_RESOURCE",
+      "basis": "No CI status checks are reported for this reviewed exact source commit; required backend, PostgreSQL, container and frontend lanes lack complete exact-HEAD evidence.",
+      "promotion_allowed": false,
+      "evidence": [
+        "docs/asr-rnd-progress.md#MTA-ASR-I11",
+        ".github/workflows/ci.yml"
+      ]
+    }
+  ],
+  "rule": "Missing evidence is never PASS; this report does not authorize clinical use or model promotion."
+}
