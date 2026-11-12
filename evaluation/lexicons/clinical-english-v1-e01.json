@@ -1,0 +1,134 @@
+{
+  "schema_version": "clinical_english_lexicon_v1",
+  "lexicon_id": "licensed_development_mock_terms_v1",
+  "source_policy": "terms are a fixed subset of pre-existing generic opt-in hints and are retained only when found in rights-reviewed development references",
+  "acceptance_data_used": false,
+  "patient_specific_terms_added": false,
+  "candidate_terms": [
+    "amoxicillin",
+    "lisinopril",
+    "metformin",
+    "paracetamol",
+    "warfarin"
+  ],
+  "entries": [
+    {
+      "term": "paracetamol",
+      "language": "en",
+      "provenance": [
+        {
+          "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+          "dataset_id": "meddistract-full-paired-development-v1",
+          "record_id": "day1_consultation04__audio_-10dB_d0",
+          "group_id": "day1_consultation04",
+          "reference_row_index": 46,
+          "reference_sha256": "c3dfcd1565bdeb16d4339e440a07cd90a3c2559a3aa7ef61088622af38831040",
+          "start_char": 105,
+          "end_char": 116,
+          "role": "patient"
+        },
+        {
+          "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+          "dataset_id": "meddistract-full-paired-development-v1",
+          "record_id": "day1_consultation04__clean",
+          "group_id": "day1_consultation04",
+          "reference_row_index": 46,
+          "reference_sha256": "c3dfcd1565bdeb16d4339e440a07cd90a3c2559a3aa7ef61088622af38831040",
+          "start_char": 105,
+          "end_char": 116,
+          "role": "patient"
+        },
+        {
+          "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+          "dataset_id": "meddistract-full-paired-development-v1",
+          "record_id": "day1_consultation05__audio_-10dB_d0",
+          "group_id": "day1_consultation05",
+          "reference_row_index": 103,
+          "reference_sha256": "93216badde190258966df6622944523cd3ff856f5d8d5f3c2a1099f9ecb9facc",
+          "start_char": 50,
+          "end_char": 61,
+          "role": "doctor"
+        },
+        {
+          "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+          "dataset_id": "meddistract-full-paired-development-v1",
+          "record_id": "day1_consultation05__clean",
+          "group_id": "day1_consultation05",
+          "reference_row_index": 103,
+          "reference_sha256": "93216badde190258966df6622944523cd3ff856f5d8d5f3c2a1099f9ecb9facc",
+          "start_char": 50,
+          "end_char": 61,
+          "role": "doctor"
+        },
+        {
+          "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+          "dataset_id": "meddistract-full-paired-development-v1",
+          "record_id": "day1_consultation07__audio_-10dB_d0",
+          "group_id": "day1_consultation07",
+          "reference_row_index": 158,
+          "reference_sha256": "dc7fe0fd79dc6c55580a79ebbf516a8101da94805da4422440a2b43edb2fc117",
+          "start_char": 75,
+          "end_char": 86,
+          "role": "doctor"
+        },
+        {
+          "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+          "dataset_id": "meddistract-full-paired-development-v1",
+          "record_id": "day1_consultation07__clean",
+          "group_id": "day1_consultation07",
+          "reference_row_index": 158,
+          "reference_sha256": "dc7fe0fd79dc6c55580a79ebbf516a8101da94805da4422440a2b43edb2fc117",
+          "start_char": 75,
+          "end_char": 86,
+          "role": "doctor"
+        },
+        {
+          "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+          "dataset_id": "meddistract-full-paired-development-v1",
+          "record_id": "day1_consultation08__audio_-10dB_d0",
+          "group_id": "day1_consultation08",
+          "reference_row_index": 110,
+          "reference_sha256": "49eba9cd42e858419a1623764f91ca6dcf220d0e29e20b37cd7cc5f753c60b2b",
+          "start_char": 46,
+          "end_char": 57,
+          "role": "doctor"
+        },
+        {
+          "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+          "dataset_id": "meddistract-full-paired-development-v1",
+          "record_id": "day1_consultation08__clean",
+          "group_id": "day1_consultation08",
+          "reference_row_index": 110,
+          "reference_sha256": "49eba9cd42e858419a1623764f91ca6dcf220d0e29e20b37cd7cc5f753c60b2b",
+          "start_char": 46,
+          "end_char": 57,
+          "role": "doctor"
+        }
+      ]
+    }
+  ],
+  "source_manifests": [
+    {
+      "dataset_id": "meddistract-full-paired-development-v1",
+      "manifest_path": "evaluation/datasets/meddistract-detailed-v1/manifest.json",
+      "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+      "lock_sha256": "e4b672ef43ecedf3a77bab7d32fd81e8f3605960ada47bb5acd959186c79b303",
+      "license": "CC-BY-4.0",
+      "source_revision": "bcef38c2bc8404d52a2c66a799be778e28216102",
+      "eligible_reference_rows": 1290
+    },
+    {
+      "dataset_id": "primock57-20consultations-120clips-v1",
+      "manifest_path": "evaluation/datasets/primock57-expanded-v1/manifest.json",
+      "manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+      "lock_sha256": "946943146b44065304edf86f53276475e849f88fd60e171113cea4d5d56eceda",
+      "license": "CC-BY-4.0",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "eligible_reference_rows": 118
+    }
+  ],
+  "reservation_sha256": "d08de25ea071150b792874bfde6baf5cb955e779cfdba41abd615db41bcb42b1",
+  "uncertain_reference_rows_excluded": true,
+  "clinical_validation": "not_established",
+  "automatic_transcript_mutation": false
+}

@@ -244,3 +244,14 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   missing weights and truthful capability receipts. Status: partial; although
   frozen Parakeet benchmark outputs exist, this new adapter is not integrated
   into application selected-window routing.
+- **MTA-ASR-E01:** Added a reproducible, provenance-bound English lexicon
+  candidate artifact at evaluation/lexicons/clinical-english-v1-e01.json
+  (SHA-256 af4b321287acd7762f6a9f63fe1ca29c4fc71ce0c52eda0ef95288efbfa4d142).
+  The builder accepts only rights-reviewed, locked development manifests,
+  rejects reserved acceptance groups, excludes uncertain reference rows, and
+  records record/group IDs, reference hashes, offsets and dataset/manifest
+  digests for each occurrence. It found one seed term (paracetamol) in eight
+  licensed development references. tests/test_clinical_lexicon.py: 2 passed;
+  Ruff and format checks pass. Status: partial; the seed inventory is only the
+  existing five generic opt-in hints, this artifact does not validate clinical
+  terminology, and no backend consumes it for decoding or reranking.
