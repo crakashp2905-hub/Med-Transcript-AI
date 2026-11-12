@@ -8,6 +8,7 @@ import wave
 from pathlib import Path
 
 from services.asr.profiles import ASRProfile
+from services.asr.timestamps import capability as timestamp_capability_info
 
 
 class ASRFailure(Exception):
@@ -50,6 +51,35 @@ def loaded_model(profile_json):
 class FasterWhisperAdapter:
     def __init__(self, profile: ASRProfile):
         self.profile = profile
+
+    def availability(self):
+        return self.profile.availability()
+
+    def timestamp_capability(self):
+        declared = timestamp_capability_info("whisper", has_native_segments=True)
+        return {
+            "kind": declared.kind,
+            "native": declared.native,
+            "word_alignment_validated": declared.word_alignment_validated,
+        }
+
+    def n_best_capability(self):
+        return {"supported": False, "kind": "none"}
+
+    def confidence_capability(self):
+        return {"supported": False, "kind": "none", "calibrated": False}
+
+    def runtime_receipt(self):
+        return {
+            "backend_id": "faster-whisper",
+            "runtime_version": self.profile.runtime_version,
+            "model_revision": self.profile.revision,
+            "profile_sha256": self.profile.sha256,
+            "artifact_sha256": dict(self.profile.artifacts),
+            "license_id": self.profile.license_id,
+            "device": self.profile.device,
+            "automatic_download": False,
+        }
 
     def transcribe(self, source: Path, metadata: dict, checkpoint):
         if metadata["channels"] != 1 or metadata["sample_rate"] != 16000:

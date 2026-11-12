@@ -180,3 +180,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   bounded carryover and silence suppression. Status: partial; this contract is
   not yet wired into a long-form decoder, and candidate activity is a VAD
   heuristic rather than proof of speech.
+- **MTA-ASR-D02:** Added a typed ASR backend contract for inference,
+  availability, timestamp capability, n-best capability, confidence
+  capability, and runtime receipts. The faster-whisper adapter declares
+  segment timestamps and explicitly unsupported n-best/confidence. Fake
+  provider tests cover missing models, timeout exceptions, malformed output,
+  and capability honesty. Status: partial; timeout propagation is tested as a
+  provider failure, but no hard cancellation of a non-cooperative backend is
+  implemented.
