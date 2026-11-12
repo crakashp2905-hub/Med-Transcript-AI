@@ -1,0 +1,100 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-04-02",
+  "status": "pass",
+  "source_commit": "683b91544777da5f8196d49d97cfce7aa0f7c87c",
+  "source_tree": "08dbd30edc111120add87d6aa4a5574300d8bd48",
+  "checks": {
+    "historical_wer_reproduced": {
+      "status": "pass",
+      "scopes": [
+        {
+          "scope": "118_selected_short_clips",
+          "consultation_groups": 20,
+          "candidate": "omi-med-stt-v1",
+          "normalized_edits": 197,
+          "reference_words": 2264,
+          "normalized_wer": 0.08701413427561837,
+          "maximum_normalized_wer": 0.05,
+          "five_percent_gate": "fail"
+        },
+        {
+          "scope": "three_full_mock_consultations",
+          "consultation_groups": 3,
+          "candidate": "omi-med-stt-v1",
+          "normalized_edits": 679,
+          "reference_words": 5204,
+          "normalized_wer": 0.13047655649500384,
+          "maximum_normalized_wer": 0.05,
+          "five_percent_gate": "fail"
+        },
+        {
+          "scope": "meddistract_eight_foregrounds_clean",
+          "consultation_groups": 8,
+          "candidate": "omi-med-stt-v1-native-empty",
+          "normalized_edits": 2245,
+          "reference_words": 13683,
+          "normalized_wer": 0.16407220638748812,
+          "maximum_normalized_wer": 0.05,
+          "five_percent_gate": "fail"
+        },
+        {
+          "scope": "meddistract_same_eight_foregrounds_distracted",
+          "consultation_groups": 8,
+          "candidate": "omi-med-stt-v1-native-empty",
+          "normalized_edits": 2356,
+          "reference_words": 13683,
+          "normalized_wer": 0.17218446247168018,
+          "maximum_normalized_wer": 0.05,
+          "five_percent_gate": "fail"
+        }
+      ],
+      "new_model_inference_calls": 0
+    },
+    "source_integrity": {
+      "status": "pass",
+      "frozen_summary": "evaluation/reports/scope-separated-baselines-v1.json",
+      "frozen_summary_sha256": "c9b84529a7b27c6e85d0c8857b0096044b4342f3e7a50c829df1ed8f68910c8a",
+      "underlying_sources": {
+        "evaluation/reports/expanded-comparison-2026-10-24.json": "5326e727dff656f0111ca026f70c15da9d47e26d7b6dc11127da35e659cd418b",
+        "evaluation/reports/conversation-ablation-resumed-2026-10-26.json": "b2ec0e7c0314499fabf2ab5a03b080edfee5c0e5cbf90b7854508f4458531356",
+        "evaluation/reports/detailed-campaign-execution-receipt-2026-10-29.json": "4ecf46ba17aaab44bb068a20e87aaa9d45e8b1c1241ac932d5abce0e784a6d13",
+        "evaluation/reports/detailed-drafting-summary-2026-10-29.json": "bb2aed668ab3f57fefe9b22fcca5e837fcf16be653997dff0e1ae4e442df9610"
+      }
+    },
+    "focused_tests": {
+      "status": "pass",
+      "test": "tests/test_baseline_summary.py",
+      "summary": "2 passed"
+    },
+    "ci_exact_commit": {
+      "status": "pass",
+      "run_id": 43310309464,
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43310309464",
+      "jobs": {
+        "test (dev,security)": "success; 865 passed, 17 skipped",
+        "test (dev,asr,security)": "success; 893 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release-summary": "success"
+      }
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43310309464
+  },
+  "limitations": [
+    "The three scopes are not pooled or treated as interchangeable cohorts.",
+    "All four reproduced Omi development baselines fail the fixed 5% gate; no inference or clinical quality acceptance is claimed."
+  ],
+  "runtime_sha256": "09a556ba72802f877173897081c0d3cbc7d9fe0cdeab41150f26c555c43f166f",
+  "source_sha256": {
+    "services/baseline_summary.py": "d81dc697b664c028fa65e7db50b46c5212f2f258d59af6f221d6d488573f63b4",
+    "tests/test_baseline_summary.py": "072ad4d795dae16514f01c1ae4b76cfd51a10c5e1695eaf36d0bd41b12f878d5",
+    "evaluation/reports/scope-separated-baselines-v1.json": "c9b84529a7b27c6e85d0c8857b0096044b4342f3e7a50c829df1ed8f68910c8a",
+    "evaluation/reports/engineering-baseline.json": "69682620f146583a1b1c7d747ae990b0412485876d53c63fd6d68e0cdd8890b3"
+  }
+}

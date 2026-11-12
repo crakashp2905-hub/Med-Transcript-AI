@@ -1826,11 +1826,29 @@
       "id": "MTA-04-02",
       "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Reproduce 8.70% short-clip, 13.05% three-consultation and 16.41%/17.22% paired long-consultation historical WER before running new experiments.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/baseline_summary.py",
+        "tests/test_baseline_summary.py",
+        "evaluation/reports/scope-separated-baselines-v1.json",
+        "evaluation/reports/master-task-mta-04-02-683b915.json"
+      ],
+      "source_commit": "683b91544777da5f8196d49d97cfce7aa0f7c87c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-04-02-683b915.json",
+          "report_sha256": "714ba5c76b706e1afec227ab8d40e99bbb4b39eb27891c29922fecececdcedc1",
+          "check": "historical_wer_reproduced",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-02-683b915.json",
+          "report_sha256": "714ba5c76b706e1afec227ab8d40e99bbb4b39eb27891c29922fecececdcedc1",
+          "check": "ci_exact_commit",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
