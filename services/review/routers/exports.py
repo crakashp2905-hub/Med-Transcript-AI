@@ -13,6 +13,7 @@ from services.review.models import ExportInput
 
 from services.review.service import ReviewService
 from services.clinical_limitations import CLINICAL_LIMITATIONS
+from services.domain_contracts import validate_record
 
 
 def register(app, services: ReviewService):
@@ -67,9 +68,28 @@ def register(app, services: ReviewService):
             artifact = render_export(note, approval, body.format, source)
             digest = hashlib.sha256(artifact.encode("utf-8")).hexdigest()
             xid = str(uuid4())
+            created = stamp()
+            try:
+                validate_record(
+                    "export",
+                    {
+                        "id": xid,
+                        "encounter_id": str(eid),
+                        "approval_id": ar["id"],
+                        "note_version_id": nr["id"],
+                        "note_sha256": nr["sha256"],
+                        "transcript_version_id": tr["id"],
+                        "transcript_sha256": tr["sha256"],
+                        "format": body.format,
+                        "artifact_sha256": digest,
+                        "created_at": created,
+                    },
+                )
+            except ValueError:
+                raise HTTPException(422, "export_metadata_invalid") from None
             con.execute(
                 "INSERT INTO exports VALUES (?,?,?,?,?,?,?)",
-                (xid, str(eid), ar["id"], body.format, artifact, digest, stamp()),
+                (xid, str(eid), ar["id"], body.format, artifact, digest, created),
             )
             audit(con, actor, "approved_export_created", xid)
             return {

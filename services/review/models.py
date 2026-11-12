@@ -24,6 +24,12 @@ class Evidence(Strict):
     end_char: int = Field(ge=1, strict=True)
     quote: str = Field(min_length=1, max_length=4000)
 
+    @model_validator(mode="after")
+    def exact_span_width(self):
+        if self.end_char - self.start_char != len(self.quote):
+            raise ValueError("evidence_span_length_mismatch")
+        return self
+
 
 class Fact(Strict):
     fact_id: UUID

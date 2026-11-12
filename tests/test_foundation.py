@@ -142,6 +142,22 @@ def test_authorization_withdrawal_and_audit_are_durable(setup):
     assert "authorization_recorded" in actions
 
 
+def test_processing_consent_rejects_duplicate_scopes_before_storage(setup):
+    client, path, _ = setup
+    resource = create(client)
+    body = authorization()
+    body["scopes"] = ["recording", "recording"]
+    response = client.post(
+        f"/v1/encounters/{resource}/authorizations",
+        json=body,
+        headers=headers(),
+    )
+    assert response.status_code == 422
+    assert response.json() == {"code": "processing_consent_invalid"}
+    with sqlite3.connect(path) as con:
+        assert con.execute("SELECT COUNT(*) FROM authorizations").fetchone()[0] == 0
+
+
 def test_expired_authorization_is_ineffective(setup):
     client, path, _ = setup
     resource = create(client)

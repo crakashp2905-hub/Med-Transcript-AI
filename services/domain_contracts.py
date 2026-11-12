@@ -24,6 +24,46 @@ class StableRecord(BaseModel):
     schema_version: Literal["1.0"] = "1.0"
 
 
+class AudioSource(StableRecord):
+    id: UUID
+    encounter_id: UUID
+    sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    byte_count: int = Field(gt=0, strict=True)
+    media_type: Literal[
+        "audio/wav", "audio/mpeg", "audio/mp4", "audio/webm", "audio/ogg"
+    ]
+    state: Literal["sealed", "normalized"]
+    duration_ms: float | None = Field(default=None, gt=0, le=3600000)
+    channel_count: int | None = Field(default=None, ge=1, le=8, strict=True)
+
+
+class ProcessingConsent(StableRecord):
+    id: UUID
+    encounter_id: UUID
+    scopes: list[Literal["recording", "local_processing", "hosted_text_processing"]] = (
+        Field(min_length=1, max_length=3)
+    )
+    policy_version: str = Field(min_length=1, max_length=80)
+    method: Literal["written", "verbal_documented"]
+    granted_at: datetime
+    expires_at: datetime
+    withdrawn_at: datetime | None = None
+
+    @model_validator(mode="after")
+    def consent_lifecycle(self):
+        if len(set(self.scopes)) != len(self.scopes):
+            raise ValueError("duplicate_processing_consent_scope")
+        if self.granted_at.tzinfo is None or self.expires_at.tzinfo is None:
+            raise ValueError("processing_consent_timezone_required")
+        if self.expires_at <= self.granted_at:
+            raise ValueError("processing_consent_expiry_invalid")
+        if self.withdrawn_at is not None and (
+            self.withdrawn_at.tzinfo is None or self.withdrawn_at < self.granted_at
+        ):
+            raise ValueError("processing_consent_withdrawal_invalid")
+        return self
+
+
 class ClinicalFact(Fact):
     model_config = ConfigDict(extra="allow")
     review_actor: UUID | None = None
@@ -57,6 +97,22 @@ class TranscriptVersion(StableRecord):
     segments: list[TranscriptSegment] = Field(max_length=10000)
 
 
+class NoteStatement(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    statement_id: UUID
+    text: str = Field(min_length=1, max_length=4000)
+    fact_ids: list[UUID] = Field(min_length=1, max_length=20)
+    origin: Literal["source_linked", "clinician_entered"]
+    source_version_id: UUID | None = None
+    evidence: EvidenceSpan | None = None
+
+
+class NoteSection(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    key: Literal["subjective", "objective", "assessment", "plan"]
+    statements: list[NoteStatement] = Field(max_length=300)
+
+
 class NoteVersion(StableRecord):
     id: UUID
     encounter_id: UUID
@@ -65,7 +121,14 @@ class NoteVersion(StableRecord):
     transcript_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     verification_report_id: UUID
     facts: list[ClinicalFact] = Field(min_length=1, max_length=300)
-    sections: list[dict] = Field(max_length=4)
+    sections: list[NoteSection] = Field(max_length=4)
+
+    @model_validator(mode="after")
+    def unique_note_sections(self):
+        keys = [section.key for section in self.sections]
+        if len(keys) != len(set(keys)):
+            raise ValueError("duplicate_note_section")
+        return self
 
 
 class VerificationFinding(BaseModel):
@@ -107,10 +170,27 @@ class Approval(StableRecord):
     patient_identifiers_reconfirmed: Literal[True]
 
 
+class ExportRecord(StableRecord):
+    id: UUID
+    encounter_id: UUID
+    approval_id: UUID
+    note_version_id: UUID
+    note_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    transcript_version_id: UUID
+    transcript_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    format: Literal["markdown", "text", "json", "fhir"]
+    artifact_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    created_at: datetime
+
+
 class InferenceReceipt(StableRecord):
-    status: str
-    model_digest: str | None = None
-    config_sha256: str | None = None
+    status: Literal[
+        "completed", "failed", "not_configured", "skipped", "timeout", "abstained"
+    ]
+    model_digest: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
+    config_sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
+    source_sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
+    duration_ms: float | None = Field(default=None, ge=0)
     limitations: list[str] = Field(default_factory=list)
     independent_clinical_gold: Literal[False] = False
 
@@ -283,10 +363,17 @@ class AuditRecord(StableRecord):
 
 
 MODELS = {
+    "audio_source": AudioSource,
+    "processing_consent": ProcessingConsent,
+    "evidence": EvidenceSpan,
+    "fact": ClinicalFact,
+    "relationship": ClaimRelation,
     "transcript": TranscriptVersion,
     "note": NoteVersion,
     "verification": VerificationReport,
     "approval": Approval,
+    "export": ExportRecord,
+    "inference_receipt": InferenceReceipt,
     "proposal": ModelProposal,
     "audit": AuditRecord,
     "draft_proposal": DraftProposal,

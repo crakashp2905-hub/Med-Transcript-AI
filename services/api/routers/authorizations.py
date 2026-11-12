@@ -4,6 +4,7 @@ from uuid import UUID, uuid4
 from fastapi import Depends, HTTPException
 from services.api.storage import active_scopes, processing_allowed
 from services.api.contracts import Identity, AuthorizationInput
+from services.domain_contracts import validate_record
 from services.api.router_context import ApiServices
 from services.api.time_utils import now
 
@@ -24,6 +25,18 @@ def register(app, services: ApiServices):
         resource, created = str(uuid4()), now()
         with database() as con:
             encounter(con, encounter_id, actor)
+            try:
+                validate_record(
+                    "processing_consent",
+                    {
+                        "id": resource,
+                        "encounter_id": str(encounter_id),
+                        **body.model_dump(mode="json"),
+                        "granted_at": created,
+                    },
+                )
+            except ValueError:
+                raise HTTPException(422, "processing_consent_invalid") from None
             con.execute(
                 "INSERT INTO authorizations VALUES (?,?,?,?,NULL)",
                 (resource, str(encounter_id), body.model_dump_json(), created),

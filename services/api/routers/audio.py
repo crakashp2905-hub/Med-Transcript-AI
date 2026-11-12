@@ -9,6 +9,7 @@ from services.api.ingest import file_sha256
 from services.api.contracts import Identity, IdempotencyKey, UploadInput
 from services.api.router_context import ApiServices
 from services.api.time_utils import now
+from services.domain_contracts import validate_record
 
 
 def register(app, services: ApiServices):
@@ -189,6 +190,20 @@ def register(app, services: ApiServices):
                     raise HTTPException(422, "upload_integrity_failure")
             except OSError:
                 raise HTTPException(503, "asset_storage_unavailable") from None
+            try:
+                validate_record(
+                    "audio_source",
+                    {
+                        "id": str(upload_id),
+                        "encounter_id": str(encounter_id),
+                        "sha256": row["expected_sha256"],
+                        "byte_count": row["expected_bytes"],
+                        "media_type": row["media_type"],
+                        "state": "sealed",
+                    },
+                )
+            except ValueError:
+                raise HTTPException(422, "audio_source_metadata_invalid") from None
             job_id, created = str(uuid4()), now()
             con.execute(
                 """INSERT INTO jobs (id, upload, encounter, status, created_at, updated_at)
