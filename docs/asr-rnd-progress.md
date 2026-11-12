@@ -351,6 +351,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   honestly. Developer-authored synthetic fixtures remain mechanism tests and
   are not presented as coverage results. Completion requires reviewed
   development labels and matched selector/control inference receipts.
+- **MTA-ASR-F09:** Partial, model-signal blocked. Faster-whisper, Omi and
+  Parakeet adapters explicitly return confidence unsupported and uncalibrated;
+  the deterministic risk score remains null. No reliability diagram or ECE is
+  computed from heuristics or invented posteriors. Calibration work requires
+  a backend with genuine score signals and a separate labeled development set.
 - **MTA-ASR-F06:** Partial. Existing repair jobs cap each requested crop at
   120 seconds, validate source authorization/version/hash, admit model memory
   before inference, and retry worker jobs at most three times. Candidate output
