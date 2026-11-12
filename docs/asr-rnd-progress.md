@@ -289,3 +289,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   checks cover explicit medication and dose swaps, but are not phonetic
   confusability evidence. No clinical correctness claim is made; completion
   requires an approved, rights-reviewed confusable set and reference labels.
+- **MTA-ASR-E06:** Added a finite candidate formatter limited to whitespace
+  and case normalization for recognized numbers with supported explicit units.
+  It verifies the before/after quantity signature, preserves the original
+  string, never adds a missing unit, and never automatically adopts a
+  candidate. Tests cover decimal/unit distinctions and unsupported or absent
+  units; tests/test_asr_number_format.py: 3 passed and postprocess controls: 3
+  passed. Ruff and format checks pass. Status: partial; no additional unit
+  systems or app publication integration are claimed.
