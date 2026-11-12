@@ -45,6 +45,17 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   audio was fetched. Critical name and dosing-frequency classification also
   needs further implementation. Status: partial; audio replay is
   `BLOCKED_MISSING_RESOURCE`.
+- **MTA-ASR-A05:** Added `services/asr/subgroup_diagnostics.py` and the frozen
+  development report `evaluation/reports/asr-subgroups-v1.json`. It summarizes
+  saved edit errors by recording condition, annotated speaker role, overlap,
+  reference-turn length, and annotated duration proxy. All 17 saved runs
+  reconcile to 27,366 reference words in every dimension, including a
+  13,683/13,683 clean/distracted split. `tests/test_asr_subgroup_diagnostics.py`:
+  2 passed; it checks source digests, denominators, failure-inclusive missing
+  outputs, and unknown channel mapping. Status: partial; annotated duration is
+  not measured active speech time, channel metadata is unavailable, and there
+  is no audio for validating channel or speech-time subgroups. These are
+  descriptive saved-development diagnostics, not clinical acceptance.
 
 ## Open gates
 
