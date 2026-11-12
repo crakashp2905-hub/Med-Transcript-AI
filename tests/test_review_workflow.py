@@ -69,6 +69,40 @@ def approve(client, eid, note):
     )
 
 
+def test_approval_idempotency_replays_same_decision_and_rejects_changed_request(setup):
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path)
+    note = draft(client, eid, tx, facts)["note"]
+    route = f"/v1/encounters/{eid}/approvals"
+    request = {
+        "note_version_id": note["id"],
+        "expected_note_sha256": note["sha256"],
+        "verification_report_id": note["verification_report_id"],
+        "patient_identifiers_reconfirmed": True,
+    }
+    request_headers = headers()
+    first = client.post(route, json=request, headers=request_headers)
+    assert first.status_code == 201, first.text
+    replayed = client.post(route, json=request, headers=request_headers)
+    assert replayed.status_code == 201
+    assert replayed.json() == first.json()
+    incompatible = {**request, "note_version_id": str(uuid4())}
+    assert (
+        client.post(route, json=incompatible, headers=request_headers).status_code
+        == 409
+    )
+    independently_retried = client.post(route, json=request, headers=headers())
+    assert independently_retried.status_code == 201
+    assert independently_retried.json()["id"] == first.json()["id"]
+    with Store(path).transaction() as con:
+        assert (
+            con.execute(
+                "SELECT COUNT(*) FROM approvals WHERE note=?", (note["id"],)
+            ).fetchone()[0]
+            == 1
+        )
+
+
 def test_full_review_approval_export_and_amendment(setup):
     client, path, _ = setup
     eid, tx, facts = prepare(client, path)
@@ -100,6 +134,14 @@ def test_full_review_approval_export_and_amendment(setup):
     assert approved.status_code == 201, approved.text
     assert lifecycle()["stage"] == "approved"
     assert approve(client, eid, result["note"]).json() == approved.json()
+    with Store(path).transaction() as con:
+        assert (
+            con.execute(
+                "SELECT COUNT(*) FROM approvals WHERE note=?",
+                (result["note"]["id"],),
+            ).fetchone()[0]
+            == 1
+        )
     for format in ("markdown", "text", "json"):
         response = client.post(
             f"/v1/encounters/{eid}/exports",
