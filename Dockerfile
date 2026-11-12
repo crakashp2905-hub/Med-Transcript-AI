@@ -3,6 +3,7 @@ WORKDIR /web
 COPY apps/clinician-web/package*.json ./
 RUN npm ci
 COPY apps/clinician-web/ ./
+COPY services/error_catalog.json /services/error_catalog.json
 RUN npm run build
 
 FROM python:3.13.5-slim
