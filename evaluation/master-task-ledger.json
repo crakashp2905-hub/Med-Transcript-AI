@@ -1893,11 +1893,37 @@
       "id": "MTA-04-04",
       "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Construct error corpus of substitutions/deletions/insertions aligned to timestamps where available, by consultation and role.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/error_taxonomy.py",
+        "services/conversation_errors.py",
+        "evaluation/error-taxonomy-protocol-v2.json",
+        "evaluation/reports/error-taxonomy-v2/report.json",
+        "evaluation/reports/error-taxonomy-v2/all-errors.csv.zip",
+        "evaluation/reports/master-task-mta-04-04-683b915.json"
+      ],
+      "source_commit": "683b91544777da5f8196d49d97cfce7aa0f7c87c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-04-04-683b915.json",
+          "report_sha256": "12ec335f40ab20b1e909dbc832e452fd2e9a3bc72035d4b0d98b111c62e0446f",
+          "check": "error_corpus_integrity",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-04-683b915.json",
+          "report_sha256": "12ec335f40ab20b1e909dbc832e452fd2e9a3bc72035d4b0d98b111c62e0446f",
+          "check": "alignment_and_attribution",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-04-683b915.json",
+          "report_sha256": "12ec335f40ab20b1e909dbc832e452fd2e9a3bc72035d4b0d98b111c62e0446f",
+          "check": "ci_exact_commit",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

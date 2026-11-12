@@ -1,0 +1,82 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-04-04",
+  "status": "pass",
+  "source_commit": "683b91544777da5f8196d49d97cfce7aa0f7c87c",
+  "source_tree": "08dbd30edc111120add87d6aa4a5574300d8bd48",
+  "checks": {
+    "error_corpus_integrity": {
+      "status": "pass",
+      "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+      "taxonomy_report_sha256": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2",
+      "csv_archive_sha256": "159e05a0c9415febc08a325bbbba8066ec043d67612ce978f10a564a99a6c280",
+      "uncompressed_csv_sha256": "3896cc88a1175215cf131af7e4199418a16988527b548a22774df24bf44817b2",
+      "source_report_count": 17,
+      "source_reports_all_hash_verified": true
+    },
+    "alignment_and_attribution": {
+      "status": "pass",
+      "cases": 257,
+      "error_rows": 137356,
+      "operations": {
+        "substitution": 44674,
+        "deletion": 54219,
+        "insertion": 38463
+      },
+      "by_reference_role": {
+        "clinician": 58317,
+        "patient": 40576,
+        "unattributed_insertion": 38463
+      },
+      "timestamped_reference_errors": 98893,
+      "untimed_or_unattributed": 38463,
+      "note": "Insertion operations have no reference token/turn to timestamp or attribute, and are explicitly left unattributed."
+    },
+    "focused_tests": {
+      "status": "pass",
+      "summary": "7 passed",
+      "tests": [
+        "tests/test_asr_critical_error_provenance.py",
+        "tests/test_asr_subgroup_diagnostics.py",
+        "tests/test_asr_word_error_replay.py",
+        "tests/test_error_taxonomy.py"
+      ]
+    },
+    "ci_exact_commit": {
+      "status": "pass",
+      "run_id": 43310309464,
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43310309464",
+      "jobs": {
+        "test (dev,security)": "success; 865 passed, 17 skipped",
+        "test (dev,asr,security)": "success; 893 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release-summary": "success"
+      }
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43310309464
+  },
+  "runtime_sha256": "09a556ba72802f877173897081c0d3cbc7d9fe0cdeab41150f26c555c43f166f",
+  "source_sha256": {
+    "services/error_taxonomy.py": "b2648c5fec9bdec6488b5378d93b0e555bd58049582075dddf1443f0cd1adb56",
+    "services/conversation_errors.py": "f70635a77b6aa565445fdfc60af016878a7d8472630641413c9236a9374da61c",
+    "tests/test_asr_critical_error_provenance.py": "031327279f4cd907d6a556d3e946df3cf379c193c7eb961dc1786935dfd4f7e9",
+    "tests/test_asr_subgroup_diagnostics.py": "c185af68f67d9f511fb53eed7749921028eb2932b20433f5722645806ee0a028",
+    "tests/test_asr_word_error_replay.py": "38fd0b707ef02c8e4c74d8b60d087a5085763953a95bf4f239c3117519e950e8",
+    "tests/test_error_taxonomy.py": "58db9125f583f201b538ccb341e75067ce346e48bb5e64f1b99a802eacb571b3",
+    "evaluation/error-taxonomy-protocol-v2.json": "e9b0d6cbb1303f2ba1b5125a2f477bfa135e4f992a467888f29a6022298221bb",
+    "evaluation/reports/error-taxonomy-v2/report.json": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2",
+    "evaluation/reports/error-taxonomy-v2/all-errors.csv.zip": "159e05a0c9415febc08a325bbbba8066ec043d67612ce978f10a564a99a6c280",
+    "evaluation/datasets/meddistract-detailed-v1/manifest.json": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262"
+  },
+  "limitations": [
+    "Edit categories use deterministic minimum-edit alignment and do not establish clinical concept correctness or error causality.",
+    "Reference-turn intervals provide source timing; they are not ASR word timestamps. Insertions remain unassigned when no reference token is present.",
+    "No independent clinical adjudication or clinical release is established."
+  ]
+}
