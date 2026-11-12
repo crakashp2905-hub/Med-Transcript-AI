@@ -297,6 +297,17 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   units; tests/test_asr_number_format.py: 3 passed and postprocess controls: 3
   passed. Ruff and format checks pass. Status: partial; no additional unit
   systems or app publication integration are claimed.
+- **MTA-ASR-E08:** Ran a paired local faster-whisper tiny.en development pilot
+  on four clean paracetamol-positive turns and four nearest non-target turns.
+  evaluation/reports/asr-lexicon-bias-pilot-v1-final.json SHA-256
+  d2fa02f5c7a894a8cdd57c7a6bd99136241aa1350c6b86cdd60e0150f0b616a7 binds
+  the frozen dataset/lock, profile, lexicon and evaluator/adapter code hashes.
+  Exact-term recall changed 1/4 to 4/4, while false insertions changed 0/4 to
+  1/4 and normalized WER worsened from 44/153 (28.76%) to 46/153 (30.07%);
+  no inference failures occurred. The result is development-only, not
+  adjudicated clinical gold. Status: partial; this small pilot shows a
+  non-target insertion and worse overall WER, and cannot justify enabling
+  biasing or satisfy full-cohort validation.
 - **MTA-ASR-E07:** Added an ASR candidate comparison wrapper around the
   conservative source-vs-claim rules. It flags negation-scope, medication,
   numeric/unit and medication-dose binding conflicts as review-required; it
