@@ -1,0 +1,48 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-14",
+  "status": "pass",
+  "source_commit": "2b046aaf2addcd1c7c4f3a99bb666e27eb8e2968",
+  "source_tree": "fdcf9727e38f27ed526abe99631a4e20af1deaf4",
+  "checks": {
+    "deterministic_default_and_synthetic_only_model_drafting": {
+      "status": "pass",
+      "controls": [
+        "The drafting feature defaults to deterministic mode and remains on that baseline until the explicit model-enabled flag is set.",
+        "JSONProvider refuses local or hosted drafting unless the caller explicitly marks the source synthetic.",
+        "Hosted drafting also retains its synthetic-only disclosure, provider allowlist and billing-cap checks.",
+        "The application encounter input schema only admits synthetic_data=true; the API therefore cannot route a non-synthetic encounter into the optional model adapter.",
+        "The new regression rejects a local model call with synthetic=false; deterministic drafting remains unaffected."
+      ],
+      "local_checks": {
+        "source_guard_and_feature_flag_tests": "4 passed",
+        "ruff": "pass"
+      },
+      "ci_run_id": 43284368191,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43284368191",
+      "ci_jobs": {
+        "test_dev_security": "success; 806 passed, 17 skipped",
+        "test_dev_asr_security": "success; 834 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "source_sha256": {
+    "services/review/providers.py": "f5b72b99b9bc2b4ba79cf889e2fa4b7f2ff0322d06c0d5385c2b629ca901e6ae",
+    "services/review/routers/proposals.py": "08258a745e984b42d9ee5600c09df5082e3c1be2182ac17ee9b0ea0ca9bf661b",
+    "services/api/contracts.py": "fe5c65f1ba9ea574523be99b7ef2e0e2fe29ce85a364e7dbf156bc3335c81fbb",
+    "services/feature_flags.py": "d6bca06560dadd3470bb861995b49e0ab1e281e142750e66ab68b106e6237e6f",
+    "tests/test_clinical_intelligence.py": "15575198f1a346bb1364415d3a34e5cd3b6878cabde985448d9d58cf87257229",
+    "tests/test_feature_flags.py": "7021f7240e2d5802e60dc5a58d0b2cc0bdae20df7958f5c433f15958d257a6c4"
+  },
+  "limitations": [
+    "This constraint is based on the application’s synthetic-only encounter contract; broadening the product to real clinical data requires a new authorization and privacy review before changing it.",
+    "This establishes a configuration and routing guard, not drafting quality or clinical readiness.",
+    "No paid provider calls were made."
+  ],
+  "clinical_release_authorized": false
+}

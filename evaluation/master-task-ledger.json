@@ -1347,11 +1347,20 @@
       "id": "MTA-02-14",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Preserve deterministic baseline as default, optional local LLM only on explicitly authorized synthetic/mock sources.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-14-2b046aa.json"
+      ],
+      "source_commit": "2b046aaf2addcd1c7c4f3a99bb666e27eb8e2968",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-14-2b046aa.json",
+          "report_sha256": "1781ada78b768e367d13e17e85b27b7857731491d8898bf5f5297d12dc3c9f35",
+          "check": "deterministic_default_and_synthetic_only_model_drafting",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
