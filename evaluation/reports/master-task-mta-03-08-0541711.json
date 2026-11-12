@@ -1,0 +1,50 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-08",
+  "status": "pass",
+  "source_commit": "054171172da9516f3f063a5f75c48767621241ef",
+  "source_tree": "12526d042ef8417d216dbe88c012f7a17c21a50f",
+  "checks": {
+    "resumable_upload_replay_and_original_digest": {
+      "status": "pass",
+      "controls": [
+        "Replaying the already committed identical chunk returns the same received offset without duplication.",
+        "A conflicting replay and an offset gap are rejected; a tail written without a committed offset is truncated before retry.",
+        "The resumed asset byte-for-byte matches the original and its SHA-256 matches the original upload digest.",
+        "The uploaded state reports every expected byte committed; repeated finalization remains idempotent.",
+        "Live-stream sealing verifies caller-provided exact byte count and digest before ingest."
+      ],
+      "local_checks": {
+        "windows_testclient": "stalled before emitting a result; not counted as a pass",
+        "ruff": "pass"
+      },
+      "ci_run_id": 43299074066,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43299074066",
+      "ci_jobs": {
+        "test_dev_security": "success; 845 passed, 17 skipped, 2 warnings",
+        "test_dev_asr_security": "success; 873 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43299074066
+  },
+  "runtime_sha256": "5793eee6afefd2b32de734c5e045cf75db103750676a682b788775973e7229c3",
+  "source_sha256": {
+    "tests/test_recovery.py": "1a669cf655954d2a3ff6cf21f7cf74058303e2b71dc30c53144bfc9071c5dd84",
+    "services/api/resumable.py": "347f5ce99bb871812192fff6067f2a54ab05820bce299fd18d577068c2d7eeb5",
+    "services/api/live_uploads.py": "3107672e74577ee1170510938588582eb4150d5701b5db855c7cd1dd5de0dc54"
+  },
+  "limitations": [
+    "These tests establish upload transport integrity, not ASR transcript completeness or clinical accuracy.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}

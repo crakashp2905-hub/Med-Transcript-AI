@@ -1619,11 +1619,20 @@
       "id": "MTA-03-08",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Ensure resume retries neither duplicate nor omit committed chunks and compare final sealed digest to original input.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-08-0541711.json"
+      ],
+      "source_commit": "054171172da9516f3f063a5f75c48767621241ef",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-08-0541711.json",
+          "report_sha256": "f1ded74f379d17fff2620b8ef9667ad6e1bbac21e3e799ae9826d64de04a0163",
+          "check": "resumable_upload_replay_and_original_digest",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
