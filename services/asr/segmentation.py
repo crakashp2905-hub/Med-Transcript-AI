@@ -56,7 +56,9 @@ def _pause_aware(total_frames, rate, window_frames, pauses):
     return spans
 
 
-def _vad_cut_merge(total_frames, window_frames, vad_spans, padding_frames):
+def _vad_cut_merge(
+    total_frames, window_frames, vad_spans, padding_frames, minimum_frames
+):
     padded = [
         (max(0, start - padding_frames), min(total_frames, end + padding_frames))
         for start, end in vad_spans
@@ -67,8 +69,19 @@ def _vad_cut_merge(total_frames, window_frames, vad_spans, padding_frames):
             merged[-1] = (merged[-1][0], max(merged[-1][1], end))
         else:
             merged.append((start, end))
-    output = []
+    expanded = []
     for start, end in merged:
+        if end - start < minimum_frames:
+            midpoint = (start + end) // 2
+            start = max(0, midpoint - minimum_frames // 2)
+            end = min(total_frames, start + minimum_frames)
+            start = max(0, end - minimum_frames)
+        if expanded and start <= expanded[-1][1]:
+            expanded[-1] = (expanded[-1][0], max(expanded[-1][1], end))
+        else:
+            expanded.append((start, end))
+    output = []
+    for start, end in expanded:
         cursor = start
         while end - cursor > window_frames:
             boundary = cursor + window_frames
@@ -158,7 +171,9 @@ def plan_segments(
     strategy,
     *,
     max_window_ms=30000,
+    min_window_ms=1000,
     overlap_ms=2000,
+    padding_ms=100,
     vad_spans=(),
     pause_spans=(),
     speech_spans=(),
@@ -174,8 +189,14 @@ def plan_segments(
         or strategy not in STRATEGIES
         or type(max_window_ms) is not int
         or max_window_ms <= 0
+        or type(min_window_ms) is not int
+        or min_window_ms <= 0
+        or strategy == "vad_cut_merge"
+        and min_window_ms > max_window_ms
         or type(overlap_ms) is not int
         or overlap_ms < 0
+        or type(padding_ms) is not int
+        or padding_ms < 0
     ):
         raise ValueError("invalid_segmentation_profile")
     if type(channel_count) is not int or channel_count < 1:
@@ -198,7 +219,13 @@ def plan_segments(
         vad = _validated_spans(vad_spans, total_frames)
         if not vad:
             raise ValueError("vad_candidate_spans_required")
-        windows = _vad_cut_merge(total_frames, window_frames, vad, sample_rate // 10)
+        windows = _vad_cut_merge(
+            total_frames,
+            window_frames,
+            vad,
+            sample_rate * padding_ms // 1000,
+            sample_rate * min_window_ms // 1000,
+        )
     else:
         if channel_count < 2:
             raise ValueError("channel_first_requires_multiple_channels")
@@ -229,8 +256,9 @@ def plan_segments(
         "total_frames": total_frames,
         "parameters": {
             "max_window_ms": max_window_ms,
+            "min_window_ms": min_window_ms if strategy == "vad_cut_merge" else None,
             "overlap_ms": overlap_ms if strategy == "overlap_aware" else 0,
-            "padding_ms": 100 if strategy == "vad_cut_merge" else 0,
+            "padding_ms": padding_ms if strategy == "vad_cut_merge" else 0,
             "source_channels_known": bool(source_channels_known),
         },
         "windows": planned,

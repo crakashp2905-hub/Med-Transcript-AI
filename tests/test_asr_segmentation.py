@@ -25,6 +25,7 @@ def test_vad_and_pause_aware_windows_preserve_annotated_speech():
         1000,
         "vad_cut_merge",
         max_window_ms=300,
+        min_window_ms=100,
         vad_spans=speech,
         speech_spans=speech,
     )
@@ -54,12 +55,33 @@ def test_vad_plan_rejects_uncovered_speech_and_ledger_identifies_gap():
             1000,
             1000,
             "vad_cut_merge",
+            max_window_ms=400,
+            min_window_ms=100,
             vad_spans=[(100, 200)],
             speech_spans=[(100, 350)],
         )
     ledger = build_coverage_ledger([(10, 20)], [(10, 15)])
     assert not ledger["complete"]
     assert ledger["missing_source_spans"] == [(15, 20)]
+
+
+def test_vad_minimum_duration_and_padding_are_frozen_parameters():
+    plan = plan_segments(
+        10000,
+        1000,
+        "vad_cut_merge",
+        min_window_ms=500,
+        max_window_ms=2000,
+        padding_ms=200,
+        vad_spans=[(5000, 5100)],
+        speech_spans=[(5000, 5100)],
+    )
+    window = plan["windows"][0]
+    assert window["end_frame_exclusive"] - window["start_frame"] >= 500
+    assert window["start_frame"] < 5000
+    assert window["end_frame_exclusive"] > 5100
+    assert plan["parameters"]["min_window_ms"] == 500
+    assert plan["parameters"]["padding_ms"] == 200
 
 
 def test_stitch_uses_stable_window_ids_and_only_deduplicates_overlaps():

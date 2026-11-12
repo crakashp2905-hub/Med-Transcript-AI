@@ -152,3 +152,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   covers repeated edges, true non-overlap repetitions, and missing outputs.
   Status: partial; no measured word timestamps exist to disambiguate a true
   repeated word that happens at an overlapping window edge.
+- **MTA-ASR-C05:** Added tunable VAD candidate minimum duration, maximum
+  duration, and padding, preserving source sample offsets and checking supplied
+  speech-span coverage. tests/test_asr_segmentation.py exercises short-span
+  padding, duration limits, and coverage failures. Status: partial; thresholds
+  have not been ablated against matched frozen conversations.
