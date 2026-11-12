@@ -22,6 +22,9 @@ jobs:
           python -m pip install ruff==0.15.13 mypy==1.18.2
       - name: Run deterministic Python verification sequence
         run: python -m services.verify --python-only
+      - name: Generate redacted local dependency SBOM
+        if: matrix.extras == 'dev,security'
+        run: python -m services.offline_sbom --output "$RUNNER_TEMP/med-transcript-sbom.json"
       - name: Measure critical module line and branch coverage
         if: matrix.extras == 'dev,security'
         run: >-
