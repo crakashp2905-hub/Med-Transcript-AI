@@ -695,6 +695,18 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   passed (1 test), checking all manifest cases, coverage, failure inclusion,
   immutable edit counts, the 5% gate and full-run memory budget. Its SHA-256 is
   `05da2b5a3004cc9d91e45acdd857abaf70fc00b0b1586706249d0958b2fa1840`.
+- **MTA-ASR-C10 large-v3 overlap full run:** Suite v4 ran all 16 manifest cases
+  afresh (8 clean/8 distracted), with complete source coverage and zero failed
+  cases or chunks. The new receipt reproduces the immutable v2 overlap edits
+  exactly: clean 3,228/13,683 (23.5913%) and distracted 3,306/13,683
+  (24.1614%). Per-condition wall time was 6,585.5/6,608.3 seconds; model load
+  took 41.3 seconds. Full-process peak working set was 3,445,260,288 bytes,
+  within the unchanged 16 GiB budget. The <=5% admission gate remains FAIL.
+  `tests/test_detailed_benchmark.py::test_detailed_v4_large_v3_overlap_receipt_is_full_and_reproduces_baseline`
+  pins the report SHA-256 `7a0df4c190b9314126b9dda0ec6f1602dd67d18029e3fd1534071c0833c702ca`,
+  case/coverage/failure accounting, exact historical scores, the WER gate and
+  resource receipt. C10 remains partial: other modes and candidates still need
+  fresh full-run latency and memory measurements.
 - **MTA-ASR-D01:** The operational application path remains the pinned
   Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration
   (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are
