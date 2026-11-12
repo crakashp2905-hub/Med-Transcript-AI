@@ -1528,11 +1528,20 @@
       "id": "MTA-03-03",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Enforce original audio immutability; normalization produces separate hashed working assets.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-03-2518988.json"
+      ],
+      "source_commit": "2518988dbf4447f747bdb3f31a44c4ec3519eac9",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-03-2518988.json",
+          "report_sha256": "74ec057e51e95ed0f5a6e90d63705014bb2260307aea0f7a21062ac52e3a4f4b",
+          "check": "immutable_source_and_separate_working_audio",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

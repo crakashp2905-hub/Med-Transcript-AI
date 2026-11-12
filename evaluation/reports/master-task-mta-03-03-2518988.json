@@ -1,0 +1,54 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-03",
+  "status": "pass",
+  "source_commit": "2518988dbf4447f747bdb3f31a44c4ec3519eac9",
+  "source_tree": "8dcae2977085acb13ce86b0a991d38110734b81d",
+  "checks": {
+    "immutable_source_and_separate_working_audio": {
+      "status": "pass",
+      "controls": [
+        "The normalizer snapshots source provenance before child execution and checks the source digest again before deriving output provenance.",
+        "Successful normalization returns a distinct destination with a separate asset digest and the exact source parent digest.",
+        "A simulated child that changes the source is rejected with source_audio_changed_during_normalization.",
+        "The application ingest worker keeps the uploaded WAV byte-identical and publishes a separate hash-linked normalized asset.",
+        "Existing transform tests also cover exact original-path reuse when disabled and source immutability when transforms fail."
+      ],
+      "local_checks": {
+        "normalizer_unit_tests": "2 passed",
+        "application_worker_integration": "test added and passed in exact-commit CI; local Windows TestClient stalled before result",
+        "ruff": "pass"
+      },
+      "ci_run_id": 43294977918,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43294977918",
+      "ci_jobs": {
+        "test_dev_security": "success; 843 passed, 17 skipped, 3 warnings",
+        "test_dev_asr_security": "success; 871 passed, 3 skipped, 4 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43294977918
+  },
+  "runtime_sha256": "3591079844cf245e0596c67af62722e2f240a5b9f64edf19a8af46c407e9fa7c",
+  "source_sha256": {
+    "services/media_decoder.py": "ae19b08f470bd109f5299dfad53fe7c57e9cc8fa07c34898541fbb0c8f1620da",
+    "services/api/ingest.py": "7fca3d30f2b78d0c702321dba56e1e99fa7a8f7fa0216a35b3e3009d4c6f4a23",
+    "services/audio_provenance.py": "3c27a7e801fe63e03fa55eacebebe748d19a99d5ecf34ee43dd677811c74f552",
+    "tests/test_media.py": "348c578d67fa8fa5f8c06c71dcf24eada43d123ecfb10ec808b320c13958d78b",
+    "tests/test_audio_enhancement.py": "615e83396047b6d724770f96af325f625bf2f104feaec29010fdef871e2cf66d"
+  },
+  "limitations": [
+    "The local PyAV runtime is unavailable, so native decoder integration tests remain skipped; passing deterministic tests exercise the real normalization wrapper and ingest worker with a scripted child decoder.",
+    "This is audio lineage integrity evidence, not ASR quality or clinical validation.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}
