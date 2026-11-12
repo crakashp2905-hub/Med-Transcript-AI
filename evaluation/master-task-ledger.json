@@ -1712,11 +1712,20 @@
       "id": "MTA-03-13",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Preserve full failure/timeout reports for media decoding instead of silently removing bad files.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-13-b75fcc7.json"
+      ],
+      "source_commit": "b75fcc7675bae41be670a0899f2910a7729deb2f",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-13-b75fcc7.json",
+          "report_sha256": "cd2eda6bb750d91adaf3b7df911eb2ef6c8a531e9e578aed0e5784da47c3bd44",
+          "check": "decoder_failure_reports_are_persisted",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

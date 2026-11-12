@@ -1,0 +1,54 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-13",
+  "status": "pass",
+  "source_commit": "b75fcc7675bae41be670a0899f2910a7729deb2f",
+  "source_tree": "e81f9f55af33ac6bcbbf3e31de9209f012fa93d0",
+  "checks": {
+    "decoder_failure_reports_are_persisted": {
+      "status": "pass",
+      "controls": [
+        "Decoder normalization returns structured, content-free failure reports for source validation, process failure, child-reported error, malformed child report, source mutation and timeout.",
+        "Failure reports bind expected and observed source hashes where available, partial-output byte count/hash, process return code, safe child error code, stdout digest/count, timeout and elapsed time.",
+        "Raw decoder diagnostics are intentionally not retained because they may include source content.",
+        "Full-consultation dataset preparation writes decoder-failures.json and preserves original and partial audio files when normalization fails.",
+        "The application stores the failure report in the failed ingest job result before removing its untrusted temporary normalized output.",
+        "Regression tests cover timeout, child error, malformed child report, dataset sidecar persistence and ingest job result persistence."
+      ],
+      "local_checks": {
+        "focused_failure_report_tests": "4 passed",
+        "ruff": "pass",
+        "ruff_format": "pass",
+        "ingest_TestClient_case": "stalled locally; exact-source CI integration test passed"
+      },
+      "ci_run_id": 43304792486,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43304792486",
+      "ci_jobs": {
+        "test_dev_security": "success; 854 passed, 17 skipped, 1 warning",
+        "test_dev_asr_security": "success; 882 passed, 3 skipped, 1 warning",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43304792486
+  },
+  "runtime_sha256": "93a3cbee9892162e3c120f69e7eb119da9188c036c2a9fdaf42507398fcb0c79",
+  "source_sha256": {
+    "services/media_decoder.py": "8522d6475f7849f1001113f5091d4a492b593b306e912c6432fad365ccbfea2c",
+    "services/prepare_full_consultations.py": "803338a25c43f06aa1e3d3342c29ed14c01b45d280785458c128b8dfc4516a6a",
+    "services/api/ingest.py": "e8edcf432bdc2ed27134402a968b08b76c4dcd17478b20b278940df404b110ac",
+    "tests/test_media.py": "10381105ccc8c0b65988ebe234779c3790c50048adf0d9007907eb5ac9303890"
+  },
+  "limitations": [
+    "Raw stderr and raw decoder output are not persisted; the report stores bounded hashes and safe error metadata to avoid retaining possible source content.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}
