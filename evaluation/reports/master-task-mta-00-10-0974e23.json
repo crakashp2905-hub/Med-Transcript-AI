@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-00-10",
+  "source_commit": "0974e23656feaaf7322f55ce2fd45850353d2343",
+  "runtime": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "focused pytest invocation; installed version recorded by environment unavailable"
+  },
+  "runtime_sha256": "f60f159eb13d6095a9de7897affa918fde20efc23da34a10ca6cd00418ededd2",
+  "source_file_sha256": {
+    "services/acceptance_materials.py": "336f4a2f85b23818e6953db92f98139429922e24e887adbdc2859279300e4c27",
+    "services/negative_results.py": "026623cbb2c9eebeaa003b053f5641e15b82db524c91b65f0990215d36dba7a5",
+    "services/prompt_harness.py": "fd6536476c8c396b61e193b3ee6371da31019ddfc28a02a4031f065583fd065e",
+    "services/asr/clinical_lexicon.py": "3a9df7a06f2cc40d7800078f34a46fe6b1a60186d5d60a721706bdb8710eb656",
+    "evaluation/acceptance-reservation-v1.json": "d08de25ea071150b792874bfde6baf5cb955e779cfdba41abd615db41bcb42b1"
+  },
+  "checks": {
+    "reserved_lexicon_group_and_split_rejected": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_clinical_lexicon.py::test_lexicon_rejects_reserved_acceptance_groups_and_acceptance_split tests/test_prompt_harness.py tests/test_negative_results.py -q",
+      "result": "5 passed",
+      "scope": "synthetic refusal-path fixtures; reserved cohort contents were not read"
+    },
+    "prompt_harness_acceptance_data_forbidden": {
+      "status": "pass",
+      "command": "same focused pytest invocation",
+      "result": "included in 5 passed"
+    },
+    "negative_result_reserved_mutation_rejected": {
+      "status": "pass",
+      "command": "same focused pytest invocation",
+      "result": "included in 5 passed"
+    }
+  },
+  "reserved_cohort_read": false,
+  "reserved_cohort_inference": false,
+  "limitations": [
+    "Guard tests demonstrate refusal behavior using synthetic fixtures; they do not prove all possible tools or manual access paths are prevented.",
+    "No reserved acceptance content was inspected."
+  ]
+}

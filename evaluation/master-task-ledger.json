@@ -222,12 +222,20 @@
       "id": "MTA-00-10",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Keep the untouched reserved acceptance cohort untouched: no inference, prompt tuning, manual peeking or repeated model selection against it.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-00-10-0974e23.json"
+      ],
+      "source_commit": "0974e23656feaaf7322f55ce2fd45850353d2343",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-00-10-0974e23.json",
+          "report_sha256": "b5c94326de42a8ab17c76ed822d60dd70a7f9479a8b313d6262a55842d29360c"
+        }
+      ],
+      "blocker": "Tests verify synthetic refusal paths only; reserved cohort was deliberately not inspected, and guardrails cannot establish prevention of all manual or out-of-process access."
     },
     {
       "id": "MTA-00-11",
