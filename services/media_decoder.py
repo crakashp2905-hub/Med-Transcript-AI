@@ -40,6 +40,12 @@ def decode_child(source, destination, media_type):
             channels = len(stream.codec_context.layout.channels)
             if not 1 <= channels <= 8:
                 return {"error_code": "unsupported_audio_profile"}
+            source_rate = stream.codec_context.sample_rate or stream.rate
+            time_base = stream.time_base
+            source_origin_ms = None
+            if stream.start_time is not None and time_base is not None:
+                source_origin_ms = float(stream.start_time * time_base * 1000)
+            source_format = container.format.name
             resampler = av.AudioResampler(
                 format="s16", layout=stream.codec_context.layout, rate=16000
             )
@@ -66,7 +72,17 @@ def decode_child(source, destination, media_type):
                         return {"error_code": "duration_limit_exceeded"}
                     target.writeframes(output.to_ndarray().astype("<i2").tobytes())
         return (
-            {"frames": total, "error_code": None}
+            {
+                "frames": total,
+                "error_code": None,
+                "source_sample_rate": int(source_rate) if source_rate else None,
+                "source_channels": channels,
+                "source_origin_ms": source_origin_ms,
+                "source_container": source_format,
+                "output_sample_rate": 16000,
+                "output_channels": channels,
+                "output_encoding": "pcm_s16le",
+            }
             if total
             else {"error_code": "empty_audio"}
         )
@@ -103,7 +119,37 @@ def normalize(source, destination, media_type):
         )
         if result.returncode or len(result.stdout) > 4096:
             return {"error_code": "decoder_process_failed"}
-        return json.loads(result.stdout)
+        decoded = json.loads(result.stdout)
+        if decoded.get("error_code"):
+            return decoded
+        from services.audio_provenance import (
+            derive_provenance,
+            normalization_timeline,
+            source_provenance,
+        )
+
+        parent = source_provenance(source, media_type)
+        decoded["audio_provenance"] = derive_provenance(
+            parent,
+            destination,
+            "pyav_resample_to_pcm_s16le_v1",
+            {
+                "media_type": media_type,
+                "decoder": "PyAV",
+                "source_container": decoded.get("source_container"),
+                "source_sample_rate": decoded.get("source_sample_rate"),
+                "source_channels": decoded.get("source_channels"),
+                "output_sample_rate": decoded["output_sample_rate"],
+                "output_channels": decoded["output_channels"],
+                "output_encoding": decoded["output_encoding"],
+            },
+            normalization_timeline(
+                decoded.get("source_sample_rate"),
+                decoded["output_sample_rate"],
+                decoded.get("source_origin_ms"),
+            ),
+        )
+        return decoded
     except subprocess.TimeoutExpired:
         return {"error_code": "decoder_timeout"}
     except (OSError, ValueError):

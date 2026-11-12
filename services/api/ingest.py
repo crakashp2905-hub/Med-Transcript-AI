@@ -168,6 +168,7 @@ def run_once(db_path: str, asset_root: str):
             result.update(
                 working_sha256=file_sha256(working),
                 working_filename=working.name,
+                audio_provenance=decoded["audio_provenance"],
                 asr_sample_rate=16000,
                 asr_channels=normalized["channels"],
                 normalized_duration_ms=normalized["duration_ms"],
@@ -176,6 +177,12 @@ def run_once(db_path: str, asset_root: str):
             )
         assert result is not None
         result["sha256"] = upload["expected_sha256"]
+        if "audio_provenance" not in result:
+            from services.audio_provenance import source_provenance
+
+            result["audio_provenance"] = source_provenance(
+                source, upload["media_type"]
+            )
     except InvalidAudio as exc:
         error = str(exc)
     except OSError:

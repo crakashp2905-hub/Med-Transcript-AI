@@ -20,6 +20,12 @@ from services.api.storage import Store, processing_allowed, default_asset_root
 from services.asr.adapter import ASRFailure, FasterWhisperAdapter
 from services.asr.profiles import ASRProfile, canonical_json, content_sha256
 from services.asr.transcripts import build_transcript
+from services.audio_provenance import (
+    crop_timeline,
+    derive_provenance,
+    file_sha256 as audio_file_sha256,
+    source_provenance,
+)
 
 
 LEASE_SECONDS = 300
@@ -203,6 +209,9 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
             metadata["timeline_mapping_status"] = ingest.get(
                 "timeline_mapping_status", "original_pcm_timeline"
             )
+            metadata["audio_provenance"] = ingest.get("audio_provenance") or (
+                source_provenance(source, upload["media_type"])
+            )
             if (
                 not 1 <= metadata["channels"] <= MAX_CHANNELS
                 or metadata["sample_rate"] != 16000
@@ -251,11 +260,39 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
                         )
                     out.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
                     out.writeframes(pcm)
+                parent_provenance = metadata["audio_provenance"]
+                if audio_file_sha256(source) != parent_provenance["asset_sha256"]:
+                    raise ASRFailure("asset_integrity_failure")
+                timeline = crop_timeline(start * 16, end * 16, 16000)
+                timeline.update(
+                    kind="channel_crop_sample_index_offset"
+                    if metadata["channels"] > 1
+                    else "crop_sample_index_offset",
+                    channel_index=channel,
+                    source_channel_count=metadata["channels"],
+                )
+                span_provenance = derive_provenance(
+                    parent_provenance,
+                    cropped,
+                    "bounded_retranscription_crop_v1",
+                    {
+                        "start_ms": start,
+                        "end_ms": end,
+                        "start_frame": start * 16,
+                        "end_frame_exclusive": end * 16,
+                        "channel_index": channel,
+                        "source_channel_count": metadata["channels"],
+                        "output_sample_rate": 16000,
+                        "output_encoding": "pcm_s16le",
+                    },
+                    timeline,
+                )
                 source = cropped
                 metadata = {
                     **metadata,
                     **inspect_pcm_wav(source),
                     "span_audio_sha256": file_sha256(source),
+                    "audio_provenance": span_provenance,
                 }
             lease.checkpoint()
             from services.inference_slot import available_memory_bytes

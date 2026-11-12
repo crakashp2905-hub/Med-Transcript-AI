@@ -6,6 +6,7 @@ import re
 import wave
 from pathlib import Path
 
+from services.audio_provenance import crop_timeline, derive_provenance
 from services.api.ingest import file_sha256
 from services.media_decoder import normalize
 from services.prepare_primock import (
@@ -63,6 +64,7 @@ def prepare(destination, protocol_path="evaluation/validation-protocol-v1.json")
             result = normalize(original, normalized, "audio/wav")
             if result.get("error_code"):
                 raise ValueError(f"Normalization failed: {result['error_code']}")
+            normalized_provenance = result["audio_provenance"]
             chosen = [
                 (a, b, words)
                 for a, b, words in intervals(text)
@@ -86,6 +88,17 @@ def prepare(destination, protocol_path="evaluation/validation-protocol-v1.json")
                     with wave.open(str(target), "wb") as output:
                         output.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
                         output.writeframes(pcm)
+                    clip_provenance = derive_provenance(
+                        normalized_provenance,
+                        target,
+                        "validation_utterance_crop_v1",
+                        {
+                            "start_frame": first,
+                            "end_frame_exclusive": last,
+                            "padding_ms": round(protocol["padding_seconds"] * 1000),
+                        },
+                        crop_timeline(first, last, rate),
+                    )
                     samples.append(
                         {
                             "sample_id": target.stem,
@@ -97,6 +110,7 @@ def prepare(destination, protocol_path="evaluation/validation-protocol-v1.json")
                             "reference": words,
                             "source_start_seconds": first / rate,
                             "source_end_seconds": last / rate,
+                            "audio_provenance": clip_provenance,
                         }
                     )
             sources.append(

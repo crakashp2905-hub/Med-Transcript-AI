@@ -12,6 +12,8 @@ import urllib.request
 import wave
 from pathlib import Path
 
+from services.audio_provenance import crop_timeline, derive_provenance
+
 from services.api.ingest import file_sha256
 from services.media_decoder import normalize
 
@@ -75,6 +77,7 @@ def prepare(destination):
         result = normalize(original, normalized, "audio/wav")
         if result.get("error_code"):
             raise ValueError(f"Normalization failed: {result['error_code']}")
+        normalized_provenance = result["audio_provenance"]
         with wave.open(str(normalized), "rb") as audio:
             rate, frames = audio.getframerate(), audio.getnframes()
             # Deterministic first three eligible utterances, selected before inference.
@@ -103,6 +106,17 @@ def prepare(destination):
                     output.setsampwidth(2)
                     output.setframerate(rate)
                     output.writeframes(pcm)
+                clip_provenance = derive_provenance(
+                    normalized_provenance,
+                    clip,
+                    "primock_utterance_crop_v1",
+                    {
+                        "start_frame": first,
+                        "end_frame_exclusive": last,
+                        "padding_ms": 250,
+                    },
+                    crop_timeline(first, last, rate),
+                )
                 samples.append(
                     {
                         "sample_id": clip.stem,
@@ -114,6 +128,7 @@ def prepare(destination):
                         "speaker_role": role,
                         "source_start_seconds": first / rate,
                         "source_end_seconds": last / rate,
+                        "audio_provenance": clip_provenance,
                     }
                 )
         provenance.append(

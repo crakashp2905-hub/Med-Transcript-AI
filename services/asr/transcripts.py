@@ -138,6 +138,7 @@ def build_transcript(
             "timing": raw.get("timing", {}),
             "working_audio_sha256": metadata.get("working_sha256")
             or metadata["sha256"],
+            "audio_provenance": metadata.get("audio_provenance"),
             "timeline_mapping_status": metadata.get(
                 "timeline_mapping_status", "original_pcm_timeline"
             ),

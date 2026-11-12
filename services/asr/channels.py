@@ -8,9 +8,19 @@ from pathlib import Path
 from services.api.ingest import MAX_CHANNELS, inspect_pcm_wav, file_sha256
 from services.asr.adapter import ASRFailure
 from services.asr.transcripts import build_transcript
+from services.audio_provenance import (
+    channel_timeline,
+    derive_provenance,
+    source_provenance,
+)
 
 
-def write_channel(source, target, channel, checkpoint=lambda: None):
+def write_channel(
+    source, target, channel, checkpoint=lambda: None, parent_provenance=None
+):
+    parent_provenance = parent_provenance or source_provenance(source)
+    if file_sha256(source) != parent_provenance["asset_sha256"]:
+        raise ASRFailure("asset_integrity_failure")
     with wave.open(str(source), "rb") as audio:
         count = audio.getnchannels()
         if (
@@ -25,6 +35,20 @@ def write_channel(source, target, channel, checkpoint=lambda: None):
                 checkpoint()
                 # Copy exact little-endian PCM bytes, without mixing or quantizing.
                 output.writeframes(memoryview(data).cast("h")[channel::count].tobytes())
+            frame_count, sample_rate = audio.getnframes(), audio.getframerate()
+    return derive_provenance(
+        parent_provenance,
+        target,
+        "interleaved_pcm_channel_extract_v1",
+        {
+            "channel_index": channel,
+            "source_channel_count": count,
+            "source_sample_rate": sample_rate,
+            "sample_format": "pcm_s16le",
+            "mixing": False,
+        },
+        channel_timeline(channel, count, sample_rate, frame_count),
+    )
 
 
 def transcribe_channels(
@@ -34,8 +58,15 @@ def transcribe_channels(
     with tempfile.TemporaryDirectory(prefix="scribe-channels-") as directory:
         for channel in range(metadata["channels"]):
             target = Path(directory) / "channel.wav"
-            write_channel(source, target, channel, checkpoint)
+            channel_provenance = write_channel(
+                source,
+                target,
+                channel,
+                checkpoint,
+                metadata.get("audio_provenance"),
+            )
             mono = {**metadata, **inspect_pcm_wav(target)}
+            mono["audio_provenance"] = channel_provenance
             # A failed channel fails the job; never silently publish partial coverage.
             pcm_hash = file_sha256(target)
             output = load_channel(channel, pcm_hash) if load_channel else None
@@ -43,8 +74,12 @@ def transcribe_channels(
                 output = adapter.transcribe(target, mono, checkpoint)
                 if isinstance(output, dict):
                     output["isolated_channel_pcm_sha256"] = pcm_hash
+                    output["audio_provenance"] = channel_provenance
                 if save_channel:
                     save_channel(channel, output)
+            if isinstance(output, dict):
+                output["isolated_channel_pcm_sha256"] = pcm_hash
+                output["audio_provenance"] = channel_provenance
             outputs.append(output)
             checkpoint()
     return {"channel_outputs": outputs}
@@ -63,6 +98,9 @@ def build_channels(
         )
         item["provenance"]["isolated_channel_pcm_sha256"] = output.get(
             "isolated_channel_pcm_sha256"
+        )
+        item["provenance"]["derived_audio_provenance"] = output.get(
+            "audio_provenance"
         )
         body = body or deepcopy(item)
         for segment in item["segments"]:

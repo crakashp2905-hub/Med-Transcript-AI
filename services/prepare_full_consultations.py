@@ -6,6 +6,7 @@ import re
 import wave
 from pathlib import Path
 
+from services.audio_provenance import derive_provenance
 from services.api.ingest import file_sha256
 from services.media_decoder import normalize
 from services.prepare_primock import (
@@ -57,7 +58,7 @@ def prepare(
         raise ValueError("Unexpected license")
     cases = []
     for group in groups:
-        turns, tracks, sources = [], [], []
+        turns, tracks, sources, track_provenance = [], [], [], []
         for role in ("doctor", "patient"):
             stem = f"{group}_{role}"
             pointer = download(
@@ -71,8 +72,10 @@ def prepare(
             if source.stat().st_size != size or file_sha256(source) != digest:
                 raise ValueError("Source integrity failure")
             target = root / f"{stem}.wav"
-            if normalize(source, target, "audio/wav").get("error_code"):
+            normalized = normalize(source, target, "audio/wav")
+            if normalized.get("error_code"):
                 raise ValueError("Normalization failed")
+            track_provenance.append(normalized["audio_provenance"])
             with wave.open(str(target), "rb") as audio:
                 tracks.append(
                     np.frombuffer(audio.readframes(audio.getnframes()), dtype="<i2")
@@ -99,6 +102,7 @@ def prepare(
                     "annotation_sha256": file_sha256(grid),
                     "normalized_audio": target.name,
                     "normalized_sha256": file_sha256(target),
+                "audio_provenance": normalized["audio_provenance"],
                 }
             )
         count = max(map(len, tracks))
@@ -111,12 +115,37 @@ def prepare(
         with wave.open(str(target), "wb") as out:
             out.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
             out.writeframes((mixed // 2).astype("<i2").tobytes())
+        mixed_provenance = derive_provenance(
+            track_provenance[0],
+            target,
+            "primock_role_track_mix_v1",
+            {
+                "operation": "sample_aligned_arithmetic_mean",
+                "track_order": ["doctor", "patient"],
+                "gain_per_track": 0.5,
+                "output_sample_rate": 16000,
+                "output_encoding": "pcm_s16le",
+                "output_frames": count,
+                "time_alignment": "zero_origin_no_drift_correction",
+            },
+            {
+                "kind": "shared_sample_index_timeline",
+                "status": "exact_sample_index_mapping",
+                "parent_sample_rates": [16000, 16000],
+                "output_sample_rate": 16000,
+                "output_frames": count,
+                "formula": "output_frame = parent_frame for each zero-origin track",
+                "maximum_mapping_error_ms": 1000 / 16000,
+            },
+            additional_parents=track_provenance[1:],
+        )
         turns.sort(key=lambda r: (r["start_ms"], r["end_ms"], r["role"]))
         cases.append(
             {
                 "group_id": group,
                 "audio": target.name,
                 "audio_sha256": file_sha256(target),
+                "audio_provenance": mixed_provenance,
                 "duration_ms": count / 16,
                 "sources": sources,
                 "reference_turns": turns,
