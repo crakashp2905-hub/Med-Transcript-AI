@@ -174,3 +174,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   sequence-alignment reassembler. Status: partial; alignment remains
   hypothesis-text-only and ambiguous repeated edge speech still requires
   original-audio review.
+- **MTA-ASR-C07:** Added bounded context handoff requiring an explicitly
+  acoustically reviewed prior span and a current candidate-speech signal;
+  silent or indeterminate current windows receive empty context. Tests verify
+  bounded carryover and silence suppression. Status: partial; this contract is
+  not yet wired into a long-form decoder, and candidate activity is a VAD
+  heuristic rather than proof of speech.
