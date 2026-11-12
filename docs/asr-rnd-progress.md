@@ -385,3 +385,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   and test_timestamp_registry.py: 7 passed; Ruff and format checks pass.
   Status: partial; no native word timestamps or validated forced aligner are
   available, and segment bounds do not establish word alignment.
+- **MTA-ASR-G02:** Partial, local-aligner blocked. Repository dependency and
+  model inventories contain no validated English forced aligner. Existing
+  timestamp checks reject malformed/out-of-bounds segment times and explicitly
+  leave `word_alignment_validated=false`; they do not claim alignment proves a
+  word was spoken. No acoustic support test for inserted words can be run until
+  a qualified local aligner and independent audio-supported fixtures exist.
