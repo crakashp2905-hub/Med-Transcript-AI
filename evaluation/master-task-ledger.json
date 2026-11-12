@@ -1488,11 +1488,20 @@
       "id": "MTA-03-01",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Validate declared WAV encoding, dimensions, sample rate, channels, duration, size and CRC/hash before processing.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-01-ec0b2e9.json"
+      ],
+      "source_commit": "ec0b2e94093a4c14d4d54c4e0bf1739eeffd0923",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-01-ec0b2e9.json",
+          "report_sha256": "b9fd95a1dbd808bfb7336f3c2195df409c66b0229d371c7ff97902dd782a8e28",
+          "check": "pcm_wav_declaration_and_integrity_validation",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
