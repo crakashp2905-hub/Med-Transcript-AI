@@ -3,6 +3,8 @@ import json
 
 import pytest
 
+pytest.importorskip("rapidfuzz")
+
 from services.asr.pareto import run
 
 

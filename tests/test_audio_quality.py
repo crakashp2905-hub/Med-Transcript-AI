@@ -4,6 +4,8 @@ import wave
 
 import pytest
 
+pytest.importorskip("numpy")
+
 from services.asr.audio_quality import analyze_pcm
 
 

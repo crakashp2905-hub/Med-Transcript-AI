@@ -1,8 +1,11 @@
 import shutil
 import wave
 
-import numpy as np
 import pytest
+
+pytest.importorskip("numpy")
+
+import numpy as np
 
 from services.audio_enhancement import (
     highpass_transform,

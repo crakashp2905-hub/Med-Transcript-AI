@@ -3,6 +3,8 @@ import json
 
 import pytest
 
+pytest.importorskip("rapidfuzz")
+
 from services.asr.rover import rover_vote, run
 from services.evaluation import score
 from services.asr.rover import _score
