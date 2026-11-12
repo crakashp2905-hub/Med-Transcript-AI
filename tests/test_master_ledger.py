@@ -10,9 +10,9 @@ from services.master_ledger import LEDGER, ROOT, audit
 def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     result = audit()
     assert result["total"] == 369
-    assert result["statuses"]["not_started"] == 364
+    assert result["statuses"]["not_started"] == 363
     assert result["statuses"]["blocked_missing_asset"] == 2
-    assert result["statuses"]["implemented"] == 3
+    assert result["statuses"]["implemented"] == 4
     assert result["verified_at_current_commit"] == 0
     assert result["clinical_release_authorized"] is False
     document = json.loads(LEDGER.read_text(encoding="utf-8"))
@@ -30,6 +30,13 @@ def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     blocked_task = next(item for item in document["tasks"] if item["id"] == "MTA-01-03")
     assert blocked_task["status"] == "blocked_missing_asset"
     assert blocked_task["source_commit"] == "c15c2b896e69e66c110d59b2f805b59ce9c165e1"
+    provenance_task = next(
+        item for item in document["tasks"] if item["id"] == "MTA-01-07"
+    )
+    assert provenance_task["status"] == "implemented"
+    assert (
+        provenance_task["source_commit"] == "d06fdca0f68168edf3019a857c8a4b55c78db375"
+    )
     skip_task = next(item for item in document["tasks"] if item["id"] == "MTA-01-11")
     assert skip_task["status"] == "implemented"
     assert skip_task["source_commit"] == "c15c2b896e69e66c110d59b2f805b59ce9c165e1"

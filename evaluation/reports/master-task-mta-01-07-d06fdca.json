@@ -1,0 +1,46 @@
+{
+  "schema_version": "master_task_provenance_binding_v1",
+  "task_id": "MTA-01-07",
+  "source_commit": "d06fdca0f68168edf3019a857c8a4b55c78db375",
+  "source_files_sha256": {
+    ".github/workflows/ci.yml": "ea22290e0785caf4dde7aff676163f0524c4fe22991445f70e4a334dba5a2d46",
+    "docs/release-provenance.md": "66de931b2f61e064f0babfb79197b066ec300aa001363a27c4ccc4f661ff5c8a",
+    "services/ci_provenance.py": "bd184d4965ea5b2b0531a6477e91cb783fce83d928b3b1779b9de2f3f603d65b",
+    "services/offline_acceptance.py": "b4fe3261dde4b2bc472af742818b82da1a31a6fb0c3859a986bf961dc74fadcf",
+    "services/release_provenance.py": "66bffb10c57bfee191df4e2f2fa17cc16f4ee8cf5dd5203cf5c0b67d4df4a57e",
+    "tests/test_release_provenance.py": "4e8f980637fbf18255b91ebbcc044df08a6b3efd30351371dccb929287449d56",
+    "tests/test_acceptance_reporting.py": "92dd45bfa92c11b4cee8d47578a45d3c2ae5b6ae3425715bd2925d718f498db0"
+  },
+  "checks": {
+    "release_candidate_binding_tests": {
+      "status": "pass",
+      "result": "13 passed across release provenance and acceptance reporting suites"
+    },
+    "ruff": {
+      "status": "pass",
+      "version": "0.15.13",
+      "checks": [
+        "check",
+        "format --check"
+      ]
+    },
+    "ci_workflow_yaml": {
+      "status": "pass",
+      "result": "workflow parsed as YAML; four receipt steps represent five matrix-expanded jobs"
+    },
+    "hosted_ci_logs": {
+      "status": "blocked",
+      "reason": "No hosted CI log or exported run receipt has been observed or authenticated for this source commit."
+    },
+    "release_candidate_execution": {
+      "status": "blocked",
+      "reason": "No real release candidate was constructed because hosted receipts are unavailable; release candidate validation passed against synthetic isolated test fixtures only."
+    }
+  },
+  "limitations": [
+    "Synthetic CI receipt fixtures prove consistency checks, not that GitHub ran or authenticated the jobs.",
+    "A release candidate remains ineligible until all five same-run job receipts and a passing acceptance report are exported and validated.",
+    "No external CI status was queried and no paid calls, downloads, or clinical release claims were made."
+  ],
+  "real_patient_release_authorized": false
+}

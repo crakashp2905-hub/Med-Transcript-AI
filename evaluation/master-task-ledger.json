@@ -360,12 +360,52 @@
       "id": "MTA-01-07",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add exact SHA binding between CI logs, acceptance JSON, dataset manifests, code manifests and each release candidate.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "docs/release-provenance.md",
+        "services/ci_provenance.py",
+        "services/offline_acceptance.py",
+        "services/release_provenance.py",
+        "tests/test_release_provenance.py",
+        "tests/test_acceptance_reporting.py",
+        "evaluation/reports/master-task-mta-01-07-d06fdca.json"
+      ],
+      "source_commit": "d06fdca0f68168edf3019a857c8a4b55c78db375",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-07-d06fdca.json",
+          "report_sha256": "ec1e3f61fb0ab125961772c525f4f9e5b55df63dff72cc0439c2806452aff7c2",
+          "check": "release_candidate_binding_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-07-d06fdca.json",
+          "report_sha256": "ec1e3f61fb0ab125961772c525f4f9e5b55df63dff72cc0439c2806452aff7c2",
+          "check": "ruff",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-07-d06fdca.json",
+          "report_sha256": "ec1e3f61fb0ab125961772c525f4f9e5b55df63dff72cc0439c2806452aff7c2",
+          "check": "ci_workflow_yaml",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-07-d06fdca.json",
+          "report_sha256": "ec1e3f61fb0ab125961772c525f4f9e5b55df63dff72cc0439c2806452aff7c2",
+          "check": "hosted_ci_logs",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-07-d06fdca.json",
+          "report_sha256": "ec1e3f61fb0ab125961772c525f4f9e5b55df63dff72cc0439c2806452aff7c2",
+          "check": "release_candidate_execution",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "No actual hosted CI logs or successful full acceptance report are available for this source. The provenance pipeline is implemented and locally tested, but no release candidate is eligible."
     },
     {
       "id": "MTA-01-08",
