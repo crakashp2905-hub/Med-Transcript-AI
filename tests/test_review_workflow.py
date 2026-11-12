@@ -283,6 +283,7 @@ def test_legacy_approval_is_preserved_but_new_export_rechecks_current_rules(
 ):
     import services.review.service as service
     import services.review.routers.approvals as approvals
+    import services.review.routers.exports as exports
 
     client, path, _ = setup
     eid, tx, facts = prepare(
@@ -296,10 +297,17 @@ def test_legacy_approval_is_preserved_but_new_export_rechecks_current_rules(
         old_rules.setattr(service, "RULES_VERSION", "rules_v2")
         old_rules.setattr(service, "findings_for", lambda note, source: [])
         old_rules.setattr(approvals, "findings_for", lambda note, source: [])
+        old_rules.setattr(exports, "findings_for", lambda note, source: [])
         result = draft(client, eid, tx, facts)
         assert result["verification"]["gate"] == "ready"
         approval = approve(client, eid, result["note"])
         assert approval.status_code == 201
+        historical_export = client.post(
+            f"/v1/encounters/{eid}/exports",
+            headers=headers(),
+            json={"approval_id": approval.json()["id"], "format": "json"},
+        )
+        assert historical_export.status_code == 201
     before = client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()
     assert before["verification"]["validator_version"] == "rules_v2"
     assert before["approval"]["id"] == approval.json()["id"]
@@ -307,6 +315,13 @@ def test_legacy_approval_is_preserved_but_new_export_rechecks_current_rules(
     assert recheck["gate"] == "blocked"
     assert any(
         item["code"] == "dose_or_unit_disagreement" for item in recheck["findings"]
+    )
+    quarantined = client.get(
+        historical_export.json()["download_url"], headers=headers()
+    )
+    assert (
+        quarantined.status_code == 409
+        and quarantined.json()["code"] == "current_safety_review_required"
     )
     export = client.post(
         f"/v1/encounters/{eid}/exports",

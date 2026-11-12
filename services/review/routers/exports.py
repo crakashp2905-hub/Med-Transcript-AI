@@ -7,7 +7,11 @@ from uuid import UUID, uuid4
 from fastapi import Depends, HTTPException
 from fastapi.responses import Response
 
-from services.review.engine import render_export, findings_for
+from services.review.engine import (
+    current_safety_recheck,
+    findings_for,
+    render_export,
+)
 from services.review.models import ExportInput
 
 
@@ -167,6 +171,12 @@ def register(app, services: ReviewService):
             try:
                 nr, note = document(con, eid, sealed["note"])
                 tr, tx = get_tx(con, eid, note["transcript_version_id"])
+                _, verification = document(
+                    con, eid, note["verification_report_id"], "verification"
+                )
+                recheck = current_safety_recheck(note, tx, verification)
+                if recheck and recheck["gate"] == "blocked":
+                    raise HTTPException(409, "current_safety_review_required")
                 graph = validate_approved_export(
                     transcript=tx,
                     transcript_sha256=tr["sha256"],
@@ -176,6 +186,8 @@ def register(app, services: ReviewService):
                     export_id=row["id"],
                     artifact_sha256=row["sha256"],
                 )
+            except HTTPException:
+                raise
             except (ValueError, KeyError):
                 raise HTTPException(
                     409, "approved_artifact_integrity_failure"
