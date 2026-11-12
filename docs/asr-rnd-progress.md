@@ -337,6 +337,13 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   flag inconsistencies but cannot rank which hypothesis was spoken. Completion
   requires a local decoder exposing valid acoustic evidence plus development
   calibration data and a frozen policy.
+- **MTA-ASR-F07:** Added an early-exit eligibility rule that requires every
+  reason-coded diagnostic to be explicitly present with provenance and clear;
+  missing diagnostics or any observed risk routes to re-decode/review. Measured
+  silence with empty text is separately identified. tests/test_asr_risk_selector.py:
+  10 passed; Ruff and format checks pass. Status: partial; no upstream signals
+  are wired into this rule, it does not yet save runtime compute, and recall of
+  actual errors has not been measured.
 - **MTA-ASR-F06:** Partial. Existing repair jobs cap each requested crop at
   120 seconds, validate source authorization/version/hash, admit model memory
   before inference, and retry worker jobs at most three times. Candidate output

@@ -1,6 +1,6 @@
 import pytest
 
-from services.asr.risk_selector import assess_span
+from services.asr.risk_selector import assess_span, early_exit_decision
 
 
 def evidence(observed, digest):
@@ -53,6 +53,30 @@ def test_only_measured_silence_with_nonempty_text_is_silence_hallucination():
     assert assess_span(span(text="Take one tablet", signals=measured_silence))[
         "risk_reasons"
     ] == ("silence_hallucination",)
+
+
+def test_early_exit_requires_complete_clear_diagnostics_and_is_not_truth():
+    assert early_exit_decision(span())["reason"] == "required_diagnostics_missing"
+    signals = {
+        name: evidence(False, chr(97 + index))
+        for index, name in enumerate(
+            (
+                "engine_disagreement",
+                "invalid_number",
+                "uncertain_speech",
+                "role_ambiguity",
+                "audio_clipping",
+                "digital_silence",
+            )
+        )
+    }
+    decision = early_exit_decision(span(signals=signals))
+    assert decision["early_exit_eligible"] is True
+    assert decision["clinical_truth_verified"] is False
+    signals["invalid_number"] = evidence(True, "f")
+    decision = early_exit_decision(span(signals=signals))
+    assert decision["early_exit_eligible"] is False
+    assert decision["reason"] == "risk_detected"
 
 
 @pytest.mark.parametrize(

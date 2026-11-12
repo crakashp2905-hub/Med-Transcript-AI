@@ -12,6 +12,7 @@ _SIGNAL_REASONS = {
     "audio_clipping": "audio_clipping",
 }
 _ALLOWED_SIGNALS = frozenset((*_SIGNAL_REASONS, "digital_silence"))
+_EARLY_EXIT_SIGNALS = frozenset(_ALLOWED_SIGNALS)
 _SHA256 = re.compile(r"^[a-f0-9]{64}$")
 
 
@@ -83,4 +84,34 @@ def assess_span(span):
         "review_required": bool(reasons),
         "risk_score": None,
         "adopted": False,
+    }
+
+
+def early_exit_decision(span):
+    """Permit a low-risk early-exit candidate only with complete explicit evidence."""
+    record = assess_span(span)
+    signals = span.get("signals", {})
+    complete = set(signals) == _EARLY_EXIT_SIGNALS
+    observed_risk = bool(record["risk_reasons"])
+    silent_empty = (
+        signals.get("digital_silence", {}).get("observed") is True
+        and not span.get("text", "").strip()
+    )
+    all_clear = complete and all(
+        evidence["observed"] is False for evidence in signals.values()
+    )
+    eligible = complete and not observed_risk and (all_clear or silent_empty)
+    return {
+        "status": "early_exit_candidate" if eligible else "redecode_or_review",
+        "early_exit_eligible": eligible,
+        "reason": "measured_silence_no_candidate_text"
+        if eligible and silent_empty
+        else "all_required_diagnostics_clear"
+        if eligible
+        else "risk_detected"
+        if observed_risk
+        else "required_diagnostics_missing",
+        "risk_reasons": record["risk_reasons"],
+        "risk_score": None,
+        "clinical_truth_verified": False,
     }
