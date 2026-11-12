@@ -62,6 +62,15 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   malformed headers and a queued worker failure that confirms no normalized
   result is published. Status: partial; PyAV is not installed, so decoder-frame
   consistency and supported-media decode cases remain unexecuted here.
+- **MTA-ASR-B03:** Added a separate `energy_rms_v1` candidate with a canonical
+  profile digest, source-audio digest, full frame mask, merged/padded time spans,
+  and explicit uncalibrated-score labeling. A separate scorer reports missed
+  and false-positive speech duration and time-coverage rates; reference spans
+  are never passed to candidate generation. `tests/test_vad_candidates.py`: 3
+  passed on synthetic PCM, including exact mask and duration accounting.
+  Status: partial; this checkout has no source WAV fixtures for the annotated
+  mock consultations, so false-negative/false-positive duration has not been
+  measured against available annotated speech.
 
 - **MTA-ASR-A04:** The frozen error-taxonomy artifact contains token-level edit
   rows tied by hashes to source reports and the reference manifest. Every
