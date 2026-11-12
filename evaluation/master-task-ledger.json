@@ -1930,12 +1930,32 @@
       "id": "MTA-04-05",
       "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Rank errors by clinical impact: name/identity attribution, medications, strengths, dosing frequency, allergies, numbers, units, negations and chronology.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/clinical_impact_triage.py",
+        "tests/test_clinical_impact_triage.py",
+        "evaluation/clinical-impact-triage-v1.json",
+        "evaluation/reports/clinical-impact-triage-v1.json",
+        "docs/clinical-error-triage-v1.md",
+        "evaluation/reports/master-task-mta-04-05-d76bf09.json"
+      ],
+      "source_commit": "d76bf0909e8f9c308846419e8e74f8df08eddd45",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-04-05-d76bf09.json",
+          "report_sha256": "eaabbe4d4525d0b0dee96604d77312ea47e4551833571418752a495117694c6e",
+          "check": "priority_triage_implemented",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-05-d76bf09.json",
+          "report_sha256": "eaabbe4d4525d0b0dee96604d77312ea47e4551833571418752a495117694c6e",
+          "check": "ci_exact_commit",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Qualified clinical review of priority ordering and independently adjudicated harm labels are unavailable; current tiers are provisional."
     },
     {
       "id": "MTA-04-06",
