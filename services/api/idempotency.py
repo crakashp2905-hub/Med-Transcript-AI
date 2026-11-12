@@ -5,6 +5,7 @@ import hashlib
 import inspect
 import json
 import re
+import time
 from datetime import datetime, timedelta, timezone
 from functools import wraps
 from uuid import UUID
@@ -84,7 +85,8 @@ def idempotent(database, replay, operation):
 
     The route must declare an ``idempotency_key`` parameter using the shared
     ``IdempotencyKey`` header contract. A pending claim prevents concurrent
-    duplicate side effects; completed JSON/Response results replay for 24 hours.
+    duplicate side effects; identical requests briefly wait for the first result,
+    and completed JSON/Response results replay for 24 hours.
     """
 
     # Route-local replay guards may still be present for backward compatibility;
@@ -103,24 +105,32 @@ def idempotent(database, replay, operation):
             if actor is None:
                 raise HTTPException(401, "authentication_required")
             body_fingerprint = _request_fingerprint(kwargs)
-            with database() as con:
-                con.execute(
-                    "DELETE FROM idempotency WHERE expires_at<=?",
-                    (datetime.now(timezone.utc).isoformat(),),
-                )
-                scope, fingerprint, previous = replay(
-                    con, actor, operation, key, {"fingerprint": body_fingerprint}
-                )
-                if previous is not None:
-                    if previous.get("_idempotency_pending"):
-                        raise HTTPException(409, "idempotency_in_progress")
-                    return None, None, _decode_result(previous)
-                expires = (datetime.now(timezone.utc) + PENDING_TTL).isoformat()
-                con.execute(
-                    "INSERT INTO idempotency VALUES (?,?,?,?,?,?,?)",
-                    (*scope, fingerprint, json.dumps(PENDING), expires),
-                )
-            return scope, fingerprint, None
+            deadline = time.monotonic() + 5
+            while True:
+                pending = False
+                with database() as con:
+                    con.execute(
+                        "DELETE FROM idempotency WHERE expires_at<=?",
+                        (datetime.now(timezone.utc).isoformat(),),
+                    )
+                    scope, fingerprint, previous = replay(
+                        con, actor, operation, key, {"fingerprint": body_fingerprint}
+                    )
+                    if previous is not None:
+                        if previous.get("_idempotency_pending"):
+                            pending = True
+                        else:
+                            return None, None, _decode_result(previous)
+                    else:
+                        expires = (datetime.now(timezone.utc) + PENDING_TTL).isoformat()
+                        con.execute(
+                            "INSERT INTO idempotency VALUES (?,?,?,?,?,?,?)",
+                            (*scope, fingerprint, json.dumps(PENDING), expires),
+                        )
+                        return scope, fingerprint, None
+                if not pending or time.monotonic() >= deadline:
+                    raise HTTPException(409, "idempotency_in_progress")
+                time.sleep(0.025)
 
         def finish(scope, fingerprint, result):
             cached = _encode_result(result)
