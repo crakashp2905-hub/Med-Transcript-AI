@@ -637,6 +637,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   evidence while retaining FAIL for model qualification and product acceptance,
   and BLOCKED_MISSING_RESOURCE for clinical safety and exact-HEAD release CI.
   Versions v1 and v2 remain preserved.
+- **Addendum reconciliation:** All 95 checklist IDs are represented in
+  evaluation/asr-task-ledger-v1.json with their requirement, acceptance text,
+  direct progress evidence, and conservative status. Evidence recorded is not
+  treated as a completion claim. The ledger binds the addendum and this progress
+  record by SHA-256 and preserves the 5% WER ceiling.
 - **MTA-ASR-I14 update:** Published
   evaluation/reports/asr-objective-release-v2.json, source-bound to commit
   cf538fc33a1975121af7add8ee70438aca87c561. It records the real-model
