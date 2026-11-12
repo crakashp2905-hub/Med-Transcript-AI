@@ -428,3 +428,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   reviewers cannot yet split, merge or reassign individual turns between
   anonymous speaker clusters, and a complete stale-note invalidation workflow
   has not been verified end to end for these edits.
+- **MTA-ASR-G08:** Existing failure-inclusive subgroup reports separate
+  patient and clinician reference-role edits; the detailed development run
+  preserves unknown roles rather than coercing them. Status: partial; no
+  patient-prioritized runtime quality control or medically critical patient
+  omission measure is wired, and upstream role annotations are not independently
+  adjudicated.
