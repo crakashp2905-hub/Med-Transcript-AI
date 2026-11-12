@@ -8,6 +8,7 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
 
 | Task | Result | Evidence | Limits |
 |---|---|---|---|
+| MTA-ASR-A01 | Verified the historical WER baselines as four distinct scopes; no aggregate cross-cohort ranking. | `scope-separated-baselines-v1.json` SHA-256 `c9b84529a7b27c6e85d0c8857b0091b6`; denominators are 197/2,264 short clips, 679/5,204 three consultations, 2,245/13,683 clean, and 2,356/13,683 distracted. `tests/test_baseline_summary.py`: 2 passed; its replay verifies pinned source digests. | Historical benchmark replay only; all four configurations fail the unchanged 5% gate. |
 | MTA-ASR-F01 | Implemented deterministic span risk records in `services/asr/risk_selector.py`. | `tests/test_asr_risk_selector.py`: 8 passed; Ruff check and format pass. | Mechanistic unit evidence only. Signals must be produced by validated upstream diagnostics; this selector does not measure audio or infer calibrated confidence. |
 | MTA-ASR-F02 | Existing durable selective retranscription workflow verified: authenticated request, bounded crop, worker decode, immutable candidate result. | `tests/test_retranscription_workflow.py`: 3 passed, including actual WAV crop and source-version preservation with a fake local adapter. | No model accuracy claim; the integration fixture uses synthetic audio and a stub recognizer. |
 | MTA-ASR-F03 | Existing retranscription path binds encounter authorization, source audio, transcript version/hash, and worker lease; stale or mismatched requests fail closed. | `tests/test_retranscription_workflow.py`: wrong asset, stale transcript, out-of-bounds span, and cross-tenant request checks pass; worker revalidates transcript digest before crop. | This verifies application authorization behavior in local fixtures, not a production multi-tenant deployment. |
@@ -20,6 +21,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   `test_uncertainty_classifier.py`, `test_chunk_integrity.py`): 5 passed.
 - Selective retranscription workflow (`test_retranscription_workflow.py`):
   3 passed with synthetic audio and a stub local ASR adapter.
+- Historical baseline replay (`test_baseline_summary.py`): 2 passed; the
+  four denominators reconcile to the immutable scope-separated report.
 - Full application, ASR, and CI suites have not been established as green.
 
 ## Open gates
