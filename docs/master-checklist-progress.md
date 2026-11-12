@@ -148,12 +148,12 @@ It predates MTA-01-11. See v4 below for the latest ledger snapshot.
 
 ## Current execution matrix and ledger audit
 
-[`master-implementation-matrix-v7.json`](../evaluation/reports/master-implementation-matrix-v7.json)
-and [`master-ledger-audit-v7.json`](../evaluation/reports/master-ledger-audit-v7.json)
-are bound to source commit `c0159a4b6ad432453ae214a6942770a967a03ff7`.
-Their SHA-256 values are `13217219e1e1b8fe0202396ec6af4774e11577be19f1c25fd23fbd928fafccd9`
-and `0d41c7d2e2687caa26b189374ae0a988ff052f0eaddae83dcabd25e7f7abedb3`.
-The ledger audit records 4 implemented, 2 blocked_missing_asset, 363 not started,
+[`master-implementation-matrix-v8.json`](../evaluation/reports/master-implementation-matrix-v8.json)
+and [`master-ledger-audit-v8.json`](../evaluation/reports/master-ledger-audit-v8.json)
+are bound to source commit `aab9e8d17a070b1861e9b5277ec0d3018843cd3e`.
+Their SHA-256 values are `bfe2cc170e20726084de03f0866b5e3dbecc5e8fbe1c029efe832a944954ffa7`
+and `78794f1c13050eb6867652aa293effc523a4e3fe3de7a746df3d75bccec54351`.
+The ledger audit records 5 implemented, 2 blocked_missing_asset, 362 not started,
 and 0 verified. Task-level dependency edges remain unmapped; clinical release
 remains unauthorized.
 
@@ -186,6 +186,14 @@ records 13 passing targeted tests and fail-closed checks that bind acceptance,
 code/data hashes, five CI job receipts and release candidates. Hosted logs have
 not been observed for this commit; synthetic fixtures test the validator only,
 so no release candidate is asserted as eligible.
+
+`MTA-01-08` is implemented at exact source commit
+`03b103d4b010df262891a0c972412f163649656f`. Receipt
+[`master-task-mta-01-08-03b103d.json`](../evaluation/reports/master-task-mta-01-08-03b103d.json)
+(hash `ae8df00afaae12deb66248da5b209c20c2286b71358d5399b1cb92f598c7ba75`)
+records 755 checked Markdown links, 140 inline source references, 514 test-name
+references and 6 static API examples, with no broken references. External URLs
+are not fetched and API examples are matched to static route declarations.
 
 ## Prior offline acceptance failure v24 (superseded)
 
