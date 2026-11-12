@@ -546,3 +546,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   did not finish in this run, and coverage does not establish clinician review
   quality. No automatic adoption path was found in these reviewed correction
   modules.
+- **MTA-ASR-I07:** Partial. `evaluation/reports/paired-asr-bootstrap-v1.json`
+  reports paired clean-versus-distracted WER deltas using consultation-level
+  resampling (10,000 deterministic iterations, 95% percentile intervals) and
+  records both arms and failed statuses for each pair. It is a development-only
+  convenience sample. The report does not stratify paired uncertainty by
+  clinical term or speaker, and preserved failure statuses are not adjudicated
+  clinical error estimates; the requested full uncertainty analysis remains
+  incomplete.
