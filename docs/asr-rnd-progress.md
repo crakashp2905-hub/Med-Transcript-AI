@@ -486,3 +486,7 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   architecture, optimizer recipe or adapter checkpoint. The reference host has
   CPU-only capacity and no qualified training accelerator; no LoRA/rescoring
   training has been simulated or claimed.
+- **MTA-ASR-H07:** `BLOCKED_MISSING_RESOURCE`. No candidate has genuine
+  calibrated acoustic scores or a disjoint group-level calibration corpus;
+  current backend confidence is explicitly unsupported. F09 records the same
+  evidence gap. No reliability curves or selection thresholds are fabricated.
