@@ -1794,11 +1794,32 @@
       "id": "MTA-04-01",
       "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Preserve frozen PriMock57 short-clip, 3 full-consultation, and MedDistractAudio paired-speech baselines as distinct strata.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/baseline_summary.py",
+        "tests/test_baseline_summary.py",
+        "evaluation/reports/scope-separated-baselines-v1.json",
+        "evaluation/reports/master-task-mta-04-01-683b915.json",
+        "evaluation/datasets/primock57-expanded-v1/manifest.json",
+        "evaluation/datasets/primock57-full-v1/manifest.json",
+        "evaluation/datasets/meddistract-detailed-v1/manifest.json"
+      ],
+      "source_commit": "683b91544777da5f8196d49d97cfce7aa0f7c87c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-04-01-683b915.json",
+          "report_sha256": "e2b00da4826069415048a1a1ec3c9c44909a7d28896723fd104d518250dbaabd",
+          "check": "scopes_remain_distinct",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-01-683b915.json",
+          "report_sha256": "e2b00da4826069415048a1a1ec3c9c44909a7d28896723fd104d518250dbaabd",
+          "check": "ci_exact_commit",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
