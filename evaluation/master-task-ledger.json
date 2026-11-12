@@ -843,12 +843,44 @@
       "id": "MTA-01-14",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Ensure CI detects stale generated API contracts and malformed schema migration assets.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "evaluation/contracts/api-v1-compatible-v2.json",
+        "services/api/storage.py",
+        "tests/test_router_contracts.py",
+        "tests/test_schema_migrations.py",
+        "evaluation/reports/master-task-mta-01-14-94d5c55.json"
+      ],
+      "source_commit": "94d5c55fff4dea045c640b098d39fbb8a4b79d19",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-14-94d5c55.json",
+          "report_sha256": "a5fdb1221995c41e8d6d0e86c4d22042899a52923e7bb5c9735d19d3677d669c",
+          "check": "generated_api_contract_rejection",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-14-94d5c55.json",
+          "report_sha256": "a5fdb1221995c41e8d6d0e86c4d22042899a52923e7bb5c9735d19d3677d669c",
+          "check": "incomplete_sql_migration_rejection",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-14-94d5c55.json",
+          "report_sha256": "a5fdb1221995c41e8d6d0e86c4d22042899a52923e7bb5c9735d19d3677d669c",
+          "check": "schema_migration_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-14-94d5c55.json",
+          "report_sha256": "a5fdb1221995c41e8d6d0e86c4d22042899a52923e7bb5c9735d19d3677d669c",
+          "check": "exact_source_full_ci",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Hosted CI validates the current API contract and SQLite migration assets. This is engineering evidence only; it does not establish clinical validation."
     },
     {
       "id": "MTA-01-15",

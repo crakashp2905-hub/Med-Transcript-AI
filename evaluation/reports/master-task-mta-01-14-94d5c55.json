@@ -1,0 +1,64 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-14",
+  "source_commit": "94d5c55fff4dea045c640b098d39fbb8a4b79d19",
+  "runtime": {
+    "provider": "GitHub Actions",
+    "runner": "ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow": ".github/workflows/ci.yml",
+    "run_id": 43239396547,
+    "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43239396547",
+    "source_commit": "94d5c55fff4dea045c640b098d39fbb8a4b79d19"
+  },
+  "runtime_sha256": "7d308a958b267ac5a4ba98fd6b30024a9ac00a7de06a1f2f5fd7a77372239800",
+  "workflow_run": {
+    "id": 43239396547,
+    "url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43239396547",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "jobs": {
+    "test (dev,security)": {
+      "job_id": 131255383567,
+      "status": "success"
+    },
+    "test (dev,asr,security)": {
+      "job_id": 131255383811,
+      "status": "success"
+    },
+    "postgres": {
+      "job_id": 131255383653,
+      "status": "success"
+    },
+    "container": {
+      "job_id": 131255383650,
+      "status": "success"
+    },
+    "frontend": {
+      "job_id": 131255383078,
+      "status": "success"
+    }
+  },
+  "checks": {
+    "generated_api_contract_rejection": {
+      "status": "pass",
+      "test": "tests/test_router_contracts.py::test_api_contract_survives_router_and_service_extraction"
+    },
+    "incomplete_sql_migration_rejection": {
+      "status": "pass",
+      "test": "tests/test_schema_migrations.py::test_incomplete_sql_migration_fails_closed_and_rolls_back"
+    },
+    "schema_migration_tests": {
+      "status": "pass",
+      "result": "7 passed locally on the exact source commit"
+    },
+    "exact_source_full_ci": {
+      "status": "pass",
+      "result": "all five GitHub Actions jobs completed successfully"
+    }
+  },
+  "limitations": [
+    "CI success demonstrates engineering checks only; it is not clinical validation or deployment approval."
+  ]
+}
