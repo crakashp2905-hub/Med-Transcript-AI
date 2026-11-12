@@ -481,3 +481,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   created; reserved acceptance groups remain excluded. A future confusion
   table would need group-level train/development boundaries and source-linked
   labels before any component is fit.
+- **MTA-ASR-H06:** `BLOCKED_MISSING_RESOURCE`. Existing inference profiles
+  provide converted/quantized decoder artifacts, not an approved training
+  architecture, optimizer recipe or adapter checkpoint. The reference host has
+  CPU-only capacity and no qualified training accelerator; no LoRA/rescoring
+  training has been simulated or claimed.
