@@ -279,19 +279,24 @@ class JSONProvider:
 
 def configured_provider():
     import os
+    from services.feature_flags import select
 
     mode = os.environ.get("MED_TRANSCRIPT_DRAFTING_MODE", "deterministic")
     if mode == "hosted" and os.environ.get("STRICT_OFFLINE") == "1":
         raise ValueError("hosted_inference_forbidden_in_strict_offline_mode")
-    if mode == "deterministic":
-        return DeterministicProvider()
-    if mode not in ("local", "hosted"):
+    if mode not in ("deterministic", "local", "hosted"):
         raise ValueError("Unknown drafting mode")
+    proposed_enabled = os.environ.get("MED_TRANSCRIPT_LLM_ENABLED") == "1"
+    decision = select(proposed_enabled=proposed_enabled, baseline="deterministic")
+    if decision["active_method"] == "deterministic":
+        return DeterministicProvider()
+    if mode == "deterministic":
+        raise ValueError("proposed_drafting_requires_local_or_hosted_mode")
     return JSONProvider(
         endpoint=os.environ.get("MED_TRANSCRIPT_LLM_ENDPOINT", ""),
         model=os.environ.get("MED_TRANSCRIPT_LLM_MODEL", ""),
         mode=mode,
-        enabled=os.environ.get("MED_TRANSCRIPT_LLM_ENABLED") == "1",
+        enabled=True,
         allowed_hosts=tuple(
             filter(
                 None, os.environ.get("MED_TRANSCRIPT_LLM_ALLOWED_HOSTS", "").split(",")
