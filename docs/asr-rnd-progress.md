@@ -133,3 +133,15 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   transforms on all six available smoke clips. No longer approved local audio
   fixtures were available, so worst-case media duration, peak transient RSS,
   and full application memory admission remain unknown.
+- **MTA-ASR-C01:** Added a source-only segmentation planner for fixed,
+  overlap-aware, pause-aware, VAD cut-and-merge, and channel-first windows.
+  Strategies carry frozen parameters and explicit source frame/channel
+  positions. tests/test_asr_segmentation.py exercises all strategies.
+  Status: partial; these plans are not yet wired into a single candidate
+  evaluation runner and have not been compared on matched audio.
+- **MTA-ASR-C03:** The planner emits a coverage ledger that detects omitted
+  and duplicated annotated source spans; VAD and pause-aware candidates fail
+  closed if the supplied speech spans are not covered. Tests cover gaps and
+  overlap duplication. Status: partial; no annotated speech-span WAV set is
+  available for measuring real source coverage, and the current ledger is a
+  pure planner primitive rather than a runtime publication gate.
