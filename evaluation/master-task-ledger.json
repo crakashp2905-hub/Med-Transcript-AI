@@ -310,12 +310,24 @@
       "id": "MTA-00-14",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Use a feature flag to preserve the deterministic legacy workflow throughout all experimentation.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/feature_flags.py",
+        "services/review/providers.py",
+        "tests/test_feature_flags.py",
+        "evaluation/reports/master-task-mta-00-14-71b0639.json"
+      ],
+      "source_commit": "71b06396ae549098c4f8bd786617739c40781e8d",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-00-14-71b0639.json",
+          "report_sha256": "f779c2edc14ffa1087f0fd693305255fa520bb66ef746fe970e8504cd27502d1",
+          "check": "application_drafting_feature_gate"
+        }
+      ],
+      "blocker": "The targeted feature-gate and strict-offline tests pass. A broader clinical-intelligence test invocation stalled after 14 progress dots and was interrupted without a completed result; this attempt remains disclosed in the receipt."
     },
     {
       "id": "MTA-00-15",

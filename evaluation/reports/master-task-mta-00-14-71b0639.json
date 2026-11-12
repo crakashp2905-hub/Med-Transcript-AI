@@ -1,0 +1,41 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-00-14",
+  "source_commit": "71b06396ae549098c4f8bd786617739c40781e8d",
+  "runtime": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "pytest 9.0.3",
+    "ruff": "ruff 0.15.13"
+  },
+  "runtime_sha256": "1c02c88304c0a1bc36a5877d33a3f37641a4d0275f3a32a389052e09e01ce8bf",
+  "source_file_sha256": {
+    "services/feature_flags.py": "d6bca06560dadd3470bb861995b49e0ab1e281e142750e66ab68b106e6237e6f",
+    "services/review/providers.py": "6227aca96cec0e6e9f7d005e19e7f7eaf0159cf722b6557227bb775ec40795aa",
+    "tests/test_feature_flags.py": "7021f7240e2d5802e60dc5a58d0b2cc0bdae20df7958f5c433f15958d257a6c4"
+  },
+  "checks": {
+    "application_drafting_feature_gate": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_feature_flags.py tests/test_strict_offline.py -q",
+      "result": "4 passed, 1 upstream deprecation warning",
+      "coverage": [
+        "deterministic is default",
+        "configured local mode is ignored until explicit opt-in",
+        "explicit local opt-in selects proposed provider",
+        "malformed deterministic plus opt-in fails closed",
+        "strict offline rejects hosted inference"
+      ]
+    },
+    "lint": {
+      "status": "pass",
+      "command": "python -m ruff check services/review/providers.py tests/test_feature_flags.py",
+      "result": "All checks passed"
+    },
+    "broader_provider_regression_attempt": {
+      "status": "blocked",
+      "command": "python -m pytest tests/test_feature_flags.py tests/test_strict_offline.py tests/test_clinical_intelligence.py -q",
+      "result": "emitted 14 progress dots then was interrupted after prolonged no-output wait; no completed summary obtained"
+    }
+  }
+}
