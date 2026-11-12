@@ -148,12 +148,12 @@ It predates MTA-01-11. See v4 below for the latest ledger snapshot.
 
 ## Current execution matrix and ledger audit
 
-[`master-implementation-matrix-v6.json`](../evaluation/reports/master-implementation-matrix-v6.json)
-and [`master-ledger-audit-v6.json`](../evaluation/reports/master-ledger-audit-v6.json)
-are bound to source commit `27e5c3f8f0694238f17d1413748b73b1fa18eca8`.
-Their SHA-256 values are `cae284e1c13f54a369f68832454480f857159c75d068ba003c191bb1f51df441`
-and `c6fbca25aca0c673822496a87389a0c4789cc2cc16f4577730d87c02c5eb6d27`.
-The ledger audit records 3 implemented, 2 blocked_missing_asset, 364 not started,
+[`master-implementation-matrix-v7.json`](../evaluation/reports/master-implementation-matrix-v7.json)
+and [`master-ledger-audit-v7.json`](../evaluation/reports/master-ledger-audit-v7.json)
+are bound to source commit `c0159a4b6ad432453ae214a6942770a967a03ff7`.
+Their SHA-256 values are `13217219e1e1b8fe0202396ec6af4774e11577be19f1c25fd23fbd928fafccd9`
+and `0d41c7d2e2687caa26b189374ae0a988ff052f0eaddae83dcabd25e7f7abedb3`.
+The ledger audit records 4 implemented, 2 blocked_missing_asset, 363 not started,
 and 0 verified. Task-level dependency edges remain unmapped; clinical release
 remains unauthorized.
 
@@ -170,13 +170,22 @@ passing acceptance results; no packages, assets, credentials or services were
 fetched or configured.
 
 `MTA-01-04` is blocked at frontend source commit
-`aef2a7b25291c1900cf31e8952ab3822cec4091a`. The hash-bound receipt
+`aef2a7b25291c1900cf31e8952ab3822cec4091a`. Its receipt
 [`master-task-mta-01-04-aef2a7b.json`](../evaluation/reports/master-task-mta-01-04-aef2a7b.json)
 (hash `ba74eaecec8d0598a5e3c4a6a1f6445ffda85110e08158dc7649f3f258ac29c3`)
 records a passing TypeScript/production build and 26 passing browser cases.
 One compressed-audio test was skipped because PyAV is unavailable. No lint
 script, config or linter exists in the checked-in frontend dependency tree, so
 that check is blocked. The scripted browser fixture is not ASR-quality evidence.
+
+`MTA-01-07` is implemented at exact source commit
+`d06fdca0f68168edf3019a857c8a4b55c78db375`. Receipt
+[`master-task-mta-01-07-d06fdca.json`](../evaluation/reports/master-task-mta-01-07-d06fdca.json)
+(hash `ec1e3f61fb0ab125961772c525f4f9e5b55df63dff72cc0439c2806452aff7c2`)
+records 13 passing targeted tests and fail-closed checks that bind acceptance,
+code/data hashes, five CI job receipts and release candidates. Hosted logs have
+not been observed for this commit; synthetic fixtures test the validator only,
+so no release candidate is asserted as eligible.
 
 ## Prior offline acceptance failure v24 (superseded)
 
