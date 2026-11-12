@@ -2,7 +2,7 @@
 
 import hashlib
 import os
-from uuid import UUID, uuid4
+from uuid import UUID
 from fastapi import Depends, Header, HTTPException, Request
 from starlette.concurrency import run_in_threadpool
 from services.api.ingest import file_sha256

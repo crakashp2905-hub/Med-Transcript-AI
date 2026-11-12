@@ -1,6 +1,5 @@
 import hashlib
 import json
-from pathlib import Path
 from services.ollama_inventory import inventory
 
 

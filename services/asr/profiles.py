@@ -1,7 +1,6 @@
 """Hash local converted model artifacts without downloading or accepting terms."""
 
 import argparse
-import hashlib
 import json
 import re
 from pathlib import Path
@@ -10,7 +9,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from services.api.ingest import file_sha256
-from services.canonical import canonical_json, content_sha256
+from services.canonical import canonical_json, content_sha256  # noqa: F401
 
 
 REQUIRED_FILES = {"model.bin", "config.json", "tokenizer.json"}

@@ -1,7 +1,6 @@
 from copy import deepcopy
 import json
 import os
-from pathlib import Path
 import pytest
 
 from services.detailed_finalize import draft_summary, process_alive

@@ -1,7 +1,6 @@
 """Prepare source-audited blank human packets; never runs inference or invents reviewers."""
 
 import argparse
-import hashlib
 import json
 from pathlib import Path
 from services.api.ingest import file_sha256

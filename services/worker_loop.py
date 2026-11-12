@@ -5,7 +5,6 @@ from contextlib import nullcontext
 import json
 import os
 import time
-from pathlib import Path
 
 from services.api.ingest import run_once as ingest_once
 from services.inference_slot import local_inference_slot

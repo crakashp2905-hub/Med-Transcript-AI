@@ -3,7 +3,6 @@
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, ContextManager
-import json
 from datetime import datetime, timezone
 from uuid import uuid4
 from fastapi import HTTPException

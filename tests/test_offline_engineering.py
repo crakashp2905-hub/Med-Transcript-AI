@@ -1,4 +1,7 @@
-import json, os, socket, subprocess, sys
+import json
+import os
+import subprocess
+import sys
 from copy import deepcopy
 from pathlib import Path
 import pytest
@@ -6,7 +9,6 @@ from services.engineering_status import validate, sha256
 from services.offline_preflight import check_baseline
 from services.benchmark_integrity import replay
 from services.detailed_benchmark import fast_score
-from tests.test_foundation import setup
 
 
 def test_task_count_and_evidence_are_tamper_checked(tmp_path):

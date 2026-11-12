@@ -1,5 +1,3 @@
-import hashlib
-from pathlib import Path
 import pytest
 from services.engineering_status import evidence_record, evidence_sha256, validate
 

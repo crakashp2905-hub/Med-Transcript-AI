@@ -4,7 +4,7 @@ import pytest
 from services.asr.profiles import ASRProfile, REQUIRED_FILES
 from services.asr.adapter import FasterWhisperAdapter, ASRFailure
 from services.asr.worker import run_once
-from tests.test_transcription import environment, enqueue
+from tests.test_transcription import enqueue
 from tests.test_foundation import headers
 
 

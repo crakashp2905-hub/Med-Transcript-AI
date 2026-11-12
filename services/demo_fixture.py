@@ -1,7 +1,6 @@
 """Create an audible synthetic fixture locally; no downloaded or patient recordings."""
 
 import json
-import os
 import subprocess
 import shutil
 import sys

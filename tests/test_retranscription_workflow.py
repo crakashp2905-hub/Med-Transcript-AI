@@ -4,7 +4,7 @@ import sqlite3
 import wave
 from services.asr.worker import run_once
 from services.inference_slot import local_inference_slot
-from tests.test_transcription import environment, enqueue
+from tests.test_transcription import enqueue
 from tests.test_foundation import headers
 
 

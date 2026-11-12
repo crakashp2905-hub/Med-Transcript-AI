@@ -6,7 +6,7 @@ import pytest
 
 from services.api.ingest import inspect_pcm_wav, run_once
 from services.media_decoder import normalize
-from tests.test_foundation import setup, queue_upload, headers
+from tests.test_foundation import queue_upload, headers
 
 
 def stereo_wav():

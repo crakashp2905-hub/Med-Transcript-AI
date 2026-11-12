@@ -206,7 +206,8 @@ def main():
     finish.add_argument("--final", required=True)
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
-    read = lambda p: json.loads(Path(p).read_text(encoding="utf-8"))
+    def read(path):
+        return json.loads(Path(path).read_text(encoding="utf-8"))
     if args.command == "packet":
         if (
             hashlib.sha256(Path(args.manifest).read_bytes()).hexdigest()

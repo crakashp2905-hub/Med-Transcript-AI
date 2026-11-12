@@ -1,7 +1,7 @@
 import sqlite3
 from uuid import uuid4
 from services.review.clinical_routes import run_semantic_batches
-from tests.test_foundation import headers, setup
+from tests.test_foundation import headers
 from tests.test_review_workflow import prepare, draft
 
 

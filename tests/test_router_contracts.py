@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import pytest
 from services.asr.profiles import canonical_json
-from tests.test_foundation import setup, headers
+from tests.test_foundation import headers
 
 
 def contract_matches(actual, expected):

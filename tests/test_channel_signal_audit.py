@@ -2,7 +2,7 @@ import wave
 import pytest
 
 np = pytest.importorskip("numpy")
-from services.channel_signal_audit import audit
+from services.channel_signal_audit import audit  # noqa: E402
 
 
 def test_distinct_channels_pass_but_swap_and_crosstalk_fail(tmp_path):

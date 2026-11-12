@@ -1,5 +1,4 @@
 import hashlib
-import json
 import sqlite3
 import pytest
 from pathlib import Path
@@ -10,7 +9,7 @@ from fastapi.testclient import TestClient
 
 from services.api.ingest import run_once
 from services.api.main import create_app
-from tests.test_foundation import setup, headers, queue_upload
+from tests.test_foundation import headers, queue_upload
 
 
 def prepare(client, path, text="Patient reports cough and denies fever.", assets=None):

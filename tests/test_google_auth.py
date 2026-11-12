@@ -1,10 +1,11 @@
-import json, time
+import json
+import time
 from uuid import uuid4
 from urllib.parse import urlsplit, parse_qs
 import pytest
 from fastapi.testclient import TestClient
 from services.api.main import create_app, Identity
-from services.api.auth import digest, Settings
+from services.api.auth import Settings
 
 
 @pytest.fixture
@@ -347,7 +348,8 @@ def test_no_workspace_mode_only_accepts_verified_personal_google_domains(
 ):
     _, app, _, _ = google_app
     app.state.auth_sessions.settings.domain = ""
-    import requests, google.oauth2.id_token
+    import requests
+    import google.oauth2.id_token
     from services.api.auth import GoogleSessions
 
     claims = {

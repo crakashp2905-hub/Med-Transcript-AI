@@ -1,8 +1,7 @@
 """Exports routes with preserved exact-version review contracts."""
 
-from services.audit_integrity import approval_body, verify as verify_audit
+from services.audit_integrity import approval_body
 import hashlib
-import json
 from uuid import UUID, uuid4
 
 from fastapi import Depends, HTTPException

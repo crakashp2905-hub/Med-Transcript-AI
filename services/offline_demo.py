@@ -10,7 +10,6 @@ import wave
 from uuid import uuid4
 
 from services.api.main import create_app, Identity
-from services.engineering_status import sha256
 
 
 def prepare(root):

@@ -1,4 +1,3 @@
-import os
 import subprocess
 import sys
 from services.inference_slot import local_inference_slot

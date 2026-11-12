@@ -1,7 +1,6 @@
 """Prepare source-only reviewer and three-arm study packets; never invent observations."""
 
 import argparse
-from copy import deepcopy
 import json
 from pathlib import Path
 import random

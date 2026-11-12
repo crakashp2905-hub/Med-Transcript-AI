@@ -1,5 +1,4 @@
 import hashlib
-import json
 import sqlite3
 import sys
 from concurrent.futures import ThreadPoolExecutor
@@ -13,9 +12,8 @@ from fastapi.testclient import TestClient
 from services.api.ingest import run_once as ingest_once
 from services.api.main import Identity, create_app
 from services.api.storage import Store
-from services.asr.adapter import ASRFailure, FasterWhisperAdapter
+from services.asr.adapter import FasterWhisperAdapter
 from services.asr.profiles import ASRProfile, REQUIRED_FILES, content_sha256
-from services.asr.transcripts import build_transcript
 from services.asr.worker import run_once as transcribe_once
 from tests.test_foundation import headers, queue_upload, wav_bytes
 

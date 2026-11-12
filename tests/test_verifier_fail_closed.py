@@ -5,7 +5,7 @@ import pytest
 from services.review.clinical_models import LocalClinicalModels, Verdicts
 from services.review.clinical_models import Extraction
 from services.strict_json import loads
-from tests.test_foundation import setup, headers
+from tests.test_foundation import headers
 from tests.test_review_workflow import prepare, draft, approve
 
 

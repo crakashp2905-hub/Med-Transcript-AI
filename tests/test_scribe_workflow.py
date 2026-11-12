@@ -1,6 +1,5 @@
 import io
 import wave
-from copy import deepcopy
 from uuid import uuid4
 import pytest
 from services.api.ingest import run_once as ingest_once
@@ -8,8 +7,7 @@ from services.asr.worker import run_once as asr_once
 from services.conversation_experiment import windows, join_text
 from services.review.clinical_models import LocalClinicalModels, Extraction
 from services.review.providers import validate
-from tests.test_transcription import environment
-from tests.test_foundation import setup, queue_upload, headers
+from tests.test_foundation import queue_upload, headers
 from tests.test_review_workflow import prepare, draft, approve
 
 
@@ -296,7 +294,8 @@ def test_empty_output_opt_in_never_hides_other_runtime_failures(
 def test_posthoc_empty_reconstruction_preserves_original_failures(
     tmp_path, kind, expected_failed
 ):
-    import json, hashlib
+    import json
+    import hashlib
     from services.omi_empty_reconstruction import reconstruct
 
     chunk = {

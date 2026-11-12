@@ -11,7 +11,7 @@ from services.review.clinical import check_claim, extract
 from services.review.providers import DeterministicProvider, JSONProvider, validate
 from services.diarization import confirm_roles, diarize
 from services.usability_metrics import correction, summarize_runs
-from tests.test_foundation import setup, headers
+from tests.test_foundation import headers
 from tests.test_review_workflow import prepare
 
 

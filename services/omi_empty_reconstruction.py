@@ -21,13 +21,14 @@ def reconstruct(experiment, probe_path, output):
         or probe["model"] != original["model"]
     ):
         raise ValueError("Complete hash-bound matching probe evidence required")
-    key = lambda mode, cid, role, c: (
-        mode,
-        cid,
-        role,
-        c["input_start_ms"],
-        c["input_end_ms"],
-    )
+    def key(mode, cid, role, candidate):
+        return (
+            mode,
+            cid,
+            role,
+            candidate["input_start_ms"],
+            candidate["input_end_ms"],
+        )
     proofs = {key(p["mode"], p["id"], p["role"], p): p for p in probe["probes"]}
     if len(proofs) != len(probe["probes"]):
         raise ValueError("Duplicate probe evidence")

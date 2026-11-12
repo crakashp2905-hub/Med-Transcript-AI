@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 
 from services.api.main import Identity, create_app
 from services.api.postgres import postgres_migration
-from services.api.storage import Store, MIGRATIONS
+from services.api.storage import MIGRATIONS
 from tests.test_foundation import headers, payload
 
 

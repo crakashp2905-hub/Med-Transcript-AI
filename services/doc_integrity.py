@@ -47,7 +47,8 @@ def scan(root="."):
 
 
 if __name__ == "__main__":
-    import argparse, json
+    import argparse
+    import json
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True)

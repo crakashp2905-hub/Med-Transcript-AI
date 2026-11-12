@@ -2,7 +2,6 @@
 
 import io
 import wave
-from pathlib import Path
 
 import pytest
 
@@ -10,7 +9,7 @@ from services.api.ingest import inspect_pcm_wav, run_once as ingest_once, Invali
 from services.asr.adapter import ASRFailure
 from services.asr.worker import run_once
 from tests.test_foundation import headers, queue_upload
-from tests.test_transcription import environment, SyntheticAdapter
+from tests.test_transcription import SyntheticAdapter
 
 
 def recording(count, rate=16000):

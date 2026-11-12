@@ -5,7 +5,7 @@ pytest.importorskip("cryptography.cobblestone")
 from cryptography.cobblestone import Cobblestone128Encryptor
 from cryptography.exceptions import InvalidTag
 from services.encrypted_backup import crypt_file, encrypted_backup, encrypted_restore
-from tests.test_foundation import setup, queue_upload
+from tests.test_foundation import queue_upload
 
 
 def test_authenticated_stream_rejects_tamper_truncation_and_wrong_key(tmp_path):

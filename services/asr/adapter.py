@@ -72,7 +72,6 @@ class FasterWhisperAdapter:
             if runtime_packages["faster-whisper"] != self.profile.runtime_version:
                 raise ASRFailure("asr_runtime_mismatch")
             import numpy as np
-            from faster_whisper import WhisperModel
         except (ImportError, importlib.metadata.PackageNotFoundError):
             raise ASRFailure("asr_dependency_missing") from None
 

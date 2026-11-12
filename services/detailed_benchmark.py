@@ -108,7 +108,8 @@ def load(job):
             allow_empty_output=job.get("allow_native_empty", False),
         )
     elif runtime == "onnx":
-        import onnx_asr, onnxruntime as ort
+        import onnx_asr
+        import onnxruntime as ort
 
         if importlib.metadata.version("onnx-asr") != "0.12.0":
             raise ValueError("Pinned ONNX runtime changed")
@@ -122,7 +123,8 @@ def load(job):
             sess_options=options,
             providers=["CPUExecutionProvider"],
         )
-        model = lambda path: recognizer.recognize(str(path))
+        def model(path):
+            return recognizer.recognize(str(path))
     elif runtime == "sherpa-qwen3":
         from services.qwen_adapter import QwenPredictor
 

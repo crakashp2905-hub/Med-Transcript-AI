@@ -1,10 +1,9 @@
 import random
 from decimal import Decimal
-from copy import deepcopy
 import pytest
 from services.review.clinical import check_claim, atomic_spans
 from services.detailed_benchmark import coverage
-from tests.test_foundation import setup, headers
+from tests.test_foundation import headers
 from tests.test_review_workflow import prepare, draft, approve
 
 
@@ -43,7 +42,6 @@ def test_synthetic_approval_mutations_never_pass_without_their_required_review(
 ):
     client, path, _ = setup
     eid, tx, facts = prepare(client, path, "Patient takes warfarin 0.5 mg daily.")
-    original = deepcopy(facts)
     if mutation == "review":
         facts[0]["reviewed"] = False
     elif mutation == "critical":

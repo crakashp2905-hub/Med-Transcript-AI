@@ -1,7 +1,7 @@
 import base64
 import hashlib
 import json
-from tests.test_foundation import setup, headers
+from tests.test_foundation import headers
 from tests.test_review_workflow import prepare, draft, approve
 
 

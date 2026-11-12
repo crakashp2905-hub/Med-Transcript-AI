@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 from uuid import uuid4
 
@@ -6,7 +5,7 @@ import pytest
 
 from services.api.storage import Store
 from services.maintenance import backup, restore, purge, reconcile
-from tests.test_foundation import setup, headers
+from tests.test_foundation import headers
 from tests.test_review_workflow import prepare
 
 

@@ -62,7 +62,8 @@ def run(
             sess_options=options,
             providers=["CPUExecutionProvider"],
         )
-        predict = lambda path: recognizer.recognize(str(path))
+        def predict(path):
+            return recognizer.recognize(str(path))
         profile_id, package = "parakeet-v2-onnx-cpu-int8-v1", "onnx-asr"
     elif runtime == "omi":
         os.environ["OMI_MED_STT_CACHE"] = str(

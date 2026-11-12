@@ -1,4 +1,3 @@
-import copy
 import json
 from uuid import uuid4
 import pytest
@@ -6,7 +5,7 @@ import pytest
 from services.review.clinical import check_claim, extract
 from services.review.clinical_models import LocalClinicalModels, Extraction, Verdicts
 from services.usability_metrics import correction
-from tests.test_foundation import setup, headers
+from tests.test_foundation import headers
 from tests.test_review_workflow import prepare, draft
 
 

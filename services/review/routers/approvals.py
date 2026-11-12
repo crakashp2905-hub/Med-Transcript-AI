@@ -5,7 +5,6 @@ from services.audit_integrity import (
     approval_body,
     seal_approval,
 )
-import json
 from uuid import UUID, uuid4
 
 from fastapi import Depends, HTTPException

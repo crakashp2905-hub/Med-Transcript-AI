@@ -2,7 +2,7 @@ import hashlib
 import io
 import wave
 
-from tests.test_foundation import setup, create, headers, authorization, wav_bytes
+from tests.test_foundation import create, headers, authorization, wav_bytes
 from tests.test_recovery import append
 
 

@@ -377,7 +377,7 @@ class GoogleSessions:
         def logout(request: Request):
             if settings.mode != "google":
                 raise HTTPException(404, "google_sign_in_not_configured")
-            actor = self.principal(request)
+            self.principal(request)
             with self.database() as con:
                 con.execute(
                     "DELETE FROM auth_sessions WHERE token_hash=?",

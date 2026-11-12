@@ -1,6 +1,5 @@
 """Fail closed on corrupted persisted text before using clinical evidence."""
 
-import json
 from fastapi import HTTPException
 from pydantic import ValidationError
 from services.canonical import content_sha256

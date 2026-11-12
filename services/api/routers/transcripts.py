@@ -1,6 +1,5 @@
 """Transcripts endpoints; original version-one contracts and guards preserved."""
 
-import json
 from uuid import UUID
 from fastapi import Depends, HTTPException
 from fastapi.responses import JSONResponse

@@ -50,7 +50,8 @@ def join_text(left, right, overlap):
     if not overlap or not left:
         return (left + " " + right).strip(), 0
     a, b = left.split(), right.split()
-    normalize = lambda s: re.sub(r"[^\w.]", "", s.lower())
+    def normalize(text):
+        return re.sub(r"[^\w.]", "", text.lower())
     for length in range(min(30, len(a), len(b)), 0, -1):
         if [normalize(x) for x in a[-length:]] == [normalize(x) for x in b[:length]]:
             return " ".join(a + b[length:]), length
@@ -72,7 +73,6 @@ def term_counts(reference, hypothesis):
 
 
 def run(output, modes, resume_from=None):
-    import hashlib
 
     sys.path.insert(0, str(Path("data/benchmark-runtime").resolve()))
     os.environ["OMI_MED_STT_CACHE"] = str(Path("data/omi-cache").resolve())
@@ -218,7 +218,7 @@ def run(output, modes, resume_from=None):
                             target.writeframes(pcm[a * 2 : b * 2])
                         try:
                             text, failed = predictor(chunk), False
-                        except Exception as exc:
+                        except Exception:
                             text, failed = "", True
                         row["failed"] |= failed
                         row["hypothesis"], removed = join_text(

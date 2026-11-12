@@ -7,7 +7,7 @@ from uuid import uuid4
 from services.api.ingest import run_once
 from services.review.clinical_models import RuleExtractor
 from services.review.models import Fact
-from tests.test_foundation import setup, headers, queue_upload
+from tests.test_foundation import headers, queue_upload
 
 
 def test_scoped_source_batches_preserve_full_version_binding_and_unselected_segments(

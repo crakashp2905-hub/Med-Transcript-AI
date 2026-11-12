@@ -191,7 +191,8 @@ def render(result):
 
 
 def render_html(result, manifest, dataset_path="datasets/primock57-smoke-v1"):
-    esc = lambda value: html.escape(str(value), quote=True)
+    def esc(value):
+        return html.escape(str(value), quote=True)
     measured = "".join(
         f"<tr><td>{r['rank']}</td><th>{esc(r['candidate_id'])}<br><small>{esc(r['runtime_variant'])}</small></th><td>{r['normalized_wer']:.2%}</td><td>{r['normalized_edits']}/{r['reference_words']}</td><td>{r['failed_samples']}</td><td>{esc(r['wer_gate']['status']).upper()}</td></tr>"
         for r in result["ranked"]

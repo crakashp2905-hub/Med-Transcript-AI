@@ -1,13 +1,12 @@
 import hashlib
-import json
 from pathlib import Path
 from uuid import uuid4
 
 import pytest
 from services.api.storage import Store
 from services.asr.worker import run_once
-from tests.test_foundation import setup, headers, create, upload_session, wav_bytes
-from tests.test_transcription import environment, SyntheticAdapter
+from tests.test_foundation import headers, create, upload_session, wav_bytes
+from tests.test_transcription import SyntheticAdapter
 from tests.test_channels import queued
 from services.asr.adapter import ASRFailure
 

@@ -1,9 +1,8 @@
 from uuid import uuid4
 
 from services.application_pipeline import enrich_fact_proposal
-from tests.test_foundation import setup, headers
+from tests.test_foundation import headers
 from tests.test_review_workflow import prepare
-import pytest
 import sqlite3
 
 
