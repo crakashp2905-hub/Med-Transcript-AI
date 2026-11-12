@@ -494,6 +494,7 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
                             transcript_sha256=span_request["transcript_sha256"],
                             profile_sha256=profile.sha256,
                             span_audio_sha256=metadata["span_audio_sha256"],
+                            span_audio_provenance=metadata["audio_provenance"],
                             channel_index=span_request["channel_index"],
                             candidate_segments=[
                                 {

@@ -1570,11 +1570,20 @@
       "id": "MTA-03-06",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Exercise 1/2/8 channel ingest; identify channel meaning or mark unknown instead of assuming doctor/patient.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-06-c320d8d.json"
+      ],
+      "source_commit": "c320d8de1e5fd65ce56de81cf112076bbb281f02",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-06-c320d8d.json",
+          "report_sha256": "b8d2d7cb510c542a7c2924ae87273990a3c6332f0beccdf66be8930c018b624c",
+          "check": "multichannel_ingest_and_unknown_role_safety",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

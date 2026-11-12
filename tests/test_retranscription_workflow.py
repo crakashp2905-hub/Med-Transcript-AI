@@ -2,6 +2,8 @@
 
 import sqlite3
 import wave
+from pathlib import Path
+from services.audio_provenance import file_sha256
 from services.asr.worker import run_once
 from services.inference_slot import local_inference_slot
 from tests.test_transcription import enqueue
@@ -80,6 +82,14 @@ def test_retranscription_worker_crops_real_audio_and_does_not_replace_source(
     assert candidate["candidate_segments"][0]["start_ms"] == 20
     assert candidate["candidate_segments"][0]["end_ms"] == 80
     assert len(candidate["span_audio_sha256"]) == 64
+    source_audio = Path(env.assets) / f"{queued.upload['id']}.wav"
+    span_provenance = candidate["span_audio_provenance"]
+    assert span_provenance["parent_sha256"] == file_sha256(source_audio)
+    assert span_provenance["asset_sha256"] == candidate["span_audio_sha256"]
+    assert span_provenance["timeline_mapping"]["kind"] == ("crop_sample_index_offset")
+    assert span_provenance["timeline_mapping"]["parent_start_frame"] == 320
+    assert span_provenance["timeline_mapping"]["parent_end_frame_exclusive"] == 1280
+    assert span_provenance["timeline_mapping"]["channel_index"] == 0
     ws = env.client.get(
         f"/v1/encounters/{queued.resource}/workspace", headers=headers()
     ).json()

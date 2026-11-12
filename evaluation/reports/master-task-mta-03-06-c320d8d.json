@@ -1,0 +1,50 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-06",
+  "status": "pass",
+  "source_commit": "c320d8de1e5fd65ce56de81cf112076bbb281f02",
+  "source_tree": "e3dba851e281cde9a49d04f5e0f1bdfe05e5dc8e",
+  "checks": {
+    "multichannel_ingest_and_unknown_role_safety": {
+      "status": "pass",
+      "controls": [
+        "Application multichannel ingest and ASR isolation run for 2, 3 and 8 channels while preserving channel order and source-time alignment.",
+        "One-channel end-to-end transcription is covered independently and begins with role unknown/unconfirmed.",
+        "Every isolated channel output binds to the original audio digest, its own PCM digest, channel index/count and exact shared sample-frame mapping.",
+        "Physical channel index is never treated as a clinician or patient identity; roles require explicit human review.",
+        "The ninth channel and a failed channel are rejected without publishing partial output."
+      ],
+      "local_checks": {
+        "focused_tests": "channel integration did not complete under local Windows TestClient; exact-source GitHub CI passed",
+        "ruff": "pass"
+      },
+      "ci_run_id": 43295908724,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43295908724",
+      "ci_jobs": {
+        "test_dev_security": "success; 843 passed, 17 skipped, 3 warnings",
+        "test_dev_asr_security": "success; 871 passed, 3 skipped, 2 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43295908724
+  },
+  "runtime_sha256": "b664cc4f0ad81d57a20e282a3541a6b571ac2e8e00a30f67ec80f80e4b59e4e3",
+  "source_sha256": {
+    "services/asr/channels.py": "7238f5e5222ae3d9d6179df4410e91532ce85990fa79d906fb0f068ef41a60f0",
+    "tests/test_channels.py": "42f14e557096547d1a5c7ba1294d1f6f77ea496b5eef8680a1e25d9b6e92e279",
+    "tests/test_transcription.py": "a0a2da1f8411fe3c6fda39f815d4baf278d0d9936144682da158d0ef51bab375"
+  },
+  "limitations": [
+    "Generated distinct channels establish transport and software behavior only; they are not multi-microphone hardware validation or speaker accuracy evidence.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}
