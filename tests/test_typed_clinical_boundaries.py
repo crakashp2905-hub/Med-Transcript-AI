@@ -179,6 +179,11 @@ def test_typed_records_reject_duplicate_segments_and_unresolved_note_links():
 def test_note_statement_ids_and_amendment_parent_references_are_consistent():
     fixture = Path(__file__).parent / "fixtures/domain_records/legacy_note_v0.json"
     note = json.loads(fixture.read_text(encoding="utf-8"))
+    note["sections"][0]["statements"][0]["text"] = "Different statement text"
+    with pytest.raises(ValueError, match="invalid_persisted_record_schema"):
+        contracts.validate_record("note", note)
+
+    note = json.loads(fixture.read_text(encoding="utf-8"))
     duplicate = json.loads(json.dumps(note["sections"][0]["statements"][0]))
     note["sections"].append({"key": "objective", "statements": [duplicate]})
     with pytest.raises(ValueError, match="invalid_persisted_record_schema"):

@@ -108,7 +108,7 @@ class NoteStatement(BaseModel):
     model_config = ConfigDict(extra="forbid")
     statement_id: UUID
     text: str = Field(min_length=1, max_length=4000)
-    fact_ids: list[UUID] = Field(min_length=1, max_length=20)
+    fact_ids: list[UUID] = Field(min_length=1, max_length=1)
     origin: Literal["source_linked", "clinician_entered"]
     source_version_id: UUID | None = None
     evidence: EvidenceSpan | None = None
@@ -158,6 +158,12 @@ class NoteVersion(StableRecord):
             referenced = [facts.get(fact_id) for fact_id in statement.fact_ids]
             if any(fact is None for fact in referenced):
                 raise ValueError("note_statement_fact_reference_missing")
+            if (
+                len(referenced) != 1
+                or referenced[0] is None
+                or statement.text != referenced[0].text
+            ):
+                raise ValueError("note_statement_fact_text_mismatch")
             origins = {fact.origin for fact in referenced if fact is not None}
             if len(origins) != 1 or statement.origin not in origins:
                 raise ValueError("note_statement_origin_mismatch")
