@@ -560,3 +560,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   ASR peak memory unknown, and no end-to-end successfully completed consultation
   cost (including resource amortization) is measured. These profile-level
   inference timings do not satisfy the requested full consultation metrics.
+- **MTA-ASR-I09:** Partial. Model cards and a negative-experiment index exist,
+  and benchmark receipts bind runs to dataset/model/source digests. However, the
+  index is a bounded historical inventory and the reporting artifacts do not
+  currently provide one reproducible publication package with every requested
+  ablation/error table regenerated from source-bound receipts. Clinical-gold
+  and admission claims remain explicitly absent.
