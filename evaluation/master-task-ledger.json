@@ -1042,11 +1042,21 @@
       "id": "MTA-02-01",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Draw a sequence diagram of ingest → immutable transcript → source-grounded fact → draft → verification → manual review → approval → export.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-01-5001f9c.json",
+        "docs/product-architecture.md",
+        "tests/test_product_architecture_sequence.py"
+      ],
+      "source_commit": "5001f9c21ad7744dd139c212386848cf9c329106",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-01-5001f9c.json",
+          "report_sha256": "1a5f1525ddb1b1e897d7bd72981ce9f1c89f33c9e1050c3b0fe7ab2cad797cb1",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

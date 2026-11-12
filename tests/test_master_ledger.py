@@ -111,6 +111,13 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
     assert (
         release_summary["source_commit"] == "906f0fc688fb0b0f5693fe913087bc459e82f4b8"
     )
+    sequence_diagram = next(
+        item for item in document["tasks"] if item["id"] == "MTA-02-01"
+    )
+    assert sequence_diagram["status"] == "implemented"
+    assert (
+        sequence_diagram["source_commit"] == "5001f9c21ad7744dd139c212386848cf9c329106"
+    )
 
 
 def test_verified_task_requires_exact_commit_test_and_runtime_hashes(
