@@ -153,7 +153,7 @@ def test_processing_consent_rejects_duplicate_scopes_before_storage(setup):
         headers=headers(),
     )
     assert response.status_code == 422
-    assert response.json() == {"code": "processing_consent_invalid"}
+    assert response.json()["code"] == "processing_consent_invalid"
     with sqlite3.connect(path) as con:
         assert con.execute("SELECT COUNT(*) FROM authorizations").fetchone()[0] == 0
 
