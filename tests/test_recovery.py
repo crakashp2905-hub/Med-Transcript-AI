@@ -28,6 +28,7 @@ def test_upload_resumes_and_replays_identical_chunk_without_duplication(setup):
     client, db, _ = setup
     eid = create(client)
     content = wav_bytes()
+    expected_sha256 = hashlib.sha256(content).hexdigest()
     upload, _ = upload_session(client, eid, content)
     url = upload["content_url"]
     first = content[:70]
@@ -47,7 +48,14 @@ def test_upload_resumes_and_replays_identical_chunk_without_duplication(setup):
     response = append(client, url, content[70:], 70)
     assert response.status_code == 200 and response.json()["status"] == "uploaded"
     assert append(client, url, content[70:], 70).status_code == 200
-    assert (partial.parent / f"{upload['id']}.wav").read_bytes() == content
+    sealed_audio = partial.parent / f"{upload['id']}.wav"
+    assert sealed_audio.read_bytes() == content
+    assert hashlib.sha256(sealed_audio.read_bytes()).hexdigest() == expected_sha256
+    state = client.get(
+        f"/v1/encounters/{eid}/audio-uploads/{upload['id']}", headers=headers()
+    ).json()
+    assert state["status"] == "uploaded"
+    assert state["received_bytes"] == state["expected_bytes"] == len(content)
     complete = client.post(
         f"/v1/encounters/{eid}/audio-uploads/{upload['id']}/complete", headers=headers()
     )
