@@ -146,15 +146,28 @@ the raw ledger SHA-256 is
 `e545dde4529c419cb0a14654653c67d1f5a283fef086e279fc2023ae3d926886`.
 It predates MTA-01-11. See v4 below for the latest ledger snapshot.
 
-## Current execution matrix
+## Current execution matrix and ledger audit
 
-[`master-implementation-matrix-v4.json`](../evaluation/reports/master-implementation-matrix-v4.json)
-was generated from source commit `cdb2aa2125fc6aa646585f36a23da27a58b56574`.
-Its SHA-256 is `ed747741055ec0f0949fff698c4dcb55d8ac801886225491120c8fd962c3cbb0`;
-the raw ledger SHA-256 is
-`9196283fda0122c7e6491052b1fd38e2dcc45a1266282ad18833c973d9317d90`.
-It records three implemented tasks and 366 not started. Task-level dependency
-edges remain unmapped, and clinical release remains unauthorized.
+[`master-implementation-matrix-v5.json`](../evaluation/reports/master-implementation-matrix-v5.json)
+and [`master-ledger-audit-v5.json`](../evaluation/reports/master-ledger-audit-v5.json)
+are bound to source commit `40ff69143067621a7d5320e700862099c5b76e77`.
+Their SHA-256 values are `643f1ccc921d687562f878109a5b61daf45ff8888f21c193a7e4a884e81e75df`
+and `949ac6641588c43126a4aa26fca23b9351d84b21f02d2ba5002c71591920c1e4`.
+The ledger audit records 3 implemented, 1 blocked_missing_asset, 365 not started,
+and 0 verified. Task-level dependency edges remain unmapped; clinical release
+remains unauthorized.
+
+`MTA-01-03` is blocked at exact source commit
+`c15c2b896e69e66c110d59b2f805b59ce9c165e1`. The v26 acceptance report
+[`offline-acceptance-v26.json`](../evaluation/reports/offline-acceptance-v26.json)
+(hash `37e320aa915a9df751f34f2aec3622b50a2b05d7631f78bf2785d3d9de6067b3`)
+records a full backend timeout after 1200 seconds. The blocker receipt
+[`master-task-mta-01-03-c15c2b8.json`](../evaluation/reports/master-task-mta-01-03-c15c2b8.json)
+(hash `9ee68a64b6662a1e73dad521e8ae7796ebe845862330db485b11ea3f8f9bec5a`)
+records the critical skip policy pass and remaining unavailable PyAV,
+`cryptography.cobblestone`, PostgreSQL DSN and Docker lanes. These are not
+passing acceptance results; no packages, assets, credentials or services were
+fetched or configured.
 
 ## Prior offline acceptance failure v24 (superseded)
 
