@@ -91,6 +91,18 @@ def decode_child(source, destination, media_type):
 
 
 def normalize(source, destination, media_type):
+    from services.audio_provenance import (
+        derive_provenance,
+        file_sha256,
+        normalization_timeline,
+        source_provenance,
+    )
+
+    try:
+        source = Path(source).resolve()
+        parent = source_provenance(source, media_type)
+    except (OSError, ValueError):
+        return {"error_code": "decoder_process_failed"}
     # Keep provider credentials and application policy state out of the child environment.
     allowed = {"PATH", "SYSTEMROOT", "WINDIR", "TEMP", "TMP", "LD_LIBRARY_PATH"}
     env = {key: value for key, value in os.environ.items() if key.upper() in allowed}
@@ -102,7 +114,7 @@ def normalize(source, destination, media_type):
         str(child),
         "--child",
         "--source",
-        str(Path(source).resolve()),
+        str(source),
         "--destination",
         str(Path(destination).resolve()),
         "--media-type",
@@ -122,13 +134,8 @@ def normalize(source, destination, media_type):
         decoded = json.loads(result.stdout)
         if decoded.get("error_code"):
             return decoded
-        from services.audio_provenance import (
-            derive_provenance,
-            normalization_timeline,
-            source_provenance,
-        )
-
-        parent = source_provenance(source, media_type)
+        if file_sha256(source) != parent["asset_sha256"]:
+            return {"error_code": "source_audio_changed_during_normalization"}
         decoded["audio_provenance"] = derive_provenance(
             parent,
             destination,

@@ -1,3 +1,4 @@
+import hashlib
 import random
 import wave
 
@@ -7,6 +8,7 @@ from services.detailed_benchmark import coverage, evaluate_case, fast_score, sum
 from services.detailed_benchmark import validated_resume
 from services.evaluation import score
 from services.prepare_detailed import select
+from services.audio_provenance import validate_provenance
 
 
 def test_bitvector_token_scoring_matches_original_normalization_and_edit_counts():
@@ -55,6 +57,7 @@ def test_one_failed_window_retains_all_reference_deletions_and_raw_success(tmp_p
         out.writeframes(b"\0\0" * 16000 * 31)
     case = {
         "group_id": "full",
+        "audio_sha256": hashlib.sha256(audio.read_bytes()).hexdigest(),
         "foreground_id": "patient",
         "condition": "clean",
         "reference_turns": [{"reference": "No penicillin allergy."}],
@@ -87,6 +90,7 @@ def test_one_failed_window_retains_all_reference_deletions_and_raw_success(tmp_p
     )
     assert row["normalized_edits"] == row["reference_words"] == 3
     assert row["input_coverage_complete"] and checkpoints == [1, 2]
+    assert all(validate_provenance(crop["audio_provenance"]) for crop in row["chunks"])
     assert summarize([row])["wer_gate"]["status"] == "fail"
     assert not row["native_timestamp_bounds_valid"]
 

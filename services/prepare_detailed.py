@@ -9,6 +9,8 @@ import sys
 import urllib.request
 import wave
 
+from services.audio_provenance import derive_provenance, source_provenance_from_digest
+
 REVISION = "bcef38c2bc8404d52a2c66a799be778e28216102"
 BASE = f"https://huggingface.co/datasets/NYU-OLAB/MedDistractAudio/resolve/{REVISION}/"
 
@@ -69,7 +71,42 @@ def decode_flac(data, destination, expected):
     with wave.open(str(destination), "wb") as output:
         output.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
         output.writeframes(pcm)
-    return len(pcm) / 32
+    frames = len(pcm) // 2
+    parent = source_provenance_from_digest(
+        hashlib.sha256(data).hexdigest(),
+        {
+            "container": "flac",
+            "encoding": "flac_lossless",
+            "channels": 1,
+            "sample_rate": 16000,
+            "frames": frames,
+            "duration_seconds": frames / 16000,
+        },
+        "audio/flac",
+    )
+    receipt = derive_provenance(
+        parent,
+        destination,
+        "lossless_flac_decode_to_pcm_wav_v1",
+        {
+            "decoder": "PyAV",
+            "published_pcm_sha256": expected,
+            "output_sample_rate": 16000,
+            "output_channels": 1,
+            "output_encoding": "pcm_s16le",
+        },
+        {
+            "kind": "identity_sample_index",
+            "status": "exact_lossless_pcm_frame_mapping",
+            "parent_sample_rate": 16000,
+            "output_sample_rate": 16000,
+            "parent_frames": frames,
+            "output_frames": frames,
+            "formula": "parent_frame = output_frame",
+            "maximum_mapping_error_ms": 1000 / 16000,
+        },
+    )
+    return frames / 32, receipt
 
 
 def prepare(root, publication):
@@ -166,7 +203,7 @@ def prepare(root, publication):
             group = meta["item_id"]
             pair = selected[group]
             destination = root / f"{rid}.wav"
-            duration = decode_flac(
+            duration, audio_provenance = decode_flac(
                 row["audio"]["bytes"], destination, meta["pcm_sha256"]
             )
             if abs(duration / 1000 - meta["duration_seconds"]) > 0.001:
@@ -177,6 +214,7 @@ def prepare(root, publication):
                 "condition": meta["condition"],
                 "audio": destination.name,
                 "audio_sha256": file_sha256(destination),
+                "audio_provenance": audio_provenance,
                 "pcm_sha256": meta["pcm_sha256"],
                 "duration_ms": duration,
                 "donor_id": meta["donor_id"],

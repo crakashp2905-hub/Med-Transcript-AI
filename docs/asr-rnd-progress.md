@@ -40,16 +40,17 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
 
 - **MTA-ASR-B01:** Added hash-bound lineage receipts with source asset hashes,
   transformation-manifest hashes, parent receipts and explicit timeline maps.
-  Runtime ingest records original-to-normalized lineage; channel isolation and
-  bounded retranscription crops preserve parent hashes and frame mappings.
-  Primock smoke/validation crop manifests and full-consultation normalized/mixed
-  tracks now include receipts, including both parents for role-track mixing.
-  `tests/test_audio_provenance.py`: 2 passed; changed Python files compile and
-  `git diff --check` passes. Commit `457ce41324a5abba966156c896cb07bff4f6cbb1`.
-  Status: partial; the detailed benchmark's temporary inference windows and
-  MedDistract FLAC decode path are not yet lineage-bound, and the PyAV resampler
-  group delay/source-origin correction remains explicitly unverified. Historical
-  frozen reports were not rewritten.
+  Runtime ingest, channel isolation, bounded retranscription, Primock crops,
+  role-track mixing, MedDistract lossless FLAC decoding, benchmark windows,
+  conversation ablations, failure probes, and synthetic stress inputs now emit
+  receipts. Multi-input transformations retain every parent digest. The
+  detailed benchmark binds each run's source digest before creating crops.
+  `tests/test_audio_provenance.py` and `tests/test_detailed_benchmark.py`: 8
+  passed; media tests were skipped because PyAV is unavailable. Changed modules
+  compile, Ruff check passes, and `git diff --check` passes. Historical reports
+  and benchmark locks were not rewritten. Status: partial; this environment
+  cannot execute PyAV normalization/FLAC integration, and resampler group-delay
+  correction is explicitly unverified in its timeline map.
 
 - **MTA-ASR-A04:** The frozen error-taxonomy artifact contains token-level edit
   rows tied by hashes to source reports and the reference manifest. Every

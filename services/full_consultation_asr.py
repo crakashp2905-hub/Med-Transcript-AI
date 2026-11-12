@@ -11,6 +11,11 @@ import time
 import wave
 
 from services.api.ingest import file_sha256
+from services.audio_provenance import (
+    crop_timeline,
+    derive_provenance,
+    source_provenance,
+)
 from services.evaluation import score, wer_gate
 
 
@@ -87,6 +92,7 @@ def main():
                 ) != (1, 16000, 2):
                     raise ValueError("Invalid source audio")
                 pcm = stream.readframes(stream.getnframes())
+            source_audio_provenance = source_provenance(audio, "audio/wav")
             chunks = []
             start = time.perf_counter()
             for offset in range(0, len(pcm), 30 * 16000 * 2):
@@ -95,6 +101,20 @@ def main():
                 with wave.open(str(path), "wb") as out:
                     out.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
                     out.writeframes(piece)
+                end_frame = offset // 2 + len(piece) // 2
+                start_frame = offset // 2
+                chunk_provenance = derive_provenance(
+                    source_audio_provenance,
+                    path,
+                    "full_consultation_fixed_window_crop_v1",
+                    {
+                        "start_frame": start_frame,
+                        "end_frame_exclusive": end_frame,
+                        "sample_rate": 16000,
+                        "window_seconds": 30,
+                    },
+                    crop_timeline(start_frame, end_frame, 16000),
+                )
                 try:
                     hypothesis = predictor(path)
                     failed = False
@@ -107,6 +127,7 @@ def main():
                         "end_ms": (offset + len(piece)) / 32,
                         "hypothesis": hypothesis,
                         "failed": failed,
+                        "audio_provenance": chunk_provenance,
                     }
                 )
                 print(

@@ -19,9 +19,9 @@ def file_sha256(path):
 
 def _canonical_sha256(value):
     return hashlib.sha256(
-        json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode(
-            "utf-8"
-        )
+        json.dumps(
+            value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ).encode("utf-8")
     ).hexdigest()
 
 
@@ -45,17 +45,19 @@ def _seal(receipt):
     return receipt
 
 
-def source_provenance(path, media_type=None):
-    """Describe immutable input bytes and their native timeline origin."""
-    path = Path(path)
-    descriptor = _wav_descriptor(path)
+def source_provenance_from_digest(asset_sha256, descriptor, media_type="unknown"):
+    """Create a source receipt when immutable source bytes are held in memory."""
+    if len(asset_sha256) != 64 or any(
+        c not in "0123456789abcdef" for c in asset_sha256
+    ):
+        raise ValueError("invalid_audio_asset_digest")
     operation = {
         "operation": "source_asset_capture_v1",
-        "media_type": media_type or ("audio/wav" if descriptor["container"] == "wav" else "unknown"),
+        "media_type": media_type,
     }
     receipt = {
         "schema_version": SCHEMA_VERSION,
-        "asset_sha256": file_sha256(path),
+        "asset_sha256": asset_sha256,
         "asset": descriptor,
         "parent": None,
         "parent_sha256": None,
@@ -72,6 +74,17 @@ def source_provenance(path, media_type=None):
     return _seal(receipt)
 
 
+def source_provenance(path, media_type=None):
+    """Describe immutable input bytes and their native timeline origin."""
+    path = Path(path)
+    descriptor = _wav_descriptor(path)
+    return source_provenance_from_digest(
+        file_sha256(path),
+        descriptor,
+        media_type or ("audio/wav" if descriptor["container"] == "wav" else "unknown"),
+    )
+
+
 def validate_provenance(receipt):
     if not isinstance(receipt, dict) or receipt.get("schema_version") != SCHEMA_VERSION:
         raise ValueError("invalid_audio_provenance_schema")
@@ -84,8 +97,10 @@ def validate_provenance(receipt):
     ) != _canonical_sha256(operation):
         raise ValueError("audio_transformation_manifest_digest_mismatch")
     timeline = receipt.get("timeline_mapping")
-    if not isinstance(timeline, dict) or not timeline.get("kind") or not timeline.get(
-        "status"
+    if (
+        not isinstance(timeline, dict)
+        or not timeline.get("kind")
+        or not timeline.get("status")
     ):
         raise ValueError("audio_timeline_mapping_required")
     unsigned = {key: value for key, value in receipt.items() if key != "receipt_sha256"}
@@ -193,7 +208,9 @@ def channel_timeline(channel_index, channel_count, sample_rate, frames):
     }
 
 
-def normalization_timeline(parent_sample_rate, output_sample_rate, source_origin_ms=None):
+def normalization_timeline(
+    parent_sample_rate, output_sample_rate, source_origin_ms=None
+):
     if (
         type(output_sample_rate) is not int
         or output_sample_rate <= 0

@@ -10,6 +10,7 @@ import wave
 import httpx
 import numpy as np
 from services.api.ingest import file_sha256
+from services.audio_provenance import derive_provenance, source_provenance
 from services.evaluation import score
 
 
@@ -25,11 +26,12 @@ def run(output):
     ):
         raise ValueError("Frozen manifest changed")
     sources = manifest["samples"][:3]
-    signals = []
+    signals, source_provenance_chain = [], []
     for sample in sources:
         source = root / sample["audio"]
         if file_sha256(source) != sample["audio_sha256"]:
             raise ValueError("Source changed")
+        source_provenance_chain.append(source_provenance(source, "audio/wav"))
         with wave.open(str(source), "rb") as audio:
             if (audio.getnchannels(), audio.getsampwidth(), audio.getframerate()) != (
                 1,
@@ -50,12 +52,36 @@ def run(output):
     with wave.open(str(target), "wb") as audio:
         audio.setparams((3, 2, 16000, 0, "NONE", "not compressed"))
         audio.writeframes(content)
+    audio_provenance = derive_provenance(
+        source_provenance_chain[0],
+        target,
+        "multichannel_padded_public_clip_stack_v1",
+        {
+            "channel_order": [sample["sample_id"] for sample in sources],
+            "source_frames": [len(signal) for signal in signals],
+            "output_frames": frames,
+            "padding": "zero_fill_each_channel_to_max_source_frames",
+            "output_sample_rate": 16000,
+            "output_encoding": "pcm_s16le",
+        },
+        {
+            "kind": "per_channel_shared_sample_index_with_zero_padding",
+            "status": "exact_frame_mapping",
+            "parent_sample_rates": [16000] * len(signals),
+            "output_sample_rate": 16000,
+            "output_frames": frames,
+            "formula": "output[channel, frame] = source[channel, frame] or zero when beyond source length",
+            "maximum_mapping_error_ms": 1000 / 16000,
+        },
+        additional_parents=source_provenance_chain[1:],
+    )
     result = {
         "schema_version": "multichannel_real_worker_smoke_v1",
         "scope": "three_padded_public_clips_shared_origin_not_a_consultation",
         "source_manifest_sha256": file_sha256(root / "manifest.json"),
         "source_attribution": manifest["attribution"],
         "input_sha256": file_sha256(target),
+        "audio_provenance": audio_provenance,
         "channels": 3,
         "frames": frames,
         "clinical_acceptance": False,

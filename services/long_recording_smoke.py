@@ -9,6 +9,7 @@ from uuid import uuid4
 import wave
 import httpx
 from services.api.ingest import file_sha256
+from services.audio_provenance import derive_provenance, source_provenance
 from services.evaluation import score
 
 
@@ -36,6 +37,7 @@ def run(output, minutes_sequence=(20, 30), channels=1):
     )
     if file_sha256(source) != sample["audio_sha256"]:
         raise ValueError("Source audio changed")
+    source_audio_provenance = source_provenance(source, "audio/wav")
     with wave.open(str(source), "rb") as audio:
         if (audio.getnchannels(), audio.getsampwidth(), audio.getframerate()) != (
             1,
@@ -119,12 +121,38 @@ def run(output, minutes_sequence=(20, 30), channels=1):
                 out.setparams((channels, 2, 16000, 0, "NONE", "not compressed"))
                 for _ in range(minutes):
                     out.writeframesraw(tile)
+            frames_per_tile = len(tile) // (2 * channels)
+            stress_audio_provenance = derive_provenance(
+                source_audio_provenance,
+                file,
+                "repeated_public_clip_long_duration_stress_v1",
+                {
+                    "source_frames": len(pcm) // 2,
+                    "zero_padding_frames": 60 * 16000 - len(pcm) // 2,
+                    "tile_frames": frames_per_tile,
+                    "tile_repetitions": minutes,
+                    "output_channels": channels,
+                    "output_sample_rate": 16000,
+                    "output_encoding": "pcm_s16le",
+                },
+                {
+                    "kind": "periodic_source_with_zero_padding_timeline",
+                    "status": "exact_generation_mapping",
+                    "source_sample_rate": 16000,
+                    "output_sample_rate": 16000,
+                    "source_frames": len(pcm) // 2,
+                    "tile_frames": frames_per_tile,
+                    "formula": "within each tile, source frames map identically then zero padding; each tile repeats every tile_frames",
+                    "maximum_mapping_error_ms": 1000 / 16000,
+                },
+            )
             mono_reference = " ".join([sample["reference"]] * minutes)
             reference = " ".join([mono_reference] * channels)
             row = {
                 "minutes": minutes,
                 "channels": channels,
                 "input_sha256": file_sha256(file),
+                "audio_provenance": stress_audio_provenance,
                 "failed": False,
                 "reference": reference,
             }

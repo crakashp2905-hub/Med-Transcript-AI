@@ -12,6 +12,11 @@ import time
 import wave
 
 from services.api.ingest import file_sha256
+from services.audio_provenance import (
+    crop_timeline,
+    derive_provenance,
+    source_provenance,
+)
 from services.evaluation import score
 
 TERMS = re.compile(
@@ -160,6 +165,7 @@ def run(output, modes, resume_from=None):
                     )
                     if file_sha256(audio) != source["normalized_sha256"]:
                         raise ValueError("Audio changed")
+                    source_audio_provenance = source_provenance(audio, "audio/wav")
                     with wave.open(str(audio), "rb") as stream:
                         if (
                             stream.getnchannels(),
@@ -218,6 +224,19 @@ def run(output, modes, resume_from=None):
                         with wave.open(str(chunk), "wb") as target:
                             target.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
                             target.writeframes(pcm[a * 2 : b * 2])
+                        chunk_provenance = derive_provenance(
+                            source_audio_provenance,
+                            chunk,
+                            "conversation_ablation_window_crop_v1",
+                            {
+                                "mode": mode,
+                                "role": source["role"],
+                                "start_frame": a,
+                                "end_frame_exclusive": b,
+                                "sample_rate": 16000,
+                            },
+                            crop_timeline(a, b, 16000),
+                        )
                         try:
                             text, failed = predictor(chunk), False
                         except Exception:
@@ -233,6 +252,7 @@ def run(output, modes, resume_from=None):
                                 "hypothesis": text,
                                 "failed": failed,
                                 "stitched_duplicate_tokens": removed,
+                                "audio_provenance": chunk_provenance,
                             }
                         )
                     # Failure-inclusive score: a processing failure yields an empty scored output.

@@ -8,6 +8,11 @@ from pathlib import Path
 import sys
 import wave
 from services.api.ingest import file_sha256
+from services.audio_provenance import (
+    crop_timeline,
+    derive_provenance,
+    source_provenance,
+)
 
 
 def probe(
@@ -83,6 +88,7 @@ def probe(
             )
             if file_sha256(audio) != expected:
                 raise ValueError("Audio changed")
+            source_audio_provenance = source_provenance(audio, "audio/wav")
             with wave.open(str(audio), "rb") as stream:
                 pcm = stream.readframes(stream.getnframes())
             for chunk in failures:
@@ -103,6 +109,18 @@ def probe(
                 with wave.open(str(path), "wb") as out:
                     out.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
                     out.writeframes(pcm[a:b])
+                crop_start_frame, crop_end_frame = a // 2, b // 2
+                value["audio_provenance"] = derive_provenance(
+                    source_audio_provenance,
+                    path,
+                    "omi_failure_probe_crop_v1",
+                    {
+                        "start_frame": crop_start_frame,
+                        "end_frame_exclusive": crop_end_frame,
+                        "sample_rate": 16000,
+                    },
+                    crop_timeline(crop_start_frame, crop_end_frame, 16000),
+                )
                 try:
                     value.update(reproduced_failure=False, hypothesis=predictor(path))
                 except Exception as exc:

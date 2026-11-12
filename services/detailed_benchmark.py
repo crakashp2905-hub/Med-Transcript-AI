@@ -12,6 +12,11 @@ import time
 import wave
 
 from services.api.ingest import file_sha256
+from services.audio_provenance import (
+    crop_timeline,
+    derive_provenance,
+    source_provenance,
+)
 from services.clinical_metrics import character_distance
 from services.conversation_experiment import windows, join_text, term_counts
 from services.evaluation import tokens, wer_gate
@@ -169,6 +174,9 @@ def evaluate_case(case, audio, predict, mode, checkpoint):
         ) != (1, 16000, 2):
             raise ValueError("Unsupported source profile")
         pcm = incoming.readframes(incoming.getnframes())
+    source_audio_provenance = source_provenance(audio, "audio/wav")
+    if source_audio_provenance["asset_sha256"] != case["audio_sha256"]:
+        raise ValueError("Audio provenance does not match frozen source hash")
     spans = [(0, len(pcm) // 2)] if mode == "context" else list(windows(pcm, mode))
     if not coverage(spans, len(pcm) // 2):
         raise ValueError("Source coverage invalid")
@@ -193,6 +201,20 @@ def evaluate_case(case, audio, predict, mode, checkpoint):
             with wave.open(str(path), "wb") as output:
                 output.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
                 output.writeframes(pcm[a * 2 : b * 2])
+            crop_provenance = derive_provenance(
+                source_audio_provenance,
+                path,
+                "detailed_asr_window_crop_v1",
+                {
+                    "mode": mode,
+                    "start_frame": a,
+                    "end_frame_exclusive": b,
+                    "sample_rate": 16000,
+                    "overlap_or_pause_strategy": mode,
+                    "output_encoding": "pcm_s16le",
+                },
+                crop_timeline(a, b, 16000),
+            )
             t = time.perf_counter()
             failure = None
             segments = None
@@ -232,6 +254,7 @@ def evaluate_case(case, audio, predict, mode, checkpoint):
                     "native_timestamp_bounds_valid": valid,
                     "stitch_removed_tokens": removed,
                     "wall_seconds": time.perf_counter() - t,
+                    "audio_provenance": crop_provenance,
                 }
             )
             row["failed"] = row["failed"] or failure is not None
