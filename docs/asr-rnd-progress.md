@@ -606,3 +606,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   could not navigate to the local test server (`ERR_NETWORK_ACCESS_DENIED`), and
   current ASR profiles do not supply alternate hypotheses or a rendered
   waveform, so full I13 acceptance remains incomplete.
+- **MTA-ASR-I05 update:** A separate invocation through the pinned tiny.en
+  adapter on the locked PriMock57 patient smoke clip succeeded, produced two
+  native-timestamped segments, and reported 1.33 seconds inference time after
+  model load. This is real model evidence but not a full system run. The local
+  application-test harness stalls on its first in-process HTTP request even for
+  the pre-existing synthetic transcription workflow; the added integration
+  attempt was removed rather than retaining a hanging test. The full
+  audio-to-approved-export acceptance remains incomplete.
