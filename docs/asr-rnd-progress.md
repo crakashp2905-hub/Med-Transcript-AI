@@ -578,3 +578,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   profiles, and missing/corrupt weights (unavailable, no automatic download).
   All rows preserve the independent clinical/WER admission gate. CUDA remains
   a conditional statement, not a hardware validation result.
+- **MTA-ASR-I11:** `BLOCKED_MISSING_RESOURCE` for the requested release check.
+  The repository CI workflow declares Python quality/full-suite, frontend,
+  PostgreSQL and container jobs, but GitHub returned no status checks for the
+  current source commit `8d93b88f4a170d12e2e64a7b28a3ae23e1fb9060`. The latest
+  available local acceptance receipt is from an earlier source commit and
+  records a timed-out full backend run plus missing PyAV, PostgreSQL DSN and
+  Docker. Those results are not promoted as exact-HEAD evidence; all required
+  exact-HEAD CI lanes remain unverified.
