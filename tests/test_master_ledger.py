@@ -7,12 +7,12 @@ from services import master_ledger
 from services.master_ledger import LEDGER, audit
 
 
-def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
+def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
     result = audit()
     assert result["total"] == 369
     assert sum(result["statuses"].values()) == 369
-    assert result["statuses"]["blocked_missing_asset"] == 3
-    assert result["statuses"]["verified"] == 0
+    assert result["statuses"]["blocked_missing_asset"] == 2
+    assert result["statuses"]["verified"] == 2
     assert result["verified_at_current_commit"] == 0
     assert result["clinical_release_authorized"] is False
     document = json.loads(LEDGER.read_text(encoding="utf-8"))
@@ -58,9 +58,14 @@ def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     )
     assert frontend_task["status"] == "blocked_missing_asset"
     assert frontend_task["source_commit"] == "aef2a7b25291c1900cf31e8952ab3822cec4091a"
-    blocked_task = next(item for item in document["tasks"] if item["id"] == "MTA-01-03")
-    assert blocked_task["status"] == "blocked_missing_asset"
-    assert blocked_task["source_commit"] == "c15c2b896e69e66c110d59b2f805b59ce9c165e1"
+    ci_task = next(item for item in document["tasks"] if item["id"] == "MTA-01-03")
+    assert ci_task["status"] == "verified"
+    assert ci_task["source_commit"] == "ab04b795d8c597e792d591bb3b90c804473d208f"
+    exact_head_task = next(
+        item for item in document["tasks"] if item["id"] == "MTA-01-05"
+    )
+    assert exact_head_task["status"] == "verified"
+    assert exact_head_task["source_commit"] == ci_task["source_commit"]
     documentation_task = next(
         item for item in document["tasks"] if item["id"] == "MTA-01-08"
     )
