@@ -1,0 +1,53 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-17",
+  "status": "pass",
+  "source_commit": "c40c847eb186370fa92c0e3689debd3673022ebf",
+  "source_tree": "e5e31bfe3462deaffd405036fbf245cb1b887052",
+  "checks": {
+    "subsystem_capability_manifest_and_execution_provenance": {
+      "status": "pass",
+      "controls": [
+        "Read-only status output exposes a versioned manifest explicitly labeled as declarations rather than runtime measurements.",
+        "Transcript provenance distinguishes real_model_inference, synthetic_transcript_replay, measured_digital_silence_no_inference and unverified non-inference output.",
+        "Synthetic replay may include predeclared transcript text and always reports inference_executed=false.",
+        "Measured digital silence reports no model inference and no generated transcript text; contradictory silence/inference output fails closed.",
+        "Multichannel transcripts aggregate per-channel inference modes without relabeling silent-only or mixed execution as replay.",
+        "Manifest discloses deterministic drafting defaults, synthetic-only optional model use, clinician-confirmed diarization and that model verification cannot clear approval."
+      ],
+      "local_checks": {
+        "focused_tests": "8 passed",
+        "ruff": "pass",
+        "mypy_ignore_missing_imports": "pass"
+      },
+      "ci_run_id": 43288401081,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43288401081",
+      "ci_jobs": {
+        "test_dev_security": "success; 814 passed, 17 skipped",
+        "test_dev_asr_security": "success; 842 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "source_sha256": {
+    "services/capability_manifest.py": "4665b401ffc650ec5b7d471b2fb8f8155f6152006e60905fb8b26d7e55c5fb82",
+    "services/asr/provenance.py": "0c87d5fc3e74d1dae9a52f7e70c3d008c40fbb0effa3b6a65801a1561ad7fd5a",
+    "services/asr/transcripts.py": "e7577d993afe7fd5e0136abd2c9babef9076a01390da6973ff6255f1704464da",
+    "services/asr/channels.py": "f3d0810d09b057e47e390695c9879dd7f4fecb4d98da5960ec7281f126eb3029",
+    "services/status_report.py": "78bd785cb6c2a4eea02624c506730c386a7de89664e35bd2ab5b720716c7f052",
+    "tests/test_capability_manifest.py": "d6403e90898b8872693f65041797d5b0f206a7d7178fb8da861a7b002053c96c",
+    "tests/test_channels.py": "7b1e6fda476948ab1f5482dbbb543ce043edf47ee8e0ccb2035c2c50e1c13388",
+    "tests/test_master_release.py": "e1f854b9a5fc7ae6e7ee0331fae911e21e9ddd313a92e453ead20ad3855f33a8",
+    "docs/service-catalog.md": "29b173c7dd482df3925543bf3415650de7c6e733168d1dbbced58b22406c0510"
+  },
+  "limitations": [
+    "The manifest does not dynamically prove a local model is installed or that a given request executed inference; per-transcript provenance records the adapter-reported path.",
+    "Real model inference here means trusted adapter execution, not clinical accuracy or deployment eligibility.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}

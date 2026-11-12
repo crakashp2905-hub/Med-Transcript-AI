@@ -1407,11 +1407,20 @@
       "id": "MTA-02-17",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add subsystem capability manifest which differentiates real inference from replayed transcript text and silent-audio synthetic transport.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-17-c40c847.json"
+      ],
+      "source_commit": "c40c847eb186370fa92c0e3689debd3673022ebf",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-17-c40c847.json",
+          "report_sha256": "07ce5edab0eaa7301f37514176a30b40258133e2beee5c763dbd7bd2d7deb7a4",
+          "check": "subsystem_capability_manifest_and_execution_provenance",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
