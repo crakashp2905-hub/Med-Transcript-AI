@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-06",
+  "source_commit": "7c6102499980a0a8095ffc3a403809e3da23f69e",
+  "source_sha256": {
+    "services/clinical_metrics.py": "7e826bd70940ad5adeb456440be4b8d86c21fb0096f6f0efcb7f83901f12e45d",
+    "services/clinical_evaluation.py": "b41bbc32651b5840e8207df3368ccfbf2ca826ea03d3649bb3cd46a8a2f0debd",
+    "services/evaluation.py": "73a127a599ee0f3dbaef5e6d3655f56fb55d108e4bd482dc4e6c8aeae374af3f",
+    "evaluation/clinical-asr-secondary-endpoints-v1.json": "2cc351ca45aceee6de6dec03a08bad1d611de75b28d092b6a1dbf5fc462e27c9",
+    "tests/test_clinical_weighted_metrics.py": "1b6cc2e11caac206435e011b88614bd85ffeb0b9e58f1ffaf98ac358661b6bfb",
+    "tests/test_clinical_metrics_report.py": "023f683a2cd4cb8ac3477eeecc6dbde865e8443202dfb868e82c16d8b1cc4c79",
+    "tests/test_fact_evaluation_synthetic.py": "01be9c5e7e0ffbbb3336f3f66652fb0d20b423c00accc32d5bddf2a7553e2f94"
+  },
+  "checks": {
+    "surface_metric_tests": {
+      "status": "pass",
+      "result": "7 passed"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "version": "0.15.13"
+    },
+    "ruff_check": {
+      "status": "pass",
+      "version": "0.15.13"
+    },
+    "primary_wer_unchanged": {
+      "status": "pass",
+      "gate": 0.05
+    }
+  },
+  "commands": [
+    "python -m ruff format --check services/clinical_evaluation.py services/clinical_metrics.py tests/test_clinical_weighted_metrics.py",
+    "python -m ruff check services/clinical_evaluation.py services/clinical_metrics.py tests/test_clinical_weighted_metrics.py",
+    "python -m pytest -q tests/test_clinical_metrics_report.py tests/test_clinical_weighted_metrics.py tests/test_fact_evaluation_synthetic.py"
+  ],
+  "scope": "Software implementation and synthetic tests only; no clinical accuracy or independent annotation claim.",
+  "limitations": [
+    "Surface diagnostics are limited to exact normalized word alignments.",
+    "No independently adjudicated clinical concept or punctuation/casing cohort is available.",
+    "The 5% normalized WER admission gate remains the primary endpoint and is not relaxed."
+  ]
+}
