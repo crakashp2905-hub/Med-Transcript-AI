@@ -6,7 +6,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 
 | Classification | Modules |
 | --- | ---: |
-| integrated-in-production-flow | 83 |
+| integrated-in-production-flow | 84 |
 | candidate-only | 12 |
 | test-only | 184 |
 | documentation-only | 11 |
@@ -83,6 +83,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/rover.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/segmentation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/subgroup_diagnostics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/timeline.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/timestamps.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/transcripts.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/vad_candidates.py` | `test-only` | imported by tests but not reachable from configured runtime roots |

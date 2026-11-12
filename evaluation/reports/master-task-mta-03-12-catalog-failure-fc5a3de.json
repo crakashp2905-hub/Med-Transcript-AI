@@ -1,0 +1,35 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-12",
+  "status": "fail",
+  "source_commit": "fc5a3dea5caf155e0dd1d5729670c54aef965c05",
+  "source_tree": "704364ffa5076b779c4e99eb21f871a9a72b84a1",
+  "checks": {
+    "timeline_trace_ci_validation": {
+      "status": "fail",
+      "ci_run_id": 43302334935,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43302334935",
+      "ci_jobs": {
+        "test_dev_security": "failure: 1 failed, 848 passed, 17 skipped; service catalog stale",
+        "test_dev_asr_security": "cancelled after sibling failure",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "failure because required test lane failed"
+      },
+      "failed_tests": [
+        "tests/test_module_catalog.py::test_committed_service_catalog_matches_source_generator"
+      ],
+      "local_reproduction": "Regenerated docs/service-catalog.md and test_module_catalog.py passed (2 passed).",
+      "root_cause": "New production-reachable services/asr/timeline.py was absent from the generated docs/service-catalog.md."
+    }
+  },
+  "limitations": [
+    "This is a preserved failing CI receipt, not acceptance evidence. No ledger task status is advanced from this commit."
+  ],
+  "source_sha256": {
+    "services/asr/timeline.py": "1621e0763a282a6801d35fa5e036bf1fadf33020cde9035c11ddd20203caf0f2",
+    "services/asr/transcripts.py": "58571fdc77632aadb02db36bebafd507db706ead72ef5f5e434cce4a32759ac5",
+    "services/asr/channels.py": "6641ccd2e2699c1a069dbc061aff9639f3321b82579b86729e521b2c4235a185"
+  }
+}
