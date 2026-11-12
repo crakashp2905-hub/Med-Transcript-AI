@@ -91,7 +91,12 @@ def test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail(setup):
         provenance["supersedes"]["path"]
         == "evaluation/contracts/authorization-policy-v1.json"
     )
-    assert validate(client.app, expected)["routes_checked"] >= 60
+    coverage = validate(client.app, expected)
+    assert coverage["routes_checked"] >= 60
+    assert coverage["openapi_operations_checked"] == 60
+    assert coverage["authenticated_operations_checked"] >= 50
+    assert coverage["operation_schema_contracts_checked"] == 60
+    assert coverage["path_parameters_checked"] > 0
 
     @client.app.get("/v1/unreviewed-test-route")
     def unreviewed():
