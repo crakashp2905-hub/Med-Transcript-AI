@@ -434,3 +434,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   patient-prioritized runtime quality control or medically critical patient
   omission measure is wired, and upstream role annotations are not independently
   adjudicated.
+- **MTA-ASR-G09:** Existing transcript outputs remain `review_required`, carry
+  `speaker_unassigned`/unconfirmed role flags, and mark timing gaps as
+  untranscribed with unknown cause. Role-dependent fact checks require
+  confirmation or block approval rather than moving evidence across speakers.
+  Status: partial; policy behavior is covered by transcript/review tests, but
+  there is no comprehensive UI test proving every clinically role-dependent
+  workflow blocks on unknown timing and role metadata.
