@@ -456,3 +456,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   training a speech foundation model from scratch. A credible FLOP/time estimate
   is unavailable without a selected architecture and measured training
   throughput; no from-scratch training is claimed or attempted.
+- **MTA-ASR-H02:** Partial. Current benchmark source manifests and local model
+  profiles bind dataset/model revisions and license identifiers; lexicon
+  construction further requires rights-reviewed development manifests and
+  verified locks. No gated or restricted model/data was used in the reported
+  local runs, and no derived training artifact exists. This is a preflight for
+  the evaluated assets, not authorization to train on any additional source;
+  each future training input and derived artifact needs its own rights review.
