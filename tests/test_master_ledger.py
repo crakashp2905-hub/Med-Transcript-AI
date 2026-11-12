@@ -11,7 +11,7 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
     result = audit()
     assert result["total"] == 369
     assert sum(result["statuses"].values()) == 369
-    assert result["statuses"]["blocked_missing_asset"] == 2
+    assert result["statuses"]["blocked_missing_asset"] == 3
     assert result["statuses"]["verified"] == 3
     assert result["clinical_release_authorized"] is False
     document = json.loads(LEDGER.read_text(encoding="utf-8"))
@@ -99,6 +99,11 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
     skip_task = next(item for item in document["tasks"] if item["id"] == "MTA-01-11")
     assert skip_task["status"] == "implemented"
     assert skip_task["source_commit"] == "c15c2b896e69e66c110d59b2f805b59ce9c165e1"
+    dependency_audit = next(
+        item for item in document["tasks"] if item["id"] == "MTA-01-18"
+    )
+    assert dependency_audit["status"] == "blocked_missing_asset"
+    assert "No local offline vulnerability scanner" in dependency_audit["blocker"]
 
 
 def test_verified_task_requires_exact_commit_test_and_runtime_hashes(

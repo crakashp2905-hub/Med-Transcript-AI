@@ -973,12 +973,21 @@
       "id": "MTA-01-18",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "blocked_missing_asset",
       "description": "Complete fail-closed dependency audit on installed third-party requirements when cached data permits; otherwise explicit BLOCKED.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-01-18-3d84da4.json",
+        "evaluation/reports/offline-sbom-c4fe247.json"
+      ],
+      "source_commit": "3d84da4d2a00116cc1c8058ef345b900629530e4",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-18-3d84da4.json",
+          "report_sha256": "818bfb5d977db9d87366feb6cca4e55326aef9e13d9814f0a67f1336b00dd49d",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "No local offline vulnerability scanner or cached advisory database is available. Do not infer packages are safe; do not make a network call or fetch advisory assets."
     },
     {
       "id": "MTA-01-19",

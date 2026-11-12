@@ -1,0 +1,22 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-18",
+  "status": "blocked",
+  "source_commit": "3d84da4d2a00116cc1c8058ef345b900629530e4",
+  "checks": {
+    "offline_dependency_audit": {
+      "status": "blocked",
+      "scanner": "pip-audit unavailable",
+      "advisory_cache": "unavailable",
+      "configured_cache": false,
+      "network_access_used": false,
+      "safe_to_use_claimed": false,
+      "sbom_path": "evaluation/reports/offline-sbom-c4fe247.json",
+      "sbom_sha256": "6084d8896425502d28729f762f15c6265889f87d668924a98ab2208b3d3d504c",
+      "ci_run_id": 43247696457,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43247696457",
+      "ci_all_five_jobs": "success"
+    }
+  },
+  "blocker": "No local offline vulnerability scanner or cached advisory database is available. Do not infer packages are safe; do not make a network call or fetch advisory assets."
+}
