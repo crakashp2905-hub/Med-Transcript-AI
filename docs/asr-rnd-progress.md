@@ -528,3 +528,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   tolerances are available. The E08 pilot's false insertion is a development
   signal, not a clinical error rate. Abstentions remain review-required and
   cannot be counted as successful corrections.
+- **MTA-ASR-I05:** Partial; not accepted as the required system-level test.
+  The application worker executes local ASR and builds immutable, timestamped
+  transcript versions, and the review service supports candidate-note review,
+  approval and integrity-checked exports. However, the existing end-to-end
+  transcription test injects `SyntheticAdapter`; the real tiny.en invocation
+  evidenced by E08 is a separate development decoding pilot, not an audio-to-
+  approved-export run. Scripted fixture approval is not clinician review. No
+  test currently binds one real local ASR invocation to the complete chain, so
+  this task remains incomplete and does not establish clinical readiness.
