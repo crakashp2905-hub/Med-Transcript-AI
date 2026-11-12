@@ -1,0 +1,37 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-07",
+  "status": "pass",
+  "source_commit": "bf0a1ace07fd812d1bbd1826e8e78b9f2fa59bc8",
+  "checks": {
+    "approved_statement_attribution": {
+      "status": "pass",
+      "source_linked_statements": "Markdown and text exports include transcript version, segment ID, character interval and SHA-256 of the exact quoted span; JSON and FHIR retain structured origin and evidence references.",
+      "clinician_entered_statements": "Exports visibly label each statement as a clinician-entered addition that is not audio-derived.",
+      "fabricated_or_missing_attribution": "Export rendering rejects unsupported origins, missing source evidence and clinician entries that claim audio evidence.",
+      "application_graph_gate": "Approved exports validate every note statement origin and exact source link before persistence and on download.",
+      "review_ui": "Clinician additions have a visible Clinician entered label; source-linked statements have an Evidence navigation control.",
+      "focused_local_tests": "8 passed",
+      "ci_run_id": 43262975071,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43262975071",
+      "ci_jobs": {
+        "test_dev_security": "success; 794 passed, 17 skipped",
+        "test_dev_asr_security": "success; 822 passed, 3 skipped",
+        "frontend": "success",
+        "postgres": "success",
+        "container": "success",
+        "release-summary": "success"
+      },
+      "source_sha256": {
+        "services/review/engine.py": "3843f9e4c47ca4b02f1d5db9c03ec4a9b6f0c1f58adac15823146ce910361929",
+        "tests/test_export_attribution.py": "6db7942682d9b7f5c97a793df0d4c134e8695a4296d0ae0d1cadd2e60d8a4923",
+        "tests/test_review_workflow.py": "71fe89b9fa11a9290c63f8887c928f2f074a8744a4a978b52a005d708a46d4ca",
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "5e432216a546bc0f8a2dc6481bb9951f694c7f1f42613ccb50044ca41f63abe4"
+      }
+    }
+  },
+  "limitations": [
+    "Attribution is a traceability link to transcript text, not independent confirmation that the statement is clinically true.",
+    "Clinical review and exact-version approval remain mandatory; this report does not authorize clinical release."
+  ]
+}

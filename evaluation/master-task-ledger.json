@@ -1178,11 +1178,24 @@
       "id": "MTA-02-07",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-      "status": "not_started",
+        "status": "implemented",
       "description": "Prove every approved statement has an explicit source origin or a visibly flagged clinician-entered annotation, never a fabricated citation.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+        "evidence": [
+          "evaluation/reports/master-task-mta-02-07-bf0a1ac.json",
+          "services/review/engine.py",
+          "services/evidence_graph.py",
+          "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+          "tests/test_export_attribution.py",
+          "tests/test_review_workflow.py"
+        ],
+        "source_commit": "bf0a1ace07fd812d1bbd1826e8e78b9f2fa59bc8",
+        "test_results": [
+          {
+            "report": "evaluation/reports/master-task-mta-02-07-bf0a1ac.json",
+            "report_sha256": "a82329be9951f083ef5212c566431bb10877298772cd2ba8b8cd8e2ec5d7fb99",
+            "status": "pass"
+          }
+        ],
       "blocker": null
     },
     {
