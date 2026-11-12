@@ -1,0 +1,63 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-03",
+  "source_commit": "ab04b795d8c597e792d591bb3b90c804473d208f",
+  "runtime": {
+    "provider": "GitHub Actions",
+    "runner": "ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow": ".github/workflows/ci.yml",
+    "run_id": 43236883914,
+    "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43236883914",
+    "source_commit": "ab04b795d8c597e792d591bb3b90c804473d208f"
+  },
+  "runtime_sha256": "c6ec26e2591eaf8228ae6bbaae1bfe7b0a66556206d06084a467c79e73b1f412",
+  "workflow_run": {
+    "id": 43236883914,
+    "url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43236883914",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "jobs": {
+    "test (dev,security)": {
+      "status": "success",
+      "job_id": 131246509685,
+      "pytest": "745 passed, 17 skipped; offline lane 59 passed"
+    },
+    "test (dev,asr,security)": {
+      "status": "success",
+      "job_id": 131246510186,
+      "pytest": "773 passed, 3 skipped; offline lane 59 passed"
+    },
+    "postgres": {
+      "status": "success",
+      "job_id": 131246510257
+    },
+    "container": {
+      "status": "success",
+      "job_id": 131246510213
+    },
+    "frontend": {
+      "status": "success",
+      "job_id": 131246510337
+    }
+  },
+  "checks": {
+    "core_and_security_pytest": {
+      "status": "pass"
+    },
+    "asr_and_security_pytest": {
+      "status": "pass"
+    },
+    "postgres_integration": {
+      "status": "pass"
+    },
+    "container_integration": {
+      "status": "pass"
+    }
+  },
+  "limitations": [
+    "The two pytest matrix jobs reported skipped tests (17 in dev/security and 3 in dev/asr/security); this receipt records GitHub job conclusions and the published pytest totals, but does not claim those skips were executed.",
+    "Hosted CI success does not constitute clinical validation or authorize deployment to real patient care."
+  ]
+}

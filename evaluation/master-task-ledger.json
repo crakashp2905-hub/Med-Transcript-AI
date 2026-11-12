@@ -435,7 +435,7 @@
       "id": "MTA-01-03",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "blocked_missing_asset",
+      "status": "verified",
       "description": "Run all existing pytest lanes: core, optional ASR, security, PostgreSQL and container integration using frozen constraints.",
       "evidence": [
         ".github/workflows/ci.yml",
@@ -446,10 +446,38 @@
         "tests/test_channels.py",
         "tests/test_encrypted_backup.py",
         "tests/test_media.py",
-        "tests/test_postgres.py"
+        "tests/test_postgres.py",
+        "evaluation/reports/master-task-mta-01-03-ab04b79.json"
       ],
-      "source_commit": "c15c2b896e69e66c110d59b2f805b59ce9c165e1",
+      "source_commit": "ab04b795d8c597e792d591bb3b90c804473d208f",
       "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-03-ab04b79.json",
+          "report_sha256": "399d2508df1987cb72e6098edb7092e17f30de54c114e97cf39094d807bace9d",
+          "check": "core_and_security_pytest",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-03-ab04b79.json",
+          "report_sha256": "399d2508df1987cb72e6098edb7092e17f30de54c114e97cf39094d807bace9d",
+          "check": "asr_and_security_pytest",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-03-ab04b79.json",
+          "report_sha256": "399d2508df1987cb72e6098edb7092e17f30de54c114e97cf39094d807bace9d",
+          "check": "postgres_integration",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-03-ab04b79.json",
+          "report_sha256": "399d2508df1987cb72e6098edb7092e17f30de54c114e97cf39094d807bace9d",
+          "check": "container_integration",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Historical superseded CI failure receipts are retained in test_results_history. Exact-source hosted CI passed all required jobs; skipped tests and the absence of independent clinical validation remain documented in the receipt.",
+      "test_results_history": [
         {
           "report": "evaluation/reports/offline-acceptance-v26.json",
           "report_sha256": "37e320aa915a9df751f34f2aec3622b50a2b05d7631f78bf2785d3d9de6067b3",
@@ -486,8 +514,7 @@
           "check": "container_integration",
           "status": "blocked"
         }
-      ],
-      "blocker": "Exact-source full backend acceptance timed out after 1200 seconds. PyAV and cryptography.cobblestone are unavailable, PostgreSQL DSN is unset, and Docker is not installed; critical skipped lanes fail acceptance."
+      ]
     },
     {
       "id": "MTA-01-04",
@@ -536,12 +563,46 @@
       "id": "MTA-01-05",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Ensure exact HEAD branch run passes all five hosted CI jobs; do not count a previous commit or cancelled test job as success.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "evaluation/reports/master-task-mta-01-05-ab04b79.json"
+      ],
+      "source_commit": "ab04b795d8c597e792d591bb3b90c804473d208f",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-05-ab04b79.json",
+          "report_sha256": "902fa25220e734f553e440b6536d1754522220309504fb3004acfaf035624d57",
+          "check": "core_and_security_pytest",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-05-ab04b79.json",
+          "report_sha256": "902fa25220e734f553e440b6536d1754522220309504fb3004acfaf035624d57",
+          "check": "asr_and_security_pytest",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-05-ab04b79.json",
+          "report_sha256": "902fa25220e734f553e440b6536d1754522220309504fb3004acfaf035624d57",
+          "check": "postgres",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-05-ab04b79.json",
+          "report_sha256": "902fa25220e734f553e440b6536d1754522220309504fb3004acfaf035624d57",
+          "check": "container",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-05-ab04b79.json",
+          "report_sha256": "902fa25220e734f553e440b6536d1754522220309504fb3004acfaf035624d57",
+          "check": "frontend",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Historical superseded CI failure receipts are retained in test_results_history. Exact-source hosted CI passed all required jobs; skipped tests and the absence of independent clinical validation remain documented in the receipt."
     },
     {
       "id": "MTA-01-06",
