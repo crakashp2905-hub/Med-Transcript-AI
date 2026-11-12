@@ -41,6 +41,9 @@ def decode_child(source, destination, media_type):
             if not 1 <= channels <= 8:
                 return {"error_code": "unsupported_audio_profile"}
             source_rate = stream.codec_context.sample_rate or stream.rate
+            source_rate = int(source_rate) if source_rate else None
+            if source_rate is None or not 8000 <= source_rate <= 48000:
+                return {"error_code": "unsupported_audio_profile"}
             time_base = stream.time_base
             source_origin_ms = None
             if stream.start_time is not None and time_base is not None:
@@ -54,10 +57,16 @@ def decode_child(source, destination, media_type):
                 for frame in container.decode(stream):
                     if (
                         len(frame.layout.channels) != channels
-                        or not 8000 <= frame.sample_rate <= 48000
+                        or frame.sample_rate != source_rate
                     ):
                         return {"error_code": "unsupported_audio_profile"}
                     for output in resampler.resample(frame):
+                        if (
+                            output.sample_rate != 16000
+                            or len(output.layout.channels) != channels
+                            or output.format.name not in ("s16", "s16p")
+                        ):
+                            return {"error_code": "unsupported_audio_profile"}
                         total += output.samples
                         if total * channels * 2 + 44 > 512_000_000:
                             return {"error_code": "decoded_size_limit_exceeded"}
@@ -65,6 +74,12 @@ def decode_child(source, destination, media_type):
                             return {"error_code": "duration_limit_exceeded"}
                         target.writeframes(output.to_ndarray().astype("<i2").tobytes())
                 for output in resampler.resample(None):
+                    if (
+                        output.sample_rate != 16000
+                        or len(output.layout.channels) != channels
+                        or output.format.name not in ("s16", "s16p")
+                    ):
+                        return {"error_code": "unsupported_audio_profile"}
                     total += output.samples
                     if total * channels * 2 + 44 > 512_000_000:
                         return {"error_code": "decoded_size_limit_exceeded"}
@@ -75,7 +90,7 @@ def decode_child(source, destination, media_type):
             {
                 "frames": total,
                 "error_code": None,
-                "source_sample_rate": int(source_rate) if source_rate else None,
+                "source_sample_rate": source_rate,
                 "source_channels": channels,
                 "source_origin_ms": source_origin_ms,
                 "source_container": source_format,

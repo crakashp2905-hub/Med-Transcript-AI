@@ -145,8 +145,8 @@ def run_once(db_path: str, asset_root: str):
                 raise InvalidAudio("requires_decode")
             result = inspect_pcm_wav(source)
             needs_decode = result["sample_rate"] != 16000
-        except InvalidAudio as exc:
-            if upload["media_type"] == "audio/wav" and str(exc) != "unsupported_media":
+        except InvalidAudio:
+            if upload["media_type"] == "audio/wav":
                 raise
             needs_decode = True
         if needs_decode:

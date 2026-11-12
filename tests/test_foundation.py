@@ -216,6 +216,12 @@ def wav_bytes():
     return buffer.getvalue()
 
 
+def mutated_wav(offset, value):
+    body = bytearray(wav_bytes())
+    body[offset : offset + len(value)] = value
+    return bytes(body)
+
+
 def upload_session(client, resource, content):
     route = f"/v1/encounters/{resource}"
     response = client.post(
@@ -464,20 +470,35 @@ def test_revocation_during_worker_prevents_result_publication(setup, monkeypatch
 
 
 @pytest.mark.parametrize(
-    "content",
+    ("content", "error_code"),
     [
-        b"not-a-wav",
-        wav_bytes()[:-10],
-        b"RIFF" + (2**32 - 1).to_bytes(4, "little") + b"WAVE" + b"\0" * 50,
+        pytest.param(b"not-a-wav", "invalid_media", id="not-wav"),
+        pytest.param(wav_bytes()[:-10], "invalid_media", id="truncated-data"),
+        pytest.param(
+            b"RIFF" + (2**32 - 1).to_bytes(4, "little") + b"WAVE" + b"\0" * 50,
+            "invalid_media",
+            id="overflowing-riff-size",
+        ),
+        pytest.param(
+            mutated_wav(20, b"\x03\x00"),
+            "unsupported_media",
+            id="unsupported-float-encoding",
+        ),
+        pytest.param(
+            mutated_wav(22, b"\x02\x00"),
+            "invalid_media",
+            id="mismatched-channel-alignment",
+        ),
     ],
 )
-def test_malformed_audio_fails_with_safe_code(setup, content):
+def test_malformed_audio_fails_without_partial_publication(setup, content, error_code):
     client, path, _ = setup
     _, _, _, queued = queue_upload(client, content)
     assert run_once(path, str(Path(path).parent / "assets"))["status"] == "failed"
     job = client.get(queued["status_url"], headers=headers()).json()
-    assert job["error_code"] == "invalid_media"
+    assert job["error_code"] == error_code
     assert job["result"] is None
+    assert not list((Path(path).parent / "assets").glob("*.normalized.wav"))
 
 
 def test_crashed_worker_lease_is_recovered_and_attempts_are_bounded(setup):

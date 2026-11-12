@@ -52,6 +52,17 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   cannot execute PyAV normalization/FLAC integration, and resampler group-delay
   correction is explicitly unverified in its timeline map.
 
+- **MTA-ASR-B02:** WAV inspection now rejects inconsistent RIFF/chunk bounds,
+  unsupported PCM/float encodings, channel/sample-rate/bit-depth mismatches,
+  invalid byte/block rates, partial frames, oversized files, and excessive
+  duration before decode. Unsupported WAV encodings can no longer fall through
+  to generic normalization. The PyAV decoder now checks stable input rate and
+  channel metadata plus the resampler output profile per frame.
+  `tests/test_wav_validation.py`: 12 passed, including 100 deterministic
+  malformed headers and a queued worker failure that confirms no normalized
+  result is published. Status: partial; PyAV is not installed, so decoder-frame
+  consistency and supported-media decode cases remain unexecuted here.
+
 - **MTA-ASR-A04:** The frozen error-taxonomy artifact contains token-level edit
   rows tied by hashes to source reports and the reference manifest. Every
   reference substitution/deletion carries its reference token, role, and source
