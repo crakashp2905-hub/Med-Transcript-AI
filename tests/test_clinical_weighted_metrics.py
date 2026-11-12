@@ -9,6 +9,7 @@ from services.clinical_metrics import (
     WEIGHTED_VERSION,
     concept_key,
     evaluate,
+    surface_form_diagnostics,
 )
 from services.clinical_evaluation import annotated
 
@@ -116,3 +117,24 @@ def test_annotated_runner_binds_frozen_secondary_endpoint_registry(tmp_path):
         ).hexdigest()
     )
     assert registry["clinical_gold_available_in_repository"] is False
+
+
+def test_surface_diagnostics_separate_case_and_punctuation_without_changing_wer():
+    report = evaluate("NO, fever!", "no fever.", [], [])
+    details = report["surface_form_diagnostics"]
+    assert report["normalized_wer"] == 0
+    assert report["normalized_edits"] == 0
+    assert report["raw_edits"] == 2
+    assert details["aligned_normalized_words"] == 2
+    assert details["case_mismatches"] == 1
+    assert details["case_mismatch_rate"] == 0.5
+    assert details["punctuation_boundaries_compared"] == 3
+    assert details["punctuation_boundary_mismatches"] == 2
+    assert details["lexical_endpoint_unchanged"] == PRIMARY_ENDPOINT
+
+
+def test_surface_diagnostics_leave_unaligned_punctuation_unscored():
+    details = surface_form_diagnostics("No symptom", "No severe symptom")
+    assert details["aligned_normalized_words"] == 2
+    assert details["punctuation_boundaries_compared"] == 2
+    assert details["punctuation_boundary_mismatch_rate"] == 0
