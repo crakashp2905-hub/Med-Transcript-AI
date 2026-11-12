@@ -1497,7 +1497,7 @@
       "test_results": [
         {
           "report": "evaluation/reports/master-task-mta-03-01-ec0b2e9.json",
-          "report_sha256": "b9fd95a1dbd808bfb7336f3c2195df409c66b0229d371c7ff97902dd782a8e28",
+          "report_sha256": "9e831d4c78bd5587b68ae36c57ab7d8ef145e9ce4db07ff694f944fcc9baa8c4",
           "check": "pcm_wav_declaration_and_integrity_validation",
           "status": "pass"
         }
@@ -1508,11 +1508,20 @@
       "id": "MTA-03-02",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Reject malicious container files, forged metadata, huge headers, malformed frames and channel-count inconsistencies.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-02-ebc3689.json"
+      ],
+      "source_commit": "ebc36894ef02195ffeeb35b72e0c4896d9663e38",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-02-ebc3689.json",
+          "report_sha256": "7321fef26e3c2b0f23a18974664365f763c5878504c82f4d6eaea73f081e4454",
+          "check": "malicious_riff_container_rejection",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

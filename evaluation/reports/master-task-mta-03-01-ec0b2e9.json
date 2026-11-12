@@ -12,7 +12,7 @@
         "Only PCM signed 16-bit input is accepted with channel count 1..8 and sample rate 8..48 kHz.",
         "Block alignment, byte rate, nonempty sample-aligned data size and frame-derived duration are validated before ingest publishes output.",
         "Upload byte count and SHA-256 are checked, and tampering/malformed source tests assert no transcript or normalized file is published.",
-        "17 new dimension tests cover channel counts 1/2/8, sample rates 8/16/48 kHz, and forged channels/rates/rates, alignment, sample width and partial frames."
+        "17 new dimension tests cover channel counts 1/2/8, sample rates 8/16/48 kHz, and forged channels/rates, alignment, sample width and partial frames."
       ],
       "local_checks": {
         "focused_tests": "17 passed",

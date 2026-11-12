@@ -1,0 +1,51 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-02",
+  "status": "pass",
+  "source_commit": "ebc36894ef02195ffeeb35b72e0c4896d9663e38",
+  "source_tree": "1fff69303788aa7387b46c3395b2019d706e15b7",
+  "checks": {
+    "malicious_riff_container_rejection": {
+      "status": "pass",
+      "controls": [
+        "Malformed RIFF/WAVE containers fail closed when payload precedes fmt, format or data chunks are duplicated, format declarations are truncated, or chunk lengths exceed the file boundary.",
+        "A WAV with more than 1024 RIFF chunks is rejected before ingest publication.",
+        "Unknown odd-sized chunks are accepted only with the required valid pad byte.",
+        "Channel-count and inconsistent block alignment attacks are covered by MTA-03-01 and the existing ingest worker tests.",
+        "Worker failure paths assert no transcript or normalized asset is published for malformed audio."
+      ],
+      "local_checks": {
+        "focused_tests": "7 passed",
+        "ruff": "pass"
+      },
+      "ci_run_id": 43293366243,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43293366243",
+      "ci_jobs": {
+        "test_dev_security": "success; 840 passed, 17 skipped, 2 warnings",
+        "test_dev_asr_security": "success; 868 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43293366243
+  },
+  "runtime_sha256": "183c05e7f16c13698984621719f2c7e946016ae801ac6b6b248c05989fcd0173",
+  "source_sha256": {
+    "services/api/ingest.py": "7fca3d30f2b78d0c702321dba56e1e99fa7a8f7fa0216a35b3e3009d4c6f4a23",
+    "tests/test_wav_container_safety.py": "63f128f7561db66d30bfc8d01f1470b7e83b4869c73b7845958b3049dbd6d17c",
+    "tests/test_audio_header_contract.py": "a65bc6ddc966e1c654a73b09b1eda95f08000332d21212a9fb1aefb27cc73b40",
+    "tests/test_foundation.py": "b0bef05a92e428f122a0a6baf6d5517b4e019f68502e91b74043a03ba3e70df2"
+  },
+  "limitations": [
+    "Validation remains bounded to the PCM/WAV ingest contract; it does not establish acoustic or clinical quality.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}
