@@ -31,6 +31,9 @@ those claims. As imported, all 369 entries are `not_started`; this means
 2. Restore all five hosted CI jobs at one exact SHA. Local Ruff format and
    lint pass after the mechanical formatting and follow-up fixes; local mypy
    has not completed and is not counted as a pass.
+   A broad local regression run finished with 585 passed and six skipped,
+   but concurrent source commits landed during its execution, so this run is
+   not used as an exact-commit task receipt.
 3. Attach task-specific receipts to the ledger. A task can become `verified`
    only when its test result is passing, its report hash matches, and the
    report states the same source commit. Failed and blocked statuses remain
