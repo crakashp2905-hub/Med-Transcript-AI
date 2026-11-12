@@ -1,5 +1,7 @@
+import hashlib
 import json
 from pathlib import Path
+import zipfile
 
 from services.api.ingest import file_sha256
 from services.asr.subgroup_diagnostics import aggregate
@@ -112,11 +114,15 @@ def test_saved_real_cohort_subgroups_reconcile_all_reference_denominators():
     report = json.loads(path.read_text(encoding="utf-8"))
     manifest_path = Path("evaluation/datasets/meddistract-detailed-v1/manifest.json")
     receipt_path = Path("evaluation/reports/error-taxonomy-v2/report.json")
-    errors_path = Path("evaluation/reports/error-taxonomy-v2/all-errors.csv")
+    errors_path = Path("evaluation/reports/error-taxonomy-v2/all-errors.csv.zip")
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     assert report["manifest_sha256"] == file_sha256(manifest_path)
     assert report["taxonomy_receipt_sha256"] == file_sha256(receipt_path)
-    assert report["error_csv_sha256"] == file_sha256(errors_path)
+    assert receipt["csv_archive_sha256"] == file_sha256(errors_path)
+    with zipfile.ZipFile(errors_path) as archive:
+        raw_csv = archive.read("all-errors.csv")
+    raw_csv_sha256 = hashlib.sha256(raw_csv).hexdigest()
+    assert raw_csv_sha256 == report["error_csv_sha256"] == receipt["csv_sha256"]
     assert len(report["runs"]) == len(receipt["reports"]) == 17
 
     source_reports = {row["path"]: row["sha256"] for row in receipt["reports"]}
