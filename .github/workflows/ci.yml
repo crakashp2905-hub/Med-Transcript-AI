@@ -15,11 +15,15 @@ jobs:
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.13'
+      - name: Fail fast on Python formatting
+        run: |
+          python -m pip install ruff==0.15.13
+          python -m ruff format --check services tests
       - run: python -m pip install --upgrade pip==26.2.2
       - run: python -m pip install -c constraints-ci.txt -e '.[${{ matrix.extras }}]'
       - name: Python format, lint and type checks
         run: |
-          python -m pip install ruff==0.15.13 mypy==1.18.2
+          python -m pip install mypy==1.18.2
           python -m ruff format --check services tests
           python -m ruff check services tests
           python -m mypy services --ignore-missing-imports
