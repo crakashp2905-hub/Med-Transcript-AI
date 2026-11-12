@@ -15,19 +15,13 @@ jobs:
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.13.5'
-      - name: Fail fast on Python formatting
-        run: |
-          python -m pip install ruff==0.15.13
-          python -m ruff format --check services tests
       - run: python -m pip install --upgrade pip==26.2.2
       - run: python -m pip install -c constraints-ci.txt -e '.[${{ matrix.extras }}]'
-      - name: Python format, lint and type checks
+      - name: Install pinned Python quality tools
         run: |
-          python -m pip install mypy==1.18.2
-          python -m ruff format --check services tests
-          python -m ruff check services tests
-          python -m mypy services --ignore-missing-imports
-      - run: python -m pytest -q
+          python -m pip install ruff==0.15.13 mypy==1.18.2
+      - name: Run deterministic Python verification sequence
+        run: python -m services.verify --python-only
       - name: Measure critical module line and branch coverage
         if: matrix.extras == 'dev,security'
         run: >-
