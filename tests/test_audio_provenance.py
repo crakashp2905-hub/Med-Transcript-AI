@@ -6,6 +6,8 @@ from services.audio_provenance import (
     channel_timeline,
     crop_timeline,
     derive_provenance,
+    map_output_frame_to_source_ms,
+    normalization_timeline,
     source_provenance,
     source_provenance_from_digest,
     validate_provenance,
@@ -87,3 +89,25 @@ def test_receipt_supports_all_parents_of_a_mixed_waveform(tmp_path):
     )
     assert validate_provenance(receipt)
     assert receipt["additional_parent_sha256s"] == [parent_two["asset_sha256"]]
+
+
+def test_resampled_timeline_applies_measured_group_delay_and_is_monotonic():
+    mapping = normalization_timeline(
+        44100,
+        16000,
+        source_origin_ms=125.0,
+        resampler_group_delay_frames=3.5,
+    )
+    mapped = [map_output_frame_to_source_ms(frame, mapping) for frame in range(100)]
+    assert mapping["status"] == "measured_delay_mapping"
+    assert mapped == sorted(mapped)
+    assert mapped[0] == pytest.approx(124.78125)
+    assert mapping["maximum_mapping_error_ms"] == pytest.approx(0.03125)
+
+
+def test_unmeasured_resampler_delay_refuses_timestamp_mapping():
+    mapping = normalization_timeline(44100, 16000)
+    assert mapping["resampler_group_delay_frames"] is None
+    assert mapping["maximum_mapping_error_ms"] is None
+    with pytest.raises(ValueError, match="measured_resampler_timeline_required"):
+        map_output_frame_to_source_ms(10, mapping)

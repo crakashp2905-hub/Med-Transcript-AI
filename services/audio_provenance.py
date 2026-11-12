@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import math
 import wave
 from pathlib import Path
 
@@ -209,22 +210,63 @@ def channel_timeline(channel_index, channel_count, sample_rate, frames):
 
 
 def normalization_timeline(
-    parent_sample_rate, output_sample_rate, source_origin_ms=None
+    parent_sample_rate,
+    output_sample_rate,
+    source_origin_ms=None,
+    resampler_group_delay_frames=None,
 ):
     if (
         type(output_sample_rate) is not int
         or output_sample_rate <= 0
         or parent_sample_rate is not None
         and (type(parent_sample_rate) is not int or parent_sample_rate <= 0)
+        or resampler_group_delay_frames is not None
+        and (
+            type(resampler_group_delay_frames) not in (int, float)
+            or not math.isfinite(resampler_group_delay_frames)
+        )
     ):
         raise ValueError("invalid_audio_normalization_timeline")
+    measured = resampler_group_delay_frames is not None
     return {
         "kind": "resampled_time_scale",
-        "status": "source_origin_or_resampler_delay_unverified",
+        "status": "measured_delay_mapping"
+        if measured
+        else "source_origin_or_resampler_delay_unverified",
         "parent_sample_rate": parent_sample_rate,
         "output_sample_rate": output_sample_rate,
         "source_origin_ms": source_origin_ms,
-        "resampler_group_delay_frames": None,
-        "formula": "source_time = source_origin + output_frame/output_sample_rate; correction is unverified",
-        "maximum_mapping_error_ms": None,
+        "resampler_group_delay_frames": resampler_group_delay_frames,
+        "delay_units": "output_sample_frames",
+        "formula": (
+            "source_time_ms = source_origin_ms + (output_frame - resampler_group_delay_frames) * 1000 / output_sample_rate"
+            if measured
+            else "source_time_ms = unknown; resampler group delay has not been measured"
+        ),
+        "maximum_mapping_error_ms": (500 / output_sample_rate if measured else None),
     }
+
+
+def map_output_frame_to_source_ms(output_frame, timeline_mapping):
+    """Map a resampled output frame only when origin and delay are evidenced."""
+    if (
+        type(output_frame) is not int
+        or output_frame < 0
+        or not isinstance(timeline_mapping, dict)
+        or timeline_mapping.get("kind") != "resampled_time_scale"
+        or timeline_mapping.get("status") != "measured_delay_mapping"
+    ):
+        raise ValueError("measured_resampler_timeline_required")
+    rate = timeline_mapping.get("output_sample_rate")
+    origin = timeline_mapping.get("source_origin_ms")
+    delay = timeline_mapping.get("resampler_group_delay_frames")
+    if (
+        type(rate) is not int
+        or rate <= 0
+        or type(origin) not in (int, float)
+        or not math.isfinite(origin)
+        or type(delay) not in (int, float)
+        or not math.isfinite(delay)
+    ):
+        raise ValueError("incomplete_resampler_timeline_mapping")
+    return origin + (output_frame - delay) * 1000 / rate
