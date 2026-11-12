@@ -1225,11 +1225,27 @@
       "id": "MTA-02-09",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Enforce state machine transitions at persistence/transaction boundaries, not only standalone helper functions.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-09-78e9524.json",
+        "services/encounter_state.py",
+        "services/api/storage.py",
+        "services/api/postgres.py",
+        "services/review/service.py",
+        "services/review/routers/approvals.py",
+        "tests/test_encounter_state.py",
+        "tests/test_postgres.py"
+      ],
+      "source_commit": "78e9524f782866dae640016918404968c49fa6b3",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-09-78e9524.json",
+          "report_sha256": "909ad50984c8f74d5028472c116770eb52529ebd0f33a38fefc9e767715b98cf",
+          "check": "encounter_lifecycle_persistence",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

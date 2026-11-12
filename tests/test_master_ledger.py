@@ -157,6 +157,9 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
         referential_integrity["source_commit"]
         == "64ac475de1f68494f335d91280d99d0313e6fc98"
     )
+    lifecycle = next(item for item in document["tasks"] if item["id"] == "MTA-02-09")
+    assert lifecycle["status"] == "implemented"
+    assert lifecycle["source_commit"] == "78e9524f782866dae640016918404968c49fa6b3"
 
 
 def test_verified_task_requires_exact_commit_test_and_runtime_hashes(

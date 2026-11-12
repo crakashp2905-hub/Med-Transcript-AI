@@ -1,0 +1,71 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-09",
+  "status": "pass",
+  "source_commit": "78e9524f782866dae640016918404968c49fa6b3",
+  "checks": {
+    "encounter_lifecycle_persistence": {
+      "status": "pass",
+      "controls": [
+        "encounter lifecycle state is stored with a monotonic version and timestamp",
+        "SQLite migration backfills existing records based on persisted artifacts",
+        "application compare-and-swap transitions execute in the caller's write transaction",
+        "SQLite and PostgreSQL database triggers reject illegal stage changes and version jumps",
+        "transcript persistence, note plus verification persistence, and approval persistence advance state atomically",
+        "new audio uploads and scripted demo encounters initialize recording state",
+        "transcription revisions and post-approval amendments follow explicit invalidation transitions"
+      ],
+      "focused_local_tests": "10 passed",
+      "ci_run_id": 43269752938,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43269752938",
+      "ci_jobs": {
+        "test_dev_security": "success; 799 passed, 17 skipped",
+        "test_dev_asr_security": "success; 827 passed, 3 skipped",
+        "postgres": "success; 4 passed",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "source_sha256": {
+        "services/encounter_state.py": "c73df73207512a0cce4c720c607b7b1142e00962b72354d51ee9098a0b8562f6",
+        "services/api/storage.py": "df828143cd70ae105b710a29ed399f1c9b5316a3e39c318997a95c210edae89c",
+        "services/api/postgres.py": "fedf214271a751be0a5074e9de7d7ce907ec8ffd4dbb2e71de05b70d780e72d0",
+        "services/api/routers/encounters.py": "2ea0f1cd8cf73bd5c2c19f1d02ced598b8922964356df8e3ee3190fb5d680d06",
+        "services/api/routers/audio.py": "50f1dffefe17522fc29fc6c283b53e11e8a78cbaacd57a3c65f8c4e771a6d28a",
+        "services/review/service.py": "0d993ab28ca60af8750f62e011de47e6592df865884de6e45a41ddcc86ec7e67",
+        "services/review/routers/approvals.py": "ec82640adeb5a4e34e1e02ff93ceedc596b9885fa8f915accda67a1f1a3ba1a8",
+        "services/review/routers/workspace.py": "bbbbc90b84a4177bc65da9292e3af78f262ff37d0d39a8267f36c231c367795a",
+        "services/asr/worker.py": "1b5ad9b6f10758c27a4a195017b9c439c3155d76d3a6ab8efd2f61dcad5a4059",
+        "services/safe_pytest.py": "aed933e423ba5a26e247d89041c75807e85154cffb81825adc41448d5af940c3",
+        "tests/test_encounter_state.py": "729b7663f020b483ac55674564e02252bae520c5156e412dca2872199242f837",
+        "tests/test_review_workflow.py": "f8bdac274fc02889bcf6fb3c4cd4ae919f970cb44a8510edc03857cd42c77cf0",
+        "tests/test_postgres.py": "9ad11efe5fc9e6c5c5ef58df2aad12b25e5058a47349368e0edc2c81dfba8e1f",
+        "tests/test_safe_pytest.py": "793c8a3de6d352a56dafc764d91e5c705ef5ba71bd58f30b5c3791125176f076",
+        "docs/service-catalog.md": "c9157c568df4d5bbae908e73f1127ce156f3e78eba200b93880bfd76c4e2ba71"
+      }
+    }
+  },
+  "ci_history": [
+    {
+      "source_commit": "25edf757708e29985fcf9d001c9d6516fe0da2b0",
+      "run_id": 43267862832,
+      "status": "fail",
+      "findings": [
+        "direct demo encounter creation did not initialize lifecycle state",
+        "service catalog needed regeneration for the new module",
+        "PostgreSQL cursor wrapper lacked rowcount for compare-and-swap"
+      ]
+    },
+    {
+      "source_commit": "2486d2d",
+      "run_id": 43269161717,
+      "status": "fail",
+      "finding": "PostgreSQL cursor wrapper lacked rowcount for compare-and-swap"
+    }
+  ],
+  "limitations": [
+    "Application integration and database migration tests use synthetic encounters; no patient data or paid service was used.",
+    "The Windows-local Starlette TestClient portal stalled during local end-to-end execution; the equivalent offline scripted workflow and PostgreSQL integration passed on GitHub Actions Linux.",
+    "Lifecycle state consistency is not clinical validation and does not authorize release or deployment."
+  ]
+}
