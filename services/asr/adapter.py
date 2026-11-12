@@ -95,8 +95,6 @@ class FasterWhisperAdapter:
                     "ctranslate2",
                     "tokenizers",
                     "numpy",
-                    "av",
-                    "onnxruntime",
                 )
             }
             if runtime_packages["faster-whisper"] != self.profile.runtime_version:
