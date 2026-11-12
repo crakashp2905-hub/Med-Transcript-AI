@@ -1,0 +1,1450 @@
+{
+  "schema_version": "paired_asr_bootstrap_report_v1",
+  "scope": "retrospective_development_only",
+  "dataset_id": "meddistract-full-paired-development-v1",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "analysis_source": "services/paired_asr_bootstrap.py",
+  "analysis_source_sha256": "a36227bb805bead91e3094eea90730ed30389476a1c08f1499c6236c0d682334",
+  "maximum_normalized_wer": 0.05,
+  "primary_wer_modified": false,
+  "candidates": [
+    {
+      "candidate_id": "distil-whisper-large-v3",
+      "source_report": "evaluation/runs/meddistract-detailed-v2/distil-whisper-large-v3.fixed.json",
+      "source_report_sha256": "9062cbdd6b4947ecb78c437f1b18384f19f69447845ef7e909e9043d277a432c",
+      "runtime": {
+        "runtime": "whisper",
+        "version": "1.2.1",
+        "profile_sha256": "f1c9644ef49c78cd62282f3ca1fa182d326cd6866fc3bc183516c5c6c518aa65",
+        "revision": "c3058b475261292e64a0412df1d2681c06260fab",
+        "artifacts": {
+          "config.json": "90c55f775cc4e0bb17293d0bf12f96557a486f20dea886fabd8e6075a3588b21",
+          "model.bin": "b79368e19b6623813609431a6e5ee309a71506701ebc49fd7820e692dec7c5f5",
+          "tokenizer.json": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca",
+          "vocabulary.json": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1",
+          "preprocessor_config.json": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711"
+        },
+        "native_segment_timestamps": true
+      },
+      "paired_bootstrap": {
+        "metric_version": "paired_foreground_condition_delta_v1",
+        "method": "resample_foreground_ids_with_both_conditions_intact",
+        "estimand": "distracted_micro_WER_minus_clean_micro_WER",
+        "confidence_level": 0.95,
+        "interval_method": "percentile",
+        "iterations": 10000,
+        "seed": 20261112,
+        "estimate": 0.006212087992399334,
+        "low": 0.004528643671220467,
+        "high": 0.007666160911776943,
+        "quantile_method": "linear_interpolation_type_7",
+        "paired_foregrounds": 8,
+        "failed_pairs_included": 0,
+        "failed_pairs_excluded": 0,
+        "source_pairs": [
+          {
+            "foreground_id": "day1_consultation01",
+            "clean": {
+              "group_id": "day1_consultation01__clean",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 311
+            },
+            "distracted": {
+              "group_id": "day1_consultation01__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 323
+            }
+          },
+          {
+            "foreground_id": "day1_consultation02",
+            "clean": {
+              "group_id": "day1_consultation02__clean",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 355
+            },
+            "distracted": {
+              "group_id": "day1_consultation02__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 366
+            }
+          },
+          {
+            "foreground_id": "day1_consultation03",
+            "clean": {
+              "group_id": "day1_consultation03__clean",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 310
+            },
+            "distracted": {
+              "group_id": "day1_consultation03__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 313
+            }
+          },
+          {
+            "foreground_id": "day1_consultation04",
+            "clean": {
+              "group_id": "day1_consultation04__clean",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 412
+            },
+            "distracted": {
+              "group_id": "day1_consultation04__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 417
+            }
+          },
+          {
+            "foreground_id": "day1_consultation05",
+            "clean": {
+              "group_id": "day1_consultation05__clean",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 338
+            },
+            "distracted": {
+              "group_id": "day1_consultation05__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 348
+            }
+          },
+          {
+            "foreground_id": "day1_consultation06",
+            "clean": {
+              "group_id": "day1_consultation06__clean",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 461
+            },
+            "distracted": {
+              "group_id": "day1_consultation06__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 474
+            }
+          },
+          {
+            "foreground_id": "day1_consultation07",
+            "clean": {
+              "group_id": "day1_consultation07__clean",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 659
+            },
+            "distracted": {
+              "group_id": "day1_consultation07__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 678
+            }
+          },
+          {
+            "foreground_id": "day1_consultation08",
+            "clean": {
+              "group_id": "day1_consultation08__clean",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 281
+            },
+            "distracted": {
+              "group_id": "day1_consultation08__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 293
+            }
+          }
+        ],
+        "limitations": [
+          "Convenience-sampled development foregrounds are not an independent clinical acceptance sample.",
+          "The interval describes between-foreground resampling variability only; it is not a clinical-validity claim."
+        ]
+      }
+    },
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "source_report": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json",
+      "source_report_sha256": "97480843cb1585523621ecc3b88149c4c62246380c1571a8abcb3f41cc19c1f3",
+      "runtime": {
+        "runtime": "whisper",
+        "version": "1.2.1",
+        "profile_sha256": "41f08c86824b407aa6bc4aefdfe096da2d060d33e3b2e960c8298c1bd9526659",
+        "revision": "edaa852ec7e145841d8ffdb056a99866b5f0a478",
+        "artifacts": {
+          "config.json": "a9306624f5ec14270a014b647e5c316b6e03a662c369758d1b90697a7b0655b9",
+          "model.bin": "69f74147e3334731bc3a76048724833325d2ec74642fb52620eda87352e3d4f1",
+          "preprocessor_config.json": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711",
+          "tokenizer.json": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca",
+          "vocabulary.json": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1"
+        },
+        "native_segment_timestamps": true
+      },
+      "paired_bootstrap": {
+        "metric_version": "paired_foreground_condition_delta_v1",
+        "method": "resample_foreground_ids_with_both_conditions_intact",
+        "estimand": "distracted_micro_WER_minus_clean_micro_WER",
+        "confidence_level": 0.95,
+        "interval_method": "percentile",
+        "iterations": 10000,
+        "seed": 20261112,
+        "estimate": 0.009939340787838924,
+        "low": 0.006887151158619709,
+        "high": 0.013836513755055029,
+        "quantile_method": "linear_interpolation_type_7",
+        "paired_foregrounds": 8,
+        "failed_pairs_included": 0,
+        "failed_pairs_excluded": 0,
+        "source_pairs": [
+          {
+            "foreground_id": "day1_consultation01",
+            "clean": {
+              "group_id": "day1_consultation01__clean",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 280
+            },
+            "distracted": {
+              "group_id": "day1_consultation01__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 285
+            }
+          },
+          {
+            "foreground_id": "day1_consultation02",
+            "clean": {
+              "group_id": "day1_consultation02__clean",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 354
+            },
+            "distracted": {
+              "group_id": "day1_consultation02__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 388
+            }
+          },
+          {
+            "foreground_id": "day1_consultation03",
+            "clean": {
+              "group_id": "day1_consultation03__clean",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 284
+            },
+            "distracted": {
+              "group_id": "day1_consultation03__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 302
+            }
+          },
+          {
+            "foreground_id": "day1_consultation04",
+            "clean": {
+              "group_id": "day1_consultation04__clean",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 320
+            },
+            "distracted": {
+              "group_id": "day1_consultation04__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 334
+            }
+          },
+          {
+            "foreground_id": "day1_consultation05",
+            "clean": {
+              "group_id": "day1_consultation05__clean",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 281
+            },
+            "distracted": {
+              "group_id": "day1_consultation05__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 304
+            }
+          },
+          {
+            "foreground_id": "day1_consultation06",
+            "clean": {
+              "group_id": "day1_consultation06__clean",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 394
+            },
+            "distracted": {
+              "group_id": "day1_consultation06__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 409
+            }
+          },
+          {
+            "foreground_id": "day1_consultation07",
+            "clean": {
+              "group_id": "day1_consultation07__clean",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 662
+            },
+            "distracted": {
+              "group_id": "day1_consultation07__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 677
+            }
+          },
+          {
+            "foreground_id": "day1_consultation08",
+            "clean": {
+              "group_id": "day1_consultation08__clean",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 256
+            },
+            "distracted": {
+              "group_id": "day1_consultation08__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 268
+            }
+          }
+        ],
+        "limitations": [
+          "Convenience-sampled development foregrounds are not an independent clinical acceptance sample.",
+          "The interval describes between-foreground resampling variability only; it is not a clinical-validity claim."
+        ]
+      }
+    },
+    {
+      "candidate_id": "faster-whisper-tiny.en",
+      "source_report": "evaluation/runs/meddistract-detailed-v2/faster-whisper-tiny.en.fixed.json",
+      "source_report_sha256": "21de3bbc2dd4812d135aaf5c2a6256ab1b8e9a047bd8f56142621156a01c3ece",
+      "runtime": {
+        "runtime": "whisper",
+        "version": "1.2.1",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+        "artifacts": {
+          "config.json": "14b1b421a90349bc551b881461426b561a874049cb9e4c4864f2ca384f6a7cc5",
+          "model.bin": "1a5afae06a4db91c975c9a9d78be5cc110ee4ea022ad57d55492e4550e936b2a",
+          "tokenizer.json": "929c5252409436dce1b38a75d1abbcb5e132d170d8e324e4e04ed915fa2d22df",
+          "vocabulary.txt": "ff77588746d3a2595d32ab5b69ffd7b95ce2441ac57533cb66fc3eb575a115cf"
+        },
+        "native_segment_timestamps": true
+      },
+      "paired_bootstrap": {
+        "metric_version": "paired_foreground_condition_delta_v1",
+        "method": "resample_foreground_ids_with_both_conditions_intact",
+        "estimand": "distracted_micro_WER_minus_clean_micro_WER",
+        "confidence_level": 0.95,
+        "interval_method": "percentile",
+        "iterations": 10000,
+        "seed": 20261112,
+        "estimate": 0.020024848351969604,
+        "low": 0.004508539623644509,
+        "high": 0.04835809182568913,
+        "quantile_method": "linear_interpolation_type_7",
+        "paired_foregrounds": 8,
+        "failed_pairs_included": 0,
+        "failed_pairs_excluded": 0,
+        "source_pairs": [
+          {
+            "foreground_id": "day1_consultation01",
+            "clean": {
+              "group_id": "day1_consultation01__clean",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 435
+            },
+            "distracted": {
+              "group_id": "day1_consultation01__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 450
+            }
+          },
+          {
+            "foreground_id": "day1_consultation02",
+            "clean": {
+              "group_id": "day1_consultation02__clean",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 448
+            },
+            "distracted": {
+              "group_id": "day1_consultation02__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 457
+            }
+          },
+          {
+            "foreground_id": "day1_consultation03",
+            "clean": {
+              "group_id": "day1_consultation03__clean",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 434
+            },
+            "distracted": {
+              "group_id": "day1_consultation03__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 440
+            }
+          },
+          {
+            "foreground_id": "day1_consultation04",
+            "clean": {
+              "group_id": "day1_consultation04__clean",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 550
+            },
+            "distracted": {
+              "group_id": "day1_consultation04__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 573
+            }
+          },
+          {
+            "foreground_id": "day1_consultation05",
+            "clean": {
+              "group_id": "day1_consultation05__clean",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 451
+            },
+            "distracted": {
+              "group_id": "day1_consultation05__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 459
+            }
+          },
+          {
+            "foreground_id": "day1_consultation06",
+            "clean": {
+              "group_id": "day1_consultation06__clean",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 618
+            },
+            "distracted": {
+              "group_id": "day1_consultation06__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 814
+            }
+          },
+          {
+            "foreground_id": "day1_consultation07",
+            "clean": {
+              "group_id": "day1_consultation07__clean",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 1099
+            },
+            "distracted": {
+              "group_id": "day1_consultation07__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 1118
+            }
+          },
+          {
+            "foreground_id": "day1_consultation08",
+            "clean": {
+              "group_id": "day1_consultation08__clean",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 380
+            },
+            "distracted": {
+              "group_id": "day1_consultation08__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 378
+            }
+          }
+        ],
+        "limitations": [
+          "Convenience-sampled development foregrounds are not an independent clinical acceptance sample.",
+          "The interval describes between-foreground resampling variability only; it is not a clinical-validity claim."
+        ]
+      }
+    },
+    {
+      "candidate_id": "multimed-whisper-small-english",
+      "source_report": "evaluation/runs/meddistract-detailed-v2/multimed-whisper-small-english.fixed.json",
+      "source_report_sha256": "54ffac5180683367bdf222997890b3f5273eae859d645ca3256ceae09d869a40",
+      "runtime": {
+        "runtime": "whisper",
+        "version": "1.2.1",
+        "profile_sha256": "b3b014a163c5968fa5430198ace0ca40b8467459ddcc138eb52269b001623b57",
+        "revision": "fb15edd1dfc68810a7d0c75e6cfc73c3e5ed01c1",
+        "artifacts": {
+          "config.json": "aad198003f6676bb2aa9b1f58c43cab2e057d79ccb35613344168e390aed7dcb",
+          "model.bin": "88a4a65cabf75ea3a601b20d585b8075d28fbbee790df9728e883332f2560cfe",
+          "preprocessor_config.json": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d",
+          "tokenizer.json": "7b469ff15eb7816315aa45eec391f5943d639b9d73d110f5c003df5192fd54e3",
+          "vocabulary.json": "aa4e6188766a36f6a7f3e44db3f74823c6fee0bf33a9559247e18fedb3bc8d55"
+        },
+        "native_segment_timestamps": true
+      },
+      "paired_bootstrap": {
+        "metric_version": "paired_foreground_condition_delta_v1",
+        "method": "resample_foreground_ids_with_both_conditions_intact",
+        "estimand": "distracted_micro_WER_minus_clean_micro_WER",
+        "confidence_level": 0.95,
+        "interval_method": "percentile",
+        "iterations": 10000,
+        "seed": 20261112,
+        "estimate": -0.020974932397865964,
+        "low": -0.0953619725592958,
+        "high": 0.0475152293558916,
+        "quantile_method": "linear_interpolation_type_7",
+        "paired_foregrounds": 8,
+        "failed_pairs_included": 0,
+        "failed_pairs_excluded": 0,
+        "source_pairs": [
+          {
+            "foreground_id": "day1_consultation01",
+            "clean": {
+              "group_id": "day1_consultation01__clean",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 804
+            },
+            "distracted": {
+              "group_id": "day1_consultation01__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 954
+            }
+          },
+          {
+            "foreground_id": "day1_consultation02",
+            "clean": {
+              "group_id": "day1_consultation02__clean",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 1053
+            },
+            "distracted": {
+              "group_id": "day1_consultation02__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 761
+            }
+          },
+          {
+            "foreground_id": "day1_consultation03",
+            "clean": {
+              "group_id": "day1_consultation03__clean",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 1033
+            },
+            "distracted": {
+              "group_id": "day1_consultation03__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 707
+            }
+          },
+          {
+            "foreground_id": "day1_consultation04",
+            "clean": {
+              "group_id": "day1_consultation04__clean",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 961
+            },
+            "distracted": {
+              "group_id": "day1_consultation04__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 1057
+            }
+          },
+          {
+            "foreground_id": "day1_consultation05",
+            "clean": {
+              "group_id": "day1_consultation05__clean",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 692
+            },
+            "distracted": {
+              "group_id": "day1_consultation05__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 656
+            }
+          },
+          {
+            "foreground_id": "day1_consultation06",
+            "clean": {
+              "group_id": "day1_consultation06__clean",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 920
+            },
+            "distracted": {
+              "group_id": "day1_consultation06__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 1026
+            }
+          },
+          {
+            "foreground_id": "day1_consultation07",
+            "clean": {
+              "group_id": "day1_consultation07__clean",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 1412
+            },
+            "distracted": {
+              "group_id": "day1_consultation07__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 1345
+            }
+          },
+          {
+            "foreground_id": "day1_consultation08",
+            "clean": {
+              "group_id": "day1_consultation08__clean",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 406
+            },
+            "distracted": {
+              "group_id": "day1_consultation08__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 488
+            }
+          }
+        ],
+        "limitations": [
+          "Convenience-sampled development foregrounds are not an independent clinical acceptance sample.",
+          "The interval describes between-foreground resampling variability only; it is not a clinical-validity claim."
+        ]
+      }
+    },
+    {
+      "candidate_id": "omi-med-stt-v1-native-empty",
+      "source_report": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.fixed.json",
+      "source_report_sha256": "f5ee39e09eb0da5f56aec1950a7bc5c0f3c22a4b689282c221b6f35e9a8c12e9",
+      "runtime": {
+        "runtime": "omi",
+        "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+        "artifacts": {
+          "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+        },
+        "native_segment_timestamps": false,
+        "allow_native_empty": true
+      },
+      "paired_bootstrap": {
+        "metric_version": "paired_foreground_condition_delta_v1",
+        "method": "resample_foreground_ids_with_both_conditions_intact",
+        "estimand": "distracted_micro_WER_minus_clean_micro_WER",
+        "confidence_level": 0.95,
+        "interval_method": "percentile",
+        "iterations": 10000,
+        "seed": 20261112,
+        "estimate": 0.008112256084192054,
+        "low": 0.00464971856684106,
+        "high": 0.01184624063179951,
+        "quantile_method": "linear_interpolation_type_7",
+        "paired_foregrounds": 8,
+        "failed_pairs_included": 0,
+        "failed_pairs_excluded": 0,
+        "source_pairs": [
+          {
+            "foreground_id": "day1_consultation01",
+            "clean": {
+              "group_id": "day1_consultation01__clean",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 274
+            },
+            "distracted": {
+              "group_id": "day1_consultation01__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 269
+            }
+          },
+          {
+            "foreground_id": "day1_consultation02",
+            "clean": {
+              "group_id": "day1_consultation02__clean",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 264
+            },
+            "distracted": {
+              "group_id": "day1_consultation02__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 281
+            }
+          },
+          {
+            "foreground_id": "day1_consultation03",
+            "clean": {
+              "group_id": "day1_consultation03__clean",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 220
+            },
+            "distracted": {
+              "group_id": "day1_consultation03__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 230
+            }
+          },
+          {
+            "foreground_id": "day1_consultation04",
+            "clean": {
+              "group_id": "day1_consultation04__clean",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 276
+            },
+            "distracted": {
+              "group_id": "day1_consultation04__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 288
+            }
+          },
+          {
+            "foreground_id": "day1_consultation05",
+            "clean": {
+              "group_id": "day1_consultation05__clean",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 228
+            },
+            "distracted": {
+              "group_id": "day1_consultation05__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 245
+            }
+          },
+          {
+            "foreground_id": "day1_consultation06",
+            "clean": {
+              "group_id": "day1_consultation06__clean",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 285
+            },
+            "distracted": {
+              "group_id": "day1_consultation06__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 306
+            }
+          },
+          {
+            "foreground_id": "day1_consultation07",
+            "clean": {
+              "group_id": "day1_consultation07__clean",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 522
+            },
+            "distracted": {
+              "group_id": "day1_consultation07__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 537
+            }
+          },
+          {
+            "foreground_id": "day1_consultation08",
+            "clean": {
+              "group_id": "day1_consultation08__clean",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 176
+            },
+            "distracted": {
+              "group_id": "day1_consultation08__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 200
+            }
+          }
+        ],
+        "limitations": [
+          "Convenience-sampled development foregrounds are not an independent clinical acceptance sample.",
+          "The interval describes between-foreground resampling variability only; it is not a clinical-validity claim."
+        ]
+      }
+    },
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "source_report": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json",
+      "source_report_sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
+      "runtime": {
+        "runtime": "omi",
+        "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+        "artifacts": {
+          "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+        },
+        "native_segment_timestamps": false,
+        "allow_native_empty": false
+      },
+      "paired_bootstrap": {
+        "metric_version": "paired_foreground_condition_delta_v1",
+        "method": "resample_foreground_ids_with_both_conditions_intact",
+        "estimand": "distracted_micro_WER_minus_clean_micro_WER",
+        "confidence_level": 0.95,
+        "interval_method": "percentile",
+        "iterations": 10000,
+        "seed": 20261112,
+        "estimate": 0.006577504933128697,
+        "low": 0.0027782086556737656,
+        "high": 0.010722855428914213,
+        "quantile_method": "linear_interpolation_type_7",
+        "paired_foregrounds": 8,
+        "failed_pairs_included": 1,
+        "failed_pairs_excluded": 0,
+        "source_pairs": [
+          {
+            "foreground_id": "day1_consultation01",
+            "clean": {
+              "group_id": "day1_consultation01__clean",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 274
+            },
+            "distracted": {
+              "group_id": "day1_consultation01__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 269
+            }
+          },
+          {
+            "foreground_id": "day1_consultation02",
+            "clean": {
+              "group_id": "day1_consultation02__clean",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 264
+            },
+            "distracted": {
+              "group_id": "day1_consultation02__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 281
+            }
+          },
+          {
+            "foreground_id": "day1_consultation03",
+            "clean": {
+              "group_id": "day1_consultation03__clean",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 220
+            },
+            "distracted": {
+              "group_id": "day1_consultation03__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 230
+            }
+          },
+          {
+            "foreground_id": "day1_consultation04",
+            "clean": {
+              "group_id": "day1_consultation04__clean",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 276
+            },
+            "distracted": {
+              "group_id": "day1_consultation04__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 288
+            }
+          },
+          {
+            "foreground_id": "day1_consultation05",
+            "clean": {
+              "group_id": "day1_consultation05__clean",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 228
+            },
+            "distracted": {
+              "group_id": "day1_consultation05__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 245
+            }
+          },
+          {
+            "foreground_id": "day1_consultation06",
+            "clean": {
+              "group_id": "day1_consultation06__clean",
+              "failed": true,
+              "reference_words": 1849,
+              "normalized_edits": 1849
+            },
+            "distracted": {
+              "group_id": "day1_consultation06__audio_-10dB_d0",
+              "failed": true,
+              "reference_words": 1849,
+              "normalized_edits": 1849
+            }
+          },
+          {
+            "foreground_id": "day1_consultation07",
+            "clean": {
+              "group_id": "day1_consultation07__clean",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 522
+            },
+            "distracted": {
+              "group_id": "day1_consultation07__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 537
+            }
+          },
+          {
+            "foreground_id": "day1_consultation08",
+            "clean": {
+              "group_id": "day1_consultation08__clean",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 176
+            },
+            "distracted": {
+              "group_id": "day1_consultation08__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 200
+            }
+          }
+        ],
+        "limitations": [
+          "Convenience-sampled development foregrounds are not an independent clinical acceptance sample.",
+          "The interval describes between-foreground resampling variability only; it is not a clinical-validity claim."
+        ]
+      }
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "source_report": "evaluation/runs/meddistract-detailed-v2/parakeet-tdt-0.6b-v2.fixed.json",
+      "source_report_sha256": "9becc22cd583cde4f27f48a4d1fc5fc95f36a4ebe11a18ba29e68ac8a0fea7c1",
+      "runtime": {
+        "runtime": "onnx",
+        "revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+        "artifacts": {
+          "config.json": "666903c76b9798caf2c210afd4f6cd60b08a8dbf9800ec8d7a3bc0d2148ac466",
+          "decoder_joint-model.int8.onnx": "a449f49acd68979d418651dd2dcb737cc0f1bf0225e009e29ee326354edbf7d3",
+          "encoder-model.int8.onnx": "3e0581fda6ab843888b51e56d7ee78b6d5bc3237ec113af1f732d1d5286aa155",
+          "nemo128.onnx": "a9fde1486ebfcc08f328d75ad4610c67835fea58c73ba57e3209a6f6cf019e9f",
+          "vocab.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+        },
+        "native_segment_timestamps": false,
+        "allow_native_empty": false
+      },
+      "paired_bootstrap": {
+        "metric_version": "paired_foreground_condition_delta_v1",
+        "method": "resample_foreground_ids_with_both_conditions_intact",
+        "estimand": "distracted_micro_WER_minus_clean_micro_WER",
+        "confidence_level": 0.95,
+        "interval_method": "percentile",
+        "iterations": 10000,
+        "seed": 20261112,
+        "estimate": 0.007381422202733329,
+        "low": 0.003549039913555839,
+        "high": 0.011282941454947154,
+        "quantile_method": "linear_interpolation_type_7",
+        "paired_foregrounds": 8,
+        "failed_pairs_included": 0,
+        "failed_pairs_excluded": 0,
+        "source_pairs": [
+          {
+            "foreground_id": "day1_consultation01",
+            "clean": {
+              "group_id": "day1_consultation01__clean",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 276
+            },
+            "distracted": {
+              "group_id": "day1_consultation01__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 292
+            }
+          },
+          {
+            "foreground_id": "day1_consultation02",
+            "clean": {
+              "group_id": "day1_consultation02__clean",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 342
+            },
+            "distracted": {
+              "group_id": "day1_consultation02__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 357
+            }
+          },
+          {
+            "foreground_id": "day1_consultation03",
+            "clean": {
+              "group_id": "day1_consultation03__clean",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 314
+            },
+            "distracted": {
+              "group_id": "day1_consultation03__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 307
+            }
+          },
+          {
+            "foreground_id": "day1_consultation04",
+            "clean": {
+              "group_id": "day1_consultation04__clean",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 386
+            },
+            "distracted": {
+              "group_id": "day1_consultation04__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 394
+            }
+          },
+          {
+            "foreground_id": "day1_consultation05",
+            "clean": {
+              "group_id": "day1_consultation05__clean",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 297
+            },
+            "distracted": {
+              "group_id": "day1_consultation05__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 315
+            }
+          },
+          {
+            "foreground_id": "day1_consultation06",
+            "clean": {
+              "group_id": "day1_consultation06__clean",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 414
+            },
+            "distracted": {
+              "group_id": "day1_consultation06__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 436
+            }
+          },
+          {
+            "foreground_id": "day1_consultation07",
+            "clean": {
+              "group_id": "day1_consultation07__clean",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 709
+            },
+            "distracted": {
+              "group_id": "day1_consultation07__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 719
+            }
+          },
+          {
+            "foreground_id": "day1_consultation08",
+            "clean": {
+              "group_id": "day1_consultation08__clean",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 247
+            },
+            "distracted": {
+              "group_id": "day1_consultation08__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 266
+            }
+          }
+        ],
+        "limitations": [
+          "Convenience-sampled development foregrounds are not an independent clinical acceptance sample.",
+          "The interval describes between-foreground resampling variability only; it is not a clinical-validity claim."
+        ]
+      }
+    },
+    {
+      "candidate_id": "qwen3-asr-0.6b-int8",
+      "source_report": "evaluation/runs/meddistract-detailed-v2/qwen3-asr-0.6b-int8.fixed.json",
+      "source_report_sha256": "36bb5b4d0ccf2a2dcb0f4a8000d0797a9ceec399f9d5bdd496ee3f64827dc1d4",
+      "runtime": {
+        "runtime": "sherpa-qwen3",
+        "revision": "393f8a14e2f5fb96746aaab342997a40641001fbd5bf9592a080a8329178ee96",
+        "artifacts": {
+          "conv_frontend.onnx": "d22dc4423e0940e49884e903d2ea2f7e5567c14fc1aed97e4e26d6b8f208ef9e",
+          "decoder.int8.onnx": "4f6885be5959ae26af3089d38ee7972c5fafbeeb1cf8d5e76eab6d8b61ca5771",
+          "encoder.int8.onnx": "60748d3e6744a57c9c91e1b17424a6c2990567e8adceb0783940c03ed98fa9d9",
+          "README.md": "bbc6dbeb9dce5b4ed0e839057137e9cba4bf05c5797277d36a80e22594414e14",
+          "tokenizer/merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+          "tokenizer/tokenizer_config.json": "4942d005604266809309cabc9f4e9cb89ce855d59b14681fdc0e1cc62ea26c4c",
+          "tokenizer/vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+        },
+        "native_segment_timestamps": false,
+        "allow_native_empty": false
+      },
+      "paired_bootstrap": {
+        "metric_version": "paired_foreground_condition_delta_v1",
+        "method": "resample_foreground_ids_with_both_conditions_intact",
+        "estimand": "distracted_micro_WER_minus_clean_micro_WER",
+        "confidence_level": 0.95,
+        "interval_method": "percentile",
+        "iterations": 10000,
+        "seed": 20261112,
+        "estimate": 0.01885551414163561,
+        "low": -0.00014972301242699437,
+        "high": 0.035827276613937586,
+        "quantile_method": "linear_interpolation_type_7",
+        "paired_foregrounds": 8,
+        "failed_pairs_included": 0,
+        "failed_pairs_excluded": 0,
+        "source_pairs": [
+          {
+            "foreground_id": "day1_consultation01",
+            "clean": {
+              "group_id": "day1_consultation01__clean",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 375
+            },
+            "distracted": {
+              "group_id": "day1_consultation01__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 448
+            }
+          },
+          {
+            "foreground_id": "day1_consultation02",
+            "clean": {
+              "group_id": "day1_consultation02__clean",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 489
+            },
+            "distracted": {
+              "group_id": "day1_consultation02__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 436
+            }
+          },
+          {
+            "foreground_id": "day1_consultation03",
+            "clean": {
+              "group_id": "day1_consultation03__clean",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 355
+            },
+            "distracted": {
+              "group_id": "day1_consultation03__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 370
+            }
+          },
+          {
+            "foreground_id": "day1_consultation04",
+            "clean": {
+              "group_id": "day1_consultation04__clean",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 436
+            },
+            "distracted": {
+              "group_id": "day1_consultation04__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 458
+            }
+          },
+          {
+            "foreground_id": "day1_consultation05",
+            "clean": {
+              "group_id": "day1_consultation05__clean",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 361
+            },
+            "distracted": {
+              "group_id": "day1_consultation05__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 376
+            }
+          },
+          {
+            "foreground_id": "day1_consultation06",
+            "clean": {
+              "group_id": "day1_consultation06__clean",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 490
+            },
+            "distracted": {
+              "group_id": "day1_consultation06__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 505
+            }
+          },
+          {
+            "foreground_id": "day1_consultation07",
+            "clean": {
+              "group_id": "day1_consultation07__clean",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 802
+            },
+            "distracted": {
+              "group_id": "day1_consultation07__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 899
+            }
+          },
+          {
+            "foreground_id": "day1_consultation08",
+            "clean": {
+              "group_id": "day1_consultation08__clean",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 274
+            },
+            "distracted": {
+              "group_id": "day1_consultation08__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 348
+            }
+          }
+        ],
+        "limitations": [
+          "Convenience-sampled development foregrounds are not an independent clinical acceptance sample.",
+          "The interval describes between-foreground resampling variability only; it is not a clinical-validity claim."
+        ]
+      }
+    },
+    {
+      "candidate_id": "whisper-small",
+      "source_report": "evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json",
+      "source_report_sha256": "e31e210dce79f247ab65ac49d4543866166d6cf5be7b73e228d9d1b8fd02e035",
+      "runtime": {
+        "runtime": "whisper",
+        "version": "1.2.1",
+        "profile_sha256": "566c3b316045584eb28ce7102c9c05aaef38a47818cd2626ada184f98e82b512",
+        "revision": "536b0662742c02347bc0e980a01041f333bce120",
+        "artifacts": {
+          "config.json": "b55496ac7940a7ae47d2c01eab40edfd8701feec1229d9cce3b40014383fb828",
+          "model.bin": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671",
+          "tokenizer.json": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab",
+          "vocabulary.txt": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913"
+        },
+        "native_segment_timestamps": true
+      },
+      "paired_bootstrap": {
+        "metric_version": "paired_foreground_condition_delta_v1",
+        "method": "resample_foreground_ids_with_both_conditions_intact",
+        "estimand": "distracted_micro_WER_minus_clean_micro_WER",
+        "confidence_level": 0.95,
+        "interval_method": "percentile",
+        "iterations": 10000,
+        "seed": 20261112,
+        "estimate": 0.03603011035591608,
+        "low": 0.008174154822364658,
+        "high": 0.0684299927202135,
+        "quantile_method": "linear_interpolation_type_7",
+        "paired_foregrounds": 8,
+        "failed_pairs_included": 0,
+        "failed_pairs_excluded": 0,
+        "source_pairs": [
+          {
+            "foreground_id": "day1_consultation01",
+            "clean": {
+              "group_id": "day1_consultation01__clean",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 333
+            },
+            "distracted": {
+              "group_id": "day1_consultation01__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1414,
+              "normalized_edits": 329
+            }
+          },
+          {
+            "foreground_id": "day1_consultation02",
+            "clean": {
+              "group_id": "day1_consultation02__clean",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 360
+            },
+            "distracted": {
+              "group_id": "day1_consultation02__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1670,
+              "normalized_edits": 414
+            }
+          },
+          {
+            "foreground_id": "day1_consultation03",
+            "clean": {
+              "group_id": "day1_consultation03__clean",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 337
+            },
+            "distracted": {
+              "group_id": "day1_consultation03__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1561,
+              "normalized_edits": 357
+            }
+          },
+          {
+            "foreground_id": "day1_consultation04",
+            "clean": {
+              "group_id": "day1_consultation04__clean",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 458
+            },
+            "distracted": {
+              "group_id": "day1_consultation04__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1679,
+              "normalized_edits": 488
+            }
+          },
+          {
+            "foreground_id": "day1_consultation05",
+            "clean": {
+              "group_id": "day1_consultation05__clean",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 357
+            },
+            "distracted": {
+              "group_id": "day1_consultation05__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1625,
+              "normalized_edits": 437
+            }
+          },
+          {
+            "foreground_id": "day1_consultation06",
+            "clean": {
+              "group_id": "day1_consultation06__clean",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 476
+            },
+            "distracted": {
+              "group_id": "day1_consultation06__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1849,
+              "normalized_edits": 478
+            }
+          },
+          {
+            "foreground_id": "day1_consultation07",
+            "clean": {
+              "group_id": "day1_consultation07__clean",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 841
+            },
+            "distracted": {
+              "group_id": "day1_consultation07__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 2703,
+              "normalized_edits": 1147
+            }
+          },
+          {
+            "foreground_id": "day1_consultation08",
+            "clean": {
+              "group_id": "day1_consultation08__clean",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 315
+            },
+            "distracted": {
+              "group_id": "day1_consultation08__audio_-10dB_d0",
+              "failed": false,
+              "reference_words": 1182,
+              "normalized_edits": 320
+            }
+          }
+        ],
+        "limitations": [
+          "Convenience-sampled development foregrounds are not an independent clinical acceptance sample.",
+          "The interval describes between-foreground resampling variability only; it is not a clinical-validity claim."
+        ]
+      }
+    }
+  ],
+  "clinical_acceptance": false
+}
