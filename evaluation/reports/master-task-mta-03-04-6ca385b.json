@@ -1,0 +1,45 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-04",
+  "status": "pass",
+  "source_commit": "6ca385bf8148098b51b058d26a9c99729a16d913",
+  "source_tree": "428f07e13c6fe6622736f00be2fe48565370b97f",
+  "checks": {
+    "retranscription_span_audio_lineage": {
+      "status": "pass",
+      "controls": [
+        "The application worker exposes provenance for each retranscription crop alongside the span audio digest.",
+        "Regression assertions bind the crop to the immutable uploaded source digest and verify the crop digest.",
+        "The crop timeline maps sample frames 320 through 1279 to source time, with channel index 0.",
+        "The ASR candidate remains a proposal; retranscription does not replace source audio or approved content."
+      ],
+      "ci_run_id": 43296662015,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43296662015",
+      "ci_jobs": {
+        "test_dev_security": "success; 843 passed, 17 skipped, 4 warnings",
+        "test_dev_asr_security": "success; 871 passed, 3 skipped, 3 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43296662015
+  },
+  "runtime_sha256": "8530377cca2ba4f03f5a169bce88bdfd7e0cbc5a24896090a05ee0e0714f2ae2",
+  "source_sha256": {
+    "services/asr/worker.py": "be0699d9f6395044b5586e30aae345a1e6888d3bd8af0566d994ab9aea9cba5f",
+    "tests/test_retranscription_workflow.py": "ced9363074edee8dac3d47123b11f2f4d09ec1ae4a422bda5e02b5e56613c43c"
+  },
+  "limitations": [
+    "Local Windows TestClient execution stalled; exact-source GitHub Actions suites passed.",
+    "Optional native PyAV integration checks are among skipped tests; decoder runtime remains environment-dependent.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}

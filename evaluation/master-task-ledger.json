@@ -1548,11 +1548,20 @@
       "id": "MTA-03-04",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Keep original-to-working timeline mappings and exact channel provenance for all ASR windows.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-03-04-6ca385b.json"
+      ],
+      "source_commit": "6ca385bf8148098b51b058d26a9c99729a16d913",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-04-6ca385b.json",
+          "report_sha256": "e8fd4a2c99a03d95e8789d81c2ccd2cc3aab0adf4dc1dfdcdc9bc21251bfbd71",
+          "check": "retranscription_span_audio_lineage",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
