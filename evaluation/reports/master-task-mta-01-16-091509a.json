@@ -1,0 +1,33 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-16",
+  "status": "pass",
+  "source_commit": "091509a95ac6b3ba98fbab3fc205df9056d2f5a6",
+  "checks": {
+    "deterministic_verification_sequence": {
+      "status": "pass",
+      "focused_tests": {
+        "tests/test_verify.py": "3 passed",
+        "tests/test_ci_quality_checks.py": "1 passed"
+      },
+      "sequence": [
+        "python_format",
+        "python_lint",
+        "python_types",
+        "python_tests",
+        "frontend_build"
+      ],
+      "ci_run_id": 43246055720,
+      "ci_jobs": {
+        "frontend": "success",
+        "container": "success",
+        "postgres": "success",
+        "test (dev,asr,security)": "success",
+        "test (dev,security)": "success"
+      }
+    }
+  },
+  "limitations": [
+    "The default local command runs frontend build after Python checks; the production CI matrix runs the shared Python-only sequence and checks frontend separately in its frontend job. Tools and npm dependencies must already be installed; the command performs no dependency installation."
+  ]
+}

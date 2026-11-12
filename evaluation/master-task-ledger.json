@@ -906,22 +906,45 @@
       "id": "MTA-01-15",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add source-change detector: acceptance report invalidated whenever hashed source or toolchain differs.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-01-15-091509a.json",
+        "services/source_change_detector.py",
+        "services/offline_acceptance.py",
+        "tests/test_source_change_detector.py"
+      ],
+      "source_commit": "091509a95ac6b3ba98fbab3fc205df9056d2f5a6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-15-091509a.json",
+          "report_sha256": "d6be7360f140e9d3f67c20137ec11b66da0525ce7847280c3158c28723d7aa52",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-01-16",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Implement deterministic `make verify` (or equivalent) that runs checks in correct dependency order and exits nonzero on failure.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-01-16-091509a.json",
+        "services/verify.py",
+        ".github/workflows/ci.yml",
+        "tests/test_verify.py",
+        "tests/test_ci_quality_checks.py"
+      ],
+      "source_commit": "091509a95ac6b3ba98fbab3fc205df9056d2f5a6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-16-091509a.json",
+          "report_sha256": "7bae038fc3f86857ac3efe758067217c115b706827f49df0b82961ba2249d085",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

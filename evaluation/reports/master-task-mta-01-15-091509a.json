@@ -1,0 +1,26 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-15",
+  "status": "pass",
+  "source_commit": "091509a95ac6b3ba98fbab3fc205df9056d2f5a6",
+  "checks": {
+    "source_toolchain_change_detection": {
+      "status": "pass",
+      "focused_tests": {
+        "tests/test_source_change_detector.py": "4 passed",
+        "tests/test_acceptance_reporting.py": "4 passed"
+      },
+      "ci_run_id": 43246055720,
+      "ci_jobs": {
+        "frontend": "success",
+        "container": "success",
+        "postgres": "success",
+        "test (dev,asr,security)": "success",
+        "test (dev,security)": "success"
+      }
+    }
+  },
+  "limitations": [
+    "A source or toolchain mismatch invalidates the saved acceptance; this is a freshness check and does not establish that the acceptance itself is clinically adequate."
+  ]
+}
