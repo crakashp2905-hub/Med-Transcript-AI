@@ -148,12 +148,12 @@ It predates MTA-01-11. See v4 below for the latest ledger snapshot.
 
 ## Current execution matrix and ledger audit
 
-[`master-implementation-matrix-v5.json`](../evaluation/reports/master-implementation-matrix-v5.json)
-and [`master-ledger-audit-v5.json`](../evaluation/reports/master-ledger-audit-v5.json)
-are bound to source commit `40ff69143067621a7d5320e700862099c5b76e77`.
-Their SHA-256 values are `643f1ccc921d687562f878109a5b61daf45ff8888f21c193a7e4a884e81e75df`
-and `949ac6641588c43126a4aa26fca23b9351d84b21f02d2ba5002c71591920c1e4`.
-The ledger audit records 3 implemented, 1 blocked_missing_asset, 365 not started,
+[`master-implementation-matrix-v6.json`](../evaluation/reports/master-implementation-matrix-v6.json)
+and [`master-ledger-audit-v6.json`](../evaluation/reports/master-ledger-audit-v6.json)
+are bound to source commit `27e5c3f8f0694238f17d1413748b73b1fa18eca8`.
+Their SHA-256 values are `cae284e1c13f54a369f68832454480f857159c75d068ba003c191bb1f51df441`
+and `c6fbca25aca0c673822496a87389a0c4789cc2cc16f4577730d87c02c5eb6d27`.
+The ledger audit records 3 implemented, 2 blocked_missing_asset, 364 not started,
 and 0 verified. Task-level dependency edges remain unmapped; clinical release
 remains unauthorized.
 
@@ -161,13 +161,22 @@ remains unauthorized.
 `c15c2b896e69e66c110d59b2f805b59ce9c165e1`. The v26 acceptance report
 [`offline-acceptance-v26.json`](../evaluation/reports/offline-acceptance-v26.json)
 (hash `37e320aa915a9df751f34f2aec3622b50a2b05d7631f78bf2785d3d9de6067b3`)
-records a full backend timeout after 1200 seconds. The blocker receipt
+records a full backend timeout after 1200 seconds. Its blocker receipt
 [`master-task-mta-01-03-c15c2b8.json`](../evaluation/reports/master-task-mta-01-03-c15c2b8.json)
 (hash `9ee68a64b6662a1e73dad521e8ae7796ebe845862330db485b11ea3f8f9bec5a`)
-records the critical skip policy pass and remaining unavailable PyAV,
+records the critical skip policy pass and unavailable PyAV,
 `cryptography.cobblestone`, PostgreSQL DSN and Docker lanes. These are not
 passing acceptance results; no packages, assets, credentials or services were
 fetched or configured.
+
+`MTA-01-04` is blocked at frontend source commit
+`aef2a7b25291c1900cf31e8952ab3822cec4091a`. The hash-bound receipt
+[`master-task-mta-01-04-aef2a7b.json`](../evaluation/reports/master-task-mta-01-04-aef2a7b.json)
+(hash `ba74eaecec8d0598a5e3c4a6a1f6445ffda85110e08158dc7649f3f258ac29c3`)
+records a passing TypeScript/production build and 26 passing browser cases.
+One compressed-audio test was skipped because PyAV is unavailable. No lint
+script, config or linter exists in the checked-in frontend dependency tree, so
+that check is blocked. The scripted browser fixture is not ASR-quality evidence.
 
 ## Prior offline acceptance failure v24 (superseded)
 
