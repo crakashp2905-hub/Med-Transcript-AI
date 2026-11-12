@@ -129,10 +129,7 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
         item for item in document["tasks"] if item["id"] == "MTA-02-03"
     )
     assert typed_schemas["status"] == "implemented"
-    assert (
-        typed_schemas["source_commit"]
-        == "0520ea2899b7c92bcbe9baa6633b36979170b503"
-    )
+    assert typed_schemas["source_commit"] == "0520ea2899b7c92bcbe9baa6633b36979170b503"
 
 
 def test_verified_task_requires_exact_commit_test_and_runtime_hashes(
