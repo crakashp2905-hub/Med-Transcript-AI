@@ -102,7 +102,7 @@ def prepare(
                     "annotation_sha256": file_sha256(grid),
                     "normalized_audio": target.name,
                     "normalized_sha256": file_sha256(target),
-                "audio_provenance": normalized["audio_provenance"],
+                    "audio_provenance": normalized["audio_provenance"],
                 }
             )
         count = max(map(len, tracks))

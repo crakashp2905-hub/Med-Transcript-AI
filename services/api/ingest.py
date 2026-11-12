@@ -180,9 +180,7 @@ def run_once(db_path: str, asset_root: str):
         if "audio_provenance" not in result:
             from services.audio_provenance import source_provenance
 
-            result["audio_provenance"] = source_provenance(
-                source, upload["media_type"]
-            )
+            result["audio_provenance"] = source_provenance(source, upload["media_type"])
     except InvalidAudio as exc:
         error = str(exc)
     except OSError:

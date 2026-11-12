@@ -6,7 +6,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RECEIPT = ROOT / "evaluation/reports/detailed-campaign-execution-receipt-2026-10-29.json"
+RECEIPT = (
+    ROOT / "evaluation/reports/detailed-campaign-execution-receipt-2026-10-29.json"
+)
 RANKING = ROOT / "evaluation/reports/detailed-ranking-final-2026-10-29.json"
 SUITE = ROOT / "evaluation/detailed-suite-v2.json"
 EXPECTED_CANDIDATE = "omi-med-stt-v1-native-empty"

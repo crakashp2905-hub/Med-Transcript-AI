@@ -18,9 +18,7 @@ def write_wav(path, channels=2):
         target.setnchannels(channels)
         target.setsampwidth(2)
         target.setframerate(16000)
-        target.writeframes(
-            b"".join(struct.pack("<hh", *frame) for frame in frames)
-        )
+        target.writeframes(b"".join(struct.pack("<hh", *frame) for frame in frames))
 
 
 def test_waveform_is_source_bound_and_channel_selective(tmp_path):
@@ -35,7 +33,10 @@ def test_waveform_is_source_bound_and_channel_selective(tmp_path):
     assert all_channels["source_sha256"] == digest
     assert all_channels["duration_ms"] == 1
     assert len(all_channels["peaks"]) == 2
-    assert all_channels["peaks"] == [max(left["peaks"][0], right["peaks"][0]), max(left["peaks"][1], right["peaks"][1])]
+    assert all_channels["peaks"] == [
+        max(left["peaks"][0], right["peaks"][0]),
+        max(left["peaks"][1], right["peaks"][1]),
+    ]
     assert left["selected_channel"] == 0
     assert right["selected_channel"] == 1
     assert left["peaks"] != right["peaks"]

@@ -17,8 +17,7 @@ from tests.test_foundation import authorization, headers, payload
 def test_real_local_asr_reaches_reviewed_approved_export(tmp_path):
     profile_file = Path("data/asr-smoke-profiles.json")
     audio = Path(
-        "data/datasets/primock57-smoke/"
-        "day1_consultation01_patient.utterance01.wav"
+        "data/datasets/primock57-smoke/day1_consultation01_patient.utterance01.wav"
     )
     if not profile_file.is_file() or not audio.is_file():
         pytest.skip("local model profile or licensed mock audio is unavailable")
@@ -100,8 +99,7 @@ def test_real_local_asr_reaches_reviewed_approved_export(tmp_path):
             for segment in transcript["segments"]
         )
         assert all(
-            segment["decoder_evidence"]["kind"]
-            == "faster_whisper_best_sequence_v1"
+            segment["decoder_evidence"]["kind"] == "faster_whisper_best_sequence_v1"
             and segment["decoder_evidence"]["token_ids"]
             and segment["decoder_evidence"]["average_logprob"] <= 0
             and segment["decoder_evidence"]["n_best_supported"] is False

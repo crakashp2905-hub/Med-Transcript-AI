@@ -155,7 +155,9 @@ def test_detailed_suite_v3_binds_source_and_memory_budget():
     for source, digest in suite["source_text_sha256"].items():
         assert file_sha256(source) == digest
     candidate = next(
-        item for item in suite["jobs"] if item["candidate_id"] == "faster-whisper-large-v3"
+        item
+        for item in suite["jobs"]
+        if item["candidate_id"] == "faster-whisper-large-v3"
     )
     resume = candidate["resume_by_mode"]["speech_aware"]
     assert file_sha256(resume["path"]) == resume["sha256"]

@@ -99,9 +99,7 @@ def build_channels(
         item["provenance"]["isolated_channel_pcm_sha256"] = output.get(
             "isolated_channel_pcm_sha256"
         )
-        item["provenance"]["derived_audio_provenance"] = output.get(
-            "audio_provenance"
-        )
+        item["provenance"]["derived_audio_provenance"] = output.get("audio_provenance")
         body = body or deepcopy(item)
         for segment in item["segments"]:
             segment.update(channel_index=index, speaker_id=f"channel_{index}")

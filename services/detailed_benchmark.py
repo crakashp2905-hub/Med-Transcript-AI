@@ -524,9 +524,7 @@ def run(suite_path, candidate, output, mode="fixed"):
         try:
             close()
         finally:
-            budget = suite.get("resource_budget", {}).get(
-                "max_process_resident_bytes"
-            )
+            budget = suite.get("resource_budget", {}).get("max_process_resident_bytes")
             report["resource_measurement"] = resource_receipt(
                 budget, bool(report.get("resumed_from"))
             )

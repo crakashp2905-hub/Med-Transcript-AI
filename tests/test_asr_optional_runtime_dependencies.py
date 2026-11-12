@@ -8,7 +8,9 @@ from services.asr.adapter import FasterWhisperAdapter
 from services.asr.profiles import ASRProfile, REQUIRED_FILES
 
 
-def test_wav_transcription_does_not_require_unused_media_runtimes(tmp_path, monkeypatch):
+def test_wav_transcription_does_not_require_unused_media_runtimes(
+    tmp_path, monkeypatch
+):
     model_dir = tmp_path / "model"
     model_dir.mkdir()
     artifacts = {}

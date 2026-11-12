@@ -313,8 +313,14 @@ def test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence():
         ]
     )
     assert p0["status"] == "blocked" and p0["reason"] == "unresolved_P0"
-    assert engineering_gate([{"code": "minor_ui", "severity": "P2"}])["reason"] != "unresolved_P0"
-    assert engineering_gate([{"code": "unknown"}])["reason"] == "invalid_or_missing_severity"
+    assert (
+        engineering_gate([{"code": "minor_ui", "severity": "P2"}])["reason"]
+        != "unresolved_P0"
+    )
+    assert (
+        engineering_gate([{"code": "unknown"}])["reason"]
+        == "invalid_or_missing_severity"
+    )
     assert engineering_gate([])["status"] == "not_established"
 
 
