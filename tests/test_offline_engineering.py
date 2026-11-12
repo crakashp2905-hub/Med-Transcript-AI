@@ -74,6 +74,7 @@ def test_offline_preflight_reports_cached_capabilities_without_install_or_networ
 
     report = inspect(tmp_path, hash_models=True)
     assert report["schema_version"] == "offline_preflight_v2"
+    assert report["artifact_scope"]["status"] == "blocked_missing_local_artifact"
     assert report["new_installations_attempted"] == 0
     assert report["external_calls_attempted"] == 0
     assert {

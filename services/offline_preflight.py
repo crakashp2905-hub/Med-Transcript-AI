@@ -177,6 +177,7 @@ def inspect(root=".", hash_models=False, ollama_root=None, hash_caches=False):
     }
     wheelhouse = root / "data/wheelhouse"
     from services.ollama_inventory import inventory as ollama_inventory
+    from services.artifact_scope import load_policy as load_artifact_scope
 
     cache_artifacts = (
         [
@@ -207,6 +208,7 @@ def inspect(root=".", hash_models=False, ollama_root=None, hash_caches=False):
             npm_version = None
     return {
         "schema_version": "offline_preflight_v2",
+        "artifact_scope": load_artifact_scope(root),
         "tools": tools,
         "configured_ollama_cache": ollama_inventory(ollama_root)
         if ollama_root

@@ -1,0 +1,40 @@
+{
+  "schema_version": "artifact_scope_v1",
+  "scope": "english_only_local_first_synthetic_public_mock",
+  "permitted": [
+    {
+      "id": "committed_public_mock_audio",
+      "path_prefixes": ["evaluation/datasets/"],
+      "conditions": ["use only versioned manifests and licensed public-mock or synthetic audio", "reserved acceptance groups are unavailable for development"]
+    },
+    {
+      "id": "frozen_benchmark_evidence",
+      "path_prefixes": ["evaluation/reports/", "evaluation/runs/"],
+      "conditions": ["preserve existing bytes and failures", "do not reinterpret old results as clinical acceptance"]
+    },
+    {
+      "id": "locally_cached_model_files",
+      "path_prefixes": ["data/models/"],
+      "conditions": ["hash existing files only", "file hashes do not establish model eligibility or accuracy"]
+    },
+    {
+      "id": "installed_and_cached_dependencies",
+      "path_prefixes": ["apps/clinician-web/node_modules/", "data/wheelhouse/"],
+      "conditions": ["use installed/cached versions only", "do not install or fetch missing packages"]
+    },
+    {
+      "id": "committed_test_fixtures",
+      "path_prefixes": ["tests/", "evaluation/fixtures/"],
+      "conditions": ["synthetic or public mock only", "never label fixtures as clinical gold"]
+    }
+  ],
+  "prohibited": [
+    "real_patient_data_without_explicit_authorization",
+    "new_dataset_or_model_downloads",
+    "paid_or_hosted_inference",
+    "gated_assets_without_access_approval",
+    "reserved_acceptance_cohort_for_development",
+    "mutating_frozen_reports_or_source_audio"
+  ],
+  "clinical_release_authorized": false
+}
