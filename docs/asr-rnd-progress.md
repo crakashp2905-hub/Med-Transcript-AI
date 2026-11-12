@@ -330,3 +330,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   tests/test_asr_postprocess.py: 4 passed; Ruff and format checks pass. Status:
   partial; the helper is not yet connected to every app candidate/version
   workflow, and no human-reviewed terminology correction lifecycle is active.
+- **MTA-ASR-F04:** Extended advisory candidate checks so changes to negation
+  and allergy polarity are explicitly flagged alongside drug and dose/unit
+  changes. Raw wording remains immutable, all proposals remain pending review,
+  and nothing is auto-adopted. tests/test_asr_postprocess.py: 5 passed; Ruff
+  and format checks pass. Status: partial; the rule helper is not integrated
+  into every text-generation/publication path and its heuristics are not
+  clinically validated.

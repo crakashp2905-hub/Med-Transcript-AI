@@ -1,8 +1,28 @@
 """Non-destructive ASR suggestions; raw segments are never overwritten."""
 
 from copy import deepcopy
+import re
 
 from services.review.clinical import MEDICATION, quantity_signature
+
+_NEGATION = re.compile(r"\b(?:no|not|denies|denied|without|never)\b", re.I)
+_ALLERGY = re.compile(r"\b(?:allerg\w*|anaphyl\w*|reaction)\b", re.I)
+
+
+def _allergy_assertions(text):
+    result = []
+    for marker in _ALLERGY.finditer(text):
+        clause_start = max(
+            (match.end() for match in re.finditer(r"[;.!?]", text[: marker.start()])),
+            default=0,
+        )
+        result.append(
+            (
+                marker.group().lower(),
+                bool(_NEGATION.search(text[clause_start : marker.start()])),
+            )
+        )
+    return result
 
 
 def suggest(raw_segments, suggestions=None, *, source_audio_id=None):
@@ -38,6 +58,10 @@ def suggest(raw_segments, suggestions=None, *, source_audio_id=None):
             reasons.append("medication_substitution_requires_review")
         if quantity_signature(original) != quantity_signature(proposed):
             reasons.append("numeric_or_unit_substitution_requires_review")
+        if bool(_NEGATION.search(original)) != bool(_NEGATION.search(proposed)):
+            reasons.append("negation_change_requires_review")
+        if _allergy_assertions(original) != _allergy_assertions(proposed):
+            reasons.append("allergy_assertion_change_requires_review")
         output_suggestions.append(
             {
                 **deepcopy(item),

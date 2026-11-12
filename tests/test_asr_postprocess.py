@@ -76,3 +76,22 @@ def test_suggestions_require_source_audio_id_and_rationale():
             [{**suggestion, "reason": ""}],
             source_audio_id="audio-asset-1",
         )
+
+
+def test_negation_and_allergy_changes_remain_review_required():
+    result = suggest(
+        [{"text": "Patient denies penicillin allergy."}],
+        [
+            {
+                "segment_index": 0,
+                "suggested_text": "Patient has penicillin allergy.",
+                "reason": "synthetic text-only proposal",
+            }
+        ],
+        source_audio_id="audio-asset-1",
+    )
+    proposal = result["correction_suggestions"][0]
+    assert "negation_change_requires_review" in proposal["risk_reasons"]
+    assert "allergy_assertion_change_requires_review" in proposal["risk_reasons"]
+    assert proposal["human_review_state"] == "pending"
+    assert proposal["adopted"] is False
