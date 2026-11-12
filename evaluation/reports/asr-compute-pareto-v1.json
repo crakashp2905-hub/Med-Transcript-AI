@@ -1,0 +1,233 @@
+{
+  "schema_version": "asr_compute_accuracy_pareto_v1",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "suite_sha256": "185a90cf817a198894c4347e753def0fb90008cef0d628581ed578683d65216c",
+  "source_reports": [
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json",
+      "sha256": "97480843cb1585523621ecc3b88149c4c62246380c1571a8abcb3f41cc19c1f3"
+    },
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json",
+      "sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7"
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "path": "evaluation/runs/meddistract-detailed-v2/parakeet-tdt-0.6b-v2.fixed.json",
+      "sha256": "9becc22cd583cde4f27f48a4d1fc5fc95f36a4ebe11a18ba29e68ac8a0fea7c1"
+    }
+  ],
+  "model_configurations": {
+    "faster-whisper-large-v3": {
+      "candidate_id": "faster-whisper-large-v3",
+      "lane": "a",
+      "runtime": "whisper",
+      "profile_file": "large-v3-eval-profiles.json",
+      "profile_id": "large-v3-cpu-int8-eval-v1",
+      "source_profile_sha256": "41f08c86824b407aa6bc4aefdfe096da2d060d33e3b2e960c8298c1bd9526659",
+      "runtime_variant": "Text-only faster-whisper 1.2.1 / CTranslate2 CPU INT8; four threads, beam five; model loaded once; timestamp validation separate"
+    },
+    "omi-med-stt-v1": {
+      "candidate_id": "omi-med-stt-v1",
+      "lane": "b",
+      "runtime": "omi",
+      "model_dir": "data/models/omi-med-stt-v1-gguf",
+      "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "package_dir": "data/benchmark-runtime",
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter",
+      "expected_artifacts": {
+        "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+      }
+    },
+    "parakeet-tdt-0.6b-v2": {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "lane": "b",
+      "runtime": "onnx",
+      "model_dir": "data/models/parakeet-tdt-v2-onnx",
+      "revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+      "package_dir": "data/onnx-runtime",
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU",
+      "expected_artifacts": {
+        "config.json": "666903c76b9798caf2c210afd4f6cd60b08a8dbf9800ec8d7a3bc0d2148ac466",
+        "decoder_joint-model.int8.onnx": "a449f49acd68979d418651dd2dcb737cc0f1bf0225e009e29ee326354edbf7d3",
+        "encoder-model.int8.onnx": "3e0581fda6ab843888b51e56d7ee78b6d5bc3237ec113af1f732d1d5286aa155",
+        "nemo128.onnx": "a9fde1486ebfcc08f328d75ad4610c67835fea58c73ba57e3209a6f6cf019e9f",
+        "vocab.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      }
+    }
+  },
+  "source_code_sha256": {
+    "services/asr/pareto.py": "f95e3bb50da99543cdf1fef4a37aeac84ccdaa081e8e51146a8aa413230a6c09",
+    "services/asr/rover.py": "ef71e5d465eb418b5d25f8b4e98d2aea3326860fdaf2d0846904cede96630749",
+    "services/evaluation.py": "73a127a599ee0f3dbaef5e6d3655f56fb55d108e4bd482dc4e6c8aeae374af3f"
+  },
+  "runtime_dependency": {
+    "rapidfuzz_version": "3.14.5"
+  },
+  "single_engine": [
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "sample_count": 16,
+      "failed_samples": 0,
+      "reference_words": 27366,
+      "normalized_edits": 5798,
+      "normalized_wer": 0.21186874223489002,
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "model_load_seconds": 45.73138120002113,
+      "case_wall_seconds_sum": 13372.59498389985,
+      "case_wall_seconds_p95": 1197.3704212999437,
+      "real_time_factor_p95": 2.082422991952834,
+      "maximum_process_memory_bytes": null
+    },
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "sample_count": 16,
+      "failed_samples": 2,
+      "reference_words": 27366,
+      "normalized_edits": 7708,
+      "normalized_wer": 0.2816633779142001,
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum",
+          "processing_failures_present"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "model_load_seconds": 3.2372764999745414,
+      "case_wall_seconds_sum": 2741.6285875997273,
+      "case_wall_seconds_p95": 252.48430320003536,
+      "real_time_factor_p95": 0.2941884591723007,
+      "maximum_process_memory_bytes": null
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "sample_count": 16,
+      "failed_samples": 0,
+      "reference_words": 27366,
+      "normalized_edits": 6071,
+      "normalized_wer": 0.22184462471680186,
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "model_load_seconds": 13.101271399995312,
+      "case_wall_seconds_sum": 981.9675207999535,
+      "case_wall_seconds_p95": 88.21272910002153,
+      "real_time_factor_p95": 0.10553669068834368,
+      "maximum_process_memory_bytes": null
+    }
+  ],
+  "two_engine_rover": [
+    {
+      "candidate_ids": [
+        "faster-whisper-large-v3",
+        "omi-med-stt-v1"
+      ],
+      "sample_count": 16,
+      "failed_samples": 2,
+      "reference_words": 27366,
+      "normalized_edits": 5798,
+      "normalized_wer": 0.21186874223489002,
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum",
+          "processing_failures_present"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "serial_case_wall_seconds_sum": 16114.223571499577,
+      "serial_case_wall_seconds_p95": 1447.20491329988,
+      "serial_real_time_factor_p95": 2.373557296673874,
+      "maximum_process_memory_bytes": null,
+      "latency_assumption": "sequential full-decode wall-time sum; no targeted crop savings assumed"
+    },
+    {
+      "candidate_ids": [
+        "faster-whisper-large-v3",
+        "parakeet-tdt-0.6b-v2"
+      ],
+      "sample_count": 16,
+      "failed_samples": 0,
+      "reference_words": 27366,
+      "normalized_edits": 5798,
+      "normalized_wer": 0.21186874223489002,
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "serial_case_wall_seconds_sum": 14354.562504699803,
+      "serial_case_wall_seconds_p95": 1285.5275803998811,
+      "serial_real_time_factor_p95": 2.1861147666310035,
+      "maximum_process_memory_bytes": null,
+      "latency_assumption": "sequential full-decode wall-time sum; no targeted crop savings assumed"
+    },
+    {
+      "candidate_ids": [
+        "omi-med-stt-v1",
+        "parakeet-tdt-0.6b-v2"
+      ],
+      "sample_count": 16,
+      "failed_samples": 2,
+      "reference_words": 27366,
+      "normalized_edits": 7708,
+      "normalized_wer": 0.2816633779142001,
+      "wer_gate": {
+        "maximum_normalized_wer": 0.05,
+        "scope": "aggregate_evaluation_dataset",
+        "status": "fail",
+        "reasons": [
+          "normalized_wer_exceeds_maximum",
+          "processing_failures_present"
+        ],
+        "clinical_approval": "not_established_by_wer"
+      },
+      "serial_case_wall_seconds_sum": 3723.596108399681,
+      "serial_case_wall_seconds_p95": 340.6970323000569,
+      "serial_real_time_factor_p95": 0.39697174718034217,
+      "maximum_process_memory_bytes": null,
+      "latency_assumption": "sequential full-decode wall-time sum; no targeted crop savings assumed"
+    }
+  ],
+  "targeted_fallback": {
+    "status": "not_evaluated",
+    "reason": "No predeclared risk-selected paired fallback inference report exists."
+  },
+  "resource_limits": {
+    "asr_peak_memory_bytes": "unknown_not_measured",
+    "cpu_seconds": "unknown_not_recorded_in_source_reports",
+    "wall_latency": "measured_case_wall_time_from_frozen_reports"
+  },
+  "admission_maximum_normalized_wer": 0.05,
+  "clinical_acceptance": false,
+  "limitations": [
+    "Source runs are saved development measurements, not a fresh concurrent benchmark.",
+    "Pair latency is the sum of serialized engine wall times; memory is not inferred.",
+    "No candidate meets the frozen WER gate and failures remain admission failures."
+  ]
+}

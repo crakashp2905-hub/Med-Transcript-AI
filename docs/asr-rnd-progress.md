@@ -226,3 +226,14 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   not measured. Tests cover switching, contention, and resource failure.
   Status: partial; the pool is not wired into the application worker and no
   full-process memory or 16 GB hardware admission test has been run.
+- **MTA-ASR-D09:** Generated a matched single/two-engine Pareto report from
+  the frozen 16-case detailed runs. evaluation/reports/asr-compute-pareto-v1.json
+  SHA-256 E909202756CF5D0F5383A9D81A14F3F86FA86F99878913C73EB82C7AA257B62C
+  binds report, suite, model configuration, and code hashes. Single-engine
+  p95 case wall RTFs: faster-whisper large-v3 2.082, Omi 0.294, Parakeet
+  0.106. Sequential faster-whisper plus Parakeet p95 RTF: 2.186. Two-engine
+  WER equals the faster-whisper pivot because two-way token ties favor pivot;
+  all arms fail the 5% gate. Peak ASR memory and CPU seconds are explicitly
+  unknown; targeted fallback was not evaluated. tests/test_asr_pareto.py:
+  2 passed; Ruff and format checks pass. Status: partial; fresh resource
+  measurements and a targeted-fallback arm remain outstanding.
