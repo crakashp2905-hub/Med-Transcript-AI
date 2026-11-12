@@ -3,6 +3,8 @@ import pytest
 from services.asr.segmentation import (
     build_coverage_ledger,
     diagnose_boundaries,
+    map_source_frame_to_window,
+    map_window_frame_to_source,
     plan_segments,
     stitch_window_outputs,
 )
@@ -150,3 +152,23 @@ def test_boundary_diagnostics_separate_short_misses_clips_roles_and_unknowns():
     assert report["windows"][0]["unknown_role_turn_count"] == 1
     assert report["summary"]["omitted_short_turns"] == 1
     assert report["summary"]["clipped_turns"] == 1
+
+
+@pytest.mark.parametrize("strategy", ["fixed_window", "channel_first"])
+def test_window_source_index_round_trips_crop_frame_and_channel(strategy):
+    plan = plan_segments(
+        10000,
+        1000,
+        strategy,
+        max_window_ms=4000,
+        channel_count=2 if strategy == "channel_first" else 1,
+    )
+    window = plan["windows"][-1]
+    local_frame = 321
+    source = map_window_frame_to_source(plan, window["window_id"], local_frame)
+    assert source["source_frame"] == window["start_frame"] + local_frame
+    assert source["channel_index"] == window["channel_index"]
+    assert (
+        map_source_frame_to_window(plan, window["window_id"], source["source_frame"])
+        == local_frame
+    )

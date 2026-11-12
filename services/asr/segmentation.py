@@ -290,6 +290,49 @@ def diagnose_boundaries(turns, windows, short_turn_frames=1600):
     }
 
 
+def map_window_frame_to_source(plan, window_id, output_frame):
+    """Map a same-rate crop frame back to its immutable source frame/channel."""
+    if type(output_frame) is not int or output_frame < 0:
+        raise ValueError("invalid_window_frame")
+    windows = [
+        row for row in plan.get("windows", []) if row.get("window_id") == window_id
+    ]
+    if len(windows) != 1:
+        raise ValueError("unique_source_window_required")
+    window = windows[0]
+    start, end = window.get("start_frame"), window.get("end_frame_exclusive")
+    if type(start) is not int or type(end) is not int or not start <= end:
+        raise ValueError("invalid_source_window")
+    if output_frame >= end - start:
+        raise ValueError("window_frame_out_of_bounds")
+    return {
+        "source_frame": start + output_frame,
+        "channel_index": window.get("channel_index"),
+        "mapping_kind": "exact_sample_index_offset",
+        "source_window_id": window_id,
+    }
+
+
+def map_source_frame_to_window(plan, window_id, source_frame):
+    """Inverse of map_window_frame_to_source for frames inside a source crop."""
+    if type(source_frame) is not int or source_frame < 0:
+        raise ValueError("invalid_source_frame")
+    windows = [
+        row for row in plan.get("windows", []) if row.get("window_id") == window_id
+    ]
+    if len(windows) != 1:
+        raise ValueError("unique_source_window_required")
+    window = windows[0]
+    start, end = window.get("start_frame"), window.get("end_frame_exclusive")
+    if (
+        type(start) is not int
+        or type(end) is not int
+        or not start <= source_frame < end
+    ):
+        raise ValueError("source_frame_out_of_window")
+    return source_frame - start
+
+
 def plan_segments(
     total_frames,
     sample_rate,

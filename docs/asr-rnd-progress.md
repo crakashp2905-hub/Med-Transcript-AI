@@ -162,3 +162,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   unknown-role turns. tests/test_asr_segmentation.py verifies each category.
   Status: partial; no annotated conversation audio is available to generate
   measured boundary reports.
+- **MTA-ASR-C09:** Added inverse source-frame/window-frame mapping keyed by
+  stable window ID, returning channel identity where applicable. Round-trip
+  tests cover fixed crops and channel-first windows. Status: partial; the
+  helper covers same-rate sample-index crops; resampled audio must use the
+  separate measured-delay mapping contract, and runtime transcript integration
+  remains pending.
