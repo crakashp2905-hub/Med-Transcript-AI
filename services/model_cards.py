@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+from services.clinical_limitations import CLINICAL_LIMITATIONS
 
 
 def generate(root="."):
@@ -61,7 +62,7 @@ def generate(root="."):
                 ),
                 "role_metrics": role_metrics,
                 "limitations": [
-                    "Text-only development evidence; not clinical acceptance.",
+                    *CLINICAL_LIMITATIONS,
                     "Missing reports and blocked candidates remain visible.",
                     "No candidate is promoted unless the immutable 5% gate is met.",
                 ],

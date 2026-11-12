@@ -316,6 +316,14 @@ worker crash recovery, unsupported configuration, and redacted validation errors
 
 ## Boundaries and next work
 
+Current product, evidence and release limits are repeated across the UI, approved
+exports and model cards in [one canonical statement](docs/clinical-limitations.md).
+
+- English-only, general-medicine documentation assistance.
+- Synthetic/public-mock development evidence is not independent clinician gold; clinical validation is pending.
+- The frozen 5% normalized-WER ASR gate remains unmet.
+- Clinician review is required. The system does not diagnose or prescribe, and real-patient release is not authorized.
+
 See the [scribe workflow and evaluation delivery](docs/scribe-2026-10-26.md)
 for source-linked note review, 30-minute dictation, real-worker stress tests,
 full-conversation ASR ablations, speaker comparisons and new verification results.

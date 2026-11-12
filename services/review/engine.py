@@ -325,6 +325,7 @@ def render_sections(facts, transcript_version_id=None):
 
 def render_export(note, approval, format, source=None):
     import json
+    from services.clinical_limitations import CLINICAL_LIMITATIONS
 
     if format == "fhir":
         from services.review.presentation import fhir_document
@@ -335,6 +336,7 @@ def render_export(note, approval, format, source=None):
         "status": "approved",
         "approval": approval,
         "note": note,
+        "limitations": list(CLINICAL_LIMITATIONS),
     }
     if source is not None:
         payload["source"] = source
@@ -359,6 +361,7 @@ def render_export(note, approval, format, source=None):
                 "Source transcript: " + source["transcript_version_id"],
                 escape_markdown(attribution) if format == "markdown" else attribution,
                 "Independent clinical gold: false; recipient EHR conformance: untested.",
+                *CLINICAL_LIMITATIONS,
                 "",
             ]
         )

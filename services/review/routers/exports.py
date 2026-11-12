@@ -12,6 +12,7 @@ from services.review.models import ExportInput
 
 
 from services.review.service import ReviewService
+from services.clinical_limitations import CLINICAL_LIMITATIONS
 
 
 def register(app, services: ReviewService):
@@ -61,6 +62,7 @@ def register(app, services: ReviewService):
                 "provenance": tx.get("provenance", {}),
                 "independent_clinical_gold": False,
                 "ehr_conformance": "untested",
+                "limitations": list(CLINICAL_LIMITATIONS),
             }
             artifact = render_export(note, approval, body.format, source)
             digest = hashlib.sha256(artifact.encode("utf-8")).hexdigest()
