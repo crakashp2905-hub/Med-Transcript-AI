@@ -447,3 +447,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   offline evaluation jobs. The full real-worker matrix across mono/stereo,
   silence, clipping, crosstalk and interrupted model inference has not been
   executed, so no real-worker speaker/timing accuracy claim is made.
+- **MTA-ASR-H01:** Partial. `docs/device-profile.md` defines one x86 CPU
+  workstation with at least four threads and 16 GB RAM, without an assumed GPU.
+  The frozen detailed set contains eight unique consultation groups across 16
+  paired clean/noisy recordings (1.32 recorded hours, with shared source
+  content across conditions); labels are upstream mock references and are not
+  independently adjudicated. This supports offline inference experiments, not
+  training a speech foundation model from scratch. A credible FLOP/time estimate
+  is unavailable without a selected architecture and measured training
+  throughput; no from-scratch training is claimed or attempted.
