@@ -1,10 +1,12 @@
 """Resource-bounded, separate-process audio decoding and channel-preserving 16 kHz normalization."""
 
 import argparse
+import hashlib
 import json
 import os
 import subprocess
 import sys
+import time
 import wave
 from pathlib import Path
 
@@ -16,6 +18,77 @@ FORMATS = {
     "audio/webm": {"matroska", "webm"},
     "audio/ogg": {"ogg"},
 }
+
+
+def _sha256_bytes(value):
+    return hashlib.sha256(value).hexdigest()
+
+
+def _failure_result(
+    error_code,
+    stage,
+    source,
+    destination,
+    media_type,
+    started,
+    *,
+    source_sha256=None,
+    process_returncode=None,
+    child_error_code=None,
+    stdout=b"",
+    timed_out=False,
+    timeout_seconds=None,
+):
+    """Return a bounded, content-free failure receipt for a decode attempt."""
+    source_bytes = None
+    observed_source_sha256 = None
+    output_bytes, output_sha256 = None, None
+    try:
+        source_bytes = source.stat().st_size
+        if source_bytes <= 512_000_000:
+            digest = hashlib.sha256()
+            with source.open("rb") as stream:
+                for block in iter(lambda: stream.read(1024 * 1024), b""):
+                    digest.update(block)
+            observed_source_sha256 = digest.hexdigest()
+    except OSError:
+        pass
+    try:
+        output_bytes = destination.stat().st_size
+        if output_bytes <= 512_000_000:
+            digest = hashlib.sha256()
+            with destination.open("rb") as stream:
+                for block in iter(lambda: stream.read(1024 * 1024), b""):
+                    digest.update(block)
+            output_sha256 = digest.hexdigest()
+    except OSError:
+        pass
+    return {
+        "error_code": error_code,
+        "failure_report": {
+            "schema_version": "audio_decoder_failure_v1",
+            "status": "failed",
+            "stage": stage,
+            "error_code": error_code,
+            "media_type": media_type,
+            "source_name": source.name,
+            "source_bytes": source_bytes,
+            "source_sha256": source_sha256,
+            "observed_source_sha256": observed_source_sha256,
+            "destination_name": destination.name,
+            "partial_output_bytes": output_bytes,
+            "partial_output_sha256": output_sha256,
+            "process_returncode": process_returncode,
+            "child_error_code": child_error_code,
+            "stdout_bytes": len(stdout),
+            "stdout_sha256": _sha256_bytes(stdout) if stdout else None,
+            "timed_out": timed_out,
+            "timeout_seconds": timeout_seconds,
+            "elapsed_ms": max(0, round((time.monotonic() - started) * 1000)),
+            "raw_diagnostics_retained": False,
+            "diagnostics_policy": "Preserve hashes and bounded failure metadata; do not retain raw decoder output that may contain source data.",
+        },
+    }
 
 
 def decode_child(source, destination, media_type):
@@ -113,11 +186,21 @@ def normalize(source, destination, media_type):
         source_provenance,
     )
 
+    started = time.monotonic()
+    source_path, destination_path = Path(source), Path(destination)
     try:
-        source = Path(source).resolve()
+        source = source.resolve()
+        destination = destination_path.resolve()
         parent = source_provenance(source, media_type)
     except (OSError, ValueError):
-        return {"error_code": "decoder_process_failed"}
+        return _failure_result(
+            "decoder_process_failed",
+            "source_validation",
+            source_path,
+            destination_path,
+            media_type,
+            started,
+        )
     # Keep provider credentials and application policy state out of the child environment.
     allowed = {"PATH", "SYSTEMROOT", "WINDIR", "TEMP", "TMP", "LD_LIBRARY_PATH"}
     env = {key: value for key, value in os.environ.items() if key.upper() in allowed}
@@ -131,7 +214,7 @@ def normalize(source, destination, media_type):
         "--source",
         str(source),
         "--destination",
-        str(Path(destination).resolve()),
+        str(destination),
         "--media-type",
         media_type,
     ]
@@ -145,12 +228,43 @@ def normalize(source, destination, media_type):
             creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0,
         )
         if result.returncode or len(result.stdout) > 4096:
-            return {"error_code": "decoder_process_failed"}
+            return _failure_result(
+                "decoder_process_failed",
+                "decoder_process",
+                source,
+                destination,
+                media_type,
+                started,
+                source_sha256=parent["asset_sha256"],
+                process_returncode=result.returncode,
+                stdout=result.stdout,
+            )
         decoded = json.loads(result.stdout)
         if decoded.get("error_code"):
-            return decoded
+            return _failure_result(
+                decoded["error_code"],
+                "decoder_child",
+                source,
+                destination,
+                media_type,
+                started,
+                source_sha256=parent["asset_sha256"],
+                process_returncode=result.returncode,
+                child_error_code=decoded["error_code"],
+                stdout=result.stdout,
+            )
         if file_sha256(source) != parent["asset_sha256"]:
-            return {"error_code": "source_audio_changed_during_normalization"}
+            return _failure_result(
+                "source_audio_changed_during_normalization",
+                "source_integrity_check",
+                source,
+                destination,
+                media_type,
+                started,
+                source_sha256=parent["asset_sha256"],
+                process_returncode=result.returncode,
+                stdout=result.stdout,
+            )
         decoded["audio_provenance"] = derive_provenance(
             parent,
             destination,
@@ -172,10 +286,29 @@ def normalize(source, destination, media_type):
             ),
         )
         return decoded
-    except subprocess.TimeoutExpired:
-        return {"error_code": "decoder_timeout"}
+    except subprocess.TimeoutExpired as exc:
+        return _failure_result(
+            "decoder_timeout",
+            "decoder_process",
+            source,
+            destination,
+            media_type,
+            started,
+            source_sha256=parent["asset_sha256"],
+            timed_out=True,
+            timeout_seconds=120,
+            stdout=exc.stdout or b"",
+        )
     except (OSError, ValueError):
-        return {"error_code": "decoder_process_failed"}
+        return _failure_result(
+            "decoder_process_failed",
+            "decoder_process",
+            source,
+            destination,
+            media_type,
+            started,
+            source_sha256=parent["asset_sha256"],
+        )
 
 
 if __name__ == "__main__":

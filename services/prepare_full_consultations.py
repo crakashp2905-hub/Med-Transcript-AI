@@ -19,6 +19,42 @@ from services.prepare_primock import (
 )
 
 
+def _persist_decoder_failure_report(root, group, role, source, target, normalized):
+    """Record a failed decode while retaining original and partial output files."""
+    report_path = Path(root) / "decoder-failures.json"
+    if report_path.exists():
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+    else:
+        report = {"schema_version": "dataset_decoder_failures_v1", "failures": []}
+    failure_report = normalized.get("failure_report") or {
+        "schema_version": "audio_decoder_failure_v1",
+        "status": "failed",
+        "error_code": normalized.get("error_code", "decoder_process_failed"),
+        "stage": "decoder_adapter",
+    }
+    try:
+        partial_bytes = target.stat().st_size
+        partial_sha256 = file_sha256(target)
+    except OSError:
+        partial_bytes, partial_sha256 = None, None
+    report["failures"].append(
+        {
+            "group_id": group,
+            "role": role,
+            "source_sha256": file_sha256(source),
+            "source_name": source.name,
+            "partial_output_name": target.name,
+            "partial_output_bytes": partial_bytes,
+            "partial_output_sha256": partial_sha256,
+            "failure": failure_report,
+        }
+    )
+    temporary = report_path.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    temporary.replace(report_path)
+    return report_path
+
+
 def prepare(
     destination,
     groups=None,
@@ -74,7 +110,12 @@ def prepare(
             target = root / f"{stem}.wav"
             normalized = normalize(source, target, "audio/wav")
             if normalized.get("error_code"):
-                raise ValueError("Normalization failed")
+                _persist_decoder_failure_report(
+                    root, group, role, source, target, normalized
+                )
+                raise ValueError(
+                    "Normalization failed; decoder-failures.json was preserved"
+                )
             track_provenance.append(normalized["audio_provenance"])
             with wave.open(str(target), "rb") as audio:
                 tracks.append(
