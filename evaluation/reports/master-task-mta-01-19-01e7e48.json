@@ -1,0 +1,34 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-19",
+  "status": "pass",
+  "source_commit": "01e7e48309d44d2b939aa57f4f655cde9caa3913",
+  "checks": {
+    "ci_output_and_artifact_safety": {
+      "status": "pass",
+      "focused_tests": {
+        "tests/test_safe_pytest.py": "1 passed",
+        "tests/test_ci_output_safety.py": "2 passed"
+      },
+      "ci_run_id": 43249014515,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43249014515",
+      "ci_jobs": {
+        "frontend": "success",
+        "container": "success",
+        "postgres": "success",
+        "test (dev,asr,security)": "success",
+        "test (dev,security)": "success"
+      }
+    }
+  },
+  "controls": [
+    "Python verifier captures raw command stdout/stderr and emits only status codes.",
+    "Direct CI pytest safety and PostgreSQL lanes use a wrapper that emits test counts without case identifiers or assertion text.",
+    "Branch-coverage lane captures pytest output and emits only the safe summary.",
+    "The CI workflow has no artifact upload action.",
+    "CI provenance reports bind source and dataset digests without transcript or case content."
+  ],
+  "limitations": [
+    "This guards repository-controlled CI output paths and repository workflow artifacts; it cannot attest to GitHub platform-side retention controls or logs from future external workflows."
+  ]
+}
