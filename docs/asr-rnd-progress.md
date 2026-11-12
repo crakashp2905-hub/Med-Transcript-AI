@@ -495,11 +495,14 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   source-versioned operational corrections, not research training labels;
   synthetic fixtures and developer-authored proposals are never treated as
   clinician signatures or automatic self-training input.
-- **MTA-ASR-H09:** Not implemented. There is no training/adapter corpus or
-  clinician-correction lexicon state to remove, and no future-training lineage
-  deletion mechanism has been tested. Current E01 lexicon entries bind to
-  licensed development-manifest digests and are write-once artifacts; that
-  provenance is not equivalent to revocation/unlearning propagation.
+- **MTA-ASR-H09:** Partial. `services/asr/removal_propagation.py` now rebuilds a
+  lexicon and retraining manifest without revoked source references, drops
+  contaminated training rows, and invalidates derived model artifact records
+  for retraining. Its synthetic acceptance test verifies no revoked lineage
+  remains and that source objects are not mutated (`tests/test_asr_removal_propagation.py`:
+  2 passed). It does not claim to erase learned weights. No real correction
+  corpus or trained artifact exists here, and integration into a live correction
+  or training pipeline remains unverified.
 - **MTA-ASR-H10:** No adaptation-attributable gain is established (`null`).
   No correction model, LoRA adapter or rescoring model was trained. The E08
   hotword pilot changes decoding only and worsened aggregate WER on its small
