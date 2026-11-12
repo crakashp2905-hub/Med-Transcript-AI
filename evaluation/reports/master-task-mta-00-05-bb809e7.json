@@ -1,0 +1,31 @@
+{
+  "schema_version": "master_task_release_tiers_v1",
+  "task_id": "MTA-00-05",
+  "source_commit": "bb809e7a10a3b47cc7b4b9a5ed527690fbb54bcf",
+  "checks": {
+    "tier_policy_tests": {
+      "status": "pass",
+      "result": "3 passed; synthetic demo cannot promote higher tiers; hypothetical inputs still cannot self-authorize clinical approval"
+    },
+    "tier_definitions": {
+      "status": "pass",
+      "tiers": [
+        "local_demo",
+        "engineering_verified",
+        "research_supported",
+        "pilot_candidate",
+        "clinical_approved"
+      ],
+      "clinical_release_authorized": false
+    },
+    "current_acceptance_tier_snapshot": {
+      "status": "pass",
+      "report": "evaluation/reports/offline-acceptance-v26.json",
+      "report_sha256": "37e320aa915a9df751f34f2aec3622b50a2b05d7631f78bf2785d3d9de6067b3",
+      "result": "local_demo is verified; engineering and research are not established; pilot is not established; clinical approval is blocked"
+    }
+  },
+  "new_installations_attempted": 0,
+  "external_calls_attempted": 0,
+  "clinical_release_authorized": false
+}

@@ -10,9 +10,9 @@ from services.master_ledger import LEDGER, ROOT, audit
 def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     result = audit()
     assert result["total"] == 369
-    assert result["statuses"]["not_started"] == 356
+    assert result["statuses"]["not_started"] == 355
     assert result["statuses"]["blocked_missing_asset"] == 3
-    assert result["statuses"]["implemented"] == 10
+    assert result["statuses"]["implemented"] == 11
     assert result["verified_at_current_commit"] == 0
     assert result["clinical_release_authorized"] is False
     document = json.loads(LEDGER.read_text(encoding="utf-8"))
@@ -32,6 +32,9 @@ def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     offline_task = next(item for item in document["tasks"] if item["id"] == "MTA-00-04")
     assert offline_task["status"] == "implemented"
     assert offline_task["source_commit"] == "eab55f948573a5dcb5ad07e884bcbefc28026206"
+    tier_task = next(item for item in document["tasks"] if item["id"] == "MTA-00-05")
+    assert tier_task["status"] == "implemented"
+    assert tier_task["source_commit"] == "bb809e7a10a3b47cc7b4b9a5ed527690fbb54bcf"
     task = next(item for item in document["tasks"] if item["id"] == "MTA-04-06")
     assert task["status"] == "implemented"
     assert task["source_commit"] == "7c6102499980a0a8095ffc3a403809e3da23f69e"

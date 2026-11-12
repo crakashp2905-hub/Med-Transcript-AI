@@ -106,11 +106,22 @@
       "id": "MTA-00-05",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Define release tiers: local_demo, engineering_verified, research_supported, pilot_candidate and clinical_approved; prevent synthetic tests from promoting later tiers.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/master_release.py",
+        "tests/test_master_release.py",
+        "evaluation/reports/master-task-mta-00-05-bb809e7.json"
+      ],
+      "source_commit": "bb809e7a10a3b47cc7b4b9a5ed527690fbb54bcf",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-00-05-bb809e7.json",
+          "report_sha256": "61fe716e6c6d212603f2d2040e16c296f7661a30a57616c4a5bf161b7e2a7c13",
+          "check": "tier_policy_tests",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

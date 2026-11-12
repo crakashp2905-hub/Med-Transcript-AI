@@ -32,6 +32,12 @@ those claims. At import, all 369 entries were `not_started`; this meant
   The preflight reports the policy digest; path tests reject traversal and
   leave unclassified paths prohibited. No model eligibility or clinical
   performance is inferred from file presence or hashes.
+- MTA-00-05 is implemented at source commit `bb809e7a10a3b47cc7b4b9a5ed527690fbb54bcf`.
+  The five-tier gate requires exact-commit CI before engineering verification,
+  independent clinical gold plus the 5% ASR gate before research support, and
+  institutional sign-off before pilot candidacy. Clinical approval remains
+  blocked even under hypothetical passing inputs. The three tier-policy tests
+  passed; the current snapshot still has only the local demo tier established.
 - The prior source-bound offline report, [`v21`](../evaluation/reports/offline-acceptance-v21.json),
   passed its seven software checks at `b939377`. It does not prove current
   post-format source, 5% ASR accuracy, or independent clinical performance.
