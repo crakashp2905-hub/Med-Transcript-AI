@@ -265,3 +265,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   format checks pass. Status: partial; this heuristic covers only simple
   English clauses, is not clinically validated, and does not yet emit the
   other declared entity types or route/frequency relations.
+- **MTA-ASR-E03:** Hardened the non-destructive ASR suggestion path. It now
+  preserves a deep copy of raw segments, retains original text beside each
+  proposal, marks every proposal review-required and non-adopted, and emits
+  explicit reasons when medication identities or numeric/unit signatures
+  differ. Invalid suggestion indexes fail closed. tests/test_asr_postprocess.py:
+  3 passed; Ruff and format checks pass. Status: partial; this safeguards the
+  helper contract, but the postprocessor is not yet the sole publication path
+  for every runtime transcript workflow.
