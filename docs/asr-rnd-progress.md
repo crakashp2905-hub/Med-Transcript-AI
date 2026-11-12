@@ -657,21 +657,30 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   hashes, manifest/suite bindings, common denominators, and the unchanged 5% gate.
   This confirms only the development baseline; every arm still fails admission,
   and it does not qualify Omi for clinical use.
-- **MTA-ASR-C10:** Partial and still open. The existing large-v3
-  speech-aware receipt contains 14/16 records (7 clean, 7 distracted) and is
-  explicitly `complete: false`; both records for `day1_consultation08` are
-  missing. Its measured completed cases consumed about 14,217 seconds of
-  inference, before model loading. The runner supports hash-validated resume,
-  but completing the remaining full-consultation arms requires a sustained
-  benchmark run. No missing samples are imputed and no C10 completion claim is
-  made. Peak RAM is also absent from the historical mode receipts, so it must
-  be measured in any accepted rerun.
+- **MTA-ASR-C10:** Partial and still open. The source-bound v3 large-v3
+  speech-aware receipt now contains all 16 records (8 clean, 8 distracted),
+  with 0 failed samples. Its clean/distracted WER is 23.47% / 24.07%, both
+  above the unchanged 5% gate. All-mode wall time is 7,849 / 7,663 seconds;
+  these totals include 14 reused historical cases and are not a fresh whole-
+  cohort latency run. The resumed process measured 3,156,635,648 peak resident
+  bytes (Windows peak working set, model-load-inclusive) against the 16 GiB
+  cap; that resource scope covers the resumed process and two newly run cases,
+  not the reused cases. This completes the missing large-v3 speech-aware WER
+  cases without imputing data. Other segmentation modes still lack fresh
+  resource receipts and the full C10 resource/latency matrix remains open; no
+  C10 completion claim is made.
 - **MTA-ASR-C10 instrumentation update:** New benchmark receipts now capture
   process peak resident bytes, measurement method, model-load-inclusive scope,
   resumed/full cohort scope, and the budget verdict. The source-bound
   detailed-suite-v3 fixes a 16 GiB process RSS ceiling with one local model
   process. Historical reports are unchanged; no C10 mode is considered complete
   from instrumentation alone.
+- **MTA-ASR-C10 large-v3 speech-aware resume:** `evaluation/detailed-suite-v3.json`
+  validated and resumed the 14-case v2 receipt by exact file hash, then ran the
+  two missing `day1_consultation08` conditions. `evaluation/runs/meddistract-detailed-v3/faster-whisper-large-v3.speech_aware.json`
+  is complete at 16/16 with no failed samples and includes the resumed-suffix
+  resource measurement. Its report SHA-256 is
+  `223635a95466d9d2752d09277b522f5b052ceccf634b9d7efab1d567a7aedc23`.
 - **MTA-ASR-D01:** The operational application path remains the pinned
   Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration
   (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are
