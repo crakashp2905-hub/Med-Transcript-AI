@@ -384,17 +384,35 @@ MODELS = {
 }
 
 
+def _migrate_legacy_v0_to_v1(body):
+    """Tag the pre-versioned representation without changing saved fields."""
+    result = deepcopy(body)
+    result["schema_version"] = "1.0"
+    return result
+
+
+def _read_v1_record(body):
+    """Copy a current record so validation never mutates persisted input."""
+    return deepcopy(body)
+
+
+_VERSION_MIGRATIONS = {
+    "legacy-0": _migrate_legacy_v0_to_v1,
+    "1.0": _read_v1_record,
+}
+MIGRATION_REGISTRY = {kind: dict(_VERSION_MIGRATIONS) for kind in MODELS}
+
+
 def migrate_legacy(kind, body):
-    if kind not in MODELS:
+    if kind not in MIGRATION_REGISTRY:
         raise ValueError("unsupported_record_kind")
     if not isinstance(body, dict):
         raise ValueError("persisted_record_object_required")
     version = body.get("schema_version", "legacy-0")
-    if version not in ("legacy-0", "1.0"):
+    migration = MIGRATION_REGISTRY[kind].get(version)
+    if migration is None:
         raise ValueError("unsupported_schema_version")
-    result = deepcopy(body)
-    result["schema_version"] = "1.0"
-    return result
+    return migration(body)
 
 
 def validate_record(kind, body):

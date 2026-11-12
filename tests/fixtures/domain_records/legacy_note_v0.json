@@ -1,0 +1,46 @@
+{
+  "id": "10000000-0000-4000-8000-000000000001",
+  "encounter_id": "10000000-0000-4000-8000-000000000002",
+  "version": 1,
+  "transcript_version_id": "10000000-0000-4000-8000-000000000003",
+  "transcript_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "verification_report_id": "10000000-0000-4000-8000-000000000004",
+  "facts": [
+    {
+      "fact_id": "10000000-0000-4000-8000-000000000005",
+      "category": "symptom",
+      "section": "subjective",
+      "text": "Cough",
+      "subject": "patient",
+      "assertion": "affirmed",
+      "temporality": "current",
+      "origin": "source_linked",
+      "evidence": {
+        "segment_id": "10000000-0000-4000-8000-000000000003",
+        "start_char": 0,
+        "end_char": 5,
+        "quote": "Cough"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "key": "subjective",
+      "statements": [
+        {
+          "statement_id": "10000000-0000-4000-8000-000000000005",
+          "text": "Cough",
+          "fact_ids": ["10000000-0000-4000-8000-000000000005"],
+          "origin": "source_linked",
+          "source_version_id": "10000000-0000-4000-8000-000000000003",
+          "evidence": {
+            "segment_id": "10000000-0000-4000-8000-000000000003",
+            "start_char": 0,
+            "end_char": 5,
+            "quote": "Cough"
+          }
+        }
+      ]
+    }
+  ]
+}
