@@ -951,12 +951,23 @@
       "id": "MTA-01-17",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Generate redacted SBOM, offline dependency inventory and cached advisory age; never report unaudited packages as safe.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-01-17-c4fe247.json",
+        "evaluation/reports/offline-sbom-c4fe247.json",
+        "services/offline_sbom.py",
+        "tests/test_offline_sbom.py"
+      ],
+      "source_commit": "c4fe247d96fe1520908dc88b7b83c6215861f6c3",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-17-c4fe247.json",
+          "report_sha256": "84691e2a54e37145c28f6b49243feb587c707f4bb305dde685b791ae46d95531",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Vulnerability assessment remains unperformed because advisory cache data and an offline scanner are unavailable; package inventory does not establish package safety."
     },
     {
       "id": "MTA-01-18",

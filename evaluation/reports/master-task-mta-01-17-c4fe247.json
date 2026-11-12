@@ -1,0 +1,51 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-17",
+  "status": "pass",
+  "source_commit": "c4fe247d96fe1520908dc88b7b83c6215861f6c3",
+  "checks": {
+    "redacted_sbom_and_offline_inventory": {
+      "status": "pass",
+      "sbom_path": "evaluation/reports/offline-sbom-c4fe247.json",
+      "sbom_sha256": "6084d8896425502d28729f762f15c6265889f87d668924a98ab2208b3d3d504c",
+      "local_installed_component_count": 442,
+      "local_missing_pinned_packages": [
+        "av",
+        "ctranslate2",
+        "faster-whisper"
+      ],
+      "local_advisory_database": {
+        "status": "unavailable",
+        "age_days": null,
+        "database": null,
+        "reason": "No local advisory cache was configured; no vulnerability scan was performed."
+      },
+      "vulnerability_assessment": {
+        "status": "not_performed",
+        "safe_to_use": null,
+        "reason": "An SBOM is not a vulnerability scan; no package is represented as audited or safe."
+      },
+      "ci": {
+        "run_id": 43247230415,
+        "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43247230415",
+        "jobs": {
+          "frontend": "success",
+          "container": "success",
+          "postgres": "success",
+          "test (dev,asr,security)": "success",
+          "test (dev,security)": "success"
+        },
+        "security_lane_sbom_summary": {
+          "installed_component_count": 38,
+          "missing_pinned_packages": 19,
+          "advisory_database_status": "unavailable",
+          "vulnerability_assessment": "not_performed"
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Local and CI package inventories differ because they represent different installed environments; neither is an advisory scan.",
+    "No cached advisory dataset or offline scanner was available, so vulnerability status is unknown and no package is described as safe."
+  ]
+}
