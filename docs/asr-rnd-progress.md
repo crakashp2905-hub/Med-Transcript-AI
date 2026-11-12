@@ -412,3 +412,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   TextGrid labels and optimal scoring mappings are not role confirmations.
   No VAD-turn diarization arm is included, so the requested three-way modality
   comparison is incomplete; clinical speaker accuracy is not claimed.
+- **MTA-ASR-G06:** Existing subgroup report
+  `evaluation/reports/asr-subgroups-v1.json` (SHA-256
+  3d65850d0248a9ff516a51baf53ea8a3dd610b7a861e9d29a80ec0c653c67852)
+  disaggregates overlap status, reference role and turn length; segmentation
+  diagnostics separately mark omitted short turns and boundary clipping.
+  tests/test_asr_subgroup_diagnostics.py and test_asr_segmentation.py: 13
+  passed; Ruff passes. Status: partial; upstream mock annotations are not
+  adjudicated, and no standalone overlap detector or validated missed-short-
+  patient-turn rate has been established.
