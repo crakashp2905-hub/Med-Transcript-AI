@@ -586,3 +586,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   records a timed-out full backend run plus missing PyAV, PostgreSQL DSN and
   Docker. Those results are not promoted as exact-HEAD evidence; all required
   exact-HEAD CI lanes remain unverified.
+- **MTA-ASR-I13:** Partial. The clinician source-review screen supports
+  keyboard-operated source-interval playback, transcript text edits, and saving
+  corrections as a new version. The read-only ASR error-review packet shows
+  waveform clips/audio, source intervals and candidate alternatives, but is a
+  research/development tool, not the clinician queue. The clinician screen does
+  not present reason-coded ASR alternatives as an uncertain-span queue, and no
+  scripted usability acceptance was run for that workflow.
