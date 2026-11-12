@@ -281,6 +281,8 @@ def configured_provider():
     import os
 
     mode = os.environ.get("MED_TRANSCRIPT_DRAFTING_MODE", "deterministic")
+    if mode == "hosted" and os.environ.get("STRICT_OFFLINE") == "1":
+        raise ValueError("hosted_inference_forbidden_in_strict_offline_mode")
     if mode == "deterministic":
         return DeterministicProvider()
     if mode not in ("local", "hosted"):

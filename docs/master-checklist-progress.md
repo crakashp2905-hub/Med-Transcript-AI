@@ -51,7 +51,7 @@ source receipts must be mapped individually before the JSON changes.
 | 00-01 | Local baseline receipt captures the clean starting SHA and permitted asset digests. | Commit-bound capture test and current CI result. |
 | 00-02 | README and offline scope ADR state English-only, clinician-supervised documentation assistance. | Exact source and scope assertion. |
 | 00-03 | Baseline records local model and development manifest hashes. | Artifact policy test against the frozen inventory. |
-| 00-04 | `MED_TRANSCRIPT_OFFLINE=1` exists; the new ledger explicitly asks for `STRICT_OFFLINE=1`. | Alias/behavior implementation and external-socket denial tests. |
+| 00-04 | `STRICT_OFFLINE=1` now enables Python network denial and rejects Google sign-in and hosted drafting configuration. | Commit-bound tests and a native-process containment boundary remain required for a stronger guarantee. |
 | 00-05 | Existing release matrix has four dimensions; the new ledger requires five named tiers. | Schema and no-promotion tests. |
 | 00-06 | Imported ledger has priorities but lacks owner, dependencies and executable receipt fields. | Extend schema and validate dependency links. |
 | 00-07 | A local threat model exists. | Explicit risk register with the requested eight risks and owners. |

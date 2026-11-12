@@ -101,6 +101,13 @@ def install():
 
 
 def validate_profile():
+    if os.getenv("STRICT_OFFLINE") == "1":
+        os.environ["MED_TRANSCRIPT_OFFLINE"] = "1"
+        if os.getenv("MED_TRANSCRIPT_AUTH_MODE", "local") != "local":
+            raise ValueError("live_oauth_forbidden_in_strict_offline_mode")
+        if os.getenv("MED_TRANSCRIPT_DRAFTING_MODE", "deterministic") == "hosted":
+            raise ValueError("hosted_inference_forbidden_in_strict_offline_mode")
+        install()
     if os.getenv("MED_TRANSCRIPT_PROFILE") != "no_external_dependency":
         return
     if os.getenv("MED_TRANSCRIPT_OFFLINE") != "1":

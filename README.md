@@ -2,6 +2,14 @@
 
 **English-only synthetic/public-mock research prototype. Real-patient release is not authorized.**
 
+The [369-task in-house master ledger](evaluation/master-task-ledger.json) is tracked
+separately from the historical 247-task scorecard. The [master progress record](docs/master-checklist-progress.md)
+shows evidence gaps before any new task is called verified. For local synthetic
+work, set `STRICT_OFFLINE=1` before importing the application to deny
+non-loopback Python sockets, remote drafting configuration, and online Google
+sign-in. This Python guard does not contain native subprocesses; use an OS or
+container network boundary for a stronger offline guarantee.
+
 The [247-task engineering scorecard](docs/engineering-scorecard.md) records verified completion with hashed evidence. Start the account-free, model-free route with `python -m services.offline_demo`, or run `python -m services.offline_acceptance --version YOUR_NEW_VERSION`. See the [offline runbook](docs/demo-runbook-offline.md) and [external evidence limits](docs/remaining-external-evidence.md). No new installation, live OAuth activation or model download is required for this route.
 
 For a read-only local snapshot of checklist counts, saved test receipts, model
