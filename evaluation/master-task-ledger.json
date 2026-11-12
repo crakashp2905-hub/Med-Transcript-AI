@@ -1252,11 +1252,25 @@
       "id": "MTA-02-10",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add idempotency keys for all user-facing mutating requests; deny incompatible replay and double approval.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-10-ee2e1a3.json",
+        "services/api/idempotency.py",
+        "services/review/routers/approvals.py",
+        "evaluation/contracts/api-v1-compatible-v3.json",
+        "tests/test_foundation.py",
+        "tests/test_review_workflow.py"
+      ],
+      "source_commit": "ee2e1a38fcf69b71c548beec03358d3f004855ae",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-10-ee2e1a3.json",
+          "report_sha256": "8dd9b99a771d75e05d2e875bdb04052c04b083e09f90f5f93f5b0a5226c17c00",
+          "check": "mutating_request_idempotency",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

@@ -1,0 +1,100 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-10",
+  "status": "pass",
+  "source_commit": "ee2e1a38fcf69b71c548beec03358d3f004855ae",
+  "source_tree": "1786f7fdba169d0e1d9ff048b8a8ed3f830402ed",
+  "checks": {
+    "mutating_request_idempotency": {
+      "status": "pass",
+      "controls": [
+        "actor-scoped keys and canonical request fingerprints protect all application mutation route families",
+        "conflicting reuse is rejected; concurrent identical requests await a completed replay or return in-progress after a bounded wait",
+        "successful JSON and finite Response results replay for 24 hours; pending claims expire after 30 minutes",
+        "one-shot upload completion remains protected by upload state and content-integrity checks",
+        "approval replay returns one persisted approval; incompatible same-key replay is rejected",
+        "Google logout remains repeat-safe and retains origin plus CSRF validation",
+        "browser API calls attach keys to mutations; offline and browser test clients supply keys"
+      ],
+      "ci_run_id": 43277311799,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43277311799",
+      "ci_jobs": {
+        "test_dev_security": "success; 802 passed, 17 skipped",
+        "test_dev_asr_security": "success; 830 passed, 3 skipped",
+        "postgres": "success; 4 passed",
+        "review_auxiliary_suites": "success; 59 passed in each configured lane",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": [],
+      "source_sha256": {
+        "services/api/idempotency.py": "ce3684edbad4c084a2a859b31ea68d108d431b4a81e22b3036ac08e1213e384e",
+        "services/api/main.py": "e70ff349a316f5f58115fd6b2e7e2a492b7b38311e98628226eca4574105486b",
+        "services/api/auth.py": "f7680de1b97bd359f2a6521978bd35b3e24a1e08af8e2b6cc76c5cfd8275a96a",
+        "services/api/live_uploads.py": "187a1f3c1d0d12ec88e9b41aa6eae5a839fdb995d6a188147e7f15e11220e681",
+        "services/api/resumable.py": "88ef348386cf29f73b10e11eaf3ff0067d8350fffdb7efca6f9d23324126e78a",
+        "services/api/routers/audio.py": "beace75d67e6d6434dc8794f35c4c106438b643110c202a4854e20a3ead33ef6",
+        "services/api/routers/authorizations.py": "8f4d3e78c73719bd02b0a1671570358513544629fad361fb7ce32ccd73fac6e5",
+        "services/api/routers/encounters.py": "da2a3b72dd6a01029ae23e5e18ab4091084e74cbedb6d74771b0768a9b44bd50",
+        "services/api/routers/jobs.py": "dc320c38aca1f5d29b01ab65e7dca3f49ad005bd38b1e6de5f695b6b5255df71",
+        "services/review/clinical_routes.py": "3c388e1035b65340c3364298429e19d1d95eafc30c622d6b7b0c60537c5f9b53",
+        "services/review/metrics_routes.py": "03840d33ea92d57eb33e1d87e71b45d1dccab567486bedf094b29f2acde58fc2",
+        "services/review/routes.py": "eec0bbd7d46e80e907a0e325bbc4536c3c3709beccfa2e54fbc0665c08c1250d",
+        "services/review/service.py": "f7f6ad78df711ed665602b4cec873be8c0b3017d85a7574d34934986bf4145a3",
+        "services/review/routers/amendments.py": "7970d34fe1cce7a8503b13be509f96060bfd7724591e411e01f8c4e5777f86ad",
+        "services/review/routers/approvals.py": "35bb92e38a2e50603b21b5402cdbf2fb0dbb05cdf5bb451d24f4acea9dc35714",
+        "services/review/routers/exports.py": "4a9369c8c989400bcc2f95fc9c60e2a501f683ec79cc4a5c2137eb906438c862",
+        "services/review/routers/history.py": "d01205fea6a97750af43b6c4662a318dde50e6d10bd87a6d7c7d9823c550f74b",
+        "services/review/routers/notes.py": "8c986dbfe4fb71ae2b8b6e279c692c9f4cab5228099b9ab7943aec2604d98b28",
+        "services/review/routers/proposals.py": "08258a745e984b42d9ee5600c09df5082e3c1be2182ac17ee9b0ea0ca9bf661b",
+        "services/review/routers/transcripts.py": "39879b7723d703161d58ea0fb9645b5e344d97a8539c2b6c5b119f188cfded44",
+        "services/review/routers/verification.py": "a08ce808c9018326b08d5d0e98d6c56d20158477cfd1a312119ffc6ad42affe3",
+        "services/review/routers/workspace.py": "5142f663c0e85f1e5ba16495962dac734cf565bc168ae0440e80586c48c54875",
+        "services/offline_demo.py": "17acdfb312b28d3a95cb54fd9726197baa2417f6c983371905a054b3699ee4f0",
+        "apps/clinician-web/src/client/api.ts": "0d5034a26df72834e0fb875e3f801d411bcc81f1dc660ac5b74497226f88ef3f",
+        "apps/clinician-web/e2e/presentation.spec.ts": "df5c72be8d057e7ca99f7f52beed3ba749460f20d50f590c5a3f9563b2850fa2",
+        "apps/clinician-web/e2e/clinical-batches.spec.ts": "7a583e1f73419449c293f33167cd4a3de6a482ce6c90f89bc418cf8fb42bff68",
+        "apps/clinician-web/e2e/evidence-channel.spec.ts": "89aaa3e181a8db932d6983ca6402a88541a76e3ab5a58e43a460ba144f8d50b6",
+        "tests/test_foundation.py": "e65e389d55405183b97c3050b86804e56449319e86bb87d1ddc952b327869448",
+        "tests/test_review_workflow.py": "e4e57e07d8255029d7c87d0d60291004082edba793e9c83ef48041857c357aea",
+        "tests/test_router_contracts.py": "3ab29df78d5bc6bc996c4f7129294c1fe64a360bcf39baa0e911bbac915070ec",
+        "evaluation/contracts/api-v1-compatible-v3.json": "d5fb8147dbbda1cf24365e8bed25f9066c2a8ee06d5da13e512092c7fe13f88b",
+        "docs/service-catalog.md": "f4cf1f01106d41aaaf28372c5c0fdfc75e20fdf9b9f5e49f62b22274bf5a32db"
+      }
+    }
+  },
+  "ci_history": [
+    {
+      "run_id": 43274347650,
+      "source_commit": "bc444f6d37cf2c64e2c1471e76432c7c21b2904f",
+      "status": "fail",
+      "finding": "Python format check identified a formatting issue; corrected in follow-up."
+    },
+    {
+      "run_id": 43274606791,
+      "source_commit": "3ad4b1d2f1140e84e34ee775e9c02e423a9f40fd",
+      "status": "fail",
+      "finding": "Four Python tests exposed contract/demo updates and one-shot upload replay semantics; corrected."
+    },
+    {
+      "run_id": 43276278911,
+      "source_commit": "917de30365818f6c18e3528c97389eace43e5742",
+      "status": "fail",
+      "finding": "Formatting check caught a benchmark test formatting issue from a concurrent main-branch commit; corrected."
+    },
+    {
+      "run_id": 43276544507,
+      "source_commit": "42db85fa6b742aee58cc3d831273d762cb6fb5f9",
+      "status": "pass",
+      "finding": "All CI jobs passed before the dedicated incompatible approval replay regression was added."
+    }
+  ],
+  "limitations": [
+    "The 24-hour completed-response cache and 30-minute pending claim are bounded idempotency windows; retries must reuse the same key within that window.",
+    "The mutation and generic replay-cache write are separate transactions. A process failure after a committed side effect but before response caching leaves a pending fence until its 30-minute expiry; cross-system exactly-once behavior is not claimed.",
+    "The legacy one-shot PUT audio content endpoint uses required keys plus state/hash guards and returns conflict for an already completed upload rather than caching its response.",
+    "The regression suite uses synthetic fixtures. No paid providers, external validation, or patient data were used; CI success does not authorize clinical deployment."
+  ],
+  "clinical_release_authorized": false
+}
