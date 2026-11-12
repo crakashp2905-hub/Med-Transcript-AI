@@ -1,0 +1,38 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-00-12",
+  "source_commit": "3931af027a53c25cc6c5cdab1b8a4dda04bff0ea",
+  "runtime": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "pytest 9.0.3",
+    "ruff": "ruff 0.15.13"
+  },
+  "runtime_sha256": "1c02c88304c0a1bc36a5877d33a3f37641a4d0275f3a32a389052e09e01ce8bf",
+  "source_file_sha256": {
+    "services/master_ledger.py": "467a3353fb2dd39b43648efa2bfc5c0c968bc41e1b69ffa9049e5b3c7430f8db",
+    "tests/test_master_ledger.py": "c830ddc230b3546206cc39a72255e565936484b95c9f42c700e49dcef9ebf9f2"
+  },
+  "checks": {
+    "verified_task_receipt_gate": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_master_ledger.py -q",
+      "result": "2 passed, 1 upstream deprecation warning",
+      "coverage": [
+        "missing test receipt rejected",
+        "source/runtime hashes validated",
+        "runtime hash tampering rejected",
+        "exact commit required"
+      ]
+    },
+    "lint": {
+      "status": "pass",
+      "command": "python -m ruff check services/master_ledger.py tests/test_master_ledger.py",
+      "result": "All checks passed"
+    }
+  },
+  "limitations": [
+    "Runtime integrity validates a canonical hash of declared runtime metadata; it is not an externally attested machine identity.",
+    "Existing implemented/blocked tasks are not retroactively upgraded to verified."
+  ]
+}

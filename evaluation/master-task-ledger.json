@@ -263,12 +263,23 @@
       "id": "MTA-00-12",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Make every task require tests and a source- and runtime-hash evidence receipt before mark verified.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/master_ledger.py",
+        "tests/test_master_ledger.py",
+        "evaluation/reports/master-task-mta-00-12-3931af0.json"
+      ],
+      "source_commit": "3931af027a53c25cc6c5cdab1b8a4dda04bff0ea",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-00-12-3931af0.json",
+          "report_sha256": "c2edfe0a93d13766065ea5ab6a3d87e1ddf6c5d1eaaf0dabf2447f3e675b4cd2",
+          "check": "verified_task_receipt_gate"
+        }
+      ],
+      "blocker": "Runtime metadata is hash-bound but is not cryptographically attested by an external runner; no task is marked verified solely from the current work."
     },
     {
       "id": "MTA-00-13",
