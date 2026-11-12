@@ -623,3 +623,33 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   hashes, manifest/suite bindings, common denominators, and the unchanged 5% gate.
   This confirms only the development baseline; every arm still fails admission,
   and it does not qualify Omi for clinical use.
+- **MTA-ASR-C10:** Partial and still open. The existing large-v3
+  speech-aware receipt contains 14/16 records (7 clean, 7 distracted) and is
+  explicitly `complete: false`; both records for `day1_consultation08` are
+  missing. Its measured completed cases consumed about 14,217 seconds of
+  inference, before model loading. The runner supports hash-validated resume,
+  but completing the remaining full-consultation arms requires a sustained
+  benchmark run. No missing samples are imputed and no C10 completion claim is
+  made. Peak RAM is also absent from the historical mode receipts, so it must
+  be measured in any accepted rerun.
+- **MTA-ASR-D01:** The operational application path remains the pinned
+  Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration
+  (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are
+  included in runtime receipts, and the adapter uses deterministic decoding
+  options (`temperature=0`, VAD off, no previous-text conditioning). The
+  backend contract regression checks native segment timestamps, profile hash,
+  and unsupported confidence. No alternate decoder was promoted. This records
+  the preserved contract; exact deployment profile regressions still need to
+  run on the target deployment host.
+- **MTA-ASR-D05:** Not implemented for current backends. The backend protocol
+  exposes n-best and confidence capability declarations; Faster Whisper, Omi
+  and Parakeet report unsupported rather than manufacturing scores. The
+  current adapters therefore cannot provide native n-best token/logprob
+  capture. Confidence remains null/unsupported and no calibration claim is
+  made. Supporting backends and native score semantics are still required.
+- **MTA-ASR-I15:** Research summary and paper section are present in
+  `docs/asr-rnd-research-section.md`, covering the hypothesis, method,
+  baselines, negative findings, novelty limits, ablation gaps, ethics and
+  reproducibility pointers. No novel clinical acoustic reranking claim is
+  made; related-work comparison and the full matched-compute ablation matrix
+  remain open.
