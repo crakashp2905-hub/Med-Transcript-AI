@@ -2,12 +2,32 @@
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+PYTEST_FAILURE = re.compile(r"^FAILED ([A-Za-z0-9_./-]+)::([A-Za-z_][A-Za-z0-9_]*)")
+PYTEST_SUMMARY = re.compile(
+    r"\b\d+ (?:passed|failed|skipped|warnings?|errors?|deselected|xfailed|xpassed)\b"
+)
+
+
+def safe_pytest_diagnostics(output):
+    """Return aggregate test counts and parameter-free test names only."""
+    lines = (output or "").splitlines()
+    summary_line = next(
+        (line for line in reversed(lines) if PYTEST_SUMMARY.search(line)), ""
+    )
+    summary = ", ".join(PYTEST_SUMMARY.findall(summary_line)) or "summary unavailable"
+    failures = []
+    for line in lines:
+        match = PYTEST_FAILURE.match(line)
+        if match:
+            failures.append(f"{match.group(1)}::{match.group(2)}")
+    return {"summary": summary, "failed_tests": sorted(set(failures))[:50]}
 
 
 def verification_steps(*, python_only=False):
@@ -53,9 +73,10 @@ def run_verification(*, python_only=False, runner=subprocess.run):
             returncode = 127
             print(f"{name}: executable unavailable ({type(exc).__name__})")
         result_status = "pass" if returncode == 0 else "fail"
-        results.append(
-            {"check": name, "status": result_status, "exit_code": returncode}
-        )
+        entry = {"check": name, "status": result_status, "exit_code": returncode}
+        if name == "python_tests":
+            entry.update(safe_pytest_diagnostics(getattr(result, "stdout", "")))
+        results.append(entry)
         print(json.dumps(results[-1]), flush=True)
         if returncode:
             break

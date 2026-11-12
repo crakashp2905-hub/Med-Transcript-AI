@@ -1,4 +1,18 @@
-from services.verify import ROOT, run_verification, verification_steps
+from services.verify import (
+    ROOT,
+    run_verification,
+    safe_pytest_diagnostics,
+    verification_steps,
+)
+
+
+def test_safe_pytest_diagnostics_excludes_parameter_payload_and_assertion_text():
+    output = """FAILED tests/test_example.py::test_case[private fixture payload] - assertion includes source text
+================== 1 failed, 12 passed in 0.50s =================="""
+    assert safe_pytest_diagnostics(output) == {
+        "summary": "1 failed, 12 passed",
+        "failed_tests": ["tests/test_example.py::test_case"],
+    }
 
 
 def test_verification_plan_orders_quality_checks_before_tests_and_frontend():
