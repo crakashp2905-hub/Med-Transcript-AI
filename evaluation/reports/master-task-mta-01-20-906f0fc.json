@@ -1,0 +1,28 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-20",
+  "status": "pass",
+  "source_commit": "906f0fc688fb0b0f5693fe913087bc459e82f4b8",
+  "checks": {
+    "per_attempt_commit_summary": {
+      "status": "pass",
+      "summary_path": "docs/release-attempt-43250410551.md",
+      "summary_sha256": "3be3b755e2117b0f5b4572665e277b4883e0043b83b55e15eea313f0e8ee75dd",
+      "summary_json": "evaluation/reports/release-attempt-43250410551.json",
+      "summary_json_sha256": "35267536e627a9ccdd55bd98f7c59042823dc1692bf76347fa48f000cee48baf",
+      "ci_run_id": 43250410551,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43250410551",
+      "ci_status": "pass",
+      "offline_acceptance_status": "not_available",
+      "ci_jobs": {
+        "python_matrix": "success",
+        "frontend": "success",
+        "postgres": "success",
+        "container": "success"
+      }
+    }
+  },
+  "limitations": [
+    "The summary marks offline acceptance not available because there is no offline acceptance report for this exact source commit. Earlier reports are not substituted. Clinical release remains unauthorized."
+  ]
+}

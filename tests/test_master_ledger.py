@@ -104,6 +104,13 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
     )
     assert dependency_audit["status"] == "blocked_missing_asset"
     assert "No local offline vulnerability scanner" in dependency_audit["blocker"]
+    release_summary = next(
+        item for item in document["tasks"] if item["id"] == "MTA-01-20"
+    )
+    assert release_summary["status"] == "implemented"
+    assert (
+        release_summary["source_commit"] == "906f0fc688fb0b0f5693fe913087bc459e82f4b8"
+    )
 
 
 def test_verified_task_requires_exact_commit_test_and_runtime_hashes(

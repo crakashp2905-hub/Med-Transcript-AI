@@ -1018,12 +1018,25 @@
       "id": "MTA-01-20",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Publish a one-page exact-commit CI and offline acceptance summary for each release attempt.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-01-20-906f0fc.json",
+        "docs/release-attempt-43250410551.md",
+        "evaluation/reports/release-attempt-43250410551.json",
+        "services/release_attempt_summary.py",
+        ".github/workflows/ci.yml",
+        "tests/test_release_attempt_summary.py"
+      ],
+      "source_commit": "906f0fc688fb0b0f5693fe913087bc459e82f4b8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-20-906f0fc.json",
+          "report_sha256": "bd08940b85dc41be27606ddf561534a42d0a1a044da0c68cc244c9b29738ddaa",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Each CI attempt now publishes an exact-source summary. Current exact-commit offline acceptance is unavailable and explicitly shown as such; clinical release remains unauthorized."
     },
     {
       "id": "MTA-02-01",
