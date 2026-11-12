@@ -517,3 +517,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   and biased decoding on identical crops. The full declared matrix (VAD-only,
   terminology-only, repair-only and full pipeline under equal compute) has not
   been run on one frozen cohort, so no end-to-end method attribution is claimed.
+- **MTA-ASR-I03:** `FAIL` for every currently evaluated model/system profile.
+  The unchanged admission ceiling is normalized WER <=5%; the best expanded
+  short-clip model result is still 8.70%, and full-consultation/detailed runs
+  are worse. D10's gate remains fail-closed and no inference-mode promotion is
+  allowed. Relative improvement does not change this result.
