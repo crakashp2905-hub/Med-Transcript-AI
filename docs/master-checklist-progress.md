@@ -20,6 +20,12 @@ those claims. At import, all 369 entries were `not_started`; this meant
   audits the immutable baseline receipt and its SHA-256 against the declared
   baseline commit. MTA-00-01 is implemented; the initial CI failure remains
   recorded as a failure in the baseline receipt.
+- MTA-00-02 is implemented at source commit `eab55f948573a5dcb5ad07e884bcbefc28026206`.
+  The README and offline scope ADR freeze Version 1 as English-only,
+  clinician-supervised documentation assistance. The exact-source offline
+  acceptance v3 receipt records 287 backend tests passed and one skipped,
+  including the English-only schema rejection test; that skip is retained as
+  a limitation, not counted as an additional pass.
 - The prior source-bound offline report, [`v21`](../evaluation/reports/offline-acceptance-v21.json),
   passed its seven software checks at `b939377`. It does not prove current
   post-format source, 5% ASR accuracy, or independent clinical performance.

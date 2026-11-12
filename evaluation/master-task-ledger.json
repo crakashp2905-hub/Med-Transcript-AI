@@ -32,11 +32,22 @@
       "id": "MTA-00-02",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Freeze Version 1 as English-only, documentation-assistance only, clinician-supervised, no independent diagnosis or prescribing.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "README.md",
+        "docs/architecture-decisions/001-offline-scope-and-release-levels.md",
+        "tests/test_offline_engineering.py"
+      ],
+      "source_commit": "eab55f948573a5dcb5ad07e884bcbefc28026206",
+      "test_results": [
+        {
+          "report": "evaluation/reports/offline-acceptance-v3.json",
+          "report_sha256": "885b86cf5ec02429e866d549c85b3a4857ae067b13696800fda1a5b2c94844b6",
+          "check": "backend_tests",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
