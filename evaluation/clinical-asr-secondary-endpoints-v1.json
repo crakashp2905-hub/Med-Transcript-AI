@@ -1,0 +1,38 @@
+{
+  "schema_version": "clinical_asr_secondary_endpoints_v1",
+  "primary_endpoint": {
+    "id": "failure_inclusive_normalized_word_error_rate",
+    "definition": "Normalized substitutions, deletions, and insertions divided by every frozen reference word; every failed case remains a full-reference deletion.",
+    "unchanged": true,
+    "maximum_admitted": 0.05
+  },
+  "secondary_endpoints": {
+    "exact_concept": {
+      "metric_version": "annotated_concepts_exact_v1",
+      "definition": "Multiset precision, recall, omissions, insertions, and per-category counts over exact concept signatures: category, concept, subject, assertion, temporality, plus any frozen flat slots. Evidence coordinates and annotation IDs are provenance and do not affect matching."
+    },
+    "impact_weighted_concept": {
+      "metric_version": "human_impact_weighted_concept_error_v1",
+      "definition": "Exact concept omissions and insertions are multiplied by externally supplied positive finite impact weights keyed by canonical exact concept signature. Weighted error rate is (weighted omissions + weighted insertions) / total expected weight; it is a cost ratio and may exceed one. Weighted precision and recall use matched, observed, and expected weight respectively.",
+      "weight_source": "independently reviewed and adjudicated annotation input; no default weights are assigned",
+      "weight_provenance": "canonical JSON of the complete concept-weight mapping is SHA-256 bound in every metric result",
+      "missing_weight_policy": "fail closed if any expected or observed exact concept signature has no supplied weight"
+    }
+  },
+  "annotation_source": {
+    "schema": "evaluation/gold-concept-schema-v1.json",
+    "workflow": "services/annotation_workflow.py",
+    "requirements": [
+      "source-linked evidence quote and interval",
+      "complete independent review packets",
+      "two distinct reviewer identities and hash-bound adjudication for disagreements",
+      "clinical vocabulary and flat extra slots frozen before annotation"
+    ]
+  },
+  "prohibitions": [
+    "WER is never modified by a secondary metric.",
+    "ASR predictions, model consensus, or synthetic fixtures are not clinical gold.",
+    "Automated metric output does not establish clinical validity or release readiness."
+  ],
+  "clinical_gold_available_in_repository": false
+}

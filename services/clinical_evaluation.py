@@ -44,6 +44,40 @@ def adversarial(path, *, include_relationships=True):
     }
 
 
+def annotated(path):
+    raw = Path(path).read_bytes()
+    source = json.loads(raw)
+    cases = source.get("cases")
+    if not isinstance(cases, list) or not cases:
+        raise ValueError("annotated_cases_required")
+    policy_path = (
+        Path(__file__).resolve().parents[1]
+        / "evaluation"
+        / "clinical-asr-secondary-endpoints-v1.json"
+    )
+    return {
+        "source_sha256": hashlib.sha256(raw).hexdigest(),
+        "secondary_endpoint_registry_sha256": hashlib.sha256(
+            policy_path.read_bytes()
+        ).hexdigest(),
+        "cases": [
+            {
+                "id": case["id"],
+                **evaluate(
+                    case["reference"],
+                    case["hypothesis"],
+                    case["expected"],
+                    case["observed"],
+                    case.get("failed", False),
+                    impact_weights=case.get("impact_weights"),
+                ),
+            }
+            for case in cases
+        ],
+        "limitation": "Annotation quality and impact weights require independent clinical review; automated metrics do not establish clinical validity.",
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--adversarial")
@@ -58,26 +92,19 @@ def main():
     if args.adversarial:
         report = adversarial(args.adversarial)
     else:
-        raw = Path(args.annotated).read_bytes()
-        cases = json.loads(raw)["cases"]
-        report = {
-            "source_sha256": hashlib.sha256(raw).hexdigest(),
-            "cases": [
-                {
-                    "id": c["id"],
-                    **evaluate(
-                        c["reference"],
-                        c["hypothesis"],
-                        c["expected"],
-                        c["observed"],
-                        c.get("failed", False),
-                    ),
-                }
-                for c in cases
-            ],
-            "limitation": "Annotation quality requires independent clinical adjudication.",
-        }
-    Path(args.output).write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        report = annotated(args.annotated)
+    policy_path = (
+        Path(__file__).resolve().parents[1]
+        / "evaluation"
+        / "clinical-asr-secondary-endpoints-v1.json"
+    )
+    report["secondary_endpoint_registry_sha256"] = hashlib.sha256(
+        policy_path.read_bytes()
+    ).hexdigest()
+    output = Path(args.output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("x", encoding="utf-8", newline="\n") as destination:
+        destination.write(json.dumps(report, indent=2) + "\n")
 
 
 if __name__ == "__main__":
