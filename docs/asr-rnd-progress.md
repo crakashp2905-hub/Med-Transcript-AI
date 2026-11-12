@@ -621,6 +621,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   audio upload through integrity-checked approved export (1 passed). This is
   reproducible engineering-path evidence only: the review/approval actions are
   scripted and do not close independent clinical acceptance.
+- **MTA-ASR-I14 update:** Published
+  evaluation/reports/asr-objective-release-v2.json, source-bound to commit
+  cf538fc33a1975121af7add8ee70438aca87c561. It records the real-model
+  engineering-path result while retaining FAIL for product acceptance and
+  model qualification, and BLOCKED_MISSING_RESOURCE for clinical safety and
+  exact-HEAD release CI. The earlier v1 decision remains preserved.
 - **MTA-ASR-C02:** Verified and regression-pinned the current full-consultation
   fixed-window baseline before further segmentation claims. The source-bound
   ranking identifies `omi-med-stt-v1-native-empty` first at 16.41% clean / 17.22%
