@@ -297,3 +297,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   units; tests/test_asr_number_format.py: 3 passed and postprocess controls: 3
   passed. Ruff and format checks pass. Status: partial; no additional unit
   systems or app publication integration are claimed.
+- **MTA-ASR-E07:** Added an ASR candidate comparison wrapper around the
+  conservative source-vs-claim rules. It flags negation-scope, medication,
+  numeric/unit and medication-dose binding conflicts as review-required; it
+  always keeps automatic adoption disabled and states that candidate
+  agreement does not verify clinical truth. Mechanistic synthetic tests cover
+  scope movement and aspirin/amlodipine dose swaps; tests/test_asr_clinical_entities.py:
+  5 passed. Ruff and format checks pass. Status: partial; this comparison is
+  rule-based, not clinically validated, and is not yet connected to every
+  candidate workflow.

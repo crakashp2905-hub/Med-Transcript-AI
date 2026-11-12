@@ -1,6 +1,10 @@
 import pytest
 
-from services.asr.clinical_entities import ClinicalEntity, extract_medication_entities
+from services.asr.clinical_entities import (
+    ClinicalEntity,
+    compare_candidate_safety,
+    extract_medication_entities,
+)
 
 
 def test_medication_strengths_bind_to_their_own_drugs():
@@ -34,3 +38,23 @@ def test_negation_and_affirmation_are_kept_on_separate_clauses():
 def test_typed_span_rejects_inverted_offsets():
     with pytest.raises(ValueError, match="invalid_entity_span"):
         ClinicalEntity(kind="strength", text="5 mg", start_char=5, end_char=4)
+
+
+def test_candidate_comparison_blocks_negation_scope_and_drug_dose_swaps():
+    negation = compare_candidate_safety("No fever but cough.", "Fever but no cough.")
+    assert "negation_scope_disagreement" in negation["risk_reasons"]
+    assert negation["review_required"] is True
+    doses = compare_candidate_safety(
+        "Take aspirin 75 mg and amlodipine 5 mg daily.",
+        "Take aspirin 5 mg and amlodipine 75 mg daily.",
+    )
+    assert "medication_dose_assignment_disagreement" in doses["risk_reasons"]
+    assert doses["automatic_adoption"] is False
+    assert doses["clinical_truth_verified"] is False
+
+
+def test_candidate_agreement_does_not_claim_truth_or_adopt():
+    result = compare_candidate_safety("No fever.", "No fever.")
+    assert result["review_required"] is False
+    assert result["clinical_truth_verified"] is False
+    assert result["automatic_adoption"] is False

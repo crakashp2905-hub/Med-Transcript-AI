@@ -86,3 +86,30 @@ def extract_medication_entities(text: str) -> list[ClinicalEntity]:
                 )
             )
     return entities
+
+
+def compare_candidate_safety(original: str, alternative: str) -> dict:
+    """Flag source-candidate conflicts; agreement is not a truth or adoption gate."""
+    if not isinstance(original, str) or not isinstance(alternative, str):
+        raise ValueError("candidate_text_required")
+    from services.review.clinical import check_claim
+
+    findings = check_claim(original, alternative)
+    codes = sorted({finding["code"] for finding in findings})
+    risk_codes = {
+        "negation_disagreement",
+        "negation_scope_disagreement",
+        "dose_or_unit_disagreement",
+        "medication_or_allergen_disagreement",
+        "medication_dose_assignment_disagreement",
+    }
+    conflicts = [code for code in codes if code in risk_codes]
+    return {
+        "original_candidate": original,
+        "alternative_candidate": alternative,
+        "risk_reasons": conflicts,
+        "review_required": bool(conflicts),
+        "automatic_adoption": False,
+        "clinical_truth_verified": False,
+        "status": "review_required" if conflicts else "no_rule_conflict_detected",
+    }
