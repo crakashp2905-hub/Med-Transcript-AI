@@ -1732,11 +1732,30 @@
       "id": "MTA-03-14",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Provide an offline public-mock audio real-inference smoke path only when an admitted installed adapter is available.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/asr/offline_smoke.py",
+        "tests/test_asr_offline_smoke.py",
+        "README.md",
+        "evaluation/datasets/primock57-smoke-v1/manifest.json",
+        "evaluation/reports/master-task-mta-03-14-0022304.json"
+      ],
+      "source_commit": "002230419599994d101eb7fe484e441ae1f6b1a3",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-14-0022304.json",
+          "report_sha256": "a2482a86c02907f95a6f7270fe5b4f8db03bb710b4ba792a53b1416be4d8f8fb",
+          "check": "offline_smoke_guard_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-03-14-0022304.json",
+          "report_sha256": "a2482a86c02907f95a6f7270fe5b4f8db03bb710b4ba792a53b1416be4d8f8fb",
+          "check": "ci_exact_commit",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

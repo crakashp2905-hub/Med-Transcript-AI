@@ -1,0 +1,95 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-14",
+  "status": "pass",
+  "source_commit": "002230419599994d101eb7fe484e441ae1f6b1a3",
+  "source_tree": "6248cc27fb8ad4927bc8193d15e75b76054eb124",
+  "checks": {
+    "offline_smoke_guard_tests": {
+      "status": "pass",
+      "summary": "5 passed",
+      "details": [
+        "missing admission never starts inference",
+        "denied admission never starts inference",
+        "exact profile digest required",
+        "only frozen public mock manifest accepted",
+        "matching admitted digest hands off to failure-inclusive evaluator"
+      ]
+    },
+    "focused_ci_doc_and_catalog_regressions": {
+      "status": "pass",
+      "summary": "2 passed"
+    },
+    "ci_exact_commit": {
+      "status": "pass",
+      "run_id": 43306816859,
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43306816859",
+      "jobs": {
+        "test (dev,security)": "success; 859 passed, 17 skipped",
+        "test (dev,asr,security)": "success; 887 passed, 3 skipped",
+        "postgres": "success; 4 passed",
+        "frontend": "success",
+        "container": "success",
+        "release-summary": "success"
+      }
+    },
+    "ruff": {
+      "status": "pass",
+      "checks": [
+        "ruff check",
+        "ruff format --check"
+      ]
+    },
+    "real_local_inference": {
+      "status": "blocked",
+      "reason": "available_not_admitted; no matching admission record exists; inference was not launched"
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43306816859,
+    "workflow_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43306816859"
+  },
+  "runtime_sha256": "dffc536e4b3959e490113e46aece8ff66628fdd1d8d0670f62f5d577526b7bde",
+  "source_sha256": {
+    "services/asr/offline_smoke.py": "3a6f4886f9d1c5f6787d6f5ad1f376094233799a5eaa18c30b764aef5438d5dc",
+    "tests/test_asr_offline_smoke.py": "a6e76617325352391ffdb2f0595337f1a1dca352c34747cd0512f2e5c1f4a207",
+    "README.md": "d5c461648738fbc36c44731ed2af8847784fa5d6525fe31a4667d6c270614057",
+    "docs/service-catalog.md": "b6b1391bf7ce464ff0cc0d19b7d889fc4aeef7a39127468f43770649d4558f29",
+    "data/asr-smoke-profiles.json": "8c6019d77bd64140428c3c689b911411773fd7fb2b5435ad3004716d3419dbb1",
+    "evaluation/datasets/primock57-smoke-v1/manifest.json": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+    "evaluation/datasets/primock57-smoke-v1/lock.json": "f6a0e4a7388b2ae84f3da7818a118a4f1c57e255537a325fb8eb650ecc7bb214"
+  },
+  "dataset": {
+    "id": "primock57-smoke-v1",
+    "manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+    "classification": "committed public mock, frozen; no assets fetched"
+  },
+  "local_profile": {
+    "profile_id": "tiny-en-smoke-v1",
+    "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+    "availability": "available_not_admitted",
+    "artifact_sha256": {
+      "config.json": "14b1b421a90349bc551b881461426b561a874049cb9e4c4864f2ca384f6a7cc5",
+      "model.bin": "1a5afae06a4db91c975c9a9d78be5cc110ee4ea022ad57d55492e4550e936b2a",
+      "tokenizer.json": "929c5252409436dce1b38a75d1abbcb5e132d170d8e324e4e04ed915fa2d22df",
+      "vocabulary.txt": "ff77588746d3a2595d32ab5b69ffd7b95ce2441ac57533cb66fc3eb575a115cf"
+    },
+    "automatic_download": false,
+    "admission_record": "missing"
+  },
+  "preserved_failed_attempts": [
+    {
+      "commit": "a42ffba5bea415d36b5a2e1ac66407760c2e676f",
+      "run_id": 43306219678,
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43306219678",
+      "status": "failed",
+      "summary": "2 documentation integrity failures: example output path absent; committed generated service catalog stale. Original run retained."
+    }
+  ],
+  "limitations": [
+    "No ASR inference was run because the exact installed profile has no admission record. The evaluator handoff is tested with a test double only; this is not a model accuracy result.",
+    "No clinical release is authorized."
+  ]
+}
