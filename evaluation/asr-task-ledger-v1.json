@@ -1,6 +1,6 @@
 {
   "schema_version": "asr_addendum_task_ledger_v1",
-  "source_commit": "377f267f0d6860cfea0d4639cc1fa9b8f990f70b",
+  "source_commit": "3ad4b1d2f1140e84e34ee775e9c02e423a9f40fd",
   "source_addendum": {
     "filename": "Med_Transcript_AI_InHouse_ASR_RnD_Pipeline_Addendum.md",
     "sha256": "5754fd9fe08008ee844d2a63998ee5893b72ccb1c828aebf54f7682b26fbfd4c",
@@ -8,7 +8,7 @@
   },
   "progress_record": {
     "path": "docs/asr-rnd-progress.md",
-    "sha256": "4cd5243f7e9d515d1af586eddc9c6472cbedcac725a75e74c18a726f46487240"
+    "sha256": "65a0df6dfd1da157e401cbaa3c162aefb5e2cd55bb053ee6776415367c08bd4a"
   },
   "invariants": {
     "maximum_normalized_wer": 0.05,
@@ -474,9 +474,9 @@
       "status": "PARTIAL",
       "progress_evidence": [
         {
-          "line": 660,
-          "text": "- **MTA-ASR-C10:** Partial and still open. The source-bound v3 large-v3 speech-aware receipt contains all 16 records (8 clean, 8 distracted), 0 failed samples, and condition WER 23.47% / 24.07%, both above the 5% gate. Whole-cohort latency sums include 14 reused historical cases, so they are not a fresh full-run latency result. The resumed process measured 3,156,635,648 peak resident bytes (Windows peak working set, model-load-inclusive) against the 16 GiB cap; that RAM scope covers only the resumed process and two newly run cases. Other segmentation modes still lack fresh resource receipts; the full C10 resource/latency matrix remains open and no completion claim is made.",
-          "status_basis": "Partial and still open. The source-bound v3 large-v3 speech-aware receipt contains all 16 records (8 clean, 8 distracted), 0 failed samples, and condition WER 23.47% / 24.07%, both above the 5% gate. Whole-cohort latency sums include 14 reused historical cases, so they are not a fresh full-run latency result. The resumed process measured 3,156,635,648 peak resident bytes (Windows peak working set, model-load-inclusive) against the 16 GiB cap; that RAM scope covers only the resumed process and two newly run cases. Other segmentation modes still lack fresh resource receipts; the full C10 resource/latency matrix remains open and no completion claim is made."
+          "line": 663,
+          "text": "- **MTA-ASR-C10:** Partial and still open. Suite v4 large-v3 fixed ran all 16 manifest cases (8 clean/8 distracted), zero failed cases/chunks, full input coverage, and exact suite/manifest bindings. It reproduces immutable v2 edit counts and reference denominators (clean 2,831/13,683; distracted 2,967/13,683), with fresh full-run latency 6,416.6/6,489.1 seconds and model-load-inclusive peak working set 3,444,953,088 bytes, within the 16 GiB budget. A focused regression test passed, binding this report to the full case manifest, historical edit counts, 5% gate and memory receipt. The 5% gate still fails. The v3 speech-aware report has 16/16 cases but 14 reused; its latency and RAM scope are not fresh full-run measurements. Other predeclared modes/candidates still need fresh resource and latency receipts, so the C10 matrix is incomplete.",
+          "status_basis": "Partial and still open. Suite v4 large-v3 fixed ran all 16 manifest cases (8 clean/8 distracted), zero failed cases/chunks, full input coverage, and exact suite/manifest bindings. It reproduces immutable v2 edit counts and reference denominators (clean 2,831/13,683; distracted 2,967/13,683), with fresh full-run latency 6,416.6/6,489.1 seconds and model-load-inclusive peak working set 3,444,953,088 bytes, within the 16 GiB budget. A focused regression test passed, binding this report to the full case manifest, historical edit counts, 5% gate and memory receipt. The 5% gate still fails. The v3 speech-aware report has 16/16 cases but 14 reused; its latency and RAM scope are not fresh full-run measurements. Other predeclared modes/candidates still need fresh resource and latency receipts, so the C10 matrix is incomplete."
         }
       ],
       "completion_claim": false

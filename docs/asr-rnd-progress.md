@@ -660,22 +660,24 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   hashes, manifest/suite bindings, common denominators, and the unchanged 5% gate.
   This confirms only the development baseline; every arm still fails admission,
   and it does not qualify Omi for clinical use.
-- **MTA-ASR-C10:** Partial and still open. The source-bound v3 large-v3
-  speech-aware receipt now contains all 16 records (8 clean, 8 distracted),
-  with 0 failed samples. Its clean/distracted WER is 23.47% / 24.07%, both
-  above the unchanged 5% gate. All-mode wall time is 7,849 / 7,663 seconds;
-  these totals include 14 reused historical cases and are not a fresh whole-
-  cohort latency run. The resumed process measured 3,156,635,648 peak resident
-  bytes (Windows peak working set, model-load-inclusive) against the 16 GiB
-  cap; that resource scope covers the resumed process and two newly run cases,
-  not the reused cases. This completes the missing large-v3 speech-aware WER
-  cases without imputing data. Other segmentation modes still lack fresh
-  resource receipts and the full C10 resource/latency matrix remains open; no
-  C10 completion claim is made.
+- **MTA-ASR-C10:** Partial and still open. The source-bound v4 large-v3 fixed
+  run contains all 16 records (8 clean, 8 distracted), with 0 failed samples.
+  It exactly reproduces the immutable v2 fixed-mode edit counts and denominator:
+  clean 20.69% WER (2,831/13,683) and distracted 21.68% (2,967/13,683), both
+  above the unchanged 5% gate. Fresh full-run latency is 6,416.6 / 6,489.1
+  seconds; peak resident memory is 3,444,953,088 bytes (Windows peak working set,
+  model-load-inclusive) against the 16 GiB cap. The source-bound v3 large-v3
+  speech-aware receipt also has all 16 cases (8 per condition), with 0 failed
+  samples, but reuses 14 v2 cases: its 7,848.8 / 7,663.1 second condition
+  totals include historical timing and its 3,156,635,648-byte resource receipt
+  covers the resumed process and two new cases only. C10 still lacks fresh
+  full-run resource/latency receipts for the other predeclared modes and the
+  complete candidate matrix; no C10 completion claim is made.
 - **MTA-ASR-C10 instrumentation update:** New benchmark receipts now capture
   process peak resident bytes, measurement method, model-load-inclusive scope,
   resumed/full cohort scope, and the budget verdict. The source-bound
-  detailed-suite-v3 fixes a 16 GiB process RSS ceiling with one local model
+  detailed-suite-v4 refreshes the frozen execution-source hashes and fixes a
+  16 GiB process RSS ceiling with one local model
   process. Historical reports are unchanged; no C10 mode is considered complete
   from instrumentation alone.
 - **MTA-ASR-C10 large-v3 speech-aware resume:** `evaluation/detailed-suite-v3.json`
@@ -684,6 +686,15 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   is complete at 16/16 with no failed samples and includes the resumed-suffix
   resource measurement. Its report SHA-256 is
   `223635a95466d9d2752d09277b522f5b052ceccf634b9d7efab1d567a7aedc23`.
+- **MTA-ASR-C10 large-v3 fixed full run:** `evaluation/detailed-suite-v4.json`
+  source-bound a fresh 16-case run after Ruff changed the v3 execution source.
+  The report `evaluation/runs/meddistract-detailed-v4/faster-whisper-large-v3.fixed.json`
+  matches v2 edit counts exactly, reports fresh per-condition latency and a
+  full-process peak working set, and remains a development failure at the 5%
+  gate. `tests/test_detailed_benchmark.py::test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline`
+  passed (1 test), checking all manifest cases, coverage, failure inclusion,
+  immutable edit counts, the 5% gate and full-run memory budget. Its SHA-256 is
+  `05da2b5a3004cc9d91e45acdd857abaf70fc00b0b1586706249d0958b2fa1840`.
 - **MTA-ASR-D01:** The operational application path remains the pinned
   Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration
   (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are
