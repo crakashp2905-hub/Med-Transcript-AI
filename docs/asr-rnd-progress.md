@@ -500,3 +500,7 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   deletion mechanism has been tested. Current E01 lexicon entries bind to
   licensed development-manifest digests and are write-once artifacts; that
   provenance is not equivalent to revocation/unlearning propagation.
+- **MTA-ASR-H10:** No adaptation-attributable gain is established (`null`).
+  No correction model, LoRA adapter or rescoring model was trained. The E08
+  hotword pilot changes decoding only and worsened aggregate WER on its small
+  matched subset; it cannot be credited as an adaptation gain.
