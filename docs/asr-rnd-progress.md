@@ -289,6 +289,12 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   checks cover explicit medication and dose swaps, but are not phonetic
   confusability evidence. No clinical correctness claim is made; completion
   requires an approved, rights-reviewed confusable set and reference labels.
+- **MTA-ASR-E09:** Partial, metadata-limited. Audited the six frozen
+  development dataset manifests; none declares accent/dialect labels. No
+  accent subgroups or accent identity were inferred from audio or names.
+  Accordingly no accent-related accuracy result is reported. Completion
+  requires legally available English mock data with actual reviewed metadata
+  and a sufficient matched denominator.
 - **MTA-ASR-E06:** Added a finite candidate formatter limited to whitespace
   and case normalization for recognized numbers with supported explicit units.
   It verifies the before/after quantity signature, preserves the original
