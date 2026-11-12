@@ -14,6 +14,7 @@ from services.review.models import ExportInput
 from services.review.service import ReviewService
 from services.clinical_limitations import CLINICAL_LIMITATIONS
 from services.domain_contracts import validate_record
+from services.evidence_graph import validate_approved_export
 
 
 def register(app, services: ReviewService):
@@ -52,9 +53,29 @@ def register(app, services: ReviewService):
                 (ar["id"], body.format),
             ).fetchone()
             if existing:
+                if (
+                    hashlib.sha256(existing["artifact"].encode("utf-8")).hexdigest()
+                    != existing["sha256"]
+                ):
+                    raise HTTPException(409, "approved_artifact_integrity_failure")
+                try:
+                    graph = validate_approved_export(
+                        transcript=tx,
+                        transcript_sha256=tr["sha256"],
+                        note=note,
+                        note_sha256=nr["sha256"],
+                        approval=approval,
+                        export_id=existing["id"],
+                        artifact_sha256=existing["sha256"],
+                    )
+                except ValueError:
+                    raise HTTPException(
+                        409, "approved_artifact_integrity_failure"
+                    ) from None
                 return {
                     "id": existing["id"],
                     "sha256": existing["sha256"],
+                    "evidence_graph_sha256": graph["graph_sha256"],
                     "download_url": f"/v1/encounters/{eid}/exports/{existing['id']}",
                 }
             source = {
@@ -65,9 +86,23 @@ def register(app, services: ReviewService):
                 "ehr_conformance": "untested",
                 "limitations": list(CLINICAL_LIMITATIONS),
             }
+            xid = str(uuid4())
             artifact = render_export(note, approval, body.format, source)
             digest = hashlib.sha256(artifact.encode("utf-8")).hexdigest()
-            xid = str(uuid4())
+            try:
+                graph = validate_approved_export(
+                    transcript=tx,
+                    transcript_sha256=tr["sha256"],
+                    note=note,
+                    note_sha256=nr["sha256"],
+                    approval=approval,
+                    export_id=xid,
+                    artifact_sha256=digest,
+                )
+            except ValueError:
+                raise HTTPException(
+                    409, "approved_artifact_integrity_failure"
+                ) from None
             created = stamp()
             try:
                 validate_record(
@@ -95,6 +130,7 @@ def register(app, services: ReviewService):
             return {
                 "id": xid,
                 "sha256": digest,
+                "evidence_graph_sha256": graph["graph_sha256"],
                 "download_url": f"/v1/encounters/{eid}/exports/{xid}",
             }
 
@@ -119,6 +155,22 @@ def register(app, services: ReviewService):
                 != row["sha256"]
             ):
                 raise HTTPException(409, "approved_artifact_integrity_failure")
+            try:
+                nr, note = document(con, eid, sealed["note"])
+                tr, tx = get_tx(con, eid, note["transcript_version_id"])
+                graph = validate_approved_export(
+                    transcript=tx,
+                    transcript_sha256=tr["sha256"],
+                    note=note,
+                    note_sha256=nr["sha256"],
+                    approval=approval_body(con, sealed),
+                    export_id=row["id"],
+                    artifact_sha256=row["sha256"],
+                )
+            except (ValueError, KeyError):
+                raise HTTPException(
+                    409, "approved_artifact_integrity_failure"
+                ) from None
             audit(con, actor, "approved_export_downloaded", str(xid))
             extension = {
                 "markdown": "md",
@@ -134,5 +186,6 @@ def register(app, services: ReviewService):
                 headers={
                     "Content-Disposition": f'attachment; filename="approved-note-{xid}.{extension}"',
                     "ETag": f'"{row["sha256"]}"',
+                    "X-Evidence-Graph-SHA256": graph["graph_sha256"],
                 },
             )

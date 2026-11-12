@@ -89,8 +89,13 @@ def test_full_review_approval_export_and_amendment(setup):
         )
         assert response.status_code == 201
         receipt = response.json()
+        assert len(receipt["evidence_graph_sha256"]) == 64
         downloaded = client.get(receipt["download_url"], headers=headers())
         assert downloaded.status_code == 200
+        assert (
+            downloaded.headers["x-evidence-graph-sha256"]
+            == receipt["evidence_graph_sha256"]
+        )
         assert hashlib.sha256(downloaded.content).hexdigest() == receipt["sha256"]
         assert "approved" in downloaded.text.lower()
     blocked = client.patch(
