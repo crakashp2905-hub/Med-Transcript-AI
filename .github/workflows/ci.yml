@@ -133,3 +133,25 @@ jobs:
         run: python -m services.ci_provenance
         env:
           MED_TRANSCRIPT_CI_JOB: container
+  release-summary:
+    if: always()
+    needs: [test, frontend, postgres, container]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.13.5'
+      - name: Publish exact-commit CI and offline-acceptance freshness summary
+        run: >-
+          python -m services.release_attempt_summary
+          --source-commit "$GITHUB_SHA"
+          --run-id "$GITHUB_RUN_ID"
+          --python-matrix-status "${{ needs.test.result }}"
+          --frontend-status "${{ needs.frontend.result }}"
+          --postgres-status "${{ needs.postgres.result }}"
+          --container-status "${{ needs.container.result }}"
+          --output "$RUNNER_TEMP/release-attempt-summary.md"
+          --step-summary "$GITHUB_STEP_SUMMARY"
