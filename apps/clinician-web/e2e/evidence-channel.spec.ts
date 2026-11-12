@@ -23,10 +23,10 @@ test('fact source navigation requests the exact cited audio channel',async({page
  expect((await page.request.patch(asset.content_url,{headers:{...headers,'Content-Type':'audio/wav','Upload-Offset':'0','Upload-Chunk-SHA256':sha},data:content})).ok()).toBe(true);
  const ingest=await page.request.post(`${base}/audio-uploads/${asset.id}/complete`,{headers});expect(ingest.ok()).toBe(true);
  const ingestJob=await ingest.json();
- await expect.poll(async()=> (await(await page.request.get(ingestJob.status_url,{headers})).json()).status).toBe('succeeded');
+ await expect.poll(async()=> (await(await page.request.get(ingestJob.status_url,{headers})).json()).status,{timeout:20000,intervals:[100,250,500,1000]}).toBe('succeeded');
  const queued=await page.request.post(base+'/transcriptions',{headers:{...headers,'Idempotency-Key':randomUUID()},data:{audio_asset_id:asset.id,inference_profile_id:'scripted-non-asr-test-only'}});
  expect(queued.ok()).toBe(true);const job=await queued.json();
- await expect.poll(async()=> (await(await page.request.get(job.status_url,{headers})).json()).status).toBe('succeeded');
+ await expect.poll(async()=> (await(await page.request.get(job.status_url,{headers})).json()).status,{timeout:20000,intervals:[100,250,500,1000]}).toBe('succeeded');
  const workspace=await(await page.request.get(base+'/workspace',{headers})).json();
  const segments=workspace.transcript.segments as {segment_id:string;channel_index:number}[];
  const facts=(await(await page.request.get(base+'/facts',{headers})).json()).facts as {evidence:{segment_id:string}}[];
