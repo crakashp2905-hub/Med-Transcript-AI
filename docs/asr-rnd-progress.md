@@ -337,6 +337,13 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   flag inconsistencies but cannot rank which hypothesis was spoken. Completion
   requires a local decoder exposing valid acoustic evidence plus development
   calibration data and a frozen policy.
+- **MTA-ASR-F06:** Partial. Existing repair jobs cap each requested crop at
+  120 seconds, validate source authorization/version/hash, admit model memory
+  before inference, and retry worker jobs at most three times. Candidate output
+  remains separate from the source transcript. No hard wall-clock cancellation
+  is enforced inside a native model call; a lease heartbeat is not an
+  inference timeout. A process-isolated inference deadline and end-to-end
+  compute budget remain outstanding.
 - **MTA-ASR-F04:** Extended advisory candidate checks so changes to negation
   and allergy polarity are explicitly flagged alongside drug and dose/unit
   changes. Raw wording remains immutable, all proposals remain pending review,
