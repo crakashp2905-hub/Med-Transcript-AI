@@ -36,7 +36,7 @@ class ExperimentContract(BaseModel):
     dataset_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     code_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     configuration_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
-    maximum_normalized_wer: Literal[0.05] = 0.05
+    maximum_normalized_wer: float = Field(default=0.05, strict=True)
     maximum_wall_seconds: int = Field(gt=0, le=86400, strict=True)
     minimum_variant_seconds: int = Field(default=1, ge=1, le=86400, strict=True)
     minimum_complete_pairs: int = Field(ge=2, strict=True)
@@ -49,6 +49,8 @@ class ExperimentContract(BaseModel):
 
     @model_validator(mode="after")
     def coherent(self):
+        if self.maximum_normalized_wer != 0.05:
+            raise ValueError("five_percent_gate_immutable")
         if self.frozen_at.tzinfo is None:
             raise ValueError("timezone_required")
         if len(set(self.case_ids)) != len(self.case_ids) or any(

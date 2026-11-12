@@ -174,6 +174,7 @@ def run_once(db_path: str, asset_root: str):
                 original_media_type=upload["media_type"],
                 timeline_mapping_status="decoded_media_requires_review",
             )
+        assert result is not None
         result["sha256"] = upload["expected_sha256"]
     except InvalidAudio as exc:
         error = str(exc)
@@ -201,6 +202,7 @@ def run_once(db_path: str, asset_root: str):
         else:
             status = "failed" if error else "succeeded"
             if not error and working:
+                assert result is not None
                 destination = Path(asset_root) / f"{upload['id']}.normalized.wav"
                 try:
                     import os

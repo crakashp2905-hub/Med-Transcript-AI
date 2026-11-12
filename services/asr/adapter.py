@@ -110,7 +110,8 @@ class FasterWhisperAdapter:
             condition_on_previous_text=False,
             log_progress=False,
         )
-        raw, total_chars = [], 0
+        raw: list[dict[str, object]] = []
+        total_chars = 0
         # Iteration performs inference: never publish a partially consumed generator.
         for segment in segments:
             checkpoint()

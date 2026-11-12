@@ -38,7 +38,8 @@ def register(app, services: ReviewService):
             if not ingest:
                 raise HTTPException(409, "audio_ingest_required")
             metadata = json.loads(ingest["result"])
-            segments, last = [], -1
+            segments: list[dict] = []
+            last = -1
             for segment in body.segments:
                 if (
                     segment.end_ms <= segment.start_ms
@@ -65,16 +66,16 @@ def register(app, services: ReviewService):
                     }
                 )
             gaps, covered = [], 0
-            for segment in segments:
-                if segment["start_ms"] > covered:
+            for saved_segment in segments:
+                if saved_segment["start_ms"] > covered:
                     gaps.append(
                         {
                             "start_ms": covered,
-                            "end_ms": segment["start_ms"],
+                            "end_ms": saved_segment["start_ms"],
                             "reason": "not_transcribed_unknown_cause",
                         }
                     )
-                covered = max(covered, segment["end_ms"])
+                covered = max(covered, saved_segment["end_ms"])
             if covered < metadata["duration_ms"]:
                 gaps.append(
                     {
