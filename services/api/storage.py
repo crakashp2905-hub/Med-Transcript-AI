@@ -216,6 +216,8 @@ class Store:
                         if sqlite3.complete_statement(statement):
                             con.execute(statement)
                             statement = ""
+                    if statement.strip():
+                        raise ValueError("incomplete_schema_migration_statement")
                     con.execute(f"PRAGMA user_version={version}")
                     if "CREATE TABLE audit_chain" in migration:
                         from services.audit_integrity import initialize
