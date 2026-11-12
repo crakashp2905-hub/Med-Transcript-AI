@@ -398,3 +398,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   monotonic offsets and unknown-delay rejection. Status: partial; mapping
   checks do not cover a forced-alignment runtime, which is unavailable under
   G02, or a full end-to-end alignment round trip.
+- **MTA-ASR-G04:** Existing diarization output keeps `speaker_id` values
+  separate from role labels; roles start `unknown`/`unconfirmed`, with
+  clinician confirmation required. Channel-derived IDs are explicitly marked
+  as not verified speakers, and observed-channel mapping never infers roles.
+  `tests/test_diarization_policy.py` and `test_asr_evaluation_contract.py`:
+  13 passed; Ruff passes. `test_channels.py` separately asserts unconfirmed
+  roles. Status: partial; no identity/role accuracy or clinician confirmation
+  has been established for these R&D runs.
