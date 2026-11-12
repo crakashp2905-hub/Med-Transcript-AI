@@ -1,0 +1,54 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-01",
+  "source_commit": "6be0b1e8075064a8d369c077dfc6ba5b9a9fe80c",
+  "runtime": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "local_ruff": "ruff 0.15.13",
+    "remote_ci": "GitHub Actions ubuntu-24.04 / Python 3.13.5"
+  },
+  "runtime_sha256": "53c1d22c32ec51367f3dd2a116a03b10e4eb4d5dd788452f2bbddcd7ed5ea503",
+  "source_file_sha256": {
+    ".github/workflows/ci.yml": "bcef58f1e3a012e003a3e5856c95fa036813de3710247845a1840352ce20c86e",
+    "services/api/ingest.py": "7fca3d30f2b78d0c702321dba56e1e99fa7a8f7fa0216a35b3e3009d4c6f4a23",
+    "services/asr/channels.py": "10ee9fc090c80b95f2987643ac47fa576af48b6e4f1764e4a82f505e07a51603",
+    "services/detailed_benchmark.py": "cceb5c2c081ff94c6bb09df44810c99454da294e296b38384e296973553be902",
+    "services/prepare_full_consultations.py": "d32fd3450961e50d34b37a8a6dc4621692ea9c05814f9f9400e48bab867c015e",
+    "tests/test_asr_optional_runtime_dependencies.py": "96427b72f8889319f388b112452b8fde77ebb6bedefce32ad97ebba2ca4a39e4",
+    "tests/test_audio_enhancement.py": "3148e2fe46540f838cfad8de710bd703d53e8debbc76761b96b2ca0342770369",
+    "tests/test_audio_quality.py": "9fb8801e055c909e80f796090fe6d3bc1fc824acaff5968a349fb57ea8b8d733",
+    "tests/test_asr_pareto.py": "5883829e56a2a2ed45df3c06a55d6c43030fd6d0aa60ab0f39020ba531703383",
+    "tests/test_rover.py": "29e1605c559a7d5b5d32e0a7e6ad8f6f39e2143680a8d4a12c272a0d58af2080",
+    "tests/test_detailed_benchmark.py": "c550b8982cb903cba1b185ae24f014bbb432eeba64159edca8eaded65eab68bf",
+    "tests/test_fixed_window_baseline.py": "bd591936dce828b4d85fc96fdd6e59a337593a997a853613ea1f8cb5c2b56215",
+    "tests/test_offline_engineering.py": "3907cbb3731367578c2a05aa5bbe1f3677c11760e4d5a123ea1009d46fe29375",
+    "tests/test_real_local_asr_workflow.py": "9a73bcfe3d45c442103434aaaea5ba89ec8a252ae1d25307237ca25258ae5504",
+    "tests/test_release_provenance.py": "4398d8f02e19efe1ff5abac45a30bfdee66266da3f9e416f6a4d9456715312c6"
+  },
+  "checks": {
+    "pinned_ruff_format_gate": {
+      "status": "pass",
+      "command": "GitHub Actions: ruff==0.15.13; python -m ruff format --check services tests",
+      "result": "518 files formatted; exact-source remote step passed"
+    },
+    "ruff_lint": {
+      "status": "pass",
+      "command": "GitHub Actions: python -m ruff check services tests",
+      "result": "All checks passed on exact-source job"
+    },
+    "frontend_provenance_root": {
+      "status": "pass",
+      "command": "GitHub Actions frontend job on this commit",
+      "result": "frontend job succeeded after working-directory correction"
+    },
+    "provenance_tests": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_release_provenance.py -q",
+      "result": "9 passed locally on exact source commit"
+    }
+  },
+  "limitations": [
+    "The full CI run for this commit failed later in the core test collection because optional ASR/media dependencies were absent; the formatter/lint/frontend gates themselves passed. The optional test collection fix was committed subsequently."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-02",
+  "source_commit": "be09fa30bc0cd34ae37a8f283bae420fe69ef587",
+  "runtime": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "local_ruff": "ruff 0.15.13",
+    "remote_ci": "GitHub Actions ubuntu-24.04 / Python 3.13.5"
+  },
+  "runtime_sha256": "53c1d22c32ec51367f3dd2a116a03b10e4eb4d5dd788452f2bbddcd7ed5ea503",
+  "source_file_sha256": {
+    "services/asr/clinical_entities.py": "8a2b9a0ee565e9bee6d71b00033d83de62694ebaecd915c263ff602344bf4946",
+    "tests/test_asr_clinical_entities.py": "21c31c43df7ef04ea0f5a5819752d6446b2bb75a5aa93f1d50f6b3b9c046fa9b",
+    ".github/workflows/ci.yml": "bcef58f1e3a012e003a3e5856c95fa036813de3710247845a1840352ce20c86e",
+    "pyproject.toml": "ec13eb5e142c6b66b581b9b963efae25e841a5e5f5ec4c1ee925dae5baa5ec85"
+  },
+  "checks": {
+    "mypy": {
+      "status": "pass",
+      "command": "python -m mypy services --ignore-missing-imports (CI pinned mypy==1.18.2)",
+      "result": "CI Python format/lint/type-check step passed; prior concrete errors at lines 71 and 84 fixed by Literal annotation"
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "python -m ruff check services tests",
+      "result": "All checks passed in same CI step"
+    },
+    "targeted_test": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_asr_clinical_entities.py -q",
+      "result": "5 passed locally on exact source commit"
+    }
+  },
+  "limitations": [
+    "The full CI test lane failed after typing checks passed because four modules imported optional numpy/rapidfuzz dependencies during collection in the dev,security lane. Import-time optional-dependency skips were added in a later commit; confirmation is pending that later exact-commit workflow.",
+    "Local full mypy invocation stalled without output under the installed mypy 2.1.0; authoritative pinned mypy 1.18.2 CI step completed successfully."
+  ]
+}

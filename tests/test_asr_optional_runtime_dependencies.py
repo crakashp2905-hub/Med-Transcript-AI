@@ -3,6 +3,7 @@ import wave
 from types import SimpleNamespace
 
 from importlib.metadata import PackageNotFoundError
+import pytest
 
 from services.asr.adapter import FasterWhisperAdapter
 from services.asr.profiles import ASRProfile, REQUIRED_FILES
@@ -11,6 +12,7 @@ from services.asr.profiles import ASRProfile, REQUIRED_FILES
 def test_wav_transcription_does_not_require_unused_media_runtimes(
     tmp_path, monkeypatch
 ):
+    pytest.importorskip("numpy", reason="numpy is an ASR runtime dependency")
     model_dir = tmp_path / "model"
     model_dir.mkdir()
     artifacts = {}

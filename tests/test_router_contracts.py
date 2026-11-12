@@ -1,4 +1,5 @@
 from copy import deepcopy
+import hashlib
 import json
 from pathlib import Path
 import pytest
@@ -14,18 +15,22 @@ def contract_matches(actual, expected):
 
 def test_api_contract_survives_router_and_service_extraction(setup):
     client, _, _ = setup
-    expected = json.loads(
-        Path("evaluation/contracts/api-v1-before-router-split.json").read_text(
+    previous_path = Path("evaluation/contracts/api-v1-before-router-split.json")
+    successor = json.loads(
+        Path("evaluation/contracts/api-v1-compatible-v2.json").read_text(
             encoding="utf-8"
         )
     )
-    # Preserve the frozen v1 snapshot; the one deliberate schema change is
-    # selection of up to the 300-fact note limit for bounded verifier batches.
+    assert successor["supersedes"]["path"] == previous_path.as_posix()
+    assert (
+        successor["supersedes"]["sha256"]
+        == hashlib.sha256(previous_path.read_bytes()).hexdigest()
+    )
+    expected = successor["contract"]
     verifier_limit = expected["components"]["schemas"]["VerifyRequest"]["properties"][
         "fact_ids"
     ]["anyOf"][0]
-    assert verifier_limit["maxItems"] == 20
-    verifier_limit["maxItems"] = 300
+    assert verifier_limit["maxItems"] == 300
     actual = deepcopy(client.app.openapi())
     extension = actual["paths"].pop("/v1/encounters/{eid}/retranscriptions")
     schema = actual["components"]["schemas"].pop("RetranscribeRequest")
@@ -71,7 +76,20 @@ def test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail(setup):
 
     client, _, _ = setup
     expected = json.loads(
-        Path("evaluation/contracts/authorization-policy-v1.json").read_text()
+        Path("evaluation/contracts/authorization-policy-v2.json").read_text()
+    )
+    provenance = json.loads(
+        Path("evaluation/contracts/authorization-policy-v2.provenance.json").read_text()
+    )
+    assert (
+        provenance["sha256"]
+        == hashlib.sha256(
+            Path("evaluation/contracts/authorization-policy-v2.json").read_bytes()
+        ).hexdigest()
+    )
+    assert (
+        provenance["supersedes"]["path"]
+        == "evaluation/contracts/authorization-policy-v1.json"
     )
     assert validate(client.app, expected)["routes_checked"] >= 60
 

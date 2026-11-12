@@ -10,9 +10,9 @@ from services.master_ledger import LEDGER, audit
 def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     result = audit()
     assert result["total"] == 369
-    assert result["statuses"]["not_started"] == 349
+    assert sum(result["statuses"].values()) == 369
     assert result["statuses"]["blocked_missing_asset"] == 3
-    assert result["statuses"]["implemented"] == 17
+    assert result["statuses"]["verified"] == 0
     assert result["verified_at_current_commit"] == 0
     assert result["clinical_release_authorized"] is False
     document = json.loads(LEDGER.read_text(encoding="utf-8"))

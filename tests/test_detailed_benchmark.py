@@ -145,9 +145,15 @@ def test_resume_rejects_altered_references_models_or_scores():
         )
 
 
-def test_detailed_suite_v3_binds_source_and_memory_budget():
-    suite_path = "evaluation/detailed-suite-v3.json"
+def test_detailed_suite_v4_binds_source_and_memory_budget():
+    suite_path = "evaluation/detailed-suite-v4.json"
     suite = json.loads(Path(suite_path).read_text(encoding="utf-8"))
+    predecessor = Path("evaluation/detailed-suite-v3.json")
+    assert suite["supersedes_suite"] == predecessor.as_posix()
+    assert (
+        suite["supersedes_suite_sha256"]
+        == hashlib.sha256(predecessor.read_bytes()).hexdigest()
+    )
     assert suite["schema_version"] == "detailed_campaign_v2"
     assert suite["maximum_normalized_wer"] == 0.05
     assert suite["resource_budget"]["max_process_resident_bytes"] == 16 * 1024**3

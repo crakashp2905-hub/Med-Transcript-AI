@@ -4,6 +4,8 @@ import wave
 
 import pytest
 
+pytest.importorskip("numpy", reason="numpy is required by the VAD candidate")
+
 from services.asr.vad_candidates import detect_file, score_activity
 
 

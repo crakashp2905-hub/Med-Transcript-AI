@@ -393,23 +393,43 @@
       "id": "MTA-01-01",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Fix latest GitHub Actions Ruff format gate: run the pinned Ruff version locally, format services/tests, review semantics, and commit mechanical changes separately.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "evaluation/reports/master-task-mta-01-01-6be0b1e.json"
+      ],
+      "source_commit": "6be0b1e8075064a8d369c077dfc6ba5b9a9fe80c",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-01-01-6be0b1e.json",
+          "report_sha256": "8b0cda99f34364d12851580991d19bcb1197d40e918dcf343a8c01d086549d37",
+          "check": "pinned_ruff_format_gate"
+        }
+      ],
+      "blocker": "Formatter, Ruff lint, frontend provenance, and focused provenance tests pass on the recorded commit. Full CI remained red on test collection for absent optional dependencies, later addressed separately."
     },
     {
       "id": "MTA-01-02",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Run Ruff check and mypy after formatting; fix genuine diagnostics rather than disabling rules or excluding large trees.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "evaluation/reports/master-task-mta-01-02-be09fa3.json"
+      ],
+      "source_commit": "be09fa30bc0cd34ae37a8f283bae420fe69ef587",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-01-02-be09fa3.json",
+          "report_sha256": "9c0d251270e58e4b805109196071f25f9982500cb1aead43bf7997d0a3036cc7",
+          "check": "mypy"
+        }
+      ],
+      "blocker": "Pinned CI mypy and Ruff checks pass after the concrete Literal typing fix; CI core test collection still failed on absent optional dependencies in this earlier commit."
     },
     {
       "id": "MTA-01-03",
