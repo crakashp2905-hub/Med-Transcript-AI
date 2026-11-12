@@ -333,12 +333,26 @@
       "id": "MTA-00-15",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Forbid editing historical benchmark outputs in place; create versioned report successors with auditable links.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/immutable_reports.py",
+        "services/benchmark_text.py",
+        "services/benchmark_ranking.py",
+        "tests/test_immutable_reports.py",
+        "tests/test_benchmark_text.py",
+        "evaluation/reports/master-task-mta-00-15-314ffae.json"
+      ],
+      "source_commit": "314ffae140a75431f97ba2bbc8c4bdf2fc736147",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-00-15-314ffae.json",
+          "report_sha256": "0cc82fa0192e4abc4f265d5aaae7c84f01c11192cacb1b4b57771563388f0a2c",
+          "check": "immutable_benchmark_publication"
+        }
+      ],
+      "blocker": "Only benchmark_text and benchmark_ranking writers use the write-once publication helper so far. Remaining report-producing workflows need migration before the rule is repository-wide."
     },
     {
       "id": "MTA-00-16",
