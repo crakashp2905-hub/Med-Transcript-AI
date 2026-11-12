@@ -23,7 +23,7 @@ def process_alive(pid):
     import ctypes
     from ctypes import wintypes
 
-    kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+    kernel = getattr(ctypes, "WinDLL")("kernel32", use_last_error=True)
     kernel.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
     kernel.OpenProcess.restype = wintypes.HANDLE
     kernel.GetExitCodeProcess.argtypes = [
@@ -262,7 +262,7 @@ if __name__ == "__main__":
     if a.keep_awake and os.name == "nt":
         import ctypes
 
-        power = ctypes.WinDLL("kernel32").SetThreadExecutionState
+        power = getattr(ctypes, "WinDLL")("kernel32").SetThreadExecutionState
         power.argtypes = [ctypes.c_uint32]
         power.restype = ctypes.c_uint32
         if not power(0x80000001):

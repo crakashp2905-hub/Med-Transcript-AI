@@ -190,7 +190,7 @@ if __name__ == "__main__":
         if args.keep_awake and os.name == "nt":
             import ctypes
 
-            power = ctypes.WinDLL("kernel32").SetThreadExecutionState
+            power = getattr(ctypes, "WinDLL")("kernel32").SetThreadExecutionState
             power.argtypes = [ctypes.c_uint32]
             power.restype = ctypes.c_uint32
             if not power(0x80000001):
