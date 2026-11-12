@@ -64,7 +64,7 @@ jobs:
       - run: npm audit --omit=dev
       - name: Emit commit and manifest provenance to CI log
         run: python -m services.ci_provenance
-        working-directory: ../..
+        working-directory: .
         env:
           MED_TRANSCRIPT_CI_JOB: frontend
   postgres:

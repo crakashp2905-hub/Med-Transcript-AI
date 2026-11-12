@@ -268,5 +268,7 @@ def test_ci_workflow_emits_receipts_after_all_five_job_lanes():
     assert workflow.count("python -m services.ci_provenance") == 4
     assert "test-dev-security" in workflow
     assert "test-dev-asr-security" in workflow
+    frontend = workflow.split("  frontend:", 1)[1].split("  postgres:", 1)[0]
+    assert "working-directory: ." in frontend
     for job in ("frontend", "postgres", "container"):
         assert f"MED_TRANSCRIPT_CI_JOB: {job}" in workflow
