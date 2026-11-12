@@ -77,6 +77,13 @@ def test_full_review_approval_export_and_amendment(setup):
     )
     assert statement["source_version_id"] == tx["id"]
     assert statement["evidence"]["quote"] == statement["text"]
+    source_citation = (
+        f"[Source: transcript {statement['source_version_id']}; "
+        f"segment {statement['evidence']['segment_id']}; "
+        f"characters {statement['evidence']['start_char']}-"
+        f"{statement['evidence']['end_char']}; quote SHA-256 "
+        f"{hashlib.sha256(statement['evidence']['quote'].encode('utf-8')).hexdigest()}.]"
+    )
     assert result["verification"]["gate"] == "ready"
     approved = approve(client, eid, result["note"])
     assert approved.status_code == 201, approved.text
@@ -98,6 +105,18 @@ def test_full_review_approval_export_and_amendment(setup):
         )
         assert hashlib.sha256(downloaded.content).hexdigest() == receipt["sha256"]
         assert "approved" in downloaded.text.lower()
+        if format in ("markdown", "text"):
+            assert source_citation in downloaded.text
+        elif format == "json":
+            serialized = downloaded.json()["note"]["sections"]
+            exported_statement = next(
+                row
+                for section in serialized
+                for row in section["statements"]
+                if row["statement_id"] == statement["statement_id"]
+            )
+            assert exported_statement["origin"] == "source_linked"
+            assert exported_statement["evidence"] == statement["evidence"]
     blocked = client.patch(
         f"/v1/encounters/{eid}/notes/{result['note']['id']}",
         headers={**headers(), "If-Match": f'"{result["note"]["sha256"]}"'},

@@ -374,7 +374,37 @@ def render_export(note, approval, format, source=None):
                 else statement["text"]
             )
             if statement["origin"] == "clinician_entered":
+                if statement.get("evidence") is not None:
+                    raise ValueError("clinician_statement_cannot_claim_source_evidence")
                 lines.append("[Clinician-entered addition; not audio-derived.]")
+            elif statement["origin"] == "source_linked":
+                evidence = statement.get("evidence")
+                source_version_id = statement.get("source_version_id")
+                if (
+                    not source_version_id
+                    or not isinstance(evidence, dict)
+                    or not isinstance(evidence.get("quote"), str)
+                    or not evidence.get("quote")
+                    or not isinstance(evidence.get("segment_id"), str)
+                    or type(evidence.get("start_char")) is not int
+                    or type(evidence.get("end_char")) is not int
+                    or evidence["start_char"] < 0
+                    or evidence["end_char"] <= evidence["start_char"]
+                    or evidence["end_char"] - evidence["start_char"]
+                    != len(evidence["quote"])
+                ):
+                    raise ValueError("approved_statement_source_missing")
+                quote_sha256 = hashlib.sha256(
+                    evidence["quote"].encode("utf-8")
+                ).hexdigest()
+                lines.append(
+                    "[Source: transcript "
+                    f"{source_version_id}; segment {evidence['segment_id']}; "
+                    f"characters {evidence['start_char']}-{evidence['end_char']}; "
+                    f"quote SHA-256 {quote_sha256}.]"
+                )
+            else:
+                raise ValueError("approved_statement_origin_missing")
         if not section["statements"]:
             lines.append("Not documented.")
         lines.append("")
