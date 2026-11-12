@@ -31,6 +31,10 @@ those claims. As imported, all 369 entries are `not_started`; this means
 2. Restore all five hosted CI jobs at one exact SHA. Local Ruff format and
    lint pass after the mechanical formatting and follow-up fixes; local mypy
    has not completed and is not counted as a pass.
+   Commit `796a9d9` moves a pinned Ruff format check ahead of full backend
+   dependency installation. Local Ruff 0.15.13 format/lint passed on the
+   current working source; hosted run results for the pushed SHA are not
+   available from GitHub in this environment.
    A broad local regression run finished with 585 passed and six skipped,
    but concurrent source commits landed during its execution, so this run is
    not used as an exact-commit task receipt.
