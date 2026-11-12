@@ -1,0 +1,49 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-03-07",
+  "status": "pass",
+  "source_commit": "7c1b30e07240ccc16ff2ef7e803d002fdf448c92",
+  "source_tree": "c80bc91e2e7b846be4b568a6e9c074d2aa4f9ac7",
+  "checks": {
+    "synthetic_crosstalk_and_channel_swap_preserve_physical_audio": {
+      "status": "pass",
+      "controls": [
+        "Synthetic overlapped intervals contain explicit cross-talk in both channels.",
+        "The synthetic microphone gains are asymmetric.",
+        "The swapped-channel case verifies channel index follows physical ordering, not presumed clinician/patient identity.",
+        "Isolated PCM bytes match each source channel exactly; no denoising, mixing, speaker attribution or role assignment is inferred."
+      ],
+      "local_checks": {
+        "focused_pytest": "2 passed",
+        "ruff": "pass"
+      },
+      "ci_run_id": 43298408342,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43298408342",
+      "ci_jobs": {
+        "test_dev_security": "success; 845 passed, 17 skipped, 5 warnings",
+        "test_dev_asr_security": "success; 873 passed, 3 skipped, 3 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43298408342
+  },
+  "runtime_sha256": "27847169623b4b6df7f3f836253e21cadafdddc61cfdbac1fbc9a8d492196bed",
+  "source_sha256": {
+    "tests/test_channels.py": "c2858b9a670439d5a57099fcbe7c76e6f92c1aa9e5f452b04a8fdef67a7cb67a",
+    "services/asr/channels.py": "7238f5e5222ae3d9d6179df4410e91532ce85990fa79d906fb0f068ef41a60f0"
+  },
+  "limitations": [
+    "Synthetic signals validate channel transport and ordering only; they do not measure speaker-turn accuracy or validate physical recording hardware.",
+    "Windows TestClient integration run stalled; the focused pure channel tests passed locally and the full exact-commit CI suites passed.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false
+}
