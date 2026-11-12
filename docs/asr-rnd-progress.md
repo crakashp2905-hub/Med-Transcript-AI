@@ -195,3 +195,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   rejecting missing weights before runtime initialization. Status: partial;
   the focused pytest process stalled before collection and did not complete,
   and no production worker profile or inference-mode promotion is configured.
+- **MTA-ASR-D06:** Added normalized pairwise transcript disagreement with
+  differing token spans. The output states that scores are uncalibrated,
+  agreement is not truth, and no candidate selection occurs.
+  tests/test_hypothesis_disagreement.py covers negation, dose substitution,
+  agreement, and invalid candidate sets. Status: partial; thresholds have not
+  been tuned against labeled disagreement cases and the diagnostic is not
+  wired into runtime routing. Ruff and a direct substitution smoke check pass;
+  focused pytest stalled before collection in this environment.
