@@ -1855,11 +1855,38 @@
       "id": "MTA-04-03",
       "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Replay all hypotheses with immutable reference hashes and failure-inclusive denominator; treat crashed cases according to the frozen rule.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/benchmark_integrity.py",
+        "services/benchmark_ranking.py",
+        "tests/test_asr_word_error_replay.py",
+        "tests/test_failure_inclusive_denominator.py",
+        "tests/test_expanded_corpus.py",
+        "evaluation/datasets/primock57-expanded-v1/manifest.json",
+        "evaluation/reports/master-task-mta-04-03-683b915.json"
+      ],
+      "source_commit": "683b91544777da5f8196d49d97cfce7aa0f7c87c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-04-03-683b915.json",
+          "report_sha256": "16fe956630afc15a0a1119f8b3af95f6da8250221141a9e4a9f082f0b540bac9",
+          "check": "meddistract_saved_report_replay",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-03-683b915.json",
+          "report_sha256": "16fe956630afc15a0a1119f8b3af95f6da8250221141a9e4a9f082f0b540bac9",
+          "check": "expanded_hypothesis_ranking_replay",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-04-03-683b915.json",
+          "report_sha256": "16fe956630afc15a0a1119f8b3af95f6da8250221141a9e4a9f082f0b540bac9",
+          "check": "ci_exact_commit",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
