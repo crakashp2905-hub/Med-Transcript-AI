@@ -330,6 +330,13 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   tests/test_asr_postprocess.py: 4 passed; Ruff and format checks pass. Status:
   partial; the helper is not yet connected to every app candidate/version
   workflow, and no human-reviewed terminology correction lifecycle is active.
+- **MTA-ASR-F05:** Partial, backend-signal blocked. Current faster-whisper,
+  Omi and Parakeet adapters all declare n-best and confidence unsupported;
+  none exposes a validated acoustic likelihood for candidate ranking. No
+  numeric candidate score is synthesized. Existing source-linked checks can
+  flag inconsistencies but cannot rank which hypothesis was spoken. Completion
+  requires a local decoder exposing valid acoustic evidence plus development
+  calibration data and a frozen policy.
 - **MTA-ASR-F04:** Extended advisory candidate checks so changes to negation
   and allergy polarity are explicitly flagged alongside drug and dose/unit
   changes. Raw wording remains immutable, all proposals remain pending review,
