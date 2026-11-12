@@ -1063,12 +1063,23 @@
       "id": "MTA-02-02",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Catalog services and endpoints; label each helper as integrated-in-production-flow, candidate-only, test-only or documentation-only.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-02-2140b35.json",
+        "docs/service-catalog.md",
+        "services/module_catalog.py",
+        "tests/test_module_catalog.py"
+      ],
+      "source_commit": "2140b352f4c80986fdbc3c8c1413f96d5c1fcbde",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-02-2140b35.json",
+          "report_sha256": "25d00981c3b4ca6570e89f1d2b86646ac47b2918b57190a18cfa592d2bb3c469",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Static import classification does not prove production execution; production-path behavioral proof is tracked separately."
     },
     {
       "id": "MTA-02-03",

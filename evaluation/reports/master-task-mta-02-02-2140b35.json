@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-02",
+  "status": "pass",
+  "source_commit": "2140b352f4c80986fdbc3c8c1413f96d5c1fcbde",
+  "checks": {
+    "service_endpoint_catalog": {
+      "status": "pass",
+      "module_count": 287,
+      "classifications": {
+        "integrated-in-production-flow": 78,
+        "candidate-only": 12,
+        "test-only": 186,
+        "documentation-only": 11
+      },
+      "endpoint_count": 61,
+      "ci_run_id": 43252690364,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43252690364",
+      "ci_jobs": {
+        "python_matrix": "success",
+        "frontend": "success",
+        "postgres": "success",
+        "container": "success",
+        "release-summary": "success"
+      },
+      "focused_tests": {
+        "tests/test_module_catalog.py": "2 passed",
+        "tests/test_doc_integrity.py": "2 passed"
+      }
+    }
+  },
+  "limitations": [
+    "Classifications are based on static imports, explicit runtime roots and static test imports. This over-approximates reachable code and does not prove a helper executed in production.",
+    "Runtime-generated/dynamic endpoints may be omitted."
+  ]
+}
