@@ -241,12 +241,23 @@
       "id": "MTA-00-11",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Create explicit severity taxonomy P0 fatal/P1 significant/P2 minor; no P0 can be waived by a model or agent.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/release_policy.py",
+        "docs/architecture-decisions/002-evidence-and-completion.md",
+        "tests/test_offline_engineering.py",
+        "evaluation/reports/master-task-mta-00-11-9c39201.json"
+      ],
+      "source_commit": "9c39201dae3a0fd1a9168a5221c8efab098d1331",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-00-11-9c39201.json",
+          "report_sha256": "eff7d28e5bedbeda660712afc56485a3cb2045e53bbd51a1a74751e1bf1c9d3a"
+        }
+      ],
+      "blocker": "The policy gate blocks P0 regardless of model/agent verdict and fails closed on unknown severity; release authorization still requires external evidence."
     },
     {
       "id": "MTA-00-12",

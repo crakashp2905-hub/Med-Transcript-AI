@@ -276,7 +276,11 @@ def test_offline_scripted_workflow_blocks_dose_error_and_viewer_write(
 
 
 def test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence():
-    from services.release_policy import validate_matrix, engineering_gate
+    from services.release_policy import (
+        SEVERITY_DEFINITIONS,
+        engineering_gate,
+        validate_matrix,
+    )
 
     matrix = {
         "offline_demo": "verified",
@@ -293,6 +297,21 @@ def test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence():
         engineering_gate([{"code": "corrupted_evidence", "severity": "P2"}])["status"]
         == "blocked"
     )
+    assert set(SEVERITY_DEFINITIONS) == {"P0", "P1", "P2"}
+    p0 = engineering_gate(
+        [
+            {
+                "code": "critical_omission",
+                "severity": "P0",
+                "waived": True,
+                "model_verdict": "safe",
+                "agent_verdict": "resolved",
+            }
+        ]
+    )
+    assert p0["status"] == "blocked" and p0["reason"] == "unresolved_P0"
+    assert engineering_gate([{"code": "minor_ui", "severity": "P2"}])["reason"] != "unresolved_P0"
+    assert engineering_gate([{"code": "unknown"}])["reason"] == "invalid_or_missing_severity"
     assert engineering_gate([])["status"] == "not_established"
 
 

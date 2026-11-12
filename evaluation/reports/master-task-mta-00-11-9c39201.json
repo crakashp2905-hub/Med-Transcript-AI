@@ -1,0 +1,39 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-00-11",
+  "source_commit": "9c39201dae3a0fd1a9168a5221c8efab098d1331",
+  "runtime": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "python -m pytest; installed executable",
+    "ruff": "python -m ruff"
+  },
+  "runtime_sha256": "f45575cb2772f8cdef117737d22db145a316347f575d96f1edf3e0f9ef4177b4",
+  "source_file_sha256": {
+    "services/release_policy.py": "b5a96a9795a3cf5294a9fa74647e92f6a1f950082518fc5260ace6ec205633a3",
+    "docs/architecture-decisions/002-evidence-and-completion.md": "fc89c2afdf19ad12124674da2da8ef81e7dd156b13b3f8162aaea70da3b6a167",
+    "docs/product/risk-register.md": "41b51d512214db1716b69e51c23c766900d0e42a35e9a49e58aef8a1cbc792ed",
+    "tests/test_offline_engineering.py": "e58f7b2f5d75ad4b4d79e60ca0c4cbbd4f845dd680d43fab12cda1d43fb23964"
+  },
+  "checks": {
+    "severity_taxonomy_and_nonwaivable_p0": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_offline_engineering.py::test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence -q",
+      "result": "1 passed",
+      "assertions": [
+        "P0/P1/P2 taxonomy is explicit",
+        "P0 stays blocked despite waived=true and model/agent safe verdicts",
+        "unknown severity fails closed",
+        "P2 is not misclassified as P0"
+      ]
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "python -m ruff check services/release_policy.py tests/test_offline_engineering.py",
+      "result": "All checks passed"
+    }
+  },
+  "limitations": [
+    "This engineering gate does not provide clinical authorization; it always leaves real-patient release unauthorized."
+  ]
+}

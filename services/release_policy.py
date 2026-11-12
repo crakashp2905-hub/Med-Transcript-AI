@@ -12,6 +12,11 @@ P0_BLOCKERS = (
     "missing_audit",
     "corrupted_evidence",
 )
+SEVERITY_DEFINITIONS = {
+    "P0": "fatal: source, clinical fact, privacy, or approval integrity can be compromised",
+    "P1": "significant: important engineering or research capability is incomplete",
+    "P2": "minor: presentation or workflow ergonomics need improvement",
+}
 EVIDENCE_HIERARCHY = (
     "independent_clinical_labels",
     "non_independent_source_references",
@@ -42,6 +47,14 @@ def validate_matrix(matrix):
 
 
 def engineering_gate(findings):
+    # Agent/model verdicts and waiver fields are intentionally ignored. Unknown
+    # severity is malformed evidence and fails closed rather than clearing a gate.
+    if any(f.get("severity") not in SEVERITY_DEFINITIONS for f in findings):
+        return {
+            "status": "blocked",
+            "reason": "invalid_or_missing_severity",
+            "real_patient_release_authorized": False,
+        }
     if any(f.get("severity") == "P0" or f.get("code") in P0_BLOCKERS for f in findings):
         return {
             "status": "blocked",
