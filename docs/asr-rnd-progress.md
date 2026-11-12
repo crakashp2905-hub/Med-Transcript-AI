@@ -273,3 +273,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   3 passed; Ruff and format checks pass. Status: partial; this safeguards the
   helper contract, but the postprocessor is not yet the sole publication path
   for every runtime transcript workflow.
+- **MTA-ASR-E04:** Wired the pinned faster-whisper `hotwords` decoder hook to
+  an optional, hash-pinned lexicon selection. Only terms present in the E01
+  provenance artifact are accepted; the adapter records candidate-only bias
+  metadata and does not mutate text. The official faster-whisper interface
+  documents `hotwords` as a decode hint. Focused adapter/context tests: 3
+  passed; Ruff and format checks pass. Status: partial; this permits only the
+  single term currently present in the lexicon, and no paired bias/no-bias WER
+  or false-insertion evaluation has been run, so it is not an admitted profile.

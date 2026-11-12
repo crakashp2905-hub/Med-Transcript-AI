@@ -507,7 +507,14 @@ def test_model_adapter_uses_only_local_files_and_consumes_lazy_segments(
         sys.modules, "faster_whisper", SimpleNamespace(WhisperModel=Model)
     )
     raw = FasterWhisperAdapter(env.profile).transcribe(
-        wav, {"frames": 1600, "channels": 1, "sample_rate": 16000}, lambda: None
+        wav,
+        {
+            "frames": 1600,
+            "channels": 1,
+            "sample_rate": 16000,
+            "clinical_bias_terms": ["paracetamol"],
+        },
+        lambda: None,
     )
     assert consumed == [True]
     assert raw["segments"][0]["text"] == " synthetic"
@@ -517,6 +524,9 @@ def test_model_adapter_uses_only_local_files_and_consumes_lazy_segments(
     assert calls["transcribe"]["task"] == "transcribe"
     assert calls["transcribe"]["vad_filter"] is False
     assert calls["transcribe"]["word_timestamps"] is False
+    assert calls["transcribe"]["hotwords"] == "paracetamol"
+    assert raw["context_biasing"]["candidate_only"] is True
+    assert "paracetamol" not in raw["segments"][0]["text"]
 
 
 def test_digital_silence_does_not_invoke_model(environment, monkeypatch):

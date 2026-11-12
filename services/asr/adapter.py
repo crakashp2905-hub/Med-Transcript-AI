@@ -129,16 +129,25 @@ class FasterWhisperAdapter:
             "model_load_seconds": time.perf_counter() - load_started,
         }
         inference_started = time.perf_counter()
+        decode_options = {
+            "language": "en",
+            "task": "transcribe",
+            "beam_size": self.profile.beam_size,
+            "temperature": 0.0,
+            "vad_filter": False,
+            "word_timestamps": False,
+            "condition_on_previous_text": False,
+            "log_progress": False,
+        }
+        context_bias = None
+        if "clinical_bias_terms" in metadata:
+            from services.asr.context_biasing import build_context_bias
+
+            context_bias = build_context_bias(metadata["clinical_bias_terms"])
+            decode_options["hotwords"] = context_bias["hotwords"]
         segments, info = model.transcribe(
             normalized,
-            language="en",
-            task="transcribe",
-            beam_size=self.profile.beam_size,
-            temperature=0.0,
-            vad_filter=False,
-            word_timestamps=False,
-            condition_on_previous_text=False,
-            log_progress=False,
+            **decode_options,
         )
         raw: list[dict[str, object]] = []
         total_chars = 0
@@ -169,4 +178,6 @@ class FasterWhisperAdapter:
             "timing": timing,
             "inference_executed": True,
             "runtime_packages": runtime_packages,
+            "context_biasing": context_bias
+            or {"status": "not_requested", "text_mutation": False},
         }
