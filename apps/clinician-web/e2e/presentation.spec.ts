@@ -44,3 +44,22 @@ test('approved summary requires separate confirmation and edits reset it',async(
  await download.click();await expect(page.getByText('The approved source changed. Reload and review a new summary.')).toBeVisible();await expect(download).toBeDisabled();
  const exported=page.waitForEvent('download');await page.getByRole('button',{name:'↓ Fhir',exact:true}).click();expect((await exported).suggestedFilename()).toContain('.json');await page.unrouteAll({behavior:'wait'});
 });
+test('ASR uncertain-span queue exposes original text, supplied alternatives, reasons, and keyboard review',async({page})=>{
+ await page.route('**/v1/encounters/*/workspace',async route=>{
+  const response=await route.fetch();const body=await response.json();
+  if(body.transcript?.segments?.length){
+   const segment=body.transcript.segments[0];segment.uncertainties=['unreviewed_asr'];segment.alternatives=[{text:'Test alternative hypothesis.',source:'second development decode'}];
+   body.transcript.untranscribed_intervals=[{start_ms:segment.end_ms,end_ms:segment.end_ms+500,reason:'not_transcribed_unknown_cause'}];
+  }
+  await route.fulfill({response,json:body});
+ });
+ await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+ await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();
+ const queue=page.getByRole('region',{name:'Uncertain source spans'});await expect(queue).toBeVisible();
+ await expect(queue.getByText('Original ASR text',{exact:true}).first()).toBeVisible();
+ await expect(queue.getByText('Test alternative hypothesis.',{exact:true})).toBeVisible();
+ await expect(queue.getByText('ASR text has not been checked against the recording.',{exact:true})).toBeVisible();
+ await expect(queue.getByText('Untranscribed source interval',{exact:true})).toBeVisible();
+ const review=queue.getByRole('button',{name:/Play and review source interval starting/}).first();await review.focus();await page.keyboard.press('Enter');
+ await expect(page.locator('textarea[id^="transcript-segment-"]').first()).toBeFocused();
+});

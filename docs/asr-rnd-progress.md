@@ -598,3 +598,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   qualification, clinical safety, end-to-end product acceptance and engineering
   CI. Missing evidence is never treated as PASS; the report authorizes no model
   promotion or clinical use.
+- **MTA-ASR-I13 update:** Implemented a clinician-facing uncertain-span queue in
+  the source review screen. It lists original transcript text, known uncertainty
+  reasons, supplied alternatives when present, and untranscribed source
+  intervals; keyboard activation seeks to the source and focuses its versioned
+  editor. TypeScript and the production build pass. The browser usability test
+  could not navigate to the local test server (`ERR_NETWORK_ACCESS_DENIED`), and
+  current ASR profiles do not supply alternate hypotheses or a rendered
+  waveform, so full I13 acceptance remains incomplete.
