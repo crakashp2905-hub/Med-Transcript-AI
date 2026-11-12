@@ -391,3 +391,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   leave `word_alignment_validated=false`; they do not claim alignment proves a
   word was spoken. No acoustic support test for inserted words can be run until
   a qualified local aligner and independent audio-supported fixtures exist.
+- **MTA-ASR-G03:** Existing audio provenance maps source PCM crops and
+  channel selections to parent sample offsets, and resampled mappings fail
+  closed unless source origin and group delay are measured.
+  `tests/test_audio_provenance.py` covers crop mapping, measured resampling,
+  monotonic offsets and unknown-delay rejection. Status: partial; mapping
+  checks do not cover a forced-alignment runtime, which is unavailable under
+  G02, or a full end-to-end alignment round trip.
