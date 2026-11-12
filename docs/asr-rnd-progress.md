@@ -470,3 +470,8 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   because no adaptation has been run. Group separation does not prove speaker,
   site, device or model-training independence, and no shared-speaker leakage
   check is possible from the available metadata.
+- **MTA-ASR-H04:** Not run. No training augmentation artifacts were generated.
+  Existing gain/filter/noise-suppression work is paired inference-time signal
+  processing with source provenance; it is not relabeled training data or a
+  training augmentation gain. Any future licensed development augmentation
+  needs reproducible seeds, parent/derived hashes and label-preservation checks.
