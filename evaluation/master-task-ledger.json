@@ -1427,11 +1427,20 @@
       "id": "MTA-02-18",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create contract tests for every HTTP endpoint, including tenant scoping, role, consent, schema and stale version.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-18-a29c7f1.json"
+      ],
+      "source_commit": "a29c7f13c42646187d2f1e84e84ee9c2ed924e50",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-18-a29c7f1.json",
+          "report_sha256": "b9365828ea4dc3f13be6bfb05140103690746f79136015181c6cb21cce750e3c",
+          "check": "http_endpoint_authorization_and_openapi_contracts",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

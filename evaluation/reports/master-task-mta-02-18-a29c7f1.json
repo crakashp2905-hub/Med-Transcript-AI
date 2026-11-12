@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-18",
+  "status": "pass",
+  "source_commit": "a29c7f13c42646187d2f1e84e84ee9c2ed924e50",
+  "source_tree": "9c61e7702b1673f73d1bf373eb1580cdfe970d12",
+  "checks": {
+    "http_endpoint_authorization_and_openapi_contracts": {
+      "status": "pass",
+      "controls": [
+        "Every live /health and /v1/ HTTP operation is compared with its OpenAPI operation.",
+        "Every OpenAPI operation requires responses and a unique operationId.",
+        "Authenticated identity routes require OpenAPI security; public and development routes cannot claim it.",
+        "Every path-template parameter is declared as a required OpenAPI path parameter.",
+        "Existing contract and scoped authorization tests cover tenant, role, consent, schema, and stale-version behavior."
+      ],
+      "local_checks": {
+        "focused_tests": "7 passed",
+        "ruff": "pass"
+      },
+      "ci_run_id": 43289572845,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43289572845",
+      "ci_jobs": {
+        "test_dev_security": "success; 814 passed, 17 skipped",
+        "test_dev_asr_security": "success; 842 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "source_sha256": {
+    "services/api/authorization_policy.py": "cad7ba081fc731028a6a35b6754c79495f0625e498ed389b9e6b532a88a31c6d",
+    "tests/test_router_contracts.py": "c5a366ab329eed77c6cde4d167ed0e01817304fce642abf3c3ddb13beb53e3ca"
+  },
+  "limitations": [
+    "CI validates the committed route inventory and OpenAPI contract; it does not establish clinical safety.",
+    "Real-patient release is not authorized."
+  ],
+  "clinical_release_authorized": false
+}
