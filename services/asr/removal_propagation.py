@@ -16,7 +16,9 @@ import re
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 
-def source_reference_id(*, dataset_id: str, record_id: str, reference_sha256: str) -> str:
+def source_reference_id(
+    *, dataset_id: str, record_id: str, reference_sha256: str
+) -> str:
     """Return a stable opaque identifier for one source reference record."""
     if not dataset_id or not record_id or not _SHA256.fullmatch(reference_sha256):
         raise ValueError("source_reference_identity_invalid")
