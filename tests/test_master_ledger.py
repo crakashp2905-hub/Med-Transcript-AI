@@ -141,6 +141,11 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
         application_pipeline["source_commit"]
         == "34d08a2228791bdd710b14ac788066c6436970f0"
     )
+    evidence_graph = next(
+        item for item in document["tasks"] if item["id"] == "MTA-02-06"
+    )
+    assert evidence_graph["status"] == "implemented"
+    assert evidence_graph["source_commit"] == "0b401cc6d8de23f37fb0308c9da1190e73c84dcf"
 
 
 def test_verified_task_requires_exact_commit_test_and_runtime_hashes(

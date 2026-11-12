@@ -1155,11 +1155,23 @@
       "id": "MTA-02-06",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-      "status": "not_started",
+        "status": "implemented",
       "description": "Integrate validated source-to-fact graph and extend coverage through fact-to-note and note-to-export with exact immutable hashes.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+        "evidence": [
+          "evaluation/reports/master-task-mta-02-06-0b401cc.json",
+          "services/evidence_graph.py",
+          "services/review/routers/exports.py",
+          "tests/test_evidence_graph.py",
+          "tests/test_review_workflow.py"
+        ],
+        "source_commit": "0b401cc6d8de23f37fb0308c9da1190e73c84dcf",
+        "test_results": [
+          {
+            "report": "evaluation/reports/master-task-mta-02-06-0b401cc.json",
+            "report_sha256": "1144dc5b25661c34761bd024452fa99faea23a4c52833518ea83a1246162da8d",
+            "status": "pass"
+          }
+        ],
       "blocker": null
     },
     {

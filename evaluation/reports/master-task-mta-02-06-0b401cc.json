@@ -1,0 +1,55 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-06",
+  "status": "pass",
+  "source_commit": "0b401cc6d8de23f37fb0308c9da1190e73c84dcf",
+  "checks": {
+    "validated_source_to_export_graph": {
+      "status": "pass",
+      "edges": [
+        "audio_to_transcript",
+        "transcript_to_span",
+        "span_to_fact",
+        "fact_to_note",
+        "note_to_export"
+      ],
+      "hashes_bound": [
+        "audio source SHA-256",
+        "transcript immutable SHA-256",
+        "note immutable SHA-256",
+        "approval note SHA-256",
+        "export artifact SHA-256",
+        "evidence graph SHA-256"
+      ],
+      "application_checks": [
+        "export creation validates all graph edges before persistence",
+        "idempotent export retrieval recomputes and validates the graph",
+        "download revalidates note, transcript, approval and export hashes and returns graph SHA-256",
+        "source-linked note statements require exact transcript evidence",
+        "clinician-entered statements cannot claim source evidence",
+        "all non-excluded facts must reach a note statement"
+      ],
+      "focused_local_tests": "3 passed",
+      "ci_run_id": 43261276233,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43261276233",
+      "ci_jobs": {
+        "test_dev_security": "success; 790 passed, 17 skipped",
+        "test_dev_asr_security": "success; 818 passed, 3 skipped",
+        "frontend": "success",
+        "postgres": "success",
+        "container": "success",
+        "release-summary": "success"
+      },
+      "source_sha256": {
+        "services/evidence_graph.py": "ffc66d2d3f3889a0187bbf69865b7290ae182540e590e26f72ebc6e036fda2cd",
+        "services/review/routers/exports.py": "09a0e20348936594cab36a5b973b6b75dad966c52ebe3ac4dfb1e73d5a0736a6",
+        "tests/test_evidence_graph.py": "387511080d412e4040adffc6c3bf468799667a909f3193926d7d2606ff6453bb",
+        "tests/test_review_workflow.py": "8961afb9001150e422e9aa269055d35fdcdf5df47d8bd36f944409315385f5b2"
+      }
+    }
+  },
+  "limitations": [
+    "The route-level integration uses synthetic encounter data and proves graph wiring and immutable hash checks, not clinical correctness.",
+    "Graph validation does not authorize approval or clinical release; clinician approval gates remain independent."
+  ]
+}
