@@ -188,3 +188,10 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   and capability honesty. Status: partial; timeout propagation is tested as a
   provider failure, but no hard cancellation of a non-cooperative backend is
   implemented.
+- **MTA-ASR-D03:** Added an Omi backend candidate wrapper that requires the
+  exact local GGUF digest, pinned runtime and existing CPU library; automatic
+  downloads are disabled. It reports text-only output with no native
+  timestamps, n-best, or confidence. Added tests/test_omi_backend.py for
+  rejecting missing weights before runtime initialization. Status: partial;
+  the focused pytest process stalled before collection and did not complete,
+  and no production worker profile or inference-mode promotion is configured.
