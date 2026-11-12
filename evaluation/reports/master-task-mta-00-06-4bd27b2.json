@@ -1,0 +1,23 @@
+{
+  "schema_version": "master_task_acceptance_matrix_v1",
+  "task_id": "MTA-00-06",
+  "source_commit": "4bd27b2555d8e7f51e82f06b220a97de5aacc9db",
+  "checks": {
+    "matrix_contract_tests": {
+      "status": "pass",
+      "result": "2 passed; matrix covers 369 tasks and includes owner, priority, status, dependencies, evidence, last-run commit, results and blocker fields"
+    },
+    "matrix_contract_lint": {
+      "status": "pass",
+      "result": "ruff check and ruff format --check passed"
+    },
+    "dependency_mapping": {
+      "status": "partial",
+      "result": "Section-order suggestions are explicit planning hints; exact task-level edges remain unmapped and are labeled as such"
+    }
+  },
+  "matrix_path": "evaluation/reports/master-implementation-matrix-v9.json",
+  "new_installations_attempted": 0,
+  "external_calls_attempted": 0,
+  "clinical_release_authorized": false
+}

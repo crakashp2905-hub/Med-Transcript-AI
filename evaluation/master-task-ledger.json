@@ -128,12 +128,24 @@
       "id": "MTA-00-06",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Create machine-readable acceptance matrix with owner=AI agent, priority, dependencies, executable evidence, last run SHA and failure/blocked reasons.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/master_matrix.py",
+        "tests/test_master_matrix.py",
+        "evaluation/reports/master-implementation-matrix-v9.json",
+        "evaluation/reports/master-task-mta-00-06-4bd27b2.json"
+      ],
+      "source_commit": "4bd27b2555d8e7f51e82f06b220a97de5aacc9db",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-00-06-4bd27b2.json",
+          "report_sha256": "74fef4b5638cf78f72e9be37b45d0c36ca90b2206df74cff8bfc1963fc05c3f0",
+          "check": "matrix_contract_tests",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Task-level dependency edges remain unmapped; current section-order suggestions are planning hints, not an audited dependency graph."
     },
     {
       "id": "MTA-00-07",

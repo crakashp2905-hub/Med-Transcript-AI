@@ -38,6 +38,12 @@ those claims. At import, all 369 entries were `not_started`; this meant
   institutional sign-off before pilot candidacy. Clinical approval remains
   blocked even under hypothetical passing inputs. The three tier-policy tests
   passed; the current snapshot still has only the local demo tier established.
+- MTA-00-06 is implemented at source commit `4bd27b2555d8e7f51e82f06b220a97de5aacc9db`.
+  The generated matrix includes all 369 ledger rows and the requested owner,
+  priority, evidence, run SHA, result, blocker, and dependency fields. Exact
+  task-to-task dependency edges remain unmapped; section-order hints are labeled
+  as unaudited, not presented as a verified graph. The current matrix is
+  [`master-implementation-matrix-v9.json`](../evaluation/reports/master-implementation-matrix-v9.json).
 - The prior source-bound offline report, [`v21`](../evaluation/reports/offline-acceptance-v21.json),
   passed its seven software checks at `b939377`. It does not prove current
   post-format source, 5% ASR accuracy, or independent clinical performance.
