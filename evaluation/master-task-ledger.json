@@ -411,12 +411,35 @@
       "id": "MTA-01-08",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Validate docs links, source path references, API examples and test names against the repository tree.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/doc_integrity.py",
+        "tests/test_doc_integrity.py",
+        "evaluation/reports/master-task-mta-01-08-03b103d.json"
+      ],
+      "source_commit": "03b103d4b010df262891a0c972412f163649656f",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-08-03b103d.json",
+          "report_sha256": "ae8df00afaae12deb66248da5b209c20c2286b71358d5399b1cb92f598c7ba75",
+          "check": "documentation_scan",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-08-03b103d.json",
+          "report_sha256": "ae8df00afaae12deb66248da5b209c20c2286b71358d5399b1cb92f598c7ba75",
+          "check": "negative_regression_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-08-03b103d.json",
+          "report_sha256": "ae8df00afaae12deb66248da5b209c20c2286b71358d5399b1cb92f598c7ba75",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "External links are not fetched; API examples are checked against static route declarations and not live request/response behavior."
     },
     {
       "id": "MTA-01-09",

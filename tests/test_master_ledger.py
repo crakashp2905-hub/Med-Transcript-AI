@@ -10,9 +10,9 @@ from services.master_ledger import LEDGER, ROOT, audit
 def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     result = audit()
     assert result["total"] == 369
-    assert result["statuses"]["not_started"] == 363
+    assert result["statuses"]["not_started"] == 362
     assert result["statuses"]["blocked_missing_asset"] == 2
-    assert result["statuses"]["implemented"] == 4
+    assert result["statuses"]["implemented"] == 5
     assert result["verified_at_current_commit"] == 0
     assert result["clinical_release_authorized"] is False
     document = json.loads(LEDGER.read_text(encoding="utf-8"))
@@ -30,6 +30,14 @@ def test_supplied_ledger_has_unique_369_tasks_without_completion_claims():
     blocked_task = next(item for item in document["tasks"] if item["id"] == "MTA-01-03")
     assert blocked_task["status"] == "blocked_missing_asset"
     assert blocked_task["source_commit"] == "c15c2b896e69e66c110d59b2f805b59ce9c165e1"
+    documentation_task = next(
+        item for item in document["tasks"] if item["id"] == "MTA-01-08"
+    )
+    assert documentation_task["status"] == "implemented"
+    assert (
+        documentation_task["source_commit"]
+        == "03b103d4b010df262891a0c972412f163649656f"
+    )
     provenance_task = next(
         item for item in document["tasks"] if item["id"] == "MTA-01-07"
     )
