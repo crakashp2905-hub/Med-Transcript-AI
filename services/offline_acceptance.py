@@ -15,6 +15,7 @@ from uuid import uuid4
 from services.offline import install
 from services.engineering_status import sha256
 from services.release_provenance import build_acceptance_provenance
+from services.source_change_detector import canonical_sha256, toolchain_inventory
 from services.artifact_provenance import (
     acceptance_artifact_provenance,
     validate_provenance,
@@ -356,12 +357,15 @@ def acceptance(version, run_tests=True, run_build=True):
             "reason": "acceptance_provenance_binding_failed",
         }
 
+    toolchain = toolchain_inventory()
     report = {
         "schema_version": "offline_acceptance_v1",
         "version": version,
         "recorded_at": datetime.now(timezone.utc).isoformat(),
         "source_commit": source_commit,
         "source_sha256": source_hashes,
+        "toolchain": toolchain,
+        "toolchain_sha256": canonical_sha256(toolchain),
         "code_manifest_sha256": provenance.get("code_manifest_sha256"),
         "provenance": provenance,
         "preflight": preflight,
