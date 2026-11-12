@@ -10,7 +10,7 @@ requires-python = ">=3.11"
 dependencies = ["fastapi==0.136.1", "pydantic==2.12.5", "uvicorn>=0.34,<1", "google-auth==2.62.1", "requests==2.34.2", "tzdata>=2025.1; sys_platform == 'win32'"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<10", "httpx>=0.28,<1"]
+dev = ["pytest>=8,<10", "httpx>=0.28,<1", "coverage==7.10.6"]
 asr = ["faster-whisper==1.2.1", "rapidfuzz>=3,<4"]
 security = ["cryptography==50.0.2"]
 postgres = ["psycopg[binary]>=3.2,<4"]

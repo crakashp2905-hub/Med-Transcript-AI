@@ -28,6 +28,12 @@ jobs:
           python -m ruff check services tests
           python -m mypy services --ignore-missing-imports
       - run: python -m pytest -q
+      - name: Measure critical module line and branch coverage
+        if: matrix.extras == 'dev,security'
+        run: >-
+          python -m services.module_coverage_report
+          --source-commit "$GITHUB_SHA"
+          --output "$RUNNER_TEMP/critical-module-coverage.json"
       - name: Measure critical adversarial input-mutation cases
         if: matrix.extras == 'dev,security'
         run: >-
