@@ -15,6 +15,7 @@ from services.review.engine import (
     validate_evidence,
     RULES_VERSION,
 )
+from services.encounter_state import Stage, advance_persisted
 
 
 class ReviewStateError(HTTPException):
@@ -118,6 +119,12 @@ class ReviewService:
         con.execute(
             "UPDATE encounters SET current_transcript=? WHERE id=?", (tid, str(eid))
         )
+        lifecycle = con.execute(
+            "SELECT stage FROM encounter_lifecycle WHERE encounter=?", (str(eid),)
+        ).fetchone()
+        if lifecycle and lifecycle["stage"] == Stage.CREATED.value:
+            advance_persisted(con, eid, Stage.RECORDING)
+        advance_persisted(con, eid, Stage.TRANSCRIBED)
         audit(con, actor, "transcript_version_created", tid)
         return {**body, "sha256": digest}
 
@@ -196,5 +203,7 @@ class ReviewService:
             ),
         )
         con.execute("UPDATE encounters SET current_note=? WHERE id=?", (nid, str(eid)))
+        advance_persisted(con, eid, Stage.DRAFTED)
+        advance_persisted(con, eid, Stage.VERIFIED)
         audit(con, actor, "note_version_created", nid)
         return {"note": {**body, "sha256": digest}, "verification": report}

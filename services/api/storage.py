@@ -191,6 +191,36 @@ MIGRATIONS = (
     CREATE UNIQUE INDEX jobs_transcription_input ON jobs(upload,profile_sha256)
         WHERE stage='transcription' AND retranscription IS NULL;
     """,
+    """
+    CREATE TABLE encounter_lifecycle (
+        encounter TEXT PRIMARY KEY REFERENCES encounters(id),
+        stage TEXT NOT NULL CHECK(stage IN ('created','recording','transcribed','drafted','verified','approved','revoked')),
+        version INTEGER NOT NULL CHECK(version >= 0),
+        updated_at TEXT NOT NULL
+    );
+    INSERT INTO encounter_lifecycle(encounter,stage,version,updated_at)
+    SELECT e.id,
+        CASE
+            WHEN EXISTS(SELECT 1 FROM approvals a WHERE a.encounter=e.id) THEN 'approved'
+            WHEN EXISTS(SELECT 1 FROM documents d WHERE d.encounter=e.id AND d.kind='verification') THEN 'verified'
+            WHEN EXISTS(SELECT 1 FROM documents d WHERE d.encounter=e.id AND d.kind='note') THEN 'drafted'
+            WHEN EXISTS(SELECT 1 FROM transcript_versions t WHERE t.encounter=e.id) THEN 'transcribed'
+            WHEN EXISTS(SELECT 1 FROM uploads u WHERE u.encounter=e.id) THEN 'recording'
+            ELSE 'created'
+        END,
+        0,e.created_at
+    FROM encounters e;
+    CREATE TRIGGER encounter_lifecycle_update_guard BEFORE UPDATE ON encounter_lifecycle
+    WHEN NEW.encounter != OLD.encounter OR NEW.version != OLD.version + 1 OR NOT (
+        (OLD.stage='created' AND NEW.stage='recording') OR
+        (OLD.stage='recording' AND NEW.stage='transcribed') OR
+        (OLD.stage='transcribed' AND NEW.stage IN ('transcribed','drafted')) OR
+        (OLD.stage='drafted' AND NEW.stage IN ('transcribed','drafted','verified')) OR
+        (OLD.stage='verified' AND NEW.stage IN ('transcribed','drafted','approved')) OR
+        (OLD.stage='approved' AND NEW.stage IN ('transcribed','drafted'))
+    )
+    BEGIN SELECT RAISE(ABORT, 'Invalid encounter lifecycle version'); END;
+    """,
 )
 
 

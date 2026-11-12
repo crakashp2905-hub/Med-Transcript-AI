@@ -10,6 +10,7 @@ from services.api.contracts import Identity, IdempotencyKey, UploadInput
 from services.api.router_context import ApiServices
 from services.api.time_utils import now
 from services.domain_contracts import validate_record
+from services.encounter_state import Stage, advance_persisted
 
 
 def register(app, services: ApiServices):
@@ -58,6 +59,12 @@ def register(app, services: ApiServices):
                     body.media_type,
                 ),
             )
+            lifecycle = con.execute(
+                "SELECT stage FROM encounter_lifecycle WHERE encounter=?",
+                (str(encounter_id),),
+            ).fetchone()
+            if lifecycle and lifecycle["stage"] == Stage.CREATED.value:
+                advance_persisted(con, encounter_id, Stage.RECORDING)
             response = {
                 "id": resource,
                 "status": "open",

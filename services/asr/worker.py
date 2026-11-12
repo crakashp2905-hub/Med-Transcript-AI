@@ -545,6 +545,15 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
                             "UPDATE encounters SET current_transcript=? WHERE id=?",
                             (transcript_id, job["encounter"]),
                         )
+                        from services.encounter_state import Stage, advance_persisted
+
+                        lifecycle = con.execute(
+                            "SELECT stage FROM encounter_lifecycle WHERE encounter=?",
+                            (job["encounter"],),
+                        ).fetchone()
+                        if lifecycle and lifecycle["stage"] == Stage.CREATED.value:
+                            advance_persisted(con, job["encounter"], Stage.RECORDING)
+                        advance_persisted(con, job["encounter"], Stage.TRANSCRIBED)
                         result = {
                             "transcript_version_id": transcript_id,
                             "sha256": digest,

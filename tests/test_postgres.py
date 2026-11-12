@@ -18,6 +18,13 @@ def test_postgres_migrations_transform_immutable_triggers():
     assert "ON transcript_versions;" in sql
 
 
+def test_postgres_migration_keeps_lifecycle_transition_guard_writable():
+    sql = postgres_migration(MIGRATIONS[-1])
+    assert "validate_encounter_lifecycle_update()" in sql
+    assert "forbid_version_update()" not in sql
+    assert "SELECT RAISE" not in sql
+
+
 @pytest.mark.skipif(
     not os.environ.get("MED_TRANSCRIPT_TEST_POSTGRES"),
     reason="PostgreSQL integration DSN not configured",

@@ -42,10 +42,15 @@ class Connection:
 def postgres_migration(sql):
     def trigger(match):
         name, table = match.group(1), match.group(2)
+        if name == "encounter_lifecycle_update_guard":
+            return (
+                f"CREATE TRIGGER {name} BEFORE UPDATE ON {table} "
+                "FOR EACH ROW EXECUTE FUNCTION validate_encounter_lifecycle_update();"
+            )
         return f"CREATE TRIGGER {name} BEFORE UPDATE ON {table} FOR EACH ROW EXECUTE FUNCTION forbid_version_update();"
 
     sql = re.sub(
-        r"CREATE TRIGGER (\w+) BEFORE UPDATE ON (\w+)\s+BEGIN.*?END;",
+        r"CREATE TRIGGER (\w+) BEFORE UPDATE ON (\w+)(?:\s+WHEN[\s\S]*?)?\s+BEGIN.*?END;",
         trigger,
         sql,
         flags=re.S,
@@ -77,6 +82,18 @@ class PostgresStore:
                 raise RuntimeError("Database schema is newer than this application")
             con.execute("""CREATE OR REPLACE FUNCTION forbid_version_update() RETURNS trigger AS $$
                 BEGIN RAISE EXCEPTION 'Version bodies are immutable'; END; $$ LANGUAGE plpgsql""")
+            con.execute("""CREATE OR REPLACE FUNCTION validate_encounter_lifecycle_update() RETURNS trigger AS $$
+                BEGIN
+                    IF NEW.encounter <> OLD.encounter OR NEW.version <> OLD.version + 1 OR NOT (
+                        (OLD.stage='created' AND NEW.stage='recording') OR
+                        (OLD.stage='recording' AND NEW.stage='transcribed') OR
+                        (OLD.stage='transcribed' AND NEW.stage IN ('transcribed','drafted')) OR
+                        (OLD.stage='drafted' AND NEW.stage IN ('transcribed','drafted','verified')) OR
+                        (OLD.stage='verified' AND NEW.stage IN ('transcribed','drafted','approved')) OR
+                        (OLD.stage='approved' AND NEW.stage IN ('transcribed','drafted'))
+                    ) THEN RAISE EXCEPTION 'Invalid encounter lifecycle transition'; END IF;
+                    RETURN NEW;
+                END; $$ LANGUAGE plpgsql""")
             for version, sql in enumerate(migrations, start=1):
                 if version > current:
                     # No parameters: psycopg uses the multi-statement-capable simple protocol.

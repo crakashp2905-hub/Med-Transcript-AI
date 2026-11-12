@@ -9,6 +9,7 @@ from fastapi.testclient import TestClient
 
 from services.api.ingest import run_once
 from services.api.main import create_app
+from services.api.storage import Store
 from tests.test_foundation import headers, queue_upload
 
 
@@ -71,7 +72,17 @@ def approve(client, eid, note):
 def test_full_review_approval_export_and_amendment(setup):
     client, path, _ = setup
     eid, tx, facts = prepare(client, path)
+
+    def lifecycle():
+        with Store(path).transaction() as con:
+            return con.execute(
+                "SELECT stage,version FROM encounter_lifecycle WHERE encounter=?",
+                (eid,),
+            ).fetchone()
+
+    assert lifecycle()["stage"] == "transcribed"
     result = draft(client, eid, tx, facts)
+    assert lifecycle()["stage"] == "verified"
     statement = next(
         item for section in result["note"]["sections"] for item in section["statements"]
     )
@@ -87,6 +98,7 @@ def test_full_review_approval_export_and_amendment(setup):
     assert result["verification"]["gate"] == "ready"
     approved = approve(client, eid, result["note"])
     assert approved.status_code == 201, approved.text
+    assert lifecycle()["stage"] == "approved"
     assert approve(client, eid, result["note"]).json() == approved.json()
     for format in ("markdown", "text", "json"):
         response = client.post(
@@ -132,6 +144,7 @@ def test_full_review_approval_export_and_amendment(setup):
         },
     )
     assert amendment.status_code == 201
+    assert lifecycle()["stage"] == "verified"
     assert amendment.json()["note"]["parent_version_id"] == result["note"]["id"]
     assert approve(client, eid, result["note"]).status_code == 412
 

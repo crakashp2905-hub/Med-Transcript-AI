@@ -15,6 +15,7 @@ from services.review.models import ApprovalInput
 
 
 from services.review.service import ReviewService
+from services.encounter_state import Stage, advance_persisted
 
 
 def register(app, services: ReviewService):
@@ -77,4 +78,5 @@ def register(app, services: ReviewService):
             )
             seal_approval(con, aid, approved, created)
             audit(con, actor, "exact_version_approved", aid)
+            advance_persisted(con, eid, Stage.APPROVED)
             return approved
