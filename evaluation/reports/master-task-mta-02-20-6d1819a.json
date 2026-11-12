@@ -1,0 +1,48 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-20",
+  "status": "pass",
+  "source_commit": "6d1819a9716096b796c68e049089255f059da0cb",
+  "source_tree": "da315c26027127921d94deef1ddf8d187eb7c1c1",
+  "checks": {
+    "offline_demo_artifacts_separated_from_runtime": {
+      "status": "pass",
+      "controls": [
+        "A dedicated artifact-generation operation writes the synthetic WAV, transcript manifest and local access file without opening the application or database.",
+        "The CLI exposes --artifacts-only and reports database_created=false and runtime_migrations_executed=false without printing credentials.",
+        "Generated demo manifest explicitly keeps engineering/research claims unestablished and clinical release blocked.",
+        "Normal demo startup remains the separate application/database initialization path."
+      ],
+      "local_checks": {
+        "artifact_generation": "passed locally",
+        "ruff": "pass"
+      },
+      "ci_run_id": 43291812240,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43291812240",
+      "ci_jobs": {
+        "test_dev_security": "success; 816 passed, 17 skipped, 1 warning",
+        "test_dev_asr_security": "success; 844 passed, 3 skipped, 2 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43291812240
+  },
+  "runtime_sha256": "6191184b9fbed25d9a3ce9b95bf46c5a89e0dcf63fd23e98425f84aa2d6ae5ae",
+  "source_sha256": {
+    "services/offline_demo.py": "b632820898b667e57fd0e41ae652a470942e868b20a3d56a8e2caa9589b1e3f0",
+    "tests/test_offline_engineering.py": "7db1164ff0a2f6e6a423c79591b5ac9babf74bd0d3c51dafb3b1b30e43149acc"
+  },
+  "limitations": [
+    "Synthetic adapters validate application wiring and do not establish ASR or clinical accuracy.",
+    "Clinical release is not authorized."
+  ],
+  "clinical_release_authorized": false
+}

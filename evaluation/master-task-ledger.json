@@ -1447,22 +1447,41 @@
       "id": "MTA-02-19",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create full transaction-level e2e test of recorded/audio fixture → exact approved export, plus every major failure fork.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-19-failure-d6d3595.json",
+        "evaluation/reports/master-task-mta-02-19-6d1819a.json"
+      ],
+      "source_commit": "6d1819a9716096b796c68e049089255f059da0cb",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-19-6d1819a.json",
+          "report_sha256": "3764e769d1d485ac645854897c52dadbb110a1afaa41ef0eff294f55542dd89b",
+          "check": "audio_fixture_to_approved_export",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-02-20",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Separate offline demo artifact generation from runtime schema upgrades and clinical release management.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-20-6d1819a.json"
+      ],
+      "source_commit": "6d1819a9716096b796c68e049089255f059da0cb",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-20-6d1819a.json",
+          "report_sha256": "ac5a3461faaf9cb4307854f7ba4b52241d9a3a08ec984d093ea1294261b26afe",
+          "check": "offline_demo_artifacts_separated_from_runtime",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

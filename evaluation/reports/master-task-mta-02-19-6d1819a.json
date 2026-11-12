@@ -1,0 +1,52 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-19",
+  "status": "pass",
+  "source_commit": "6d1819a9716096b796c68e049089255f059da0cb",
+  "source_tree": "da315c26027127921d94deef1ddf8d187eb7c1c1",
+  "checks": {
+    "audio_fixture_to_approved_export": {
+      "status": "pass",
+      "controls": [
+        "A hashed WAV fixture is uploaded and ingested through the actual API and worker path.",
+        "The explicitly synthetic replay is preserved in transcript provenance and is not labeled real ASR inference.",
+        "Clinician review, evidence-backed extraction, deterministic draft, verification, approval and exact JSON export are exercised in one transaction.",
+        "Export SHA-256, approved note digest, approval identity and source transcript version are cross-checked.",
+        "Failure forks are covered by existing withdrawal-during-inference, failed-adapter, invalid-output, stale-approval, tenant-isolation, upload-integrity and export-safety tests."
+      ],
+      "local_checks": {
+        "focused_e2e": "did_not_complete; local Windows TestClient process stalled and was interrupted",
+        "ruff": "pass",
+        "exact_commit_ci": "full test matrix passed"
+      },
+      "ci_run_id": 43291812240,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43291812240",
+      "ci_jobs": {
+        "test_dev_security": "success; 816 passed, 17 skipped, 1 warning",
+        "test_dev_asr_security": "success; 844 passed, 3 skipped, 2 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": []
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43291812240
+  },
+  "runtime_sha256": "6191184b9fbed25d9a3ce9b95bf46c5a89e0dcf63fd23e98425f84aa2d6ae5ae",
+  "source_sha256": {
+    "tests/test_audio_transaction.py": "0cbcc63a99ffabe2e40b33ff200bc030958ffa4c6aa29b10d68dc89732d55b19",
+    "tests/test_transcription.py": "a0a2da1f8411fe3c6fda39f815d4baf278d0d9936144682da158d0ef51bab375",
+    "tests/test_review_workflow.py": "376be1771159a887ae003b68672ff14cd24b8a55f5d46fe936d37789ff980635",
+    "tests/test_foundation.py": "b0bef05a92e428f122a0a6baf6d5517b4e019f68502e91b74043a03ba3e70df2"
+  },
+  "limitations": [
+    "Synthetic adapters validate application wiring and do not establish ASR or clinical accuracy.",
+    "Clinical release is not authorized."
+  ],
+  "clinical_release_authorized": false
+}
