@@ -242,12 +242,40 @@
       "id": "MTA-01-06",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add fail-fast CI step that detects unformatted source before heavyweight jobs begin.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "evaluation/reports/master-task-mta-01-06-796a9d9.json"
+      ],
+      "source_commit": "796a9d9b07338b3bb7d1735df43a7cc916aa2231",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-06-796a9d9.json",
+          "report_sha256": "858c9c9c764988c203916136d940418dbfaffbb9b60278690a89200837276606",
+          "check": "ruff_pinned_version",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-06-796a9d9.json",
+          "report_sha256": "858c9c9c764988c203916136d940418dbfaffbb9b60278690a89200837276606",
+          "check": "format_check",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-06-796a9d9.json",
+          "report_sha256": "858c9c9c764988c203916136d940418dbfaffbb9b60278690a89200837276606",
+          "check": "ruff_check",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-06-796a9d9.json",
+          "report_sha256": "858c9c9c764988c203916136d940418dbfaffbb9b60278690a89200837276606",
+          "check": "gate_order",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Hosted CI execution has not been observed for the source commit."
     },
     {
       "id": "MTA-01-07",

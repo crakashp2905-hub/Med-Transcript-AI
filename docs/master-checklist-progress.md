@@ -94,6 +94,13 @@ metric code, endpoint registry and passing tests to source commit
 The current ledger audit accepts the receipt. The metric implementation does
 not establish clinical validity; the 5% normalized WER gate remains unchanged.
 
+`MTA-01-06` is also `implemented`, with the pinned Ruff format gate and full
+Ruff format/lint checks bound to source commit
+`796a9d9b07338b3bb7d1735df43a7cc916aa2231` in
+[`master-task-mta-01-06-796a9d9.json`](../evaluation/reports/master-task-mta-01-06-796a9d9.json).
+All 454 Python source and test files in that commit were hashed. Hosted CI has
+not been observed and remains a separate unresolved check.
+
 ## Initial execution matrix snapshot (superseded)
 
 [`master-implementation-matrix-v1.json`](../evaluation/reports/master-implementation-matrix-v1.json)
