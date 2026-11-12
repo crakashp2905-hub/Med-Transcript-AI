@@ -1,11 +1,11 @@
-FROM node:22-bookworm-slim AS web
+FROM node:22.16.0-bookworm-slim AS web
 WORKDIR /web
 COPY apps/clinician-web/package*.json ./
 RUN npm ci
 COPY apps/clinician-web/ ./
 RUN npm run build
 
-FROM python:3.13-slim
+FROM python:3.13.5-slim
 WORKDIR /app
 COPY pyproject.toml README.md constraints-ci.txt ./
 COPY services/ ./services/

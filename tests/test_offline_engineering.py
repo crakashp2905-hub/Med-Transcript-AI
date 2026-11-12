@@ -73,7 +73,7 @@ def test_offline_preflight_reports_cached_capabilities_without_install_or_networ
     from services.offline_preflight import inspect
 
     report = inspect(tmp_path, hash_models=True)
-    assert report["schema_version"] == "offline_preflight_v1"
+    assert report["schema_version"] == "offline_preflight_v2"
     assert report["new_installations_attempted"] == 0
     assert report["external_calls_attempted"] == 0
     assert {
@@ -84,6 +84,9 @@ def test_offline_preflight_reports_cached_capabilities_without_install_or_networ
         "models",
         "packages",
         "config_sha256",
+        "cache_artifact_hashes_requested",
+        "cache_artifacts",
+        "runtime_versions",
     } <= set(report)
     assert report["model_contents_hashed"] is True
 

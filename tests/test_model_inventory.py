@@ -1,6 +1,7 @@
 import hashlib
+from pathlib import Path
 import pytest
-from services.offline_preflight import inventory_models
+from services.offline_preflight import inventory_artifact_tree, inventory_models
 
 
 def test_model_inventory_hashes_bytes_without_claiming_model_eligibility(tmp_path):
@@ -48,3 +49,37 @@ def test_model_inventory_rejects_files_that_change_during_streaming(
     monkeypatch.setattr(module, "sha256", mutate)
     with pytest.raises(ValueError, match="model_changed_during_inventory"):
         inventory_models(tmp_path, True)
+
+
+def test_cache_inventory_hashes_root_files_and_nested_artifacts(tmp_path):
+    cache = tmp_path / "data/models"
+    (cache / "model").mkdir(parents=True)
+    (cache / "model/weights.bin").write_bytes(b"weight")
+    (cache / "archive.tar").write_bytes(b"archive")
+    report = inventory_artifact_tree(tmp_path, "data/models")
+    assert report["status"] == "contents_hashed"
+    assert [item["path"] for item in report["files"]] == [
+        "data/models/archive.tar",
+        "data/models/model/weights.bin",
+    ]
+    assert report["total_bytes"] == 13
+
+
+def test_cache_inventory_reports_missing_cache(tmp_path):
+    report = inventory_artifact_tree(tmp_path, "data/wheelhouse")
+    assert report["status"] == "blocked_missing_local_artifact"
+    assert report["files"] == []
+
+
+def test_cache_inventory_rejects_symlinks(tmp_path, monkeypatch):
+    cache = tmp_path / "cache"
+    cache.mkdir()
+    (cache / "outside").write_bytes(b"external")
+    original = Path.is_symlink
+    monkeypatch.setattr(
+        Path,
+        "is_symlink",
+        lambda path: path.name == "outside" or original(path),
+    )
+    with pytest.raises(ValueError, match="artifact_inventory_symlink_or_escape"):
+        inventory_artifact_tree(tmp_path, "cache")
