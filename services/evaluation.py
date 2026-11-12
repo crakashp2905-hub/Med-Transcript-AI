@@ -1,6 +1,7 @@
 """Offline ASR benchmark harness. Failed samples remain in the scoring denominator."""
 
 import argparse
+import hashlib
 import json
 import math
 import re
@@ -12,6 +13,14 @@ from services.api.ingest import file_sha256, inspect_pcm_wav
 from services.asr.adapter import ASRFailure, FasterWhisperAdapter
 from services.asr.profiles import load_profiles
 from services.asr.transcripts import build_transcript
+from services.asr.evaluation_contract import (
+    FAILURE_POLICY,
+    NORMALIZATION_POLICY,
+    make_contract,
+    observed_channel_map,
+    validate_manifest,
+    validate_contract,
+)
 
 
 PROJECT_MAX_NORMALIZED_WER = 0.05
@@ -97,34 +106,26 @@ def run(
         raise ValueError("Project policy forbids a normalized WER maximum above 5%")
     source = Path(manifest_path).resolve()
     manifest = json.loads(source.read_text(encoding="utf-8"))
-    if manifest.get("data_class") not in (
-        "synthetic",
-        "approved_public",
-    ) or not manifest.get("rights_reviewed"):
-        raise ValueError(
-            "This harness accepts rights-reviewed synthetic or public evaluation material only"
-        )
-    samples = manifest.get("samples", [])
-    if (
-        not samples
-        or len(samples) > 10000
-        or len({item["sample_id"] for item in samples}) != len(samples)
-    ):
-        raise ValueError("Use 1–10000 uniquely identified samples")
+    samples = validate_manifest(manifest)
+    manifest_sha256 = file_sha256(source)
+    sample_paths = {}
+    for sample in samples:
+        audio = (source.parent / sample["audio"]).resolve()
+        if not audio.is_relative_to(source.parent):
+            raise ValueError("Evaluation audio must be inside the manifest directory")
+        sample_paths[sample["sample_id"]] = audio
     profile.verify_artifacts()
     rows, total_words, total_edits, raw_words, raw_edits, failures = [], 0, 0, 0, 0, 0
     adapter = FasterWhisperAdapter(profile)
     for sample in samples:
         started, hypothesis, error = time.perf_counter(), "", None
-        audio = (source.parent / sample["audio"]).resolve()
-        if not audio.is_relative_to(source.parent):
-            raise ValueError("Evaluation audio must be inside the manifest directory")
+        audio = sample_paths[sample["sample_id"]]
+        metadata = None
+        audio_integrity_verified = False
         try:
-            if (
-                sample.get("language") != "en"
-                or file_sha256(audio) != sample["audio_sha256"]
-            ):
+            if file_sha256(audio) != sample["audio_sha256"]:
                 raise ASRFailure("asset_integrity_failure")
+            audio_integrity_verified = True
             metadata = inspect_pcm_wav(audio)
             metadata["sha256"] = sample["audio_sha256"]
             raw = adapter.transcribe(audio, metadata, lambda: None)
@@ -154,6 +155,16 @@ def run(
         row = {
             "sample_id": sample["sample_id"],
             "group_id": sample["group_id"],
+            "audio_path": sample["audio"],
+            "audio_sha256": sample["audio_sha256"],
+            "audio_integrity_verified": audio_integrity_verified,
+            "channel_count": metadata["channels"] if metadata else None,
+            "channel_map": observed_channel_map(sample, metadata["channels"])
+            if metadata
+            else [],
+            "reference_sha256": hashlib.sha256(
+                sample["reference"].encode("utf-8")
+            ).hexdigest(),
             "status": "failed" if error else "completed",
             "error_code": error,
             "elapsed_seconds": round(time.perf_counter() - started, 4),
@@ -165,24 +176,33 @@ def run(
     report = {
         "schema_version": "1.0",
         "dataset_id": manifest["dataset_id"],
-        "manifest_sha256": file_sha256(source),
+        "manifest_sha256": manifest_sha256,
         "split_role": manifest["split_role"],
         "data_class": manifest["data_class"],
         "profile_id": profile.profile_id,
         "profile_sha256": profile.sha256,
         "model_revision": profile.revision,
-        "scoring_profile": "lowercase_words_preserve_decimals_units_negation_v1",
+        "scoring_profile": NORMALIZATION_POLICY,
         "sample_count": len(rows),
         "failed_samples": failures,
         "reference_words": total_words,
         "normalized_edits": total_edits,
         "normalized_wer": total_edits / total_words if total_words else None,
         "raw_wer": raw_edits / raw_words if raw_words else None,
-        "failure_policy": "empty_hypothesis_full_reference_deletions",
+        "failure_policy": FAILURE_POLICY,
         "critical_error_adjudication": "pending_clinician_review",
         "clinical_release_gate": "not_evaluated",
         "samples": rows,
     }
+    report["evaluation_contract"] = make_contract(
+        manifest=manifest,
+        manifest_sha256=manifest_sha256,
+        profile=profile,
+        recordings=rows,
+    )
+    validate_contract(report["evaluation_contract"])
+    if file_sha256(source) != manifest_sha256:
+        raise ValueError("evaluation_manifest_changed_during_run")
     report["wer_gate"] = wer_gate(report, max_normalized_wer)
     output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)
