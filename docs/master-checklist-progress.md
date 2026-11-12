@@ -111,12 +111,22 @@ the raw ledger SHA-256 is
 At generation, all 369 entries were `not_started`. This immutable snapshot is
 superseded by the current version below.
 
-## Current execution matrix
+## Superseded execution matrix v2
 
 [`master-implementation-matrix-v2.json`](../evaluation/reports/master-implementation-matrix-v2.json)
 was generated from source commit `f386b0428c915f21e4e2bdeed0164407b9cf3953`.
 Its SHA-256 is `6f6ef6ac246970ffec9e2f1d72ce7a3513e721093c0500a2bc1ad99e0354bb1d`;
 the raw ledger SHA-256 is
 `a55f59cd037b788662a341d27b60ddbcfc14c956ab38f29cbcf41c5e4c65320b`.
-It records one implemented task and 368 not started. Task-level dependency
+It records the ledger state before MTA-01-06 was added. See v3 below for the
+current ledger snapshot.
+
+## Current execution matrix
+
+[`master-implementation-matrix-v3.json`](../evaluation/reports/master-implementation-matrix-v3.json)
+was generated from source commit `1ae52f231c2adb843b47f5afd19fce7cecbc3a34`.
+Its SHA-256 is `9a31893dab08cba980755f3b804ed996b0e1f0cc2e2fb83445a9bc238005abc9`;
+the raw ledger SHA-256 is
+`e545dde4529c419cb0a14654653c67d1f5a283fef086e279fc2023ae3d926886`.
+It records two implemented tasks and 367 not started. Task-level dependency
 edges remain unmapped, and clinical release remains unauthorized.
