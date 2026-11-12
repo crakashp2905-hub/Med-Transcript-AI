@@ -344,6 +344,13 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   10 passed; Ruff and format checks pass. Status: partial; no upstream signals
   are wired into this rule, it does not yet save runtime compute, and recall of
   actual errors has not been measured.
+- **MTA-ASR-F08:** Partial, annotation-limited. No clinician-adjudicated
+  span-level critical-error labels or validated risk-selector outputs are
+  available, so critical miss rate, safe-case false alarms, selected-audio
+  coverage, and equal-compute random/control curves cannot be estimated
+  honestly. Developer-authored synthetic fixtures remain mechanism tests and
+  are not presented as coverage results. Completion requires reviewed
+  development labels and matched selector/control inference receipts.
 - **MTA-ASR-F06:** Partial. Existing repair jobs cap each requested crop at
   120 seconds, validate source authorization/version/hash, admit model memory
   before inference, and retry worker jobs at most three times. Candidate output
