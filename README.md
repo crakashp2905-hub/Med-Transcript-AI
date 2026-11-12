@@ -85,6 +85,19 @@ of the tested configurations currently passes. Rebuild the leaderboard with:
 .\.venv\Scripts\python.exe -m services.benchmark_ranking
 ```
 
+An offline real-inference smoke is available for the same frozen public mock
+only after an exact local profile has an admitted evidence record. It never
+downloads model files. Without an admission record it reports the verified
+local profile status and skips inference:
+
+```powershell
+python -m services.asr.offline_smoke --profiles data/asr-smoke-profiles.json --profile-id tiny-en-smoke-v1 --out evaluation/runs/primock57-smoke-v1/admitted-smoke.json
+```
+
+To run inference, pass `--admission PATH` to a reviewed
+`offline_asr_admission_v1` JSON record bound to that exact profile digest.
+The evaluation runner preserves failed samples in the denominator.
+
 ## Run locally
 
 The quickest Windows start builds the interface and starts the API and its
