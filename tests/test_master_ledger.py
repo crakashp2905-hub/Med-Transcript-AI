@@ -133,6 +133,14 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
     migrations = next(item for item in document["tasks"] if item["id"] == "MTA-02-04")
     assert migrations["status"] == "implemented"
     assert migrations["source_commit"] == "34d08a2228791bdd710b14ac788066c6436970f0"
+    application_pipeline = next(
+        item for item in document["tasks"] if item["id"] == "MTA-02-05"
+    )
+    assert application_pipeline["status"] == "implemented"
+    assert (
+        application_pipeline["source_commit"]
+        == "34d08a2228791bdd710b14ac788066c6436970f0"
+    )
 
 
 def test_verified_task_requires_exact_commit_test_and_runtime_hashes(

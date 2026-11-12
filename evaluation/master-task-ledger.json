@@ -1133,11 +1133,22 @@
       "id": "MTA-02-05",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
-      "status": "not_started",
+        "status": "implemented",
       "description": "Integrate `services/application_pipeline.py` through actual API routes rather than only direct unit tests.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+        "evidence": [
+          "evaluation/reports/master-task-mta-02-05-34d08a2.json",
+          "services/application_pipeline.py",
+          "services/review/clinical_routes.py",
+          "tests/test_application_pipeline.py"
+        ],
+        "source_commit": "34d08a2228791bdd710b14ac788066c6436970f0",
+        "test_results": [
+          {
+            "report": "evaluation/reports/master-task-mta-02-05-34d08a2.json",
+            "report_sha256": "78f474a5f5d3c17c08b0415d80544f109a2dc074958089f3c492ebc771778be5",
+            "status": "pass"
+          }
+        ],
       "blocker": null
     },
     {

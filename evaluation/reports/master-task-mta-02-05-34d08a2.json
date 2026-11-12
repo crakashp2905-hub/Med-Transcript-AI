@@ -1,0 +1,38 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-05",
+  "status": "pass",
+  "source_commit": "34d08a2228791bdd710b14ac788066c6436970f0",
+  "checks": {
+    "application_pipeline_api_integration": {
+      "status": "pass",
+      "route": "POST /v1/encounters/{eid}/fact-proposals",
+      "runtime_call": "services.review.clinical_routes.extract invokes services.application_pipeline.enrich_fact_proposal before proposal persistence",
+      "application_level_assertions": [
+        "evidence graph links the saved transcript audio asset to extracted facts",
+        "relationship validation returns real medication, dose, route and negation relations",
+        "enrichment is persisted and returned by the clinical proposal read endpoint",
+        "fabricated evidence is rejected before proposal persistence"
+      ],
+      "focused_test_file": "tests/test_application_pipeline.py",
+      "ci_run_id": 43258985838,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43258985838",
+      "ci_jobs": {
+        "test_dev_security": "success; 788 passed, 17 skipped",
+        "test_dev_asr_security": "success; 816 passed, 3 skipped",
+        "frontend": "success",
+        "postgres": "success",
+        "container": "success",
+        "release-summary": "success"
+      },
+      "source_sha256": {
+        "services/application_pipeline.py": "58788ea3637123e9f76bf4480fd91eff0f8f47e8a2fe0d7b61e8aa665905ad1f",
+        "services/review/clinical_routes.py": "86544081fe50344594c92fa448aec9659f1f951af657c042049b0a2e9a5e4c89",
+        "tests/test_application_pipeline.py": "db8cd4e91e17dac18a2a79bbecb4847f8db637759f8305217dd235e24dc5887e"
+      }
+    }
+  },
+  "limitations": [
+    "The application route integration uses the local deterministic rule extractor and synthetic encounter fixtures; it proves application-level wiring and evidence gating, not clinical accuracy or external deployment behavior."
+  ]
+}
