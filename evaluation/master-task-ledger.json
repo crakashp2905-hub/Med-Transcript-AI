@@ -1327,11 +1327,20 @@
       "id": "MTA-02-13",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Ensure model adapters obey provider-neutral interfaces without adding paid-provider dependencies.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-02-13-8875af5.json"
+      ],
+      "source_commit": "8875af506bf9f1659b8e1f6d4500f500cffaae18",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-02-13-8875af5.json",
+          "report_sha256": "c6d5243bab96c808351079724cef0aad25d04b6466906b00e6ca478703a3031c",
+          "check": "provider_neutral_adapter_contracts",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

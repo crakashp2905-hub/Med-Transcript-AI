@@ -1,0 +1,59 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-13",
+  "status": "pass",
+  "source_commit": "8875af506bf9f1659b8e1f6d4500f500cffaae18",
+  "source_tree": "5bb9426342dd53cd6a28c2c6e4d954d5d496a2c5",
+  "checks": {
+    "provider_neutral_adapter_contracts": {
+      "status": "pass",
+      "controls": [
+        "ASRProvider is the canonical capability contract and the production ASRBackend boundary aliases it; SequentialBackendPool validates and invokes this contract.",
+        "The duplicate drafting protocol was removed; deterministic and bounded JSON drafting implementations share the provider-neutral DraftingProvider contract.",
+        "Structural conformance tests cover FasterWhisperAdapter, OmiBackend and ParakeetOnnxBackend, plus DeterministicProvider and JSONProvider.",
+        "A dependency test ensures declared runtime and optional Python dependencies do not require paid-provider SDKs.",
+        "No paid calls, network model downloads, or provider-specific package additions were made."
+      ],
+      "local_checks": {
+        "adapter_and_asr_tests": "11 passed",
+        "provider_and_catalog_regression": "6 passed",
+        "ruff": "pass",
+        "mypy_ignore_missing_imports": "pass"
+      },
+      "ci_run_id": 43283361096,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43283361096",
+      "ci_jobs": {
+        "test_dev_security": "success; 806 passed, 17 skipped",
+        "test_dev_asr_security": "success; 834 passed, 3 skipped",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      },
+      "failed_tests": [],
+      "ci_history": [
+        {
+          "run_id": 43282991622,
+          "source_commit": "8f9fe17",
+          "status": "fail",
+          "finding": "The ASR-enabled lane found the source-derived service catalog was stale after moving ASRProvider into the runtime interface dependency graph. Regenerated docs/service-catalog.md and verified it with the catalog tests."
+        }
+      ]
+    }
+  },
+  "source_sha256": {
+    "services/provider_interfaces.py": "839b4eb3a247de1cf5cc94579f3adc7a9c0af370026a5b3285db0f1f8e73a0af",
+    "services/asr/backend.py": "9814e7f413a1c710a735a732e8ab7290cf3d601592e55a5c9a694738af53ecd8",
+    "services/asr/resource_router.py": "a2012652f285a7a8c997c1f8122ebf9fd61992033a82a278e4b273300838c741",
+    "services/review/providers.py": "eaa27a624bc143a9ef971cfe6c093388d756b1ffc878b6b31b47fd99c9a95c4a",
+    "tests/test_provider_interfaces.py": "ffe4118ff52f9c4ed786e7ccb9db0d8ac96a1060567d136a872fe8d68f127f02",
+    "docs/service-catalog.md": "758a4082c0cc3440ce384a41eb634b2094b4d581dfcc907876c382b6f56afc08",
+    "pyproject.toml": "19b98099bf412671a533fc8656001ae39fdb0d87dd85189e473290c44c5d291e"
+  },
+  "limitations": [
+    "Runtime structural conformance proves the named local adapters expose the contract methods; it does not establish ASR or clinical performance.",
+    "The hosted JSON adapter remains opt-in and bounded; this task made no paid requests.",
+    "Local mypy was run with --ignore-missing-imports because optional audio and ASR packages are not installed in this workstation environment; exact-commit CI type checks passed."
+  ],
+  "clinical_release_authorized": false
+}
