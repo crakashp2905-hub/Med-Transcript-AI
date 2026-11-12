@@ -136,3 +136,60 @@ def test_normalizer_rejects_changed_original_after_child_returns(tmp_path, monke
     assert normalize(source, target, "audio/wav")["error_code"] == (
         "source_audio_changed_during_normalization"
     )
+
+
+def test_ingest_keeps_original_and_publishes_hash_linked_working_copy(
+    setup, monkeypatch
+):
+    from services.audio_provenance import (
+        derive_provenance,
+        normalization_timeline,
+        source_provenance,
+    )
+
+    client, db, _ = setup
+    original = stereo_wav()
+    encounter, upload, _, queued = queue_upload(client, original)
+    root = Path(db).parent / "assets"
+
+    def scripted_normalize(source, destination, media_type):
+        with wave.open(str(destination), "wb") as output:
+            output.setparams((2, 2, 16000, 0, "NONE", "not compressed"))
+            output.writeframes(b"\0\0\0\0" * 1600)
+        parent = source_provenance(source, media_type)
+        return {
+            "frames": 1600,
+            "error_code": None,
+            "source_sample_rate": 48000,
+            "source_channels": 2,
+            "source_origin_ms": None,
+            "source_container": "wav",
+            "output_sample_rate": 16000,
+            "output_channels": 2,
+            "output_encoding": "pcm_s16le",
+            "audio_provenance": derive_provenance(
+                parent,
+                destination,
+                "scripted_test_resample_v1",
+                {"source_sample_rate": 48000, "output_sample_rate": 16000},
+                normalization_timeline(48000, 16000),
+            ),
+        }
+
+    monkeypatch.setattr("services.media_decoder.normalize", scripted_normalize)
+    assert run_once(db, str(root))["status"] == "succeeded"
+
+    source = root / f"{upload['id']}.wav"
+    working = root / f"{upload['id']}.normalized.wav"
+    result = client.get(queued["status_url"], headers=headers()).json()["result"]
+    original_sha = hashlib.sha256(original).hexdigest()
+    assert source.read_bytes() == original
+    assert (
+        working.is_file()
+        and hashlib.sha256(working.read_bytes()).hexdigest()
+        == (result["working_sha256"])
+    )
+    assert (
+        result["sha256"] == result["audio_provenance"]["parent_sha256"] == original_sha
+    )
+    assert result["working_sha256"] == result["audio_provenance"]["asset_sha256"]
