@@ -406,3 +406,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   13 passed; Ruff passes. `test_channels.py` separately asserts unconfirmed
   roles. Status: partial; no identity/role accuracy or clinician confirmation
   has been established for these R&D runs.
+- **MTA-ASR-G05:** Partial. `evaluation/reports/speaker-comparison-2026-10-26.json`
+  contains matched fixed-window and separate-channel conditions for three
+  consultations, with DER and role error timing. References are upstream
+  TextGrid labels and optimal scoring mappings are not role confirmations.
+  No VAD-turn diarization arm is included, so the requested three-way modality
+  comparison is incomplete; clinical speaker accuracy is not claimed.
