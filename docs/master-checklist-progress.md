@@ -53,7 +53,7 @@ source receipts must be mapped individually before the JSON changes.
 | 00-03 | Baseline records local model and development manifest hashes. | Artifact policy test against the frozen inventory. |
 | 00-04 | `STRICT_OFFLINE=1` now enables Python network denial and rejects Google sign-in and hosted drafting configuration. | Commit-bound tests and a native-process containment boundary remain required for a stronger guarantee. |
 | 00-05 | The historical four-dimension matrix remains for old reports. A five-tier assessment is now used by the readiness CLI and new offline acceptance reports. | Exact-commit CI and research evidence are still needed before promoting higher tiers. |
-| 00-06 | Imported ledger has priorities but lacks owner, dependencies and executable receipt fields. | Extend schema and validate dependency links. |
+| 00-06 | [`master-implementation-matrix-v1.json`](../evaluation/reports/master-implementation-matrix-v1.json) maps all 369 ledger rows to owner, priority, evidence and blocker fields. It retains `not_started` statuses and marks task-level dependency edges as unmapped. Numbered section order is a planning hint only. | Manually audit task-level dependency edges and populate receipt fields only from exact-commit evidence. |
 | 00-07 | A local threat model exists. | Explicit risk register with the requested eight risks and owners. |
 | 00-08 | Selection policy fixes maximum normalized WER at 5%. | Gate test and immutable denominator evidence. |
 | 00-09 | README and evaluation reports distinguish developer cases from clinical gold. | UI and paper copy audit. |
@@ -80,3 +80,13 @@ Google Workspace registration, real hardware recording validation, or
 real-patient pilot approval are currently evidenced. Paid model calls and
 missing-asset downloads are out of scope. Real-patient release remains
 unauthorized.
+
+## Current execution matrix
+
+[`master-implementation-matrix-v1.json`](../evaluation/reports/master-implementation-matrix-v1.json)
+was generated from source commit `4b2d82106423046cff9b841a386f5d20ea4a6ea7`.
+Its SHA-256 is `09a46f134d2d16793f39431c1deffbb790fe01a379db9d7c022d43b14ca64d4a`;
+the raw ledger SHA-256 is
+`0a146204187c9e70ca420bf6997db5e3519a154bd607dcfaf7745bea4ac34f2b`.
+All 369 entries remain `not_started` because this matrix is an organization
+artifact, not task completion evidence. Clinical release remains unauthorized.
