@@ -15,6 +15,7 @@ from services.asr.profiles import canonical_json
 
 from services.review.service import ReviewService
 from services.review.engine import current_safety_recheck
+from services.encounter_state import Stage, advance_persisted
 
 
 def register(app, services: ReviewService):
@@ -114,6 +115,10 @@ def register(app, services: ReviewService):
                     ),
                 )
                 con.execute(
+                    "INSERT INTO encounter_lifecycle (encounter,stage,version,updated_at) VALUES (?,?,?,?)",
+                    (eid, Stage.CREATED.value, 0, created),
+                )
+                con.execute(
                     "INSERT INTO authorizations VALUES (?,?,?,?,NULL)",
                     (
                         str(uuid4()),
@@ -144,6 +149,7 @@ def register(app, services: ReviewService):
                         created,
                     ),
                 )
+                advance_persisted(con, eid, Stage.RECORDING)
                 metadata["sha256"] = digest
                 con.execute(
                     "INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,result) VALUES (?,?,?,'succeeded',?,?,?)",

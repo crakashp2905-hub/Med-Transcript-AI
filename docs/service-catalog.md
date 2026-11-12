@@ -6,9 +6,9 @@ Generated from the Python source tree. Runtime reachability is a static import a
 
 | Classification | Modules |
 | --- | ---: |
-| integrated-in-production-flow | 78 |
+| integrated-in-production-flow | 79 |
 | candidate-only | 12 |
-| test-only | 186 |
+| test-only | 185 |
 | documentation-only | 11 |
 
 ## Service modules
@@ -140,7 +140,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/diarization_policy.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/doc_integrity.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/domain_contracts.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
-| `services/encounter_state.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/encounter_state.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/encrypted_backup.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/endpoint_policy.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/engineering_status.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
