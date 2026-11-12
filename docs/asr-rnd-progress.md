@@ -220,3 +220,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   failed. tests/test_rover.py: 5 passed; Ruff and format checks pass. Status:
   partial; this unweighted voting baseline remains far above the 5% gate and
   has no clinical critical-token validation or inference-mode promotion.
+- **MTA-ASR-D08:** Added a sequential backend pool that closes the active
+  model before loading another, serializes requests, and fails closed on lock
+  timeout or MemoryError. Its receipt explicitly says memory admission was
+  not measured. Tests cover switching, contention, and resource failure.
+  Status: partial; the pool is not wired into the application worker and no
+  full-process memory or 16 GB hardware admission test has been run.
