@@ -290,7 +290,15 @@ def create_app(
     from services.review.routes import register_review_routes
 
     register_review_routes(
-        app, database, identity, encounter, audit, require_processing, assets, profiles, replay
+        app,
+        database,
+        identity,
+        encounter,
+        audit,
+        require_processing,
+        assets,
+        profiles,
+        replay,
     )
     from fastapi.staticfiles import StaticFiles
     from fastapi.responses import FileResponse
