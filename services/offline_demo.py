@@ -7,12 +7,13 @@ import os
 from pathlib import Path
 import secrets
 import wave
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 from services.api.main import create_app, Identity
 
 
-def prepare(root):
+def generate_artifacts(root):
+    """Write isolated demo inputs and local credentials without opening a DB/app."""
     root = Path(root)
     root.mkdir(parents=True, exist_ok=False)
     # Silence is a transport fixture, not speech or an ASR accuracy example.
@@ -23,6 +24,13 @@ def prepare(root):
         "fixture_id": "developer_scripted_non_speech_workflow_v1",
         "synthetic": True,
         "limitations": "Silent transport fixture with developer-scripted reference text; not ASR output or human clinical gold.",
+        "release_state": {
+            "offline_demo": "fixture_generated_not_executed",
+            "engineering_verified": "not_established",
+            "research_evidence_complete": "not_established",
+            "clinical_approved": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
+            "clinical_release_authorized": False,
+        },
         "segments": [
             {
                 "start_ms": 0,
@@ -51,6 +59,14 @@ def prepare(root):
     path = root / "access.json"
     path.write_text(json.dumps(config, indent=2), encoding="utf-8")
     path.chmod(0o600)
+    return config
+
+
+def prepare(root):
+    root = Path(root)
+    config = generate_artifacts(root)
+    tenant, clinician = UUID(config["tenant_id"]), UUID(config["clinician_id"])
+    clinician_key, viewer_key = config["clinician_key"], config["viewer_key"]
     app = create_app(
         str(root / "demo.sqlite3"),
         {
@@ -230,6 +246,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8010)
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument(
+        "--artifacts-only",
+        action="store_true",
+        help="Generate isolated synthetic demo inputs without opening a database or running migrations.",
+    )
     parser.add_argument("--root", default=None)
     args = parser.parse_args()
     if os.getenv("MED_TRANSCRIPT_ENV") == "production":
@@ -241,6 +262,22 @@ if __name__ == "__main__":
         MED_TRANSCRIPT_DRAFTING_MODE="deterministic",
     )
     root = args.root or f"data/offline-demo-{uuid4()}"
+    if args.artifacts_only:
+        config = generate_artifacts(root)
+        print(
+            json.dumps(
+                {
+                    "artifact_root": str(Path(root)),
+                    "database_created": False,
+                    "runtime_migrations_executed": False,
+                    "access_file": str(Path(root) / "access.json"),
+                    "credentials_printed": False,
+                    "clinical_release_authorized": False,
+                    "scope": config["scope"],
+                }
+            )
+        )
+        raise SystemExit(0)
     app, config = prepare(root)
     result = walkthrough(app, config)
     if args.self_test:

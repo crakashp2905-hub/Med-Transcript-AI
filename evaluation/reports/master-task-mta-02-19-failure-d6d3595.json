@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-02-19",
+  "status": "fail",
+  "source_commit": "d6d3595879d374af221db18cb7b7964fbf3f5756",
+  "source_tree": "41d8c3c4c4d75ca4d8551c0053c043a1559c7836",
+  "checks": {
+    "audio_transaction_e2e": {
+      "status": "fail",
+      "ci_run_id": 43290671328,
+      "ci_run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43290671328",
+      "ci_jobs": {
+        "test_dev_security": "failure; 2 failed, 813 passed, 17 skipped",
+        "test_dev_asr_security": "cancelled",
+        "postgres": "success",
+        "container": "success",
+        "frontend": "success",
+        "release_summary": "failure"
+      },
+      "failed_tests": [
+        "tests/test_audio_transaction.py::test_audio_upload_to_exact_approved_export",
+        "tests/test_master_ledger.py::test_supplied_ledger_has_unique_369_tasks_and_audited_statuses"
+      ],
+      "failure_note": "The new end-to-end test had an incorrect exported note digest assertion; the ledger count test also froze the verified-task count at its original baseline."
+    }
+  },
+  "source_sha256": {
+    "tests/test_audio_transaction.py": "c30e1c3947f82192dcca7b0ecc23845c83aa8329c160c1dd362e2fe0b5094e93"
+  },
+  "limitations": [
+    "This receipt preserves the failed first CI attempt; it is not an acceptance result.",
+    "The release-summary lane failed because the required Python test lane failed.",
+    "Clinical release is not authorized."
+  ],
+  "clinical_release_authorized": false
+}

@@ -39,5 +39,11 @@
     "CI validates the committed route inventory and OpenAPI contract; it does not establish clinical safety.",
     "Real-patient release is not authorized."
   ],
-  "clinical_release_authorized": false
+  "clinical_release_authorized": false,
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43289572845
+  },
+  "runtime_sha256": "d0a0882a3bcc9d45a81e82d03186e952981e101456a27a870c5bc8f440f48567"
 }

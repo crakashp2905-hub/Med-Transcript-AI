@@ -121,5 +121,5 @@ def test_audio_upload_to_exact_approved_export(environment):
     body = downloaded.json()
     assert body["approval"]["id"] == approval.json()["id"]
     assert body["note"]["id"] == note["id"]
-    assert body["note"]["sha256"] == note["sha256"]
+    assert body["approval"]["note_sha256"] == note["sha256"]
     assert body["note"]["transcript_version_id"] == tx["id"]

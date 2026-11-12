@@ -278,6 +278,26 @@ def test_offline_scripted_workflow_blocks_dose_error_and_viewer_write(
         prepare(tmp_path / "isolated")
 
 
+def test_offline_demo_artifact_generation_does_not_open_runtime_database(tmp_path):
+    from services.offline_demo import generate_artifacts
+
+    root = tmp_path / "artifacts-only"
+    config = generate_artifacts(root)
+    assert (root / "demo-sample.wav").is_file()
+    assert (root / "demo-sample.json").is_file()
+    assert (root / "access.json").is_file()
+    assert not (root / "demo.sqlite3").exists()
+    import json
+
+    manifest = json.loads((root / "demo-sample.json").read_text(encoding="utf-8"))
+    assert manifest["release_state"]["clinical_release_authorized"] is False
+    assert (
+        manifest["release_state"]["clinical_approved"]
+        == "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED"
+    )
+    assert config["scope"].startswith("Silent transport fixture")
+
+
 def test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence():
     from services.release_policy import (
         SEVERITY_DEFINITIONS,
