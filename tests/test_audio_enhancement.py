@@ -107,6 +107,7 @@ def test_rms_candidate_reaches_target_without_clipping(tmp_path):
 
 
 def test_highpass_and_spectral_candidates_preserve_frame_count(tmp_path):
+    pytest.importorskip("scipy")
     source = tmp_path / "mixed.wav"
     rate, count = 16000, 16000
     time = np.arange(count) / rate

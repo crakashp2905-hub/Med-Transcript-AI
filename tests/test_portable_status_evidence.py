@@ -1,5 +1,10 @@
 import pytest
-from services.engineering_status import evidence_record, evidence_sha256, validate
+from services.engineering_status import (
+    evidence_record,
+    evidence_sha256,
+    summarize,
+    validate,
+)
 
 
 def test_task_source_evidence_survives_checkout_newlines_but_not_changed_code(tmp_path):
@@ -52,3 +57,36 @@ def test_checkout_parent_name_does_not_change_source_namespace_policy(tmp_path):
     source = root / "source.py"
     source.write_bytes(b"x=1\r\n")
     assert evidence_record(source, root)["hash_mode"] == "normalized_source_text"
+
+
+def test_summary_excludes_stale_claims_without_mutating_ledger(tmp_path):
+    source = tmp_path / "source.py"
+    source.write_text("before = True\n", encoding="utf-8")
+    record = evidence_record(source, tmp_path)
+    record["path"] = "source.py"
+    document = {
+        "total": 1,
+        "tasks": [
+            {
+                "id": "x",
+                "description": "Historical verified claim",
+                "status": "verified",
+                "evidence": [record],
+                "tests": ["test_guard"],
+                "limitations": "No clinical claim.",
+            }
+        ],
+    }
+    source.write_text("after = True\n", encoding="utf-8")
+    original = repr(document)
+
+    result = summarize(document, tmp_path)
+
+    assert result["verified"] == 0
+    assert result["statuses"]["stale_evidence"] == 1
+    assert result["stale_tasks"] == [
+        {"id": "x", "reason": "verified_evidence_missing_or_changed"}
+    ]
+    assert repr(document) == original
+    with pytest.raises(ValueError, match="verified_evidence_missing_or_changed"):
+        validate(document, tmp_path)

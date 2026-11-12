@@ -83,17 +83,33 @@ def evidence_record(name, root="."):
 
 
 def validate(document, root="."):
+    result = summarize(document, root)
+    if result["stale_evidence_tasks"]:
+        raise ValueError("verified_evidence_missing_or_changed")
+    return {
+        key: value
+        for key, value in result.items()
+        if key != "stale_evidence_tasks" and key != "stale_tasks"
+    }
+
+
+def summarize(document, root="."):
+    """Report only currently hash-supported claims without rewriting history."""
     root = Path(root).resolve()
     ids = [t["id"] for t in document["tasks"]]
     if len(ids) != document["total"] or len(set(ids)) != len(ids):
         raise ValueError("task_count_or_identity_mismatch")
+    stale = []
+    current_verified = 0
     for task in document["tasks"]:
         if task["status"] not in STATUSES:
             raise ValueError("unknown_task_status")
         if task["status"] != "verified":
             continue
         if not task["evidence"] or not task["tests"] or not task.get("limitations"):
-            raise ValueError("verified_task_missing_evidence")
+            stale.append({"id": task["id"], "reason": "verified_task_missing_evidence"})
+            continue
+        task_stale = False
         for evidence in task["evidence"]:
             path = (root / evidence["path"]).resolve()
             if (
@@ -104,16 +120,26 @@ def validate(document, root="."):
                 )
                 != evidence["sha256"]
             ):
-                raise ValueError("verified_evidence_missing_or_changed")
-    complete = sum(t["status"] == "verified" for t in document["tasks"])
+                task_stale = True
+                break
+        if task_stale:
+            stale.append(
+                {"id": task["id"], "reason": "verified_evidence_missing_or_changed"}
+            )
+        else:
+            current_verified += 1
+    statuses = {
+        s: sum(t["status"] == s for t in document["tasks"]) for s in sorted(STATUSES)
+    }
+    statuses["verified"] = current_verified
+    statuses["stale_evidence"] = len(stale)
     return {
-        "verified": complete,
+        "verified": current_verified,
         "total": len(ids),
-        "percent": round(100 * complete / len(ids), 2),
-        "statuses": {
-            s: sum(t["status"] == s for t in document["tasks"])
-            for s in sorted(STATUSES)
-        },
+        "percent": round(100 * current_verified / len(ids), 2),
+        "statuses": statuses,
+        "stale_evidence_tasks": len(stale),
+        "stale_tasks": stale,
         "real_patient_release_authorized": False,
     }
 
@@ -148,13 +174,18 @@ if __name__ == "__main__":
     )
     parser.add_argument("--write-scorecard", action="store_true")
     parser.add_argument("--diagnostics", action="store_true")
+    parser.add_argument(
+        "--report-stale",
+        action="store_true",
+        help="Report stale historical evidence without counting it as verified or rewriting the ledger",
+    )
     args = parser.parse_args()
     document = json.loads(Path(args.status).read_text(encoding="utf-8"))
     if args.write_scorecard:
         Path("docs/engineering-scorecard.md").write_text(
             render(document), encoding="utf-8"
         )
-    result = validate(document)
+    result = summarize(document) if args.report_stale else validate(document)
     if args.diagnostics:
         from services.offline_preflight import inspect
         import os
