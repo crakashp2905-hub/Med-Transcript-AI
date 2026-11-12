@@ -101,6 +101,22 @@ Ruff format/lint checks bound to source commit
 All 454 Python source and test files in that commit were hashed. Hosted CI has
 not been observed and remains a separate unresolved check.
 
+`MTA-01-11` is `implemented` at source commit
+`c15c2b896e69e66c110d59b2f805b59ce9c165e1`. Its acceptance runner records
+sanitized skip locations, reason categories and consequences, and fails the
+backend gate when media, channels, encryption or PostgreSQL coverage is
+skipped. See
+[`master-task-mta-01-11-c15c2b8.json`](../evaluation/reports/master-task-mta-01-11-c15c2b8.json).
+
+The source-bound v25 run at
+[`offline-acceptance-v25.json`](../evaluation/reports/offline-acceptance-v25.json)
+completed 647 tests successfully with six skips, but it predates the
+critical-skip gate. The follow-up skip audit classifies all six as critical;
+under the new policy the same skip set fails backend acceptance. Optional
+PyAV and `cryptography.cobblestone` are unavailable, the PostgreSQL DSN is
+unset, and Docker is not installed. Those lanes remain blocked and are not
+counted green.
+
 ## Initial execution matrix snapshot (superseded)
 
 [`master-implementation-matrix-v1.json`](../evaluation/reports/master-implementation-matrix-v1.json)

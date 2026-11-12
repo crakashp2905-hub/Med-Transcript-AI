@@ -325,11 +325,40 @@
       "id": "MTA-01-11",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Record skipped tests with reason and consequence; prevent counting a skipped critical regression as green admission.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/offline_acceptance.py",
+        "tests/test_acceptance_reporting.py",
+        "evaluation/reports/master-task-mta-01-11-c15c2b8.json"
+      ],
+      "source_commit": "c15c2b896e69e66c110d59b2f805b59ce9c165e1",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-11-c15c2b8.json",
+          "report_sha256": "a0a6bbed7d2884f731be2ab7322b12d50399660c43c94d979611def8beb1687b",
+          "check": "acceptance_reporting_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-11-c15c2b8.json",
+          "report_sha256": "a0a6bbed7d2884f731be2ab7322b12d50399660c43c94d979611def8beb1687b",
+          "check": "ruff_format",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-11-c15c2b8.json",
+          "report_sha256": "a0a6bbed7d2884f731be2ab7322b12d50399660c43c94d979611def8beb1687b",
+          "check": "ruff_check",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-01-11-c15c2b8.json",
+          "report_sha256": "a0a6bbed7d2884f731be2ab7322b12d50399660c43c94d979611def8beb1687b",
+          "check": "critical_skips_fail_acceptance",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
