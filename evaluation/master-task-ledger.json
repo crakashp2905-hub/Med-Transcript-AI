@@ -842,12 +842,22 @@
       "id": "MTA-01-13",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Create minimum per-module coverage report with branch coverage on critical pathways, but do not let high line coverage substitute for behavioral tests.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-01-13-379fadc.json",
+        "services/module_coverage_report.py",
+        "tests/test_module_coverage_report.py"
+      ],
+      "source_commit": "379fadc707d972dca4988160f8bec09ea25e5a29",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-01-13-379fadc.json",
+          "report_sha256": "9c2fa8dc86d3d002cc5ba0da08535cd36956f7b0e3acb620ba43ca9f6ba0e8a2",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Coverage baseline is diagnostic only; it has no enforced percentage threshold and does not establish behavioral correctness or clinical safety."
     },
     {
       "id": "MTA-01-14",

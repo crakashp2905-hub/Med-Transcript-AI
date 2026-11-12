@@ -1,0 +1,41 @@
+{
+  "schema_version": "critical_module_coverage_v1",
+  "source_commit": "379fadc707d972dca4988160f8bec09ea25e5a29",
+  "coverage_tool": "coverage.py",
+  "branch_measurement": true,
+  "tests": [
+    "tests/test_critical_mutation_campaign.py",
+    "tests/test_master_ledger.py"
+  ],
+  "modules": {
+    "services/critical_mutation_campaign.py": {
+      "lines_found": 76,
+      "lines_covered": 33,
+      "line_percent": 45.19230769230769,
+      "branches_found": 28,
+      "branches_covered": 14,
+      "branch_percent": 50.0
+    },
+    "services/master_ledger.py": {
+      "lines_found": 79,
+      "lines_covered": 64,
+      "line_percent": 76.37795275590551,
+      "branches_found": 48,
+      "branches_covered": 33,
+      "branch_percent": 68.75
+    }
+  },
+  "interpretation": "Coverage is a test-execution diagnostic; it does not establish behavioral correctness or clinical safety.",
+  "ci": {
+    "status": "pass",
+    "run_id": 43244319710,
+    "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43244319710",
+    "jobs": {
+      "frontend": "success",
+      "container": "success",
+      "postgres": "success",
+      "test (dev,asr,security)": "success",
+      "test (dev,security)": "success"
+    }
+  }
+}
