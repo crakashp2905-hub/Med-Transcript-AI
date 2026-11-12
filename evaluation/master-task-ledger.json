@@ -285,12 +285,26 @@
       "id": "MTA-00-13",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Introduce a `blocked_missing_asset` state; no agent may install, silently download or fabricate absent weights, audio, credentials or infrastructure.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/contracts/artifact-scope-v1.json",
+        "services/artifact_scope.py",
+        "services/offline_preflight.py",
+        "tests/test_artifact_scope.py",
+        "tests/test_offline_engineering.py",
+        "evaluation/reports/master-task-mta-00-13-51f2888.json"
+      ],
+      "source_commit": "51f2888378c7af19106d72327c27783206fe7957",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-00-13-51f2888.json",
+          "report_sha256": "8337aa64439402008a933144e76946233ee78a47f18ca118e74ef56a48c69de1",
+          "check": "missing_assets_and_artifact_scope"
+        }
+      ],
+      "blocker": "Fail-closed checks cover the application tooling path; they do not sandbox arbitrary host processes or manual filesystem access."
     },
     {
       "id": "MTA-00-14",

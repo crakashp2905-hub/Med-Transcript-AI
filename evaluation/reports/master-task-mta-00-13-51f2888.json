@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-00-13",
+  "source_commit": "51f2888378c7af19106d72327c27783206fe7957",
+  "runtime": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "pytest 9.0.3",
+    "ruff": "ruff 0.15.13"
+  },
+  "runtime_sha256": "1c02c88304c0a1bc36a5877d33a3f37641a4d0275f3a32a389052e09e01ce8bf",
+  "source_file_sha256": {
+    "services/artifact_scope.py": "003708b8cc1f591b41f317635fce1309db8a162288f83f8dc7395515d61b6d8a",
+    "services/offline_preflight.py": "2b8b0a33e24edea34fbbbab9f07e2f422205eda671c0d67a1885cbbb50ba31f3",
+    "evaluation/contracts/artifact-scope-v1.json": "d1d30533f797e5f77af763f8d5722d0ad17645a0d722c8f13710912ffbb8bfdd",
+    "tests/test_artifact_scope.py": "a7dbd44d0dde2288d6499062ced665569e9d4c13346690a43bda4dc5a49a2144",
+    "tests/test_offline_engineering.py": "9d42785c9e9a02c3e4e2abf8449210de03af4fbdf3f50e26126b4441b2a3e743"
+  },
+  "checks": {
+    "missing_assets_and_artifact_scope": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_artifact_scope.py tests/test_offline_engineering.py::test_baseline_paths_and_model_directories_must_exist tests/test_offline_engineering.py::test_offline_preflight_reports_cached_capabilities_without_install_or_network -q",
+      "result": "9 passed, 1 upstream deprecation warning",
+      "coverage": [
+        "prohibited external/download sources listed",
+        "unclassified paths rejected",
+        "missing local model artifact remains missing without installation",
+        "inventory records zero installations and zero external calls",
+        "blocked_missing_local_artifact status preserved"
+      ]
+    },
+    "lint": {
+      "status": "pass",
+      "command": "python -m ruff check tests/test_offline_engineering.py",
+      "result": "All checks passed"
+    }
+  },
+  "limitations": [
+    "Offline counters and policy tests constrain this application workflow, not arbitrary operating-system processes or manual user actions.",
+    "Only local assets and tools were used; no external model, dataset or credential was fetched."
+  ]
+}
