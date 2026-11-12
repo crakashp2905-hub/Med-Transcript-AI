@@ -54,6 +54,11 @@ those claims. At import, all 369 entries were `not_started`; this meant
   The 5% project ceiling cannot be relaxed, boundary scoring uses unrounded
   counts, failed samples remain failures, and frozen historical 3% protocols
   stay separate. Six focused threshold and contract tests passed.
+- MTA-00-09 is implemented at source commit `8b547e25cc929c2333757a49214f43128dd04368`.
+  The workspace and research documentation distinguish developer-authored
+  synthetic/public-mock labels from independent clinician gold. The production
+  build passed; Playwright could not reach its loopback fixture in this managed
+  environment, so the browser assertion remains unvalidated.
 - The prior source-bound offline report, [`v21`](../evaluation/reports/offline-acceptance-v21.json),
   passed its seven software checks at `b939377`. It does not prove current
   post-format source, 5% ASR accuracy, or independent clinical performance.

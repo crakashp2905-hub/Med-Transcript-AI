@@ -1,0 +1,25 @@
+{
+  "schema_version": "master_task_evidence_classification_v1",
+  "task_id": "MTA-00-09",
+  "source_commit": "8b547e25cc929c2333757a49214f43128dd04368",
+  "checks": {
+    "frontend_build": {
+      "status": "pass",
+      "result": "TypeScript check and Vite production build passed"
+    },
+    "research_disclosure": {
+      "status": "pass",
+      "result": "Research documentation states public mock references are not independent real-patient validation and developer-authored synthetic cases are not clinical gold"
+    },
+    "visible_workspace_disclosure": {
+      "status": "pass",
+      "result": "Persistent authenticated-workspace notice now states developer-authored synthetic rules and public-mock labels are not independent clinician gold"
+    },
+    "browser_assertion": {
+      "status": "blocked",
+      "result": "The targeted Playwright test was prevented from reaching the loopback fixture with net::ERR_NETWORK_ACCESS_DENIED before the application loaded; no UI assertion ran"
+    }
+  },
+  "clinical_gold_available": false,
+  "clinical_release_authorized": false
+}

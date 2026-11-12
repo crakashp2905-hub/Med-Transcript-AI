@@ -199,12 +199,24 @@
       "id": "MTA-00-09",
       "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Distinguish developer-authored rules or mock labels from actual independent clinician gold everywhere, including the UI and paper.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/App.tsx",
+        "apps/clinician-web/e2e/presentation.spec.ts",
+        "docs/asr-rnd-research-section.md",
+        "evaluation/reports/master-task-mta-00-09-8b547e2.json"
+      ],
+      "source_commit": "8b547e25cc929c2333757a49214f43128dd04368",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-00-09-8b547e2.json",
+          "report_sha256": "8cdceb5c99f11a3a371635ec48689c2266ea71d1f22816038839b59926b56eb1",
+          "check": "frontend_build",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Browser-level assertion could not run because the managed environment denied Chromium access to the loopback fixture; the UI build passed and the failed navigation is retained in the receipt."
     },
     {
       "id": "MTA-00-10",
