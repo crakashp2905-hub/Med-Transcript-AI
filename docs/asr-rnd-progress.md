@@ -32,6 +32,20 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   per-case counts sum to 679 edits / 5,204 reference words.
 - Full application, ASR, and CI suites have not been established as green.
 
+## Partially reconciled tasks
+
+- **MTA-ASR-A04:** The frozen error-taxonomy artifact contains token-level edit
+  rows tied by hashes to source reports and the reference manifest. Every
+  reference substitution/deletion carries its reference token, role, and source
+  turn interval; insertions remain explicitly unattributed with no invented
+  timestamp. `tests/test_asr_critical_error_provenance.py` passed while checking
+  all saved edit rows against their frozen source turns. However, this checkout
+  has no WAV files in either the MedDistractAudio or full-consultation dataset
+  directories, so direct replay of those intervals is unavailable. No remote
+  audio was fetched. Critical name and dosing-frequency classification also
+  needs further implementation. Status: partial; audio replay is
+  `BLOCKED_MISSING_RESOURCE`.
+
 ## Open gates
 
 - The remaining addendum tasks are not verified by this progress record.
