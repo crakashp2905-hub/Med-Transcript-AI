@@ -1,0 +1,1641 @@
+{
+  "schema_version": "paired_audio_enhancement_development_v1",
+  "dataset_id": "primock57-consultation01-six-utterance-smoke-v1",
+  "manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+  "baseline_run_sha256": "0fa6873aeafe66abeba5990e7502282953ce68c15dffdf99765a45874bdbe61f",
+  "source_dataset_role": "development_smoke_not_acceptance",
+  "model": {
+    "profile_id": "omi-v1-gguf-q8-cpu-v1",
+    "runtime": "omi-med-stt",
+    "runtime_version": "0.2.1",
+    "model_revision": "30d74219feead34843fae59e855f740db78ed2bd",
+    "artifacts": {
+      "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+    },
+    "local_model_sha256": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab",
+    "runtime_configuration": {
+      "engine": "omi",
+      "profile_id": "omi-v1-gguf-q8-cpu-v1",
+      "revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "runtime_version": "0.2.1",
+      "artifacts": {
+        "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+      },
+      "device": "cpu",
+      "threads": 4,
+      "timestamp_support": "not_provided_text_only_evaluation"
+    },
+    "empty_output_policy": "empty_native_output_is_failure"
+  },
+  "source_code_sha256": {
+    "services/audio_enhancement.py": "59a6d5cb10e496b3a0fb251f597f32193c8aa2393ec9c9603d508b56293f8ed1",
+    "services/audio_enhancement_eval.py": "21a019ec08322d24d762d15b4c817d6b15531723cf03e85690b45fc9e20cda87",
+    "services/audio_provenance.py": "b3bd218f216a363fd13f7499fa94bc3b534d2af902eb57312971a1b584a983ea",
+    "services/omi_adapter.py": "5d6d4e407b71b6f22b800c3cff4b76037e11a03769905e35581b555997d21196",
+    "services/evaluation.py": "73a127a599ee0f3dbaef5e6d3655f56fb55d108e4bd482dc4e6c8aeae374af3f"
+  },
+  "scoring_profile": "lowercase_words_preserve_decimals_units_negation_v1",
+  "failure_policy": "empty_hypothesis_full_reference_deletions",
+  "maximum_normalized_wer": 0.05,
+  "conditions": [
+    {
+      "condition_id": "source_unmodified",
+      "transform_parameters": null,
+      "summary": {
+        "sample_count": 6,
+        "failed_samples": 0,
+        "reference_words": 134,
+        "normalized_edits": 9,
+        "normalized_wer": 0.06716417910447761,
+        "raw_reference_words": 134,
+        "raw_edits": 25,
+        "raw_wer": 0.1865671641791045,
+        "admission_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "paired_sample_changes": {
+        "improved_samples": 0,
+        "degraded_samples": 0,
+        "unchanged_samples": 0
+      },
+      "samples": [
+        {
+          "sample_id": "day1_consultation01_doctor.utterance01",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 2.3943,
+          "candidate_audio_sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa",
+          "audio_provenance": null,
+          "reference": "Okay. And how many times a day are you going, let's say, in the last couple of days?",
+          "hypothesis": "OK, and how many times a day are you going, let's say, over the last couple of days?",
+          "reference_words": 18,
+          "hypothesis_words": 18,
+          "normalized_edits": 2,
+          "raw_edits": 3,
+          "raw_reference_words": 18
+        },
+        {
+          "sample_id": "day1_consultation01_doctor.utterance02",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 1.8511,
+          "candidate_audio_sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83",
+          "audio_provenance": null,
+          "reference": "Okay. And is the pain, is that, is it there all the time, or does it come and go?",
+          "hypothesis": "OK. And does the pain is that is it there all the time or does it come and go?",
+          "reference_words": 19,
+          "hypothesis_words": 19,
+          "normalized_edits": 2,
+          "raw_edits": 5,
+          "raw_reference_words": 19
+        },
+        {
+          "sample_id": "day1_consultation01_doctor.utterance03",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 4.0509,
+          "candidate_audio_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+          "audio_provenance": null,
+          "reference": "Okay, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having, uh have you been feeling feverish, for example?",
+          "hypothesis": "OK, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having have you been feeling feverish, for example?",
+          "reference_words": 34,
+          "hypothesis_words": 33,
+          "normalized_edits": 2,
+          "raw_edits": 3,
+          "raw_reference_words": 34
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance01",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 5.4297,
+          "candidate_audio_sha256": "5cead8c49715f89f3baa64a23a00e46d0d98fd62dc4741cc9d23e3cb11048030",
+          "audio_provenance": null,
+          "reference": "Yeah, so it's like loose and watery stool, going to the toilet quite often, uh and like some pain in my, like, lower stomach?",
+          "hypothesis": "Yeah, so it's like loose and watery stool, going to the toilet quite often and like some pain in my like lower stomach.",
+          "reference_words": 24,
+          "hypothesis_words": 23,
+          "normalized_edits": 1,
+          "raw_edits": 5,
+          "raw_reference_words": 24
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance02",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 6.5925,
+          "candidate_audio_sha256": "b89446c81ee05a2c23fddb669be6ab614ed8cf21b212bd55c7eb07f57ad8ceec",
+          "audio_provenance": null,
+          "reference": "Yeah, it feels, um, like a cramp, like a muscular cramp, and, um, yeah i feel a bit uh weak and shaky.",
+          "hypothesis": "Yeah, it feels um like a cramp, uh, like a muscular cramp, and um, yeah, I feel a bit weak and shaky.",
+          "reference_words": 22,
+          "hypothesis_words": 22,
+          "normalized_edits": 2,
+          "raw_edits": 7,
+          "raw_reference_words": 22
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance03",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 7.5833,
+          "candidate_audio_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+          "audio_provenance": null,
+          "reference": "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting.",
+          "hypothesis": "Yeah, so um I vomited at the start of the symptoms but now um i've stopped vomiting.",
+          "reference_words": 17,
+          "hypothesis_words": 17,
+          "normalized_edits": 0,
+          "raw_edits": 2,
+          "raw_reference_words": 17
+        }
+      ]
+    },
+    {
+      "condition_id": "rms_level_normalization_v1",
+      "transform_parameters": {
+        "target_rms_dbfs": -23.0,
+        "peak_ceiling_fraction": 0.98,
+        "algorithm": "whole_clip_rms_gain_with_peak_ceiling"
+      },
+      "summary": {
+        "sample_count": 6,
+        "failed_samples": 0,
+        "reference_words": 134,
+        "normalized_edits": 9,
+        "normalized_wer": 0.06716417910447761,
+        "raw_reference_words": 134,
+        "raw_edits": 25,
+        "raw_wer": 0.1865671641791045,
+        "admission_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "paired_sample_changes": {
+        "improved_samples": 0,
+        "degraded_samples": 0,
+        "unchanged_samples": 6,
+        "net_normalized_edit_change": 0
+      },
+      "samples": [
+        {
+          "sample_id": "day1_consultation01_doctor.utterance01",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 1.767,
+          "candidate_audio_sha256": "d2b37ee00f5cb30736b1b460a902ea055c44778dd1dd64568ecb6e9a7f778918",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "d2b37ee00f5cb30736b1b460a902ea055c44778dd1dd64568ecb6e9a7f778918",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 77092,
+              "duration_seconds": 4.81825
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 77092,
+                "duration_seconds": 4.81825
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "d67c89071c473e9178df2c98fad35a9a2b311fe3fec4e6d2c212974402a7684a"
+            },
+            "parent_sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "rms_level_normalization_v1",
+              "parameters": {
+                "target_rms_dbfs": -23.0,
+                "peak_ceiling_fraction": 0.98,
+                "algorithm": "whole_clip_rms_gain_with_peak_ceiling"
+              }
+            },
+            "transformation_manifest_sha256": "1631adcff559a44ea034c1a4dfa8fbd423af54d9872b325cf06acf09c313b0ba",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "a485f5ad97431866c2c1f90a2087056419c2ccf86850177c7483b24e70ff67e6"
+          },
+          "reference": "Okay. And how many times a day are you going, let's say, in the last couple of days?",
+          "hypothesis": "OK, and how many times a day are you going, let's say, over the last couple of days?",
+          "reference_words": 18,
+          "hypothesis_words": 18,
+          "normalized_edits": 2,
+          "raw_edits": 3,
+          "raw_reference_words": 18
+        },
+        {
+          "sample_id": "day1_consultation01_doctor.utterance02",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 2.1695,
+          "candidate_audio_sha256": "d152047b51f8ca7920a0fb5a022c4975b4faa160c6386d4d93eb163e1b2d7fb3",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "d152047b51f8ca7920a0fb5a022c4975b4faa160c6386d4d93eb163e1b2d7fb3",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 77683,
+              "duration_seconds": 4.8551875
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 77683,
+                "duration_seconds": 4.8551875
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "41fb4dfd243991820d796621bbb764830068ef03e68f22789ca6a9f84bc5c333"
+            },
+            "parent_sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "rms_level_normalization_v1",
+              "parameters": {
+                "target_rms_dbfs": -23.0,
+                "peak_ceiling_fraction": 0.98,
+                "algorithm": "whole_clip_rms_gain_with_peak_ceiling"
+              }
+            },
+            "transformation_manifest_sha256": "1631adcff559a44ea034c1a4dfa8fbd423af54d9872b325cf06acf09c313b0ba",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "9ea9b1c60276f8d93f3b3ae58baf713a9b23834dc2a2a4800594a95df2f72dc5"
+          },
+          "reference": "Okay. And is the pain, is that, is it there all the time, or does it come and go?",
+          "hypothesis": "OK. And does the pain is that is it there all the time or does it come and go?",
+          "reference_words": 19,
+          "hypothesis_words": 19,
+          "normalized_edits": 2,
+          "raw_edits": 5,
+          "raw_reference_words": 19
+        },
+        {
+          "sample_id": "day1_consultation01_doctor.utterance03",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 4.7711,
+          "candidate_audio_sha256": "fa8a34f47d73929c3aa32a025f096143bcce6f5fda84dfe7ca620ea36cc71c76",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "fa8a34f47d73929c3aa32a025f096143bcce6f5fda84dfe7ca620ea36cc71c76",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 132980,
+              "duration_seconds": 8.31125
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 132980,
+                "duration_seconds": 8.31125
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "e6b8e5f96295fb2a95d2c380430db0d85efb5704ad317b6cbda7ad0f822ba1c2"
+            },
+            "parent_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "rms_level_normalization_v1",
+              "parameters": {
+                "target_rms_dbfs": -23.0,
+                "peak_ceiling_fraction": 0.98,
+                "algorithm": "whole_clip_rms_gain_with_peak_ceiling"
+              }
+            },
+            "transformation_manifest_sha256": "1631adcff559a44ea034c1a4dfa8fbd423af54d9872b325cf06acf09c313b0ba",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "30cb1949d8fbb89b584836da36c0678054d879d0dfe68ac3fc727debc3f20e4f"
+          },
+          "reference": "Okay, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having, uh have you been feeling feverish, for example?",
+          "hypothesis": "OK, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having have you been feeling feverish, for example?",
+          "reference_words": 34,
+          "hypothesis_words": 33,
+          "normalized_edits": 2,
+          "raw_edits": 3,
+          "raw_reference_words": 34
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance01",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 4.8201,
+          "candidate_audio_sha256": "1ed5cffa803541c61281c7333d58bdf6b8fa1a02901f9ccc2a91572623a70000",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "1ed5cffa803541c61281c7333d58bdf6b8fa1a02901f9ccc2a91572623a70000",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 166817,
+              "duration_seconds": 10.4260625
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "5cead8c49715f89f3baa64a23a00e46d0d98fd62dc4741cc9d23e3cb11048030",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 166817,
+                "duration_seconds": 10.4260625
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "04fe8af707a67417bba790372c1ad07261883d4a8e90d4c0fd1c4a1d94b0513d"
+            },
+            "parent_sha256": "5cead8c49715f89f3baa64a23a00e46d0d98fd62dc4741cc9d23e3cb11048030",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "rms_level_normalization_v1",
+              "parameters": {
+                "target_rms_dbfs": -23.0,
+                "peak_ceiling_fraction": 0.98,
+                "algorithm": "whole_clip_rms_gain_with_peak_ceiling"
+              }
+            },
+            "transformation_manifest_sha256": "1631adcff559a44ea034c1a4dfa8fbd423af54d9872b325cf06acf09c313b0ba",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "da90538e84b5743454ee79e99210b47274d477bf2ec58951eabdf9a0e5ea54df"
+          },
+          "reference": "Yeah, so it's like loose and watery stool, going to the toilet quite often, uh and like some pain in my, like, lower stomach?",
+          "hypothesis": "Yeah, so it's like loose and watery stool, going to the toilet quite often and like some pain in my like lower stomach.",
+          "reference_words": 24,
+          "hypothesis_words": 23,
+          "normalized_edits": 1,
+          "raw_edits": 5,
+          "raw_reference_words": 24
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance02",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 7.9824,
+          "candidate_audio_sha256": "4392d8550d0cd9ea7c2a412b007ec0482a869983aeb181aa58693d911321efb1",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "4392d8550d0cd9ea7c2a412b007ec0482a869983aeb181aa58693d911321efb1",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 147557,
+              "duration_seconds": 9.2223125
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "b89446c81ee05a2c23fddb669be6ab614ed8cf21b212bd55c7eb07f57ad8ceec",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 147557,
+                "duration_seconds": 9.2223125
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "b9c2420821d9815c9b9e68ac24e7bf9bb1f83e5dbd91c02eb71feeb53aded798"
+            },
+            "parent_sha256": "b89446c81ee05a2c23fddb669be6ab614ed8cf21b212bd55c7eb07f57ad8ceec",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "rms_level_normalization_v1",
+              "parameters": {
+                "target_rms_dbfs": -23.0,
+                "peak_ceiling_fraction": 0.98,
+                "algorithm": "whole_clip_rms_gain_with_peak_ceiling"
+              }
+            },
+            "transformation_manifest_sha256": "1631adcff559a44ea034c1a4dfa8fbd423af54d9872b325cf06acf09c313b0ba",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "b42624571d4fff7e2ca03ab32e18f7118cff01964c6d0bb992acfca02f83f184"
+          },
+          "reference": "Yeah, it feels, um, like a cramp, like a muscular cramp, and, um, yeah i feel a bit uh weak and shaky.",
+          "hypothesis": "Yeah, it feels um like a cramp, uh, like a muscular cramp, and um, yeah, I feel a bit weak and shaky.",
+          "reference_words": 22,
+          "hypothesis_words": 22,
+          "normalized_edits": 2,
+          "raw_edits": 7,
+          "raw_reference_words": 22
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance03",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 5.1534,
+          "candidate_audio_sha256": "22a074ae95a6f66d66153725e25494ce9e2b3c783edb644a30aefc13cfe0ff22",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "22a074ae95a6f66d66153725e25494ce9e2b3c783edb644a30aefc13cfe0ff22",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 121254,
+              "duration_seconds": 7.578375
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 121254,
+                "duration_seconds": 7.578375
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "77246597756e5d162db369be842d6c878ff7f51b2e19e6e0c402c8aa905e9a24"
+            },
+            "parent_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "rms_level_normalization_v1",
+              "parameters": {
+                "target_rms_dbfs": -23.0,
+                "peak_ceiling_fraction": 0.98,
+                "algorithm": "whole_clip_rms_gain_with_peak_ceiling"
+              }
+            },
+            "transformation_manifest_sha256": "1631adcff559a44ea034c1a4dfa8fbd423af54d9872b325cf06acf09c313b0ba",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "f1ce236301657c9e9dd5dfb3542f0e1c917e197312dd194bdecda82aa2a318c9"
+          },
+          "reference": "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting.",
+          "hypothesis": "Yeah, so um I vomited at the start of the symptoms but now um i've stopped vomiting.",
+          "reference_words": 17,
+          "hypothesis_words": 17,
+          "normalized_edits": 0,
+          "raw_edits": 2,
+          "raw_reference_words": 17
+        }
+      ]
+    },
+    {
+      "condition_id": "highpass_80hz_v1",
+      "transform_parameters": {
+        "cutoff_hz": 80,
+        "butterworth_order": 4,
+        "implementation": "scipy_sosfiltfilt_zero_phase"
+      },
+      "summary": {
+        "sample_count": 6,
+        "failed_samples": 0,
+        "reference_words": 134,
+        "normalized_edits": 9,
+        "normalized_wer": 0.06716417910447761,
+        "raw_reference_words": 134,
+        "raw_edits": 25,
+        "raw_wer": 0.1865671641791045,
+        "admission_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "paired_sample_changes": {
+        "improved_samples": 0,
+        "degraded_samples": 0,
+        "unchanged_samples": 6,
+        "net_normalized_edit_change": 0
+      },
+      "samples": [
+        {
+          "sample_id": "day1_consultation01_doctor.utterance01",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 2.25,
+          "candidate_audio_sha256": "3605f0c1fd53c237a02c50fc77db861542f0a9bdcdfb4b3e076e2d6436fa37fb",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "3605f0c1fd53c237a02c50fc77db861542f0a9bdcdfb4b3e076e2d6436fa37fb",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 77092,
+              "duration_seconds": 4.81825
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 77092,
+                "duration_seconds": 4.81825
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "d67c89071c473e9178df2c98fad35a9a2b311fe3fec4e6d2c212974402a7684a"
+            },
+            "parent_sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "highpass_80hz_v1",
+              "parameters": {
+                "cutoff_hz": 80,
+                "butterworth_order": 4,
+                "implementation": "scipy_sosfiltfilt_zero_phase"
+              }
+            },
+            "transformation_manifest_sha256": "ba3869dac9ab0a47f9559b9a52bf8f089bf94978f87fb8f9e4880b16339e0145",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "e6bb6c32674e1ecd47698eaaf4dc34e402bf678e224081f534b2a77df134ba57"
+          },
+          "reference": "Okay. And how many times a day are you going, let's say, in the last couple of days?",
+          "hypothesis": "OK, and how many times a day are you going, let's say, over the last couple of days?",
+          "reference_words": 18,
+          "hypothesis_words": 18,
+          "normalized_edits": 2,
+          "raw_edits": 3,
+          "raw_reference_words": 18
+        },
+        {
+          "sample_id": "day1_consultation01_doctor.utterance02",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 2.1402,
+          "candidate_audio_sha256": "56a7d6433c2e4ab2a0b5544e0c74a61699febd92b56a1d0fbd9ce92e0397cd3a",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "56a7d6433c2e4ab2a0b5544e0c74a61699febd92b56a1d0fbd9ce92e0397cd3a",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 77683,
+              "duration_seconds": 4.8551875
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 77683,
+                "duration_seconds": 4.8551875
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "41fb4dfd243991820d796621bbb764830068ef03e68f22789ca6a9f84bc5c333"
+            },
+            "parent_sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "highpass_80hz_v1",
+              "parameters": {
+                "cutoff_hz": 80,
+                "butterworth_order": 4,
+                "implementation": "scipy_sosfiltfilt_zero_phase"
+              }
+            },
+            "transformation_manifest_sha256": "ba3869dac9ab0a47f9559b9a52bf8f089bf94978f87fb8f9e4880b16339e0145",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "ae5eb343c5fee0706181e534f192b5dcfcff1952f56d4ce374d81802e3be3c9b"
+          },
+          "reference": "Okay. And is the pain, is that, is it there all the time, or does it come and go?",
+          "hypothesis": "OK. And does the pain is that is it there all the time or does it come and go?",
+          "reference_words": 19,
+          "hypothesis_words": 19,
+          "normalized_edits": 2,
+          "raw_edits": 5,
+          "raw_reference_words": 19
+        },
+        {
+          "sample_id": "day1_consultation01_doctor.utterance03",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 7.2327,
+          "candidate_audio_sha256": "744eaf3c8a3fc0908673e1209d34f21d9abd2958606c20fecdbc2424e482cb9a",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "744eaf3c8a3fc0908673e1209d34f21d9abd2958606c20fecdbc2424e482cb9a",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 132980,
+              "duration_seconds": 8.31125
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 132980,
+                "duration_seconds": 8.31125
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "e6b8e5f96295fb2a95d2c380430db0d85efb5704ad317b6cbda7ad0f822ba1c2"
+            },
+            "parent_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "highpass_80hz_v1",
+              "parameters": {
+                "cutoff_hz": 80,
+                "butterworth_order": 4,
+                "implementation": "scipy_sosfiltfilt_zero_phase"
+              }
+            },
+            "transformation_manifest_sha256": "ba3869dac9ab0a47f9559b9a52bf8f089bf94978f87fb8f9e4880b16339e0145",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "faeda8ad2c1a0276aba84d2e1479f60f53654050c8ffe63a97fc119881f7e5cb"
+          },
+          "reference": "Okay, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having, uh have you been feeling feverish, for example?",
+          "hypothesis": "OK, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having have you been feeling feverish, for example?",
+          "reference_words": 34,
+          "hypothesis_words": 33,
+          "normalized_edits": 2,
+          "raw_edits": 3,
+          "raw_reference_words": 34
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance01",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 5.1221,
+          "candidate_audio_sha256": "e16c623e399f1f9b97e1e99641eb74292d905a985f9afcdde894be0db571a67b",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "e16c623e399f1f9b97e1e99641eb74292d905a985f9afcdde894be0db571a67b",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 166817,
+              "duration_seconds": 10.4260625
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "5cead8c49715f89f3baa64a23a00e46d0d98fd62dc4741cc9d23e3cb11048030",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 166817,
+                "duration_seconds": 10.4260625
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "04fe8af707a67417bba790372c1ad07261883d4a8e90d4c0fd1c4a1d94b0513d"
+            },
+            "parent_sha256": "5cead8c49715f89f3baa64a23a00e46d0d98fd62dc4741cc9d23e3cb11048030",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "highpass_80hz_v1",
+              "parameters": {
+                "cutoff_hz": 80,
+                "butterworth_order": 4,
+                "implementation": "scipy_sosfiltfilt_zero_phase"
+              }
+            },
+            "transformation_manifest_sha256": "ba3869dac9ab0a47f9559b9a52bf8f089bf94978f87fb8f9e4880b16339e0145",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "4671371ae5d2a9ae4db61cf551135b94d81df70d786f3a2407cf126280d6ed27"
+          },
+          "reference": "Yeah, so it's like loose and watery stool, going to the toilet quite often, uh and like some pain in my, like, lower stomach?",
+          "hypothesis": "Yeah, so it's like loose and watery stool, going to the toilet quite often and like some pain in my like lower stomach.",
+          "reference_words": 24,
+          "hypothesis_words": 23,
+          "normalized_edits": 1,
+          "raw_edits": 5,
+          "raw_reference_words": 24
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance02",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 10.4537,
+          "candidate_audio_sha256": "b63c996e184adbb250da5c02d4c966b12105538b9cbae56db8f0d6f78148e427",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "b63c996e184adbb250da5c02d4c966b12105538b9cbae56db8f0d6f78148e427",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 147557,
+              "duration_seconds": 9.2223125
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "b89446c81ee05a2c23fddb669be6ab614ed8cf21b212bd55c7eb07f57ad8ceec",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 147557,
+                "duration_seconds": 9.2223125
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "b9c2420821d9815c9b9e68ac24e7bf9bb1f83e5dbd91c02eb71feeb53aded798"
+            },
+            "parent_sha256": "b89446c81ee05a2c23fddb669be6ab614ed8cf21b212bd55c7eb07f57ad8ceec",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "highpass_80hz_v1",
+              "parameters": {
+                "cutoff_hz": 80,
+                "butterworth_order": 4,
+                "implementation": "scipy_sosfiltfilt_zero_phase"
+              }
+            },
+            "transformation_manifest_sha256": "ba3869dac9ab0a47f9559b9a52bf8f089bf94978f87fb8f9e4880b16339e0145",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "034806844d2fc9049944a5eb3ed58f50758bd7d9ff1d5634b9dfbbacd530d786"
+          },
+          "reference": "Yeah, it feels, um, like a cramp, like a muscular cramp, and, um, yeah i feel a bit uh weak and shaky.",
+          "hypothesis": "Yeah, it feels um like a cramp, uh, like a muscular cramp, and um, yeah, I feel a bit weak and shaky.",
+          "reference_words": 22,
+          "hypothesis_words": 22,
+          "normalized_edits": 2,
+          "raw_edits": 7,
+          "raw_reference_words": 22
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance03",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 6.0214,
+          "candidate_audio_sha256": "65f9b182a07558b5928e6995ac05d58571f8c19dfeac75ccaf7fc1a70081d451",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "65f9b182a07558b5928e6995ac05d58571f8c19dfeac75ccaf7fc1a70081d451",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 121254,
+              "duration_seconds": 7.578375
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 121254,
+                "duration_seconds": 7.578375
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "77246597756e5d162db369be842d6c878ff7f51b2e19e6e0c402c8aa905e9a24"
+            },
+            "parent_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "highpass_80hz_v1",
+              "parameters": {
+                "cutoff_hz": 80,
+                "butterworth_order": 4,
+                "implementation": "scipy_sosfiltfilt_zero_phase"
+              }
+            },
+            "transformation_manifest_sha256": "ba3869dac9ab0a47f9559b9a52bf8f089bf94978f87fb8f9e4880b16339e0145",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "0308d3067755633938ceb2ac5de2bbb5c88f8330f1f5102f7094b8f049a9562b"
+          },
+          "reference": "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting.",
+          "hypothesis": "Yeah, so um I vomited at the start of the symptoms but now um i've stopped vomiting.",
+          "reference_words": 17,
+          "hypothesis_words": 17,
+          "normalized_edits": 0,
+          "raw_edits": 2,
+          "raw_reference_words": 17
+        }
+      ]
+    },
+    {
+      "condition_id": "spectral_gate_percentile25_v1",
+      "transform_parameters": {
+        "window": "hann",
+        "nperseg": 512,
+        "noverlap": 384,
+        "noise_floor_percentile": 25,
+        "threshold_multiplier": 1.5,
+        "minimum_gain": 0.15,
+        "algorithm": "whole_clip_percentile_spectral_gate"
+      },
+      "summary": {
+        "sample_count": 6,
+        "failed_samples": 0,
+        "reference_words": 134,
+        "normalized_edits": 9,
+        "normalized_wer": 0.06716417910447761,
+        "raw_reference_words": 134,
+        "raw_edits": 25,
+        "raw_wer": 0.1865671641791045,
+        "admission_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "paired_sample_changes": {
+        "improved_samples": 0,
+        "degraded_samples": 0,
+        "unchanged_samples": 6,
+        "net_normalized_edit_change": 0
+      },
+      "samples": [
+        {
+          "sample_id": "day1_consultation01_doctor.utterance01",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 2.5511,
+          "candidate_audio_sha256": "67d75b6e0b9b48c56519421662f3df145bd0a292e6ea5e14e1cdbbc69c8d6fc6",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "67d75b6e0b9b48c56519421662f3df145bd0a292e6ea5e14e1cdbbc69c8d6fc6",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 77092,
+              "duration_seconds": 4.81825
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 77092,
+                "duration_seconds": 4.81825
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "d67c89071c473e9178df2c98fad35a9a2b311fe3fec4e6d2c212974402a7684a"
+            },
+            "parent_sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "spectral_gate_percentile25_v1",
+              "parameters": {
+                "window": "hann",
+                "nperseg": 512,
+                "noverlap": 384,
+                "noise_floor_percentile": 25,
+                "threshold_multiplier": 1.5,
+                "minimum_gain": 0.15,
+                "algorithm": "whole_clip_percentile_spectral_gate"
+              }
+            },
+            "transformation_manifest_sha256": "14582a06bb7ec85674114013a9fa8b724ad89ddac90bb94d51d6d8269444b94c",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "f7a517f0e74bb0afc0614430c2b382539324539f43717d48cc72cb59964c09d6"
+          },
+          "reference": "Okay. And how many times a day are you going, let's say, in the last couple of days?",
+          "hypothesis": "OK, and how many times a day are you going, let's say, over the last couple of days?",
+          "reference_words": 18,
+          "hypothesis_words": 18,
+          "normalized_edits": 2,
+          "raw_edits": 3,
+          "raw_reference_words": 18
+        },
+        {
+          "sample_id": "day1_consultation01_doctor.utterance02",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 3.4486,
+          "candidate_audio_sha256": "b364d1dcf82df419faeee012e2a7ff8feeed907966d32a9a2513a66f3d24df2b",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "b364d1dcf82df419faeee012e2a7ff8feeed907966d32a9a2513a66f3d24df2b",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 77683,
+              "duration_seconds": 4.8551875
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 77683,
+                "duration_seconds": 4.8551875
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "41fb4dfd243991820d796621bbb764830068ef03e68f22789ca6a9f84bc5c333"
+            },
+            "parent_sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "spectral_gate_percentile25_v1",
+              "parameters": {
+                "window": "hann",
+                "nperseg": 512,
+                "noverlap": 384,
+                "noise_floor_percentile": 25,
+                "threshold_multiplier": 1.5,
+                "minimum_gain": 0.15,
+                "algorithm": "whole_clip_percentile_spectral_gate"
+              }
+            },
+            "transformation_manifest_sha256": "14582a06bb7ec85674114013a9fa8b724ad89ddac90bb94d51d6d8269444b94c",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "f29899e824c5179f7470dd769577a13621dee2b2016b13be61fa13f69cbff1c6"
+          },
+          "reference": "Okay. And is the pain, is that, is it there all the time, or does it come and go?",
+          "hypothesis": "OK. And does the pain is that is it there all the time or does it come and go?",
+          "reference_words": 19,
+          "hypothesis_words": 19,
+          "normalized_edits": 2,
+          "raw_edits": 5,
+          "raw_reference_words": 19
+        },
+        {
+          "sample_id": "day1_consultation01_doctor.utterance03",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 4.7788,
+          "candidate_audio_sha256": "26aca6f8b4ee0fca034e8fcaa0855ed49851779f1093646a698c8e5dae5749ac",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "26aca6f8b4ee0fca034e8fcaa0855ed49851779f1093646a698c8e5dae5749ac",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 132980,
+              "duration_seconds": 8.31125
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 132980,
+                "duration_seconds": 8.31125
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "e6b8e5f96295fb2a95d2c380430db0d85efb5704ad317b6cbda7ad0f822ba1c2"
+            },
+            "parent_sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "spectral_gate_percentile25_v1",
+              "parameters": {
+                "window": "hann",
+                "nperseg": 512,
+                "noverlap": 384,
+                "noise_floor_percentile": 25,
+                "threshold_multiplier": 1.5,
+                "minimum_gain": 0.15,
+                "algorithm": "whole_clip_percentile_spectral_gate"
+              }
+            },
+            "transformation_manifest_sha256": "14582a06bb7ec85674114013a9fa8b724ad89ddac90bb94d51d6d8269444b94c",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "c2670a6a992d460dc00e9429d3ed9e36f9dc7c2cd3abef743fb0a0530ca3b9c7"
+          },
+          "reference": "Okay, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having, uh have you been feeling feverish, for example?",
+          "hypothesis": "OK, fine. And you mentioned you've been feeling quite weak and shaky as well. What do you mean by shaky? Do you mean you've been having have you been feeling feverish, for example?",
+          "reference_words": 34,
+          "hypothesis_words": 33,
+          "normalized_edits": 2,
+          "raw_edits": 3,
+          "raw_reference_words": 34
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance01",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 5.3837,
+          "candidate_audio_sha256": "3b7c820161555cfc037a20c13e2a042e7bdee351594afa738a487ab92148763a",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "3b7c820161555cfc037a20c13e2a042e7bdee351594afa738a487ab92148763a",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 166817,
+              "duration_seconds": 10.4260625
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "5cead8c49715f89f3baa64a23a00e46d0d98fd62dc4741cc9d23e3cb11048030",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 166817,
+                "duration_seconds": 10.4260625
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "04fe8af707a67417bba790372c1ad07261883d4a8e90d4c0fd1c4a1d94b0513d"
+            },
+            "parent_sha256": "5cead8c49715f89f3baa64a23a00e46d0d98fd62dc4741cc9d23e3cb11048030",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "spectral_gate_percentile25_v1",
+              "parameters": {
+                "window": "hann",
+                "nperseg": 512,
+                "noverlap": 384,
+                "noise_floor_percentile": 25,
+                "threshold_multiplier": 1.5,
+                "minimum_gain": 0.15,
+                "algorithm": "whole_clip_percentile_spectral_gate"
+              }
+            },
+            "transformation_manifest_sha256": "14582a06bb7ec85674114013a9fa8b724ad89ddac90bb94d51d6d8269444b94c",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "a17b189eadd5a79d2843e884f5f7ba34c2ddee1384bba233a2e4f4cab4e3899d"
+          },
+          "reference": "Yeah, so it's like loose and watery stool, going to the toilet quite often, uh and like some pain in my, like, lower stomach?",
+          "hypothesis": "Yeah, so it's like loose and watery stool, going to the toilet quite often and like some pain in my like lower stomach.",
+          "reference_words": 24,
+          "hypothesis_words": 23,
+          "normalized_edits": 1,
+          "raw_edits": 5,
+          "raw_reference_words": 24
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance02",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 5.3774,
+          "candidate_audio_sha256": "9bb9f22088299f8a3b4854810a77c10052aa16edc50adc46f470349a3ad98927",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "9bb9f22088299f8a3b4854810a77c10052aa16edc50adc46f470349a3ad98927",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 147557,
+              "duration_seconds": 9.2223125
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "b89446c81ee05a2c23fddb669be6ab614ed8cf21b212bd55c7eb07f57ad8ceec",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 147557,
+                "duration_seconds": 9.2223125
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "b9c2420821d9815c9b9e68ac24e7bf9bb1f83e5dbd91c02eb71feeb53aded798"
+            },
+            "parent_sha256": "b89446c81ee05a2c23fddb669be6ab614ed8cf21b212bd55c7eb07f57ad8ceec",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "spectral_gate_percentile25_v1",
+              "parameters": {
+                "window": "hann",
+                "nperseg": 512,
+                "noverlap": 384,
+                "noise_floor_percentile": 25,
+                "threshold_multiplier": 1.5,
+                "minimum_gain": 0.15,
+                "algorithm": "whole_clip_percentile_spectral_gate"
+              }
+            },
+            "transformation_manifest_sha256": "14582a06bb7ec85674114013a9fa8b724ad89ddac90bb94d51d6d8269444b94c",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "14f695bb33dddc21ecfb4f0934cd14eefaddf97245fac39505f8f46d8bde3f3b"
+          },
+          "reference": "Yeah, it feels, um, like a cramp, like a muscular cramp, and, um, yeah i feel a bit uh weak and shaky.",
+          "hypothesis": "Yeah, it feels um like a cramp, uh, like a muscular cramp, and um, yeah, I feel a bit weak and shaky.",
+          "reference_words": 22,
+          "hypothesis_words": 22,
+          "normalized_edits": 2,
+          "raw_edits": 7,
+          "raw_reference_words": 22
+        },
+        {
+          "sample_id": "day1_consultation01_patient.utterance03",
+          "group_id": "day1_consultation01",
+          "status": "completed",
+          "error_code": null,
+          "elapsed_seconds": 4.5387,
+          "candidate_audio_sha256": "91943f38f84c8a6071f4a407d4cd787e54d64667f516a456543721dfa1fb2cce",
+          "audio_provenance": {
+            "schema_version": "audio_lineage_v1",
+            "asset_sha256": "91943f38f84c8a6071f4a407d4cd787e54d64667f516a456543721dfa1fb2cce",
+            "asset": {
+              "container": "wav",
+              "encoding": "pcm_s16le",
+              "channels": 1,
+              "sample_rate": 16000,
+              "frames": 121254,
+              "duration_seconds": 7.578375
+            },
+            "parent": {
+              "schema_version": "audio_lineage_v1",
+              "asset_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+              "asset": {
+                "container": "wav",
+                "encoding": "pcm_s16le",
+                "channels": 1,
+                "sample_rate": 16000,
+                "frames": 121254,
+                "duration_seconds": 7.578375
+              },
+              "parent": null,
+              "parent_sha256": null,
+              "transformation_manifest": {
+                "operation": "source_asset_capture_v1",
+                "media_type": "audio/wav"
+              },
+              "transformation_manifest_sha256": "183b6131422ebdc53aa1a530e6a74ac6c3eb694fbaff75adc796817e16cd8bb7",
+              "timeline_mapping": {
+                "kind": "source_timeline_origin",
+                "status": "root_coordinate_system",
+                "source_sample_rate": 16000,
+                "source_frame_origin": 0,
+                "meaning": "Times are measured from the beginning of these exact source bytes."
+              },
+              "receipt_sha256": "77246597756e5d162db369be842d6c878ff7f51b2e19e6e0c402c8aa905e9a24"
+            },
+            "parent_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+            "additional_parents": [],
+            "additional_parent_sha256s": [],
+            "transformation_manifest": {
+              "operation": "spectral_gate_percentile25_v1",
+              "parameters": {
+                "window": "hann",
+                "nperseg": 512,
+                "noverlap": 384,
+                "noise_floor_percentile": 25,
+                "threshold_multiplier": 1.5,
+                "minimum_gain": 0.15,
+                "algorithm": "whole_clip_percentile_spectral_gate"
+              }
+            },
+            "transformation_manifest_sha256": "14582a06bb7ec85674114013a9fa8b724ad89ddac90bb94d51d6d8269444b94c",
+            "timeline_mapping": {
+              "kind": "same_sample_clock_filtering",
+              "status": "sample_rate_and_frame_count_preserved",
+              "input_sample_rate": 16000,
+              "output_sample_rate": 16000,
+              "maximum_mapping_error_ms": 0.0625
+            },
+            "receipt_sha256": "f8c0606e640524b3d7a480e7c869ca93c45a94e1f97adb1ca1538a57e99fa9bd"
+          },
+          "reference": "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting.",
+          "hypothesis": "Yeah, so um I vomited at the start of the symptoms but now um i've stopped vomiting.",
+          "reference_words": 17,
+          "hypothesis_words": 17,
+          "normalized_edits": 0,
+          "raw_edits": 2,
+          "raw_reference_words": 17
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Six convenience-selected utterances from one public mock consultation; development screening only.",
+    "References are upstream mock annotations and are not independently clinically adjudicated.",
+    "RMS level normalization is not LUFS normalization.",
+    "Spectral gate estimates its floor from the entire clip and may suppress speech.",
+    "No enhancement condition is enabled in the production ASR route."
+  ],
+  "clinical_acceptance": false
+}

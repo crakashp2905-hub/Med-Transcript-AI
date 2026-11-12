@@ -4,12 +4,120 @@ import os
 from pathlib import Path
 import shutil
 import tempfile
+import wave
+
+import numpy as np
 
 from services.audio_provenance import (
     derive_provenance,
     file_sha256,
     source_provenance,
 )
+
+
+def _read_mono_pcm16(path):
+    with wave.open(str(path), "rb") as audio:
+        if (
+            audio.getnchannels(),
+            audio.getsampwidth(),
+            audio.getcomptype(),
+        ) != (1, 2, "NONE"):
+            raise ValueError("enhancement_requires_mono_pcm16_wav")
+        rate = audio.getframerate()
+        if not 8000 <= rate <= 48000:
+            raise ValueError("unsupported_enhancement_sample_rate")
+        samples = np.frombuffer(audio.readframes(audio.getnframes()), dtype="<i2")
+    if samples.size == 0:
+        raise ValueError("empty_enhancement_input")
+    return samples.astype(np.float64), rate
+
+
+def _write_mono_pcm16(path, samples, sample_rate):
+    samples = np.clip(np.rint(samples), -32768, 32767).astype("<i2")
+    with wave.open(str(path), "wb") as audio:
+        audio.setparams((1, 2, sample_rate, 0, "NONE", "not compressed"))
+        audio.writeframes(samples.tobytes())
+
+
+def normalize_rms_transform(target_dbfs=-23.0, peak_ceiling=0.98):
+    if not -50 <= target_dbfs <= -6 or not 0.1 <= peak_ceiling <= 1:
+        raise ValueError("invalid_rms_normalization_profile")
+
+    def transform(source, output):
+        samples, rate = _read_mono_pcm16(source)
+        rms = float(np.sqrt(np.mean(samples * samples)))
+        if rms <= 0:
+            raise ValueError("cannot_normalize_silent_audio")
+        target_rms = 32768 * 10 ** (target_dbfs / 20)
+        gain = min(
+            target_rms / rms, peak_ceiling * 32767 / float(np.max(np.abs(samples)))
+        )
+        _write_mono_pcm16(output, samples * gain, rate)
+
+    return transform
+
+
+def highpass_transform(cutoff_hz=80, order=4):
+    if type(cutoff_hz) is not int or not 20 <= cutoff_hz <= 500:
+        raise ValueError("invalid_highpass_profile")
+    if type(order) is not int or not 1 <= order <= 8:
+        raise ValueError("invalid_highpass_profile")
+
+    def transform(source, output):
+        from scipy.signal import butter, sosfiltfilt
+
+        samples, rate = _read_mono_pcm16(source)
+        if cutoff_hz >= rate / 2:
+            raise ValueError("highpass_cutoff_exceeds_nyquist")
+        sos = butter(order, cutoff_hz, btype="highpass", fs=rate, output="sos")
+        filtered = sosfiltfilt(sos, samples)
+        _write_mono_pcm16(output, filtered, rate)
+
+    return transform
+
+
+def spectral_gate_transform(
+    noise_percentile=25, threshold_multiplier=1.5, minimum_gain=0.15
+):
+    if (
+        type(noise_percentile) is not int
+        or not 5 <= noise_percentile <= 50
+        or not 1 <= threshold_multiplier <= 5
+        or not 0 <= minimum_gain <= 1
+    ):
+        raise ValueError("invalid_spectral_gate_profile")
+
+    def transform(source, output):
+        from scipy.signal import istft, stft
+
+        samples, rate = _read_mono_pcm16(source)
+        frequencies, times, spectrum = stft(
+            samples,
+            fs=rate,
+            window="hann",
+            nperseg=512,
+            noverlap=384,
+            boundary="zeros",
+            padded=True,
+        )
+        magnitude = np.abs(spectrum)
+        noise_floor = np.percentile(magnitude, noise_percentile, axis=1, keepdims=True)
+        threshold = noise_floor * threshold_multiplier
+        gain = np.maximum(minimum_gain, 1 - threshold / np.maximum(magnitude, 1e-12))
+        _, restored = istft(
+            spectrum * gain,
+            fs=rate,
+            window="hann",
+            nperseg=512,
+            noverlap=384,
+            input_onesided=True,
+            boundary=True,
+        )
+        if restored.size < samples.size:
+            restored = np.pad(restored, (0, samples.size - restored.size))
+        _write_mono_pcm16(output, restored[: samples.size], rate)
+
+    return transform
 
 
 def prepare_candidate(

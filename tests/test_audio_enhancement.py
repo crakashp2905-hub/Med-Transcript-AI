@@ -1,9 +1,15 @@
 import shutil
 import wave
 
+import numpy as np
 import pytest
 
-from services.audio_enhancement import prepare_candidate
+from services.audio_enhancement import (
+    highpass_transform,
+    normalize_rms_transform,
+    prepare_candidate,
+    spectral_gate_transform,
+)
 from services.audio_provenance import validate_provenance
 
 
@@ -77,3 +83,51 @@ def test_failed_transform_cannot_modify_source_or_publish_candidate(tmp_path):
     assert source.read_bytes() == original
     assert not output.exists()
     assert not list(tmp_path.glob(".audio-*-*"))
+
+
+def test_rms_candidate_reaches_target_without_clipping(tmp_path):
+    source, output = tmp_path / "quiet.wav", tmp_path / "normalized.wav"
+    values = np.full(16000, 5000, dtype="<i2")
+    with wave.open(str(source), "wb") as audio:
+        audio.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
+        audio.writeframes(values.tobytes())
+    original = source.read_bytes()
+
+    normalize_rms_transform(-23, 0.98)(source, output)
+
+    with wave.open(str(output), "rb") as audio:
+        result = np.frombuffer(audio.readframes(audio.getnframes()), dtype="<i2")
+    rms_dbfs = 20 * np.log10(np.sqrt(np.mean(result.astype(np.float64) ** 2)) / 32768)
+    assert rms_dbfs == pytest.approx(-23, abs=0.01)
+    assert int(np.max(np.abs(result))) < 32760
+    assert source.read_bytes() == original
+
+
+def test_highpass_and_spectral_candidates_preserve_frame_count(tmp_path):
+    source = tmp_path / "mixed.wav"
+    rate, count = 16000, 16000
+    time = np.arange(count) / rate
+    values = (
+        3000
+        + 7000 * np.sin(2 * np.pi * 50 * time)
+        + 3000 * np.sin(2 * np.pi * 500 * time)
+    )
+    with wave.open(str(source), "wb") as audio:
+        audio.setparams((1, 2, rate, 0, "NONE", "not compressed"))
+        audio.writeframes(np.clip(values, -32768, 32767).astype("<i2").tobytes())
+    original = source.read_bytes()
+    highpass, spectral = tmp_path / "highpass.wav", tmp_path / "spectral.wav"
+
+    highpass_transform(80, 4)(source, highpass)
+    spectral_gate_transform(25, 1.5, 0.15)(source, spectral)
+
+    with wave.open(str(highpass), "rb") as audio:
+        assert audio.getnframes() == count
+        highpassed = np.frombuffer(audio.readframes(count), dtype="<i2")
+    with wave.open(str(spectral), "rb") as audio:
+        assert audio.getnframes() == count
+        gated = np.frombuffer(audio.readframes(count), dtype="<i2")
+    assert np.isfinite(highpassed).all() and np.isfinite(gated).all()
+    assert source.read_bytes() == original
+    assert highpass.read_bytes() != original
+    assert spectral.read_bytes() != original
