@@ -370,3 +370,11 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   and format checks pass. Status: partial; the rule helper is not integrated
   into every text-generation/publication path and its heuristics are not
   clinically validated.
+- **MTA-ASR-F10:** Added a deterministic immutable candidate-receipt builder
+  binding audio and transcript IDs/digests, source span, original hypothesis,
+  alternatives, decoder/profile digests, selection policy version, and
+  abstention. Receipts preserve review-required/non-adopted status, reject
+  reference-text fields, verify their semantic digest, and write exclusively.
+  tests/test_asr_candidate_receipt.py: 3 passed; Ruff and format checks pass.
+  Status: partial; current application retranscription does not yet persist
+  this unified receipt, and deterministic inference replay is unverified.
