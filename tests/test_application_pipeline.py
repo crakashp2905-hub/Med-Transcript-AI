@@ -32,7 +32,7 @@ def test_application_pipeline_uses_resource_graph_attribution_and_relationship_h
         relationships={"relations": []},
     )
     assert result["application_pipeline"] == "source_validated_clinical_review_v2"
-    assert result["attribution"][0]["assertion"] == "denied"
+    assert result["attribution"][0]["assertion"] == "negated"
     assert result["evidence_graph"]["complete_to_fact"] is True
     assert result["evidence_graph"]["complete_to_export"] is False
 

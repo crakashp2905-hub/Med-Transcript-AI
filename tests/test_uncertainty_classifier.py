@@ -4,7 +4,7 @@ from services.uncertainty_classifier import classify
 def test_uncertainty_classifier_does_not_promote_hedged_or_missing_data():
     assert classify("Maybe chest pain.")["assertion"] == "uncertain"
     assert classify("") == {
-        "assertion": "unknown",
+        "assertion": "not_stated",
         "value": None,
         "requires_review": True,
     }

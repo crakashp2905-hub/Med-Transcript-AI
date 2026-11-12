@@ -1,7 +1,7 @@
 """Machine-checkable evaluation policy for evidence-linked clinical drafts."""
 
 from dataclasses import dataclass
-from typing import Literal
+from services.review.models import ClinicalAssertion
 
 
 @dataclass(frozen=True)
@@ -9,7 +9,7 @@ class ClaimSignature:
     subject: str | None
     predicate: str
     object: str | None
-    polarity: Literal["affirmed", "negated", "uncertain"]
+    polarity: ClinicalAssertion
     evidence_ids: tuple[str, ...]
 
 

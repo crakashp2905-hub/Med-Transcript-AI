@@ -6,6 +6,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from services.review.clinical import MEDICATION, QUANTITY
+from services.review.models import ClinicalAssertion
 
 
 class ClinicalEntity(BaseModel):
@@ -25,7 +26,7 @@ class ClinicalEntity(BaseModel):
     text: str = Field(min_length=1)
     start_char: int = Field(ge=0)
     end_char: int = Field(gt=0)
-    assertion: Literal["affirmed", "negated", "uncertain"] | None = None
+    assertion: ClinicalAssertion | None = None
     related_to: str | None = None
 
     @model_validator(mode="after")
@@ -60,7 +61,7 @@ def extract_medication_entities(text: str) -> list[ClinicalEntity]:
         uncertain = bool(
             re.search(r"\b(?:maybe|possibly|perhaps|might)\b", clause, re.I)
         )
-        assertion: Literal["affirmed", "negated", "uncertain"] = (
+        assertion: ClinicalAssertion = (
             "uncertain" if uncertain else "negated" if negated else "affirmed"
         )
         binding_id = f"medication-{index}"

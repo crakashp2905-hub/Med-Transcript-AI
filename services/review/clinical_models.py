@@ -8,7 +8,7 @@ from typing import Literal, Protocol
 from uuid import UUID, uuid4
 
 from pydantic import Field
-from services.review.models import Strict, Fact
+from services.review.models import ClinicalAssertion, Strict, Fact
 from services.strict_json import loads as strict_loads
 from services.review.clinical import check_claim, extract
 
@@ -44,7 +44,7 @@ class SelectedFact(Strict):
     ]
     section: Literal["subjective", "objective", "assessment", "plan"]
     subject: Literal["patient", "family", "caregiver", "other", "unknown"] = "unknown"
-    assertion: Literal["affirmed", "negated", "uncertain", "not_stated"] = "uncertain"
+    assertion: ClinicalAssertion = "uncertain"
     temporality: Literal["current", "historical", "planned", "unknown"] = "unknown"
 
 

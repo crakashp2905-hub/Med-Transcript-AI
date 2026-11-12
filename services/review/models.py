@@ -3,6 +3,8 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+ClinicalAssertion = Literal["affirmed", "negated", "uncertain", "not_stated"]
+
 
 class Strict(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -39,7 +41,7 @@ class Fact(Strict):
     section: Literal["subjective", "objective", "assessment", "plan"] = "subjective"
     text: str = Field(min_length=1, max_length=4000)
     subject: Literal["patient", "family", "caregiver", "other", "unknown"] = "unknown"
-    assertion: Literal["affirmed", "negated", "uncertain", "not_stated"] = "uncertain"
+    assertion: ClinicalAssertion = "uncertain"
     temporality: Literal["current", "historical", "planned", "unknown"] = "unknown"
     origin: Literal["source_linked", "clinician_entered"] = "source_linked"
     evidence: Evidence | None = None

@@ -5,8 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 from collections import Counter
+from typing import get_args
 
 from services.clinical_metrics import evaluate
+from services.review.models import ClinicalAssertion
 
 
 def digest(value):
@@ -88,7 +90,7 @@ def validate(review, source):
                     "other",
                 },
                 "subject": {"patient", "family", "caregiver", "other", "unknown"},
-                "assertion": {"affirmed", "negated", "uncertain", "not_stated"},
+                "assertion": set(get_args(ClinicalAssertion)),
                 "temporality": {"current", "historical", "planned", "unknown"},
             }
             if any(concept[field] not in options for field, options in enums.items()):

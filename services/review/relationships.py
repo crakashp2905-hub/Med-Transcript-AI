@@ -4,7 +4,7 @@ from collections import Counter
 import re
 from typing import Literal
 from pydantic import Field
-from services.review.models import Strict, Evidence
+from services.review.models import ClinicalAssertion, Strict, Evidence
 from services.review.clinical import MEDICATION, SYMPTOMS, NEGATION, quantity_signature
 
 ENTITY = re.compile(
@@ -44,7 +44,7 @@ class ClinicalRelationship(Strict):
     routes: list[str] = Field(max_length=30)
     actions: list[str] = Field(max_length=30)
     condition: str = Field(max_length=4000)
-    assertion: Literal["affirmed", "negated", "uncertain"]
+    assertion: ClinicalAssertion
     evidence: Evidence
     review_required: bool = True
     interpretation: str = "explicit_lexical_binding_not_clinical_validation"
