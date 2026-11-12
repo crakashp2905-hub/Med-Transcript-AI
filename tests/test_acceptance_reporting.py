@@ -1,5 +1,8 @@
+from pathlib import Path
 from types import SimpleNamespace
 from services.offline_acceptance import (
+    PYTEST_ACCEPTANCE_TIMEOUT_SECONDS,
+    pytest_basetemp,
     test_result_summary as summarize_result,
     source_inventory,
 )
@@ -35,3 +38,12 @@ def test_acceptance_inventory_pins_browser_tests_ci_and_dependency_contracts():
         "evaluation/primary-endpoint-registry-v1.json",
     ):
         assert path in inventory
+
+
+def test_clean_checkout_bootstraps_isolated_pytest_temp_parent(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    temp = pytest_basetemp("clean-checkout")
+    assert temp.parent == Path("data")
+    assert (tmp_path / temp.parent).is_dir()
+    assert not temp.exists()
+    assert PYTEST_ACCEPTANCE_TIMEOUT_SECONDS == 1200

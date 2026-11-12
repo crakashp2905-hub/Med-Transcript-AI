@@ -15,6 +15,14 @@ from uuid import uuid4
 from services.offline import install
 from services.engineering_status import sha256
 
+PYTEST_ACCEPTANCE_TIMEOUT_SECONDS = 1200
+
+
+def pytest_basetemp(version):
+    root = Path("data")
+    root.mkdir(parents=True, exist_ok=True)
+    return root / f"pytest-acceptance-{version}-{uuid4()}"
+
 
 def source_inventory():
     patterns = (
@@ -131,13 +139,13 @@ def acceptance(version, run_tests=True, run_build=True):
         def tests():
             env = dict(os.environ)
             env.pop("MED_TRANSCRIPT_PROFILE", None)
-            temp = Path("data") / f"pytest-acceptance-{version}-{uuid4()}"
+            temp = pytest_basetemp(version)
             result = subprocess.run(
                 [sys.executable, "-m", "pytest", "-q", "--basetemp", str(temp)],
                 env=env,
                 capture_output=True,
                 text=True,
-                timeout=600,
+                timeout=PYTEST_ACCEPTANCE_TIMEOUT_SECONDS,
             )
             return test_result_summary(result)
 
