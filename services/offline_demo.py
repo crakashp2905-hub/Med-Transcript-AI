@@ -75,6 +75,9 @@ def walkthrough(app, config):
     timing.mark_unavailable("diarization", "single_scripted_role")
     headers = {"Authorization": "Bearer " + config["clinician_key"]}
 
+    def mutation_headers(extra=None):
+        return {**headers, **(extra or {}), "Idempotency-Key": str(uuid4())}
+
     def require(response, expected):
         if response.status_code != expected:
             raise ValueError(
@@ -84,7 +87,9 @@ def walkthrough(app, config):
 
     eid = timing.measure(
         "transfer",
-        lambda: require(client.post("/v1/demo", headers=headers), 201)["encounter_id"],
+        lambda: require(client.post("/v1/demo", headers=mutation_headers()), 201)[
+            "encounter_id"
+        ],
     )
     base = f"/v1/encounters/{eid}"
     tx = timing.measure(
@@ -98,7 +103,7 @@ def walkthrough(app, config):
         lambda: require(
             client.patch(
                 base + "/transcripts/" + tx["id"],
-                headers={**headers, "If-Match": '"' + tx["sha256"] + '"'},
+                headers=mutation_headers({"If-Match": '"' + tx["sha256"] + '"'}),
                 json={
                     "segments": [
                         {
@@ -133,7 +138,7 @@ def walkthrough(app, config):
         lambda: require(
             client.post(
                 base + "/drafts",
-                headers=headers,
+                headers=mutation_headers(),
                 json={"transcript_version_id": tx["id"], "facts": mutated},
             ),
             201,
@@ -145,7 +150,7 @@ def walkthrough(app, config):
     def approval(note):
         return client.post(
             base + "/approvals",
-            headers=headers,
+            headers=mutation_headers(),
             json={
                 "note_version_id": note["id"],
                 "expected_note_sha256": note["sha256"],
@@ -160,7 +165,9 @@ def walkthrough(app, config):
         lambda: require(
             client.patch(
                 base + "/notes/" + bad["note"]["id"],
-                headers={**headers, "If-Match": '"' + bad["note"]["sha256"] + '"'},
+                headers=mutation_headers(
+                    {"If-Match": '"' + bad["note"]["sha256"] + '"'}
+                ),
                 json={"transcript_version_id": tx["id"], "facts": facts},
             ),
             201,
@@ -176,7 +183,7 @@ def walkthrough(app, config):
             lambda format=format: require(
                 client.post(
                     base + "/exports",
-                    headers=headers,
+                    headers=mutation_headers(),
                     json={"approval_id": approved["id"], "format": format},
                 ),
                 201,
@@ -193,7 +200,16 @@ def walkthrough(app, config):
         exports.append({"format": format, "sha256": receipt["sha256"]})
     viewer = {"Authorization": "Bearer " + config["viewer_key"]}
     require(client.get(base + "/workspace", headers=viewer), 200)
-    require(client.post("/v1/demo", headers=viewer), 403)
+    require(
+        client.post(
+            "/v1/demo",
+            headers={
+                "Authorization": viewer["Authorization"],
+                "Idempotency-Key": str(uuid4()),
+            },
+        ),
+        403,
+    )
     return {
         "schema_version": "offline_walkthrough_v1",
         "encounter_id": eid,

@@ -97,11 +97,6 @@ def register(app, services: ApiServices):
             }
 
     @app.put("/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content")
-    @idempotent(
-        database,
-        replay,
-        "PUT:/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content",
-    )
     async def upload_content(
         encounter_id: UUID,
         upload_id: UUID,
