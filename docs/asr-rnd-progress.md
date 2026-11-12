@@ -38,6 +38,19 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
 
 ## Partially reconciled tasks
 
+- **MTA-ASR-B01:** Added hash-bound lineage receipts with source asset hashes,
+  transformation-manifest hashes, parent receipts and explicit timeline maps.
+  Runtime ingest records original-to-normalized lineage; channel isolation and
+  bounded retranscription crops preserve parent hashes and frame mappings.
+  Primock smoke/validation crop manifests and full-consultation normalized/mixed
+  tracks now include receipts, including both parents for role-track mixing.
+  `tests/test_audio_provenance.py`: 2 passed; changed Python files compile and
+  `git diff --check` passes. Commit `457ce41324a5abba966156c896cb07bff4f6cbb1`.
+  Status: partial; the detailed benchmark's temporary inference windows and
+  MedDistract FLAC decode path are not yet lineage-bound, and the PyAV resampler
+  group delay/source-origin correction remains explicitly unverified. Historical
+  frozen reports were not rewritten.
+
 - **MTA-ASR-A04:** The frozen error-taxonomy artifact contains token-level edit
   rows tied by hashes to source reports and the reference manifest. Every
   reference substitution/deletion carries its reference token, role, and source
