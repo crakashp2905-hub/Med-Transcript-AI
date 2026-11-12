@@ -157,13 +157,37 @@ class FasterWhisperAdapter:
             total_chars += len(segment.text)
             if total_chars > 500_000 or len(segment.text) > 4000:
                 raise ASRFailure("invalid_asr_output")
-            raw.append(
-                {
-                    "start_seconds": segment.start,
-                    "end_seconds": segment.end,
-                    "text": segment.text,
+            row = {
+                "start_seconds": segment.start,
+                "end_seconds": segment.end,
+                "text": segment.text,
+            }
+            # faster-whisper exposes the winning sequence's token IDs and
+            # average decoder log probability, but not an N-best list or
+            # calibrated confidence. Preserve only the native evidence it
+            # actually returns; never derive confidence from missing values.
+            token_ids = getattr(segment, "tokens", None)
+            average_logprob = getattr(segment, "avg_logprob", None)
+            if token_ids is not None or average_logprob is not None:
+                if (
+                    not isinstance(token_ids, list)
+                    or len(token_ids) > 20000
+                    or any(type(token) is not int or token < 0 for token in token_ids)
+                    or isinstance(average_logprob, bool)
+                    or not isinstance(average_logprob, (int, float))
+                    or not math.isfinite(average_logprob)
+                    or average_logprob > 0
+                    or average_logprob < -100
+                ):
+                    raise ASRFailure("invalid_asr_output")
+                row["decoder_evidence"] = {
+                    "kind": "faster_whisper_best_sequence_v1",
+                    "token_ids": token_ids,
+                    "average_logprob": average_logprob,
+                    "n_best_supported": False,
+                    "calibrated": False,
                 }
-            )
+            raw.append(row)
         checkpoint()
         duration = info.duration
         if not isinstance(duration, (float, int)) or not math.isfinite(duration):

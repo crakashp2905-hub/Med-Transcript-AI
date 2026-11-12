@@ -78,26 +78,53 @@ def build_transcript(
         ]
         if start_ms < covered:
             uncertainties.append("overlapping_model_timestamps")
-        segments.append(
-            {
-                "segment_id": str(uuid4()),
-                "start_ms": start_ms,
-                "end_ms": end_ms,
-                "text": text,
-                "speaker_id": None,
-                "role": "unknown",
-                "role_status": "unconfirmed",
-                "language": "en",
-                "language_status": "uncertain",
-                "alignment_status": "model_estimated",
-                "timestamp_kind": "native_segment"
-                if profile.engine == "faster-whisper"
-                else "unknown",
-                "uncertainties": uncertainties,
-                "raw_start_seconds": start,
-                "raw_end_seconds": end,
+        saved_segment = {
+            "segment_id": str(uuid4()),
+            "start_ms": start_ms,
+            "end_ms": end_ms,
+            "text": text,
+            "speaker_id": None,
+            "role": "unknown",
+            "role_status": "unconfirmed",
+            "language": "en",
+            "language_status": "uncertain",
+            "alignment_status": "model_estimated",
+            "timestamp_kind": "native_segment"
+            if profile.engine == "faster-whisper"
+            else "unknown",
+            "uncertainties": uncertainties,
+            "raw_start_seconds": start,
+            "raw_end_seconds": end,
+        }
+        decoder_evidence = row.get("decoder_evidence")
+        if decoder_evidence is not None:
+            if (
+                not isinstance(decoder_evidence, dict)
+                or decoder_evidence.get("kind") != "faster_whisper_best_sequence_v1"
+                or decoder_evidence.get("n_best_supported") is not False
+                or decoder_evidence.get("calibrated") is not False
+                or not isinstance(decoder_evidence.get("token_ids"), list)
+                or len(decoder_evidence["token_ids"]) > 20000
+                or any(
+                    type(token) is not int or token < 0
+                    for token in decoder_evidence["token_ids"]
+                )
+            ):
+                raise ASRFailure("invalid_asr_output")
+            average_logprob = decoder_evidence.get("average_logprob")
+            if (
+                isinstance(average_logprob, bool)
+                or not isinstance(average_logprob, (int, float))
+                or not math.isfinite(average_logprob)
+                or average_logprob > 0
+                or average_logprob < -100
+            ):
+                raise ASRFailure("invalid_asr_output")
+            saved_segment["decoder_evidence"] = {
+                **decoder_evidence,
+                "average_logprob": float(average_logprob),
             }
-        )
+        segments.append(saved_segment)
         covered, last_start, last_text = max(covered, end_ms), start_ms, text.strip()
     if covered < duration:
         gaps.append(

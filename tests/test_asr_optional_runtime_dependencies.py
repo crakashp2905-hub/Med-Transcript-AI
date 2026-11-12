@@ -36,7 +36,13 @@ def test_wav_transcription_does_not_require_unused_media_runtimes(tmp_path, monk
 
     class Model:
         def transcribe(self, samples, **options):
-            segment = SimpleNamespace(start=0.0, end=0.1, text="hello")
+            segment = SimpleNamespace(
+                start=0.0,
+                end=0.1,
+                text="hello",
+                tokens=[11, 12],
+                avg_logprob=-0.25,
+            )
             return iter([segment]), SimpleNamespace(duration=0.1)
 
     def load(_profile_json):
@@ -58,7 +64,18 @@ def test_wav_transcription_does_not_require_unused_media_runtimes(tmp_path, monk
     )
 
     assert result["segments"] == [
-        {"start_seconds": 0.0, "end_seconds": 0.1, "text": "hello"}
+        {
+            "start_seconds": 0.0,
+            "end_seconds": 0.1,
+            "text": "hello",
+            "decoder_evidence": {
+                "kind": "faster_whisper_best_sequence_v1",
+                "token_ids": [11, 12],
+                "average_logprob": -0.25,
+                "n_best_supported": False,
+                "calibrated": False,
+            },
+        }
     ]
     assert set(result["runtime_packages"]) == {
         "faster-whisper",

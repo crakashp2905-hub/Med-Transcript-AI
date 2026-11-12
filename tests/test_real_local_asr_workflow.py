@@ -99,6 +99,15 @@ def test_real_local_asr_reaches_reviewed_approved_export(tmp_path):
             and segment["end_ms"] > segment["start_ms"]
             for segment in transcript["segments"]
         )
+        assert all(
+            segment["decoder_evidence"]["kind"]
+            == "faster_whisper_best_sequence_v1"
+            and segment["decoder_evidence"]["token_ids"]
+            and segment["decoder_evidence"]["average_logprob"] <= 0
+            and segment["decoder_evidence"]["n_best_supported"] is False
+            and segment["decoder_evidence"]["calibrated"] is False
+            for segment in transcript["segments"]
+        )
 
         # This scripted attestation exercises the workflow mechanics only.
         reviewed = client.patch(

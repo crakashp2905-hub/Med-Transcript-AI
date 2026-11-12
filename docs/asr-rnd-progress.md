@@ -654,12 +654,15 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   and unsupported confidence. No alternate decoder was promoted. This records
   the preserved contract; exact deployment profile regressions still need to
   run on the target deployment host.
-- **MTA-ASR-D05:** Not implemented for current backends. The backend protocol
-  exposes n-best and confidence capability declarations; Faster Whisper, Omi
-  and Parakeet report unsupported rather than manufacturing scores. The
-  current adapters therefore cannot provide native n-best token/logprob
-  capture. Confidence remains null/unsupported and no calibration claim is
-  made. Supporting backends and native score semantics are still required.
+- **MTA-ASR-D05:** Partial. The pinned Faster Whisper adapter now preserves its
+  native winning-sequence token IDs and segment average log probability in the
+  immutable transcript. The receipt explicitly labels this as one-best decoder
+  evidence, with n_best_supported=false and calibrated=false; it is not a
+  confidence estimate. Omi and Parakeet continue to declare n-best/confidence
+  unsupported. Backend and transcript regressions validate native meaning and
+  reject invalid scores; see tests/test_asr_decoder_evidence.py and
+  tests/test_asr_optional_runtime_dependencies.py. Multiple hypotheses and
+  calibrated uncertainty remain unavailable.
 - **MTA-ASR-I15:** Research summary and paper section are present in
   `docs/asr-rnd-research-section.md`, covering the hypothesis, method,
   baselines, negative findings, novelty limits, ablation gaps, ethics and
