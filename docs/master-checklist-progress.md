@@ -134,20 +134,29 @@ was generated from source commit `f386b0428c915f21e4e2bdeed0164407b9cf3953`.
 Its SHA-256 is `6f6ef6ac246970ffec9e2f1d72ce7a3513e721093c0500a2bc1ad99e0354bb1d`;
 the raw ledger SHA-256 is
 `a55f59cd037b788662a341d27b60ddbcfc14c956ab38f29cbcf41c5e4c65320b`.
-It records the ledger state before MTA-01-06 was added. See v3 below for the
-current ledger snapshot.
+It records the ledger state before MTA-01-06 was added. V3 was its successor;
+see v4 for the current ledger snapshot.
 
-## Current execution matrix
+## Superseded execution matrix v3
 
 [`master-implementation-matrix-v3.json`](../evaluation/reports/master-implementation-matrix-v3.json)
 was generated from source commit `1ae52f231c2adb843b47f5afd19fce7cecbc3a34`.
 Its SHA-256 is `9a31893dab08cba980755f3b804ed996b0e1f0cc2e2fb83445a9bc238005abc9`;
 the raw ledger SHA-256 is
 `e545dde4529c419cb0a14654653c67d1f5a283fef086e279fc2023ae3d926886`.
-It records two implemented tasks and 367 not started. Task-level dependency
+It predates MTA-01-11. See v4 below for the latest ledger snapshot.
+
+## Current execution matrix
+
+[`master-implementation-matrix-v4.json`](../evaluation/reports/master-implementation-matrix-v4.json)
+was generated from source commit `cdb2aa2125fc6aa646585f36a23da27a58b56574`.
+Its SHA-256 is `ed747741055ec0f0949fff698c4dcb55d8ac801886225491120c8fd962c3cbb0`;
+the raw ledger SHA-256 is
+`9196283fda0122c7e6491052b1fd38e2dcc45a1266282ad18833c973d9317d90`.
+It records three implemented tasks and 366 not started. Task-level dependency
 edges remain unmapped, and clinical release remains unauthorized.
 
-## Fresh offline acceptance
+## Prior offline acceptance failure v24 (superseded)
 
 [`offline-acceptance-v24.json`](../evaluation/reports/offline-acceptance-v24.json)
 is bound to source commit `474e77dbe1ec0781f204fef2956701d278e55752` and hashes
@@ -156,3 +165,13 @@ synthetic walkthrough and clinical-binding development checks passed. The
 full backend pytest command timed out at its 600-second limit, so the overall
 acceptance failed. The failed run is retained; it does not qualify the source
 for engineering verification or research/clinical release.
+
+## Fresh offline acceptance v25
+
+[`offline-acceptance-v25.json`](../evaluation/reports/offline-acceptance-v25.json)
+is bound to source commit `cb24c88e3b90c97da65d33e8fb14119e843648c3` and hashes
+532 source files. It records 647 passed and 6 skipped; the frontend build,
+synthetic walkthrough, and clinical-binding development check also passed.
+However, v25 predates the critical-skip gate. The exact skip audit in the
+MTA-01-11 receipt shows that the same skipped lanes fail admission under the
+current policy. Engineering verification is therefore not established.
