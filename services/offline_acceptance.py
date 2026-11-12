@@ -16,6 +16,15 @@ from services.offline import install
 from services.engineering_status import sha256
 
 PYTEST_ACCEPTANCE_TIMEOUT_SECONDS = 1200
+CRITICAL_SKIPPED_TEST_PATHS = frozenset(
+    {
+        "tests/test_channels.py",
+        "tests/test_encrypted_backup.py",
+        "tests/test_media.py",
+        "tests/test_postgres.py",
+    }
+)
+SKIPPED_TEST = re.compile(r"^SKIPPED \[\d+\] ([^:]+):(\d+): (.+)$", re.M)
 
 
 def pytest_basetemp(version):
@@ -56,7 +65,17 @@ def test_result_summary(result):
         set(re.findall(r"^(?:FAILED|ERROR) ([a-zA-Z0-9_./\\:-]+)", result.stdout, re.M))
     )
     lines = result.stdout.splitlines()
-    terminal = lines[-1] if lines else ""
+    terminal = next(
+        (
+            line
+            for line in reversed(lines)
+            if re.search(
+                r"\b\d+ (?:passed|failed|skipped|warnings?|errors?|deselected|xfailed|xpassed)\b",
+                line,
+            )
+        ),
+        "",
+    )
     counts = re.findall(
         r"\b(\d+) (passed|failed|skipped|warnings?|errors?|deselected|xfailed|xpassed)\b",
         terminal,
@@ -68,12 +87,48 @@ def test_result_summary(result):
     duration = re.search(r"\bin (\d+(?:\.\d+)?)s\b", terminal)
     if duration:
         summary += " in " + duration.group(1) + "s"
+    skipped_tests = []
+    for path, line, reason in SKIPPED_TEST.findall(result.stdout):
+        normalized_path = path.replace("\\", "/")
+        reason_lower = reason.lower()
+        if "could not import" in reason_lower or "no module named" in reason_lower:
+            reason_category = "optional_dependency_unavailable"
+            consequence = "tests using this dependency were not executed"
+        elif "dsn" in reason_lower or "not configured" in reason_lower:
+            reason_category = "integration_service_not_configured"
+            consequence = "service integration behavior was not exercised"
+        else:
+            reason_category = "pytest_skip_reason_requires_review"
+            consequence = "test behavior was not exercised"
+        skipped_tests.append(
+            {
+                "path": normalized_path,
+                "line": int(line),
+                "reason_category": reason_category,
+                "consequence": consequence,
+            }
+        )
+    critical_skips = [
+        item["path"]
+        for item in skipped_tests
+        if item["path"] in CRITICAL_SKIPPED_TEST_PATHS
+    ]
     return {
         "exit_code": result.returncode,
         "summary": summary,
         "failed_test_ids": failed,
+        "skipped_tests": skipped_tests,
+        "critical_skipped_test_paths": sorted(set(critical_skips)),
         "raw_failure_text_included": False,
     }
+
+
+def acceptance_check_status(value):
+    if not isinstance(value, dict):
+        return "pass"
+    if value.get("exit_code", 0) != 0 or value.get("critical_skipped_test_paths"):
+        return "fail"
+    return "pass"
 
 
 def acceptance(version, run_tests=True, run_build=True):
@@ -97,9 +152,7 @@ def acceptance(version, run_tests=True, run_build=True):
         try:
             value = fn()
             results[name] = {
-                "status": "fail"
-                if isinstance(value, dict) and value.get("exit_code", 0) != 0
-                else "pass",
+                "status": acceptance_check_status(value),
                 "result": value,
             }
         except Exception as exc:
@@ -141,7 +194,15 @@ def acceptance(version, run_tests=True, run_build=True):
             env.pop("MED_TRANSCRIPT_PROFILE", None)
             temp = pytest_basetemp(version)
             result = subprocess.run(
-                [sys.executable, "-m", "pytest", "-q", "--basetemp", str(temp)],
+                [
+                    sys.executable,
+                    "-m",
+                    "pytest",
+                    "-q",
+                    "-rs",
+                    "--basetemp",
+                    str(temp),
+                ],
                 env=env,
                 capture_output=True,
                 text=True,
