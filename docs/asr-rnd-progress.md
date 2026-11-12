@@ -621,6 +621,16 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   audio upload through integrity-checked approved export (1 passed). This is
   reproducible engineering-path evidence only: the review/approval actions are
   scripted and do not close independent clinical acceptance.
+- **MTA-ASR-I13 waveform update:** The clinician uncertain-span queue now
+  renders source-bound waveform peaks and highlights each selected transcript
+  or untranscribed interval. The authenticated API checks the stored audio hash
+  and returns at most 160 amplitude bins, optionally for a selected channel;
+  the browser does not decode a full recording into memory. The production
+  frontend build and tests/test_audio_waveform.py pass, and
+  apps/clinician-web/e2e/uncertain-span-waveform.spec.ts passed against the
+  isolated synthetic browser fixture. I13 remains partial because the
+  installed ASR backends do not provide alternate hypotheses; no alternatives
+  are invented.
 - **MTA-ASR-I14 update:** Published
   evaluation/reports/asr-objective-release-v2.json, source-bound to commit
   cf538fc33a1975121af7add8ee70438aca87c561. It records the real-model

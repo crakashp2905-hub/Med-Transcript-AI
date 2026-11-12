@@ -346,3 +346,41 @@ def register(app, services: ReviewService):
                 background=BackgroundTask(isolated.unlink, missing_ok=True),
             )
         return FileResponse(path, media_type=row["media_type"])
+
+    @app.get("/v1/encounters/{eid}/audio/{upload_id}/waveform")
+    def audio_waveform(
+        eid: UUID,
+        upload_id: UUID,
+        channel: int | None = Query(default=None, ge=0, le=7),
+        actor=Depends(identity),
+    ):
+        from services.audio_waveform import waveform
+
+        with database() as con:
+            current(con, eid, actor)
+            upload = con.execute(
+                "SELECT * FROM uploads WHERE id=? AND encounter=? AND status='complete'",
+                (str(upload_id), str(eid)),
+            ).fetchone()
+            ingest = con.execute(
+                "SELECT result FROM jobs WHERE upload=? AND encounter=? AND stage='audio_ingest' AND status='succeeded'",
+                (str(upload_id), str(eid)),
+            ).fetchone()
+            if upload is None or ingest is None:
+                raise HTTPException(404, "audio_unavailable")
+            metadata = json.loads(ingest["result"])
+            filename = metadata.get("working_filename")
+            if filename is not None and Path(filename).name != filename:
+                raise HTTPException(409, "asset_integrity_failure")
+            path = assets / filename if filename else assets / f"{upload_id}.wav"
+            expected = metadata.get("working_sha256") or upload["expected_sha256"]
+            audit(con, actor, "audio_waveform_read", str(upload_id))
+        if not path.is_file():
+            raise HTTPException(404, "audio_unavailable")
+        try:
+            return waveform(path, expected, channel)
+        except ValueError as exc:
+            code = str(exc)
+            if code == "channel_unavailable":
+                raise HTTPException(422, code) from None
+            raise HTTPException(409, "asset_integrity_failure") from None
