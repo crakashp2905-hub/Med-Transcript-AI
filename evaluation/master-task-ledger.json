@@ -5604,12 +5604,12 @@
       "id": "MTA-11-10",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Keep standard baselines: plain SOAP template, ordinary LLM prompting, deterministic checks only, LLM-only self-critique and combined current approach.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "source_commit": "c9a668ef108e68ed304f6c7345722cc81d23be6e",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-11-10-c9a668e.json", "report_sha256": "baa5f876cc62d07e83ba477a1fcac334745586648d0b0ddd3863e6a53b465664", "check": "five_standard_clinical_note_baselines_preregistered", "status": "pass", "detail": "Protocol check asserts the SOAP, ordinary prompt, deterministic-only, LLM self-critique and combined baselines; no matched experiment has been run."}],
+      "blocker": "Matched empirical baseline comparisons require a frozen evaluation cohort and local model runtime; no result or superiority claim is available."
     },
     {
       "id": "MTA-11-11",

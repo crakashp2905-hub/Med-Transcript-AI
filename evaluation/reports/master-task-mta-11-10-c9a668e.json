@@ -1,0 +1,38 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-11-10",
+  "source_commit": "c9a668ef108e68ed304f6c7345722cc81d23be6e",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "source_files": {
+    "docs/research/beccsv-protocol-v1.md": "c9a10edf62697e2ae88eadeae6002631585f30c575aecaaff643653d4172916c",
+    "tests/test_beccsv_protocol_preregistration.py": "cceb512f2a3135cd3ce9c85b623f41b8fedba5eb7e6d0c1dbd8c1ab3f8c637ed"
+  },
+  "defined_baselines": [
+    "plain SOAP template with clinician review",
+    "ordinary prompt-based drafting",
+    "deterministic checks only",
+    "LLM self-critique only",
+    "deterministic checks plus optional local verifier"
+  ],
+  "primary_comparison": "Full BECCSV versus deterministic checks only, paired on the same consultation inputs.",
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_beccsv_protocol_preregistration.py -q",
+      "status": "pass",
+      "result": "1 passed"
+    },
+    {
+      "command": "ruff format --check tests/test_beccsv_protocol_preregistration.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff check tests/test_beccsv_protocol_preregistration.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Baselines are preregistered, not yet executed under matched resource conditions.",
+    "No empirical result, superiority claim, or clinical efficacy claim is made."
+  ],
+  "clinical_release_authorized": false
+}
