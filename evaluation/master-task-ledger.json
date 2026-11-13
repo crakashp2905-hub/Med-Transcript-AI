@@ -4000,11 +4000,23 @@
       "id": "MTA-08-11",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Preserve conflicts as unresolved questions requiring human action, not smooth them into a coherent but false narrative.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/review/clinical_state.py",
+        "tests/test_clinical_state.py",
+        "tests/test_application_pipeline.py",
+        "evaluation/reports/master-task-mta-08-11-fda777b.json"
+      ],
+      "source_commit": "fda777bddbdc54df22bccad36b7e5c60d1cc6b9d",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-11-fda777b.json",
+          "report_sha256": "65fc485cd389115a337cc8af56a98920be4632d2c0e2142fff4722cc90553401",
+          "check": "conflicts_remain_unresolved_and_require_human_action",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

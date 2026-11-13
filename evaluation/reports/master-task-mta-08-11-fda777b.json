@@ -1,0 +1,44 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "fda777bddbdc54df22bccad36b7e5c60d1cc6b9d",
+  "tasks": [
+    "MTA-08-11"
+  ],
+  "source_hashes": {
+    "services/review/clinical_state.py": "13760b02ec8d4f18bd746d9fb8a5174f33ac47ac584abab479dfe412b2bc873d",
+    "tests/test_clinical_state.py": "ca816f16dff3763a78b2e139e8204a6fb40fe6c151ccb9fede547a35ad4c5de6",
+    "tests/test_application_pipeline.py": "f7430ae64d90e036ac5416213e55d8e54cec0eb24085f0a465602571288076a4"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation"
+  },
+  "checks": {
+    "conflicts_remain_unresolved_and_require_human_action": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_clinical_state.py -q",
+      "status": "pass",
+      "passed": 3
+    },
+    {
+      "command": "python -m pytest tests/test_application_pipeline.py::test_successive_application_transcript_proposals_surface_state_contradiction -q (loopback enabled)",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m ruff check services/review/clinical_state.py tests/test_clinical_state.py tests/test_application_pipeline.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Clarification records identify conflicting versions and require clinician action; they do not determine which source is correct.",
+    "Application integration check required local loopback access."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "b0d7f0cfcc1fcfcd4666758d682c810a67e906990ad93c1596a4bcf8925804e3"
+}
