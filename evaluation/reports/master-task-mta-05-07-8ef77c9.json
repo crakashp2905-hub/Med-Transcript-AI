@@ -1,0 +1,53 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-05-07",
+  "source_commit": "8ef77c9d771bcbd62b07125cf4c2841aa812220c",
+  "checks": {
+    "per_consultation_missed_false_alarm_confusion_role_swap_overlap_and_boundary_metrics": {
+      "status": "pass",
+      "case_count": 6
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "9 passed focused scorer tests",
+    "ruff": "pass"
+  },
+  "runtime_sha256": "d58d9e55e12a42dc13d20f60510721e077a21cda26c578a54772820756557e73",
+  "comparison_report": "evaluation/reports/speaker-comparison-metrics-2026-11-13.json",
+  "metrics_by_condition": {
+    "fixed_window": {
+      "weighted_der": 0.5091192442385398,
+      "mean_speaker_jer": 0.5826651626965411,
+      "totals_ms": {
+        "missed_speaker_ms": 475005,
+        "false_alarm_speaker_ms": 990,
+        "confused_speaker_ms": 495571,
+        "reference_overlap_ms": 119920,
+        "overlap_error_speaker_ms": 167112
+      },
+      "role_swap_ms": 259602,
+      "mean_turn_boundary_f1": 0.18683227312640313
+    },
+    "separate_channels": {
+      "weighted_der": 0.248089032959236,
+      "mean_speaker_jer": 0.24851009872495614,
+      "totals_ms": {
+        "missed_speaker_ms": 472393,
+        "false_alarm_speaker_ms": 866,
+        "confused_speaker_ms": 176,
+        "reference_overlap_ms": 119920,
+        "overlap_error_speaker_ms": 153770
+      },
+      "role_swap_ms": 77286,
+      "mean_turn_boundary_f1": 0.36863924737584103
+    }
+  },
+  "clinical_acceptance": false,
+  "limitations": [
+    "Upstream turn labels are not independent adjudication.",
+    "Different capture modalities are reported separately.",
+    "No result establishes clinical speaker-role accuracy."
+  ]
+}

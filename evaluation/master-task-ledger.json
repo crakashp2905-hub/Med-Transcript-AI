@@ -2685,12 +2685,22 @@
       "id": "MTA-05-07",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Measure missed speech, false alarm speech, speaker confusion, role swaps, overlap handling and turn boundary F1.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/speaker-comparison-metrics-2026-11-13.json",
+        "evaluation/reports/master-task-mta-05-07-8ef77c9.json"
+      ],
+      "source_commit": "8ef77c9d771bcbd62b07125cf4c2841aa812220c",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-05-07-8ef77c9.json",
+          "report_sha256": "651ea63030ae3ea03d3276f7f7b121b400d849faf92ec48fd8718ae8952adc0f",
+          "check": "per_consultation_missed_false_alarm_confusion_role_swap_overlap_and_boundary_metrics"
+        }
+      ],
+      "blocker": "The report measures upstream-labeled development cases only; no independently adjudicated clinical cohort is available."
     },
     {
       "id": "MTA-05-08",
