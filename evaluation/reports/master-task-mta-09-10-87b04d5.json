@@ -1,0 +1,64 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "87b04d5a2b0ceaa404203d889bf6d2ac0c4dcb7e",
+  "tasks": [
+    "MTA-09-10"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/style.css": "2fd32fb7dba22a578bc87d8d33f29b0442c94d0c0b50aa226c292cf7ae66f8fb",
+    "apps/clinician-web/src/SpeakerTurnEditor.tsx": "9282702a16c756f867d2d0c762e15940f3b24c30179b44c11c1826b76fa2a2e8",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "190275ed67ae87ce87de8aca1ed5beeaa160f4635e954c0bda0e77fe932ee44c",
+    "apps/clinician-web/e2e/workflow.spec.ts": "f3aa290ab5767a79dc99c0be647dd96b31523f7f1fda8e8cf2be41a61f239e4b",
+    "tests/test_ui_contrast.py": "a8e30043a36748ca87803e2f0c153614812973f273d8607bdedbf69f369cf2e4"
+  },
+  "runtime": {
+    "python": "Python 3.13.5",
+    "node": "cached npm dependencies",
+    "platform": "Windows 11",
+    "browser": "Playwright local fixture blocked by loopback policy"
+  },
+  "checks": {
+    "small_text_contrast_tokens_wcag_aa": {
+      "status": "pass"
+    },
+    "frontend_build_and_e2e_discovery": {
+      "status": "pass"
+    },
+    "interactive_accessibility_and_mobile_rendering": {
+      "status": "blocked"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest --confcutdir=services/review/routers tests/test_ui_contrast.py -q",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m ruff check tests/test_ui_contrast.py",
+      "status": "pass"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "cwd": "apps/clinician-web",
+      "status": "pass",
+      "observed": "Keyboard order, error announcement, mobile width and long text stress assertions compile and are discovered."
+    },
+    {
+      "command": "Playwright browser accessibility flow",
+      "status": "blocked",
+      "observed": "The managed environment denies loopback access before the application loads; interactive focus, alert and mobile assertions could not execute."
+    }
+  ],
+  "limitations": [
+    "High-risk small text color tokens are statically checked against listed light surfaces at WCAG AA 4.5:1; this is not a complete rendered-page audit.",
+    "Screen reader announcements, keyboard order, mobile width and long-text wrapping have browser assertions, but they need execution on a local-socket-enabled browser host."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "5493554f4e25e554afc3d7b756f2e06e32082e5b91906ad69d08b5c361f496f4"
+}

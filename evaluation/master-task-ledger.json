@@ -4529,12 +4529,38 @@
       "id": "MTA-09-10",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Test contrast, focus order, screen reader labels, error announcements, mobile width and long text wrapping.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/style.css",
+        "apps/clinician-web/src/SpeakerTurnEditor.tsx",
+        "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "tests/test_ui_contrast.py",
+        "evaluation/reports/master-task-mta-09-10-87b04d5.json"
+      ],
+      "source_commit": "87b04d5a2b0ceaa404203d889bf6d2ac0c4dcb7e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-10-87b04d5.json",
+          "report_sha256": "b8d903a5c7322376b9e1a5e0240047befdc78fe20a010415aa2c5aa61ccd4f1a",
+          "check": "small_text_contrast_tokens_wcag_aa",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-10-87b04d5.json",
+          "report_sha256": "b8d903a5c7322376b9e1a5e0240047befdc78fe20a010415aa2c5aa61ccd4f1a",
+          "check": "frontend_build_and_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-10-87b04d5.json",
+          "report_sha256": "b8d903a5c7322376b9e1a5e0240047befdc78fe20a010415aa2c5aa61ccd4f1a",
+          "check": "interactive_accessibility_and_mobile_rendering",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "Rendered accessibility validation is blocked by loopback restrictions. Static contrast checks and build/discovery pass; run the browser accessibility assertions on a host that can access the local fixture."
     },
     {
       "id": "MTA-09-11",
