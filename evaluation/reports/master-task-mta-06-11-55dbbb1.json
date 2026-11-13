@@ -1,0 +1,40 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-06-11",
+  "source_commit": "55dbbb16758210deba110f726172a73065b0c04b",
+  "status": "pass",
+  "runtime": {
+    "test_provider": "local",
+    "operating_system": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "pytest": "9.0.3",
+    "source_commit": "55dbbb16758210deba110f726172a73065b0c04b"
+  },
+  "runtime_sha256": "87960fe70b79d1184860632aa047a012075eae64d4828cdea8343a84e88f4ac0",
+  "checks": {
+    "stable_evidence_identifiers": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_assessment_extraction.py tests/test_atomic_clinical_extraction.py tests/test_canonical_clinical_facts.py tests/test_measurement_extraction.py tests/test_router_contracts.py::test_api_contract_survives_router_and_service_extraction -q",
+      "focused_test_files": [
+        "tests/test_assessment_extraction.py",
+        "tests/test_atomic_clinical_extraction.py",
+        "tests/test_canonical_clinical_facts.py",
+        "tests/test_measurement_extraction.py",
+        "tests/test_router_contracts.py"
+      ],
+      "passed": 20,
+      "failed": 0,
+      "implementation": "Fact IDs are deterministic UUIDv5 values derived from segment ID and exact evidence span; repeated extraction preserves IDs and source quotes."
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "ruff check services/review/clinical.py services/review/models.py tests/test_assessment_extraction.py tests/test_atomic_clinical_extraction.py tests/test_router_contracts.py"
+    }
+  },
+  "limitations": [
+    "Local synthetic/developer-authored tests only; hosted CI for this exact commit is pending.",
+    "Stable IDs bind the same segment identifier and text offsets; an edited source span intentionally receives a different ID.",
+    "No independent clinical annotation or clinical release authorization."
+  ],
+  "clinical_release_authorized": false
+}

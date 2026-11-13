@@ -3127,11 +3127,20 @@
       "id": "MTA-06-11",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Provide stable IDs and evidence pointers to every extracted atom.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-11-55dbbb1.json"
+      ],
+      "source_commit": "55dbbb16758210deba110f726172a73065b0c04b",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-11-55dbbb1.json",
+          "report_sha256": "b88528bbdf9e93b7f032cd4664055ba18e14a6be76d261626ec47f1b25998b0a",
+          "check": "stable_evidence_identifiers",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
