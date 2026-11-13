@@ -82,7 +82,7 @@ def register(app, services: ReviewService):
                 raise HTTPException(422, "hosted_text_disclosure_and_scope_required")
         try:
             with (
-                local_inference_slot()
+                local_inference_slot(priority="optional")
                 if isinstance(provider, JSONProvider) and provider.mode == "local"
                 else nullcontext(True)
             ) as ready:

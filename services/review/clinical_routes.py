@@ -240,7 +240,7 @@ def register(
         try:
             provider = require_provider(provider, ExtractionProvider, "extraction")
             with (
-                local_inference_slot()
+                local_inference_slot(priority="optional")
                 if body.mode == "local_model"
                 else nullcontext(True)
             ) as ready:
@@ -392,7 +392,9 @@ def register(
                 if f["fact_id"] in selected
             ]
         try:
-            with local_inference_slot(requested_bytes=6 * 1024**3) as ready:
+            with local_inference_slot(
+                requested_bytes=6 * 1024**3, priority="optional"
+            ) as ready:
                 if not ready:
                     raise HTTPException(503, "local_inference_busy")
                 result = run_semantic_batches(app.state.clinical_models, claims)

@@ -6,6 +6,8 @@ from services.inference_slot import (
     estimate_model_request_bytes,
     local_inference_slot,
     memory_request_fits,
+    _register_source_request,
+    _source_request_pending,
 )
 
 
@@ -60,3 +62,31 @@ def test_second_process_cannot_admit_inference_until_slot_is_released(
         command, capture_output=True, text=True, check=True, timeout=15
     )
     assert allowed.stdout.strip() == "True"
+
+
+def test_pending_source_request_defers_optional_inference(tmp_path, monkeypatch):
+    lock_path = tmp_path / "priority.lock"
+    monkeypatch.setenv("MED_TRANSCRIPT_INFERENCE_LOCK", str(lock_path))
+    monkeypatch.setattr(
+        "services.inference_slot.available_memory_bytes", lambda: 16 * 1024**3
+    )
+    marker = _register_source_request(lock_path)
+    assert _source_request_pending(lock_path)
+    with local_inference_slot(requested_bytes=1, priority="optional") as ready:
+        assert ready is False
+    marker.unlink()
+    assert not _source_request_pending(lock_path)
+    with local_inference_slot(requested_bytes=1, priority="optional") as ready:
+        assert ready is True
+
+
+def test_source_request_marker_is_cleared_after_admission(tmp_path, monkeypatch):
+    lock_path = tmp_path / "source.lock"
+    monkeypatch.setenv("MED_TRANSCRIPT_INFERENCE_LOCK", str(lock_path))
+    monkeypatch.setattr(
+        "services.inference_slot.available_memory_bytes", lambda: 16 * 1024**3
+    )
+    with local_inference_slot(requested_bytes=1, priority="source") as ready:
+        assert ready is True
+        assert _source_request_pending(lock_path)
+    assert not _source_request_pending(lock_path)

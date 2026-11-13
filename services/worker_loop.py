@@ -1,13 +1,11 @@
 """Supervised local development worker; contains no client or hosted-provider credentials."""
 
 import argparse
-from contextlib import nullcontext
 import json
 import os
 import time
 
 from services.api.ingest import run_once as ingest_once
-from services.inference_slot import local_inference_slot
 from services.asr.worker import run_once as asr_once
 from services.api.storage import default_asset_root
 from services.maintenance import purge, expire_previews
@@ -26,12 +24,7 @@ def main():
     while True:
         try:
             for function in (ingest_once, asr_once):
-                with (
-                    local_inference_slot()
-                    if function is asr_once
-                    else nullcontext(True)
-                ) as ready:
-                    result = function(args.db, assets) if ready else None
+                result = function(args.db, assets)
                 if result:
                     print(json.dumps(result), flush=True)
             if time.monotonic() - last_maintenance > 15:

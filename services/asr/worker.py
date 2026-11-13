@@ -113,7 +113,9 @@ def run_once(
 ):
     from services.inference_slot import local_inference_slot
 
-    with local_inference_slot(requested_bytes=512 * 1024**2) as ready:
+    with local_inference_slot(
+        requested_bytes=512 * 1024**2, priority="source"
+    ) as ready:
         if not ready:
             return {"status": "deferred", "error_code": "local_inference_busy"}
         return _run_once(db_path, asset_root, adapter_factory, diarization_manifest)
