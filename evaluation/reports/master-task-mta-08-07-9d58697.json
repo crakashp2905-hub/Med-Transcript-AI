@@ -1,0 +1,44 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "9d58697cd932790ac9b02fb65b6c53366719cfc7",
+  "tasks": [
+    "MTA-08-07"
+  ],
+  "source_hashes": {
+    "services/review/providers.py": "f5b72b99b9bc2b4ba79cf889e2fa4b7f2ff0322d06c0d5385c2b629ca901e6ae",
+    "services/note_style.py": "acbea6795488a3aab7f363c8a0ea4d56ee541dc5101ceadcd54f49e073a10f88",
+    "tests/test_drafting_integrity_styles.py": "b82f865b32aa6b8c36601133a947c3afeac0602795e2bdd4dd1e293ae3e001ed"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation",
+    "external_or_paid_calls": "none; loopback/public transport was fully mocked"
+  },
+  "checks": {
+    "critical_literals_preserved_and_mutations_blocked_across_local_hosted_and_note_styles": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_drafting_integrity_styles.py -q",
+      "status": "pass",
+      "passed": 10
+    },
+    {
+      "command": "python -m ruff check services/review/providers.py services/note_style.py tests/test_drafting_integrity_styles.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/providers.py services/note_style.py tests/test_drafting_integrity_styles.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Hosted adapter used a deterministic in-process fake transport; no hosted API, credentials, billing, or clinical model quality was tested.",
+    "Semantic checks are rule-based regression guards, not independent clinical validation."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "19dea4c8294c132475560b46b6a0d297507b7fc1ade4d6e268171ff1a6dca0ab"
+}

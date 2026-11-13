@@ -3919,11 +3919,20 @@
       "id": "MTA-08-07",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Implement medication, negation, unit, temporal and subject-preservation tests for all drafting styles.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-08-07-9d58697.json"
+      ],
+      "source_commit": "9d58697cd932790ac9b02fb65b6c53366719cfc7",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-07-9d58697.json",
+          "report_sha256": "4e18e0472e318fd01d4fc0fe365e4aafdfb94a92b2afebf220ee7a09781f34ef",
+          "check": "critical_literals_preserved_and_mutations_blocked_across_local_hosted_and_note_styles",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
