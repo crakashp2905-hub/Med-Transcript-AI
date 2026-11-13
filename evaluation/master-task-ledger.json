@@ -5233,12 +5233,31 @@
       "id": "MTA-10-07",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Apply bounded backpressure, cancellation and idempotent retries to all model tasks.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/api/job_state.py",
+        "services/api/routers/jobs.py",
+        "services/review/clinical_routes.py",
+        "apps/clinician-web/src/JobState.tsx",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+        "tests/test_job_state.py",
+        "docs/runbooks/local-ingestion.md",
+        "docs/service-catalog.md",
+        "evaluation\\reports\\master-task-mta-10-07-ace4223.json"
+      ],
+      "source_commit": "ace422364ae20fe6e2581c1aae06924961d370d7",
+      "test_results": [
+        {
+          "report": "evaluation\\reports\\master-task-mta-10-07-ace4223.json",
+          "report_sha256": "e202a60fbc841bf11cf13f79579599cf111c5af038385b09a51f48b168886b87",
+          "check": "bounded_asr_queue_cancel_retry_and_ui",
+          "status": "pass",
+          "detail": "10 focused tests, Ruff format/lint, mypy (303 files) and frontend production build passed on exact source commit."
+        }
+      ],
+      "blocker": "Cooperative cancellation currently covers durable ASR jobs only. Synchronous LLM drafting/extraction/verification have bounded timeouts and late-publication fences but cannot stop provider compute on client disconnect. Full route integration tests are constrained by the Windows TestClient socketpair hang; exact-current hosted CI has not been observed."
     },
     {
       "id": "MTA-10-08",

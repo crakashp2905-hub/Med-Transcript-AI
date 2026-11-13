@@ -1,0 +1,54 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-07",
+  "source_commit": "ace422364ae20fe6e2581c1aae06924961d370d7",
+  "captured_at_utc": "2026-11-13T22:22:25+00:00",
+  "source_files": {
+    "services/api/job_state.py": "fe9f59c18f547d7410c8d71b2b47becd266442ddf9bb56a633bda0af375df5be",
+    "services/api/routers/jobs.py": "f017665354dc8d415235880ce3eb578cd91cf0db9dedc9bc060c1bc5eb746ca8",
+    "services/review/clinical_routes.py": "99210eed19da3f6431c2c10ff6e5a59e2fbbac90df8dec7bd5a4ebcfc0d862d3",
+    "apps/clinician-web/src/JobState.tsx": "5b64480f8fcd0e1615d958f619ffa0dc5ca969a4441cd5d5ce272a028a60524c",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "cf00167085abd5bd280d9708454415ee5f3330f3756365c7709b0fcbfe06adaa",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "1878448b99b72ed249849be75f289e577ee051c37d4630ad6661399d8cda1388",
+    "tests/test_job_state.py": "9eb395399cb2102f4e26d02d73e8d2ddee8751c06657573aa0d7eea5f671472b",
+    "docs/runbooks/local-ingestion.md": "d60e83a57eb469f467ff18abd8b995c91f7c2e1fad7015f157e7fa4738f01406",
+    "docs/service-catalog.md": "bbd1f9265dcc3a171001a84ca402a8270f5a723ae6563caf55f85614106bf5e5"
+  },
+  "implemented": {
+    "bounded_backpressure": "Per-tenant transcription admission counts queued and running ASR jobs. Default limit is 16; MED_TRANSCRIPT_MAX_PENDING_ASR_JOBS accepts 1..256; invalid configuration fails closed. Applies to transcription, retranscription and manual retry. Full queues return 429 without revealing queue depth.",
+    "cancellation": "Authenticated, idempotent POST /v1/jobs/{job_id}/cancel marks queued or running transcription jobs cancelled. Running workers observe the state at lease checkpoints and cannot publish a transcript after cancellation. The clinician workspace exposes the action.",
+    "retries": "Existing ASR retry ceiling remains three attempts, retry endpoints are idempotent, and capacity is checked before retry enqueue. Synchronous proposal and clinical inference endpoints remain idempotent with bounded provider timeouts and late source/permission fences."
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_job_state.py tests/test_module_catalog.py tests/test_synthetic_case_audit_bundle.py -q",
+      "status": "pass",
+      "result": "10 passed"
+    },
+    {
+      "command": "python -m ruff format --check services tests",
+      "status": "pass",
+      "result": "604 files formatted"
+    },
+    {
+      "command": "python -m ruff check services tests",
+      "status": "pass"
+    },
+    {
+      "command": "python -m mypy services --ignore-missing-imports",
+      "status": "pass",
+      "result": "303 source files"
+    },
+    {
+      "command": "npm run build",
+      "status": "pass",
+      "result": "TypeScript check and Vite production build"
+    }
+  ],
+  "limitations": [
+    "Provider compute for synchronous drafting, extraction and verification is time-bounded and results are fenced, but does not yet support provider-side cancellation when the HTTP client disconnects.",
+    "Route-level cancellation/backpressure was not exercised through TestClient locally because Windows asyncio socketpair setup hangs; helper tests, generated route catalog, static checks and frontend build passed.",
+    "Exact-commit hosted CI has not been observed."
+  ],
+  "clinical_release_authorized": false
+}
