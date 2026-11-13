@@ -15,6 +15,14 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByRole('button',{name:'Open workspace',exact:false}).click();
   await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();
   await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
+  const search=page.getByRole('search',{name:'Search transcript'});
+  const searchInput=search.getByLabel('Transcript search terms');
+  await searchInput.fill('cough');
+  await expect(search.getByRole('status')).toContainText('matching transcript turns');
+  await searchInput.press('Enter');
+  await expect(page.locator('.segment.search-match')).toHaveCount(1);
+  expect(await page.evaluate(()=>document.activeElement?.id.startsWith('transcript-segment-'))).toBe(true);
+  await searchInput.fill('');
   let retranscriptionSource='';
   await page.route('**/v1/encounters/*/retranscriptions',async route=>{
     retranscriptionSource=JSON.parse(route.request().postData()||'{}').transcript_version_id;
