@@ -3267,11 +3267,20 @@
       "id": "MTA-06-18",
       "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Use frozen clinical state snapshots to detect contradictions across successive transcript versions.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-18-cbfb070.json"
+      ],
+      "source_commit": "cbfb0708d7937a14109d7aa4f4f88883996b3d12",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-18-cbfb070.json",
+          "report_sha256": "074db1c26475fc45e209b99a957f7abb7e8caccdd1db389c560c822fa86d511e",
+          "check": "application_transcript_revision_contradiction_warning",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

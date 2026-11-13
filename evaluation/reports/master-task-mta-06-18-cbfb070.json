@@ -1,0 +1,49 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "cbfb0708d7937a14109d7aa4f4f88883996b3d12",
+  "tasks": [
+    "MTA-06-18"
+  ],
+  "source_hashes": {
+    "services/review/clinical_state.py": "84e49adc7f8794106442ffc8f21a9844e07e9ffaa0b7758845a44efb3ca3c2ac",
+    "tests/test_clinical_state.py": "186c35d648ba32a6d13f0482c64befaa5ed265fc13f720f50a3f756a4bb0d87f",
+    "services/review/clinical_routes.py": "cd347c611a5ee471f153a8fbd6403a2386e5de1e65cc6ee75b90c57025389d73",
+    "tests/test_application_pipeline.py": "216d7087995e1e3db1d182f2fba711f1818ba22eb2503493631e29dbf8952c2a"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local invocation; version not separately captured",
+    "loopback": "local synthetic TestClient permitted"
+  },
+  "runtime_sha256": "72b3ced0e76cd5667ea6b59065078f6d371113c8359a98b1d0b780a968604581",
+  "checks": {
+    "frozen_clinical_state_snapshot_and_integrity": {
+      "status": "pass"
+    },
+    "application_transcript_revision_contradiction_warning": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_clinical_state.py tests/test_clinical_model_failure_mapping.py tests/test_application_pipeline.py::test_fact_proposal_http_persists_graph_and_real_clinical_relationships tests/test_application_pipeline.py::test_successive_application_transcript_proposals_surface_state_contradiction -q",
+      "status": "pass",
+      "passed": 11
+    },
+    {
+      "command": "python -m ruff check services/review/clinical_state.py services/review/clinical_routes.py tests/test_clinical_state.py tests/test_clinical_model_failure_mapping.py tests/test_application_pipeline.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/clinical_state.py services/review/clinical_routes.py tests/test_clinical_state.py tests/test_clinical_model_failure_mapping.py tests/test_application_pipeline.py",
+      "status": "pass"
+    }
+  ],
+  "behavior": "Snapshots bind unreviewed fact attributes and exact evidence offsets to immutable transcript hashes. Successive versions produce source-linked potential contradiction/clinical-state warnings, always requiring clinician review. No model verdict or snapshot clears approval.",
+  "limitations": [
+    "Local Qwen semantic quality is not established.",
+    "CI remains blocked on the protected concurrent benchmark formatting change."
+  ],
+  "clinical_release_authorized": false
+}
