@@ -2,7 +2,9 @@ from pathlib import Path
 
 
 def test_beccsv_protocol_freezes_hypothesis_method_and_honest_limits():
-    protocol = Path("docs/research/beccsv-protocol-v1.md").read_text(encoding="utf-8")
+    protocol = " ".join(
+        Path("docs/research/beccsv-protocol-v1.md").read_text(encoding="utf-8").split()
+    )
     required = (
         "## 1. Falsifiable hypothesis",
         "## 2. Method specification",
@@ -17,5 +19,10 @@ def test_beccsv_protocol_freezes_hypothesis_method_and_honest_limits():
         "no more than 5 percentage points",
         "not clinically validated",
         "such result is currently available",
+        "plain SOAP template",
+        "ordinary prompt-based drafting",
+        "deterministic checks only",
+        "LLM self-critique only",
+        "deterministic checks plus optional local verifier",
     )
     assert all(item in protocol for item in required)
