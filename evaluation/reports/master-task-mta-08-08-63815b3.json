@@ -1,0 +1,78 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "63815b3398a68ebd3e57e516d5284149852cdd27",
+  "tasks": [
+    "MTA-08-08"
+  ],
+  "benchmark_source_commit": "0de45ac49c5c0e769f178c17b28f53fff1e03331",
+  "benchmark_report": "evaluation/reports/local-drafting-mta-08-08-0de45ac.json",
+  "benchmark_report_sha256": "c8dfbdb889559f54430a8fbcbd62e4eb04db998463c95e7e232dabb343c0fd2e",
+  "fixture_sha256": "77cb71559517b75db95830ec6d27753099cfb8fee20de19f2ec278795a21d99e",
+  "benchmark_code_git_blobs": {
+    "services/local_drafting_evaluation.py": "c6e06f1b87e8facf862f5c72b6d7fa0d2c4525f1",
+    "services/review/providers.py": "4664fe4a01f297325cd7067c8dca8e2324b09f14"
+  },
+  "source_hashes": {
+    "services/local_drafting_evaluation.py": "4eb919b0daba81e105cc5f584603efa218e5cdbe84b050fa2f671e19141bee72",
+    "services/review/providers.py": "f5b72b99b9bc2b4ba79cf889e2fa4b7f2ff0322d06c0d5385c2b629ca901e6ae",
+    "tests/test_local_drafting_evaluation.py": "89034258cce5e655ea111ee33de055846b603115219ccc1e38ec231b233e11c6"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "ollama": "0.40.16",
+    "model_inference": "local-only synthetic cases; zero paid calls"
+  },
+  "results": [
+    {
+      "model": "qwen2.5:1.5b",
+      "model_digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+      "exact_fact_preservation": 3,
+      "cases": 4,
+      "failures": 0,
+      "blocking_findings": 8,
+      "p50_seconds": 5.792678500001784,
+      "p95_seconds": 9.396790399972815,
+      "provider_cost_usd": 0
+    },
+    {
+      "model": "qwen2.5:7b",
+      "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "exact_fact_preservation": 2,
+      "cases": 4,
+      "failures": 1,
+      "blocking_findings": 1,
+      "p50_seconds": 27.234149199997773,
+      "p95_seconds": 60.12881959998049,
+      "provider_cost_usd": 0
+    }
+  ],
+  "deterministic_baseline_cases": 4,
+  "checks": {
+    "same_frozen_facts_sent_to_each_available_model_and_deterministic_baseline": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_local_drafting_evaluation.py -q",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m ruff check services/local_drafting_evaluation.py services/review/providers.py tests/test_local_drafting_evaluation.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/local_drafting_evaluation.py services/review/providers.py tests/test_local_drafting_evaluation.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Four synthetic cases only; no clinical note accuracy claim.",
+    "Qwen 1.5B exact preservation 3/4 with 0 failed calls and 8 blocking findings. Qwen 7B exact preservation 2/4 with 1 bounded failure and 1 blocking finding.",
+    "Results are hardware-specific; provider calls were local, hardware cost unmeasured."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "d4ff244b89dce40e413b168d3b87e4f9ae1c30e4ac368d661e5f370be6a06337"
+}

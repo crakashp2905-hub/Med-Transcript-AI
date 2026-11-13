@@ -3939,11 +3939,21 @@
       "id": "MTA-08-08",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Compare deterministic, Qwen 1.5B and Qwen 7B with identical reviewed source facts where the models are available.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/local-drafting-mta-08-08-0de45ac.json",
+        "evaluation/reports/master-task-mta-08-08-63815b3.json"
+      ],
+      "source_commit": "63815b3398a68ebd3e57e516d5284149852cdd27",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-08-63815b3.json",
+          "report_sha256": "3bc171bfe42161300b72c68d748391c72ddda188cb67e9a5698182bd6ae50db7",
+          "check": "same_frozen_facts_sent_to_each_available_model_and_deterministic_baseline",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
