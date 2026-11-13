@@ -2847,11 +2847,20 @@
       "id": "MTA-05-13",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Build synthetic turn-swap, interruption and two-person-overlap adversarial tests.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/diarization-adversarial-v1.json"
+      ],
+      "source_commit": "60bf5df8cd7285637574162d56d886f1381cd0cc",
+      "test_results": [
+        {
+          "report": "evaluation/reports/diarization-adversarial-v1.json",
+          "report_sha256": "9162fa35026ec112892eedde3928cf5160ec5550411bca05d9b8793b3e429598",
+          "check": "synthetic_diarization_adversarial_cases",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
