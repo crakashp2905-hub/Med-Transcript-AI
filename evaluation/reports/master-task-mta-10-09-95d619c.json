@@ -1,0 +1,39 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-09",
+  "source_commit": "95d619ce3d0b8642d7bc2cf3d2a79b44ce808516",
+  "captured_at_utc": "2026-11-13T22:33:43+00:00",
+  "source_files": {
+    "services/review/routers/proposals.py": "d4cbcc8604a9378e8e323634d6d9f11a417daa493a7c30cc9a516bc36767df90",
+    "services/review/clinical_routes.py": "a018670a930609541f5853c1dd7b9104c718ee9723d61c20cb8df4754614198d",
+    "services/asr/worker.py": "956481b90aacb2b6fbaf86d7e0532fff1c3e7cc63052bda091bc6aa50932a4a3",
+    "tests/test_clinical_intelligence.py": "14fd8698e533c38ac1f4d5deb69ca4e586314c572bb0a8ecac7364eaf3de1d45",
+    "tests/test_completion_gaps.py": "fe2f2658962a9402d801ab2d8afa88c8775fcbc68c36d7743ca8312268594c9e",
+    "tests/test_foundation.py": "b0bef05a92e428f122a0a6baf6d5517b4e019f68502e91b74043a03ba3e70df2"
+  },
+  "fences": {
+    "draft_proposals": "Rechecks processing permission, hosted authorization scope, transcript current ID and transcript digest after provider completion, before proposal persistence.",
+    "clinical_fact_and_semantic_proposals": "Shared save path rechecks processing permission, current transcript ID/digest, and current note ID for semantic results before persistence.",
+    "asr": "Lease checkpoints check running status, lease identity and processing permission; final publication rechecks transcript ID and permission before source-version commit.",
+    "evidence": "Existing revocation tests plus new deterministic source-edit-during-drafting, extraction and semantic-verification regression cases assert 403/412 and zero persisted proposals."
+  },
+  "checks": [
+    {
+      "command": "python -m ruff check services/review/routers/proposals.py services/review/clinical_routes.py tests/test_clinical_intelligence.py tests/test_completion_gaps.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m mypy services --ignore-missing-imports",
+      "status": "pass",
+      "result": "303 source files"
+    },
+    {
+      "command": "python -m pytest --collect-only -q tests/test_clinical_intelligence.py tests/test_completion_gaps.py",
+      "status": "pass",
+      "result": "45 tests collected; includes three new source-edit race cases"
+    }
+  ],
+  "execution_limit": "Route tests using TestClient could not execute in this Windows environment: asyncio ProactorEventLoop blocks creating a socketpair in the test client before route dispatch. Therefore the new late-race tests are implemented and collected but not runtime-passed on this host. Exact-current hosted CI was not queried.",
+  "status": "implemented_not_verified",
+  "clinical_release_authorized": false
+}

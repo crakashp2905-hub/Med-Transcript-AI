@@ -5289,12 +5289,28 @@
       "id": "MTA-10-09",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Deny model responses if source transcript was edited or processing permission revoked during inference.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/review/routers/proposals.py",
+        "services/review/clinical_routes.py",
+        "services/asr/worker.py",
+        "tests/test_clinical_intelligence.py",
+        "tests/test_completion_gaps.py",
+        "tests/test_foundation.py",
+        "evaluation\\reports\\master-task-mta-10-09-95d619c.json"
+      ],
+      "source_commit": "95d619ce3d0b8642d7bc2cf3d2a79b44ce808516",
+      "test_results": [
+        {
+          "report": "evaluation\\reports\\master-task-mta-10-09-95d619c.json",
+          "report_sha256": "cbc1cb106d9b18e91d4749622a1f8ddfea3f6ef854d7ed441e9273dff9c674f4",
+          "check": "late_publication_source_permission_fences",
+          "status": "blocked",
+          "detail": "Implementation review, Ruff, mypy and 45-test collection pass. Integration execution is blocked locally before route dispatch by Windows TestClient asyncio socketpair setup; do not treat as a runtime pass."
+        }
+      ],
+      "blocker": "Three new source-edit race tests and existing revocation race tests are collected but not executed in this Windows environment. Require exact-commit hosted/Linux test execution before verified status."
     },
     {
       "id": "MTA-10-10",
