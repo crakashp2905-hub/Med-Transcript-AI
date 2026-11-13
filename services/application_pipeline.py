@@ -2,6 +2,7 @@
 
 from services.clinical_attribution import classify
 from services.evidence_graph import validate_proposal
+from services.fact_duplicates import detect as detect_duplicates
 from services.relation_tuples import validate as validate_relations
 from services.review.relationships import validate_graph
 
@@ -24,6 +25,7 @@ def enrich_fact_proposal(
     )
     return {
         "evidence_graph": graph,
+        "duplicate_analysis": detect_duplicates(facts),
         "relation_validation": checked,
         "relationship_graph_validation": relation_graph,
         "attribution": [

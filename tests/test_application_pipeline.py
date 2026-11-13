@@ -36,8 +36,62 @@ def test_application_pipeline_uses_resource_graph_attribution_and_relationship_h
     assert result["attribution"][0]["assertion"] == "negated"
     assert result["evidence_graph"]["complete_to_fact"] is True
     assert result["evidence_graph"]["complete_to_export"] is False
+    assert result["duplicate_analysis"]["preserved_facts"] == 1
+    assert result["duplicate_analysis"]["count"] == 0
     assert result["relationship_graph_validation"]["status"] == "valid"
     assert result["relationship_graph_validation"]["edges"] > 0
+
+
+def test_application_duplicate_group_keeps_both_source_spans_and_time_variants():
+    first_segment, second_segment = str(uuid4()), str(uuid4())
+    text = "Warfarin stopped."
+    transcript = {
+        "id": str(uuid4()),
+        "audio_asset_id": str(uuid4()),
+        "segments": [
+            {"segment_id": first_segment, "text": text},
+            {"segment_id": second_segment, "text": text},
+        ],
+    }
+    facts = [
+        {
+            "fact_id": str(uuid4()),
+            "category": "medication",
+            "concept": "warfarin",
+            "text": text,
+            "temporality": temporality,
+            "evidence": {
+                "segment_id": segment,
+                "start_char": 0,
+                "end_char": len(text),
+                "quote": text,
+            },
+        }
+        for segment, temporality in (
+            (first_segment, "historical"),
+            (second_segment, "current"),
+        )
+    ]
+
+    result = enrich_fact_proposal(
+        transcript=transcript,
+        facts=facts,
+        relationships=analyze_transcript(transcript),
+    )
+
+    duplicate_analysis = result["duplicate_analysis"]
+    group = duplicate_analysis["groups"][0]
+    assert duplicate_analysis["count"] == 1
+    assert duplicate_analysis["preserved_facts"] == 2
+    assert group["temporal_variants"] == ["current", "historical"]
+    assert group["temporal_conflict"] is True
+    assert group["automatic_suppression"] is False
+    assert {
+        row["evidence_reference"]["segment_id"] for row in group["occurrences"]
+    } == {
+        first_segment,
+        second_segment,
+    }
 
 
 def test_family_history_subject_is_derived_from_text_not_a_diarized_speaker_hint():
