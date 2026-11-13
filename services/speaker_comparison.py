@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import subprocess
 from pathlib import Path
 from services.api.ingest import file_sha256
 from services.diarization_evaluation import score_turns
@@ -97,6 +98,10 @@ def compare(root, output, *, collar_ms=0, overlap_policy="score_all"):
     reference = {r["group_id"]: r for r in manifest["cases"]}
     report = {
         "schema_version": "speaker_comparison_v1",
+        "source_commit": subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=root, text=True
+        ).strip(),
+        "manifest_sha256": file_sha256(manifest_path),
         "reference_status": "upstream_not_independently_adjudicated",
         "role_mapping": "optimal_reference_mapping_for_scoring_only_never_application_role_assignment",
         "scoring_policy": {
@@ -164,7 +169,7 @@ def compare(root, output, *, collar_ms=0, overlap_policy="score_all"):
                 "id": label,
                 "evidence_sha256": file_sha256(path),
                 "cases": rows,
-                "weighted_der": errors / total,
+                "weighted_der": errors / total if total else None,
                 "mean_speaker_jer": (
                     sum(jer_values) / len(jer_values) if jer_values else None
                 ),
