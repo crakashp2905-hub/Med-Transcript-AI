@@ -74,3 +74,28 @@ def test_medication_temporality_separates_past_current_and_future_plans():
         "planned",
     ]
     assert [fact["action"] for fact in facts] == ["unknown", "unknown", "start"]
+
+
+def test_medication_actions_retain_route_frequency_and_duration():
+    texts = [
+        "Start metformin 500 mg by mouth daily.",
+        "Stop warfarin 5 mg orally weekly.",
+        "Hold amoxicillin 250 mg topically weekly for 5 days.",
+        "Continue insulin 10 mg subcutaneously twice daily.",
+    ]
+    facts = [extract(transcript(text))[0] for text in texts]
+
+    assert [fact["action"] for fact in facts] == ["start", "stop", "hold", "continue"]
+    assert [fact["route"] for fact in facts] == [
+        "by mouth",
+        "orally",
+        "topically",
+        "subcutaneously",
+    ]
+    assert [fact["frequency"] for fact in facts] == [
+        "daily",
+        "weekly",
+        "weekly",
+        "twice daily",
+    ]
+    assert facts[2]["duration"] == "5 days"
