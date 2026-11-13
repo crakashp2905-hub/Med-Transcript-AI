@@ -4762,12 +4762,52 @@
       "id": "MTA-09-16",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Present read-only synthetic investor demo with prominent non-clinical disclaimer, no live OAuth requirement.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/InvestorDemo.tsx",
+        "apps/clinician-web/src/main.tsx",
+        "apps/clinician-web/src/style.css",
+        "apps/clinician-web/e2e/investor-demo.spec.ts",
+        "services/api/main.py",
+        "tests/test_investor_demo_static.py",
+        "data/demo-sample.json",
+        "evaluation/reports/master-task-mta-09-16-cc01afe.json"
+      ],
+      "source_commit": "cc01afeccf4235a4fc9a8340171107b1adb4141e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
+          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
+          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
+          "check": "static_investor_demo_regression",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
+          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
+          "check": "ruff",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
+          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
+          "check": "investor_demo_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
+          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
+          "check": "investor_demo_browser_render",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "The public path serves a static, bundled synthetic preview and does not invoke authentication or API routes. Loopback browser navigation is denied in this environment; execute the E2E journey in a local-socket-enabled environment to confirm rendered behavior."
     },
     {
       "id": "MTA-09-17",

@@ -1,0 +1,50 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-09-16",
+  "source_commit": "cc01afeccf4235a4fc9a8340171107b1adb4141e",
+  "source_files": {
+    "apps/clinician-web/src/InvestorDemo.tsx": "e91d7a898287fb4d9b5b4475b340ef8176e0b08ab6343c6cd5a2f2d13ea968ad",
+    "apps/clinician-web/src/main.tsx": "8408c0e3ad379d6d52454512fee39fd3d054874c4a311f215ebefac7509e0be6",
+    "apps/clinician-web/src/style.css": "28fc8cddf21421a979d8cc367560c9b161381f9c934745348a9e372067554a0a",
+    "apps/clinician-web/e2e/investor-demo.spec.ts": "fe5004bb70009caf230c43bfa55941b770582af81927107954092e5b3fc9abff",
+    "services/api/main.py": "df0bdef172d3fa80c926ff10f050409ff3041a06bb8750f44b05404137ac008e",
+    "tests/test_investor_demo_static.py": "ff774a08371ea367c4c63098ac0916b70d492626a1076d49cd3602ee1f71b704",
+    "data/demo-sample.json": "0f8b1b59b7677360429ec86db46a8869388f45523ad3e9d29f9673ae8cdabdf8"
+  },
+  "checks": [
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "detail": "TypeScript and Vite production build passed at source commit."
+    },
+    {
+      "name": "static_investor_demo_regression",
+      "command": "python -m pytest -q --confcutdir=tests tests/test_investor_demo_static.py",
+      "status": "pass",
+      "detail": "2 passed; verifies the investor route serves only the static application entry point, uses the synthetic source fixture, and has no API calls."
+    },
+    {
+      "name": "ruff",
+      "command": "python -m ruff check services/api/main.py tests/test_investor_demo_static.py",
+      "status": "pass",
+      "detail": "No lint findings."
+    },
+    {
+      "name": "investor_demo_e2e_discovery",
+      "command": "npx --offline playwright test e2e/investor-demo.spec.ts --list",
+      "status": "pass",
+      "detail": "The investor preview browser journey was discovered."
+    },
+    {
+      "name": "investor_demo_browser_render",
+      "command": "npx --offline playwright test e2e/investor-demo.spec.ts",
+      "status": "blocked",
+      "detail": "Navigation failed before app load with net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:8001/investor-demo. Browser render and network-request assertions were not executed."
+    }
+  ],
+  "result": "implemented_with_browser_validation_blocked",
+  "blocker": "The public path serves a static, bundled synthetic preview and does not invoke authentication or API routes. Loopback browser navigation is denied in this environment; execute the E2E journey in a local-socket-enabled environment to confirm rendered behavior.",
+  "clinical_release_authorized": false,
+  "created_utc_date": "2026-11-14"
+}
