@@ -827,3 +827,14 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   The focused regression binds fresh coverage to baseline edits, gate and
   measured resources. C10 remains partial while other predeclared candidates
   and modes remain incomplete.
+- **MTA-ASR-C10 Multimed Whisper-small fixed fresh baseline reproduction:**
+  Suite v7 ran all 16 manifest cases with complete input coverage and zero
+  failed cases/chunks. It exactly reproduces immutable v2 counts: clean
+  7,281/13,683 (53.2120%) and distracted 6,994/13,683 (51.1145%). Fresh
+  condition wall times were 1,561.5/1,664.5 seconds after a 3.8-second model
+  load. Full-process peak working set was 650,498,048 bytes and CPU was
+  12,234.5 seconds, within 16 GiB. Both WERs fail the unchanged <=5% gate.
+  Report SHA-256 is
+  `da396fb055fe4fb975e88de9715c7c033602bbf17e61c38b35f5aee1f34b58f8`.
+  Its focused regression binds the fresh cohort to baseline scores, gate and
+  resource measurements. This negative candidate result leaves C10 partial.
