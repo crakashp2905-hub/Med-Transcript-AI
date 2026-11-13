@@ -71,7 +71,13 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
         item for item in document["tasks"] if item["id"] == "MTA-01-05"
     )
     assert exact_head_task["status"] == "verified"
-    assert exact_head_task["source_commit"] == ci_task["source_commit"]
+    assert exact_head_task["source_commit"] != ci_task["source_commit"]
+    ci_receipt_path = exact_head_task["test_results"][0]["report"]
+    ci_receipt = json.loads(
+        (LEDGER.parent.parent / ci_receipt_path).read_text(encoding="utf-8")
+    )
+    assert ci_receipt["source_commit"] == exact_head_task["source_commit"]
+    assert ci_receipt["runtime"]["conclusion"] == "success"
     contract_task = next(
         item for item in document["tasks"] if item["id"] == "MTA-01-14"
     )

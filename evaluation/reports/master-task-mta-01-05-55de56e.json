@@ -1,0 +1,56 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-01-05",
+  "source_commit": "55de56ebc82e84b25ca9beba650c418127bee50c",
+  "status": "verified",
+  "source_sha256": {
+    ".github/workflows/ci.yml": "b8822b58a5bdadb0f036a813e7ca4f62cd8b2f45027a9cdf11ab17dde184b74d",
+    "services/verify.py": "b49a205c7e5a9ad9250b1c4e7fe74da0b2353c71c339c795fefa75412c6cfaca"
+  },
+  "checks": {
+    "core_and_security_pytest": {
+      "status": "pass",
+      "result": "Exact-source Python verification passed formatting, lint, typing, and the full Python test suite; SBOM, coverage, mutation campaign, offline safety lane, and stale-evidence reporting also passed."
+    },
+    "asr_and_security_pytest": {
+      "status": "pass",
+      "result": "Exact-source Python verification passed in the ASR-enabled dependency lane, followed by the offline safety lane and portable completion report."
+    },
+    "postgres": {
+      "status": "pass",
+      "result": "PostgreSQL service integration tests passed."
+    },
+    "container": {
+      "status": "pass",
+      "result": "Compose validation, container build, and synthetic hosted Google sign-in configuration validation passed."
+    },
+    "frontend": {
+      "status": "pass",
+      "result": "Locked frontend install, TypeScript check, production build, and production-dependency audit passed."
+    },
+    "release_summary": {
+      "status": "pass",
+      "result": "Exact-source release summary completed and reported all required CI groups successful."
+    }
+  },
+  "runtime": {
+    "source_commit": "55de56ebc82e84b25ca9beba650c418127bee50c",
+    "workflow": "API foundation",
+    "workflow_run_id": 43379289469,
+    "workflow_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43379289469",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": {
+      "python_dev_security": "success",
+      "python_dev_asr_security": "success",
+      "postgres": "success",
+      "container": "success",
+      "frontend": "success",
+      "release_summary": "success"
+    },
+    "paid_calls": 0,
+    "external_assets_fetched": 0,
+    "clinical_release_authorized": false
+  },
+  "runtime_sha256": "6a61dfb79da4937aaadceacc053d630a6e4699bd0cf4315911323890ea67f445"
+}
