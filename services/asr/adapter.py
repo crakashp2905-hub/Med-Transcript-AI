@@ -2,6 +2,8 @@
 
 import importlib.metadata
 import math
+import os
+import platform
 import time
 from functools import lru_cache
 import wave
@@ -81,6 +83,17 @@ class FasterWhisperAdapter:
             "automatic_download": False,
         }
 
+    def _runtime_environment(self):
+        return {
+            "os": platform.system(),
+            "os_release": platform.release(),
+            "architecture": platform.machine(),
+            "python_version": platform.python_version(),
+            "cpu_count": os.cpu_count(),
+            "device": self.profile.device,
+            "compute_type": self.profile.compute_type,
+        }
+
     def transcribe(self, source: Path, metadata: dict, checkpoint):
         if metadata["channels"] != 1 or metadata["sample_rate"] != 16000:
             raise ASRFailure("unsupported_asr_input")
@@ -122,9 +135,16 @@ class FasterWhisperAdapter:
         hits = loaded_model.cache_info().hits
         load_started = time.perf_counter()
         model = loaded_model(self.profile.model_dump_json())
+        cache_hit = loaded_model.cache_info().hits > hits
         timing = {
-            "model_cache_hit": loaded_model.cache_info().hits > hits,
+            "trace_schema": "asr_model_init_v1",
+            "initialization_state": "warm" if cache_hit else "cold",
+            "model_cache_hit": cache_hit,
             "model_load_seconds": time.perf_counter() - load_started,
+            "model_profile_sha256": self.profile.sha256,
+            "model_revision": self.profile.revision,
+            "artifact_sha256": dict(self.profile.artifacts),
+            "runtime_environment": self._runtime_environment(),
         }
         inference_started = time.perf_counter()
         decode_options = {

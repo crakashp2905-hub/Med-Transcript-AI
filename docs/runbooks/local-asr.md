@@ -24,6 +24,14 @@ preprocessor configuration uses the pinned runtime's defaults and is disclosed
 in transcript provenance. Runtime packages and the artifact/profile hashes
 are recorded with the output.
 
+Each non-silent inference also records `provenance.timing` with trace schema,
+`cold`/`warm` process-cache state, model-load time, profile/revision/artifact
+hashes and a minimal operating-environment fingerprint (OS, OS release,
+architecture, Python, CPU count, device and compute type). A warm state means
+the pinned model profile was already loaded in this worker process; it does not
+mean the OS page cache or accelerator was warm. No audio or recognized text is
+included in this trace.
+
 Only original mono 16 kHz PCM samples are accepted. The adapter converts signed
 16-bit samples to float32 without changing the timeline, and passes the array
 directly to the engine, avoiding general media decoding. It forces English

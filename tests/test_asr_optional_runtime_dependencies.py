@@ -49,10 +49,14 @@ def test_wav_transcription_does_not_require_unused_media_runtimes(
             )
             return iter([segment]), SimpleNamespace(duration=0.1)
 
+    cache_state = {"loads": 0}
+
     def load(_profile_json):
+        cache_state["loads"] += 1
         return Model()
 
-    load.cache_info = lambda: SimpleNamespace(hits=0)
+    load.cache_info = lambda: SimpleNamespace(hits=max(0, cache_state["loads"] - 1))
+
     monkeypatch.setattr("services.asr.adapter.loaded_model", load)
     audio = tmp_path / "input.wav"
     with wave.open(str(audio), "wb") as target:
@@ -62,6 +66,11 @@ def test_wav_transcription_does_not_require_unused_media_runtimes(
         target.writeframes(b"\x01\x00" * 1600)
 
     result = FasterWhisperAdapter(profile).transcribe(
+        audio,
+        {"channels": 1, "sample_rate": 16000, "frames": 1600},
+        lambda: None,
+    )
+    warm_result = FasterWhisperAdapter(profile).transcribe(
         audio,
         {"channels": 1, "sample_rate": 16000, "frames": 1600},
         lambda: None,
@@ -87,3 +96,23 @@ def test_wav_transcription_does_not_require_unused_media_runtimes(
         "tokenizers",
         "numpy",
     }
+    cold_trace = result["timing"]
+    warm_trace = warm_result["timing"]
+    assert (
+        cold_trace["trace_schema"] == warm_trace["trace_schema"] == "asr_model_init_v1"
+    )
+    assert cold_trace["initialization_state"] == "cold"
+    assert warm_trace["initialization_state"] == "warm"
+    assert (
+        cold_trace["model_profile_sha256"]
+        == warm_trace["model_profile_sha256"]
+        == profile.sha256
+    )
+    assert (
+        cold_trace["artifact_sha256"]
+        == warm_trace["artifact_sha256"]
+        == profile.artifacts
+    )
+    assert cold_trace["runtime_environment"] == warm_trace["runtime_environment"]
+    assert cold_trace["runtime_environment"]["os"]
+    assert cold_trace["runtime_environment"]["python_version"]
