@@ -3,7 +3,7 @@ from uuid import uuid4
 from services.application_pipeline import enrich_fact_proposal
 from services.review.relationships import analyze_transcript
 from tests.test_foundation import headers
-from tests.test_review_workflow import prepare
+from tests.test_review_workflow import approve, draft, prepare
 import sqlite3
 
 
@@ -162,6 +162,60 @@ def test_successive_application_transcript_proposals_surface_state_contradiction
         for change in comparison["changes"]
     )
     assert comparison["approval_authority"] is False
+
+
+def test_new_extraction_never_rewrites_an_existing_approved_note(setup):
+    client, path, _ = setup
+    eid, tx, reviewed_facts = prepare(client, path, "Patient reports cough.")
+    note = draft(client, eid, tx, reviewed_facts)["note"]
+    approval = approve(client, eid, note)
+    assert approval.status_code == 201, approval.text
+    with sqlite3.connect(path) as con:
+        original_row = con.execute(
+            "SELECT body, sha256 FROM documents WHERE id=?", (note["id"],)
+        ).fetchone()
+
+    edited = client.patch(
+        f"/v1/encounters/{eid}/transcripts/{tx['id']}",
+        headers={**headers(), "If-Match": f'"{tx["sha256"]}"'},
+        json={
+            "segments": [
+                {
+                    "segment_id": tx["segments"][0]["segment_id"],
+                    "text": "Patient denies cough.",
+                    "role": "patient",
+                }
+            ],
+            "correction_reason": "Correct the synthetic source negation.",
+            "english_confirmed": True,
+            "source_completeness_reviewed": True,
+            "source_review_reason": "The full synthetic source interval was checked.",
+        },
+    )
+    assert edited.status_code == 201, edited.text
+    proposal = client.post(
+        f"/v1/encounters/{eid}/fact-proposals",
+        headers=headers(),
+        json={"transcript_version_id": edited.json()["id"]},
+    )
+    assert proposal.status_code == 201, proposal.text
+    assert proposal.json()["facts"]
+    assert proposal.json()["facts"][0]["reviewed"] is False
+    assert proposal.json()["facts"][0]["critical_reviewed"] is False
+
+    with sqlite3.connect(path) as con:
+        current_row = con.execute(
+            "SELECT body, sha256 FROM documents WHERE id=?", (note["id"],)
+        ).fetchone()
+        approval_count = con.execute(
+            "SELECT COUNT(*) FROM approvals WHERE note=?", (note["id"],)
+        ).fetchone()[0]
+    assert current_row == original_row
+    assert approval_count == 1
+    assert (
+        client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()["stale"]
+        is True
+    )
 
 
 def test_fact_proposal_rejects_fabricated_evidence_before_persistence(
