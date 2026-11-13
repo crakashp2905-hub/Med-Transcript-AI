@@ -3868,11 +3868,20 @@
       "id": "MTA-08-04",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Produce high-fidelity English SOAP structured note with sections and optional specialty templates, avoiding fabricated differentials.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-08-04-d6d6362.json"
+      ],
+      "source_commit": "d6d636235c727ea94471698351d85adc4f74c8ab",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-04-d6d6362.json",
+          "report_sha256": "cb2564845e2204bdc2e87c3ef9ab41df6834ab93111b35113e3646609ec1f737",
+          "check": "source_grounded_english_soap_sections_without_fabricated_differential",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

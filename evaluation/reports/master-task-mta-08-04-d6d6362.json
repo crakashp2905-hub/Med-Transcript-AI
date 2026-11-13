@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "d6d636235c727ea94471698351d85adc4f74c8ab",
+  "tasks": [
+    "MTA-08-04"
+  ],
+  "source_hashes": {
+    "services/review/providers.py": "f5b72b99b9bc2b4ba79cf889e2fa4b7f2ff0322d06c0d5385c2b629ca901e6ae",
+    "services/review/engine.py": "0f2d8cd561b1d57fd2b2d8e0bf67ae5c10364c176daac600e71a0a17d3943d85",
+    "tests/test_drafting_atomicity.py": "4891038a08eda482377b5e0880a72e26196463c4f23d87ef8292f355c571dd14"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation"
+  },
+  "checks": {
+    "source_grounded_english_soap_sections_without_fabricated_differential": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_drafting_atomicity.py -q",
+      "status": "pass",
+      "passed": 5
+    },
+    {
+      "command": "python -m ruff check services/review/providers.py services/review/engine.py tests/test_drafting_atomicity.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/providers.py services/review/engine.py tests/test_drafting_atomicity.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "This verifies the deterministic SOAP structure and source preservation contract; it does not measure clinical note accuracy or validate specialty-specific clinical appropriateness."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "b0d7f0cfcc1fcfcd4666758d682c810a67e906990ad93c1596a4bcf8925804e3"
+}
