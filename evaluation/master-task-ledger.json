@@ -3643,11 +3643,20 @@
       "id": "MTA-07-15",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Add coverage report for `source not in note` and `note not in source`, with separate clinical materiality grades.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-15-b01ac94.json"
+      ],
+      "source_commit": "b01ac94fe285ae40d1828ad52482c9af973df12e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-15-b01ac94.json",
+          "report_sha256": "2d02008cec2b937a79d6ded23dfabe26d4f87d5c2625e55e0ace7abb1b4b4b0a",
+          "check": "source_not_in_note_and_note_not_in_source_coverage_report",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

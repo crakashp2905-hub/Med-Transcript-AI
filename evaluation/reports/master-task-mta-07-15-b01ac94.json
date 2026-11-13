@@ -1,0 +1,46 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "b01ac94fe285ae40d1828ad52482c9af973df12e",
+  "tasks": [
+    "MTA-07-15"
+  ],
+  "source_hashes": {
+    "services/review/engine.py": "6b4d2d733fb927342447c52da4f031efc005ffeab9d2f27eac60a44d9f856824",
+    "services/review/service.py": "d2033a614ee8697d73d5c69301ce34d0056b763ba262fd0d846b4805cbc88190",
+    "services/domain_contracts.py": "fbc4b4c42d12e1732251daa8a210f1731f10f392d8b856d58e6afa2d71e0c4ef",
+    "tests/test_verification_coverage.py": "a2ef071b3959511b8254cddc69113286ed5fd1ce9d3d30dc853a6a4d8564aa9a",
+    "tests/test_source_warning_context.py": "5fb7c0b0aa11b2f684943d930eaad1b472c9e37f485b77e480bcb225404e85c5"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local invocation; exact version not separately captured",
+    "loopback": "local synthetic TestClient permitted"
+  },
+  "runtime_sha256": "fff5918f57b4ccc38286b33cafa15c2be4d0e7e757ad961d3a1a8ff66bf16572",
+  "checks": {
+    "source_not_in_note_and_note_not_in_source_coverage_report": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_verification_coverage.py tests/test_source_warning_context.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "python -m ruff check services/review/engine.py services/review/service.py services/domain_contracts.py tests/test_verification_coverage.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/engine.py services/review/service.py services/domain_contracts.py tests/test_verification_coverage.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Coverage grades summarize deterministic rules and are not independently adjudicated clinical materiality.",
+    "Raw source text is excluded from the coverage report; evidence references contain offsets and quote hashes."
+  ],
+  "clinical_release_authorized": false
+}
