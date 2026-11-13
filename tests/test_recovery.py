@@ -227,7 +227,8 @@ def test_live_preview_never_becomes_a_saved_source_or_note(environment):
     # saved final transcript.
     assert (Path(env.assets) / f"{upload['id']}.wav").exists()
     with Store(env.path).transaction() as con:
-        assert con.execute("SELECT count(*) FROM job_attempts").fetchone()[0] == 1
+        # Provisional preview and final transcription are separately attempted jobs.
+        assert con.execute("SELECT count(*) FROM job_attempts").fetchone()[0] == 2
 
 
 def test_model_cache_reuses_weights_but_still_checks_artifact_integrity(
