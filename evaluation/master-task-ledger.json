@@ -3888,12 +3888,49 @@
       "id": "MTA-08-05",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add alternate summaries only if all relevant claims and caveats remain source-linked.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+        "apps/clinician-web/e2e/presentation.spec.ts",
+        "tests/test_patient_summary_source_link.py",
+        "evaluation/reports/master-task-mta-08-05-1b9b7d8.json"
+      ],
+      "source_commit": "1b9b7d8967f7549ab8a7af763a38db915d79b9f3",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
+          "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
+          "check": "source_linked_summary_regression",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
+          "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
+          "check": "ruff",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
+          "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
+          "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
+          "check": "summary_browser_test_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
+          "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
+          "check": "summary_browser_integration",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "The summary is generated only from the exact approved note and bound transcript, includes a source turn/quote for evidence-backed facts, labels clinician-entered statements, retains subject/assertion/time caveats, documents excluded facts and source coverage gaps, and is read-only. Browser integration remains to be rerun where loopback access is enabled."
     },
     {
       "id": "MTA-08-06",

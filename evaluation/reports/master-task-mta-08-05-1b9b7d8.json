@@ -1,0 +1,47 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-08-05",
+  "source_commit": "1b9b7d8967f7549ab8a7af763a38db915d79b9f3",
+  "source_files": {
+    "apps/clinician-web/src/PresentationTools.tsx": "e40d2e5316ac59b7411b0937b49c3205a90d54f26e248400fdb9db8b4c65c351",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "c5124dcb8d279ad094eb26cca154c4403c9449441a707bd9c09a6df1c4d87e8a",
+    "apps/clinician-web/e2e/presentation.spec.ts": "13590bfcf72f1665dcbdf61aeb2d1ecfd8beb47f3aabdb0fd2415081b904c14c",
+    "tests/test_patient_summary_source_link.py": "7a71d16c5d866071b506af48c6606a9610d46f604b528a57dbe15814176696a5"
+  },
+  "checks": [
+    {
+      "name": "source_linked_summary_regression",
+      "command": "python -m pytest -q --confcutdir=tests tests/test_patient_summary_source_link.py",
+      "status": "pass",
+      "detail": "1 passed; checks source citations, exact transcript binding, assertion/subject/time caveats, exclusions, source gaps and read-only behavior."
+    },
+    {
+      "name": "ruff",
+      "command": "python -m ruff check tests/test_patient_summary_source_link.py",
+      "status": "pass",
+      "detail": "No lint findings."
+    },
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "detail": "TypeScript and Vite production build passed."
+    },
+    {
+      "name": "summary_browser_test_discovery",
+      "command": "npx --offline playwright test e2e/presentation.spec.ts --list",
+      "status": "pass",
+      "detail": "Four presentation journeys discovered, including source-linked summary download."
+    },
+    {
+      "name": "summary_browser_integration",
+      "command": "npx --offline playwright test e2e/presentation.spec.ts --grep \"approved summary keeps source references\"",
+      "status": "blocked",
+      "detail": "The test failed before UI navigation completed: API request to 127.0.0.1:8001 returned connect EACCES. Browser assertions were not executed."
+    }
+  ],
+  "result": "implemented_with_browser_validation_blocked",
+  "blocker": "The summary is generated only from the exact approved note and bound transcript, includes a source turn/quote for evidence-backed facts, labels clinician-entered statements, retains subject/assertion/time caveats, documents excluded facts and source coverage gaps, and is read-only. Browser integration remains to be rerun where loopback access is enabled.",
+  "clinical_release_authorized": false,
+  "created_utc_date": "2026-11-14"
+}
