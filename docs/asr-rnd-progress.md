@@ -720,6 +720,18 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   passed with the no-resume suite regression; report SHA-256 is
   `5a7ff8607521bcb0fb1764b358162358e8281f4397e40b01dfe9e4518144c0b9`.
   C10 remains partial pending fresh receipts for the remaining modes/candidates.
+- **MTA-ASR-C10 Whisper-small fixed full run:** Suite v6 ran all 16 manifest
+  cases without a resume source, with complete coverage and zero failed cases
+  or chunks. The report exactly reproduces immutable v2 counts: clean
+  3,477/13,683 (25.4111%) and distracted 3,970/13,683 (29.0141%). Fresh
+  per-condition wall time was 1,322.9/1,376.4 seconds after a 19.0-second model
+  load. Full-process peak working set was 743,542,784 bytes, within 16 GiB.
+  Both conditions fail the unchanged <=5% WER admission gate. Regression
+  `tests/test_detailed_benchmark.py::test_detailed_v6_whisper_small_fixed_receipt_is_full_and_reproduces_baseline`
+  passed, binding the full case set, historical edit counts, gate and resource
+  measurement. Report SHA-256 is
+  `5ba7cb52dc17d98932790f2456d0975b52da89afed30452cf5d08a808558ff36`.
+  C10 remains partial pending the other predeclared modes/candidates.
 - **MTA-ASR-D01:** The operational application path remains the pinned
   Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration
   (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are
