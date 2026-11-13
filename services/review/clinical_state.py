@@ -183,6 +183,14 @@ def compare_snapshots(previous, current):
                         "current_fact_id": after["fact_id"],
                         "previous_evidence": before["evidence"],
                         "current_evidence": after["evidence"],
+                        "resolution": {
+                            "status": "unresolved",
+                            "question": (
+                                "Confirm the current clinical state and whether either source needs correction."
+                            ),
+                            "requires_human_action": True,
+                            "answer": None,
+                        },
                         "requires_clinician_review": True,
                     }
                 )
@@ -192,6 +200,8 @@ def compare_snapshots(previous, current):
         "previous_snapshot_sha256": previous["snapshot_sha256"],
         "current_snapshot_sha256": current["snapshot_sha256"],
         "changes": changes,
+        "unresolved_question_count": len(changes),
+        "all_changes_require_human_action": bool(changes),
         "unmatched_previous_fact_count": sum(
             len(rows) for key, rows in old_groups.items() if key not in new_groups
         ),

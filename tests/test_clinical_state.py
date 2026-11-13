@@ -54,6 +54,14 @@ def test_successive_transcript_versions_flag_opposite_assertions_with_both_sourc
     assert result["changes"][0]["change"] == "potential_contradiction"
     assert result["changes"][0]["severity"] == "critical"
     assert result["changes"][0]["requires_clinician_review"] is True
+    assert result["changes"][0]["resolution"] == {
+        "status": "unresolved",
+        "question": "Confirm the current clinical state and whether either source needs correction.",
+        "requires_human_action": True,
+        "answer": None,
+    }
+    assert result["unresolved_question_count"] == 1
+    assert result["all_changes_require_human_action"] is True
     assert (
         result["changes"][0]["previous_evidence"]["segment_id"]
         == before["segments"][0]["segment_id"]
@@ -93,6 +101,8 @@ def test_measurement_or_medication_attribute_change_is_reviewed_not_resolved():
     assert result["changes"][0]["changed_fields"] == ["dose_value"]
     assert result["changes"][0]["severity"] == "major"
     assert result["clinical_truth_established"] is False
+    assert result["changes"][0]["resolution"]["answer"] is None
+    assert result["changes"][0]["resolution"]["requires_human_action"] is True
 
 
 def test_snapshot_integrity_and_source_evidence_are_required():

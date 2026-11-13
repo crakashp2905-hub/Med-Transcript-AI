@@ -213,8 +213,13 @@ def test_successive_application_transcript_proposals_surface_state_contradiction
         change["change"] == "potential_contradiction"
         and change["severity"] == "critical"
         and change["requires_clinician_review"]
+        and change["resolution"]["status"] == "unresolved"
+        and change["resolution"]["requires_human_action"]
+        and change["resolution"]["answer"] is None
         for change in comparison["changes"]
     )
+    assert comparison["unresolved_question_count"] == len(comparison["changes"])
+    assert comparison["all_changes_require_human_action"] is True
     assert comparison["approval_authority"] is False
 
 
