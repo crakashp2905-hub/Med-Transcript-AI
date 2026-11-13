@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "27f55b168b4214d0bc86d34f68e02d4f81920534",
+  "tasks": [
+    "MTA-07-19"
+  ],
+  "source_hashes": {
+    "services/evidence_graph.py": "0e031bd9103ffce6b9c244cc0eb05f1912fd156ed0cf06526a80a06e77133505",
+    "tests/test_evidence_graph.py": "45981c91378bc12f6ca92b63997dcad79d9bb1977068432e13611e27caa0a35f"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation"
+  },
+  "checks": {
+    "graph_traversal_invariants_fuzz_missing_nodes_cycles_and_tenants": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_evidence_graph.py tests/test_application_pipeline.py::test_application_pipeline_uses_resource_graph_attribution_and_relationship_helpers -q",
+      "status": "pass",
+      "passed": 7
+    },
+    {
+      "command": "python -m ruff check services/evidence_graph.py tests/test_evidence_graph.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/evidence_graph.py tests/test_evidence_graph.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Graph tenant validation requires an explicit node-to-tenant map; application encounter isolation continues to be enforced by tenant-scoped storage queries.",
+    "A broader HTTP proposal test stalled before request dispatch during Windows asyncio Proactor socketpair startup; the graph and direct application-pipeline tests passed.",
+    "Property-based coverage uses deterministic seeded fuzzing (64 generated DAGs) rather than Hypothesis for this invariant suite."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "b0d7f0cfcc1fcfcd4666758d682c810a67e906990ad93c1596a4bcf8925804e3"
+}

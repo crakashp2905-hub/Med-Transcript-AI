@@ -3726,11 +3726,20 @@
       "id": "MTA-07-19",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Add graph traversal invariants and property-based/fuzz tests for tampering, cycles, missing nodes and cross-tenant edges.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-19-27f55b1.json"
+      ],
+      "source_commit": "27f55b168b4214d0bc86d34f68e02d4f81920534",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-19-27f55b1.json",
+          "report_sha256": "f21149326258d53b5893259fb2743d1eda3ab7c83059d1d5976e55a79d1a45f6",
+          "check": "graph_traversal_invariants_fuzz_missing_nodes_cycles_and_tenants",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
