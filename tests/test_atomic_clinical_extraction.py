@@ -58,3 +58,19 @@ def test_medication_action_and_explicit_uncertainty_stay_with_their_drugs():
     assert [fact["uncertainty"] for fact in facts] == ["possible", "certain"]
     assert [fact["assertion"] for fact in facts] == ["uncertain", "affirmed"]
     assert [fact["dose_value"] for fact in facts] == ["500", "5"]
+
+
+def test_medication_temporality_separates_past_current_and_future_plans():
+    facts = extract(
+        transcript(
+            "Previously took metformin 500 mg. Currently taking warfarin 5 mg. "
+            "Plan to start amoxicillin 250 mg tomorrow."
+        )
+    )
+
+    assert [fact["temporality"] for fact in facts] == [
+        "historical",
+        "current",
+        "planned",
+    ]
+    assert [fact["action"] for fact in facts] == ["unknown", "unknown", "start"]

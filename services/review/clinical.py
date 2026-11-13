@@ -25,11 +25,13 @@ SYMPTOMS = re.compile(
 )
 MEDICATION_ACTIONS = (
     (
-        "start",
-        re.compile(
-            r"\b(?:start(?:ed|s|ing)?|begin(?:s|ning)?|began|restart(?:ed|s|ing)?)\b",
-            re.I,
-        ),
+        "recommend",
+        re.compile(r"\b(?:recommend(?:ed|s|ing)?|suggest(?:ed|s|ing)?)\b", re.I),
+    ),
+    ("order", re.compile(r"\b(?:order(?:ed|s|ing)?|prescrib(?:e|ed|es|ing))\b", re.I)),
+    (
+        "discuss",
+        re.compile(r"\b(?:discuss(?:ed|es|ing)?|consider(?:ed|s|ing)?)\b", re.I),
     ),
     (
         "stop",
@@ -38,13 +40,11 @@ MEDICATION_ACTIONS = (
     ("hold", re.compile(r"\b(?:hold(?:s|ing)?|held|on hold)\b", re.I)),
     ("continue", re.compile(r"\b(?:continue(?:d|s|ing)?|keep taking)\b", re.I)),
     (
-        "recommend",
-        re.compile(r"\b(?:recommend(?:ed|s|ing)?|suggest(?:ed|s|ing)?)\b", re.I),
-    ),
-    ("order", re.compile(r"\b(?:order(?:ed|s|ing)?|prescrib(?:e|ed|es|ing))\b", re.I)),
-    (
-        "discuss",
-        re.compile(r"\b(?:discuss(?:ed|es|ing)?|consider(?:ed|s|ing)?)\b", re.I),
+        "start",
+        re.compile(
+            r"\b(?:start(?:ed|s|ing)?|begin(?:s|ning)?|began|restart(?:ed|s|ing)?)\b",
+            re.I,
+        ),
     ),
 )
 
@@ -128,6 +128,28 @@ def atomic_spans(text):
         yield a, b, text[a:b]
 
 
+def medication_temporality(text):
+    if re.search(
+        r"\b(?:previously|used to|last month|in the past|stopped|discontinued|no longer)\b",
+        text,
+        re.I,
+    ):
+        return "historical"
+    if re.search(
+        r"\b(?:will|next week|tomorrow|plan to|plans to|going to|should start|recommend(?:ed)? (?:to )?start|restart)\b",
+        text,
+        re.I,
+    ):
+        return "planned"
+    if re.search(
+        r"\b(?:currently|now|still taking|taking|takes|continue(?:s|d|ing)?|on)\b",
+        text,
+        re.I,
+    ):
+        return "current"
+    return "unknown"
+
+
 def extract(transcript):
     result = []
     for segment in transcript["segments"]:
@@ -169,12 +191,14 @@ def extract(transcript):
                 if ambiguous
                 else "certain"
             )
-            action_matches = [
-                action
-                for action, pattern in MEDICATION_ACTIONS
-                if pattern.search(quote)
-            ]
-            action = action_matches[0] if len(action_matches) == 1 else "unknown"
+            action = next(
+                (
+                    action
+                    for action, pattern in MEDICATION_ACTIONS
+                    if pattern.search(quote)
+                ),
+                "unknown",
+            )
             fact = {
                 "fact_id": str(uuid4()),
                 "category": category,
@@ -190,12 +214,12 @@ def extract(transcript):
                 else "affirmed",
                 "uncertainty": uncertainty,
                 "action": action if category == "medication" else "unknown",
-                "temporality": "historical"
-                if re.search(
-                    r"\b(?:stopped|previously|used to|last month)\b", quote, re.I
-                )
+                "temporality": medication_temporality(quote)
+                if category == "medication"
+                else "historical"
+                if re.search(r"\b(?:previously|used to|last month)\b", quote, re.I)
                 else "planned"
-                if re.search(r"\b(?:restart|next week|will)\b", quote, re.I)
+                if re.search(r"\b(?:next week|will)\b", quote, re.I)
                 else "unknown",
                 "origin": "source_linked",
                 "source_modality": "transcript",
