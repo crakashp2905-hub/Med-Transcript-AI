@@ -10,7 +10,11 @@ from uuid import UUID, uuid4
 from fastapi import Depends, HTTPException
 from pydantic import Field
 from services.review.models import Strict
-from services.review.clinical_models import LocalClinicalModels, RuleExtractor
+from services.review.clinical_models import (
+    ClinicalModelFailure,
+    LocalClinicalModels,
+    RuleExtractor,
+)
 from services.asr.profiles import canonical_json, content_sha256
 from services.domain_contracts import validate_record
 from services.proposal_integrity import decode_proposal
@@ -36,6 +40,20 @@ class RetranscribeRequest(Strict):
     start_ms: int = Field(ge=0, le=3600000, strict=True)
     end_ms: int = Field(gt=0, le=3600000, strict=True)
     channel_index: int | None = Field(default=None, ge=0, le=7, strict=True)
+
+
+def clinical_provider_http_error(error):
+    """Map unavailable local model output to a non-success response."""
+    if isinstance(error, ClinicalModelFailure):
+        return HTTPException(503, "clinical_model_unavailable")
+    return HTTPException(422, "clinical_extraction_failed_no_output_admitted")
+
+
+def semantic_provider_http_error(error):
+    """Keep missing/unsupported verification output unavailable, never empty-success."""
+    if isinstance(error, ClinicalModelFailure):
+        return HTTPException(503, "clinical_model_unavailable")
+    return HTTPException(422, "semantic_check_failed_no_output_admitted")
 
 
 def run_semantic_batches(provider, claims):
@@ -193,10 +211,8 @@ def register(
                 result = provider.extract_facts(
                     analysis_tx, authorized=True, synthetic=True
                 )
-        except ValueError:
-            raise HTTPException(
-                422, "clinical_extraction_failed_no_output_admitted"
-            ) from None
+        except ValueError as error:
+            raise clinical_provider_http_error(error) from None
         from services.review.relationships import analyze_transcript
 
         try:
@@ -341,10 +357,8 @@ def register(
                 if not ready:
                     raise HTTPException(503, "local_inference_busy")
                 result = run_semantic_batches(app.state.clinical_models, claims)
-        except ValueError:
-            raise HTTPException(
-                422, "semantic_check_failed_no_output_admitted"
-            ) from None
+        except ValueError as error:
+            raise semantic_provider_http_error(error) from None
         result.update(
             checked_fact_ids=sorted(selected),
             evidence_linked_fact_count=len(lookup),
