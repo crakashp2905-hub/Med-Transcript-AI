@@ -198,6 +198,33 @@ def extract_symptom_details(text):
     return details
 
 
+def extract_subject_and_source(segment, text):
+    role = segment.get("role", "unknown")
+    source = {
+        "patient": "patient_report",
+        "caregiver": "caregiver_report",
+        "clinician": "clinician_statement",
+    }.get(role, "unknown")
+    unresolved_pronoun = bool(re.search(r"\b(?:he|she|they|it)\b", text, re.I))
+    if unresolved_pronoun:
+        return "unknown", source, "Confirm the subject; source pronoun is unresolved."
+    if re.search(
+        r"\b(?:mother|father|sister|brother|spouse|wife|husband|son|daughter|grandmother|grandfather)\b",
+        text,
+        re.I,
+    ):
+        subject = "family"
+    elif re.search(r"\bpatient\b", text, re.I) or role == "patient":
+        subject = "patient"
+    elif role == "caregiver":
+        subject = "caregiver"
+    elif role in {"clinician", "interpreter", "other"}:
+        subject = "other"
+    else:
+        subject = "unknown"
+    return subject, source, ""
+
+
 def extract(transcript):
     result = []
     for segment in transcript["segments"]:
@@ -230,7 +257,7 @@ def extract(transcript):
                 re.search(r"\b(?:whether|question(?:s|ed)?|asked if)\b", quote, re.I)
             )
             ambiguous = bool(
-                re.search(r"\b(?:unsure|she|he|it)\b", quote, re.I)
+                re.search(r"\b(?:unsure|she|he|they|it)\b", quote, re.I)
             ) or bool(NEGATION.search(quote) and re.search(r"\band\b", quote, re.I))
             uncertain = possible or questioned or ambiguous
             uncertainty = (
@@ -250,14 +277,15 @@ def extract(transcript):
                 ),
                 "unknown",
             )
+            subject, clinical_source, clarification = extract_subject_and_source(
+                segment, quote
+            )
             fact = {
                 "fact_id": str(uuid4()),
                 "category": category,
                 "section": "plan" if category == "plan" else "subjective",
                 "text": quote,
-                "subject": "family"
-                if re.search(r"\b(?:mother|father|sister|brother)\b", quote, re.I)
-                else "unknown",
+                "subject": subject,
                 "assertion": "uncertain"
                 if uncertain
                 else "negated"
@@ -277,7 +305,8 @@ def extract(transcript):
                 "reviewed": False,
                 "critical_reviewed": False,
                 "extraction_version": "conservative_atomic_spans_v2",
-                "clarification": "",
+                "clarification": clarification,
+                "clinical_source": clinical_source,
                 "evidence": {
                     "segment_id": segment["segment_id"],
                     "start_char": start,

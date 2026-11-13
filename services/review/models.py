@@ -96,9 +96,13 @@ class Fact(Strict):
     symptom_course: Literal[
         "improving", "worsening", "stable", "intermittent", "constant", "unknown"
     ] = "unknown"
-    clinical_source: Literal["patient_report", "clinician_statement", "unknown"] = (
-        "unknown"
-    )
+    clinical_source: Literal[
+        "patient_report",
+        "family_report",
+        "caregiver_report",
+        "clinician_statement",
+        "unknown",
+    ] = "unknown"
     extraction_version: str = Field(default="manual_or_legacy", max_length=100)
     medication_name: str | None = Field(default=None, max_length=200)
     dose_value: str | None = Field(default=None, max_length=100)
