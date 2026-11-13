@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "9242832e2fbe8357cab9dd032672f1de7c0a3ed8",
+  "tasks": [
+    "MTA-08-06"
+  ],
+  "source_hashes": {
+    "services/evidence_graph.py": "0e031bd9103ffce6b9c244cc0eb05f1912fd156ed0cf06526a80a06e77133505",
+    "services/review/engine.py": "0f2d8cd561b1d57fd2b2d8e0bf67ae5c10364c176daac600e71a0a17d3943d85",
+    "tests/test_drafting_atomicity.py": "dddeaa51990ddcf8b0878f0b3cf7880b1a4f5fec2091b279cc783b705f9a8aa5"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation"
+  },
+  "checks": {
+    "note_fact_evidence_resolves_through_transcript_segment_to_audio_asset_and_timing": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_drafting_atomicity.py tests/test_evidence_graph.py -q",
+      "status": "pass",
+      "passed": 12
+    },
+    {
+      "command": "python -m ruff check services/review/engine.py services/evidence_graph.py tests/test_drafting_atomicity.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/engine.py services/evidence_graph.py tests/test_drafting_atomicity.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "The test proves stable source IDs, character offsets, and segment times on synthetic metadata; browser playback hardware was not exercised."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "b0d7f0cfcc1fcfcd4666758d682c810a67e906990ad93c1596a4bcf8925804e3"
+}

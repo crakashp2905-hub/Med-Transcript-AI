@@ -3899,11 +3899,20 @@
       "id": "MTA-08-06",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Ensure every generated statement has a reversible path to source and original audio timeline.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-08-06-9242832.json"
+      ],
+      "source_commit": "9242832e2fbe8357cab9dd032672f1de7c0a3ed8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-06-9242832.json",
+          "report_sha256": "e9564ea79fc787cec3126ef35d3677bffd826cafc7b7d14e8149e2bfd746f88d",
+          "check": "note_fact_evidence_resolves_through_transcript_segment_to_audio_asset_and_timing",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
