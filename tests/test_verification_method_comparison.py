@@ -78,6 +78,13 @@ def test_comparison_keeps_graph_structural_and_reuses_frozen_model(tmp_path):
     assert (
         report["summary"]["frozen_combined_review_policy"]["blocks_all_cases"] is True
     )
+    interpretation = report["metric_interpretation"]
+    assert interpretation["result_class"] == "internal_development_result"
+    assert (
+        interpretation["zero_critical_misses_establishes_clinical_sensitivity"] is False
+    )
+    assert interpretation["zero_risk_claim"] is False
+    assert interpretation["clinical_sensitivity_estimate"] is None
     failure = report["summary"]["per_category"]["dose"]["failure_dimensions"]
     assert failure["model_timeouts"] == 1
     assert failure["model_abstentions"] == 1
