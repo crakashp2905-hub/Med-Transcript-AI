@@ -4499,12 +4499,31 @@
       "id": "MTA-09-09",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Make playback, keyboard navigation, transcript search, editing, save and export possible without mouse-only actions.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/SpeakerTurnEditor.tsx",
+        "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+        "apps/clinician-web/src/style.css",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "evaluation/reports/master-task-mta-09-09-97debc1.json"
+      ],
+      "source_commit": "97debc15ee6426ffe54e2b5d9302a0a864c5820b",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-09-97debc1.json",
+          "report_sha256": "c91de242f94430a4e099d9a457fe4f5116200bda7126451ec05176e1acd22483",
+          "check": "search_keyboard_focus_and_result_navigation",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-09-97debc1.json",
+          "report_sha256": "c91de242f94430a4e099d9a457fe4f5116200bda7126451ec05176e1acd22483",
+          "check": "frontend_build_and_e2e_discovery",
+          "status": "pass"
+        }
+      ],
+      "blocker": "The browser keyboard interaction check is blocked because managed loopback networking denies loading the local fixture. Build and E2E discovery pass; run the browser assertions where local fixture networking is enabled."
     },
     {
       "id": "MTA-09-10",

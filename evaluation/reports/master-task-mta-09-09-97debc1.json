@@ -1,0 +1,51 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "97debc15ee6426ffe54e2b5d9302a0a864c5820b",
+  "tasks": [
+    "MTA-09-09"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/SpeakerTurnEditor.tsx": "9282702a16c756f867d2d0c762e15940f3b24c30179b44c11c1826b76fa2a2e8",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "190275ed67ae87ce87de8aca1ed5beeaa160f4635e954c0bda0e77fe932ee44c",
+    "apps/clinician-web/src/style.css": "c9ac28c9a498f0f95b5df427f7a4437bb19ac4470729f729542f2e8445ce8c23",
+    "apps/clinician-web/e2e/workflow.spec.ts": "82ede40686c3413e2b9870de19e6857c94e61931082f1fb75d88d466b1ca0c18"
+  },
+  "runtime": {
+    "platform": "Windows 11",
+    "node": "cached npm dependencies",
+    "browser": "Playwright local fixture blocked by loopback policy"
+  },
+  "checks": {
+    "search_keyboard_focus_and_result_navigation": {
+      "status": "blocked"
+    },
+    "frontend_build_and_e2e_discovery": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "cwd": "apps/clinician-web",
+      "status": "pass",
+      "observed": "Search, keyboard focus, editor and save workflow test compiles and is discovered."
+    },
+    {
+      "command": "Playwright keyboard interaction workflow",
+      "status": "blocked",
+      "observed": "Local browser navigation fails with ERR_NETWORK_ACCESS_DENIED because loopback access is denied in the managed environment."
+    }
+  ],
+  "limitations": [
+    "Search preserves all transcript rows and cycles focus through matching editable source segments; Enter and a labeled button both activate navigation.",
+    "Native audio controls and labeled transcript fields/buttons remain keyboard operable by browser controls.",
+    "Contrast/focus/screen-reader behavior still requires browser-level accessibility validation."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "30ec1c117ca49cfcd76b7b8c5fa1d3b1d7ab216238a800a54f60e89d7b161be8"
+}
