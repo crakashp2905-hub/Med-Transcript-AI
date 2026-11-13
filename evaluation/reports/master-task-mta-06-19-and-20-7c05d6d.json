@@ -1,0 +1,45 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "7c05d6d6117f0e78d2017b8432f899ac6b965a17",
+  "tasks": [
+    "MTA-06-19",
+    "MTA-06-20"
+  ],
+  "source_hashes": {
+    "tests/test_application_pipeline.py": "05c8cdbf25443ee16c567ad65e40bc48e194af4b6f1fe4a9e830135d04952559",
+    "services/review/clinical_routes.py": "cd347c611a5ee471f153a8fbd6403a2386e5de1e65cc6ee75b90c57025389d73",
+    "services/review/clinical_state.py": "84e49adc7f8794106442ffc8f21a9844e07e9ffaa0b7758845a44efb3ca3c2ac"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local invocation; version not separately captured",
+    "loopback": "local synthetic TestClient permitted"
+  },
+  "runtime_sha256": "72b3ced0e76cd5667ea6b59065078f6d371113c8359a98b1d0b780a968604581",
+  "checks": {
+    "approved_note_immutability_after_extraction": {
+      "status": "pass"
+    },
+    "new_fact_proposals_remain_unreviewed": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_clinical_state.py tests/test_clinical_model_failure_mapping.py tests/test_application_pipeline.py::test_fact_proposal_http_persists_graph_and_real_clinical_relationships tests/test_application_pipeline.py::test_successive_application_transcript_proposals_surface_state_contradiction tests/test_application_pipeline.py::test_new_extraction_never_rewrites_an_existing_approved_note -q",
+      "status": "pass",
+      "passed": 12
+    },
+    {
+      "command": "python -m ruff check services/review/clinical_state.py services/review/clinical_routes.py tests/test_clinical_state.py tests/test_clinical_model_failure_mapping.py tests/test_application_pipeline.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/clinical_state.py services/review/clinical_routes.py tests/test_clinical_state.py tests/test_clinical_model_failure_mapping.py tests/test_application_pipeline.py",
+      "status": "pass"
+    }
+  ],
+  "result": "A new extraction produces a separate unreviewed immutable proposal. The prior approved note body/hash and approval row remain byte-for-byte unchanged, while the workspace marks the old note stale.",
+  "clinical_release_authorized": false
+}

@@ -3287,22 +3287,40 @@
       "id": "MTA-06-19",
       "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Ensure extraction updates can never silently alter a reviewed or approved fact.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-19-and-20-7c05d6d.json"
+      ],
+      "source_commit": "7c05d6d6117f0e78d2017b8432f899ac6b965a17",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-19-and-20-7c05d6d.json",
+          "report_sha256": "be8f250a23b5fde672aaa3c4b33572af96027ae9d1a107c6c4b9fb62e7962883",
+          "check": "approved_note_immutability_after_extraction",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-06-20",
       "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Keep all newly extracted facts `unreviewed` until explicit clinician action.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-19-and-20-7c05d6d.json"
+      ],
+      "source_commit": "7c05d6d6117f0e78d2017b8432f899ac6b965a17",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-19-and-20-7c05d6d.json",
+          "report_sha256": "be8f250a23b5fde672aaa3c4b33572af96027ae9d1a107c6c4b9fb62e7962883",
+          "check": "new_fact_proposals_remain_unreviewed",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
