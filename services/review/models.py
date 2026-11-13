@@ -93,8 +93,12 @@ class NoteEdit(DraftInput):
 
 
 class SegmentEdit(Strict):
-    segment_id: UUID
+    segment_id: UUID | None = None
+    parent_segment_ids: list[UUID] = Field(default_factory=list, max_length=10000)
+    start_ms: int | None = Field(default=None, ge=0, strict=True)
+    end_ms: int | None = Field(default=None, gt=0, strict=True)
     text: str = Field(max_length=4000)
+    channel_index: int | None = Field(default=None, ge=0, le=7, strict=True)
     role: Literal[
         "patient", "clinician", "caregiver", "interpreter", "other", "unknown"
     ] = "unknown"

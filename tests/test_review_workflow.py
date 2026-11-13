@@ -399,6 +399,86 @@ def test_transcript_edit_invalidates_old_note_approval_and_preserves_original(se
     )
 
 
+def test_speaker_turn_split_merge_keeps_source_interval_and_immutable_lineage(setup):
+    client, path, _ = setup
+    eid, source, _ = prepare(client, path)
+    original = source["segments"][0]
+    route = f"/v1/encounters/{eid}/transcripts/{source['id']}"
+    split_at = (original["start_ms"] + original["end_ms"]) // 2
+    split = client.patch(
+        route,
+        headers={**headers(), "If-Match": f'"{source["sha256"]}"'},
+        json={
+            "segments": [
+                {
+                    "parent_segment_ids": [original["segment_id"]],
+                    "start_ms": original["start_ms"],
+                    "end_ms": split_at,
+                    "text": "Patient reports cough",
+                    "role": "patient",
+                },
+                {
+                    "parent_segment_ids": [original["segment_id"]],
+                    "start_ms": split_at,
+                    "end_ms": original["end_ms"],
+                    "text": "and denies fever.",
+                    "role": "patient",
+                },
+            ],
+            "correction_reason": "Split and reviewed synthetic speaker turns.",
+            "english_confirmed": True,
+            "source_completeness_reviewed": True,
+            "source_review_reason": "Reviewed the complete synthetic recording.",
+        },
+    )
+    assert split.status_code == 201, split.text
+    split_tx = split.json()
+    assert split_tx["parent_version_id"] == source["id"]
+    assert [s["correction_kind"] for s in split_tx["segments"]] == [
+        "split_child",
+        "split_child",
+    ]
+    assert all(
+        s["parent_segment_ids"] == [original["segment_id"]]
+        for s in split_tx["segments"]
+    )
+    assert (
+        split_tx["segments"][0]["end_ms"]
+        == split_tx["segments"][1]["start_ms"]
+        == split_at
+    )
+
+    merged = client.patch(
+        f"/v1/encounters/{eid}/transcripts/{split_tx['id']}",
+        headers={**headers(), "If-Match": f'"{split_tx["sha256"]}"'},
+        json={
+            "segments": [
+                {
+                    "parent_segment_ids": [
+                        s["segment_id"] for s in split_tx["segments"]
+                    ],
+                    "start_ms": original["start_ms"],
+                    "end_ms": original["end_ms"],
+                    "text": "Patient reports cough and denies fever.",
+                    "role": "patient",
+                }
+            ],
+            "correction_reason": "Merge and review synthetic speaker turns.",
+            "english_confirmed": True,
+            "source_completeness_reviewed": True,
+            "source_review_reason": "Reviewed the complete synthetic recording.",
+        },
+    )
+    assert merged.status_code == 201, merged.text
+    merged_tx = merged.json()
+    assert merged_tx["parent_version_id"] == split_tx["id"]
+    assert merged_tx["segments"][0]["correction_kind"] == "merged_turn"
+    assert merged_tx["segments"][0]["parent_segment_ids"] == [
+        s["segment_id"] for s in split_tx["segments"]
+    ]
+    assert client.get(route, headers=headers()).json()["segments"] == source["segments"]
+
+
 def test_review_resources_are_tenant_and_clinician_scoped(setup):
     client, path, _ = setup
     eid, tx, facts = prepare(client, path)

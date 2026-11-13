@@ -14,6 +14,7 @@ from services.review.models import (
 
 
 from services.review.service import ReviewService
+from services.review.turn_edits import build_corrected_segments
 from services.api.contracts import IdempotencyKey
 from services.api.idempotency import idempotent
 
@@ -131,25 +132,15 @@ def register(app, services: ReviewService):
             require_processing(con, eid)
             tr, tx = get_tx(con, eid, tid)
             if_current(row, "current_transcript", tid, tr["sha256"], if_match)
-            edits = {str(item.segment_id): item for item in body.segments}
-            if len(edits) != len(body.segments) or set(edits) != {
-                item["segment_id"] for item in tx["segments"]
-            }:
-                raise HTTPException(422, "segment_set_mismatch")
+            try:
+                tx["segments"] = build_corrected_segments(
+                    tx["segments"], body.segments, tx.get("duration_ms")
+                )
+            except ValueError as exc:
+                raise HTTPException(422, str(exc)) from None
             for segment in tx["segments"]:
-                edit = edits[segment["segment_id"]]
-                edit.text.encode("utf-8")
-                segment.update(
-                    text=edit.text,
-                    role=edit.role,
-                    parent_segment_id=segment["segment_id"],
-                    segment_id=str(uuid4()),
-                    role_status="human_confirmed"
-                    if edit.role != "unknown"
-                    else "unconfirmed",
-                    language_status="supported"
-                    if body.english_confirmed
-                    else "uncertain",
+                segment["language_status"] = (
+                    "supported" if body.english_confirmed else "uncertain"
                 )
             tx["review"] = body.model_dump(
                 include={

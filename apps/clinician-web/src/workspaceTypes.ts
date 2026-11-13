@@ -1,6 +1,6 @@
 import type {Fact} from "./facts";
 import type {Diarization} from "./SpeakerRoles";
-export type Segment = {segment_id:string; start_ms:number; end_ms:number; text:string; role:string; channel_index?:number; uncertainties?:string[]; role_status?:string; alternatives?:{text:string;source?:string}[]};
+export type Segment = {segment_id:string; parent_segment_ids?:string[]; edit_parent_segment_ids?:string[]; start_ms:number; end_ms:number; text:string; role:string; channel_index?:number; uncertainties?:string[]; role_status?:string; alternatives?:{text:string;source?:string}[]};
 export type Transcript = {id:string; sha256:string; version:number; audio_asset_id:string; duration_ms:number; segments:Segment[]; untranscribed_intervals?:{start_ms:number;end_ms:number;reason:string}[]; review_flags?:string[]; channels?:{channel_index:number}[]; diarization?:Diarization; review?:{english_confirmed:boolean; source_completeness_reviewed:boolean; source_review_reason:string}; provenance:{engine:string}};
 export type Evidence = {segment_id:string; start_char:number; end_char:number; quote:string};
 export type Finding = {finding_id:string;code:string;message:string;severity:string;fact_id:string|null;validator_version?:string;mismatch_fields?:string[];source_reference?:{transcript_version_id:string|null;segment_id:string;start_char:number;end_char:number;quote_sha256:string}|null};
