@@ -1,0 +1,41 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-11-15",
+    "MTA-11-16",
+    "MTA-11-17",
+    "MTA-11-18"
+  ],
+  "source_commit": "64583c1d445b8cc667c5284cbb4583b58326c4af",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "source_files": {
+    "docs/research/beccsv-protocol-v1.md": "c9a10edf62697e2ae88eadeae6002631585f30c575aecaaff643653d4172916c",
+    "tests/test_beccsv_protocol_preregistration.py": "cd9e911fe82773f613a6bdc7a06b4b3faa250257aa753bd4c2e27f9cdce8d9f0"
+  },
+  "preregistered_outcomes": {
+    "primary": "Consultation-level critical unsafe-claim miss rate, paired full BECCSV versus deterministic-only, with a false-alarm increase bound of 5 percentage points and all failure denominators retained.",
+    "secondary": [
+      "required source omission coverage",
+      "note-claim provenance completeness"
+    ],
+    "uncertainty": "Consultation-clustered 95% intervals; clips, turns and perturbation siblings from one original consultation stay in one cluster.",
+    "analysis": "Paired consultation bootstrap; small cohorts remain descriptive and no significance claim is allowed from 6–12 developer cases."
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_beccsv_protocol_preregistration.py -q",
+      "status": "pass",
+      "result": "1 passed"
+    },
+    {
+      "command": "ruff check tests/test_beccsv_protocol_preregistration.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "These are predeclared methods and thresholds, not measured outcomes.",
+    "The independent acceptance cohort and qualified reviewer sign-off are unavailable.",
+    "No inferential result or efficacy claim is made."
+  ],
+  "clinical_release_authorized": false
+}
