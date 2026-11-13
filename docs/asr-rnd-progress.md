@@ -790,3 +790,17 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   chunks, failure-inclusive condition totals, 5% gate and resource receipt.
   This negative arm does not establish model qualification. C10 remains partial
   because the predeclared mode/candidate matrix is still incomplete.
+- **MTA-ASR-C10 Omi native-empty fixed ablation:** Suite v7 ran all 16 manifest
+  cases afresh with complete audio coverage and zero failed cases/chunks. This
+  same-weight wrapper explicitly accepts the documented native zero-token
+  response; all other errors remain failures. Clean scored 2,245/13,683 edits
+  (16.4072%) and distracted 2,356/13,683 (17.2184%), versus the regular Omi
+  fixed arm's 3,809 and 3,899 edits. This is a development signal for the
+  wrapper's empty-response handling, not qualification; both results fail the
+  unchanged <=5% WER gate. Wall time was 1,331.6/1,296.8 seconds, full-process
+  peak working set 1,265,270,784 bytes, and CPU 9,665.7 seconds. The report
+  SHA-256 is
+  `cfc25c0a8b1334d7a28f357d498eb60ea24aca678c5c688960f551c1f355b68e`.
+  The focused regression binds the fresh suite, manifest, full coverage,
+  failure-inclusive scoring, unchanged gate and resource receipt. C10 remains
+  partial pending the remaining modes and candidates.
