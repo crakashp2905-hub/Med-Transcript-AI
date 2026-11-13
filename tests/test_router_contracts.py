@@ -15,9 +15,9 @@ def contract_matches(actual, expected):
 
 def test_api_contract_survives_router_and_service_extraction(setup):
     client, _, _ = setup
-    previous_path = Path("evaluation/contracts/api-v1-compatible-v4.json")
+    previous_path = Path("evaluation/contracts/api-v1-compatible-v5.json")
     successor = json.loads(
-        Path("evaluation/contracts/api-v1-compatible-v5.json").read_text(
+        Path("evaluation/contracts/api-v1-compatible-v6.json").read_text(
             encoding="utf-8"
         )
     )
@@ -26,6 +26,7 @@ def test_api_contract_survives_router_and_service_extraction(setup):
         successor["supersedes"]["sha256"]
         == hashlib.sha256(previous_path.read_bytes()).hexdigest()
     )
+    assert successor["schema_version"] == "api_contract_successor_v6"
     expected = successor["contract"]
     verifier_limit = expected["components"]["schemas"]["VerifyRequest"]["properties"][
         "fact_ids"

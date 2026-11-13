@@ -33,6 +33,23 @@ class Evidence(Strict):
         return self
 
 
+class FactRelation(Strict):
+    related_fact_id: UUID
+    relation_type: Literal[
+        "medication",
+        "dose",
+        "route",
+        "frequency",
+        "duration",
+        "temporality",
+        "subject",
+        "negation",
+        "symptom_site",
+        "allergy_reaction",
+        "other",
+    ]
+
+
 class Fact(Strict):
     fact_id: UUID
     category: Literal[
@@ -42,11 +59,32 @@ class Fact(Strict):
     text: str = Field(min_length=1, max_length=4000)
     subject: Literal["patient", "family", "caregiver", "other", "unknown"] = "unknown"
     assertion: ClinicalAssertion = "uncertain"
+    uncertainty: Literal[
+        "certain", "possible", "questioned", "ambiguous", "unknown"
+    ] = "unknown"
     temporality: Literal["current", "historical", "planned", "unknown"] = "unknown"
+    action: Literal[
+        "none",
+        "start",
+        "stop",
+        "hold",
+        "continue",
+        "recommend",
+        "order",
+        "discuss",
+        "unknown",
+    ] = "unknown"
     origin: Literal["source_linked", "clinician_entered"] = "source_linked"
     evidence: Evidence | None = None
+    relations: list[FactRelation] = Field(default_factory=list, max_length=100)
+    source_modality: Literal["transcript", "audio", "clinician_entered", "unknown"] = (
+        "unknown"
+    )
     reviewed: bool = False
     critical_reviewed: bool = False
+    review_status: (
+        Literal["unreviewed", "reviewed", "critical_reviewed", "excluded"] | None
+    ) = None
     clarification: str = Field(default="", max_length=2000)
     excluded: bool = False
     concept: str | None = Field(default=None, max_length=300)
@@ -76,12 +114,52 @@ class Fact(Strict):
                 "Clinician additions require a reason and cannot invent source evidence"
             )
         self.text.encode("utf-8")
+        if self.source_modality == "unknown":
+            self.source_modality = (
+                "clinician_entered"
+                if self.origin == "clinician_entered"
+                else "transcript"
+            )
+        expected_review_status = (
+            "excluded"
+            if self.excluded
+            else "critical_reviewed"
+            if self.critical_reviewed
+            else "reviewed"
+            if self.reviewed
+            else "unreviewed"
+        )
+        if self.review_status is None:
+            self.review_status = expected_review_status
+        elif self.review_status != expected_review_status:
+            raise ValueError("review_status_must_match_review_flags")
         return self
 
 
 class DraftInput(Strict):
     transcript_version_id: UUID
     facts: list[Fact] = Field(min_length=1, max_length=300)
+
+    @model_validator(mode="after")
+    def validate_fact_relations(self):
+        fact_ids = [fact.fact_id for fact in self.facts]
+        if len(set(fact_ids)) != len(fact_ids):
+            raise ValueError("duplicate_fact_id")
+        known_ids = set(fact_ids)
+        for fact in self.facts:
+            relation_keys = [
+                (relation.related_fact_id, relation.relation_type)
+                for relation in fact.relations
+            ]
+            if len(set(relation_keys)) != len(relation_keys):
+                raise ValueError("duplicate_fact_relation")
+            if any(
+                relation.related_fact_id == fact.fact_id
+                or relation.related_fact_id not in known_ids
+                for relation in fact.relations
+            ):
+                raise ValueError("fact_relation_target_invalid")
+        return self
 
 
 class DraftProposalInput(DraftInput):
