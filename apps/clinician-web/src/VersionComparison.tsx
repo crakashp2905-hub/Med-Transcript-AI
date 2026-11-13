@@ -1,14 +1,17 @@
 import React,{useEffect,useState} from 'react';
 
-type Version={id:string;version:number};
+type Version={id:string;version:number;created_at:string;owner_clinician_id:string;model_lineage:string;current:boolean;approval_status?:string;approved_at?:string|null;transcript_version_id?:string};
 type Comparison={source_changed:boolean;unchanged_facts:number;changes:{fact_id:string;change:string;changed_fields:string[];clinical_critical:boolean;critical_reasons:string[];before:Record<string,unknown>|null;after:Record<string,unknown>|null}[]};
 
 export function VersionComparison({encounter,request}:{encounter:string;request:(path:string)=>Promise<any>}){
- const [versions,setVersions]=useState<Version[]>([]),[left,setLeft]=useState(''),[right,setRight]=useState('');
+ const [versions,setVersions]=useState<Version[]>([]),[transcripts,setTranscripts]=useState<Version[]>([]),[left,setLeft]=useState(''),[right,setRight]=useState('');
  const [result,setResult]=useState<Comparison|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState('');
- useEffect(()=>{let live=true;request(`/v1/encounters/${encounter}/versions`).then(r=>{if(live){setVersions(r.notes);setLeft(r.notes[1]?.id||r.notes[0]?.id||'');setRight(r.notes[0]?.id||'');}}).catch(()=>{if(live)setError('Versions could not be loaded.');});return()=>{live=false;};},[encounter]);
+ useEffect(()=>{let live=true;request(`/v1/encounters/${encounter}/versions`).then(r=>{if(live){setVersions(r.notes);setTranscripts(r.transcripts);setLeft(r.notes[1]?.id||r.notes[0]?.id||'');setRight(r.notes[0]?.id||'');}}).catch(()=>{if(live)setError('Versions could not be loaded.');});return()=>{live=false;};},[encounter]);
  async function compare(){setBusy(true);setError('');try{setResult(await request(`/v1/encounters/${encounter}/notes/${left}/compare/${right}`));}catch(e){setError(e instanceof Error?e.message:'Comparison failed.');}finally{setBusy(false);}}
- return <section className="panel"><div className="panel-heading"><h2>Compare saved note versions</h2></div>
+ return <section className="panel"><div className="panel-heading"><h2>Version lineage and approval</h2></div>
+ <h3>Saved notes</h3><div className="timeline">{versions.map(v=><div key={v.id}><span className="timeline-dot"/><div><strong>Note version {v.version} · {v.current?'Current':'Historical'} · {v.approval_status||'status unavailable'}</strong><p>{new Date(v.created_at).toLocaleString()} · Owner {v.owner_clinician_id||'unknown'} · Model {v.model_lineage||'unknown'} · Source transcript {v.transcript_version_id||'unknown'}{v.approved_at?` · Approved ${new Date(v.approved_at).toLocaleString()}`:''}</p></div></div>)}</div>
+ <h3>Source transcript versions</h3><div className="timeline">{transcripts.map(v=><div key={v.id}><span className="timeline-dot"/><div><strong>Transcript version {v.version} · {v.current?'Current':'Historical'}</strong><p>{new Date(v.created_at).toLocaleString()} · Owner {v.owner_clinician_id||'unknown'} · ASR lineage {v.model_lineage||'unknown'}</p></div></div>)}</div>
+ <h3>Compare saved note versions</h3>
  <div className="comparison-grid"><label>Before<select value={left} onChange={e=>{setLeft(e.target.value);setResult(null);}}>{versions.map(v=><option value={v.id} key={v.id}>Version {v.version}</option>)}</select></label>
  <label>After<select value={right} onChange={e=>{setRight(e.target.value);setResult(null);}}>{versions.map(v=><option value={v.id} key={v.id}>Version {v.version}</option>)}</select></label></div>
  <button disabled={busy||!left||!right} onClick={()=>void compare()}>Compare versions</button>
