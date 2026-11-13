@@ -1,0 +1,61 @@
+{
+  "schema_version": "asr_runtime_profile_matrix_v1",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "scope": "local runtime configuration only; no clinical or model admission",
+  "host_observation": {
+    "os": "Windows 11",
+    "architecture": "AMD64/x86_64",
+    "processor_observation": "Intel64 Family 6 Model 140 Stepping 1",
+    "logical_cpu_count": 8,
+    "physical_memory_gib": 15.75,
+    "nvidia_smi_available": false,
+    "ollama_client_version": "0.40.16",
+    "ollama_server_running": false
+  },
+  "profiles": [
+    {
+      "id": "cpu-x86_64-16gb-reference-v1",
+      "status": "declared_local_reference_profile",
+      "hardware_class": "single x86_64 CPU host with at least 4 logical CPUs and 16 GB RAM",
+      "observed_host_matches_reference": true,
+      "device": "cpu",
+      "engine": "faster-whisper",
+      "runtime_version": "1.2.1",
+      "model_profile_path": "data/small-cpu-int8-v1-profiles.json",
+      "model_profile_id": "small-cpu-int8-v1",
+      "model_profile_sha256": "566c3b316045584eb28ce7102c9c05aaef38a47818cd2626ada184f98e82b512",
+      "model_revision": "536b0662742c02347bc0e980a01041f333bce120",
+      "compute_type": "int8",
+      "cpu_threads": 4,
+      "beam_size": 5,
+      "language": "en",
+      "input_profile": "mono_16khz_pcm_s16le",
+      "automatic_download": false,
+      "clinical_validation": "not_validated",
+      "runtime_admission": "profile_manifest_allowlisted; artifact integrity still checked at load time"
+    },
+    {
+      "id": "apple-silicon",
+      "status": "not_available_on_observed_host",
+      "reason": "Observed host architecture is AMD64/x86_64, not Apple Silicon.",
+      "runtime_profile": null
+    },
+    {
+      "id": "nvidia-cuda",
+      "status": "not_available_on_observed_host",
+      "reason": "nvidia-smi was not available; no locally available NVIDIA GPU runtime profile was verified.",
+      "runtime_profile": null
+    }
+  ],
+  "reproducibility": {
+    "profile_manifest_sha256": "6a420b9510a58015e46e2f7e9281145f247f3da0ba3c3e9af6c8fc5a777f2316",
+    "runtime_binary_or_package_lock": "pyproject.toml and constraints-ci.txt",
+    "artifacts_are_local_only": true
+  },
+  "limitations": [
+    "This declares configuration and records host inventory; it is not a performance qualification.",
+    "The profile is not allowlisted for application inference and the associated model is not clinically validated.",
+    "Apple Silicon and NVIDIA profiles are deliberately not fabricated because neither platform was locally available.",
+    "The low-end CPU reference class is a reproducible minimum configuration, not a claim about all supported devices."
+  ]
+}
