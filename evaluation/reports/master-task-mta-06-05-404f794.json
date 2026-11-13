@@ -1,0 +1,50 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-06-05",
+  "source_commit": "404f7945a730bc5bf025c81662cba80d22dbef5e",
+  "status": "pass",
+  "runtime": {
+    "ci_provider": "GitHub Actions",
+    "python": "3.13.5",
+    "python_job_id": "131990186213",
+    "run_id": "43456003342",
+    "runner": "ubuntu-24.04",
+    "source_commit": "404f7945a730bc5bf025c81662cba80d22dbef5e"
+  },
+  "runtime_sha256": "29edcac3b92afcef27f380f2762d3ffa29a89b237e70cfc7cf6bf3cfb43d4c7a",
+  "checks": {
+    "explicit_allergy_extraction": {
+      "status": "pass",
+      "focused_test_file": "tests/test_allergy_extraction.py",
+      "focused_case_count": 4,
+      "implementation": "Explicit allergen and reaction are captured; severity is set only when spoken; explicit absence does not invent allergen data and silence creates no allergy fact."
+    },
+    "exact_commit_full_ci": {
+      "status": "pass",
+      "run_id": "43456003342",
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43456003342",
+      "python_tests": {
+        "passed": 988,
+        "failed": 0,
+        "skipped": 3
+      },
+      "offline_model_free_safety_lane": {
+        "passed": 60,
+        "failed": 0
+      },
+      "jobs": {
+        "container": "success",
+        "frontend": "success",
+        "postgres": "success",
+        "python_dev_security": "success",
+        "python_dev_asr_security": "success",
+        "release_summary": "success"
+      }
+    }
+  },
+  "limitations": [
+    "Developer-authored synthetic and application tests only; no independent clinical annotation or patient safety validation.",
+    "No clinical release authorization is implied."
+  ],
+  "clinical_release_authorized": false
+}

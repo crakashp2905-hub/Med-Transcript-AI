@@ -2927,77 +2927,140 @@
       "id": "MTA-06-01",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define canonical fact object with concept, text, subject, assertion, uncertainty, temporality, action, relations, evidence, review status and source modality.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-01-404f794.json"
+      ],
+      "source_commit": "404f7945a730bc5bf025c81662cba80d22dbef5e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-01-404f794.json",
+          "report_sha256": "6dbc7aa4251e1821de253b5f5b6d3ed70e8188f6f5cca15ec4059bfa9528d076",
+          "check": "canonical_clinical_fact_schema",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-06-02",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Extract atomic clauses from compound utterances without borrowing another clause\u2019s negation or medication dosage.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-02-404f794.json"
+      ],
+      "source_commit": "404f7945a730bc5bf025c81662cba80d22dbef5e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-02-404f794.json",
+          "report_sha256": "52aae9b657887438465494db15d3240640172d78d7158d5c4465edb300273069",
+          "check": "atomic_clause_extraction",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-06-03",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Extract medications with drug, dose, unit, route, frequency, start/stop/hold/continue status and explicit uncertainty.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-03-404f794.json"
+      ],
+      "source_commit": "404f7945a730bc5bf025c81662cba80d22dbef5e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-03-404f794.json",
+          "report_sha256": "663939fc6e2c5064c28e753dc53c18082fdb2367eb9a375bba1ae801fe42c44a",
+          "check": "medication_attribute_extraction",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-06-04",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Distinguish historical regimen, current regimen, clinician recommendation and future plan for a medication.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-04-404f794.json"
+      ],
+      "source_commit": "404f7945a730bc5bf025c81662cba80d22dbef5e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-04-404f794.json",
+          "report_sha256": "1ecfd1361b067a1298de6919a5c8cb55decd7d8a9b1b795b3d43146a886852f7",
+          "check": "medication_temporality_extraction",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-06-05",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Capture explicit allergies and reactions with severity only when spoken; never infer absence of allergies from silence.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-05-404f794.json"
+      ],
+      "source_commit": "404f7945a730bc5bf025c81662cba80d22dbef5e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-05-404f794.json",
+          "report_sha256": "77a843a26ee0a1b502fcd7da6917b2dc6b4ce503b6ccc53404b8f130f6d10731",
+          "check": "explicit_allergy_extraction",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-06-06",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Model symptom present/denied/possible/questioned, location, onset, duration, severity and course separately.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-06-404f794.json"
+      ],
+      "source_commit": "404f7945a730bc5bf025c81662cba80d22dbef5e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-06-404f794.json",
+          "report_sha256": "de82f2243a8d4b1d50d4ac82eec971601c5b66358aae210f0070befad8adb9ac",
+          "check": "symptom_detail_extraction",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-06-07",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Distinguish patient, family member, caregiver and clinician assertions; unknown pronouns require review.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-07-404f794.json"
+      ],
+      "source_commit": "404f7945a730bc5bf025c81662cba80d22dbef5e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-07-404f794.json",
+          "report_sha256": "9a844ab344537151e78589627838c1c4470f6a3963089b114198fd707542b127",
+          "check": "speaker_subject_source_attribution",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
