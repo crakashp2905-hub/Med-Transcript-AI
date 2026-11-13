@@ -3828,11 +3828,20 @@
       "id": "MTA-08-02",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Generate one clinical assertion per statement where possible; avoid conflating symptoms, allergies and plans.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-08-02-1a6998a.json"
+      ],
+      "source_commit": "1a6998ac257ff46c23a508e022f82756d7b6cf23",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-02-1a6998a.json",
+          "report_sha256": "f9faec887329f499292ce4299c74c0262fd2dadabb7281e6c265318dc12df3ba",
+          "check": "one_statement_per_fact_and_merge_requires_review",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
