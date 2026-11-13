@@ -221,12 +221,19 @@ def expire_previews(db, assets, ttl_seconds=900):
             (cutoff,),
         ).fetchall()
         for row in rows:
-            if con.execute(
-                "SELECT 1 FROM transcript_versions WHERE upload=?", (row["upload"],)
-            ).fetchone():
-                continue
+            source_is_saved = (
+                con.execute(
+                    "SELECT 1 FROM transcript_versions WHERE upload=?", (row["upload"],)
+                ).fetchone()
+                is not None
+            )
             try:
-                for suffix in (".wav", ".normalized.wav", ".resume.part"):
+                # A saved transcript keeps its original source audio. The provisional
+                # preview cache and checkpoints are still disposable after the TTL.
+                suffixes = (".normalized.wav", ".resume.part")
+                if not source_is_saved:
+                    suffixes = (".wav", *suffixes)
+                for suffix in suffixes:
                     checked(Path(assets), f"{row['upload']}{suffix}").unlink(
                         missing_ok=True
                     )

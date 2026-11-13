@@ -223,7 +223,9 @@ def test_live_preview_never_becomes_a_saved_source_or_note(environment):
             (job["id"],),
         )
     assert expire_previews(env.path, env.assets)["expired_preview_caches"] == 1
-    assert not (Path(env.assets) / f"{upload['id']}.wav").exists()
+    # Expiring provisional preview output must preserve audio referenced by the
+    # saved final transcript.
+    assert (Path(env.assets) / f"{upload['id']}.wav").exists()
     with Store(env.path).transaction() as con:
         assert con.execute("SELECT count(*) FROM job_attempts").fetchone()[0] == 1
 

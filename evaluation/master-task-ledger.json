@@ -2511,12 +2511,24 @@
       "id": "MTA-04-18",
       "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Report speed/quality Pareto points, measured peak memory, CPU time, p50/p95 runtime and cost for each installed candidate.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/experiments/detailed-suite-v7-original-lock-2026-11-13.json",
+        "evaluation/runs/meddistract-detailed-v7/omi-med-stt-v1.fixed.json",
+        "evaluation/reports/master-task-mta-04-18-fb21680.json",
+        "tests/test_omi_detailed_v7_receipt.py"
+      ],
+      "source_commit": "fb21680b6cf7ca5d6afaa0299f497e8637230bf5",
+      "test_results": [
+        {
+          "status": "pass",
+          "check": "candidate_run_integrity",
+          "report": "evaluation/reports/master-task-mta-04-18-fb21680.json",
+          "report_sha256": "0feb75877ec8c00e52acc711d401e8197fc95f60ae57f52c98f843c8266884b3"
+        }
+      ],
+      "blocker": "Only OMI was measured in this run; remaining installed candidates require fresh locked full-cohort runs. No paid calls or fetched assets."
     },
     {
       "id": "MTA-04-19",

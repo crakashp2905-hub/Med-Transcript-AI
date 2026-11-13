@@ -1,0 +1,56 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-18",
+  "source_commit": "fb21680b6cf7ca5d6afaa0299f497e8637230bf5",
+  "status": "implemented",
+  "source_sha256": {
+    "services/detailed_benchmark.py": "3c87b090f17482220173b4830e7b309973290d6e5c087eddeb9cedc871933723",
+    "evaluation/experiments/detailed-suite-v7-original-lock-2026-11-13.json": "a1bb17e2497684bcc78429d2cdf3d3dcb26b09a2e30679e3e4f92d3d0bc282ae",
+    "evaluation/runs/meddistract-detailed-v7/omi-med-stt-v1.fixed.json": "8d2da60b8e77f8d70ba1bdaff05532904864a8112d9419ba35701d3bc8dad6da"
+  },
+  "checks": {
+    "candidate_run_integrity": {
+      "status": "pass",
+      "result": "All 16 locked detailed consultation cases completed with failure-inclusive scoring; failed chunks remain represented as full-case deletion errors."
+    },
+    "five_percent_quality_gate": {
+      "status": "fail",
+      "result": "Clean normalized WER 27.8375% (3809/13683); distracted normalized WER 28.4952% (3899/13683). Each condition includes one processing-failed sample. The unchanged 5% gate is failed; no candidate promotion or clinical acceptance."
+    }
+  },
+  "runtime": {
+    "source_commit": "fb21680b6cf7ca5d6afaa0299f497e8637230bf5",
+    "runner_sha256": "3c87b090f17482220173b4830e7b309973290d6e5c087eddeb9cedc871933723",
+    "suite_snapshot_sha256": "a1bb17e2497684bcc78429d2cdf3d3dcb26b09a2e30679e3e4f92d3d0bc282ae",
+    "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+    "candidate_id": "omi-med-stt-v1",
+    "candidate_revision": "30d74219feead34843fae59e855f740db78ed2bd",
+    "model_artifact_sha256": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab",
+    "conditions": {
+      "clean": {
+        "samples": 8,
+        "reference_words": 13683,
+        "normalized_edits": 3809,
+        "normalized_wer": 0.27837462544763575,
+        "failed_samples": 1,
+        "wall_seconds": 1939.78024979998,
+        "gate": "fail"
+      },
+      "distracted": {
+        "samples": 8,
+        "reference_words": 13683,
+        "normalized_edits": 3899,
+        "normalized_wer": 0.28495213038076445,
+        "failed_samples": 1,
+        "wall_seconds": 1931.7997993000317,
+        "gate": "fail"
+      }
+    },
+    "peak_resident_bytes": 1273974784,
+    "cpu_seconds": 11780.53125,
+    "model_load_seconds": 24.945564199995715,
+    "paid_calls": 0,
+    "external_assets_fetched": 0
+  },
+  "runtime_sha256": "76e6683b55e5fc6fa10667db26c6c8165475bfb7a503b1429e26a74c2168d67c"
+}
