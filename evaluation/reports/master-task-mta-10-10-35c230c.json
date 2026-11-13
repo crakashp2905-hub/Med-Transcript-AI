@@ -1,0 +1,74 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-10",
+  "source_commit": "35c230c39a81d85910ebf1269540a1b196d84408",
+  "captured_at_utc": "2026-11-13T22:42:49+00:00",
+  "source_files": {
+    "services/strict_json.py": "fe7450877d0e7d3374751950b26a0aef392621a1eb30aac9fc249214cfa4d1c0",
+    "services/review/providers.py": "44b4734a16572ee0e5be4af5027afca99ce444e3d350383f9725262868d71766",
+    "services/review/clinical_models.py": "8db932a497b29cf28f5fe2bd5eb27ef2d008e9ec1aa37959e97195374dc3ffad",
+    "tests/test_domain_integrity.py": "3e08e07d649fb201d1b360c41d11fcd2e6b2e1a100c71167a8ff019f35235202",
+    "tests/test_drafting_provider_failures.py": "742f5c38d1be4f7cb42c87957623d2c54f5e17b544c890209190c71b5fd0e1a2",
+    "tests/test_verifier_fail_closed.py": "6205f97fdcc3574a4b3f0fadf68045e5153ad738617369c631c9e0e434de4e24",
+    "tests/test_clinical_intelligence.py": "cf02237034bad45b05b7fb9bb69d801120cc089ccd202f91d90f18b3866ef24f",
+    "tests/test_completion_gaps.py": "fe2f2658962a9402d801ab2d8afa88c8775fcbc68c36d7743ca8312268594c9e"
+  },
+  "contracts": {
+    "strict_json": "Rejects duplicate object keys, non-ASCII schema keys, excessive nesting, over-budget byte strings, invalid UTF-8/surrogates and non-finite numbers.",
+    "drafting_transport": {
+      "request_max_bytes": 65536,
+      "response_max_bytes": 262144,
+      "timeout_seconds_configured_range": [
+        1,
+        60
+      ],
+      "schema": "Pydantic Draft with extra=forbid"
+    },
+    "clinical_transport": {
+      "request_max_bytes": 65536,
+      "response_max_bytes": 262144,
+      "model_discovery_timeout_seconds": 10,
+      "inference_timeout_seconds": 60,
+      "schemas": "Pydantic strict extraction/verdict models with bounded counts and extra fields forbidden"
+    },
+    "failure_behavior": "Malformed, duplicate-key, over-size, timeout or schema-invalid provider responses are rejected without admitting partial drafts/verdicts; safe error codes omit response bodies."
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_domain_integrity.py -k \"untrusted_json or strict_json\" -q",
+      "status": "pass",
+      "result": "8 passed"
+    },
+    {
+      "command": "python -m pytest tests/test_verifier_fail_closed.py -k \"semantic_batches_reject or model_parser_bounds or clinical_model_transport_has_stage_timeouts\" -q",
+      "status": "pass",
+      "result": "6 passed"
+    },
+    {
+      "command": "python -m pytest tests/test_clinical_intelligence.py::test_local_json_provider_uses_bounded_transport_and_safe_usage tests/test_completion_gaps.py::test_model_transport_constrains_input_quotes_and_verifies_digest -q",
+      "status": "pass",
+      "result": "2 passed"
+    },
+    {
+      "command": "python -m pytest tests/test_drafting_provider_failures.py -q",
+      "status": "pass",
+      "result": "7 passed"
+    },
+    {
+      "command": "python -m ruff format --check services tests",
+      "status": "pass",
+      "result": "604 files formatted"
+    },
+    {
+      "command": "python -m ruff check services tests",
+      "status": "pass"
+    },
+    {
+      "command": "python -m mypy services --ignore-missing-imports",
+      "status": "pass",
+      "result": "303 source files"
+    }
+  ],
+  "note": "A loopback-server provider test was changed to use a deterministic fake opener after it failed to bind TCP in the local sandbox. The test retains assertions for request bounds, method, timeout, schema result and usage redaction.",
+  "clinical_release_authorized": false
+}

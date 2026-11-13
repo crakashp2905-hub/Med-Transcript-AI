@@ -5316,11 +5316,29 @@
       "id": "MTA-10-10",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Use strict JSON/schema outputs with duplicate-key detection, size cap and timeouts.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/strict_json.py",
+        "services/review/providers.py",
+        "services/review/clinical_models.py",
+        "tests/test_domain_integrity.py",
+        "tests/test_drafting_provider_failures.py",
+        "tests/test_verifier_fail_closed.py",
+        "tests/test_clinical_intelligence.py",
+        "tests/test_completion_gaps.py",
+        "evaluation\\reports\\master-task-mta-10-10-35c230c.json"
+      ],
+      "source_commit": "35c230c39a81d85910ebf1269540a1b196d84408",
+      "test_results": [
+        {
+          "report": "evaluation\\reports\\master-task-mta-10-10-35c230c.json",
+          "report_sha256": "fa433702e8edc57262e2b262a60e3f2e1dde121a35add545d5fa629b3680b05c",
+          "check": "strict_json_schema_duplicate_size_timeout_contract",
+          "status": "pass",
+          "detail": "23 targeted tests, Ruff format/lint and mypy (303 files) passed on exact source commit."
+        }
+      ],
       "blocker": null
     },
     {
