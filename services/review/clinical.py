@@ -83,7 +83,9 @@ def medication_associations(text):
 def atomic_spans(text):
     # Only split explicit new assertions. Never distribute an implicit negation.
     boundary = re.compile(
-        r"[;.!?](?=\s|$)(?!\d)|\b(?:and|but)\s+(?=(?:denies|denied|no|not|reports|has|takes|taking|stopped|restart|mother|father|metformin|warfarin|insulin|amoxicillin|penicillin)\b)",
+        r"[;.!?](?=\s|$)(?!\d)|\b(?:and|but)\s+(?=(?:denies|denied|no|not|reports|has|takes|taking|stopped|restart|mother|father|metformin|warfarin|insulin|amoxicillin|penicillin)\b)|\bbut\s+(?="
+        + SYMPTOMS.pattern
+        + r")",
         re.I,
     )
     start = 0
