@@ -30,6 +30,8 @@ def audit(audio, frequencies, maximum_crosstalk_db, expected_seconds=None):
         raise ValueError("Explicit nonpositive measurement tolerance required")
     energies = np.zeros((count, count))
     squares = np.zeros(count)
+    sums = np.zeros(count)
+    cross_products = np.zeros((count, count))
     frames = 0
     with wave.open(str(audio), "rb") as source:
         while data := source.readframes(rate):
@@ -45,16 +47,44 @@ def audit(audio, frequencies, maximum_crosstalk_db, expected_seconds=None):
                     axis=0
                 )
             squares += (samples * samples).sum(axis=0)
+            sums += samples.sum(axis=0)
+            cross_products += samples.T @ samples
             frames += len(samples)
     if not frames:
         raise ValueError("At least one complete second required")
     rows = []
+    means = sums / frames
     for channel in range(count):
         own = float(energies[channel, channel])
         other = float(sum(energies[channel, i] for i in range(count) if i != channel))
         ratio = 10 * math.log10(max(other, 1e-30) / max(own, 1e-30))
         mapped = int(np.argmax(energies[channel]))
         silent = float(squares[channel] / frames) < 1 / 32768**2
+        correlations = []
+        for other_channel in range(count):
+            if other_channel == channel:
+                continue
+            covariance = cross_products[channel, other_channel] / frames - (
+                means[channel] * means[other_channel]
+            )
+            own_variance = squares[channel] / frames - means[channel] ** 2
+            other_variance = (
+                squares[other_channel] / frames - means[other_channel] ** 2
+            )
+            denominator = math.sqrt(max(own_variance, 0) * max(other_variance, 0))
+            if denominator > 0:
+                correlations.append(abs(float(covariance / denominator)))
+        maximum_correlation = max(correlations, default=None)
+        if silent:
+            cross_talk_status = "unknown_insufficient_signal"
+        elif ratio <= maximum_crosstalk_db:
+            cross_talk_status = "clear_within_supplied_tolerance"
+        elif maximum_correlation is None:
+            cross_talk_status = "unknown_correlation_unavailable"
+        elif maximum_correlation >= 0.95:
+            cross_talk_status = "detected_correlated_leakage"
+        else:
+            cross_talk_status = "unknown_energy_correlation_disagree"
         rows.append(
             {
                 "channel_index": channel,
@@ -66,6 +96,9 @@ def audit(audio, frequencies, maximum_crosstalk_db, expected_seconds=None):
                 "mapping_matches": mapped == channel and not silent,
                 "crosstalk_within_supplied_tolerance": not silent
                 and ratio <= maximum_crosstalk_db,
+                "maximum_absolute_channel_correlation": maximum_correlation,
+                "cross_talk_status": cross_talk_status,
+                "cross_talk_correlation_threshold": 0.95,
             }
         )
     duration_ok = (
@@ -86,6 +119,7 @@ def audit(audio, frequencies, maximum_crosstalk_db, expected_seconds=None):
         ),
         "physical_hardware_validated": False,
         "clinical_speaker_accuracy_established": False,
+        "cross_talk_detector": "calibration_energy_ratio_plus_absolute_channel_correlation_v1",
         "limitations": [
             "Only known calibration tones; not clinical speech or diarization accuracy.",
             "Input hardware, channel routing and independent timing require an observed physical test.",
