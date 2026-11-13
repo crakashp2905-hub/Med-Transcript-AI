@@ -1,0 +1,41 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "a25db5ef9612d0794bb81e6d178fa7c053f10625",
+  "tasks": [
+    "MTA-08-18"
+  ],
+  "source_hashes": {
+    "tests/test_review_workflow.py": "8e8edc2a8e0ebbd0bd0f20d5281687ec263b8f1cdcf74b6bb2eaaa1f842d297a"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation"
+  },
+  "checks": {
+    "unreviewed_planned_order_cannot_be_approved_or_exported_as_order": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_review_workflow.py::test_unreviewed_planned_order_cannot_be_approved_or_exported_as_an_order -q (loopback enabled)",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m ruff check tests/test_review_workflow.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check tests/test_review_workflow.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Synthetic workflow only; approval means a clinician-reviewed note version, not a medication order.",
+    "Structured order creation and EHR writeback are not supported."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "b0d7f0cfcc1fcfcd4666758d682c810a67e906990ad93c1596a4bcf8925804e3"
+}

@@ -4173,11 +4173,21 @@
       "id": "MTA-08-18",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Prevent unreviewed drafted plans from being exported as clinician-authorized orders.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "tests/test_review_workflow.py",
+        "evaluation/reports/master-task-mta-08-18-a25db5e.json"
+      ],
+      "source_commit": "a25db5ef9612d0794bb81e6d178fa7c053f10625",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-18-a25db5e.json",
+          "report_sha256": "7a9e37d48cc5eb5cabc47010cdb001a40c47686536dbaeade8eb74214bf70e28",
+          "check": "unreviewed_planned_order_cannot_be_approved_or_exported_as_order",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
