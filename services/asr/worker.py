@@ -178,6 +178,7 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
         ).fetchone()[0]
 
     raw, metadata, profile, error, speaker_report = None, None, None, None, None
+    memory_admission_receipt = None
     work_started = time.perf_counter()
     span_request = (
         json.loads(job["retranscription"]) if job["retranscription"] else None
@@ -300,29 +301,16 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
                     "audio_provenance": span_provenance,
                 }
             lease.checkpoint()
-            from services.inference_slot import available_memory_bytes
-            from services.resource_arbiter import decide
+            from services.inference_slot import (
+                estimate_model_request_bytes,
+                memory_admission,
+            )
 
-            required = (
-                sum(
-                    (Path(profile.model_dir) / name).stat().st_size
-                    for name in profile.artifacts
-                )
-                * 2
-                + 512 * 1024**2
+            required = estimate_model_request_bytes(
+                Path(profile.model_dir) / name for name in profile.artifacts
             )
-            budget = min(
-                available_memory_bytes(),
-                int(
-                    os.environ.get("MED_TRANSCRIPT_LOCAL_MEMORY_BYTES", str(2**63 - 1))
-                ),
-            )
-            if (
-                decide(active_bytes=0, request_bytes=required, capacity_bytes=budget)[
-                    "action"
-                ]
-                != "admit"
-            ):
+            memory_admission_receipt = memory_admission(required)
+            if memory_admission_receipt["status"] != "admit":
                 raise ASRFailure("resource_capacity_exceeded")
             adapter = adapter_factory(profile)
             if metadata["channels"] > 1:
@@ -485,6 +473,10 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
                         "lease_checkpoint_seconds": lease.checkpoint_seconds,
                         "minimum_checkpoint_interval_seconds": 1.0,
                     }
+                    if memory_admission_receipt is not None:
+                        body["provenance"]["memory_admission"] = (
+                            memory_admission_receipt
+                        )
                     if speaker_report is not None:
                         from services.diarization import attach_speakers
 

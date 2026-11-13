@@ -5,6 +5,8 @@ import os
 from pathlib import Path
 from services.resource_arbiter import decide
 
+MIN_FREE_MEMORY_RESERVE_BYTES = 2 * 1024**3
+
 
 def available_memory_bytes():
     """OS available physical memory; return zero when it cannot be measured."""
@@ -44,6 +46,65 @@ def available_memory_bytes():
         return 0
 
 
+def admission_capacity_bytes(available_bytes=None, configured_bytes=None):
+    """Return usable inference headroom after retaining a fixed OS reserve."""
+    available = available_memory_bytes() if available_bytes is None else available_bytes
+    if type(available) is not int or available < 0:
+        raise ValueError("invalid_available_memory")
+    if configured_bytes is None:
+        configured = os.environ.get("MED_TRANSCRIPT_LOCAL_MEMORY_BYTES")
+        configured_bytes = int(configured) if configured is not None else available
+    if type(configured_bytes) is not int or configured_bytes < 0:
+        raise ValueError("invalid_local_memory_budget")
+    return max(0, min(available, configured_bytes) - MIN_FREE_MEMORY_RESERVE_BYTES)
+
+
+def memory_request_fits(requested_bytes):
+    """Check a model estimate against current usable headroom, fail closed."""
+    return memory_admission(requested_bytes)["status"] == "admit"
+
+
+def memory_admission(requested_bytes):
+    """Return a safe audit receipt for a serialized local inference request."""
+    if type(requested_bytes) is not int or requested_bytes < 0:
+        raise ValueError("invalid_memory_request")
+    available = available_memory_bytes()
+    configured = os.environ.get("MED_TRANSCRIPT_LOCAL_MEMORY_BYTES")
+    try:
+        configured_bytes = int(configured) if configured is not None else available
+    except ValueError:
+        configured_bytes = 0
+    capacity = admission_capacity_bytes(available, configured_bytes)
+    decision = decide(
+        active_bytes=0,
+        request_bytes=requested_bytes,
+        capacity_bytes=capacity,
+    )
+    return {
+        "status": "admit" if decision["action"] == "admit" else "defer",
+        "requested_bytes": requested_bytes,
+        "available_bytes_at_check": available,
+        "reserved_free_bytes": MIN_FREE_MEMORY_RESERVE_BYTES,
+        "admission_capacity_bytes": capacity,
+        "reason": decision.get("reason"),
+        "configured_memory_cap": configured is not None,
+    }
+
+
+def estimate_model_request_bytes(artifact_paths):
+    """Conservative ASR estimate: 2x artifact bytes plus 512 MiB runtime overhead."""
+    paths = list(artifact_paths)
+    if not paths:
+        raise ValueError("model_artifacts_required")
+    total = 0
+    for item in paths:
+        path = Path(item)
+        if path.is_symlink() or not path.is_file():
+            raise ValueError("model_artifact_unavailable")
+        total += path.stat().st_size
+    return total * 2 + 512 * 1024**2
+
+
 @contextmanager
 def local_inference_slot(requested_bytes=2 * 1024**3):
     path = Path(
@@ -70,19 +131,10 @@ def local_inference_slot(requested_bytes=2 * 1024**3):
         except (BlockingIOError, PermissionError):
             pass
         try:
-            available = available_memory_bytes()
-            configured = os.environ.get("MED_TRANSCRIPT_LOCAL_MEMORY_BYTES")
-            capacity = min(available, int(configured)) if configured else available
             # The shared file lock serializes ASR and Qwen processes, so under
             # this lock no competing admitted request has an active reservation.
             admitted = (
-                acquired
-                and decide(
-                    active_bytes=0,
-                    request_bytes=requested_bytes,
-                    capacity_bytes=capacity,
-                )["action"]
-                == "admit"
+                acquired and memory_admission(requested_bytes)["status"] == "admit"
             )
             yield admitted
         finally:
