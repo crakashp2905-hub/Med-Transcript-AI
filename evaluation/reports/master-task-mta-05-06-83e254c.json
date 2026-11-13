@@ -1,0 +1,25 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-05-06",
+  "source_commit": "83e254c3d21bcf0a7b90f46ef655d9ba752e9af6",
+  "checks": {
+    "channel_pipeline_smooths_turn_groups_and_requires_confirmation_before_duplicate_suppression": {
+      "status": "pass",
+      "test_count": 8
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "8 passed: channel turn unit and pipeline integration tests",
+    "ruff": "pass"
+  },
+  "runtime_sha256": "41ac7e1f270e177f5404e3e24095da1f3dfb649d793789068b6c96913fe3f04a",
+  "implementation": "Channel turn groups preserve every segment timestamp. Exact near-aligned transcript duplicates are only suppressed with an independently confirmed source-segment pair; otherwise both remain in the application transcript and the possible duplicate is flagged. Suppressed and candidate segments retain source IDs, channel indexes, time ranges, and a clinician-review log.",
+  "clinical_acceptance": false,
+  "limitations": [
+    "Text and time similarity alone cannot distinguish cross-talk from two people saying the same thing.",
+    "This repository does not yet provide an acoustic duplicate confirmation signal.",
+    "Channel identity is not a verified speaker role."
+  ]
+}

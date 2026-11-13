@@ -2677,21 +2677,22 @@
       "status": "verified",
       "description": "Add VAD postprocessing, turn-smoothing and duplicate-channel speech suppression with source-aligned logs.",
       "evidence": [
-        "evaluation/reports/master-task-mta-05-06-c6f316d.json",
+        "evaluation/reports/master-task-mta-05-06-83e254c.json",
         "services/asr/channel_turns.py",
         "services/asr/channels.py",
-        "tests/test_channel_turns.py"
+        "tests/test_channel_turns.py",
+        "tests/test_channels.py"
       ],
-      "source_commit": "c6f316d2fc2e0dfe908594497c62b512c78ffa1c",
+      "source_commit": "83e254c3d21bcf0a7b90f46ef655d9ba752e9af6",
       "test_results": [
         {
           "status": "pass",
-          "report": "evaluation/reports/master-task-mta-05-06-c6f316d.json",
-          "report_sha256": "72d0f9b076b41a3351876ddc9649a79c1c862aecc10ae2ebd1e68310d5397e29",
-          "check": "channel_pipeline_groups_turns_preserves_timestamps_and_suppresses_duplicates_with_audit"
+          "report": "evaluation/reports/master-task-mta-05-06-83e254c.json",
+          "report_sha256": "20f76e429667a138c7ff860fc68d7ce3c328a8c1efff0b1dbec87bfad057e84b",
+          "check": "channel_pipeline_smooths_turn_groups_and_requires_confirmation_before_duplicate_suppression"
         }
       ],
-      "blocker": "The engineering behavior is verified with deterministic tests; independent clinical safety and physical channel behavior remain unvalidated."
+      "blocker": "No independent acoustic duplicate confirmer or physical channel data; ambiguous duplicates stay visible and require clinician review."
     },
     {
       "id": "MTA-05-07",
