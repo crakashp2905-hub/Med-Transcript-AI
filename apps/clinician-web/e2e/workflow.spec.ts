@@ -21,7 +21,7 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByLabel('Review basis').fill('Reviewed every audible interval and the complete synthetic recording.');
   await page.getByLabel('Correction reason').fill('Confirmed the scripted speaker roles and reviewed all source statements.');
   await page.getByRole('button',{name:'Save source review',exact:true}).click();
-  await expect(page.locator('.notice')).toContainText('Saved as a new transcript version');
+  await expect(page.locator('.notice')).toContainText('Saved as a new source version');
   await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
   await expect(page.locator('.fact-card')).toHaveCount(6);
   const cards=page.locator('.fact-card');
@@ -62,7 +62,15 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeEnabled();
   await page.getByRole('button',{name:'Approve saved version',exact:false}).click();
   await expect(page.getByRole('heading',{name:'Approved record'})).toBeVisible();
-  await expect(page.getByRole('region',{name:'Source alongside note'})).toBeVisible();
+  const sourceContext=page.getByRole('region',{name:'Source alongside note'});
+  await expect(sourceContext).toBeVisible();
+  const waveform=sourceContext.getByRole('img',{name:/Synchronized audio waveform/});
+  if(await waveform.count())await expect(waveform).toBeVisible();
+  else await expect(sourceContext).toContainText('Waveform unavailable');
+  await expect(sourceContext).toContainText('patient');
+  await expect(page.getByRole('heading',{name:'Clinical facts'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'SOAP preview'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Verification'})).toBeVisible();
   await page.getByRole('button',{name:'▷ Evidence',exact:true}).first().click();
   await expect(page.locator('.citation-selected')).toHaveCount(1);
   const downloadPromise=page.waitForEvent('download');
