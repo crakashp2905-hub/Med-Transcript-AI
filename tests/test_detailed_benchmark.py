@@ -208,7 +208,9 @@ def test_detailed_suite_v6_preserves_source_digests_and_disables_resume():
     suite = json.loads(suite_path.read_text(encoding="utf-8"))
     predecessor = Path("evaluation/detailed-suite-v5.json")
     job = next(
-        item for item in suite["jobs"] if item["candidate_id"] == "faster-whisper-large-v3"
+        item
+        for item in suite["jobs"]
+        if item["candidate_id"] == "faster-whisper-large-v3"
     )
 
     assert suite["supersedes_suite"] == predecessor.as_posix()
@@ -234,7 +236,10 @@ def test_detailed_suite_v7_binds_resource_runner_and_requires_fresh_runs():
     assert suite["resource_measurement_policy"]["fresh_run_required"] is True
     assert suite["resource_measurement_policy"]["historical_reuse_permitted"] is False
     assert len(suite["jobs"]) == 9
-    assert all("resume_from" not in job and "resume_by_mode" not in job for job in suite["jobs"])
+    assert all(
+        "resume_from" not in job and "resume_by_mode" not in job
+        for job in suite["jobs"]
+    )
 
 
 def test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline():
@@ -283,7 +288,9 @@ def test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline():
     assert resource["cohort_scope"] == "full_process_run"
     assert resource["budget_status"] == "within_budget"
     assert resource["peak_resident_bytes"] < 16 * 1024**3
-    assert resource.get("cpu_seconds") is None  # historical report predates CPU receipts
+    assert (
+        resource.get("cpu_seconds") is None
+    )  # historical report predates CPU receipts
 
 
 def test_detailed_v4_large_v3_overlap_receipt_is_full_and_reproduces_baseline():
@@ -349,7 +356,9 @@ def test_detailed_v6_large_v3_speech_aware_receipt_is_fresh_and_full():
         ).read_text(encoding="utf-8")
     )
     job = next(
-        item for item in suite["jobs"] if item["candidate_id"] == "faster-whisper-large-v3"
+        item
+        for item in suite["jobs"]
+        if item["candidate_id"] == "faster-whisper-large-v3"
     )
 
     assert hashlib.sha256(report_path.read_bytes()).hexdigest() == (
@@ -389,17 +398,21 @@ def test_detailed_v6_large_v3_speech_aware_receipt_is_fresh_and_full():
 
 
 def test_detailed_v6_whisper_small_fixed_receipt_is_full_and_reproduces_baseline():
-    report_path = Path("evaluation/runs/meddistract-detailed-v6/whisper-small.fixed.json")
+    report_path = Path(
+        "evaluation/runs/meddistract-detailed-v6/whisper-small.fixed.json"
+    )
     report = json.loads(report_path.read_text(encoding="utf-8"))
     suite_path = Path("evaluation/detailed-suite-v6.json")
     suite = json.loads(suite_path.read_text(encoding="utf-8"))
     manifest = json.loads(Path(suite["manifest"]).read_text(encoding="utf-8"))
     baseline = json.loads(
-        Path("evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json").read_text(
-            encoding="utf-8"
-        )
+        Path(
+            "evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json"
+        ).read_text(encoding="utf-8")
     )
-    job = next(item for item in suite["jobs"] if item["candidate_id"] == "whisper-small")
+    job = next(
+        item for item in suite["jobs"] if item["candidate_id"] == "whisper-small"
+    )
 
     assert hashlib.sha256(report_path.read_bytes()).hexdigest() == (
         "5ba7cb52dc17d98932790f2456d0975b52da89afed30452cf5d08a808558ff36"

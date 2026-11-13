@@ -38,7 +38,11 @@ def test_preview_final_divergence_is_diagnostic_and_does_not_approve():
         (_preview(status="succeeded"), _final(), "preview_result_not_provisional"),
         (_preview(approvable=True), _final(), "preview_must_be_unapprovable"),
         (_preview(), _final(profile_sha256="c" * 64), "profile_mismatch"),
-        (_preview(), _final(transcript_version_id=None), "final_transcript_version_required"),
+        (
+            _preview(),
+            _final(transcript_version_id=None),
+            "final_transcript_version_required",
+        ),
     ],
 )
 def test_preview_divergence_rejects_unpaired_or_unsafe_inputs(preview, final, error):

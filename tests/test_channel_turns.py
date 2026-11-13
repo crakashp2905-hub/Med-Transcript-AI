@@ -76,8 +76,26 @@ def test_different_text_and_time_are_never_suppressed_as_duplicates():
 @pytest.mark.parametrize(
     ("row", "message"),
     [
-        ({"segment_id": "x", "channel_index": 0, "start_ms": 2, "end_ms": 1, "text": "bad"}, "invalid_source_aligned_channel_segment"),
-        ({"segment_id": "x", "channel_index": 0, "start_ms": 0, "end_ms": 1, "text": " "}, "invalid_source_aligned_channel_segment"),
+        (
+            {
+                "segment_id": "x",
+                "channel_index": 0,
+                "start_ms": 2,
+                "end_ms": 1,
+                "text": "bad",
+            },
+            "invalid_source_aligned_channel_segment",
+        ),
+        (
+            {
+                "segment_id": "x",
+                "channel_index": 0,
+                "start_ms": 0,
+                "end_ms": 1,
+                "text": " ",
+            },
+            "invalid_source_aligned_channel_segment",
+        ),
     ],
 )
 def test_invalid_timestamps_or_empty_text_fail_closed(row, message):

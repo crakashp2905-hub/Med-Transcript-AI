@@ -68,9 +68,7 @@ def audit(audio, frequencies, maximum_crosstalk_db, expected_seconds=None):
                 means[channel] * means[other_channel]
             )
             own_variance = squares[channel] / frames - means[channel] ** 2
-            other_variance = (
-                squares[other_channel] / frames - means[other_channel] ** 2
-            )
+            other_variance = squares[other_channel] / frames - means[other_channel] ** 2
             denominator = math.sqrt(max(own_variance, 0) * max(other_variance, 0))
             if denominator > 0:
                 correlations.append(abs(float(covariance / denominator)))

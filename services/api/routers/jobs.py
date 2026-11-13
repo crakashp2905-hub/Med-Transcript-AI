@@ -145,7 +145,9 @@ def register(app, services: ApiServices):
                 AND profile_sha256=? AND retranscription IS NULL AND preview_only=?
                 AND timeline_offset_ms=? AND COALESCE(preview_session_id,'')=COALESCE(?,'')""",
                 (
-                    upload["id"], profile.sha256, int(body.preview_only),
+                    upload["id"],
+                    profile.sha256,
+                    int(body.preview_only),
                     body.timeline_offset_ms,
                     str(body.preview_session_id) if body.preview_session_id else None,
                 ),
@@ -165,7 +167,9 @@ def register(app, services: ApiServices):
                         encounter(con, encounter_id, actor)["current_transcript"],
                         int(body.preview_only),
                         body.timeline_offset_ms,
-                        str(body.preview_session_id) if body.preview_session_id else None,
+                        str(body.preview_session_id)
+                        if body.preview_session_id
+                        else None,
                     ),
                 )
                 audit(con, actor, "transcription_queued", job_id)

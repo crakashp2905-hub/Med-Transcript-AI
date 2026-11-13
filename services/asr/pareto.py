@@ -184,7 +184,10 @@ def _pair_engine(
             if isinstance(value, (int, float))
         )
         if all(
-            isinstance((report.get("resource_measurement") or {}).get("cpu_seconds"), (int, float))
+            isinstance(
+                (report.get("resource_measurement") or {}).get("cpu_seconds"),
+                (int, float),
+            )
             for report in (left_resources, right_resources)
         )
         else None,
@@ -192,8 +195,12 @@ def _pair_engine(
             (
                 value
                 for value in (
-                    (left_resources.get("resource_measurement") or {}).get("peak_resident_bytes"),
-                    (right_resources.get("resource_measurement") or {}).get("peak_resident_bytes"),
+                    (left_resources.get("resource_measurement") or {}).get(
+                        "peak_resident_bytes"
+                    ),
+                    (right_resources.get("resource_measurement") or {}).get(
+                        "peak_resident_bytes"
+                    ),
                 )
                 if isinstance(value, (int, float))
             ),

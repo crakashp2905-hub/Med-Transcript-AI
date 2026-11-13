@@ -41,7 +41,9 @@ def compare_preview_to_final(preview: dict, final: dict) -> dict:
     preview_tokens = _tokens(
         " ".join(s.get("text", "") for s in preview.get("provisional_segments", []))
     )
-    final_tokens = _tokens(" ".join(s.get("text", "") for s in final.get("segments", [])))
+    final_tokens = _tokens(
+        " ".join(s.get("text", "") for s in final.get("segments", []))
+    )
     distance = _edit_distance(preview_tokens, final_tokens)
     denominator = max(len(preview_tokens), len(final_tokens), 1)
     return {

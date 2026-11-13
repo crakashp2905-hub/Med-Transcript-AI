@@ -114,7 +114,10 @@ def test_pareto_preserves_only_measured_resource_values(tmp_path):
     assert [row["cpu_seconds"] for row in result["single_engine"]] == [2.5, 3.5]
     assert result["two_engine_rover"][0]["cpu_seconds"] == 6.0
     assert result["two_engine_rover"][0]["maximum_process_memory_bytes"] == 2000
-    assert all(row["measured_local_inference_cost_usd"] == 0.0 for row in result["single_engine"])
+    assert all(
+        row["measured_local_inference_cost_usd"] == 0.0
+        for row in result["single_engine"]
+    )
 
 
 def test_pareto_rejects_different_source_audio(tmp_path):

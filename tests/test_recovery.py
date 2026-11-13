@@ -317,7 +317,15 @@ def test_additive_preview_migration_preserves_resumable_upload_offsets(tmp_path)
                 """INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,
                 profile_sha256,preview_only,timeline_offset_ms,preview_session_id)
                 VALUES (?, ?, ?, 'queued', ?, ?, 'transcription', ?, 1, 0, ?)""",
-                (str(uuid4()), uid, eid, "2026-10-27", "2026-10-27", "p" * 64, "session"),
+                (
+                    str(uuid4()),
+                    uid,
+                    eid,
+                    "2026-10-27",
+                    "2026-10-27",
+                    "p" * 64,
+                    "session",
+                ),
             )
 
 

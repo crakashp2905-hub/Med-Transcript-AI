@@ -157,8 +157,7 @@ def build_channels(
         ]
     if postprocessed["suppressed_segments"]:
         body["review_flags"] = sorted(
-            set(body["review_flags"])
-            | {"duplicate_channel_speech_requires_review"}
+            set(body["review_flags"]) | {"duplicate_channel_speech_requires_review"}
         )
     body["provenance"].pop("isolated_channel_pcm_sha256", None)
     body["provenance"]["inference_executed"] = any(

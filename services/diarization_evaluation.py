@@ -112,10 +112,10 @@ def score_turns(
         intersection = speaker_intersections.get((role, speaker), 0) if speaker else 0
         hypothesis_ms = predicted_ms.get(speaker, 0) if speaker else 0
         union = reference_ms[role] + hypothesis_ms - intersection
-        per_reference_speaker_jer[role] = (
-            1 - intersection / union if union else None
-        )
-    jer_values = [value for value in per_reference_speaker_jer.values() if value is not None]
+        per_reference_speaker_jer[role] = 1 - intersection / union if union else None
+    jer_values = [
+        value for value in per_reference_speaker_jer.values() if value is not None
+    ]
     return {
         "reference_speaker_ms": total,
         "missed_speaker_ms": miss,
