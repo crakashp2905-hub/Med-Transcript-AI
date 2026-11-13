@@ -94,6 +94,7 @@ def _single_engine(report, rows):
     latency = [float(row["wall_seconds"]) for row in cases]
     rtfs = [elapsed / _case_duration(row) for elapsed, row in zip(latency, cases)]
     model_load_seconds = report.get("model_load_seconds")
+    resource = report.get("resource_measurement") or {}
     return {
         "candidate_id": report["candidate_id"],
         "sample_count": len(cases),
@@ -110,15 +111,19 @@ def _single_engine(report, rows):
             PROJECT_MAX_NORMALIZED_WER,
         ),
         "model_load_seconds": model_load_seconds,
+        "cpu_seconds": resource.get("cpu_seconds"),
+        "maximum_process_memory_bytes": resource.get("peak_resident_bytes"),
+        "measured_local_inference_cost_usd": 0.0,
         "case_wall_seconds_sum": sum(latency),
         "case_wall_seconds_p50": _p50(latency),
         "case_wall_seconds_p95": _p95(latency),
         "real_time_factor_p95": _p95(rtfs),
-        "maximum_process_memory_bytes": None,
     }
 
 
-def _pair_engine(left_id, right_id, left, right, case_ids):
+def _pair_engine(
+    left_id, right_id, left, right, case_ids, left_resources, right_resources
+):
     rows, latencies, rtfs = [], [], []
     for case_id in sorted(case_ids):
         a, b = left[case_id], right[case_id]
@@ -170,7 +175,31 @@ def _pair_engine(left_id, right_id, left, right, case_ids):
         "serial_case_wall_seconds_p50": _p50(latencies),
         "serial_case_wall_seconds_p95": _p95(latencies),
         "serial_real_time_factor_p95": _p95(rtfs),
-        "maximum_process_memory_bytes": None,
+        "cpu_seconds": sum(
+            value
+            for value in (
+                (left_resources.get("resource_measurement") or {}).get("cpu_seconds"),
+                (right_resources.get("resource_measurement") or {}).get("cpu_seconds"),
+            )
+            if isinstance(value, (int, float))
+        )
+        if all(
+            isinstance((report.get("resource_measurement") or {}).get("cpu_seconds"), (int, float))
+            for report in (left_resources, right_resources)
+        )
+        else None,
+        "maximum_process_memory_bytes": max(
+            (
+                value
+                for value in (
+                    (left_resources.get("resource_measurement") or {}).get("peak_resident_bytes"),
+                    (right_resources.get("resource_measurement") or {}).get("peak_resident_bytes"),
+                )
+                if isinstance(value, (int, float))
+            ),
+            default=None,
+        ),
+        "measured_local_inference_cost_usd": 0.0,
         "latency_assumption": "sequential full-decode wall-time sum; no targeted crop savings assumed",
     }
 
@@ -186,7 +215,15 @@ def run(report_paths, suite_path, output_path):
         for report in reports
     }
     pairs = [
-        _pair_engine(a, b, candidates[a], candidates[b], case_ids)
+        _pair_engine(
+            a,
+            b,
+            candidates[a],
+            candidates[b],
+            case_ids,
+            next(report for report in reports if report["candidate_id"] == a),
+            next(report for report in reports if report["candidate_id"] == b),
+        )
         for a, b in combinations(sorted(candidates), 2)
     ]
     output = Path(output_path)
@@ -224,8 +261,8 @@ def run(report_paths, suite_path, output_path):
             "reason": "No predeclared risk-selected paired fallback inference report exists.",
         },
         "resource_limits": {
-            "asr_peak_memory_bytes": "unknown_not_measured",
-            "cpu_seconds": "unknown_not_recorded_in_source_reports",
+            "asr_peak_memory_bytes": "reported_per_engine_when_source_receipt_contains_measurement",
+            "cpu_seconds": "reported_per_engine_when_source_receipt_contains_measurement",
             "wall_latency": "measured_case_wall_time_from_frozen_reports",
         },
         "admission_maximum_normalized_wer": PROJECT_MAX_NORMALIZED_WER,

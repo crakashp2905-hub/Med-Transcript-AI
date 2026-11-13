@@ -22,7 +22,15 @@ def _write_suite(path, candidates):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _report(candidate, suite_sha256, hypothesis, *, failed=False, latency=2.0):
+def _report(
+    candidate,
+    suite_sha256,
+    hypothesis,
+    *,
+    failed=False,
+    latency=2.0,
+    resource_measurement=None,
+):
     return {
         "schema_version": "detailed_full_asr_v1",
         "candidate_id": candidate,
@@ -31,6 +39,7 @@ def _report(candidate, suite_sha256, hypothesis, *, failed=False, latency=2.0):
         "mode": "fixed",
         "complete": True,
         "model_load_seconds": 1.0,
+        "resource_measurement": resource_measurement,
         "cases": [
             {
                 "id": "case",
@@ -73,6 +82,39 @@ def test_pareto_report_pairs_engines_retains_failures_and_unknown_memory(tmp_pat
     assert pair["reference_words"] == 3
     assert pair["maximum_process_memory_bytes"] is None
     assert result["targeted_fallback"]["status"] == "not_evaluated"
+
+
+def test_pareto_preserves_only_measured_resource_values(tmp_path):
+    candidates = ["engine-a", "engine-b"]
+    suite = tmp_path / "suite.json"
+    suite_hash = _write_suite(suite, candidates)
+    paths = []
+    for candidate, peak, cpu in (("engine-a", 1000, 2.5), ("engine-b", 2000, 3.5)):
+        path = tmp_path / f"{candidate}.json"
+        path.write_text(
+            json.dumps(
+                _report(
+                    candidate,
+                    suite_hash,
+                    "patient denies fever",
+                    resource_measurement={
+                        "peak_resident_bytes": peak,
+                        "cpu_seconds": cpu,
+                    },
+                )
+            ),
+            encoding="utf-8",
+        )
+        paths.append(str(path))
+    result = run(paths, suite, tmp_path / "pareto.json")
+    assert [row["maximum_process_memory_bytes"] for row in result["single_engine"]] == [
+        1000,
+        2000,
+    ]
+    assert [row["cpu_seconds"] for row in result["single_engine"]] == [2.5, 3.5]
+    assert result["two_engine_rover"][0]["cpu_seconds"] == 6.0
+    assert result["two_engine_rover"][0]["maximum_process_memory_bytes"] == 2000
+    assert all(row["measured_local_inference_cost_usd"] == 0.0 for row in result["single_engine"])
 
 
 def test_pareto_rejects_different_source_audio(tmp_path):

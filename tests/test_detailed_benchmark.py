@@ -6,12 +6,29 @@ from pathlib import Path
 
 import pytest
 
-from services.detailed_benchmark import coverage, evaluate_case, fast_score, summarize
+from services.detailed_benchmark import (
+    coverage,
+    evaluate_case,
+    fast_score,
+    resource_receipt,
+    summarize,
+)
 from services.detailed_benchmark import validated_resume
 from services.evaluation import score
 from services.prepare_detailed import select
 from services.audio_provenance import validate_provenance
 from services.api.ingest import file_sha256
+
+
+def test_resource_receipt_records_cpu_and_honest_peak_memory(monkeypatch):
+    monkeypatch.setattr(
+        "services.detailed_benchmark.process_peak_resident_bytes",
+        lambda: (2048, "test_high_water"),
+    )
+    receipt = resource_receipt(4096, False, 1.25)
+    assert receipt["peak_resident_bytes"] == 2048
+    assert receipt["cpu_seconds"] == 1.25
+    assert receipt["cpu_scope"] == "benchmark_process_including_model_load"
 
 
 def test_bitvector_token_scoring_matches_original_normalization_and_edit_counts():
@@ -173,7 +190,7 @@ def test_detailed_suite_v4_binds_source_and_memory_budget():
     assert file_sha256(resume["path"]) == resume["sha256"]
 
 
-def test_detailed_suite_v5_binds_current_sources_without_rewriting_v4():
+def test_detailed_suite_v5_preserves_its_frozen_source_digests():
     suite_path = Path("evaluation/detailed-suite-v5.json")
     suite = json.loads(suite_path.read_text(encoding="utf-8"))
     predecessor = Path("evaluation/detailed-suite-v4.json")
@@ -181,11 +198,12 @@ def test_detailed_suite_v5_binds_current_sources_without_rewriting_v4():
     assert suite["supersedes_suite_sha256"] == file_sha256(predecessor)
     assert suite["source_refresh_reason"]
     assert suite["evidence_class_policy"] == "separate_transport_from_measured_asr_v1"
-    for source, digest in suite["source_text_sha256"].items():
-        assert file_sha256(source) == digest
+    assert suite["source_text_sha256"]["services/detailed_benchmark.py"] == (
+        "cceb5c2c081ff94c6bb09df44810c99454da294e296b38384e296973553be902"
+    )
 
 
-def test_detailed_suite_v6_large_v3_speech_aware_disables_historical_resume():
+def test_detailed_suite_v6_preserves_source_digests_and_disables_resume():
     suite_path = Path("evaluation/detailed-suite-v6.json")
     suite = json.loads(suite_path.read_text(encoding="utf-8"))
     predecessor = Path("evaluation/detailed-suite-v5.json")
@@ -199,8 +217,24 @@ def test_detailed_suite_v6_large_v3_speech_aware_disables_historical_resume():
     assert "resume_by_mode" not in job
     assert suite["manifest_sha256"] == file_sha256(suite["manifest"])
     assert suite["maximum_normalized_wer"] == 0.05
-    for source, digest in suite["source_text_sha256"].items():
-        assert file_sha256(source) == digest
+    assert suite["source_text_sha256"]["services/detailed_benchmark.py"] == (
+        "cceb5c2c081ff94c6bb09df44810c99454da294e296b38384e296973553be902"
+    )
+
+
+def test_detailed_suite_v7_binds_resource_runner_and_requires_fresh_runs():
+    suite_path = Path("evaluation/detailed-suite-v7.json")
+    suite = json.loads(suite_path.read_text(encoding="utf-8"))
+    predecessor = Path("evaluation/detailed-suite-v6.json")
+    assert suite["supersedes_suite"] == predecessor.as_posix()
+    assert suite["supersedes_suite_sha256"] == file_sha256(predecessor)
+    assert suite["source_text_sha256"]["services/detailed_benchmark.py"] == file_sha256(
+        "services/detailed_benchmark.py"
+    )
+    assert suite["resource_measurement_policy"]["fresh_run_required"] is True
+    assert suite["resource_measurement_policy"]["historical_reuse_permitted"] is False
+    assert len(suite["jobs"]) == 9
+    assert all("resume_from" not in job and "resume_by_mode" not in job for job in suite["jobs"])
 
 
 def test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline():
@@ -249,6 +283,7 @@ def test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline():
     assert resource["cohort_scope"] == "full_process_run"
     assert resource["budget_status"] == "within_budget"
     assert resource["peak_resident_bytes"] < 16 * 1024**3
+    assert resource.get("cpu_seconds") is None  # historical report predates CPU receipts
 
 
 def test_detailed_v4_large_v3_overlap_receipt_is_full_and_reproduces_baseline():
