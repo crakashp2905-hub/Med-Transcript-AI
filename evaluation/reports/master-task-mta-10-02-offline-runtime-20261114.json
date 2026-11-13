@@ -1,0 +1,52 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-02",
+  "source_commit": "d6a0831c903907f591252992d7755f1b5f564c6c",
+  "source_files": {
+    "services/omi_adapter.py": "ef9082fc84520812ac57863c73f8364288727f683b022374c0c99ca0e772bdb3",
+    "services/asr/profiles.py": "8f2624d085ecf6a64a8493398c04dd0abe815d53414092f02403d5567727e912",
+    "services/api/main.py": "a6418f86c21a15914f95571c9d84b03ce937417eba0a54ad3c96d9859a9dfa64",
+    "services/launch.py": "109a8ce7fd0ec032ebf7f02975c5f431f381a2a18445a8a7e3095c41a070ea92",
+    "tests/test_omi_adapter.py": "f6fbaf1ab393263bd7d7f9869df49f3a6adfc09ee69ca0ffbad98224aff2b3bf",
+    "tests/test_model_inventory.py": "222a16587a9867607109bfd341265b546b4021cd35845ee14a27432e6bc5d3a0",
+    "services/asr/adapter.py": "93c470d5ae573ccc2518589b8a03aa482c3c187dd15270b791547c569f9843f7",
+    "services/qwen_adapter.py": "73abf0ee2a9dda73f257c917574d1b5e363be3f2f897fc2901478d5c1aace779",
+    "services/review/providers.py": "9b7831e3cabe4efca815b07abd2121a181a1d950a9d86db6c3bdea1fb36930db"
+  },
+  "captured_at_utc": "2026-11-13T21:18:35.321768+00:00",
+  "checks": [
+    {
+      "name": "offline_runtime_and_provider_tests",
+      "command": "python -m pytest tests/test_feature_flags.py tests/test_drafting_provider_failures.py tests/test_omi_adapter.py tests/test_omi_backend.py tests/test_model_inventory.py --confcutdir=tests -q",
+      "status": "pass",
+      "result": "21 passed"
+    },
+    {
+      "name": "ruff",
+      "command": "ruff check and ruff format --check on changed Python files",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe_model_loading_search",
+      "command": "rg -n \"from_pretrained|trust_remote_code|snapshot_download|hf_hub_download|_download_or_resolve_gguf\" services -g \"*.py\"",
+      "status": "pass",
+      "result": "No matches in application services."
+    }
+  ],
+  "implemented_controls": [
+    "Application launch accepts only five code-allowlisted local ASR profile manifest digests.",
+    "ASR model artifact names and SHA-256 values are checked before inference; Faster Whisper uses local_files_only=True.",
+    "Omi adapter rejects non-pinned revision, remote/nonexistent paths, symlinks and changed GGUF digest; it no longer calls the download-capable resolver.",
+    "Qwen adapter checks local provisioning manifest and every artifact digest before constructing sherpa CPU recognizer.",
+    "Drafting defaults to deterministic; provider mode requires explicit opt-in; hosted mode is prohibited when STRICT_OFFLINE=1; provider errors produce no output rather than switching providers."
+  ],
+  "limitations": [
+    "The code allowlist is an integrity pin, not a cryptographic signature; source/deployment integrity and review of allowlist changes remain necessary.",
+    "Download/provisioning scripts exist for deliberate dataset/model setup; this report covers application inference paths, not operator-invoked setup commands.",
+    "Application inference was not executed because candidate runtime packages are missing in this Python environment."
+  ],
+  "external_calls_attempted": 0,
+  "paid_calls": 0,
+  "model_inference_performed": false,
+  "clinical_release": false
+}

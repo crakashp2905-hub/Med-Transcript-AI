@@ -5069,12 +5069,31 @@
       "id": "MTA-10-02",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Prohibit network downloads, dynamic remote code, unsigned model swapping or silent inference-provider fallback.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/omi_adapter.py",
+        "services/asr/profiles.py",
+        "services/api/main.py",
+        "services/launch.py",
+        "services/asr/adapter.py",
+        "services/qwen_adapter.py",
+        "services/review/providers.py",
+        "tests/test_omi_adapter.py",
+        "tests/test_model_inventory.py",
+        "evaluation/reports/master-task-mta-10-02-offline-runtime-20261114.json"
+      ],
+      "source_commit": "d6a0831c903907f591252992d7755f1b5f564c6c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-10-02-offline-runtime-20261114.json",
+          "report_sha256": "93634c2113021efe04f70271cde798552f9356cb2c8e31e7cb3cdaf64da3c813",
+          "check": "offline_runtime_and_provider_tests",
+          "status": "pass",
+          "detail": "21 passed; Ruff and format checks passed; search found no unsafe dynamic model-loading/download resolver calls in application services."
+        }
+      ],
+      "blocker": "Application inference was not run because local candidate runtime packages are missing. The profile SHA allowlist is an integrity pin rather than a cryptographic signature; deployment source integrity remains part of the trust boundary."
     },
     {
       "id": "MTA-10-03",
