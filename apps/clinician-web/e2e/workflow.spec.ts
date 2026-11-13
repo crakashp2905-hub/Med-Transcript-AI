@@ -19,6 +19,9 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   const searchInput=search.getByLabel('Transcript search terms');
   await searchInput.fill('cough');
   await expect(search.getByRole('status')).toContainText('matching transcript turns');
+  await searchInput.press('Tab');
+  expect(await page.evaluate(()=>document.activeElement?.textContent)).toContain('Focus next match');
+  await searchInput.press('Shift+Tab');
   await searchInput.press('Enter');
   await expect(page.locator('.segment.search-match')).toHaveCount(1);
   expect(await page.evaluate(()=>document.activeElement?.id.startsWith('transcript-segment-'))).toBe(true);
@@ -55,6 +58,11 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByLabel('Correction reason').fill('Confirmed the scripted speaker roles and reviewed all source statements.');
   await page.getByRole('button',{name:'Save source review',exact:true}).click();
   await expect(page.locator('.notice')).toContainText('Saved as a new source version');
+  await page.route('**/v1/encounters/*/facts',route=>route.fulfill({status:503,json:{detail:'synthetic accessibility error'}}));
+  await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
+  await expect(page.getByRole('alert')).toBeVisible();
+  await page.unroute('**/v1/encounters/*/facts');
+  await page.getByRole('button',{name:'Dismiss error'}).click();
   await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
   await expect(page.locator('.fact-card')).toHaveCount(6);
   const cards=page.locator('.fact-card');
@@ -140,6 +148,11 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(context).toContainText('Historical source bound to this saved note');
   await expect(context).toContainText('I have had a cough for three days');
   await expect(context).not.toContainText('corrected synthetic source now reports headache');
+  const sourceTurn=context.locator('.context-turns p').first();
+  const sourceText=await sourceTurn.textContent()||'';
+  await sourceTurn.evaluate((element,text)=>{element.textContent=text;},'long-clinical-token-'.repeat(120));
+  expect(await sourceTurn.evaluate(element=>element.scrollWidth<=element.clientWidth)).toBe(true);
+  await sourceTurn.evaluate((element,text)=>{element.textContent=text;},sourceText);
   await expect(page.getByRole('heading',{name:'Historical verification',exact:true})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Historical approved record',exact:true})).toBeVisible();
   await page.getByRole('button',{name:'▷ Evidence',exact:true}).first().click();
