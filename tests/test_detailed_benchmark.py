@@ -605,3 +605,59 @@ def test_detailed_v7_omi_native_empty_fixed_receipt_is_fresh_and_failure_inclusi
     assert resource["peak_resident_bytes"] == 1265270784
     assert resource["peak_resident_bytes"] < 16 * 1024**3
     assert resource["cpu_seconds"] == 9665.71875
+
+
+def test_detailed_v7_tiny_en_fixed_receipt_reproduces_baseline_with_fresh_resources():
+    report_path = Path(
+        "evaluation/runs/meddistract-detailed-v7/faster-whisper-tiny.en.fixed.json"
+    )
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    suite_path = Path("evaluation/detailed-suite-v7.json")
+    suite = json.loads(suite_path.read_text(encoding="utf-8"))
+    manifest = json.loads(Path(suite["manifest"]).read_text(encoding="utf-8"))
+    baseline = json.loads(
+        Path(
+            "evaluation/runs/meddistract-detailed-v2/faster-whisper-tiny.en.fixed.json"
+        ).read_text(encoding="utf-8")
+    )
+    job = next(
+        item for item in suite["jobs"] if item["candidate_id"] == "faster-whisper-tiny.en"
+    )
+
+    assert hashlib.sha256(report_path.read_bytes()).hexdigest() == (
+        "06da69961c07be44c3de5c72f799a78d031b0748a1231931e483eee0ae7ef6cd"
+    )
+    assert report["complete"] is True
+    assert report["mode"] == "fixed"
+    assert report["candidate_id"] == "faster-whisper-tiny.en"
+    assert report["suite_sha256"] == hashlib.sha256(suite_path.read_bytes()).hexdigest()
+    assert report["manifest_sha256"] == suite["manifest_sha256"]
+    assert "resume_from" not in job
+    assert "resume_by_mode" not in job
+    assert {case["id"] for case in report["cases"]} == {
+        case["group_id"] for case in manifest["cases"]
+    }
+    assert len(report["cases"]) == 16
+    assert all(not case["failed"] for case in report["cases"])
+    assert all(case["input_coverage_complete"] for case in report["cases"])
+    assert all(
+        not chunk["failed"] for case in report["cases"] for chunk in case["chunks"]
+    )
+    for condition in ("clean", "distracted"):
+        observed = report["conditions"][condition]
+        frozen = baseline["conditions"][condition]
+        assert observed["samples"] == 8
+        assert observed["failed_samples"] == 0
+        assert observed["reference_words"] == 13683
+        assert observed["normalized_edits"] == frozen["normalized_edits"]
+        assert observed["normalized_wer"] == frozen["normalized_wer"]
+        assert observed["wall_seconds"] > 0
+        assert observed["wer_gate"]["maximum_normalized_wer"] == 0.05
+        assert observed["wer_gate"]["status"] == "fail"
+    resource = report["resource_measurement"]
+    assert resource["status"] == "measured"
+    assert resource["cohort_scope"] == "full_process_run"
+    assert resource["budget_status"] == "within_budget"
+    assert resource["peak_resident_bytes"] == 280338432
+    assert resource["peak_resident_bytes"] < 16 * 1024**3
+    assert resource["cpu_seconds"] == 2043.65625

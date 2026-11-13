@@ -804,3 +804,14 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   The focused regression binds the fresh suite, manifest, full coverage,
   failure-inclusive scoring, unchanged gate and resource receipt. C10 remains
   partial pending the remaining modes and candidates.
+- **MTA-ASR-C10 tiny.en fixed fresh baseline reproduction:** Suite v7 ran all 16
+  manifest cases with full audio coverage and zero failed cases/chunks. It
+  exactly reproduces the immutable v2 counts: clean 4,415/13,683 (32.2663%)
+  and distracted 4,689/13,683 (34.2688%). Fresh condition wall times were
+  264.7/272.7 seconds after a 6.8-second model load. Full-process peak working
+  set was 280,338,432 bytes and CPU was 2,043.7 seconds, within the 16 GiB
+  budget. Both conditions fail the unchanged <=5% gate. The receipt SHA-256 is
+  `06da69961c07be44c3de5c72f799a78d031b0748a1231931e483eee0ae7ef6cd`.
+  Its focused regression binds the complete fresh cohort to the v2 edit counts,
+  gate and process-level resource receipt. C10 remains partial while other
+  predeclared modes and candidates lack fresh receipts.
