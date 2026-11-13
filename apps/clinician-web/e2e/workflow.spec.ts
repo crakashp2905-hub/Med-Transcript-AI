@@ -39,6 +39,11 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
   await expect(page.getByText('Ambiguous statement',{exact:true})).toBeVisible();
   await expect(page.getByRole('region',{name:'critical verification issues'})).toBeVisible();
+  await expect(page.locator('.verification-groups > section').first()).toHaveAttribute('aria-label','critical verification issues');
+  const criticalDetails=page.getByRole('region',{name:'critical verification issues'}).locator('details').first();
+  await criticalDetails.locator('summary').click();
+  await expect(criticalDetails).toContainText('Fields:');
+  await expect(criticalDetails).toContainText('Validator:');
   await page.getByRole('button',{name:'Review statement and source',exact:true}).first().click();
   expect(await page.evaluate(()=>document.activeElement?.id.startsWith('fact-'))).toBe(true);
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeDisabled();
