@@ -21,7 +21,12 @@ def test_synthetic_bundle_keeps_evidence_hashes_and_omits_clinical_text():
         "sha256": "a" * 64,
         "duration_ms": 12345,
         "segments": [
-            {"segment_id": "segment-secret", "start_ms": 0, "end_ms": 1000, "text": "source-secret"}
+            {
+                "segment_id": "segment-secret",
+                "start_ms": 0,
+                "end_ms": 1000,
+                "text": "source-secret",
+            }
         ],
         "untranscribed_intervals": [],
         "provenance": {"engine": "local-test-engine"},
@@ -104,7 +109,9 @@ def test_audit_bundle_labels_event_truncation():
 
 def test_encounter_screen_has_one_click_bundle_download_and_fixture_scope():
     root = Path(__file__).resolve().parents[1]
-    hook = (root / "apps/clinician-web/src/hooks/useEncounterWorkspace.ts").read_text(encoding="utf-8")
+    hook = (root / "apps/clinician-web/src/hooks/useEncounterWorkspace.ts").read_text(
+        encoding="utf-8"
+    )
     app = (root / "apps/clinician-web/src/App.tsx").read_text(encoding="utf-8")
     assert "/audit-bundle" in hook
     assert "Download synthetic audit bundle" in app

@@ -22,4 +22,3 @@ def test_alternate_summary_retains_each_claims_evidence_and_caveats():
     assert "sourceTranscriptId===note.transcript_version_id" in component
     assert "readOnly disabled={!eligible}" in component
     assert "sourceReviewFlags={sourceForNote?.review_flags||[]}" in screen
-

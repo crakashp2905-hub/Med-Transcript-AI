@@ -18,8 +18,10 @@ from services.api.contracts import IdempotencyKey
 def note_version_metadata(item, approval, current_note_id):
     body = json.loads(item["body"])
     return {
-        "id": item["id"], "version": item["version"],
-        "sha256": item["sha256"], "created_at": item["created_at"],
+        "id": item["id"],
+        "version": item["version"],
+        "sha256": item["sha256"],
+        "created_at": item["created_at"],
         "owner_clinician_id": body.get("creator"),
         "transcript_version_id": body.get("transcript_version_id"),
         "model_lineage": body.get("provenance", {}).get("engine", "unknown"),
@@ -32,8 +34,10 @@ def note_version_metadata(item, approval, current_note_id):
 def transcript_version_metadata(item, clinician_id, current_transcript_id):
     body = json.loads(item["body"])
     return {
-        "id": item["id"], "version": item["version"],
-        "sha256": item["sha256"], "created_at": item["created_at"],
+        "id": item["id"],
+        "version": item["version"],
+        "sha256": item["sha256"],
+        "created_at": item["created_at"],
         "owner_clinician_id": str(clinician_id),
         "model_lineage": body.get("provenance", {}).get("engine", "unknown"),
         "current": item["id"] == current_transcript_id,
@@ -88,9 +92,9 @@ def redacted_synthetic_audit_bundle(
             "untranscribed_interval_count": len(
                 transcript.get("untranscribed_intervals", []) if transcript else []
             ),
-            "model_or_engine": (transcript or {}).get("provenance", {}).get(
-                "profile_id"
-            )
+            "model_or_engine": (transcript or {})
+            .get("provenance", {})
+            .get("profile_id")
             or (transcript or {}).get("provenance", {}).get("engine"),
         },
         "note": {
@@ -110,8 +114,7 @@ def redacted_synthetic_audit_bundle(
         },
         "approval": {"present": approval is not None},
         "exports": [
-            {"format": row["format"], "sha256": row["sha256"]}
-            for row in exports
+            {"format": row["format"], "sha256": row["sha256"]} for row in exports
         ],
         "audit_events": [
             {"time": row["time"], "action": row["action"]}
@@ -164,9 +167,11 @@ def register(app, services: ReviewService):
                 "WHERE encounter=? ORDER BY version DESC LIMIT 100",
                 (str(eid),),
             ):
-                transcripts.append(transcript_version_metadata(
-                    item, actor.clinician_id, row["current_transcript"]
-                ))
+                transcripts.append(
+                    transcript_version_metadata(
+                        item, actor.clinician_id, row["current_transcript"]
+                    )
+                )
             return {
                 "notes": notes,
                 "transcripts": transcripts,
@@ -225,13 +230,19 @@ def register(app, services: ReviewService):
                     if row["current_transcript"]
                     else (None, None)
                 )
-                transcript = {**source, "sha256": source_row["sha256"]} if source else None
+                transcript = None
+                if source is not None:
+                    if source_row is None:
+                        raise HTTPException(409, "persisted_artifact_integrity_failure")
+                    transcript = {**source, "sha256": source_row["sha256"]}
                 note_row, note = (
                     document(con, eid, row["current_note"])
                     if row["current_note"]
                     else (None, None)
                 )
                 if note:
+                    if note_row is None:
+                        raise HTTPException(409, "persisted_artifact_integrity_failure")
                     note = {**note, "sha256": note_row["sha256"]}
                     _, verification = document(
                         con, eid, note["verification_report_id"], "verification"
@@ -239,7 +250,9 @@ def register(app, services: ReviewService):
                     approval_row = con.execute(
                         "SELECT * FROM approvals WHERE note=?", (note["id"],)
                     ).fetchone()
-                    approval = approval_body(con, approval_row) if approval_row else None
+                    approval = (
+                        approval_body(con, approval_row) if approval_row else None
+                    )
                 else:
                     verification, approval = None, None
                 export_rows = con.execute(
@@ -247,8 +260,23 @@ def register(app, services: ReviewService):
                     (str(eid),),
                 ).fetchall()
                 resource_ids = {str(eid)}
-                for table in ("uploads", "jobs", "documents", "transcript_versions", "approvals", "exports", "authorizations", "review_metrics", "model_proposals"):
-                    resource_ids.update(r[0] for r in con.execute(f"SELECT id FROM {table} WHERE encounter=?", (str(eid),)))
+                for table in (
+                    "uploads",
+                    "jobs",
+                    "documents",
+                    "transcript_versions",
+                    "approvals",
+                    "exports",
+                    "authorizations",
+                    "review_metrics",
+                    "model_proposals",
+                ):
+                    resource_ids.update(
+                        r[0]
+                        for r in con.execute(
+                            f"SELECT id FROM {table} WHERE encounter=?", (str(eid),)
+                        )
+                    )
                 matching_events = []
                 resources = sorted(resource_ids)
                 for offset in range(0, len(resources), 400):
@@ -277,7 +305,9 @@ def register(app, services: ReviewService):
         return Response(
             content=json.dumps(bundle, indent=2, ensure_ascii=False),
             media_type="application/json",
-            headers={"Content-Disposition": 'attachment; filename="synthetic-case-audit-bundle.json"'},
+            headers={
+                "Content-Disposition": 'attachment; filename="synthetic-case-audit-bundle.json"'
+            },
         )
 
     @app.post("/v1/encounters/{eid}/deletion-requests", status_code=202)

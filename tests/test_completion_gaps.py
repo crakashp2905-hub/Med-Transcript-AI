@@ -125,13 +125,17 @@ def test_version_comparison_is_scoped_and_includes_structured_changes(setup):
     assert client.get(route, headers=headers("b" * 40)).status_code == 404
     versions = client.get(f"/v1/encounters/{eid}/versions", headers=headers()).json()
     assert len(versions["notes"]) == 2
-    current_note = next(item for item in versions["notes"] if item["id"] == second["id"])
+    current_note = next(
+        item for item in versions["notes"] if item["id"] == second["id"]
+    )
     assert current_note["current"] is True
     assert current_note["owner_clinician_id"]
     assert current_note["model_lineage"] == "deterministic_reviewed_facts_template_v1"
     assert current_note["transcript_version_id"] == tx["id"]
     assert current_note["approval_status"] == "review_required"
-    source_version = next(item for item in versions["transcripts"] if item["id"] == tx["id"])
+    source_version = next(
+        item for item in versions["transcripts"] if item["id"] == tx["id"]
+    )
     assert source_version["current"] is True
     assert source_version["model_lineage"]
     assert (
