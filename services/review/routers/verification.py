@@ -128,5 +128,5 @@ def register(app, services: ReviewService):
             result = save_note(
                 con, eid, tr, tx, values, actor, nr["id"], old["amendment_reason"]
             )
-            audit(con, actor, "finding_corrected_new_version", str(fid))
+            audit(con, actor, "finding_corrected_new_version", result["note"]["id"])
             return result

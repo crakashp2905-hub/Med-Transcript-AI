@@ -200,6 +200,16 @@ def test_full_review_approval_export_and_amendment(setup):
         ).fetchone()
     assert tuple(preserved_approved_row) == tuple(original_approved_row)
     assert approve(client, eid, result["note"]).status_code == 412
+    audit_items = client.get(f"/v1/encounters/{eid}/audit", headers=headers()).json()[
+        "items"
+    ]
+    audit_actions = {item["action"] for item in audit_items}
+    assert {
+        "clinical_facts_reviewed",
+        "exact_version_approved",
+        "approved_export_created",
+        "note_version_created",
+    } <= audit_actions
 
 
 def test_ambiguous_medication_blocks_and_correction_creates_new_version(setup):
@@ -245,6 +255,13 @@ def test_ambiguous_medication_blocks_and_correction_creates_new_version(setup):
         is False
     )
     assert approve(client, eid, response.json()["note"]).status_code == 201
+    actions = {
+        item["action"]
+        for item in client.get(f"/v1/encounters/{eid}/audit", headers=headers()).json()[
+            "items"
+        ]
+    }
+    assert "finding_corrected_new_version" in actions
 
 
 @pytest.mark.parametrize(
@@ -289,6 +306,13 @@ def test_ambiguous_source_cannot_clear_critical_contradiction(
     )
     assert warning["mismatch_fields"]
     assert approve(client, eid, result["note"]).status_code == 409
+    actions = {
+        item["action"]
+        for item in client.get(f"/v1/encounters/{eid}/audit", headers=headers()).json()[
+            "items"
+        ]
+    }
+    assert "clinical_clarification_recorded" in actions
 
 
 def test_legacy_approval_is_preserved_but_new_export_rechecks_current_rules(
@@ -653,3 +677,8 @@ def test_deletion_tombstones_access_and_blocks_processing(setup):
 
     with Store(path).transaction() as con:
         assert processing_allowed(con, eid) is False
+        actions = {
+            row[0]
+            for row in con.execute("SELECT action FROM audit WHERE resource=?", (eid,))
+        }
+        assert "encounter_tombstoned" in actions

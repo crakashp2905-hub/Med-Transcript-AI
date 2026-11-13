@@ -209,4 +209,8 @@ class ReviewService:
         advance_persisted(con, eid, Stage.DRAFTED)
         advance_persisted(con, eid, Stage.VERIFIED)
         audit(con, actor, "note_version_created", nid)
+        if any(value["reviewed"] for value in values):
+            audit(con, actor, "clinical_facts_reviewed", nid)
+        if any(value["clarification"].strip() for value in values):
+            audit(con, actor, "clinical_clarification_recorded", nid)
         return {"note": {**body, "sha256": digest}, "verification": report}
