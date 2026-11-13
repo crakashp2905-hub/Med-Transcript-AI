@@ -6,9 +6,12 @@ from services.relation_tuples import validate as validate_relations
 from services.review.relationships import validate_graph
 
 
-def enrich_fact_proposal(*, transcript, facts, relationships):
+def enrich_fact_proposal(
+    *, transcript, facts, relationships, relationship_transcript=None
+):
     graph = validate_proposal(transcript, facts)
-    relation_graph = validate_graph(relationships, transcript)
+    relation_transcript = relationship_transcript or transcript
+    relation_graph = validate_graph(relationships, relation_transcript)
     checked = validate_relations(relationships["relations"])
     if not checked["all_valid"]:
         raise ValueError("clinical_relationship_output_rejected")

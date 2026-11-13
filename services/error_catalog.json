@@ -294,6 +294,10 @@
       "category": "availability",
       "message": "Another local model request is running. Your saved note is unchanged; retry after it finishes."
     },
+    "manual_fact_owner_mismatch": {
+      "category": "authorization",
+      "message": "Only the clinician who entered a manual fact can use it in this note."
+    },
     "model_integrity_failure": {
       "category": "conflict",
       "message": "The request could not be completed. Review the current encounter and try again."

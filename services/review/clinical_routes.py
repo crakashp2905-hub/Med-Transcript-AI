@@ -252,6 +252,7 @@ def register(
                 transcript=tx,
                 facts=result.get("facts", []),
                 relationships=result["source_relationships"],
+                relationship_transcript=analysis_tx,
             )
         except ValueError:
             raise HTTPException(422, "clinical_evidence_graph_rejected") from None

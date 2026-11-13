@@ -606,7 +606,7 @@ def test_manual_fact_owner_is_bound_to_authenticated_clinician(setup):
     )
 
     assert response.status_code == 403
-    assert response.json()["detail"] == "manual_fact_owner_mismatch"
+    assert response.json()["code"] == "manual_fact_owner_mismatch"
 
 
 def test_concurrent_approval_retries_create_one_approval(setup):
