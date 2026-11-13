@@ -333,6 +333,52 @@ def test_complete_synthetic_encounter_preserves_history_negations_medications_an
     )
 
 
+def test_unreviewed_planned_order_cannot_be_approved_or_exported_as_an_order(setup):
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path, "I ordered warfarin 5 mg daily.")
+    assert len(facts) == 1
+    facts[0].update(
+        action="order",
+        temporality="planned",
+        reviewed=False,
+        critical_reviewed=False,
+    )
+    unreviewed = draft(client, eid, tx, facts)
+    assert unreviewed["verification"]["gate"] == "blocked"
+    assert approve(client, eid, unreviewed["note"]).status_code == 409
+    with sqlite3.connect(path) as con:
+        assert con.execute("SELECT COUNT(*) FROM approvals").fetchone()[0] == 0
+        assert con.execute("SELECT COUNT(*) FROM exports").fetchone()[0] == 0
+
+    facts[0].update(reviewed=True, critical_reviewed=True)
+    reviewed = draft(client, eid, tx, facts)
+    assert reviewed["verification"]["gate"] == "ready"
+    approval = approve(client, eid, reviewed["note"])
+    assert approval.status_code == 201, approval.text
+    json_export = client.post(
+        f"/v1/encounters/{eid}/exports",
+        headers=headers(),
+        json={"approval_id": approval.json()["id"], "format": "json"},
+    )
+    fhir_export = client.post(
+        f"/v1/encounters/{eid}/exports",
+        headers=headers(),
+        json={"approval_id": approval.json()["id"], "format": "fhir"},
+    )
+    assert json_export.status_code == fhir_export.status_code == 201
+    json_document = client.get(
+        json_export.json()["download_url"], headers=headers()
+    ).json()
+    fhir_document = client.get(
+        fhir_export.json()["download_url"], headers=headers()
+    ).json()
+    assert json_document["note"]["facts"][0]["temporality"] == "planned"
+    assert json_document["note"]["facts"][0]["action"] == "order"
+    assert json_document["status"] == "approved"
+    assert fhir_document["resourceType"] == "DocumentReference"
+    assert fhir_document["resourceType"] != "MedicationRequest"
+
+
 def test_ambiguous_medication_blocks_and_correction_creates_new_version(setup):
     client, path, _ = setup
     eid, tx, facts = prepare(client, path, "I take metformin 500 or 850 mg.")
