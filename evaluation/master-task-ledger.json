@@ -4866,12 +4866,51 @@
       "id": "MTA-09-18",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Provide one-click downloadable synthetic case audit bundle with redacted evidence summary.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/review/routers/history.py",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/src/App.tsx",
+        "apps/clinician-web/src/workspaceTypes.ts",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "tests/test_synthetic_case_audit_bundle.py",
+        "evaluation/reports/master-task-mta-09-18-44b5e90.json"
+      ],
+      "source_commit": "44b5e908dfac7dffbe383a8806a72c380321aa6a",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
+          "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
+          "check": "redacted_bundle_unit_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
+          "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
+          "check": "ruff",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
+          "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
+          "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
+          "check": "download_journey_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
+          "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
+          "check": "download_journey_browser_execution",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "The redacted synthetic bundle helper and API route are covered by socket-free unit tests; real route/download integration must be exercised in a local-socket-enabled environment. The route is authenticated and returns 404 for non-synthetic cases."
     },
     {
       "id": "MTA-09-19",

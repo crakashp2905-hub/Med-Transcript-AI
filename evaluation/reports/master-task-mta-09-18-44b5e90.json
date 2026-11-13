@@ -1,0 +1,49 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-09-18",
+  "source_commit": "44b5e908dfac7dffbe383a8806a72c380321aa6a",
+  "source_files": {
+    "services/review/routers/history.py": "d67a4cb3b1544d8bb267562adc43bde7e3ce0d9b3b8ea0c245869dae875697f6",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "d2f53770b87a4fb30452f56330b4708d8de0b5a4c8645eef717fa5a9038f0031",
+    "apps/clinician-web/src/App.tsx": "f41ddaf9de07cab11a06337b8fb02326761eedad12e6fc52e05eef1c755f6f98",
+    "apps/clinician-web/src/workspaceTypes.ts": "e0c8b009638d117b356aa1817490bbc25da39de0b47cd6a30651db1552f90198",
+    "apps/clinician-web/e2e/workflow.spec.ts": "5e1a2f1f9b504edd548fdfacfacd6a636c2a96d0f0c663f7d2c017f9330fa57f",
+    "tests/test_synthetic_case_audit_bundle.py": "4e71d27fe09ec31d256727ae803aa25ca811df65d27cf5ccfe2a84c5c86dfa16"
+  },
+  "checks": [
+    {
+      "name": "redacted_bundle_unit_tests",
+      "command": "python -m pytest -q --confcutdir=tests tests/test_synthetic_case_audit_bundle.py",
+      "status": "pass",
+      "detail": "4 passed: redaction, citation-hash retention, synthetic-only guard and audit-event truncation."
+    },
+    {
+      "name": "ruff",
+      "command": "python -m ruff check services/review/routers/history.py tests/test_synthetic_case_audit_bundle.py",
+      "status": "pass",
+      "detail": "No lint findings."
+    },
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "detail": "TypeScript compilation and production bundle passed."
+    },
+    {
+      "name": "download_journey_e2e_discovery",
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "status": "pass",
+      "detail": "Two workflow tests discovered, including synthetic audit bundle download assertion."
+    },
+    {
+      "name": "download_journey_browser_execution",
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --grep \"clinician reviews evidence\"",
+      "status": "blocked",
+      "detail": "Browser navigation failed before app load with net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:8001/."
+    }
+  ],
+  "result": "implemented_with_browser_validation_blocked",
+  "blocker": "The redacted synthetic bundle helper and API route are covered by socket-free unit tests; real route/download integration must be exercised in a local-socket-enabled environment. The route is authenticated and returns 404 for non-synthetic cases.",
+  "clinical_release_authorized": false,
+  "created_utc_date": "2026-11-14"
+}
