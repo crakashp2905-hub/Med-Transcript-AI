@@ -1,0 +1,48 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-12",
+  "source_commit": "5ad4f7a153df728c7c3fb7e7ab6c93d772a3a067",
+  "captured_at_utc": "2026-11-14T00:00:00+00:00",
+  "source_files": {
+    "services/review/routers/proposals.py": "fc6ea7dd8543b1e4bc0138b78f46471588c4b37efebd9bb3c3d77ef5de4df19b",
+    "tests/test_scribe_workflow.py": "074e40870336b8ded7373cf52b5cf33bf0a83cd245a846fb14c51a48e5b9564d"
+  },
+  "behavior": {
+    "fallback_cases": [
+      "optional local inference slot is busy",
+      "optional provider is unavailable or times out",
+      "drafting provider contract is not configured"
+    ],
+    "output": "Deterministic evidence-linked proposal; safe fallback reason and optional inference status are recorded in provenance. Existing proposal status remains unreviewed_proposal_not_approvable.",
+    "comparison": "The deterministic baseline remains attached to model-generated proposals."
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_scribe_workflow.py::test_deterministic_draft_fallback_is_explicit_and_keeps_proposal_unapproved tests/test_scribe_workflow.py::test_deterministic_draft_fallback_runs_when_optional_slot_is_busy -q",
+      "status": "pass",
+      "result": "2 passed"
+    },
+    {
+      "command": "ruff format --check services/review/routers/proposals.py tests/test_scribe_workflow.py",
+      "status": "pass",
+      "result": "2 files already formatted"
+    },
+    {
+      "command": "ruff check services/review/routers/proposals.py tests/test_scribe_workflow.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m compileall -q services/review/routers/proposals.py tests/test_scribe_workflow.py",
+      "status": "pass"
+    },
+    {
+      "command": "git diff --check",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Route persistence integration tests were not validated in this Windows run; the existing TestClient/asyncio socketpair stall occurs before route dispatch.",
+    "A focused mypy invocation did not finish in the local environment."
+  ],
+  "clinical_release_authorized": false
+}
