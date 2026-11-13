@@ -29,7 +29,7 @@ test('detailed demo, review tools and measured dashboard preserve approval bound
  await expect(page.getByRole('button',{name:'Prepare summary from approved note'})).toBeDisabled();
  await page.getByRole('button',{name:'Study dashboard',exact:true}).click();await expect(page.getByRole('heading',{name:'Study dashboard'})).toBeVisible();await expect(page.getByText('Quality gate: 5% normalized WER.',{exact:false})).toBeVisible();
 });
-test('approved summary requires separate confirmation and edits reset it',async({page})=>{
+test('approved summary keeps source references and requires separate confirmation',async({page})=>{
  const headers={Authorization:`Bearer ${token}`,'Idempotency-Key':randomUUID()};
  const demo=await page.request.post('/v1/demo',{headers});expect(demo.ok()).toBeTruthy();const eid=(await demo.json()).encounter_id;
  const ws=await(await page.request.get(`/v1/encounters/${eid}/workspace`,{headers})).json();
@@ -38,10 +38,9 @@ test('approved summary requires separate confirmation and edits reset it',async(
  const saved=await page.request.post(`/v1/encounters/${eid}/drafts`,{headers,data:{transcript_version_id:tx.id,facts}});expect(saved.ok()).toBeTruthy();const note=(await saved.json()).note;
  const approved=await page.request.post(`/v1/encounters/${eid}/approvals`,{headers,data:{note_version_id:note.id,expected_note_sha256:note.sha256,verification_report_id:note.verification_report_id,patient_identifiers_reconfirmed:true}});expect(approved.ok()).toBeTruthy();
  await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();await page.locator('.encounter-item').first().click();await page.getByRole('button',{name:'Facts & SOAP note',exact:false}).click();
- await page.getByRole('button',{name:'Prepare summary from approved note'}).click();await expect(page.getByLabel('Summary for clinician review')).toHaveValue(/Patient reports cough/);
- const download=page.getByRole('button',{name:'Download reviewed patient summary'});await expect(download).toBeDisabled();await page.getByLabel('I separately reviewed this summary',{exact:false}).check();await expect(download).toBeEnabled();
- await page.getByLabel('Summary for clinician review').fill('Updated clinician wording.');await expect(download).toBeDisabled();
- await page.getByLabel('I separately reviewed this summary',{exact:false}).check();const event=page.waitForEvent('download');await download.click();expect((await event).suggestedFilename()).toBe('reviewed-visit-summary.txt');
+ await page.getByRole('button',{name:'Prepare summary from approved note'}).click();const summary=page.getByLabel('Source-linked summary for clinician review');await expect(summary).toHaveValue(/Patient reports cough/);await expect(summary).toHaveValue(/Source turn 1/);await expect(summary).toHaveJSProperty('readOnly',true);
+ const download=page.getByRole('button',{name:'Download reviewed patient summary'});await expect(download).toBeDisabled();const confirmation=page.getByLabel('I separately reviewed this summary',{exact:false});await confirmation.check();await expect(download).toBeEnabled();await confirmation.uncheck();await expect(download).toBeDisabled();
+ await confirmation.check();const event=page.waitForEvent('download');await download.click();const summaryDownload=await event;expect(summaryDownload.suggestedFilename()).toBe('reviewed-visit-summary.txt');const summaryPath=resolve(root,'data/ui-screenshots/reviewed-visit-summary.txt');await summaryDownload.saveAs(summaryPath);expect(readFileSync(summaryPath,'utf8')).toContain('Source turn 1');
  await page.route(`**/v1/encounters/${eid}/workspace`,async route=>{const response=await route.fetch();const body=await response.json();await route.fulfill({status:response.status(),headers:response.headers(),json:{...body,stale:true}});});
  await download.click();await expect(page.getByText('The approved source changed. Reload and review a new summary.')).toBeVisible();await expect(download).toBeDisabled();
  const exported=page.waitForEvent('download');await page.getByRole('button',{name:'↓ Fhir',exact:true}).click();expect((await exported).suggestedFilename()).toContain('.json');await page.unrouteAll({behavior:'wait'});
