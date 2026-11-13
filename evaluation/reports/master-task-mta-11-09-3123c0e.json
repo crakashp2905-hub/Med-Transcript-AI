@@ -1,0 +1,46 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-11-09",
+  "source_commit": "3123c0e753bc54befaeb9ae5d534425e9dbc1f33",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "source_files": {
+    "evaluation/contracts/beccsv-ablation-matrix-v1.json": "c847f99c5e6210ebf81f315dc61d38b27f489db76b4966a2cd81d6a4b913f353",
+    "services/beccsv_ablations.py": "52d157b21bc572b63419e82d67e6543ffcbd0de75b5c647cd8d2a3005d508fea",
+    "tests/test_beccsv_ablations.py": "d797837cd756597d0f899fc5c5cb3927037958f515400ee8bed01c7c24ebcd4a",
+    "docs/research/beccsv-protocol-v1.md": "c9a10edf62697e2ae88eadeae6002631585f30c575aecaaff643653d4172916c"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_beccsv_ablations.py tests/test_beccsv_protocol_preregistration.py -q",
+      "status": "pass",
+      "result": "6 passed"
+    },
+    {
+      "command": "ruff format --check services/beccsv_ablations.py tests/test_beccsv_ablations.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff check services/beccsv_ablations.py tests/test_beccsv_ablations.py",
+      "status": "pass"
+    }
+  ],
+  "matrix": {
+    "variant_count": 7,
+    "single_feature_ablations": [
+      "no_source_coverage",
+      "no_temporal_edges",
+      "no_relation_edges",
+      "no_uncertainty_abstention",
+      "no_deterministic_rules",
+      "no_local_verifier"
+    ],
+    "execution_status": "declared_not_executed",
+    "clinical_release_authorized": false
+  },
+  "limitations": [
+    "The matrix validator checks the design and one-feature isolation; it does not compute comparative clinical metrics.",
+    "Model-assisted arms remain unexecuted because the local Ollama server was not running and there is no independent clinical gold cohort.",
+    "No ablation outcome or BECCSV success claim is made."
+  ],
+  "clinical_release_authorized": false
+}

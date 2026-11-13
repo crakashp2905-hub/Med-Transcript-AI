@@ -5593,12 +5593,12 @@
       "id": "MTA-11-09",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Introduce graph ablations: no inverse coverage, no temporal edge, no relation edge, no uncertainty, no rules, no local verifier.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/contracts/beccsv-ablation-matrix-v1.json"],
+      "source_commit": "3123c0e753bc54befaeb9ae5d534425e9dbc1f33",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-11-09-3123c0e.json", "report_sha256": "a155208d30049613f3ebecce5ed3d8133f0aaa75c27b992566c27c4f7e8cc823", "check": "single_feature_graph_ablation_matrix", "status": "pass", "detail": "Seven arms validate; six remove exactly one declared feature. No comparative model or clinical outcome was run."}],
+      "blocker": "Comparative ablation execution requires local verifier inference and an independent acceptance cohort; matrix remains declared_not_executed."
     },
     {
       "id": "MTA-11-10",
