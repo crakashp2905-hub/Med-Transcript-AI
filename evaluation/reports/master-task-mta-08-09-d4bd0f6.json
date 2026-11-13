@@ -1,0 +1,50 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "d4bd0f6655ef56434670998f8760d8c4882d28cd",
+  "tasks": [
+    "MTA-08-09"
+  ],
+  "source_hashes": {
+    "services/review/providers.py": "9b7831e3cabe4efca815b07abd2121a181a1d950a9d86db6c3bdea1fb36930db",
+    "tests/test_drafting_provider_failures.py": "2131fb62278489e8386a4b471fda4bdcbea39b93c38a4052d1de4c8de220bc46",
+    "tests/test_drafting_integrity_styles.py": "0b23b4f344f92609cbd92d9c29c4343adc52e23a16f80a603423bebdba1e5c0b",
+    "tests/test_clinical_intelligence.py": "c07f397e77663e05f702f57947fb1472526c57ba751b55f7e3a9b285a6deef49"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation",
+    "external_or_paid_calls": "none; loopback fake server only"
+  },
+  "checks": {
+    "timeout_model_identity_mismatch_missing_identity_malformed_empty_and_oversized_fail_without_partial_draft": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_drafting_provider_failures.py tests/test_drafting_integrity_styles.py -q",
+      "status": "pass",
+      "passed": 16
+    },
+    {
+      "command": "python -m pytest tests/test_clinical_intelligence.py::test_local_json_provider_uses_bounded_transport_and_safe_usage -q",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m ruff check services/review/providers.py tests/test_drafting_provider_failures.py tests/test_drafting_integrity_styles.py tests/test_clinical_intelligence.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/providers.py tests/test_drafting_provider_failures.py tests/test_drafting_integrity_styles.py tests/test_clinical_intelligence.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Provider identity is verified against the exact requested model tag returned by the endpoint; provider-specific aliases that do not echo that tag fail closed.",
+    "Tests use local fake transports and synthetic facts; no hosted call was made."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "cd44c72f942be075188cffaa8379a38c8b05cbfa740bc5e161477987c59633e9"
+}
