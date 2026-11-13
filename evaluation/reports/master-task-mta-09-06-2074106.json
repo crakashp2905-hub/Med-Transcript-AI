@@ -1,0 +1,73 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "2074106c8657eeeba3cd9abeb93a45fa96f0ad73",
+  "tasks": [
+    "MTA-09-06"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/RetranscriptionCompare.tsx": "aec503c4adb1de4540717fc9b698b62ad2b3e62763bee654e7e759e95aa37f38",
+    "apps/clinician-web/src/SpeakerTurnEditor.tsx": "8a19a9cc41c0b44b231c423c3262160ad3dc5de780d14e7a75eca5f97870e54c",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "c997142ba186c2cd689df9bd12851c0a6d350e75801c2f591d30bfd6cec1917e",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "3a51d130086a39497e6def89af9a11a85ac2d5a0659e21c8cb789c7df1080e1f",
+    "apps/clinician-web/src/workspaceTypes.ts": "ba76fcc14e63e7ca7e18dd56d13a32b31ebedbd1628cb15e452a4226c906986c",
+    "apps/clinician-web/e2e/workflow.spec.ts": "6e91f053d0a7837a677759abf1eba635f9f8cfb98311261968948e3cc76cab50",
+    "services/asr/retranscribe_span.py": "38778f08e6fe0830e60f9e92e77a7d44e9cdd6ea17211d76640b54e6bb0fdd55",
+    "tests/test_retranscribe_span.py": "e15d8fba7667b7940b47e9ad37b79359390adb35695fed27a7ccc77c005a5b64",
+    "tests/test_retranscription_workflow.py": "ced9363074edee8dac3d47123b11f2f4d09ec1ae4a422bda5e02b5e56613c43c"
+  },
+  "runtime": {
+    "python": "Python 3.13.5",
+    "node": "cached npm dependencies",
+    "platform": "Windows 11",
+    "browser": "Playwright Chromium; offline local fixture"
+  },
+  "checks": {
+    "localized_span_transform_and_provenance": {
+      "status": "pass"
+    },
+    "typescript_build_and_e2e_discovery": {
+      "status": "pass"
+    },
+    "candidate_comparison_browser_flow": {
+      "status": "blocked"
+    },
+    "http_worker_integration": {
+      "status": "blocked"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest --confcutdir=services/review/routers tests/test_retranscribe_span.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "cwd": "apps/clinician-web",
+      "status": "pass",
+      "observed": "Discovered both workflow tests; TypeScript test compilation completed."
+    },
+    {
+      "command": "Playwright E2E against tests.offline_browser_server",
+      "status": "blocked",
+      "observed": "This managed environment denies loopback HTTP sockets with ERR_NETWORK_ACCESS_DENIED before page load; candidate panel interaction cannot execute here."
+    },
+    {
+      "command": "tests/test_retranscription_workflow.py HTTP-to-worker integration",
+      "status": "blocked",
+      "observed": "Starlette TestClient requires a local socket pair, denied by the managed Windows environment."
+    }
+  ],
+  "limitations": [
+    "Candidate display is explicitly provisional and source-version-bound; this UI does not accept or alter the transcript.",
+    "Candidate comparison has synthetic browser route coverage in the workflow test, but the browser runtime is blocked by loopback restrictions.",
+    "Real model quality and clinician correction remain unmeasured."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "41928c444e14b9e2b8c21f0113ff4288cfc9788b6fae56ad505ff77cf3b3d19e"
+}

@@ -4362,12 +4362,48 @@
       "id": "MTA-09-06",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Provide side-by-side comparison of original transcript, localized retranscription candidate and accepted correction.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/RetranscriptionCompare.tsx",
+        "apps/clinician-web/src/SpeakerTurnEditor.tsx",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+        "apps/clinician-web/src/workspaceTypes.ts",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "services/asr/retranscribe_span.py",
+        "tests/test_retranscribe_span.py",
+        "tests/test_retranscription_workflow.py",
+        "evaluation/reports/master-task-mta-09-06-2074106.json"
+      ],
+      "source_commit": "2074106c8657eeeba3cd9abeb93a45fa96f0ad73",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-06-2074106.json",
+          "report_sha256": "7708e03fd2b9b72a9e4cebd52f0408be193ba42feb2dd30748bd5a7bec6f915a",
+          "check": "localized_span_transform_and_provenance",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-06-2074106.json",
+          "report_sha256": "7708e03fd2b9b72a9e4cebd52f0408be193ba42feb2dd30748bd5a7bec6f915a",
+          "check": "typescript_build_and_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-06-2074106.json",
+          "report_sha256": "7708e03fd2b9b72a9e4cebd52f0408be193ba42feb2dd30748bd5a7bec6f915a",
+          "check": "candidate_comparison_browser_flow",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-06-2074106.json",
+          "report_sha256": "7708e03fd2b9b72a9e4cebd52f0408be193ba42feb2dd30748bd5a7bec6f915a",
+          "check": "http_worker_integration",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "The browser/API end-to-end route is blocked by the sandbox denying loopback sockets. Candidate-only API/worker integration exists in the repository but could not be exercised here; the TypeScript build and pure retranscription span tests pass."
     },
     {
       "id": "MTA-09-07",
