@@ -4047,11 +4047,24 @@
       "id": "MTA-08-13",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Protect approved notes from silent modification; amendments create a new version and maintain provenance.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/evidence_graph.py",
+        "services/review/engine.py",
+        "tests/test_evidence_graph.py",
+        "tests/test_review_workflow.py",
+        "evaluation/reports/master-task-mta-08-13-a182344.json"
+      ],
+      "source_commit": "a182344d99c0d305af9ce4f06e2e257284f5c40b",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-13-a182344.json",
+          "report_sha256": "fde71ac3f4c5f864c5cbf45cca2ba8f72b5f80500ccde08313e64e8e917ef8b1",
+          "check": "approved_note_is_immutable_and_amendments_preserve_parent",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

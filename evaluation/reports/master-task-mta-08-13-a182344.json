@@ -1,0 +1,44 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "a182344d99c0d305af9ce4f06e2e257284f5c40b",
+  "tasks": [
+    "MTA-08-13"
+  ],
+  "source_hashes": {
+    "services/evidence_graph.py": "cd207a76369607ad7b931784f5de579ce8202052bdf82212d83aec9f0338bc3c",
+    "services/review/engine.py": "3177a67e0fe272932c95ede3b06b3bb4e114f25636d5d00ddca32cd1cada5dfe",
+    "tests/test_evidence_graph.py": "5b8469df9cbed373833a4c836c56fd86defcd0b3d39c680afdb4a29f8bf878cd",
+    "tests/test_review_workflow.py": "26c2e32e9914ee09f94a9feaaac2c76ad4258a2fc4b4fbdfa7f599ead2f35877"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation"
+  },
+  "checks": {
+    "approved_note_is_immutable_and_amendments_preserve_parent": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_evidence_graph.py tests/test_review_workflow.py::test_full_review_approval_export_and_amendment -q (loopback enabled)",
+      "status": "pass",
+      "passed": 8
+    },
+    {
+      "command": "python -m ruff check services/evidence_graph.py services/review/engine.py tests/test_evidence_graph.py tests/test_review_workflow.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/evidence_graph.py services/review/engine.py tests/test_evidence_graph.py tests/test_review_workflow.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "The workflow validates engineering integrity and immutable version lineage only; it does not establish clinical accuracy.",
+    "The API integration check required local loopback access."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "b0d7f0cfcc1fcfcd4666758d682c810a67e906990ad93c1596a4bcf8925804e3"
+}
