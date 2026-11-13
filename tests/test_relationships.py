@@ -1,13 +1,25 @@
 import json
+import hashlib
 from pathlib import Path
 from uuid import uuid4
 import pytest
 from services.review.relationships import disagreement, analyze_transcript
 from services.review.clinical import check_claim
 
-CASES = json.loads(Path("evaluation/clinical-challenge-relations-v2.json").read_text())[
-    "cases"
-]
+CHALLENGE_PATH = Path("evaluation/clinical-challenge-relations-v3.json")
+CHALLENGE = json.loads(CHALLENGE_PATH.read_text(encoding="utf-8"))
+CASES = CHALLENGE["cases"]
+
+
+def test_clinical_challenge_v3_preserves_its_predecessor_hash():
+    previous = Path(CHALLENGE["supersedes"]["path"])
+
+    assert previous.is_file()
+    assert (
+        hashlib.sha256(previous.read_bytes()).hexdigest()
+        == CHALLENGE["supersedes"]["sha256"]
+    )
+    assert "not_independent_clinical_gold" in CHALLENGE["scope"]
 
 
 @pytest.mark.parametrize("case", CASES, ids=lambda c: c["id"])
@@ -98,6 +110,27 @@ def test_relation_graph_validator_rejects_unlinked_or_fabricated_edges():
 
     graph["edges"][0]["to_node_id"] = "unlinked-node"
     with pytest.raises(ValueError, match="clinical_relationship_edge_invalid"):
+        validate_graph(graph, transcript)
+
+
+def test_relation_graph_validator_rejects_typed_edge_mutation():
+    from services.review.relationships import validate_graph
+
+    transcript = {
+        "segments": [
+            {
+                "segment_id": str(uuid4()),
+                "text": "Patient takes warfarin 5 mg twice daily.",
+            }
+        ]
+    }
+    graph = analyze_transcript(transcript)
+    dose_edge = next(edge for edge in graph["edges"] if edge["relation_type"] == "dose")
+    dose_edge["relation_type"] = "route"
+
+    with pytest.raises(
+        ValueError, match="clinical_relationship_graph_content_mismatch"
+    ):
         validate_graph(graph, transcript)
 
 

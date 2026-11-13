@@ -543,8 +543,42 @@ def check_claim(source, claim, *, include_relationships=True):
         "and",
         "but",
     }
-    original_words = set(tokens(QUANTITY.sub("", source)))
-    claimed_words = set(tokens(QUANTITY.sub("", claim)))
+
+    def comparison_words(text):
+        value = QUANTITY.sub("", text).casefold()
+        aliases = (
+            (r"(?<!\w)q\.?d\.?(?!\w)", "once daily"),
+            (r"(?<!\w)b\.?i\.?d\.?(?!\w)", "twice daily"),
+            (r"(?<!\w)t\.?i\.?d\.?(?!\w)", "three times daily"),
+            (r"(?<!\w)q\.?i\.?d\.?(?!\w)", "four times daily"),
+            (r"\bby\s+mouth\b|\bpo\b|\borally\b|\boral\b", "oral"),
+            (r"\bonce\s+a\s+day\b", "once daily"),
+            (r"\btwice\s+a\s+day\b", "twice daily"),
+            (r"\bthree\s+times\s+a\s+day\b", "three times daily"),
+            (r"\b(?:every|each)\s+day\b", "daily"),
+        )
+        for pattern, replacement in aliases:
+            value = re.sub(pattern, replacement, value)
+        for number, word in enumerate(
+            (
+                "zero",
+                "one",
+                "two",
+                "three",
+                "four",
+                "five",
+                "six",
+                "seven",
+                "eight",
+                "nine",
+                "ten",
+            )
+        ):
+            value = re.sub(r"\b" + word + r"\b", str(number), value)
+        return set(tokens(value))
+
+    original_words = comparison_words(source)
+    claimed_words = comparison_words(claim)
     novel = claimed_words - original_words - connective
     if novel:
         add("unsupported_claim_terms")

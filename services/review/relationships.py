@@ -30,15 +30,34 @@ TIMING = re.compile(
     re.I,
 )
 FREQUENCY = re.compile(
-    r"\b(?:once|twice|three times)\s+(?:daily|a day)|\b(?:daily|weekly)\b",
+    r"\b(?:once|twice|three times)\s+(?:daily|a day)|\b(?:daily|weekly|every day|each day)\b|(?<!\w)(?:q\.?d\.?|b\.?i\.?d\.?|t\.?i\.?d\.?|q\.?i\.?d\.?)(?!\w)",
     re.I,
 )
+FREQUENCY_CANONICAL = {
+    "qd": "once daily",
+    "q.d": "once daily",
+    "q.d.": "once daily",
+    "bid": "twice daily",
+    "b.i.d": "twice daily",
+    "b.i.d.": "twice daily",
+    "tid": "three times daily",
+    "t.i.d": "three times daily",
+    "t.i.d.": "three times daily",
+    "qid": "four times daily",
+    "q.i.d": "four times daily",
+    "q.i.d.": "four times daily",
+    "once a day": "once daily",
+    "twice a day": "twice daily",
+    "three times a day": "three times daily",
+    "every day": "daily",
+    "each day": "daily",
+}
 MENTIONED_DURATION = re.compile(
     r"\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:days?|weeks?|months?)\b",
     re.I,
 )
 ROUTE = re.compile(
-    r"\b(?:orally|oral|by mouth|intravenous|intravenously|subcutaneous|subcutaneously|topical|topically)\b",
+    r"\b(?:orally|oral|by mouth|intravenous|intravenously|subcutaneous|subcutaneously|topical|topically|po)\b",
     re.I,
 )
 NUMBERS = dict(
@@ -108,6 +127,11 @@ def canonical(text):
     return text
 
 
+def canonical_frequency(value):
+    normalized = value.casefold().strip().rstrip(".")
+    return FREQUENCY_CANONICAL.get(normalized, normalized)
+
+
 def bindings(text):
     # Never assign a family member or resolve a pronoun by proximity.
     global_drugs = set(m.group().lower() for m in MEDICATION.finditer(text))
@@ -151,7 +175,13 @@ def bindings(text):
                 for (unit, value), count in quantity_signature(quote).items()
                 for _ in range(count)
             ),
-            "timing": sorted(m.group().lower() for m in TIMING.finditer(normalized)),
+            "timing": sorted(
+                {
+                    canonical_frequency(match.group())
+                    for pattern in (TIMING, FREQUENCY)
+                    for match in pattern.finditer(normalized)
+                }
+            ),
             "routes": sorted(
                 {
                     "orally": "oral",
@@ -159,6 +189,7 @@ def bindings(text):
                     "intravenously": "intravenous",
                     "subcutaneously": "subcutaneous",
                     "topically": "topical",
+                    "po": "oral",
                 }.get(m.group().lower(), m.group().lower())
                 for m in ROUTE.finditer(quote)
             ),
@@ -282,7 +313,11 @@ def analyze_transcript(transcript):
                         }.get(match.group().lower(), match.group().lower())
                         connect("route", route, "route")
                     for match in FREQUENCY.finditer(quote):
-                        connect("frequency", match.group().lower(), "frequency")
+                        connect(
+                            "frequency",
+                            canonical_frequency(match.group()),
+                            "frequency",
+                        )
                     for match in MENTIONED_DURATION.finditer(quote):
                         connect("duration", match.group().lower(), "duration")
                     for match in TIMING.finditer(quote):
@@ -376,6 +411,8 @@ def validate_graph(graph, transcript):
         ):
             raise ValueError("clinical_relationship_edge_invalid")
         seen_edges.add(edge_key)
+    if graph != analyze_transcript(transcript):
+        raise ValueError("clinical_relationship_graph_content_mismatch")
     return {
         "status": "valid",
         "nodes": len(nodes),
