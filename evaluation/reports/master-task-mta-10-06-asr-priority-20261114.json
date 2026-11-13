@@ -1,0 +1,38 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-06",
+  "source_commit": "434e7f69cdf1a2041d8e4b4c47953b0fc41f472d",
+  "captured_at_utc": "2026-11-13T22:01:05+00:00",
+  "source_files": {
+    "services/inference_slot.py": "fe17aa5535e95f1243760576433ae123c1b94a2bfc8192af48f1e64ca43c26dd",
+    "services/asr/worker.py": "4c41521ea7a81525c706179d2f35cbb34e555188b20333e7b8a3e1bc8268d3be",
+    "services/worker_loop.py": "6caed031972125acdfcd3dfdb2ce36c1729d290aa883af314f8a8b841cfeda8c",
+    "services/review/clinical_routes.py": "c235aae6a3dc8d9a9134c6568bd5328dfaa5532b5583df21f9384ba7f50d4887",
+    "services/review/routers/proposals.py": "0759139acdf592b1bc92546b8818802155adafdaf53b77bebe1f393a957caae0",
+    "tests/test_inference_slot.py": "2bc7affe666f24801ef083abfac972ee4d1085b4855566b809f93eb4441a1a6a"
+  },
+  "implementation": {
+    "asr_worker_priority": "source",
+    "optional_drafting_and_clinical_agents": "optional",
+    "worker_loop_locking": "ASR worker owns the shared inference slot; removed duplicate outer lock",
+    "fairness": "pending source markers defer optional requests before and after shared-lock acquisition; dead, malformed, future-dated and stale markers are cleaned; symlinked marker directory fails closed",
+    "limitation": "nonblocking cross-process priority hint, not a FIFO scheduler; a request arriving after optional inference starts cannot preempt it"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_inference_slot.py tests/test_asr_resource_router.py tests/test_provider_interfaces.py -q",
+      "status": "pass",
+      "result": "17 passed"
+    },
+    {
+      "command": "python -m ruff check services/inference_slot.py services/asr/worker.py services/worker_loop.py services/review/clinical_routes.py services/review/routers/proposals.py tests/test_inference_slot.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/inference_slot.py services/asr/worker.py services/worker_loop.py services/review/clinical_routes.py services/review/routers/proposals.py tests/test_inference_slot.py",
+      "status": "pass"
+    }
+  ],
+  "result": "ASR source work now registers shared cross-process priority and optional local drafting/extraction/verification defers while source work is pending. This improves scheduling only; it does not establish transcription quality or clinical safety.",
+  "clinical_release_authorized": false
+}

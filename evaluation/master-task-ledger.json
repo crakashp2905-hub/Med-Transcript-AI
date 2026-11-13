@@ -5198,12 +5198,28 @@
       "id": "MTA-10-06",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Schedule ASR ahead of optional drafting when preserving consultation source processing requires it.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/inference_slot.py",
+        "services/asr/worker.py",
+        "services/worker_loop.py",
+        "services/review/clinical_routes.py",
+        "services/review/routers/proposals.py",
+        "tests/test_inference_slot.py",
+        "evaluation\\reports\\master-task-mta-10-06-asr-priority-20261114.json"
+      ],
+      "source_commit": "434e7f69cdf1a2041d8e4b4c47953b0fc41f472d",
+      "test_results": [
+        {
+          "report": "evaluation\\reports\\master-task-mta-10-06-asr-priority-20261114.json",
+          "report_sha256": "c35e45e6646804ff3712158f6eebd603f6f9c93b8b308931f649da55eb51a0c4",
+          "check": "source_priority_and_optional_deferral",
+          "status": "pass",
+          "detail": "17 focused tests passed on exact source commit; Ruff lint and format checks passed."
+        }
+      ],
+      "blocker": "Priority is advisory and nonpreemptive; queued ASR progresses ahead of optional work after the current local inference finishes. No full runtime orchestration latency benchmark is included."
     },
     {
       "id": "MTA-10-07",
