@@ -89,6 +89,7 @@ def register(app, services: ReviewService):
                             "clarification": body.reason,
                             "reviewed": True,
                             "critical_reviewed": True,
+                            "review_status": "excluded",
                         }
                         values.append(Fact.model_validate(original))
                     proposed = extract(
@@ -108,6 +109,7 @@ def register(app, services: ReviewService):
                             clarification=body.reason,
                             reviewed=True,
                             critical_reviewed=True,
+                            review_status="critical_reviewed",
                             section=value["section"],
                             clinical_source="clinician_statement",
                         )
