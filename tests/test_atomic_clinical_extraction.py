@@ -76,6 +76,24 @@ def test_medication_temporality_separates_past_current_and_future_plans():
     assert [fact["action"] for fact in facts] == ["unknown", "unknown", "start"]
 
 
+def test_plan_or_recommendation_is_not_promoted_to_a_confirmed_order():
+    plan, recommendation, order = extract(
+        transcript(
+            "Plan to start metformin 500 mg tomorrow. "
+            "I recommend amoxicillin 250 mg daily. "
+            "I ordered warfarin 5 mg daily."
+        )
+    )
+
+    assert (plan["action"], plan["temporality"]) == ("start", "planned")
+    assert (recommendation["action"], recommendation["temporality"]) == (
+        "recommend",
+        "planned",
+    )
+    assert (order["action"], order["temporality"]) == ("order", "planned")
+    assert all(fact["reviewed"] is False for fact in (plan, recommendation, order))
+
+
 def test_medication_actions_retain_route_frequency_and_duration():
     texts = [
         "Start metformin 500 mg by mouth daily.",

@@ -146,7 +146,7 @@ def medication_temporality(text):
     ):
         return "historical"
     if re.search(
-        r"\b(?:will|next week|tomorrow|plan to|plans to|going to|should start|recommend(?:ed)? (?:to )?start|restart)\b",
+        r"\b(?:will|next week|tomorrow|plan to|plans to|going to|should start|recommend(?:ed)?(?: to)?(?: start)?|consider(?:ed|s|ing)?(?: to)?(?: start)?|order(?:ed|s|ing)?|prescrib(?:e|ed|es|ing)|restart)\b",
         text,
         re.I,
     ):
@@ -269,6 +269,7 @@ def extract(transcript):
             if not quote:
                 continue
             category = "other"
+            assessment_status = "unknown"
             for name, pattern in [
                 (
                     "allergy",
@@ -284,13 +285,31 @@ def extract(transcript):
                     + r"|\b(?:taking|takes|stopped|restart|mg|mcg|ml)\b",
                 ),
                 ("plan", r"\b(?:plan|order|refer|follow.up|test)\b"),
+                (
+                    "assessment",
+                    r"\b(?:assessment|impression|diagnos(?:is|ed)|working diagnosis)\b\s*(?::|is|of)?",
+                ),
                 ("symptom", r"\b(?:pain|cough|fever|headache|nausea|breathless)\b"),
             ]:
                 if re.search(pattern, quote, re.I):
                     category = name
                     break
+            if category == "assessment":
+                assessment_status = (
+                    "suggested"
+                    if re.search(
+                        r"\b(?:possible|possibly|suspected|suspect|rule out|consider|may be|might be|concern for)\b",
+                        quote,
+                        re.I,
+                    )
+                    else "explicitly_said"
+                )
             possible = bool(
-                re.search(r"\b(?:maybe|possibly|might|could|perhaps)\b", quote, re.I)
+                re.search(
+                    r"\b(?:maybe|possible|possibly|suspected|suspect|rule out|consider|might|could|perhaps|concern for)\b",
+                    quote,
+                    re.I,
+                )
             )
             questioned = "?" in quote or bool(
                 re.search(r"\b(?:whether|question(?:s|ed)?|asked if)\b", quote, re.I)
@@ -322,7 +341,12 @@ def extract(transcript):
             fact = {
                 "fact_id": str(uuid4()),
                 "category": category,
-                "section": "plan" if category == "plan" else "subjective",
+                "section": "assessment"
+                if category == "assessment"
+                else "plan"
+                if category == "plan"
+                else "subjective",
+                "assessment_status": assessment_status,
                 "text": quote,
                 "subject": subject,
                 "assertion": "uncertain"

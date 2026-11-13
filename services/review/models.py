@@ -55,6 +55,7 @@ class Fact(Strict):
     category: Literal[
         "symptom", "medication", "allergy", "measurement", "assessment", "plan", "other"
     ] = "other"
+    assessment_status: Literal["explicitly_said", "suggested", "unknown"] = "unknown"
     section: Literal["subjective", "objective", "assessment", "plan"] = "subjective"
     text: str = Field(min_length=1, max_length=4000)
     subject: Literal["patient", "family", "caregiver", "other", "unknown"] = "unknown"
