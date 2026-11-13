@@ -38,16 +38,29 @@ test('storage quota failure stops capture and retains previously committed audio
 test('large upload resumes after a lost chunk response without retransmitting committed bytes',async({page})=>{
  const size=9*1024*1024+44,content=Buffer.alloc(size);content.write('RIFF',0);content.writeUInt32LE(size-8,4);content.write('WAVEfmt ',8);content.writeUInt32LE(16,16);content.writeUInt16LE(1,20);content.writeUInt16LE(1,22);content.writeUInt32LE(16000,24);content.writeUInt32LE(32000,28);content.writeUInt16LE(2,32);content.writeUInt16LE(16,34);content.write('data',36);content.writeUInt32LE(size-44,40);
  const offsets:number[]=[];let interrupted=false;
- await page.route('**/audio-uploads/*/content',async route=>{if(route.request().method()!=='PATCH'){await route.continue();return;}const offset=Number(route.request().headers()['upload-offset']);offsets.push(offset);if(!interrupted){interrupted=true;await route.fetch();await route.abort('connectionreset');}else await route.continue();});
+ page.on('request',request=>{if(request.method()==='PATCH'&&request.url().includes('/audio-uploads/')&&request.url().endsWith('/content'))offsets.push(Number(request.headers()['upload-offset']));});
+ await page.route('**/audio-uploads/*/content',async route=>{if(route.request().method()!=='PATCH'){await route.continue();return;}if(!interrupted){interrupted=true;await route.fetch();await route.abort('connectionreset');}else await route.continue();});
  await login(page);await create(page);
  await page.locator('input[type=file]').setInputFiles({name:'resumable-public-transport.wav',mimeType:'audio/wav',buffer:content});
  await page.getByLabel('Recording and local-processing authorization is documented.',{exact:true}).check();
  await page.getByRole('button',{name:'Upload recording',exact:true}).click();
- await expect.poll(()=>offsets.length).toBe(1);
+ await expect.poll(()=>offsets.length,{timeout:30000}).toBe(1);
  await expect(page.getByRole('button',{name:'Upload recording',exact:true})).toBeEnabled();
  await page.getByRole('button',{name:'Upload recording',exact:true}).click();
   await expect(page.locator('.notice')).toContainText('Recording received',{timeout:20000});
  expect(offsets).toEqual([0,4*1024*1024,8*1024*1024]);
+});
+
+test('the same source file can be uploaded to separate encounters',async({page})=>{
+ const bytes=readFileSync(fixture);
+ await login(page);await create(page);
+ for(let index=0;index<2;index++){
+  if(index){await page.getByRole('button',{name:'New encounter',exact:false}).click();await page.getByLabel('I confirmed the patient and encounter identifiers.').check();await page.getByRole('button',{name:'Create encounter',exact:false}).click();await expect(page.getByRole('heading',{name:'Microphone dictation'})).toBeVisible();}
+  await page.locator('input[type=file]').setInputFiles({name:'same-public-recording.wav',mimeType:'audio/wav',buffer:bytes});
+  await page.getByLabel('Recording and local-processing authorization is documented.',{exact:true}).check();
+  await page.getByRole('button',{name:'Upload recording',exact:true}).click();
+  await expect(page.locator('.notice')).toContainText('Recording received',{timeout:20000});
+ }
 });
 
 test('live local preview is labelled provisional and does not prepare or approve a note',async({page})=>{

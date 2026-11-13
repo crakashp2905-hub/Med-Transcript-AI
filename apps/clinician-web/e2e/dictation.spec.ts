@@ -139,6 +139,45 @@ test('simulated clock passes five minutes and stops capture at thirty minutes',a
  await expect(page.getByText('Recording · microphone is on',{exact:true})).not.toBeVisible();
 });
 
+test('capture shorter than one second is rejected and never submitted',async({page})=>{
+ let uploads=0;page.on('request',request=>{if(request.method()==='POST'&&/\/audio-uploads$/.test(request.url()))uploads++;});
+ await encounter(page);
+ await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
+ await page.getByRole('button',{name:'Start dictation',exact:true}).click();
+ await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Stop & transcribe',exact:true}).click();
+ await expect(page.getByRole('alert')).toContainText('Record at least one second of speech');
+ expect(uploads).toBe(0);
+});
+
+test('slow browser persistence stops capture with a bounded recovery prefix',async({page})=>{
+ await page.addInitScript(()=>{
+  const descriptor=Object.getOwnPropertyDescriptor(IDBTransaction.prototype,'oncomplete');
+  Object.defineProperty(IDBTransaction.prototype,'oncomplete',{configurable:true,get(){return descriptor?.get?.call(this);},set(callback){
+   const handler=this.objectStoreNames.contains('parts')?((event:Event)=>setTimeout(()=>callback?.call(this,event),1200)):callback;
+   descriptor?.set?.call(this,handler);
+  }});
+  class SyntheticRecorder extends EventTarget {
+   static isTypeSupported(){return true;}
+   state:'inactive'|'recording'='inactive';mimeType='audio/webm';ondataavailable:((event:BlobEvent)=>void)|null=null;onstop:(()=>void)|null=null;onerror:(()=>void)|null=null;private timer:number|undefined;
+   constructor(_stream:MediaStream,_options?:MediaRecorderOptions){super();}
+   start(){this.state='recording';this.timer=window.setInterval(()=>this.ondataavailable?.({data:new Blob([new Uint8Array(4*1024*1024+1)],{type:this.mimeType})} as BlobEvent),50);}
+   stop(){if(this.state!=='recording')return;this.state='inactive';if(this.timer!==undefined)clearInterval(this.timer);queueMicrotask(()=>this.onstop?.());}
+  }
+  Object.defineProperty(window,'MediaRecorder',{configurable:true,value:SyntheticRecorder});
+ });
+ await encounter(page);
+ await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
+ await page.getByRole('button',{name:'Start dictation',exact:true}).click();
+ await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
+ await expect(page.getByRole('alert')).toContainText('Browser storage is too slow',{timeout:15000});
+ await expect(page.getByRole('link',{name:'Save this recording locally'})).toBeVisible({timeout:15000});
+ await expect(page.getByRole('button',{name:'Retry recording upload'})).toBeVisible();
+ const saved=await page.evaluate(async()=>new Promise<number>(resolve=>{const request=indexedDB.open('med-transcript-recordings-v1',2);request.onsuccess=()=>{const db=request.result,query=db.transaction('drafts').objectStore('drafts').getAll();query.onsuccess=()=>{resolve(query.result.reduce((sum,row)=>sum+row.bytes,0));db.close();};};}));
+ expect(saved).toBeGreaterThan(0);expect(saved).toBeLessThanOrEqual(12*1024*1024);
+ await page.getByRole('button',{name:'Discard partial recording'}).click();
+});
+
 test('retry after a lost successful upload response reuses the saved source',async({page})=>{
  test.setTimeout(150000);
  let puts=0,creationUrl='';const keys:string[]=[];
