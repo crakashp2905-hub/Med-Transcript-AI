@@ -4725,12 +4725,38 @@
       "id": "MTA-09-15",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Show costs, time consumed and model label only when measured; unavailable remains unavailable.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/ExecutionMetrics.tsx",
+        "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+        "apps/clinician-web/src/workspaceTypes.ts",
+        "apps/clinician-web/src/style.css",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "evaluation/reports/master-task-mta-09-15-985412f.json"
+      ],
+      "source_commit": "985412f55a85f5753f9492ff6518d8f810214f41",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-15-985412f.json",
+          "report_sha256": "e2a5cadd6422c85855205c04aa6209152ed7f83d5b9ca89d9002097946821ce5",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-15-985412f.json",
+          "report_sha256": "e2a5cadd6422c85855205c04aa6209152ed7f83d5b9ca89d9002097946821ce5",
+          "check": "workflow_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-15-985412f.json",
+          "report_sha256": "e2a5cadd6422c85855205c04aa6209152ed7f83d5b9ca89d9002097946821ce5",
+          "check": "execution_metrics_browser_assertions",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "Loopback browser navigation is denied in this environment. Run the workflow in a local-socket-enabled environment to verify rendered measurements against fixtures. Missing model/cost/time fields are explicitly displayed as unavailable; no estimates or cost calculations are fabricated."
     },
     {
       "id": "MTA-09-16",

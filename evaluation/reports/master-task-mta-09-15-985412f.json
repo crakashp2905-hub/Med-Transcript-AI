@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-09-15",
+  "source_commit": "985412f55a85f5753f9492ff6518d8f810214f41",
+  "source_files": {
+    "apps/clinician-web/src/ExecutionMetrics.tsx": "a9afeaa46bda0941302012b012e2f0a12ffd1f076712a708a89c5ecdf4315073",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "7770c25f2ab4d147deb4d3aafd57993a2df2b2ef47eb45d40d3ab783c4345122",
+    "apps/clinician-web/src/workspaceTypes.ts": "c843d2e901617035a1e754da9d1fcddabdfb23e0d2e0d6a13831505dd133c7e5",
+    "apps/clinician-web/src/style.css": "087a3e6572d0e8311a7d530f36b729620c00e44043bd0f39bc4ec175d4dc32b5",
+    "apps/clinician-web/e2e/workflow.spec.ts": "ce785d658f9641c24b0d282ca6cb2e1302fb2a1a4805dcd6e28aaec110961d9b"
+  },
+  "checks": [
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "detail": "TypeScript compilation and Vite production build passed at source commit."
+    },
+    {
+      "name": "workflow_e2e_discovery",
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "status": "pass",
+      "detail": "Two workflow tests discovered, including measured execution details assertions."
+    },
+    {
+      "name": "execution_metrics_browser_assertions",
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --grep \"clinician reviews evidence\"",
+      "status": "blocked",
+      "detail": "Playwright navigation failed before app load with net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:8001/. UI assertions were not executed."
+    }
+  ],
+  "result": "implemented_with_browser_validation_blocked",
+  "blocker": "Loopback browser navigation is denied in this environment. Run the workflow in a local-socket-enabled environment to verify rendered measurements against fixtures. Missing model/cost/time fields are explicitly displayed as unavailable; no estimates or cost calculations are fabricated.",
+  "clinical_release_authorized": false,
+  "created_utc_date": "2026-11-14"
+}
