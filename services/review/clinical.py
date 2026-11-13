@@ -23,6 +23,10 @@ SYMPTOMS = re.compile(
     r"|wheeze|wheezing|dizziness|syncope|swelling)\b",
     re.I,
 )
+ALLERGY_REACTIONS = re.compile(
+    r"\b(?:anaphylaxis|anaphylactic reaction|hives|rash|swelling|itching|wheezing|shortness of breath|nausea|vomiting)\b",
+    re.I,
+)
 MEDICATION_ACTIONS = (
     (
         "recommend",
@@ -160,7 +164,10 @@ def extract(transcript):
                 continue
             category = "other"
             for name, pattern in [
-                ("allergy", r"allerg|anaphyl|reaction"),
+                (
+                    "allergy",
+                    r"allerg|anaphyl|reaction|hives|rash|swelling|itching|wheezing|shortness of breath",
+                ),
                 (
                     "medication",
                     MEDICATION.pattern
@@ -272,8 +279,31 @@ def extract(transcript):
                     fact["frequency"] = frequencies[0].group()
                 if len(durations) == 1:
                     fact["duration"] = durations[0].group()
-            if category == "allergy" and len(medications) == 1:
-                fact["allergen"] = medications[0].group()
+            if category == "allergy":
+                fact["allergy_severity"] = "unknown"
+                allergens = list(
+                    re.finditer(
+                        r"\b(?:allergic|allergy|sensitivity|reaction)\s+(?:to|with)\s+([A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,2}?)(?=\s+(?:with|causes?|caused|resulting|and)\b|[,.!?;]|$)",
+                        quote,
+                        re.I,
+                    )
+                )
+                if len(medications) == 1:
+                    fact["allergen"] = medications[0].group()
+                elif len(allergens) == 1:
+                    candidate = allergens[0].group(1)
+                    if candidate.casefold() not in {"it", "that", "them", "this"}:
+                        fact["allergen"] = candidate
+                reactions = list(ALLERGY_REACTIONS.finditer(quote))
+                if reactions:
+                    fact["allergy_reaction"] = ", ".join(
+                        dict.fromkeys(match.group() for match in reactions)
+                    )
+                severities = list(
+                    re.finditer(r"\b(?:mild|moderate|severe)\b", quote, re.I)
+                )
+                if len(severities) == 1:
+                    fact["allergy_severity"] = severities[0].group().lower()
             side = re.findall(r"\b(?:left|right|bilateral)\b", quote, re.I)
             if len(side) == 1:
                 fact["laterality"] = side[0].lower()

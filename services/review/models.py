@@ -102,6 +102,7 @@ class Fact(Strict):
     duration: str | None = Field(default=None, max_length=100)
     allergen: str | None = Field(default=None, max_length=200)
     allergy_reaction: str | None = Field(default=None, max_length=300)
+    allergy_severity: Literal["mild", "moderate", "severe", "unknown"] = "unknown"
 
     @model_validator(mode="after")
     def provenance(self):
