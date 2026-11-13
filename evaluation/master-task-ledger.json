@@ -5420,12 +5420,22 @@
       "id": "MTA-10-14",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "blocked_external_evidence",
       "description": "Compare CPU/RAM/energy latency per successful consultation rather than vendor model advertised performance.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/asr-resource-consultation-v1.json"
+      ],
+      "source_commit": "a897d64b5091acf2dd7ec7320e8f620b5c144893",
+      "test_results": [
+        {
+          "report": "evaluation/reports/asr-resource-consultation-v1.json",
+          "report_sha256": "8eaf800577593fb07c5a2d827608275464028e56c400b5184b618cb4d6adf822",
+          "check": "hash_bound_full_consultation_resource_comparison",
+          "status": "pass",
+          "detail": "Nine saved full-consultation candidate runs have case latency and run-level CPU/RAM summarized with accuracy and the unchanged 5% gate. All nine fail the gate."
+        }
+      ],
+      "blocker": "Per-consultation CPU and peak RAM attribution are absent from source runs, and no compatible local energy telemetry was recorded. Do not apportion process totals or infer energy. A fresh matched run with per-case resource sampling and a supported power meter is required."
     },
     {
       "id": "MTA-10-15",
