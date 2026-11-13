@@ -3684,11 +3684,21 @@
       "id": "MTA-07-17",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Report per-category confusion matrix, critical miss, false alarm, abstention, timeout and unsupported source rates.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/verification-category-metrics-mta-07-17-f335619.json",
+        "evaluation/reports/master-task-mta-07-17-f335619.json"
+      ],
+      "source_commit": "f3356198607f1ce4f5f5b55aa91ec7fb22d6c0a9",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-17-f335619.json",
+          "report_sha256": "07fbed8b7622b79d0aba93046225a81f24d71cfd0aa664846ad0ec531e51accd",
+          "check": "per_category_confusion_timeout_abstention_and_source_integrity_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

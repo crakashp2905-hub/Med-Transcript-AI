@@ -1,0 +1,49 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "f3356198607f1ce4f5f5b55aa91ec7fb22d6c0a9",
+  "tasks": [
+    "MTA-07-17"
+  ],
+  "comparison_report": "evaluation/reports/verification-category-metrics-mta-07-17-f335619.json",
+  "comparison_report_sha256": "ebb989313eed2bb96f98beb66c202a5901d3a8de848a6996ac5aeeab83880828",
+  "source_hashes": {
+    "services/verification_method_comparison.py": "159dc592debefe188f2e4817f5036ff232fbec97f4ebeabb509407dcdfbb1ed5",
+    "services/evidence_graph.py": "138f68c4b8ea5810719082b1bebfdb2334ea656856bd73d7b79c7531bca7094b",
+    "services/review/clinical.py": "90b88465621722521b452f5f29885a474ac3d8c81240efd04513a16cab728e42",
+    "tests/test_verification_method_comparison.py": "ec43b33a2f2fdf01e991a1d55b6624ab36a20cac9457510f8bd1610a27c9746b"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation",
+    "model_inference": "none; frozen model outcomes reused"
+  },
+  "checks": {
+    "per_category_confusion_timeout_abstention_and_source_integrity_metrics": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_verification_method_comparison.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "python -m ruff check services/verification_method_comparison.py tests/test_verification_method_comparison.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/verification_method_comparison.py tests/test_verification_method_comparison.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Cases are developer-authored and not independent clinical gold.",
+    "Model arm is reused from an earlier local run; no model was called by this report.",
+    "Evidence-graph validation cannot detect semantic mismatch when citations themselves are structurally valid.",
+    "Unsupported-source rate means structurally invalid citation links; this synthetic challenge contains no independently adjudicated source-grounding cases."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "c036f25f9e83d294a30558fb52eaaaf11b969d630dbac9e853b9296b76c7ae0f"
+}
