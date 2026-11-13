@@ -5399,12 +5399,22 @@
       "id": "MTA-10-13",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Test model busy, OOM preflight, cache missing, wrong hash, malformed response, denied permission and worker crash.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-10-13-33aed1d.json"
+      ],
+      "source_commit": "33aed1d8dac956615b2ec0e93d64f6a2e924a296",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-10-13-33aed1d.json",
+          "report_sha256": "d3983788c27cec7b562a12bbbdb3f2c6fbd5308d68e5ff3b9a62ea3b838902a2",
+          "check": "local_model_failure_modes_and_resource_admission",
+          "status": "pass",
+          "detail": "22 focused tests passed. Route-level authorization and worker recovery cases were identified but not run because local Windows TestClient setup may stall before dispatch."
+        }
+      ],
+      "blocker": "Route-level authorization, missing-model publication and worker-crash recovery remain unexecuted in this Windows environment; the suite requires a local TestClient run where asyncio socketpair setup completes. No real OOM was induced."
     },
     {
       "id": "MTA-10-14",

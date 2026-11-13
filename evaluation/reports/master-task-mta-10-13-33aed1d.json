@@ -1,0 +1,46 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-13",
+  "source_commit": "33aed1d8dac956615b2ec0e93d64f6a2e924a296",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "scope": "existing_local_tests_only; no assets fetched; no paid calls",
+  "coverage_audit": {
+    "model_busy_and_memory_admission": [
+      "tests/test_inference_slot.py::test_process_slot_denies_requests_outside_the_configured_budget",
+      "tests/test_inference_slot.py::test_second_process_cannot_admit_inference_until_slot_is_released"
+    ],
+    "cache_missing_and_wrong_hash": [
+      "tests/test_model_availability.py::test_missing_model_is_unavailable_without_loading_or_downloading"
+    ],
+    "malformed_provider_response": [
+      "tests/test_drafting_provider_failures.py"
+    ],
+    "denied_permission_and_worker_crash": [
+      "tests/test_foundation.py::test_expired_authorization_at_dispatch_cancels_job",
+      "tests/test_foundation.py::test_crashed_worker_lease_is_recovered_and_attempts_are_bounded",
+      "tests/test_foundation.py::test_recoverable_worker_crash_retries_original_job"
+    ]
+  },
+  "source_files": {
+    "services/inference_slot.py": "fe17aa5535e95f1243760576433ae123c1b94a2bfc8192af48f1e64ca43c26dd",
+    "services/asr/profiles.py": "8f2624d085ecf6a64a8493398c04dd0abe815d53414092f02403d5567727e912",
+    "services/asr/adapter.py": "7260f9b0875a1420050d718edfff3331cc2e64b5186b20caa5b62121a1b279b9",
+    "tests/test_inference_slot.py": "2bc7affe666f24801ef083abfac972ee4d1085b4855566b809f93eb4441a1a6a",
+    "tests/test_model_availability.py": "96a30ed5909dbc7d786754b4bd65c8c8c637b100096e90e2903432cd3cb0bcce",
+    "tests/test_drafting_provider_failures.py": "742f5c38d1be4f7cb42c87957623d2c54f5e17b544c890209190c71b5fd0e1a2",
+    "tests/test_provider_interfaces.py": "9d441fc0e2cff58ddafe8b1ccf2bd387fb0f0425cfc22992c2fc79ed7045a072",
+    "tests/test_foundation.py": "4cb6a0295ccf2b6736837867ffd7f9f26779783c3324491c61c3bd89ecf9de23"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_inference_slot.py tests/test_drafting_provider_failures.py tests/test_provider_interfaces.py tests/test_model_availability.py::test_missing_model_is_unavailable_without_loading_or_downloading -q",
+      "status": "pass",
+      "result": "22 passed"
+    }
+  ],
+  "limitations": [
+    "Authorization dispatch, worker crash recovery and worker missing-model publication checks were found in the suite but not executed in this run because local TestClient setup can stall before route dispatch on Windows asyncio socketpair.",
+    "No real model OOM was induced; memory admission denial is tested with a deterministic constrained budget."
+  ],
+  "clinical_release_authorized": false
+}
