@@ -1,0 +1,47 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "ad1f2534175a52a98d8f3cc85b83d11101ba4e3e",
+  "tasks": [
+    "MTA-08-17"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/ClinicalProposals.tsx": "9b51532fd1f3e5403edf12116a39d543fcada73fbd4882d55bd728c3e821a4a0",
+    "tests/test_application_pipeline.py": "3600798096de835f1e6eb98628e33da44a70a4bc4b75d93090f7a69789c1fc3c"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "node_build": "npm run build in apps/clinician-web"
+  },
+  "checks": {
+    "manual_only_fallback_keeps_model_proposals_unreviewed_and_note_unchanged": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_application_pipeline.py::test_memory_budget_blocks_model_before_provider_is_called -q (loopback enabled)",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m ruff check tests/test_application_pipeline.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check tests/test_application_pipeline.py",
+      "status": "pass"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "The browser fallback is verified by TypeScript production build; no interactive browser usability test was run.",
+    "Deterministic proposals remain unreviewed, and no model output is silently substituted."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "a6abc5bb1c3f693bf0e71b530294a836901de971f7137dbab63f1ceedf159677"
+}

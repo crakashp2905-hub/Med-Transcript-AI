@@ -4151,11 +4151,22 @@
       "id": "MTA-08-17",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Provide explicitly safe manual-only fallback when local models are absent or busy.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "apps/clinician-web/src/ClinicalProposals.tsx",
+        "tests/test_application_pipeline.py",
+        "evaluation/reports/master-task-mta-08-17-ad1f253.json"
+      ],
+      "source_commit": "ad1f2534175a52a98d8f3cc85b83d11101ba4e3e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-17-ad1f253.json",
+          "report_sha256": "f9354f02b843b7c570ef29a02f7ba9463218b60e5bd1776a2b66bb97823a75ad",
+          "check": "manual_only_fallback_keeps_model_proposals_unreviewed_and_note_unchanged",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
