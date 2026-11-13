@@ -1568,12 +1568,24 @@
       "id": "MTA-03-05",
       "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Test browser capture at minimum, medium, near-30-minute and interrupted durations with bounded chunks and backpressure.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/e2e/dictation.spec.ts",
+        "apps/clinician-web/e2e/recovery.spec.ts",
+        "evaluation/reports/master-task-mta-03-05-4db62a0.json"
+      ],
+      "source_commit": "4db62a0593f3c64b5f1804f47015ee9c279322d7",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-05-4db62a0.json",
+          "report_sha256": "642c0e517c9f090f5380de6513ae7af223db69f0deea0de78fd64878c4e6be65",
+          "check": "browser_capture_duration_backpressure",
+          "status": "pass"
+        }
+      ],
+      "blocker": "No physical microphone run or 30-minute wall-clock capture; browser tests used synthetic audio and accelerated elapsed time."
     },
     {
       "id": "MTA-03-06",
@@ -1639,12 +1651,24 @@
       "id": "MTA-03-09",
       "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Simulate network/tab/storage failure, permission revocation, device unplug, quota exhaustion and reload recovery.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/e2e/dictation.spec.ts",
+        "apps/clinician-web/e2e/recovery.spec.ts",
+        "evaluation/reports/master-task-mta-03-09-4db62a0.json"
+      ],
+      "source_commit": "4db62a0593f3c64b5f1804f47015ee9c279322d7",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-03-09-4db62a0.json",
+          "report_sha256": "9ba5bd94c084f14f7b62b817805231c25a9cd8862f34a342070704ea2d5308f7",
+          "check": "browser_failure_recovery_matrix",
+          "status": "pass"
+        }
+      ],
+      "blocker": "OS-level permission revocation and physical device unplug remain unvalidated; corresponding Chromium tests are synthetic."
     },
     {
       "id": "MTA-03-10",

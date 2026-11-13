@@ -1,0 +1,34 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-03-05",
+  "source_commit": "4db62a0593f3c64b5f1804f47015ee9c279322d7",
+  "status": "implemented",
+  "source_sha256": {
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "2eb1dead2ff7fa8bb5d345335001a345ba7a41656979aa7582d00858e9c2d5f2",
+    "apps/clinician-web/e2e/dictation.spec.ts": "b4602a4a48874f38d35a7fafe23682bb82435faaa9a8a01628c0aa20bf2ee127",
+    "apps/clinician-web/e2e/recovery.spec.ts": "c385b8287c5f9d4453f5e81486c88d7781e7cf75401c408297fc0b6ef6a6037f"
+  },
+  "checks": {
+    "browser_capture_duration_backpressure": {
+      "status": "pass",
+      "result": "Four exact-commit Playwright cases passed: <1 second capture is rejected without upload; the accelerated clock confirms capture remains active at 6 and 20 minutes and stops at 30 minutes; simulated device disconnect retains a partial file and does not auto-submit; slowed IndexedDB persistence triggers the queue cap and preserves a recovery prefix bounded to 12 MiB. The 9 MiB upload case also confirms 4 MiB chunk offsets and interrupted-response resume."
+    }
+  },
+  "runtime": {
+    "source_commit": "4db62a0593f3c64b5f1804f47015ee9c279322d7",
+    "runner": "Playwright 1.64.1, headless Chromium 157, Node 22.16.0, local loopback frontend/API",
+    "command": "playwright test e2e/dictation.spec.ts e2e/recovery.spec.ts --grep <duration-and-recovery-selection>",
+    "selected_tests": 11,
+    "duration_tests_passed": 4,
+    "failure_recovery_tests_passed": 7,
+    "failed_tests": 0,
+    "network_calls_outside_loopback": 0,
+    "paid_calls": 0,
+    "external_assets_fetched": 0,
+    "limitations": [
+      "Elapsed durations used Playwright's accelerated clock; no 30-minute wall-clock microphone recording was made.",
+      "Microphone and device-disconnect behavior used Chromium's synthetic audio device; physical hardware and channel integrity were not tested."
+    ]
+  },
+  "runtime_sha256": "8961f5e40c0032cfc39b88ac23b37770e642b62668f3856d1430f82576bbc77b"
+}

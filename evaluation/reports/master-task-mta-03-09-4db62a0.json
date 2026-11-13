@@ -1,0 +1,32 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-03-09",
+  "source_commit": "4db62a0593f3c64b5f1804f47015ee9c279322d7",
+  "status": "implemented",
+  "source_sha256": {
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "2eb1dead2ff7fa8bb5d345335001a345ba7a41656979aa7582d00858e9c2d5f2",
+    "apps/clinician-web/e2e/dictation.spec.ts": "b4602a4a48874f38d35a7fafe23682bb82435faaa9a8a01628c0aa20bf2ee127",
+    "apps/clinician-web/e2e/recovery.spec.ts": "c385b8287c5f9d4453f5e81486c88d7781e7cf75401c408297fc0b6ef6a6037f"
+  },
+  "checks": {
+    "browser_failure_recovery_matrix": {
+      "status": "pass",
+      "result": "Seven exact-commit browser cases passed: reload recovery in the originating encounter; quota exhaustion preserves committed chunks; lost upload response retries from the committed 4 MiB offset; identical file uploads to distinct encounters; a late microphone denial cannot stop a newer capture; authorization revocation stops recording; and server-acknowledged prefixes remain recoverable. Device unplug and slow-storage backpressure cases also passed in the shared 11-case run."
+    }
+  },
+  "runtime": {
+    "source_commit": "4db62a0593f3c64b5f1804f47015ee9c279322d7",
+    "runner": "Playwright 1.64.1, headless Chromium 157, Node 22.16.0, local loopback frontend/API",
+    "command": "playwright test e2e/dictation.spec.ts e2e/recovery.spec.ts --grep <duration-and-recovery-selection>",
+    "selected_tests": 11,
+    "recovery_tests_passed": 7,
+    "failed_tests": 0,
+    "network_calls_outside_loopback": 0,
+    "paid_calls": 0,
+    "external_assets_fetched": 0,
+    "limitations": [
+      "Permission changes, device unplug, and tab reload were induced synthetically in Chromium; real operating-system permission and hardware unplug behavior still needs device validation."
+    ]
+  },
+  "runtime_sha256": "eaf8d042809496cd4b0778bbfb4fdeb7011a2523d78d84c62d33ce3ee7cb4660"
+}
