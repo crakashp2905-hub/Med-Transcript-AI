@@ -398,9 +398,8 @@ def test_transcript_edit_during_drafting_discards_the_output(setup):
         )
 
 
-def test_local_json_provider_uses_bounded_transport_and_safe_usage():
-    from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-    from threading import Thread
+def test_local_json_provider_uses_bounded_transport_and_safe_usage(monkeypatch):
+    import socket
 
     fact = {
         "fact_id": "one",
@@ -409,53 +408,60 @@ def test_local_json_provider_uses_bounded_transport_and_safe_usage():
         "reviewed": True,
     }
 
-    class Handler(BaseHTTPRequestHandler):
-        def log_message(self, *args):
-            pass
-
-        def do_POST(self):
-            request = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
-            assert request["max_tokens"] == 2048
-            answer = {
-                "model": "fake-test-server",
-                "choices": [
-                    {
-                        "message": {
-                            "content": json.dumps(
+    answer = {
+        "model": "fake-test-server",
+        "choices": [
+            {
+                "message": {
+                    "content": json.dumps(
+                        {
+                            "statements": [
                                 {
-                                    "statements": [
-                                        {
-                                            "section": "subjective",
-                                            "text": "No fever.",
-                                            "fact_ids": ["one"],
-                                        }
-                                    ]
+                                    "section": "subjective",
+                                    "text": "No fever.",
+                                    "fact_ids": ["one"],
                                 }
-                            )
+                            ]
                         }
-                    }
-                ],
-                "usage": {"prompt_tokens": 12, "api_key": "must-not-persist"},
+                    )
+                }
             }
-            raw = json.dumps(answer).encode()
-            self.send_response(200)
-            self.send_header("Content-Length", str(len(raw)))
-            self.end_headers()
-            self.wfile.write(raw)
+        ],
+        "usage": {"prompt_tokens": 12, "api_key": "must-not-persist"},
+    }
 
-    server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
-    thread = Thread(target=server.serve_forever, daemon=True)
-    thread.start()
-    try:
-        provider = JSONProvider(
-            f"http://127.0.0.1:{server.server_port}/draft",
-            "fake-test-server",
-            enabled=True,
-        )
-        result = provider.draft([fact], authorized=True, synthetic=True)
-        assert result["provenance"]["usage"] == {"prompt_tokens": 12}
-        assert result["status"] == "review_required"
-    finally:
-        server.shutdown()
-        server.server_close()
-        thread.join()
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            return None
+
+        def read(self, limit):
+            return json.dumps(answer).encode()[:limit]
+
+    class Opener:
+        def open(self, request, timeout):
+            assert timeout == 30
+            submitted = json.loads(request.data)
+            assert submitted["max_tokens"] == 2048
+            assert request.get_method() == "POST"
+            return Response()
+
+    monkeypatch.setattr(
+        socket,
+        "getaddrinfo",
+        lambda host, port, *args, **kwargs: [
+            (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("127.0.0.1", port))
+        ],
+    )
+    monkeypatch.setattr(
+        "services.review.providers.urllib.request.build_opener",
+        lambda *handlers: Opener(),
+    )
+    provider = JSONProvider(
+        "http://127.0.0.1:11434/draft", "fake-test-server", enabled=True
+    )
+    result = provider.draft([fact], authorized=True, synthetic=True)
+    assert result["provenance"]["usage"] == {"prompt_tokens": 12}
+    assert result["status"] == "review_required"
