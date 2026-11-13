@@ -2584,12 +2584,28 @@
       "id": "MTA-05-02",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Reimplement a deterministic DER and JER evaluation on identical frozen reference turns with configurable collar and overlap policy.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/speaker-comparison-2026-11-13.json",
+        "evaluation/reports/master-task-mta-05-02-deeeff6.json"
+      ],
+      "source_commit": "deeeff6852894c0167eba2a93e0fdbfea1bb480b",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-05-02-deeeff6.json",
+          "report_sha256": "9a88b6abc8b546e182ce11346f616ca50115be1c1f2e894859f566581aebd6c2",
+          "check": "deterministic_der_jer_with_configurable_collar_and_overlap_policy"
+        },
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-05-02-deeeff6.json",
+          "report_sha256": "9a88b6abc8b546e182ce11346f616ca50115be1c1f2e894859f566581aebd6c2",
+          "check": "same_frozen_reference_manifest_and_source_bound_comparison"
+        }
+      ],
+      "blocker": "No independent adjudication; results are software verification against upstream labels only."
     },
     {
       "id": "MTA-05-03",

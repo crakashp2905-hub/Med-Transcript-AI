@@ -1,0 +1,30 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-05-02",
+  "source_commit": "deeeff6852894c0167eba2a93e0fdbfea1bb480b",
+  "checks": {
+    "deterministic_der_jer_with_configurable_collar_and_overlap_policy": {
+      "status": "pass",
+      "test_count": 7
+    },
+    "same_frozen_reference_manifest_and_source_bound_comparison": {
+      "status": "pass",
+      "manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a"
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "7 passed: tests/test_diarization_evaluation.py and tests/test_speaker_results.py",
+    "ruff": "pass"
+  },
+  "runtime_sha256": "27eca53ee07d21a080a8f43dd20072282e0206d425b94f438cb06694737c5861",
+  "comparison_report": "evaluation/reports/speaker-comparison-2026-11-13.json",
+  "reference_status": "upstream labels; no independent adjudication",
+  "clinical_acceptance": false,
+  "limitations": [
+    "fixed-window mono and separate-channel capture are separate modalities and are not pooled",
+    "role labels are upstream and not independently adjudicated",
+    "scoring-only anonymous-cluster mapping never assigns clinician roles"
+  ]
+}
