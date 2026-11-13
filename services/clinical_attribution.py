@@ -26,7 +26,12 @@ def classify(text):
         )
     subject = (
         "family"
-        if re.search(r"\b(?:mother|father|sister|brother|family)\b", lower)
+        if re.search(
+            r"\b(?:mother|father|sister|brother|grandmother|grandfather|"
+            r"aunt|uncle|cousin|daughter|son|wife|husband|spouse|child|"
+            r"parent|sibling|family|family history)\b",
+            lower,
+        )
         else "patient"
         if lower
         else "unknown"
@@ -41,6 +46,8 @@ def classify(text):
     return {
         "text": text,
         "subject": subject,
+        "subject_attribution_source": "utterance_content_only",
+        "diarization_role_used_for_subject": False,
         "assertion": assertion,
         "action_status": action,
         "diagnosis_inferred": False,

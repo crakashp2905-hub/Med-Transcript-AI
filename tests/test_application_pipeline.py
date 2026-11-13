@@ -37,6 +37,39 @@ def test_application_pipeline_uses_resource_graph_attribution_and_relationship_h
     assert result["evidence_graph"]["complete_to_export"] is False
 
 
+def test_family_history_subject_is_derived_from_text_not_a_diarized_speaker_hint():
+    fact_id = str(uuid4())
+    segment_id = str(uuid4())
+    text = "My sister has diabetes."
+    transcript = {
+        "id": str(uuid4()),
+        "audio_asset_id": str(uuid4()),
+        "segments": [{"segment_id": segment_id, "text": text}],
+    }
+    result = enrich_fact_proposal(
+        transcript=transcript,
+        facts=[
+            {
+                "fact_id": fact_id,
+                "text": text,
+                "speaker_role": "clinician",
+                "evidence": {
+                    "segment_id": segment_id,
+                    "start_char": 0,
+                    "end_char": len(text),
+                    "quote": text,
+                },
+            }
+        ],
+        relationships={"relations": []},
+    )
+
+    attribution = result["attribution"][0]
+    assert attribution["subject"] == "family"
+    assert attribution["subject_attribution_source"] == "utterance_content_only"
+    assert attribution["diarization_role_used_for_subject"] is False
+
+
 def test_fact_proposal_http_persists_graph_and_real_clinical_relationships(setup):
     client, path, _ = setup
     eid, tx, _ = prepare(
