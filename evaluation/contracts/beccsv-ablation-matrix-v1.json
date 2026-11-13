@@ -1,0 +1,92 @@
+{
+  "schema_version": "beccsv_ablation_matrix_v1",
+  "status": "declared_not_executed",
+  "features": [
+    "source_coverage",
+    "temporal_edges",
+    "relation_edges",
+    "uncertainty_abstention",
+    "deterministic_rules",
+    "local_verifier"
+  ],
+  "variants": {
+    "full_beccsv": {
+      "source_coverage": true,
+      "temporal_edges": true,
+      "relation_edges": true,
+      "uncertainty_abstention": true,
+      "deterministic_rules": true,
+      "local_verifier": true
+    },
+    "no_source_coverage": {
+      "source_coverage": false,
+      "temporal_edges": true,
+      "relation_edges": true,
+      "uncertainty_abstention": true,
+      "deterministic_rules": true,
+      "local_verifier": true
+    },
+    "no_temporal_edges": {
+      "source_coverage": true,
+      "temporal_edges": false,
+      "relation_edges": true,
+      "uncertainty_abstention": true,
+      "deterministic_rules": true,
+      "local_verifier": true
+    },
+    "no_relation_edges": {
+      "source_coverage": true,
+      "temporal_edges": true,
+      "relation_edges": false,
+      "uncertainty_abstention": true,
+      "deterministic_rules": true,
+      "local_verifier": true
+    },
+    "no_uncertainty_abstention": {
+      "source_coverage": true,
+      "temporal_edges": true,
+      "relation_edges": true,
+      "uncertainty_abstention": false,
+      "deterministic_rules": true,
+      "local_verifier": true
+    },
+    "no_deterministic_rules": {
+      "source_coverage": true,
+      "temporal_edges": true,
+      "relation_edges": true,
+      "uncertainty_abstention": true,
+      "deterministic_rules": false,
+      "local_verifier": true
+    },
+    "no_local_verifier": {
+      "source_coverage": true,
+      "temporal_edges": true,
+      "relation_edges": true,
+      "uncertainty_abstention": true,
+      "deterministic_rules": true,
+      "local_verifier": false
+    }
+  },
+  "standard_baselines": [
+    "plain_soap_template",
+    "ordinary_llm_prompting",
+    "deterministic_checks_only",
+    "llm_only_self_critique",
+    "current_combined_policy"
+  ],
+  "execution_environment": {
+    "local_verifier_runtime": "Ollama client present; local server was not running at inventory time",
+    "paid_calls": false,
+    "model_assets_fetched": false,
+    "synthetic_only_development": true
+  },
+  "comparison_freeze_requirements": [
+    "same consultation IDs and source fact versions",
+    "same source audio and transcript digests",
+    "same model and prompt digests when applicable",
+    "same resource, retry and timeout budgets",
+    "failure-inclusive denominators",
+    "no post-error edits to locked cases"
+  ],
+  "clinical_release_authorized": false
+}
