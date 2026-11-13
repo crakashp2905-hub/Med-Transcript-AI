@@ -3766,11 +3766,20 @@
       "id": "MTA-07-21",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Keep egress-limited redacted audit receipts for each detection without including sensitive source text.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-21-da21869.json"
+      ],
+      "source_commit": "da21869d7cd285833c8b3605502b47ecc6df582c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-21-da21869.json",
+          "report_sha256": "9eda64a873cb96f37b51df5e3ee645cf3c61b2de26d1262117accf39af57f116",
+          "check": "one_redacted_hash_bound_receipt_per_detection_no_source_note_or_model_text",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
