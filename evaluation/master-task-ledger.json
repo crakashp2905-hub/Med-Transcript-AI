@@ -5626,22 +5626,22 @@
       "id": "MTA-11-12",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Use no test-case modifications after inspecting errors for final locked comparison; new development set is versioned.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json", "evaluation/datasets/beccsv-synthetic-dev-v1/lock.json"],
+      "source_commit": "2a7ed32668f158cf17912cb28c81b95dfe150336",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-11-12-13-2a7ed32.json", "report_sha256": "4a4bc3b4777804c736dcf76ea9fdcd51b7bc606b6a972da56fe3822230162e98", "check": "versioned_locked_synthetic_development_set", "status": "pass", "detail": "Eight cases, source facts and expected mismatch labels are bound to an immutable manifest digest; edits require a new version."}],
+      "blocker": "This is a development cohort only. Independent acceptance cases and qualified adjudication are not available."
     },
     {
       "id": "MTA-11-13",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Construct synthetic scenario generator over clinically plausible entities but explicitly synthetic labels and no actual patient information.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": ["services/beccsv_dataset.py", "evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json"],
+      "source_commit": "2a7ed32668f158cf17912cb28c81b95dfe150336",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-11-12-13-2a7ed32.json", "report_sha256": "4a4bc3b4777804c736dcf76ea9fdcd51b7bc606b6a972da56fe3822230162e98", "check": "deterministic_synthetic_scenario_generator", "status": "pass", "detail": "Five repeatable counterexamples cover medication-dose relations, polarity, subject attribution and temporality; all declare synthetic=true and clinical_gold=false."}],
       "blocker": null
     },
     {

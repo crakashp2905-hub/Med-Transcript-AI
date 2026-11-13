@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-11-12",
+    "MTA-11-13"
+  ],
+  "source_commit": "2a7ed32668f158cf17912cb28c81b95dfe150336",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "source_files": {
+    "evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json": "86e8046c377202194f2d8a11d7c2362611956ff435b31741594dec22a5e22901",
+    "evaluation/datasets/beccsv-synthetic-dev-v1/lock.json": "cb7b7f574f60a307daa35159c27dbfc5f0845d4f5a0f557c47131d9e54472b6f",
+    "services/beccsv_dataset.py": "35a1f14dbe5a8979262c342584b7895452399ececdf02ec4a70a3131af80d4a3",
+    "tests/test_beccsv_dataset.py": "fee783434942fef0d1ddee126cb1e83bf2d4fca22c37668de008e56930986007"
+  },
+  "dataset": {
+    "dataset_id": "beccsv-synthetic-dev-v1",
+    "manifest_sha256": "86e8046c377202194f2d8a11d7c2362611956ff435b31741594dec22a5e22901",
+    "case_count": 8,
+    "source_fact_count": 24,
+    "note_claim_count": 22,
+    "generator_scenario_count": 5,
+    "clinical_gold": false,
+    "independent_adjudication": false,
+    "acceptance_use_authorized": false
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_beccsv_dataset.py tests/test_beccsv_ablations.py tests/test_beccsv_protocol_preregistration.py -q",
+      "status": "pass",
+      "result": "13 passed"
+    },
+    {
+      "command": "ruff check services/beccsv_dataset.py tests/test_beccsv_dataset.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "All cases are authored synthetic text; they have no source audio and are not clinical or independent gold.",
+    "The deterministic generator is a development challenge generator, not a population simulator.",
+    "A separate acceptance cohort remains necessary for any efficacy analysis."
+  ],
+  "clinical_release_authorized": false
+}
