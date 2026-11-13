@@ -12,6 +12,7 @@ import {VersionComparison} from './VersionComparison';
 import {ClinicalProposals} from './ClinicalProposals';
 import {type Fact,emptyFact,cleanFact} from './facts';
 import {DetailedDemo} from './DetailedDemo';
+import {PersonaJourneys} from './PersonaJourneys';
 import {GuidedDemo,EncounterTools,PatientSummary,StudyDashboard} from './PresentationTools';
 import {useEncounterWorkspace} from './hooks/useEncounterWorkspace';
 import {LoginScreen} from './screens/LoginScreen';
@@ -32,7 +33,7 @@ if(!session)return <LoginScreen controller={controller}/>;
  {tab==='source'&&ws.transcript?.diarization&&<SpeakerRoles key={ws.transcript.id} report={ws.transcript.diarization} disabled={!!busy} play={play} save={async roles=>{await act('Saving speaker confirmation',async()=>{await json(`/v1/encounters/${selected}/transcripts/${ws.transcript!.id}/speaker-roles`,{method:'POST',headers:{'If-Match':`"${ws.transcript!.sha256}"`},body:JSON.stringify({clinician_confirmed:true,assignments:roles})});await load();});}}/>}
  {tab==='source'&&<SourceReviewScreen controller={controller}/>}
  {ws.transcript?.provenance.engine==='public_human_reference_not_asr'&&<div className="callout">Public mock consultation · Human reference transcript, not ASR output · Source attribution is retained in the transcript provenance. Independent clinical acceptance is pending.</div>}
- <GuidedDemo onSource={()=>setTab('source')} onNote={()=>setTab('note')} onHistory={()=>void getHistory()} approved={!!ws.approval}/>
+ <GuidedDemo onSource={()=>setTab('source')} onNote={()=>setTab('note')} onHistory={()=>void getHistory()} approved={!!ws.approval}/><PersonaJourneys onSource={()=>setTab('source')} onNote={()=>setTab('note')} onHistory={()=>void getHistory()} disabled={dictating||!!busy}/>
  {tab==='study'&&<StudyDashboard key={"study-"+selected} request={json} encounter={selected}/>}
  {tab==='note'&&<NoteReviewScreen controller={controller}/>}
 

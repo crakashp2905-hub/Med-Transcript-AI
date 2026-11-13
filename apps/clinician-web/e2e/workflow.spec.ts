@@ -15,6 +15,12 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByRole('button',{name:'Open workspace',exact:false}).click();
   await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();
   await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
+  const personaJourney=page.getByRole('region',{name:'Synthetic persona journey'});
+  await expect(personaJourney).toBeVisible();
+  await page.getByLabel('Review persona').selectOption('read_only_auditor');
+  await expect(personaJourney).toContainText('do not grant or simulate clinician access');
+  await page.getByLabel('Review persona').selectOption('specialist');
+  await expect(personaJourney).toContainText('Review the complete source and speaker turns');
   const search=page.getByRole('search',{name:'Search transcript'});
   const searchInput=search.getByLabel('Transcript search terms');
   await searchInput.fill('cough');
