@@ -90,6 +90,12 @@ def validate_proposal(transcript, facts):
                 {"from": span_id, "to": fid, "type": "span_to_fact"},
             ]
         )
+    # Multiple facts may cite the same source segment (or exact span). Shared
+    # provenance edges belong in the graph once; each distinct span→fact edge
+    # remains present and independently validated.
+    edges = list(
+        {(edge["from"], edge["to"], edge["type"]): edge for edge in edges}.values()
+    )
     node_ids = {str(audio_id)}
     node_ids.update(str(segment_id) for segment_id in segments)
     node_ids.update(edge["from"] for edge in edges)

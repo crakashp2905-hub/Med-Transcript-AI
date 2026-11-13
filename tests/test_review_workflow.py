@@ -134,6 +134,10 @@ def test_full_review_approval_export_and_amendment(setup):
     approved = approve(client, eid, result["note"])
     assert approved.status_code == 201, approved.text
     assert lifecycle()["stage"] == "approved"
+    with Store(path).transaction() as con:
+        original_approved_row = con.execute(
+            "SELECT body,sha256 FROM documents WHERE id=?", (result["note"]["id"],)
+        ).fetchone()
     assert approve(client, eid, result["note"]).json() == approved.json()
     with Store(path).transaction() as con:
         assert (
@@ -149,7 +153,7 @@ def test_full_review_approval_export_and_amendment(setup):
             headers=headers(),
             json={"approval_id": approved.json()["id"], "format": format},
         )
-        assert response.status_code == 201
+        assert response.status_code == 201, response.text
         receipt = response.json()
         assert len(receipt["evidence_graph_sha256"]) == 64
         downloaded = client.get(receipt["download_url"], headers=headers())
@@ -189,6 +193,12 @@ def test_full_review_approval_export_and_amendment(setup):
     assert amendment.status_code == 201
     assert lifecycle()["stage"] == "verified"
     assert amendment.json()["note"]["parent_version_id"] == result["note"]["id"]
+    assert amendment.json()["note"]["id"] != result["note"]["id"]
+    with Store(path).transaction() as con:
+        preserved_approved_row = con.execute(
+            "SELECT body,sha256 FROM documents WHERE id=?", (result["note"]["id"],)
+        ).fetchone()
+    assert tuple(preserved_approved_row) == tuple(original_approved_row)
     assert approve(client, eid, result["note"]).status_code == 412
 
 

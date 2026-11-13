@@ -421,7 +421,7 @@ def render_sections(facts, transcript_version_id=None):
             "key": key,
             "statements": [
                 {
-                    "statement_id": fact["fact_id"],
+                    "statement_id": str(uuid4()),
                     "text": fact["text"],
                     "fact_ids": [fact["fact_id"]],
                     "origin": fact["origin"],

@@ -81,6 +81,42 @@ def test_proposal_rejects_audio_segment_identity_collision_as_cycle():
         validate_proposal(transcript, [fact])
 
 
+def test_multiple_facts_in_one_segment_share_edges_and_keep_fact_links():
+    transcript = {
+        "id": "transcript-v1",
+        "audio_asset_id": "audio-1",
+        "segments": [{"segment_id": "segment-1", "text": "Cough; no fever."}],
+    }
+    facts = [
+        {
+            "fact_id": "fact-cough",
+            "evidence": {
+                "segment_id": "segment-1",
+                "start_char": 0,
+                "end_char": 5,
+                "quote": "Cough",
+            },
+        },
+        {
+            "fact_id": "fact-fever",
+            "evidence": {
+                "segment_id": "segment-1",
+                "start_char": 7,
+                "end_char": 16,
+                "quote": "no fever.",
+            },
+        },
+    ]
+
+    result = validate_proposal(transcript, facts)
+
+    assert sum(edge["type"] == "audio_to_transcript" for edge in result["edges"]) == 1
+    assert sum(edge["type"] == "transcript_to_span" for edge in result["edges"]) == 2
+    assert {
+        edge["to"] for edge in result["edges"] if edge["type"] == "span_to_fact"
+    } == {"fact-cough", "fact-fever"}
+
+
 def test_evidence_graph_connects_audio_to_export():
     result = build(
         audio_id="a",
