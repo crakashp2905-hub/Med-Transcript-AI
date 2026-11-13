@@ -259,6 +259,143 @@ def evaluate(
     return result
 
 
+def evaluate_cases(cases, *, critical_categories):
+    """Aggregate exact-concept metrics over cases with caller-declared critical categories.
+
+    This summary never labels developer cases as clinical gold. Critical categories
+    are explicit input so the metric does not embed an unreviewed clinical policy.
+    """
+    if not isinstance(cases, list) or not cases:
+        raise ValueError("clinical_metric_cases_required")
+    if not isinstance(critical_categories, (list, tuple, set)) or any(
+        not isinstance(category, str) or not category
+        for category in critical_categories
+    ):
+        raise ValueError("critical_categories_must_be_explicit")
+    case_ids = [case.get("case_id") for case in cases]
+    if any(not isinstance(case_id, str) or not case_id for case_id in case_ids):
+        raise ValueError("clinical_metric_case_id_required")
+    if len(case_ids) != len(set(case_ids)):
+        raise ValueError("duplicate_clinical_metric_case_id")
+
+    per_case = []
+    total_tp = total_fp = total_fn = critical_fn = 0
+    by_category: dict[str, dict[str, int]] = {}
+    case_f1 = []
+    case_precision = []
+    case_recall = []
+    for case in cases:
+        expected = case.get("expected")
+        observed = case.get("observed")
+        if not isinstance(expected, list) or not isinstance(observed, list):
+            raise ValueError("clinical_metric_annotations_must_be_lists")
+        if not isinstance(case.get("reference", ""), str) or not isinstance(
+            case.get("hypothesis", ""), str
+        ):
+            raise ValueError("clinical_metric_transcripts_must_be_text")
+        failed = bool(case.get("failed", False))
+        result = evaluate(
+            case.get("reference", ""),
+            case.get("hypothesis", ""),
+            expected,
+            observed,
+            failed=failed,
+        )
+        tp = result["concept_true_positive"]
+        fp = result["concept_insertions"]
+        fn = result["concept_omissions"]
+        total_tp += tp
+        total_fp += fp
+        total_fn += fn
+        critical_fn += sum(
+            row["omissions"]
+            for category, row in result["by_category"].items()
+            if category in critical_categories
+        )
+        for category, row in result["by_category"].items():
+            aggregate = by_category.setdefault(
+                category,
+                {
+                    "expected": 0,
+                    "observed": 0,
+                    "true_positive": 0,
+                    "omissions": 0,
+                    "insertions": 0,
+                },
+            )
+            for metric in aggregate:
+                aggregate[metric] += row[metric]
+        has_concepts = tp + fp + fn > 0
+        precision = (tp / (tp + fp) if tp + fp else 0.0) if has_concepts else None
+        recall = (tp / (tp + fn) if tp + fn else 0.0) if has_concepts else None
+        f1 = (
+            2 * precision * recall / (precision + recall)
+            if precision is not None and recall is not None and precision + recall
+            else 0.0
+            if has_concepts
+            else None
+        )
+        if has_concepts:
+            case_precision.append(precision)
+            case_recall.append(recall)
+            case_f1.append(f1)
+        per_case.append(
+            {
+                "case_id": case["case_id"],
+                "failed": failed,
+                "concept_true_positive": tp,
+                "concept_insertions": fp,
+                "concept_omissions": fn,
+                "concept_precision": precision,
+                "concept_recall": recall,
+                "concept_f1": f1,
+                "critical_false_negative_count": sum(
+                    row["omissions"]
+                    for category, row in result["by_category"].items()
+                    if category in critical_categories
+                ),
+                "normalized_wer": result["normalized_wer"],
+                "clinical_adjudication": result["clinical_adjudication"],
+            }
+        )
+
+    micro_precision = total_tp / (total_tp + total_fp) if total_tp + total_fp else None
+    micro_recall = total_tp / (total_tp + total_fn) if total_tp + total_fn else None
+    micro_f1 = (
+        2 * micro_precision * micro_recall / (micro_precision + micro_recall)
+        if micro_precision is not None
+        and micro_recall is not None
+        and micro_precision + micro_recall
+        else None
+    )
+    return {
+        "metric_version": "clinical_concepts_per_case_micro_macro_v1",
+        "case_count": len(per_case),
+        "critical_categories": sorted(set(critical_categories)),
+        "critical_false_negative_count": critical_fn,
+        "micro": {
+            "true_positive": total_tp,
+            "false_positive": total_fp,
+            "false_negative": total_fn,
+            "precision": micro_precision,
+            "recall": micro_recall,
+            "f1": micro_f1,
+        },
+        "macro_case": {
+            "precision": sum(case_precision) / len(case_precision)
+            if case_precision
+            else None,
+            "recall": sum(case_recall) / len(case_recall) if case_recall else None,
+            "f1": sum(case_f1) / len(case_f1) if case_f1 else None,
+            "defined_case_count": len(case_f1),
+        },
+        "by_category": by_category,
+        "cases": per_case,
+        "primary_endpoint_unchanged": PRIMARY_ENDPOINT,
+        "clinical_adjudication": "not_established_by_automated_metrics",
+    }
+
+
 def coverage(intervals, duration_ms):
     if duration_ms <= 0:
         raise ValueError("Positive source duration required")
