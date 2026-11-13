@@ -20,6 +20,12 @@ from services.domain_contracts import validate_record
 from services.proposal_integrity import decode_proposal
 from services.api.idempotency import idempotent
 from services.api.contracts import IdempotencyKey
+from services.provider_interfaces import (
+    ExtractionProvider,
+    ProviderFailure,
+    VerificationProvider,
+    require_provider,
+)
 
 
 class ExtractRequest(Strict):
@@ -44,20 +50,25 @@ class RetranscribeRequest(Strict):
 
 def clinical_provider_http_error(error):
     """Map unavailable local model output to a non-success response."""
-    if isinstance(error, ClinicalModelFailure):
+    if isinstance(error, ClinicalModelFailure) or (
+        isinstance(error, ProviderFailure) and error.kind in {"unavailable", "timeout"}
+    ):
         return HTTPException(503, "clinical_model_unavailable")
     return HTTPException(422, "clinical_extraction_failed_no_output_admitted")
 
 
 def semantic_provider_http_error(error):
     """Keep missing/unsupported verification output unavailable, never empty-success."""
-    if isinstance(error, ClinicalModelFailure):
+    if isinstance(error, ClinicalModelFailure) or (
+        isinstance(error, ProviderFailure) and error.kind in {"unavailable", "timeout"}
+    ):
         return HTTPException(503, "clinical_model_unavailable")
     return HTTPException(422, "semantic_check_failed_no_output_admitted")
 
 
 def run_semantic_batches(provider, claims):
     """All-or-nothing advisory verification over bounded, exact-ID batches."""
+    provider = require_provider(provider, VerificationProvider, "verification")
     identifiers = [str(claim["fact_id"]) for claim in claims]
     if not 1 <= len(claims) <= 300 or len(set(identifiers)) != len(identifiers):
         raise ValueError("invalid_semantic_scope")
@@ -227,6 +238,7 @@ def register(
             RuleExtractor() if body.mode == "rules" else app.state.clinical_models
         )
         try:
+            provider = require_provider(provider, ExtractionProvider, "extraction")
             with (
                 local_inference_slot()
                 if body.mode == "local_model"

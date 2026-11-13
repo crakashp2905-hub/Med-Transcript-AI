@@ -5,6 +5,12 @@ speaker accuracy, clinical extraction quality, or verifier validity.
 """
 
 from dataclasses import dataclass
+from services.provider_interfaces import (
+    ASRProvider,
+    DiarizationProvider,
+    ExtractionProvider,
+    VerificationProvider,
+)
 
 
 class SyntheticOnlyError(ValueError):
@@ -17,10 +23,29 @@ def _require_synthetic(synthetic):
 
 
 @dataclass(frozen=True)
-class FakeASRAdapter:
+class FakeASRAdapter(ASRProvider):
     """Return predeclared transcript segments without reading audio or weights."""
 
     segments: tuple[dict, ...]
+
+    def availability(self):
+        return {"status": "available_not_admitted", "provider_mode": "fixture"}
+
+    def timestamp_capability(self):
+        return {"kind": "segment", "native": True}
+
+    def n_best_capability(self):
+        return {"supported": False}
+
+    def confidence_capability(self):
+        return {"supported": False, "calibrated": False}
+
+    def runtime_receipt(self):
+        return {
+            "backend_id": "synthetic_fixture",
+            "runtime_version": "none",
+            "model_revision": "none",
+        }
 
     def transcribe(self, source, metadata, checkpoint=lambda: None, *, synthetic=False):
         _require_synthetic(synthetic)
@@ -35,11 +60,12 @@ class FakeASRAdapter:
 
 
 @dataclass(frozen=True)
-class FakeDiarizationAdapter:
+class FakeDiarizationAdapter(DiarizationProvider):
     turns: tuple[dict, ...]
 
-    def diarize(self, *, synthetic=False):
+    def diarize(self, audio, manifest, checkpoint=lambda: None, *, synthetic=False):
         _require_synthetic(synthetic)
+        checkpoint()
         return {
             "segments": [dict(row) for row in self.turns],
             "role_assignment": "clinician_confirmation_required",
@@ -47,9 +73,11 @@ class FakeDiarizationAdapter:
         }
 
 
-class FakeExtractionAdapter:
-    def extract(self, transcript, *, synthetic=False):
+class FakeExtractionAdapter(ExtractionProvider):
+    def extract_facts(self, transcript, *, authorized, synthetic):
         _require_synthetic(synthetic)
+        if not authorized:
+            raise SyntheticOnlyError("explicit_authorization_required")
         return {
             "facts": [],
             "source_transcript_id": transcript.get("id"),
@@ -57,9 +85,11 @@ class FakeExtractionAdapter:
         }
 
 
-class FakeVerifierAdapter:
-    def verify(self, claims, *, synthetic=False):
+class FakeVerifierAdapter(VerificationProvider):
+    def check_claims(self, claims, *, authorized, synthetic):
         _require_synthetic(synthetic)
+        if not authorized:
+            raise SyntheticOnlyError("explicit_authorization_required")
         return {
             "findings": [],
             "claims_checked": len(claims),

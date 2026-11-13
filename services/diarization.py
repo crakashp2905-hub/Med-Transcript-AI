@@ -3,6 +3,23 @@
 import wave
 import time
 from services.api.ingest import file_sha256
+from services.provider_interfaces import DiarizationProvider, ProviderFailure
+
+
+class LocalDiarizationProvider(DiarizationProvider):
+    """Typed adapter around the local diarizer with safe failure categories."""
+
+    def diarize(self, audio, manifest, checkpoint):
+        try:
+            return diarize(audio, manifest, checkpoint)
+        except TimeoutError:
+            raise ProviderFailure("diarization", "timeout") from None
+        except (FileNotFoundError, ImportError):
+            raise ProviderFailure("diarization", "unavailable") from None
+        except ProviderFailure:
+            raise
+        except Exception:
+            raise ProviderFailure("diarization", "failed") from None
 
 
 def diarize(audio, manifest, checkpoint=lambda: None):

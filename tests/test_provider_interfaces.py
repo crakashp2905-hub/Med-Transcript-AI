@@ -4,13 +4,28 @@ from services.asr.adapter import FasterWhisperAdapter
 from services.asr.omi_backend import OmiBackend
 from services.asr.parakeet_backend import ParakeetOnnxBackend
 from services.review.providers import DeterministicProvider, JSONProvider
+from services.offline_adapters import (
+    FakeASRAdapter,
+    FakeDiarizationAdapter,
+    FakeExtractionAdapter,
+    FakeVerifierAdapter,
+)
+from services.review.clinical_models import (
+    ClinicalModelFailure,
+    LocalClinicalModels,
+    RuleExtractor,
+)
+from services.diarization import LocalDiarizationProvider
+from services.asr.backend import BackendError
 from services.provider_interfaces import (
     ASRProvider,
     DiarizationProvider,
     DraftingProvider,
     ExtractionProvider,
     VerificationProvider,
+    ProviderFailure,
     require_limitations,
+    require_provider,
 )
 
 
@@ -55,6 +70,52 @@ def test_local_asr_and_drafting_adapters_obey_shared_provider_contracts(tmp_path
         JSONProvider(endpoint="http://localhost:1", model="fixture"),
     )
     assert all(isinstance(provider, DraftingProvider) for provider in drafting)
+
+
+def test_each_application_role_implements_its_shared_provider_contract():
+    assert isinstance(FakeASRAdapter(()), ASRProvider)
+    assert isinstance(LocalDiarizationProvider(), DiarizationProvider)
+    assert isinstance(FakeDiarizationAdapter(()), DiarizationProvider)
+    assert isinstance(RuleExtractor(), ExtractionProvider)
+    assert isinstance(FakeExtractionAdapter(), ExtractionProvider)
+    clinical = LocalClinicalModels(enabled=True)
+    assert isinstance(clinical, ExtractionProvider)
+    assert isinstance(clinical, VerificationProvider)
+    assert isinstance(FakeVerifierAdapter(), VerificationProvider)
+    assert isinstance(DeterministicProvider(), DraftingProvider)
+
+
+def test_provider_failures_have_explicit_stage_and_kind():
+    asr_error = BackendError("backend_timeout")
+    clinical_error = ClinicalModelFailure("clinical_model_unavailable")
+    assert (asr_error.stage, asr_error.kind) == ("asr", "timeout")
+    assert (clinical_error.stage, clinical_error.kind) == (
+        "clinical",
+        "unavailable",
+    )
+    with pytest.raises(ProviderFailure) as error:
+        require_provider(object(), DraftingProvider, "drafting")
+    assert error.value.code == "drafting_contract_unavailable"
+
+
+@pytest.mark.parametrize(
+    "raised,expected_kind",
+    [(TimeoutError("private detail"), "timeout"), (RuntimeError("private"), "failed")],
+)
+def test_diarization_errors_are_safe_and_stage_specific(
+    monkeypatch, raised, expected_kind
+):
+    import services.diarization as module
+
+    def fail(*args):
+        raise raised
+
+    monkeypatch.setattr(module, "diarize", fail)
+    with pytest.raises(ProviderFailure) as error:
+        LocalDiarizationProvider().diarize("audio", {}, lambda: None)
+    assert error.value.stage == "diarization"
+    assert error.value.kind == expected_kind
+    assert "private" not in str(error.value)
 
 
 def test_declared_runtime_dependencies_do_not_require_paid_provider_sdks():

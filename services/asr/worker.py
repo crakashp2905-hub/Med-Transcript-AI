@@ -18,6 +18,11 @@ import wave
 from services.api.ingest import MAX_CHANNELS, file_sha256, inspect_pcm_wav
 from services.api.storage import Store, processing_allowed, default_asset_root
 from services.asr.adapter import ASRFailure, FasterWhisperAdapter
+from services.provider_interfaces import (
+    DiarizationProvider,
+    ProviderFailure,
+    require_provider,
+)
 from services.asr.profiles import ASRProfile, canonical_json, content_sha256
 from services.asr.transcripts import build_transcript
 from services.audio_provenance import (
@@ -411,14 +416,21 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
                 and not job["preview_only"]
                 and not span_request
             ):
-                from services.diarization import diarize
+                from services.diarization import LocalDiarizationProvider
 
-                speaker_report = diarize(
+                diarization_provider = require_provider(
+                    LocalDiarizationProvider(),
+                    DiarizationProvider,
+                    "diarization",
+                )
+                speaker_report = diarization_provider.diarize(
                     source,
                     json.loads(Path(manifest_path).read_text(encoding="utf-8")),
                     lease.checkpoint,
                 )
             lease.checkpoint()
+        except ProviderFailure as exc:
+            error = exc.code
         except ASRFailure as exc:
             error = exc.code
         except OSError:

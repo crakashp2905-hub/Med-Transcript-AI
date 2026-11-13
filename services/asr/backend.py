@@ -1,12 +1,20 @@
 """Truthful backend capability protocol and fail-closed invocation boundary."""
 
-from services.provider_interfaces import ASRProvider
+from services.provider_interfaces import ASRProvider, ProviderFailure
 
 
-class BackendError(RuntimeError):
+class BackendError(ProviderFailure):
     def __init__(self, code):
-        self.code = code
-        super().__init__(code)
+        kind = (
+            "timeout"
+            if "timeout" in code
+            else "unavailable"
+            if "unavailable" in code or "missing" in code
+            else "invalid_output"
+            if "output_invalid" in code
+            else "failed"
+        )
+        super().__init__("asr", kind, code=code)
 
 
 ASRBackend = ASRProvider
@@ -21,7 +29,9 @@ def inspect_backend(backend):
         "confidence_capability",
         "runtime_receipt",
     )
-    if any(not callable(getattr(backend, name, None)) for name in methods):
+    if not isinstance(backend, ASRProvider) or any(
+        not callable(getattr(backend, name, None)) for name in methods
+    ):
         raise BackendError("backend_contract_incomplete")
     availability = backend.availability()
     timestamps = backend.timestamp_capability()

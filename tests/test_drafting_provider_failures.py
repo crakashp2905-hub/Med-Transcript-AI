@@ -4,6 +4,7 @@ import socket
 import pytest
 
 from services.review.providers import JSONProvider
+from services.provider_interfaces import ProviderFailure
 
 
 class Response:
@@ -109,5 +110,6 @@ def test_provider_failure_returns_no_partial_draft(monkeypatch, failure, body):
         "reviewed": True,
     }
 
-    with pytest.raises(ValueError, match="Provider failed; no output admitted"):
+    with pytest.raises(ProviderFailure) as error:
         provider.draft([fact], authorized=True, synthetic=True)
+    assert error.value.kind == ("timeout" if failure == "timeout" else "invalid_output")

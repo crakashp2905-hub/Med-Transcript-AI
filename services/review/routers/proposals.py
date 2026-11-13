@@ -9,6 +9,11 @@ from fastapi import Depends, HTTPException
 
 from services.asr.profiles import canonical_json, content_sha256
 from services.review.engine import validate_evidence
+from services.provider_interfaces import (
+    DraftingProvider,
+    ProviderFailure,
+    require_provider,
+)
 
 
 from services.review.providers import JSONProvider, DeterministicProvider
@@ -54,7 +59,12 @@ def register(app, services: ReviewService):
     ):
         from services.api.storage import active_scopes
 
-        provider = app.state.drafting_provider
+        try:
+            provider = require_provider(
+                app.state.drafting_provider, DraftingProvider, "drafting"
+            )
+        except ProviderFailure as error:
+            raise HTTPException(503, error.code) from None
         hosted = isinstance(provider, JSONProvider) and provider.mode == "hosted"
         with database() as con:
             row = encounter(con, eid, actor)
@@ -88,6 +98,9 @@ def register(app, services: ReviewService):
                 authorized=True,
                 synthetic=True,
             )
+        except ProviderFailure as error:
+            status = 503 if error.kind in {"unavailable", "timeout"} else 422
+            raise HTTPException(status, error.code) from None
         except ValueError:
             raise HTTPException(
                 422, "draft_proposal_failed_no_output_admitted"
