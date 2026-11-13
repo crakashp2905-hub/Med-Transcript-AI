@@ -1,0 +1,171 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-08",
+  "source_commit": "1a9bc1f9030f2898154ac4e3c0a4fd0d25c8beb3",
+  "status": "implemented",
+  "source_sha256": {
+    "services/omi_adapter.py": "5d6d4e407b71b6f22b800c3cff4b76037e11a03769905e35581b555997d21196",
+    "services/evaluation.py": "695d34c471f8c754af8bcfae8233235122e624f282206b1b4b2748dd5c74f012",
+    "services/omi_failure_probe.py": "a0f2b1a1db651b5761a8acd80b8738ab6de98e57258e8610a360797376588978",
+    "services/full_empty_reconstruction.py": "0d5eb4535a69e63e84ac3c399e9d633bbfe24de457489398994b67b08083eed4",
+    "tests/test_scribe_workflow.py": "8f617fe1be4164420a111067bca6158e399b2b37deceaac60d412d2085850fb5",
+    "tests/test_evaluation.py": "42f5add8f13601c6799677a4be152cf80c20e1c581641bd5384bb0fb465419b6",
+    "evaluation/reports/omi-failure-probe-2026-10-26.json": "e4b397f95b42c3c801769efe732fc41c6a960f37b5d08b40b64473952ffea387",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.fixed.json": "f5ee39e09eb0da5f56aec1950a7bc5c0f3c22a4b689282c221b6f35e9a8c12e9",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.overlap.json": "58d623d0c2af180dc021b8c7af2184082410e23a95c6a81f305ea428dff80482",
+    "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.speech_aware.json": "56943c0600fa305152af714149bc39a8c76b81d38fb8c3c3664b18bedf1577c9"
+  },
+  "native_empty_probe": {
+    "path": "evaluation/reports/omi-failure-probe-2026-10-26.json",
+    "sha256": "e4b397f95b42c3c801769efe732fc41c6a960f37b5d08b40b64473952ffea387",
+    "complete": true,
+    "original_failures_preserved": true,
+    "probes": 6,
+    "failure_kinds": [
+      "wrapper_rejects_empty_native_output"
+    ],
+    "all_pcm_nonzero": true
+  },
+  "saved_runs": {
+    "omi-med-stt-v1.fixed.json": {
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json",
+      "sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7",
+      "mode": "fixed",
+      "complete": true,
+      "conditions": {
+        "clean": {
+          "samples": 8,
+          "failed_samples": 1,
+          "reference_words": 13683,
+          "normalized_edits": 3809,
+          "normalized_wer": 0.27837462544763575
+        },
+        "distracted": {
+          "samples": 8,
+          "failed_samples": 1,
+          "reference_words": 13683,
+          "normalized_edits": 3899,
+          "normalized_wer": 0.28495213038076445
+        }
+      },
+      "coverage_complete_cases": 16,
+      "total_cases": 16,
+      "chunks": 326,
+      "native_timestamp_cases": 0
+    },
+    "omi-med-stt-v1-native-empty.fixed.json": {
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.fixed.json",
+      "sha256": "f5ee39e09eb0da5f56aec1950a7bc5c0f3c22a4b689282c221b6f35e9a8c12e9",
+      "mode": "fixed",
+      "complete": true,
+      "conditions": {
+        "clean": {
+          "samples": 8,
+          "failed_samples": 0,
+          "reference_words": 13683,
+          "normalized_edits": 2245,
+          "normalized_wer": 0.16407220638748812
+        },
+        "distracted": {
+          "samples": 8,
+          "failed_samples": 0,
+          "reference_words": 13683,
+          "normalized_edits": 2356,
+          "normalized_wer": 0.17218446247168018
+        }
+      },
+      "coverage_complete_cases": 16,
+      "total_cases": 16,
+      "chunks": 326,
+      "native_timestamp_cases": 0
+    },
+    "omi-med-stt-v1-native-empty.overlap.json": {
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.overlap.json",
+      "sha256": "58d623d0c2af180dc021b8c7af2184082410e23a95c6a81f305ea428dff80482",
+      "mode": "overlap",
+      "complete": true,
+      "conditions": {
+        "clean": {
+          "samples": 8,
+          "failed_samples": 0,
+          "reference_words": 13683,
+          "normalized_edits": 2601,
+          "normalized_wer": 0.19008989256741943
+        },
+        "distracted": {
+          "samples": 8,
+          "failed_samples": 0,
+          "reference_words": 13683,
+          "normalized_edits": 2685,
+          "normalized_wer": 0.19622889717167288
+        }
+      },
+      "coverage_complete_cases": 16,
+      "total_cases": 16,
+      "chunks": 344,
+      "native_timestamp_cases": 0
+    },
+    "omi-med-stt-v1-native-empty.speech_aware.json": {
+      "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1-native-empty.speech_aware.json",
+      "sha256": "56943c0600fa305152af714149bc39a8c76b81d38fb8c3c3664b18bedf1577c9",
+      "mode": "speech_aware",
+      "complete": true,
+      "conditions": {
+        "clean": {
+          "samples": 8,
+          "failed_samples": 0,
+          "reference_words": 13683,
+          "normalized_edits": 2474,
+          "normalized_wer": 0.18080830227289338
+        },
+        "distracted": {
+          "samples": 8,
+          "failed_samples": 0,
+          "reference_words": 13683,
+          "normalized_edits": 2565,
+          "normalized_wer": 0.18745889059416795
+        }
+      },
+      "coverage_complete_cases": 16,
+      "total_cases": 16,
+      "chunks": 374,
+      "native_timestamp_cases": 0
+    }
+  },
+  "checks": {
+    "native_empty_semantics": {
+      "status": "pass",
+      "result": "6 focused tests passed: exact native empty exception is opt-in; other native failures remain errors; evaluation does not equate empty text with measured silence."
+    },
+    "saved_nonzero_pcm_probe": {
+      "status": "pass",
+      "result": "6 reproduced wrapper-empty failures; all were nonzero PCM; original failures are preserved; clinical_acceptance=False",
+      "probe_sha256": "e4b397f95b42c3c801769efe732fc41c6a960f37b5d08b40b64473952ffea387"
+    },
+    "full_fixed_and_overlap_comparison": {
+      "status": "pass",
+      "result": "Complete 16-case development reports retain all reference words; native-empty fixed has zero failed samples, while overlap and speech-aware are worse than fixed."
+    },
+    "window_edge_cause_and_timestamp_diagnosis": {
+      "status": "blocked",
+      "result": "Omi adapter is text-only and all saved Omi candidate reports have native timestamps unsupported; reference words lack word-level timestamps, so edge-specific errors cannot be causally attributed."
+    },
+    "clinical_quality_gate": {
+      "status": "fail",
+      "result": "All measured Omi conditions remain above the unchanged 5% WER gate; no model is promoted."
+    }
+  },
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "new_model_inference_calls": 0,
+    "paid_calls": 0
+  },
+  "runtime_sha256": "81b744504b5777a7116fc17c44a80166175640ba03b4eeb34a8b9199faf2cf7e",
+  "limitations": [
+    "A nonzero input does not establish speech activity; accepted empty transcription remains a blank prediction and all reference words remain in WER.",
+    "Text-only Omi inference does not support native timestamps; window-edge attribution cannot be validated.",
+    "All results are public local development evidence only; no clinical qualification or admission."
+  ]
+}

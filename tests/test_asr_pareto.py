@@ -5,7 +5,13 @@ import pytest
 
 pytest.importorskip("rapidfuzz")
 
-from services.asr.pareto import run
+from services.asr.pareto import _p50, run
+
+
+def test_p50_uses_median_for_even_and_odd_samples():
+    assert _p50([9, 1, 5]) == 5
+    assert _p50([9, 1, 5, 3]) == 4
+    assert _p50([]) is None
 
 
 def _write_suite(path, candidates):

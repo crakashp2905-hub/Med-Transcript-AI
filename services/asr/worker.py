@@ -560,6 +560,34 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
                             "sha256": digest,
                             "transcript_url": f"/v1/encounters/{job['encounter']}/transcripts/{transcript_id}",
                         }
+                        if job["preview_session_id"]:
+                            preview_row = con.execute(
+                                """SELECT id,result FROM jobs WHERE encounter=? AND preview_session_id=?
+                                AND profile_sha256=? AND preview_only=1 AND status='succeeded'
+                                ORDER BY created_at DESC,id DESC LIMIT 1""",
+                                (
+                                    job["encounter"],
+                                    job["preview_session_id"],
+                                    profile.sha256,
+                                ),
+                            ).fetchone()
+                            if preview_row and preview_row["result"]:
+                                from services.asr.preview_divergence import (
+                                    compare_preview_to_final,
+                                )
+
+                                diagnostic = compare_preview_to_final(
+                                    json.loads(preview_row["result"]),
+                                    {
+                                        **body,
+                                        **result,
+                                        "profile_sha256": profile.sha256,
+                                    },
+                                )
+                                result["preview_divergence"] = {
+                                    "preview_job_id": preview_row["id"],
+                                    **diagnostic,
+                                }
                 except ASRFailure as exc:
                     error = exc.code
             status = "failed" if error else "succeeded"

@@ -19,7 +19,12 @@ def test_postgres_migrations_transform_immutable_triggers():
 
 
 def test_postgres_migration_keeps_lifecycle_transition_guard_writable():
-    sql = postgres_migration(MIGRATIONS[-1])
+    lifecycle = next(
+        migration
+        for migration in MIGRATIONS
+        if "CREATE TRIGGER encounter_lifecycle_update_guard" in migration
+    )
+    sql = postgres_migration(lifecycle)
     assert "validate_encounter_lifecycle_update()" in sql
     assert "forbid_version_update()" not in sql
     assert "SELECT RAISE" not in sql

@@ -38,6 +38,11 @@ def evaluate_candidate_admission(candidate_id, evidence):
         reasons.append("critical_safety_review_not_passed")
     if evidence.get("matched_paired_evaluation") is not True:
         reasons.append("matched_paired_evaluation_missing")
+    if evidence.get("all_frozen_cases_accounted") is not True:
+        reasons.append("frozen_case_coverage_incomplete")
+    fabricated = evidence.get("fabricated_outcomes")
+    if type(fabricated) is not int or fabricated != 0:
+        reasons.append("fabricated_outcomes_present_or_unmeasured")
     return {
         "schema_version": "asr_candidate_admission_v1",
         "candidate_id": candidate_id,

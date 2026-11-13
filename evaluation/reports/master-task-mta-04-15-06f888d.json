@@ -1,0 +1,96 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-15",
+  "source_commit": "06f888db9b67e232a3af8b38cc4727f1d89d483b",
+  "status": "implemented",
+  "source_sha256": {
+    "services/conversation_experiment.py": "a22244e86c88877b0d371f67fdad9d6ef173eecccc3c8ff158bee7603ca80960",
+    "evaluation/reports/conversation-ablation-resumed-2026-10-26.json": "fba8e17b29e0eafe0aa6fde79e4d4473fb0067142230b1e3f84d5234e17e4072",
+    "evaluation/reports/conversation-ablation-2026-10-26.json": "2fa71ff01ffbf9b637e60461d1152f34e8beec54e62133f3ff1fd578aca50432",
+    "evaluation/reports/conversation-comparison-2026-10-26.md": "8098644528d2db6b3638341460e76e1dde65c73d32f5dcb448c68b0eba2d7393",
+    "evaluation/datasets/primock57-full-v1/manifest.json": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a"
+  },
+  "reports": {
+    "resumed": {
+      "path": "evaluation/reports/conversation-ablation-resumed-2026-10-26.json",
+      "sha256": "b2ec0e7c0314499fabf2ab5a03b080edfee5c0e5cbf90b7854508f4458531356"
+    },
+    "interrupted": {
+      "path": "evaluation/reports/conversation-ablation-2026-10-26.json",
+      "sha256": "6a43bc1294ff127dd1d854146847071b30f429283ae903ad8f395019892d24ad"
+    },
+    "comparison_markdown": {
+      "path": "evaluation/reports/conversation-comparison-2026-10-26.md",
+      "sha256": "e5410146447fd28afeaa42406de00898cd99ffa5837f4f8945ed47812da3b56b"
+    },
+    "manifest": {
+      "path": "evaluation/datasets/primock57-full-v1/manifest.json",
+      "sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a"
+    }
+  },
+  "checks": {
+    "locked_consultation_and_reference_cohort": {
+      "status": "pass",
+      "result": "Fixed, overlap, speech-aware, and two-channel reports use the same PriMock57 locked manifest, three consultations, and 5,204 reference words."
+    },
+    "failure_inclusive_denominators_and_coverage": {
+      "status": "pass",
+      "result": "All modes account for all 5,204 reference words and complete input coverage; the two-channel arm retains two failed role runs under the full-reference denominator."
+    },
+    "comparison_results": {
+      "status": "pass",
+      "modes": {
+        "fixed_mixed": {
+          "reference_words": 5204,
+          "normalized_edits": 679,
+          "failed_samples": 0,
+          "normalized_wer": 0.13047655649500384
+        },
+        "overlap": {
+          "reference_words": 5204,
+          "normalized_edits": 768,
+          "normalized_wer": 0.14757878554957723,
+          "failed_runs": 0,
+          "passes_development_wer": false,
+          "all_input_coverage_complete": true
+        },
+        "speech_aware": {
+          "reference_words": 5204,
+          "normalized_edits": 746,
+          "normalized_wer": 0.14335126825518832,
+          "failed_runs": 0,
+          "passes_development_wer": false,
+          "all_input_coverage_complete": true
+        },
+        "two_channel_channel_first": {
+          "reference_words": 5204,
+          "normalized_edits": 2097,
+          "normalized_wer": 0.40295926210607225,
+          "failed_runs": 2,
+          "passes_development_wer": false,
+          "all_input_coverage_complete": true
+        }
+      }
+    },
+    "five_percent_gate": {
+      "status": "fail",
+      "result": "All four arms exceed the unchanged 5% gate; fixed mixed remains the best aggregate at 13.05%."
+    },
+    "modality_and_timestamp_boundary": {
+      "status": "blocked",
+      "result": "The two-channel arm receives separate source tracks rather than mixed audio; it is not a pure chunk-boundary ablation, and Omi supplies no validated timestamps."
+    }
+  },
+  "runtime": {
+    "asr_inference_calls_for_replay": 0,
+    "dataset_id": "primock57-full-development-v1",
+    "source_manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a",
+    "paid_calls": 0
+  },
+  "runtime_sha256": "0474e39f3009a6cd36673d9386060ee5471cc4a6025ebbfe998afcca1e21f09f",
+  "limitations": [
+    "Development mock consultations only; references are not independently clinically adjudicated.",
+    "Two-channel source-track modality differs from the mixed baseline; comparison does not isolate chunking effects.",
+    "All arms fail the 5% gate and no timestamped ASR candidate is promoted."
+  ]
+}

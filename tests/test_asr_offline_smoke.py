@@ -59,6 +59,8 @@ def _evidence(**updates):
         "license_reviewed": True,
         "critical_safety_review": "passed",
         "matched_paired_evaluation": True,
+        "all_frozen_cases_accounted": True,
+        "fabricated_outcomes": 0,
     }
     evidence.update(updates)
     return evidence

@@ -13,6 +13,8 @@ def _evidence():
         "license_reviewed": True,
         "critical_safety_review": "passed",
         "matched_paired_evaluation": True,
+        "all_frozen_cases_accounted": True,
+        "fabricated_outcomes": 0,
     }
 
 
@@ -39,6 +41,9 @@ def test_exactly_five_percent_is_within_the_maximum_gate():
         ("license_reviewed", False, "license_not_reviewed"),
         ("critical_safety_review", "missing", "critical_safety_review_not_passed"),
         ("matched_paired_evaluation", False, "matched_paired_evaluation_missing"),
+        ("all_frozen_cases_accounted", False, "frozen_case_coverage_incomplete"),
+        ("fabricated_outcomes", 1, "fabricated_outcomes_present_or_unmeasured"),
+        ("fabricated_outcomes", None, "fabricated_outcomes_present_or_unmeasured"),
     ],
 )
 def test_any_missing_or_failed_gate_denies_promotion(key, value, reason):

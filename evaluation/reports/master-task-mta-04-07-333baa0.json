@@ -1,0 +1,90 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-07",
+  "source_commit": "333baa07e38d9a00334945281c1f649ea516c263",
+  "status": "implemented",
+  "source_sha256": {
+    "services/asr/energy_vad_chunking.py": "5c4347bd35aca1ee433eb1de7278518144f3a256db1f3f8f2eaca87f90b76949",
+    "tests/test_energy_vad_chunking.py": "a652ffaf9ac3b77450b0a62869d1715ef5a47d6ad4b191eeec80a308ad7e2ce6",
+    "docs/asr-energy-vad-chunking.md": "2740a0bb9c42ccd22d89c370708cd794b4de46a20a37004296483dedacdd8249",
+    "evaluation/detailed-suite-v4.json": "eb273b302226a3355041e8e5947f71d9abed432e735ecdc9745dec17ef48d332",
+    "evaluation/runs/meddistract-detailed-v4/faster-whisper-large-v3.fixed.json": "05da2b5a3004cc9d91e45acdd857abaf70fc00b0b1586706249d0958b2fa1840",
+    "evaluation/runs/meddistract-detailed-v4/faster-whisper-large-v3.overlap.json": "7a0df4c190b9314126b9dda0ec6f1602dd67d18029e3fd1534071c0833c702ca"
+  },
+  "benchmark_evidence": {
+    "suite": {
+      "path": "evaluation/detailed-suite-v4.json",
+      "sha256": "eb273b302226a3355041e8e5947f71d9abed432e735ecdc9745dec17ef48d332",
+      "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262"
+    },
+    "fixed": {
+      "path": "evaluation/runs/meddistract-detailed-v4/faster-whisper-large-v3.fixed.json",
+      "sha256": "05da2b5a3004cc9d91e45acdd857abaf70fc00b0b1586706249d0958b2fa1840",
+      "suite_sha256": "eb273b302226a3355041e8e5947f71d9abed432e735ecdc9745dec17ef48d332"
+    },
+    "overlap": {
+      "path": "evaluation/runs/meddistract-detailed-v4/faster-whisper-large-v3.overlap.json",
+      "sha256": "7a0df4c190b9314126b9dda0ec6f1602dd67d18029e3fd1534071c0833c702ca",
+      "suite_sha256": "eb273b302226a3355041e8e5947f71d9abed432e735ecdc9745dec17ef48d332"
+    }
+  },
+  "checks": {
+    "energy_proxy_unit_tests": {
+      "status": "pass",
+      "result": "6 passed",
+      "command": "python -m pytest -q tests/test_energy_vad_chunking.py"
+    },
+    "coverage_offsets_overlap_and_dedup_regressions": {
+      "status": "pass",
+      "result": "15 passed before commit; exact committed sources exercised"
+    },
+    "saved_asr_comparison": {
+      "status": "pass",
+      "result": "Full 16-case fixed/overlap reports are hash-pinned; both conditions have complete input coverage and zero failed cases.",
+      "conditions": {
+        "clean": {
+          "fixed_wer": 0.20689907184097056,
+          "overlap_wer": 0.2359131769348827,
+          "fixed_edits": 2831,
+          "overlap_edits": 3228,
+          "reference_words": 13683,
+          "failed_cases": 0,
+          "coverage_complete": true
+        },
+        "distracted": {
+          "fixed_wer": 0.21683841262880948,
+          "overlap_wer": 0.24161368121026092,
+          "fixed_edits": 2967,
+          "overlap_edits": 3306,
+          "reference_words": 13683,
+          "failed_cases": 0,
+          "coverage_complete": true
+        }
+      }
+    },
+    "unchanged_5_percent_asr_gate": {
+      "status": "fail",
+      "result": "fixed and overlap WER both exceed 5% in clean and distracted cohorts; overlap is worse in both"
+    },
+    "trained_vad_quality_evaluation": {
+      "status": "blocked",
+      "result": "No locally installed trained VAD package/weights; no new ASR inference was run."
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "ruff check and format check passed on committed module and tests."
+    }
+  },
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "inference_calls_for_energy_proxy": 0
+  },
+  "runtime_sha256": "c8aa66ff7747cc3265be8b94e8e54091af749012adeb9ed8d154458132d9faee",
+  "limitations": [
+    "New chunker is an energy-gated VAD proxy, not trained VAD and not clinically validated.",
+    "Synthetic unit tests establish offset and coverage invariants only.",
+    "Existing full-corpus overlap run worsened WER versus fixed chunks and fails the unchanged 5% gate.",
+    "No energy-proxy ASR rerun was possible without an available locally approved VAD stack; do not infer quality improvement or promote into production."
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-11",
+  "source_commit": "1a9bc1f9030f2898154ac4e3c0a4fd0d25c8beb3",
+  "status": "implemented",
+  "source_sha256": {
+    "services/asr/rover.py": "ef71e5d465eb418b5d25f8b4e98d2aea3326860fdaf2d0846904cede96630749",
+    "services/asr/hypothesis_disagreement.py": "0601bc5b37698170aae01b64476aa0b9205b585c97a2f27595a15d6d30ae43da",
+    "services/asr/candidate_receipt.py": "659112d40e8340780599b3ac32bac2d0a52faf639998de126576a37100bde68c",
+    "tests/test_rover.py": "38ea9814eaee2d975d249fff9df3a4c03e067e88f25fd6c9afde9c15bd0c265c",
+    "tests/test_hypothesis_disagreement.py": "f3216ccd960c1916896a04d7669593b0215d8e9fed4ac3ef34c967ac951e8eef",
+    "tests/test_asr_candidate_receipt.py": "096c60b2f92c158fdacd67ba2b09a30ad8f3e402fb3e96cc383b01092e6a633c",
+    "evaluation/detailed-suite-v2.json": "185a90cf817a198894c4347e753def0fb90008cef0d628581ed578683d65216c"
+  },
+  "lattice_report": {
+    "path": "evaluation/reports/rover-meddistract-detailed-v4.json",
+    "sha256": "4b7ea39c6a7b9a2cfa0e4cbd5eff442e534572ed088e4ff74c3c6632dd2d4a91",
+    "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+    "suite_sha256": "185a90cf817a198894c4347e753def0fb90008cef0d628581ed578683d65216c",
+    "source_reports": [
+      {
+        "candidate_id": "faster-whisper-large-v3",
+        "path": "evaluation/runs/meddistract-detailed-v2/faster-whisper-large-v3.fixed.json",
+        "sha256": "97480843cb1585523621ecc3b88149c4c62246380c1571a8abcb3f41cc19c1f3"
+      },
+      {
+        "candidate_id": "parakeet-tdt-0.6b-v2",
+        "path": "evaluation/runs/meddistract-detailed-v2/parakeet-tdt-0.6b-v2.fixed.json",
+        "sha256": "9becc22cd583cde4f27f48a4d1fc5fc95f36a4ebe11a18ba29e68ac8a0fea7c1"
+      },
+      {
+        "candidate_id": "omi-med-stt-v1",
+        "path": "evaluation/runs/meddistract-detailed-v2/omi-med-stt-v1.fixed.json",
+        "sha256": "5e86f9b1e3161a0202399ce029d22e45815745d55e3b3d08bd16b4458a67f1f7"
+      }
+    ],
+    "pivot_backend_id": "faster-whisper-large-v3",
+    "method": "pivot-anchored exact Levenshtein token alignment; majority vote; ties favor pivot, then gap, then lexical order",
+    "case_count": 16,
+    "failed_cases": 2,
+    "reference_words": 27366,
+    "normalized_edits": 5617,
+    "normalized_wer": 0.20525469560768836,
+    "admission": "not_admitted",
+    "candidate_selection_performed": true,
+    "clinical_truth_asserted": false,
+    "confidence": null
+  },
+  "checks": {
+    "candidate_lattice_from_local_outputs": {
+      "status": "pass",
+      "result": "Three distinct saved local model reports were aligned into a token confusion network; zero ASR inference calls."
+    },
+    "original_model_failures_preserved": {
+      "status": "pass",
+      "result": "Original Omi fixed report has two failed samples; consensus marks both cases failed and retains all 27,366 reference words."
+    },
+    "candidate_lattice_tests": {
+      "status": "pass",
+      "result": "13 passed: ROVER alignment, pivot ties, failed-source denominator, mismatch rejection, candidate receipt, and disagreement diagnostics."
+    },
+    "five_percent_wer_gate": {
+      "status": "fail",
+      "result": "ROVER normalized WER is 20.525470%, above 5%; report admission=not_admitted"
+    },
+    "clinical_truth_or_confidence": {
+      "status": "pass",
+      "result": "ROVER reports confidence=null and clinical_truth_asserted=false; text consensus is not clinical correctness."
+    }
+  },
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "rapidfuzz": "3.14.5",
+    "asr_inference_calls": 0,
+    "paid_calls": 0
+  },
+  "runtime_sha256": "b065bf9adf76969b1981f2d4ad36e1a4d420a7546a989218c0d5e3304a2d7f45",
+  "limitations": [
+    "ROVER is a text-only vote and does not use acoustic evidence.",
+    "A two-failed-case consensus is not safe for clinical use; failure source cases remain marked failed.",
+    "The three source models share an upstream mock-reference development set and agreement does not establish truth.",
+    "WER remains above the unchanged 5% threshold; no model is promoted."
+  ]
+}

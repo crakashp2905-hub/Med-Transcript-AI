@@ -57,6 +57,76 @@ def normalize_rms_transform(target_dbfs=-23.0, peak_ceiling=0.98):
     return transform
 
 
+def adaptive_gain_transform(
+    target_dbfs=-24.0,
+    maximum_boost_db=12.0,
+    maximum_cut_db=12.0,
+    silence_floor_dbfs=-50.0,
+    frame_ms=100,
+    hop_ms=50,
+    attack_seconds=0.25,
+    release_seconds=0.1,
+    peak_ceiling=0.98,
+):
+    """Apply bounded short-time RMS gain with a silence floor and peak limiter."""
+    if (
+        not -50 <= target_dbfs <= -6
+        or not 0 <= maximum_boost_db <= 24
+        or not 0 <= maximum_cut_db <= 24
+        or not -90 <= silence_floor_dbfs <= -10
+        or not 20 <= frame_ms <= 1000
+        or not 10 <= hop_ms <= frame_ms
+        or attack_seconds <= 0
+        or release_seconds <= 0
+        or not 0.1 <= peak_ceiling <= 1
+    ):
+        raise ValueError("invalid_adaptive_gain_profile")
+
+    def transform(source, output):
+        samples, rate = _read_mono_pcm16(source)
+        frame = max(1, round(rate * frame_ms / 1000))
+        hop = max(1, round(rate * hop_ms / 1000))
+        centers, desired_db = [], []
+        floor_rms = 32768 * 10 ** (silence_floor_dbfs / 20)
+        target_rms = 32768 * 10 ** (target_dbfs / 20)
+        for start in range(0, samples.size, hop):
+            end = min(samples.size, start + frame)
+            if end - start < frame // 2 and centers:
+                break
+            rms = float(np.sqrt(np.mean(samples[start:end] ** 2)))
+            if rms <= floor_rms:
+                gain_db = 0.0
+            else:
+                gain_db = 20 * np.log10(target_rms / rms)
+                gain_db = float(np.clip(gain_db, -maximum_cut_db, maximum_boost_db))
+            centers.append((start + end - 1) / 2)
+            desired_db.append(gain_db)
+
+        smoothed_db = [desired_db[0]]
+        for desired in desired_db[1:]:
+            previous = smoothed_db[-1]
+            time_constant = attack_seconds if desired > previous else release_seconds
+            alpha = np.exp(-hop / (rate * time_constant))
+            smoothed_db.append(alpha * previous + (1 - alpha) * desired)
+        gain = 10 ** (
+            np.interp(
+                np.arange(samples.size),
+                centers,
+                smoothed_db,
+                left=smoothed_db[0],
+                right=smoothed_db[-1],
+            )
+            / 20
+        )
+        output_samples = samples * gain
+        peak = float(np.max(np.abs(output_samples)))
+        if peak:
+            output_samples *= min(1.0, peak_ceiling * 32767 / peak)
+        _write_mono_pcm16(output, output_samples, rate)
+
+    return transform
+
+
 def highpass_transform(cutoff_hz=80, order=4):
     if type(cutoff_hz) is not int or not 20 <= cutoff_hz <= 500:
         raise ValueError("invalid_highpass_profile")

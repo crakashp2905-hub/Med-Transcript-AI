@@ -176,6 +176,7 @@ def test_live_preview_never_becomes_a_saved_source_or_note(environment):
         "audio_asset_id": upload["id"],
         "inference_profile_id": env.profile.profile_id,
         "preview_only": True,
+        "preview_session_id": "9c991b39-2c57-473f-b6df-4e101b03131f",
         "timeline_offset_ms": 15000,
     }
     response = env.client.post(
@@ -196,12 +197,24 @@ def test_live_preview_never_becomes_a_saved_source_or_note(environment):
     )
     body["preview_only"] = False
     body["timeline_offset_ms"] = 0
-    assert (
-        env.client.post(
-            f"/v1/encounters/{eid}/transcriptions", headers=headers(), json=body
-        ).status_code
-        == 409
+    final_response = env.client.post(
+        f"/v1/encounters/{eid}/transcriptions", headers=headers(), json=body
     )
+    assert final_response.status_code == 202, final_response.text
+    assert run_once(env.path, env.assets, SyntheticAdapter)["status"] == "succeeded"
+    final_job = env.client.get(
+        final_response.json()["status_url"], headers=headers()
+    ).json()
+    diagnostic = final_job["result"]["preview_divergence"]
+    assert diagnostic["diagnostic_only"] is True
+    assert diagnostic["approvable"] is False
+    assert diagnostic["preview_job_id"] == job["id"]
+    workspace_after_final = env.client.get(
+        f"/v1/encounters/{eid}/workspace", headers=headers()
+    ).json()
+    assert workspace_after_final["transcript"] is not None
+    assert workspace_after_final["note"] is None
+    assert workspace_after_final["approval"] is None
     from services.maintenance import expire_previews
 
     with Store(env.path).transaction() as con:
@@ -283,6 +296,29 @@ def test_additive_preview_migration_preserves_resumable_upload_offsets(tmp_path)
         assert {"preview_only", "timeline_offset_ms", "preview_cache_expired"} <= {
             r["name"] for r in con.execute("PRAGMA table_info(jobs)")
         }
+        assert "preview_session_id" in {
+            r["name"] for r in con.execute("PRAGMA table_info(jobs)")
+        }
+        con.execute("INSERT INTO asr_profiles VALUES (?,?)", ("p" * 64, "{}"))
+        con.execute(
+            """INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,
+            profile_sha256,preview_only,timeline_offset_ms,preview_session_id)
+            VALUES (?, ?, ?, 'queued', ?, ?, 'transcription', ?, 1, 0, ?)""",
+            (str(uuid4()), uid, eid, "2026-10-27", "2026-10-27", "p" * 64, "session"),
+        )
+        con.execute(
+            """INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,
+            profile_sha256,preview_only,timeline_offset_ms,preview_session_id)
+            VALUES (?, ?, ?, 'queued', ?, ?, 'transcription', ?, 0, 0, ?)""",
+            (str(uuid4()), uid, eid, "2026-10-27", "2026-10-27", "p" * 64, "session"),
+        )
+        with pytest.raises(sqlite3.IntegrityError):
+            con.execute(
+                """INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,
+                profile_sha256,preview_only,timeline_offset_ms,preview_session_id)
+                VALUES (?, ?, ?, 'queued', ?, ?, 'transcription', ?, 1, 0, ?)""",
+                (str(uuid4()), uid, eid, "2026-10-27", "2026-10-27", "p" * 64, "session"),
+            )
 
 
 def test_reserved_audio_is_rejected_for_development_before_download(

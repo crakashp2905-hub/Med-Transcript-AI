@@ -1,0 +1,273 @@
+{
+  "schema_version": "asr_lexicon_bias_pilot_v1",
+  "status": "development_pilot_not_clinical_validation",
+  "dataset_id": "meddistract-full-paired-development-v1",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "dataset_lock_sha256": "e4b672ef43ecedf3a77bab7d32fd81e8f3605960ada47bb5acd959186c79b303",
+  "profile_id": "tiny-en-smoke-v1",
+  "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+  "lexicon_sha256": "af4b321287acd7762f6a9f63fe1ca29c4fc71ce0c52eda0ef95288efbfa4d142",
+  "evaluation_code_sha256": "97c484d52604a5dfec8f30251df49acfb5b8c2afcca0a45443cc8c4ff03543b2",
+  "adapter_code_sha256": "93c470d5ae573ccc2518589b8a03aa482c3c187dd15270b791547c569f9843f7",
+  "biasing_code_sha256": "199399279595b48553c7161724feb93e5f1da9dd60dabcba3655d695caec9ff4",
+  "term": "paracetamol",
+  "candidate_bias_metadata": {
+    "status": "faster_whisper_hotwords_candidate",
+    "hotwords": "paracetamol",
+    "terms": [
+      "paracetamol"
+    ],
+    "lexicon_sha256": "af4b321287acd7762f6a9f63fe1ca29c4fc71ce0c52eda0ef95288efbfa4d142",
+    "candidate_only": true,
+    "text_mutation": false
+  },
+  "acceptance_data_used": false,
+  "clinical_gold": false,
+  "paired_sample_count": 8,
+  "selection": "one clean positive turn and nearest non-target reference turn per eligible foreground; 250 ms crop padding",
+  "limitations": [
+    "Upstream mock references are not adjudicated clinical gold.",
+    "The term-positive and negative-control window subset is small and selected from development references.",
+    "No model profile admission or clinical safety claim follows from this pilot."
+  ],
+  "aggregates": {
+    "baseline": {
+      "positive_term_recall_count": 0,
+      "positive_term_recall_denominator": 4,
+      "negative_term_false_insertion_count": 0,
+      "negative_control_denominator": 4,
+      "normalized_edits": 153,
+      "reference_words": 153,
+      "normalized_wer": 1.0,
+      "failures": 8
+    },
+    "biased": {
+      "positive_term_recall_count": 0,
+      "positive_term_recall_denominator": 4,
+      "negative_term_false_insertion_count": 0,
+      "negative_control_denominator": 4,
+      "normalized_edits": 153,
+      "reference_words": 153,
+      "normalized_wer": 1.0,
+      "failures": 8
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "day1_consultation04__clean:46:positive",
+      "group_id": "day1_consultation04",
+      "case_id": "day1_consultation04__clean",
+      "reference_row_index": 46,
+      "reference": "Um I I had some some fever in the beginning, but it's now sort of uh going down. I I've been taking some Paracetamol and Ibuprofen for that, and uh they, they help.",
+      "reference_contains_term": true,
+      "audio_sha256": "d81950eaace85b6cc30613aad65e5c59e137be18f1f7bea952b55d02657c0622",
+      "crop": {
+        "start_ms": 198348.0,
+        "end_ms": 212044.0,
+        "pcm_sha256": "5c3310270dc7ffe6d75dc6459d530c8aa36a12d29ad27fe4d77150625d1f6f21",
+        "frames": 219136
+      },
+      "arms": {
+        "baseline": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        },
+        "biased": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        }
+      }
+    },
+    {
+      "sample_id": "day1_consultation04__clean:45:negative",
+      "group_id": "day1_consultation04",
+      "case_id": "day1_consultation04__clean",
+      "reference_row_index": 45,
+      "reference": "OK. Um right, OK. Have you noticed any fevers or temperatures at all?",
+      "reference_contains_term": false,
+      "audio_sha256": "d81950eaace85b6cc30613aad65e5c59e137be18f1f7bea952b55d02657c0622",
+      "crop": {
+        "start_ms": 191780.0,
+        "end_ms": 197723.0,
+        "pcm_sha256": "2eb3429f97c78f7569af9858907234307dbc73e7af30c34d4254c777c4b40db7",
+        "frames": 95088
+      },
+      "arms": {
+        "baseline": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        },
+        "biased": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        }
+      }
+    },
+    {
+      "sample_id": "day1_consultation05__clean:103:positive",
+      "group_id": "day1_consultation05",
+      "case_id": "day1_consultation05__clean",
+      "reference_row_index": 103,
+      "reference": "OK. Um, you can try just regular painkillers, uh, Paracetamol would be advisable. Um, make sure you drink plenty of fluids.",
+      "reference_contains_term": true,
+      "audio_sha256": "ff4b0ac795ddd6eb6ac9807a3e67bfd78c0407b10ad06899b995ce681f374dd4",
+      "crop": {
+        "start_ms": 532334.0,
+        "end_ms": 542388.0,
+        "pcm_sha256": "521893a00574c1e3bbad0cc5a87a923a7715da5fce694787943ff1f8c475fe37",
+        "frames": 160864
+      },
+      "arms": {
+        "baseline": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        },
+        "biased": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        }
+      }
+    },
+    {
+      "sample_id": "day1_consultation05__clean:102:negative",
+      "group_id": "day1_consultation05",
+      "case_id": "day1_consultation05__clean",
+      "reference_row_index": 102,
+      "reference": "Yeah, I think I'm happy with that plan.",
+      "reference_contains_term": false,
+      "audio_sha256": "ff4b0ac795ddd6eb6ac9807a3e67bfd78c0407b10ad06899b995ce681f374dd4",
+      "crop": {
+        "start_ms": 529989.0,
+        "end_ms": 532639.0,
+        "pcm_sha256": "2c5dc5d1b32ddb0853455666ac20e67a0258ec4e3de9961b40e550bdf1773eec",
+        "frames": 42400
+      },
+      "arms": {
+        "baseline": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        },
+        "biased": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        }
+      }
+    },
+    {
+      "sample_id": "day1_consultation07__clean:158:positive",
+      "group_id": "day1_consultation07",
+      "case_id": "day1_consultation07__clean",
+      "reference_row_index": 158,
+      "reference": "Um, if you are, if you are feeling hot and cold and sweaty, taking regular Paracetamol would be beneficial. Um, you mentioned feeling a bit short of breath. Um, I'm a little bit on the edge about giving you antibiotics. I don't think you've got a chest infection, but what we could think about is giving you a.",
+      "reference_contains_term": true,
+      "audio_sha256": "1b003264b1d3bc081453947aa9cdd0c1bc4cf4761629a71dcfd8b92c1dfa940c",
+      "crop": {
+        "start_ms": 776923.0,
+        "end_ms": 792947.0,
+        "pcm_sha256": "7c7fc8fc57ca04cf8dd8c7f2bd99634560b450a67ff931a9565e6d40b911e619",
+        "frames": 256384
+      },
+      "arms": {
+        "baseline": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        },
+        "biased": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        }
+      }
+    },
+    {
+      "sample_id": "day1_consultation07__clean:159:negative",
+      "group_id": "day1_consultation07",
+      "case_id": "day1_consultation07__clean",
+      "reference_row_index": 159,
+      "reference": "Aye.",
+      "reference_contains_term": false,
+      "audio_sha256": "1b003264b1d3bc081453947aa9cdd0c1bc4cf4761629a71dcfd8b92c1dfa940c",
+      "crop": {
+        "start_ms": 783563.0,
+        "end_ms": 784790.0,
+        "pcm_sha256": "a29abf7d4c47359908adc23f6838f779ba2cf6c9eb4af1a9fc045b0d2c23e7e1",
+        "frames": 19632
+      },
+      "arms": {
+        "baseline": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        },
+        "biased": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        }
+      }
+    },
+    {
+      "sample_id": "day1_consultation08__clean:110:positive",
+      "group_id": "day1_consultation08",
+      "case_id": "day1_consultation08__clean",
+      "reference_row_index": 110,
+      "reference": "OK. And um, that's probably what I recommend. Paracetamol on this occasion, wouldn't be helpful.",
+      "reference_contains_term": true,
+      "audio_sha256": "28e473a8afbe3f598c96790eed265dcc52cc44e1fcad0a01474adff9271f6dc9",
+      "crop": {
+        "start_ms": 436758.0,
+        "end_ms": 442754.0,
+        "pcm_sha256": "c447a01e676e5d3956fdfd4da302cb51c60fcb6b16d0bad2e8727a35f03a5e4e",
+        "frames": 95936
+      },
+      "arms": {
+        "baseline": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        },
+        "biased": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        }
+      }
+    },
+    {
+      "sample_id": "day1_consultation08__clean:109:negative",
+      "group_id": "day1_consultation08",
+      "case_id": "day1_consultation08__clean",
+      "reference_row_index": 109,
+      "reference": "Yeah, that sounds good.",
+      "reference_contains_term": false,
+      "audio_sha256": "28e473a8afbe3f598c96790eed265dcc52cc44e1fcad0a01474adff9271f6dc9",
+      "crop": {
+        "start_ms": 435893.0,
+        "end_ms": 437750.0,
+        "pcm_sha256": "7b1fceb5ae8a4b75943dccd1d312dcacf03d02f510038b0e27b79e7cca7accf0",
+        "frames": 29712
+      },
+      "arms": {
+        "baseline": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        },
+        "biased": {
+          "hypothesis": "",
+          "failure": true,
+          "error_type": "ASRFailure"
+        }
+      }
+    }
+  ]
+}

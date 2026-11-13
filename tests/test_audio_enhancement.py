@@ -8,6 +8,7 @@ pytest.importorskip("numpy")
 import numpy as np
 
 from services.audio_enhancement import (
+    adaptive_gain_transform,
     highpass_transform,
     normalize_rms_transform,
     prepare_candidate,
@@ -104,6 +105,37 @@ def test_rms_candidate_reaches_target_without_clipping(tmp_path):
     assert rms_dbfs == pytest.approx(-23, abs=0.01)
     assert int(np.max(np.abs(result))) < 32760
     assert source.read_bytes() == original
+
+
+def test_adaptive_gain_tracks_level_changes_and_preserves_silence(tmp_path):
+    source, output = tmp_path / "level_changes.wav", tmp_path / "adaptive.wav"
+    values = np.concatenate(
+        [
+            np.full(16000, 1000, dtype=np.int16),
+            np.full(16000, 10000, dtype=np.int16),
+            np.zeros(4000, dtype=np.int16),
+        ]
+    )
+    with wave.open(str(source), "wb") as audio:
+        audio.setparams((1, 2, 16000, 0, "NONE", "not compressed"))
+        audio.writeframes(values.astype("<i2").tobytes())
+    original = source.read_bytes()
+
+    adaptive_gain_transform()(source, output)
+
+    with wave.open(str(output), "rb") as audio:
+        result = np.frombuffer(audio.readframes(audio.getnframes()), dtype="<i2")
+    assert result.size == values.size
+    assert np.sqrt(np.mean(result[:16000].astype(float) ** 2)) > 1000
+    assert np.sqrt(np.mean(result[16000:32000].astype(float) ** 2)) < 10000
+    assert np.all(result[32000:] == 0)
+    assert np.max(np.abs(result)) < 32760
+    assert source.read_bytes() == original
+
+
+def test_adaptive_gain_rejects_invalid_profile():
+    with pytest.raises(ValueError, match="invalid_adaptive_gain_profile"):
+        adaptive_gain_transform(frame_ms=20, hop_ms=30)
 
 
 def test_highpass_and_spectral_candidates_preserve_frame_count(tmp_path):

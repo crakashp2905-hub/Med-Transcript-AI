@@ -1,0 +1,49 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-13",
+  "source_commit": "1a9bc1f9030f2898154ac4e3c0a4fd0d25c8beb3",
+  "status": "blocked",
+  "source_sha256": {
+    "services/clinical_metrics.py": "7e826bd70940ad5adeb456440be4b8d86c21fb0096f6f0efcb7f83901f12e45d",
+    "services/clinical_evaluation.py": "b41bbc32651b5840e8207df3368ccfbf2ca826ea03d3649bb3cd46a8a2f0debd",
+    "tests/test_clinical_weighted_metrics.py": "1b6cc2e11caac206435e011b88614bd85ffeb0b9e58f1ffaf98ac358661b6bfb",
+    "tests/test_clinical_metrics_report.py": "023f683a2cd4cb8ac3477eeecc6dbde865e8443202dfb868e82c16d8b1cc4c79",
+    "tests/test_fact_evaluation_synthetic.py": "01be9c5e7e0ffbbb3336f3f66652fb0d20b423c00accc32d5bddf2a7553e2f94",
+    "evaluation/clinical-asr-secondary-endpoints-v1.json": "2cc351ca45aceee6de6dec03a08bad1d611de75b28d092b6a1dbf5fc462e27c9",
+    "docs/clinical-annotation.md": "72a0d243cb28be32d68e7a836ecbbd5a3f5b6b4d86935858b4eeb3428d8bbd44",
+    "evaluation/reports/error-taxonomy-v2/report.json": "580338cffabc1cba01c27319f4431b05d346fccf1f3e8748057e9ad51ca653c2"
+  },
+  "checks": {
+    "clinical_metric_harness_tests": {
+      "status": "pass",
+      "result": "7 passed: weighted synthetic metrics and report validation; no independent clinical accuracy claim."
+    },
+    "independent_clinical_annotation": {
+      "status": "blocked",
+      "result": "No qualified reviewers or independent clinical gold labels are available; supplied mock references and developer-authored cases are not adjudicated."
+    },
+    "paired_retranscription_effect": {
+      "status": "blocked",
+      "result": "No source-audited paired correction candidates with independent critical-error labels exist; measurement was not performed."
+    },
+    "five_percent_gate": {
+      "status": "blocked",
+      "result": "No qualifying model or clinical effect claim is supported; existing <=5% admission gate remains unchanged."
+    }
+  },
+  "measurement": {
+    "independent_clinical_cases": 0,
+    "paired_span_corrections_with_gold_labels": 0,
+    "critical_error_reduction_estimate": null,
+    "effect_interval": null,
+    "measurement_performed": false
+  },
+  "decision": "blocked_external_evidence",
+  "limitations": [
+    "Synthetic tests validate calculation behavior only.",
+    "Upstream mock references and lexical error cues cannot establish clinically important error changes.",
+    "Reviewer availability was previously reported as unavailable; no labels were fabricated.",
+    "No paid calls, asset fetches, or new ASR inference were used."
+  ],
+  "clinical_release_authorized": false
+}

@@ -221,6 +221,15 @@ MIGRATIONS = (
     )
     BEGIN SELECT RAISE(ABORT, 'Invalid encounter lifecycle version'); END;
     """,
+    """
+    ALTER TABLE jobs ADD COLUMN preview_session_id TEXT;
+    DROP INDEX jobs_transcription_input;
+    CREATE UNIQUE INDEX jobs_transcription_input ON jobs(
+        upload,profile_sha256,preview_only,timeline_offset_ms,COALESCE(preview_session_id,'')
+    ) WHERE stage='transcription' AND retranscription IS NULL;
+    CREATE INDEX jobs_preview_session ON jobs(encounter,preview_session_id,profile_sha256,created_at)
+        WHERE preview_only=1;
+    """,
 )
 
 

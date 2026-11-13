@@ -1,0 +1,74 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-14",
+  "source_commit": "1a9bc1f9030f2898154ac4e3c0a4fd0d25c8beb3",
+  "status": "implemented",
+  "source_sha256": {
+    "services/asr/adapter.py": "f4106aee4b87fc05549f3d2c594432747072423fc959ede33f5e7ae0d2e8c758",
+    "services/asr/backend.py": "9814e7f413a1c710a735a732e8ab7290cf3d601592e55a5c9a694738af53ecd8",
+    "services/asr/omi_backend.py": "502e2c543a037ccfc25defadfe3805bacf75699fba5eab20a9fcc5a7ac5cc05f",
+    "services/asr/parakeet_backend.py": "0ebbcbc2a64d7e005c09ff96ec55a1a591e862a31f968d33767fc9599fa581a7",
+    "services/asr/hypothesis_disagreement.py": "0601bc5b37698170aae01b64476aa0b9205b585c97a2f27595a15d6d30ae43da",
+    "services/asr/transcripts.py": "58571fdc77632aadb02db36bebafd507db706ead72ef5f5e434cce4a32759ac5",
+    "services/asr/vad_candidates.py": "bebb039e0b1d92ca07e57f8feaab2509e43e78ed0e98991b7d090f0fc8edf38a",
+    "services/asr/audio_router.py": "625387584263308ce032cd10c73a4b679d7d34cf8fffe94a247351884f7ac6ff",
+    "tests/test_asr_backend_contract.py": "e204a42c24628bcb2265d5b75e554529da723329720d6b629b45c0007f3dd55d",
+    "tests/test_asr_decoder_evidence.py": "8f61edb8a8e21d99ea41d4a7d3a0344aa3a9d3ce04da88b5c09b28fd62bc5d9f",
+    "tests/test_omi_backend.py": "92df7d8db10cbb79c463aa1eb07508d3444a75aa7ed6c2e49f6ba3ee6d1c3d12",
+    "tests/test_parakeet_backend.py": "362719fc9348a9793157c1f40cef627460e7e65d69c33aa42150a35f084e7f46",
+    "tests/test_hypothesis_disagreement.py": "f3216ccd960c1916896a04d7669593b0215d8e9fed4ac3ef34c967ac951e8eef"
+  },
+  "checks": {
+    "calibrated_candidate_capabilities": {
+      "status": "pass",
+      "result": "Faster Whisper, Omi, and Parakeet each declare confidence unsupported and calibrated=false; no local calibration-data files were found under evaluation/."
+    },
+    "one_best_decoder_evidence": {
+      "status": "pass",
+      "result": "Faster Whisper average log probability is labeled one-best decoder evidence, with n_best_supported=false and calibrated=false; no probability is derived."
+    },
+    "heuristic_disagreement_and_vad_labels": {
+      "status": "pass",
+      "result": "Text disagreement and energy VAD outputs use explicit uncalibrated diagnostic labels and do not select calibrated confidence."
+    },
+    "capability_and_evidence_tests": {
+      "status": "pass",
+      "result": "16 passed across backend capability contracts, decoder evidence validation, Omi/Parakeet capabilities, and disagreement diagnostics."
+    },
+    "calibration_data": {
+      "status": "blocked",
+      "result": "No calibration cohort or source-audited calibration labels are present in the local evaluation artifacts; therefore no probability calibration was fit or claimed."
+    }
+  },
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "model_inference_calls": 0,
+    "calibration_data_found": false,
+    "probability_estimates_created": 0
+  },
+  "runtime_sha256": "4f843ecaed016f638a205d551c1d83ea7c30d7acfda77d30695f17be6eed4511",
+  "uncertainty_contract": {
+    "faster_whisper": {
+      "confidence_supported": false,
+      "calibrated": false,
+      "one_best_log_probability": "native evidence only; not a probability"
+    },
+    "omi": {
+      "confidence_supported": false,
+      "calibrated": false
+    },
+    "parakeet": {
+      "confidence_supported": false,
+      "calibrated": false
+    },
+    "text_disagreement": "uncalibrated diagnostic; agreement is not truth",
+    "energy_vad": "uncalibrated energy heuristic",
+    "calibration_data_search": "no calibration/confidence/uncertainty evaluation artifacts found"
+  },
+  "limitations": [
+    "No calibrated uncertainty probabilities are available.",
+    "Heuristic risk signals support review prioritization only and do not estimate correctness probability.",
+    "Clinical acceptance and model promotion are not authorized."
+  ]
+}

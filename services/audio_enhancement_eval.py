@@ -10,6 +10,7 @@ import tempfile
 import time
 
 from services.audio_enhancement import (
+    adaptive_gain_transform,
     highpass_transform,
     normalize_rms_transform,
     prepare_candidate,
@@ -124,6 +125,22 @@ def run(
                 "target_rms_dbfs": -23.0,
                 "peak_ceiling_fraction": 0.98,
                 "algorithm": "whole_clip_rms_gain_with_peak_ceiling",
+            },
+        },
+        {
+            "id": "adaptive_gain_v1",
+            "enhancement_id": "adaptive_gain_v1",
+            "transform": adaptive_gain_transform(),
+            "parameters": {
+                "target_dbfs": -24.0,
+                "maximum_boost_db": 12.0,
+                "maximum_cut_db": 12.0,
+                "silence_floor_dbfs": -50.0,
+                "frame_ms": 100,
+                "hop_ms": 50,
+                "attack_seconds": 0.25,
+                "release_seconds": 0.1,
+                "peak_ceiling_fraction": 0.98,
             },
         },
         {
@@ -314,6 +331,7 @@ def run(
             "Six convenience-selected utterances from one public mock consultation; development screening only.",
             "References are upstream mock annotations and are not independently clinically adjudicated.",
             "RMS level normalization is not LUFS normalization.",
+            "Adaptive gain uses short-time RMS envelopes and a peak ceiling; it is not perceptual loudness normalization or a trained denoiser.",
             "Spectral gate estimates its floor from the entire clip and may suppress speech.",
             "No enhancement condition is enabled in the production ASR route.",
         ],

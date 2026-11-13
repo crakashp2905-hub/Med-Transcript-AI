@@ -19,6 +19,17 @@ def _p95(values):
     return ordered[max(0, math.ceil(0.95 * len(ordered)) - 1)] if ordered else None
 
 
+def _p50(values):
+    """Return the median without rounding away half-sample runtimes."""
+    ordered = sorted(values)
+    if not ordered:
+        return None
+    middle = len(ordered) // 2
+    if len(ordered) % 2:
+        return ordered[middle]
+    return (ordered[middle - 1] + ordered[middle]) / 2
+
+
 def _score(reference, hypothesis):
     reference_words = tokens(reference)
     hypothesis_words = tokens(hypothesis)
@@ -100,6 +111,7 @@ def _single_engine(report, rows):
         ),
         "model_load_seconds": model_load_seconds,
         "case_wall_seconds_sum": sum(latency),
+        "case_wall_seconds_p50": _p50(latency),
         "case_wall_seconds_p95": _p95(latency),
         "real_time_factor_p95": _p95(rtfs),
         "maximum_process_memory_bytes": None,
@@ -155,6 +167,7 @@ def _pair_engine(left_id, right_id, left, right, case_ids):
             PROJECT_MAX_NORMALIZED_WER,
         ),
         "serial_case_wall_seconds_sum": sum(latencies),
+        "serial_case_wall_seconds_p50": _p50(latencies),
         "serial_case_wall_seconds_p95": _p95(latencies),
         "serial_real_time_factor_p95": _p95(rtfs),
         "maximum_process_memory_bytes": None,

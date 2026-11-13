@@ -1,0 +1,41 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-17",
+  "source_commit": "1a9bc1f9030f2898154ac4e3c0a4fd0d25c8beb3",
+  "status": "implemented",
+  "source_sha256": {
+    "services/asr/timestamps.py": "d70ebf8a7744b42cbf410fb7f8a9c8955946824097e73c4c88c2d8f7f6bb531b",
+    "services/asr/transcripts.py": "58571fdc77632aadb02db36bebafd507db706ead72ef5f5e434cce4a32759ac5",
+    "services/asr/segmentation.py": "8bb6620b57c7ce2f94906e01b9de5a331fc6c09f501d86737a98b1f0fe209071",
+    "services/asr/provenance.py": "6498be53972cce8fba35fe9bb3a8bbe363270c90a71bc63917b050d533985e58",
+    "tests/test_timestamp_registry.py": "b7b8bfa8c637fc08e91fb09e7080d2a6f0210974a0f3adbe9e8cf523f805f049",
+    "tests/test_transcript_timestamp_integrity.py": "e7f961986065a5b9ab59143c84d08bd5698b14fce4001a5e5961488d01c02e16",
+    "tests/test_asr_segmentation.py": "3ae40f8bc928744a052d3d48249210b72392dd9e8b0a7de281ef86edf2edfb5d",
+    "tests/test_audio_provenance.py": "e24474743c5c31400df50e7b58fada29bcf6681122df041306279af2a64a167f"
+  },
+  "checks": {
+    "native_timestamp_bounds_order_and_overlap": {
+      "status": "pass",
+      "result": "Timestamp validator and transcript builder check numeric values, monotonic starts, duration bounds, duplicates and overlapping timestamp review flags; text-only runtimes remain explicitly non-native."
+    },
+    "crop_normalization_timeline_mapping": {
+      "status": "pass",
+      "result": "Sample-index crop mappings are reversible within frozen source windows; audio provenance records crop offsets and transcript timeline traces retain original PCM coordinates."
+    },
+    "word_alignment_claim_boundary": {
+      "status": "pass",
+      "result": "Segment timestamps are not represented as validated word alignment; Omi and Parakeet remain timestamp capability none."
+    }
+  },
+  "runtime": {
+    "test_command": "python -m pytest tests/test_timestamp_registry.py tests/test_transcript_timestamp_integrity.py tests/test_asr_segmentation.py tests/test_audio_provenance.py -q",
+    "passed": 24,
+    "failed": 0,
+    "paid_calls": 0,
+    "external_assets_fetched": 0
+  },
+  "limitations": [
+    "These checks validate structure and coordinate mapping, not acoustic timestamp accuracy or word alignment."
+  ],
+  "runtime_sha256": "b6dfe3917a4ba36b6b309784e5d5071bc5b85212dae03ea509b38e4704c10b98"
+}

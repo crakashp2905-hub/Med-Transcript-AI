@@ -78,4 +78,5 @@ class TranscriptionInput(StrictModel):
     audio_asset_id: UUID
     inference_profile_id: str = Field(pattern=r"^[a-zA-Z0-9_.-]{1,80}$")
     preview_only: bool = False
+    preview_session_id: UUID | None = None
     timeline_offset_ms: int = Field(default=0, ge=0, le=3600000, strict=True)

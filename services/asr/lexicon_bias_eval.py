@@ -8,7 +8,7 @@ import tempfile
 import wave
 from pathlib import Path
 
-from services.asr.adapter import FasterWhisperAdapter
+from services.asr.adapter import ASRFailure, FasterWhisperAdapter
 from services.asr.profiles import ASRProfile
 from services.evaluation import score
 
@@ -172,6 +172,9 @@ def evaluate_bias(manifest_path, audio_root, profile_path, lexicon_path, output_
                         "hypothesis": "",
                         "failure": True,
                         "error_type": type(error).__name__,
+                        "error_code": error.code
+                        if isinstance(error, ASRFailure)
+                        else None,
                     }
             rows.append(
                 {

@@ -43,6 +43,7 @@ def register(app, services: ApiServices):
                 "error_code": row["error_code"],
                 "retryable": job_retryable(row),
                 "preview_only": bool(row["preview_only"]),
+                "preview_session_id": row["preview_session_id"],
                 "progress": job_progress(con, row),
                 "attempt_history": [
                     dict(r)
@@ -140,19 +141,20 @@ def register(app, services: ApiServices):
             elif body.timeline_offset_ms:
                 raise HTTPException(422, "offset_requires_preview_mode")
             existing = con.execute(
-                "SELECT id,preview_only,timeline_offset_ms FROM jobs WHERE upload=? AND stage='transcription' AND profile_sha256=? AND retranscription IS NULL",
-                (upload["id"], profile.sha256),
+                """SELECT id FROM jobs WHERE upload=? AND stage='transcription'
+                AND profile_sha256=? AND retranscription IS NULL AND preview_only=?
+                AND timeline_offset_ms=? AND COALESCE(preview_session_id,'')=COALESCE(?,'')""",
+                (
+                    upload["id"], profile.sha256, int(body.preview_only),
+                    body.timeline_offset_ms,
+                    str(body.preview_session_id) if body.preview_session_id else None,
+                ),
             ).fetchone()
-            if existing and (
-                bool(existing["preview_only"]) != body.preview_only
-                or existing["timeline_offset_ms"] != body.timeline_offset_ms
-            ):
-                raise HTTPException(409, "transcription_mode_mismatch")
             job_id, created = existing["id"] if existing else str(uuid4()), now()
             if not existing:
                 con.execute(
-                    """INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,profile_sha256,expected_transcript_id,preview_only,timeline_offset_ms)
-                    VALUES (?,?,?,'queued',?,?,'transcription',?,?,?,?)""",
+                    """INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,profile_sha256,expected_transcript_id,preview_only,timeline_offset_ms,preview_session_id)
+                    VALUES (?,?,?,'queued',?,?,'transcription',?,?,?,?,?)""",
                     (
                         job_id,
                         upload["id"],
@@ -163,6 +165,7 @@ def register(app, services: ApiServices):
                         encounter(con, encounter_id, actor)["current_transcript"],
                         int(body.preview_only),
                         body.timeline_offset_ms,
+                        str(body.preview_session_id) if body.preview_session_id else None,
                     ),
                 )
                 audit(con, actor, "transcription_queued", job_id)

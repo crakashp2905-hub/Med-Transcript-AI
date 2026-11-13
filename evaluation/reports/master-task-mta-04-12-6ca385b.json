@@ -1,0 +1,64 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-12",
+  "source_commit": "6ca385bf8148098b51b058d26a9c99729a16d913",
+  "status": "implemented",
+  "source_sha256": {
+    "services/asr/worker.py": "be0699d9f6395044b5586e30aae345a1e6888d3bd8af0566d994ab9aea9cba5f",
+    "services/asr/retranscribe_span.py": "38778f08e6fe0830e60f9e92e77a7d44e9cdd6ea17211d76640b54e6bb0fdd55",
+    "services/review/clinical_routes.py": "9b325f0ec55859c889dc3605c19fbc51d5d53a2a607ee6ff64d747de89bb3315",
+    "tests/test_retranscription_workflow.py": "ced9363074edee8dac3d47123b11f2f4d09ec1ae4a422bda5e02b5e56613c43c",
+    "tests/test_retranscribe_span.py": "e15d8fba7667b7940b47e9ad37b79359390adb35695fed27a7ccc77c005a5b64",
+    "tests/test_asr_candidate_receipt.py": "096c60b2f92c158fdacd67ba2b09a30ad8f3e402fb3e96cc383b01092e6a633c"
+  },
+  "checks": {
+    "persisted_job_and_non_adopted_candidate": {
+      "status": "pass",
+      "result": "Exact-source CI exercised authenticated HTTP request, persisted job, worker crop/decode, version-linked candidate, and adopted=false."
+    },
+    "source_audio_and_transcript_preservation": {
+      "status": "pass",
+      "result": "Test asserts source audio SHA/provenance, transcript version link, crop offsets, unchanged transcript version, and no note creation."
+    },
+    "stale_and_invalid_request_rejection": {
+      "status": "pass",
+      "result": "Wrong asset, stale transcript, out-of-bounds span, and cross-tenant access are rejected."
+    },
+    "exact_source_ci": {
+      "status": "pass",
+      "run_id": 43296662015,
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43296662015",
+      "jobs": {
+        "test_dev_security": "success; 843 passed, 17 skipped, 4 warnings",
+        "test_dev_asr_security": "success; 871 passed, 3 skipped, 3 warnings",
+        "postgres": "success",
+        "frontend": "success",
+        "container": "success",
+        "release_summary": "success"
+      }
+    },
+    "current_local_windows_run": {
+      "status": "blocked",
+      "result": "Current local TestClient run emitted no progress for over two minutes and was interrupted; the prior exact-source GitHub CI receipt is preserved."
+    },
+    "clinical_accuracy": {
+      "status": "blocked",
+      "result": "Synthetic audio and stub recognizer validate workflow only; no accuracy or clinical benefit claim."
+    }
+  },
+  "runtime": {
+    "ci_runner": "GitHub Actions ubuntu-24.04",
+    "python": "3.13.5",
+    "workflow_run_id": 43296662015
+  },
+  "runtime_sha256": "8530377cca2ba4f03f5a169bce88bdfd7e0cbc5a24896090a05ee0e0714f2ae2",
+  "current_head_equivalence": {
+    "head": "1a9bc1f9030f2898154ac4e3c0a4fd0d25c8beb3",
+    "verified_file_hashes_match": true
+  },
+  "limitations": [
+    "Integration tests use synthetic audio and a stub ASR adapter.",
+    "Local Windows test runner stalled during the current attempt; exact-source CI run 43296662015 previously passed.",
+    "No clinical error reduction or ASR accuracy improvement has been measured."
+  ]
+}
