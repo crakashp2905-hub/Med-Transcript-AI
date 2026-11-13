@@ -1,0 +1,50 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-11-01",
+    "MTA-11-02",
+    "MTA-11-03",
+    "MTA-11-04",
+    "MTA-11-05",
+    "MTA-11-06",
+    "MTA-11-07",
+    "MTA-11-08"
+  ],
+  "source_commit": "3f70a63b745cfc4396baabccdb85c97a2aa4e94f",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "source_files": {
+    "docs/research/beccsv-protocol-v1.md": "c9a10edf62697e2ae88eadeae6002631585f30c575aecaaff643653d4172916c",
+    "tests/test_beccsv_protocol_preregistration.py": "13aa299627eb847ceb5954932f611eb0145e67c6050fa362a5b8a088bec4c46f",
+    "services/evidence_graph.py": "cd207a76369607ad7b931784f5de579ce8202052bdf82212d83aec9f0338bc3c",
+    "services/review/relationships.py": "05a1ccb70555d128dd243dc3b7430abb99d9d5788c2add746796973d91c056dd",
+    "tests/test_evidence_graph.py": "5b8469df9cbed373833a4c836c56fd86defcd0b3d39c680afdb4a29f8bf878cd",
+    "tests/test_relationships.py": "7a940448ce795cfc5010746414487926bb7ccb34b751219a41396ed94f32f8d6"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_beccsv_protocol_preregistration.py tests/test_evidence_graph.py tests/test_relationships.py -q",
+      "status": "pass",
+      "result": "40 passed"
+    },
+    {
+      "command": "ruff format --check tests/test_beccsv_protocol_preregistration.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff check tests/test_beccsv_protocol_preregistration.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "A falsifiable BECCSV hypothesis and paired comparison plan are specified.",
+    "Typed source/note graph objects, mismatch loss, invariants, abstention, baselines, ablations and analysis requirements are documented.",
+    "The deterministic graph and relationship primitives pass focused tests."
+  ],
+  "not_established": [
+    "The hypothesis has not been empirically supported.",
+    "No independent acceptance cohort or qualified adjudicators are available.",
+    "The working effect and false-alarm thresholds require qualified reviewer approval before acceptance evaluation.",
+    "No clinical efficacy or release claim is made."
+  ],
+  "clinical_release_authorized": false
+}
