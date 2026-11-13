@@ -5099,12 +5099,34 @@
       "id": "MTA-10-03",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define one interface each for ASR, diarization, extraction, drafting and verification; include explicit unavailable/timeout/failure errors.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/provider_interfaces.py",
+        "services/asr/backend.py",
+        "services/asr/worker.py",
+        "services/diarization.py",
+        "services/offline_adapters.py",
+        "services/review/clinical_models.py",
+        "services/review/clinical_routes.py",
+        "services/review/providers.py",
+        "services/review/routers/proposals.py",
+        "tests/test_provider_interfaces.py",
+        "tests/test_offline_adapters.py",
+        "tests/test_drafting_provider_failures.py",
+        "evaluation/reports/master-task-mta-10-03-provider-contracts-20261114.json"
+      ],
+      "source_commit": "d880ea493a13644d725db60f08cdc39e55a69fbf",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-10-03-provider-contracts-20261114.json",
+          "report_sha256": "60ea5ee07f7bd1b1cd88eeef0456aa5112dc50e156fa84d5f0bb02187540c441",
+          "check": "provider_contract_and_failure_tests",
+          "status": "pass",
+          "detail": "34 passed; Ruff and format checks passed."
+        }
+      ],
+      "blocker": "Expanded socket-dependent route tests were not used for acceptance because they can hang in this Windows environment; focused adapter and contract tests passed. Native model execution remains constrained by unavailable runtime packages."
     },
     {
       "id": "MTA-10-04",

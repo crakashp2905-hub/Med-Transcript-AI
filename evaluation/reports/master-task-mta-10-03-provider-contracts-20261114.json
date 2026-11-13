@@ -1,0 +1,58 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-03",
+  "source_commit": "d880ea493a13644d725db60f08cdc39e55a69fbf",
+  "source_files": {
+    "services/provider_interfaces.py": "f33d90bb56d0f4980f3927d468444ee7ae1cfc9969af5dd02dc2b336f18ed8aa",
+    "services/asr/backend.py": "e03167905c7315157da10b18ac68874e775fb9478f1583675669e7313eb283a8",
+    "services/asr/worker.py": "32e52ddc9fdc59ca2915f128345f46c3197a4786c31edf53748d23886cb9de9c",
+    "services/diarization.py": "eb863b34a4ad190011b121118c8f12a73303adc866998bf8b0f090918d5f60bd",
+    "services/offline_adapters.py": "aff6ef7ebade9d34bbe982c301a889d0e12efbfe89bd99af37104262da1ad217",
+    "services/review/clinical_models.py": "8db932a497b29cf28f5fe2bd5eb27ef2d008e9ec1aa37959e97195374dc3ffad",
+    "services/review/clinical_routes.py": "fcb8f48ccda769dff438b14e7271ae9514cd2dc70a8192f59156b9207a6a6cbf",
+    "services/review/providers.py": "44b4734a16572ee0e5be4af5027afca99ce444e3d350383f9725262868d71766",
+    "services/review/routers/proposals.py": "b37a442b8d4a196a2de551668bbb6446e761698bcd2e83577727d4056780b72a",
+    "tests/test_provider_interfaces.py": "9d441fc0e2cff58ddafe8b1ccf2bd387fb0f0425cfc22992c2fc79ed7045a072",
+    "tests/test_offline_adapters.py": "c558aca7a273ae94548f009471055da19aebfa911981c7153c1b44202517a5c6",
+    "tests/test_drafting_provider_failures.py": "6be18e42d67dcec06d75f8754a294f5ababa2e64e458147e003c59d484477353"
+  },
+  "captured_at_utc": "2026-11-13T21:32:40.810344+00:00",
+  "checks": [
+    {
+      "name": "provider_contract_and_failure_tests",
+      "command": "python -m pytest tests/test_provider_interfaces.py tests/test_offline_adapters.py tests/test_feature_flags.py tests/test_drafting_provider_failures.py tests/test_omi_adapter.py tests/test_omi_backend.py tests/test_model_inventory.py --confcutdir=tests -q",
+      "status": "pass",
+      "result": "34 passed"
+    },
+    {
+      "name": "ruff",
+      "command": "ruff check and ruff format --check on changed Python files",
+      "status": "pass"
+    }
+  ],
+  "application_wiring": {
+    "asr": "worker backend inspection requires the shared ASRProvider protocol; backend adapter failures preserve asr stage and explicit kind/code.",
+    "diarization": "encounter worker requires DiarizationProvider and maps timeout, unavailable and failure to safe diarization codes.",
+    "extraction": "clinical proposal route requires ExtractionProvider; rule and local-model implementations share it.",
+    "drafting": "proposal route requires DraftingProvider; timeouts/unavailability return explicit failures without provider fallback.",
+    "verification": "semantic batch path requires VerificationProvider and preserves verification scope; failures cannot yield approval clearance."
+  },
+  "failure_contract": {
+    "kinds": [
+      "unavailable",
+      "timeout",
+      "failed",
+      "invalid_output"
+    ],
+    "exception": "services.provider_interfaces.ProviderFailure",
+    "sensitive_error_details_exposed": false
+  },
+  "limitations": [
+    "Clinical extraction and verification share one local-model runtime, although distinct provider interfaces and error stages are enforced.",
+    "Native inference operations may not be preemptible; timeout categories are normalized when a runtime raises TimeoutError, while long-running process-level cancellation depends on worker lease checkpoints.",
+    "An expanded route-level test subset was not used for acceptance because socket-dependent tests can hang in this Windows environment; the exact focused provider contract suite passed."
+  ],
+  "external_calls_attempted": 0,
+  "paid_calls": 0,
+  "clinical_release": false
+}
