@@ -5648,12 +5648,12 @@
       "id": "MTA-11-14",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Apply metamorphic testing: unit conversion, faithful paraphrase, clause order, temporal flip, swapped drug/dose, negation reversal and subject swap.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-11-14-d54a09f.json"],
+      "source_commit": "d54a09fccd47b2554d722b3423f5251d81b6f45c",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-11-14-d54a09f.json", "report_sha256": "6a940ec3a405cf033d4f63efa701b9889f57dcff59cd136b0621247d1486fd38", "check": "seven_synthetic_metamorphic_transformations", "status": "pass", "detail": "14 focused tests passed; 5/7 metamorphic cases passed, with 2 semantics-preserving false alarms retained and zero missed semantic flips in this development set."}],
+      "blocker": "The synthetic rule checker flags a faithful paraphrase and clause reordering; these false alarms remain open. The seven-case set does not establish clinical performance."
     },
     {
       "id": "MTA-11-15",

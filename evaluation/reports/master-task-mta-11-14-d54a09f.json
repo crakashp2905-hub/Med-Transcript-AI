@@ -1,0 +1,119 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-11-14",
+  "source_commit": "d54a09fccd47b2554d722b3423f5251d81b6f45c",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "source_files": {
+    "services/beccsv_metamorphic.py": "4ef028bc070e18e5c7d174343cb9f9ffac0a769da2b8c7e7f07f58302af90e01",
+    "services/review/clinical.py": "90b88465621722521b452f5f29885a474ac3d8c81240efd04513a16cab728e42",
+    "services/review/relationships.py": "05a1ccb70555d128dd243dc3b7430abb99d9d5788c2add746796973d91c056dd",
+    "tests/test_beccsv_metamorphic.py": "e89aea0cc565b5e51bae39eea6982b3dd42907e81a5d72158e206c052dd5bf98"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_beccsv_metamorphic.py tests/test_beccsv_dataset.py tests/test_completion_gaps.py -k \"beccsv or exact_mass_conversion or critical_scope_assignment\" -q",
+      "status": "pass",
+      "result": "14 passed, 19 deselected"
+    },
+    {
+      "command": "ruff check services/beccsv_metamorphic.py tests/test_beccsv_metamorphic.py",
+      "status": "pass"
+    }
+  ],
+  "development_results": {
+    "schema_version": "beccsv_metamorphic_dev_v1",
+    "results": [
+      {
+        "case_id": "unit-conversion",
+        "transformation": "semantics_preserving_unit_conversion",
+        "expected_invariant": true,
+        "observed_codes": [],
+        "outcome": "pass",
+        "synthetic": true,
+        "clinical_gold": false
+      },
+      {
+        "case_id": "faithful-paraphrase",
+        "transformation": "semantics_preserving_paraphrase",
+        "expected_invariant": true,
+        "observed_codes": [
+          "omitted_source_terms",
+          "unsupported_claim_terms"
+        ],
+        "outcome": "false_alarm",
+        "synthetic": true,
+        "clinical_gold": false
+      },
+      {
+        "case_id": "clause-order",
+        "transformation": "semantics_preserving_clause_order",
+        "expected_invariant": true,
+        "observed_codes": [
+          "clinical_relationship_disagreement"
+        ],
+        "outcome": "false_alarm",
+        "synthetic": true,
+        "clinical_gold": false
+      },
+      {
+        "case_id": "temporal-flip",
+        "transformation": "semantic_temporal_flip",
+        "expected_invariant": false,
+        "observed_codes": [
+          "temporality_changed"
+        ],
+        "outcome": "pass",
+        "synthetic": true,
+        "clinical_gold": false
+      },
+      {
+        "case_id": "drug-dose-swap",
+        "transformation": "semantic_medication_dose_swap",
+        "expected_invariant": false,
+        "observed_codes": [
+          "clinical_relationship_disagreement",
+          "medication_dose_assignment_disagreement"
+        ],
+        "outcome": "pass",
+        "synthetic": true,
+        "clinical_gold": false
+      },
+      {
+        "case_id": "negation-reversal",
+        "transformation": "semantic_negation_reversal",
+        "expected_invariant": false,
+        "observed_codes": [
+          "clinical_relationship_disagreement",
+          "negation_disagreement",
+          "negation_scope_disagreement",
+          "omitted_source_terms"
+        ],
+        "outcome": "pass",
+        "synthetic": true,
+        "clinical_gold": false
+      },
+      {
+        "case_id": "subject-swap",
+        "transformation": "semantic_subject_swap",
+        "expected_invariant": false,
+        "observed_codes": [
+          "subject_changed"
+        ],
+        "outcome": "pass",
+        "synthetic": true,
+        "clinical_gold": false
+      }
+    ],
+    "case_count": 7,
+    "false_alarm_count": 2,
+    "missed_detection_count": 0,
+    "clinical_gold": false,
+    "clinical_release_authorized": false
+  },
+  "limitations": [
+    "Seven synthetic cases only; no independent clinical gold or efficacy estimate.",
+    "The paraphrase and clause-order false alarms are retained and require future rule improvement.",
+    "No acceptance data were inspected or modified."
+  ],
+  "clinical_release_authorized": false
+}
