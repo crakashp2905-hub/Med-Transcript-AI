@@ -8,7 +8,7 @@
   },
   "progress_record": {
     "path": "docs/asr-rnd-progress.md",
-    "sha256": "7d6acac08db3b85b7fcdd110ac4fdbbfd0259335de9e2a4e56cc567fe0351426"
+    "sha256": "81b9f759cf741ad480bd18b7cf7454203da618f3fecaa97e2e6028eb36292095"
   },
   "invariants": {
     "maximum_normalized_wer": 0.05,
@@ -492,6 +492,11 @@
           "line": 723,
           "text": "Suite v6 ran all 16 manifest cases without a resume source, with complete coverage and zero failed cases/chunks. It exactly reproduces immutable v2 counts: clean 3,477/13,683 (25.4111%) and distracted 3,970/13,683 (29.0141%). Fresh condition wall time was 1,322.9/1,376.4 seconds after 19.0-second model load. Full-process peak working set was 743,542,784 bytes within 16 GiB. Both conditions fail the unchanged <=5% gate. A focused regression binds the full cohort, historical counts, gate and resource measurement; report SHA-256 5ba7cb52dc17d98932790f2456d0975b52da89afed30452cf5d08a808558ff36. C10 remains partial pending other predeclared modes/candidates.",
           "status_basis": "Suite v6 ran all 16 manifest cases without a resume source, with complete coverage and zero failed cases/chunks. It exactly reproduces immutable v2 counts: clean 3,477/13,683 (25.4111%) and distracted 3,970/13,683 (29.0141%). Fresh condition wall time was 1,322.9/1,376.4 seconds after 19.0-second model load. Full-process peak working set was 743,542,784 bytes within 16 GiB. Both conditions fail the unchanged <=5% gate. A focused regression binds the full cohort, historical counts, gate and resource measurement; report SHA-256 5ba7cb52dc17d98932790f2456d0975b52da89afed30452cf5d08a808558ff36. C10 remains partial pending other predeclared modes/candidates."
+        },
+        {
+          "line": 735,
+          "text": "Suite v6 ran all 16 manifest cases without a resume source, with complete coverage and zero failed cases/chunks. Clean scored 3,846/13,683 (28.1079%); distracted 3,978/13,683 (29.0726%). Condition wall time was 2,214.1/2,523.9 seconds after 3.3-second model load. Full-process peak working set was 743,825,408 bytes within 16 GiB. Both conditions fail the unchanged <=5% gate. No immutable v2 Whisper-small overlap report exists, so this is a new arm rather than a baseline reproduction. Suite source hashes matched before launch; subsequent shared-worktree edits changed services/detailed_benchmark.py and its report runtime revision commit object is not in the current local object store, limiting source replay. Focused full-cohort regression passed; report SHA-256 ee841e73ba7a83cea31a2d7f1077c389991606bfedcd4ce7298584c96b4f5b90. C10 remains partial pending other arms.",
+          "status_basis": "Suite v6 ran all 16 manifest cases without a resume source, with complete coverage and zero failed cases/chunks. Clean scored 3,846/13,683 (28.1079%); distracted 3,978/13,683 (29.0726%). Condition wall time was 2,214.1/2,523.9 seconds after 3.3-second model load. Full-process peak working set was 743,825,408 bytes within 16 GiB. Both conditions fail the unchanged <=5% gate. No immutable v2 Whisper-small overlap report exists, so this is a new arm rather than a baseline reproduction. Suite source hashes matched before launch; subsequent shared-worktree edits changed services/detailed_benchmark.py and its report runtime revision commit object is not in the current local object store, limiting source replay. Focused full-cohort regression passed; report SHA-256 ee841e73ba7a83cea31a2d7f1077c389991606bfedcd4ce7298584c96b4f5b90. C10 remains partial pending other arms."
         }
       ],
       "completion_claim": false

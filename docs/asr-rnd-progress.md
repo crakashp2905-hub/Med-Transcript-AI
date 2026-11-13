@@ -732,6 +732,23 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   measurement. Report SHA-256 is
   `5ba7cb52dc17d98932790f2456d0975b52da89afed30452cf5d08a808558ff36`.
   C10 remains partial pending the other predeclared modes/candidates.
+- **MTA-ASR-C10 Whisper-small overlap full run:** Suite v6 ran all 16 manifest
+  cases without a resume source, with complete coverage and zero failed cases
+  or chunks. Clean scored 3,846/13,683 (28.1079%); distracted scored
+  3,978/13,683 (29.0726%). Per-condition wall time was 2,214.1/2,523.9 seconds
+  after a 3.3-second model load. Full-process peak working set was 743,825,408
+  bytes, within 16 GiB. Both conditions fail the unchanged <=5% WER gate.
+  There is no immutable v2 Whisper-small overlap receipt, so this is recorded as
+  a new arm, not a baseline reproduction. The suite's source hashes matched the
+  source files before launch; a later shared-worktree edit changed
+  `services/detailed_benchmark.py`, and the runtime revision object is absent
+  from the current local git object store, limiting after-the-fact source
+  replay. Regression
+  `tests/test_detailed_benchmark.py::test_detailed_v6_whisper_small_overlap_receipt_is_full_and_failure_inclusive`
+  passed for the full cohort, coverage, failure accounting, gate and resource
+  budget. Report SHA-256 is
+  `ee841e73ba7a83cea31a2d7f1077c389991606bfedcd4ce7298584c96b4f5b90`.
+  C10 remains partial pending the other predeclared modes/candidates.
 - **MTA-ASR-D01:** The operational application path remains the pinned
   Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration
   (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are
