@@ -1,0 +1,29 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-06-10",
+  "source_commit": "511afc8f6a73f700c7f5e308e0a78ede019ec91d",
+  "status": "pass",
+  "runtime": {
+    "test_provider": "local",
+    "operating_system": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "pytest": "9.0.3",
+    "source_commit": "511afc8f6a73f700c7f5e308e0a78ede019ec91d"
+  },
+  "runtime_sha256": "784be96fb83c33888dea58e09c4148fbe0dd48cd7344ab02b6bb62852cf70b06",
+  "checks": {
+    "medication_actions": {
+      "status": "pass",
+      "command": "python -m pytest tests/test_atomic_clinical_extraction.py -q",
+      "focused_test_file": "tests/test_atomic_clinical_extraction.py",
+      "focused_case_count": 7,
+      "implementation": "Keeps start plans and recommendations distinct from explicit medication orders; proposals remain unreviewed and planned order temporality is preserved."
+    }
+  },
+  "limitations": [
+    "Local synthetic/developer-authored tests only; CI has not yet reported for this commit.",
+    "No independent clinical annotation, human adjudication or patient safety validation.",
+    "Clinical release authorization is false."
+  ],
+  "clinical_release_authorized": false
+}

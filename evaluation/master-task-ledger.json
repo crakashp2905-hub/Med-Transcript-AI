@@ -3067,33 +3067,60 @@
       "id": "MTA-06-08",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Extract measurements with value, units, time and source confidence; do not normalize ambiguous units silently.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-08-511afc8.json"
+      ],
+      "source_commit": "511afc8f6a73f700c7f5e308e0a78ede019ec91d",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-08-511afc8.json",
+          "report_sha256": "d920bf5e4fc71e8e4aecf61a05bbf591f2c32bda1115e6d67cbcabc1038a1d08",
+          "check": "measurements",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-06-09",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Split assessment labels into explicitly said versus suggested versus unknown; never generate a new diagnosis.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-09-511afc8.json"
+      ],
+      "source_commit": "511afc8f6a73f700c7f5e308e0a78ede019ec91d",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-09-511afc8.json",
+          "report_sha256": "945de557855dad64bca3c3dab2567f04fc913d11d79e9131ae96936b62ccf02a",
+          "check": "assessment",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-06-10",
       "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Prevent undocumented clinical plan text from appearing as confirmed medication orders.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-10-511afc8.json"
+      ],
+      "source_commit": "511afc8f6a73f700c7f5e308e0a78ede019ec91d",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-10-511afc8.json",
+          "report_sha256": "a312a419bc7b04fb32283fc710c86e9ee8ec9eaf0992abe155b1b5b899d6fb8b",
+          "check": "medication_actions",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
