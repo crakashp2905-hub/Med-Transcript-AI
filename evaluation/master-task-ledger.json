@@ -4650,12 +4650,38 @@
       "id": "MTA-09-13",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Never show confidence as a numeric probability unless calibrated; use transparent review priorities.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/UncertainSpanQueue.tsx",
+        "apps/clinician-web/src/VerificationWarnings.tsx",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "tests/test_ui_review_priority.py",
+        "evaluation/reports/master-task-mta-09-13-52be617.json"
+      ],
+      "source_commit": "52be6178fb12e0d6248a2355d79100f8a2fd27e1",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-13-52be617.json",
+          "report_sha256": "9072d222f14570c2994583fc420e1eb6c53a883be0b4ff4b5fc4782c08a1faba",
+          "check": "transparent_review_priority_without_numeric_confidence",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-13-52be617.json",
+          "report_sha256": "9072d222f14570c2994583fc420e1eb6c53a883be0b4ff4b5fc4782c08a1faba",
+          "check": "frontend_build_and_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-13-52be617.json",
+          "report_sha256": "9072d222f14570c2994583fc420e1eb6c53a883be0b4ff4b5fc4782c08a1faba",
+          "check": "rendered_priority_order",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "Rendered review-priority order could not be browser-checked because the local fixture is unreachable under loopback restrictions. Static regression test and production build pass."
     },
     {
       "id": "MTA-09-14",

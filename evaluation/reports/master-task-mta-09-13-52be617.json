@@ -1,0 +1,64 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "52be6178fb12e0d6248a2355d79100f8a2fd27e1",
+  "tasks": [
+    "MTA-09-13"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/UncertainSpanQueue.tsx": "ad737270b5e21212cbe23220da1b7a9710b0dcb56665505973bdaeff7ff25090",
+    "apps/clinician-web/src/VerificationWarnings.tsx": "f4011bf7477e3dfb041a220311f5ad67c964e1b7403083b5d4728acf31d568da",
+    "apps/clinician-web/src/PresentationTools.tsx": "386727c1140dfda9fe25227c7d3fcf8c5d32ca350222b91a9583e604ef11b38e",
+    "apps/clinician-web/e2e/workflow.spec.ts": "2a5e8b3f92cd83d4cb414788048b3fc369606a48e4a8cee33adcc6f206f018bc",
+    "tests/test_ui_review_priority.py": "0a4cab3e23d1f94cec19c1e4569c1e7974e8cfd19119731d94660d2cddb7d4c0"
+  },
+  "runtime": {
+    "python": "Python 3.13.5",
+    "node": "cached npm dependencies",
+    "platform": "Windows 11",
+    "browser": "not executed due loopback restriction"
+  },
+  "checks": {
+    "transparent_review_priority_without_numeric_confidence": {
+      "status": "pass"
+    },
+    "frontend_build_and_e2e_discovery": {
+      "status": "pass"
+    },
+    "rendered_priority_order": {
+      "status": "blocked"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest --confcutdir=services/review/routers tests/test_ui_review_priority.py -q",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m ruff check tests/test_ui_review_priority.py",
+      "status": "pass"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "Playwright visible-priority verification",
+      "status": "blocked",
+      "observed": "Local fixture cannot be opened because the managed environment denies loopback networking."
+    }
+  ],
+  "limitations": [
+    "UI review ordering uses deterministic severity and evidence availability; no numeric confidence probability is rendered.",
+    "ASR backend native confidence capability is separately recorded; this UI does not claim calibration.",
+    "Rendered ordering requires browser execution on a local-socket-enabled host."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "8f84d10e338a5c6aca6eb5fd264c594341680d1532f3c521e3d57e4f7c09223c"
+}
