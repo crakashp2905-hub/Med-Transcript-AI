@@ -255,6 +255,84 @@ def test_signed_approval_can_be_revoked_and_then_blocks_export_and_changes(setup
     assert amendment.json()["code"] == "encounter_revoked"
 
 
+def test_complete_synthetic_encounter_preserves_history_negations_medications_and_revised_plan(
+    setup,
+):
+    client, path, _ = setup
+    initial_source = (
+        "History: type 2 diabetes diagnosed in 2019. "
+        "Today I have a cough for three days. Patient denies fever. Patient denies chest pain. "
+        "I take metformin 500 mg twice daily. I take lisinopril 10 mg once daily. "
+        "Initial plan: continue both medicines and follow up in one week."
+    )
+    eid, tx, initial_facts = prepare(client, path, initial_source)
+    initial = draft(client, eid, tx, initial_facts)
+    revised_source = (
+        "History: type 2 diabetes diagnosed in 2019. "
+        "Today I have a cough for three days. Patient denies fever. Patient denies chest pain. "
+        "I take metformin 500 mg twice daily. I take lisinopril 10 mg once daily. "
+        "Revised plan: continue metformin, stop lisinopril due dizziness, "
+        "and follow up in one week."
+    )
+    revision = client.post(
+        f"/v1/encounters/{eid}/manual-transcripts",
+        headers=headers(),
+        json={
+            "audio_asset_id": tx["audio_asset_id"],
+            "segments": [
+                {
+                    "start_ms": 0,
+                    "end_ms": 100,
+                    "text": revised_source,
+                    "role": "patient",
+                }
+            ],
+            "english_confirmed": True,
+            "source_completeness_reviewed": True,
+            "source_review_reason": "Full synthetic encounter revised for the workflow test.",
+        },
+    )
+    assert revision.status_code == 201, revision.text
+    revised_tx = revision.json()
+    revised_facts = client.get(f"/v1/encounters/{eid}/facts", headers=headers()).json()[
+        "facts"
+    ]
+    for fact in revised_facts:
+        fact.update(
+            reviewed=True,
+            critical_reviewed=True,
+            subject="patient",
+            temporality="current",
+        )
+    revised = draft(client, eid, revised_tx, revised_facts)
+
+    serialized_facts = revised["note"]["facts"]
+    assert any("2019" in fact["text"] for fact in serialized_facts)
+    assert any("cough" in fact["text"].lower() for fact in serialized_facts)
+    assert sum(fact["category"] == "medication" for fact in serialized_facts) >= 2
+    assert any(
+        "fever" in fact["text"].lower() and fact["assertion"] == "negated"
+        for fact in serialized_facts
+    )
+    assert any(
+        "chest pain" in fact["text"].lower() and fact["assertion"] == "negated"
+        for fact in serialized_facts
+    )
+    assert any("stop lisinopril" in fact["text"].lower() for fact in serialized_facts)
+    comparison = client.get(
+        f"/v1/encounters/{eid}/notes/{initial['note']['id']}/compare/{revised['note']['id']}",
+        headers=headers(),
+    )
+    assert comparison.status_code == 200, comparison.text
+    assert comparison.json()["source_changed"] is True
+    assert all(
+        statement["source_version_id"] == revised_tx["id"]
+        and statement["evidence"] is not None
+        for section in revised["note"]["sections"]
+        for statement in section["statements"]
+    )
+
+
 def test_ambiguous_medication_blocks_and_correction_creates_new_version(setup):
     client, path, _ = setup
     eid, tx, facts = prepare(client, path, "I take metformin 500 or 850 mg.")
