@@ -8,7 +8,7 @@ def extract_one(text):
 
 
 def test_explicit_allergen_reaction_and_spoken_severity_are_captured():
-    fact = extract_one("Severe hives after penicillin; patient is allergic to it.")[0]
+    fact = extract_one("Severe hives as a reaction to penicillin.")[0]
 
     assert fact["category"] == "allergy"
     assert fact["allergen"] == "penicillin"

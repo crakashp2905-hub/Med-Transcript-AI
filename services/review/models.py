@@ -96,6 +96,12 @@ class Fact(Strict):
     symptom_course: Literal[
         "improving", "worsening", "stable", "intermittent", "constant", "unknown"
     ] = "unknown"
+    measurement_value: str | None = Field(default=None, max_length=100)
+    measurement_unit: str | None = Field(default=None, max_length=50)
+    measurement_time: str | None = Field(default=None, max_length=100)
+    measurement_source_confidence: Literal["high", "medium", "low", "unknown"] = (
+        "unknown"
+    )
     clinical_source: Literal[
         "patient_report",
         "family_report",

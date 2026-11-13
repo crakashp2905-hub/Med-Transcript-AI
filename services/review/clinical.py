@@ -225,6 +225,41 @@ def extract_subject_and_source(segment, text):
     return subject, source, ""
 
 
+def extract_measurement_details(text):
+    patterns = (
+        r"\b(?:blood pressure|bp)\s*(?:is|was|of|:)?\s*(?:(?:about|around|approximately|roughly|estimated)\s+)?(?P<value>\d{2,3}\s*/\s*\d{2,3})(?:\s*(?P<unit>mmhg))?",
+        r"\b(?:temperature|temp)\s*(?:is|was|of|:)?\s*(?:(?:about|around|approximately|roughly|estimated)\s+)?(?P<value>\d{1,3}(?:\.\d+)?)(?:\s*(?:degrees?\s*)?(?P<unit>°?[cf]))?",
+        r"\b(?:oxygen saturation|spo2|o2 sat)\s*(?:is|was|of|:)?\s*(?:(?:about|around|approximately|roughly|estimated)\s+)?(?P<value>\d{1,3}(?:\.\d+)?)(?:\s*(?P<unit>%))?",
+        r"\b(?:pulse|heart rate)\s*(?:is|was|of|:)?\s*(?:(?:about|around|approximately|roughly|estimated)\s+)?(?P<value>\d{1,3})(?:\s*(?P<unit>bpm))?",
+        r"\b(?:weight|height)\s*(?:is|was|of|:)?\s*(?:(?:about|around|approximately|roughly|estimated)\s+)?(?P<value>\d{1,3}(?:\.\d+)?)(?:\s*(?P<unit>kg|lb|cm|m))?",
+    )
+    details = {"measurement_source_confidence": "unknown"}
+    matches = [
+        match for pattern in patterns if (match := re.search(pattern, text, re.I))
+    ]
+    if len(matches) == 1:
+        match = matches[0]
+        details["measurement_value"] = match.group("value").strip()
+        if match.group("unit"):
+            details["measurement_unit"] = match.group("unit").strip()
+        if re.search(
+            r"\b(?:about|around|approximately|roughly|estimated)\b", text, re.I
+        ):
+            details["measurement_source_confidence"] = "low"
+        elif re.search(r"\b(?:measured|reading)\b", text, re.I):
+            details["measurement_source_confidence"] = "medium"
+    times = list(
+        re.finditer(
+            r"\b(?:today|yesterday|this morning|this afternoon|this evening|last (?:night|week|month)|at \d{1,2}(?::\d{2})?\s*(?:am|pm))\b",
+            text,
+            re.I,
+        )
+    )
+    if len(times) == 1:
+        details["measurement_time"] = times[0].group()
+    return details
+
+
 def extract(transcript):
     result = []
     for segment in transcript["segments"]:
@@ -237,7 +272,11 @@ def extract(transcript):
             for name, pattern in [
                 (
                     "allergy",
-                    r"allerg|anaphyl|reaction|hives|rash|swelling|itching|wheezing|shortness of breath",
+                    r"allerg|anaphyl|reaction",
+                ),
+                (
+                    "measurement",
+                    r"\b(?:blood pressure|bp|temperature|temp|weight|height|pulse|heart rate|oxygen saturation|spo2|o2 sat)\b(?=.*\d)",
                 ),
                 (
                     "medication",
@@ -382,6 +421,8 @@ def extract(transcript):
                 fact["laterality"] = side[0].lower()
             if category == "symptom":
                 fact.update(extract_symptom_details(quote))
+            if category == "measurement":
+                fact.update(extract_measurement_details(quote))
             result.append(fact)
     return result
 
