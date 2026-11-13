@@ -5462,12 +5462,22 @@
       "id": "MTA-10-16",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Include resource contention tests across concurrent browser/API workers and local Ollama.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-10-16-c2dd15f.json"
+      ],
+      "source_commit": "c2dd15f39aab53ee8c198a378160900309472f91",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-10-16-c2dd15f.json",
+          "report_sha256": "8c5d74fb22b2186acb59238d4f563ac246c5bacdfce246053f3ca8a5ccfc607f",
+          "check": "cross_process_source_priority_vs_optional_local_inference_contention",
+          "status": "pass",
+          "detail": "11 focused inference-slot, resource-arbiter and Ollama-cache integrity tests passed."
+        }
+      ],
+      "blocker": "Real Ollama daemon/model and browser/API end-to-end concurrent requests were not exercised; the deterministic subprocess test validates only shared-lock contention and deferral."
     },
     {
       "id": "MTA-10-17",
