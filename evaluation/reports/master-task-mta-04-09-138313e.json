@@ -1,0 +1,31 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-09",
+  "source_commit": "138313e79562c5a3391ff820280948bb247200d9",
+  "status": "implemented",
+  "source_sha256": {
+    "services/audio_enhancement.py": "6f74930ffa07cd5c94a217e500f7eccae311c2251b9541c681c4db2eaa7a538c",
+    "services/audio_enhancement_eval.py": "605df277545f5bac0f1e687c2fbe1d334a2a00f9e3bbb9d6639726ae036ad177",
+    "tests/test_audio_enhancement.py": "1eeffd0ceb176325922f1570972d19d9502aa03b23cbafd2e6df6247f698e95c",
+    "tests/test_audio_enhancement_report.py": "c71dece2b660841919320d43342c4a4127ac144444eac7191cac471afc937063"
+  },
+  "checks": {
+    "paired_enhancement_experiment": {
+      "status": "pass",
+      "result": "Five local arms (source, RMS normalization, adaptive gain, high-pass and spectral gate) were compared on the same six smoke clips and 134 reference words. Each arm had 9 normalized edits (6.716% WER); none improved/degraded paired samples and all failed the frozen 5% gate."
+    }
+  },
+  "runtime": {
+    "commit": "138313e79562c5a3391ff820280948bb247200d9",
+    "test_command": "python -m pytest tests/test_audio_enhancement.py tests/test_audio_enhancement_report.py -q",
+    "passed": 8,
+    "failed": 0,
+    "benchmark_report": "evaluation/reports/audio-enhancement-paired-v3.json",
+    "benchmark_report_sha256": "554c295d00944cfbd7eaf3f853bc3e2a3f75103289ddc4de2efb94ef4e4801b9",
+    "paid_calls": 0
+  },
+  "limitations": [
+    "Small six-utterance development smoke only; no long-conversation or independently adjudicated clinical effect was established."
+  ],
+  "runtime_sha256": "e8022f583b2e794155af2d6af88f88261345948b0d5735a137728f64ef30b419"
+}
