@@ -1,0 +1,2736 @@
+{
+  "schema_version": "offline_preflight_v2",
+  "artifact_scope": {
+    "status": "available",
+    "schema_version": "artifact_scope_v1",
+    "policy_path": "evaluation/contracts/artifact-scope-v1.json",
+    "policy_sha256": "d1d30533f797e5f77af763f8d5722d0ad17645a0d722c8f13710912ffbb8bfdd",
+    "permitted_categories": [
+      "committed_public_mock_audio",
+      "frozen_benchmark_evidence",
+      "locally_cached_model_files",
+      "installed_and_cached_dependencies",
+      "committed_test_fixtures"
+    ],
+    "prohibited_sources": [
+      "real_patient_data_without_explicit_authorization",
+      "new_dataset_or_model_downloads",
+      "paid_or_hosted_inference",
+      "gated_assets_without_access_approval",
+      "reserved_acceptance_cohort_for_development",
+      "mutating_frozen_reports_or_source_audio"
+    ],
+    "clinical_release_authorized": false
+  },
+  "tools": {
+    "pytest": "available",
+    "codec_av": "blocked_missing_local_artifact",
+    "coverage": "available",
+    "ruff": "available",
+    "mypy": "available",
+    "pip_audit": "blocked_missing_local_artifact"
+  },
+  "configured_ollama_cache": {
+    "schema_version": "configured_local_ollama_inventory_v1",
+    "models": [
+      {
+        "model": "qwen2.5:1.5b",
+        "expected_manifest_sha256": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "automatic_download": false,
+        "status": "unavailable",
+        "reason": "manifest_missing"
+      },
+      {
+        "model": "qwen2.5:7b",
+        "expected_manifest_sha256": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+        "automatic_download": false,
+        "status": "unavailable",
+        "reason": "manifest_missing"
+      }
+    ],
+    "blobs": [],
+    "unique_blob_bytes": 0,
+    "recorded_at": "2026-11-13T21:06:58.349928+00:00",
+    "source_commit": "b3f70886b4e9cb8dbe063521965caaf17c39c382",
+    "code_sha256": "480c91d1fb6b54c269b047f300370c218e9886095dee22ce11287be2bb81f41b",
+    "model_inference_performed": false,
+    "external_calls_attempted": 0,
+    "independent_clinical_gold": false,
+    "clinical_release": false,
+    "limitations": "Only the configured Qwen 1.5B/7B manifests and referenced blobs are inspected. Other cached models remain outside scope; byte hashes do not attest license approval or clinical eligibility."
+  },
+  "node": "available",
+  "runtime_versions": {
+    "python": "3.13.5",
+    "python_implementation": "CPython",
+    "node": "v22.16.0",
+    "npm": null,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "executable": "python.exe"
+  },
+  "npm_dependencies": "available",
+  "python_wheelhouse": "blocked_missing_local_artifact",
+  "models": [
+    {
+      "path": "data/models/faster-distil-whisper-large-v3",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/config.json",
+          "bytes": 2690,
+          "sha256": "90c55f775cc4e0bb17293d0bf12f96557a486f20dea886fabd8e6075a3588b21"
+        },
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/model.bin",
+          "bytes": 1512927867,
+          "sha256": "b79368e19b6623813609431a6e5ee309a71506701ebc49fd7820e692dec7c5f5"
+        },
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/preprocessor_config.json",
+          "bytes": 340,
+          "sha256": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711"
+        },
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/tokenizer.json",
+          "bytes": 2480617,
+          "sha256": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca"
+        },
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/vocabulary.json",
+          "bytes": 1068114,
+          "sha256": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1"
+        }
+      ],
+      "total_bytes": 1516479628
+    },
+    {
+      "path": "data/models/faster-whisper-large-v3",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/faster-whisper-large-v3/.cache/huggingface/.gitignore",
+          "bytes": 1,
+          "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/.cache/huggingface/CACHEDIR.TAG",
+          "bytes": 195,
+          "sha256": "e8893e2dcb3f4545ef67a0a5b7b769113d38eef1aa61c7c7ba14659b02af955f"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/.cache/huggingface/download/config.json.metadata",
+          "bytes": 103,
+          "sha256": "dc2375ca9c4dfca581afb332fc362e3ca0aa90ea46cd1f9f386e8f167deced5f"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/.cache/huggingface/download/mBG94Lz8EYH5gU8b5axgj2RF9Tk=.69f74147e3334731bc3a76048724833325d2ec74642fb52620eda87352e3d4f1.b43b012c.incomplete",
+          "bytes": 1474650021,
+          "sha256": "85534e717ecaaa8c0799a06aa9009951c65cf1c33fcbe907dae1d028e5a74978"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/.cache/huggingface/download/model.bin.lock",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/.cache/huggingface/download/preprocessor_config.json.metadata",
+          "bytes": 103,
+          "sha256": "c6d576c5206ac697cb333d92a169f53e8ae2aa0e0f39498600648f800eb8eeec"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/.cache/huggingface/download/tokenizer.json.metadata",
+          "bytes": 104,
+          "sha256": "2b6f9b72f10231ca4716f564db07acea2c2d9b271a72cb2ef58a944d367d3421"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/.cache/huggingface/download/vocabulary.json.metadata",
+          "bytes": 104,
+          "sha256": "fb4d70039c1868a91ac831cae10615701f9652192614440fa04f84826531262d"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/.cache/huggingface/trees/edaa852ec7e145841d8ffdb056a99866b5f0a478.json",
+          "bytes": 985,
+          "sha256": "6d834e8c130f96b145da22284b5a7202df6eb5d01df3d956efa90a9b00caca27"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/config.json",
+          "bytes": 2394,
+          "sha256": "a9306624f5ec14270a014b647e5c316b6e03a662c369758d1b90697a7b0655b9"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/model.bin",
+          "bytes": 3087284237,
+          "sha256": "69f74147e3334731bc3a76048724833325d2ec74642fb52620eda87352e3d4f1"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/preprocessor_config.json",
+          "bytes": 340,
+          "sha256": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/tokenizer.json",
+          "bytes": 2480617,
+          "sha256": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/vocabulary.json",
+          "bytes": 1068114,
+          "sha256": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1"
+        }
+      ],
+      "total_bytes": 4565487318
+    },
+    {
+      "path": "data/models/faster-whisper-small",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/faster-whisper-small/config.json",
+          "bytes": 2370,
+          "sha256": "b55496ac7940a7ae47d2c01eab40edfd8701feec1229d9cce3b40014383fb828"
+        },
+        {
+          "path": "data/models/faster-whisper-small/model.bin",
+          "bytes": 483546902,
+          "sha256": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671"
+        },
+        {
+          "path": "data/models/faster-whisper-small/tokenizer.json",
+          "bytes": 2203239,
+          "sha256": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab"
+        },
+        {
+          "path": "data/models/faster-whisper-small/vocabulary.txt",
+          "bytes": 459861,
+          "sha256": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913"
+        }
+      ],
+      "total_bytes": 486212372
+    },
+    {
+      "path": "data/models/faster-whisper-tiny.en",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/faster-whisper-tiny.en/config.json",
+          "bytes": 2317,
+          "sha256": "14b1b421a90349bc551b881461426b561a874049cb9e4c4864f2ca384f6a7cc5"
+        },
+        {
+          "path": "data/models/faster-whisper-tiny.en/model.bin",
+          "bytes": 75537502,
+          "sha256": "1a5afae06a4db91c975c9a9d78be5cc110ee4ea022ad57d55492e4550e936b2a"
+        },
+        {
+          "path": "data/models/faster-whisper-tiny.en/tokenizer.json",
+          "bytes": 2128466,
+          "sha256": "929c5252409436dce1b38a75d1abbcb5e132d170d8e324e4e04ed915fa2d22df"
+        },
+        {
+          "path": "data/models/faster-whisper-tiny.en/vocabulary.txt",
+          "bytes": 422309,
+          "sha256": "ff77588746d3a2595d32ab5b69ffd7b95ce2441ac57533cb66fc3eb575a115cf"
+        }
+      ],
+      "total_bytes": 78090594
+    },
+    {
+      "path": "data/models/multimed-small-int8",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/multimed-small-int8/config.json",
+          "bytes": 1662,
+          "sha256": "aad198003f6676bb2aa9b1f58c43cab2e057d79ccb35613344168e390aed7dcb"
+        },
+        {
+          "path": "data/models/multimed-small-int8/model.bin",
+          "bytes": 248203797,
+          "sha256": "88a4a65cabf75ea3a601b20d585b8075d28fbbee790df9728e883332f2560cfe"
+        },
+        {
+          "path": "data/models/multimed-small-int8/preprocessor_config.json",
+          "bytes": 339,
+          "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+        },
+        {
+          "path": "data/models/multimed-small-int8/tokenizer.json",
+          "bytes": 3930494,
+          "sha256": "7b469ff15eb7816315aa45eec391f5943d639b9d73d110f5c003df5192fd54e3"
+        },
+        {
+          "path": "data/models/multimed-small-int8/vocabulary.json",
+          "bytes": 1119969,
+          "sha256": "aa4e6188766a36f6a7f3e44db3f74823c6fee0bf33a9559247e18fedb3bc8d55"
+        }
+      ],
+      "total_bytes": 253256261
+    },
+    {
+      "path": "data/models/multimed-source",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/added_tokens.json",
+          "bytes": 34604,
+          "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+        },
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/checkpoint/config.json",
+          "bytes": 1274,
+          "sha256": "7f2624e58576b45991b5ba279e7ab2185b29198fd44e64a6d152d18d96fd3639"
+        },
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/checkpoint/generation_config.json",
+          "bytes": 3005,
+          "sha256": "84bc069953aa9f37c4479f450f9eac7347e9c10619ee8dd94bd2e8cef44d2aa1"
+        },
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/checkpoint/model.safetensors",
+          "bytes": 966995080,
+          "sha256": "5858de286c1da9c5ec340a5af869d3842854c370c9474b07a58d9eb2f95cd642"
+        },
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/checkpoint/preprocessor_config.json",
+          "bytes": 339,
+          "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+        },
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/merges.txt",
+          "bytes": 493869,
+          "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+        },
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/normalizer.json",
+          "bytes": 52666,
+          "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+        },
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/special_tokens_map.json",
+          "bytes": 2194,
+          "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+        },
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/tokenizer_config.json",
+          "bytes": 282683,
+          "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+        },
+        {
+          "path": "data/models/multimed-source/asr/whisper-small-english/vocab.json",
+          "bytes": 1036584,
+          "sha256": "50d6a919f0a0601d56a04eb583c780d18553aa388254ba3158eb6a00f13e2c1a"
+        }
+      ],
+      "total_bytes": 968902298
+    },
+    {
+      "path": "data/models/multimed-transformers",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/multimed-transformers/added_tokens.json",
+          "bytes": 36213,
+          "sha256": "8a5856a00b438f6fc40d2c6d9d93fea54f2c169bdc817a58d1feddb9ac96302e"
+        },
+        {
+          "path": "data/models/multimed-transformers/config.json",
+          "bytes": 1274,
+          "sha256": "7f2624e58576b45991b5ba279e7ab2185b29198fd44e64a6d152d18d96fd3639"
+        },
+        {
+          "path": "data/models/multimed-transformers/generation_config.json",
+          "bytes": 3005,
+          "sha256": "84bc069953aa9f37c4479f450f9eac7347e9c10619ee8dd94bd2e8cef44d2aa1"
+        },
+        {
+          "path": "data/models/multimed-transformers/merges.txt",
+          "bytes": 493869,
+          "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+        },
+        {
+          "path": "data/models/multimed-transformers/model.safetensors",
+          "bytes": 966995080,
+          "sha256": "5858de286c1da9c5ec340a5af869d3842854c370c9474b07a58d9eb2f95cd642"
+        },
+        {
+          "path": "data/models/multimed-transformers/normalizer.json",
+          "bytes": 54408,
+          "sha256": "6c40cc36b4bb9c5aa8be0ff9023ea4e78a3ab718b3490a1d9cd3cb7ec56f130f"
+        },
+        {
+          "path": "data/models/multimed-transformers/preprocessor_config.json",
+          "bytes": 339,
+          "sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d"
+        },
+        {
+          "path": "data/models/multimed-transformers/special_tokens_map.json",
+          "bytes": 2333,
+          "sha256": "aa84bd013194e2bf2450397e49e656d8b8d9e1f971c0f1702409870b2cf14106"
+        },
+        {
+          "path": "data/models/multimed-transformers/tokenizer.json",
+          "bytes": 3930494,
+          "sha256": "7b469ff15eb7816315aa45eec391f5943d639b9d73d110f5c003df5192fd54e3"
+        },
+        {
+          "path": "data/models/multimed-transformers/tokenizer_config.json",
+          "bytes": 295703,
+          "sha256": "f46e9819a8910572da1b528afde146a56c63068e1a130ffc66f7b5315093b0e1"
+        },
+        {
+          "path": "data/models/multimed-transformers/vocab.json",
+          "bytes": 835550,
+          "sha256": "8f680bba319e01a653d2e8a5dbc17a9157179e0576e6ce74ce0c06356c6e24f9"
+        }
+      ],
+      "total_bytes": 972648268
+    },
+    {
+      "path": "data/models/omi-med-stt-v1-gguf",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/omi-med-stt-v1-gguf/omi-med-stt-v1-q8_0.gguf",
+          "bytes": 929205888,
+          "sha256": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+        }
+      ],
+      "total_bytes": 929205888
+    },
+    {
+      "path": "data/models/parakeet-tdt-v2-onnx",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/parakeet-tdt-v2-onnx/config.json",
+          "bytes": 97,
+          "sha256": "666903c76b9798caf2c210afd4f6cd60b08a8dbf9800ec8d7a3bc0d2148ac466"
+        },
+        {
+          "path": "data/models/parakeet-tdt-v2-onnx/decoder_joint-model.int8.onnx",
+          "bytes": 8998286,
+          "sha256": "a449f49acd68979d418651dd2dcb737cc0f1bf0225e009e29ee326354edbf7d3"
+        },
+        {
+          "path": "data/models/parakeet-tdt-v2-onnx/encoder-model.int8.onnx",
+          "bytes": 652184014,
+          "sha256": "3e0581fda6ab843888b51e56d7ee78b6d5bc3237ec113af1f732d1d5286aa155"
+        },
+        {
+          "path": "data/models/parakeet-tdt-v2-onnx/nemo128.onnx",
+          "bytes": 139764,
+          "sha256": "a9fde1486ebfcc08f328d75ad4610c67835fea58c73ba57e3209a6f6cf019e9f"
+        },
+        {
+          "path": "data/models/parakeet-tdt-v2-onnx/vocab.txt",
+          "bytes": 9384,
+          "sha256": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+        }
+      ],
+      "total_bytes": 661331545
+    },
+    {
+      "path": "data/models/public-diarization-v1",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/public-diarization-v1/manifest.json",
+          "bytes": 1163,
+          "sha256": "1edd1413444b51ea0b54ebffe2a636d70adc921ba8463c58433ca613409a50eb"
+        },
+        {
+          "path": "data/models/public-diarization-v1/SILERO-LICENSE",
+          "bytes": 1075,
+          "sha256": "2e63e9a38b6e8fc0c7bc37ce174caca1862870856c6daf5697cfb785e925520b"
+        },
+        {
+          "path": "data/models/public-diarization-v1/silero_vad.onnx",
+          "bytes": 643854,
+          "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6"
+        },
+        {
+          "path": "data/models/public-diarization-v1/WESPEAKER-LICENSE",
+          "bytes": 11357,
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "data/models/public-diarization-v1/WESPEAKER-MODEL-LICENSE-EVIDENCE.md",
+          "bytes": 13382,
+          "sha256": "34a46fc9faeb6a5c8204c840a06b1ca94fc5ac3c52d5460f5bd6c1bf9aa701cf"
+        },
+        {
+          "path": "data/models/public-diarization-v1/WESPEAKER-MODEL-LICENSE.txt",
+          "bytes": 17067,
+          "sha256": "c4077139f0479418e8ce544f45f409fd3192a315f23071b4d41083e4a28357a1"
+        },
+        {
+          "path": "data/models/public-diarization-v1/WESPEAKER-SOURCE-LICENSE",
+          "bytes": 11357,
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "data/models/public-diarization-v1/wespeaker_en_voxceleb_resnet34_LM.onnx",
+          "bytes": 26530550,
+          "sha256": "e9848563da86f263117134dfd7ad63c92355b37de492b55e325400c9d9c39012"
+        }
+      ],
+      "total_bytes": 27229805
+    },
+    {
+      "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25",
+      "status": "contents_hashed_not_model_eligibility",
+      "files": [
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/conv_frontend.onnx",
+          "bytes": 44148281,
+          "sha256": "d22dc4423e0940e49884e903d2ea2f7e5567c14fc1aed97e4e26d6b8f208ef9e"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/decoder.int8.onnx",
+          "bytes": 755914231,
+          "sha256": "4f6885be5959ae26af3089d38ee7972c5fafbeeb1cf8d5e76eab6d8b61ca5771"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/encoder.int8.onnx",
+          "bytes": 182491662,
+          "sha256": "60748d3e6744a57c9c91e1b17424a6c2990567e8adceb0783940c03ed98fa9d9"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/provisioning.json",
+          "bytes": 1088,
+          "sha256": "281c99e28e753033b79d8de2d82c8c03857aa1348f69ba9c700103e5df8d6d99"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/README.md",
+          "bytes": 328,
+          "sha256": "bbc6dbeb9dce5b4ed0e839057137e9cba4bf05c5797277d36a80e22594414e14"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/ar1.wav",
+          "bytes": 168044,
+          "sha256": "700b3c274f2fedffbb6016f03c574adaad7aa0291acc1a1ba72f07112051073f"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/cantonese.wav",
+          "bytes": 526444,
+          "sha256": "ec832e035c13c670e0cf68dee0ca5dfae38bf2c583aab31e587441cb3eba3f3f"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/codeswitch.wav",
+          "bytes": 549550,
+          "sha256": "2def7fa41004d0a7d148d4afbf4c467c9d112d8b373996123e9a4c43d94957c7"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/de.wav",
+          "bytes": 215084,
+          "sha256": "80bb10c44085a7ce01a17abaf6a2095ed37e1695fca41cc0ea9733f1f24a749c"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/es1.wav",
+          "bytes": 164844,
+          "sha256": "4543f94738445a38306fb80bb0329ef5ca6d81ab1b6c3f15af1de1c3382f4b31"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/f1_noise.wav",
+          "bytes": 1677606,
+          "sha256": "7ae35f5d8f038e518f3abdeda5f78d71cb2f67c9ca29cb9a49a0b4d0702909bd"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/fast1.wav",
+          "bytes": 1003794,
+          "sha256": "b43bbd0bd982c3cc88081f64389bf29fe9e9a01287d44f0b15887bc49c2b352a"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/fr1.wav",
+          "bytes": 191916,
+          "sha256": "c6421b34feccbe7fdfaa8b641b8ecb7bcd7b9f2c237c7b82712c860be524db4e"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/ja1.wav",
+          "bytes": 448100,
+          "sha256": "d926ed0159a2d750d1ae7835e60a5cb5f8737629f7bb3de6cd111a3614d5dc67"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/noise1-en.wav",
+          "bytes": 2831516,
+          "sha256": "3664ef02fa664da93d94a1afc271bda31c0f8d07a9f3c74ac6cd1e5aabe8572c"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/noise2.wav",
+          "bytes": 741186,
+          "sha256": "33f85268f7fbad6b3152b9ab051edab1a85082fde66bccff61d7f5ef7b437e58"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/qiqiu1.wav",
+          "bytes": 1631150,
+          "sha256": "1b69a0fce35936979824c1751a11c285559a635aeb91160d1da3b00118321495"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/raokouling.wav",
+          "bytes": 1831074,
+          "sha256": "3cc59ec494f71135ff5761717e20597f0559b43f793dd72ae4924b86c5e038d8"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/rap1.wav",
+          "bytes": 935868,
+          "sha256": "ac6186d732b59c664776f84238f586d3e6c97adbc8b9f66e939ddcab5773cf3c"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/README.md",
+          "bytes": 76,
+          "sha256": "3c088a32079cfc8ed0239735295fbf7ffe657bf5ac21696f294f6a19e8e30fad"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/ru1.wav",
+          "bytes": 152364,
+          "sha256": "e48b22f32d4d1c38f0a94a58acfc43bb8f5b7fc3b0ac01ea49372040ca831acf"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/test_wavs/transcript.txt",
+          "bytes": 5386,
+          "sha256": "9cab82a507e1e5a7743336f2e40fabdaa1eb6181818d7a3768925abc03effd24"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/tokenizer/merges.txt",
+          "bytes": 1671853,
+          "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/tokenizer/tokenizer_config.json",
+          "bytes": 12487,
+          "sha256": "4942d005604266809309cabc9f4e9cb89ce855d59b14681fdc0e1cc62ea26c4c"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/tokenizer/vocab.json",
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+        },
+        {
+          "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/UPSTREAM-LICENSE",
+          "bytes": 11343,
+          "sha256": "a44a6081c73ad75f0255bb2bb5cab74ef1829565a895a24e53a4f11290ab7655"
+        }
+      ],
+      "total_bytes": 1000102108
+    }
+  ],
+  "model_contents_hashed": true,
+  "cache_artifact_hashes_requested": false,
+  "cache_artifacts": [],
+  "packages": [
+    {
+      "name": "absl-py",
+      "version": "2.3.1"
+    },
+    {
+      "name": "agno",
+      "version": "1.8.1"
+    },
+    {
+      "name": "aiofiles",
+      "version": "24.1.0"
+    },
+    {
+      "name": "aiohappyeyeballs",
+      "version": "2.6.2"
+    },
+    {
+      "name": "aiohttp",
+      "version": "3.13.5"
+    },
+    {
+      "name": "aiosignal",
+      "version": "1.4.0"
+    },
+    {
+      "name": "aiosqlite",
+      "version": "0.21.0"
+    },
+    {
+      "name": "altair",
+      "version": "5.5.0"
+    },
+    {
+      "name": "anaconda",
+      "version": "0.0.1.1"
+    },
+    {
+      "name": "annotated-doc",
+      "version": "0.0.4"
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.7.0"
+    },
+    {
+      "name": "anyio",
+      "version": "4.15.0"
+    },
+    {
+      "name": "apexgrid-ai",
+      "version": "0.1.0"
+    },
+    {
+      "name": "appdirs",
+      "version": "1.4.4"
+    },
+    {
+      "name": "argon2-cffi",
+      "version": "23.1.0"
+    },
+    {
+      "name": "argon2-cffi-bindings",
+      "version": "21.2.0"
+    },
+    {
+      "name": "argparse-addons",
+      "version": "0.12.0"
+    },
+    {
+      "name": "args",
+      "version": "0.1.0"
+    },
+    {
+      "name": "arrow",
+      "version": "1.3.0"
+    },
+    {
+      "name": "asgiref",
+      "version": "3.8.1"
+    },
+    {
+      "name": "ast_serialize",
+      "version": "0.4.0"
+    },
+    {
+      "name": "asttokens",
+      "version": "3.0.0"
+    },
+    {
+      "name": "astunparse",
+      "version": "1.6.3"
+    },
+    {
+      "name": "async-lru",
+      "version": "2.0.4"
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0"
+    },
+    {
+      "name": "autogen-agentchat",
+      "version": "0.7.5"
+    },
+    {
+      "name": "autogen-core",
+      "version": "0.7.5"
+    },
+    {
+      "name": "autogen-ext",
+      "version": "0.7.5"
+    },
+    {
+      "name": "azure-ai-ml",
+      "version": "1.27.1"
+    },
+    {
+      "name": "azure-common",
+      "version": "1.1.28"
+    },
+    {
+      "name": "azure-core",
+      "version": "1.34.0"
+    },
+    {
+      "name": "azure-core-tracing-opentelemetry",
+      "version": "1.0.0b12"
+    },
+    {
+      "name": "azure-identity",
+      "version": "1.23.0"
+    },
+    {
+      "name": "azure-mgmt-core",
+      "version": "1.5.0"
+    },
+    {
+      "name": "azure-monitor-opentelemetry",
+      "version": "1.6.10"
+    },
+    {
+      "name": "azure-monitor-opentelemetry-exporter",
+      "version": "1.0.0b37"
+    },
+    {
+      "name": "azure-storage-blob",
+      "version": "12.25.1"
+    },
+    {
+      "name": "azure-storage-file-datalake",
+      "version": "12.20.0"
+    },
+    {
+      "name": "azure-storage-file-share",
+      "version": "12.21.0"
+    },
+    {
+      "name": "babel",
+      "version": "2.17.0"
+    },
+    {
+      "name": "backoff",
+      "version": "2.2.1"
+    },
+    {
+      "name": "backrefs",
+      "version": "8.0"
+    },
+    {
+      "name": "bcrypt",
+      "version": "5.0.0"
+    },
+    {
+      "name": "beautifulsoup4",
+      "version": "4.13.5"
+    },
+    {
+      "name": "bitstruct",
+      "version": "8.23.0"
+    },
+    {
+      "name": "bleach",
+      "version": "6.2.0"
+    },
+    {
+      "name": "blinker",
+      "version": "1.9.0"
+    },
+    {
+      "name": "bokeh",
+      "version": "3.8.1"
+    },
+    {
+      "name": "build",
+      "version": "1.6.1"
+    },
+    {
+      "name": "cachetools",
+      "version": "5.5.2"
+    },
+    {
+      "name": "cantools",
+      "version": "43.0.2"
+    },
+    {
+      "name": "catboost",
+      "version": "1.2.8"
+    },
+    {
+      "name": "cattrs",
+      "version": "26.1.0"
+    },
+    {
+      "name": "certifi",
+      "version": "2025.1.31"
+    },
+    {
+      "name": "cffi",
+      "version": "1.17.1"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.4.1"
+    },
+    {
+      "name": "chromadb",
+      "version": "1.1.1"
+    },
+    {
+      "name": "click",
+      "version": "8.1.8"
+    },
+    {
+      "name": "clint",
+      "version": "0.5.1"
+    },
+    {
+      "name": "cloudpickle",
+      "version": "3.1.2"
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6"
+    },
+    {
+      "name": "comm",
+      "version": "0.2.2"
+    },
+    {
+      "name": "contourpy",
+      "version": "1.3.1"
+    },
+    {
+      "name": "coverage",
+      "version": "7.10.6"
+    },
+    {
+      "name": "cramjam",
+      "version": "2.11.0"
+    },
+    {
+      "name": "crccheck",
+      "version": "1.3.1"
+    },
+    {
+      "name": "crewai",
+      "version": "1.14.5"
+    },
+    {
+      "name": "crewai-cli",
+      "version": "1.14.5"
+    },
+    {
+      "name": "crewai-core",
+      "version": "1.14.5"
+    },
+    {
+      "name": "crewai-tools",
+      "version": "1.14.5"
+    },
+    {
+      "name": "cryptography",
+      "version": "45.0.4"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1"
+    },
+    {
+      "name": "dask",
+      "version": "2025.12.0"
+    },
+    {
+      "name": "debugpy",
+      "version": "1.8.13"
+    },
+    {
+      "name": "decorator",
+      "version": "5.2.1"
+    },
+    {
+      "name": "defusedxml",
+      "version": "0.7.1"
+    },
+    {
+      "name": "Deprecated",
+      "version": "1.2.18"
+    },
+    {
+      "name": "deprecation",
+      "version": "2.1.0"
+    },
+    {
+      "name": "distributed",
+      "version": "2025.12.0"
+    },
+    {
+      "name": "distro",
+      "version": "1.9.0"
+    },
+    {
+      "name": "docstring_parser",
+      "version": "0.17.0"
+    },
+    {
+      "name": "docutils",
+      "version": "0.23"
+    },
+    {
+      "name": "duckdb",
+      "version": "1.5.4"
+    },
+    {
+      "name": "durationpy",
+      "version": "0.10"
+    },
+    {
+      "name": "easyocr",
+      "version": "1.7.2"
+    },
+    {
+      "name": "ecdsa",
+      "version": "0.19.2"
+    },
+    {
+      "name": "et_xmlfile",
+      "version": "2.0.0"
+    },
+    {
+      "name": "executing",
+      "version": "2.2.0"
+    },
+    {
+      "name": "fastapi",
+      "version": "0.136.1"
+    },
+    {
+      "name": "fastf1",
+      "version": "3.8.3"
+    },
+    {
+      "name": "fastjsonschema",
+      "version": "2.21.1"
+    },
+    {
+      "name": "fastparquet",
+      "version": "2024.11.0"
+    },
+    {
+      "name": "filelock",
+      "version": "3.29.0"
+    },
+    {
+      "name": "filetype",
+      "version": "1.2.0"
+    },
+    {
+      "name": "filterpy",
+      "version": "1.4.5"
+    },
+    {
+      "name": "fixedint",
+      "version": "0.1.6"
+    },
+    {
+      "name": "flatbuffers",
+      "version": "25.2.10"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.56.0"
+    },
+    {
+      "name": "fqdn",
+      "version": "1.5.1"
+    },
+    {
+      "name": "frozenlist",
+      "version": "1.8.0"
+    },
+    {
+      "name": "fsspec",
+      "version": "2025.12.0"
+    },
+    {
+      "name": "gast",
+      "version": "0.6.0"
+    },
+    {
+      "name": "ghp-import",
+      "version": "2.1.0"
+    },
+    {
+      "name": "gitdb",
+      "version": "4.0.12"
+    },
+    {
+      "name": "GitPython",
+      "version": "3.1.44"
+    },
+    {
+      "name": "google-ai-generativelanguage",
+      "version": "0.6.15"
+    },
+    {
+      "name": "google-api-core",
+      "version": "2.30.3"
+    },
+    {
+      "name": "google-api-python-client",
+      "version": "2.196.0"
+    },
+    {
+      "name": "google-auth",
+      "version": "2.53.0"
+    },
+    {
+      "name": "google-auth-httplib2",
+      "version": "0.4.0"
+    },
+    {
+      "name": "google-genai",
+      "version": "2.4.0"
+    },
+    {
+      "name": "google-generativeai",
+      "version": "0.8.6"
+    },
+    {
+      "name": "google-pasta",
+      "version": "0.2.0"
+    },
+    {
+      "name": "googleapis-common-protos",
+      "version": "1.75.0"
+    },
+    {
+      "name": "graphviz",
+      "version": "0.21"
+    },
+    {
+      "name": "grpcio",
+      "version": "1.74.0"
+    },
+    {
+      "name": "grpcio-status",
+      "version": "1.71.2"
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0"
+    },
+    {
+      "name": "h5py",
+      "version": "3.14.0"
+    },
+    {
+      "name": "hf-xet",
+      "version": "1.5.0"
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9"
+    },
+    {
+      "name": "httpcore2",
+      "version": "2.12.0"
+    },
+    {
+      "name": "httplib2",
+      "version": "0.31.2"
+    },
+    {
+      "name": "httptools",
+      "version": "0.7.1"
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1"
+    },
+    {
+      "name": "httpx-sse",
+      "version": "0.4.3"
+    },
+    {
+      "name": "httpx2",
+      "version": "2.12.0"
+    },
+    {
+      "name": "huggingface_hub",
+      "version": "1.16.1"
+    },
+    {
+      "name": "hypothesis",
+      "version": "6.167.1"
+    },
+    {
+      "name": "id",
+      "version": "1.6.1"
+    },
+    {
+      "name": "idna",
+      "version": "3.19"
+    },
+    {
+      "name": "ImageIO",
+      "version": "2.37.4"
+    },
+    {
+      "name": "importlib_metadata",
+      "version": "8.6.1"
+    },
+    {
+      "name": "importlib_resources",
+      "version": "7.1.0"
+    },
+    {
+      "name": "imutils",
+      "version": "0.5.4"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.0"
+    },
+    {
+      "name": "instructor",
+      "version": "1.15.1"
+    },
+    {
+      "name": "ipykernel",
+      "version": "6.29.5"
+    },
+    {
+      "name": "ipython",
+      "version": "9.0.1"
+    },
+    {
+      "name": "ipython_pygments_lexers",
+      "version": "1.1.1"
+    },
+    {
+      "name": "ipywidgets",
+      "version": "8.1.7"
+    },
+    {
+      "name": "isodate",
+      "version": "0.7.2"
+    },
+    {
+      "name": "isoduration",
+      "version": "20.11.0"
+    },
+    {
+      "name": "jaraco.classes",
+      "version": "3.4.0"
+    },
+    {
+      "name": "jaraco.context",
+      "version": "6.1.2"
+    },
+    {
+      "name": "jaraco.functools",
+      "version": "4.6.0"
+    },
+    {
+      "name": "jedi",
+      "version": "0.19.2"
+    },
+    {
+      "name": "Jinja2",
+      "version": "3.1.5"
+    },
+    {
+      "name": "jiter",
+      "version": "0.13.0"
+    },
+    {
+      "name": "joblib",
+      "version": "1.5.1"
+    },
+    {
+      "name": "json5",
+      "version": "0.10.0"
+    },
+    {
+      "name": "json_repair",
+      "version": "0.25.3"
+    },
+    {
+      "name": "jsonpatch",
+      "version": "1.33"
+    },
+    {
+      "name": "jsonpointer",
+      "version": "3.0.0"
+    },
+    {
+      "name": "jsonref",
+      "version": "1.1.0"
+    },
+    {
+      "name": "jsonschema",
+      "version": "4.23.0"
+    },
+    {
+      "name": "jsonschema-specifications",
+      "version": "2024.10.1"
+    },
+    {
+      "name": "jupyter",
+      "version": "1.1.1"
+    },
+    {
+      "name": "jupyter-console",
+      "version": "6.6.3"
+    },
+    {
+      "name": "jupyter-events",
+      "version": "0.12.0"
+    },
+    {
+      "name": "jupyter-lsp",
+      "version": "2.2.5"
+    },
+    {
+      "name": "jupyter_client",
+      "version": "8.6.3"
+    },
+    {
+      "name": "jupyter_core",
+      "version": "5.7.2"
+    },
+    {
+      "name": "jupyter_server",
+      "version": "2.15.0"
+    },
+    {
+      "name": "jupyter_server_terminals",
+      "version": "0.5.3"
+    },
+    {
+      "name": "jupyterlab",
+      "version": "4.4.5"
+    },
+    {
+      "name": "jupyterlab_pygments",
+      "version": "0.3.0"
+    },
+    {
+      "name": "jupyterlab_server",
+      "version": "2.27.3"
+    },
+    {
+      "name": "jupyterlab_widgets",
+      "version": "3.0.15"
+    },
+    {
+      "name": "jupytext",
+      "version": "1.19.5"
+    },
+    {
+      "name": "kaggle",
+      "version": "2.2.4"
+    },
+    {
+      "name": "kagglesdk",
+      "version": "0.1.37"
+    },
+    {
+      "name": "keras",
+      "version": "3.11.3"
+    },
+    {
+      "name": "keyring",
+      "version": "25.7.0"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.4.8"
+    },
+    {
+      "name": "kubernetes",
+      "version": "36.0.0"
+    },
+    {
+      "name": "lab",
+      "version": "8.4"
+    },
+    {
+      "name": "lance-namespace",
+      "version": "0.7.7"
+    },
+    {
+      "name": "lance-namespace-urllib3-client",
+      "version": "0.7.7"
+    },
+    {
+      "name": "lancedb",
+      "version": "0.30.0"
+    },
+    {
+      "name": "langchain",
+      "version": "1.4.0"
+    },
+    {
+      "name": "langchain-core",
+      "version": "1.6.2"
+    },
+    {
+      "name": "langchain-ollama",
+      "version": "1.1.0"
+    },
+    {
+      "name": "langchain-protocol",
+      "version": "0.0.19"
+    },
+    {
+      "name": "langgraph",
+      "version": "1.2.11"
+    },
+    {
+      "name": "langgraph-checkpoint",
+      "version": "4.2.0"
+    },
+    {
+      "name": "langgraph-prebuilt",
+      "version": "1.1.0"
+    },
+    {
+      "name": "langgraph-sdk",
+      "version": "0.4.4"
+    },
+    {
+      "name": "langserve",
+      "version": "0.3.3"
+    },
+    {
+      "name": "langsmith",
+      "version": "0.12.1"
+    },
+    {
+      "name": "lazy-loader",
+      "version": "0.5"
+    },
+    {
+      "name": "libclang",
+      "version": "18.1.1"
+    },
+    {
+      "name": "librt",
+      "version": "0.11.0"
+    },
+    {
+      "name": "lightgbm",
+      "version": "4.6.0"
+    },
+    {
+      "name": "linkify-it-py",
+      "version": "2.1.0"
+    },
+    {
+      "name": "locket",
+      "version": "1.0.0"
+    },
+    {
+      "name": "lxml",
+      "version": "6.1.1"
+    },
+    {
+      "name": "lz4",
+      "version": "4.4.5"
+    },
+    {
+      "name": "mamba",
+      "version": "0.11.3"
+    },
+    {
+      "name": "Markdown",
+      "version": "3.9"
+    },
+    {
+      "name": "markdown-it-py",
+      "version": "4.0.0"
+    },
+    {
+      "name": "MarkupSafe",
+      "version": "3.0.2"
+    },
+    {
+      "name": "marshmallow",
+      "version": "3.26.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.10.3"
+    },
+    {
+      "name": "matplotlib-inline",
+      "version": "0.1.7"
+    },
+    {
+      "name": "mcp",
+      "version": "1.26.0"
+    },
+    {
+      "name": "mcphorizon",
+      "version": "1.0.0"
+    },
+    {
+      "name": "mdit-py-plugins",
+      "version": "0.6.1"
+    },
+    {
+      "name": "mdurl",
+      "version": "0.1.2"
+    },
+    {
+      "name": "med-transcript-ai",
+      "version": "0.3.0"
+    },
+    {
+      "name": "mergedeep",
+      "version": "1.3.4"
+    },
+    {
+      "name": "mistune",
+      "version": "3.1.2"
+    },
+    {
+      "name": "mkdocs",
+      "version": "1.6.1"
+    },
+    {
+      "name": "mkdocs-get-deps",
+      "version": "0.2.2"
+    },
+    {
+      "name": "mkdocs-material",
+      "version": "9.7.7"
+    },
+    {
+      "name": "mkdocs-material-extensions",
+      "version": "1.3.1"
+    },
+    {
+      "name": "ml_dtypes",
+      "version": "0.5.3"
+    },
+    {
+      "name": "mmh3",
+      "version": "5.2.1"
+    },
+    {
+      "name": "more-itertools",
+      "version": "11.1.0"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0"
+    },
+    {
+      "name": "msal",
+      "version": "1.32.3"
+    },
+    {
+      "name": "msal-extensions",
+      "version": "1.3.1"
+    },
+    {
+      "name": "msgpack",
+      "version": "1.1.2"
+    },
+    {
+      "name": "msrest",
+      "version": "0.7.1"
+    },
+    {
+      "name": "multidict",
+      "version": "6.7.1"
+    },
+    {
+      "name": "mypy",
+      "version": "2.1.0"
+    },
+    {
+      "name": "mypy_extensions",
+      "version": "1.1.0"
+    },
+    {
+      "name": "namex",
+      "version": "0.1.0"
+    },
+    {
+      "name": "narwhals",
+      "version": "1.30.0"
+    },
+    {
+      "name": "nbclient",
+      "version": "0.10.2"
+    },
+    {
+      "name": "nbconvert",
+      "version": "7.16.6"
+    },
+    {
+      "name": "nbformat",
+      "version": "5.10.4"
+    },
+    {
+      "name": "nest-asyncio",
+      "version": "1.6.0"
+    },
+    {
+      "name": "networkx",
+      "version": "3.6.1"
+    },
+    {
+      "name": "nh3",
+      "version": "0.3.7"
+    },
+    {
+      "name": "ninja",
+      "version": "1.13.0"
+    },
+    {
+      "name": "notebook",
+      "version": "7.4.4"
+    },
+    {
+      "name": "notebook_shim",
+      "version": "0.2.4"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "oauthlib",
+      "version": "3.2.2"
+    },
+    {
+      "name": "ollama",
+      "version": "0.6.2"
+    },
+    {
+      "name": "onnxruntime",
+      "version": "1.26.0"
+    },
+    {
+      "name": "openai",
+      "version": "2.38.0"
+    },
+    {
+      "name": "opencv-python",
+      "version": "4.11.0.86"
+    },
+    {
+      "name": "opencv-python-headless",
+      "version": "4.11.0.86"
+    },
+    {
+      "name": "openpyxl",
+      "version": "3.1.5"
+    },
+    {
+      "name": "opentelemetry-api",
+      "version": "1.34.1"
+    },
+    {
+      "name": "opentelemetry-exporter-otlp-proto-common",
+      "version": "1.34.1"
+    },
+    {
+      "name": "opentelemetry-exporter-otlp-proto-grpc",
+      "version": "1.34.1"
+    },
+    {
+      "name": "opentelemetry-exporter-otlp-proto-http",
+      "version": "1.34.1"
+    },
+    {
+      "name": "opentelemetry-instrumentation",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-asgi",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-dbapi",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-django",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-fastapi",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-flask",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-psycopg2",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-requests",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-urllib",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-urllib3",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-instrumentation-wsgi",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opentelemetry-proto",
+      "version": "1.34.1"
+    },
+    {
+      "name": "opentelemetry-resource-detector-azure",
+      "version": "0.1.5"
+    },
+    {
+      "name": "opentelemetry-sdk",
+      "version": "1.34.1"
+    },
+    {
+      "name": "opentelemetry-semantic-conventions",
+      "version": "0.55b1"
+    },
+    {
+      "name": "opentelemetry-util-http",
+      "version": "0.52b1"
+    },
+    {
+      "name": "opt_einsum",
+      "version": "3.4.0"
+    },
+    {
+      "name": "optree",
+      "version": "0.17.0"
+    },
+    {
+      "name": "orjson",
+      "version": "3.11.9"
+    },
+    {
+      "name": "ormsgpack",
+      "version": "1.12.2"
+    },
+    {
+      "name": "overrides",
+      "version": "7.7.0"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "paginate",
+      "version": "0.5.7"
+    },
+    {
+      "name": "paho-mqtt",
+      "version": "2.1.0"
+    },
+    {
+      "name": "pandas",
+      "version": "2.3.1"
+    },
+    {
+      "name": "pandocfilters",
+      "version": "1.5.1"
+    },
+    {
+      "name": "parso",
+      "version": "0.8.4"
+    },
+    {
+      "name": "partd",
+      "version": "1.4.2"
+    },
+    {
+      "name": "pathspec",
+      "version": "1.1.1"
+    },
+    {
+      "name": "pdfminer.six",
+      "version": "20251230"
+    },
+    {
+      "name": "pdfplumber",
+      "version": "0.11.9"
+    },
+    {
+      "name": "pillow",
+      "version": "10.4.0"
+    },
+    {
+      "name": "pip",
+      "version": "25.2"
+    },
+    {
+      "name": "platformdirs",
+      "version": "4.3.6"
+    },
+    {
+      "name": "plotly",
+      "version": "6.3.0"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.6.0"
+    },
+    {
+      "name": "portalocker",
+      "version": "2.7.0"
+    },
+    {
+      "name": "posthog",
+      "version": "5.4.0"
+    },
+    {
+      "name": "prometheus_client",
+      "version": "0.21.1"
+    },
+    {
+      "name": "prompt_toolkit",
+      "version": "3.0.50"
+    },
+    {
+      "name": "propcache",
+      "version": "0.5.2"
+    },
+    {
+      "name": "proto-plus",
+      "version": "1.28.0"
+    },
+    {
+      "name": "protobuf",
+      "version": "5.29.3"
+    },
+    {
+      "name": "psutil",
+      "version": "7.0.0"
+    },
+    {
+      "name": "psycopg",
+      "version": "3.3.6"
+    },
+    {
+      "name": "psycopg-binary",
+      "version": "3.3.6"
+    },
+    {
+      "name": "pure_eval",
+      "version": "0.2.3"
+    },
+    {
+      "name": "pyarrow",
+      "version": "19.0.1"
+    },
+    {
+      "name": "pyasn1",
+      "version": "0.6.3"
+    },
+    {
+      "name": "pyasn1_modules",
+      "version": "0.4.2"
+    },
+    {
+      "name": "pybase64",
+      "version": "1.4.3"
+    },
+    {
+      "name": "pyclipper",
+      "version": "1.4.0"
+    },
+    {
+      "name": "pycparser",
+      "version": "2.22"
+    },
+    {
+      "name": "pyctcdecode",
+      "version": "0.5.0"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.12.5"
+    },
+    {
+      "name": "pydantic-settings",
+      "version": "2.10.1"
+    },
+    {
+      "name": "pydantic_core",
+      "version": "2.41.5"
+    },
+    {
+      "name": "pydash",
+      "version": "8.0.5"
+    },
+    {
+      "name": "pydeck",
+      "version": "0.9.1"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.20.0"
+    },
+    {
+      "name": "pygtrie",
+      "version": "2.6.1"
+    },
+    {
+      "name": "PyJWT",
+      "version": "2.10.1"
+    },
+    {
+      "name": "pymdown-extensions",
+      "version": "12.0.1"
+    },
+    {
+      "name": "PyMuPDF",
+      "version": "1.26.7"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.2.1"
+    },
+    {
+      "name": "pypdf",
+      "version": "6.19.0"
+    },
+    {
+      "name": "pypdfium2",
+      "version": "5.12.1"
+    },
+    {
+      "name": "PyPika",
+      "version": "0.51.1"
+    },
+    {
+      "name": "pyproject_hooks",
+      "version": "1.2.0"
+    },
+    {
+      "name": "pytest",
+      "version": "9.0.3"
+    },
+    {
+      "name": "pytest-asyncio",
+      "version": "1.3.0"
+    },
+    {
+      "name": "pytest-cov",
+      "version": "7.1.0"
+    },
+    {
+      "name": "python-bidi",
+      "version": "0.6.11"
+    },
+    {
+      "name": "python-can",
+      "version": "4.6.1"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "2.9.0.post0"
+    },
+    {
+      "name": "python-docx",
+      "version": "1.2.0"
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.2.2"
+    },
+    {
+      "name": "python-jose",
+      "version": "3.5.0"
+    },
+    {
+      "name": "python-json-logger",
+      "version": "3.2.1"
+    },
+    {
+      "name": "python-multipart",
+      "version": "0.0.20"
+    },
+    {
+      "name": "python-slugify",
+      "version": "8.0.4"
+    },
+    {
+      "name": "pytube",
+      "version": "15.0.0"
+    },
+    {
+      "name": "pytz",
+      "version": "2025.1"
+    },
+    {
+      "name": "pywin32",
+      "version": "311"
+    },
+    {
+      "name": "pywin32-ctypes",
+      "version": "0.2.3"
+    },
+    {
+      "name": "pywinpty",
+      "version": "2.0.15"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.2"
+    },
+    {
+      "name": "pyyaml_env_tag",
+      "version": "1.1"
+    },
+    {
+      "name": "pyzmq",
+      "version": "26.2.1"
+    },
+    {
+      "name": "RapidFuzz",
+      "version": "3.14.5"
+    },
+    {
+      "name": "readme_renderer",
+      "version": "46.0"
+    },
+    {
+      "name": "referencing",
+      "version": "0.36.2"
+    },
+    {
+      "name": "regex",
+      "version": "2026.1.15"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2"
+    },
+    {
+      "name": "requests-cache",
+      "version": "1.3.2"
+    },
+    {
+      "name": "requests-oauthlib",
+      "version": "2.0.0"
+    },
+    {
+      "name": "requests-toolbelt",
+      "version": "1.0.0"
+    },
+    {
+      "name": "rfc3339-validator",
+      "version": "0.1.4"
+    },
+    {
+      "name": "rfc3986",
+      "version": "2.0.0"
+    },
+    {
+      "name": "rfc3986-validator",
+      "version": "0.1.1"
+    },
+    {
+      "name": "rich",
+      "version": "14.3.4"
+    },
+    {
+      "name": "rpds-py",
+      "version": "0.23.1"
+    },
+    {
+      "name": "rsa",
+      "version": "4.9.1"
+    },
+    {
+      "name": "ruff",
+      "version": "0.15.13"
+    },
+    {
+      "name": "safetensors",
+      "version": "0.8.0"
+    },
+    {
+      "name": "scikit-image",
+      "version": "0.26.0"
+    },
+    {
+      "name": "scikit-learn",
+      "version": "1.7.1"
+    },
+    {
+      "name": "scipy",
+      "version": "1.16.1"
+    },
+    {
+      "name": "seaborn",
+      "version": "0.13.2"
+    },
+    {
+      "name": "Send2Trash",
+      "version": "1.8.3"
+    },
+    {
+      "name": "sentencepiece",
+      "version": "0.2.2"
+    },
+    {
+      "name": "setuptools",
+      "version": "80.9.0"
+    },
+    {
+      "name": "shapely",
+      "version": "2.1.2"
+    },
+    {
+      "name": "shellingham",
+      "version": "1.5.4"
+    },
+    {
+      "name": "signalrcore",
+      "version": "1.0.2"
+    },
+    {
+      "name": "simplejson",
+      "version": "3.20.1"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0"
+    },
+    {
+      "name": "smmap",
+      "version": "5.0.2"
+    },
+    {
+      "name": "sniffio",
+      "version": "1.3.1"
+    },
+    {
+      "name": "sortedcontainers",
+      "version": "2.4.0"
+    },
+    {
+      "name": "soundfile",
+      "version": "0.14.0"
+    },
+    {
+      "name": "soupsieve",
+      "version": "2.6"
+    },
+    {
+      "name": "sse-starlette",
+      "version": "1.8.2"
+    },
+    {
+      "name": "stack-data",
+      "version": "0.6.3"
+    },
+    {
+      "name": "starlette",
+      "version": "1.0.0"
+    },
+    {
+      "name": "streamlit",
+      "version": "1.43.2"
+    },
+    {
+      "name": "strictyaml",
+      "version": "1.7.3"
+    },
+    {
+      "name": "surya-ocr",
+      "version": "0.22.1"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "tblib",
+      "version": "3.2.2"
+    },
+    {
+      "name": "tenacity",
+      "version": "9.0.0"
+    },
+    {
+      "name": "tensorboard",
+      "version": "2.20.0"
+    },
+    {
+      "name": "tensorboard-data-server",
+      "version": "0.7.2"
+    },
+    {
+      "name": "tensorflow",
+      "version": "2.20.0"
+    },
+    {
+      "name": "termcolor",
+      "version": "3.1.0"
+    },
+    {
+      "name": "terminado",
+      "version": "0.18.1"
+    },
+    {
+      "name": "text-unidecode",
+      "version": "1.3"
+    },
+    {
+      "name": "textparser",
+      "version": "0.26.2"
+    },
+    {
+      "name": "textual",
+      "version": "8.2.7"
+    },
+    {
+      "name": "threadpoolctl",
+      "version": "3.6.0"
+    },
+    {
+      "name": "tifffile",
+      "version": "2026.7.31"
+    },
+    {
+      "name": "tiktoken",
+      "version": "0.12.0"
+    },
+    {
+      "name": "timple",
+      "version": "0.1.8"
+    },
+    {
+      "name": "tinycss2",
+      "version": "1.4.0"
+    },
+    {
+      "name": "tokenizers",
+      "version": "0.22.2"
+    },
+    {
+      "name": "toml",
+      "version": "0.10.2"
+    },
+    {
+      "name": "tomli",
+      "version": "2.0.2"
+    },
+    {
+      "name": "tomli_w",
+      "version": "1.1.0"
+    },
+    {
+      "name": "toolz",
+      "version": "1.1.0"
+    },
+    {
+      "name": "torch",
+      "version": "2.13.0"
+    },
+    {
+      "name": "torchvision",
+      "version": "0.28.0"
+    },
+    {
+      "name": "tornado",
+      "version": "6.4.2"
+    },
+    {
+      "name": "tqdm",
+      "version": "4.67.1"
+    },
+    {
+      "name": "traitlets",
+      "version": "5.14.3"
+    },
+    {
+      "name": "transformers",
+      "version": "5.15.0"
+    },
+    {
+      "name": "truststore",
+      "version": "0.10.4"
+    },
+    {
+      "name": "twine",
+      "version": "7.0.0"
+    },
+    {
+      "name": "txt2tags",
+      "version": "3.9"
+    },
+    {
+      "name": "typer",
+      "version": "0.23.1"
+    },
+    {
+      "name": "types-pyasn1",
+      "version": "0.6.0.20260408"
+    },
+    {
+      "name": "types-python-dateutil",
+      "version": "2.9.0.20241206"
+    },
+    {
+      "name": "types-python-jose",
+      "version": "3.5.0.20260408"
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.2"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "tzdata",
+      "version": "2025.1"
+    },
+    {
+      "name": "uc-micro-py",
+      "version": "2.0.0"
+    },
+    {
+      "name": "uri-template",
+      "version": "1.3.0"
+    },
+    {
+      "name": "uritemplate",
+      "version": "4.2.0"
+    },
+    {
+      "name": "url-normalize",
+      "version": "3.0.0"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.3.0"
+    },
+    {
+      "name": "uuid_utils",
+      "version": "0.16.0"
+    },
+    {
+      "name": "uv",
+      "version": "0.11.16"
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.47.0"
+    },
+    {
+      "name": "watchdog",
+      "version": "6.0.0"
+    },
+    {
+      "name": "watchfiles",
+      "version": "1.1.1"
+    },
+    {
+      "name": "wcwidth",
+      "version": "0.2.13"
+    },
+    {
+      "name": "webcolors",
+      "version": "24.11.1"
+    },
+    {
+      "name": "webencodings",
+      "version": "0.5.1"
+    },
+    {
+      "name": "websocket-client",
+      "version": "1.8.0"
+    },
+    {
+      "name": "websockets",
+      "version": "16.0"
+    },
+    {
+      "name": "Werkzeug",
+      "version": "3.1.3"
+    },
+    {
+      "name": "wheel",
+      "version": "0.45.1"
+    },
+    {
+      "name": "widgetsnbextension",
+      "version": "4.0.14"
+    },
+    {
+      "name": "wrapt",
+      "version": "1.17.2"
+    },
+    {
+      "name": "xgboost",
+      "version": "3.0.5"
+    },
+    {
+      "name": "xxhash",
+      "version": "3.7.0"
+    },
+    {
+      "name": "xyzservices",
+      "version": "2025.11.0"
+    },
+    {
+      "name": "yarl",
+      "version": "1.24.2"
+    },
+    {
+      "name": "youtube-transcript-api",
+      "version": "1.2.4"
+    },
+    {
+      "name": "zict",
+      "version": "3.0.0"
+    },
+    {
+      "name": "zipp",
+      "version": "3.23.0"
+    },
+    {
+      "name": "zstandard",
+      "version": "0.25.0"
+    }
+  ],
+  "config_sha256": {
+    "pyproject.toml": "19b98099bf412671a533fc8656001ae39fdb0d87dd85189e473290c44c5d291e",
+    "constraints-ci.txt": "7a095076353b028d4c3d282fe9665ad5c2fd50dfbecbfc8f92cffa755070cc2e",
+    "apps/clinician-web/package-lock.json": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27"
+  },
+  "new_installations_attempted": 0,
+  "external_calls_attempted": 0,
+  "independent_clinical_gold": false,
+  "real_patient_release_authorized": false,
+  "inventory_scope": "all regular files under data/models, plus configured Ollama cache; full content SHA-256; no inference or network",
+  "asr_profiles": [
+    {
+      "profile_file": "data/asr-smoke-profiles.json",
+      "profile_id": "tiny-en-smoke-v1",
+      "model_directory": "data/models/faster-whisper-tiny.en",
+      "engine": "faster-whisper",
+      "runtime_version_required": "1.2.1",
+      "runtime_package": "faster-whisper",
+      "license_id": "MIT",
+      "device": "cpu",
+      "compute_type": "int8",
+      "requirements_basis": "profile settings; these are configured settings, not minimum hardware requirements",
+      "artifacts": [
+        {
+          "path": "data/models/faster-whisper-tiny.en/config.json",
+          "expected_sha256": "14b1b421a90349bc551b881461426b561a874049cb9e4c4864f2ca384f6a7cc5",
+          "observed_sha256": "14b1b421a90349bc551b881461426b561a874049cb9e4c4864f2ca384f6a7cc5",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-tiny.en/model.bin",
+          "expected_sha256": "1a5afae06a4db91c975c9a9d78be5cc110ee4ea022ad57d55492e4550e936b2a",
+          "observed_sha256": "1a5afae06a4db91c975c9a9d78be5cc110ee4ea022ad57d55492e4550e936b2a",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-tiny.en/tokenizer.json",
+          "expected_sha256": "929c5252409436dce1b38a75d1abbcb5e132d170d8e324e4e04ed915fa2d22df",
+          "observed_sha256": "929c5252409436dce1b38a75d1abbcb5e132d170d8e324e4e04ed915fa2d22df",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-tiny.en/vocabulary.txt",
+          "expected_sha256": "ff77588746d3a2595d32ab5b69ffd7b95ce2441ac57533cb66fc3eb575a115cf",
+          "observed_sha256": "ff77588746d3a2595d32ab5b69ffd7b95ce2441ac57533cb66fc3eb575a115cf",
+          "status": "verified"
+        }
+      ]
+    },
+    {
+      "profile_file": "data/distil-large-v3-cpu-int8-v1-profiles.json",
+      "profile_id": "distil-large-v3-cpu-int8-v1",
+      "model_directory": "data/models/faster-distil-whisper-large-v3",
+      "engine": "faster-whisper",
+      "runtime_version_required": "1.2.1",
+      "runtime_package": "faster-whisper",
+      "license_id": "MIT",
+      "device": "cpu",
+      "compute_type": "int8",
+      "requirements_basis": "profile settings; these are configured settings, not minimum hardware requirements",
+      "artifacts": [
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/config.json",
+          "expected_sha256": "90c55f775cc4e0bb17293d0bf12f96557a486f20dea886fabd8e6075a3588b21",
+          "observed_sha256": "90c55f775cc4e0bb17293d0bf12f96557a486f20dea886fabd8e6075a3588b21",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/model.bin",
+          "expected_sha256": "b79368e19b6623813609431a6e5ee309a71506701ebc49fd7820e692dec7c5f5",
+          "observed_sha256": "b79368e19b6623813609431a6e5ee309a71506701ebc49fd7820e692dec7c5f5",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/tokenizer.json",
+          "expected_sha256": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca",
+          "observed_sha256": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/vocabulary.json",
+          "expected_sha256": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1",
+          "observed_sha256": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-distil-whisper-large-v3/preprocessor_config.json",
+          "expected_sha256": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711",
+          "observed_sha256": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711",
+          "status": "verified"
+        }
+      ]
+    },
+    {
+      "profile_file": "data/large-v3-eval-profiles.json",
+      "profile_id": "large-v3-cpu-int8-eval-v1",
+      "model_directory": "data/models/faster-whisper-large-v3",
+      "engine": "faster-whisper",
+      "runtime_version_required": "1.2.1",
+      "runtime_package": "faster-whisper",
+      "license_id": "MIT",
+      "device": "cpu",
+      "compute_type": "int8",
+      "requirements_basis": "profile settings; these are configured settings, not minimum hardware requirements",
+      "artifacts": [
+        {
+          "path": "data/models/faster-whisper-large-v3/config.json",
+          "expected_sha256": "a9306624f5ec14270a014b647e5c316b6e03a662c369758d1b90697a7b0655b9",
+          "observed_sha256": "a9306624f5ec14270a014b647e5c316b6e03a662c369758d1b90697a7b0655b9",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/model.bin",
+          "expected_sha256": "69f74147e3334731bc3a76048724833325d2ec74642fb52620eda87352e3d4f1",
+          "observed_sha256": "69f74147e3334731bc3a76048724833325d2ec74642fb52620eda87352e3d4f1",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/preprocessor_config.json",
+          "expected_sha256": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711",
+          "observed_sha256": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/tokenizer.json",
+          "expected_sha256": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca",
+          "observed_sha256": "6d8cbd7cd0d8d5815e478dac67b85a26bbe77c1f5e0c6d76d1ce2abc0e5f21ca",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-large-v3/vocabulary.json",
+          "expected_sha256": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1",
+          "observed_sha256": "c69260f2ab26d659b7c398f9a2b2b48ed0df16c3b47d7326782fd9cba71690c1",
+          "status": "verified"
+        }
+      ]
+    },
+    {
+      "profile_file": "data/multimed-small-cpu-int8-v1-profiles.json",
+      "profile_id": "multimed-small-cpu-int8-v1",
+      "model_directory": "data/models/multimed-small-int8",
+      "engine": "faster-whisper",
+      "runtime_version_required": "1.2.1",
+      "runtime_package": "faster-whisper",
+      "license_id": "MIT",
+      "device": "cpu",
+      "compute_type": "int8",
+      "requirements_basis": "profile settings; these are configured settings, not minimum hardware requirements",
+      "artifacts": [
+        {
+          "path": "data/models/multimed-small-int8/config.json",
+          "expected_sha256": "aad198003f6676bb2aa9b1f58c43cab2e057d79ccb35613344168e390aed7dcb",
+          "observed_sha256": "aad198003f6676bb2aa9b1f58c43cab2e057d79ccb35613344168e390aed7dcb",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/multimed-small-int8/model.bin",
+          "expected_sha256": "88a4a65cabf75ea3a601b20d585b8075d28fbbee790df9728e883332f2560cfe",
+          "observed_sha256": "88a4a65cabf75ea3a601b20d585b8075d28fbbee790df9728e883332f2560cfe",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/multimed-small-int8/preprocessor_config.json",
+          "expected_sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d",
+          "observed_sha256": "a6a76d28c93edb273669eb9e0b0636a2bddbb1272c3261e47b7ca6dfdbac1b8d",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/multimed-small-int8/tokenizer.json",
+          "expected_sha256": "7b469ff15eb7816315aa45eec391f5943d639b9d73d110f5c003df5192fd54e3",
+          "observed_sha256": "7b469ff15eb7816315aa45eec391f5943d639b9d73d110f5c003df5192fd54e3",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/multimed-small-int8/vocabulary.json",
+          "expected_sha256": "aa4e6188766a36f6a7f3e44db3f74823c6fee0bf33a9559247e18fedb3bc8d55",
+          "observed_sha256": "aa4e6188766a36f6a7f3e44db3f74823c6fee0bf33a9559247e18fedb3bc8d55",
+          "status": "verified"
+        }
+      ]
+    },
+    {
+      "profile_file": "data/small-cpu-int8-v1-profiles.json",
+      "profile_id": "small-cpu-int8-v1",
+      "model_directory": "data/models/faster-whisper-small",
+      "engine": "faster-whisper",
+      "runtime_version_required": "1.2.1",
+      "runtime_package": "faster-whisper",
+      "license_id": "MIT",
+      "device": "cpu",
+      "compute_type": "int8",
+      "requirements_basis": "profile settings; these are configured settings, not minimum hardware requirements",
+      "artifacts": [
+        {
+          "path": "data/models/faster-whisper-small/config.json",
+          "expected_sha256": "b55496ac7940a7ae47d2c01eab40edfd8701feec1229d9cce3b40014383fb828",
+          "observed_sha256": "b55496ac7940a7ae47d2c01eab40edfd8701feec1229d9cce3b40014383fb828",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-small/model.bin",
+          "expected_sha256": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671",
+          "observed_sha256": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-small/tokenizer.json",
+          "expected_sha256": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab",
+          "observed_sha256": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab",
+          "status": "verified"
+        },
+        {
+          "path": "data/models/faster-whisper-small/vocabulary.txt",
+          "expected_sha256": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913",
+          "observed_sha256": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913",
+          "status": "verified"
+        }
+      ]
+    }
+  ],
+  "diarization_artifacts": [
+    {
+      "path": "data/models/public-diarization-v1/silero_vad.onnx",
+      "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+      "manifest_sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+      "sha_status": "verified",
+      "license": "MIT",
+      "runtime": "onnxruntime",
+      "runtime_version_required": "2.0.0",
+      "scope": "public_mock_development_only"
+    },
+    {
+      "path": "data/models/public-diarization-v1/wespeaker_en_voxceleb_resnet34_LM.onnx",
+      "sha256": "e9848563da86f263117134dfd7ad63c92355b37de492b55e325400c9d9c39012",
+      "manifest_sha256": "e9848563da86f263117134dfd7ad63c92355b37de492b55e325400c9d9c39012",
+      "sha_status": "verified",
+      "license": "CC-BY-4.0",
+      "runtime": "onnxruntime",
+      "runtime_version_required": "2.0.0",
+      "scope": "public_mock_development_only"
+    }
+  ],
+  "runtime_package_compatibility": {
+    "faster-whisper": {
+      "available": false,
+      "version": null
+    },
+    "sherpa-onnx": {
+      "available": false,
+      "version": null
+    },
+    "onnx-asr": {
+      "available": false,
+      "version": null
+    },
+    "omi-med-stt": {
+      "available": false,
+      "version": null
+    },
+    "onnxruntime": {
+      "available": true,
+      "version": "1.26.0"
+    },
+    "transformers": {
+      "available": true,
+      "version": "5.15.0"
+    },
+    "torch": {
+      "available": true,
+      "version": "2.13.0"
+    }
+  },
+  "host_capacity_observation": {
+    "ram_total_bytes": 16907886592,
+    "ram_available_bytes_at_capture": 4086931456,
+    "gpu_vram": "not measured; nvidia-smi unavailable",
+    "note": "Host capacity is not a per-model requirement. No locally sourced minimum RAM/VRAM requirements were found."
+  },
+  "additional_provisioning_archive": {
+    "path": "data/qwen3-asr-int8.tar.bz2",
+    "present": false,
+    "bytes": null,
+    "sha256": null
+  },
+  "llm_inventory": {
+    "configured_models": [
+      {
+        "model": "qwen2.5:1.5b",
+        "expected_manifest_sha256": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "automatic_download": false,
+        "status": "unavailable",
+        "reason": "manifest_missing"
+      },
+      {
+        "model": "qwen2.5:7b",
+        "expected_manifest_sha256": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+        "automatic_download": false,
+        "status": "unavailable",
+        "reason": "manifest_missing"
+      }
+    ],
+    "other_local_llm_weight_directories": [],
+    "result": "configured Qwen 2.5 1.5B/7B cache manifests unavailable; no local LLM weights found in data/models",
+    "no_auto_download": true
+  },
+  "license_summary": {
+    "profile_documented": "MIT on five faster-whisper profiles including MultiMed small int8",
+    "qwen_asr": "Apache-2.0 in local provisioning manifest",
+    "diarization": "Silero MIT; WeSpeaker ONNX CC-BY-4.0 per local manifest",
+    "unverified": "license claims for unprofiled model directories are unknown; no eligibility inferred"
+  },
+  "hardware_requirements_status": "unknown_not_documented_for_all_models",
+  "model_inference_performed": false,
+  "task_id": "MTA-10-01",
+  "source_commit": "b3f70886b4e9cb8dbe063521965caaf17c39c382",
+  "source_file_sha256": {
+    "services/offline_preflight.py": "2b8b0a33e24edea34fbbbab9f07e2f422205eda671c0d67a1885cbbb50ba31f3",
+    "services/ollama_inventory.py": "480c91d1fb6b54c269b047f300370c218e9886095dee22ce11287be2bb81f41b",
+    "tests/test_model_inventory.py": "88cb6d0e4c5f8600339ebfd014be39daceb79f3ded4c80625a0662fe8fcdceeb",
+    "data/asr-smoke-profiles.json": "8c6019d77bd64140428c3c689b911411773fd7fb2b5435ad3004716d3419dbb1",
+    "data/distil-large-v3-cpu-int8-v1-profiles.json": "710d353b5c8fa038c635449d475174783ff6dacd5bfd498b0bba93ace32fffd3",
+    "data/large-v3-eval-profiles.json": "5ecf85b17de13d560695a0c9cd42e225aabf5b684c9df0a0b53d9df201e94657",
+    "data/small-cpu-int8-v1-profiles.json": "6a420b9510a58015e46e2f7e9281145f247f3da0ba3c3e9af6c8fc5a777f2316",
+    "data/multimed-small-cpu-int8-v1-profiles.json": "b11da0db0825acc88e4f1955de8a87d4389306401afe35206e06f7ffcb6f0526",
+    "data/models/public-diarization-v1/manifest.json": "1edd1413444b51ea0b54ebffe2a636d70adc921ba8463c58433ca613409a50eb",
+    "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/provisioning.json": "281c99e28e753033b79d8de2d82c8c03857aa1348f69ba9c700103e5df8d6d99"
+  },
+  "captured_at_utc": "2026-11-13T21:10:40.305285+00:00",
+  "validation": {
+    "command": "python -m pytest tests/test_model_inventory.py --confcutdir=tests -q",
+    "status": "pass",
+    "passed": 5,
+    "failed": 0,
+    "source_commit": "b3f70886b4e9cb8dbe063521965caaf17c39c382"
+  },
+  "acceptance_summary": {
+    "status": "verified_inventory_with_explicit_gaps",
+    "models_in_data_models": 11,
+    "hashed_files": 93,
+    "profile_artifact_hash_mismatches": 0,
+    "diarization_manifest_hashes_verified": 2,
+    "configured_ollama_models_available": 0,
+    "per_model_ram_vram_requirements": "not documented locally",
+    "runtime_execution": "unavailable in current Python environment for faster-whisper, sherpa-onnx, onnx-asr and omi-med-stt; inventory/runtime check only",
+    "license_eligibility": "not inferred beyond local manifests/profile fields"
+  }
+}

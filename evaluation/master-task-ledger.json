@@ -5038,12 +5038,32 @@
       "id": "MTA-10-01",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Inventory local ASR/diarization/LLM model artifacts by full digest, actual file presence, license, runtime compatibility and VRAM/RAM requirements.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/offline_preflight.py",
+        "services/ollama_inventory.py",
+        "tests/test_model_inventory.py",
+        "data/asr-smoke-profiles.json",
+        "data/distil-large-v3-cpu-int8-v1-profiles.json",
+        "data/large-v3-eval-profiles.json",
+        "data/small-cpu-int8-v1-profiles.json",
+        "data/multimed-small-cpu-int8-v1-profiles.json",
+        "data/models/public-diarization-v1/manifest.json",
+        "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/provisioning.json",
+        "evaluation/reports/master-task-mta-10-01-local-inventory-20261114.json"
+      ],
+      "source_commit": "b3f70886b4e9cb8dbe063521965caaf17c39c382",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-10-01-local-inventory-20261114.json",
+          "report_sha256": "5105b59d0faf834690ed666469b8ef66a469dbfd83f33828006c785a030d77a5",
+          "check": "model_artifact_inventory_tests",
+          "status": "pass",
+          "detail": "5 passed; inventory contains full SHA-256 for 93 files across 11 model directories and verifies all 5 local ASR profile artifact hashes and 2 diarization manifest hashes."
+        }
+      ],
+      "blocker": "Inventory is complete, but application inference cannot be exercised in this environment because faster-whisper, sherpa-onnx, onnx-asr and omi-med-stt are absent; configured Ollama Qwen manifests are unavailable. RAM/VRAM minimums are not documented locally, and license eligibility remains unverified where local profile/manifest evidence is absent. These are recorded as gaps, not passed claims."
     },
     {
       "id": "MTA-10-02",
