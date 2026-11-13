@@ -848,3 +848,14 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   SHA-256 is `6aeda83ecafb1f7bfd48eaf7660521ed15ffdc14eeec48ee6babb1fd45333694`.
   A focused regression binds full fresh coverage to baseline edits, the gate
   and measured resources. C10 remains partial pending other candidate arms.
+- **MTA-ASR-C10 Qwen3 fixed fresh baseline reproduction:** Suite v7 ran all 16
+  manifest cases with full coverage and zero failed cases/chunks. It exactly
+  reproduces immutable v2 counts: clean 3,582/13,683 (26.1785%) and distracted
+  3,840/13,683 (28.0640%). Fresh condition wall times were 2,601.3/2,600.0
+  seconds after an 18.1-second model load. Full-process peak working set was
+  3,058,925,568 bytes and process CPU was 19,242.8 seconds, within 16 GiB.
+  Both WERs fail the unchanged <=5% gate. Report SHA-256 is
+  `2b331885fd7f2639b7345171105f225f6877757e012c0e3eff519085b61d3334`.
+  Its focused regression binds the complete fresh cohort to baseline edits,
+  the gate and resource totals. C10 remains partial pending other candidate
+  arms and segmentation modes.
