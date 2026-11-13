@@ -3,6 +3,7 @@ from uuid import uuid4
 from services.review.providers import DeterministicProvider, validate
 from services.review.clinical import extract
 from services.review.engine import render_sections
+from services.evidence_graph import validate_proposal
 
 
 def test_deterministic_draft_keeps_each_reviewed_assertion_atomic():
@@ -179,3 +180,56 @@ def test_soap_sections_preserve_only_supplied_facts_without_differentials():
         for section in sections
         for statement in section["statements"]
     )
+
+
+def test_statement_evidence_resolves_to_transcript_time_and_audio_asset():
+    quote = "No fever."
+    transcript = {
+        "id": "transcript-v1",
+        "audio_asset_id": "audio-v1",
+        "segments": [
+            {
+                "segment_id": "segment-v1",
+                "start_ms": 4200,
+                "end_ms": 6100,
+                "text": quote,
+            }
+        ],
+    }
+    evidence = {
+        "segment_id": "segment-v1",
+        "start_char": 0,
+        "end_char": len(quote),
+        "quote": quote,
+    }
+    fact = {
+        "fact_id": "fact-v1",
+        "section": "subjective",
+        "text": quote,
+        "origin": "source_linked",
+        "evidence": evidence,
+        "owner_clinician_id": None,
+    }
+
+    graph = validate_proposal(transcript, [fact])
+    sections = render_sections([fact], transcript["id"])
+    statement = sections[0]["statements"][0]
+
+    assert statement["fact_ids"] == [fact["fact_id"]]
+    assert statement["source_version_id"] == transcript["id"]
+    assert statement["evidence"] == evidence
+    assert transcript["segments"][0]["start_ms"] == 4200
+    assert transcript["segments"][0]["end_ms"] == 6100
+    assert graph["edges"] == [
+        {"from": "audio-v1", "to": "segment-v1", "type": "audio_to_transcript"},
+        {
+            "from": "segment-v1",
+            "to": graph["edges"][1]["to"],
+            "type": "transcript_to_span",
+        },
+        {
+            "from": graph["edges"][1]["to"],
+            "to": fact["fact_id"],
+            "type": "span_to_fact",
+        },
+    ]
