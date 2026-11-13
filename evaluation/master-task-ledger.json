@@ -4297,12 +4297,30 @@
       "id": "MTA-09-04",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Surface critical findings before lower-risk drafting suggestions and display why the system is uncertain.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/VerificationWarnings.tsx",
+        "apps/clinician-web/src/UncertainSpanQueue.tsx",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "evaluation/reports/master-task-mta-09-04-24790d6.json"
+      ],
+      "source_commit": "24790d68b16d33f2e4ffc3cc6c9ecc0cbe49413e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-04-24790d6.json",
+          "report_sha256": "5f9ec81e42824924512b564e1d5d22a95834a3e62aeb8f7d38b7658f2807905d",
+          "check": "critical_findings_precede_lower_severity_and_explain_evidence",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-04-24790d6.json",
+          "report_sha256": "5f9ec81e42824924512b564e1d5d22a95834a3e62aeb8f7d38b7658f2807905d",
+          "check": "typescript_production_build",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Browser priority and uncertainty-detail assertions are blocked because the managed environment denies loopback access to the local fixture. Production build passes; rerun E2E where local fixture networking is allowed."
     },
     {
       "id": "MTA-09-05",

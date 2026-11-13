@@ -1,0 +1,45 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "24790d68b16d33f2e4ffc3cc6c9ecc0cbe49413e",
+  "tasks": [
+    "MTA-09-04"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/VerificationWarnings.tsx": "9d85e96a02ece5f70591087c3daf5b8285bd23900db9e889f8b1b99c3a94b7ce",
+    "apps/clinician-web/src/UncertainSpanQueue.tsx": "236651ed8d39dd5cef97df77e312fa2e848ee7f26413bc7e8a2b709dd3c3853c",
+    "apps/clinician-web/e2e/workflow.spec.ts": "d7cc0fdbf741f288c171b78ce8d0676ca5d2b5f72d6adbdb97582ec5d43f667e"
+  },
+  "runtime": {
+    "platform": "Windows 11",
+    "frontend_build": "npm run build in apps/clinician-web",
+    "browser": "Playwright Chromium; documented local offline fixture"
+  },
+  "checks": {
+    "critical_findings_precede_lower_severity_and_explain_evidence": {
+      "status": "blocked"
+    },
+    "typescript_production_build": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts -g \"clinician reviews evidence\"",
+      "cwd": "apps/clinician-web",
+      "status": "blocked",
+      "observed": "Chromium returned ERR_NETWORK_ACCESS_DENIED navigating to the loopback fixture; the newly added priority/detail assertions were not executed."
+    }
+  ],
+  "limitations": [
+    "Critical, major, minor and info findings are rendered in explicit severity order; critical findings include source excerpt, saved claim, mismatch fields and validator version.",
+    "Uncertain source spans list plain-language reasons, original text, alternatives and source interval controls.",
+    "The browser assertion is present but cannot be executed in this managed environment because loopback sockets are denied."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "d9c7c21ade294ff8ae98518e2f895c4ec4f3daba87311ef8fd3fae67a238be7a"
+}
