@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-16",
+  "source_commit": "201d2087c9dc8f0dbf7a1449079e2a89c5f4c161",
+  "status": "implemented",
+  "source_sha256": {
+    "services/api/contracts.py": "a34836e28379cd087595c095cca03c9c32b895bc9bc2b71270db6e8dd34ef0a0",
+    "services/api/storage.py": "d699bb90f5439a2d6f4bdf64e3859fe6431b7b8663c47db216baf776dbc0d735",
+    "services/api/routers/jobs.py": "58d03ef8d7fe4ed4bd19f9a8fb83ba7b32a2816c5211b42f94b534c32a4805b9",
+    "services/asr/worker.py": "350d30f900c0268398b5dd19f659093c0b6dfe304ed66a3e2990dba23acb4838",
+    "services/asr/preview_divergence.py": "21af3ec68ecb94f9e9c2ee69539a970af20857c404482e196744a847bc4ded78",
+    "tests/test_preview_divergence.py": "230df46b4cf0dacd23d842b95c01f6d8ffefe26ce8e99df580e585491f8a7bb9",
+    "tests/test_recovery.py": "6def00f30f203c98b6ac482b5d462244b9f46f7713d49b3d748d2956b8e88c55"
+  },
+  "checks": {
+    "preview_divergence_unit": {
+      "status": "pass",
+      "result": "Comparison computes word edit count and normalized divergence, verifies same profile and final source-version identity, and always reports diagnostic_only=true and approvable=false."
+    },
+    "preview_session_storage_migration": {
+      "status": "pass",
+      "result": "Additive migration stores an optional session identifier, permits one preview and one final job for an upload/profile, and rejects a duplicate same-mode job."
+    },
+    "preview_final_application_flow": {
+      "status": "blocked",
+      "result": "The committed recovery test was attempted, but the Windows Starlette TestClient blocked while starting its local event loop socketpair before the first encounter request. No application-level result is claimed."
+    }
+  },
+  "runtime": {
+    "commit": "201d2087c9dc8f0dbf7a1449079e2a89c5f4c161",
+    "focused_test_command": "python -m pytest tests/test_preview_divergence.py tests/test_recovery.py::test_additive_preview_migration_preserves_resumable_upload_offsets tests/test_postgres.py::test_postgres_migrations_transform_immutable_triggers tests/test_postgres.py::test_postgres_migration_keeps_lifecycle_transition_guard_writable tests/test_asr_admission.py tests/test_asr_offline_smoke.py tests/test_asr_pareto.py -q",
+    "focused_tests_passed": 28,
+    "focused_tests_failed": 0,
+    "ruff": "pass",
+    "end_to_end_test": "blocked_before_application_request_by_Windows_TestClient_socketpair_hang",
+    "paid_calls": 0,
+    "external_assets_fetched": 0
+  },
+  "limitations": [
+    "End-to-end preview/final workflow confirmation remains outstanding on this Windows runner."
+  ],
+  "runtime_sha256": "8d9d3f3bee051387264681fe920007ecb140d0a0210b581d111dff49593a1f5a"
+}

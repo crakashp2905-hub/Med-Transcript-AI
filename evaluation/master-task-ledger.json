@@ -2438,12 +2438,33 @@
       "id": "MTA-04-16",
       "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add real-time preview versus final pass divergence metrics, keeping preview unapprovable.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-04-16-8261d01.json"
+      ],
+      "source_commit": "201d2087c9dc8f0dbf7a1449079e2a89c5f4c161",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-04-16-8261d01.json",
+          "report_sha256": "1e8f4c2e48de148e415b5318ac8179674be463bb14d584c0c9761296854b132c",
+          "check": "preview_divergence_unit"
+        },
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-04-16-8261d01.json",
+          "report_sha256": "1e8f4c2e48de148e415b5318ac8179674be463bb14d584c0c9761296854b132c",
+          "check": "preview_session_storage_migration"
+        },
+        {
+          "status": "blocked",
+          "report": "evaluation/reports/master-task-mta-04-16-8261d01.json",
+          "report_sha256": "1e8f4c2e48de148e415b5318ac8179674be463bb14d584c0c9761296854b132c",
+          "check": "preview_final_application_flow"
+        }
+      ],
+      "blocker": "The end-to-end app test is unverified because the Windows TestClient stalls before request dispatch; rerun on a working app-test runner before claiming complete integration."
     },
     {
       "id": "MTA-04-17",
@@ -2492,12 +2513,21 @@
       "id": "MTA-04-19",
       "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Set promotion gate: all frozen cases accounted for; WER <=0.05 on the specified admission benchmark; no critical safety regression; valid timestamps; zero fabricated outcomes.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-04-19-8261d01.json"
+      ],
+      "source_commit": "201d2087c9dc8f0dbf7a1449079e2a89c5f4c161",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-04-19-8261d01.json",
+          "report_sha256": "fc48bb0b4ef77ab33f94caefb513136719a0342ef824e1ae537435b31e11eab2",
+          "check": "fail_closed_candidate_promotion_gate"
+        }
+      ],
+      "blocker": "Gate enforces engineering evidence and the 5% admission condition; independent clinical review remains a separate release prerequisite."
     },
     {
       "id": "MTA-04-20",

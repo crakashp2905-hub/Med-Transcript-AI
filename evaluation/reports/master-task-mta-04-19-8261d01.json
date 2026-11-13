@@ -1,0 +1,29 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-04-19",
+  "source_commit": "201d2087c9dc8f0dbf7a1449079e2a89c5f4c161",
+  "status": "implemented",
+  "source_sha256": {
+    "services/asr/admission.py": "f8cee565fb3d1218bc7125d82d3aa292a69322c77a54142f5f783601b0c4e8e4",
+    "tests/test_asr_admission.py": "83d9a5df24d013c98da554b533228269535163e84fa7b47c45f665bb47d0a87a",
+    "tests/test_asr_offline_smoke.py": "df3ff12cd6309fdad0021110795f68fc1e98411d16de7b7f6d3dad18229a2229"
+  },
+  "checks": {
+    "fail_closed_candidate_promotion_gate": {
+      "status": "pass",
+      "result": "Admission denies candidates for WER above the unchanged 5% limit, any failed samples, unvalidated timing, unreviewed license, incomplete critical safety review, missing matched evaluation, incomplete frozen-case accounting, or nonzero/unmeasured fabricated outcomes; clinical approval is never inferred."
+    }
+  },
+  "runtime": {
+    "commit": "201d2087c9dc8f0dbf7a1449079e2a89c5f4c161",
+    "test_command": "python -m pytest tests/test_asr_admission.py tests/test_asr_offline_smoke.py -q",
+    "passed": 17,
+    "failed": 0,
+    "paid_calls": 0,
+    "external_assets_fetched": 0
+  },
+  "limitations": [
+    "This is an engineering admission gate only; it does not establish independent clinical safety acceptance."
+  ],
+  "runtime_sha256": "a369b1d6b12bd03129f626a3fe52ddf73892e822955b1294523095396f4f7ab4"
+}
