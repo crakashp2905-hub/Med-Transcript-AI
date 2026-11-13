@@ -1,0 +1,52 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-09-17",
+  "source_commit": "5b0e70c542e56161e020f22f06fe17b9c195d96e",
+  "source_files": {
+    "apps/clinician-web/src/JobState.tsx": "26db1b98ce30c8ac305ca762c5b1d00a3d54885eef9fa9240231e42e90509bb5",
+    "apps/clinician-web/src/Dictation.tsx": "ad3504a30bba6185f99ea2b63e1315b9cb9717e6102b2564ffc4966a65ce3c9a",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "5a233ded147b7cf1a49440b5d8c09e04acf746c870b4a5c438961ab76bf696eb",
+    "apps/clinician-web/src/DraftProposal.tsx": "37b49aab0c7a39162a9ee27fabec29fcbdf2d3a8086fc8dc74f2102819ee0d76",
+    "services/review/routers/exports.py": "ecae580701ceccce9f0b0719251841ba5dae39f72a1f0a7178d9020c9376bd2e",
+    "apps/clinician-web/e2e/workflow.spec.ts": "ce785d658f9641c24b0d282ca6cb2e1302fb2a1a4805dcd6e28aaec110961d9b",
+    "apps/clinician-web/e2e/recovery.spec.ts": "c385b8287c5f9d4453f5e81486c88d7781e7cf75401c408297fc0b6ef6a6037f",
+    "tests/test_preview_divergence.py": "87b021fa74c6d96089caf6efb6280e45a54fae675dfe9b8487fc6d229470a2fb",
+    "tests/test_presentation_tools.py": "98da8441b6281b059a9294797d587c013f363299d3906cd08af029d5d64d151e"
+  },
+  "checks": [
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "detail": "TypeScript and production bundle passed."
+    },
+    {
+      "name": "preview_state_regressions",
+      "command": "python -m pytest -q --confcutdir=tests tests/test_preview_divergence.py",
+      "status": "pass",
+      "detail": "5 tests passed for provisional output divergence and approval constraints."
+    },
+    {
+      "name": "review_journey_e2e_discovery",
+      "command": "npx --offline playwright test e2e/recovery.spec.ts e2e/workflow.spec.ts --list",
+      "status": "pass",
+      "detail": "11 preview/review/export browser tests discovered."
+    },
+    {
+      "name": "unapproved_export_api_integration",
+      "command": "python -m pytest -q --confcutdir=tests tests/test_presentation_tools.py::test_fhir_export_requires_real_approval_and_preserves_evidence",
+      "status": "blocked",
+      "detail": "TestClient run stalled in this Windows sandbox before producing output and was interrupted. No API integration pass is claimed."
+    },
+    {
+      "name": "rendered_state_and_export_journey",
+      "command": "Playwright workflow execution",
+      "status": "blocked",
+      "detail": "Local loopback browser access is denied; browser journey cannot load the application."
+    }
+  ],
+  "result": "implemented_with_integration_validation_blocked",
+  "blocker": "The application distinguishes provisional preview, unapproved proposal/draft and approved record states. Export routes require a real approval ID and revalidate exact hashes and current safety findings. Socket-dependent integration and rendered browser checks must be rerun in an environment permitting local test sockets.",
+  "clinical_release_authorized": false,
+  "created_utc_date": "2026-11-14"
+}
