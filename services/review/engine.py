@@ -5,6 +5,7 @@ import hashlib
 from uuid import uuid4
 
 from fastapi import HTTPException
+from services.canonical import content_sha256
 
 
 AMBIGUITY = re.compile(
@@ -317,13 +318,54 @@ def directional_coverage(note, transcript, findings=None):
                 "code": row["code"],
                 "materiality": row["severity"],
                 "fact_id": row.get("fact_id"),
-                "source_reference": row.get("source_reference"),
+                "source_reference": {
+                    key: value
+                    for key, value in (row.get("source_reference") or {}).items()
+                    if key
+                    in {
+                        "transcript_version_id",
+                        "segment_id",
+                        "start_char",
+                        "end_char",
+                        "quote_sha256",
+                    }
+                },
             }
             for row in rows
         ]
 
     source_rows = rows_for(source_codes)
     note_rows = rows_for(note_codes)
+    detection_receipts = []
+    for finding in findings:
+        reference = finding.get("source_reference") or {}
+        receipt = {
+            "schema_version": "redacted_detection_receipt_v1",
+            "finding_id": finding["finding_id"],
+            "finding_code": finding["code"],
+            "severity": finding["severity"],
+            "validator_version": finding["validator_version"],
+            "fact_id": finding.get("fact_id"),
+            "note_version_id": note.get("id"),
+            "transcript_version_id": transcript.get("id"),
+            "source_reference": {
+                key: reference[key]
+                for key in (
+                    "transcript_version_id",
+                    "segment_id",
+                    "start_char",
+                    "end_char",
+                    "quote_sha256",
+                )
+                if key in reference
+            },
+            "raw_source_text_included": False,
+            "raw_note_text_included": False,
+            "model_prompt_or_completion_included": False,
+            "egress_scope": "local_tenant_scoped_audit_only",
+        }
+        receipt["receipt_sha256"] = content_sha256(receipt)
+        detection_receipts.append(receipt)
     manual_count = sum(
         fact.get("origin") in {"clinician_entered", "manual_no_audio_evidence"}
         for fact in note.get("facts", [])
@@ -349,6 +391,7 @@ def directional_coverage(note, transcript, findings=None):
             "findings": note_rows,
         },
         "unverifiable_manual_fact_count": manual_count,
+        "redacted_detection_receipts": detection_receipts,
         "materiality_method": "deterministic_review_rule_severity_not_independent_clinical_gold",
         "raw_source_text_included": False,
         "clinical_adjudication": "not_performed",
