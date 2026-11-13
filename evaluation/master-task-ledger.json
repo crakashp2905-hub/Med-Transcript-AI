@@ -2814,11 +2814,20 @@
       "id": "MTA-05-10",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Add clinician review tooling for swapping, splitting and merging speaker turns; preserve immutable correction lineage.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-10-5c468dc.json"
+      ],
+      "source_commit": "5c468dcbd0fb84a5acaf32aea2f897fc57c57fd6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-05-10-5c468dc.json",
+          "report_sha256": "91957afb2c542739f471b303a524d1620863d75687d544f7b24ffd4be6c1017f",
+          "check": "hosted_full_ci",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

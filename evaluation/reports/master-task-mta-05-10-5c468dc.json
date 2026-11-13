@@ -1,0 +1,55 @@
+{
+  "checks": {
+    "hosted_full_ci": {
+      "focused_local_tests": {
+        "failed": 0,
+        "passed": 9
+      },
+      "frontend_build": "pass",
+      "jobs": {
+        "container": "success",
+        "frontend": "success",
+        "postgres": "success",
+        "python_dev_asr_security": "success",
+        "python_dev_security": "success",
+        "release_summary": "success"
+      },
+      "python_tests": {
+        "failed": 0,
+        "passed": 963,
+        "skipped": 3
+      },
+      "run_id": "43384780329",
+      "source_commit": "5c468dcbd0fb84a5acaf32aea2f897fc57c57fd6",
+      "status": "pass"
+    }
+  },
+  "implementation": [
+    "clinician can swap adjacent speaker roles, split a turn at the text cursor and audio playhead, and merge adjacent same-role same-channel turns",
+    "source interval/channel are shown per turn and playback navigation targets that source",
+    "correction saves a new transcript version with parent version, parent segment IDs, correction kind, and If-Match stale-source protection",
+    "validation rejects unknown or omitted parents, invalid or out-of-parent timestamps, lost source interval coverage, nonadjacent merges, and cross-channel or cross-role merges"
+  ],
+  "limitations": [
+    "Windows TestClient integration invocation stalled locally; hosted Linux full-suite run passed the API split/merge integration test.",
+    "No clinician usability study or real clinical audio evaluation is included."
+  ],
+  "runtime": {
+    "ci_provider": "GitHub Actions",
+    "python": "3.13.5",
+    "python_job_id": "131750585724",
+    "run_id": "43384780329",
+    "runner": "ubuntu-24.04",
+    "source_commit": "5c468dcbd0fb84a5acaf32aea2f897fc57c57fd6"
+  },
+  "runtime_sha256": "b509d6f65e264320d4ba5b0c915250bf56e6e1c67ec70efd4a7baf249c323639",
+  "schema_version": "master_task_mta_05_10_v1",
+  "source_commit": "5c468dcbd0fb84a5acaf32aea2f897fc57c57fd6",
+  "status": "pass",
+  "superseded_failed_attempt": {
+    "commit": "9898757d24b67ed5df9916ac34ea668165fd5b9c",
+    "failure": "API OpenAPI contract snapshot was stale after the request schema extension; fixed with hash-linked contract v5.",
+    "run_id": "43384226552"
+  },
+  "task_id": "MTA-05-10"
+}
