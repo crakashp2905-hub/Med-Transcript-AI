@@ -2605,11 +2605,20 @@
       "id": "MTA-04-21",
       "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Create one hypothesis per experiment and record success, null result or harmful regression with an experiment receipt.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/experiment-receipts-v1.json"
+      ],
+      "source_commit": "ea41af74255c6c3a9b4dec1e79cc911656364924",
+      "test_results": [
+        {
+          "report": "evaluation/reports/experiment-receipts-v1.json",
+          "report_sha256": "cc157857a95062ab692fe99135c0f06d63aa99f9243c7aa778d4e1f85984fcaa",
+          "check": null,
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

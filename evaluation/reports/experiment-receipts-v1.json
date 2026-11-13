@@ -1,6 +1,6 @@
 {
   "schema_version": "experiment_receipts_v1",
-  "source_commit": "c8d7fa1e9a8a384981e863132af3cece892f63cf",
+  "source_commit": "ea41af74255c6c3a9b4dec1e79cc911656364924",
   "scope": "tracked local development experiments only; no clinical validation or promotion",
   "experiments": [
     {
@@ -9,7 +9,10 @@
       "outcome": "harmful_regression",
       "result": {
         "paired_samples": 8,
-        "positive_term_recall": {"baseline": "1/4", "candidate": "4/4"},
+        "positive_term_recall": {
+          "baseline": "1/4",
+          "candidate": "4/4"
+        },
         "baseline_normalized_wer": 0.2875816993464052,
         "candidate_normalized_wer": 0.3006535947712418,
         "baseline_false_insertions": 0,
