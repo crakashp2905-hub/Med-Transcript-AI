@@ -90,6 +90,12 @@ class Fact(Strict):
     concept: str | None = Field(default=None, max_length=300)
     anatomical_site: str | None = Field(default=None, max_length=200)
     laterality: Literal["left", "right", "bilateral", "unknown"] = "unknown"
+    symptom_onset: str | None = Field(default=None, max_length=200)
+    symptom_duration: str | None = Field(default=None, max_length=100)
+    symptom_severity: Literal["mild", "moderate", "severe", "unknown"] = "unknown"
+    symptom_course: Literal[
+        "improving", "worsening", "stable", "intermittent", "constant", "unknown"
+    ] = "unknown"
     clinical_source: Literal["patient_report", "clinician_statement", "unknown"] = (
         "unknown"
     )

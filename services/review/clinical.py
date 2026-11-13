@@ -23,6 +23,10 @@ SYMPTOMS = re.compile(
     r"|wheeze|wheezing|dizziness|syncope|swelling)\b",
     re.I,
 )
+ANATOMICAL_SITES = re.compile(
+    r"\b(?:head|face|eye|ear|nose|mouth|throat|neck|chest|back|abdomen|stomach|knee|shoulder|arm|elbow|wrist|hand|hip|leg|ankle|foot)\b",
+    re.I,
+)
 ALLERGY_REACTIONS = re.compile(
     r"\b(?:anaphylaxis|anaphylactic reaction|hives|rash|swelling|itching|wheezing|shortness of breath|nausea|vomiting)\b",
     re.I,
@@ -111,7 +115,9 @@ def medication_associations(text):
 def atomic_spans(text):
     # Only split explicit new assertions. Never distribute an implicit negation.
     boundary = re.compile(
-        r"[;.!?](?=\s|$)(?!\d)|\b(?:and|but)\s+(?=(?:denies|denied|no|not|reports|has|takes|taking|stopped|stop|discontinue|hold|held|continue|start|begin|restart|recommend|order|prescribe|mother|father|metformin|warfarin|insulin|amoxicillin|penicillin)\b)|\bbut\s+(?="
+        r"[;.!?](?=\s|$)(?!\d)|\b(?:and|but)\s+(?=(?:denies|denied|no|not|reports|has|takes|taking|stopped|stop|discontinue|hold|held|continue|start|begin|restart|recommend|order|prescribe|mother|father|metformin|warfarin|insulin|amoxicillin|penicillin)\b)|\band\s+(?=(?:left|right|bilateral)\s+"
+        + ANATOMICAL_SITES.pattern
+        + r")|\bbut\s+(?="
         + SYMPTOMS.pattern
         + r")",
         re.I,
@@ -154,6 +160,44 @@ def medication_temporality(text):
     return "unknown"
 
 
+def extract_symptom_details(text):
+    details = {"symptom_severity": "unknown", "symptom_course": "unknown"}
+    sites = list(ANATOMICAL_SITES.finditer(text))
+    if len(sites) == 1:
+        details["anatomical_site"] = sites[0].group().lower()
+    sides = list(re.finditer(r"\b(?:left|right|bilateral)\b", text, re.I))
+    if len(sides) == 1:
+        details["laterality"] = sides[0].group().lower()
+    onset = re.search(
+        r"\b(?:since|starting|started|began)\s+(?P<value>today|yesterday|last (?:night|week|month|year)|(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:days?|weeks?|months?|years?)\s+ago|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b",
+        text,
+        re.I,
+    )
+    if onset:
+        details["symptom_onset"] = onset.group("value")
+    duration = re.search(
+        r"\b(?:for|lasting|lasted)\s+(?P<value>a day|a week|a month|(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:days?|weeks?|months?|years?))\b",
+        text,
+        re.I,
+    )
+    if duration:
+        details["symptom_duration"] = duration.group("value")
+    severities = list(re.finditer(r"\b(?:mild|moderate|severe)\b", text, re.I))
+    if len(severities) == 1:
+        details["symptom_severity"] = severities[0].group().lower()
+    for course, pattern in (
+        ("worsening", r"\b(?:worsening|getting worse)\b"),
+        ("improving", r"\b(?:improving|getting better)\b"),
+        ("stable", r"\b(?:stable|unchanged|no change)\b"),
+        ("intermittent", r"\b(?:intermittent|comes and goes)\b"),
+        ("constant", r"\b(?:constant|continuous)\b"),
+    ):
+        if re.search(pattern, text, re.I):
+            details["symptom_course"] = course
+            break
+    return details
+
+
 def extract(transcript):
     result = []
     for segment in transcript["segments"]:
@@ -190,10 +234,10 @@ def extract(transcript):
             ) or bool(NEGATION.search(quote) and re.search(r"\band\b", quote, re.I))
             uncertain = possible or questioned or ambiguous
             uncertainty = (
-                "possible"
-                if possible
-                else "questioned"
+                "questioned"
                 if questioned
+                else "possible"
+                if possible
                 else "ambiguous"
                 if ambiguous
                 else "certain"
@@ -307,6 +351,8 @@ def extract(transcript):
             side = re.findall(r"\b(?:left|right|bilateral)\b", quote, re.I)
             if len(side) == 1:
                 fact["laterality"] = side[0].lower()
+            if category == "symptom":
+                fact.update(extract_symptom_details(quote))
             result.append(fact)
     return result
 
