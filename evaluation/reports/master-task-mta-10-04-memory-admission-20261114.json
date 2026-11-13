@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-04",
+  "source_commit": "c0ef17e2585e12b30028c90d9cb70fcd859a270e",
+  "source_files": {
+    "services/inference_slot.py": "13bbe50607ca46e755ee5158528dd653582fed75720e8d61215c01ac0aa5d9a7",
+    "services/asr/worker.py": "0a552da5e37fb05f7836a3a18eac39addbd9f48f48ad4cc7a066e8ae1026b473",
+    "tests/test_inference_slot.py": "e0e51e63ffa777ae65f324093b614a43f06a89d457aec372bebd3e776c876564",
+    "tests/test_memory_admission.py": "17272f85f6a6e19f0e2abd25abe3d82af226f5ff499528bc0940e2a00d4be23b",
+    "tests/test_asr_resource_router.py": "6d3d45b1e36d04f6c0dbc4e2b789bd38dffe6462870e0c3e07633834fb4d0c7f"
+  },
+  "captured_at_utc": "2026-11-13T21:41:09.304832+00:00",
+  "checks": [
+    {
+      "name": "memory_admission_and_serialization_tests",
+      "command": "python -m pytest tests/test_inference_slot.py tests/test_memory_admission.py tests/test_asr_resource_router.py tests/test_model_availability.py::test_missing_model_is_unavailable_without_loading_or_downloading tests/test_model_availability.py::test_network_model_directory_cannot_trigger_native_filesystem_access --confcutdir=tests -q",
+      "status": "pass",
+      "result": "11 passed"
+    },
+    {
+      "name": "ruff",
+      "command": "ruff check and ruff format --check for changed Python files",
+      "status": "pass"
+    }
+  ],
+  "scheduling_controls": [
+    "ASR run_once holds a cross-process file lock before claiming work and keeps it through inference.",
+    "ASR worker estimates a request from full local artifact bytes (2x weights plus 512 MiB runtime overhead) and defers model construction when it does not fit.",
+    "All local_inference_slot users use measured OS available memory minus a 2 GiB reserve, capped by MED_TRANSCRIPT_LOCAL_MEMORY_BYTES.",
+    "Worker transcript provenance records the exact memory request, availability observation, reserve and admission decision.",
+    "The ASR backend pool serializes in-process model loads and closes the previous backend before switching."
+  ],
+  "limitations": [
+    "The 2x artifact-size estimate is a conservative heuristic, not a measured per-model peak requirement.",
+    "The 2 GiB OS reserve is fixed and should be tuned from deployment measurements.",
+    "The worker-level TestClient case that also checks API state hung in this Windows environment; socket-free admission tests and worker source inspection passed.",
+    "The scheduler serializes only application processes using the configured lock path and does not control unrelated OS processes."
+  ],
+  "external_calls_attempted": 0,
+  "paid_calls": 0,
+  "clinical_release": false
+}

@@ -5132,12 +5132,29 @@
       "id": "MTA-10-04",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Integrate memory admission into actual worker scheduling with conservative reserve and process serialization.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/inference_slot.py",
+        "services/asr/worker.py",
+        "services/asr/resource_router.py",
+        "services/resource_arbiter.py",
+        "tests/test_inference_slot.py",
+        "tests/test_memory_admission.py",
+        "tests/test_asr_resource_router.py",
+        "evaluation/reports/master-task-mta-10-04-memory-admission-20261114.json"
+      ],
+      "source_commit": "c0ef17e2585e12b30028c90d9cb70fcd859a270e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-10-04-memory-admission-20261114.json",
+          "report_sha256": "8df03e6606bea7311fa236df34624f9fc4f70166a6a43c3d9761b6372e0c4bd3",
+          "check": "memory_admission_and_serialization_tests",
+          "status": "pass",
+          "detail": "11 passed; Ruff passed."
+        }
+      ],
+      "blocker": "The worker API-state TestClient check hung in this Windows environment. The focused lock, budget, model estimate, unavailable-model and backend-serialization tests passed. Model peak memory remains an estimate rather than measured runtime telemetry."
     },
     {
       "id": "MTA-10-05",
