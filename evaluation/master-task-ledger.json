@@ -4128,11 +4128,23 @@
       "id": "MTA-08-16",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Add clinically labelled draft-preservation table with failure-inclusive counts; keep clinician accuracy unmeasured without independent gold.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/baseline_summary.py",
+        "tests/test_baseline_summary.py",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "evaluation/reports/master-task-mta-08-16-0bc8143.json"
+      ],
+      "source_commit": "0bc81430d73e63bf5de33c0a676b4c4a5257b5b9",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-16-0bc8143.json",
+          "report_sha256": "612441d098c770b028bff7f0fe20728a12802cc4da5277ae6c9af899367368d2",
+          "check": "draft_preservation_table_is_failure_inclusive_and_not_clinical_accuracy",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

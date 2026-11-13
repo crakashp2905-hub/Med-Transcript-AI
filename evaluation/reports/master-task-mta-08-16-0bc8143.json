@@ -1,0 +1,48 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "0bc81430d73e63bf5de33c0a676b4c4a5257b5b9",
+  "tasks": [
+    "MTA-08-16"
+  ],
+  "source_hashes": {
+    "services/baseline_summary.py": "49bab0dd561f51beaf90613c34363125c659e9dcafcb3afe9dad44ca00b51b0f",
+    "tests/test_baseline_summary.py": "c774eacadcf32f712de0201789714b62ab524038072459037b9823fe1d44c1ec",
+    "apps/clinician-web/src/PresentationTools.tsx": "386727c1140dfda9fe25227c7d3fcf8c5d32ca350222b91a9583e604ef11b38e"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "node_build": "npm run build in apps/clinician-web"
+  },
+  "checks": {
+    "draft_preservation_table_is_failure_inclusive_and_not_clinical_accuracy": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_baseline_summary.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "python -m ruff check services/baseline_summary.py tests/test_baseline_summary.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/baseline_summary.py tests/test_baseline_summary.py",
+      "status": "pass"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "The table measures exact source-fact preservation on existing synthetic fixtures only. Independent clinical accuracy remains unmeasured because no independent clinical gold is available.",
+    "Historical fixture results are reused; no inference or provider calls were made."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "a6abc5bb1c3f693bf0e71b530294a836901de971f7137dbab63f1ceedf159677"
+}
