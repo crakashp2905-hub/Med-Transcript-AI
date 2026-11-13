@@ -5263,12 +5263,27 @@
       "id": "MTA-10-08",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Implement model init/cold-start versus warm-start latency traces with model hash and operating environment.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/asr/adapter.py",
+        "services/asr/transcripts.py",
+        "tests/test_asr_optional_runtime_dependencies.py",
+        "services/model_init_metrics.py",
+        "docs/runbooks/local-asr.md",
+        "evaluation\\reports\\master-task-mta-10-08-32d7f54.json"
+      ],
+      "source_commit": "32d7f548f4dc83aac53780e5a171c7ce146406c9",
+      "test_results": [
+        {
+          "report": "evaluation\\reports\\master-task-mta-10-08-32d7f54.json",
+          "report_sha256": "457eae532a8a72bc29ed442a58f027fb8fbe08f878ca8f049299dc972c214541",
+          "check": "application_asr_cold_warm_trace_contract",
+          "status": "pass",
+          "detail": "15 focused tests, Ruff format/lint and mypy (303 files) passed on exact source commit; test confirms distinct cold/warm cache states and hash/environment binding."
+        }
+      ],
+      "blocker": "The trace is exercised with a deterministic runtime stub because the local Faster Whisper runtime/model profile is unavailable; local Ollama cold/warm residency is also unmeasured. No runtime assets were fetched."
     },
     {
       "id": "MTA-10-09",

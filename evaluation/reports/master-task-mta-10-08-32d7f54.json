@@ -1,0 +1,62 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-08",
+  "source_commit": "32d7f548f4dc83aac53780e5a171c7ce146406c9",
+  "captured_at_utc": "2026-11-13T22:28:15+00:00",
+  "source_files": {
+    "services/asr/adapter.py": "7260f9b0875a1420050d718edfff3331cc2e64b5186b20caa5b62121a1b279b9",
+    "services/asr/transcripts.py": "8bd9aeb1af924bca574763f0f3ac45f8789195839f2e424417b5189abf8efa42",
+    "tests/test_asr_optional_runtime_dependencies.py": "b67c30a9365cb5f40878a985c72c27c9e1276ce27b7ec7f7159fea2261910183",
+    "services/model_init_metrics.py": "5bb7d45a52d80c4ce4c9992eafa18b44ed4b21d12a382ba05e696367832e68f8",
+    "docs/runbooks/local-asr.md": "bba6530f499327f14deac0b9875f500e72fbbf7bcc7d35d9d13c7c7956569b56"
+  },
+  "implementation": {
+    "trace_schema": "asr_model_init_v1",
+    "application_path": "FasterWhisperAdapter.transcribe -> transcript provenance timing",
+    "states": {
+      "cold": "model was not present in this worker process LRU before load",
+      "warm": "profile was served as a process-local cache hit"
+    },
+    "bound_identity": [
+      "model profile SHA-256",
+      "model revision",
+      "per-file artifact SHA-256"
+    ],
+    "runtime_environment": [
+      "OS",
+      "OS release",
+      "architecture",
+      "Python version",
+      "CPU count",
+      "device",
+      "compute type"
+    ],
+    "privacy": "No audio or recognized text is included in model initialization timing metadata."
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_asr_optional_runtime_dependencies.py tests/test_model_init_metrics.py tests/test_asr_backend_contract.py tests/test_provider_interfaces.py -q",
+      "status": "pass",
+      "result": "15 passed"
+    },
+    {
+      "command": "python -m ruff format --check services/asr/adapter.py tests/test_asr_optional_runtime_dependencies.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff check services/asr/adapter.py tests/test_asr_optional_runtime_dependencies.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m mypy services --ignore-missing-imports",
+      "status": "pass",
+      "result": "303 source files"
+    }
+  ],
+  "limitations": [
+    "Cold/warm state tests use a deterministic model stub. The installed environment lacks the Faster Whisper runtime/profile needed to exercise this application adapter with actual inference; no assets were fetched.",
+    "Local Ollama Qwen cold/warm model residency is not yet measured.",
+    "Timing fields include loader-call duration and do not claim end-to-end consultation latency or clinical quality."
+  ],
+  "clinical_release_authorized": false
+}
