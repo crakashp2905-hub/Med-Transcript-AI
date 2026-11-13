@@ -326,3 +326,20 @@ def test_memory_budget_blocks_model_before_provider_is_called(setup, monkeypatch
         response.status_code == 503
         and response.json()["code"] == "local_inference_busy"
     )
+    with sqlite3.connect(path) as con:
+        assert (
+            con.execute(
+                "SELECT COUNT(*) FROM model_proposals WHERE kind='fact_proposal'"
+            ).fetchone()[0]
+            == 0
+        )
+    fallback = client.post(
+        f"/v1/encounters/{eid}/fact-proposals",
+        headers=headers(),
+        json={"transcript_version_id": tx["id"], "mode": "rules"},
+    )
+    assert fallback.status_code == 201, fallback.text
+    assert fallback.json()["status"] == "unreviewed_proposal_not_approvable"
+    assert all(not fact["reviewed"] for fact in fallback.json()["facts"])
+    workspace = client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()
+    assert workspace["note"] is None and workspace["approval"] is None
