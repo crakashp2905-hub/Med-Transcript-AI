@@ -28,6 +28,28 @@ def _confusion(rows, field):
     }
 
 
+def _failure_dimensions(rows):
+    attempted = len(rows)
+    return {
+        "attempted": attempted,
+        "model_timeouts": sum(
+            row["model_failure"] == "clinical_model_timeout" for row in rows
+        ),
+        "model_abstentions": sum(row["model_unsafe"] is None for row in rows),
+        "model_unsupported_claim_verdicts": sum(
+            row["model_verdict_label"] == "unsupported" for row in rows
+        ),
+        "structurally_unsupported_sources": sum(
+            not row["graph_provenance_valid"] for row in rows
+        ),
+        "structurally_unsupported_source_rate": (
+            sum(not row["graph_provenance_valid"] for row in rows) / attempted
+            if attempted
+            else None
+        ),
+    }
+
+
 def compare(challenge_path, frozen_path, output_path, *, source_commit):
     challenge_bytes = Path(challenge_path).read_bytes()
     frozen_bytes = Path(frozen_path).read_bytes()
@@ -66,6 +88,8 @@ def compare(challenge_path, frozen_path, output_path, *, source_commit):
         }
         graph = validate_proposal(transcript, [fact])
         findings = check_claim(case["source"], case["claim"])
+        verdicts = (archived.get("model_result") or {}).get("verdicts", [])
+        model_label = verdicts[0].get("label") if verdicts else None
         rows.append(
             {
                 "id": case["id"],
@@ -75,6 +99,7 @@ def compare(challenge_path, frozen_path, output_path, *, source_commit):
                 "model_unsafe": archived.get("model_unsafe"),
                 "combined_unsafe": archived.get("combined_unsafe"),
                 "model_failure": archived.get("model_failure"),
+                "model_verdict_label": model_label,
                 "graph_provenance_valid": graph["complete_to_fact"],
                 "graph_semantic_verdict": None,
                 "graph_scope": "citation_structure_only_not_clinical_detection",
@@ -108,6 +133,19 @@ def compare(challenge_path, frozen_path, output_path, *, source_commit):
                     row["graph_provenance_valid"] for row in rows
                 ),
                 "clinical_verdicts": 0,
+            },
+            "failure_dimensions": _failure_dimensions(rows),
+            "per_category": {
+                category: {
+                    "deterministic_rules": _confusion(group, "rules_unsafe"),
+                    "frozen_local_model": _confusion(group, "model_unsafe"),
+                    "frozen_combined_review_policy": _confusion(
+                        group, "combined_unsafe"
+                    ),
+                    "failure_dimensions": _failure_dimensions(group),
+                }
+                for category in sorted({row["category"] for row in rows})
+                for group in [[row for row in rows if row["category"] == category]]
             },
         },
         "graph_summary": {

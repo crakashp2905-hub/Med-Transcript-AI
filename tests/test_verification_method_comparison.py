@@ -61,6 +61,11 @@ def test_comparison_keeps_graph_structural_and_reuses_frozen_model(tmp_path):
     assert report["graph_summary"]["clinical_verdicts"] == 0
     assert report["summary"]["deterministic_rules"]["critical_misses"] == 0
     assert report["summary"]["frozen_local_model"]["missing_verdicts"] == 1
+    failure = report["summary"]["per_category"]["dose"]["failure_dimensions"]
+    assert failure["model_timeouts"] == 1
+    assert failure["model_abstentions"] == 1
+    assert failure["structurally_unsupported_sources"] == 0
+    assert failure["structurally_unsupported_source_rate"] == 0
     assert report["model_results_reused_without_inference"] is True
 
 
