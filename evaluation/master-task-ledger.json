@@ -2876,11 +2876,20 @@
       "id": "MTA-05-14",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Show exact audio interval and original channel on every corrected role action.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-14-df2ef28.json"
+      ],
+      "source_commit": "df2ef285bfe0ba3f1a60b6ba3a095018e66ce097",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-05-14-df2ef28.json",
+          "report_sha256": "761b62f1f133bd6930b2c585bd9763f25bcac132dcbf3db41044cad9c058f49d",
+          "check": "frontend_production_build",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

@@ -1,0 +1,27 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-05-14",
+  "status": "pass",
+  "source_commit": "df2ef285bfe0ba3f1a60b6ba3a095018e66ce097",
+  "checks": {
+    "frontend_production_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "working_directory": "apps/clinician-web",
+      "typescript": "pass",
+      "vite_production_bundle": "pass",
+      "result": "51 modules transformed; build completed"
+    }
+  },
+  "implementation": [
+    "Each transcript turn shows its exact source interval in milliseconds and channel number when available.",
+    "When channel metadata is absent, the UI explicitly displays Channel unknown.",
+    "Audio navigation passes the original channel when available and the source interval start time."
+  ],
+  "limitations": [
+    "No browser interaction test specifically asserts the channel label.",
+    "No channel is inferred when source metadata is absent; channel-first diarization remains unavailable without established hardware/input channel semantics.",
+    "This build evidence does not establish clinical usability or real-hardware behavior."
+  ],
+  "clinical_release_authorized": false
+}
