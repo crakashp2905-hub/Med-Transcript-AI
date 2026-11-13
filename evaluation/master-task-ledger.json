@@ -4607,12 +4607,44 @@
       "id": "MTA-09-12",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Make upload/preprocessing/model queues visibly distinct from stalled/failed/missing model states.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/JobState.tsx",
+        "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+        "apps/clinician-web/src/workspaceTypes.ts",
+        "apps/clinician-web/src/style.css",
+        "services/review/routers/workspace.py",
+        "evaluation/reports/master-task-mta-09-12-296cd00.json"
+      ],
+      "source_commit": "296cd00fd6c178c2c02f8b37b7c2331f8545231a",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-12-296cd00.json",
+          "report_sha256": "fe6e5a364e95199e54d57312f2e4e2aedfbd67df3ac59c4b9abda465cc6d33ad",
+          "check": "frontend_queue_states_compile",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-12-296cd00.json",
+          "report_sha256": "fe6e5a364e95199e54d57312f2e4e2aedfbd67df3ac59c4b9abda465cc6d33ad",
+          "check": "workspace_exposes_job_timestamps",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-12-296cd00.json",
+          "report_sha256": "fe6e5a364e95199e54d57312f2e4e2aedfbd67df3ac59c4b9abda465cc6d33ad",
+          "check": "ruff",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-12-296cd00.json",
+          "report_sha256": "fe6e5a364e95199e54d57312f2e4e2aedfbd67df3ac59c4b9abda465cc6d33ad",
+          "check": "rendered_queue_states",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "Rendered queue-state and stale-worker browser checks are blocked by loopback restrictions. Build and backend lint pass; rerun UI checks in a local-socket-enabled environment."
     },
     {
       "id": "MTA-09-13",

@@ -1,0 +1,61 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "296cd00fd6c178c2c02f8b37b7c2331f8545231a",
+  "tasks": [
+    "MTA-09-12"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/JobState.tsx": "26db1b98ce30c8ac305ca762c5b1d00a3d54885eef9fa9240231e42e90509bb5",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "5b91c902b4ba942de41c0d5206406474ad00eb931ac9c49f1d8ec53af77bb1d6",
+    "apps/clinician-web/src/workspaceTypes.ts": "db8120679ad5040371da86ca083f9a79a19a6d73302a0710a2e40bc653299bc5",
+    "apps/clinician-web/src/style.css": "bb6d5069e6fddd9a6cd4197851935dd5ca1e39ddc97c05191199effc226013fc",
+    "services/review/routers/workspace.py": "956619330fbff429e9e2040d1eaa0345f1ee95dba4186b5e9853a70c30bac208"
+  },
+  "runtime": {
+    "platform": "Windows 11",
+    "node": "cached npm dependencies",
+    "python": "Python 3.13.5",
+    "browser": "not executed; loopback fixture restrictions apply"
+  },
+  "checks": {
+    "frontend_queue_states_compile": {
+      "status": "pass"
+    },
+    "workspace_exposes_job_timestamps": {
+      "status": "pass"
+    },
+    "ruff": {
+      "status": "pass"
+    },
+    "rendered_queue_states": {
+      "status": "blocked"
+    }
+  },
+  "test_results": [
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff check services/review/routers/workspace.py",
+      "status": "pass"
+    },
+    {
+      "command": "git diff --check -- services/review/routers/workspace.py apps/clinician-web/src/JobState.tsx apps/clinician-web/src/SpeakerTurnEditor.tsx apps/clinician-web/src/screens/SourceReviewScreen.tsx apps/clinician-web/src/workspaceTypes.ts apps/clinician-web/src/style.css",
+      "status": "pass"
+    },
+    {
+      "command": "Playwright queue-state rendering and stale-worker checks",
+      "status": "blocked",
+      "observed": "The local app fixture cannot be loaded in this environment because loopback networking is denied."
+    }
+  ],
+  "limitations": [
+    "Queued, active, stale, failed and model-unavailable states have distinct text and accessible labels. Job timestamps come from the existing durable job rows.",
+    "A stale threshold of two minutes is a visual warning only; it does not cancel or alter work.",
+    "UI status rendering and missing-profile fallback still need browser execution with a local fixture."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "a3b990feb4266a8c22b1a2a28184e575b786234a8e1dce5817dd35304c37fb25"
+}
