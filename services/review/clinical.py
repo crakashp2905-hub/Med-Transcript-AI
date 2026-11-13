@@ -23,6 +23,30 @@ SYMPTOMS = re.compile(
     r"|wheeze|wheezing|dizziness|syncope|swelling)\b",
     re.I,
 )
+MEDICATION_ACTIONS = (
+    (
+        "start",
+        re.compile(
+            r"\b(?:start(?:ed|s|ing)?|begin(?:s|ning)?|began|restart(?:ed|s|ing)?)\b",
+            re.I,
+        ),
+    ),
+    (
+        "stop",
+        re.compile(r"\b(?:stop(?:ped|s|ping)?|discontinue(?:d|s)?|ceased?)\b", re.I),
+    ),
+    ("hold", re.compile(r"\b(?:hold(?:s|ing)?|held|on hold)\b", re.I)),
+    ("continue", re.compile(r"\b(?:continue(?:d|s|ing)?|keep taking)\b", re.I)),
+    (
+        "recommend",
+        re.compile(r"\b(?:recommend(?:ed|s|ing)?|suggest(?:ed|s|ing)?)\b", re.I),
+    ),
+    ("order", re.compile(r"\b(?:order(?:ed|s|ing)?|prescrib(?:e|ed|es|ing))\b", re.I)),
+    (
+        "discuss",
+        re.compile(r"\b(?:discuss(?:ed|es|ing)?|consider(?:ed|s|ing)?)\b", re.I),
+    ),
+)
 
 
 def quantity_signature(text):
@@ -83,7 +107,7 @@ def medication_associations(text):
 def atomic_spans(text):
     # Only split explicit new assertions. Never distribute an implicit negation.
     boundary = re.compile(
-        r"[;.!?](?=\s|$)(?!\d)|\b(?:and|but)\s+(?=(?:denies|denied|no|not|reports|has|takes|taking|stopped|restart|mother|father|metformin|warfarin|insulin|amoxicillin|penicillin)\b)|\bbut\s+(?="
+        r"[;.!?](?=\s|$)(?!\d)|\b(?:and|but)\s+(?=(?:denies|denied|no|not|reports|has|takes|taking|stopped|stop|discontinue|hold|held|continue|start|begin|restart|recommend|order|prescribe|mother|father|metformin|warfarin|insulin|amoxicillin|penicillin)\b)|\bbut\s+(?="
         + SYMPTOMS.pattern
         + r")",
         re.I,
@@ -126,9 +150,31 @@ def extract(transcript):
                 if re.search(pattern, quote, re.I):
                     category = name
                     break
-            uncertain = bool(
-                re.search(r"\b(?:maybe|possibly|unsure|she|he|it)\b", quote, re.I)
+            possible = bool(
+                re.search(r"\b(?:maybe|possibly|might|could|perhaps)\b", quote, re.I)
+            )
+            questioned = "?" in quote or bool(
+                re.search(r"\b(?:whether|question(?:s|ed)?|asked if)\b", quote, re.I)
+            )
+            ambiguous = bool(
+                re.search(r"\b(?:unsure|she|he|it)\b", quote, re.I)
             ) or bool(NEGATION.search(quote) and re.search(r"\band\b", quote, re.I))
+            uncertain = possible or questioned or ambiguous
+            uncertainty = (
+                "possible"
+                if possible
+                else "questioned"
+                if questioned
+                else "ambiguous"
+                if ambiguous
+                else "certain"
+            )
+            action_matches = [
+                action
+                for action, pattern in MEDICATION_ACTIONS
+                if pattern.search(quote)
+            ]
+            action = action_matches[0] if len(action_matches) == 1 else "unknown"
             fact = {
                 "fact_id": str(uuid4()),
                 "category": category,
@@ -142,6 +188,8 @@ def extract(transcript):
                 else "negated"
                 if NEGATION.search(quote)
                 else "affirmed",
+                "uncertainty": uncertainty,
+                "action": action if category == "medication" else "unknown",
                 "temporality": "historical"
                 if re.search(
                     r"\b(?:stopped|previously|used to|last month)\b", quote, re.I
@@ -150,6 +198,7 @@ def extract(transcript):
                 if re.search(r"\b(?:restart|next week|will)\b", quote, re.I)
                 else "unknown",
                 "origin": "source_linked",
+                "source_modality": "transcript",
                 "reviewed": False,
                 "critical_reviewed": False,
                 "extraction_version": "conservative_atomic_spans_v2",
@@ -165,6 +214,7 @@ def extract(transcript):
             quantities = list(QUANTITY.finditer(quote))
             if category == "medication" and len(medications) == 1:
                 fact["medication_name"] = medications[0].group()
+                fact["concept"] = medications[0].group().lower()
                 if len(quantities) == 1:
                     fact.update(
                         dose_value=quantities[0]["value"],

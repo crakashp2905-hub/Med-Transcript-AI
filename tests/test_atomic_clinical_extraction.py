@@ -43,3 +43,18 @@ def test_implicit_negation_across_and_is_kept_together_for_review():
     assert [span[2] for span in spans] == [text]
     assert len(facts) == 1
     assert facts[0]["assertion"] == "uncertain"
+
+
+def test_medication_action_and_explicit_uncertainty_stay_with_their_drugs():
+    facts = extract(
+        transcript("Maybe start metformin 500 mg daily and stop warfarin 5 mg daily.")
+    )
+
+    assert [fact["medication_name"].lower() for fact in facts] == [
+        "metformin",
+        "warfarin",
+    ]
+    assert [fact["action"] for fact in facts] == ["start", "stop"]
+    assert [fact["uncertainty"] for fact in facts] == ["possible", "certain"]
+    assert [fact["assertion"] for fact in facts] == ["uncertain", "affirmed"]
+    assert [fact["dose_value"] for fact in facts] == ["500", "5"]
