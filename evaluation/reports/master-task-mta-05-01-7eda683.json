@@ -1,0 +1,25 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-05-01",
+  "source_commit": "7eda6831b4024883582fcecb6e2b0b4fa4500d6c",
+  "checks": {
+    "fixed_window_and_separate_channel_evidence_preserved_without_pooling": {
+      "status": "pass",
+      "condition_count": 2,
+      "manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a"
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "7 passed focused diarization suite",
+    "ruff": "pass"
+  },
+  "runtime_sha256": "bc33f218a10371b1ba10bfca3e4f7b8ddfdcd351f6152568859c758d2c4ee67a",
+  "comparison_report": "evaluation/reports/speaker-comparison-2026-11-13-7eda683.json",
+  "clinical_acceptance": false,
+  "limitations": [
+    "Fixed-window and separate-channel captures are distinct modalities; no pooled comparison.",
+    "Speaker labels are upstream and not independently adjudicated."
+  ]
+}

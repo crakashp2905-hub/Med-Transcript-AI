@@ -2573,12 +2573,22 @@
       "id": "MTA-05-01",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Preserve fixed-window speaker baseline and two-channel VAD results separately; do not mix different capture modalities.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/speaker-comparison-2026-11-13-7eda683.json",
+        "evaluation/reports/master-task-mta-05-01-7eda683.json"
+      ],
+      "source_commit": "7eda6831b4024883582fcecb6e2b0b4fa4500d6c",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-05-01-7eda683.json",
+          "report_sha256": "243a43e18e66e89bfe402fea69395671acd442654881b01ed144b9e33fc3e19a",
+          "check": "fixed_window_and_separate_channel_evidence_preserved_without_pooling"
+        }
+      ],
+      "blocker": "No independent speaker adjudication; modality comparisons remain separate development evidence."
     },
     {
       "id": "MTA-05-02",
