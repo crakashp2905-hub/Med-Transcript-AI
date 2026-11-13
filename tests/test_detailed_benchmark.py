@@ -674,11 +674,13 @@ def test_detailed_v7_whisper_small_fixed_reproduces_baseline_with_fresh_resource
     suite = json.loads(suite_path.read_text(encoding="utf-8"))
     manifest = json.loads(Path(suite["manifest"]).read_text(encoding="utf-8"))
     baseline = json.loads(
-        Path("evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json").read_text(
-            encoding="utf-8"
-        )
+        Path(
+            "evaluation/runs/meddistract-detailed-v2/whisper-small.fixed.json"
+        ).read_text(encoding="utf-8")
     )
-    job = next(item for item in suite["jobs"] if item["candidate_id"] == "whisper-small")
+    job = next(
+        item for item in suite["jobs"] if item["candidate_id"] == "whisper-small"
+    )
 
     assert hashlib.sha256(report_path.read_bytes()).hexdigest() == (
         "07fbb9a170bc49c26a2c69624971db60d0df2587fbad540cd54566800b2e9ba4"

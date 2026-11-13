@@ -426,7 +426,9 @@ def test_speaker_role_correction_requires_authorization_and_invalidates_approval
             "SELECT id FROM authorizations WHERE encounter=? AND withdrawn_at IS NULL",
             (eid,),
         ).fetchone()["id"]
-    authorization_route = f"/v1/encounters/{eid}/authorizations/{authorization_id}/withdraw"
+    authorization_route = (
+        f"/v1/encounters/{eid}/authorizations/{authorization_id}/withdraw"
+    )
     assert client.post(authorization_route, headers=headers()).status_code == 200
     denied = client.patch(
         route,
@@ -456,7 +458,10 @@ def test_speaker_role_correction_requires_authorization_and_invalidates_approval
     assert corrected.json()["segments"][0]["role"] == "clinician"
     assert corrected.json()["segments"][0]["role_status"] == "human_confirmed"
     assert approve(client, eid, note).status_code == 412
-    assert client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()["stale"] is True
+    assert (
+        client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()["stale"]
+        is True
+    )
 
 
 def test_speaker_turn_split_merge_keeps_source_interval_and_immutable_lineage(setup):
