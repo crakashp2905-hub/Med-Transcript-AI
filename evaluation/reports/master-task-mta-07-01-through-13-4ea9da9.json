@@ -1,0 +1,106 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+  "tasks": [
+    "MTA-07-01",
+    "MTA-07-02",
+    "MTA-07-03",
+    "MTA-07-04",
+    "MTA-07-05",
+    "MTA-07-06",
+    "MTA-07-07",
+    "MTA-07-08",
+    "MTA-07-09",
+    "MTA-07-10",
+    "MTA-07-11",
+    "MTA-07-12",
+    "MTA-07-13"
+  ],
+  "source_hashes": {
+    "services/evidence_graph.py": "138f68c4b8ea5810719082b1bebfdb2334ea656856bd73d7b79c7531bca7094b",
+    "services/application_pipeline.py": "ed9479c1151430cbb259d5bc3ec6e147d21f0836985b929c7f5804223d95061b",
+    "services/review/engine.py": "17e131554e534fc1e69540bc71f82f2b4a45884f37647aa99529beeada2f2c71",
+    "services/review/clinical.py": "90b88465621722521b452f5f29885a474ac3d8c81240efd04513a16cab728e42",
+    "services/review/clinical_models.py": "00166adf533c5bb62755f749e20bc69b9ffb21a81c41b3a20ada1a769efc4ff5",
+    "services/review/relationships.py": "05a1ccb70555d128dd243dc3b7430abb99d9d5788c2add746796973d91c056dd",
+    "services/review/clinical_routes.py": "6164374ff39badc6b14718aaccd9ee70259645d8a32ac52087d7f9a17b5a483e",
+    "services/domain_contracts.py": "bb01048f2b8a9f447fc172684756583cbffdb8a6130bcfb9e1d6df763f752079",
+    "tests/test_evidence_graph.py": "aef6f072360adc46cf83f355138ee5252a13ae03161e2c184f1cbe3c3adbfbf0",
+    "tests/test_application_pipeline.py": "05c8cdbf25443ee16c567ad65e40bc48e194af4b6f1fe4a9e830135d04952559",
+    "tests/test_relationships.py": "7a940448ce795cfc5010746414487926bb7ccb34b751219a41396ed94f32f8d6",
+    "tests/test_clinical_intelligence.py": "15575198f1a346bb1364415d3a34e5cd3b6878cabde985448d9d58cf87257229",
+    "tests/test_clinical_batches.py": "29cc1323ace1eca7d13c3c7941c0da904999298125b2b19bb6c8eb53f8b30149",
+    "tests/test_review_workflow.py": "ae4f399d5680c32cab332da13edf4fc736beb6dff4d9993ced1cf4ca0f9486f3",
+    "tests/test_source_warning_context.py": "5fb7c0b0aa11b2f684943d930eaad1b472c9e37f485b77e480bcb225404e85c5",
+    "tests/test_scribe_workflow.py": "8f617fe1be4164420a111067bca6158e399b2b37deceaac60d412d2085850fb5"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local invocation; exact version not separately captured"
+  },
+  "runtime_sha256": "b414ebf8ef937d1ade8c619ada0b43b6424df7d32dc2d851e1601fe81dd6c77b",
+  "checks": {
+    "immutable_audio_to_export_graph": {
+      "status": "pass"
+    },
+    "exact_source_span_proposal_validation": {
+      "status": "pass"
+    },
+    "inverse_source_coverage": {
+      "status": "pass"
+    },
+    "forward_claim_grounding": {
+      "status": "pass"
+    },
+    "many_to_many_and_merged_claim_checks": {
+      "status": "pass"
+    },
+    "medication_relationship_swap_checks": {
+      "status": "pass"
+    },
+    "negation_subject_time_uncertainty_checks": {
+      "status": "pass"
+    },
+    "equivalence_and_paraphrase_controls": {
+      "status": "pass"
+    },
+    "deterministic_and_optional_local_verifier_policy": {
+      "status": "pass"
+    },
+    "strict_verdict_payload_validation": {
+      "status": "pass"
+    },
+    "bounded_all_or_nothing_verifier_batches": {
+      "status": "pass"
+    },
+    "revision_invalidates_old_approval_authority": {
+      "status": "pass"
+    },
+    "historical_export_rechecks_current_rules": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_evidence_graph.py tests/test_application_pipeline.py tests/test_relationships.py tests/test_clinical_intelligence.py tests/test_canonical_clinical_facts.py tests/test_typed_clinical_boundaries.py tests/test_review_workflow.py tests/test_clinical_metrics_report.py tests/test_fact_evaluation_synthetic.py tests/test_clinical_batches.py tests/test_adversarial_cases.py tests/test_export_attribution.py tests/test_error_codes.py tests/test_completion_gaps.py tests/test_source_warning_context.py tests/test_scribe_workflow.py tests/test_fact_duplicates.py tests/test_verification_metrics.py tests/test_verification_ablations.py tests/test_evaluation_method.py tests/test_review_gate.py tests/test_review_readiness.py tests/test_channels.py tests/test_channel_capability.py tests/test_channel_turns.py tests/test_channel_first_baseline.py tests/test_speaker_review.py tests/test_speaker_results.py tests/test_speaker_comparison_roles.py tests/test_channel_scorecard.py -q",
+      "status": "pass",
+      "passed": 176,
+      "skipped": 1
+    },
+    {
+      "command": "python -m ruff check services/application_pipeline.py services/error_catalog.json services/review/clinical_routes.py services/speaker_comparison.py tests/test_application_pipeline.py tests/test_review_workflow.py tests/test_speaker_comparison_roles.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/application_pipeline.py services/review/clinical_routes.py services/speaker_comparison.py tests/test_application_pipeline.py tests/test_review_workflow.py tests/test_speaker_comparison_roles.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "All cases are developer/public mock fixtures, not independent clinical gold or clinical sensitivity estimates.",
+    "Local optional-verifier behavior is contract-tested; this receipt does not establish model quality.",
+    "Exact-head GitHub CI still fails its repository-wide Python formatting gate because protected concurrent work in tests/test_detailed_benchmark.py remains uncommitted."
+  ],
+  "clinical_release_authorized": false
+}

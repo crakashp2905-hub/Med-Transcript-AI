@@ -1,0 +1,844 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+  "tasks": [
+    "MTA-05-04",
+    "MTA-05-11",
+    "MTA-05-12",
+    "MTA-05-16"
+  ],
+  "source_hashes": {
+    "services/asr/channel_capability.py": "e58d51d1e64be9c54d2d80fcde862e2401bac604afe79e8788344e4a7250defe",
+    "services/asr/channels.py": "81dac6f43291870d321b44b0bbb7c2bafc9ce8d3e2454e5dc7cd38a899e88a0e",
+    "services/asr/worker.py": "14ea3d1258f4c93d7715942fcb380572a313e4f035f7297d67c0e440994b9f83",
+    "services/speaker_comparison.py": "4a5b1829839c5a23ce8ed3787797ffd25ca205d1a842d54fde1b17c696a40aad",
+    "tests/test_channels.py": "42fb3fe93cabe833bdcfb4967eb44a6a015cd5a7fe5de1b7499364bb02bf690c",
+    "tests/test_channel_capability.py": "137b734507a5619e68f4220a1d0cba2a1558935528f6d56756c9c6b6e508bd1a",
+    "tests/test_speaker_comparison_roles.py": "2a183a55c63baab3ef3a20f32a0e9d436402e7cf8f648424b66130d240a57c60",
+    "evaluation/reports/speaker-comparison-ledger-audit-4ea9da9.json": "02a2d919f4831f748dfa209caf9d80f4c7e8a019784bd3ae36c91b8fe384943f"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "soundfile": "0.14.0"
+  },
+  "runtime_sha256": "64ab93abb65f2bc099483aa5408cdb69e77795810cefd40f69b0a6709bd3f247",
+  "checks": {
+    "matched_multichannel_audio_comparison": {
+      "status": "blocked"
+    },
+    "channel_semantics_requires_confirmation": {
+      "status": "pass"
+    },
+    "role_and_short_response_priority_error_budgets": {
+      "status": "pass"
+    },
+    "diarization_gate_stays_development_only": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_evidence_graph.py tests/test_application_pipeline.py tests/test_relationships.py tests/test_clinical_intelligence.py tests/test_canonical_clinical_facts.py tests/test_typed_clinical_boundaries.py tests/test_review_workflow.py tests/test_clinical_metrics_report.py tests/test_fact_evaluation_synthetic.py tests/test_clinical_batches.py tests/test_adversarial_cases.py tests/test_export_attribution.py tests/test_error_codes.py tests/test_completion_gaps.py tests/test_source_warning_context.py tests/test_scribe_workflow.py tests/test_fact_duplicates.py tests/test_verification_metrics.py tests/test_verification_ablations.py tests/test_evaluation_method.py tests/test_review_gate.py tests/test_review_readiness.py tests/test_channels.py tests/test_channel_capability.py tests/test_channel_turns.py tests/test_channel_first_baseline.py tests/test_speaker_review.py tests/test_speaker_results.py tests/test_speaker_comparison_roles.py tests/test_channel_scorecard.py -q",
+      "status": "pass",
+      "passed": 176,
+      "skipped": 1
+    }
+  ],
+  "multichannel_audio_inventory": {
+    "evaluation_audio_files": 154,
+    "channel_counts": {
+      "1": 154
+    },
+    "inventory_sha256": "3c7f72128dcdfcfe76d4fbaa5ff3419d9a462397be570be8dbf419bb32241708",
+    "inventory": [
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation07_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "96ad266e58f24fffd5b929bc8d31995afc75be8b014a2a939e1e48de7c5e23d2"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation07_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "ffad68cbb58de7ea123186854ff208cd8546c5adcacfb1beb09cc7178dad5e76"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation07_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "5a482dbc95710bb8786b2fc747fff8bea533072af671d18feee65e876dfcf9a8"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation07_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "5168b735789834f9c62cf61e2f2fdff9416e81c33c3d1d2c4a80508c20f3bdc1"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation07_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "bab6301edd40081ebbe0c00965672ff61bfa3ff7aa4820c8713d0279f060ad3f"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation07_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "b2f15b78cbd32036cfdce0f0984bd18e7bbacdcfc49d409499e7a7d48cd785ea"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation08_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "bbe572fc34902eadb688a18da8892cf385f01099bbf3e9b0e2b661b4b08b2125"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation08_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "18ce01a92205f5f321b7b02ab56aa079153a2c9e2b7a7d9f0014e4237baed886"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation08_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "378c52cf56b58632d3b651ce3315df5ccfa38d1c492f9cb48d57e7392f633e1b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation08_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "451e6e7f3fd12d7dd3a52fd751cc084d7962e48ae91879485a00285e8ab4441f"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation08_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "32c6199003d4f9b0dc64e6b68a3bb8c7001ceda12b3f774a9eef4354355d13f6"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation08_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "d6abff24c9cf00dc44d76cfc9ae2a743bd9e3f49746a262cf0058c5155bf60e1"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation09_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "fad5463db01f28db5dada80f743c71492c0281145cfa3074f580018d7031d3fa"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation09_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "62b7e53ec426e9c223c06bbed8cb5861a3f3420b31535f5d005cc4759443294c"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation09_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "46a88abe49cb1ea855d9c681f19b00f96d1c9564348bfd951cd0cdacc04e07b0"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation09_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "e5128b516976af6305d87022651a2051c6ca04aa12abd72560f4d4d36b6333f7"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation09_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "278859e851b8a45c62843bbfc96f260a110021c06ebb1eb770a5147e0ee5c4ec"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation09_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "238fd542567d474e45bb6d1a2cb7b0f0471a60b0b5fd982310f92a4bedbdca1f"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation10_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "79aff3fb1f6d0e599a456e86c26c1ae960a44986ea0bf85bbabf49c02194a99f"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation10_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "d3b60f27415126597b9d5e27488d3949153992374abfd4c5628814173f92f9eb"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation10_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "1b16785da05f45e75d5f9dd7daaf6c8573f331767ef6a97a5b639d9987690be9"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation10_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "58f2d789e3e5c4749c3200d835904cee5109134842c57d81a27e09f0e137f4e7"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation10_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "734dbf3eaa40969fff0cc13bc36a5fdf3e0fd86a0a1d7488d63548d1756948a8"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day1_consultation10_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "38cd7b168a11b79fe2ade1b729589160696df5628aca8c8c6370e32d500b255b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation01_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "06ba981334432eae576d75a743077b05f5566c4f33ec932d097ec004287426b4"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation01_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "e081cc23afbbe4f68564d4975e7cfbf2d610659188a5653dff918d973072bcfd"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation01_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "af4efd4832516636684c0cfa2e0ef4b78560edc469788dd825c111a501c858ee"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation01_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "aece20a67e1daaaf06fa77ee7e0693d4ed36545a8eb510f8e78de396869fdde9"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation01_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "e4f4cb14ebd62a561154412610bf8735773bf6a27893e6a25eddeb81935dc85b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation01_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "63c8db49defd02e3c399d7d4bfddf846cba334a702d00a07dd25327e9c3a4abd"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation02_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "d92a9207fb56260a89f902787d19dd9193f68f9f8a1e234307c2e8d78a52065c"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation02_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "17fca27b44cc20d31fb01396d712d7963d88a2277af637ea1de73fe4b613a253"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation02_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "cf53f1172f9477eb65b7b93e9c4ebb2ce1b6e97fb372f6f831c95b04bc79d4d1"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation02_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "99a9fff4894bdc250eab3292985a1af2c9b14f18e99c8f678d3eb269904eb8cc"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation02_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "140eee2b5fb70b1f0535d3bf09bba61ba787d3557c28d34d01ca063385a816ae"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation02_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "d5a2b8250b7fec374ec59d77199a255a19dc4b1683fa06c64907ca4b4591f8da"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation03_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "d1e2a7ded47bc07270e51fe737d5c53ee2ceb6f7b3f5f718eec7884f244a0c36"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation03_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "b231672d5ab2edff5a3bb81ad7a3c38acd043478eef6a78abf1d85fce685a77e"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation03_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "01681dbf05ff10559cb574944376640e7c20cda6a7ff2c031e39fcffd180bf30"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation03_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "1b44d9df24817b8e60dc802a5f5cd9245a20bcc95c21f6e38865cf3c30e95b91"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation03_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "cba111bd01e95194f5646b2860811abc1a41b1ab81f96f53dcd2b8289515c0d8"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation03_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "4466d77514f06385bb4badb10fd5b9b6f07aad77cafa5f665bc6e2bd350b2b14"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation04_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "e963cf547ab0263c02a0d828ba2cb1bc6e216e5a1e80214ec2eb4e687d427a76"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation04_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "443f057576cd2b1f7c375f242df3493baa589396dc7096e0ce0ed412b0a06ab2"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation04_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "09e21b82b05f1a1b3e31e9ef5223ddfeacc7a9e9f1812e6f6720fe7445004f50"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation04_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "70e30de9992a097c681754b38b1093cd4698ead64fc2f32b31a74d0cfc12cc92"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation04_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "4020488970a334076b18e17e5206bbf02cb69be06922f259d646a00cd9facf2a"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day2_consultation04_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "4193833e536352b5ee968b32efb68aaaa314484acd1cb8ab2822c7828a51cb31"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation01_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "9997cfd67d9974572a67458e1119bd2fd6d42e01b511d6c6295bfbe7cb43a4de"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation01_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "963f1f8f1524837da8dfd5dc657a8c6c02227e9950c936e94a8b8ca3ee123e91"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation01_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "5e54cd0244c7b338f5e60bc065da52ff56f53b24aa66f9ba26106d3f8c22945b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation01_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "16d75490fa2b25c2534205b7fa705b903764bbcd20c6e5e306d344a19992f765"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation01_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "6428f10b37337b770fdaa6f48811b45bc671b6754923a52c11a032cdf63732d0"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation01_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "8f8c2d0e4fa122896714128f64764c706c2fe3f5c431aa912aa38a83d7b7ffaa"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation02_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "76dfb22686c7fa0e10b6a12f961162f6e14f5743a2647129c9858579b97e1faf"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation02_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "4ab2c9c461433696c706c3271062d51e3ee3cd6ab968f5478ed7f626079354ca"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation02_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "89f171cbaab680f66e19c08041e11e3b9a1ee5407ecc653c49f32e6f95040982"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation02_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "e56eeeb62c8c887c1c21266ea61dce43ccbd632014b7232afc0e586942a84eab"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation02_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "07da53242b33af65e5e506e362a1475cf7438602319e524ab7bb8badd8a3926d"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation02_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "00600726f66a53736ecf90ed1e70a6bdf0ac53163bd5c5314e34afa0a9a34eac"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation03_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "d66cc371e912b23df5ebb9f6796d965436daf65b5606db18d68a7fc72459f05c"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation03_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "289d5bed7a0a670fc744600a22a4821316b2db9805a8ce15a857ba4f53588846"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation03_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "fb9f1ebee597cc4b66a067dfa0fb0a77dc2d4a3779255aa5a79a2d2682d50ed9"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation03_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "49e5aeecac68243e7d9e18fbe11f987bc8028930516791672c4d2b79cb1cca06"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation03_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "ae62192e9176917d5c2d6a761e74878ac998cc46260b6c065236791448b49db3"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation03_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "aaefcd484932feef0ea903c63e5772dec7480096b986b8c16da4b05367d9eb9b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation04_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "f363c69832ef4d5f1609972b4221583edc52d7c367fbf6bcf2306c784e42b5a1"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation04_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "8350af26f262d3db4d96ca146c84899df243a83ebcd9c0ef6cb2dd6fe7a1e0e9"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation04_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "bd7c71cb3624365eaebd15f0f861f1427013ae956ce5899feab83a529dd5e0b0"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation04_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "bfb0a0746e19ff7cbdb56ab7947eb53f3021932105fa3dea653c297546016282"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation04_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "f8e1c728c7691c67a37d7ca99e7cddc2c15169d1aa5cc763bf211892af322aec"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day3_consultation04_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "62aa0a66a06604e8655f39fb680f3f4cde56caf33c457ad5d5730bb66a730686"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation01_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "6f4f9ab8c6fada23ddcdb4bfb6ed7c2d7f53b71a8e48ec68ff2132e74074bebf"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation01_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "062c20ae0467f866a73a6cf7968eeced83f33b7f17b540180971f85f7cde8187"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation01_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "358ebd2a195385a0307ea4b1c944d069d1154c35e1b0cd30877d27b2723ca379"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation01_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "8d4c5668749412804961db34fe482855378c3df589fc81118fa9beb370926d17"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation01_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "5c249a80f2cf472435304618735020ff458b43abf0c1d61710c53a2b10b06569"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation01_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "84e187cb116b6b415c0dd0cb84d60db321bebfef58b0f7a542fba969a683e83e"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation02_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "ef126c78dd97fc67bfba40bf2c138cfa0f3fe067375b9b9459919b12149a6f54"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation02_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "417739a6977d0938c1b6c2e7b80f0eab6481edec7c66c9855f76069b7fc30f0e"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation02_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "683da49d59128fd356b1661c585a9434ce176900e5e7237a0014ed3452df0005"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation02_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "93ab50cdc4cd56c25ca922c61d4668234ce7b0cec4156bbbbb2f8487f915566d"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation02_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "30210fac5be948cc5c215428bfc0b9f1547724b21bc5afebf383da393b110833"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation02_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "0e290a82b9cceeace0b53c45d6735f6ef1096de4ebf63d14b58b1322108abe9b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation03_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "f8777b1d572ee727b2128c8c70703c71c773cd6a171bde2f2499588c786468af"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation03_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "f5efa6b6a20585299a2f9f7c8dc0b324f4dea30a95333c32cd97e17ac1494b0b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation03_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "fc9b0ff529d8a82437754fda155b3daaaac8ba10bfe3e4653b223a7e98495fa0"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation03_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "b2e9b63798c9aff8c932dd4833174641fdd9a019f4087fb3693bba20a368b533"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation03_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "bdd590833312b55dc0670ffba7f0650edb942cd4bec055a81b6075d5eb655945"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation03_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "64eec7d869eff70a3028a87c53ac03061b6f2adf2e43832b297c84f587a14af4"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation04_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "8a48020c06d555a45c522336a878b0a1d00d55c6df501ba512d096692eb593b1"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation04_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "01d6558014fe8b52fac40c1c29b6324d2bc20844f27b787fc9fb596a8889ad6e"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation04_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "17459a9f4c864bb38e5086e37249e8324381c0a94a12fbfe3ff2475d675624b5"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation04_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "ddb7e2c46baff69da52111224dcb8a2e4b3b17305329b0235576122110b5036b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation04_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "d014fd3593a9062291ed56f5a6e3a11d4be4a12d86b7f67c17dc437997b303ac"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day4_consultation04_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "69bbe0e1b6cd86fe292ed051ba061bd42943a69f6a3bf76371f94d3c2b0f6305"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation01_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "b15838e4664d9f324d4ba6af69f4760d65bde929678a3c7fe73a804df91f29c9"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation01_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "abde9625b6902346f90681a5b47dc848c98772acad71899c55dd3981cee804cb"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation01_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "90a8ce3c1a3d95d369a4afee6dccfed83fc1cf10bdd4ce416b2ec2c72a5d9029"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation01_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "a32daee9819bfc9e3ae27bf5800102efe38f0d73fb843d1ab59c7feb877fa462"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation01_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "7c37daaea43381fa818c6cdb0ace3af3d85ec135ee329cfe8b3cfe74eb062b26"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation01_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "22e7f988a81d4f2519f1f842f6141d247d49afb87b1d182bf0d34ee3eafde535"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation02_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "a66b9d05b65df5166b60475396b99446139447abea23fc260aaa8d318ce130ae"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation02_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "6fb97fd5c90d62e601b8298659bd52312b9394793fc4f7ded986331320268daf"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation02_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "6551990db9e2ec59a835c95ebc0884a7a3dba55eb4ab0745953811ff77d89458"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation02_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "ec4c4d78f2a6073e7a23a4c15b5f5c77fcdcbfda7ad9c9fdac967fd930d1ba5b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation03_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "133caba5803a050a85560abfb350c2400c62f054cfbb7553ce1966552647637a"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation03_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "11c23bc576c757338e9ae12c1801b98905492279a8d6e460072c4ccf139f6411"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation03_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "e175a1754f7e63159fa8ce2ec56f2dc295a68e59b04ccd4e80924b8717fd65f5"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation03_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "fdce2e4d7353dcd29129bddb757df155c0f00f576d5d59caa14c62b4049d5af8"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation03_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "b7a3ba0ac7c0ae9149560886f94eada610077acb47a1fcb3d25ead203ad43e4c"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation03_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "982be2e8a2029878e7836197b4ad1f591046a457bd47b33449951e262ab80a5b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation04_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "fd916624769a03155178937d825b0b75097f1c7d28e44b9960b1b74de90f2779"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation04_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "6622ecd50cbab384fc00399a4128c5ed9fa9e28920184285b5c602ebaf1579bf"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation04_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "cb63f2bfa4f8be04f138d53cd2c054b9bef26d9f334838cdee20ea8c540da400"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation04_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "edbde11aded90408dbf7bac976f338e1eec07dca29de2424d740d0fa10e748a5"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation04_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "e0f34f70f48b1a922071cfdcca2d748418c83fe6386a288f307c7840b90aa720"
+      },
+      {
+        "path": "evaluation/datasets/primock57-expanded-v1/day5_consultation04_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "45585cf6f0f40a839ede14c2133e706ce4b94415da82ddbff7ca026c7a979aee"
+      },
+      {
+        "path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "5cf5dededd535ab96174377c6d64e1155ea99464f17b8b52411d55ff92c50aaa"
+      },
+      {
+        "path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "0acf545cba8d79ae79e7ef6072e659f63cc1d85a4de3feca07ee49bb2dbf7a83"
+      },
+      {
+        "path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "158b721a21076d9ce26c7cd2e8a9fe3538dd0be37f63564886d6f66f6dcfe0d5"
+      },
+      {
+        "path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "5cead8c49715f89f3baa64a23a00e46d0d98fd62dc4741cc9d23e3cb11048030"
+      },
+      {
+        "path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "b89446c81ee05a2c23fddb669be6ab614ed8cf21b212bd55c7eb07f57ad8ceec"
+      },
+      {
+        "path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation02_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "e7599f887e6038915c62a8ffb9ff2c602a234d4e60b47fe41f3ce2f6f1fb8328"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation02_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "4bd86f49d6940de03f2424ec386f420a3610299e20de6fb26f322984cb2cea5b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation02_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "f79daa0e08e649bbbe45d4617450689cd0861205fd41d39db97080948c19361e"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation02_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "9f213bfb555e0e9807b7493fa3ec1003ad0412d2878408521392ea9ad7d0cf59"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation02_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "dcb694f774c437ad48bffc6474134513f535796452d5926954213888f20d3f13"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation02_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "48fd1428040cc879c1b0e54f7d1e7985ee51b194ffa92c49e537c5994d95a1f1"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation03_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "09cbb0abd695d7afb4759fc8e072ae2be661fc74bc578127df3db71578b2cba2"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation03_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "8183c8d48d88e30c1bcb766772bffcbda5d56b6d1d6dd316cb7e2611c8d8a26b"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation03_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "a383dc1038d2aad9d969e2e6ead0c3968004eff1a4051ecc596e9686b4626013"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation03_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "e21359b95d3c5ef53143c8a21aeac0043f35c8324669a2673a03cd1b60ec51b5"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation03_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "5c7bbc45b4147555c1e38e44b9c1a383ed79c87265d54ceaeef0431bd94bba04"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation03_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "31c38e3024951da3eb50537b07fd20549aec65723c4b0a16c355802a2eec61e7"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation04_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "09d2a5b197ba5771c1c5cb3a7ecb74f0c1c82b20bdc9de7d408f0f622dcf9d57"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation04_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "ec3ce4587dac7229039a0f5455416a1ec0572e2bdf5a788a0daf39147445cee2"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation04_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "227cd1fa21729f13de25f82766d828df13486458d5ad230effe50b18dfce8def"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation04_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "d479d4e176f67c3c54238082475833028f1ece95409cae1d6989d401d8f75baa"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation04_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "2e31221c1a17217be538f530632e5d5cec6c533a592076addb8ea07b30e78407"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation04_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "92c8b55bf42cccddc06964da6c6f928df10900219257aead27c79563e5424aec"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation05_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "5a751e562a81ee4118b849123a6f2aa77670ce126084a5f807a46b0d843b77f1"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation05_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "b4d2402ee673f69fe2992eae2ff1e90908d325a8d1d2776c1662aff684f46329"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation05_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "b9772e362bc0f72e828cd50d52366804a3dc6b8e69f33e7ef97ad9780dbadbfb"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation05_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "b245309813f1d41184e77687490c8fe699d1fc85e722e433bfe62f5df28274cb"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation05_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "2634a38422b0f3b7e450f4397efbfb1eb14d9082f566359804328fe626d5c906"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation05_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "64a279f479a8f4af6974c24ebd618cd29b03e4a5d865506049b74c0d8c27cda6"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation06_doctor.utterance01.wav",
+        "channels": 1,
+        "sha256": "a4934744323e3d758e90b4943301a053f148ca9cf342ae2157fec4f8aefd2324"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation06_doctor.utterance02.wav",
+        "channels": 1,
+        "sha256": "a73795ab7ecb4e337ffe2f56485a90165b156f433809aca14f469c7bbd0e9d0a"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation06_doctor.utterance03.wav",
+        "channels": 1,
+        "sha256": "b3081b456dd568dd3eee363b10af4c53de4692ca31423606f8247c72bb341af8"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation06_patient.utterance01.wav",
+        "channels": 1,
+        "sha256": "1991197901c588647dc6f68e9be0813bbb4f095f70f9e1916941da287d65acec"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation06_patient.utterance02.wav",
+        "channels": 1,
+        "sha256": "4ddf5151c31c6888e440eec48b740fa6f4cc688067bfea6900312192ae8d23ef"
+      },
+      {
+        "path": "evaluation/datasets/primock57-validation-v1/day1_consultation06_patient.utterance03.wav",
+        "channels": 1,
+        "sha256": "f113ea53b8e380acbd905dc67735563237243a3b62a86149b2e08e17cfda9ee4"
+      }
+    ],
+    "matching_synchronized_multichannel_recording_present": false,
+    "dataset_manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a",
+    "interpretation": "154 local evaluation WAVs are single-channel; role-separated utterance files do not provide synchronized two-channel or eight-channel matching audio."
+  },
+  "speaker_development_report": {
+    "path": "evaluation/reports/speaker-comparison-ledger-audit-4ea9da9.json",
+    "sha256": "02a2d919f4831f748dfa209caf9d80f4c7e8a019784bd3ae36c91b8fe384943f",
+    "manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a",
+    "reference_status": "upstream_not_independently_adjudicated",
+    "clinical_acceptance": false,
+    "fixed_window_DER": 0.5091192442385398,
+    "separate_channels_DER": 0.248089032959236,
+    "consultations_per_arm": 3
+  },
+  "blockers": {
+    "MTA-05-04": "No synchronized multichannel audio exists among current local assets. No generated channels are counted as a physical or matching-audio pass."
+  },
+  "clinical_release_authorized": false
+}

@@ -2693,12 +2693,21 @@
       "id": "MTA-05-04",
       "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "blocked_missing_asset",
       "description": "Test one-channel versus synchronized two-channel versus 8-channel grouping when matching audio exists.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-04-11-12-16-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-05-04-11-12-16-4ea9da9.json",
+          "report_sha256": "0027490e25607a0a63848f444fc419f478c63c876c5efc480032ea63c69a59af",
+          "check": "matched_multichannel_audio_comparison",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "No synchronized two/eight-channel matching recording is present in the local dataset. 154 available WAVs are mono."
     },
     {
       "id": "MTA-05-05",
@@ -2834,22 +2843,40 @@
       "id": "MTA-05-11",
       "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Use a channel-first route only when hardware/input channel semantics are established; otherwise safe manual correction.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-04-11-12-16-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-05-04-11-12-16-4ea9da9.json",
+          "report_sha256": "0027490e25607a0a63848f444fc419f478c63c876c5efc480032ea63c69a59af",
+          "check": "channel_semantics_requires_confirmation",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-05-12",
       "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Expose separate error budget per role and prioritize patient utterances and short responses.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-04-11-12-16-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-05-04-11-12-16-4ea9da9.json",
+          "report_sha256": "0027490e25607a0a63848f444fc419f478c63c876c5efc480032ea63c69a59af",
+          "check": "role_and_short_response_priority_error_budgets",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
@@ -2916,11 +2943,20 @@
       "id": "MTA-05-16",
       "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Keep speaker quality gate blocked if independent labels absent and report DER only as development evidence.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-04-11-12-16-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-05-04-11-12-16-4ea9da9.json",
+          "report_sha256": "0027490e25607a0a63848f444fc419f478c63c876c5efc480032ea63c69a59af",
+          "check": "diarization_gate_stays_development_only",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
@@ -3327,143 +3363,260 @@
       "id": "MTA-07-01",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Persist audio→transcript→span→fact→statement→note-version→approved-export graph with type-checked immutable references.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "immutable_audio_to_export_graph",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-02",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Enforce exact segment ID, character offsets, quote bytes and source SHA at proposal creation.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "exact_source_span_proposal_validation",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-03",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Implement inverse coverage: for each clinically material source fact, verify note contains its meaning or an explicitly reviewed omission.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "inverse_source_coverage",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-04",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Implement forward grounding: for every note claim, verify the cited source supports the complete statement.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "forward_claim_grounding",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-05",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Model many-to-many source facts and note statements while detecting merged claims that hide contradictory details.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "many_to_many_and_merged_claim_checks",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-06",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Detect medication-dose, route, frequency and recipient swaps even when the bag of words remains unchanged.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "medication_relationship_swap_checks",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-07",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Detect negation scope, family attribution, temporal action-status and uncertainty polarity inversions.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "negation_subject_time_uncertainty_checks",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-08",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Allow equivalent unit conversions and faithful paraphrases without creating excessive false alerts.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "equivalence_and_paraphrase_controls",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-09",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create bounded deterministic rule engine and optional local semantic verifier; never let semantic verdict clear deterministic blockers.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "deterministic_and_optional_local_verifier_policy",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-10",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Reject extra, missing or duplicate verdict IDs, blank supported citations, unsupported evidence spans, and malformed model payloads.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "strict_verdict_payload_validation",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-11",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "All verification calls must be bounded and either wholly accepted or wholly failed with no partial publication.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "bounded_all_or_nothing_verifier_batches",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-12",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Ensure note revisions invalidate prior verification receipts, approval and export authority as required by policy.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "revision_invalidates_old_approval_authority",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-07-13",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Extend historical recheck to export requests; preserve original signed historical bytes and flag potentially unsafe distributed copies.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
+      ],
+      "source_commit": "4ea9da93bbb7506de2f61e5715a839a76c1b5ca8",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json",
+          "report_sha256": "0d95315b5da5fe879364e1cd4bac81801e0ae547590c32c603ac237d3f3a9a8c",
+          "check": "historical_export_rechecks_current_rules",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
