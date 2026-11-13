@@ -4308,12 +4308,37 @@
       "id": "MTA-09-05",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Allow clinician to split or merge facts and speaker turns without destroying original provenance.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/SpeakerTurnEditor.tsx",
+        "services/review/turn_edits.py",
+        "tests/test_turn_edits.py",
+        "tests/test_review_workflow.py",
+        "evaluation/reports/master-task-mta-09-05-262a725.json"
+      ],
+      "source_commit": "262a725049aeacdf0fad16472f4abcb989332880",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-05-262a725.json",
+          "report_sha256": "2371653d55c54557e24b7004be493e246743f9d0067967593c7a6f459c9f37c7",
+          "check": "split_merge_provenance_and_validation",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-05-262a725.json",
+          "report_sha256": "2371653d55c54557e24b7004be493e246743f9d0067967593c7a6f459c9f37c7",
+          "check": "clinician_ui_browser_interaction",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-05-262a725.json",
+          "report_sha256": "2371653d55c54557e24b7004be493e246743f9d0067967593c7a6f459c9f37c7",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Browser interaction validation is blocked because the sandbox denies the loopback socket required to load the local test fixture; backend provenance and interval-preservation unit tests pass."
     },
     {
       "id": "MTA-09-06",

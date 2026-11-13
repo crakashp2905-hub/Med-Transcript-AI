@@ -1,0 +1,52 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "262a725049aeacdf0fad16472f4abcb989332880",
+  "tasks": [
+    "MTA-09-05"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/SpeakerTurnEditor.tsx": "4afc2fa268a275135197401a8bb3f3c09619b2c5bb8da18600ec19aafc4bc1a3",
+    "services/review/turn_edits.py": "356d6e911017d0fecc5b9dde1060ffdbd12070229aae73823df0dbe90e55f83d",
+    "tests/test_turn_edits.py": "c11439435140e0ec5a4db16eedaca0ff0869b27e2f99fc92b075350f4795afda",
+    "tests/test_review_workflow.py": "8e8edc2a8e0ebbd0bd0f20d5281687ec263b8f1cdcf74b6bb2eaaa1f842d297a"
+  },
+  "runtime": {
+    "python": "Python 3.13.5",
+    "platform": "Windows 11",
+    "test_mode": "socket-free transformation unit tests"
+  },
+  "checks": {
+    "split_merge_provenance_and_validation": {
+      "status": "pass"
+    },
+    "clinician_ui_browser_interaction": {
+      "status": "blocked"
+    },
+    "ruff": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest --confcutdir=services/review/routers tests/test_turn_edits.py -q",
+      "status": "pass",
+      "passed": 7
+    },
+    {
+      "command": "python -m ruff check tests/test_turn_edits.py services/review/turn_edits.py",
+      "status": "pass"
+    },
+    {
+      "command": "Playwright split/merge UI workflow",
+      "status": "blocked",
+      "observed": "Loopback access was denied by the managed environment; browser could not load the local fixture."
+    }
+  ],
+  "limitations": [
+    "The deterministic edit validator preserves parent IDs, channel, intervals and source coverage; 7 unit cases pass.",
+    "End-to-end interaction through the browser editor is blocked by loopback socket restrictions.",
+    "Changes create a new immutable transcript version; they do not overwrite original source versions."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "f6a844f3e6be48d9578d920df58e6ec282da07a6d626cafeb9e49e3245449fef"
+}
