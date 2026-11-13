@@ -85,6 +85,9 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeDisabled();
   await cards.nth(2).getByRole('button',{name:'Record as clinician addition'}).click();
   await expect(page.locator('.fact-card').filter({hasText:'Clinician addition'})).toHaveCount(1);
+  const sourceCoverage=page.getByRole('region',{name:'Directional source coverage'});
+  await expect(sourceCoverage).toBeVisible();
+  await expect(sourceCoverage).toContainText('Manual additions without transcript evidence: 1');
   await expect(page.getByRole('heading',{name:'Ready for your final review'})).toBeVisible();
   await page.getByRole('button',{name:'Finish review of saved version',exact:true}).click();
   await expect(page.getByText(/Completed \(deterministic\)/)).toBeVisible();

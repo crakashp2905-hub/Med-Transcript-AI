@@ -54,7 +54,13 @@ def test_detection_receipts_are_per_finding_hash_bound_and_redacted():
     source_secret = "Patient reports a highly private symptom phrase."
     note_secret = "Draft contains sensitive clinical details."
     transcript = {"id": "transcript-1", "segments": [{"text": source_secret}]}
-    note = {"id": "note-1", "facts": [{"origin": "source_linked"}]}
+    note = {
+        "id": "note-1",
+        "facts": [
+            {"origin": "source_linked"},
+            {"origin": "clinician_entered"},
+        ],
+    }
     finding = {
         "finding_id": "finding-1",
         "code": "unsupported_claim_terms",
@@ -73,6 +79,7 @@ def test_detection_receipts_are_per_finding_hash_bound_and_redacted():
     }
 
     coverage = directional_coverage(note, transcript, [finding])
+    assert coverage["unverifiable_manual_fact_count"] == 1
     receipt = coverage["redacted_detection_receipts"][0]
     digest = receipt["receipt_sha256"]
     receipt_body = {
