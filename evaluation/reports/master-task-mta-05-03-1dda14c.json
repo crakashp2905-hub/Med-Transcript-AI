@@ -1,0 +1,33 @@
+{
+  "schema_version": "master_task_implementation_receipt_v1",
+  "task_id": "MTA-05-03",
+  "source_commit": "1dda14c02cab889082eb92265e38a33f2d409a1d",
+  "status": "implemented",
+  "source_sha256": {
+    "services/diarization.py": "82b122d1251969ba4f23caf70c48e6a297ed8f93332914ab84bd06e24ee21ce7",
+    "services/diarization_policy.py": "945f113d2e2c2e89e3fe10b3bc40281ad3b88e9e8422bbb9ce8a633af8b98d53",
+    "services/speaker_results.py": "0fe5604670ec874c1101734fc49bf28d9128f347e4accb206668e975a8e06a6d",
+    "services/asr/channels.py": "6641ccd2e2699c1a069dbc061aff9639f3321b82579b86729e521b2c4235a185",
+    "tests/test_diarization_policy.py": "b8a71b34076b450f25e38e05f596cdc4db60553ee393eff0a4465646ead87fc7",
+    "tests/test_speaker_results.py": "d7c1a4158f664d720f4bf29f42af1e88ce511c2405973d4d1d384d0a6363232c",
+    "tests/test_asr_evaluation_contract.py": "8e460c07c08ee13407faf9e06f698735ce34bffb0fc6ea0714b0f9800bb8b9f1"
+  },
+  "checks": {
+    "speaker_cluster_and_clinical_role_are_distinct": {
+      "status": "pass",
+      "result": "Diarization creates anonymous speaker_N clusters only. Roles remain unknown/unconfirmed until clinician confirmation; channel identity and cluster identity are not treated as verified people."
+    }
+  },
+  "runtime": {
+    "commit": "1dda14c02cab889082eb92265e38a33f2d409a1d",
+    "test_command": "python -m pytest tests/test_diarization_policy.py tests/test_speaker_results.py tests/test_asr_evaluation_contract.py -q",
+    "passed": 14,
+    "failed": 0,
+    "paid_calls": 0,
+    "external_assets_fetched": 0
+  },
+  "limitations": [
+    "No independent speaker/role accuracy cohort is included by this separation contract."
+  ],
+  "runtime_sha256": "9f1671e104ac99a45811133206a77477c079cf06f842c274285c3cb7e98b9713"
+}

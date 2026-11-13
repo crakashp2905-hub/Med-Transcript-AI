@@ -2595,12 +2595,21 @@
       "id": "MTA-05-03",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Separate speaker cluster identity from role identity; never map first speaker to doctor automatically.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-03-1dda14c.json"
+      ],
+      "source_commit": "1dda14c02cab889082eb92265e38a33f2d409a1d",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-05-03-1dda14c.json",
+          "report_sha256": "e696442fd56997a9d119e9c532e297aadf5a0a88cac889340ca736cd11bd55ea",
+          "check": "speaker_cluster_and_clinical_role_are_distinct"
+        }
+      ],
+      "blocker": "Role accuracy remains unmeasured; this implementation ensures anonymous cluster IDs cannot be silently interpreted as clinician/patient roles."
     },
     {
       "id": "MTA-05-04",
