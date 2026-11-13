@@ -9,11 +9,19 @@ from services.verify import (
 def test_safe_pytest_diagnostics_excludes_parameter_payload_and_assertion_text():
     output = """FAILED tests/test_example.py::test_case[private fixture payload] - assertion includes source text
 ERROR tests/test_example.py::test_setup - sensitive setup traceback
+tests/test_example.py:42: AssertionError: private source sentence
 ================== 1 failed, 12 passed in 0.50s =================="""
     assert safe_pytest_diagnostics(output) == {
         "summary": "1 failed, 12 passed",
         "failed_tests": ["tests/test_example.py::test_case"],
         "error_tests": ["tests/test_example.py::test_setup"],
+        "failure_locations": [
+            {
+                "file": "tests/test_example.py",
+                "line": 42,
+                "error_type": "AssertionError",
+            }
+        ],
     }
 
 
