@@ -3247,11 +3247,20 @@
       "id": "MTA-06-17",
       "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Provide missing/unsupported model outputs as unavailable—not `[]`, not success, not zero cost.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-06-17-d99e180.json"
+      ],
+      "source_commit": "d99e180dd1d50a45c47c2bdd28271403e81eb38c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-06-17-d99e180.json",
+          "report_sha256": "8216d6d66835d1f3fe0d9944de9f31270920c5f149660c544fae5c67b93d992a",
+          "check": "unavailable_model_outputs_fail_closed",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

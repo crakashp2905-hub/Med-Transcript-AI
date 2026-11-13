@@ -1,0 +1,39 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "d99e180dd1d50a45c47c2bdd28271403e81eb38c",
+  "tasks": [
+    "MTA-06-17"
+  ],
+  "source_hashes": {
+    "services/review/clinical_routes.py": "26d0d564e6a11f7ccb73f0c434b2284fda7956e35d3036d2e0f010a27340ed25",
+    "tests/test_clinical_model_failure_mapping.py": "e867585a67b35788cf24ba29425e27025436544cb87f07e0f63841a231848157"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local command; version not separately captured"
+  },
+  "runtime_sha256": "7d6817a2aa9ca5d215f4d50f01250f46625244fba19ffd536a634b84d1e76246",
+  "checks": {
+    "unavailable_model_outputs_fail_closed": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_clinical_model_failure_mapping.py tests/test_clinical_extraction_comparison.py -q",
+      "status": "pass",
+      "passed": 8
+    },
+    {
+      "command": "python -m ruff check services/review/clinical_routes.py tests/test_clinical_model_failure_mapping.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/clinical_routes.py tests/test_clinical_model_failure_mapping.py",
+      "status": "pass"
+    }
+  ],
+  "behavior": "Clinical model failure/unsupported output maps to HTTP 503 clinical_model_unavailable for extraction and verification; request validation failures remain 422; no proposal persistence path runs.",
+  "clinical_release_authorized": false
+}
