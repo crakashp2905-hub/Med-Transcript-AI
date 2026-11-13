@@ -85,6 +85,56 @@ def role_metrics(reference, predicted, mapping):
                 for k in ("start_ms", "end_ms")
             ],
         )
+        row["priority_label"] = "high" if role == "patient" else "standard"
+    short_word_limit = 5
+    short_turns = [
+        row
+        for row in reference
+        if isinstance(row.get("text"), str)
+        and 0 < len(row["text"].split()) <= short_word_limit
+    ]
+    short_reference_ms = short_covered_ms = short_missed_count = 0
+    for turn in short_turns:
+        duration = turn["end_ms"] - turn["start_ms"]
+        short_reference_ms += duration
+        intervals = sorted(
+            (
+                max(turn["start_ms"], row["start_ms"]),
+                min(turn["end_ms"], row["end_ms"]),
+            )
+            for row in predicted
+            if mapping.get(row["speaker_id"]) == turn["role"]
+            and row["start_ms"] < turn["end_ms"]
+            and row["end_ms"] > turn["start_ms"]
+        )
+        covered = 0
+        covered_start = covered_end = None
+        for start, end in intervals:
+            if covered_start is None:
+                covered_start, covered_end = start, end
+            elif start <= covered_end:
+                covered_end = max(covered_end, end)
+            else:
+                covered += covered_end - covered_start
+                covered_start, covered_end = start, end
+        if covered_start is not None:
+            covered += covered_end - covered_start
+        short_covered_ms += covered
+        if covered < duration:
+            short_missed_count += 1
+    result["priority_metrics"] = {
+        "patient_role_priority": "high",
+        "patient_role_error_budget": result.get("patient"),
+        "short_response_word_limit": short_word_limit,
+        "short_response_count": len(short_turns),
+        "short_response_missed_count": short_missed_count,
+        "short_response_reference_ms": short_reference_ms,
+        "short_response_covered_ms": short_covered_ms,
+        "short_response_time_recall": (
+            short_covered_ms / short_reference_ms if short_reference_ms else None
+        ),
+        "threshold_status": "engineering_priority_heuristic_not_clinical_gold",
+    }
     return result
 
 
