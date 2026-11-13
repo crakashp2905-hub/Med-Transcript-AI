@@ -2652,12 +2652,23 @@
       "id": "MTA-05-05",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create cross-talk detector using energy/correlation and explicit unknown status when ambiguous.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-05-f3e9fd7.json",
+        "services/channel_signal_audit.py",
+        "tests/test_channel_signal_audit.py"
+      ],
+      "source_commit": "f3e9fd7d4ceefc96563b9b72257360254c4af41a",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-05-05-f3e9fd7.json",
+          "report_sha256": "ccae44f198b46901305350d4eb561f11dca0999b9effa9cefa935fcd9d2bdb88",
+          "check": "calibration_energy_and_channel_correlation_report_explicit_ambiguous_status"
+        }
+      ],
+      "blocker": "Hardware and clinical calibration remain unvalidated; ambiguous channels fail safe to unknown."
     },
     {
       "id": "MTA-05-06",

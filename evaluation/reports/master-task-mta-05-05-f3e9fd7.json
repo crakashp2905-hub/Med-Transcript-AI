@@ -1,0 +1,26 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-05-05",
+  "source_commit": "f3e9fd7d4ceefc96563b9b72257360254c4af41a",
+  "checks": {
+    "calibration_energy_and_channel_correlation_report_explicit_ambiguous_status": {
+      "status": "pass",
+      "test": "test_distinct_channels_pass_but_swap_and_crosstalk_fail"
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "2 passed: tests/test_channel_signal_audit.py and tests/test_channel_detectors.py",
+    "ruff": "pass"
+  },
+  "runtime_sha256": "566f4bbb02e5043c861780de47a8c3feb0565b6dbdc33bc1b8e2ab8ce6393442",
+  "method": "known-tone energy leakage ratio plus absolute channel-signal correlation",
+  "thresholds": "caller-supplied energy tolerance; fixed correlation threshold 0.95",
+  "clinical_acceptance": false,
+  "limitations": [
+    "Synthetic/generated calibration audio is not physical hardware validation.",
+    "Thresholds are engineering diagnostics and not clinically calibrated.",
+    "Ambiguous energy/correlation disagreement is reported as unknown and requires human review."
+  ]
+}
