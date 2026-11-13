@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "9fbbd6821c819ddc392609d4a421d4b79e9cad1c",
+  "tasks": [
+    "MTA-08-03"
+  ],
+  "source_hashes": {
+    "services/review/clinical.py": "90b88465621722521b452f5f29885a474ac3d8c81240efd04513a16cab728e42",
+    "services/review/providers.py": "f5b72b99b9bc2b4ba79cf889e2fa4b7f2ff0322d06c0d5385c2b629ca901e6ae",
+    "tests/test_drafting_atomicity.py": "62a4f71c5a82d48f96467b5e674da01e08788d6de28a8e24acdb7b87275d9646",
+    "tests/test_allergy_extraction.py": "9682ce0739e7e55847dece8a55749a6bf278074c072b6fd6190fe66b8a414dcb"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation"
+  },
+  "checks": {
+    "unknown_allergy_and_exam_not_autofilled_and_explicit_denial_source_linked": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_drafting_atomicity.py tests/test_allergy_extraction.py -q",
+      "status": "pass",
+      "passed": 8
+    },
+    {
+      "command": "python -m ruff check tests/test_drafting_atomicity.py tests/test_allergy_extraction.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check tests/test_drafting_atomicity.py tests/test_allergy_extraction.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Deterministic rules preserve explicitly mentioned findings; this does not establish exhaustive clinical-history extraction."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "b0d7f0cfcc1fcfcd4666758d682c810a67e906990ad93c1596a4bcf8925804e3"
+}

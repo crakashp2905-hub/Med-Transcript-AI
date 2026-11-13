@@ -3848,11 +3848,20 @@
       "id": "MTA-08-03",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Explicitly mark not stated/unknown; prohibit auto-writing “no allergies” and “normal examination” without evidence.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-08-03-9fbbd68.json"
+      ],
+      "source_commit": "9fbbd6821c819ddc392609d4a421d4b79e9cad1c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-03-9fbbd68.json",
+          "report_sha256": "906e5d77823bb0b3bf0e6675ee08081c3b6f633e8acc51ff5e4bc9d53d45e31d",
+          "check": "unknown_allergy_and_exam_not_autofilled_and_explicit_denial_source_linked",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
