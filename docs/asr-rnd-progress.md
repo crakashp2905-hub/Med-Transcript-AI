@@ -707,6 +707,19 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   case/coverage/failure accounting, exact historical scores, the WER gate and
   resource receipt. C10 remains partial: other modes and candidates still need
   fresh full-run latency and memory measurements.
+- **MTA-ASR-C10 large-v3 speech-aware fresh full run:** Suite v6 supersedes v5
+  and removes the large-v3 historical resume source; suite and manifest hashes
+  match, and all seven bound source hashes matched before inference. All 16
+  cases were newly inferred with full coverage and zero failed cases/chunks.
+  The receipt exactly matches the prior complete speech-aware edit counts:
+  clean 3,211/13,683 (23.4671%) and distracted 3,293/13,683 (24.0664%). Fresh
+  per-condition wall time was 4,979.1/4,985.7 seconds after a 35.5-second model
+  load. Full-process peak working set was 3,445,854,208 bytes, within 16 GiB.
+  Both results fail the unchanged <=5% admission gate. The regression
+  `tests/test_detailed_benchmark.py::test_detailed_v6_large_v3_speech_aware_receipt_is_fresh_and_full`
+  passed with the no-resume suite regression; report SHA-256 is
+  `5a7ff8607521bcb0fb1764b358162358e8281f4397e40b01dfe9e4518144c0b9`.
+  C10 remains partial pending fresh receipts for the remaining modes/candidates.
 - **MTA-ASR-D01:** The operational application path remains the pinned
   Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration
   (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are

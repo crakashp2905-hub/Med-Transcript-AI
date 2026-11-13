@@ -8,7 +8,7 @@
   },
   "progress_record": {
     "path": "docs/asr-rnd-progress.md",
-    "sha256": "99fd77c52f642fdd1b8893916447ae65a15ba99840eed52f07aa3a09bcf32121"
+    "sha256": "cfa89c75e619f0c2b2f9eca2211487822ab084cdc78c0530c0b33b7b586a8bab"
   },
   "invariants": {
     "maximum_normalized_wer": 0.05,
@@ -482,6 +482,11 @@
           "line": 698,
           "text": "Suite v4 ran all 16 manifest cases afresh (8 clean/8 distracted), with complete coverage and zero failed cases/chunks. It exactly reproduces immutable v2 overlap edits: clean 3,228/13,683 (23.5913%) and distracted 3,306/13,683 (24.1614%). Per-condition wall time was 6,585.5/6,608.3 seconds; model load was 41.3 seconds. Full-process peak working set was 3,445,260,288 bytes within 16 GiB. The <=5% gate remains FAIL. A focused regression pins the receipt, full coverage/failure accounting, exact historical scores, gate and resource measurement. C10 remains partial because other modes/candidates lack fresh full-run latency and memory receipts.",
           "status_basis": "Suite v4 ran all 16 manifest cases afresh (8 clean/8 distracted), with complete coverage and zero failed cases/chunks. It exactly reproduces immutable v2 overlap edits: clean 3,228/13,683 (23.5913%) and distracted 3,306/13,683 (24.1614%). Per-condition wall time was 6,585.5/6,608.3 seconds; model load was 41.3 seconds. Full-process peak working set was 3,445,260,288 bytes within 16 GiB. The <=5% gate remains FAIL. A focused regression pins the receipt, full coverage/failure accounting, exact historical scores, gate and resource measurement. C10 remains partial because other modes/candidates lack fresh full-run latency and memory receipts."
+        },
+        {
+          "line": 710,
+          "text": "Suite v6 supersedes v5 and removes the historical large-v3 resume source. All seven source hashes, suite and manifest hashes matched before inference. All 16 cases were newly inferred with full coverage and zero failures. The receipt exactly matches the prior complete speech-aware edit counts: clean 3,211/13,683 (23.4671%) and distracted 3,293/13,683 (24.0664%). Fresh condition wall time was 4,979.1/4,985.7 seconds after 35.5-second model load. Full-process peak working set was 3,445,854,208 bytes within 16 GiB. Both conditions fail the unchanged <=5% gate. Focused suite and receipt regressions passed; report SHA-256 5a7ff8607521bcb0fb1764b358162358e8281f4397e40b01dfe9e4518144c0b9. Other C10 modes/candidates remain unmeasured.",
+          "status_basis": "Suite v6 supersedes v5 and removes the historical large-v3 resume source. All seven source hashes, suite and manifest hashes matched before inference. All 16 cases were newly inferred with full coverage and zero failures. The receipt exactly matches the prior complete speech-aware edit counts: clean 3,211/13,683 (23.4671%) and distracted 3,293/13,683 (24.0664%). Fresh condition wall time was 4,979.1/4,985.7 seconds after 35.5-second model load. Full-process peak working set was 3,445,854,208 bytes within 16 GiB. Both conditions fail the unchanged <=5% gate. Focused suite and receipt regressions passed; report SHA-256 5a7ff8607521bcb0fb1764b358162358e8281f4397e40b01dfe9e4518144c0b9. Other C10 modes/candidates remain unmeasured."
         }
       ],
       "completion_claim": false

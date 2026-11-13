@@ -185,6 +185,24 @@ def test_detailed_suite_v5_binds_current_sources_without_rewriting_v4():
         assert file_sha256(source) == digest
 
 
+def test_detailed_suite_v6_large_v3_speech_aware_disables_historical_resume():
+    suite_path = Path("evaluation/detailed-suite-v6.json")
+    suite = json.loads(suite_path.read_text(encoding="utf-8"))
+    predecessor = Path("evaluation/detailed-suite-v5.json")
+    job = next(
+        item for item in suite["jobs"] if item["candidate_id"] == "faster-whisper-large-v3"
+    )
+
+    assert suite["supersedes_suite"] == predecessor.as_posix()
+    assert suite["supersedes_suite_sha256"] == file_sha256(predecessor)
+    assert suite["source_refresh_reason"]
+    assert "resume_by_mode" not in job
+    assert suite["manifest_sha256"] == file_sha256(suite["manifest"])
+    assert suite["maximum_normalized_wer"] == 0.05
+    for source, digest in suite["source_text_sha256"].items():
+        assert file_sha256(source) == digest
+
+
 def test_detailed_v4_large_v3_fixed_receipt_is_full_and_reproduces_baseline():
     report_path = Path(
         "evaluation/runs/meddistract-detailed-v4/faster-whisper-large-v3.fixed.json"
@@ -267,6 +285,59 @@ def test_detailed_v4_large_v3_overlap_receipt_is_full_and_reproduces_baseline():
     for condition in ("clean", "distracted"):
         observed = report["conditions"][condition]
         frozen = baseline["conditions"][condition]
+        assert observed["samples"] == 8
+        assert observed["failed_samples"] == 0
+        assert observed["reference_words"] == 13683
+        assert observed["normalized_edits"] == frozen["normalized_edits"]
+        assert observed["normalized_wer"] == frozen["normalized_wer"]
+        assert observed["wall_seconds"] > 0
+        assert observed["wer_gate"]["maximum_normalized_wer"] == 0.05
+        assert observed["wer_gate"]["status"] == "fail"
+    resource = report["resource_measurement"]
+    assert resource["status"] == "measured"
+    assert resource["cohort_scope"] == "full_process_run"
+    assert resource["budget_status"] == "within_budget"
+    assert resource["peak_resident_bytes"] < 16 * 1024**3
+
+
+def test_detailed_v6_large_v3_speech_aware_receipt_is_fresh_and_full():
+    report_path = Path(
+        "evaluation/runs/meddistract-detailed-v6/faster-whisper-large-v3.speech_aware.json"
+    )
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    suite_path = Path("evaluation/detailed-suite-v6.json")
+    suite = json.loads(suite_path.read_text(encoding="utf-8"))
+    manifest = json.loads(Path(suite["manifest"]).read_text(encoding="utf-8"))
+    prior_full = json.loads(
+        Path(
+            "evaluation/runs/meddistract-detailed-v3/faster-whisper-large-v3.speech_aware.json"
+        ).read_text(encoding="utf-8")
+    )
+    job = next(
+        item for item in suite["jobs"] if item["candidate_id"] == "faster-whisper-large-v3"
+    )
+
+    assert hashlib.sha256(report_path.read_bytes()).hexdigest() == (
+        "5a7ff8607521bcb0fb1764b358162358e8281f4397e40b01dfe9e4518144c0b9"
+    )
+    assert report["complete"] is True
+    assert report["mode"] == "speech_aware"
+    assert report["candidate_id"] == "faster-whisper-large-v3"
+    assert report["suite_sha256"] == hashlib.sha256(suite_path.read_bytes()).hexdigest()
+    assert report["manifest_sha256"] == suite["manifest_sha256"]
+    assert "resume_by_mode" not in job
+    assert {case["id"] for case in report["cases"]} == {
+        case["group_id"] for case in manifest["cases"]
+    }
+    assert len(report["cases"]) == 16
+    assert all(not case["failed"] for case in report["cases"])
+    assert all(case["input_coverage_complete"] for case in report["cases"])
+    assert all(
+        not chunk["failed"] for case in report["cases"] for chunk in case["chunks"]
+    )
+    for condition in ("clean", "distracted"):
+        observed = report["conditions"][condition]
+        frozen = prior_full["conditions"][condition]
         assert observed["samples"] == 8
         assert observed["failed_samples"] == 0
         assert observed["reference_words"] == 13683
