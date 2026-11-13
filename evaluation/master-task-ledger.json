@@ -3623,11 +3623,20 @@
       "id": "MTA-07-14",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Add adversarial suite for prompt injection embedded in spoken content, transcript text, medication labels and filenames.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-14-0454cf6.json"
+      ],
+      "source_commit": "0454cf6c2baaffe4e6696ff4952caaafdadc4520",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-14-0454cf6.json",
+          "report_sha256": "8f7d1a9bbe127cae00295edf165ab2024d9a1bf6a3f2fc6a5218a8ca37c14523",
+          "check": "synthetic_prompt_injection_surface_regressions",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

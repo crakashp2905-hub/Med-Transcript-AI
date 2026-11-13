@@ -1,0 +1,44 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "0454cf6c2baaffe4e6696ff4952caaafdadc4520",
+  "tasks": [
+    "MTA-07-14"
+  ],
+  "source_hashes": {
+    "evaluation/clinical-prompt-injection-v1.json": "cb81256f9b32d7b3b3efc664f9e4ea715a2d0fb8fe78ab497fdb39b7e8e5da60",
+    "tests/test_prompt_injection.py": "8144b39234548be34f91c0584d038b8f21a818a6226a44d288fc63cdd70f89e9",
+    "services/review/clinical_models.py": "00166adf533c5bb62755f749e20bc69b9ffb21a81c41b3a20ada1a769efc4ff5",
+    "services/review/clinical.py": "90b88465621722521b452f5f29885a474ac3d8c81240efd04513a16cab728e42"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local invocation; exact version not separately captured"
+  },
+  "runtime_sha256": "b414ebf8ef937d1ade8c619ada0b43b6424df7d32dc2d851e1601fe81dd6c77b",
+  "checks": {
+    "synthetic_prompt_injection_surface_regressions": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_prompt_injection.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "python -m ruff check tests/test_prompt_injection.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check tests/test_prompt_injection.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "This checks deterministic source handling and that filenames do not enter local clinical model request payloads. It does not prove a language model is immune to prompt injection.",
+    "Cases are synthetic security regressions, not independent clinical gold."
+  ],
+  "clinical_release_authorized": false
+}
