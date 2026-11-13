@@ -2738,12 +2738,24 @@
       "id": "MTA-05-09",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Prevent family history statements from acquiring patient attribution due to diarization role mistakes.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-09-5c796ce.json",
+        "services/clinical_attribution.py",
+        "services/application_pipeline.py",
+        "tests/test_application_pipeline.py"
+      ],
+      "source_commit": "5c796ce9926b58a068e04b26458851028e57b16f",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-05-09-5c796ce.json",
+          "report_sha256": "9c9b1d45fee0d3a4e5e92e67d559945d8f98962a9b067396e7d9dacfb7eb0616",
+          "check": "application_family_subject_comes_from_utterance_not_speaker_hint"
+        }
+      ],
+      "blocker": "Ambiguous family references and clinical acceptance still require qualified human review."
     },
     {
       "id": "MTA-05-10",

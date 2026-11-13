@@ -1,0 +1,24 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-05-09",
+  "source_commit": "5c796ce9926b58a068e04b26458851028e57b16f",
+  "checks": {
+    "application_family_subject_comes_from_utterance_not_speaker_hint": {
+      "status": "pass",
+      "test": "test_family_history_subject_is_derived_from_text_not_a_diarized_speaker_hint"
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "2 passed: family history attribution and clinical attribution unit cases",
+    "ruff": "pass"
+  },
+  "runtime_sha256": "a5e3b34682e004fb0bea46f6f77640af13e104074fb77b63ed6cd311e7035970",
+  "implementation": "The application attribution path classifies subject from the utterance text, exposes subject_attribution_source=utterance_content_only, and explicitly records that diarization roles are not used for subject attribution. Family kinship terms are mapped to family subject.",
+  "clinical_acceptance": false,
+  "limitations": [
+    "Text rules do not resolve every ambiguous pronoun or family relationship.",
+    "Role errors still require clinician review; this guard prevents a diarization role from silently overriding family-content attribution."
+  ]
+}
