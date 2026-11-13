@@ -520,6 +520,9 @@ def test_model_transport_constrains_input_quotes_and_verifies_digest(monkeypatch
     assert result["provenance"]["usage"] == {"prompt_tokens": 7}
     assert result["provenance"]["model_digest"] == MODEL_DIGESTS["qwen2.5:1.5b"]
     assert not result["facts"][0]["reviewed"]
+    metadata = json.dumps(result["provenance"])
+    assert "Extract each atomic clinical assertion" not in metadata
+    assert "Taking warfarin 5 mg." not in metadata
 
 
 def test_changed_model_digest_prevents_inference(monkeypatch):

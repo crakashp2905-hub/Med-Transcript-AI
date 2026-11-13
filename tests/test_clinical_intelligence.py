@@ -465,3 +465,6 @@ def test_local_json_provider_uses_bounded_transport_and_safe_usage(monkeypatch):
     result = provider.draft([fact], authorized=True, synthetic=True)
     assert result["provenance"]["usage"] == {"prompt_tokens": 12}
     assert result["status"] == "review_required"
+    metadata = json.dumps(result["provenance"])
+    assert "No fever." not in metadata
+    assert "Draft SOAP statements solely" not in metadata
