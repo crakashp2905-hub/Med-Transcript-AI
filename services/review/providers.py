@@ -27,7 +27,7 @@ class Statement(BaseModel):
 
 class Draft(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    statements: list[Statement] = Field(max_length=300)
+    statements: list[Statement] = Field(min_length=1, max_length=300)
 
 
 def validate(draft, facts):
@@ -234,6 +234,9 @@ class JSONProvider:
             if len(raw) > 262144:
                 raise ValueError("Provider response exceeds budget")
             body = strict_loads(raw, max_bytes=262144)
+            reported_model = body.get("model")
+            if reported_model is not None and reported_model != self.model:
+                raise ValueError("Provider model version mismatch")
             result = validate(
                 strict_loads(
                     body["choices"][0]["message"]["content"], max_bytes=262144
