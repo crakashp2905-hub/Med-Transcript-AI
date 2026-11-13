@@ -1,0 +1,25 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-05-06",
+  "source_commit": "c6f316d2fc2e0dfe908594497c62b512c78ffa1c",
+  "checks": {
+    "channel_pipeline_groups_turns_preserves_timestamps_and_suppresses_duplicates_with_audit": {
+      "status": "pass",
+      "test_count": 7
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "7 passed: source-aligned channel postprocessing and application integration",
+    "ruff": "pass"
+  },
+  "runtime_sha256": "0f2c755b16c96c2af953c5bca33cd816517d185e62b9e7a11463ea91ed0d6827",
+  "implementation": "channel turn grouping is applied by services.asr.channels.build_channels; exact near-aligned text duplicates across channels are omitted from primary segments but preserved in suppressed_channel_segments and channel_postprocessing_log. Original segment IDs, channel indexes and time ranges are retained.",
+  "clinical_acceptance": false,
+  "limitations": [
+    "Duplicate suppression is conservative and any suppression adds a clinician-review flag.",
+    "Channel index is not a clinician/patient role.",
+    "No hardware validation or independent clinical labels are available."
+  ]
+}

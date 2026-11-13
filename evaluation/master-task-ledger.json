@@ -2674,12 +2674,24 @@
       "id": "MTA-05-06",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Add VAD postprocessing, turn-smoothing and duplicate-channel speech suppression with source-aligned logs.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-06-c6f316d.json",
+        "services/asr/channel_turns.py",
+        "services/asr/channels.py",
+        "tests/test_channel_turns.py"
+      ],
+      "source_commit": "c6f316d2fc2e0dfe908594497c62b512c78ffa1c",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-05-06-c6f316d.json",
+          "report_sha256": "72d0f9b076b41a3351876ddc9649a79c1c862aecc10ae2ebd1e68310d5397e29",
+          "check": "channel_pipeline_groups_turns_preserves_timestamps_and_suppresses_duplicates_with_audit"
+        }
+      ],
+      "blocker": "The engineering behavior is verified with deterministic tests; independent clinical safety and physical channel behavior remain unvalidated."
     },
     {
       "id": "MTA-05-07",
