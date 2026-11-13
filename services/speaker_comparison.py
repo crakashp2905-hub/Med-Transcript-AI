@@ -83,7 +83,7 @@ def role_metrics(reference, predicted, mapping):
     return result
 
 
-def compare(root, output):
+def compare(root, output, *, collar_ms=0, overlap_policy="score_all"):
     root = Path(root)
     manifest_path = root / "evaluation/datasets/primock57-full-v1/manifest.json"
     manifest = json.loads(manifest_path.read_text())
@@ -99,6 +99,11 @@ def compare(root, output):
         "schema_version": "speaker_comparison_v1",
         "reference_status": "upstream_not_independently_adjudicated",
         "role_mapping": "optimal_reference_mapping_for_scoring_only_never_application_role_assignment",
+        "scoring_policy": {
+            "collar_ms": collar_ms,
+            "overlap_policy": overlap_policy,
+            "jer": "mean per-reference-speaker Jaccard error after global anonymous-cluster mapping",
+        },
         "clinical_acceptance": False,
         "conditions": [],
     }
@@ -120,7 +125,12 @@ def compare(root, output):
                 else case.get("result", {}).get("segments", case.get("segments", []))
             )
             gold = reference[case["id"]]["reference_turns"]
-            metrics = score_turns(gold, segments)
+            metrics = score_turns(
+                gold,
+                segments,
+                collar_ms=collar_ms,
+                overlap_policy=overlap_policy,
+            )
             rows.append(
                 {
                     "id": case["id"],
@@ -143,12 +153,21 @@ def compare(root, output):
             for c in rows
         )
         total = sum(c["metrics"]["reference_speaker_ms"] for c in rows)
+        jer_values = [
+            value
+            for case in rows
+            for value in case["metrics"]["per_reference_speaker_jer"].values()
+            if value is not None
+        ]
         report["conditions"].append(
             {
                 "id": label,
                 "evidence_sha256": file_sha256(path),
                 "cases": rows,
                 "weighted_der": errors / total,
+                "mean_speaker_jer": (
+                    sum(jer_values) / len(jer_values) if jer_values else None
+                ),
             }
         )
     report["absolute_der_reduction"] = (
@@ -163,5 +182,11 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--root", default=".")
     p.add_argument("--out", required=True)
+    p.add_argument("--collar-ms", type=int, default=0)
+    p.add_argument(
+        "--overlap-policy",
+        choices=["score_all", "ignore_reference_overlap"],
+        default="score_all",
+    )
     a = p.parse_args()
-    compare(a.root, a.out)
+    compare(a.root, a.out, collar_ms=a.collar_ms, overlap_policy=a.overlap_policy)
