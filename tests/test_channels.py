@@ -252,3 +252,40 @@ def test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job(
     assert trace["coverage_percent"] == 80.0
     assert [channel["covered_ms"] for channel in trace["channels"]] == [0, 80]
     assert trace["clinical_completeness"] == "unverified"
+    assert value["suppressed_channel_segments"] == []
+    assert [row["segment_id"] for row in value["channel_postprocessing_log"]] == [
+        row["segment_id"] for row in value["segments"]
+    ]
+
+
+def test_channel_pipeline_keeps_duplicate_source_evidence_reviewable(environment):
+    from uuid import uuid4
+    from services.asr.channels import build_channels
+
+    profile = environment.profile
+    speech = {
+        "segments": [
+            {"start_seconds": 0.1, "end_seconds": 0.8, "text": "Take one tablet."}
+        ],
+        "duration_seconds": 1.0,
+        "inference_executed": True,
+    }
+    value = build_channels(
+        {"channel_outputs": [speech, speech]},
+        {"channels": 2, "duration_ms": 1000, "sha256": "c" * 64},
+        str(uuid4()),
+        str(uuid4()),
+        profile,
+        str(uuid4()),
+        1,
+    )
+
+    assert len(value["segments"]) == 1
+    assert len(value["suppressed_channel_segments"]) == 1
+    assert "duplicate_channel_speech_requires_review" in value["review_flags"]
+    assert value["suppressed_channel_segments"][0]["requires_human_review"] is True
+    assert len(value["channel_postprocessing_log"]) == 2
+    assert {row["channel_index"] for row in value["channel_postprocessing_log"]} == {
+        0,
+        1,
+    }

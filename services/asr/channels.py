@@ -10,6 +10,7 @@ from services.asr.adapter import ASRFailure
 from services.asr.transcripts import build_transcript
 from services.asr.provenance import aggregate_channel_modes
 from services.asr.timeline import build_audio_segment_trace
+from services.asr.channel_turns import postprocess_channel_segments
 from services.audio_provenance import (
     channel_timeline,
     derive_provenance,
@@ -121,6 +122,19 @@ def build_channels(
     body["segments"] = sorted(
         segments, key=lambda s: (s["start_ms"], s["channel_index"], s["end_ms"])
     )
+    postprocessed = postprocess_channel_segments(
+        body["segments"], duration_ms=metadata["duration_ms"]
+    )
+    body["segments"] = postprocessed["segments"]
+    body["suppressed_channel_segments"] = postprocessed["suppressed_segments"]
+    body["channel_postprocessing_log"] = postprocessed["processing_log"]
+    body["channel_postprocessing_policy"] = {
+        "turn_grouping_max_gap_ms": postprocessed["turn_grouping_max_gap_ms"],
+        "duplicate_overlap_ratio": postprocessed["duplicate_overlap_ratio"],
+        "duplicate_boundary_tolerance_ms": postprocessed[
+            "duplicate_boundary_tolerance_ms"
+        ],
+    }
     body["channels"] = channels
     body["untranscribed_intervals"] = [
         {**gap, "channel_index": c["channel_index"]}
@@ -141,6 +155,11 @@ def build_channels(
         body["review_flags"] = [
             flag for flag in body["review_flags"] if flag != "digital_silence"
         ]
+    if postprocessed["suppressed_segments"]:
+        body["review_flags"] = sorted(
+            set(body["review_flags"])
+            | {"duplicate_channel_speech_requires_review"}
+        )
     body["provenance"].pop("isolated_channel_pcm_sha256", None)
     body["provenance"]["inference_executed"] = any(
         c["provenance"]["inference_executed"] for c in channels
