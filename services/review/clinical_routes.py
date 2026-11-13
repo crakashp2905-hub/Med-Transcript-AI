@@ -132,7 +132,7 @@ def register(
     def save(con, eid, actor, kind, result, tx, transcript_hash, note_id=None):
         row = encounter(con, eid, actor)
         require_processing(con, eid)
-        current, _ = get_tx(con, eid, tx["id"])
+        current, current_tx = get_tx(con, eid, tx["id"])
         if (
             row["current_transcript"] != tx["id"]
             or current["sha256"] != transcript_hash
@@ -140,6 +140,32 @@ def register(
             and row["current_note"] != note_id
         ):
             raise HTTPException(412, "source_changed_during_clinical_inference")
+        if kind == "fact_proposal":
+            from services.review.clinical_state import proposal_state
+
+            previous_snapshot = None
+            prior_rows = con.execute(
+                "SELECT * FROM model_proposals WHERE encounter=? AND kind='fact_proposal' ORDER BY created_at DESC LIMIT 100",
+                (str(eid),),
+            ).fetchall()
+            for prior_row in prior_rows:
+                prior = decode_proposal(con, prior_row, eid)
+                if prior.get("transcript_version_id") == tx["id"]:
+                    continue
+                previous_snapshot = prior.get("clinical_state_snapshot")
+                if previous_snapshot is not None:
+                    break
+            try:
+                snapshot, comparison = proposal_state(
+                    current_tx,
+                    transcript_hash,
+                    result.get("facts", []),
+                    previous_snapshot,
+                )
+            except ValueError:
+                raise HTTPException(422, "clinical_state_snapshot_rejected") from None
+            result["clinical_state_snapshot"] = snapshot
+            result["clinical_state_comparison"] = comparison
         pid = str(uuid4())
         stamp = datetime.now(timezone.utc).isoformat()
         result.update(

@@ -85,6 +85,13 @@ def test_fact_proposal_http_persists_graph_and_real_clinical_relationships(setup
     assert response.status_code == 201, response.text
     body = response.json()
     enriched = body["application_enrichment"]
+    assert body["clinical_state_snapshot"]["schema_version"] == (
+        "clinical_state_snapshot_v1"
+    )
+    assert body["clinical_state_comparison"]["status"] == (
+        "baseline_snapshot_no_comparable_prior"
+    )
+    assert body["clinical_state_snapshot"]["approval_authority"] is False
     assert body["source_relationships"]["schema_version"] == (
         "explicit_relationship_graph_v2"
     )
@@ -106,6 +113,55 @@ def test_fact_proposal_http_persists_graph_and_real_clinical_relationships(setup
         saved.status_code == 200 and saved.json()["application_enrichment"] == enriched
     )
     assert all(not f["reviewed"] for f in body["facts"])
+
+
+def test_successive_application_transcript_proposals_surface_state_contradiction(setup):
+    client, path, _ = setup
+    eid, first_tx, _ = prepare(client, path, "Patient reports fever.")
+    first_response = client.post(
+        f"/v1/encounters/{eid}/fact-proposals",
+        headers=headers(),
+        json={"transcript_version_id": first_tx["id"]},
+    )
+    assert first_response.status_code == 201, first_response.text
+    assert first_response.json()["clinical_state_comparison"]["status"] == (
+        "baseline_snapshot_no_comparable_prior"
+    )
+
+    revision = client.post(
+        f"/v1/encounters/{eid}/manual-transcripts",
+        headers=headers(),
+        json={
+            "audio_asset_id": first_tx["audio_asset_id"],
+            "segments": [
+                {
+                    "start_ms": 0,
+                    "end_ms": 100,
+                    "text": "Patient denies fever.",
+                    "role": "patient",
+                }
+            ],
+            "english_confirmed": True,
+            "source_completeness_reviewed": True,
+            "source_review_reason": "Corrected synthetic source for state comparison.",
+        },
+    )
+    assert revision.status_code == 201, revision.text
+    second_response = client.post(
+        f"/v1/encounters/{eid}/fact-proposals",
+        headers=headers(),
+        json={"transcript_version_id": revision.json()["id"]},
+    )
+    assert second_response.status_code == 201, second_response.text
+    comparison = second_response.json()["clinical_state_comparison"]
+    assert comparison["status"] == "review_required"
+    assert any(
+        change["change"] == "potential_contradiction"
+        and change["severity"] == "critical"
+        and change["requires_clinician_review"]
+        for change in comparison["changes"]
+    )
+    assert comparison["approval_authority"] is False
 
 
 def test_fact_proposal_rejects_fabricated_evidence_before_persistence(
