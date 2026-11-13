@@ -621,7 +621,9 @@ def test_detailed_v7_tiny_en_fixed_receipt_reproduces_baseline_with_fresh_resour
         ).read_text(encoding="utf-8")
     )
     job = next(
-        item for item in suite["jobs"] if item["candidate_id"] == "faster-whisper-tiny.en"
+        item
+        for item in suite["jobs"]
+        if item["candidate_id"] == "faster-whisper-tiny.en"
     )
 
     assert hashlib.sha256(report_path.read_bytes()).hexdigest() == (
