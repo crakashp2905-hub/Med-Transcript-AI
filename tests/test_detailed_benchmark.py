@@ -452,12 +452,16 @@ def test_detailed_v6_whisper_small_fixed_receipt_is_full_and_reproduces_baseline
 
 
 def test_detailed_v6_whisper_small_overlap_receipt_is_full_and_failure_inclusive():
-    report_path = Path("evaluation/runs/meddistract-detailed-v6/whisper-small.overlap.json")
+    report_path = Path(
+        "evaluation/runs/meddistract-detailed-v6/whisper-small.overlap.json"
+    )
     report = json.loads(report_path.read_text(encoding="utf-8"))
     suite_path = Path("evaluation/detailed-suite-v6.json")
     suite = json.loads(suite_path.read_text(encoding="utf-8"))
     manifest = json.loads(Path(suite["manifest"]).read_text(encoding="utf-8"))
-    job = next(item for item in suite["jobs"] if item["candidate_id"] == "whisper-small")
+    job = next(
+        item for item in suite["jobs"] if item["candidate_id"] == "whisper-small"
+    )
 
     assert hashlib.sha256(report_path.read_bytes()).hexdigest() == (
         "ee841e73ba7a83cea31a2d7f1077c389991606bfedcd4ce7298584c96b4f5b90"
@@ -491,3 +495,56 @@ def test_detailed_v6_whisper_small_overlap_receipt_is_full_and_failure_inclusive
     assert resource["cohort_scope"] == "full_process_run"
     assert resource["budget_status"] == "within_budget"
     assert resource["peak_resident_bytes"] < 16 * 1024**3
+
+
+def test_detailed_v7_omi_fixed_receipt_preserves_failures_and_full_resource_scope():
+    report_path = Path(
+        "evaluation/runs/meddistract-detailed-v7/omi-med-stt-v1.fixed.json"
+    )
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    suite_path = Path(
+        "evaluation/experiments/detailed-suite-v7-original-lock-2026-11-13.json"
+    )
+    suite = json.loads(suite_path.read_text(encoding="utf-8"))
+    manifest = json.loads(Path(suite["manifest"]).read_text(encoding="utf-8"))
+    job = next(
+        item for item in suite["jobs"] if item["candidate_id"] == "omi-med-stt-v1"
+    )
+
+    assert hashlib.sha256(report_path.read_bytes()).hexdigest() == (
+        "8d2da60b8e77f8d70ba1bdaff05532904864a8112d9419ba35701d3bc8dad6da"
+    )
+    assert report["complete"] is True
+    assert report["mode"] == "fixed"
+    assert report["candidate_id"] == "omi-med-stt-v1"
+    assert report["suite_sha256"] == hashlib.sha256(suite_path.read_bytes()).hexdigest()
+    assert suite["source_text_sha256"]["services/detailed_benchmark.py"] == (
+        "3c87b090f17482220173b4830e7b309973290d6e5c087eddeb9cedc871933723"
+    )
+    assert report["manifest_sha256"] == suite["manifest_sha256"]
+    assert "resume_from" not in job
+    assert "resume_by_mode" not in job
+    assert {case["id"] for case in report["cases"]} == {
+        case["group_id"] for case in manifest["cases"]
+    }
+    assert len(report["cases"]) == 16
+    assert all(case["input_coverage_complete"] for case in report["cases"])
+    assert sum(case["failed"] for case in report["cases"]) == 2
+    assert (
+        sum(chunk["failed"] for case in report["cases"] for chunk in case["chunks"])
+        == 2
+    )
+    for condition in ("clean", "distracted"):
+        observed = report["conditions"][condition]
+        assert observed["samples"] == 8
+        assert observed["failed_samples"] == 1
+        assert observed["reference_words"] == 13683
+        assert observed["normalized_wer"] > 0.05
+        assert observed["wer_gate"]["status"] == "fail"
+        assert observed["wall_seconds"] > 0
+    resource = report["resource_measurement"]
+    assert resource["status"] == "measured"
+    assert resource["cohort_scope"] == "full_process_run"
+    assert resource["budget_status"] == "within_budget"
+    assert resource["peak_resident_bytes"] < 16 * 1024**3
+    assert resource["cpu_seconds"] > 0

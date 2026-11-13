@@ -773,3 +773,20 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   reproducibility pointers. No novel clinical acoustic reranking claim is
   made; related-work comparison and the full matched-compute ablation matrix
   remain open.
+- **MTA-ASR-C10 Omi fixed full run:** The immutable suite-v7 lock binds the run
+  to main commit `fb21680` and its seven execution-source hashes; the locked Omi
+  job has no resume source. One later shared-worktree edit changed
+  `services/detailed_benchmark.py`, so current working-tree source is not passed
+  off as the benchmark source. The fresh report
+  covers all 16 manifest cases and all audio input, while retaining two failed
+  chunks (one clean and one distracted) as failed samples in the aggregates.
+  Clean scored 3,809/13,683 edits (27.8375%) and distracted 3,899/13,683
+  (28.4952%); both fail the unchanged <=5% WER gate. Condition wall times were
+  1,939.8/1,931.8 seconds. Full-process peak working set was 1,273,974,784
+  bytes, and process CPU was 11,780.5 seconds; both fit the declared resource
+  budget. The report SHA-256 is
+  `8d2da60b8e77f8d70ba1bdaff05532904864a8112d9419ba35701d3bc8dad6da`.
+  A focused regression pins the suite, manifest, complete cohort, both failed
+  chunks, failure-inclusive condition totals, 5% gate and resource receipt.
+  This negative arm does not establish model qualification. C10 remains partial
+  because the predeclared mode/candidate matrix is still incomplete.
