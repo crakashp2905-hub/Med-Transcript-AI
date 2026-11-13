@@ -1,0 +1,47 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "44262d1b69ab8b7d0fd182aba6c9600fc4137dbd",
+  "tasks": [
+    "MTA-09-02"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "69035c41d0f43cb851a53b597a9e335378147261cfc3f120371f973967c2a726",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "c51dce4de0ac4b4c3da94528b6cdfb1460f81f38132cc89e7b8d02401d073f46",
+    "apps/clinician-web/src/SourceContext.tsx": "698d1c4c6e275e2fa883b38ddbf9355c23ab958b7933702bf5bee7807f124c2f",
+    "apps/clinician-web/e2e/workflow.spec.ts": "d4fae04cc10c0e8089a65c24af133585152df09604bfe5107021e82de7d248eb"
+  },
+  "runtime": {
+    "python": "Python 3.13.5",
+    "platform": "Windows 11",
+    "frontend_build": "npm run build passed in apps/clinician-web",
+    "browser": "Playwright Chromium; isolated fixture attempt could not access loopback socket"
+  },
+  "checks": {
+    "frontend_typescript_and_production_build": {
+      "status": "pass"
+    },
+    "citation_click_seeks_to_source_timestamp": {
+      "status": "fail"
+    }
+  },
+  "test_results": [
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts -g \"clinician reviews evidence\"",
+      "cwd": "apps/clinician-web",
+      "status": "fail",
+      "observed": "Chromium navigation to http://127.0.0.1:8006/ failed with ERR_NETWORK_ACCESS_DENIED before application load; no source assertion executed."
+    }
+  ],
+  "limitations": [
+    "The citation-to-playhead assertion is present in the E2E workflow but could not execute because the managed environment denied loopback socket access.",
+    "Source selection, timestamp seeking, channel selection and historical-source binding are implemented in the application; this receipt does not claim browser validation for this task.",
+    "Synthetic scripted fixture is not ASR or clinical validation."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "01674669d7a714a54cad8f02ad4d582fd0379c31968052f67373629da290e42d"
+}

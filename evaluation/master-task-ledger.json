@@ -4225,12 +4225,31 @@
       "id": "MTA-09-02",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Enable click-to-source playback for each note statement, including exact time, channel and transcript span where available.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+        "apps/clinician-web/src/SourceContext.tsx",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "evaluation/reports/master-task-mta-09-02-44262d1.json"
+      ],
+      "source_commit": "44262d1b69ab8b7d0fd182aba6c9600fc4137dbd",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-02-44262d1.json",
+          "report_sha256": "1d11279c76a3ce912f268b9bbe3dac9e54b443329356ca72616445d694da6390",
+          "check": "frontend_typescript_and_production_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-02-44262d1.json",
+          "report_sha256": "1d11279c76a3ce912f268b9bbe3dac9e54b443329356ca72616445d694da6390",
+          "check": "citation_click_seeks_to_source_timestamp",
+          "status": "fail"
+        }
+      ],
+      "blocker": "Browser validation is blocked because Chromium could not access the isolated loopback fixture (ERR_NETWORK_ACCESS_DENIED) before application load; rerun E2E in an environment permitting the documented local fixture."
     },
     {
       "id": "MTA-09-03",
