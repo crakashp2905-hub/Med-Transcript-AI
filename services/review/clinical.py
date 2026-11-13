@@ -6,7 +6,7 @@ Rules are development heuristics, not calibrated clinical models.
 import re
 from collections import Counter
 from decimal import Decimal
-from uuid import uuid4
+from uuid import NAMESPACE_URL, uuid5
 
 NEGATION = re.compile(r"\b(no|not|denies|denied|without|never)\b", re.I)
 QUANTITY = re.compile(
@@ -339,7 +339,12 @@ def extract(transcript):
                 segment, quote
             )
             fact = {
-                "fact_id": str(uuid4()),
+                "fact_id": str(
+                    uuid5(
+                        NAMESPACE_URL,
+                        f"clinical-fact:{segment['segment_id']}:{start}:{end}:{quote}",
+                    )
+                ),
                 "category": category,
                 "section": "assessment"
                 if category == "assessment"

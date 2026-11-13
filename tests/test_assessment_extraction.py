@@ -42,3 +42,24 @@ def test_unlabeled_symptom_does_not_become_a_diagnosis():
 
     assert fact["category"] == "symptom"
     assert fact["assessment_status"] == "unknown"
+
+
+def test_fact_ids_are_stable_for_the_same_source_spans():
+    source = {
+        "segments": [
+            {
+                "segment_id": str(uuid4()),
+                "text": "No cough. Fever yesterday.",
+                "role": "patient",
+            }
+        ]
+    }
+
+    first = extract(source)
+    second = extract(source)
+
+    assert [fact["fact_id"] for fact in first] == [
+        fact["fact_id"] for fact in second
+    ]
+    assert len({fact["fact_id"] for fact in first}) == len(first)
+    assert all(fact["evidence"]["quote"] == fact["text"] for fact in first)
