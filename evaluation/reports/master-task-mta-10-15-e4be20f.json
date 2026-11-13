@@ -1,0 +1,33 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-15",
+  "source_commit": "e4be20f80685d185f9f0bd400b944a8d3ad23e56",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "source_files": {
+    "services/asr/provenance.py": "6498be53972cce8fba35fe9bb3a8bbe363270c90a71bc63917b050d533985e58",
+    "services/asr/transcripts.py": "8bd9aeb1af924bca574763f0f3ac45f8789195839f2e424417b5189abf8efa42",
+    "services/asr/pareto.py": "da0075291db3b389674c22848b8f4132dcc9cf9d5ffb8fac72a759191f274bb7",
+    "tests/test_asr_evidence_class.py": "81550662c897ec5204f2b8ef8c4889ea2750fbf54a24b24812b29a107d68c563",
+    "tests/test_capability_manifest.py": "d6403e90898b8872693f65041797d5b0f206a7d7178fb8da861a7b002053c96c",
+    "tests/test_benchmark_ranking.py": "4debe4017428817a8da4b6b11a14057385688db96016a305d72341eb90645f5c"
+  },
+  "controls": [
+    "Synthetic fixture transcript replay is classified as software transport, never real model inference.",
+    "Fixture output claiming inference execution and digital silence claiming inference are rejected.",
+    "No-inference output is explicitly unverified.",
+    "Quality evidence requires explicit measured-inference class or a complete legacy report bound to profile ID, revision and profile digest.",
+    "Benchmark rankings reject software-transport evidence and preserve the 5% admission gate."
+  ],
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_asr_evidence_class.py tests/test_capability_manifest.py tests/test_benchmark_ranking.py -q",
+      "status": "pass",
+      "result": "23 passed"
+    }
+  ],
+  "limitations": [
+    "This is provenance and ranking guard evidence; it does not establish that any current local ASR model meets the 5% quality gate.",
+    "No clinical release or model promotion is authorized."
+  ],
+  "clinical_release_authorized": false
+}

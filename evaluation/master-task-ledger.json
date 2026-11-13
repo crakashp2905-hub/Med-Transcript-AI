@@ -5441,11 +5441,21 @@
       "id": "MTA-10-15",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Test that simulated completed inferences cannot be promoted as real model results.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-10-15-e4be20f.json"
+      ],
+      "source_commit": "e4be20f80685d185f9f0bd400b944a8d3ad23e56",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-10-15-e4be20f.json",
+          "report_sha256": "68271cb88e8f9c5dbaf17c191a82caf7ded4ab62fac98648d245e5dd446d4f7c",
+          "check": "synthetic_inference_cannot_be_promoted_as_real_quality_evidence",
+          "status": "pass",
+          "detail": "23 provenance, transcript capability and benchmark-ranking tests passed on the exact source commit."
+        }
+      ],
       "blocker": null
     },
     {
