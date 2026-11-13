@@ -1,0 +1,11 @@
+import {title} from './format';
+
+type Job={id:string;stage:string;status:string;error_code:string|null;retryable?:boolean;progress?:{completed_channels:number;total_channels:number}|null;created_at?:string;updated_at?:string;preview_only?:boolean};
+export function JobState({job,disabled,retry}:{job:Job;disabled:boolean;retry:()=>void}){
+ const lastUpdate=Date.parse(job.updated_at||job.created_at||'');
+ const stale=Number.isFinite(lastUpdate)&&Date.now()-lastUpdate>120000;
+ const modelMissing=['asr_profile_unavailable','model_unavailable','model_missing'].includes(job.error_code||'');
+ const state=job.status==='failed'&&modelMissing?'missing-model':stale&&['queued','running'].includes(job.status)?'delayed':job.status;
+ const explanation=state==='queued'?'Waiting for the local worker.':state==='running'?'The local worker is processing this job.':state==='delayed'?`${title(job.status)} with no update for at least two minutes. Check the local worker; audio remains saved.`:state==='missing-model'?'The configured local ASR profile or model assets are unavailable. Restore an eligible local model before retrying.':job.status==='failed'?`Processing failed: ${title(job.error_code||'unknown error')}.`:job.status==='succeeded'?'Processing complete.':job.status==='cancelled'?'Processing was cancelled; the source audio remains saved.':`Job state: ${title(job.status)}.`;
+ return <div className={`job-state ${state}`} aria-label={`${title(job.stage)} ${state}`}><div><strong>{job.preview_only?'Provisional preview':title(job.stage)}</strong> <span className="pill">{job.preview_only?'Not a source version':state==='missing-model'?'Model unavailable':title(state)}</span><p role="status">{explanation}</p>{job.progress&&<small>{job.progress.completed_channels}/{job.progress.total_channels} channels complete · partial output is not a transcript</small>}{job.updated_at&&<small>Last worker update: {new Date(job.updated_at).toLocaleString()}</small>}</div>{job.retryable&&<button type="button" disabled={disabled} onClick={retry}>Retry local processing</button>}</div>;
+}

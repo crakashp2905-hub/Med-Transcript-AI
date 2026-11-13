@@ -280,7 +280,7 @@ def register(app, services: ReviewService):
                 _, saved_source = get_tx(con, eid, note["transcript_version_id"])
                 recheck = current_safety_recheck(note, saved_source, report)
             jobs = con.execute(
-                "SELECT id,stage,status,error_code,result,attempts,upload,preview_only FROM jobs WHERE encounter=? ORDER BY created_at DESC LIMIT 20",
+                "SELECT id,stage,status,error_code,result,attempts,upload,preview_only,created_at,updated_at FROM jobs WHERE encounter=? ORDER BY created_at DESC LIMIT 20",
                 (str(eid),),
             ).fetchall()
             return {
