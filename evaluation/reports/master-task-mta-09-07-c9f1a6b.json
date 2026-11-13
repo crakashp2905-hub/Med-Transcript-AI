@@ -1,0 +1,71 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "c9f1a6b99efadc1712fec1ed8e4e7c4c060db971",
+  "tasks": [
+    "MTA-09-07"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/RetranscriptionCompare.tsx": "91ceb2c1270f83d484f6ca37065fa5ac5a422365b117f2219956ef74602b3981",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "c944a26fb6139278f73d882969585cbce94f5022ea78aad627f8304d41a4da52",
+    "apps/clinician-web/src/screens/SourceReviewScreen.tsx": "2824d1cc333f5145a3339a7ef3ec8c058982b576cdc27a74ef4370ab6ca1a699",
+    "apps/clinician-web/e2e/workflow.spec.ts": "16c7a336b65b266177ac1865c6cba3778dbd5f0a63d33c139009e91dd3b837e5",
+    "services/asr/retranscribe_span.py": "38778f08e6fe0830e60f9e92e77a7d44e9cdd6ea17211d76640b54e6bb0fdd55",
+    "services/review/routers/transcripts.py": "901c3953ed6e4c26048ced1dd9c40c80496dd4e3c95daaa0f07d27ee27c529f8",
+    "tests/test_retranscribe_span.py": "e15d8fba7667b7940b47e9ad37b79359390adb35695fed27a7ccc77c005a5b64",
+    "tests/test_retranscription_workflow.py": "ced9363074edee8dac3d47123b11f2f4d09ec1ae4a422bda5e02b5e56613c43c"
+  },
+  "runtime": {
+    "python": "Python 3.13.5",
+    "node": "cached npm dependencies",
+    "platform": "Windows 11",
+    "browser": "Playwright; loopback test fixture"
+  },
+  "checks": {
+    "candidate_never_auto_adopts_and_requires_review": {
+      "status": "pass"
+    },
+    "explicit_stage_and_new_source_version_ui": {
+      "status": "blocked"
+    },
+    "frontend_build_and_e2e_discovery": {
+      "status": "pass"
+    },
+    "api_new_version_integration": {
+      "status": "blocked"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest --confcutdir=services/review/routers tests/test_retranscribe_span.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "python -m ruff check services/asr/retranscribe_span.py tests/test_retranscribe_span.py",
+      "status": "pass"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "cwd": "apps/clinician-web",
+      "status": "pass",
+      "observed": "The explicit-confirmation and save-for-new-version browser workflow was discovered and TypeScript compiled."
+    },
+    {
+      "command": "Playwright browser flow and TestClient API integration",
+      "status": "blocked",
+      "observed": "Local HTTP/socket access is denied by the managed environment; UI and immutable-new-version integration could not execute."
+    }
+  ],
+  "limitations": [
+    "The checkbox and explicit staging action are required before any candidate text enters the editable source transcript.",
+    "Staging is still unsaved; the UI directs the clinician to save a new transcript version. The backend candidate result remains adopted=false.",
+    "Browser/API integration remains blocked by loopback/socket restrictions; clinical acceptance is not claimed."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "cd3b33e59b3041b276a17da104549ab54000751959899253d56013e6889d232a"
+}

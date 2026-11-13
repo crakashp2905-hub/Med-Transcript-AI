@@ -4409,12 +4409,47 @@
       "id": "MTA-09-07",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Prevent accepting candidate retranscription without explicit confirmation and a new version.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/RetranscriptionCompare.tsx",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "services/asr/retranscribe_span.py",
+        "services/review/routers/transcripts.py",
+        "tests/test_retranscribe_span.py",
+        "tests/test_retranscription_workflow.py",
+        "evaluation/reports/master-task-mta-09-07-c9f1a6b.json"
+      ],
+      "source_commit": "c9f1a6b99efadc1712fec1ed8e4e7c4c060db971",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-07-c9f1a6b.json",
+          "report_sha256": "5c1158806441b84eac13dda26487797bdbf60f9be21cb4663f3925cbd8eeecef",
+          "check": "candidate_never_auto_adopts_and_requires_review",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-07-c9f1a6b.json",
+          "report_sha256": "5c1158806441b84eac13dda26487797bdbf60f9be21cb4663f3925cbd8eeecef",
+          "check": "explicit_stage_and_new_source_version_ui",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-07-c9f1a6b.json",
+          "report_sha256": "5c1158806441b84eac13dda26487797bdbf60f9be21cb4663f3925cbd8eeecef",
+          "check": "frontend_build_and_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-07-c9f1a6b.json",
+          "report_sha256": "5c1158806441b84eac13dda26487797bdbf60f9be21cb4663f3925cbd8eeecef",
+          "check": "api_new_version_integration",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "The browser/API integration is blocked by sandbox loopback/socket denial. Static build and candidate-only service tests pass; rerun browser and API tests in an environment permitting local fixture sockets."
     },
     {
       "id": "MTA-09-08",
