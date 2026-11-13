@@ -1,0 +1,51 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "543d82c58fcb31c04a4d1c9b446e049215ccf855",
+  "tasks": [
+    "MTA-08-10"
+  ],
+  "source_hashes": {
+    "services/fact_duplicates.py": "65a2415790cae19f54ba683edcae8f441a9ec6b7a379b6eddac737fd96370917",
+    "services/application_pipeline.py": "3c1aa69d2fdab1213b83762094dda435faa7aafdb07fde397c25271b307ee9d5",
+    "tests/test_fact_duplicates.py": "a23e6827b3ee0b6b911cc93d362d2b01d5241c0ca8bb85cbb76021a3a274e662",
+    "tests/test_application_pipeline.py": "3b091ccec0ab051069d42cc456d2580429a46228b2f17f59fca50b659622db8d",
+    "apps/clinician-web/src/ClinicalProposals.tsx": "2484d046cf2aa7ca1d4afe662b11595c1f4a79cbcb33752f8e8fce00ac7d925d"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation",
+    "node_build": "npm run build in apps/clinician-web"
+  },
+  "checks": {
+    "application_duplicate_groups_preserve_all_source_refs_and_temporal_variants": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_fact_duplicates.py tests/test_application_pipeline.py::test_application_pipeline_uses_resource_graph_attribution_and_relationship_helpers tests/test_application_pipeline.py::test_application_duplicate_group_keeps_both_source_spans_and_time_variants -q",
+      "status": "pass",
+      "passed": 3
+    },
+    {
+      "command": "python -m ruff check services/fact_duplicates.py services/application_pipeline.py tests/test_fact_duplicates.py tests/test_application_pipeline.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/fact_duplicates.py services/application_pipeline.py tests/test_fact_duplicates.py tests/test_application_pipeline.py",
+      "status": "pass"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Exact repeated assertions are grouped as clinician-review candidates; no fact or source span is automatically suppressed.",
+    "Distinct wording is preserved as a separate assertion; same text with different temporal labels is shown as a conflict requiring review, not resolved automatically."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "1c7f872aabb41a4c4f0da8f1941481cac670174e571f0102da93fc79cac3f5e7"
+}

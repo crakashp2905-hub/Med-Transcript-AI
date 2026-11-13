@@ -3980,11 +3980,20 @@
       "id": "MTA-08-10",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Deduplicate repeated facts without losing the source or suppressing distinct time points.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-08-10-543d82c.json"
+      ],
+      "source_commit": "543d82c58fcb31c04a4d1c9b446e049215ccf855",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-10-543d82c.json",
+          "report_sha256": "29cffaea8af047ff52d0be337874bc8cb2757b8d410ee378e50f4d2b1e58cd40",
+          "check": "application_duplicate_groups_preserve_all_source_refs_and_temporal_variants",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
