@@ -1,0 +1,54 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "78e7d314cc77a1a22e61e1b04c0d1bac94c9d19c",
+  "tasks": [
+    "MTA-08-12"
+  ],
+  "source_hashes": {
+    "services/review/comparison.py": "316380f35833f543f27a3748ee35fac3df95a5114a12eab16d305a7a0d6038c9",
+    "tests/test_note_comparison.py": "43c70a38f9fbfd7d2fdbc133e9c1503672af5e03a4e8210583e912631478e927",
+    "tests/test_completion_gaps.py": "d5845c2a32f032a6444f025220040ea54f9efcf3016347e71ea06094d9cc684d",
+    "apps/clinician-web/src/VersionComparison.tsx": "8cf162e8cfb20b462d3c794b1fd435d1a5a712de67fff3b1c613fce6a5b2ba6e"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "node_build": "npm run build in apps/clinician-web"
+  },
+  "checks": {
+    "version_diff_surfaces_added_removed_critical_claims": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_note_comparison.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "python -m pytest tests/test_completion_gaps.py::test_version_comparison_is_scoped_and_includes_structured_changes -q (loopback enabled)",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m ruff check services/review/comparison.py tests/test_note_comparison.py tests/test_completion_gaps.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/comparison.py tests/test_note_comparison.py tests/test_completion_gaps.py",
+      "status": "pass"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Criticality is a deterministic field-level review cue; no independent clinical adjudication or accuracy claim is implied.",
+    "The browser labels claims based on structured changed fields; final review remains with the clinician."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "a6abc5bb1c3f693bf0e71b530294a836901de971f7137dbab63f1ceedf159677"
+}

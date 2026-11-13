@@ -4023,11 +4023,24 @@
       "id": "MTA-08-12",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Provide diff of each draft against previous version, showing added/removed clinically critical claims.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/review/comparison.py",
+        "tests/test_note_comparison.py",
+        "tests/test_completion_gaps.py",
+        "apps/clinician-web/src/VersionComparison.tsx",
+        "evaluation/reports/master-task-mta-08-12-78e7d31.json"
+      ],
+      "source_commit": "78e7d314cc77a1a22e61e1b04c0d1bac94c9d19c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-12-78e7d31.json",
+          "report_sha256": "980ffe6d108ec8608e720f6e1629062d25e571a0d28dbd5ad86314c5a66f788b",
+          "check": "version_diff_surfaces_added_removed_critical_claims",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
