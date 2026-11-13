@@ -53,9 +53,15 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await stageCandidate.click();
   await expect(retranscription).toHaveCount(0);
   await expect(page.getByLabel('Transcript segment 1')).toHaveValue('I have had a cough for three days');
+  await expect(page.getByLabel('Encounter recovery status')).toContainText('Transcript edits are unsaved');
+  await page.context().setOffline(true);
+  await expect(page.getByLabel('Encounter recovery status')).toContainText('Network is unavailable');
+  await page.context().setOffline(false);
+  await expect(page.getByLabel('Encounter recovery status')).not.toContainText('Network is unavailable');
   await expect(page.locator('.notice')).toContainText('Save source review to create the new transcript version');
   await page.getByRole('button',{name:'Save source review',exact:true}).click();
   await expect(page.locator('.notice')).toContainText('Saved as a new source version');
+  await expect(page.getByLabel('Encounter recovery status')).toHaveCount(0);
   await page.unroute('**/v1/encounters/*/retranscriptions');
   await page.unroute('**/v1/jobs/retranscription-e2e');
   await expect(page.getByLabel('Transcript segment 1')).toContainText('cough');
