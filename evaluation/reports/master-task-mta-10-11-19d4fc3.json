@@ -1,0 +1,76 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-11",
+  "source_commit": "19d4fc36a5b5065223c4f1e3c7f77a072d19875b",
+  "captured_at_utc": "2026-11-13T22:46:50+00:00",
+  "source_files": {
+    "services/review/providers.py": "44b4734a16572ee0e5be4af5027afca99ce444e3d350383f9725262868d71766",
+    "services/review/clinical_models.py": "8db932a497b29cf28f5fe2bd5eb27ef2d008e9ec1aa37959e97195374dc3ffad",
+    "services/asr/adapter.py": "7260f9b0875a1420050d718edfff3331cc2e64b5186b20caa5b62121a1b279b9",
+    "services/asr/transcripts.py": "8bd9aeb1af924bca574763f0f3ac45f8789195839f2e424417b5189abf8efa42",
+    "services/api/storage.py": "019c7ed13bfd96325f428eb886ae61abfa1af98fabc9cc4e0f1ec3bbf101debe",
+    "services/audit_integrity.py": "cd32c997eb3adbf788fb89eb2f5c37d52cc12875303595a3356c8301c06f8df6",
+    "services/review/routers/proposals.py": "0759139acdf592b1bc92546b8818802155adafdaf53b77bebe1f393a957caae0",
+    "services/review/clinical_routes.py": "99210eed19da3f6431c2c10ff6e5a59e2fbbac90df8dec7bd5a4ebcfc0d862d3",
+    "docs/runbooks/drafting-and-diarization.md": "2a17484b23ab65190191d2aac31099fb4aa8b6633a003830d6c14f7868d431d7",
+    "tests/test_clinical_intelligence.py": "6c73b6c3df090cdd46fa02e5175dafc76b038b4b3ef3fe8297cc5b0fbe2af69d",
+    "tests/test_completion_gaps.py": "cfb6287ca4b2e85582fd4376c5885002b46ca2a022119c5bb29eb1941ab56729",
+    "tests/test_drafting_provider_failures.py": "742f5c38d1be4f7cb42c87957623d2c54f5e17b544c890209190c71b5fd0e1a2"
+  },
+  "persisted_local_inference_metadata_allowlist": [
+    "model ID and pinned digest/profile hash",
+    "prompt/schema hashes (no prompt text)",
+    "bounded runtime version, inference timing and hardware/device fields",
+    "allowlisted nonnegative token counts",
+    "safe provider mode/cost-known state"
+  ],
+  "not_persisted_by_application": [
+    "raw prompt/system message",
+    "duplicated transcript text in inference provenance",
+    "raw provider response envelope",
+    "API keys",
+    "provider exception bodies"
+  ],
+  "output_storage_boundary": "Clinical proposal and transcript records intentionally persist their source-linked clinical outputs/evidence under encounter storage. Those are functional records, not duplicated prompt telemetry. Audit events contain scoped IDs/actions; provider failure paths expose safe codes only.",
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_domain_integrity.py -k \"untrusted_json or strict_json\" -q",
+      "status": "pass",
+      "result": "8 passed"
+    },
+    {
+      "command": "python -m pytest tests/test_drafting_provider_failures.py -q",
+      "status": "pass",
+      "result": "7 passed"
+    },
+    {
+      "command": "python -m pytest tests/test_clinical_intelligence.py::test_local_json_provider_uses_bounded_transport_and_safe_usage tests/test_completion_gaps.py::test_model_transport_constrains_input_quotes_and_verifies_digest -q",
+      "status": "pass",
+      "result": "2 passed; provenance assertions exclude prompt and source text"
+    },
+    {
+      "command": "python -m pytest tests/test_verifier_fail_closed.py -k \"clinical_model_transport_has_stage_timeouts or model_parser_bounds\" -q",
+      "status": "pass",
+      "result": "2 passed"
+    },
+    {
+      "command": "python -m ruff format --check services tests",
+      "status": "pass",
+      "result": "604 files formatted"
+    },
+    {
+      "command": "python -m ruff check services tests",
+      "status": "pass"
+    },
+    {
+      "command": "python -m mypy services --ignore-missing-imports",
+      "status": "pass",
+      "result": "303 source files"
+    }
+  ],
+  "limitations": [
+    "This audit covers application persistence/logging. Logging or retention by an operator-configured local inference server is outside application control and was not measured.",
+    "The whole application test suite and hosted exact-commit CI were not run for this task; the focused metadata/privacy tests passed."
+  ],
+  "clinical_release_authorized": false
+}

@@ -5345,12 +5345,34 @@
       "id": "MTA-10-11",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Store only approved minimal local inference metadata; do not persist prompts with sensitive transcript contents by default.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/review/providers.py",
+        "services/review/clinical_models.py",
+        "services/asr/adapter.py",
+        "services/asr/transcripts.py",
+        "services/api/storage.py",
+        "services/audit_integrity.py",
+        "services/review/routers/proposals.py",
+        "services/review/clinical_routes.py",
+        "docs/runbooks/drafting-and-diarization.md",
+        "tests/test_clinical_intelligence.py",
+        "tests/test_completion_gaps.py",
+        "tests/test_drafting_provider_failures.py",
+        "evaluation\\reports\\master-task-mta-10-11-19d4fc3.json"
+      ],
+      "source_commit": "19d4fc36a5b5065223c4f1e3c7f77a072d19875b",
+      "test_results": [
+        {
+          "report": "evaluation\\reports\\master-task-mta-10-11-19d4fc3.json",
+          "report_sha256": "c6e00dd5eef7581e37f52945af189e527a13244da2563e5bb7f38663537aa2a1",
+          "check": "minimal_local_inference_metadata_and_no_prompt_persistence",
+          "status": "pass",
+          "detail": "19 focused metadata, transport, timeout and privacy checks plus Ruff and mypy passed on exact source commit."
+        }
+      ],
+      "blocker": "Application persistence is covered. Local inference server internal logs/retention are operator-managed and not observable from this codebase."
     },
     {
       "id": "MTA-10-12",
