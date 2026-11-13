@@ -436,7 +436,7 @@ def test_speaker_role_correction_requires_authorization_and_invalidates_approval
         json=request,
     )
     assert denied.status_code == 403
-    assert denied.json()["detail"] == "authorization_required"
+    assert denied.json()["code"] == "authorization_required"
 
     renewed = client.post(
         f"/v1/encounters/{eid}/authorizations",
