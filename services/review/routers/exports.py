@@ -49,6 +49,11 @@ def register(app, services: ReviewService):
             ).fetchone()
             if not ar:
                 raise HTTPException(404, "approval_not_found")
+            if con.execute(
+                "SELECT 1 FROM audit WHERE action='exact_version_revoked' AND resource=?",
+                (ar["id"],),
+            ).fetchone():
+                raise HTTPException(409, "approval_revoked")
             approval = approval_body(con, ar)
             nr, note = document(con, eid, ar["note"])
             if nr["sha256"] != approval["note_sha256"]:

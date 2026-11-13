@@ -221,6 +221,12 @@ def create_app(
         )
 
     def require_processing(con, encounter_id):
+        lifecycle = con.execute(
+            "SELECT stage FROM encounter_lifecycle WHERE encounter=?",
+            (str(encounter_id),),
+        ).fetchone()
+        if lifecycle and lifecycle["stage"] == "revoked":
+            raise HTTPException(409, "encounter_revoked")
         if not processing_allowed(con, encounter_id):
             raise HTTPException(403, "authorization_required")
 

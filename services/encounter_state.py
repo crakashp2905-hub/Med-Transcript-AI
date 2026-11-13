@@ -20,7 +20,7 @@ ALLOWED = {
     Stage.TRANSCRIBED: {Stage.TRANSCRIBED, Stage.DRAFTED},
     Stage.DRAFTED: {Stage.TRANSCRIBED, Stage.DRAFTED, Stage.VERIFIED},
     Stage.VERIFIED: {Stage.TRANSCRIBED, Stage.DRAFTED, Stage.APPROVED},
-    Stage.APPROVED: {Stage.TRANSCRIBED, Stage.DRAFTED},
+    Stage.APPROVED: {Stage.TRANSCRIBED, Stage.DRAFTED, Stage.REVOKED},
     Stage.REVOKED: set(),
 }
 

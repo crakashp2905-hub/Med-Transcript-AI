@@ -8,6 +8,7 @@ from services.audit_integrity import (
 from uuid import UUID, uuid4
 
 from fastapi import Depends, HTTPException
+from pydantic import BaseModel, ConfigDict, Field
 
 from services.asr.profiles import canonical_json
 from services.review.engine import findings_for
@@ -18,6 +19,11 @@ from services.review.service import ReviewService
 from services.encounter_state import Stage, advance_persisted
 from services.api.contracts import IdempotencyKey
 from services.api.idempotency import idempotent
+
+
+class ApprovalRevocationInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    expected_note_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
 
 
 def register(app, services: ReviewService):
@@ -97,3 +103,39 @@ def register(app, services: ReviewService):
             audit(con, actor, "exact_version_approved", aid)
             advance_persisted(con, eid, Stage.APPROVED)
             return approved
+
+    @app.post("/v1/encounters/{eid}/approvals/{aid}/revoke", status_code=200)
+    @idempotent(database, replay, "POST:/v1/encounters/{eid}/approvals/{aid}/revoke")
+    def revoke_approval(
+        eid: UUID,
+        aid: UUID,
+        body: ApprovalRevocationInput,
+        idempotency_key: IdempotencyKey,
+        actor=Depends(identity),
+    ):
+        with database() as con:
+            encounter = current(con, eid, actor)
+            verify_audit(con)
+            lifecycle = con.execute(
+                "SELECT stage FROM encounter_lifecycle WHERE encounter=?",
+                (str(eid),),
+            ).fetchone()
+            if not lifecycle or lifecycle["stage"] != Stage.APPROVED.value:
+                raise HTTPException(409, "current_approved_version_required")
+            row = con.execute(
+                "SELECT * FROM approvals WHERE id=? AND encounter=?",
+                (str(aid), str(eid)),
+            ).fetchone()
+            if not row or encounter["current_note"] != row["note"]:
+                raise HTTPException(404, "approval_not_found")
+            approved = approval_body(con, row)
+            if approved["note_sha256"] != body.expected_note_sha256:
+                raise HTTPException(412, "stale_approval")
+            audit(con, actor, "exact_version_revoked", str(aid))
+            advance_persisted(con, eid, Stage.REVOKED)
+            return {
+                "approval_id": str(aid),
+                "note_version_id": row["note"],
+                "status": "revoked",
+                "revoked_by": str(actor.clinician_id),
+            }

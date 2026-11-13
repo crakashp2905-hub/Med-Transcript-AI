@@ -230,6 +230,19 @@ MIGRATIONS = (
     CREATE INDEX jobs_preview_session ON jobs(encounter,preview_session_id,profile_sha256,created_at)
         WHERE preview_only=1;
     """,
+    """
+    DROP TRIGGER encounter_lifecycle_update_guard;
+    CREATE TRIGGER encounter_lifecycle_update_guard BEFORE UPDATE ON encounter_lifecycle
+    WHEN NEW.encounter != OLD.encounter OR NEW.version != OLD.version + 1 OR NOT (
+        (OLD.stage='created' AND NEW.stage='recording') OR
+        (OLD.stage='recording' AND NEW.stage='transcribed') OR
+        (OLD.stage='transcribed' AND NEW.stage IN ('transcribed','drafted')) OR
+        (OLD.stage='drafted' AND NEW.stage IN ('transcribed','drafted','verified')) OR
+        (OLD.stage='verified' AND NEW.stage IN ('transcribed','drafted','approved')) OR
+        (OLD.stage='approved' AND NEW.stage IN ('transcribed','drafted','revoked'))
+    )
+    BEGIN SELECT RAISE(ABORT, 'Invalid encounter lifecycle version'); END;
+    """,
 )
 
 

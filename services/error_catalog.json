@@ -505,6 +505,14 @@
     "worker_retry_exhausted": {
       "category": "availability",
       "message": "The request could not be completed. Review the current encounter and try again."
+    },
+    "approval_revoked": {
+      "category": "conflict",
+      "message": "This approval was revoked. Create and review a new note version before exporting."
+    },
+    "encounter_revoked": {
+      "category": "conflict",
+      "message": "This encounter was revoked and can no longer be changed or exported."
     }
   }
 }

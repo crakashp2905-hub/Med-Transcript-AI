@@ -212,6 +212,49 @@ def test_full_review_approval_export_and_amendment(setup):
     } <= audit_actions
 
 
+def test_signed_approval_can_be_revoked_and_then_blocks_export_and_changes(setup):
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path)
+    note = draft(client, eid, tx, facts)["note"]
+    approved = approve(client, eid, note)
+    assert approved.status_code == 201, approved.text
+    route = f"/v1/encounters/{eid}/approvals/{approved.json()['id']}/revoke"
+    body = {"expected_note_sha256": note["sha256"]}
+    revoke_headers = headers()
+
+    revoked = client.post(route, headers=revoke_headers, json=body)
+
+    assert revoked.status_code == 200, revoked.text
+    assert revoked.json()["status"] == "revoked"
+    assert (
+        client.post(route, headers=revoke_headers, json=body).json() == revoked.json()
+    )
+    audit_actions = {
+        item["action"]
+        for item in client.get(f"/v1/encounters/{eid}/audit", headers=headers()).json()[
+            "items"
+        ]
+    }
+    assert "exact_version_revoked" in audit_actions
+    export = client.post(
+        f"/v1/encounters/{eid}/exports",
+        headers=headers(),
+        json={"approval_id": approved.json()["id"], "format": "json"},
+    )
+    assert export.status_code == 409
+    assert export.json()["code"] == "approval_revoked"
+    amendment = client.post(
+        f"/v1/encounters/{eid}/amendments",
+        headers=headers(),
+        json={
+            "approval_id": approved.json()["id"],
+            "reason": "Attempted after revocation.",
+        },
+    )
+    assert amendment.status_code == 409
+    assert amendment.json()["code"] == "encounter_revoked"
+
+
 def test_ambiguous_medication_blocks_and_correction_creates_new_version(setup):
     client, path, _ = setup
     eid, tx, facts = prepare(client, path, "I take metformin 500 or 850 mg.")
