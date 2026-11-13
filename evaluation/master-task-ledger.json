@@ -2896,11 +2896,20 @@
       "id": "MTA-05-15",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Require valid authorizations and stale-version invalidation after a speaker correction.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-15-0f5feaf.json"
+      ],
+      "source_commit": "0f5feafea56865f2ac0a74d0ee32ed7525479fa6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-05-15-0f5feaf.json",
+          "report_sha256": "891dab8257622286b118206d0db86e771d9f8e7842bb3733b5b31cf8d570d8ea",
+          "check": "speaker_correction_authorization_and_stale_approval",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

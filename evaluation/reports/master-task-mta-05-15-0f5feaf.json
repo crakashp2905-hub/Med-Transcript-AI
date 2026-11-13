@@ -1,0 +1,67 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-05-15",
+  "source_commit": "0f5feafea56865f2ac0a74d0ee32ed7525479fa6",
+  "status": "pass",
+  "runtime": {
+    "ci_provider": "GitHub Actions",
+    "python": "3.13.5",
+    "python_job_id": "131817490349",
+    "run_id": "43405129770",
+    "runner": "ubuntu-24.04",
+    "source_commit": "0f5feafea56865f2ac0a74d0ee32ed7525479fa6"
+  },
+  "runtime_sha256": "680c4ba7da309442a06634a4b8bea900c008a70a43617e6347b4ac29c2bdc150",
+  "checks": {
+    "speaker_correction_authorization_and_stale_approval": {
+      "status": "pass",
+      "run_id": "43405129770",
+      "run_url": "https://github.com/crakashp2905-hub/Med-Transcript-AI/actions/runs/43405129770",
+      "job_id": "131817490349",
+      "python_tests": {
+        "passed": 965,
+        "failed": 0,
+        "skipped": 3
+      },
+      "offline_model_free_safety_lane": {
+        "passed": 60,
+        "failed": 0
+      },
+      "test": "tests/test_review_workflow.py::test_speaker_role_correction_requires_authorization_and_invalidates_approval",
+      "assertions": [
+        "withdrawn processing authorization blocks transcript role correction with HTTP 403",
+        "renewed recording and local-processing authorization allows correction",
+        "speaker correction creates a human-confirmed role on a new transcript version",
+        "approval bound to the prior transcript is rejected as stale"
+      ]
+    },
+    "full_hosted_ci": {
+      "status": "pass",
+      "jobs": {
+        "container": "success",
+        "frontend": "success",
+        "postgres": "success",
+        "python_dev_security": "success",
+        "python_dev_asr_security": "success"
+      }
+    }
+  },
+  "superseded_failed_attempts": [
+    {
+      "run_id": "43404305494",
+      "commit": "a0927973d13ed1127a8770892074846ceb221bb2",
+      "failure": "Python formatter rejected newly added speaker correction test; corrected in 2b28894."
+    },
+    {
+      "run_id": "43404594857",
+      "commit": "2b28894d568be76eb0276368646564fbdb79a206",
+      "failure": "Test expected FastAPI detail field instead of the API redacted code field; corrected in 0f5feaf."
+    }
+  ],
+  "limitations": [
+    "Windows TestClient invocation stalled locally; the exact-commit hosted Linux Python suite passed.",
+    "Authorization evidence covers the local processing scopes used by this prototype; it is not legal consent validation.",
+    "No independent clinician usability or real clinical data validation is implied."
+  ],
+  "clinical_release_authorized": false
+}
