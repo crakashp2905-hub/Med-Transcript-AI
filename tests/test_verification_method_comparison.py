@@ -59,6 +59,8 @@ def test_comparison_keeps_graph_structural_and_reuses_frozen_model(tmp_path):
     assert row["graph_provenance_valid"] is True
     assert row["graph_semantic_verdict"] is None
     assert report["graph_summary"]["clinical_verdicts"] == 0
+    assert report["summary"]["deterministic_rules"]["critical_misses"] == 0
+    assert report["summary"]["frozen_local_model"]["missing_verdicts"] == 1
     assert report["model_results_reused_without_inference"] is True
 
 

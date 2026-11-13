@@ -9,6 +9,25 @@ from services.evidence_graph import validate_proposal
 from services.review.clinical import check_claim
 
 
+def _confusion(rows, field):
+    return {
+        "attempted": len(rows),
+        "critical_misses": sum(
+            row["unsafe_reference"] and row[field] is not True for row in rows
+        ),
+        "omission_misses": sum(
+            row["category"] == "omission"
+            and row["unsafe_reference"]
+            and row[field] is not True
+            for row in rows
+        ),
+        "false_alarms": sum(
+            not row["unsafe_reference"] and row[field] is True for row in rows
+        ),
+        "missing_verdicts": sum(row[field] is None for row in rows),
+    }
+
+
 def compare(challenge_path, frozen_path, output_path, *, source_commit):
     challenge_bytes = Path(challenge_path).read_bytes()
     frozen_bytes = Path(frozen_path).read_bytes()
@@ -79,6 +98,18 @@ def compare(challenge_path, frozen_path, output_path, *, source_commit):
             "evidence_graph_provenance",
         ],
         "cases": rows,
+        "summary": {
+            "deterministic_rules": _confusion(rows, "rules_unsafe"),
+            "frozen_local_model": _confusion(rows, "model_unsafe"),
+            "frozen_combined_review_policy": _confusion(rows, "combined_unsafe"),
+            "evidence_graph": {
+                "attempted": len(rows),
+                "valid_provenance_links": sum(
+                    row["graph_provenance_valid"] for row in rows
+                ),
+                "clinical_verdicts": 0,
+            },
+        },
         "graph_summary": {
             "attempted": len(rows),
             "valid_provenance_links": sum(
