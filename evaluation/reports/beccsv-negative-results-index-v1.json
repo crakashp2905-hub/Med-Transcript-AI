@@ -1,0 +1,59 @@
+{
+  "schema_version": "beccsv_negative_results_index_v1",
+  "study_id": "beccsv-systems-hypothesis-v1",
+  "study_state": "engineering_development_only",
+  "clinical_gold": false,
+  "clinical_release_authorized": false,
+  "preserved_results": [
+    {
+      "result_id": "metamorphic-dev-v1",
+      "source_report": "evaluation/reports/master-task-mta-11-14-d54a09f.json",
+      "source_report_sha256": "6a940ec3a405cf033d4f63efa701b9889f57dcff59cd136b0621247d1486fd38",
+      "cases": 7,
+      "passed": 5,
+      "false_alarms": 2,
+      "missed_semantic_flips": 0,
+      "failures": [
+        {"case_id": "faithful-paraphrase", "kind": "false_alarm", "codes": ["omitted_source_terms", "unsupported_claim_terms"]},
+        {"case_id": "clause-order", "kind": "false_alarm", "codes": ["clinical_relationship_disagreement"]}
+      ],
+      "scope": "synthetic deterministic-rule development checks; not clinical error rates"
+    }
+  ],
+  "not_run_or_blocked": [
+    {
+      "experiment": "full_beccsv_vs_frozen_baselines",
+      "status": "not_run",
+      "reason": "The local Ollama server was not running; the independent adjudicated acceptance cohort is unavailable."
+    },
+    {
+      "experiment": "six_graph_ablation_outcomes",
+      "status": "not_run",
+      "reason": "Only the ablation matrix is declared; model-assisted outcomes were not executed."
+    },
+    {
+      "experiment": "timeouts_and_aborted_comparisons",
+      "status": "not_run",
+      "reason": "No full BECCSV comparison run was started. This is not a zero-timeout result."
+    },
+    {
+      "experiment": "acceptance_cohort_contamination_audit",
+      "status": "not_available",
+      "reason": "No independent acceptance cohort exists. Potential overlap of authored synthetic language with public examples was not independently audited."
+    }
+  ],
+  "dataset_changes": [
+    {
+      "dataset_id": "beccsv-synthetic-dev-v1",
+      "manifest": "evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json",
+      "lock": "evaluation/datasets/beccsv-synthetic-dev-v1/lock.json",
+      "policy": "Do not edit in place after inspecting results; add a new version and retain this lock."
+    }
+  ],
+  "success_claim": false,
+  "limitations": [
+    "No baseline comparison or BECCSV effect estimate exists.",
+    "The observed false alarms are development signals only and have no independent adjudication.",
+    "The registered hypothesis has not been supported or rejected."
+  ]
+}
