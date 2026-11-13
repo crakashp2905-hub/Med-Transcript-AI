@@ -4,7 +4,7 @@ const title=(value:string)=>value.replaceAll('_',' ').replace(/^./,char=>char.to
 export function VerificationWarnings({findings,review,playSource,facts=[],sourceSegments=[],validatorVersion,sourceVersionId}:{findings:Finding[];review:(id:string|null)=>void;playSource?:(segmentId:string)=>void;facts?:Fact[];sourceSegments?:Segment[];validatorVersion?:string;sourceVersionId?:string}){
  const groups=['critical','major','minor','info'];
  const group=(severity:string)=>groups.includes(severity)?severity:severity==='warning'?'minor':'major';
- return <div className="verification-groups">{groups.map(severity=>{
+ return <div className="verification-groups"><p className="muted">Review order uses deterministic finding severity and evidence availability. These are review priorities, not calibrated confidence probabilities.</p>{groups.map(severity=>{
   const items=findings.filter(item=>group(item.severity)===severity);
   return items.length?<section key={severity} aria-label={`${severity} verification issues`}><h3>{title(severity)} <span className="count">{items.length}</span></h3>{items.map(item=>{
    const fact=facts.find(f=>f.fact_id===item.fact_id),reference=item.source_reference;

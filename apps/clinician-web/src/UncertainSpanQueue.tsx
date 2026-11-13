@@ -27,7 +27,7 @@ export function UncertainSpanQueue({segments,originalSegments,gaps,onReview,peak
  if(!rows.length&&!gaps.length)return null;
  return <section className="uncertain-queue" aria-labelledby="uncertain-queue-title">
   <div className="panel-heading"><h3 id="uncertain-queue-title">Uncertain source spans</h3><span className="pill">{rows.length+gaps.length} to review</span></div>
-  <p className="muted">Play each source interval and compare it with the preserved transcript. ASR alternatives are shown only when the recognizer supplied them.</p>
+  <p className="muted">Play each source interval and compare it with the preserved transcript. Review priority reflects explicit source uncertainty and rule severity; no uncalibrated confidence probability is shown. ASR alternatives are shown only when the recognizer supplied them.</p>
   <ol>{rows.map(segment=>{
    const reasons=[...(segment.uncertainties||[]),...(segment.role_status==='unconfirmed'||segment.role==='unknown'?['speaker_unassigned']:[])];
    return <li key={segment.segment_id}>
