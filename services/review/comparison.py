@@ -30,12 +30,33 @@ def compare(before, after):
         "allergen",
         "allergy_reaction",
     )
+    critical_fields = {
+        "assertion",
+        "subject",
+        "temporality",
+        "concept",
+        "category",
+        "medication_name",
+        "dose_value",
+        "dose_unit",
+        "route",
+        "frequency",
+        "duration",
+        "allergen",
+        "allergy_reaction",
+    }
     rows = []
     for fid in dict.fromkeys([*left, *right]):
         a, b = left.get(fid), right.get(fid)
         changed = [k for k in fields if (a or {}).get(k) != (b or {}).get(k)]
         if a and b and not changed:
             continue
+        critical_reasons = [
+            name
+            for name in changed
+            if name in critical_fields
+            and ((a or {}).get(name) is not None or (b or {}).get(name) is not None)
+        ]
         rows.append(
             {
                 "fact_id": fid,
@@ -45,6 +66,8 @@ def compare(before, after):
                 if b is None
                 else "changed",
                 "changed_fields": changed,
+                "clinical_critical": bool(critical_reasons),
+                "critical_reasons": critical_reasons,
                 "before": {k: a.get(k) for k in fields} if a else None,
                 "after": {k: b.get(k) for k in fields} if b else None,
             }

@@ -120,6 +120,8 @@ def test_version_comparison_is_scoped_and_includes_structured_changes(setup):
     route = f"/v1/encounters/{eid}/notes/{first['id']}/compare/{second['id']}"
     comparison = client.get(route, headers=headers()).json()
     assert comparison["changes"][0]["changed_fields"] == ["dose_value"]
+    assert comparison["changes"][0]["clinical_critical"] is True
+    assert comparison["changes"][0]["critical_reasons"] == ["dose_value"]
     assert client.get(route, headers=headers("b" * 40)).status_code == 404
     assert (
         len(
