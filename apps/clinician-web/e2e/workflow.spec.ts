@@ -14,6 +14,8 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByLabel('Access key').fill(token);
   await page.getByRole('button',{name:'Open workspace',exact:false}).click();
   await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();
+  const [auditBundle]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Download synthetic audit bundle'}).click()]);
+  expect(auditBundle.suggestedFilename()).toBe('synthetic-case-audit-bundle.json');
   await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
   const execution=page.getByRole('region',{name:'Measured transcription execution'});
   await expect(execution).toBeVisible();
