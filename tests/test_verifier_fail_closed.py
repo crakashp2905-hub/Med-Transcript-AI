@@ -92,3 +92,66 @@ def test_model_parser_bounds_excess_facts_and_confusable_schema_without_rewritin
         loads('{"quote":"Quoted β uncertainty stays unchanged."}')["quote"]
         == "Quoted β uncertainty stays unchanged."
     )
+
+
+def test_clinical_model_transport_has_stage_timeouts_and_redacts_timeout_text(
+    monkeypatch,
+):
+    import json
+    import urllib.request
+
+    from services.review.clinical_models import (
+        ClinicalModelFailure,
+        EXTRACTION_PROMPT,
+        MODEL_DIGESTS,
+    )
+
+    timeouts = []
+
+    class Response:
+        def __init__(self, body):
+            self.body = body
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            return None
+
+        def read(self, limit):
+            return self.body[:limit]
+
+    class Opener:
+        def open(self, request, timeout):
+            timeouts.append(timeout)
+            if request == "http://127.0.0.1:11434/api/tags":
+                return Response(
+                    json.dumps(
+                        {
+                            "models": [
+                                {
+                                    "name": "qwen2.5:1.5b",
+                                    "digest": MODEL_DIGESTS["qwen2.5:1.5b"],
+                                }
+                            ]
+                        }
+                    ).encode()
+                )
+            if request == "http://127.0.0.1:11434/api/version":
+                return Response(b'{"version":"test"}')
+            raise TimeoutError("private synthetic transcript must not escape")
+
+    monkeypatch.setattr(urllib.request, "build_opener", lambda *handlers: Opener())
+    model = LocalClinicalModels(enabled=True)
+    with pytest.raises(ClinicalModelFailure) as error:
+        model.complete(
+            "qwen2.5:1.5b",
+            EXTRACTION_PROMPT,
+            [{"segment_id": str(uuid4()), "text": "Patient denies fever."}],
+            Extraction,
+            True,
+            True,
+        )
+    assert timeouts == [10, 10, 60]
+    assert error.value.code == "clinical_model_timeout"
+    assert "private synthetic transcript" not in str(error.value)

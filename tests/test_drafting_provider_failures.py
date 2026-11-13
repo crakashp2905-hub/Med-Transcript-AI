@@ -27,6 +27,10 @@ class Response:
         ("timeout", b""),
         ("model_mismatch", None),
         ("missing_model", None),
+        (
+            "duplicate_json_key",
+            b'{"model":"fixture-model","model":"fixture-model"}',
+        ),
         ("malformed_json", b"{"),
         (
             "empty_draft",
@@ -45,6 +49,7 @@ class Response:
         "timeout",
         "model-mismatch",
         "missing-model",
+        "duplicate-json-key",
         "malformed-json",
         "empty-draft",
         "oversized",
