@@ -24,5 +24,11 @@ def test_beccsv_protocol_freezes_hypothesis_method_and_honest_limits():
         "deterministic checks only",
         "LLM self-critique only",
         "deterministic checks plus optional local verifier",
+        "critical unsafe-claim miss rate",
+        "false-alarm rate",
+        "source omission coverage",
+        "consultation-clustered 95% intervals",
+        "paired consultation bootstrap",
+        "Never claim significance from 6–12 developer cases",
     )
     assert all(item in protocol for item in required)
