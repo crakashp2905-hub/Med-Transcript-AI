@@ -4566,12 +4566,42 @@
       "id": "MTA-09-11",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Use local synthetic persona journeys for general practitioner, specialist, documentation reviewer and read-only auditor.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/PersonaJourneys.tsx",
+        "apps/clinician-web/src/App.tsx",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "evaluation/reports/master-task-mta-09-11-2f2c807.json"
+      ],
+      "source_commit": "2f2c807b0ed7d4a234ff19634894a99a64420d9d",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-11-2f2c807.json",
+          "report_sha256": "456b1fe507915a695e08a5990b347f36f373b4a203f3c9d58f7f2bc2c7ba5b2b",
+          "check": "four_local_synthetic_personas_and_navigation",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-11-2f2c807.json",
+          "report_sha256": "456b1fe507915a695e08a5990b347f36f373b4a203f3c9d58f7f2bc2c7ba5b2b",
+          "check": "read_only_persona_does_not_change_permissions",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-11-2f2c807.json",
+          "report_sha256": "456b1fe507915a695e08a5990b347f36f373b4a203f3c9d58f7f2bc2c7ba5b2b",
+          "check": "typescript_build_and_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-11-2f2c807.json",
+          "report_sha256": "456b1fe507915a695e08a5990b347f36f373b4a203f3c9d58f7f2bc2c7ba5b2b",
+          "check": "browser_persona_journey",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "The local browser fixture is unreachable under managed loopback restrictions, so interactive persona navigation is not browser-verified. Build and E2E compilation pass."
     },
     {
       "id": "MTA-09-12",

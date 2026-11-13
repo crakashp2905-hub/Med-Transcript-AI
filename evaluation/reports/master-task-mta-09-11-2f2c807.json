@@ -1,0 +1,56 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "2f2c807b0ed7d4a234ff19634894a99a64420d9d",
+  "tasks": [
+    "MTA-09-11"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/PersonaJourneys.tsx": "02e47e3830def78bbfcee5eff8efb78b848bb0f452a11f565ad2b5b1aced43d0",
+    "apps/clinician-web/src/App.tsx": "23dbaf758d9c404e40fd029247b9049cf8041c06cd272ecd2ebac4d04e77ce7f",
+    "apps/clinician-web/e2e/workflow.spec.ts": "52c6506d123f6c5ee9a11c656580ce9d76e9226dd62dbdda505667603750579d"
+  },
+  "runtime": {
+    "node": "cached npm dependencies",
+    "platform": "Windows 11",
+    "browser": "Playwright fixture; local HTTP unavailable"
+  },
+  "checks": {
+    "four_local_synthetic_personas_and_navigation": {
+      "status": "pass"
+    },
+    "read_only_persona_does_not_change_permissions": {
+      "status": "pass"
+    },
+    "typescript_build_and_e2e_discovery": {
+      "status": "pass"
+    },
+    "browser_persona_journey": {
+      "status": "blocked"
+    }
+  },
+  "test_results": [
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "cwd": "apps/clinician-web",
+      "status": "pass",
+      "observed": "Persona journey assertions compile and are discovered."
+    },
+    {
+      "command": "Playwright synthetic persona journey",
+      "status": "blocked",
+      "observed": "Loopback fixture navigation is denied by the managed environment; browser assertions were not executed."
+    }
+  ],
+  "limitations": [
+    "Persona selection changes walkthrough guidance only and does not alter account permissions.",
+    "The read-only auditor step requires a real viewer account for access enforcement; the walkthrough cannot impersonate one.",
+    "Journey UI execution awaits browser access to the local fixture."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "e93ab1327dc766f1738a889750000ae9156558ded1e1670a80c941179f979e12"
+}
