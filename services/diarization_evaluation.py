@@ -82,6 +82,7 @@ def score_turns(
     )
     mapping = {h: r for r, h in zip(refs, assignment)}
     total = miss = false = confusion = 0
+    reference_overlap_ms = overlap_error_speaker_ms = 0
     reference_ms = {r: 0 for r in refs}
     predicted_ms = {h: 0 for h in hyps}
     speaker_intersections = {(r, h): 0 for r in refs for h in hyps}
@@ -91,6 +92,13 @@ def score_turns(
         false += max(0, len(hs) - len(rs)) * ms
         correct = sum(mapping.get(h) in rs for h in hs)
         confusion += (min(len(rs), len(hs)) - correct) * ms
+        if len(rs) > 1:
+            reference_overlap_ms += ms
+            overlap_error_speaker_ms += (
+                max(0, len(rs) - len(hs))
+                + max(0, len(hs) - len(rs))
+                + (min(len(rs), len(hs)) - correct)
+            ) * ms
         for role in rs:
             reference_ms[role] += ms
             for speaker in hs:
@@ -113,6 +121,8 @@ def score_turns(
         "missed_speaker_ms": miss,
         "false_alarm_speaker_ms": false,
         "confused_speaker_ms": confusion,
+        "reference_overlap_ms": reference_overlap_ms,
+        "overlap_error_speaker_ms": overlap_error_speaker_ms,
         "diarization_error_rate": (miss + false + confusion) / total if total else None,
         "speaker_jaccard_error_rate": (
             sum(jer_values) / len(jer_values) if jer_values else None

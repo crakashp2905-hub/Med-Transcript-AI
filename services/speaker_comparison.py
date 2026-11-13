@@ -43,6 +43,7 @@ def role_metrics(reference, predicted, mapping):
             "correct_ms": 0,
             "missed_ms": 0,
             "extra_ms": 0,
+            "role_swap_ms": 0,
         }
         for role in roles
     }
@@ -53,12 +54,15 @@ def role_metrics(reference, predicted, mapping):
             for r in predicted
             if r["start_ms"] < b and r["end_ms"] > a
         }
+        mapped_roles = {role for role in hyps if role in roles}
         for role in roles:
             result[role]["reference_ms"] += (b - a) * (role in refs)
             result[role]["predicted_ms"] += (b - a) * (role in hyps)
             result[role]["correct_ms"] += (b - a) * (role in refs and role in hyps)
             result[role]["missed_ms"] += (b - a) * (role in refs and role not in hyps)
             result[role]["extra_ms"] += (b - a) * (role not in refs and role in hyps)
+            if role in refs and role not in mapped_roles and mapped_roles:
+                result[role]["role_swap_ms"] += b - a
     for role in roles:
         row = result[role]
         row["recall"] = (

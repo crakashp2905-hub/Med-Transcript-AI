@@ -56,6 +56,19 @@ def test_overlap_policy_can_exclude_reference_overlap_without_hiding_accounting(
     assert result["reference_speaker_ms"] == 2000
     assert result["ignored_reference_overlap_ms"] == 1000
     assert result["overlap_policy"] == "ignore_reference_overlap"
+    assert result["reference_overlap_ms"] == 0
+
+
+def test_overlap_scored_reports_reference_overlap_and_overlap_error_budget():
+    reference = [
+        {"start_ms": 0, "end_ms": 2000, "role": "clinician"},
+        {"start_ms": 1000, "end_ms": 3000, "role": "patient"},
+    ]
+
+    result = score_turns(reference, [])
+
+    assert result["reference_overlap_ms"] == 1000
+    assert result["overlap_error_speaker_ms"] == 2000
 
 
 @pytest.mark.parametrize(
