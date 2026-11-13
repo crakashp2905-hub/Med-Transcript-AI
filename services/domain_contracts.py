@@ -2,7 +2,7 @@
 
 from copy import deepcopy
 from datetime import datetime
-from typing import Literal
+from typing import Any, Literal
 from uuid import UUID
 from pydantic import (
     BaseModel,
@@ -211,6 +211,7 @@ class VerificationReport(StableRecord):
     transcript_version_id: UUID
     transcript_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     findings: list[VerificationFinding] = Field(max_length=10000)
+    directional_coverage: dict[str, Any] = Field(default_factory=dict)
     gate: Literal["ready", "blocked"]
 
     @model_validator(mode="after")

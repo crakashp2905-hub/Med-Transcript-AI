@@ -284,6 +284,78 @@ def findings_for(note, transcript):
     return findings
 
 
+def directional_coverage(note, transcript, findings=None):
+    """Summarize source-to-note omissions and note-to-source grounding failures."""
+    findings = findings if findings is not None else findings_for(note, transcript)
+    source_codes = {
+        "source_omission",
+        "critical_source_omission",
+        "unaccounted_source_content",
+        "dose_or_unit_disagreement",
+        "medication_or_allergen_disagreement",
+        "medication_dose_assignment_disagreement",
+        "negation_disagreement",
+        "negation_scope_disagreement",
+        "incorrect_attribution",
+        "temporality_disagreement",
+        "laterality_disagreement",
+        "structured_field_disagreement",
+        "unsupported_claim_terms",
+        "omitted_source_terms",
+    }
+    note_codes = source_codes - {
+        "source_omission",
+        "critical_source_omission",
+        "unaccounted_source_content",
+    }
+
+    def rows_for(codes):
+        rows = [row for row in findings if row["code"] in codes]
+        return [
+            {
+                "finding_id": row["finding_id"],
+                "code": row["code"],
+                "materiality": row["severity"],
+                "fact_id": row.get("fact_id"),
+                "source_reference": row.get("source_reference"),
+            }
+            for row in rows
+        ]
+
+    source_rows = rows_for(source_codes)
+    note_rows = rows_for(note_codes)
+    manual_count = sum(
+        fact.get("origin") in {"clinician_entered", "manual_no_audio_evidence"}
+        for fact in note.get("facts", [])
+    )
+    return {
+        "schema_version": "directional_source_note_coverage_v1",
+        "source_not_in_note": {
+            "status": "review_required" if source_rows else "no_rule_detected",
+            "finding_count": len(source_rows),
+            "by_materiality": {
+                grade: sum(row["materiality"] == grade for row in source_rows)
+                for grade in ("critical", "major", "minor")
+            },
+            "findings": source_rows,
+        },
+        "note_not_in_source": {
+            "status": "review_required" if note_rows else "no_rule_detected",
+            "finding_count": len(note_rows),
+            "by_materiality": {
+                grade: sum(row["materiality"] == grade for row in note_rows)
+                for grade in ("critical", "major", "minor")
+            },
+            "findings": note_rows,
+        },
+        "unverifiable_manual_fact_count": manual_count,
+        "materiality_method": "deterministic_review_rule_severity_not_independent_clinical_gold",
+        "raw_source_text_included": False,
+        "clinical_adjudication": "not_performed",
+        "approval_authority": False,
+    }
+
+
 def current_safety_recheck(note, transcript, report):
     """Additional current-rule findings never rewrite or clear historical reports."""
     if report.get("validator_version") == RULES_VERSION:

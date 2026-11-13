@@ -10,6 +10,7 @@ from services.asr.profiles import ASRProfile, canonical_json, content_sha256
 from services.api.record_integrity import decode_record
 from services.domain_contracts import validate_record
 from services.review.engine import (
+    directional_coverage,
     findings_for,
     render_sections,
     validate_evidence,
@@ -183,6 +184,7 @@ class ReviewService:
             "transcript_sha256": tx_row["sha256"],
             "validator_version": RULES_VERSION,
             "findings": findings,
+            "directional_coverage": directional_coverage(body, tx, findings),
             "gate": "blocked" if findings else "ready",
             "created_at": created,
         }
