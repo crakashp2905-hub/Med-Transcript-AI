@@ -4071,11 +4071,36 @@
       "id": "MTA-08-14",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Keep audit events for review, clarification, correction, signature, revocation, export and deletion.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/api/main.py",
+        "services/api/storage.py",
+        "services/encounter_state.py",
+        "services/error_catalog.json",
+        "services/review/routers/approvals.py",
+        "services/review/routers/exports.py",
+        "services/review/service.py",
+        "services/review/routers/verification.py",
+        "tests/test_review_workflow.py",
+        "tests/test_foundation.py",
+        "evaluation/reports/master-task-mta-08-14-599330e.json"
+      ],
+      "source_commit": "599330ec94c52a0d5e243e75ec4c64905766bc38",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-14-599330e.json",
+          "report_sha256": "4ac394732ad6a8298021eaa38d913ccec19967a399ba01a1fdd1eeff93a6bc6f",
+          "check": "required_clinical_lifecycle_audit_events_are_queryable",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-08-14-599330e.json",
+          "report_sha256": "4ac394732ad6a8298021eaa38d913ccec19967a399ba01a1fdd1eeff93a6bc6f",
+          "check": "approval_revocation_blocks_export_and_new_changes",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

@@ -1,0 +1,53 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "599330ec94c52a0d5e243e75ec4c64905766bc38",
+  "tasks": [
+    "MTA-08-14"
+  ],
+  "source_hashes": {
+    "services/api/main.py": "700ce54ddb1e5b3dc8858df47b1c914d735c2307fdbd35bea2ad4427c85aa95b",
+    "services/api/storage.py": "019c7ed13bfd96325f428eb886ae61abfa1af98fabc9cc4e0f1ec3bbf101debe",
+    "services/encounter_state.py": "d9f131df1afba3eb8d26028bd04dc6f88b3089a410371031dae054c829d680ee",
+    "services/error_catalog.json": "e7f4401db3920998ac3538c5d61769480a29c953157bba93f40e7d6b7350acec",
+    "services/review/routers/approvals.py": "68a1520c0d7e092805eeb455515f006bcd0957cd7a2f1ee3d1ac74cf60de48f6",
+    "services/review/routers/exports.py": "ecae580701ceccce9f0b0719251841ba5dae39f72a1f0a7178d9020c9376bd2e",
+    "services/review/service.py": "27104107da5224c84329987d45927291d47ad5622de32dae5387efe7c33ada05",
+    "services/review/routers/verification.py": "37d4528a8cb0b91e1fe0182f7d6f4cd94b5296a22a2e69e286cbfad8aa5cf0ea",
+    "tests/test_review_workflow.py": "9107f520ab8b5d6d87cecf1df832766cb0295eb3588ec462d4b24e2742ab6984",
+    "tests/test_foundation.py": "4cb6a0295ccf2b6736837867ffd7f9f26779783c3324491c61c3bd89ecf9de23"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation"
+  },
+  "checks": {
+    "required_clinical_lifecycle_audit_events_are_queryable": {
+      "status": "pass"
+    },
+    "approval_revocation_blocks_export_and_new_changes": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_review_workflow.py::test_signed_approval_can_be_revoked_and_then_blocks_export_and_changes tests/test_review_workflow.py::test_full_review_approval_export_and_amendment tests/test_review_workflow.py::test_ambiguous_medication_blocks_and_correction_creates_new_version tests/test_review_workflow.py::test_ambiguous_source_cannot_clear_critical_contradiction tests/test_review_workflow.py::test_deletion_tombstones_access_and_blocks_processing tests/test_foundation.py::test_authorization_withdrawal_and_audit_are_durable tests/test_error_taxonomy.py tests/test_encounter_state.py -q (loopback enabled)",
+      "status": "pass",
+      "passed": 16
+    },
+    {
+      "command": "python -m ruff check services/api/main.py services/api/storage.py services/encounter_state.py services/review/routers/approvals.py services/review/routers/exports.py services/review/service.py services/review/routers/verification.py tests/test_review_workflow.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/api/main.py services/api/storage.py services/encounter_state.py services/review/routers/approvals.py services/review/routers/exports.py services/review/service.py services/review/routers/verification.py tests/test_review_workflow.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Audit metadata records actor, action, resource and time; clinical source text is not copied into the audit chain.",
+    "The local integration tests use synthetic encounters and do not establish clinical accuracy."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "b0d7f0cfcc1fcfcd4666758d682c810a67e906990ad93c1596a4bcf8925804e3"
+}
