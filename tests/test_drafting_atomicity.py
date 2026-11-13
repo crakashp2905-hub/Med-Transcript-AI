@@ -1,4 +1,7 @@
+from uuid import uuid4
+
 from services.review.providers import DeterministicProvider, validate
+from services.review.clinical import extract
 
 
 def test_deterministic_draft_keeps_each_reviewed_assertion_atomic():
@@ -65,3 +68,32 @@ def test_combined_assertions_are_flagged_for_clinician_review():
         and finding["blocks_approval"]
         for finding in result["findings"]
     )
+
+
+def test_unknown_allergy_and_examination_are_never_autofilled():
+    facts = extract(
+        {"segments": [{"segment_id": str(uuid4()), "text": "Patient reports cough."}]}
+    )
+    for fact in facts:
+        fact["reviewed"] = True
+
+    draft = DeterministicProvider().draft(facts, authorized=True, synthetic=True)
+    statements = [item["text"].casefold() for item in draft["draft"]["statements"]]
+
+    assert statements == ["patient reports cough."]
+    assert not any("allerg" in statement for statement in statements)
+    assert not any("normal examination" in statement for statement in statements)
+
+
+def test_explicit_no_known_allergies_remains_tied_to_source():
+    facts = extract(
+        {"segments": [{"segment_id": str(uuid4()), "text": "No known allergies."}]}
+    )
+    for fact in facts:
+        fact["reviewed"] = True
+
+    draft = DeterministicProvider().draft(facts, authorized=True, synthetic=True)
+
+    assert [item["text"] for item in draft["draft"]["statements"]] == [
+        "No known allergies."
+    ]
