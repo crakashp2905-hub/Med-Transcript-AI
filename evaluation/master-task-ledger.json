@@ -2659,12 +2659,21 @@
       "id": "MTA-05-08",
       "section": "05 \u2014 Diarization, speaker safety and attribution",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add role-confidence triage (known doctor, known patient, other, unknown); ensure uncertainty does not turn into asserted source attribution.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-05-08-f9515eb.json"
+      ],
+      "source_commit": "f9515eb763e1c9ed39a5bf173fd6681bf754f16a",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/master-task-mta-05-08-f9515eb.json",
+          "report_sha256": "4a0267548ac7aa185c6b881164ddd9aac7d301e93e2e3fcbbc95dd08d6458021",
+          "check": "role_confidence_fails_closed_until_human_confirmation"
+        }
+      ],
+      "blocker": "Role triage uses categorical confirmation states, not calibrated probabilistic role confidence; independent role performance remains unavailable."
     },
     {
       "id": "MTA-05-09",
