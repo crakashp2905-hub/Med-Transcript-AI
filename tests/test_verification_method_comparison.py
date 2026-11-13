@@ -16,7 +16,14 @@ def test_comparison_keeps_graph_structural_and_reuses_frozen_model(tmp_path):
                 "source": "Take warfarin 2 mg daily.",
                 "claim": "Take warfarin 20 mg daily.",
                 "unsafe": True,
-            }
+            },
+            {
+                "id": "dose_safe_control",
+                "category": "dose",
+                "source": "Take warfarin 2 mg daily.",
+                "claim": "Take warfarin 2 mg daily.",
+                "unsafe": False,
+            },
         ],
     }
     challenge_path = tmp_path / "challenge.json"
@@ -34,7 +41,12 @@ def test_comparison_keeps_graph_structural_and_reuses_frozen_model(tmp_path):
                         "model_unsafe": None,
                         "combined_unsafe": True,
                         "model_failure": "clinical_model_timeout",
-                    }
+                    },
+                    {
+                        "id": "dose_safe_control",
+                        "model_unsafe": True,
+                        "combined_unsafe": True,
+                    },
                 ],
                 "summary": {
                     "model": {"missing_verdicts": 1},
@@ -61,6 +73,11 @@ def test_comparison_keeps_graph_structural_and_reuses_frozen_model(tmp_path):
     assert report["graph_summary"]["clinical_verdicts"] == 0
     assert report["summary"]["deterministic_rules"]["critical_misses"] == 0
     assert report["summary"]["frozen_local_model"]["missing_verdicts"] == 1
+    assert report["summary"]["deterministic_rules"]["false_block_rate"] == 0
+    assert report["summary"]["frozen_local_model"]["false_block_rate"] == 1
+    assert (
+        report["summary"]["frozen_combined_review_policy"]["blocks_all_cases"] is True
+    )
     failure = report["summary"]["per_category"]["dose"]["failure_dimensions"]
     assert failure["model_timeouts"] == 1
     assert failure["model_abstentions"] == 1

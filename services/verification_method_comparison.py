@@ -10,6 +10,10 @@ from services.review.clinical import check_claim
 
 
 def _confusion(rows, field):
+    safe_controls = sum(not row["unsafe_reference"] for row in rows)
+    false_alarms = sum(
+        not row["unsafe_reference"] and row[field] is True for row in rows
+    )
     return {
         "attempted": len(rows),
         "critical_misses": sum(
@@ -21,9 +25,10 @@ def _confusion(rows, field):
             and row[field] is not True
             for row in rows
         ),
-        "false_alarms": sum(
-            not row["unsafe_reference"] and row[field] is True for row in rows
-        ),
+        "false_alarms": false_alarms,
+        "safe_controls": safe_controls,
+        "false_block_rate": false_alarms / safe_controls if safe_controls else None,
+        "blocks_all_cases": bool(rows) and all(row[field] is True for row in rows),
         "missing_verdicts": sum(row[field] is None for row in rows),
     }
 
@@ -146,6 +151,25 @@ def compare(challenge_path, frozen_path, output_path, *, source_commit):
                 }
                 for category in sorted({row["category"] for row in rows})
                 for group in [[row for row in rows if row["category"] == category]]
+            },
+            "anti_overblocking_guard": {
+                "methods_blocking_every_case": [
+                    method
+                    for method, values in (
+                        ("deterministic_rules", _confusion(rows, "rules_unsafe")),
+                        ("frozen_local_model", _confusion(rows, "model_unsafe")),
+                        (
+                            "frozen_combined_review_policy",
+                            _confusion(rows, "combined_unsafe"),
+                        ),
+                    )
+                    if values["blocks_all_cases"]
+                ],
+                "any_method_blocks_every_case": any(
+                    _confusion(rows, field)["blocks_all_cases"]
+                    for field in ("rules_unsafe", "model_unsafe", "combined_unsafe")
+                ),
+                "interpretation": "Flag for review; no method earns acceptance by blocking every case.",
             },
         },
         "graph_summary": {
