@@ -1,0 +1,63 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "b7c419c002106267234284a692ba3285298e9d65",
+  "tasks": [
+    "MTA-08-01"
+  ],
+  "benchmark_report": "evaluation/reports/local-drafting-mta-08-01-b7c419.json",
+  "benchmark_report_sha256": "35b2681381496941f092f27673352cc97a16202149e7a3bcfc9db4fbeb09ee25",
+  "fixture_sha256": "77cb71559517b75db95830ec6d27753099cfb8fee20de19f2ec278795a21d99e",
+  "source_hashes": {
+    "services/review/providers.py": "f5b72b99b9bc2b4ba79cf889e2fa4b7f2ff0322d06c0d5385c2b629ca901e6ae",
+    "services/local_drafting_evaluation.py": "4eb919b0daba81e105cc5f584603efa218e5cdbe84b050fa2f671e19141bee72",
+    "tests/test_feature_flags.py": "7021f7240e2d5802e60dc5a58d0b2cc0bdae20df7958f5c433f15958d257a6c4",
+    "tests/test_scribe_workflow.py": "8f617fe1be4164420a111067bca6158e399b2b37deceaac60d412d2085850fb5"
+  },
+  "results": {
+    "deterministic_baseline_exact_cases": 4,
+    "deterministic_baseline_total_cases": 4,
+    "local_model": "qwen2.5:1.5b",
+    "local_model_digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+    "local_model_exact_cases": 3,
+    "local_model_total_cases": 4,
+    "local_model_failures": 0,
+    "local_model_blocking_findings": 8,
+    "local_model_p50_seconds": 5.7975402000010945,
+    "local_model_p95_seconds": 19.21667080000043,
+    "provider_cost_usd": 0,
+    "hardware_cost": "not_measured"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "ollama": "0.40.16",
+    "model_inference": "local-only synthetic fixture; no paid calls"
+  },
+  "checks": {
+    "deterministic_baseline_and_optional_local_drafting_comparison": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_feature_flags.py tests/test_scribe_workflow.py::test_model_omission_retains_explicit_unreviewed_baseline -q",
+      "status": "pass",
+      "passed": 4
+    },
+    {
+      "command": "python -m ruff check services/review/providers.py services/local_drafting_evaluation.py tests/test_feature_flags.py tests/test_scribe_workflow.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/review/providers.py services/local_drafting_evaluation.py tests/test_feature_flags.py tests/test_scribe_workflow.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Four developer-authored synthetic cases only; no clinical accuracy or clinical acceptance claim.",
+    "Qwen 1.5B preserved all facts exactly in 3/4 cases; all model calls completed but produced 8 blocking findings.",
+    "Model wall time is workstation-dependent; hardware/electricity cost was not measured."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "d0153aa4091975488cb2ef258123dce1f09ce8c7b8fc2c55357e6e0eb62a2c01"
+}

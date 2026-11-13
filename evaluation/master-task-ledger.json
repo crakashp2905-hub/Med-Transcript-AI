@@ -3807,11 +3807,21 @@
       "id": "MTA-08-01",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Keep deterministic, reviewed-fact SOAP generation as the safety baseline and independently benchmark optional local drafting.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/local-drafting-mta-08-01-b7c419.json",
+        "evaluation/reports/master-task-mta-08-01-b7c419.json"
+      ],
+      "source_commit": "b7c419c002106267234284a692ba3285298e9d65",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-01-b7c419.json",
+          "report_sha256": "ce3c154e1a97f9cdfbbaa2ab8d2a08c078c3a7c6d3cfebe44a0b0f7946550250",
+          "check": "deterministic_baseline_and_optional_local_drafting_comparison",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
