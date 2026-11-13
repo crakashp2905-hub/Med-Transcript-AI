@@ -73,6 +73,11 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(page.getByRole('heading',{name:'Verification'})).toBeVisible();
   await page.getByRole('button',{name:'▷ Evidence',exact:true}).first().click();
   await expect(page.locator('.citation-selected')).toHaveCount(1);
+  const selectedSource=page.locator('.citation-selected');
+  const sourceStart=await selectedSource.getByRole('button',{name:/Play source/}).getAttribute('aria-label');
+  const startMatch=sourceStart?.match(/Play source (\d+):(\d{2})/);
+  expect(startMatch,'Evidence citation exposes a playable source timestamp.').not.toBeNull();
+  await expect.poll(()=>page.locator('audio').evaluate(audio=>(audio as HTMLAudioElement).currentTime)).toBe(Number(startMatch![1])*60+Number(startMatch![2]));
   const downloadPromise=page.waitForEvent('download');
   await page.getByRole('button',{name:'↓ Json',exact:true}).click();
   const download=await downloadPromise;

@@ -1,0 +1,57 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "32a071a5317854f59565dd0705f0343040147d5a",
+  "tasks": [
+    "MTA-09-01"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/SourceContext.tsx": "698d1c4c6e275e2fa883b38ddbf9355c23ab958b7933702bf5bee7807f124c2f",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "c51dce4de0ac4b4c3da94528b6cdfb1460f81f38132cc89e7b8d02401d073f46",
+    "apps/clinician-web/src/style.css": "3e60b68ab76e331d6734b7ec2136852361ff8b265a0ccf2686962b181457c1a5",
+    "apps/clinician-web/e2e/workflow.spec.ts": "990339749dae28291d19d2409814d463ddcbc25fa9603f063ab7c5a3835070f8",
+    "tests/test_audio_waveform.py": "f62a9f95f0b33b4bd702cdf153dbb8f8dbcb54a7de58a92b8ba71caa4b2786bb"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "node_build": "npm run build in apps/clinician-web",
+    "browser": "Playwright Chromium; isolated offline scripted non-ASR fixture on loopback"
+  },
+  "checks": {
+    "single_encounter_workspace_shows_source_facts_soap_and_warnings": {
+      "status": "pass"
+    },
+    "source_waveform_endpoint_produces_hash_bound_peaks": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts -g \"clinician reviews evidence\" (isolated scripted non-ASR fixture)",
+      "cwd": "apps/clinician-web",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m pytest tests/test_audio_waveform.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff check tests/test_audio_waveform.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "The browser fixture returned no waveform peaks, so the UI showed its explicit \u201cWaveform unavailable\u201d fallback; waveform rendering in that browser fixture was not verified.",
+    "The source-hash-checked waveform computation is covered by local unit tests. The browser flow verified transcript, role labels, audio/timeline context, facts, SOAP preview, warnings, citation playback and note approval together.",
+    "The fixture uses scripted transcript text and is not ASR or clinical validation."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "c041065d5fe1d7c6da370dab2cdc9eeccdc054e7257b6ffd64f90a39ede35ce4"
+}

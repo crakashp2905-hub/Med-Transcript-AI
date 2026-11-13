@@ -4194,12 +4194,32 @@
       "id": "MTA-09-01",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Implement a single encounter workspace with synchronized waveform/time bar, speaker transcript, atomic facts, SOAP note and warning list.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/SourceContext.tsx",
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+        "apps/clinician-web/src/style.css",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "tests/test_audio_waveform.py",
+        "evaluation/reports/master-task-mta-09-01-32a071a.json"
+      ],
+      "source_commit": "32a071a5317854f59565dd0705f0343040147d5a",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-01-32a071a.json",
+          "report_sha256": "5697b8be9b4c7a74fed6cca9c60ed0d525dc5ed68af02e196a45ec30c99fbddc",
+          "check": "single_encounter_workspace_shows_source_facts_soap_and_warnings",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-01-32a071a.json",
+          "report_sha256": "5697b8be9b4c7a74fed6cca9c60ed0d525dc5ed68af02e196a45ec30c99fbddc",
+          "check": "source_waveform_endpoint_produces_hash_bound_peaks",
+          "status": "pass"
+        }
+      ],
+      "blocker": "The offline browser fixture returned no waveform peaks; the UI displayed its explicit fallback. The rendered waveform needs an interactive check with an audio fixture that returns peaks."
     },
     {
       "id": "MTA-09-02",
