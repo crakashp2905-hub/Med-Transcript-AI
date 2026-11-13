@@ -1,0 +1,44 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-01-02",
+  "source_commit": "6b4a3040e80ddcae120bf832717a2f83bff4c8d5",
+  "captured_at_utc": "2026-11-13T22:10:18+00:00",
+  "source_files": {
+    "services/review/routers/history.py": "0288c38b4ca170d721924c0cbad9a5fbdbd35d737da8285e15b65bb9e93c23c7",
+    "tests/test_completion_gaps.py": "5d8eeeb1c558f93a13ec24bee9bdef96a7fc6ffb08091cd046ca774a5aeef0b6",
+    "tests/test_investor_demo_static.py": "cef17d1f0919bfae457a64e39a38ab128f4fe0feb009f3d5fed7b2636aa16f22",
+    "tests/test_patient_summary_source_link.py": "cc1722e72c40bd5befc6676a363a7ec7cdf6dfd7f42635f93f4d85565cf3f7fd",
+    "tests/test_synthetic_case_audit_bundle.py": "476c8f89d6094b9c88248a56f12cf5d8d81d8f2be809ff627536cf615623ddc2",
+    "tests/test_ui_review_priority.py": "31c2ca4bf13a15690efb1e80e05e280793728acd3427643621e051df517d9e09",
+    "services/verify.py": "b49a205c7e5a9ad9250b1c4e7fe74da0b2353c71c339c795fefa75412c6cfaca",
+    ".github/workflows/ci.yml": "b8822b58a5bdadb0f036a813e7ca4f62cd8b2f45027a9cdf11ab17dde184b74d"
+  },
+  "checks": [
+    {
+      "command": "python -m ruff format --check services tests",
+      "status": "pass",
+      "result": "603 files already formatted"
+    },
+    {
+      "command": "python -m ruff check services tests",
+      "status": "pass"
+    },
+    {
+      "command": "python -m mypy services --ignore-missing-imports",
+      "status": "pass",
+      "result": "303 source files"
+    },
+    {
+      "command": "python -m pytest tests/test_synthetic_case_audit_bundle.py -q",
+      "status": "pass",
+      "result": "4 passed"
+    }
+  ],
+  "ci_failure_investigation": {
+    "initial_failure": "python_format gate failed on six tracked source/test files",
+    "additional_failure": "mypy flagged two optional persisted-row dereferences in the synthetic audit-bundle route",
+    "fix": "Ruff-only formatting for the six files; explicit integrity guard now returns 409 if persisted note row/body pairing is inconsistent",
+    "remaining_local_limit": "Full Python verification was stopped after faulthandler located a Windows asyncio TestClient socketpair block in test_partial_noncritical_source_span_cannot_hide_an_omitted_symptom. Linux hosted CI has not been observed for this new source commit."
+  },
+  "clinical_release_authorized": false
+}

@@ -414,22 +414,30 @@
       "id": "MTA-01-02",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "description": "Run Ruff check and mypy after formatting; fix genuine diagnostics rather than disabling rules or excluding large trees.",
       "evidence": [
         ".github/workflows/ci.yml",
-        "evaluation/reports/master-task-mta-01-02-be09fa3.json"
+        "services/verify.py",
+        "services/review/routers/history.py",
+        "tests/test_completion_gaps.py",
+        "tests/test_investor_demo_static.py",
+        "tests/test_patient_summary_source_link.py",
+        "tests/test_synthetic_case_audit_bundle.py",
+        "tests/test_ui_review_priority.py",
+        "evaluation\\reports\\master-task-mta-01-02-6b4a304.json"
       ],
-      "source_commit": "be09fa30bc0cd34ae37a8f283bae420fe69ef587",
+      "source_commit": "6b4a3040e80ddcae120bf832717a2f83bff4c8d5",
       "test_results": [
         {
+          "report": "evaluation\\reports\\master-task-mta-01-02-6b4a304.json",
+          "report_sha256": "dbce552a722f7480b5374520769e2ed0e41020cdf795e6e22977813a6a119393",
+          "check": "ruff_mypy_and_audit_route_tests",
           "status": "pass",
-          "report": "evaluation/reports/master-task-mta-01-02-be09fa3.json",
-          "report_sha256": "9c0d251270e58e4b805109196071f25f9982500cb1aead43bf7997d0a3036cc7",
-          "check": "mypy"
+          "detail": "Ruff format and lint across services/tests, mypy across 303 source files, and 4 synthetic audit-bundle route tests passed on exact source commit."
         }
       ],
-      "blocker": "Pinned CI mypy and Ruff checks pass after the concrete Literal typing fix; CI core test collection still failed on absent optional dependencies in this earlier commit."
+      "blocker": "Full repository pytest sequence did not complete locally: Windows asyncio TestClient setup blocked on socketpair in test_partial_noncritical_source_span_cannot_hide_an_omitted_symptom. Hosted CI for this source SHA has not yet been observed."
     },
     {
       "id": "MTA-01-03",
@@ -563,7 +571,7 @@
       "id": "MTA-01-05",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "verified",
+      "status": "implemented",
       "description": "Ensure exact HEAD branch run passes all five hosted CI jobs; do not count a previous commit or cancelled test job as success.",
       "evidence": [
         ".github/workflows/ci.yml",
@@ -609,7 +617,7 @@
           "status": "pass"
         }
       ],
-      "blocker": null
+      "blocker": "The recorded five-job hosted run is bound to historical commit 55de56e, not current HEAD; exact-current-commit hosted CI has not been observed."
     },
     {
       "id": "MTA-01-06",
