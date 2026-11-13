@@ -1,0 +1,48 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "f3d9ce127a8f9375aae51fd12e97adb38234ddb8",
+  "tasks": [
+    "MTA-07-16"
+  ],
+  "comparison_report": "evaluation/reports/verification-methods-mta-07-16-f3d9ce1.json",
+  "comparison_report_sha256": "4987e15af5bb75bd9497d02a5f25cd25963a6cdb4678da25023413df210b5a37",
+  "source_hashes": {
+    "services/verification_method_comparison.py": "f24e7ea56bdd70ee604d4e96eb3e32e7c8116a26fd1ad7a6a4754d987bf0d8e1",
+    "services/evidence_graph.py": "138f68c4b8ea5810719082b1bebfdb2334ea656856bd73d7b79c7531bca7094b",
+    "services/review/clinical.py": "90b88465621722521b452f5f29885a474ac3d8c81240efd04513a16cab728e42",
+    "tests/test_verification_method_comparison.py": "78e0353f0c4c970fcf93cca3c35c10910909ed8ba5a0220245f8fda9bc959b75"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation",
+    "model_inference": "none; frozen local result reused; no paid calls"
+  },
+  "checks": {
+    "verification_methods_same_frozen_cases_and_graph_provenance": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_verification_method_comparison.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "python -m ruff check services/verification_method_comparison.py tests/test_verification_method_comparison.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/verification_method_comparison.py tests/test_verification_method_comparison.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Cases are developer-authored and not independent clinical gold.",
+    "Model arm is reused from an earlier local run; no model was called by this report.",
+    "Evidence-graph validation cannot detect semantic mismatch when citations themselves are structurally valid."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "8242dd4d2a19077ddd33618b815ac99dca2d29d60d7ce081c0167fcb61cef1e2"
+}
