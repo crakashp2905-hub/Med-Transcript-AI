@@ -1,0 +1,45 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-17",
+  "source_commit": "af3c71de104395e490ad544f198f00316c490bc4",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "source_files": {
+    "evaluation/contracts/asr-runtime-profiles-v1.json": "48156f7071385bb53c7560bcc3bd0ba713d5a2d36dcefacf3018a1e60869cda7",
+    "data/small-cpu-int8-v1-profiles.json": "6a420b9510a58015e46e2f7e9281145f247f3da0ba3c3e9af6c8fc5a777f2316",
+    "services/device_profile.py": "fddf0dff93d9541d7b4d77f5a6100c78855b6c8453c74015fef87849c14218b2",
+    "tests/test_runtime_profile_matrix.py": "c01c453e27337cb90a11b50c5f53d6bbe1d93db3b143053bb7dbce7d11623a57",
+    "tests/test_device_profile.py": "f1ff2a2e9d2629f4cd5e2fbb184064f3ede845a3e03949013192ed838affbbfe"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_runtime_profile_matrix.py tests/test_device_profile.py -q",
+      "status": "pass",
+      "result": "2 passed"
+    },
+    {
+      "command": "ruff format --check tests/test_runtime_profile_matrix.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff check tests/test_runtime_profile_matrix.py",
+      "status": "pass"
+    }
+  ],
+  "host_observation": {
+    "os": "Windows 11",
+    "architecture": "AMD64/x86_64",
+    "processor_observation": "Intel64 Family 6 Model 140 Stepping 1",
+    "logical_cpu_count": 8,
+    "physical_memory_gib": 15.75,
+    "nvidia_smi_available": false,
+    "apple_silicon_available": false,
+    "ollama_client_version": "0.40.16",
+    "ollama_server_running": false
+  },
+  "limitations": [
+    "The CPU profile is a reproducible configuration declaration, not a performance qualification.",
+    "Apple Silicon and NVIDIA runtime profiles were not generated or tested because those hardware types were unavailable locally.",
+    "No ASR candidate is promoted; current profiles declare clinical_validation=not_validated and the 5% gate remains unchanged."
+  ],
+  "clinical_release_authorized": false
+}

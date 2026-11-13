@@ -5483,11 +5483,22 @@
       "id": "MTA-10-17",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Declare reproducible runtime profiles for low-end CPU, Apple Silicon if present and NVIDIA GPU only if locally available.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/contracts/asr-runtime-profiles-v1.json",
+        "evaluation/reports/master-task-mta-10-17-af3c71d.json"
+      ],
+      "source_commit": "af3c71de104395e490ad544f198f00316c490bc4",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-10-17-af3c71d.json",
+          "report_sha256": "112a51d6355d89c771fe3e1410bd110595d995af13dfc8feed4d1de30e806f83",
+          "check": "reproducible_local_runtime_profile_matrix",
+          "status": "pass",
+          "detail": "2 profile and device declaration tests passed. CPU profile binds to the local manifest digest; Apple Silicon and NVIDIA are explicitly unavailable on this host."
+        }
+      ],
       "blocker": null
     },
     {
