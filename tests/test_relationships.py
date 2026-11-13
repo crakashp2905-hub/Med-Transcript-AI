@@ -29,6 +29,76 @@ def test_relationship_quotes_are_exact_and_never_reviewed():
         assert evidence["segment_id"] == sid
         assert row["review_required"] is True
     assert result["clinical_calibration"] is False
+    assert result["schema_version"] == "explicit_relationship_graph_v2"
+    for edge in result["edges"]:
+        evidence = edge["evidence"]
+        assert evidence["quote"] == text[evidence["start_char"] : evidence["end_char"]]
+        assert edge["review_required"] is True
+
+
+def test_typed_graph_links_medication_and_symptom_attributes_to_exact_evidence():
+    text = (
+        "Patient denies cough today. "
+        "Patient takes warfarin 5 mg orally twice daily for five days."
+    )
+    sid = str(uuid4())
+    result = analyze_transcript({"segments": [{"segment_id": sid, "text": text}]})
+
+    edge_types = {edge["relation_type"] for edge in result["edges"]}
+    node_values = {node["value"] for node in result["nodes"]}
+
+    assert {
+        "dose",
+        "route",
+        "frequency",
+        "duration",
+        "temporality",
+        "subject",
+        "negation",
+    } <= edge_types
+    assert {
+        "warfarin",
+        "5 mg",
+        "oral",
+        "twice daily",
+        "five days",
+        "cough",
+        "today",
+        "patient",
+        "negated",
+    } <= node_values
+    assert all(edge["evidence"]["segment_id"] == sid for edge in result["edges"])
+    assert all(edge["review_required"] for edge in result["edges"])
+    assert all(node["node_id"] for node in result["nodes"])
+    assert result["clinical_calibration"] is False
+
+
+def test_repeated_identical_source_returns_stable_graph_ids():
+    source = {"segments": [{"segment_id": str(uuid4()), "text": "No fever today."}]}
+
+    first = analyze_transcript(source)
+    second = analyze_transcript(source)
+
+    assert [node["node_id"] for node in first["nodes"]] == [
+        node["node_id"] for node in second["nodes"]
+    ]
+    assert first["edges"] == second["edges"]
+
+
+def test_relation_graph_validator_rejects_unlinked_or_fabricated_edges():
+    from services.review.relationships import validate_graph
+
+    transcript = {
+        "segments": [
+            {"segment_id": str(uuid4()), "text": "Patient denies fever today."}
+        ]
+    }
+    graph = analyze_transcript(transcript)
+    validate_graph(graph, transcript)
+
+    graph["edges"][0]["to_node_id"] = "unlinked-node"
+    with pytest.raises(ValueError, match="clinical_relationship_edge_invalid"):
+        validate_graph(graph, transcript)
 
 
 def test_clause_reordering_does_not_change_bindings():

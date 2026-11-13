@@ -1,6 +1,7 @@
 from uuid import uuid4
 
 from services.application_pipeline import enrich_fact_proposal
+from services.review.relationships import analyze_transcript
 from tests.test_foundation import headers
 from tests.test_review_workflow import prepare
 import sqlite3
@@ -29,12 +30,14 @@ def test_application_pipeline_uses_resource_graph_attribution_and_relationship_h
                 },
             }
         ],
-        relationships={"relations": []},
+        relationships=analyze_transcript(transcript),
     )
     assert result["application_pipeline"] == "source_validated_clinical_review_v2"
     assert result["attribution"][0]["assertion"] == "negated"
     assert result["evidence_graph"]["complete_to_fact"] is True
     assert result["evidence_graph"]["complete_to_export"] is False
+    assert result["relationship_graph_validation"]["status"] == "valid"
+    assert result["relationship_graph_validation"]["edges"] > 0
 
 
 def test_family_history_subject_is_derived_from_text_not_a_diarized_speaker_hint():
@@ -61,7 +64,7 @@ def test_family_history_subject_is_derived_from_text_not_a_diarized_speaker_hint
                 },
             }
         ],
-        relationships={"relations": []},
+        relationships=analyze_transcript(transcript),
     )
 
     attribution = result["attribution"][0]
@@ -82,6 +85,11 @@ def test_fact_proposal_http_persists_graph_and_real_clinical_relationships(setup
     assert response.status_code == 201, response.text
     body = response.json()
     enriched = body["application_enrichment"]
+    assert body["source_relationships"]["schema_version"] == (
+        "explicit_relationship_graph_v2"
+    )
+    assert enriched["relationship_graph_validation"]["status"] == "valid"
+    assert enriched["relationship_graph_validation"]["edges"] > 0
     assert enriched["evidence_graph"]["edges"][0]["from"] == tx["audio_asset_id"]
     assert enriched["evidence_graph"]["facts_checked"] == len(body["facts"])
     assert enriched["relation_validation"]["all_valid"]

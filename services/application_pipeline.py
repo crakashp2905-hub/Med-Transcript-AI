@@ -3,10 +3,12 @@
 from services.clinical_attribution import classify
 from services.evidence_graph import validate_proposal
 from services.relation_tuples import validate as validate_relations
+from services.review.relationships import validate_graph
 
 
 def enrich_fact_proposal(*, transcript, facts, relationships):
     graph = validate_proposal(transcript, facts)
+    relation_graph = validate_graph(relationships, transcript)
     checked = validate_relations(relationships["relations"])
     if not checked["all_valid"]:
         raise ValueError("clinical_relationship_output_rejected")
@@ -20,6 +22,7 @@ def enrich_fact_proposal(*, transcript, facts, relationships):
     return {
         "evidence_graph": graph,
         "relation_validation": checked,
+        "relationship_graph_validation": relation_graph,
         "attribution": [
             {"fact_id": f["fact_id"], **classify(f["text"])} for f in facts
         ],
