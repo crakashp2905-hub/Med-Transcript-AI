@@ -90,3 +90,33 @@ def test_source_request_marker_is_cleared_after_admission(tmp_path, monkeypatch)
         assert ready is True
         assert _source_request_pending(lock_path)
     assert not _source_request_pending(lock_path)
+
+
+def test_asr_source_admission_defers_optional_ollama_across_processes(
+    tmp_path, monkeypatch
+):
+    """ASR worker and Ollama routes share one cross-process admission lock."""
+    lock_path = tmp_path / "asr-ollama-contention.lock"
+    monkeypatch.setenv("MED_TRANSCRIPT_INFERENCE_LOCK", str(lock_path))
+    monkeypatch.setattr(
+        "services.inference_slot.available_memory_bytes", lambda: 16 * 1024**3
+    )
+    command = [
+        sys.executable,
+        "-c",
+        "from services.inference_slot import local_inference_slot; "
+        "ctx=local_inference_slot(requested_bytes=1, priority='optional'); "
+        "print(ctx.__enter__()); ctx.__exit__(None,None,None)",
+    ]
+
+    with local_inference_slot(requested_bytes=1, priority="source") as ready:
+        assert ready
+        deferred = subprocess.run(
+            command, capture_output=True, text=True, check=True, timeout=15
+        )
+        assert deferred.stdout.strip() == "False"
+
+    admitted = subprocess.run(
+        command, capture_output=True, text=True, check=True, timeout=15
+    )
+    assert admitted.stdout.strip() == "True"
