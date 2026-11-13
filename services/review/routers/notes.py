@@ -24,6 +24,14 @@ def register(app, services: ReviewService):
     save_note = services.save_note
     replay = services.replay
 
+    def enforce_manual_fact_owner(facts, actor):
+        if any(
+            fact.origin == "manual_no_audio_evidence"
+            and fact.owner_clinician_id != actor.clinician_id
+            for fact in facts
+        ):
+            raise HTTPException(403, "manual_fact_owner_mismatch")
+
     @app.post("/v1/encounters/{eid}/drafts", status_code=201)
     @idempotent(database, replay, "POST:/v1/encounters/{eid}/drafts")
     def draft(
@@ -32,6 +40,7 @@ def register(app, services: ReviewService):
         idempotency_key: IdempotencyKey,
         actor=Depends(identity),
     ):
+        enforce_manual_fact_owner(body.facts, actor)
         with database() as con:
             row = current(con, eid, actor)
             require_processing(con, eid)
@@ -67,6 +76,7 @@ def register(app, services: ReviewService):
         if_match: str = Header(alias="If-Match"),
         actor=Depends(identity),
     ):
+        enforce_manual_fact_owner(body.facts, actor)
         with database() as con:
             row = current(con, eid, actor)
             require_processing(con, eid)

@@ -75,12 +75,19 @@ class Fact(Strict):
         "discuss",
         "unknown",
     ] = "unknown"
-    origin: Literal["source_linked", "clinician_entered"] = "source_linked"
+    origin: Literal[
+        "source_linked", "clinician_entered", "manual_no_audio_evidence"
+    ] = "source_linked"
     evidence: Evidence | None = None
     relations: list[FactRelation] = Field(default_factory=list, max_length=100)
-    source_modality: Literal["transcript", "audio", "clinician_entered", "unknown"] = (
-        "unknown"
-    )
+    source_modality: Literal[
+        "transcript",
+        "audio",
+        "clinician_entered",
+        "manual_no_audio_evidence",
+        "unknown",
+    ] = "unknown"
+    owner_clinician_id: UUID | None = None
     reviewed: bool = False
     critical_reviewed: bool = False
     review_status: (
@@ -131,13 +138,33 @@ class Fact(Strict):
             raise ValueError(
                 "Clinician additions require a reason and cannot invent source evidence"
             )
-        self.text.encode("utf-8")
         if self.source_modality == "unknown":
             self.source_modality = (
-                "clinician_entered"
+                "manual_no_audio_evidence"
+                if self.origin == "manual_no_audio_evidence"
+                else "clinician_entered"
                 if self.origin == "clinician_entered"
                 else "transcript"
             )
+        if self.origin == "manual_no_audio_evidence" and (
+            self.evidence is not None
+            or self.owner_clinician_id is None
+            or self.source_modality != "manual_no_audio_evidence"
+            or len(self.clarification.strip()) < 10
+        ):
+            raise ValueError(
+                "manual_facts_require_owner_source_label_and_clinical_reason"
+            )
+        if self.source_modality == "manual_no_audio_evidence" and (
+            self.origin != "manual_no_audio_evidence" or self.owner_clinician_id is None
+        ):
+            raise ValueError("manual_fact_provenance_mismatch")
+        if self.owner_clinician_id is not None and (
+            self.origin != "manual_no_audio_evidence"
+            or self.source_modality != "manual_no_audio_evidence"
+        ):
+            raise ValueError("manual_fact_owner_must_match_source")
+        self.text.encode("utf-8")
         expected_review_status = (
             "excluded"
             if self.excluded

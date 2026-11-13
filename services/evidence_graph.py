@@ -131,6 +131,7 @@ def validate_approved_export(
     edges = list(graph["edges"])
     seen_facts = set()
     clinician_entered_fact_ids = []
+    manual_no_audio_evidence_fact_ids = []
     for section in note.get("sections", []):
         for statement in section.get("statements", []):
             statement_id = str(statement.get("statement_id", ""))
@@ -168,10 +169,20 @@ def validate_approved_export(
                     for edge in graph["edges"]
                 ):
                     raise ValueError("evidence_graph_source_fact_edge_missing")
-            elif origin == "clinician_entered":
+            elif origin in {"clinician_entered", "manual_no_audio_evidence"}:
                 if statement.get("evidence") is not None:
                     raise ValueError("evidence_graph_clinician_citation_invalid")
-                clinician_entered_fact_ids.extend(fact_ids)
+                if origin == "manual_no_audio_evidence":
+                    if any(
+                        not facts[value].get("owner_clinician_id")
+                        or facts[value].get("source_modality")
+                        != "manual_no_audio_evidence"
+                        for value in fact_ids
+                    ):
+                        raise ValueError("evidence_graph_manual_owner_missing")
+                    manual_no_audio_evidence_fact_ids.extend(fact_ids)
+                else:
+                    clinician_entered_fact_ids.extend(fact_ids)
                 edges.extend(
                     {"from": value, "to": statement_id, "type": "fact_to_note"}
                     for value in fact_ids
@@ -203,6 +214,9 @@ def validate_approved_export(
         "approval_id": approval["id"],
         "export_id": str(export_id),
         "clinician_entered_fact_ids": sorted(set(clinician_entered_fact_ids)),
+        "manual_no_audio_evidence_fact_ids": sorted(
+            set(manual_no_audio_evidence_fact_ids)
+        ),
         "complete_to_export": True,
         "clinical_release_authorized": False,
     }

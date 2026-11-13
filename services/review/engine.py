@@ -316,6 +316,7 @@ def render_sections(facts, transcript_version_id=None):
                     "evidence": fact.get("evidence")
                     if fact.get("origin") == "source_linked"
                     else None,
+                    "owner_clinician_id": fact.get("owner_clinician_id"),
                 }
                 for fact in facts
                 if fact["section"] == key and not fact.get("excluded")
@@ -375,10 +376,20 @@ def render_export(note, approval, format, source=None):
                 if format == "markdown"
                 else statement["text"]
             )
-            if statement["origin"] == "clinician_entered":
+            if statement["origin"] in {
+                "clinician_entered",
+                "manual_no_audio_evidence",
+            }:
                 if statement.get("evidence") is not None:
                     raise ValueError("clinician_statement_cannot_claim_source_evidence")
-                lines.append("[Clinician-entered addition; not audio-derived.]")
+                owner = statement.get("owner_clinician_id")
+                lines.append(
+                    "[Clinician-entered addition; not audio-derived.]"
+                    if owner is None
+                    else "[Clinician-entered addition; source: no audio evidence; owner clinician: "
+                    + str(owner)
+                    + ".]"
+                )
             elif statement["origin"] == "source_linked":
                 evidence = statement.get("evidence")
                 source_version_id = statement.get("source_version_id")

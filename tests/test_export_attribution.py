@@ -32,6 +32,13 @@ def test_text_exports_cite_exact_source_spans_and_flag_clinician_additions():
                         "source_version_id": None,
                         "evidence": None,
                     },
+                    {
+                        "text": "Clinician confirms prior dose by label.",
+                        "origin": "manual_no_audio_evidence",
+                        "owner_clinician_id": "clinician-1",
+                        "source_version_id": None,
+                        "evidence": None,
+                    },
                 ],
             }
         ],
@@ -49,6 +56,10 @@ def test_text_exports_cite_exact_source_spans_and_flag_clinician_additions():
         f"quote SHA-256 {quote_hash}.]"
     ) in output
     assert "[Clinician-entered addition; not audio-derived.]" in output
+    assert (
+        "[Clinician-entered addition; source: no audio evidence; owner clinician: clinician-1.]"
+        in output
+    )
 
 
 @pytest.mark.parametrize(

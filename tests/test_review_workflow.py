@@ -221,7 +221,9 @@ def test_ambiguous_medication_blocks_and_correction_creates_new_version(setup):
     assert corrected[0]["excluded"] is True
     assert corrected[0]["text"] == corrected[0]["evidence"]["quote"]
     assert any(
-        fact["origin"] == "clinician_entered"
+        fact["origin"] == "manual_no_audio_evidence"
+        and fact["source_modality"] == "manual_no_audio_evidence"
+        and fact["owner_clinician_id"] is not None
         and fact["evidence"] is None
         and "500 mg" in fact["text"]
         for fact in corrected
@@ -582,6 +584,29 @@ def test_unreviewed_facts_and_invented_clinician_citation_block(setup):
         ).status_code
         == 422
     )
+
+
+def test_manual_fact_owner_is_bound_to_authenticated_clinician(setup):
+    from uuid import uuid4
+
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path)
+    facts[0].update(
+        origin="manual_no_audio_evidence",
+        source_modality="manual_no_audio_evidence",
+        owner_clinician_id=str(uuid4()),
+        evidence=None,
+        clarification="Clinician independently confirmed this statement.",
+    )
+
+    response = client.post(
+        f"/v1/encounters/{eid}/drafts",
+        headers=headers(),
+        json={"transcript_version_id": tx["id"], "facts": facts},
+    )
+
+    assert response.status_code == 403
+    assert response.json()["detail"] == "manual_fact_owner_mismatch"
 
 
 def test_concurrent_approval_retries_create_one_approval(setup):

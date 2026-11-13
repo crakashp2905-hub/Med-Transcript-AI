@@ -48,6 +48,14 @@ def test_approved_export_graph_extends_exact_hash_chain_to_note_and_export():
                 "evidence": None,
                 "excluded": False,
             },
+            {
+                "fact_id": "fact-manual",
+                "origin": "manual_no_audio_evidence",
+                "source_modality": "manual_no_audio_evidence",
+                "owner_clinician_id": "clinician-1",
+                "evidence": None,
+                "excluded": False,
+            },
         ],
         "sections": [
             {
@@ -64,6 +72,13 @@ def test_approved_export_graph_extends_exact_hash_chain_to_note_and_export():
                         "statement_id": "statement-clinician",
                         "fact_ids": ["fact-clinician"],
                         "origin": "clinician_entered",
+                        "source_version_id": None,
+                        "evidence": None,
+                    },
+                    {
+                        "statement_id": "statement-manual",
+                        "fact_ids": ["fact-manual"],
+                        "origin": "manual_no_audio_evidence",
                         "source_version_id": None,
                         "evidence": None,
                     },
@@ -90,12 +105,13 @@ def test_approved_export_graph_extends_exact_hash_chain_to_note_and_export():
         artifact_sha256="b" * 64,
     )
     edge_types = [edge["type"] for edge in graph["edges"]]
-    assert edge_types.count("fact_to_note") == 2
-    assert edge_types.count("note_to_export") == 2
+    assert edge_types.count("fact_to_note") == 3
+    assert edge_types.count("note_to_export") == 3
     assert graph["hashes"]["audio_sha256"] == "a" * 64
     assert graph["hashes"]["note_sha256"] == note_sha256
     assert graph["hashes"]["export_artifact_sha256"] == "b" * 64
     assert graph["clinician_entered_fact_ids"] == ["fact-clinician"]
+    assert graph["manual_no_audio_evidence_fact_ids"] == ["fact-manual"]
     assert graph["complete_to_export"] is True
     assert graph["clinical_release_authorized"] is False
 

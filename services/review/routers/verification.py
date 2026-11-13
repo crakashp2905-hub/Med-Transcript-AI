@@ -104,8 +104,10 @@ def register(app, services: ReviewService):
                     )
                     for entry in proposed:
                         entry.update(
-                            origin="clinician_entered",
+                            origin="manual_no_audio_evidence",
                             evidence=None,
+                            source_modality="manual_no_audio_evidence",
+                            owner_clinician_id=actor.clinician_id,
                             clarification=body.reason,
                             reviewed=True,
                             critical_reviewed=True,

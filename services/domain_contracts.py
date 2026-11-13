@@ -109,9 +109,10 @@ class NoteStatement(BaseModel):
     statement_id: UUID
     text: str = Field(min_length=1, max_length=4000)
     fact_ids: list[UUID] = Field(min_length=1, max_length=1)
-    origin: Literal["source_linked", "clinician_entered"]
+    origin: Literal["source_linked", "clinician_entered", "manual_no_audio_evidence"]
     source_version_id: UUID | None = None
     evidence: EvidenceSpan | None = None
+    owner_clinician_id: UUID | None = None
 
 
 class NoteSection(BaseModel):
@@ -168,6 +169,8 @@ class NoteVersion(StableRecord):
             if len(origins) != 1 or statement.origin not in origins:
                 raise ValueError("note_statement_origin_mismatch")
             origin = next(iter(origins))
+            if statement.owner_clinician_id != referenced[0].owner_clinician_id:
+                raise ValueError("note_statement_owner_mismatch")
             if origin == "source_linked":
                 if statement.source_version_id != self.transcript_version_id:
                     raise ValueError("note_statement_source_version_mismatch")
