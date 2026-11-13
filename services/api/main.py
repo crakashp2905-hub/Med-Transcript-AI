@@ -324,6 +324,10 @@ def create_app(
         def clinician_web():
             return FileResponse(frontend / "index.html")
 
+        @app.get("/investor-demo", include_in_schema=False)
+        def investor_demo():
+            return FileResponse(frontend / "index.html")
+
     return app
 
 
