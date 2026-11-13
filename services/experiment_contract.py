@@ -29,6 +29,7 @@ class ExperimentContract(BaseModel):
         "prospective_local_experiment_v1"
     )
     experiment_id: str = Field(pattern=r"^[a-zA-Z0-9_.-]{1,80}$")
+    hypothesis: str = Field(min_length=12, max_length=1000)
     frozen_at: datetime
     cohort: Literal["development", "developer_synthetic"]
     case_ids: tuple[str, ...] = Field(min_length=2, max_length=10000)

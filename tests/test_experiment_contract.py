@@ -14,6 +14,7 @@ from services.experiment_contract import (
 def contract():
     return dict(
         experiment_id="prospective-synthetic-v1",
+        hypothesis="The frozen local variant will reduce the predeclared primary endpoint.",
         frozen_at=datetime.now(timezone.utc) - timedelta(seconds=2),
         cohort="developer_synthetic",
         case_ids=["a", "b", "c"],
