@@ -1,5 +1,6 @@
 import hashlib
 import sqlite3
+from datetime import datetime, timedelta, timezone
 import pytest
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
@@ -397,6 +398,65 @@ def test_transcript_edit_invalidates_old_note_approval_and_preserves_original(se
         client.get(route, headers=headers()).json()["segments"][0]["text"]
         != edited.json()["segments"][0]["text"]
     )
+
+
+def test_speaker_role_correction_requires_authorization_and_invalidates_approval(setup):
+    client, path, _ = setup
+    eid, source, facts = prepare(client, path)
+    note = draft(client, eid, source, facts)["note"]
+    route = f"/v1/encounters/{eid}/transcripts/{source['id']}"
+    segment = source["segments"][0]
+    request = {
+        "segments": [
+            {
+                "segment_id": segment["segment_id"],
+                "start_ms": segment["start_ms"],
+                "end_ms": segment["end_ms"],
+                "text": segment["text"],
+                "role": "clinician",
+            }
+        ],
+        "correction_reason": "Correct the reviewed synthetic speaker attribution.",
+        "english_confirmed": True,
+        "source_completeness_reviewed": True,
+        "source_review_reason": "Reviewed the full synthetic source interval.",
+    }
+    with Store(path).transaction() as con:
+        authorization_id = con.execute(
+            "SELECT id FROM authorizations WHERE encounter=? AND withdrawn_at IS NULL",
+            (eid,),
+        ).fetchone()["id"]
+    authorization_route = f"/v1/encounters/{eid}/authorizations/{authorization_id}/withdraw"
+    assert client.post(authorization_route, headers=headers()).status_code == 200
+    denied = client.patch(
+        route,
+        headers={**headers(), "If-Match": f'"{source["sha256"]}"'},
+        json=request,
+    )
+    assert denied.status_code == 403
+    assert denied.json()["detail"] == "authorization_required"
+
+    renewed = client.post(
+        f"/v1/encounters/{eid}/authorizations",
+        headers=headers(),
+        json={
+            "scopes": ["recording", "local_processing"],
+            "policy_version": "synthetic-v1",
+            "method": "verbal_documented",
+            "expires_at": (datetime.now(timezone.utc) + timedelta(hours=1)).isoformat(),
+        },
+    )
+    assert renewed.status_code == 201, renewed.text
+    corrected = client.patch(
+        route,
+        headers={**headers(), "If-Match": f'"{source["sha256"]}"'},
+        json=request,
+    )
+    assert corrected.status_code == 201, corrected.text
+    assert corrected.json()["segments"][0]["role"] == "clinician"
+    assert corrected.json()["segments"][0]["role_status"] == "human_confirmed"
+    assert approve(client, eid, note).status_code == 412
+    assert client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()["stale"] is True
 
 
 def test_speaker_turn_split_merge_keeps_source_interval_and_immutable_lineage(setup):
