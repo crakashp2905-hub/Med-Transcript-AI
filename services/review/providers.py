@@ -235,7 +235,7 @@ class JSONProvider:
                 raise ValueError("Provider response exceeds budget")
             body = strict_loads(raw, max_bytes=262144)
             reported_model = body.get("model")
-            if reported_model is not None and reported_model != self.model:
+            if reported_model != self.model:
                 raise ValueError("Provider model version mismatch")
             result = validate(
                 strict_loads(

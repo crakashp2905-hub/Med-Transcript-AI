@@ -386,6 +386,7 @@ def test_local_json_provider_uses_bounded_transport_and_safe_usage():
             request = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
             assert request["max_tokens"] == 2048
             answer = {
+                "model": "fake-test-server",
                 "choices": [
                     {
                         "message": {

@@ -25,6 +25,7 @@ class Response:
     [
         ("timeout", b""),
         ("model_mismatch", None),
+        ("missing_model", None),
         ("malformed_json", b"{"),
         (
             "empty_draft",
@@ -39,13 +40,24 @@ class Response:
         ),
         ("oversized_response", b"x" * 262145),
     ],
-    ids=["timeout", "model-mismatch", "malformed-json", "empty-draft", "oversized"],
+    ids=[
+        "timeout",
+        "model-mismatch",
+        "missing-model",
+        "malformed-json",
+        "empty-draft",
+        "oversized",
+    ],
 )
 def test_provider_failure_returns_no_partial_draft(monkeypatch, failure, body):
-    if failure == "model_mismatch":
+    if failure in {"model_mismatch", "missing_model"}:
         body = json.dumps(
             {
-                "model": "unexpected-model-version",
+                **(
+                    {"model": "unexpected-model-version"}
+                    if failure == "model_mismatch"
+                    else {}
+                ),
                 "choices": [
                     {
                         "message": {

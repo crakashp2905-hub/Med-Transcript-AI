@@ -67,6 +67,7 @@ def test_json_adapters_keep_clinical_literals_with_fake_transport(monkeypatch, m
     ]
     envelope = json.dumps(
         {
+            "model": "fixture-model",
             "choices": [
                 {"message": {"content": json.dumps({"statements": statements})}}
             ],
