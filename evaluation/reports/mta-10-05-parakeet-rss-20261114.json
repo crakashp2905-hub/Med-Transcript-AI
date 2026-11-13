@@ -1,0 +1,74 @@
+{
+  "schema_version": "local_model_memory_probe_v1",
+  "candidate_id": "parakeet-tdt-0.6b-v2",
+  "status": "measured",
+  "suite_sha256": "288de63609ad125c5f034a6bccdc968e1dcd52313f6f7cc85f4b146acda8e8c4",
+  "audio": {
+    "path": "data/demo-sample.wav",
+    "sha256": "13467a709a22e66cfe1356da359a6e6bc2b98186358fee1c911ecad36dfac289",
+    "frames": 368960,
+    "duration_seconds": 23.06
+  },
+  "runtime": {
+    "runtime": "onnx",
+    "revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+    "artifacts": {
+      "config.json": "666903c76b9798caf2c210afd4f6cd60b08a8dbf9800ec8d7a3bc0d2148ac466",
+      "decoder_joint-model.int8.onnx": "a449f49acd68979d418651dd2dcb737cc0f1bf0225e009e29ee326354edbf7d3",
+      "encoder-model.int8.onnx": "3e0581fda6ab843888b51e56d7ee78b6d5bc3237ec113af1f732d1d5286aa155",
+      "nemo128.onnx": "a9fde1486ebfcc08f328d75ad4610c67835fea58c73ba57e3209a6f6cf019e9f",
+      "vocab.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+    },
+    "native_segment_timestamps": false,
+    "allow_native_empty": false
+  },
+  "host": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+    "physical_ram_bytes": 16907886592,
+    "cuda_available": false
+  },
+  "admission": {
+    "requested_bytes": 1859534002,
+    "reserve_bytes": 2147483648,
+    "policy": "local_inference_slot_shared_memory_admission",
+    "status": "admitted"
+  },
+  "memory": {
+    "before_model_load": {
+      "process_rss_bytes": 78188544,
+      "system_available_bytes": 4230668288
+    },
+    "after_model_load": {
+      "process_rss_bytes": 784429056,
+      "system_available_bytes": 3946602496
+    },
+    "after_inference": {
+      "process_rss_bytes": 949125120,
+      "system_available_bytes": 3774832640
+    },
+    "peak_resident_bytes": 952709120,
+    "peak_measurement_method": "windows_peak_working_set"
+  },
+  "timing": {
+    "model_load_seconds": 8.972492100001546,
+    "inference_seconds": 4.981201599992346
+  },
+  "hypothesis_characters": 314,
+  "clinical_quality_evaluated": false,
+  "external_calls_attempted": 0,
+  "model_text_persisted": false,
+  "source_commit": "1e831a03143169896d965f89e29e0c6f75aac7e1",
+  "source_sha256": {
+    "services/model_memory_probe.py": "fc4b1d205cac2ec11a3823d30d5a718b55d1634271c354880b3bad24039bc3b1",
+    "services/detailed_benchmark.py": "1147d81c040c0e98bd1c4fed7d503a73b2fec16479787fd875be77b47b03be61",
+    "services/inference_slot.py": "13bbe50607ca46e755ee5158528dd653582fed75720e8d61215c01ac0aa5d9a7"
+  },
+  "runtime_package_versions": {
+    "onnx-asr": "0.12.0",
+    "onnxruntime": "1.26.0",
+    "faster-whisper": null,
+    "omi-med-stt": null,
+    "sherpa-onnx": null
+  }
+}

@@ -5160,12 +5160,39 @@
       "id": "MTA-10-05",
       "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Measure peak RSS and allocation behavior on CPU-only 16GB and other already available hardware; never invent machine specs.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/model_memory_probe.py",
+        "services/detailed_benchmark.py",
+        "services/inference_slot.py",
+        "tests/test_model_memory_probe.py",
+        "tests/test_inference_slot.py",
+        "evaluation/detailed-suite-v7.json",
+        "evaluation/reports/mta-10-05-parakeet-rss-20261114.json",
+        "evaluation/reports/master-task-mta-10-05-memory-20261114.json",
+        "evaluation/runs/meddistract-detailed-v7/distil-whisper-large-v3.fixed-fresh.json",
+        "evaluation/runs/meddistract-detailed-v7/distil-whisper-large-v3.fixed.json",
+        "evaluation/runs/meddistract-detailed-v7/faster-whisper-large-v3.fixed-fresh.json",
+        "evaluation/runs/meddistract-detailed-v7/faster-whisper-tiny.en.fixed.json",
+        "evaluation/runs/meddistract-detailed-v7/multimed-whisper-small-english.fixed.json",
+        "evaluation/runs/meddistract-detailed-v7/omi-med-stt-v1-native-empty.fixed.json",
+        "evaluation/runs/meddistract-detailed-v7/omi-med-stt-v1.fixed.json",
+        "evaluation/runs/meddistract-detailed-v7/parakeet-tdt-0.6b-v2.fixed.json",
+        "evaluation/runs/meddistract-detailed-v7/qwen3-asr-0.6b-int8.fixed.json",
+        "evaluation/runs/meddistract-detailed-v7/whisper-small.fixed.json"
+      ],
+      "source_commit": "1e831a03143169896d965f89e29e0c6f75aac7e1",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-10-05-memory-20261114.json",
+          "report_sha256": "e539e993426443505cfeb8de5c623d7ed0525d571646aada23287df52c6eec76",
+          "check": "model_memory_probe_and_admission_tests",
+          "status": "pass",
+          "detail": "11 passed; Ruff and format checks passed. Fresh Parakeet probe measured current process peak working set under the shared memory admission lock."
+        }
+      ],
+      "blocker": "No GPU or other hardware was available. Fresh exact-source measurement covers the local Parakeet CPU runtime using synthetic demo audio. Other completed model figures are preserved prior 16-case measurements bound to suite/model hashes; the fresh large Whisper report remains incomplete and the historical Omi receipt predates current loader hardening."
     },
     {
       "id": "MTA-10-06",

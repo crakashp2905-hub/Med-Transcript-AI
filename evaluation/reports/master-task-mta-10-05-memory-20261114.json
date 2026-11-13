@@ -1,0 +1,293 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-10-05",
+  "source_commit": "1e831a03143169896d965f89e29e0c6f75aac7e1",
+  "captured_at_utc": "2026-11-13T21:53:33.753696+00:00",
+  "source_files": {
+    "services/model_memory_probe.py": "fc4b1d205cac2ec11a3823d30d5a718b55d1634271c354880b3bad24039bc3b1",
+    "services/detailed_benchmark.py": "1147d81c040c0e98bd1c4fed7d503a73b2fec16479787fd875be77b47b03be61",
+    "services/inference_slot.py": "13bbe50607ca46e755ee5158528dd653582fed75720e8d61215c01ac0aa5d9a7"
+  },
+  "fresh_probe": {
+    "path": "evaluation/reports/mta-10-05-parakeet-rss-20261114.json",
+    "sha256": "c73b0ac13cc74196beb7c66d33733b77afb7151556a57c12935269fae3dcc257",
+    "candidate": "parakeet-tdt-0.6b-v2",
+    "status": "measured",
+    "model_peak_resident_bytes": 952709120,
+    "measurement_method": "windows_peak_working_set",
+    "before_load": {
+      "process_rss_bytes": 78188544,
+      "system_available_bytes": 4230668288
+    },
+    "after_load": {
+      "process_rss_bytes": 784429056,
+      "system_available_bytes": 3946602496
+    },
+    "after_inference": {
+      "process_rss_bytes": 949125120,
+      "system_available_bytes": 3774832640
+    },
+    "model_load_seconds": 8.972492100001546,
+    "inference_seconds": 4.981201599992346,
+    "audio_duration_seconds": 23.06,
+    "audio_sha256": "13467a709a22e66cfe1356da359a6e6bc2b98186358fee1c911ecad36dfac289",
+    "runtime": {
+      "runtime": "onnx",
+      "revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+      "artifacts": {
+        "config.json": "666903c76b9798caf2c210afd4f6cd60b08a8dbf9800ec8d7a3bc0d2148ac466",
+        "decoder_joint-model.int8.onnx": "a449f49acd68979d418651dd2dcb737cc0f1bf0225e009e29ee326354edbf7d3",
+        "encoder-model.int8.onnx": "3e0581fda6ab843888b51e56d7ee78b6d5bc3237ec113af1f732d1d5286aa155",
+        "nemo128.onnx": "a9fde1486ebfcc08f328d75ad4610c67835fea58c73ba57e3209a6f6cf019e9f",
+        "vocab.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      },
+      "native_segment_timestamps": false,
+      "allow_native_empty": false
+    },
+    "admission": {
+      "requested_bytes": 1859534002,
+      "reserve_bytes": 2147483648,
+      "policy": "local_inference_slot_shared_memory_admission",
+      "status": "admitted"
+    }
+  },
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+    "physical_ram_bytes": 16907886592,
+    "cuda_available": false
+  },
+  "full_consultation_historical_receipts": {
+    "suite_path": "evaluation/detailed-suite-v7.json",
+    "suite_sha256": "288de63609ad125c5f034a6bccdc968e1dcd52313f6f7cc85f4b146acda8e8c4",
+    "suite_profile_budget_bytes": 17179869184,
+    "suite_code_hash_matches_current": {
+      "services/detailed_benchmark.py": {
+        "expected_sha256": "1147d81c040c0e98bd1c4fed7d503a73b2fec16479787fd875be77b47b03be61",
+        "current_sha256": "1147d81c040c0e98bd1c4fed7d503a73b2fec16479787fd875be77b47b03be61",
+        "matches_current": true
+      },
+      "services/detailed_campaign.py": {
+        "expected_sha256": "abe7d6f926405e76ef0d2ba2904e5c3d413eb73cebf397c15b9ef6726453c61c",
+        "current_sha256": "abe7d6f926405e76ef0d2ba2904e5c3d413eb73cebf397c15b9ef6726453c61c",
+        "matches_current": true
+      },
+      "services/conversation_experiment.py": {
+        "expected_sha256": "d1e77a4261ece70ef270261f12c57e01347cdcfc07207d48db6ea64c232e21b9",
+        "current_sha256": "d1e77a4261ece70ef270261f12c57e01347cdcfc07207d48db6ea64c232e21b9",
+        "matches_current": true
+      },
+      "services/evaluation.py": {
+        "expected_sha256": "695d34c471f8c754af8bcfae8233235122e624f282206b1b4b2748dd5c74f012",
+        "current_sha256": "695d34c471f8c754af8bcfae8233235122e624f282206b1b4b2748dd5c74f012",
+        "matches_current": true
+      },
+      "services/omi_adapter.py": {
+        "expected_sha256": "5d6d4e407b71b6f22b800c3cff4b76037e11a03769905e35581b555997d21196",
+        "current_sha256": "ef9082fc84520812ac57863c73f8364288727f683b022374c0c99ca0e772bdb3",
+        "matches_current": false
+      },
+      "services/qwen_adapter.py": {
+        "expected_sha256": "73abf0ee2a9dda73f257c917574d1b5e363be3f2f897fc2901478d5c1aace779",
+        "current_sha256": "73abf0ee2a9dda73f257c917574d1b5e363be3f2f897fc2901478d5c1aace779",
+        "matches_current": true
+      },
+      "services/evidence_io.py": {
+        "expected_sha256": "bc269689578d6fcb7616fc3d101573bfe8b0ffcbecd7931603c87f669355a3b6",
+        "current_sha256": "bc269689578d6fcb7616fc3d101573bfe8b0ffcbecd7931603c87f669355a3b6",
+        "matches_current": true
+      }
+    },
+    "runs": [
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/distil-whisper-large-v3.fixed-fresh.json",
+        "sha256": "4652c150c6c5a881eaec8d593d07248a3c3c8688a08ac7b174d8795c84a3726d",
+        "candidate_id": "distil-whisper-large-v3",
+        "complete": true,
+        "completed_cases": 16,
+        "memory_status": "measured",
+        "peak_resident_bytes": 1876144128,
+        "measurement_method": "windows_peak_working_set",
+        "budget_bytes": 17179869184,
+        "budget_status": "within_budget",
+        "model_load_seconds": 22.341530500008957,
+        "suite_sha256_matches": true,
+        "runtime_id": "whisper",
+        "runtime_profile_sha256": "f1c9644ef49c78cd62282f3ca1fa182d326cd6866fc3bc183516c5c6c518aa65"
+      },
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/distil-whisper-large-v3.fixed.json",
+        "sha256": "bd951c9a76c9684d63819f923a8eaeb67c965073282ed006ae644deefe8bcdd9",
+        "candidate_id": "distil-whisper-large-v3",
+        "complete": false,
+        "completed_cases": 0,
+        "memory_status": null,
+        "peak_resident_bytes": null,
+        "measurement_method": null,
+        "budget_bytes": null,
+        "budget_status": null,
+        "model_load_seconds": null,
+        "suite_sha256_matches": true,
+        "runtime_id": null,
+        "runtime_profile_sha256": null
+      },
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/faster-whisper-large-v3.fixed-fresh.json",
+        "sha256": "999aa3e2867ad73cca802b473e805c4d81a884e0ef26f0202102eea9136c1858",
+        "candidate_id": "faster-whisper-large-v3",
+        "complete": false,
+        "completed_cases": 11,
+        "memory_status": null,
+        "peak_resident_bytes": null,
+        "measurement_method": null,
+        "budget_bytes": null,
+        "budget_status": null,
+        "model_load_seconds": 37.22690009998041,
+        "suite_sha256_matches": true,
+        "runtime_id": "whisper",
+        "runtime_profile_sha256": "41f08c86824b407aa6bc4aefdfe096da2d060d33e3b2e960c8298c1bd9526659"
+      },
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/faster-whisper-tiny.en.fixed.json",
+        "sha256": "06da69961c07be44c3de5c72f799a78d031b0748a1231931e483eee0ae7ef6cd",
+        "candidate_id": "faster-whisper-tiny.en",
+        "complete": true,
+        "completed_cases": 16,
+        "memory_status": "measured",
+        "peak_resident_bytes": 280338432,
+        "measurement_method": "windows_peak_working_set",
+        "budget_bytes": 17179869184,
+        "budget_status": "within_budget",
+        "model_load_seconds": 6.809988099994371,
+        "suite_sha256_matches": true,
+        "runtime_id": "whisper",
+        "runtime_profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f"
+      },
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/multimed-whisper-small-english.fixed.json",
+        "sha256": "da396fb055fe4fb975e88de9715c7c033602bbf17e61c38b35f5aee1f34b58f8",
+        "candidate_id": "multimed-whisper-small-english",
+        "complete": true,
+        "completed_cases": 16,
+        "memory_status": "measured",
+        "peak_resident_bytes": 650498048,
+        "measurement_method": "windows_peak_working_set",
+        "budget_bytes": 17179869184,
+        "budget_status": "within_budget",
+        "model_load_seconds": 3.7507621999830008,
+        "suite_sha256_matches": true,
+        "runtime_id": "whisper",
+        "runtime_profile_sha256": "b3b014a163c5968fa5430198ace0ca40b8467459ddcc138eb52269b001623b57"
+      },
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/omi-med-stt-v1-native-empty.fixed.json",
+        "sha256": "cfc25c0a8b1334d7a28f357d498eb60ea24aca678c5c688960f551c1f355b68e",
+        "candidate_id": "omi-med-stt-v1-native-empty",
+        "complete": true,
+        "completed_cases": 16,
+        "memory_status": "measured",
+        "peak_resident_bytes": 1265270784,
+        "measurement_method": "windows_peak_working_set",
+        "budget_bytes": 17179869184,
+        "budget_status": "within_budget",
+        "model_load_seconds": 7.005800700018881,
+        "suite_sha256_matches": true,
+        "runtime_id": "omi",
+        "runtime_profile_sha256": null
+      },
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/omi-med-stt-v1.fixed.json",
+        "sha256": "8d2da60b8e77f8d70ba1bdaff05532904864a8112d9419ba35701d3bc8dad6da",
+        "candidate_id": "omi-med-stt-v1",
+        "complete": true,
+        "completed_cases": 16,
+        "memory_status": "measured",
+        "peak_resident_bytes": 1273974784,
+        "measurement_method": "windows_peak_working_set",
+        "budget_bytes": 17179869184,
+        "budget_status": "within_budget",
+        "model_load_seconds": 24.945564199995715,
+        "suite_sha256_matches": false,
+        "runtime_id": "omi",
+        "runtime_profile_sha256": null
+      },
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/parakeet-tdt-0.6b-v2.fixed.json",
+        "sha256": "6aeda83ecafb1f7bfd48eaf7660521ed15ffdc14eeec48ee6babb1fd45333694",
+        "candidate_id": "parakeet-tdt-0.6b-v2",
+        "complete": true,
+        "completed_cases": 16,
+        "memory_status": "measured",
+        "peak_resident_bytes": 1300725760,
+        "measurement_method": "windows_peak_working_set",
+        "budget_bytes": 17179869184,
+        "budget_status": "within_budget",
+        "model_load_seconds": 15.078344700013986,
+        "suite_sha256_matches": true,
+        "runtime_id": "onnx",
+        "runtime_profile_sha256": null
+      },
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/qwen3-asr-0.6b-int8.fixed.json",
+        "sha256": "2b331885fd7f2639b7345171105f225f6877757e012c0e3eff519085b61d3334",
+        "candidate_id": "qwen3-asr-0.6b-int8",
+        "complete": true,
+        "completed_cases": 16,
+        "memory_status": "measured",
+        "peak_resident_bytes": 3058925568,
+        "measurement_method": "windows_peak_working_set",
+        "budget_bytes": 17179869184,
+        "budget_status": "within_budget",
+        "model_load_seconds": 18.12673590000486,
+        "suite_sha256_matches": true,
+        "runtime_id": "sherpa-qwen3",
+        "runtime_profile_sha256": null
+      },
+      {
+        "path": "evaluation/runs/meddistract-detailed-v7/whisper-small.fixed.json",
+        "sha256": "07fbb9a170bc49c26a2c69624971db60d0df2587fbad540cd54566800b2e9ba4",
+        "candidate_id": "whisper-small",
+        "complete": true,
+        "completed_cases": 16,
+        "memory_status": "measured",
+        "peak_resident_bytes": 744091648,
+        "measurement_method": "windows_peak_working_set",
+        "budget_bytes": 17179869184,
+        "budget_status": "within_budget",
+        "model_load_seconds": 7.261800199979916,
+        "suite_sha256_matches": true,
+        "runtime_id": "whisper",
+        "runtime_profile_sha256": "566c3b316045584eb28ce7102c9c05aaef38a47818cd2626ada184f98e82b512"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "probe_and_memory_admission_tests",
+      "command": "python -m pytest tests/test_model_memory_probe.py tests/test_inference_slot.py tests/test_memory_admission.py tests/test_asr_resource_router.py --confcutdir=tests -q",
+      "status": "pass",
+      "result": "11 passed"
+    },
+    {
+      "name": "ruff",
+      "command": "ruff check and ruff format --check on probe/memory files",
+      "status": "pass"
+    }
+  ],
+  "conclusions": [
+    "Current, exact-commit CPU load plus inference measurement completed for the installed local Parakeet ONNX runtime and pinned model artifacts.",
+    "Host physical RAM is measured as bytes; CUDA was unavailable, so no GPU measurements were fabricated.",
+    "Existing full 16-case receipts are preserved and individually hash-bound; they are historical run data, not rerun this turn.",
+    "The full Whisper large v3 fresh report remains incomplete without a memory receipt. An older incomplete Distil report is preserved; the fresh Distil report has a measured receipt.",
+    "The prior Omi benchmark predates the current local-only loader code hash and is labeled as historical context, not exact-current-source acceptance."
+  ],
+  "limitations": [
+    "Only one model was freshly probed on the exact current source commit; full-corpus candidate receipts remain prior run evidence.",
+    "Synthetic demo audio was used only to measure memory and allocation; no clinical quality conclusion is made.",
+    "No additional hardware/GPU was available.",
+    "The memory probe measures process peak working set; it is not per-layer allocator telemetry or a clinical acceptance measurement."
+  ],
+  "external_calls_attempted": 0,
+  "paid_calls": 0,
+  "clinical_release": false
+}
