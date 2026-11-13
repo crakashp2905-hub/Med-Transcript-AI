@@ -16,7 +16,7 @@ from uuid import uuid4
 import uvicorn
 
 from services.api.main import Identity, create_app
-from services.asr.profiles import load_profiles
+from services.asr.profiles import load_runtime_profiles
 from services.demo_fixture import create_fixture
 
 
@@ -137,7 +137,7 @@ def main():
     profile_path = os.environ.get("MED_TRANSCRIPT_ASR_PROFILES") or config.get(
         "asr_profiles_path"
     )
-    profiles = load_profiles(profile_path) if profile_path else {}
+    profiles = load_runtime_profiles(profile_path) if profile_path else {}
     app = create_app(
         db,
         {}

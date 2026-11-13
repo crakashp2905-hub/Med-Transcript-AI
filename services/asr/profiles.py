@@ -13,6 +13,13 @@ from services.canonical import canonical_json, content_sha256  # noqa: F401
 
 
 REQUIRED_FILES = {"model.bin", "config.json", "tokenizer.json"}
+TRUSTED_RUNTIME_PROFILE_SHA256 = {
+    "8c6019d77bd64140428c3c689b911411773fd7fb2b5435ad3004716d3419dbb1",
+    "710d353b5c8fa038c635449d475174783ff6dacd5bfd498b0bba93ace32fffd3",
+    "5ecf85b17de13d560695a0c9cd42e225aabf5b684c9df0a0b53d9df201e94657",
+    "b11da0db0825acc88e4f1955de8a87d4389306401afe35206e06f7ffcb6f0526",
+    "6a420b9510a58015e46e2f7e9281145f247f3da0ba3c3e9af6c8fc5a777f2316",
+}
 
 
 class ASRProfile(BaseModel):
@@ -107,6 +114,16 @@ def load_profiles(path):
     if len({profile.profile_id for profile in profiles}) != len(profiles):
         raise ValueError("Profile IDs must be unique")
     return {profile.profile_id: profile for profile in profiles}
+
+
+def load_runtime_profiles(path):
+    """Load only reviewed, locally pinned profile manifests for application inference."""
+    profile_path = Path(path)
+    if profile_path.is_symlink() or not profile_path.is_file():
+        raise ValueError("asr_profile_manifest_unavailable")
+    if file_sha256(profile_path) not in TRUSTED_RUNTIME_PROFILE_SHA256:
+        raise ValueError("asr_profile_manifest_not_allowlisted")
+    return load_profiles(profile_path)
 
 
 def main():

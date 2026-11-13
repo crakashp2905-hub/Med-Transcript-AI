@@ -2,10 +2,19 @@
 
 import wave
 import importlib.metadata
+from pathlib import Path
+
+from services.audio_provenance import file_sha256
+
+
+PINNED_REVISION = "30d74219feead34843fae59e855f740db78ed2bd"
+PINNED_GGUF_SHA256 = "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
 
 
 class OmiPredictor:
     def __init__(self, model_dir, revision, *, allow_empty_output=False):
+        if revision != PINNED_REVISION:
+            raise ValueError("Omi model revision is not pinned")
         if importlib.metadata.version("omi-med-stt") != "0.2.1":
             raise ValueError("This lifecycle adapter requires pinned omi-med-stt 0.2.1")
         import numpy as np
@@ -13,12 +22,21 @@ class OmiPredictor:
 
         self.np, self.runtime = np, runtime
         self.allow_empty_output, self.last_empty_output = allow_empty_output, False
-        model = runtime._download_or_resolve_gguf(
-            str(model_dir), runtime.DEFAULT_GGUF_FILE, revision, True
-        )
+        root = Path(model_dir)
+        if not root.is_absolute() or root.is_symlink() or not root.is_dir():
+            raise ValueError("A pinned local Omi model directory is required")
+        model = root / runtime.DEFAULT_GGUF_FILE
+        if (
+            model.is_symlink()
+            or not model.is_file()
+            or file_sha256(model) != PINNED_GGUF_SHA256
+        ):
+            raise ValueError(
+                "Pinned local Omi model artifact is unavailable or changed"
+            )
         library = runtime._find_parakeet_lib(auto_install=False, backend="cpu")
         self.capi = runtime._ParakeetCAPI(
-            library, model, decoder="tdt", backend="cpu", threads=4
+            library, str(model.resolve()), decoder="tdt", backend="cpu", threads=4
         )
 
     def __call__(self, path):

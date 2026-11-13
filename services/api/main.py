@@ -23,7 +23,7 @@ from services.api.storage import (
     processing_allowed,
     default_asset_root,
 )
-from services.asr.profiles import ASRProfile, load_profiles
+from services.asr.profiles import ASRProfile, load_runtime_profiles
 from services.api.contracts import (
     Identity,
 )
@@ -347,5 +347,5 @@ def app_from_env():
         os.environ.get("MED_TRANSCRIPT_DB", "data/development.sqlite3"),
         identities,
         os.environ.get("MED_TRANSCRIPT_ASSETS"),
-        load_profiles(profile_path) if profile_path else None,
+        load_runtime_profiles(profile_path) if profile_path else None,
     )

@@ -83,3 +83,19 @@ def test_cache_inventory_rejects_symlinks(tmp_path, monkeypatch):
     )
     with pytest.raises(ValueError, match="artifact_inventory_symlink_or_escape"):
         inventory_artifact_tree(tmp_path, "cache")
+
+
+def test_runtime_profile_loader_rejects_unpinned_manifest(tmp_path):
+    from services.asr.profiles import load_runtime_profiles
+
+    manifest = tmp_path / "profiles.json"
+    manifest.write_text("[]", encoding="utf-8")
+    with pytest.raises(ValueError, match="not_allowlisted"):
+        load_runtime_profiles(manifest)
+
+
+def test_runtime_profile_loader_accepts_pinned_local_manifest():
+    from services.asr.profiles import load_runtime_profiles
+
+    profiles = load_runtime_profiles("data/asr-smoke-profiles.json")
+    assert set(profiles) == {"tiny-en-smoke-v1"}
