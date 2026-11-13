@@ -1,0 +1,32 @@
+{
+  "schema_version": "experiment_receipts_v1",
+  "source_commit": "c8d7fa1e9a8a384981e863132af3cece892f63cf",
+  "scope": "tracked local development experiments only; no clinical validation or promotion",
+  "experiments": [
+    {
+      "experiment_id": "asr-lexicon-bias-medication-term-pilot-v1",
+      "hypothesis": "Adding the candidate paracetamol hotword will improve positive medication-term recall without worsening normalized WER or creating false insertions on paired development windows.",
+      "outcome": "harmful_regression",
+      "result": {
+        "paired_samples": 8,
+        "positive_term_recall": {"baseline": "1/4", "candidate": "4/4"},
+        "baseline_normalized_wer": 0.2875816993464052,
+        "candidate_normalized_wer": 0.3006535947712418,
+        "baseline_false_insertions": 0,
+        "candidate_false_insertions": 1,
+        "failures": 0,
+        "interpretation": "Target recall improved, but the predeclared no-WER-regression/no-false-insertion hypothesis failed. Do not promote the biasing candidate."
+      },
+      "evidence": [
+        {
+          "path": "evaluation/reports/asr-lexicon-bias-pilot-v1-final.json",
+          "sha256": "d2fa02f5c7a894a8cdd57c7a6bd99136241aa1350c6b86cdd60e0150f0b616a7"
+        }
+      ],
+      "limitations": [
+        "Development mock references are not independently adjudicated clinical gold.",
+        "The eight paired windows are a small, selected pilot and do not establish full-consultation performance."
+      ]
+    }
+  ]
+}
