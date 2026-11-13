@@ -4107,11 +4107,21 @@
       "id": "MTA-08-15",
       "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create complete synthetic encounter test covering prior history, complaint, negations, multiple drugs and a revised plan.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "tests/test_review_workflow.py",
+        "evaluation/reports/master-task-mta-08-15-505c569.json"
+      ],
+      "source_commit": "505c5698587a4bf3d22e4d2ffa4281b4042f4316",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-08-15-505c569.json",
+          "report_sha256": "ef606013ebf4fb1a55987cfa8cba30faa86a436acdae33d2bdbb7a2cbac02c84",
+          "check": "complete_synthetic_encounter_preserves_clinical_context_across_revised_plan",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
