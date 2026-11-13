@@ -1,0 +1,94 @@
+import hashlib
+import json
+
+import pytest
+
+from services.verification_method_comparison import compare
+
+
+def test_comparison_keeps_graph_structural_and_reuses_frozen_model(tmp_path):
+    challenge = {
+        "scope": "developer_authored_not_gold",
+        "cases": [
+            {
+                "id": "dose_change",
+                "category": "dose",
+                "source": "Take warfarin 2 mg daily.",
+                "claim": "Take warfarin 20 mg daily.",
+                "unsafe": True,
+            }
+        ],
+    }
+    challenge_path = tmp_path / "challenge.json"
+    challenge_path.write_text(json.dumps(challenge), encoding="utf-8")
+    frozen_path = tmp_path / "frozen.json"
+    frozen_path.write_text(
+        json.dumps(
+            {
+                "challenge_sha256": hashlib.sha256(
+                    challenge_path.read_bytes()
+                ).hexdigest(),
+                "cases": [
+                    {
+                        "id": "dose_change",
+                        "model_unsafe": None,
+                        "combined_unsafe": True,
+                        "model_failure": "clinical_model_timeout",
+                    }
+                ],
+                "summary": {
+                    "model": {"missing_verdicts": 1},
+                    "combined_review_policy": {"attempted": 1},
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    report = compare(
+        challenge_path,
+        frozen_path,
+        tmp_path / "report.json",
+        source_commit="a" * 40,
+    )
+
+    row = report["cases"][0]
+    assert row["rules_unsafe"] is True
+    assert row["model_unsafe"] is None
+    assert row["combined_unsafe"] is True
+    assert row["graph_provenance_valid"] is True
+    assert row["graph_semantic_verdict"] is None
+    assert report["graph_summary"]["clinical_verdicts"] == 0
+    assert report["model_results_reused_without_inference"] is True
+
+
+def test_comparison_rejects_frozen_results_for_different_challenge(tmp_path):
+    challenge_path = tmp_path / "challenge.json"
+    challenge_path.write_text(
+        json.dumps(
+            {
+                "scope": "dev",
+                "cases": [
+                    {
+                        "id": "case",
+                        "source": "x",
+                        "claim": "y",
+                        "unsafe": True,
+                        "category": "other",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    frozen_path = tmp_path / "frozen.json"
+    frozen_path.write_text(
+        json.dumps({"challenge_sha256": "0" * 64, "cases": []}), encoding="utf-8"
+    )
+    with pytest.raises(ValueError, match="frozen_results_challenge_mismatch"):
+        compare(
+            challenge_path,
+            frozen_path,
+            tmp_path / "report.json",
+            source_commit="a" * 40,
+        )
