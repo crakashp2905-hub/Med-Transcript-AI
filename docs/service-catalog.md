@@ -6,9 +6,9 @@ Generated from the Python source tree. Runtime reachability is a static import a
 
 | Classification | Modules |
 | --- | ---: |
-| integrated-in-production-flow | 87 |
+| integrated-in-production-flow | 89 |
 | candidate-only | 12 |
-| test-only | 189 |
+| test-only | 191 |
 | documentation-only | 11 |
 
 ## Service modules
@@ -117,6 +117,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/ci_provenance.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/clinical_attribution.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/clinical_evaluation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/clinical_extraction_comparison.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/clinical_impact_triage.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/clinical_limitations.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/clinical_metrics.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -163,7 +164,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/expanded_summary.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/experiment_contract.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/experiment_receipts.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
-| `services/fact_duplicates.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/fact_duplicates.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/fact_provenance.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/fault_injection.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/feature_flags.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -178,7 +179,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/latency_targets.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/launch.py` | `documentation-only` | referenced by documentation but absent from runtime and test import graphs |
 | `services/local_cost.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
-| `services/local_drafting_evaluation.py` | `documentation-only` | referenced by documentation but absent from runtime and test import graphs |
+| `services/local_drafting_evaluation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/log_redaction.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/long_recording_smoke.py` | `documentation-only` | referenced by documentation but absent from runtime and test import graphs |
 | `services/maintenance.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -194,6 +195,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/metric_validation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/model_cards.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/model_init_metrics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/model_memory_probe.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/module_catalog.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/module_coverage_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/multichannel_smoke.py` | `documentation-only` | referenced by documentation but absent from runtime and test import graphs |
@@ -225,7 +227,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/prepare_validation.py` | `candidate-only` | not reachable from configured runtime roots or test imports |
 | `services/prompt_ablations.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/prompt_harness.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
-| `services/prompt_injection.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/prompt_injection.py` | `documentation-only` | referenced by documentation but absent from runtime and test import graphs |
 | `services/proposal_integrity.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/provider_interfaces.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/provision_benchmark.py` | `candidate-only` | not reachable from configured runtime roots or test imports |
@@ -254,6 +256,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/review/clinical.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/clinical_models.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/clinical_routes.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
+| `services/review/clinical_state.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/comparison.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/engine.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/metrics_routes.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -307,6 +310,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/validation_summary.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/verification_ablations.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/verification_challenge.py` | `documentation-only` | referenced by documentation but absent from runtime and test import graphs |
+| `services/verification_method_comparison.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/verification_metrics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/verifier_selection.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/verify.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
@@ -321,6 +325,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | --- | --- | --- | --- |
 | `GET` | `/` | `clinician_web` | `services.api.main` |
 | `GET` | `/health` | `health` | `services.api.routers.encounters` |
+| `GET` | `/investor-demo` | `investor_demo` | `services.api.main` |
 | `GET` | `/v1/auth/callback` | `callback` | `services.api.auth` |
 | `GET` | `/v1/auth/config` | `config` | `services.api.auth` |
 | `GET` | `/v1/auth/login` | `login` | `services.api.auth` |
@@ -333,9 +338,11 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `POST` | `/v1/encounters` | `create_encounter` | `services.api.routers.encounters` |
 | `POST` | `/v1/encounters/{eid}/amendments` | `amend` | `services.review.routers.amendments` |
 | `POST` | `/v1/encounters/{eid}/approvals` | `approve` | `services.review.routers.approvals` |
+| `POST` | `/v1/encounters/{eid}/approvals/{aid}/revoke` | `revoke_approval` | `services.review.routers.approvals` |
 | `GET` | `/v1/encounters/{eid}/audio/{upload_id}` | `audio` | `services.review.routers.workspace` |
 | `GET` | `/v1/encounters/{eid}/audio/{upload_id}/waveform` | `audio_waveform` | `services.review.routers.workspace` |
 | `GET` | `/v1/encounters/{eid}/audit` | `audit_trail` | `services.review.routers.history` |
+| `GET` | `/v1/encounters/{eid}/audit-bundle` | `audit_bundle` | `services.review.routers.history` |
 | `GET` | `/v1/encounters/{eid}/clinical-proposals/{pid}` | `proposal` | `services.review.clinical_routes` |
 | `POST` | `/v1/encounters/{eid}/deletion-requests` | `delete_request` | `services.review.routers.history` |
 | `POST` | `/v1/encounters/{eid}/draft-proposals` | `draft_proposal` | `services.review.routers.proposals` |
@@ -377,6 +384,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `POST` | `/v1/encounters/{encounter_id}/transcriptions` | `create_transcription` | `services.api.routers.jobs` |
 | `GET` | `/v1/encounters/{encounter_id}/transcripts/{version}` | `get_transcript` | `services.api.routers.transcripts` |
 | `GET` | `/v1/jobs/{job_id}` | `get_job` | `services.api.routers.jobs` |
+| `POST` | `/v1/jobs/{job_id}/cancel` | `cancel_job` | `services.api.routers.jobs` |
 | `POST` | `/v1/jobs/{job_id}/retry` | `retry_transcription` | `services.api.routers.jobs` |
 | `GET` | `/v1/session` | `session` | `services.review.routers.workspace` |
 | `GET` | `/v1/study-dashboard` | `study_dashboard` | `services.review.routers.workspace` |

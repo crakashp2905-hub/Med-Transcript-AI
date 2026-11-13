@@ -19,6 +19,7 @@ from services.asr.profiles import canonical_json, content_sha256
 from services.domain_contracts import validate_record
 from services.proposal_integrity import decode_proposal
 from services.api.idempotency import idempotent
+from services.api.job_state import pending_transcription_capacity
 from services.api.contracts import IdempotencyKey
 from services.provider_interfaces import (
     ExtractionProvider,
@@ -320,6 +321,8 @@ def register(
                 and body.channel_index >= channels
             ):
                 raise HTTPException(422, "retranscription_channel_required")
+            if not pending_transcription_capacity(con, actor.tenant_id):
+                raise HTTPException(429, "local_inference_queue_full")
             request = {
                 **body.model_dump(mode="json"),
                 "transcript_sha256": tr["sha256"],

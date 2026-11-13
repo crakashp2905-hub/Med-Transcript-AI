@@ -7,7 +7,12 @@ from services.api.ingest import MAX_CHANNELS
 from services.api.contracts import Identity, IdempotencyKey, TranscriptionInput
 from services.api.router_context import ApiServices
 from services.api.time_utils import now
-from services.api.job_state import progress as job_progress, retryable as job_retryable
+from services.api.job_state import (
+    pending_transcription_capacity,
+    progress as job_progress,
+    request_cancellation,
+    retryable as job_retryable,
+)
 from services.api.idempotency import idempotent
 
 
@@ -82,12 +87,35 @@ def register(app, services: ApiServices):
                 raise HTTPException(409, "job_not_retryable")
             if owner["current_transcript"] != job["expected_transcript_id"]:
                 raise HTTPException(412, "stale_transcript")
+            if not pending_transcription_capacity(con, actor.tenant_id):
+                raise HTTPException(429, "local_inference_queue_full")
             con.execute(
                 "UPDATE jobs SET status='queued',error_code=NULL,result=NULL,updated_at=? WHERE id=?",
                 (now(), str(job_id)),
             )
             audit(con, actor, "transcription_retry_queued", str(job_id))
             return {"job_id": str(job_id), "status_url": f"/v1/jobs/{job_id}"}
+
+    @app.post("/v1/jobs/{job_id}/cancel")
+    @idempotent(database, replay, "POST:/v1/jobs/{job_id}/cancel")
+    def cancel_job(
+        job_id: UUID,
+        idempotency_key: IdempotencyKey,
+        actor: Identity = Depends(identity),
+    ):
+        with database() as con:
+            job = con.execute(
+                "SELECT * FROM jobs WHERE id=?", (str(job_id),)
+            ).fetchone()
+            if job is None:
+                raise HTTPException(404, "job_not_found")
+            if job["stage"] != "transcription":
+                raise HTTPException(409, "job_cancellation_unsupported")
+            encounter(con, job["encounter"], actor)
+            status = request_cancellation(con, job_id, now())
+            if status == "cancelled" and job["status"] in {"queued", "running"}:
+                audit(con, actor, "transcription_cancelled", str(job_id))
+            return {"job_id": str(job_id), "status": status}
 
     @app.post("/v1/encounters/{encounter_id}/transcriptions", status_code=202)
     @idempotent(database, replay, "POST:/v1/encounters/{encounter_id}/transcriptions")
@@ -154,6 +182,8 @@ def register(app, services: ApiServices):
             ).fetchone()
             job_id, created = existing["id"] if existing else str(uuid4()), now()
             if not existing:
+                if not pending_transcription_capacity(con, actor.tenant_id):
+                    raise HTTPException(429, "local_inference_queue_full")
                 con.execute(
                     """INSERT INTO jobs (id,upload,encounter,status,created_at,updated_at,stage,profile_sha256,expected_transcript_id,preview_only,timeline_offset_ms,preview_session_id)
                     VALUES (?,?,?,'queued',?,?,'transcription',?,?,?,?,?)""",

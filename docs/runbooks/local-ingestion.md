@@ -37,6 +37,17 @@ is not a deletion request and does not erase stored audio.
   an expired lease. At most three worker attempts are permitted; exhausted jobs
   fail with `worker_retry_exhausted`. Leases prevent an abandoned worker from
   publishing after another worker has claimed its job.
+- Pending transcription work is bounded per tenant: the default is 16 queued or
+  running ASR jobs, configurable with `MED_TRANSCRIPT_MAX_PENDING_ASR_JOBS` from
+  1 through 256. Invalid values fail closed. New transcription, retranscription
+  and manual retry requests receive `429 local_inference_queue_full` at capacity;
+  idempotent replays still return the original job.
+- `POST /v1/jobs/{job_id}/cancel` with an `Idempotency-Key` cancels queued work or
+  requests cooperative cancellation of a running transcription. Running ASR
+  stops at its next worker checkpoint and cannot publish a source version after
+  cancellation. A model call currently blocked inside its local runtime may take
+  until its bounded provider timeout/checkpoint to stop. This endpoint does not
+  cancel audio-ingest tasks or synchronous drafting/extraction/verification calls.
 - Invalid/unsupported WAV files and integrity failures are terminal. Correct
   the source and create a new upload instead of retrying unchanged invalid bytes.
 
