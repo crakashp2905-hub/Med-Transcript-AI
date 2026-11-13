@@ -1,6 +1,52 @@
 """Explicit source-to-export evidence graph links."""
 
+from collections import defaultdict, deque
+
 from services.canonical import content_sha256
+
+
+def validate_graph_invariants(edges, node_ids, *, tenant_by_node=None):
+    """Reject malformed, cyclic, or cross-tenant evidence edge sets."""
+    nodes = set(node_ids)
+    if len(nodes) != len(node_ids) or not nodes:
+        raise ValueError("evidence_graph_nodes_invalid")
+    adjacency = defaultdict(list)
+    indegree = dict.fromkeys(nodes, 0)
+    seen = set()
+    for edge in edges:
+        source, target = edge.get("from"), edge.get("to")
+        edge_type = edge.get("type")
+        if (
+            not source
+            or not target
+            or source not in nodes
+            or target not in nodes
+            or not edge_type
+        ):
+            raise ValueError("evidence_graph_edge_node_missing")
+        key = (source, target, edge_type)
+        if key in seen:
+            raise ValueError("evidence_graph_edge_duplicate")
+        seen.add(key)
+        if tenant_by_node is not None:
+            if source not in tenant_by_node or target not in tenant_by_node:
+                raise ValueError("evidence_graph_tenant_missing")
+            if tenant_by_node[source] != tenant_by_node[target]:
+                raise ValueError("evidence_graph_cross_tenant_edge")
+        adjacency[source].append(target)
+        indegree[target] += 1
+    queue = deque(node for node, degree in indegree.items() if degree == 0)
+    visited = 0
+    while queue:
+        node = queue.popleft()
+        visited += 1
+        for target in adjacency[node]:
+            indegree[target] -= 1
+            if indegree[target] == 0:
+                queue.append(target)
+    if visited != len(nodes):
+        raise ValueError("evidence_graph_cycle_detected")
+    return {"nodes": len(nodes), "edges": len(edges), "acyclic": True}
 
 
 def validate_proposal(transcript, facts):
@@ -44,6 +90,11 @@ def validate_proposal(transcript, facts):
                 {"from": span_id, "to": fid, "type": "span_to_fact"},
             ]
         )
+    node_ids = {str(audio_id)}
+    node_ids.update(str(segment_id) for segment_id in segments)
+    node_ids.update(edge["from"] for edge in edges)
+    node_ids.update(edge["to"] for edge in edges)
+    validate_graph_invariants(edges, list(node_ids))
     return {
         "edges": edges,
         "transcript_version_id": transcript["id"],
@@ -74,22 +125,27 @@ def build(
     )
     if any(not value for value in values):
         raise ValueError("evidence_graph_link_required")
+    edges = [
+        {
+            "from": audio_id,
+            "to": transcript_segment_id,
+            "type": "audio_to_transcript",
+        },
+        {
+            "from": transcript_segment_id,
+            "to": evidence_span,
+            "type": "transcript_to_span",
+        },
+        {"from": evidence_span, "to": fact_id, "type": "span_to_fact"},
+        {"from": fact_id, "to": note_statement_id, "type": "fact_to_note"},
+        {"from": note_statement_id, "to": export_id, "type": "note_to_export"},
+    ]
+    validate_graph_invariants(
+        edges,
+        list({edge["from"] for edge in edges} | {edge["to"] for edge in edges}),
+    )
     return {
-        "edges": [
-            {
-                "from": audio_id,
-                "to": transcript_segment_id,
-                "type": "audio_to_transcript",
-            },
-            {
-                "from": transcript_segment_id,
-                "to": evidence_span,
-                "type": "transcript_to_span",
-            },
-            {"from": evidence_span, "to": fact_id, "type": "span_to_fact"},
-            {"from": fact_id, "to": note_statement_id, "type": "fact_to_note"},
-            {"from": note_statement_id, "to": export_id, "type": "note_to_export"},
-        ],
+        "edges": edges,
         "complete": True,
         "clinical_release_authorized": False,
     }
@@ -200,6 +256,10 @@ def validate_approved_export(
     if not required_facts <= seen_facts:
         raise ValueError("evidence_graph_note_coverage_incomplete")
 
+    validate_graph_invariants(
+        edges,
+        list({edge["from"] for edge in edges} | {edge["to"] for edge in edges}),
+    )
     payload = {
         "edges": edges,
         "hashes": {

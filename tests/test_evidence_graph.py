@@ -1,7 +1,84 @@
 import pytest
+import random
 
 from services.canonical import content_sha256
-from services.evidence_graph import build, validate_approved_export
+from services.evidence_graph import (
+    build,
+    validate_approved_export,
+    validate_graph_invariants,
+    validate_proposal,
+)
+
+
+def test_evidence_graph_invariants_reject_missing_nodes_cycles_and_tenants():
+    nodes = ["audio", "segment", "span", "fact"]
+    edges = [
+        {"from": "audio", "to": "segment", "type": "audio_to_transcript"},
+        {"from": "segment", "to": "span", "type": "transcript_to_span"},
+        {"from": "span", "to": "fact", "type": "span_to_fact"},
+    ]
+    assert validate_graph_invariants(edges, nodes)["acyclic"] is True
+
+    with pytest.raises(ValueError, match="evidence_graph_edge_node_missing"):
+        validate_graph_invariants(
+            [*edges, {"from": "fact", "to": "missing", "type": "x"}], nodes
+        )
+    with pytest.raises(ValueError, match="evidence_graph_cycle_detected"):
+        validate_graph_invariants(
+            [*edges, {"from": "fact", "to": "audio", "type": "cycle"}], nodes
+        )
+    with pytest.raises(ValueError, match="evidence_graph_cross_tenant_edge"):
+        validate_graph_invariants(
+            edges,
+            nodes,
+            tenant_by_node={
+                "audio": "tenant-a",
+                "segment": "tenant-b",
+                "span": "tenant-a",
+                "fact": "tenant-a",
+            },
+        )
+
+
+def test_seeded_graph_fuzz_preserves_dag_and_rejects_back_edges():
+    rng = random.Random(1907)
+    for _ in range(64):
+        nodes = [f"node-{index}" for index in range(6)]
+        edges = [
+            {"from": nodes[index], "to": nodes[index + 1], "type": "chain"}
+            for index in range(len(nodes) - 1)
+        ]
+        edges.extend(
+            {"from": nodes[left], "to": nodes[right], "type": "fuzz"}
+            for left in range(len(nodes))
+            for right in range(left + 1, len(nodes))
+            if right != left + 1 and rng.random() < 0.25
+        )
+        validate_graph_invariants(edges, nodes)
+        # Connect the final node back to the first; all generated nodes remain
+        # reachable in the graph shape, and the cycle must always be rejected.
+        cyclic = [*edges, {"from": nodes[-1], "to": nodes[0], "type": "tamper"}]
+        with pytest.raises(ValueError, match="evidence_graph_cycle_detected"):
+            validate_graph_invariants(cyclic, nodes)
+
+
+def test_proposal_rejects_audio_segment_identity_collision_as_cycle():
+    transcript = {
+        "id": "transcript-v1",
+        "audio_asset_id": "shared-id",
+        "segments": [{"segment_id": "shared-id", "text": "No fever."}],
+    }
+    fact = {
+        "fact_id": "fact-1",
+        "evidence": {
+            "segment_id": "shared-id",
+            "start_char": 0,
+            "end_char": 9,
+            "quote": "No fever.",
+        },
+    }
+    with pytest.raises(ValueError, match="evidence_graph_cycle_detected"):
+        validate_proposal(transcript, [fact])
 
 
 def test_evidence_graph_connects_audio_to_export():
