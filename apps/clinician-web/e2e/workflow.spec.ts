@@ -15,6 +15,22 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByRole('button',{name:'Open workspace',exact:false}).click();
   await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();
   await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
+  let retranscriptionSource='';
+  await page.route('**/v1/encounters/*/retranscriptions',async route=>{
+    retranscriptionSource=JSON.parse(route.request().postData()||'{}').transcript_version_id;
+    await route.fulfill({json:{job_id:'retranscription-e2e',status_url:'/v1/jobs/retranscription-e2e'}});
+  });
+  await page.route('**/v1/jobs/retranscription-e2e',route=>route.fulfill({json:{status:'succeeded',stage:'transcription',result:{adopted:false,source_transcript_version:retranscriptionSource,candidate_text:'Synthetic localized candidate only',candidate_segments:[],span_audio_sha256:'c'.repeat(64)}}}));
+  await page.getByRole('button',{name:'Retranscribe this source span'}).first().click();
+  const retranscription=page.getByRole('region',{name:'Localized retranscription comparison'});
+  await expect(retranscription).toBeVisible();
+  await expect(retranscription).toContainText('UNAPPROVED · NOT A SAVED CORRECTION');
+  await expect(retranscription).toContainText('Synthetic localized candidate only');
+  await expect(retranscription).toContainText('I have had a cough for three days');
+  await expect(page.getByLabel('Transcript segment 1')).toHaveValue(/cough/);
+  await retranscription.getByRole('button',{name:'Dismiss candidate'}).click();
+  await page.unroute('**/v1/encounters/*/retranscriptions');
+  await page.unroute('**/v1/jobs/retranscription-e2e');
   await expect(page.getByLabel('Transcript segment 1')).toContainText('cough');
   await page.getByLabel('I confirmed supported English.').check();
   await page.getByLabel('I reviewed source completeness.').check();
