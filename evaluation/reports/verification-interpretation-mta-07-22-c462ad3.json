@@ -1,0 +1,894 @@
+{
+  "schema_version": "verification_methods_reconciled_v1",
+  "source_commit": "c462ad3e06c71f45d6eecdc1c8c3110251fec7bb",
+  "challenge_sha256": "9a92439b396de4486b188641e85354adfcdda4861312071ff40a7386ac2a8dab",
+  "frozen_model_report_sha256": "d4e3244e2211e1fc37c9bad723e2f2ccf3d63b34435713d8bf496164e5a32270",
+  "reference_status": "new_developer_authored_cases_frozen_before_first_model_run_not_independent_clinical_gold",
+  "metric_interpretation": {
+    "result_class": "internal_development_result",
+    "zero_critical_misses_establishes_clinical_sensitivity": false,
+    "zero_risk_claim": false,
+    "clinical_sensitivity_estimate": null,
+    "clinical_acceptance": false,
+    "reason": "Developer-authored challenge cases are not independently adjudicated clinical gold."
+  },
+  "model_results_reused_without_inference": true,
+  "clinical_acceptance": false,
+  "cannot_clear_approval_gates": true,
+  "methods": [
+    "deterministic_rules",
+    "frozen_local_model",
+    "combined_review_policy",
+    "evidence_graph_provenance"
+  ],
+  "cases": [
+    {
+      "id": "route_change",
+      "category": "medication",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": null,
+      "combined_unsafe": true,
+      "model_failure": "clinical_model_timeout",
+      "model_verdict_label": null,
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "frequency_change",
+      "category": "medication",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "reaction_omission",
+      "category": "omission",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": false,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "allergen_swap",
+      "category": "allergy",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "family_to_patient",
+      "category": "attribution",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "planned_to_completed",
+      "category": "temporality",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "uncertainty_removed",
+      "category": "uncertainty",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "laterality_changed",
+      "category": "laterality",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "safety_plan_omitted",
+      "category": "omission",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": false,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "duration_changed",
+      "category": "medication",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "dose_decimal_shift",
+      "category": "dose",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "two_drug_assignment",
+      "category": "dose",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "unchanged_route",
+      "category": "safe_control",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "unchanged_frequency",
+      "category": "safe_control",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "unchanged_reaction",
+      "category": "safe_control",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "unchanged_family",
+      "category": "safe_control",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "unchanged_plan",
+      "category": "safe_control",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "unchanged_uncertainty",
+      "category": "safe_control",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "unchanged_safety_plan",
+      "category": "safe_control",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "mcg_to_mg_equivalent",
+      "category": "safe_conversion",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "contradicted",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "volume_equivalent",
+      "category": "safe_conversion",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "same_negated_allergy",
+      "category": "safe_control",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "nonclinical_prompt_injection",
+      "category": "unsupported",
+      "unsafe_reference": true,
+      "rules_unsafe": true,
+      "model_unsafe": true,
+      "combined_unsafe": true,
+      "model_failure": null,
+      "model_verdict_label": "unsupported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    },
+    {
+      "id": "explicit_unknown_dose",
+      "category": "safe_control",
+      "unsafe_reference": false,
+      "rules_unsafe": false,
+      "model_unsafe": false,
+      "combined_unsafe": false,
+      "model_failure": null,
+      "model_verdict_label": "supported",
+      "graph_provenance_valid": true,
+      "graph_semantic_verdict": null,
+      "graph_scope": "citation_structure_only_not_clinical_detection",
+      "edge_count": 3
+    }
+  ],
+  "summary": {
+    "deterministic_rules": {
+      "attempted": 24,
+      "critical_misses": 0,
+      "omission_misses": 0,
+      "false_alarms": 0,
+      "safe_controls": 11,
+      "false_block_rate": 0.0,
+      "blocks_all_cases": false,
+      "missing_verdicts": 0
+    },
+    "frozen_local_model": {
+      "attempted": 24,
+      "critical_misses": 3,
+      "omission_misses": 2,
+      "false_alarms": 1,
+      "safe_controls": 11,
+      "false_block_rate": 0.09090909090909091,
+      "blocks_all_cases": false,
+      "missing_verdicts": 1
+    },
+    "frozen_combined_review_policy": {
+      "attempted": 24,
+      "critical_misses": 0,
+      "omission_misses": 0,
+      "false_alarms": 1,
+      "safe_controls": 11,
+      "false_block_rate": 0.09090909090909091,
+      "blocks_all_cases": false,
+      "missing_verdicts": 0
+    },
+    "evidence_graph": {
+      "attempted": 24,
+      "valid_provenance_links": 24,
+      "clinical_verdicts": 0
+    },
+    "failure_dimensions": {
+      "attempted": 24,
+      "model_timeouts": 1,
+      "model_abstentions": 1,
+      "model_unsupported_claim_verdicts": 1,
+      "structurally_unsupported_sources": 0,
+      "structurally_unsupported_source_rate": 0.0
+    },
+    "per_category": {
+      "allergy": {
+        "deterministic_rules": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 1,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "attribution": {
+        "deterministic_rules": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 1,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "dose": {
+        "deterministic_rules": {
+          "attempted": 2,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 2,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 2,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 2,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "laterality": {
+        "deterministic_rules": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 1,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "medication": {
+        "deterministic_rules": {
+          "attempted": 3,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 3,
+          "critical_misses": 1,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": false,
+          "missing_verdicts": 1
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 3,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 3,
+          "model_timeouts": 1,
+          "model_abstentions": 1,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "omission": {
+        "deterministic_rules": {
+          "attempted": 2,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 2,
+          "critical_misses": 2,
+          "omission_misses": 2,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": false,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 2,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 2,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "safe_control": {
+        "deterministic_rules": {
+          "attempted": 9,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 9,
+          "false_block_rate": 0.0,
+          "blocks_all_cases": false,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 9,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 9,
+          "false_block_rate": 0.0,
+          "blocks_all_cases": false,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 9,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 9,
+          "false_block_rate": 0.0,
+          "blocks_all_cases": false,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 9,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "safe_conversion": {
+        "deterministic_rules": {
+          "attempted": 2,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 2,
+          "false_block_rate": 0.0,
+          "blocks_all_cases": false,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 2,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 1,
+          "safe_controls": 2,
+          "false_block_rate": 0.5,
+          "blocks_all_cases": false,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 2,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 1,
+          "safe_controls": 2,
+          "false_block_rate": 0.5,
+          "blocks_all_cases": false,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 2,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "temporality": {
+        "deterministic_rules": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 1,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "uncertainty": {
+        "deterministic_rules": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 1,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 0,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      },
+      "unsupported": {
+        "deterministic_rules": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_local_model": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "frozen_combined_review_policy": {
+          "attempted": 1,
+          "critical_misses": 0,
+          "omission_misses": 0,
+          "false_alarms": 0,
+          "safe_controls": 0,
+          "false_block_rate": null,
+          "blocks_all_cases": true,
+          "missing_verdicts": 0
+        },
+        "failure_dimensions": {
+          "attempted": 1,
+          "model_timeouts": 0,
+          "model_abstentions": 0,
+          "model_unsupported_claim_verdicts": 1,
+          "structurally_unsupported_sources": 0,
+          "structurally_unsupported_source_rate": 0.0
+        }
+      }
+    },
+    "anti_overblocking_guard": {
+      "methods_blocking_every_case": [],
+      "any_method_blocks_every_case": false,
+      "interpretation": "Flag for review; no method earns acceptance by blocking every case."
+    }
+  },
+  "graph_summary": {
+    "attempted": 24,
+    "valid_provenance_links": 24,
+    "invalid_provenance_links": 0,
+    "clinical_verdicts": 0,
+    "interpretation": "Graph validity is a source-link invariant, not an unsafe-claim classifier."
+  },
+  "frozen_model_summary": {
+    "attempted": 24,
+    "critical_misses": 3,
+    "omission_misses": 2,
+    "false_alarms": 1,
+    "correct_including_failures": 20,
+    "missing_verdicts": 1
+  },
+  "frozen_combined_summary": {
+    "attempted": 24,
+    "critical_misses": 0,
+    "omission_misses": 0,
+    "false_alarms": 1,
+    "correct_including_failures": 23,
+    "missing_verdicts": 0
+  },
+  "source_hashes": {
+    "services/verification_method_comparison.py": "7461c1cc55f3df29324d203d239c2ff112050169e93a09ad9c990621043fc595",
+    "services/evidence_graph.py": "0e031bd9103ffce6b9c244cc0eb05f1912fd156ed0cf06526a80a06e77133505",
+    "services/review/clinical.py": "90b88465621722521b452f5f29885a474ac3d8c81240efd04513a16cab728e42",
+    "tests/test_verification_method_comparison.py": "edc5e13952413bea76097fa5506d700cfd64902e1de7842c0db1e7e7ef0cac3d"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "model_inference": "none; frozen report reused"
+  },
+  "limitations": [
+    "Cases are developer-authored and not independent clinical gold.",
+    "Model arm is reused from an earlier local run; no model was called by this report.",
+    "Evidence-graph validation cannot detect semantic mismatch when citations themselves are structurally valid."
+  ],
+  "runtime_sha256": "ef0df2f78f1bd6a22a9889637c61f2929ec504a5da35f349fd4e99203de88d7d"
+}

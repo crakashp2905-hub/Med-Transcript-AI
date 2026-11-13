@@ -3786,11 +3786,21 @@
       "id": "MTA-07-22",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Label synthetic `0 critical misses` as internal development result, not clinical sensitivity or zero risk.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/verification-interpretation-mta-07-22-c462ad3.json",
+        "evaluation/reports/master-task-mta-07-22-c462ad3.json"
+      ],
+      "source_commit": "c462ad3e06c71f45d6eecdc1c8c3110251fec7bb",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-22-c462ad3.json",
+          "report_sha256": "24fd18a300ec369d02e078bcf2ce51c84d1df404f3d5abb7aa44b2fa34c25220",
+          "check": "zero_miss_development_result_explicitly_disclaims_sensitivity_and_zero_risk",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
