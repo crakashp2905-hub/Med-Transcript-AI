@@ -175,6 +175,62 @@ def test_proposal_baseline_source_edit_and_stale_approval(setup):
     assert saved["draft"] == proposal.json()["draft"]
 
 
+def test_deterministic_draft_fallback_is_explicit_and_keeps_proposal_unapproved():
+    from services.provider_interfaces import ProviderFailure
+    from services.review.routers.proposals import _draft_with_optional_fallback
+
+    fact_id = str(uuid4())
+    facts = [
+        {
+            "fact_id": fact_id,
+            "section": "subjective",
+            "text": "Patient reports cough.",
+            "reviewed": True,
+            "excluded": False,
+        }
+    ]
+
+    class UnavailableProvider:
+        def draft(self, facts, **kwargs):
+            raise ProviderFailure(
+                "drafting", "unavailable", code="drafting_unavailable"
+            )
+
+    proposal = _draft_with_optional_fallback(UnavailableProvider(), facts)
+    assert proposal["provenance"]["provider_mode"] == "deterministic"
+    assert proposal["provenance"]["fallback_reason"] == "drafting_unavailable"
+    assert proposal["provenance"]["optional_inference_status"] == "unavailable"
+    assert proposal["draft"] == proposal["deterministic_baseline"]["draft"]
+
+
+def test_deterministic_draft_fallback_runs_when_optional_slot_is_busy(monkeypatch):
+    from contextlib import contextmanager
+    from services.review.routers import proposals as proposal_routes
+    from services.review.routers.proposals import _draft_with_optional_fallback
+    from services.review.providers import JSONProvider
+
+    @contextmanager
+    def busy_slot(**kwargs):
+        yield False
+
+    monkeypatch.setattr(proposal_routes, "local_inference_slot", busy_slot)
+    facts = [
+        {
+            "fact_id": str(uuid4()),
+            "section": "subjective",
+            "text": "Patient denies fever.",
+            "reviewed": True,
+            "excluded": False,
+        }
+    ]
+    result = _draft_with_optional_fallback(
+        JSONProvider("http://localhost", "unused", enabled=True), facts
+    )
+
+    assert result["provenance"]["fallback_reason"] == "local_inference_busy"
+    assert result["draft"] == result["deterministic_baseline"]["draft"]
+
+
 def test_speaker_role_scoring_keeps_wrong_roles_and_missing_boundaries():
     from services.speaker_comparison import role_metrics
 

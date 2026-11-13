@@ -25,6 +25,39 @@ from services.domain_contracts import validate_record
 from services.proposal_integrity import decode_proposal
 
 
+def _draft_with_optional_fallback(provider, facts, fallback_reason=None):
+    """Run optional drafting or produce an explicitly marked deterministic result."""
+    try:
+        if fallback_reason:
+            result = DeterministicProvider().draft(
+                facts, authorized=True, synthetic=True
+            )
+        else:
+            with (
+                local_inference_slot(priority="optional")
+                if isinstance(provider, JSONProvider) and provider.mode == "local"
+                else nullcontext(True)
+            ) as ready:
+                if ready:
+                    result = provider.draft(facts, authorized=True, synthetic=True)
+                else:
+                    fallback_reason = "local_inference_busy"
+                    result = DeterministicProvider().draft(
+                        facts, authorized=True, synthetic=True
+                    )
+    except ProviderFailure as error:
+        if error.kind not in {"unavailable", "timeout"}:
+            raise
+        fallback_reason = error.code
+        result = DeterministicProvider().draft(facts, authorized=True, synthetic=True)
+    baseline = DeterministicProvider().draft(facts, authorized=True, synthetic=True)
+    result["deterministic_baseline"] = baseline
+    if fallback_reason:
+        result["provenance"]["fallback_reason"] = fallback_reason
+        result["provenance"]["optional_inference_status"] = "unavailable"
+    return result
+
+
 def register(app, services: ReviewService):
     database = services.database
     identity = services.identity
@@ -59,12 +92,16 @@ def register(app, services: ReviewService):
     ):
         from services.api.storage import active_scopes
 
+        fallback_reason = None
         try:
             provider = require_provider(
                 app.state.drafting_provider, DraftingProvider, "drafting"
             )
         except ProviderFailure as error:
-            raise HTTPException(503, error.code) from None
+            # The model-free path is always available. Its output remains a
+            # proposal and carries the reason optional inference was skipped.
+            provider = DeterministicProvider()
+            fallback_reason = error.code
         hosted = isinstance(provider, JSONProvider) and provider.mode == "hosted"
         with database() as con:
             row = encounter(con, eid, actor)
@@ -80,31 +117,18 @@ def register(app, services: ReviewService):
                 or "hosted_text_processing" not in active_scopes(con, eid)
             ):
                 raise HTTPException(422, "hosted_text_disclosure_and_scope_required")
+        facts = [f.model_dump(mode="json") for f in body.facts]
         try:
-            with (
-                local_inference_slot(priority="optional")
-                if isinstance(provider, JSONProvider) and provider.mode == "local"
-                else nullcontext(True)
-            ) as ready:
-                if not ready:
-                    raise HTTPException(503, "local_inference_busy")
-                result = provider.draft(
-                    [f.model_dump(mode="json") for f in body.facts],
-                    authorized=True,
-                    synthetic=True,
-                )
-            result["deterministic_baseline"] = DeterministicProvider().draft(
-                [f.model_dump(mode="json") for f in body.facts],
-                authorized=True,
-                synthetic=True,
-            )
+            result = _draft_with_optional_fallback(provider, facts, fallback_reason)
         except ProviderFailure as error:
-            status = 503 if error.kind in {"unavailable", "timeout"} else 422
-            raise HTTPException(status, error.code) from None
+            raise HTTPException(422, error.code) from None
         except ValueError:
             raise HTTPException(
                 422, "draft_proposal_failed_no_output_admitted"
             ) from None
+        if fallback_reason:
+            result["provenance"]["fallback_reason"] = fallback_reason
+            result["provenance"]["optional_inference_status"] = "unavailable"
         with database() as con:
             row = encounter(con, eid, actor)
             require_processing(con, eid)
