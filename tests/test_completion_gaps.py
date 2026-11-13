@@ -378,6 +378,80 @@ def test_revocation_during_model_extraction_discards_output(setup):
         )
 
 
+def test_transcript_edit_during_model_extraction_discards_output(setup):
+    import sqlite3
+    from services.review.clinical_models import RuleExtractor
+
+    client, path, _ = setup
+    eid, tx, _ = prepare(client, path)
+
+    class EditingExtractor:
+        def extract_facts(self, transcript, **kwargs):
+            with sqlite3.connect(path) as con:
+                con.execute(
+                    "UPDATE encounters SET current_transcript='edited-source' WHERE id=?",
+                    (eid,),
+                )
+            return RuleExtractor().extract_facts(transcript, **kwargs)
+
+    client.app.state.clinical_models = EditingExtractor()
+    response = client.post(
+        f"/v1/encounters/{eid}/fact-proposals",
+        headers=headers(),
+        json={"transcript_version_id": tx["id"], "mode": "local_model"},
+    )
+    assert response.status_code == 412
+    with sqlite3.connect(path) as con:
+        assert (
+            con.execute(
+                "SELECT COUNT(*) FROM model_proposals WHERE kind='fact_proposal'"
+            ).fetchone()[0]
+            == 0
+        )
+
+
+def test_transcript_edit_during_semantic_verification_discards_output(setup):
+    import sqlite3
+
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path, "Taking warfarin 5 mg.")
+    note = draft(client, eid, tx, facts)["note"]
+
+    class EditingVerifier:
+        def check_claims(self, claims, **kwargs):
+            with sqlite3.connect(path) as con:
+                con.execute(
+                    "UPDATE encounters SET current_transcript='edited-source' WHERE id=?",
+                    (eid,),
+                )
+            return {
+                "verdicts": [
+                    {
+                        "fact_id": claim["fact_id"],
+                        "label": "supported",
+                        "evidence_quote": claim["evidence"],
+                    }
+                    for claim in claims
+                ],
+                "provenance": {},
+            }
+
+    client.app.state.clinical_models = EditingVerifier()
+    response = client.post(
+        f"/v1/encounters/{eid}/semantic-checks",
+        headers=headers(),
+        json={"note_version_id": note["id"]},
+    )
+    assert response.status_code == 412
+    with sqlite3.connect(path) as con:
+        assert (
+            con.execute(
+                "SELECT COUNT(*) FROM model_proposals WHERE kind='semantic_check'"
+            ).fetchone()[0]
+            == 0
+        )
+
+
 def test_model_transport_constrains_input_quotes_and_verifies_digest(monkeypatch):
     import io
     import urllib.request

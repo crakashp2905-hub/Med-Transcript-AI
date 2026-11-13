@@ -367,6 +367,37 @@ def test_revocation_during_drafting_discards_the_output(setup):
         )
 
 
+def test_transcript_edit_during_drafting_discards_the_output(setup):
+    import sqlite3
+
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path)
+
+    class EditingProvider:
+        def draft(self, facts, **kwargs):
+            with sqlite3.connect(path) as con:
+                con.execute(
+                    "UPDATE encounters SET current_transcript='edited-source' WHERE id=?",
+                    (eid,),
+                )
+            return DeterministicProvider().draft(facts, **kwargs)
+
+    client.app.state.drafting_provider = EditingProvider()
+    response = client.post(
+        f"/v1/encounters/{eid}/draft-proposals",
+        headers=headers(),
+        json={"transcript_version_id": tx["id"], "facts": facts},
+    )
+    assert response.status_code == 412
+    with sqlite3.connect(path) as con:
+        assert (
+            con.execute(
+                "SELECT COUNT(*) FROM model_proposals WHERE kind='draft_proposal'"
+            ).fetchone()[0]
+            == 0
+        )
+
+
 def test_local_json_provider_uses_bounded_transport_and_safe_usage():
     from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
     from threading import Thread
