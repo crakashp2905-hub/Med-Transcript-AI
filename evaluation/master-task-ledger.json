@@ -4687,12 +4687,39 @@
       "id": "MTA-09-14",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Implement recovery banner for partial recordings, unsaved edits, lost network, missing permission and session expiration.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/RecoveryBanner.tsx",
+        "apps/clinician-web/src/App.tsx",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/src/screens/LoginScreen.tsx",
+        "apps/clinician-web/src/style.css",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "evaluation/reports/master-task-mta-09-14-caf2433.json"
+      ],
+      "source_commit": "caf2433b54c8fcf515bd684455a4321ca44c3692",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-14-caf2433.json",
+          "report_sha256": "4637ba56f05839cd492191133662ca06ce2e8d255a1c82d9e91a7efe53bcccb2",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-14-caf2433.json",
+          "report_sha256": "4637ba56f05839cd492191133662ca06ce2e8d255a1c82d9e91a7efe53bcccb2",
+          "check": "workflow_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-14-caf2433.json",
+          "report_sha256": "4637ba56f05839cd492191133662ca06ce2e8d255a1c82d9e91a7efe53bcccb2",
+          "check": "recovery_banner_browser_workflow",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "This execution environment denies loopback browser navigation; rerun the workflow in a local-socket-enabled environment to exercise offline, permission, unsaved-edit, partial-job, and expired-session UI states."
     },
     {
       "id": "MTA-09-15",

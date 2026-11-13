@@ -1,0 +1,37 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-09-14",
+  "source_commit": "caf2433b54c8fcf515bd684455a4321ca44c3692",
+  "source_files": {
+    "apps/clinician-web/src/RecoveryBanner.tsx": "dde19d39770763e468e8e64fa93d74265f8686a8222ba27b701f7d74ce4d1f51",
+    "apps/clinician-web/src/App.tsx": "96ef77226f18cbc1c9f7896715ec73ae263d19fd14c3846e8c9e2efa16fe8611",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "f7af3cd62d9a4e08065ee80d17c57225064e379564f7a60ca61b2d2e299326d5",
+    "apps/clinician-web/src/screens/LoginScreen.tsx": "1efd7b4f6fb5474a7aa2f296dc452464402d9d178d04990ce610e9417161de17",
+    "apps/clinician-web/src/style.css": "feb9ad66ae805a72ba5d54fad19e4e3c9b8849cce7752b075ee7e80fc7ffc8eb",
+    "apps/clinician-web/e2e/workflow.spec.ts": "a27a7bb60a6520c8b7ddb2eec751f35c2415f6ca72e7eb49184e98e4f14441c1"
+  },
+  "checks": [
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "detail": "TypeScript compilation and Vite production build passed at source commit."
+    },
+    {
+      "name": "workflow_e2e_discovery",
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "status": "pass",
+      "detail": "Two workflow tests discovered, including unsaved-edit and offline recovery assertions."
+    },
+    {
+      "name": "recovery_banner_browser_workflow",
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --grep \"clinician reviews evidence\"",
+      "status": "blocked",
+      "detail": "Playwright navigation failed before application load with net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:8001/. No browser behavior is claimed as passed."
+    }
+  ],
+  "result": "implemented_with_browser_validation_blocked",
+  "blocker": "This execution environment denies loopback browser navigation; rerun the workflow in a local-socket-enabled environment to exercise offline, permission, unsaved-edit, partial-job, and expired-session UI states.",
+  "clinical_release_authorized": false,
+  "created_utc_date": "2026-11-14"
+}
