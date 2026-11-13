@@ -1,0 +1,179 @@
+{
+  "schema_version": "beccsv_synthetic_dev_v1",
+  "dataset_id": "beccsv-synthetic-dev-v1",
+  "cohort": "development_only",
+  "language": "en",
+  "synthetic": true,
+  "clinical_gold": false,
+  "independent_adjudication": false,
+  "acceptance_use_authorized": false,
+  "real_patient_data": false,
+  "cases": [
+    {
+      "case_id": "consult-01-complete-medication-negation",
+      "scenario": "complete source-supported plan with symptom negation, historical timing, medication dose and allergy state",
+      "turns": [
+        {"speaker": "patient", "text": "The cough started two days ago, but I do not have a fever."},
+        {"speaker": "clinician", "text": "Are you taking metformin now, and what dose?"},
+        {"speaker": "patient", "text": "Yes, metformin 500 milligrams twice daily. I have no known medication allergies."},
+        {"speaker": "clinician", "text": "We will continue the current dose and review the cough if it worsens."}
+      ],
+      "source_facts": [
+        {"fact_id": "s1", "quote": "The cough started two days ago", "concept": "cough", "polarity": "affirmed", "subject": "patient", "temporality": "historical", "certainty": "certain", "severity": "moderate"},
+        {"fact_id": "s2", "quote": "I do not have a fever", "concept": "fever", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain", "severity": "high"},
+        {"fact_id": "s3", "quote": "metformin 500 milligrams twice daily", "concept": "metformin", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain", "dose": "500 mg twice daily", "severity": "high"},
+        {"fact_id": "s4", "quote": "I have no known medication allergies", "concept": "medication_allergy", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain", "severity": "critical"},
+        {"fact_id": "s5", "quote": "We will continue the current dose", "concept": "metformin_action", "polarity": "affirmed", "subject": "clinician", "temporality": "planned", "certainty": "certain", "severity": "high"}
+      ],
+      "note_claims": [
+        {"claim_id": "n1", "source_fact_ids": ["s1"], "concept": "cough", "polarity": "affirmed", "subject": "patient", "temporality": "historical", "certainty": "certain"},
+        {"claim_id": "n2", "source_fact_ids": ["s2"], "concept": "fever", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain"},
+        {"claim_id": "n3", "source_fact_ids": ["s3"], "concept": "metformin", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain", "dose": "500 mg twice daily"},
+        {"claim_id": "n4", "source_fact_ids": ["s4"], "concept": "medication_allergy", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain"},
+        {"claim_id": "n5", "source_fact_ids": ["s5"], "concept": "metformin_action", "polarity": "affirmed", "subject": "clinician", "temporality": "planned", "certainty": "certain"}
+      ],
+      "expected_mismatches": []
+    },
+    {
+      "case_id": "consult-02-source-omission",
+      "scenario": "source coverage omission of a critical allergy reaction",
+      "turns": [
+        {"speaker": "patient", "text": "Penicillin gave me hives when I was a teenager."},
+        {"speaker": "clinician", "text": "Any other medication allergies?"},
+        {"speaker": "patient", "text": "No, only penicillin. I take no daily prescription medicines."},
+        {"speaker": "clinician", "text": "I will document the allergy and avoid penicillin medicines."}
+      ],
+      "source_facts": [
+        {"fact_id": "s1", "quote": "Penicillin gave me hives when I was a teenager", "concept": "penicillin_allergy", "polarity": "affirmed", "subject": "patient", "temporality": "historical", "certainty": "certain", "severity": "critical"},
+        {"fact_id": "s2", "quote": "I take no daily prescription medicines", "concept": "current_medications", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain", "severity": "high"},
+        {"fact_id": "s3", "quote": "I will document the allergy and avoid penicillin medicines", "concept": "penicillin_avoidance", "polarity": "affirmed", "subject": "clinician", "temporality": "planned", "certainty": "certain", "severity": "critical"}
+      ],
+      "note_claims": [
+        {"claim_id": "n1", "source_fact_ids": ["s2"], "concept": "current_medications", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain"},
+        {"claim_id": "n2", "source_fact_ids": ["s3"], "concept": "penicillin_avoidance", "polarity": "affirmed", "subject": "clinician", "temporality": "planned", "certainty": "certain"}
+      ],
+      "expected_mismatches": [{"kind": "source_omission", "source_fact_id": "s1", "severity": "critical"}]
+    },
+    {
+      "case_id": "consult-03-unsupported-antibiotic",
+      "scenario": "note claim invents a drug and duration absent from source",
+      "turns": [
+        {"speaker": "patient", "text": "My throat has been sore since yesterday, and I have a mild cough."},
+        {"speaker": "clinician", "text": "Have you started any new medicine?"},
+        {"speaker": "patient", "text": "No new medicines. I used warm tea last night."},
+        {"speaker": "clinician", "text": "We discussed fluids and monitoring symptoms."}
+      ],
+      "source_facts": [
+        {"fact_id": "s1", "quote": "My throat has been sore since yesterday", "concept": "sore_throat", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain", "severity": "moderate"},
+        {"fact_id": "s2", "quote": "I have a mild cough", "concept": "cough", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain", "severity": "moderate"},
+        {"fact_id": "s3", "quote": "No new medicines", "concept": "new_medications", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain", "severity": "high"},
+        {"fact_id": "s4", "quote": "We discussed fluids and monitoring symptoms", "concept": "supportive_care", "polarity": "affirmed", "subject": "clinician", "temporality": "planned", "certainty": "certain", "severity": "moderate"}
+      ],
+      "note_claims": [
+        {"claim_id": "n1", "source_fact_ids": ["s1"], "concept": "sore_throat", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain"},
+        {"claim_id": "n2", "source_fact_ids": ["s2"], "concept": "cough", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain"},
+        {"claim_id": "n3", "source_fact_ids": ["s3"], "concept": "new_medications", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain"},
+        {"claim_id": "n4", "source_fact_ids": [], "concept": "amoxicillin", "polarity": "affirmed", "subject": "patient", "temporality": "planned", "certainty": "certain", "dose": "500 mg for 7 days"}
+      ],
+      "expected_mismatches": [{"kind": "unsupported_claim", "note_claim_id": "n4", "severity": "critical"}]
+    },
+    {
+      "case_id": "consult-04-dose-binding-swap",
+      "scenario": "two drugs with doses swapped between note claims",
+      "turns": [
+        {"speaker": "patient", "text": "I take warfarin 2 milligrams each evening."},
+        {"speaker": "patient", "text": "I also take metformin 500 milligrams twice daily with meals."},
+        {"speaker": "clinician", "text": "Have you changed either dose this week?"},
+        {"speaker": "patient", "text": "No, both doses are unchanged."}
+      ],
+      "source_facts": [
+        {"fact_id": "s1", "quote": "warfarin 2 milligrams each evening", "concept": "warfarin", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain", "dose": "2 mg each evening", "severity": "critical"},
+        {"fact_id": "s2", "quote": "metformin 500 milligrams twice daily with meals", "concept": "metformin", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain", "dose": "500 mg twice daily", "severity": "critical"},
+        {"fact_id": "s3", "quote": "No, both doses are unchanged", "concept": "dose_change", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain", "severity": "high"}
+      ],
+      "note_claims": [
+        {"claim_id": "n1", "source_fact_ids": ["s1"], "concept": "warfarin", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain", "dose": "500 mg twice daily"},
+        {"claim_id": "n2", "source_fact_ids": ["s2"], "concept": "metformin", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain", "dose": "2 mg each evening"},
+        {"claim_id": "n3", "source_fact_ids": ["s3"], "concept": "dose_change", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain"}
+      ],
+      "expected_mismatches": [{"kind": "relation_mismatch", "source_fact_ids": ["s1", "s2"], "note_claim_ids": ["n1", "n2"], "severity": "critical"}]
+    },
+    {
+      "case_id": "consult-05-subject-swap",
+      "scenario": "family history must not be attributed to patient",
+      "turns": [
+        {"speaker": "patient", "text": "My mother has diabetes and takes insulin."},
+        {"speaker": "clinician", "text": "Do you have diabetes yourself?"},
+        {"speaker": "patient", "text": "No, I have never been diagnosed with diabetes."},
+        {"speaker": "clinician", "text": "I will record that as family history, not your condition."}
+      ],
+      "source_facts": [
+        {"fact_id": "s1", "quote": "My mother has diabetes and takes insulin", "concept": "diabetes", "polarity": "affirmed", "subject": "mother", "temporality": "current", "certainty": "certain", "severity": "high"},
+        {"fact_id": "s2", "quote": "I have never been diagnosed with diabetes", "concept": "diabetes", "polarity": "negated", "subject": "patient", "temporality": "historical", "certainty": "certain", "severity": "high"}
+      ],
+      "note_claims": [
+        {"claim_id": "n1", "source_fact_ids": ["s1"], "concept": "diabetes", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain"},
+        {"claim_id": "n2", "source_fact_ids": ["s2"], "concept": "diabetes", "polarity": "negated", "subject": "patient", "temporality": "historical", "certainty": "certain"}
+      ],
+      "expected_mismatches": [{"kind": "subject_mismatch", "source_fact_id": "s1", "note_claim_id": "n1", "severity": "critical"}]
+    },
+    {
+      "case_id": "consult-06-temporal-flip",
+      "scenario": "resolved historical symptom is rendered as current",
+      "turns": [
+        {"speaker": "patient", "text": "I had a fever last weekend, but it resolved on Monday."},
+        {"speaker": "clinician", "text": "Do you have a fever today?"},
+        {"speaker": "patient", "text": "No fever today."},
+        {"speaker": "clinician", "text": "We will note that the earlier fever resolved."}
+      ],
+      "source_facts": [
+        {"fact_id": "s1", "quote": "I had a fever last weekend", "concept": "fever", "polarity": "affirmed", "subject": "patient", "temporality": "historical", "certainty": "certain", "severity": "high"},
+        {"fact_id": "s2", "quote": "it resolved on Monday", "concept": "fever", "polarity": "affirmed", "subject": "patient", "temporality": "resolved", "certainty": "certain", "severity": "high"},
+        {"fact_id": "s3", "quote": "No fever today", "concept": "fever", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain", "severity": "high"}
+      ],
+      "note_claims": [
+        {"claim_id": "n1", "source_fact_ids": ["s1", "s2"], "concept": "fever", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain"},
+        {"claim_id": "n2", "source_fact_ids": ["s3"], "concept": "fever", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain"}
+      ],
+      "expected_mismatches": [{"kind": "temporal_mismatch", "source_fact_id": "s1", "note_claim_id": "n1", "severity": "high"}]
+    },
+    {
+      "case_id": "consult-07-uncertainty-overstatement",
+      "scenario": "possible symptom is asserted as certain",
+      "turns": [
+        {"speaker": "patient", "text": "I may have felt some wheezing after walking upstairs."},
+        {"speaker": "clinician", "text": "Are you certain you were wheezing?"},
+        {"speaker": "patient", "text": "No, I am not sure; it could have been breathlessness."},
+        {"speaker": "clinician", "text": "We will leave the symptom uncertain and review it."}
+      ],
+      "source_facts": [
+        {"fact_id": "s1", "quote": "I may have felt some wheezing after walking upstairs", "concept": "wheezing", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "uncertain", "severity": "high"},
+        {"fact_id": "s2", "quote": "it could have been breathlessness", "concept": "breathlessness", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "uncertain", "severity": "high"}
+      ],
+      "note_claims": [
+        {"claim_id": "n1", "source_fact_ids": ["s1"], "concept": "wheezing", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain"},
+        {"claim_id": "n2", "source_fact_ids": ["s2"], "concept": "breathlessness", "polarity": "affirmed", "subject": "patient", "temporality": "current", "certainty": "certain"}
+      ],
+      "expected_mismatches": [{"kind": "uncertainty_mismatch", "source_fact_ids": ["s1", "s2"], "note_claim_ids": ["n1", "n2"], "severity": "high"}]
+    },
+    {
+      "case_id": "consult-08-allergy-negation-reversal",
+      "scenario": "explicit absence of allergy is reversed into an allergy",
+      "turns": [
+        {"speaker": "clinician", "text": "Have you ever had a reaction to aspirin?"},
+        {"speaker": "patient", "text": "No, I have never had an aspirin reaction."},
+        {"speaker": "clinician", "text": "Any reaction to other pain medicines?"},
+        {"speaker": "patient", "text": "Not that I know of."}
+      ],
+      "source_facts": [
+        {"fact_id": "s1", "quote": "I have never had an aspirin reaction", "concept": "aspirin_allergy", "polarity": "negated", "subject": "patient", "temporality": "historical", "certainty": "certain", "severity": "critical"},
+        {"fact_id": "s2", "quote": "Not that I know of", "concept": "other_pain_medicine_allergy", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "uncertain", "severity": "high"}
+      ],
+      "note_claims": [
+        {"claim_id": "n1", "source_fact_ids": ["s1"], "concept": "aspirin_allergy", "polarity": "affirmed", "subject": "patient", "temporality": "historical", "certainty": "certain"},
+        {"claim_id": "n2", "source_fact_ids": ["s2"], "concept": "other_pain_medicine_allergy", "polarity": "negated", "subject": "patient", "temporality": "current", "certainty": "certain"}
+      ],
+      "expected_mismatches": [{"kind": "polarity_mismatch", "source_fact_id": "s1", "note_claim_id": "n1", "severity": "critical"}, {"kind": "uncertainty_mismatch", "source_fact_id": "s2", "note_claim_id": "n2", "severity": "high"}]
+    }
+  ]
+}
