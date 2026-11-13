@@ -4455,12 +4455,45 @@
       "id": "MTA-09-08",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Display source coverage: unreviewed significant source statements, unsupported note claims and manual additions.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/SourceCoverage.tsx",
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+        "apps/clinician-web/src/workspaceTypes.ts",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "services/review/engine.py",
+        "tests/test_verification_coverage.py",
+        "evaluation/reports/master-task-mta-09-08-6426b61.json"
+      ],
+      "source_commit": "6426b61512e5854120047299c1f629b2ea5e4d3a",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-08-6426b61.json",
+          "report_sha256": "ac0b9d3bf2c166d1c78856d1479d5489ff2054f027d94ba462e8df944ce97e37",
+          "check": "directional_coverage_includes_source_omissions_note_unsupported_claims_and_manual_additions",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-08-6426b61.json",
+          "report_sha256": "ac0b9d3bf2c166d1c78856d1479d5489ff2054f027d94ba462e8df944ce97e37",
+          "check": "frontend_build_and_e2e_discovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-08-6426b61.json",
+          "report_sha256": "ac0b9d3bf2c166d1c78856d1479d5489ff2054f027d94ba462e8df944ce97e37",
+          "check": "clinician_browser_coverage_navigation",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-08-6426b61.json",
+          "report_sha256": "ac0b9d3bf2c166d1c78856d1479d5489ff2054f027d94ba462e8df944ce97e37",
+          "check": "api_coverage_integration",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "Browser and API integration is blocked by managed socket restrictions. Directional coverage rules, manual-addition count, and build/discovery checks pass; rerun E2E/API checks with local sockets enabled."
     },
     {
       "id": "MTA-09-09",

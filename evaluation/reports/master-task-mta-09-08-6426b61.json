@@ -1,0 +1,69 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "6426b61512e5854120047299c1f629b2ea5e4d3a",
+  "tasks": [
+    "MTA-09-08"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/src/SourceCoverage.tsx": "60b8c539f5808d4506ab2534ff19e7dcbbed73366ff9b6f8d177056df6d521de",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "5a233ded147b7cf1a49440b5d8c09e04acf746c870b4a5c438961ab76bf696eb",
+    "apps/clinician-web/src/workspaceTypes.ts": "b3222093a8b82e380bdc9aa8d03f5ab44b2b3d728ac32d57f3208bb7a68dfbae",
+    "apps/clinician-web/e2e/workflow.spec.ts": "b9720a6a69e5516141ec3899ce6d967bad1b1e84f9c110b211a88f2c2f846453",
+    "services/review/engine.py": "3177a67e0fe272932c95ede3b06b3bb4e114f25636d5d00ddca32cd1cada5dfe",
+    "tests/test_verification_coverage.py": "104eb0506938448e91a9f3172cb42c799703018e4169402c0e9e7d8d69b2d3d9"
+  },
+  "runtime": {
+    "python": "Python 3.13.5",
+    "node": "cached npm dependencies",
+    "platform": "Windows 11",
+    "browser": "Playwright browser fixture unavailable due loopback policy"
+  },
+  "checks": {
+    "directional_coverage_includes_source_omissions_note_unsupported_claims_and_manual_additions": {
+      "status": "pass"
+    },
+    "frontend_build_and_e2e_discovery": {
+      "status": "pass"
+    },
+    "clinician_browser_coverage_navigation": {
+      "status": "blocked"
+    },
+    "api_coverage_integration": {
+      "status": "blocked"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest --confcutdir=services/review/routers tests/test_verification_coverage.py::test_detection_receipts_are_per_finding_hash_bound_and_redacted -q",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "python -m ruff check tests/test_verification_coverage.py services/review/engine.py",
+      "status": "pass"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "npx --offline playwright test e2e/workflow.spec.ts --list",
+      "cwd": "apps/clinician-web",
+      "status": "pass",
+      "observed": "Workflow including source coverage view was discovered."
+    },
+    {
+      "command": "Playwright and TestClient source coverage workflow",
+      "status": "blocked",
+      "observed": "Managed environment denies loopback and socket-pair operations, so page and API integration could not run."
+    }
+  ],
+  "limitations": [
+    "Coverage distinguishes source findings absent from note, unsupported note claims, and manual additions without transcript evidence.",
+    "Counts and rule materiality are review aids, not completeness proof or independently adjudicated clinical accuracy.",
+    "Browser navigation from findings to evidence awaits execution in a local-socket-enabled environment."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "5e13d2c4f7399fea02b29802fe6a1e084eee2961262e7197a6c6a0689755dbcb"
+}
