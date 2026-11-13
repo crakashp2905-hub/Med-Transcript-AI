@@ -127,6 +127,7 @@ def build_channels(
     )
     body["segments"] = postprocessed["segments"]
     body["suppressed_channel_segments"] = postprocessed["suppressed_segments"]
+    body["duplicate_channel_speech_candidates"] = postprocessed["duplicate_candidates"]
     body["channel_postprocessing_log"] = postprocessed["processing_log"]
     body["channel_postprocessing_policy"] = {
         "turn_grouping_max_gap_ms": postprocessed["turn_grouping_max_gap_ms"],
@@ -155,7 +156,7 @@ def build_channels(
         body["review_flags"] = [
             flag for flag in body["review_flags"] if flag != "digital_silence"
         ]
-    if postprocessed["suppressed_segments"]:
+    if postprocessed["suppressed_segments"] or postprocessed["duplicate_candidates"]:
         body["review_flags"] = sorted(
             set(body["review_flags"]) | {"duplicate_channel_speech_requires_review"}
         )

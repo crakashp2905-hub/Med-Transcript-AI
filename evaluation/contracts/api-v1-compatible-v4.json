@@ -1,0 +1,4289 @@
+{
+  "schema_version": "api_contract_successor_v4",
+  "supersedes": {
+    "path": "evaluation/contracts/api-v1-compatible-v3.json",
+    "sha256": "d5fb8147dbbda1cf24365e8bed25f9066c2a8ee06d5da13e512092c7fe13f88b"
+  },
+  "contract": {
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Med Transcript AI",
+      "version": "0.5.0"
+    },
+    "paths": {
+      "/v1/auth/config": {
+        "get": {
+          "summary": "Config",
+          "operationId": "config_v1_auth_config_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/auth/login": {
+        "get": {
+          "summary": "Login",
+          "operationId": "login_v1_auth_login_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/auth/callback": {
+        "get": {
+          "summary": "Callback",
+          "operationId": "callback_v1_auth_callback_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/auth/session": {
+        "get": {
+          "summary": "Session",
+          "operationId": "session_v1_auth_session_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/auth/logout": {
+        "post": {
+          "summary": "Logout",
+          "operationId": "logout_v1_auth_logout_post",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/health": {
+        "get": {
+          "summary": "Health",
+          "operationId": "health_health_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters": {
+        "post": {
+          "summary": "Create Encounter",
+          "operationId": "create_encounter_v1_encounters_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EncounterInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "List Encounters",
+          "operationId": "list_encounters_v1_encounters_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "maximum": 100,
+                "minimum": 1,
+                "default": 50,
+                "title": "Limit"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "maximum": 10000,
+                "minimum": 0,
+                "default": 0,
+                "title": "Offset"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}": {
+        "get": {
+          "summary": "Get Encounter",
+          "operationId": "get_encounter_v1_encounters__encounter_id__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}/authorizations": {
+        "post": {
+          "summary": "Authorize",
+          "operationId": "authorize_v1_encounters__encounter_id__authorizations_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorizationInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}/authorizations/{authorization_id}/withdraw": {
+        "post": {
+          "summary": "Withdraw",
+          "operationId": "withdraw_v1_encounters__encounter_id__authorizations__authorization_id__withdraw_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            },
+            {
+              "name": "authorization_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Authorization Id"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}/processing-permission": {
+        "get": {
+          "summary": "Permission",
+          "operationId": "permission_v1_encounters__encounter_id__processing_permission_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}/audio-uploads": {
+        "post": {
+          "summary": "Create Upload",
+          "operationId": "create_upload_v1_encounters__encounter_id__audio_uploads_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}/audio-uploads/{upload_id}": {
+        "get": {
+          "summary": "Get Upload",
+          "operationId": "get_upload_v1_encounters__encounter_id__audio_uploads__upload_id__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            },
+            {
+              "name": "upload_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Upload Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content": {
+        "put": {
+          "summary": "Upload Content",
+          "operationId": "upload_content_v1_encounters__encounter_id__audio_uploads__upload_id__content_put",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            },
+            {
+              "name": "upload_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Upload Id"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "summary": "Append",
+          "operationId": "append_v1_encounters__encounter_id__audio_uploads__upload_id__content_patch",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            },
+            {
+              "name": "upload_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Upload Id"
+              }
+            },
+            {
+              "name": "Upload-Offset",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "minimum": 0,
+                "title": "Upload-Offset"
+              }
+            },
+            {
+              "name": "Upload-Chunk-SHA256",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$",
+                "title": "Upload-Chunk-Sha256"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/complete": {
+        "post": {
+          "summary": "Complete Upload",
+          "operationId": "complete_upload_v1_encounters__encounter_id__audio_uploads__upload_id__complete_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            },
+            {
+              "name": "upload_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Upload Id"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/jobs/{job_id}": {
+        "get": {
+          "summary": "Get Job",
+          "operationId": "get_job_v1_jobs__job_id__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "job_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Job Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/jobs/{job_id}/retry": {
+        "post": {
+          "summary": "Retry Transcription",
+          "operationId": "retry_transcription_v1_jobs__job_id__retry_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "job_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Job Id"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}/transcriptions": {
+        "post": {
+          "summary": "Create Transcription",
+          "operationId": "create_transcription_v1_encounters__encounter_id__transcriptions_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptionInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "202": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{encounter_id}/transcripts/{version}": {
+        "get": {
+          "summary": "Get Transcript",
+          "operationId": "get_transcript_v1_encounters__encounter_id__transcripts__version__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "encounter_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Encounter Id"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Version"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/stream-uploads": {
+        "post": {
+          "summary": "Create",
+          "operationId": "create_v1_encounters__eid__stream_uploads_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "Pending",
+          "operationId": "pending_v1_encounters__eid__stream_uploads_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/stream-uploads/{uid}/seal": {
+        "post": {
+          "summary": "Seal",
+          "operationId": "seal_v1_encounters__eid__stream_uploads__uid__seal_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "uid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Uid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SealInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/stream-uploads/{uid}/recovery": {
+        "get": {
+          "summary": "Recovery",
+          "operationId": "recovery_v1_encounters__eid__stream_uploads__uid__recovery_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "uid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Uid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/review-sessions": {
+        "get": {
+          "summary": "Sessions",
+          "operationId": "sessions_v1_encounters__eid__review_sessions_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Start",
+          "operationId": "start_v1_encounters__eid__review_sessions_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StartReview"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/review-sessions/{sid}/complete": {
+        "post": {
+          "summary": "Finish",
+          "operationId": "finish_v1_encounters__eid__review_sessions__sid__complete_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "sid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Sid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinishReview"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/fact-proposals": {
+        "post": {
+          "summary": "Extract",
+          "operationId": "extract_v1_encounters__eid__fact_proposals_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtractRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/semantic-checks": {
+        "post": {
+          "summary": "Verify",
+          "operationId": "verify_v1_encounters__eid__semantic_checks_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/clinical-proposals/{pid}": {
+        "get": {
+          "summary": "Proposal",
+          "operationId": "proposal_v1_encounters__eid__clinical_proposals__pid__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "pid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Pid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/study-dashboard": {
+        "get": {
+          "summary": "Study Dashboard",
+          "operationId": "study_dashboard_v1_study_dashboard_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ]
+        }
+      },
+      "/v1/session": {
+        "get": {
+          "summary": "Session",
+          "operationId": "session_v1_session_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ]
+        }
+      },
+      "/v1/demo-cases": {
+        "get": {
+          "summary": "Demo Cases",
+          "operationId": "demo_cases_v1_demo_cases_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ]
+        }
+      },
+      "/v1/demo": {
+        "post": {
+          "summary": "Demo",
+          "operationId": "demo_v1_demo_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "public_case",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 100
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Public Case"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/uploads": {
+        "get": {
+          "summary": "Uploads",
+          "operationId": "uploads_v1_encounters__eid__uploads_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/workspace": {
+        "get": {
+          "summary": "Workspace",
+          "operationId": "workspace_v1_encounters__eid__workspace_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/audio/{upload_id}": {
+        "get": {
+          "summary": "Audio",
+          "operationId": "audio_v1_encounters__eid__audio__upload_id__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "upload_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Upload Id"
+              }
+            },
+            {
+              "name": "channel",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "maximum": 7,
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Channel"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/audio/{upload_id}/waveform": {
+        "get": {
+          "summary": "Audio Waveform",
+          "operationId": "audio_waveform_v1_encounters__eid__audio__upload_id__waveform_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "upload_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Upload Id"
+              }
+            },
+            {
+              "name": "channel",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "maximum": 7,
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Channel"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/draft-proposals/{did}": {
+        "get": {
+          "summary": "Get Draft Proposal",
+          "operationId": "get_draft_proposal_v1_encounters__eid__draft_proposals__did__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "did",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Did"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/draft-proposals": {
+        "post": {
+          "summary": "Draft Proposal",
+          "operationId": "draft_proposal_v1_encounters__eid__draft_proposals_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftProposalInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/manual-transcripts": {
+        "post": {
+          "summary": "Manual Transcript",
+          "operationId": "manual_transcript_v1_encounters__eid__manual_transcripts_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManualTranscript"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/transcripts/{tid}": {
+        "patch": {
+          "summary": "Edit Transcript",
+          "operationId": "edit_transcript_v1_encounters__eid__transcripts__tid__patch",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "tid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Tid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            },
+            {
+              "name": "If-Match",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "If-Match"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptEdit"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/transcripts/{tid}/speaker-roles": {
+        "post": {
+          "summary": "Speaker Roles",
+          "operationId": "speaker_roles_v1_encounters__eid__transcripts__tid__speaker_roles_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "tid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Tid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            },
+            {
+              "name": "If-Match",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "If-Match"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpeakerRoleConfirmation"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/facts": {
+        "get": {
+          "summary": "Facts",
+          "operationId": "facts_v1_encounters__eid__facts_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/drafts": {
+        "post": {
+          "summary": "Draft",
+          "operationId": "draft_v1_encounters__eid__drafts_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/notes/{nid}": {
+        "get": {
+          "summary": "Note",
+          "operationId": "note_v1_encounters__eid__notes__nid__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "nid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Nid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "summary": "Edit Note",
+          "operationId": "edit_note_v1_encounters__eid__notes__nid__patch",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "nid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Nid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            },
+            {
+              "name": "If-Match",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "If-Match"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoteEdit"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/verification": {
+        "get": {
+          "summary": "Verification",
+          "operationId": "verification_v1_encounters__eid__verification_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/findings/{fid}/resolve": {
+        "post": {
+          "summary": "Resolve",
+          "operationId": "resolve_v1_encounters__eid__findings__fid__resolve_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "fid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Fid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolutionInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/approvals": {
+        "post": {
+          "summary": "Approve",
+          "operationId": "approve_v1_encounters__eid__approvals_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/amendments": {
+        "post": {
+          "summary": "Amend",
+          "operationId": "amend_v1_encounters__eid__amendments_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AmendmentInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/exports": {
+        "post": {
+          "summary": "Export",
+          "operationId": "export_v1_encounters__eid__exports_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportInput"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/exports/{xid}": {
+        "get": {
+          "summary": "Download",
+          "operationId": "download_v1_encounters__eid__exports__xid__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "xid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Xid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/versions": {
+        "get": {
+          "summary": "Versions",
+          "operationId": "versions_v1_encounters__eid__versions_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/notes/{before}/compare/{after}": {
+        "get": {
+          "summary": "Compare Notes",
+          "operationId": "compare_notes_v1_encounters__eid__notes__before__compare__after__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "before",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Before"
+              }
+            },
+            {
+              "name": "after",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "After"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/audit": {
+        "get": {
+          "summary": "Audit Trail",
+          "operationId": "audit_trail_v1_encounters__eid__audit_get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/encounters/{eid}/deletion-requests": {
+        "post": {
+          "summary": "Delete Request",
+          "operationId": "delete_request_v1_encounters__eid__deletion_requests_post",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "eid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Eid"
+              }
+            },
+            {
+              "name": "Idempotency-Key",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "minLength": 8,
+                "maxLength": 128,
+                "pattern": "^[a-zA-Z0-9_.-]+$",
+                "title": "Idempotency-Key"
+              }
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/v1/deletion-requests/{rid}": {
+        "get": {
+          "summary": "Deletion Status",
+          "operationId": "deletion_status_v1_deletion_requests__rid__get",
+          "security": [
+            {
+              "HTTPBearer": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "rid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "title": "Rid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AmendmentInput": {
+          "properties": {
+            "approval_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Approval Id"
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 2000,
+              "minLength": 10,
+              "title": "Reason"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "approval_id",
+            "reason"
+          ],
+          "title": "AmendmentInput"
+        },
+        "ApprovalInput": {
+          "properties": {
+            "note_version_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Note Version Id"
+            },
+            "expected_note_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Expected Note Sha256"
+            },
+            "verification_report_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Verification Report Id"
+            },
+            "patient_identifiers_reconfirmed": {
+              "type": "boolean",
+              "const": true,
+              "title": "Patient Identifiers Reconfirmed"
+            },
+            "attestation_version": {
+              "type": "string",
+              "const": "clinician_review_v1",
+              "title": "Attestation Version",
+              "default": "clinician_review_v1"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "note_version_id",
+            "expected_note_sha256",
+            "verification_report_id",
+            "patient_identifiers_reconfirmed"
+          ],
+          "title": "ApprovalInput"
+        },
+        "AuthorizationInput": {
+          "properties": {
+            "scopes": {
+              "items": {
+                "type": "string",
+                "enum": [
+                  "recording",
+                  "local_processing",
+                  "hosted_text_processing"
+                ]
+              },
+              "type": "array",
+              "maxItems": 3,
+              "minItems": 1,
+              "title": "Scopes"
+            },
+            "policy_version": {
+              "type": "string",
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9_.-]+$",
+              "title": "Policy Version"
+            },
+            "method": {
+              "type": "string",
+              "enum": [
+                "written",
+                "verbal_documented"
+              ],
+              "title": "Method"
+            },
+            "expires_at": {
+              "type": "string",
+              "format": "date-time",
+              "title": "Expires At"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "scopes",
+            "policy_version",
+            "method",
+            "expires_at"
+          ],
+          "title": "AuthorizationInput"
+        },
+        "DraftInput": {
+          "properties": {
+            "transcript_version_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Transcript Version Id"
+            },
+            "facts": {
+              "items": {
+                "$ref": "#/components/schemas/Fact"
+              },
+              "type": "array",
+              "maxItems": 300,
+              "minItems": 1,
+              "title": "Facts"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "transcript_version_id",
+            "facts"
+          ],
+          "title": "DraftInput"
+        },
+        "DraftProposalInput": {
+          "properties": {
+            "transcript_version_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Transcript Version Id"
+            },
+            "facts": {
+              "items": {
+                "$ref": "#/components/schemas/Fact"
+              },
+              "type": "array",
+              "maxItems": 300,
+              "minItems": 1,
+              "title": "Facts"
+            },
+            "hosted_text_disclosure_accepted": {
+              "type": "boolean",
+              "title": "Hosted Text Disclosure Accepted",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "transcript_version_id",
+            "facts"
+          ],
+          "title": "DraftProposalInput"
+        },
+        "EncounterInput": {
+          "properties": {
+            "patient_reference_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Patient Reference Id"
+            },
+            "patient_identifiers_confirmed": {
+              "type": "boolean",
+              "const": true,
+              "title": "Patient Identifiers Confirmed"
+            },
+            "language": {
+              "type": "string",
+              "const": "en",
+              "title": "Language",
+              "default": "en"
+            },
+            "timezone": {
+              "type": "string",
+              "maxLength": 80,
+              "title": "Timezone",
+              "default": "Asia/Kolkata"
+            },
+            "workflow": {
+              "type": "string",
+              "const": "outpatient_general_medicine",
+              "title": "Workflow",
+              "default": "outpatient_general_medicine"
+            },
+            "requested_inference_mode": {
+              "type": "string",
+              "enum": [
+                "fully_local",
+                "hybrid_text"
+              ],
+              "title": "Requested Inference Mode",
+              "default": "fully_local"
+            },
+            "synthetic_data": {
+              "type": "boolean",
+              "const": true,
+              "title": "Synthetic Data"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "patient_reference_id",
+            "patient_identifiers_confirmed",
+            "synthetic_data"
+          ],
+          "title": "EncounterInput"
+        },
+        "Evidence": {
+          "properties": {
+            "segment_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Segment Id"
+            },
+            "start_char": {
+              "type": "integer",
+              "minimum": 0.0,
+              "title": "Start Char"
+            },
+            "end_char": {
+              "type": "integer",
+              "minimum": 1.0,
+              "title": "End Char"
+            },
+            "quote": {
+              "type": "string",
+              "maxLength": 4000,
+              "minLength": 1,
+              "title": "Quote"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "segment_id",
+            "start_char",
+            "end_char",
+            "quote"
+          ],
+          "title": "Evidence"
+        },
+        "ExportInput": {
+          "properties": {
+            "approval_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Approval Id"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "markdown",
+                "text",
+                "json",
+                "fhir"
+              ],
+              "title": "Format"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "approval_id",
+            "format"
+          ],
+          "title": "ExportInput"
+        },
+        "ExtractRequest": {
+          "properties": {
+            "transcript_version_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Transcript Version Id"
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "rules",
+                "local_model"
+              ],
+              "title": "Mode",
+              "default": "rules"
+            },
+            "segment_ids": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "type": "array",
+                  "maxItems": 20,
+                  "minItems": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Segment Ids"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "transcript_version_id"
+          ],
+          "title": "ExtractRequest"
+        },
+        "Fact": {
+          "properties": {
+            "fact_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Fact Id"
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "symptom",
+                "medication",
+                "allergy",
+                "measurement",
+                "assessment",
+                "plan",
+                "other"
+              ],
+              "title": "Category",
+              "default": "other"
+            },
+            "section": {
+              "type": "string",
+              "enum": [
+                "subjective",
+                "objective",
+                "assessment",
+                "plan"
+              ],
+              "title": "Section",
+              "default": "subjective"
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 4000,
+              "minLength": 1,
+              "title": "Text"
+            },
+            "subject": {
+              "type": "string",
+              "enum": [
+                "patient",
+                "family",
+                "caregiver",
+                "other",
+                "unknown"
+              ],
+              "title": "Subject",
+              "default": "unknown"
+            },
+            "assertion": {
+              "type": "string",
+              "enum": [
+                "affirmed",
+                "negated",
+                "uncertain",
+                "not_stated"
+              ],
+              "title": "Assertion",
+              "default": "uncertain"
+            },
+            "temporality": {
+              "type": "string",
+              "enum": [
+                "current",
+                "historical",
+                "planned",
+                "unknown"
+              ],
+              "title": "Temporality",
+              "default": "unknown"
+            },
+            "origin": {
+              "type": "string",
+              "enum": [
+                "source_linked",
+                "clinician_entered"
+              ],
+              "title": "Origin",
+              "default": "source_linked"
+            },
+            "evidence": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Evidence"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reviewed": {
+              "type": "boolean",
+              "title": "Reviewed",
+              "default": false
+            },
+            "critical_reviewed": {
+              "type": "boolean",
+              "title": "Critical Reviewed",
+              "default": false
+            },
+            "clarification": {
+              "type": "string",
+              "maxLength": 2000,
+              "title": "Clarification",
+              "default": ""
+            },
+            "excluded": {
+              "type": "boolean",
+              "title": "Excluded",
+              "default": false
+            },
+            "concept": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Concept"
+            },
+            "anatomical_site": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Anatomical Site"
+            },
+            "laterality": {
+              "type": "string",
+              "enum": [
+                "left",
+                "right",
+                "bilateral",
+                "unknown"
+              ],
+              "title": "Laterality",
+              "default": "unknown"
+            },
+            "clinical_source": {
+              "type": "string",
+              "enum": [
+                "patient_report",
+                "clinician_statement",
+                "unknown"
+              ],
+              "title": "Clinical Source",
+              "default": "unknown"
+            },
+            "extraction_version": {
+              "type": "string",
+              "maxLength": 100,
+              "title": "Extraction Version",
+              "default": "manual_or_legacy"
+            },
+            "medication_name": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Medication Name"
+            },
+            "dose_value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dose Value"
+            },
+            "dose_unit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 50
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dose Unit"
+            },
+            "route": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Route"
+            },
+            "frequency": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Frequency"
+            },
+            "duration": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Duration"
+            },
+            "allergen": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Allergen"
+            },
+            "allergy_reaction": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Allergy Reaction"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "fact_id",
+            "text"
+          ],
+          "title": "Fact"
+        },
+        "FinishReview": {
+          "properties": {
+            "note_version_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Note Version Id"
+            },
+            "self_reported_active_ms": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 86400000.0,
+                  "minimum": 0.0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Self Reported Active Ms"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "note_version_id"
+          ],
+          "title": "FinishReview"
+        },
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "ManualSegment": {
+          "properties": {
+            "start_ms": {
+              "type": "integer",
+              "minimum": 0.0,
+              "title": "Start Ms"
+            },
+            "end_ms": {
+              "type": "integer",
+              "exclusiveMinimum": 0.0,
+              "title": "End Ms"
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 4000,
+              "minLength": 1,
+              "title": "Text"
+            },
+            "role": {
+              "type": "string",
+              "enum": [
+                "patient",
+                "clinician",
+                "caregiver",
+                "interpreter",
+                "other",
+                "unknown"
+              ],
+              "title": "Role",
+              "default": "unknown"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "start_ms",
+            "end_ms",
+            "text"
+          ],
+          "title": "ManualSegment"
+        },
+        "ManualTranscript": {
+          "properties": {
+            "english_confirmed": {
+              "type": "boolean",
+              "title": "English Confirmed",
+              "default": false
+            },
+            "source_completeness_reviewed": {
+              "type": "boolean",
+              "title": "Source Completeness Reviewed",
+              "default": false
+            },
+            "source_review_reason": {
+              "type": "string",
+              "maxLength": 2000,
+              "title": "Source Review Reason",
+              "default": ""
+            },
+            "audio_asset_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Audio Asset Id"
+            },
+            "segments": {
+              "items": {
+                "$ref": "#/components/schemas/ManualSegment"
+              },
+              "type": "array",
+              "maxItems": 10000,
+              "minItems": 1,
+              "title": "Segments"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "audio_asset_id",
+            "segments"
+          ],
+          "title": "ManualTranscript"
+        },
+        "NoteEdit": {
+          "properties": {
+            "transcript_version_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Transcript Version Id"
+            },
+            "facts": {
+              "items": {
+                "$ref": "#/components/schemas/Fact"
+              },
+              "type": "array",
+              "maxItems": 300,
+              "minItems": 1,
+              "title": "Facts"
+            },
+            "amendment_reason": {
+              "type": "string",
+              "maxLength": 2000,
+              "title": "Amendment Reason",
+              "default": ""
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "transcript_version_id",
+            "facts"
+          ],
+          "title": "NoteEdit"
+        },
+        "ResolutionInput": {
+          "properties": {
+            "expected_note_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Expected Note Sha256"
+            },
+            "fact_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Fact Id"
+            },
+            "action": {
+              "type": "string",
+              "const": "clinician_correction",
+              "title": "Action"
+            },
+            "corrected_text": {
+              "type": "string",
+              "maxLength": 4000,
+              "minLength": 1,
+              "title": "Corrected Text"
+            },
+            "reason": {
+              "type": "string",
+              "maxLength": 2000,
+              "minLength": 20,
+              "title": "Reason"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "expected_note_sha256",
+            "fact_id",
+            "action",
+            "corrected_text",
+            "reason"
+          ],
+          "title": "ResolutionInput"
+        },
+        "SealInput": {
+          "properties": {
+            "bytes": {
+              "type": "integer",
+              "maximum": 512000000.0,
+              "minimum": 1.0,
+              "title": "Bytes"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Sha256"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "bytes",
+            "sha256"
+          ],
+          "title": "SealInput"
+        },
+        "SegmentEdit": {
+          "properties": {
+            "segment_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Segment Id"
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 4000,
+              "title": "Text"
+            },
+            "role": {
+              "type": "string",
+              "enum": [
+                "patient",
+                "clinician",
+                "caregiver",
+                "interpreter",
+                "other",
+                "unknown"
+              ],
+              "title": "Role",
+              "default": "unknown"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "segment_id",
+            "text"
+          ],
+          "title": "SegmentEdit"
+        },
+        "SpeakerRoleConfirmation": {
+          "properties": {
+            "clinician_confirmed": {
+              "type": "boolean",
+              "const": true,
+              "title": "Clinician Confirmed"
+            },
+            "assignments": {
+              "additionalProperties": {
+                "type": "string",
+                "enum": [
+                  "patient",
+                  "clinician",
+                  "caregiver",
+                  "interpreter",
+                  "other",
+                  "unknown"
+                ]
+              },
+              "type": "object",
+              "maxProperties": 100,
+              "minProperties": 1,
+              "title": "Assignments"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "clinician_confirmed",
+            "assignments"
+          ],
+          "title": "SpeakerRoleConfirmation"
+        },
+        "StartReview": {
+          "properties": {
+            "note_version_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Note Version Id"
+            },
+            "client_request_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Client Request Id"
+            },
+            "drafting_arm": {
+              "type": "string",
+              "enum": [
+                "unspecified",
+                "manual",
+                "deterministic",
+                "local_qwen"
+              ],
+              "title": "Drafting Arm",
+              "default": "unspecified"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "note_version_id"
+          ],
+          "title": "StartReview"
+        },
+        "StreamInput": {
+          "properties": {
+            "format": {
+              "type": "string",
+              "enum": [
+                "pcm",
+                "media"
+              ],
+              "title": "Format"
+            },
+            "channels": {
+              "type": "integer",
+              "maximum": 8.0,
+              "minimum": 1.0,
+              "title": "Channels"
+            },
+            "media_type": {
+              "type": "string",
+              "enum": [
+                "audio/wav",
+                "audio/webm",
+                "audio/ogg",
+                "audio/mp4"
+              ],
+              "title": "Media Type"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "format",
+            "channels",
+            "media_type"
+          ],
+          "title": "StreamInput"
+        },
+        "TranscriptEdit": {
+          "properties": {
+            "english_confirmed": {
+              "type": "boolean",
+              "title": "English Confirmed",
+              "default": false
+            },
+            "source_completeness_reviewed": {
+              "type": "boolean",
+              "title": "Source Completeness Reviewed",
+              "default": false
+            },
+            "source_review_reason": {
+              "type": "string",
+              "maxLength": 2000,
+              "title": "Source Review Reason",
+              "default": ""
+            },
+            "segments": {
+              "items": {
+                "$ref": "#/components/schemas/SegmentEdit"
+              },
+              "type": "array",
+              "maxItems": 10000,
+              "title": "Segments"
+            },
+            "correction_reason": {
+              "type": "string",
+              "maxLength": 2000,
+              "minLength": 10,
+              "title": "Correction Reason"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "segments",
+            "correction_reason"
+          ],
+          "title": "TranscriptEdit"
+        },
+        "TranscriptionInput": {
+          "properties": {
+            "audio_asset_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Audio Asset Id"
+            },
+            "inference_profile_id": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9_.-]{1,80}$",
+              "title": "Inference Profile Id"
+            },
+            "preview_only": {
+              "type": "boolean",
+              "title": "Preview Only",
+              "default": false
+            },
+            "preview_session_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Preview Session Id"
+            },
+            "timeline_offset_ms": {
+              "type": "integer",
+              "maximum": 3600000.0,
+              "minimum": 0.0,
+              "title": "Timeline Offset Ms",
+              "default": 0
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "audio_asset_id",
+            "inference_profile_id"
+          ],
+          "title": "TranscriptionInput"
+        },
+        "UploadInput": {
+          "properties": {
+            "bytes": {
+              "type": "integer",
+              "maximum": 512000000.0,
+              "exclusiveMinimum": 0.0,
+              "title": "Bytes"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Sha256"
+            },
+            "media_type": {
+              "type": "string",
+              "enum": [
+                "audio/wav",
+                "audio/mpeg",
+                "audio/mp4",
+                "audio/webm",
+                "audio/ogg"
+              ],
+              "title": "Media Type",
+              "default": "audio/wav"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "bytes",
+            "sha256"
+          ],
+          "title": "UploadInput"
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            },
+            "input": {
+              "title": "Input"
+            },
+            "ctx": {
+              "type": "object",
+              "title": "Context"
+            }
+          },
+          "type": "object",
+          "required": [
+            "loc",
+            "msg",
+            "type"
+          ],
+          "title": "ValidationError"
+        },
+        "VerifyRequest": {
+          "properties": {
+            "note_version_id": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Note Version Id"
+            },
+            "fact_ids": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "type": "array",
+                  "maxItems": 300,
+                  "minItems": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Fact Ids"
+            }
+          },
+          "additionalProperties": false,
+          "type": "object",
+          "required": [
+            "note_version_id"
+          ],
+          "title": "VerifyRequest"
+        }
+      },
+      "securitySchemes": {
+        "HTTPBearer": {
+          "type": "http",
+          "scheme": "bearer"
+        }
+      }
+    }
+  }
+}

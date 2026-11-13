@@ -258,7 +258,7 @@ def test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job(
     ]
 
 
-def test_channel_pipeline_keeps_duplicate_source_evidence_reviewable(environment):
+def test_channel_pipeline_keeps_ambiguous_duplicate_evidence_reviewable(environment):
     from uuid import uuid4
     from services.asr.channels import build_channels
 
@@ -280,10 +280,13 @@ def test_channel_pipeline_keeps_duplicate_source_evidence_reviewable(environment
         1,
     )
 
-    assert len(value["segments"]) == 1
-    assert len(value["suppressed_channel_segments"]) == 1
+    assert len(value["segments"]) == 2
+    assert value["suppressed_channel_segments"] == []
+    assert len(value["duplicate_channel_speech_candidates"]) == 1
     assert "duplicate_channel_speech_requires_review" in value["review_flags"]
-    assert value["suppressed_channel_segments"][0]["requires_human_review"] is True
+    assert (
+        value["duplicate_channel_speech_candidates"][0]["requires_human_review"] is True
+    )
     assert len(value["channel_postprocessing_log"]) == 2
     assert {row["channel_index"] for row in value["channel_postprocessing_log"]} == {
         0,

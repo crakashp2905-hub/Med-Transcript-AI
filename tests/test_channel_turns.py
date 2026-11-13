@@ -46,17 +46,38 @@ def test_exact_near_aligned_cross_channel_duplicate_is_audited_not_discarded():
         _segment("duplicate", 1, 120, 920, "TAKE one tablet daily"),
     ]
 
-    result = postprocess_channel_segments(rows, duration_ms=1000)
+    result = postprocess_channel_segments(
+        rows,
+        duration_ms=1000,
+        confirmed_duplicate_pairs=[("original", "duplicate")],
+    )
 
     assert [row["segment_id"] for row in result["segments"]] == ["original"]
-    assert result["segments"][0]["duplicate_channel_source_segment_ids"] == [
-        "original",
-        "duplicate",
-    ]
     assert result["suppressed_segments"][0]["segment_id"] == "duplicate"
     assert result["suppressed_segments"][0]["requires_human_review"] is True
+    assert result["suppressed_segments"][0]["suppressed_by_segment_id"] == "original"
     assert result["processing_log"][1]["source_start_ms"] == 120
     assert result["processing_log"][1]["source_end_ms"] == 920
+
+
+def test_unconfirmed_duplicate_candidate_stays_in_primary_segments():
+    result = postprocess_channel_segments(
+        [
+            _segment("original", 0, 100, 900, "Take one tablet daily."),
+            _segment("possible", 1, 120, 920, "Take one tablet daily."),
+        ],
+        duration_ms=1000,
+    )
+
+    assert len(result["segments"]) == 2
+    assert result["suppressed_segments"] == []
+    assert result["duplicate_candidates"] == [
+        {
+            "segment_id": "possible",
+            "candidate_duplicate_of_segment_id": "original",
+            "requires_human_review": True,
+        }
+    ]
 
 
 def test_different_text_and_time_are_never_suppressed_as_duplicates():

@@ -14,6 +14,8 @@ def test_resource_receipt_reports_peak_and_fixed_budget_status(monkeypatch):
         "status": "measured",
         "peak_resident_bytes": 1024,
         "method": "test_peak_rss",
+        "cpu_seconds": None,
+        "cpu_scope": "benchmark_process_including_model_load",
         "scope": "benchmark_process_high_water_including_model_load",
         "cohort_scope": "full_process_run",
         "budget_bytes": 2048,

@@ -73,7 +73,7 @@ def process_peak_resident_bytes():
     raise OSError("peak_resident_memory_unavailable")
 
 
-def resource_receipt(budget_bytes, resumed, cpu_seconds):
+def resource_receipt(budget_bytes, resumed, cpu_seconds=None):
     try:
         peak_bytes, method = process_peak_resident_bytes()
         status = "measured"
@@ -92,7 +92,9 @@ def resource_receipt(budget_bytes, resumed, cpu_seconds):
         "status": status,
         "peak_resident_bytes": peak_bytes,
         "method": method,
-        "cpu_seconds": max(0.0, float(cpu_seconds)),
+        "cpu_seconds": (
+            max(0.0, float(cpu_seconds)) if cpu_seconds is not None else None
+        ),
         "cpu_scope": "benchmark_process_including_model_load",
         "scope": "benchmark_process_high_water_including_model_load",
         "cohort_scope": "resumed_suffix" if resumed else "full_process_run",

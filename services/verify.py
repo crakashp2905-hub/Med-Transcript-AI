@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTEST_FAILURE = re.compile(r"^FAILED ([A-Za-z0-9_./-]+)::([A-Za-z_][A-Za-z0-9_]*)")
+PYTEST_ERROR = re.compile(r"^ERROR ([A-Za-z0-9_./-]+)::([A-Za-z_][A-Za-z0-9_]*)")
 PYTEST_SUMMARY = re.compile(
     r"\b\d+ (?:passed|failed|skipped|warnings?|errors?|deselected|xfailed|xpassed)\b"
 )
@@ -23,11 +24,19 @@ def safe_pytest_diagnostics(output):
     )
     summary = ", ".join(PYTEST_SUMMARY.findall(summary_line)) or "summary unavailable"
     failures = []
+    errors = []
     for line in lines:
         match = PYTEST_FAILURE.match(line)
         if match:
             failures.append(f"{match.group(1)}::{match.group(2)}")
-    return {"summary": summary, "failed_tests": sorted(set(failures))[:50]}
+        match = PYTEST_ERROR.match(line)
+        if match:
+            errors.append(f"{match.group(1)}::{match.group(2)}")
+    return {
+        "summary": summary,
+        "failed_tests": sorted(set(failures))[:50],
+        "error_tests": sorted(set(errors))[:50],
+    }
 
 
 def verification_steps(*, python_only=False):

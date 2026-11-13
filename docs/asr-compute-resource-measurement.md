@@ -9,5 +9,6 @@ All listed candidates are local. Inference cost is therefore USD 0; no hosted or
 Example command for a candidate after its pinned local runtime is present:
 
 ```powershell
-python -m services.detailed_benchmark --suite evaluation/detailed-suite-v7.json --candidate faster-whisper-large-v3 --mode fixed --output evaluation/runs/meddistract-detailed-v7/faster-whisper-large-v3.fixed.json
+$runOutput = Join-Path $env:TEMP "faster-whisper-large-v3.fixed.json"
+python -m services.detailed_benchmark --suite evaluation/detailed-suite-v7.json --candidate faster-whisper-large-v3 --mode fixed --output $runOutput
 ```

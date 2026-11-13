@@ -16,8 +16,9 @@ def postprocess_channel_segments(
     max_turn_gap_ms=250,
     duplicate_overlap_ratio=0.95,
     duplicate_boundary_tolerance_ms=100,
+    confirmed_duplicate_pairs=(),
 ):
-    """Group nearby same-channel turns and isolate exact cross-channel duplicates.
+    """Group nearby turns and flag, then optionally suppress confirmed duplicates.
 
     The returned log keeps every original segment ID, time range and channel.
     Suppressed duplicates remain available in a separate audit list and require
@@ -83,7 +84,11 @@ def postprocess_channel_segments(
         normalized,
         key=lambda row: (row["start_ms"], row["end_ms"], row["channel_index"]),
     )
+    confirmed = {frozenset(pair) for pair in confirmed_duplicate_pairs}
+    if any(len(pair) != 2 or not pair <= seen_ids for pair in confirmed):
+        raise ValueError("invalid_confirmed_duplicate_pair")
     suppressed = {}
+    candidates = {}
     by_text = {}
     for row in ordered:
         key = _normalized_text(row["text"])
@@ -109,21 +114,16 @@ def postprocess_channel_segments(
                 and abs(prior["end_ms"] - row["end_ms"])
                 <= duplicate_boundary_tolerance_ms
             ):
-                # Prefer the earlier source turn deterministically; retain the
-                # duplicate with full provenance for review and correction.
-                suppressed[row["segment_id"]] = prior["segment_id"]
-                if "duplicate_channel_source_segment_ids" in prior:
-                    prior["duplicate_channel_source_segment_ids"].append(
-                        row["segment_id"]
-                    )
+                pair = frozenset((prior["segment_id"], row["segment_id"]))
+                # Equal words and timestamps alone cannot distinguish one
+                # speaker leaking into two channels from two people speaking
+                # the same words. Require independent confirmation to suppress.
+                if pair in confirmed:
+                    suppressed[row["segment_id"]] = prior["segment_id"]
                 else:
-                    prior["duplicate_channel_source_segment_ids"] = [
-                        prior["segment_id"],
-                        row["segment_id"],
-                    ]
+                    candidates[row["segment_id"]] = prior["segment_id"]
                 break
-        else:
-            by_text.setdefault(key, []).append(row)
+        by_text.setdefault(key, []).append(row)
 
     retained = []
     suppressed_rows = []
@@ -138,6 +138,13 @@ def postprocess_channel_segments(
                 "requires_human_review": True,
             }
             suppressed_rows.append({**row, **details})
+        elif row["segment_id"] in candidates:
+            action = "duplicate_candidate_requires_confirmation"
+            details = {
+                "candidate_duplicate_of_segment_id": candidates[row["segment_id"]],
+                "requires_human_review": True,
+            }
+            retained.append({**row, "duplicate_candidate": details})
         else:
             retained.append(row)
         processing_log.append(
@@ -154,6 +161,14 @@ def postprocess_channel_segments(
     return {
         "segments": retained,
         "suppressed_segments": suppressed_rows,
+        "duplicate_candidates": [
+            {
+                "segment_id": segment_id,
+                "candidate_duplicate_of_segment_id": prior_id,
+                "requires_human_review": True,
+            }
+            for segment_id, prior_id in sorted(candidates.items())
+        ],
         "processing_log": processing_log,
         "turn_grouping_max_gap_ms": max_turn_gap_ms,
         "duplicate_overlap_ratio": duplicate_overlap_ratio,
