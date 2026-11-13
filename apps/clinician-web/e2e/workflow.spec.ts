@@ -15,6 +15,11 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByRole('button',{name:'Open workspace',exact:false}).click();
   await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();
   await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
+  const execution=page.getByRole('region',{name:'Measured transcription execution'});
+  await expect(execution).toBeVisible();
+  await expect(execution).toContainText('Model or engine');
+  await expect(execution).toContainText('Cost');
+  await expect(execution).toContainText('Unavailable');
   await expect(page.getByText(/Review priority reflects explicit source uncertainty and rule severity/)).toBeVisible();
   const personaJourney=page.getByRole('region',{name:'Synthetic persona journey'});
   await expect(personaJourney).toBeVisible();
