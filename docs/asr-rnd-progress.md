@@ -838,3 +838,13 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   `da396fb055fe4fb975e88de9715c7c033602bbf17e61c38b35f5aee1f34b58f8`.
   Its focused regression binds the fresh cohort to baseline scores, gate and
   resource measurements. This negative candidate result leaves C10 partial.
+- **MTA-ASR-C10 Parakeet fixed fresh baseline reproduction:** Suite v7 ran all
+  16 manifest cases with complete input coverage and zero failed cases/chunks.
+  It exactly reproduces immutable v2 counts: clean 2,985/13,683 (21.8154%) and
+  distracted 3,086/13,683 (22.5535%). Fresh condition wall times were
+  582.6/608.3 seconds after a 15.1-second model load. Full-process peak
+  working set was 1,300,725,760 bytes and process CPU was 4,552.7 seconds,
+  within the 16 GiB budget. Both WERs fail the unchanged <=5% gate. Report
+  SHA-256 is `6aeda83ecafb1f7bfd48eaf7660521ed15ffdc14eeec48ee6babb1fd45333694`.
+  A focused regression binds full fresh coverage to baseline edits, the gate
+  and measured resources. C10 remains partial pending other candidate arms.
