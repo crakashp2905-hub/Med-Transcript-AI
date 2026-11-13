@@ -1,0 +1,40 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-09-20",
+  "source_commit": "f8cad5fd81fc0d99fdf2cd2a39cd47ad5c9aa30e",
+  "source_files": {
+    "apps/clinician-web/visual-regression.synthetic.json": "2bac28229522af8467fce61779ae04145f54e36de574206be7096dae01412223",
+    "apps/clinician-web/e2e/workflow.spec.ts": "5e1a2f1f9b504edd548fdfacfacd6a636c2a96d0f0c663f7d2c017f9330fa57f",
+    "apps/clinician-web/playwright.config.ts": "e483e7c866c0c9be9d0623e783a2d23b3271c33a85332017bab714e5a39ec797"
+  },
+  "checks": [
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "detail": "Production frontend build passed at current source commit."
+    },
+    {
+      "name": "visual_viewport_manifest",
+      "command": "Read apps/clinician-web/visual-regression.synthetic.json",
+      "status": "pass",
+      "detail": "Predefined desktop 1440\u00d7900, tablet 1024\u00d7768 and mobile 390\u00d7844 viewports are declared."
+    },
+    {
+      "name": "screenshot_journey_discovery",
+      "command": "npx --offline playwright test --list",
+      "status": "pass",
+      "detail": "Workflow screenshots are configured for desktop and mobile; no tablet capture or image-diff assertion was run."
+    },
+    {
+      "name": "fresh_screenshots_and_visual_diffs",
+      "command": "Playwright visual workflow at desktop/tablet/mobile",
+      "status": "blocked",
+      "detail": "Browser navigation to the application is denied before page load. Existing ignored PNGs are not hash-bound to this commit and are not accepted as fresh evidence."
+    }
+  ],
+  "result": "not_started_visual_capture_blocked",
+  "blocker": "Fresh screenshots and visual diffs for the three declared viewports remain ungenerated. Existing ignored screenshots are stale/unbound evidence. Browser access to the loopback application is denied in this environment; rerun screenshot capture and visual comparison where local browser networking is enabled.",
+  "clinical_release_authorized": false,
+  "created_utc_date": "2026-11-14"
+}

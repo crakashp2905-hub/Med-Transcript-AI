@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-09-19",
+  "source_commit": "f8cad5fd81fc0d99fdf2cd2a39cd47ad5c9aa30e",
+  "source_files": {
+    "apps/clinician-web/playwright.synthetic.json": "59794ff7b1c1d1c20dd083d4c8d545c16c4041a41561d65654d586964bb731a6",
+    "apps/clinician-web/e2e/dictation.spec.ts": "b4602a4a48874f38d35a7fafe23682bb82435faaa9a8a01628c0aa20bf2ee127",
+    "apps/clinician-web/e2e/recovery.spec.ts": "c385b8287c5f9d4453f5e81486c88d7781e7cf75401c408297fc0b6ef6a6037f",
+    "apps/clinician-web/e2e/workflow.spec.ts": "5e1a2f1f9b504edd548fdfacfacd6a636c2a96d0f0c663f7d2c017f9330fa57f",
+    "apps/clinician-web/e2e/device-check.spec.ts": "88eade7f63686bb7d314e374b51b30cb65f8940712c3eaffa59903b1adff1314",
+    "data/demo-sample.wav": "13467a709a22e66cfe1356da359a6e6bc2b98186358fee1c911ecad36dfac289"
+  },
+  "checks": [
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "detail": "Production TypeScript/Vite build passed at current source commit."
+    },
+    {
+      "name": "browser_suite_discovery",
+      "command": "npx --offline playwright test --list",
+      "status": "pass",
+      "detail": "34 E2E tests across 10 files discovered, including fake microphone devices, interruption, retries, source edits, approval and correction."
+    },
+    {
+      "name": "local_synthetic_audio_fixture",
+      "command": "Test-Path data/demo-sample.wav",
+      "status": "pass",
+      "detail": "A synthetic WAV fixture is available, but real-audio browser processing was not executed."
+    },
+    {
+      "name": "fake_device_browser_journey",
+      "command": "npx --offline playwright test e2e/dictation.spec.ts --grep \"microphone permission denial\"",
+      "status": "blocked",
+      "detail": "Navigation failed before app load with net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:8001/."
+    }
+  ],
+  "result": "not_started_browser_execution_blocked",
+  "blocker": "The deterministic browser journeys are present but could not be executed because local loopback navigation is denied. The available synthetic WAV is not claimed as processed or validated. Rerun the complete browser suite in a local-socket-enabled environment.",
+  "clinical_release_authorized": false,
+  "created_utc_date": "2026-11-14"
+}
