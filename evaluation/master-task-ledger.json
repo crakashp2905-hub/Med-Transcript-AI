@@ -4255,12 +4255,43 @@
       "id": "MTA-09-03",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Show current versus historical transcript and note version, owner, model lineage and approval status.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/review/routers/history.py",
+        "apps/clinician-web/src/VersionComparison.tsx",
+        "tests/test_completion_gaps.py",
+        "tests/test_version_history.py",
+        "evaluation/reports/master-task-mta-09-03-70f9c95.json"
+      ],
+      "source_commit": "70f9c95006f65883e61fb327be5ef9abfd351eb6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-09-03-70f9c95.json",
+          "report_sha256": "b019332e5be65fab51af29e9e083883d03f80f9237a07227d0749e29170d7b1d",
+          "check": "version_metadata_serializer_binds_lineage_owner_and_approval",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-03-70f9c95.json",
+          "report_sha256": "b019332e5be65fab51af29e9e083883d03f80f9237a07227d0749e29170d7b1d",
+          "check": "typescript_production_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-03-70f9c95.json",
+          "report_sha256": "b019332e5be65fab51af29e9e083883d03f80f9237a07227d0749e29170d7b1d",
+          "check": "version_history_api_integration",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-09-03-70f9c95.json",
+          "report_sha256": "b019332e5be65fab51af29e9e083883d03f80f9237a07227d0749e29170d7b1d",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "API integration test is blocked by the managed Windows sandbox denying the local socket pair required by Starlette TestClient. The direct metadata serializer test passes; rerun integration tests in a local-socket-enabled environment."
     },
     {
       "id": "MTA-09-04",

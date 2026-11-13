@@ -1,0 +1,61 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "70f9c95006f65883e61fb327be5ef9abfd351eb6",
+  "tasks": [
+    "MTA-09-03"
+  ],
+  "source_hashes": {
+    "services/review/routers/history.py": "abb75c682bf9e66e71528e88b5ed2e9d8b1daa6c02e9f773728a50837cd56b88",
+    "apps/clinician-web/src/VersionComparison.tsx": "dfdfde703ad1ea7079d0466ac8d1eec0f7d9650115e19908de4445f5a9a8ac34",
+    "tests/test_completion_gaps.py": "fb6addbb5e25867794a9d51d839b52bce17e1f257a0304f1b46ac59259e4983b",
+    "tests/test_version_history.py": "b12fdcd3565a0f0b801e150b2b0112b259def12bc74c2ab5b0b1720fb5543b70"
+  },
+  "runtime": {
+    "python": "Python 3.13.5",
+    "platform": "Windows 11",
+    "frontend_build": "npm run build",
+    "unit_test": "pytest with root test conftest excluded for the socket-free serializer test"
+  },
+  "checks": {
+    "version_metadata_serializer_binds_lineage_owner_and_approval": {
+      "status": "pass"
+    },
+    "typescript_production_build": {
+      "status": "pass"
+    },
+    "version_history_api_integration": {
+      "status": "blocked"
+    },
+    "ruff": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest --confcutdir=services/review/routers tests/test_version_history.py -q",
+      "status": "pass",
+      "passed": 1
+    },
+    {
+      "command": "npm run build",
+      "cwd": "apps/clinician-web",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff check services/review/routers/history.py tests/test_version_history.py tests/test_completion_gaps.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m pytest tests/test_completion_gaps.py::test_version_comparison_is_scoped_and_includes_structured_changes -q",
+      "status": "blocked",
+      "observed": "Starlette TestClient stalled creating an asyncio Windows socketpair; faulthandler shows socket.accept in asyncio ProactorEventLoop._make_self_pipe. The managed environment denies local socket access."
+    }
+  ],
+  "limitations": [
+    "API-level integration test remains blocked by sandbox socket denial. A socket-free serializer regression test passes.",
+    "Owner for transcript versions is the authenticated encounter clinician; note owner comes from immutable note creator. Model lineage is displayed from saved artifact provenance.",
+    "Clinical release remains unauthorized."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "d869c9229db78b39d439f81c23d660be9aa2cf43e6a6e63aabccf75401ad1b54"
+}
