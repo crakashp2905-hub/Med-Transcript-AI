@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import platform
 from pathlib import Path
 
 from services.evidence_graph import validate_proposal
@@ -93,11 +94,28 @@ def compare(challenge_path, frozen_path, output_path, *, source_commit):
         "frozen_combined_summary": frozen.get("summary", {}).get(
             "combined_review_policy"
         ),
+        "source_hashes": {
+            name: hashlib.sha256(Path(name).read_bytes()).hexdigest()
+            for name in (
+                "services/verification_method_comparison.py",
+                "services/evidence_graph.py",
+                "services/review/clinical.py",
+                "tests/test_verification_method_comparison.py",
+            )
+        },
+        "runtime": {
+            "python": platform.python_version(),
+            "platform": platform.platform(),
+            "model_inference": "none; frozen report reused",
+        },
         "limitations": [
             "Cases are developer-authored and not independent clinical gold.",
             "Model arm is reused from an earlier local run; no model was called by this report.",
             "Evidence-graph validation cannot detect semantic mismatch when citations themselves are structurally valid.",
         ],
     }
+    report["runtime_sha256"] = hashlib.sha256(
+        json.dumps(report["runtime"], sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
     Path(output_path).write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     return report
