@@ -1,0 +1,49 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "b7a3c1f760fa43e4933d9aaba6d5569369c7221a",
+  "tasks": [
+    "MTA-07-18"
+  ],
+  "comparison_report": "evaluation/reports/false-block-mta-07-18-b7a3c1f.json",
+  "comparison_report_sha256": "926a4da4a80e7f19ac0baf7cc87e8b05a05f55e2126af76fc205658caf7074a4",
+  "source_hashes": {
+    "services/verification_method_comparison.py": "b3fe891013af3449ef72b21039ae25cefc44ab32f62d672f1741d61be7894e7c",
+    "services/evidence_graph.py": "138f68c4b8ea5810719082b1bebfdb2334ea656856bd73d7b79c7531bca7094b",
+    "services/review/clinical.py": "90b88465621722521b452f5f29885a474ac3d8c81240efd04513a16cab728e42",
+    "tests/test_verification_method_comparison.py": "56cb4c19d5ada2659eba3a226fe0a65027ed1de291f38f98edad9b25e3aa3f21"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation",
+    "model_inference": "none; frozen model outcomes reused"
+  },
+  "checks": {
+    "false_block_rate_denominator_and_all_case_block_guard": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_verification_method_comparison.py -q",
+      "status": "pass",
+      "passed": 2
+    },
+    {
+      "command": "python -m ruff check services/verification_method_comparison.py tests/test_verification_method_comparison.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check services/verification_method_comparison.py tests/test_verification_method_comparison.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Cases are developer-authored and not independent clinical gold.",
+    "Model arm is reused from an earlier local run; no model was called by this report.",
+    "Evidence-graph validation cannot detect semantic mismatch when citations themselves are structurally valid.",
+    "This reports a development-set false-block rate, not a calibrated operating threshold."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "c036f25f9e83d294a30558fb52eaaaf11b969d630dbac9e853b9296b76c7ae0f"
+}

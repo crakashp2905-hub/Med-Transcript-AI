@@ -3705,11 +3705,21 @@
       "id": "MTA-07-18",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Ensure false-block rate is measured; never optimize for detecting everything by blocking every note.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/false-block-mta-07-18-b7a3c1f.json",
+        "evaluation/reports/master-task-mta-07-18-b7a3c1f.json"
+      ],
+      "source_commit": "b7a3c1f760fa43e4933d9aaba6d5569369c7221a",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-18-b7a3c1f.json",
+          "report_sha256": "e3f0680af2bd209b3ca6a81ee053ea94ce5fe407635229761d2ef54b4d42a97f",
+          "check": "false_block_rate_denominator_and_all_case_block_guard",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
