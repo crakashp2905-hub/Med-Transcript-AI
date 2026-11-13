@@ -82,10 +82,36 @@ def summarize(root="."):
     ]
     if any(sha256(root / name) != frozen[name] for name in SOURCES.values()):
         raise ValueError("baseline_source_changed_during_summary")
+    draft_rows = []
+    for row in documents["draft"]["rows"]:
+        attempted = row["attempted_cases"]
+        exact = row["exact_preservation_cases"]
+        failed = row["failed_cases"]
+        if (
+            type(attempted) is not int
+            or type(exact) is not int
+            or type(failed) is not int
+            or attempted < 0
+            or exact < 0
+            or failed < 0
+            or exact + failed > attempted
+        ):
+            raise ValueError("invalid_failure_inclusive_draft_counts")
+        draft_rows.append(
+            {
+                **row,
+                "metric": "synthetic_source_fact_preservation",
+                "failure_inclusive_case_count": attempted,
+                "non_exact_cases": attempted - exact,
+                "incorrect_nonfailed_cases": attempted - exact - failed,
+                "clinical_accuracy": "not_measured",
+                "clinical_accuracy_reason": "independent_clinical_gold_unavailable",
+            }
+        )
     return {
         "schema_version": "scope_separated_baselines_v1",
         "scopes": scopes,
-        "draft_preservation": documents["draft"]["rows"],
+        "draft_preservation": draft_rows,
         "source_sha256": {name: frozen[name] for name in SOURCES.values()},
         "code_sha256": sha256(Path(__file__)),
         "recorded_at": datetime.now(timezone.utc).isoformat(),
