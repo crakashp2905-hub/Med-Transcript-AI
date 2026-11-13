@@ -3746,11 +3746,20 @@
       "id": "MTA-07-20",
       "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Prove model cannot modify approval flags, review attestations, evidence hashes or clinician identities.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/reports/master-task-mta-07-20-375b6c0.json"
+      ],
+      "source_commit": "375b6c0c28e9bf5d953a7441ea5c5b7f68957457",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-07-20-375b6c0.json",
+          "report_sha256": "bc43c617111ef49faaeaefedbf7d05cfa7c983af810783143950ffeff7d4b08e",
+          "check": "model_output_cannot_write_approval_attestation_identity_or_evidence_hash_fields",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

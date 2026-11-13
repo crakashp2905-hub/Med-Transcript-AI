@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "source_commit": "375b6c0c28e9bf5d953a7441ea5c5b7f68957457",
+  "tasks": [
+    "MTA-07-20"
+  ],
+  "source_hashes": {
+    "services/review/clinical_models.py": "00166adf533c5bb62755f749e20bc69b9ffb21a81c41b3a20ada1a769efc4ff5",
+    "tests/test_clinical_model_authority.py": "3d9047af963b209f7823a972118fafb03eafecf5096a547bc08b62b8d229989d",
+    "tests/test_completion_gaps.py": "52a060d2821fe9cfd52d6724e3d669671a6ee164df05f8adc54aad32183dd4b4"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pytest": "local exact-commit invocation",
+    "model_inference": "none; adversarial schemas validated offline"
+  },
+  "checks": {
+    "model_output_cannot_write_approval_attestation_identity_or_evidence_hash_fields": {
+      "status": "pass"
+    }
+  },
+  "test_results": [
+    {
+      "command": "python -m pytest tests/test_clinical_model_authority.py tests/test_completion_gaps.py::test_model_fact_citations_reject_hallucinations_and_stay_unreviewed tests/test_completion_gaps.py::test_supportive_model_cannot_clear_a_dose_rule -q",
+      "status": "pass",
+      "passed": 24
+    },
+    {
+      "command": "python -m ruff check tests/test_clinical_model_authority.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m ruff format --check tests/test_clinical_model_authority.py",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "This validates strict model-response schemas and application advisory behavior; it is not a penetration test of a compromised server process."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "2a1ee6e21aec193a004a48da3beec43a917c10c366818f066a2e4b114c5be3e2"
+}
