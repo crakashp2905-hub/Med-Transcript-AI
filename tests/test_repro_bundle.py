@@ -6,6 +6,7 @@ from services.repro_bundle import main
 
 def test_repro_bundle_has_hashes_commands_and_negative_results():
     value = build(".")
+    assert value["schema_version"] == "repro_bundle_v2"
     assert (
         value["model_free"]
         and value["downloads_attempted"] == 0
@@ -21,6 +22,17 @@ def test_repro_bundle_has_hashes_commands_and_negative_results():
         "independent clinical" in item for item in value["limitations"]
     )
     assert any("benchmark_ranking" in command for command in value["commands"])
+    assert value["environment"]["python"] and value["environment"]["packages"]
+    assert value["scripts"]["services/repro_bundle.py"]
+    assert value["model_candidates"] and any(
+        row["model_revision"] or row["model_artifact_digests"]
+        for row in value["model_candidates"]
+        if row["status"] == "completed"
+    )
+    assert all("license_status" in row for row in value["datasets"])
+    assert any(
+        row["license_status"] == "not_declared_in_manifest" for row in value["datasets"]
+    )
     paths = {item["path"] for item in value["artifacts"]}
     assert "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json" in paths
 
