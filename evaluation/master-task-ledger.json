@@ -5835,12 +5835,12 @@
       "id": "MTA-12-09",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Score grounded drafts with factual precision, material source recall, number of unsupported claims, and dangerous transformation count.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-09-9719e79.json"],
+      "source_commit": "9719e79d90ffb6c9d26ce76a314c09f5f51b7023",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-09-9719e79.json", "report_sha256": "e164efda11fb3022b83a47777f1afa6ce7ab4f1dc611be289996f2f4dcfad189", "check": "grounded_draft_metrics", "status": "pass"}],
+      "blocker": "Independent human judgments of grounded note quality and dangerous changes remain unavailable."
     },
     {
       "id": "MTA-12-10",

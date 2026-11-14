@@ -1,0 +1,37 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-09"
+  ],
+  "source_commit": "9719e79d90ffb6c9d26ce76a314c09f5f51b7023",
+  "captured_at_utc": "2026-11-14T06:52:39.829990+00:00",
+  "source_files": {
+    "services/draft_grounding_metrics.py": "bf6efd9784ee836e5227a40c8e9fb77a601bc236cc413dd54b301ae3a4e5da4a",
+    "tests/test_draft_grounding_metrics.py": "f3f47f1d361e7c356e832a1add10db223f44c0c5658aabd3e6f2819bec03e217"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_draft_grounding_metrics.py tests/test_note_quality_metrics.py tests/test_fact_evaluation_synthetic.py",
+      "status": "pass",
+      "result": "8 passed"
+    },
+    {
+      "command": "ruff check services/draft_grounding_metrics.py tests/test_draft_grounding_metrics.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/draft_grounding_metrics.py tests/test_draft_grounding_metrics.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "Draft claims are scored for exact source-fact grounding and cited evidence references.",
+    "The report includes factual precision, material source recall, unsupported claims, unknown citations and dose/negation/temporal transformation counts.",
+    "The scorer cannot change clinician approval state."
+  ],
+  "limitations": [
+    "Metrics are deterministic agreement checks against provided source fact annotations, not an independent factuality oracle.",
+    "No clinician-reviewed note outputs or pilot timing observations are represented."
+  ],
+  "clinical_release_authorized": false
+}
