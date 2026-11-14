@@ -8658,13 +8658,21 @@
     },
     {
       "id": "MTA-17-06",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Generate algorithm pseudocode diagrams and graph invariants from real code, not claims alone.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/algorithm_reference.py",
+        "tests/test_algorithm_reference.py",
+        "evaluation/architecture/algorithm-reference-v1.json",
+        "evaluation/architecture/algorithm-reference-v1.md",
+        "evaluation/reports/mta-17-06-algorithm-reference-v1.json"
+      ],
+      "source_commit": "6323e2c3c2d6388145166564a74f2bfc0104f68a",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-17-06-algorithm-reference-v1.json","report_sha256":"62ca3760590bfd730e8b2266f65d1fe6ebd7b073d13765f4ae1c1d14757461ff","check":"source_checked_algorithms","runtime_sha256":"3b21034d808bb8435e0c58d5951fb06b27dc004022d93c9baffb7000e22f09c2"}
+      ],
       "blocker": null
     },
     {

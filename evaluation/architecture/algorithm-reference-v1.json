@@ -1,0 +1,98 @@
+{
+  "schema_version": "source_bound_algorithm_reference_v1",
+  "source_commit": "6323e2c3c2d6388145166564a74f2bfc0104f68a",
+  "source_sha256": {
+    "services/evidence_graph.py": "bde2cb9b540308a8d96c90f90131a00661412517f45074df253e742548914e55",
+    "services/review/engine.py": "3177a67e0fe272932c95ede3b06b3bb4e114f25636d5d00ddca32cd1cada5dfe"
+  },
+  "algorithms": [
+    {
+      "id": "evidence_proposal_graph",
+      "source_path": "services/evidence_graph.py",
+      "function": "validate_proposal",
+      "source_anchors": [
+        "evidence_graph_source_required",
+        "evidence_graph_duplicate_segment",
+        "evidence_graph_invalid_source_link",
+        "audio_to_transcript",
+        "transcript_to_span",
+        "span_to_fact",
+        "complete_to_fact",
+        "complete_to_export"
+      ],
+      "pseudocode": [
+        "Require transcript ID and audio asset ID.",
+        "Index transcript segments and reject duplicate segment IDs.",
+        "For each fact, require a unique fact ID, a known segment, integer offsets, and an exact source-text quote match.",
+        "Hash the transcript ID plus evidence span to identify a source span.",
+        "Add audio\u2192segment, segment\u2192span, and span\u2192fact edges; deduplicate shared edges.",
+        "Validate graph node/edge invariants; return source hash and fact-level completeness only."
+      ]
+    },
+    {
+      "id": "directed_graph_invariants",
+      "source_path": "services/evidence_graph.py",
+      "function": "validate_graph_invariants",
+      "source_anchors": [
+        "evidence_graph_nodes_invalid",
+        "evidence_graph_edge_node_missing",
+        "evidence_graph_edge_duplicate",
+        "evidence_graph_tenant_missing",
+        "evidence_graph_cross_tenant_edge",
+        "evidence_graph_cycle_detected"
+      ],
+      "pseudocode": [
+        "Require a non-empty, duplicate-free node set.",
+        "For every edge, require present endpoints, an edge type, and a unique (from,to,type) tuple.",
+        "When tenant labels are supplied, require both endpoints to be labeled and to share a tenant.",
+        "Run Kahn's indegree queue traversal; reject unless every node is visited.",
+        "Return node count, edge count, and acyclic=true only after all checks pass."
+      ]
+    },
+    {
+      "id": "approved_export_hash_chain",
+      "source_path": "services/evidence_graph.py",
+      "function": "validate_approved_export",
+      "source_anchors": [
+        "evidence_graph_hash_chain_invalid",
+        "evidence_graph_unexpected_amendment_parent",
+        "evidence_graph_amendment_parent_invalid",
+        "evidence_graph_note_fact_link_invalid",
+        "evidence_graph_note_coverage_incomplete",
+        "complete_to_export"
+      ],
+      "pseudocode": [
+        "Recompute transcript and note hashes; bind note to transcript ID/hash and approval to exact note/transcript IDs/hashes.",
+        "Require export ID and artifact hash; validate amendment parent linkage and hash when present.",
+        "Validate source-linked facts against transcript spans and build evidence edges.",
+        "Require note statements to reference known facts, then link fact\u2192statement\u2192export.",
+        "Validate the completed graph and return only after the exact approval/export chain is consistent."
+      ]
+    },
+    {
+      "id": "directional_source_coverage",
+      "source_path": "services/review/engine.py",
+      "function": "directional_coverage",
+      "source_anchors": [
+        "source_omission",
+        "critical_source_omission",
+        "unaccounted_source_content",
+        "note_not_in_source",
+        "source_not_in_note"
+      ],
+      "pseudocode": [
+        "Partition verifier findings into source-to-note and note-to-source code sets.",
+        "Keep finding ID, code, materiality, fact ID, and bounded source reference.",
+        "Summarize deterministic coverage receipts and manual facts without treating them as clinical gold labels.",
+        "Return directional findings; do not convert coverage into a clinical accuracy or false-alert rate."
+      ]
+    }
+  ],
+  "graph_diagram_mermaid": "flowchart LR\n  A[Audio asset] --> T[Transcript segment]\n  T --> S[Exact evidence span]\n  S --> F[Typed fact]\n  F --> N[Note statement]\n  N --> X[Approved export]\n  V[Validate IDs, offsets, quote, hashes, tenant, and DAG] -. gates .-> T\n  V -. gates .-> S\n  V -. gates .-> F\n  V -. gates .-> X",
+  "invariant_diagram_mermaid": "flowchart TD\n  A[Node and edge IDs valid] --> B[Reject duplicate nodes/edges]\n  B --> C[Reject missing or cross-tenant endpoints]\n  C --> D[Kahn indegree traversal]\n  D -->|visited all nodes| E[Return acyclic graph]\n  D -->|cycle remains| F[Reject graph]",
+  "limitations": [
+    "Pseudocode summarizes source functions and is not executable code.",
+    "Anchors prove the named guards/branches are present, not formal verification or clinical validity.",
+    "This graph records provenance and consistency; it does not establish truth of source statements."
+  ]
+}

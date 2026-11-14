@@ -1,0 +1,30 @@
+{
+  "schema_version": "algorithm_reference_validation_v1",
+  "task_id": "MTA-17-06",
+  "source_commit": "6323e2c3c2d6388145166564a74f2bfc0104f68a",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "services.safe_pytest",
+    "test_path": "tests/test_algorithm_reference.py",
+    "test_summary": "1 passed, 1 warning",
+    "source_commit": "6323e2c3c2d6388145166564a74f2bfc0104f68a",
+    "algorithm_count": 4,
+    "source_file_count": 2,
+    "artifact_sha256": {
+      "json": "a0770394a9ec7b0348113b2e8e8d22c455d33e3b532aaa5735befa690731e0da",
+      "md": "00ef0ef6c22d102959c7846ad691989fae633a9476f8a6b0a5b32fe23db5f2bf"
+    }
+  },
+  "runtime_sha256": "3b21034d808bb8435e0c58d5951fb06b27dc004022d93c9baffb7000e22f09c2",
+  "checks": {
+    "source_checked_algorithms": {
+      "status": "pass",
+      "summary": "1 passed, 1 warning; four pseudocode algorithms map to real functions and source guard anchors."
+    }
+  },
+  "limitations": [
+    "Source anchors are not formal verification.",
+    "The evidence graph shows provenance/consistency, not truth of source facts or clinical validity."
+  ]
+}
