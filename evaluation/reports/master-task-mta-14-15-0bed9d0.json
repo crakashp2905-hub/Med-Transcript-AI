@@ -1,0 +1,56 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-15",
+  "source_commit": "0bed9d05862b6a0bb492c510029f1765634ae63b",
+  "source_files": {
+    "services/error_catalog.json": "bd579a7b779567abdfb4317c1d23f969fd57a96afb8684a3d2fbf43a9ca596d7",
+    "services/error_codes.py": "5a6f28d870986f1f7e3d71724f6bc00d16df1659bfcc7462f6c6162fbda0f3d1",
+    "services/api/main.py": "af48c1cca630dc58232a97751e1559bdb1b574ffd859a1a4c78f2a87304a2ae6",
+    "tests/test_error_codes.py": "096479786f6dfe8e8ffebed2a2cb829aadc73b0051d08afd84dd566aec80f079",
+    "apps/clinician-web/src/client/api.ts": "0d5034a26df72834e0fb875e3f801d411bcc81f1dc660ac5b74497226f88ef3f",
+    "apps/clinician-web/src/client/errorCodes.ts": "418384e350d2efff3cad2c4619b06fa11ee50fa7e8848c0485c48497dd452143",
+    "apps/clinician-web/src/Dictation.tsx": "ad3504a30bba6185f99ea2b63e1315b9cb9717e6102b2564ffc4966a65ce3c9a",
+    "apps/clinician-web/src/RecoveryBanner.tsx": "dde19d39770763e468e8e64fa93d74265f8686a8222ba27b701f7d74ce4d1f51",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "ff307becb4541f7075a214dbcb0d0caf63d08c1cb3a59a60ee1ff9a2c22dd8ba",
+    "apps/clinician-web/e2e/dictation.spec.ts": "658e4e7757f9dc553293702101918a6acb021d6235079d35ce10b4f7e8cf6716",
+    "apps/clinician-web/e2e/workflow.spec.ts": "9f147f5c9f782c2518ea50aa3254014f65612cf75f0369db95f0489e3290d90e",
+    "apps/clinician-web/e2e/recovery.spec.ts": "c385b8287c5f9d4453f5e81486c88d7781e7cf75401c408297fc0b6ef6a6037f"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "playwright": "1.64.1",
+    "browser": "Google Chrome 157.0.0.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "fixture": "loopback_only_scripted_non_asr"
+  },
+  "runtime_sha256": "b4900d9cf98cfa609c21884258ed6d5f2ec159fb0c22e192cd5fbf766a947d42",
+  "checks": {
+    "stable_nonsensitive_error_catalog": {
+      "status": "pass",
+      "command": "pytest tests/test_error_codes.py",
+      "detail": "3 passed. Public errors are catalog-mapped and arbitrary secret-like input is not echoed; fallback code has a non-empty catalog message."
+    },
+    "specific_upload_recovery": {
+      "status": "pass",
+      "command": "Playwright dictation retry journey",
+      "detail": "Lost successful upload response retains the local draft and retry reuses the same idempotency key; one server-side upload is published."
+    },
+    "workspace_error_and_recovery_flow": {
+      "status": "pass",
+      "command": "Playwright clinician workflow",
+      "detail": "Synthetic 503 is shown as a mapped accessible error, dismissible by the clinician; corrected workflow completes without hidden partial approval."
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "detail": "TypeScript and Vite build passed."
+    }
+  },
+  "result": "verified",
+  "clinical_release_authorized": false,
+  "limitations": [
+    "Browser recovery uses synthetic fixtures and a scripted non-ASR adapter.",
+    "The generic fallback is intentionally non-sensitive; it does not expose raw server/provider details."
+  ],
+  "recorded_utc_date": "2026-11-14"
+}

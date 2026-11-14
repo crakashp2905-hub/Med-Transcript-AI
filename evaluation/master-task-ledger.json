@@ -7044,11 +7044,50 @@
       "id": "MTA-14-15",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Ensure errors return actionable non-sensitive codes; make UI recovery states specific.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/error_catalog.json",
+        "services/error_codes.py",
+        "services/api/main.py",
+        "tests/test_error_codes.py",
+        "apps/clinician-web/src/client/api.ts",
+        "apps/clinician-web/src/client/errorCodes.ts",
+        "apps/clinician-web/src/Dictation.tsx",
+        "apps/clinician-web/src/RecoveryBanner.tsx",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/e2e/dictation.spec.ts",
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "apps/clinician-web/e2e/recovery.spec.ts",
+        "evaluation/reports/master-task-mta-14-15-0bed9d0.json"
+      ],
+      "source_commit": "0bed9d05862b6a0bb492c510029f1765634ae63b",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-15-0bed9d0.json",
+          "report_sha256": "e3b31358d0b955d607c7fce554c7dd5a356f4a7265069a118329ef4ad2b5ff26",
+          "check": "stable_nonsensitive_error_catalog",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-15-0bed9d0.json",
+          "report_sha256": "e3b31358d0b955d607c7fce554c7dd5a356f4a7265069a118329ef4ad2b5ff26",
+          "check": "specific_upload_recovery",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-15-0bed9d0.json",
+          "report_sha256": "e3b31358d0b955d607c7fce554c7dd5a356f4a7265069a118329ef4ad2b5ff26",
+          "check": "workspace_error_and_recovery_flow",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-15-0bed9d0.json",
+          "report_sha256": "e3b31358d0b955d607c7fce554c7dd5a356f4a7265069a118329ef4ad2b5ff26",
+          "check": "frontend_build",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

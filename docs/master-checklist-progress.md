@@ -298,3 +298,7 @@ that longer run with a 1,200-second cap.
 ## Offline diagnostics on d3ac8ba
 
 `MTA-14-16` is verified with the new `services.offline_diagnostics` command. It reports Git/source freshness, configured and unconfigured model candidates, disk headroom, temporary directory permission probes, blocked checks and failed/skipped test IDs from the hash-checked latest acceptance report. Tests passed: 10. The prior acceptance snapshot is correctly reported invalidated for source and toolchain changes; this is a diagnostic finding, not a pass. Evidence report: `evaluation/reports/master-task-mta-14-16-d3ac8ba.json` (SHA-256 `720f67aeaa10de9bbe8e99da19898807147008160e1aa2ae201911d98f9b037c`). No network calls or installations were made.
+
+## Error and recovery behavior on 0bed9d0
+
+`MTA-14-15` is verified. The shared API/UI error catalog has a non-empty fallback, stable public mappings do not echo arbitrary input, and the mapped error is visible and dismissible. Browser recovery retains recordings after a lost response and retries with the original idempotency key. Tests: 3 Python error-code tests and 2 focused Playwright journeys passed; frontend build passed. Evidence: `evaluation/reports/master-task-mta-14-15-0bed9d0.json` (SHA-256 `e3b31358d0b955d607c7fce554c7dd5a356f4a7265069a118329ef4ad2b5ff26`). Synthetic browser fixtures do not establish clinical safety.
