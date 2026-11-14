@@ -18,6 +18,18 @@ test('current correction comparison and uncertainty queue retain unreviewed prop
  await tools.getByRole('button',{name:'Clinician correction pending review.',exact:true}).click();await expect(page.locator('.fact-card').first()).toBeFocused();
  await expect(page.locator('.fact-card').first().getByLabel('Content and attribution reviewed')).not.toBeChecked();
 });
+test('encounter review summary separates verifier flags from unmeasured false alerts',async({page})=>{
+ await page.route('**/v1/encounters/*/workspace',async route=>{
+  const response=await route.fetch();const body=await response.json();
+  body.verification={...(body.verification||{}),findings:[...(body.verification?.findings||[]),{finding_id:'synthetic-omission-flag',code:'source_omission',severity:'critical',message:'Synthetic test omission flag.',fact_id:null,blocks_approval:true}]};
+  await route.fulfill({response,json:body});
+ });
+ await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+ const summary=page.getByRole('region',{name:'Encounter review tools'}).getByRole('region',{name:'Warning and action summary'});
+ await expect(summary).toContainText('critical: 1 warning');await expect(summary).toContainText('Source omission flags: 1');
+ await expect(summary).toContainText('Clinician review actions: 1 verifier findings');await expect(summary).toContainText('False alerts per note: Not measured.');
+ await expect(summary).toContainText('do not establish that an omission is clinically true');
+});
 test('detailed demo, review tools and measured dashboard preserve approval boundaries',async({page})=>{
  await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
  await page.getByRole('button',{name:'Open detailed public example'}).click();await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
