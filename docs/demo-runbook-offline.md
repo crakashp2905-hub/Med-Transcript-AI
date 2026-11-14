@@ -1,5 +1,21 @@
 # Offline demonstration runbook
 
+## One-command scripted workflow verification
+
+From the repository root, run:
+
+```powershell
+python -m services.offline_demo --self-test
+```
+
+This creates a fresh isolated local demo workspace, runs the scripted synthetic
+dose-mismatch/review/approval/export path, and prints a machine-readable receipt.
+It makes no model or provider calls and does not print the local access keys. The
+audio is silent transport data and the reference transcript is developer
+scripted; this is workflow verification, not speech recognition, clinician
+usability, or clinical evidence. The command fails if any expected workflow
+status or export hash is wrong.
+
 From the repository root, with the existing Python environment and cached web dependencies:
 
 ```powershell

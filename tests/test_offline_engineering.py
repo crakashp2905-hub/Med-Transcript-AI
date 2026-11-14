@@ -298,6 +298,14 @@ def test_offline_demo_artifact_generation_does_not_open_runtime_database(tmp_pat
     assert config["scope"].startswith("Silent transport fixture")
 
 
+def test_offline_demo_runbook_has_one_command_path_and_honest_scope():
+    runbook = Path("docs/demo-runbook-offline.md").read_text(encoding="utf-8")
+    assert "python -m services.offline_demo --self-test" in runbook
+    assert "does not print the local access keys" in runbook
+    assert "not speech recognition" in runbook
+    assert "not clinical evidence" in runbook
+
+
 def test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence():
     from services.release_policy import (
         SEVERITY_DEFINITIONS,
