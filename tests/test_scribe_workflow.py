@@ -197,6 +197,8 @@ def test_deterministic_draft_fallback_is_explicit_and_keeps_proposal_unapproved(
             )
 
     proposal = _draft_with_optional_fallback(UnavailableProvider(), facts)
+    assert proposal["status"] == "review_required"
+    assert "approval_id" not in proposal
     assert proposal["provenance"]["provider_mode"] == "deterministic"
     assert proposal["provenance"]["fallback_reason"] == "drafting_unavailable"
     assert proposal["provenance"]["optional_inference_status"] == "unavailable"
