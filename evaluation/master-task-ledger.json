@@ -6788,12 +6788,21 @@
       "id": "MTA-13-18",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add no-network test runner and egress deny-by-default host configuration guidance; Python socket monkeypatch alone is not a system firewall.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-18-79c97d3.json"
+      ],
+      "source_commit": "79c97d30f6285a043e93dc32986efa811725c999",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-18-79c97d3.json",
+          "report_sha256": "b2e59c41580343a3fe299a583f1f10eb3cf462dd2dd3e307f90306e886632307",
+          "check": "egress_denied_runner_and_guidance",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Container isolation was not executed because Docker is unavailable locally; host-level deny-by-default firewall configuration is documented but not applied or independently verified."
     },
     {
       "id": "MTA-13-19",

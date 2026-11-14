@@ -1,0 +1,49 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-18"
+  ],
+  "source_commit": "79c97d30f6285a043e93dc32986efa811725c999",
+  "captured_at_utc": "2026-11-14T08:40:05.102257+00:00",
+  "source_files": {
+    "scripts/run_egress_denied_tests.ps1": "413693a9c2bcc386700e4c6c06790ea9bd1365a8e1d0e3e8152f6b620993a328",
+    "tests/test_no_network_runner.py": "f8392487673590937e8e15c06d8c815c18abaf3fa900a98217d1b080df9f1565",
+    "docs/container-security.md": "201696517f185a7bf7a6f3821b6c239c6a43e5c50ca1af0e8afd49b668169bab",
+    "services/offline.py": "495df48ddaefd46482fc0b842c1912c09cf05ba4fdbd647afad430e2ecba6785",
+    "services/safe_pytest.py": "aed933e423ba5a26e247d89041c75807e85154cffb81825adc41448d5af940c3"
+  },
+  "checks": {
+    "egress_denied_runner_and_guidance": {
+      "status": "pass",
+      "evidence": "See check_details for test and parser results; Docker execution is blocked by unavailable tooling."
+    }
+  },
+  "check_details": [
+    {
+      "command": "python -m pytest -q tests/test_no_network_runner.py tests/test_offline_engineering.py",
+      "status": "pass",
+      "result": "24 passed"
+    },
+    {
+      "command": "PowerShell Parser.ParseFile scripts/run_egress_denied_tests.ps1",
+      "status": "pass",
+      "result": "PowerShell parser accepted the runner"
+    },
+    {
+      "command": "Docker isolated runtime invocation",
+      "status": "blocked",
+      "result": "Docker executable unavailable on this host; the container --network none runner was not executed"
+    }
+  ],
+  "supported_claims": [
+    "The runner requires an image already present locally and does not build or pull it.",
+    "The runner invokes Docker with --network none, a read-only source mount/root, dropped capabilities, and resource limits.",
+    "Documentation distinguishes container isolation from host firewall policy and gives deny-by-default VM/runner guidance."
+  ],
+  "limitations": [
+    "Docker is not installed on this host; no egress-isolated container test was executed.",
+    "No host firewall policy was applied or verified.",
+    "Static runner tests and Python offline tests do not establish host-level egress denial."
+  ],
+  "clinical_release_authorized": false
+}
