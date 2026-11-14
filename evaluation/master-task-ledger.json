@@ -8566,13 +8566,19 @@
     },
     {
       "id": "MTA-17-01",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 \u2014 Complete engineering/research/product handoff artifacts",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Write comprehensive architecture specification with module map and data contracts.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product-architecture.md",
+        "tests/test_architecture_spec.py",
+        "evaluation/reports/mta-17-01-architecture-spec-v1.json"
+      ],
+      "source_commit": "499ed302d2f5cb50be60e1fe36184847098fa632",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-17-01-architecture-spec-v1.json","report_sha256":"2d1957362f3fdea2753d10f4e99e20ed7e19ab0d980a7e5f094cd307d1167a45","check":"architecture_contracts","runtime_sha256":"7b867820dea3b58b5990154bdc213913c4020bd1e1ec61b0373f485141806c35"}
+      ],
       "blocker": null
     },
     {
