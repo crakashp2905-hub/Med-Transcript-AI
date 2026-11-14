@@ -7377,12 +7377,31 @@
       "id": "MTA-14-18",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define supported runtime matrix only for tested device/OS/browser/hardware combinations.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/runtime-support-matrix.md",
+        "tests/test_runtime_support_matrix.py",
+        "evaluation/reports/master-task-mta-09-20-4304b85.json",
+        "evaluation/reports/audio-filter-resource-v1.json",
+        "evaluation/reports/master-task-mta-14-18-305f2c6.json"
+      ],
+      "source_commit": "305f2c6e8fabb4c017e73b6186ca86ae9809d47c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-18-305f2c6.json",
+          "report_sha256": "b91a4dde3044fffe5a5603d0f27c1c8a9239a2ffc903894429de0a318d2710e1",
+          "check": "tested_runtime_support_matrix",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-18-305f2c6.json",
+          "report_sha256": "b91a4dde3044fffe5a5603d0f27c1c8a9239a2ffc903894429de0a318d2710e1",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Physical microphone/interface, RAM capacity, alternative browser/device combinations and full clinical ASR workloads have not been tested; only recorded local combinations are listed."
     },
     {
       "id": "MTA-14-19",

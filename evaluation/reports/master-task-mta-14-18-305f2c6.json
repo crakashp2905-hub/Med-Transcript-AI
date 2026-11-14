@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-18",
+  "source_commit": "305f2c6e8fabb4c017e73b6186ca86ae9809d47c",
+  "source_files": {
+    "docs/runtime-support-matrix.md": "bdcc8aae79005c077452f0bc5e44b9ee9137d388784c39b0ba4d2bec7abc4a03",
+    "tests/test_runtime_support_matrix.py": "ddaf78383ec82daef5d33cc175bb4aca0b0856cb445743add68173b318c89e43",
+    "evaluation/reports/master-task-mta-09-20-4304b85.json": "502595cc753150d4016654145b04f6f02b3f9dfef892ff1bf489b34952b554fe",
+    "evaluation/reports/audio-filter-resource-v1.json": "44a1f66c0fb861e9bb2ea191c0c03484ac3f2a202c6ae5adc564c8ba78c1e0d5"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "node": "22.16.0",
+    "npm": "10.9.2",
+    "typescript": "7.0.2",
+    "playwright": "1.64.1",
+    "browser": "Google Chrome 157.0.0.0",
+    "os": "Windows 11 build 10.0.26200",
+    "cpu": "Intel64 Family 6 Model 140; 8 logical CPUs",
+    "test_command": "pytest tests/test_runtime_support_matrix.py"
+  },
+  "runtime_sha256": "fcaa7d3d3fc43a3113c88743a9af450a98fb0a32689d19345b977104b2a87d55",
+  "checks": {
+    "tested_runtime_support_matrix": {
+      "status": "pass",
+      "detail": "1 passed. Matrix entries are checked against source-bound browser and audio-transform receipts. It records only measured local versions and hardware, and explicitly labels viewports as emulated and microphone, other browsers, mobile devices, RAM size, PostgreSQL and clinical ASR acceptance as unestablished."
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "ruff check tests/test_runtime_support_matrix.py",
+      "detail": "All checks passed."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "Visual regression covers the static investor preview only; the recorded emulated viewport sizes do not qualify physical devices.",
+    "Audio performance covers enhancement transforms on six short clips, not ASR, full consultation workflows or total process memory.",
+    "Hardware model is reported, but physical microphone/interface and installed RAM capacity are unknown."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}
