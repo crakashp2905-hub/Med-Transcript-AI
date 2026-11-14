@@ -1,0 +1,505 @@
+{
+  "schema_version": "beccsv_deterministic_comparison_lock_v1",
+  "status": "frozen_not_executed",
+  "frozen_at_utc": "2026-11-14T13:40:36+00:00",
+  "source_commit": "485235b95f92534c1f0901138f9e85ffdaf971e2",
+  "scope": "developer_authored_synthetic_mechanistic_evidence_only; deterministic fixed-text comparison; no independent clinical gold",
+  "independent_clinical_gold": false,
+  "clinical_release_authorized": false,
+  "datasets": [
+    {
+      "dataset_id": "unseen",
+      "path": "evaluation/clinical-challenge-unseen-v1.json",
+      "sha256": "cb9772aa43d374bf507ae28bbe90b0177b799dc0712d7450b551b785f621aae4",
+      "file_sha256": "9a92439b396de4486b188641e85354adfcdda4861312071ff40a7386ac2a8dab",
+      "annotation_scope": "new_developer_authored_cases_frozen_before_first_model_run_not_independent_clinical_gold"
+    },
+    {
+      "dataset_id": "relations",
+      "path": "evaluation/clinical-challenge-relational-v1.json",
+      "sha256": "b2204a5351565b95ac510f2b50cd025a23b25fca96a6eabd34b432f1168776af",
+      "file_sha256": "24eaa0df15f36e1dc74140eef82596de2a6626622410f3f2025ede671ab70c72",
+      "annotation_scope": "new_developer_authored_relational_and_paraphrase_cases_not_used_for_tuning_not_clinical_gold"
+    },
+    {
+      "dataset_id": "bindings",
+      "path": "evaluation/clinical-bindings-development-v1.json",
+      "sha256": "5eb6b52db5bb55056fffecd5f09b09c4722063e84602520bfaeb5cf90fbc285b",
+      "file_sha256": "f46e319e65d2d0f54ecf0305e7ae9d406cb6cfd1fb3e83f5f19a3fe1ef9e7bec",
+      "annotation_scope": "developer_authored_synthetic_mechanistic_evidence_not_independent_clinical_gold"
+    }
+  ],
+  "case_bindings": [
+    {
+      "case_id": "unseen::route_change",
+      "dataset_id": "unseen",
+      "case_sha256": "ac9fc00196570226407fbb339624fbb60e6eddb69942f06b61d53ab8c4d5c2e5",
+      "source_text_sha256": "3182b6f2e026cd70d57a1932cdafeb49ba6c63f2ce1da380261fbf56e54d2267",
+      "claim_sha256": "47656d6c99df7e59004b91cd7d9f2dc16d638dd250a65612eef2ed1906389d9c",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::frequency_change",
+      "dataset_id": "unseen",
+      "case_sha256": "c82e425a28489928e82b51303c40d6a87e2a43079b9725bd1fb7319ba856f694",
+      "source_text_sha256": "989de2f8db30e7c03e6aa026ae33d1d20df6ac6aafbbfe3c365b2cd66db9e47d",
+      "claim_sha256": "5e5c41121b89f97c47269cec42bd4168ad0e4f20357a719dee3aa5b3e21a0c21",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::reaction_omission",
+      "dataset_id": "unseen",
+      "case_sha256": "79e32cb56e43bb643d817061141f0a0320ee5c8e1ef8a70a4c3c550eda6f597b",
+      "source_text_sha256": "a56f9f8bb133a67ff659bd30bc1c3694db1b610e97739e480c4562df6f77bdd3",
+      "claim_sha256": "591fecb8b543d938eac614b23a773dea825020e43929a05d940433d91f4b5cc8",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::allergen_swap",
+      "dataset_id": "unseen",
+      "case_sha256": "4bbf63f12aa8410fd52f5e52bb98401a577bbad2af50ca3af0524e68a54e59b7",
+      "source_text_sha256": "a30d14dc366bdc1da5a642f4ab84e75f0f63d02f284f35eb8dc861d5b2a44be1",
+      "claim_sha256": "2bbb8a16d42b522b60f0739401cf6e1d77a67ade2695edb7004e1fc975733135",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::family_to_patient",
+      "dataset_id": "unseen",
+      "case_sha256": "2ee9e1b04ec3defae7dbdb39fb5b265b14db5b8112ad0940677324797889bd5e",
+      "source_text_sha256": "24f9fbf8a37cad77c58073a6f3d061f635f0d6eb59e9e34f59e4626a128c134b",
+      "claim_sha256": "06c5053599b81830e3031fffa9fc961c4414c52f9d896d813b54934f145512eb",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::planned_to_completed",
+      "dataset_id": "unseen",
+      "case_sha256": "8207ec0ef63f15142b94c3eb38c3509f3bb6356f2b19ea727a6a147967e7cf3a",
+      "source_text_sha256": "95a24371535175529ce7f6da3aac4e1f073dbdbf6171e0af895e37b94fdb6960",
+      "claim_sha256": "dd26a24c6e4cf7530a087b8bedbae25ddaf58ddbe736165ba19ce6bb8ea8f417",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::uncertainty_removed",
+      "dataset_id": "unseen",
+      "case_sha256": "562ade49de1c8524850c95a5e23b24b1d905912772af71939911907dfabcaae7",
+      "source_text_sha256": "4d66becf563d09f211d3f13f26b392f97919ba96a30c523633fc19db2389a86f",
+      "claim_sha256": "9029475ef10abe08f2993cec6ce41e7fc0eb151561a54b27c4c0686e1f65254f",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::laterality_changed",
+      "dataset_id": "unseen",
+      "case_sha256": "c48c988298d4a47ff587c81bd1c79c3d4326ba2db5250d33a417c85292ae455a",
+      "source_text_sha256": "ed79500ad449a925b944f1bbbb36b2b84978049566ca8535cea7f900e5c5ed43",
+      "claim_sha256": "3ef64a1c72e71dc9fee5655aff5d066c1e585b48fd35b72ce4dc7b580ba6259e",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::safety_plan_omitted",
+      "dataset_id": "unseen",
+      "case_sha256": "b8aacd24dff7b333b95c31ce3f2f1a978a7234d5bdb2c8ff76994ca444a22fbe",
+      "source_text_sha256": "5cebaf768f918c75c57d4d122cbcde9ebc5f41e1c545e4e0f2e8a23c54e0ffe4",
+      "claim_sha256": "2496a139673987fad503ee3f7b1f83126181ad94205846e3592899a556df121c",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::duration_changed",
+      "dataset_id": "unseen",
+      "case_sha256": "9a59c0874441e22d64ea83462b1cda05737386e01002c616b42713bddd11ca06",
+      "source_text_sha256": "998ea0f4a6055d8e1804b187ae152dd1d5893f12e8b137249cc2126770670005",
+      "claim_sha256": "8af47be078330978c7db8ac56124f58ed68b28f069616d7a20fc85ad01324bff",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::dose_decimal_shift",
+      "dataset_id": "unseen",
+      "case_sha256": "a183d2c61a59bb3cf243070b807114e843027f78fec1398489658980c3349c4f",
+      "source_text_sha256": "1cc8c0e587cfaa0b13a9e5aa22863fbf2ddc4d817275411ce554c4c2e1c0b5e4",
+      "claim_sha256": "2c168c70677846ef907512e864884dd56283a03155ba31f0e332abed87fc99fe",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::two_drug_assignment",
+      "dataset_id": "unseen",
+      "case_sha256": "9f2623d5d710fd1843d1586798c49f23ceb8f08b18d5afabfaee2f77eb80a34b",
+      "source_text_sha256": "606b619b53ea0804148d63de65d6408cfb95c0519a5b47c74fccc69a88ee9cff",
+      "claim_sha256": "41739a84faf366186fdcd47b7443e0c392e2add91bd9d228d33246faeab7837b",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::unchanged_route",
+      "dataset_id": "unseen",
+      "case_sha256": "33cee6ae2e7ea785bb5e7e7e8c40349ce0dd050ff8af65f8478fbb6555a9a3e4",
+      "source_text_sha256": "3182b6f2e026cd70d57a1932cdafeb49ba6c63f2ce1da380261fbf56e54d2267",
+      "claim_sha256": "3182b6f2e026cd70d57a1932cdafeb49ba6c63f2ce1da380261fbf56e54d2267",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::unchanged_frequency",
+      "dataset_id": "unseen",
+      "case_sha256": "6f7d086be4589f87ebbed3aab7796f2fe1d884775eeb7cb62b16292aa84bb43f",
+      "source_text_sha256": "989de2f8db30e7c03e6aa026ae33d1d20df6ac6aafbbfe3c365b2cd66db9e47d",
+      "claim_sha256": "989de2f8db30e7c03e6aa026ae33d1d20df6ac6aafbbfe3c365b2cd66db9e47d",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::unchanged_reaction",
+      "dataset_id": "unseen",
+      "case_sha256": "c296cafbd69efea6f5171a1da0085b4c5162f3b35b1de48407f69bf983675250",
+      "source_text_sha256": "a56f9f8bb133a67ff659bd30bc1c3694db1b610e97739e480c4562df6f77bdd3",
+      "claim_sha256": "a56f9f8bb133a67ff659bd30bc1c3694db1b610e97739e480c4562df6f77bdd3",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::unchanged_family",
+      "dataset_id": "unseen",
+      "case_sha256": "acc16b1315a32731c1bf365495f693159935ca59c88599296a2efa17ec2d62fc",
+      "source_text_sha256": "24f9fbf8a37cad77c58073a6f3d061f635f0d6eb59e9e34f59e4626a128c134b",
+      "claim_sha256": "24f9fbf8a37cad77c58073a6f3d061f635f0d6eb59e9e34f59e4626a128c134b",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::unchanged_plan",
+      "dataset_id": "unseen",
+      "case_sha256": "378876cc805a4b02b45295703fca9b037cfcf467bfe2a34045a6bbbe735aab6a",
+      "source_text_sha256": "95a24371535175529ce7f6da3aac4e1f073dbdbf6171e0af895e37b94fdb6960",
+      "claim_sha256": "95a24371535175529ce7f6da3aac4e1f073dbdbf6171e0af895e37b94fdb6960",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::unchanged_uncertainty",
+      "dataset_id": "unseen",
+      "case_sha256": "f7b46c4b2ad9e4911670d5604b92bde23910cfe07b30b2e10ed9535396abc197",
+      "source_text_sha256": "4d66becf563d09f211d3f13f26b392f97919ba96a30c523633fc19db2389a86f",
+      "claim_sha256": "4d66becf563d09f211d3f13f26b392f97919ba96a30c523633fc19db2389a86f",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::unchanged_safety_plan",
+      "dataset_id": "unseen",
+      "case_sha256": "274f659a75a991095a24ace890373fd8a601493e709f0189876227c524ca096c",
+      "source_text_sha256": "5cebaf768f918c75c57d4d122cbcde9ebc5f41e1c545e4e0f2e8a23c54e0ffe4",
+      "claim_sha256": "5cebaf768f918c75c57d4d122cbcde9ebc5f41e1c545e4e0f2e8a23c54e0ffe4",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::mcg_to_mg_equivalent",
+      "dataset_id": "unseen",
+      "case_sha256": "b25495d9dd43ec079b28bad2e1c8efab202aa6e07331234894751aea65a98c80",
+      "source_text_sha256": "3dda508080258ecc533eec00ca69b49b52b8dec27f402dd0637b45a808b8a7e3",
+      "claim_sha256": "baf70f02a1c3763b0d05c01d3ed02feca02817af8ef456caed6cbee6656e7558",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::volume_equivalent",
+      "dataset_id": "unseen",
+      "case_sha256": "a1ed33d210e6b29814badbef84265027ccb37b42d94d75f1793221e624a25a7d",
+      "source_text_sha256": "f0c610a8b0a61a2b79efed7d2bd1847856ea9ef43bd2c9809b64598289d4887c",
+      "claim_sha256": "265dd3e4f965365af610a32376661a70eaa360de31e448e69935ba93dc5aa40b",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::same_negated_allergy",
+      "dataset_id": "unseen",
+      "case_sha256": "41bfcca0ab1f10ba8a77a865e618f5f045da6eba1b78970b58e1a95828f0128c",
+      "source_text_sha256": "994c0bcddd78f7fd222be18f80f5e69b4d13f1c91c68ad65ad6807a24e9ae181",
+      "claim_sha256": "994c0bcddd78f7fd222be18f80f5e69b4d13f1c91c68ad65ad6807a24e9ae181",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "unseen::nonclinical_prompt_injection",
+      "dataset_id": "unseen",
+      "case_sha256": "55ce8616756d8a5d4f1adfc65f6f1a3ac29f79001b7e52a324974995000aaa36",
+      "source_text_sha256": "383edfcea7466aa9d4615386dc1aa0d50bc36eccf74a36b88049549df961e431",
+      "claim_sha256": "e90f69e9bd1a9c8767270376ecf17c0148e4c22bed40e090b6c43c1225cf095d",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "unseen::explicit_unknown_dose",
+      "dataset_id": "unseen",
+      "case_sha256": "49fba375817b17b8c27d04777d1d5dede2a2293c49f73afc1c62112572d58011",
+      "source_text_sha256": "65af35721342635370a0f05f9513302a470b1f527e7a05c3170081ae47bc84ae",
+      "claim_sha256": "65af35721342635370a0f05f9513302a470b1f527e7a05c3170081ae47bc84ae",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "relations::insulin_schedule_swap",
+      "dataset_id": "relations",
+      "case_sha256": "7e7f43b86a6bee74b0de991e6391c259b4544041089bae138721ca0f04933543",
+      "source_text_sha256": "e61431a2b803984de8bdb5aacabccf4a7e9d064d7f7370eddaf36aff309425c7",
+      "claim_sha256": "29cf6ffd0d323849d2a819e57ca1576bf8c2549872e65227bf1c596260ceb337",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "relations::patient_mother_polarity_swap",
+      "dataset_id": "relations",
+      "case_sha256": "443d6302f35785c2416f203fde06bb8843bdeb38657d25b85c7a65ab8d5eb7a2",
+      "source_text_sha256": "9fbb4b80446332709d8d420a71e3c4fdc0a36c65b5e4d7d51a1d761bbbf8a556",
+      "claim_sha256": "14ca6a8453343cf05967f794e0d146712f0847b60d9e145111699d78150612de",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "relations::allergy_reaction_relationship_swap",
+      "dataset_id": "relations",
+      "case_sha256": "509e86506816f14468a80b50e82bded0c161179be82f0223de72fadc5fe0e064",
+      "source_text_sha256": "694fa2d636c303acf87a442e3e3b5ddaf86dda9da55d909a5126a201ccadf65c",
+      "claim_sha256": "03c7d07d4cd508bf688a2b00fff568df47a7c6686e1b8febc5ce86567ec8bfe0",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "relations::conditional_stop_reversed",
+      "dataset_id": "relations",
+      "case_sha256": "4fea574d6b67d26cdee3c4723a941e929b6c317ea304551bb66fe1a289dd73d6",
+      "source_text_sha256": "91c0f1e3f27d056ab6da9715fcb45f3e3f61d9659cc33175d122d0d0dda26b82",
+      "claim_sha256": "02bca7ba6770a58b9e36681eada659c326dffbac1afb0cda7d001adaf7c1dd61",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "relations::relative_history_reassigned",
+      "dataset_id": "relations",
+      "case_sha256": "6e6785156c4d3f7cfce2716f88ca3ff1d090d9ad390a9dfe758a34ce0def8ea6",
+      "source_text_sha256": "1f2fcffddc5636e09fe3b653cfd88d1f3490ff54374d0fb86db4209e64d29d97",
+      "claim_sha256": "797431fc8dbd3316d2c04a7baeb53e4b33d329a5db6a529384e6b49972ec35e4",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "relations::duration_pair_swap",
+      "dataset_id": "relations",
+      "case_sha256": "aa8a3b97cdda29f770ad9a94d60a66ced2d551b00f25cca2885c7a9bca6bae08",
+      "source_text_sha256": "36c1b2fc5fda0b118078d6538e3ad2ebbc67e0d033a58bdfb52cb982d9f2b203",
+      "claim_sha256": "5cecde90f6f36fc37ceb105bfc5f0b69fea6959776b65ffb5495aa11f0cc6592",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "relations::safe_negation_paraphrase",
+      "dataset_id": "relations",
+      "case_sha256": "cc368e9e030b1bfd775ebf3b70097a594a510224772bb0f1e9e29e53477d972f",
+      "source_text_sha256": "de461ccfd5a1160d206e1ea2a343c24a62e24a43737a76a7ea44cf54637ce303",
+      "claim_sha256": "bd4257b018d2bdfc19a0c1f6e958084812c406ee0632bb9b533fefb1adc4fae8",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "relations::safe_route_paraphrase",
+      "dataset_id": "relations",
+      "case_sha256": "f209d70eaf4d2074ac1ac6b916e25f9e8ca93cb72277260e6f39543fd45e2e1e",
+      "source_text_sha256": "8515510320641aa112db053e871ce9cca70cf192014c24ee20eae54eea7801e2",
+      "claim_sha256": "03c1d08b81b60e7e0abb67c5b6bf1142532b56252448263dc3dcfdc62ed3f517",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "relations::safe_family_paraphrase",
+      "dataset_id": "relations",
+      "case_sha256": "34853c4cdc615c4d3674ba6a7eb1d4b6c9a1ae590f22b9cd7dccb93bd2718062",
+      "source_text_sha256": "79236e650b0705abc4b039ef465ee05e38be5887b5b6f7825d1dab0e6b945407",
+      "claim_sha256": "e1f21e5abfe8376a6617b33836ed773c7334116978ae9955472fd217886e1205",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "relations::safe_allergy_paraphrase",
+      "dataset_id": "relations",
+      "case_sha256": "041da6f10faece950aae490bb44bc8a5cd13728f137db199880031ab63c14b1e",
+      "source_text_sha256": "c3148d4ba69efe1735975b92dbb480660530e84a31cbec6e526e9706826cf57e",
+      "claim_sha256": "cc073114f01eca641d0de39c07ce582736c26630703044300473401a789f45df",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "relations::safe_reordered_negations",
+      "dataset_id": "relations",
+      "case_sha256": "40b289cd603ab070ce8fcc7fa375bb4a74e2a375b4a822a574730e3d853daa7b",
+      "source_text_sha256": "90386eda886b5fc545707592875299bf160dc421d85a2b4cac643201f9fe807c",
+      "claim_sha256": "d2af8e5c859c0fc8cd0166dd78f2485abcef32fcca85d15145f4a5bd3b725d3b",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "relations::safe_unchanged_schedule",
+      "dataset_id": "relations",
+      "case_sha256": "a458141dd365512abd5eb118e803800bdb780be8ecefac9e096b0c05ac931538",
+      "source_text_sha256": "e61431a2b803984de8bdb5aacabccf4a7e9d064d7f7370eddaf36aff309425c7",
+      "claim_sha256": "e61431a2b803984de8bdb5aacabccf4a7e9d064d7f7370eddaf36aff309425c7",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "bindings::aspirin_amlodipine_dose_swap",
+      "dataset_id": "bindings",
+      "case_sha256": "5e94fb0bc80f0416eb71d780cf5de817e137c75fc1021dac57bd645647e51536",
+      "source_text_sha256": "5f1711ccbb51179b407f1fae5ec9982e0c6ce6d7363681b3eb5b1345f6059f76",
+      "claim_sha256": "6e462ae83e5f481a7adbdc8390e8688462448d354774fb80a31bf8f6eabef239",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "bindings::losartan_apixaban_dose_swap",
+      "dataset_id": "bindings",
+      "case_sha256": "3140aa949a1b039a1b1c92cf55cb2b942950f1995c31ae77ef53748808ea0958",
+      "source_text_sha256": "62a520d11aececa0060cf030b9b9054caf49e2d7739aaad78181b4bac9e938c8",
+      "claim_sha256": "d24749abe1eac5054f44e7708e80ae14c094e49db1d68a05208edc168b9c058b",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "bindings::levothyroxine_omeprazole_timing_swap",
+      "dataset_id": "bindings",
+      "case_sha256": "e6bfd190b29a86b9b68a580712746044cf2fe1976ed3dd3e252ea8968f040801",
+      "source_text_sha256": "e465f436567465276e5ff2ba2b664a66d9e272090698c3012a98c2837478e543",
+      "claim_sha256": "eebd2202211f728c27988d951b35e97607949fd770ac6fd3cee1e3ab1bbd68f5",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "bindings::prednisone_furosemide_action_swap",
+      "dataset_id": "bindings",
+      "case_sha256": "d09b2b61453613cc57613b97206de3a3ebe14bc070c42ffb6ffe97221469ad68",
+      "source_text_sha256": "af0a938c4240790f54a1b693a1f0c57a330ca8d26500bf2cca85be6c2e1a21be",
+      "claim_sha256": "58e7008b79688a3ad40342f33bbe440addfa96a908cec32a705809ab9caaf742",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "bindings::wheeze_dizziness_negation_swap",
+      "dataset_id": "bindings",
+      "case_sha256": "f6cf37510f94045bf1e1864981345bc4b885470690e9cb6296b1ed931512c8ab",
+      "source_text_sha256": "451d98b1327cc01ff1f35d9c45cdc4c877efc112f5b62b4e47f0b15fe450cac3",
+      "claim_sha256": "74c0fdc09252b8a59ad6aa21b788c4335eff446ec7345c0a8566cea81ff02b48",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "bindings::swelling_syncope_negation_swap",
+      "dataset_id": "bindings",
+      "case_sha256": "ddc1e86d813393c527de016fd505638486b3a286a288738ee385b7a1d2caa01c",
+      "source_text_sha256": "5462919e4a5bc346dc21bdf1d9ae3bf4d0f184a85afe8af799069fdd33fa07df",
+      "claim_sha256": "267faac27a2a9c7a37cc890fc18df22333e986ccadd8c10a34f4636311739fe8",
+      "expected_unsafe": true
+    },
+    {
+      "case_id": "bindings::aspirin_amlodipine_exact",
+      "dataset_id": "bindings",
+      "case_sha256": "01f83fbcccd47ab1310daac5c86a4214b7ed1ce38a6bdaa4ff0da6452df8d775",
+      "source_text_sha256": "5f1711ccbb51179b407f1fae5ec9982e0c6ce6d7363681b3eb5b1345f6059f76",
+      "claim_sha256": "5f1711ccbb51179b407f1fae5ec9982e0c6ce6d7363681b3eb5b1345f6059f76",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "bindings::losartan_apixaban_exact",
+      "dataset_id": "bindings",
+      "case_sha256": "72cd8bcad38b4d42f2a0b2432eb15443306f517a6e2c40a1b03dd2863b4eb771",
+      "source_text_sha256": "62a520d11aececa0060cf030b9b9054caf49e2d7739aaad78181b4bac9e938c8",
+      "claim_sha256": "62a520d11aececa0060cf030b9b9054caf49e2d7739aaad78181b4bac9e938c8",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "bindings::timing_exact",
+      "dataset_id": "bindings",
+      "case_sha256": "d45e110a557ed8da3b4c5ac6b977ddabcb75e7449025d81683e4c3e87d721e74",
+      "source_text_sha256": "e465f436567465276e5ff2ba2b664a66d9e272090698c3012a98c2837478e543",
+      "claim_sha256": "e465f436567465276e5ff2ba2b664a66d9e272090698c3012a98c2837478e543",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "bindings::wheeze_negation_exact",
+      "dataset_id": "bindings",
+      "case_sha256": "b71575d5418076d2ab0d5449f0dcac711eeb814fd5adcca3ffba00ea4fea6c21",
+      "source_text_sha256": "451d98b1327cc01ff1f35d9c45cdc4c877efc112f5b62b4e47f0b15fe450cac3",
+      "claim_sha256": "451d98b1327cc01ff1f35d9c45cdc4c877efc112f5b62b4e47f0b15fe450cac3",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "bindings::swelling_negation_exact",
+      "dataset_id": "bindings",
+      "case_sha256": "cd898fac75025327b5a988ccdc51b71a4a10f2d7f9e19449914de63cc29cc67a",
+      "source_text_sha256": "5462919e4a5bc346dc21bdf1d9ae3bf4d0f184a85afe8af799069fdd33fa07df",
+      "claim_sha256": "5462919e4a5bc346dc21bdf1d9ae3bf4d0f184a85afe8af799069fdd33fa07df",
+      "expected_unsafe": false
+    },
+    {
+      "case_id": "bindings::equivalent_mass_conversion",
+      "dataset_id": "bindings",
+      "case_sha256": "299a13e4ee8b42ad7ad48755bdd42377267395ee7d8c7f144db4f3c997ff2021",
+      "source_text_sha256": "3dda508080258ecc533eec00ca69b49b52b8dec27f402dd0637b45a808b8a7e3",
+      "claim_sha256": "baf70f02a1c3763b0d05c01d3ed02feca02817af8ef456caed6cbee6656e7558",
+      "expected_unsafe": false
+    }
+  ],
+  "case_set_sha256": "72e6ee7d576429198db1a9b374b2d6233638690078243f4830c8a5e168ecb5ad",
+  "shared_protocol": {
+    "resource_budget": {
+      "max_case_wall_seconds": 10,
+      "max_total_wall_seconds_per_arm": 1800,
+      "max_parallel_cases": 1,
+      "max_parallel_arms": 1
+    },
+    "prompt_policy": {
+      "template_id": "not_used_deterministic_only",
+      "length_chars": 0,
+      "sha256": null
+    },
+    "retry_policy": {
+      "policy_id": "single_attempt_no_retry_v1",
+      "attempts_per_case_and_arm": 1,
+      "retries": 0
+    },
+    "model_digests": {
+      "asr": "not_used_fixed_text_inputs",
+      "drafting": "not_used",
+      "verifier": "not_used_deterministic_only"
+    }
+  },
+  "arms": {
+    "deterministic_core": {
+      "deterministic_rules": true,
+      "local_verifier": false,
+      "relation_edges": true,
+      "source_coverage": true,
+      "temporal_edges": true,
+      "uncertainty_abstention": true,
+      "case_set_sha256": "72e6ee7d576429198db1a9b374b2d6233638690078243f4830c8a5e168ecb5ad",
+      "shared_protocol_sha256": "1188d5d5722c818b7e5bbe537f2cefafd756586f1f79135449f258b0f9e42614"
+    },
+    "no_source_coverage": {
+      "deterministic_rules": true,
+      "local_verifier": false,
+      "relation_edges": true,
+      "source_coverage": false,
+      "temporal_edges": true,
+      "uncertainty_abstention": true,
+      "case_set_sha256": "72e6ee7d576429198db1a9b374b2d6233638690078243f4830c8a5e168ecb5ad",
+      "shared_protocol_sha256": "1188d5d5722c818b7e5bbe537f2cefafd756586f1f79135449f258b0f9e42614"
+    },
+    "no_temporal_edges": {
+      "deterministic_rules": true,
+      "local_verifier": false,
+      "relation_edges": true,
+      "source_coverage": true,
+      "temporal_edges": false,
+      "uncertainty_abstention": true,
+      "case_set_sha256": "72e6ee7d576429198db1a9b374b2d6233638690078243f4830c8a5e168ecb5ad",
+      "shared_protocol_sha256": "1188d5d5722c818b7e5bbe537f2cefafd756586f1f79135449f258b0f9e42614"
+    },
+    "no_relation_edges": {
+      "deterministic_rules": true,
+      "local_verifier": false,
+      "relation_edges": false,
+      "source_coverage": true,
+      "temporal_edges": true,
+      "uncertainty_abstention": true,
+      "case_set_sha256": "72e6ee7d576429198db1a9b374b2d6233638690078243f4830c8a5e168ecb5ad",
+      "shared_protocol_sha256": "1188d5d5722c818b7e5bbe537f2cefafd756586f1f79135449f258b0f9e42614"
+    },
+    "no_uncertainty_abstention": {
+      "deterministic_rules": true,
+      "local_verifier": false,
+      "relation_edges": true,
+      "source_coverage": true,
+      "temporal_edges": true,
+      "uncertainty_abstention": false,
+      "case_set_sha256": "72e6ee7d576429198db1a9b374b2d6233638690078243f4830c8a5e168ecb5ad",
+      "shared_protocol_sha256": "1188d5d5722c818b7e5bbe537f2cefafd756586f1f79135449f258b0f9e42614"
+    },
+    "no_deterministic_rules": {
+      "deterministic_rules": false,
+      "local_verifier": false,
+      "relation_edges": true,
+      "source_coverage": true,
+      "temporal_edges": true,
+      "uncertainty_abstention": true,
+      "case_set_sha256": "72e6ee7d576429198db1a9b374b2d6233638690078243f4830c8a5e168ecb5ad",
+      "shared_protocol_sha256": "1188d5d5722c818b7e5bbe537f2cefafd756586f1f79135449f258b0f9e42614"
+    }
+  },
+  "execution_note": "Protocol only. No arm has been executed. No ASR, drafting, or verifier model weights are in scope; do not interpret this lock as a performance result."
+}
