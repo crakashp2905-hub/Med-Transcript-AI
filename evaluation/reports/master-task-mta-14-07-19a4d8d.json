@@ -1,0 +1,35 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-07",
+  "source_commit": "19a4d8dd498e7eabad4a5ec1b216bf1cdb9308fe",
+  "source_files": {
+    "tests/test_audio_header_contract.py": "6d463b72b1b38befc0192a028f33c0b579be2adfe2251f9ff4481be3e85f9cc1",
+    "tests/test_channels.py": "42fb3fe93cabe833bdcfb4967eb44a6a015cd5a7fe5de1b7499364bb02bf690c",
+    "tests/test_foundation.py": "4cb6a0295ccf2b6736837867ffd7f9f26779783c3324491c61c3bd89ecf9de23"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_audio_header_contract.py tests/test_channels.py::test_ninth_channel_rejected tests/test_foundation.py::test_upload_requires_authorization_and_valid_limits tests/test_foundation.py::test_malformed_audio_fails_without_partial_publication"
+  },
+  "runtime_sha256": "0c1b1c299f60cb10ec32d8dc28ed3ea4a21e3472b83a4051efb2068b10eeed02",
+  "checks": {
+    "bounded_audio_input_contract": {
+      "status": "pass",
+      "detail": "27 passed. Includes zero-frame and malformed/truncated PCM, supported sample-rate and channel dimensions, over-duration sparse WAV rejection, maximum-size 512,000,000-byte sparse WAV acceptance, upload limit validation, and a measured parser allocation peak below 8 MiB for the maximum-size file."
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "ruff check tests/test_audio_header_contract.py",
+      "detail": "All checks passed."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "Boundary files are sparse synthetic WAV fixtures; no real one-hour recording was ingested.",
+    "The memory cap assertion measures Python allocations in the header inspector, not total process or operating-system memory."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}

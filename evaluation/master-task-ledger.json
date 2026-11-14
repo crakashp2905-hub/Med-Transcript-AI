@@ -7016,12 +7016,30 @@
       "id": "MTA-14-07",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Test zero-length, truncated, overlong, multichannel and maximum permitted input against defined memory caps.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "tests/test_audio_header_contract.py",
+        "tests/test_channels.py",
+        "tests/test_foundation.py",
+        "evaluation/reports/master-task-mta-14-07-19a4d8d.json"
+      ],
+      "source_commit": "19a4d8dd498e7eabad4a5ec1b216bf1cdb9308fe",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-07-19a4d8d.json",
+          "report_sha256": "ee46c889a2762b587e35179b95040a893d1e20f235846b83c89a9149d44b0ba3",
+          "check": "bounded_audio_input_contract",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-07-19a4d8d.json",
+          "report_sha256": "ee46c889a2762b587e35179b95040a893d1e20f235846b83c89a9149d44b0ba3",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Memory evidence is limited to Python allocation by the PCM header parser; it is not a total-process or production-memory cap measurement."
     },
     {
       "id": "MTA-14-08",
