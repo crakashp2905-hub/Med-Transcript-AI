@@ -1,0 +1,38 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-17"
+  ],
+  "source_commit": "fb8047d9d48f0ad1a788b8a766fc90c2f82a46df",
+  "captured_at_utc": "2026-11-14T08:31:55.346102+00:00",
+  "source_files": {
+    "services/audit_integrity.py": "cd32c997eb3adbf788fb89eb2f5c37d52cc12875303595a3356c8301c06f8df6",
+    "services/review/clinical_state.py": "13760b02ec8d4f18bd746d9fb8a5174f33ac47ac584abab479dfe412b2bc873d",
+    "services/review/routers/approvals.py": "68a1520c0d7e092805eeb455515f006bcd0957cd7a2f1ee3d1ac74cf60de48f6",
+    "services/review/routers/exports.py": "ecae580701ceccce9f0b0719251841ba5dae39f72a1f0a7178d9020c9376bd2e",
+    "services/review/routers/proposals.py": "fc6ea7dd8543b1e4bc0138b78f46471588c4b37efebd9bb3c3d77ef5de4df19b",
+    "tests/test_audit_integrity.py": "ff35a0a975356e320878866743b27576850c680270469ddd7ee270db5ff6f156",
+    "tests/test_proposal_integrity.py": "a22e7be02c1ffed1bea68ba72f234ee1554f5a14d1774010322c9ddd1bcdd807",
+    "tests/test_review_workflow.py": "8e8edc2a8e0ebbd0bd0f20d5281687ec263b8f1cdcf74b6bb2eaaa1f842d297a",
+    "tests/test_evidence_integrity.py": "310b2e67a5128b409981b937eed1c0a71b56ee3e872c7f2c4b2e4f4ca924cb3c"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_audit_integrity.py tests/test_proposal_integrity.py tests/test_review_workflow.py::test_legacy_approval_is_preserved_but_new_export_rechecks_current_rules tests/test_evidence_integrity.py",
+      "status": "pass",
+      "result": "22 passed"
+    }
+  ],
+  "supported_claims": [
+    "Audit event mutation, removal, chain reorder and bootstrap removal are detected and prevent approval.",
+    "Approval body and export artifact byte tampering are rejected.",
+    "Proposal transcript-source substitution and persisted proposal mutation are rejected before display.",
+    "Published artifact hash checks detect tampering and source integrity verification checks exact source references."
+  ],
+  "limitations": [
+    "Checks use the local SQLite adapter and synthetic fixtures; PostgreSQL parity was not exercised.",
+    "These tests establish tamper detection within application integrity controls, not external immutability against a privileged database administrator.",
+    "Clinical release remains unauthorized."
+  ],
+  "clinical_release_authorized": false
+}

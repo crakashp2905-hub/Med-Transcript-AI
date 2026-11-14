@@ -6768,12 +6768,21 @@
       "id": "MTA-13-17",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Create tamper-detection test for audit chain, export digest, source link, model receipt and approval version.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-17-fb8047d.json"
+      ],
+      "source_commit": "fb8047d9d48f0ad1a788b8a766fc90c2f82a46df",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-17-fb8047d.json",
+          "report_sha256": "a2ea7544baaf14351ff47c53d1073b1649971a8114b7bcdbd8a8f1237e3c8b4d",
+          "check": "multi_surface_tamper_detection",
+          "status": "pass"
+        }
+      ],
+      "blocker": "PostgreSQL adapter parity and external database-administrator tamper resistance are not established by local SQLite tests."
     },
     {
       "id": "MTA-13-18",
