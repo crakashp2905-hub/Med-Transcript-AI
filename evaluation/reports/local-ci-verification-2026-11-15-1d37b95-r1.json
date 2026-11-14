@@ -1,0 +1,144 @@
+{
+  "schema_version": "local_ci_verification_v1",
+  "run_id": "local-ci-2026-11-15-1d37b95-r1",
+  "source_commit": "1d37b957e99c2bb0f0e38a3bca9f0cb955d789f2",
+  "worktree_dirty": true,
+  "source_hashes": [
+    {
+      "path": "services/model_memory_probe.py",
+      "sha256": "76ecd482ee62b932cf0f0675d873ef3d946252dc14331180dce5d5fe90f8352b"
+    },
+    {
+      "path": "tests/test_model_memory_probe.py",
+      "sha256": "347569478002dbfa4adce8b6eef32fdfaec7f83472151657b59e2bf026a6036b"
+    },
+    {
+      "path": "tests/test_audio_enhancement_report.py",
+      "sha256": "81e4a888733abb3b0b0bc623db605b230312e991e2190a6085924983af0ae7df"
+    },
+    {
+      "path": "tests/test_real_local_asr_workflow.py",
+      "sha256": "ce453afbd8fb0fab1552aaae2e0b27e5367ecd4aa9f2b66d0878a1a5ba3a561c"
+    },
+    {
+      "path": "services/asr/segmentation.py",
+      "sha256": "a78ff82218706de71e9468bf551660a45443977c83fc33fd314b1918e635fdc4"
+    },
+    {
+      "path": "services/offline_diagnostics.py",
+      "sha256": "70ceda5a634a21b2ad4cd98f9b61a6a42e851512e231bbfa6220ebc8773d6b6e"
+    },
+    {
+      "path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+      "sha256": "d8ccf483e7cce66095193880b62479c5e807e9926cb64dce8879ba7bcc26a97e"
+    },
+    {
+      "path": "apps/clinician-web/package-lock.json",
+      "sha256": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "caa896b2f91f635d35c8b9a177c6bb43aa4b61b8a2a6400038c2d50bdf176d5c"
+    }
+  ],
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "ruff": "ruff 0.15.13",
+    "mypy": "mypy 2.1.0 (compiled: yes)",
+    "ci_mypy_pin": "1.18.2 (local run used unpinned 2.1.0)",
+    "network": "local-only; TestClient sockets remained loopback"
+  },
+  "checks": [
+    {
+      "name": "python_format",
+      "command": "python -m ruff format --check services tests",
+      "status": "pass",
+      "result": "702 files already formatted"
+    },
+    {
+      "name": "python_lint",
+      "command": "python -m ruff check services tests",
+      "status": "pass",
+      "result": "All checks passed"
+    },
+    {
+      "name": "python_types",
+      "command": "python -m mypy services --ignore-missing-imports",
+      "status": "pass",
+      "result": "334 source files; local mypy 2.1.0"
+    },
+    {
+      "name": "python_tests",
+      "command": "python -m services.verify --python-only",
+      "status": "pass",
+      "result": "1336 passed, 10 skipped, 2 warnings; no failures or collection errors"
+    },
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "result": "tsc --noEmit and Vite production build"
+    },
+    {
+      "name": "local_asr_workflow",
+      "command": ".venv/Scripts/python.exe -m services.safe_pytest tests/test_real_local_asr_workflow.py",
+      "status": "pass",
+      "result": "1 passed; faster-whisper local profile and public mock input"
+    },
+    {
+      "name": "ops_fhir_retention_tests",
+      "command": "python -m services.safe_pytest tests/test_product_operations.py tests/test_product_governance.py tests/test_fhir_mock_bundle.py tests/test_purge_retention_gates.py tests/test_storage_lifecycle.py",
+      "status": "pass",
+      "result": "10 passed, 1 warning"
+    },
+    {
+      "name": "auth_role_tests",
+      "command": ".venv/Scripts/python.exe -m services.safe_pytest tests/test_google_auth.py",
+      "status": "pass",
+      "result": "17 passed"
+    },
+    {
+      "name": "review_approval_scope_tests",
+      "command": ".venv/Scripts/python.exe -m services.safe_pytest tests/test_review_workflow.py",
+      "status": "pass",
+      "result": "19 passed"
+    }
+  ],
+  "build_artifacts": [
+    {
+      "path": "apps/clinician-web/dist/assets/index-Cl2cgfyk.css",
+      "sha256": "fea7f5cafde21b1617e91ad28eb8a72181357d4190bd1033e0ca04413e797713"
+    },
+    {
+      "path": "apps/clinician-web/dist/assets/index-CRPjOcY-.js",
+      "sha256": "a9e7c2f0977821ecdd632502b90bc4174963faaa573091d8681b74e964bfe0e4"
+    },
+    {
+      "path": "apps/clinician-web/dist/assets/pcm-worklet.js",
+      "sha256": "c4d79d737c317d0c26d6ae8711602f8d82e9875ee8fc258749f2bb10d77fb1bf"
+    },
+    {
+      "path": "apps/clinician-web/dist/assets/THIRD_PARTY_NOTICES.txt",
+      "sha256": "d1d3e5633ffc0999f283fca5ba980ef3aa455c6398ed9ab805e894dc30dba8de"
+    }
+  ],
+  "related_browser_acceptance": {
+    "report": "evaluation/reports/offline-product-acceptance-b3adce0.json",
+    "source_commit": "b3adce05ac575fe8675892d0a42d977553a0ec93",
+    "status": "pass",
+    "passed": 42,
+    "skipped": 1,
+    "failed": 0,
+    "note": "The subsequent commits change only Python services/tests and evidence; browser source has no changes after this acceptance."
+  },
+  "limitations": [
+    "Hosted GitHub Actions status was not queried; hosted runs use pinned dependencies that differ from the local mypy version.",
+    "The local `.venv` lacks optional psutil and the system Python lacks faster-whisper; the resource probe now reports its missing optional telemetry dependency clearly, and the local ASR workflow was separately verified in `.venv`.",
+    "Ten full-suite skips are retained; no skipped test was converted to a pass.",
+    "The full test suite is engineering evidence only. It does not establish clinical accuracy, independent clinician validation, hardware endurance, institutional approval, or deployment readiness.",
+    "Pre-existing acceptance clone directories and partial benchmark artifacts remain untracked and were not staged or modified."
+  ],
+  "clinical_release_authorized": false
+}
