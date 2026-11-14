@@ -6529,12 +6529,12 @@
       "id": "MTA-13-06",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Test missing, duplicate, oversized and malformed JSON fields and Unicode normalization at API boundaries.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-06-a0eef2f.json", "services/api/request_limits.py", "services/strict_json.py"],
+      "source_commit": "a0eef2fb28f00db88766d39c03175e830bc41ab2",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-06-a0eef2f.json", "report_sha256": "68882d6de52b0744112761d21f8f5e09b2698c5e5567f2e9b25bb974b25c9126", "check": "strict_json_unicode_duplicate_depth_and_size_rules", "status": "pass"}],
+      "blocker": "HTTP boundary integration checks for schema-required fields, malformed bodies and actual streamed-size enforcement remain unverified because Windows TestClient cannot initialize its Proactor socketpair in this environment."
     },
     {
       "id": "MTA-13-07",

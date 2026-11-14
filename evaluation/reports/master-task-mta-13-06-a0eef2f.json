@@ -1,0 +1,34 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-06"
+  ],
+  "source_commit": "a0eef2fb28f00db88766d39c03175e830bc41ab2",
+  "captured_at_utc": "2026-11-14T08:12:07.790051+00:00",
+  "source_files": {
+    "services/strict_json.py": "fe7450877d0e7d3374751950b26a0aef392621a1eb30aac9fc249214cfa4d1c0",
+    "services/api/request_limits.py": "46b9c4829edc8e35f2ec0663f023eda973602ff15810a21d5e7483676fdd7a6e",
+    "tests/test_domain_integrity.py": "3e08e07d649fb201d1b360c41d11fcd2e6b2e1a100c71167a8ff019f35235202"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_domain_integrity.py::test_untrusted_json_rejects_duplicates_confusable_keys_depth_and_surrogates tests/test_domain_integrity.py::test_strict_json_preserves_valid_unicode_and_quoted_brackets",
+      "status": "pass",
+      "result": "8 passed"
+    },
+    {
+      "command": "pytest -q tests/test_domain_integrity.py::test_request_duplicate_keys_are_rejected_before_mutation tests/test_google_auth.py::test_oversized_json_is_rejected_with_and_without_content_length",
+      "status": "incomplete",
+      "result": "TestClient stalled in a minimal Windows asyncio Proactor socketpair initialization; interrupted without claiming pass"
+    }
+  ],
+  "supported_claims": [
+    "The bounded strict JSON parser rejects duplicate and non-ASCII/confusable schema keys, excessive depth, invalid Unicode surrogates and non-finite numeric values; valid Unicode values remain unchanged.",
+    "The request-limit middleware parses JSON through the strict parser and bounds JSON request bodies."
+  ],
+  "limitations": [
+    "The passing checks exercise parser helpers, not the HTTP request middleware end to end.",
+    "Missing-field validation, malformed HTTP body handling, and actual-size rejection without Content-Length need rerun on a working ASGI test environment."
+  ],
+  "clinical_release_authorized": false
+}
