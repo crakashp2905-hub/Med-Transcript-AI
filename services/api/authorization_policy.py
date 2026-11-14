@@ -2,11 +2,44 @@
 
 from fastapi.routing import APIRoute
 import re
+from fastapi import HTTPException
 
 PUBLIC = {"/health", "/v1/auth/config", "/v1/auth/login", "/v1/auth/callback"}
 DEVELOPMENT = {"/docs", "/redoc", "/openapi.json", "/docs/oauth2-redirect"}
 COOKIE_AUTH = {"/v1/auth/session", "/v1/auth/logout"}
 STATIC = {"/", "/assets", "/investor-demo", "/favicon.svg"}
+ADMIN_READ_PATHS = {"/v1/session", "/v1/auth/session"}
+
+
+def authorize_role_request(actor, method, path):
+    """Apply role restrictions after authentication and before route execution."""
+    method = method.upper()
+    if actor.role == "viewer":
+        if method not in {"GET", "HEAD", "OPTIONS"} and path != "/v1/auth/logout":
+            raise HTTPException(403, "read_only_account")
+        return
+    if actor.role == "administrator":
+        allowed_admin_route = (method, path) in {
+            ("GET", "/v1/admin/users"),
+            ("GET", "/v1/admin/users/audit"),
+            ("POST", "/v1/admin/users"),
+            ("POST", "/v1/auth/logout"),
+        }
+        allowed_admin_route |= method == "DELETE" and bool(
+            re.fullmatch(r"/v1/admin/users/[0-9a-fA-F-]{36}", path)
+        )
+        if path not in ADMIN_READ_PATHS and not allowed_admin_route:
+            raise HTTPException(403, "administrator_scope_required")
+        return
+    if actor.role == "scribe" and method in {"POST", "PUT", "PATCH", "DELETE"}:
+        if (
+            path.endswith("/approvals")
+            or path.endswith("/revoke")
+            or path.endswith("/amendments")
+            or path.endswith("/deletion-requests")
+            or path.endswith("/withdraw")
+        ):
+            raise HTTPException(403, "physician_approval_required")
 
 
 def has_identity(route):
@@ -27,7 +60,7 @@ def inventory(app):
             continue
         if path in PUBLIC:
             policy = "public_auth_handshake_or_health"
-        elif path in COOKIE_AUTH:
+        elif path in COOKIE_AUTH or path.startswith("/v1/admin/"):
             policy = "manual_cookie_session_csrf"
         elif path in DEVELOPMENT:
             policy = "development_only_schema"

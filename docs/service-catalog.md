@@ -6,9 +6,9 @@ Generated from the Python source tree. Runtime reachability is a static import a
 
 | Classification | Modules |
 | --- | ---: |
-| integrated-in-production-flow | 94 |
+| integrated-in-production-flow | 95 |
 | candidate-only | 12 |
-| test-only | 217 |
+| test-only | 216 |
 | documentation-only | 11 |
 
 ## Service modules
@@ -25,7 +25,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/annotation_workflow.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/api/__init__.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/api/auth.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
-| `services/api/authorization_policy.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/api/authorization_policy.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/api/contracts.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/api/idempotency.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/api/ingest.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -358,6 +358,10 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `GET` | `/favicon.svg` | `favicon` | `services.api.main` |
 | `GET` | `/health` | `health` | `services.api.routers.encounters` |
 | `GET` | `/investor-demo` | `investor_demo` | `services.api.main` |
+| `GET` | `/v1/admin/users` | `admin_users` | `services.api.auth` |
+| `POST` | `/v1/admin/users` | `add_admin_user` | `services.api.auth` |
+| `GET` | `/v1/admin/users/audit` | `admin_user_audit` | `services.api.auth` |
+| `DELETE` | `/v1/admin/users/{user_id}` | `remove_admin_user` | `services.api.auth` |
 | `GET` | `/v1/auth/callback` | `callback` | `services.api.auth` |
 | `GET` | `/v1/auth/config` | `config` | `services.api.auth` |
 | `GET` | `/v1/auth/login` | `login` | `services.api.auth` |

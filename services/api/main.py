@@ -28,6 +28,7 @@ from services.api.contracts import (
     Identity,
 )
 from services.api.time_utils import now
+from services.api.authorization_policy import authorize_role_request
 from services.secure_storage import ensure_private_directory
 
 
@@ -152,12 +153,7 @@ def create_app(
             digest = hashlib.sha256(auth.credentials.encode()).hexdigest()
             for candidate, principal in identities.items():
                 if secrets.compare_digest(digest, candidate):
-                    if principal.role == "viewer" and request.method not in (
-                        "GET",
-                        "HEAD",
-                        "OPTIONS",
-                    ):
-                        raise HTTPException(403, "read_only_account")
+                    authorize_role_request(principal, request.method, request.url.path)
                     return principal
         raise HTTPException(
             401, "authentication_required", headers={"WWW-Authenticate": "Bearer"}
@@ -185,7 +181,7 @@ def create_app(
             (
                 str(uuid4()),
                 str(actor.tenant_id),
-                str(actor.clinician_id),
+                str(actor.actor_id),
                 action,
                 resource,
                 now(),

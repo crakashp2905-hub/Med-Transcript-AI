@@ -26,7 +26,29 @@ class StrictModel(BaseModel):
 class Identity(StrictModel):
     tenant_id: UUID
     clinician_id: UUID
-    role: Literal["clinician", "viewer"] = "clinician"
+    user_id: UUID | None = None
+    role: Literal["clinician", "physician", "scribe", "administrator", "viewer"] = (
+        "clinician"
+    )
+
+    @property
+    def actor_id(self):
+        """Identity for audit attribution, distinct from a scribe's assigned clinician."""
+        return self.user_id or self.clinician_id
+
+
+class AdminUserCreate(StrictModel):
+    email: str = Field(min_length=3, max_length=254)
+    role: Literal["clinician", "physician", "scribe", "administrator", "viewer"]
+    assigned_clinician_id: UUID | None = None
+
+    @field_validator("email")
+    @classmethod
+    def normalized_email(cls, value):
+        value = value.strip().lower()
+        if "@" not in value or any(char.isspace() for char in value):
+            raise ValueError("valid_email_required")
+        return value
 
 
 class EncounterInput(StrictModel):

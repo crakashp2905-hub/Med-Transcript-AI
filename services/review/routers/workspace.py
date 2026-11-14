@@ -53,6 +53,7 @@ def register(app, services: ReviewService):
             }
         return {
             "clinician_id": str(actor.clinician_id),
+            "user_id": str(actor.actor_id),
             "tenant_id": str(actor.tenant_id),
             "role": actor.role,
             "data_mode": "synthetic_only",

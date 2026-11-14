@@ -2,19 +2,22 @@
 
 from services.audit_integrity import append as append_audit
 import base64
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 import hashlib
 import json
 import os
 from pathlib import Path
 import secrets
+import tempfile
+import threading
 import time
 from urllib.parse import urlencode, urlsplit
 from uuid import UUID, uuid4
 
 from fastapi import HTTPException, Request
 from fastapi.responses import JSONResponse, RedirectResponse
+from services.api.authorization_policy import authorize_role_request
 
 
 def digest(value):
@@ -30,6 +33,7 @@ class Settings:
     client_secret: str = ""
     members_file: str = ""
     domain: str = ""
+    member_lock: threading.RLock = field(default_factory=threading.RLock, repr=False)
 
     @classmethod
     def environment(cls):
@@ -82,20 +86,78 @@ class Settings:
         return "__Host-med_session" if self.secure else "med_session"
 
     def members(self):
-        rows = json.loads(Path(self.members_file).read_text(encoding="utf-8"))["users"]
+        document = self.read_member_document()
+        rows = document["users"]
         result = {}
+        user_ids = set()
         for row in rows:
             email = row["email"].lower()
             if (
                 email in result
-                or row["role"] not in ("clinician", "viewer")
+                or row["role"]
+                not in ("clinician", "physician", "scribe", "administrator", "viewer")
                 or "@" not in email
             ):
                 raise ValueError("Invalid invitation")
             UUID(row["tenant_id"])
             UUID(row["clinician_id"])
+            if row["role"] == "scribe":
+                if not isinstance(row.get("user_id"), str):
+                    raise ValueError("Scribe invitation requires a separate user_id")
+                user_id = UUID(row["user_id"])
+                if user_id == UUID(row["clinician_id"]):
+                    raise ValueError(
+                        "Scribe identity must differ from assigned clinician"
+                    )
+            elif row.get("user_id") is not None:
+                user_id = UUID(row["user_id"])
+            else:
+                user_id = None
+            if row.get("user_id") is not None:
+                if user_id in user_ids:
+                    raise ValueError("Membership user IDs must be unique")
+                user_ids.add(user_id)
             result[email] = row
         return result
+
+    def read_member_document(self):
+        path = Path(self.members_file)
+        if not self.members_file or path.is_symlink() or not path.is_file():
+            raise ValueError("Membership configuration is unavailable")
+        document = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(document, dict) or not isinstance(
+            document.get("users"), list
+        ):
+            raise ValueError("Invalid membership configuration")
+        return document
+
+    def write_member_document(self, document):
+        path = Path(self.members_file)
+        if path.is_symlink() or not path.is_file():
+            raise OSError("membership_configuration_not_writable")
+        temporary = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                mode="w",
+                encoding="utf-8",
+                dir=path.parent,
+                prefix=f".{path.name}.",
+                suffix=".tmp",
+                delete=False,
+            ) as target:
+                temporary = Path(target.name)
+                json.dump(document, target, indent=2, ensure_ascii=False)
+                target.write("\n")
+                target.flush()
+                os.fsync(target.fileno())
+            try:
+                os.chmod(temporary, path.stat().st_mode & 0o777)
+            except OSError:
+                pass
+            os.replace(temporary, path)
+        finally:
+            if temporary is not None:
+                temporary.unlink(missing_ok=True)
 
 
 class GoogleSessions:
@@ -140,6 +202,7 @@ class GoogleSessions:
         return self.identity_type(
             tenant_id=entry["tenant_id"],
             clinician_id=entry["clinician_id"],
+            user_id=entry.get("user_id"),
             role=entry["role"],
         )
 
@@ -166,8 +229,7 @@ class GoogleSessions:
                     request.headers.get("x-csrf-token", ""), digest(token + ":csrf")
                 ):
                     raise HTTPException(403, "csrf_validation_failed")
-                if actor.role == "viewer" and request.url.path != "/v1/auth/logout":
-                    raise HTTPException(403, "read_only_account")
+            authorize_role_request(actor, request.method, request.url.path)
             if stamp - row["last_seen"] >= 60:
                 con.execute(
                     "UPDATE auth_sessions SET last_seen=? WHERE token_hash=?",
@@ -221,7 +283,39 @@ class GoogleSessions:
         return claims
 
     def register(self, app):
+        from services.api.contracts import AdminUserCreate
+
         settings = self.settings
+
+        def admin_actor(request):
+            actor = self.principal(request)
+            if actor.role != "administrator":
+                raise HTTPException(403, "administrator_role_required")
+            return actor
+
+        def public_member(row):
+            return {
+                "email": row["email"].lower(),
+                "user_id": str(UUID(row.get("user_id") or row["clinician_id"])),
+                "clinician_id": str(UUID(row["clinician_id"])),
+                "tenant_id": str(UUID(row["tenant_id"])),
+                "role": row["role"],
+            }
+
+        def append_member_audit(document, actor, action, target_user_id):
+            events = document.setdefault("audit_log", [])
+            if not isinstance(events, list):
+                raise HTTPException(503, "membership_audit_unavailable")
+            events.append(
+                {
+                    "tenant_id": str(actor.tenant_id),
+                    "actor_user_id": str(actor.actor_id),
+                    "action": action,
+                    "target_user_id": str(target_user_id),
+                    "time": datetime.now(timezone.utc).isoformat(),
+                }
+            )
+            document["audit_log"] = events[-500:]
 
         @app.get("/v1/auth/config")
         def config():
@@ -231,6 +325,141 @@ class GoogleSessions:
                 "local_key_enabled": settings.mode == "local",
                 "provider_label": "Google Workspace" if settings.domain else "Google",
             }
+
+        @app.get("/v1/admin/users")
+        def admin_users(request: Request):
+            actor = admin_actor(request)
+            try:
+                with settings.member_lock:
+                    members = settings.members()
+            except (OSError, ValueError, KeyError, TypeError):
+                raise HTTPException(
+                    503, "membership_configuration_unavailable"
+                ) from None
+            return {
+                "users": [
+                    public_member(row)
+                    for row in members.values()
+                    if row["tenant_id"] == str(actor.tenant_id)
+                ]
+            }
+
+        @app.get("/v1/admin/users/audit")
+        def admin_user_audit(request: Request):
+            actor = admin_actor(request)
+            try:
+                with settings.member_lock:
+                    document = settings.read_member_document()
+            except (OSError, ValueError, json.JSONDecodeError):
+                raise HTTPException(
+                    503, "membership_configuration_unavailable"
+                ) from None
+            events = document.get("audit_log", [])
+            if not isinstance(events, list):
+                raise HTTPException(503, "membership_audit_unavailable")
+            return {
+                "events": [
+                    event
+                    for event in events
+                    if event.get("tenant_id") == str(actor.tenant_id)
+                ][-100:]
+            }
+
+        @app.post("/v1/admin/users", status_code=201)
+        def add_admin_user(request: Request, body: AdminUserCreate):
+            actor = admin_actor(request)
+            with settings.member_lock:
+                try:
+                    document = settings.read_member_document()
+                    members = settings.members()
+                except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError):
+                    raise HTTPException(
+                        503, "membership_configuration_unavailable"
+                    ) from None
+                if body.email in members:
+                    raise HTTPException(409, "user_already_invited")
+                rows = document["users"]
+                if body.role in ("scribe", "viewer"):
+                    if body.assigned_clinician_id is None:
+                        raise HTTPException(422, "assigned_clinician_required")
+                    assigned = any(
+                        row["tenant_id"] == str(actor.tenant_id)
+                        and row["role"] in ("clinician", "physician")
+                        and row["clinician_id"] == str(body.assigned_clinician_id)
+                        for row in rows
+                    )
+                    if not assigned:
+                        raise HTTPException(404, "assigned_clinician_not_found")
+                    clinician_id = body.assigned_clinician_id
+                else:
+                    if body.assigned_clinician_id is not None:
+                        raise HTTPException(422, "assigned_clinician_not_allowed")
+                    clinician_id = uuid4()
+                user_id = uuid4()
+                new_member = {
+                    "email": body.email,
+                    "tenant_id": str(actor.tenant_id),
+                    "clinician_id": str(clinician_id),
+                    "user_id": str(user_id),
+                    "role": body.role,
+                }
+                rows.append(new_member)
+                append_member_audit(document, actor, "user_invited", user_id)
+                try:
+                    settings.write_member_document(document)
+                except OSError:
+                    raise HTTPException(
+                        503, "membership_configuration_not_writable"
+                    ) from None
+            return public_member(new_member)
+
+        @app.delete("/v1/admin/users/{user_id}", status_code=200)
+        def remove_admin_user(user_id: UUID, request: Request):
+            actor = admin_actor(request)
+            email = None
+            with settings.member_lock:
+                try:
+                    document = settings.read_member_document()
+                    members = settings.members()
+                except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError):
+                    raise HTTPException(
+                        503, "membership_configuration_unavailable"
+                    ) from None
+                selected = next(
+                    (
+                        row
+                        for row in members.values()
+                        if row["tenant_id"] == str(actor.tenant_id)
+                        and UUID(row.get("user_id") or row["clinician_id"]) == user_id
+                    ),
+                    None,
+                )
+                if selected is None:
+                    raise HTTPException(404, "user_not_found")
+                if user_id == actor.actor_id:
+                    raise HTTPException(409, "cannot_remove_current_administrator")
+                tenant_admins = [
+                    row
+                    for row in members.values()
+                    if row["tenant_id"] == str(actor.tenant_id)
+                    and row["role"] == "administrator"
+                ]
+                if selected["role"] == "administrator" and len(tenant_admins) <= 1:
+                    raise HTTPException(409, "last_administrator_required")
+                email = selected["email"].lower()
+                document["users"] = [
+                    row for row in document["users"] if row["email"].lower() != email
+                ]
+                append_member_audit(document, actor, "user_removed", user_id)
+                try:
+                    settings.write_member_document(document)
+                except OSError:
+                    raise HTTPException(
+                        503, "membership_configuration_not_writable"
+                    ) from None
+            with self.database() as con:
+                con.execute("DELETE FROM auth_sessions WHERE email=?", (email,))
+            return {"removed_user_id": str(user_id), "access_revoked": True}
 
         @app.get("/v1/auth/login")
         def login(request: Request):
@@ -344,7 +573,7 @@ class GoogleSessions:
                     (
                         str(uuid4()),
                         str(actor.tenant_id),
-                        str(actor.clinician_id),
+                        str(actor.actor_id),
                         "google_sign_in",
                         "session",
                         datetime.now(timezone.utc).isoformat(),

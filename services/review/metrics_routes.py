@@ -88,7 +88,7 @@ def register(
             value = {
                 "id": sid,
                 "note_version_id": str(body.note_version_id),
-                "actor": str(actor.clinician_id),
+                "actor": str(actor.actor_id),
                 "started_at": stamp,
                 "drafting_arm": body.drafting_arm,
                 "arm_attribution": "clinician_selected_not_independently_verified",
@@ -128,7 +128,7 @@ def register(
             if source is None:
                 raise HTTPException(404, "review_session_not_found")
             session = decode_proposal(con, source, eid)
-            if session["actor"] != str(actor.clinician_id):
+            if session["actor"] != str(actor.actor_id):
                 raise HTTPException(404, "review_session_not_found")
             existing = con.execute(
                 "SELECT * FROM review_metrics WHERE session=?", (str(sid),)

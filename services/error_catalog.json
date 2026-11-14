@@ -514,6 +514,58 @@
       "category": "availability",
       "message": "The request could not be completed. Review the current encounter and try again."
     },
+    "administrator_role_required": {
+      "category": "authorization",
+      "message": "Administrator access is required for this user management action."
+    },
+    "administrator_scope_required": {
+      "category": "authorization",
+      "message": "Administrators can manage workspace accounts but cannot access encounter content."
+    },
+    "assigned_clinician_not_allowed": {
+      "category": "validation",
+      "message": "Choose an assigned clinician only for a scribe or viewer account."
+    },
+    "assigned_clinician_not_found": {
+      "category": "not_found",
+      "message": "The assigned clinician is not available in this workspace."
+    },
+    "assigned_clinician_required": {
+      "category": "validation",
+      "message": "Choose a clinician to assign this scribe or viewer account."
+    },
+    "cannot_remove_current_administrator": {
+      "category": "conflict",
+      "message": "Sign in as another administrator before removing this account."
+    },
+    "last_administrator_required": {
+      "category": "conflict",
+      "message": "Keep at least one administrator in the workspace."
+    },
+    "membership_audit_unavailable": {
+      "category": "availability",
+      "message": "Workspace account changes are unavailable because their audit record could not be saved."
+    },
+    "membership_configuration_not_writable": {
+      "category": "availability",
+      "message": "Workspace account management is read-only in this installation."
+    },
+    "membership_configuration_unavailable": {
+      "category": "availability",
+      "message": "Workspace accounts are unavailable. Contact the installation administrator."
+    },
+    "physician_approval_required": {
+      "category": "authorization",
+      "message": "A physician must approve, amend, or remove this encounter."
+    },
+    "user_already_invited": {
+      "category": "conflict",
+      "message": "An invitation already exists for this email address."
+    },
+    "user_not_found": {
+      "category": "not_found",
+      "message": "The workspace account was not found."
+    },
     "approval_revoked": {
       "category": "conflict",
       "message": "This approval was revoked. Create and review a new note version before exporting."

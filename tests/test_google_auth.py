@@ -93,6 +93,78 @@ def test_google_session_cookie_csrf_roles_logout_and_replay(google_app):
     assert client.get("/v1/session").status_code == 401
 
 
+def test_administrator_manages_same_tenant_membership_and_audit(google_app):
+    client, app, path, member = google_app
+    member["role"] = "administrator"
+    member["user_id"] = str(uuid4())
+    physician = {
+        "email": "physician@example.org",
+        "tenant_id": member["tenant_id"],
+        "clinician_id": str(uuid4()),
+        "user_id": str(uuid4()),
+        "role": "physician",
+    }
+    path.write_text(json.dumps({"users": [member, physician]}), encoding="utf-8")
+    assert sign_in(client).status_code == 303
+    session = client.get("/v1/auth/session").json()
+    headers = {
+        "Origin": "https://scribe.example.org",
+        "X-CSRF-Token": session["csrf_token"],
+    }
+
+    listed = client.get("/v1/admin/users")
+    assert listed.status_code == 200
+    assert {row["email"] for row in listed.json()["users"]} == {
+        member["email"],
+        physician["email"],
+    }
+
+    invited = client.post(
+        "/v1/admin/users",
+        headers=headers,
+        json={
+            "email": " Scribe@Example.org ",
+            "role": "scribe",
+            "assigned_clinician_id": physician["clinician_id"],
+        },
+    )
+    assert invited.status_code == 201
+    created = invited.json()
+    assert created["email"] == "scribe@example.org"
+    assert created["role"] == "scribe"
+    assert created["user_id"] != created["clinician_id"]
+
+    audit = client.get("/v1/admin/users/audit")
+    assert audit.status_code == 200
+    assert audit.json()["events"][-1]["action"] == "user_invited"
+
+    removed = client.delete(f"/v1/admin/users/{created['user_id']}", headers=headers)
+    assert removed.status_code == 200
+    assert removed.json()["access_revoked"] is True
+    assert {row["email"] for row in client.get("/v1/admin/users").json()["users"]} == {
+        member["email"],
+        physician["email"],
+    }
+    assert (
+        client.get("/v1/admin/users/audit").json()["events"][-1]["action"]
+        == "user_removed"
+    )
+
+    cannot_remove_self = client.delete(
+        f"/v1/admin/users/{member['user_id']}", headers=headers
+    )
+    assert cannot_remove_self.status_code == 409
+    assert cannot_remove_self.json()["code"] == "cannot_remove_current_administrator"
+
+
+def test_non_administrator_cannot_manage_membership(google_app):
+    client, _, _, _ = google_app
+    assert sign_in(client).status_code == 303
+    response = client.get("/v1/admin/users")
+    assert response.status_code == 403
+    assert response.json()["code"] == "administrator_role_required"
+
+
 def test_state_binding_replay_and_cookie_flags(google_app):
     client, app, _, _ = google_app
     response = client.get("/v1/auth/login")

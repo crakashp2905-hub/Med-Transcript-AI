@@ -12,7 +12,7 @@ services:
       MED_TRANSCRIPT_MEMBERS_FILE: /run/config/members.json
     secrets: [google_client_secret]
     volumes:
-      - ${MED_TRANSCRIPT_MEMBERS_FILE:?Set the invitation file}:/run/config/members.json:ro
+      - ${MED_TRANSCRIPT_MEMBERS_FILE:?Set the invitation file}:/run/config/members.json:rw
     networks: [private, google-egress]
     mem_limit: 2g
     cpus: 2

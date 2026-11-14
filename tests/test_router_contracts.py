@@ -15,9 +15,9 @@ def contract_matches(actual, expected):
 
 def test_api_contract_survives_router_and_service_extraction(setup):
     client, _, _ = setup
-    previous_path = Path("evaluation/contracts/api-v1-compatible-v12.json")
+    previous_path = Path("evaluation/contracts/api-v1-compatible-v13.json")
     successor = json.loads(
-        Path("evaluation/contracts/api-v1-compatible-v13.json").read_text(
+        Path("evaluation/contracts/api-v1-compatible-v14.json").read_text(
             encoding="utf-8"
         )
     )
@@ -26,7 +26,7 @@ def test_api_contract_survives_router_and_service_extraction(setup):
         successor["supersedes"]["sha256"]
         == hashlib.sha256(previous_path.read_bytes()).hexdigest()
     )
-    assert successor["schema_version"] == "api_contract_successor_v13"
+    assert successor["schema_version"] == "api_contract_successor_v14"
     expected = successor["contract"]
     verifier_limit = expected["components"]["schemas"]["VerifyRequest"]["properties"][
         "fact_ids"
@@ -85,11 +85,11 @@ def test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail(setup):
     from services.api.authorization_policy import validate
 
     client, _, _ = setup
-    previous_policy = Path("evaluation/contracts/authorization-policy-v3.json")
-    policy_path = Path("evaluation/contracts/authorization-policy-v4.json")
+    previous_policy = Path("evaluation/contracts/authorization-policy-v4.json")
+    policy_path = Path("evaluation/contracts/authorization-policy-v5.json")
     expected = json.loads(policy_path.read_text())
     provenance = json.loads(
-        Path("evaluation/contracts/authorization-policy-v4.provenance.json").read_text()
+        Path("evaluation/contracts/authorization-policy-v5.provenance.json").read_text()
     )
     assert provenance["sha256"] == hashlib.sha256(policy_path.read_bytes()).hexdigest()
     assert provenance["supersedes"]["path"] == previous_policy.as_posix()
