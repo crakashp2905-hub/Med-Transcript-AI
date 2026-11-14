@@ -76,27 +76,29 @@ def test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail(setup):
     from services.api.authorization_policy import validate
 
     client, _, _ = setup
-    expected = json.loads(
-        Path("evaluation/contracts/authorization-policy-v2.json").read_text()
-    )
+    previous_policy = Path("evaluation/contracts/authorization-policy-v2.json")
+    policy_path = Path("evaluation/contracts/authorization-policy-v3.json")
+    expected = json.loads(policy_path.read_text())
     provenance = json.loads(
-        Path("evaluation/contracts/authorization-policy-v2.provenance.json").read_text()
+        Path("evaluation/contracts/authorization-policy-v3.provenance.json").read_text()
     )
+    assert provenance["sha256"] == hashlib.sha256(policy_path.read_bytes()).hexdigest()
+    assert provenance["supersedes"]["path"] == previous_policy.as_posix()
     assert (
-        provenance["sha256"]
-        == hashlib.sha256(
-            Path("evaluation/contracts/authorization-policy-v2.json").read_bytes()
-        ).hexdigest()
-    )
-    assert (
-        provenance["supersedes"]["path"]
-        == "evaluation/contracts/authorization-policy-v1.json"
+        provenance["supersedes"]["sha256"]
+        == hashlib.sha256(previous_policy.read_bytes()).hexdigest()
     )
     coverage = validate(client.app, expected)
     assert coverage["routes_checked"] >= 60
-    assert coverage["openapi_operations_checked"] == 60
+    expected_operations = sum(
+        row["path"].startswith(("/health", "/v1/"))
+        and row["method"]
+        in {"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"}
+        for row in expected
+    )
+    assert coverage["openapi_operations_checked"] == expected_operations
     assert coverage["authenticated_operations_checked"] >= 50
-    assert coverage["operation_schema_contracts_checked"] == 60
+    assert coverage["operation_schema_contracts_checked"] == expected_operations
     assert coverage["path_parameters_checked"] > 0
 
     @client.app.get("/v1/unreviewed-test-route")

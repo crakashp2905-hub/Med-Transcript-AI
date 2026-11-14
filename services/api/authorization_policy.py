@@ -6,7 +6,7 @@ import re
 PUBLIC = {"/health", "/v1/auth/config", "/v1/auth/login", "/v1/auth/callback"}
 DEVELOPMENT = {"/docs", "/redoc", "/openapi.json", "/docs/oauth2-redirect"}
 COOKIE_AUTH = {"/v1/auth/session", "/v1/auth/logout"}
-STATIC = {"/", "/assets"}
+STATIC = {"/", "/assets", "/investor-demo"}
 
 
 def has_identity(route):

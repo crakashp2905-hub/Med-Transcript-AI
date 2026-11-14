@@ -1,0 +1,446 @@
+[
+  {
+    "method": "GET",
+    "path": "/",
+    "policy": "public_static_application_only",
+    "optional_if_frontend_unbuilt": true
+  },
+  {
+    "method": "MOUNT",
+    "path": "/assets",
+    "policy": "public_static_application_only",
+    "optional_if_frontend_unbuilt": true
+  },
+  {
+    "method": "GET",
+    "path": "/docs",
+    "policy": "development_only_schema",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "HEAD",
+    "path": "/docs",
+    "policy": "development_only_schema",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/docs/oauth2-redirect",
+    "policy": "development_only_schema",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "HEAD",
+    "path": "/docs/oauth2-redirect",
+    "policy": "development_only_schema",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/health",
+    "policy": "public_auth_handshake_or_health",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/investor-demo",
+    "policy": "public_static_application_only",
+    "optional_if_frontend_unbuilt": true
+  },
+  {
+    "method": "GET",
+    "path": "/openapi.json",
+    "policy": "development_only_schema",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "HEAD",
+    "path": "/openapi.json",
+    "policy": "development_only_schema",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/redoc",
+    "policy": "development_only_schema",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "HEAD",
+    "path": "/redoc",
+    "policy": "development_only_schema",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/auth/callback",
+    "policy": "public_auth_handshake_or_health",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/auth/config",
+    "policy": "public_auth_handshake_or_health",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/auth/login",
+    "policy": "public_auth_handshake_or_health",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/auth/logout",
+    "policy": "manual_cookie_session_csrf",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/auth/session",
+    "policy": "manual_cookie_session_csrf",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/deletion-requests/{rid}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/demo",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/demo-cases",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/amendments",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/approvals",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/approvals/{aid}/revoke",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/audio/{upload_id}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/audio/{upload_id}/waveform",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/audit",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/audit-bundle",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/clinical-proposals/{pid}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/deletion-requests",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/draft-proposals",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/draft-proposals/{did}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/drafts",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/exports",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/exports/{xid}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/fact-proposals",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/facts",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/findings/{fid}/resolve",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/manual-transcripts",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/notes/{before}/compare/{after}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/notes/{nid}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "PATCH",
+    "path": "/v1/encounters/{eid}/notes/{nid}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/retranscriptions",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/review-sessions",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/review-sessions",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/review-sessions/{sid}/complete",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/semantic-checks",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/stream-uploads",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/stream-uploads",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/stream-uploads/{uid}/recovery",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/stream-uploads/{uid}/seal",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "PATCH",
+    "path": "/v1/encounters/{eid}/transcripts/{tid}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{eid}/transcripts/{tid}/speaker-roles",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/uploads",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/verification",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/versions",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{eid}/workspace",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{encounter_id}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{encounter_id}/audio-uploads",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{encounter_id}/audio-uploads/{upload_id}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/complete",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "PATCH",
+    "path": "/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "PUT",
+    "path": "/v1/encounters/{encounter_id}/audio-uploads/{upload_id}/content",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{encounter_id}/authorizations",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{encounter_id}/authorizations/{authorization_id}/withdraw",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{encounter_id}/processing-permission",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/encounters/{encounter_id}/transcriptions",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/encounters/{encounter_id}/transcripts/{version}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/jobs/{job_id}",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/jobs/{job_id}/cancel",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "POST",
+    "path": "/v1/jobs/{job_id}/retry",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/session",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/study-dashboard",
+    "policy": "authenticated_scoped_identity",
+    "optional_if_frontend_unbuilt": false
+  }
+]
