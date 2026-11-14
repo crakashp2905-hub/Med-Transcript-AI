@@ -1,0 +1,40 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-13"
+  ],
+  "source_commit": "eeb304fefddd10c1a4eec0720fd0d40292901ca8",
+  "captured_at_utc": "2026-11-14T07:45:13.929734+00:00",
+  "source_files": {
+    "evaluation/contracts/asset-deletion-graph-v1.json": "6ede1df9a398433fead7c6dc6dc37e944f2c6b141aa8cc60de98c77119341882",
+    "tests/test_asset_deletion_graph.py": "49f5f402ff0bfb4502edffbbf4a6bdb9ac4fecb31861a196dcd504dc09c8693f",
+    "services/maintenance.py": "a83e71ca8337285f50535df7db3be3d01199cf061a6d800d893efe93365cccf8"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_asset_deletion_graph.py",
+      "status": "pass",
+      "result": "1 passed"
+    },
+    {
+      "command": "ruff check tests/test_asset_deletion_graph.py; ruff format --check tests/test_asset_deletion_graph.py",
+      "status": "pass",
+      "result": "all checks passed; file formatted"
+    },
+    {
+      "command": "pytest -q tests/test_asset_deletion_graph.py tests/test_maintenance.py",
+      "status": "incomplete",
+      "result": "asset graph test passed before maintenance integration suite stalled; interrupted; no maintenance-suite pass claimed"
+    }
+  ],
+  "supported_claims": [
+    "The documented graph names local original/normalized/live-prefix audio, transcript, notes, preview cache, proposals, exports, checkpoints, authorizations, idempotency and audit metadata.",
+    "The graph describes legal-hold/approval gates and backup tombstone requirement."
+  ],
+  "limitations": [
+    "This is an inventory contract, not proof every physical copy is deleted.",
+    "Backup expiry, external copies, and operator key lifecycle remain outside local verification.",
+    "The maintenance integration suite stalled on Windows."
+  ],
+  "clinical_release_authorized": false
+}

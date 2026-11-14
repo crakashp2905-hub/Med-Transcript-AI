@@ -6615,12 +6615,12 @@
       "id": "MTA-13-13",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Create comprehensive asset-deletion graph across original/normalized/cropped audio, transcript, note, cache, export, live prefix and backup.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/contracts/asset-deletion-graph-v1.json", "evaluation/reports/master-task-mta-13-13-eeb304f.json"],
+      "source_commit": "eeb304fefddd10c1a4eec0720fd0d40292901ca8",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-13-eeb304f.json", "report_sha256": "3fed1f0e424ea1af07a572f0e5aac0484b1f3a3d8a2dbe5e5ecfc54da052960f", "check": "local_asset_deletion_graph_contract", "status": "pass"}],
+      "blocker": "Backup/external-copy deletion cannot be proven locally; maintenance integration suite stalled and requires a clean rerun."
     },
     {
       "id": "MTA-13-14",
