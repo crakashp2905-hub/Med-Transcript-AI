@@ -8583,14 +8583,21 @@
     },
     {
       "id": "MTA-17-02",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Produce reproducibility manifest with source SHA, frozen datasets, licenses, model digests, scripts and environment.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/repro_bundle.py",
+        "tests/test_repro_bundle.py",
+        "evaluation/reproducibility-pack-v3.json",
+        "evaluation/reports/mta-17-02-reproducibility-pack-v3.json"
+      ],
+      "source_commit": "6b1f05901d4996da09d6ff047e669bed6ba3ccfe",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-17-02-reproducibility-pack-v3.json","report_sha256":"9d43916e850bcfed8cb4ede402d0a33c28134f475f02c4af2e3b3fd031e6b97a","check":"repro_pack_v3","runtime_sha256":"b2768f27c842ef8b1bbc06aa513c7aea6251a5b881e71246ef60d0a86491e17f"}
+      ],
+      "blocker": "One manifest omits license metadata and five completed candidate reports lack model artifact digests; the pack reports each gap rather than filling it by inference."
     },
     {
       "id": "MTA-17-03",

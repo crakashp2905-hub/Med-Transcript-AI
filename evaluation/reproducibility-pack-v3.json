@@ -1,0 +1,398 @@
+{
+  "schema_version": "repro_bundle_v2",
+  "source_commit": "6b1f05901d4996da09d6ff047e669bed6ba3ccfe",
+  "worktree_clean": false,
+  "uncommitted_path_count": 21,
+  "datasets": [
+    {
+      "manifest": "evaluation/datasets/primock57-smoke-v1/manifest.json",
+      "manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+      "lock": "evaluation/datasets/primock57-smoke-v1/lock.json",
+      "lock_sha256": "f6a0e4a7388b2ae84f3da7818a118a4f1c57e255537a325fb8eb650ecc7bb214",
+      "dataset_id": "primock57-consultation01-six-utterance-smoke-v1",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "license": "CC-BY-4.0",
+      "data_class": "approved_public",
+      "split": "development_smoke_not_acceptance",
+      "case_count": 0,
+      "license_status": "declared_in_manifest"
+    },
+    {
+      "manifest": "evaluation/datasets/primock57-expanded-v1/manifest.json",
+      "manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+      "lock": "evaluation/datasets/primock57-expanded-v1/lock.json",
+      "lock_sha256": "946943146b44065304edf86f53276475e849f88fd60e171113cea4d5d56eceda",
+      "dataset_id": "primock57-20consultations-120clips-v1",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "license": "CC-BY-4.0",
+      "data_class": "approved_public",
+      "split": "new_consultation_group_development_validation_not_clinical_acceptance",
+      "case_count": 0,
+      "license_status": "declared_in_manifest"
+    },
+    {
+      "manifest": "evaluation/datasets/primock57-validation-v1/manifest.json",
+      "manifest_sha256": "39e123830ba2dcff73b5621f1a4f10cbf76cd1eb8a7c56654c6d3d40e4cdbac7",
+      "lock": "evaluation/datasets/primock57-validation-v1/lock.json",
+      "lock_sha256": "79677a08c2a1db2c9540a995ad9d97b8138734c28ff1601625195318393a1835",
+      "dataset_id": "primock57-consultations02-06-validation-v1",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "license": "CC-BY-4.0",
+      "data_class": "approved_public",
+      "split": "new_consultation_group_development_validation_not_clinical_acceptance",
+      "case_count": 0,
+      "license_status": "declared_in_manifest"
+    },
+    {
+      "manifest": "evaluation/datasets/primock57-full-v1/manifest.json",
+      "manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a",
+      "lock": "evaluation/datasets/primock57-full-v1/lock.json",
+      "lock_sha256": "92421644ce4d8319bfa31c620b3c3e7087faac80012d4333c5749d0b65e98900",
+      "dataset_id": "primock57-full-development-v1",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "license": "CC-BY-4.0",
+      "data_class": "approved_public",
+      "split": "untuned_full_encounter_development_not_acceptance",
+      "case_count": 3,
+      "license_status": "declared_in_manifest"
+    },
+    {
+      "manifest": "evaluation/datasets/primock57-full-expansion-v1/manifest.json",
+      "manifest_sha256": "712f0ced8a18523e93941f5ec92f5a6ef0e8617aff4e55c509c5964ff82698bf",
+      "lock": "evaluation/datasets/primock57-full-expansion-v1/lock.json",
+      "lock_sha256": "0f2959ab96233426f411d706be9153b9ac2dced54b64d216e5d7d5715048ddef",
+      "dataset_id": "primock57-full-expansion-development-v1",
+      "source_revision": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+      "license": "CC-BY-4.0",
+      "data_class": "approved_public",
+      "split": "untuned_full_encounter_development_not_acceptance",
+      "case_count": 5,
+      "license_status": "declared_in_manifest"
+    },
+    {
+      "manifest": "evaluation/datasets/meddistract-detailed-v1/manifest.json",
+      "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+      "lock": "evaluation/datasets/meddistract-detailed-v1/lock.json",
+      "lock_sha256": "e4b672ef43ecedf3a77bab7d32fd81e8f3605960ada47bb5acd959186c79b303",
+      "dataset_id": "meddistract-full-paired-development-v1",
+      "source_revision": "bcef38c2bc8404d52a2c66a799be778e28216102",
+      "license": "CC-BY-4.0",
+      "data_class": "approved_public",
+      "split": "development_not_independent_acceptance",
+      "case_count": 16,
+      "license_status": "declared_in_manifest"
+    },
+    {
+      "manifest": "evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json",
+      "manifest_sha256": "86e8046c377202194f2d8a11d7c2362611956ff435b31741594dec22a5e22901",
+      "lock": "evaluation/datasets/beccsv-synthetic-dev-v1/lock.json",
+      "lock_sha256": "cb7b7f574f60a307daa35159c27dbfc5f0845d4f5a0f557c47131d9e54472b6f",
+      "dataset_id": "beccsv-synthetic-dev-v1",
+      "source_revision": null,
+      "license": null,
+      "data_class": null,
+      "split": null,
+      "case_count": 8,
+      "license_status": "not_declared_in_manifest"
+    }
+  ],
+  "model_candidates": [
+    {
+      "candidate_id": "faster-whisper-large-v3",
+      "status": "completed",
+      "reason": null,
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "report": "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json",
+      "model_revision": "edaa852ec7e145841d8ffdb056a99866b5f0a478",
+      "profile_id": "large-v3-cpu-int8-eval-v1",
+      "profile_sha256": "41f08c86824b407aa6bc4aefdfe096da2d060d33e3b2e960c8298c1bd9526659",
+      "model_artifact_digests": {},
+      "model_digest_status": "model_artifact_digest_not_in_report",
+      "report_sha256": "aeff2c6fb8637c280229939fd7e3889ec8d8e543b6d3cfa08817ebcf5c9a0ffa"
+    },
+    {
+      "candidate_id": "google-medasr-greedy",
+      "status": "access_pending",
+      "reason": "Google model gate requires user approval/login; no HF credentials configured.",
+      "runtime_variant": null,
+      "report": null,
+      "model_revision": null,
+      "profile_id": null,
+      "profile_sha256": null,
+      "model_artifact_digests": {},
+      "model_digest_status": "unavailable_candidate_not_run"
+    },
+    {
+      "candidate_id": "google-medasr-approved-decoder",
+      "status": "access_pending",
+      "reason": "Same gated MedASR weights and gated 6-gram decoder; no approved access.",
+      "runtime_variant": null,
+      "report": null,
+      "model_revision": null,
+      "profile_id": null,
+      "profile_sha256": null,
+      "model_artifact_digests": {},
+      "model_digest_status": "unavailable_candidate_not_run"
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-en-5b",
+      "status": "access_pending",
+      "reason": "Hugging Face model gate requires user approval/login.",
+      "runtime_variant": null,
+      "report": null,
+      "model_revision": null,
+      "profile_id": null,
+      "profile_sha256": null,
+      "model_artifact_digests": {},
+      "model_digest_status": "unavailable_candidate_not_run"
+    },
+    {
+      "candidate_id": "eka-parrotlet-a-2.5-pro-english",
+      "status": "resource_preflight_blocked",
+      "reason": "Public BF16 weights total about 9.95 GB; reviewed canonical loader defaults to FP32 plus duplicate encoder loading, exceeding this 16 GB host physical RAM. No qualified CPU quantization provisioned.",
+      "runtime_variant": null,
+      "report": null,
+      "model_revision": null,
+      "profile_id": null,
+      "profile_sha256": null,
+      "model_artifact_digests": {},
+      "model_digest_status": "unavailable_candidate_not_run"
+    },
+    {
+      "candidate_id": "omi-med-stt-v1",
+      "status": "completed",
+      "reason": null,
+      "runtime_variant": "Official GGUF q8_0, omi-med-stt 0.2.1 patched parakeet.cpp CPU; text-only benchmark adapter",
+      "report": "evaluation/runs/primock57-smoke-v1/omi-med-stt-v1.json",
+      "model_revision": "30d74219feead34843fae59e855f740db78ed2bd",
+      "profile_id": "omi-v1-gguf-q8-cpu-v1",
+      "profile_sha256": "bf13378dee7768a3f8bd86b85f52370bb1d7c9fb0c7b0511aa9fb4e3b2582021",
+      "model_artifact_digests": {
+        "omi-med-stt-v1-q8_0.gguf": "c4f364a730df7aa9bb0714cda1b1ad5e3104331db9919bb0e2a379d0fb64dbab"
+      },
+      "model_digest_status": "artifact_digests_recorded",
+      "report_sha256": "0fa6873aeafe66abeba5990e7502282953ce68c15dffdf99765a45874bdbe61f"
+    },
+    {
+      "candidate_id": "multimed-whisper-small-english",
+      "status": "completed",
+      "reason": null,
+      "runtime_variant": "English source checkpoint converted to CTranslate2 INT8; CPU; two invalid-timestamp outputs counted as failed samples",
+      "report": "evaluation/runs/primock57-smoke-v1/multimed-whisper-small-english.json",
+      "model_revision": "fb15edd1dfc68810a7d0c75e6cfc73c3e5ed01c1",
+      "profile_id": "multimed-small-cpu-int8-v1",
+      "profile_sha256": "b3b014a163c5968fa5430198ace0ca40b8467459ddcc138eb52269b001623b57",
+      "model_artifact_digests": {},
+      "model_digest_status": "model_artifact_digest_not_in_report",
+      "report_sha256": "ea7473ae73bbadffe0a1d90de7ed6d51426692c11ecc5ab53c3218db92209f94"
+    },
+    {
+      "candidate_id": "whisper-small",
+      "status": "completed",
+      "reason": null,
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "report": "evaluation/runs/primock57-smoke-v1/whisper-small.json",
+      "model_revision": "536b0662742c02347bc0e980a01041f333bce120",
+      "profile_id": "small-cpu-int8-v1",
+      "profile_sha256": "566c3b316045584eb28ce7102c9c05aaef38a47818cd2626ada184f98e82b512",
+      "model_artifact_digests": {},
+      "model_digest_status": "model_artifact_digest_not_in_report",
+      "report_sha256": "624bcabe1bb40c4ae4f429d50e042d61f26eeae43db2ef912652e5120089210b"
+    },
+    {
+      "candidate_id": "distil-whisper-large-v3",
+      "status": "completed",
+      "reason": null,
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "report": "evaluation/runs/primock57-smoke-v1/distil-whisper-large-v3.json",
+      "model_revision": "c3058b475261292e64a0412df1d2681c06260fab",
+      "profile_id": "distil-large-v3-cpu-int8-v1",
+      "profile_sha256": "f1c9644ef49c78cd62282f3ca1fa182d326cd6866fc3bc183516c5c6c518aa65",
+      "model_artifact_digests": {},
+      "model_digest_status": "model_artifact_digest_not_in_report",
+      "report_sha256": "ca26b72a0ecf0f8efb1d682d220048e9f33d5205071d14890d4d0a33eb4f6c3e"
+    },
+    {
+      "candidate_id": "parakeet-tdt-0.6b-v2",
+      "status": "completed",
+      "reason": null,
+      "runtime_variant": "istupakov ONNX int8 export, onnx-asr 0.12.0 CPU",
+      "report": "evaluation/runs/primock57-smoke-v1/parakeet-tdt-0.6b-v2.json",
+      "model_revision": "0bbb45a3365852604aef28b538a8f066f4ccaa85",
+      "profile_id": "parakeet-v2-onnx-cpu-int8-v1",
+      "profile_sha256": "8385613288709264cef2dcd31a5f3bcc7620c9650b785e1f0ea1c09cc10f10d2",
+      "model_artifact_digests": {
+        "config.json": "666903c76b9798caf2c210afd4f6cd60b08a8dbf9800ec8d7a3bc0d2148ac466",
+        "decoder_joint-model.int8.onnx": "a449f49acd68979d418651dd2dcb737cc0f1bf0225e009e29ee326354edbf7d3",
+        "encoder-model.int8.onnx": "3e0581fda6ab843888b51e56d7ee78b6d5bc3237ec113af1f732d1d5286aa155",
+        "nemo128.onnx": "a9fde1486ebfcc08f328d75ad4610c67835fea58c73ba57e3209a6f6cf019e9f",
+        "vocab.txt": "ec182b70dd42113aff6c5372c75cac58c952443eb22322f57bbd7f53977d497d"
+      },
+      "model_digest_status": "artifact_digests_recorded",
+      "report_sha256": "a5fecf5ef78df7956eafc99a7c0453875faf6cd6ac060c6a1dfd37e31fbeae43"
+    },
+    {
+      "candidate_id": "canary-qwen-2.5b",
+      "status": "resource_preflight_blocked",
+      "reason": "Dependency resolution succeeded. Reviewed NeMo 3.0 SALM initializes FP32; conservative weights + checkpoint + 2 GiB runtime allowance estimate is 17.50 GB versus 16.91 GB physical RAM. Inference not attempted; no qualified lower-memory CPU variant or NVIDIA GPU.",
+      "runtime_variant": null,
+      "report": null,
+      "model_revision": null,
+      "profile_id": null,
+      "profile_sha256": null,
+      "model_artifact_digests": {},
+      "model_digest_status": "unavailable_candidate_not_run"
+    },
+    {
+      "candidate_id": "amazon-transcribe-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; AWS credentials not configured.",
+      "runtime_variant": null,
+      "report": null,
+      "model_revision": null,
+      "profile_id": null,
+      "profile_sha256": null,
+      "model_artifact_digests": {},
+      "model_digest_status": "unavailable_candidate_not_run"
+    },
+    {
+      "candidate_id": "deepgram-nova-3-medical",
+      "status": "disabled_by_user",
+      "reason": "User authorized no paid calls; Deepgram credentials not configured.",
+      "runtime_variant": null,
+      "report": null,
+      "model_revision": null,
+      "profile_id": null,
+      "profile_sha256": null,
+      "model_artifact_digests": {},
+      "model_digest_status": "unavailable_candidate_not_run"
+    },
+    {
+      "candidate_id": "faster-whisper-tiny.en",
+      "status": "completed",
+      "reason": null,
+      "runtime_variant": "faster-whisper 1.2.1 / CTranslate2, CPU INT8, four threads, beam five",
+      "report": "evaluation/runs/primock57-smoke-v1/faster-whisper-tiny.en.json",
+      "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+      "profile_id": "tiny-en-smoke-v1",
+      "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+      "model_artifact_digests": {},
+      "model_digest_status": "model_artifact_digest_not_in_report",
+      "report_sha256": "f2ce3f0172957f05acd3c2c67115ce2fc276f16288194997f02f11c438c9882c"
+    }
+  ],
+  "scripts": {
+    "services/repro_bundle.py": "7f7294fb0b9ca7b45c86845f3bc5dee787170c85b3423e84e7ebcba822e4d010",
+    "services/offline_acceptance.py": "55b3d1529ce777969f7a873d47abd086eea3ab771f1934dfbfcc228c0287e945",
+    "services/engineering_status.py": "d5b6c6c0831fa0b1872c275678272ceb23b3b8c2b653e04151bf3f0bf169d3fe",
+    "services/benchmark_ranking.py": "7e67918f19fd0a8aff8bb9b1ae38600546a2bd4011e0848503473bf3642ecb75",
+    "tests/test_repro_bundle.py": "58c18a9e9a34365b161e2afa48ac76de844057ff1fb88ed9b74c7f275b70f3a6",
+    "tests/test_benchmark_ranking.py": "cd2c59f206f991878907ac0c24f5c0dd9ee42032f3c31b88482f151cb4ef9b72"
+  },
+  "environment": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "fastapi": "0.136.1",
+      "pydantic": "2.12.5",
+      "uvicorn": "0.47.0",
+      "pytest": "9.0.3",
+      "ruff": "0.15.13"
+    },
+    "pyproject_sha256": "19b98099bf412671a533fc8656001ae39fdb0d87dd85189e473290c44c5d291e",
+    "constraints_sha256": "7a095076353b028d4c3d282fe9665ad5c2fd50dfbecbfc8f92cffa755070cc2e"
+  },
+  "source_code_sha256": {
+    "services/evaluation.py": "055d95a46640662980c5c7fd833c6d7fb0379ede85aebf292d5bf2b1cc98e913",
+    "services/evaluation_envelope.py": "25a831ff30d3aed04696f5c5133ebf98f501a434f9c295691636393ed669f10f",
+    "services/evaluation_metrics.py": "5f5447886256633112f25a9f7e5f1a0e133ca874eb45493968c2450deac0293b",
+    "services/asr/subgroup_metrics.py": "d45ab48dc681810aade0c8a95aaff4417ee26aad65b98147e85a2a7de09993f0",
+    "services/asr/pareto.py": "da0075291db3b389674c22848b8f4132dcc9cf9d5ffb8fac72a759191f274bb7",
+    "services/benchmark_ranking.py": "7e67918f19fd0a8aff8bb9b1ae38600546a2bd4011e0848503473bf3642ecb75"
+  },
+  "commands": [
+    "python -m pytest -q tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py tests/test_asr_subgroup_metrics.py tests/test_benchmark_ranking.py",
+    "python -m services.offline_acceptance",
+    "python -m services.engineering_status",
+    "python -m services.benchmark_ranking --out evaluation/leaderboard-refresh-vN.json --supersedes evaluation/leaderboard-eval-v2.json",
+    "python -m services.repro_bundle --output evaluation/reproducibility-pack-vN.json"
+  ],
+  "artifacts": [
+    {
+      "path": "pyproject.toml",
+      "sha256": "19b98099bf412671a533fc8656001ae39fdb0d87dd85189e473290c44c5d291e"
+    },
+    {
+      "path": "constraints-ci.txt",
+      "sha256": "7a095076353b028d4c3d282fe9665ad5c2fd50dfbecbfc8f92cffa755070cc2e"
+    },
+    {
+      "path": "evaluation/reports/engineering-baseline.json",
+      "sha256": "69682620f146583a1b1c7d747ae990b0412485876d53c63fd6d68e0cdd8890b3"
+    },
+    {
+      "path": "evaluation/reports/engineering-task-status.json",
+      "sha256": "49ea0a8d553cc9f19d968a184569aa0f98b7239d437e80dc86e163b7c864f383"
+    },
+    {
+      "path": "docs/demo-runbook-offline.md",
+      "sha256": "b0dd9d972f8c0babbda8b8c3de34fc5c77baaa7faec8a4a51fb00d253155ffbc"
+    },
+    {
+      "path": "evaluation/master-task-ledger.json",
+      "sha256": "c0b689d8f8c0dbcb97a1f206dbfeb2e09b437634232f62b6d870d4726c2aa260"
+    },
+    {
+      "path": "evaluation/benchmark-ledger.json",
+      "sha256": "125092be4ddbc833e4b9badac96d964c72597e26bd327c2678429e0797b87430"
+    },
+    {
+      "path": "evaluation/detailed-suite-v7.json",
+      "sha256": "288de63609ad125c5f034a6bccdc968e1dcd52313f6f7cc85f4b146acda8e8c4"
+    },
+    {
+      "path": "evaluation/leaderboard-eval-v2.json",
+      "sha256": "e6a85d08929fb82904bb44ef0f3dfa80dcf246eef3ca5450924abc236222dfad"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json",
+      "sha256": "aeff2c6fb8637c280229939fd7e3889ec8d8e543b6d3cfa08817ebcf5c9a0ffa"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/omi-med-stt-v1.json",
+      "sha256": "0fa6873aeafe66abeba5990e7502282953ce68c15dffdf99765a45874bdbe61f"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/multimed-whisper-small-english.json",
+      "sha256": "ea7473ae73bbadffe0a1d90de7ed6d51426692c11ecc5ab53c3218db92209f94"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/whisper-small.json",
+      "sha256": "624bcabe1bb40c4ae4f429d50e042d61f26eeae43db2ef912652e5120089210b"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/distil-whisper-large-v3.json",
+      "sha256": "ca26b72a0ecf0f8efb1d682d220048e9f33d5205071d14890d4d0a33eb4f6c3e"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/parakeet-tdt-0.6b-v2.json",
+      "sha256": "a5fecf5ef78df7956eafc99a7c0453875faf6cd6ac060c6a1dfd37e31fbeae43"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/faster-whisper-tiny.en.json",
+      "sha256": "f2ce3f0172957f05acd3c2c67115ce2fc276f16288194997f02f11c438c9882c"
+    }
+  ],
+  "negative_results_preserved": true,
+  "model_free": true,
+  "downloads_attempted": 0,
+  "paid_calls": 0,
+  "clinical_release": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
+  "real_patient_release_authorized": false,
+  "limitations": [
+    "Benchmark manifests and report hashes reproduce development evidence only.",
+    "No independent clinical annotation cohort, qualified human study, or safety validation is included.",
+    "Missing, gated, paid and resource-blocked model results remain unavailable and are not imputed.",
+    "Worktree changes are reported by count; this bundle hashes only the listed committed and tracked artifacts."
+  ]
+}
