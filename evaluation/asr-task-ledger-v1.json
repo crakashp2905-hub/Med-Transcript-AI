@@ -596,12 +596,17 @@
       "priority": "P0",
       "requirement": "Preserve the pinned faster-whisper application decoder as the deterministic operational baseline. **",
       "acceptance": "** Profile hash and current API contract regressions pass unchanged.",
-      "status": "PARTIAL",
+      "status": "EVIDENCE_RECORDED",
       "progress_evidence": [
         {
           "line": 664,
           "text": "- **MTA-ASR-D01:** The operational application path remains the pinned Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are included in runtime receipts, and the adapter uses deterministic decoding options (`temperature=0`, VAD off, no previous-text conditioning). The backend contract regression checks native segment timestamps, profile hash, and unsupported confidence. No alternate decoder was promoted. This records the preserved contract; exact deployment profile regressions still need to run on the target deployment host. - **MTA-ASR-D05:** Partial. The pinned Faster Whisper adapter now preserves its native winning-sequence token IDs and segment average log probability in the immutable transcript. The receipt explicitly labels this as one-best decoder evidence, with n_best_supported=false and calibrated=false; it is not a confidence estimate. Omi and Parakeet continue to declare n-best/confidence unsupported. Backend and transcript regressions validate native meaning and reject invalid scores; see tests/test_asr_decoder_evidence.py and tests/test_asr_optional_runtime_dependencies.py. Multiple hypotheses and calibrated uncertainty remain unavailable. - **MTA-ASR-I15:** Research summary and paper section are present in `docs/asr-rnd-research-section.md`, covering the hypothesis, method, baselines, negative findings, novelty limits, ablation gaps, ethics and reproducibility pointers. No novel clinical acoustic reranking claim is made; related-work comparison and the full matched-compute ablation matrix remain open.",
           "status_basis": "The operational application path remains the pinned Faster Whisper 1.2.1 adapter. `ASRProfile` freezes decoder configuration (`beam_size=5`, English, CPU INT8 by default), profile/artifact hashes are included in runtime receipts, and the adapter uses deterministic decoding options (`temperature=0`, VAD off, no previous-text conditioning). The backend contract regression checks native segment timestamps, profile hash, and unsupported confidence. No alternate decoder was promoted. This records the preserved contract; exact deployment profile regressions still need to run on the target deployment host. - **MTA-ASR-D05:** Partial. The pinned Faster Whisper adapter now preserves its native winning-sequence token IDs and segment average log probability in the immutable transcript. The receipt explicitly labels this as one-best decoder evidence, with n_best_supported=false and calibrated=false; it is not a confidence estimate. Omi and Parakeet continue to declare n-best/confidence unsupported. Backend and transcript regressions validate native meaning and reject invalid scores; see tests/test_asr_decoder_evidence.py and tests/test_asr_optional_runtime_dependencies.py. Multiple hypotheses and calibrated uncertainty remain unavailable. - **MTA-ASR-I15:** Research summary and paper section are present in `docs/asr-rnd-research-section.md`, covering the hypothesis, method, baselines, negative findings, novelty limits, ablation gaps, ethics and reproducibility pointers. No novel clinical acoustic reranking claim is made; related-work comparison and the full matched-compute ablation matrix remain open."
+        },
+        {
+          "line": 880,
+          "text": "Operational decoder contract regressions: tests/test_asr_backend_contract.py, tests/test_asr_decoder_evidence.py, and tests/test_runtime_profile_matrix.py: 9 passed. They preserve deterministic Faster Whisper decoding, pinned runtime/profile/artifact receipts, native segment timestamp semantics, and truthful unsupported n-best/confidence declarations. The local tiny.en profile used in the matched run is pinned to faster-whisper 1.2.1 with CPU INT8/beam 5 and artifact digest 26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f. This is engineering contract evidence; no profile passes the independent 5% WER or clinical-safety admission gates, and target deployment hardware remains unvalidated.",
+          "status_basis": "Operational decoder contract regressions: tests/test_asr_backend_contract.py, tests/test_asr_decoder_evidence.py, and tests/test_runtime_profile_matrix.py: 9 passed. They preserve deterministic Faster Whisper decoding, pinned runtime/profile/artifact receipts, native segment timestamp semantics, and truthful unsupported n-best/confidence declarations. The local tiny.en profile used in the matched run is pinned to faster-whisper 1.2.1 with CPU INT8/beam 5 and artifact digest 26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f. This is engineering contract evidence; no profile passes the independent 5% WER or clinical-safety admission gates, and target deployment hardware remains unvalidated."
         }
       ],
       "completion_claim": false
@@ -1633,8 +1638,8 @@
     }
   ],
   "status_counts": {
-    "EVIDENCE_RECORDED": 29,
-    "PARTIAL": 58,
+    "EVIDENCE_RECORDED": 30,
+    "PARTIAL": 57,
     "NOT_RUN": 2,
     "BLOCKED_MISSING_RESOURCE": 5,
     "FAIL": 1
