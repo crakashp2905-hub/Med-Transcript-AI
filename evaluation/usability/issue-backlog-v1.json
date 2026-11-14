@@ -1,0 +1,85 @@
+{
+  "schema_version": "usability_issue_backlog_v1",
+  "source_commit": "b893c99589f8409af524b4bee6117bd167dd16cb",
+  "evidence_class": "scripted_local_synthetic_review",
+  "human_participants": 0,
+  "screenshots": [
+    "evaluation/usability/artifacts/login-desktop.png",
+    "evaluation/usability/artifacts/workspace-desktop.png",
+    "evaluation/usability/artifacts/source-mobile.png"
+  ],
+  "items": [
+    {
+      "id": "UX-001",
+      "severity": "P1",
+      "status": "open",
+      "summary": "Synthetic demo transcript has no playable source audio",
+      "impacted_user_story": "As an investor or reviewer, I need to play the source audio from a transcript segment or evidence citation so I can see how source-grounded review works.",
+      "observed_state": "The synthetic workspace displays \u201cSource playback is unavailable.\u201d Text turns remain visible, but audio-to-transcript navigation cannot be demonstrated in this flow.",
+      "reproduction_steps": [
+        "Start the offline synthetic browser fixture.",
+        "Open the workspace and choose Open synthetic example.",
+        "Go to Source & transcript.",
+        "Inspect the player and try to activate a source turn."
+      ],
+      "screenshot": "evaluation/usability/artifacts/workspace-desktop.png",
+      "source_refs": [
+        "apps/clinician-web/src/SourceContext.tsx",
+        "apps/clinician-web/e2e/usability-audit.spec.ts"
+      ],
+      "acceptance_tests": [
+        "The synthetic demo fixture supplies a valid local audio asset bound to its transcript version.",
+        "Play source from a transcript turn and from an evidence citation; assert the audio currentTime enters the cited source interval.",
+        "When audio is missing or invalid, display a recovery action and preserve the transcript without implying playback succeeded."
+      ]
+    },
+    {
+      "id": "UX-002",
+      "severity": "P2",
+      "status": "open",
+      "summary": "Mobile source review requires a long scroll through repeated turn controls",
+      "impacted_user_story": "As a clinician reviewing a long encounter on a narrow display, I need to move between source, correction, and note review without losing my place.",
+      "observed_state": "The captured 390 px source screen is a tall single column with repeated per-turn actions followed by source review and walkthrough panels; the save action appears near the end of the turn list.",
+      "reproduction_steps": [
+        "Set viewport to 390 by 844.",
+        "Open the synthetic example and select Source & transcript.",
+        "Scroll through the source turns to reach source review and save.",
+        "Return to an earlier turn and note the lost vertical position."
+      ],
+      "screenshot": "evaluation/usability/artifacts/source-mobile.png",
+      "source_refs": [
+        "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+        "apps/clinician-web/src/App.tsx"
+      ],
+      "acceptance_tests": [
+        "Add accessible section navigation or a persistent source-review action for narrow viewports.",
+        "A Playwright test reaches the source-review form and save action from the top-level workflow navigation without scrolling through every source-turn action.",
+        "Retain all source turns and correction controls; verify no horizontal overflow at 390 px."
+      ]
+    },
+    {
+      "id": "UX-003",
+      "severity": "P2",
+      "status": "open",
+      "summary": "Keyboard users have no skip link past the encounter sidebar",
+      "impacted_user_story": "As a keyboard or screen-reader user, I need to skip repeated encounter navigation and reach the main review content directly.",
+      "observed_state": "The application shell renders the sidebar before the main landmark and has no skip-to-main link in the reviewed source.",
+      "reproduction_steps": [
+        "Open an authenticated workspace.",
+        "Use only Tab from the start of the document.",
+        "Observe focus traversing sidebar actions before the main review region."
+      ],
+      "screenshot": "evaluation/usability/artifacts/workspace-desktop.png",
+      "source_refs": [
+        "apps/clinician-web/src/App.tsx"
+      ],
+      "acceptance_tests": [
+        "Add a visible-on-focus skip link that targets the main landmark.",
+        "Playwright asserts the skip link is the first keyboard stop in the workspace and Enter moves focus to main content.",
+        "Verify keyboard focus remains visible at desktop and mobile viewports."
+      ]
+    }
+  ],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false
+}

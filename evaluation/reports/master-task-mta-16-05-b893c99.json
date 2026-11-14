@@ -1,0 +1,63 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-16-05",
+  "status": "pass",
+  "source_commit": "b893c99589f8409af524b4bee6117bd167dd16cb",
+  "captured_at_utc": "2026-11-14T14:49:23+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "node": "v22.16.0"
+  },
+  "source_files": {
+    "apps/clinician-web/e2e/usability-audit.spec.ts": "9c1815563436c5b71f401963f90d95a255cb18dc192077faa185bb580e6b782f",
+    "apps/clinician-web/playwright.synthetic.json": "d92bfd38555a66d6bbe3d4ed0e855c9e800c13f1fa983e8dda117da477b78964",
+    "docs/product/usability-heuristic-audit-v1.md": "ac9b1c661f056f6ea167f887ee6952af939529c184583f0d42c5c761c0583b97",
+    "tests/test_playwright_manifest.py": "282185ebc830e67b370746b390f92ed9646ba4b664b2686bcdcc045a8644fec5",
+    "tests/test_usability_audit_artifacts.py": "7ff0c6a093dc0070e091d71509eec4f557af852b10f1c11497ae9a8d85468051",
+    "evaluation/usability/heuristic-audit-v1.json": "f4a74e53d2ef3ce4ee9e8934db2541bfb9f1f3c6bf4189881c15577dfc9a54c8",
+    "evaluation/usability/issue-backlog-v1.json": "6868e0ad3be5d486736d0a067c24082ad8021b0146e892b446785845974e7099",
+    "evaluation/usability/artifacts/browser-observations.json": "4bd01fd267d3fd7db44ac8ca2ea56cb1aed782057a00fd793f07dabb10c320f3",
+    "evaluation/usability/artifacts/login-desktop.png": "2ebe7e45214a8346ef5d77b9a6f27cbad96174f6a9d5475a3d041168034ce674",
+    "evaluation/usability/artifacts/workspace-desktop.png": "5802bedb4ee27696547fd2590c75c0dadaf0da1ced99c48aaf511bc574f5062d",
+    "evaluation/usability/artifacts/source-mobile.png": "d334afdd1c2b77bdb23c63c9f8b9cf03259270f89973ea18e8e246c1e9315636"
+  },
+  "checks": {
+    "usability_browser_capture": {
+      "status": "pass",
+      "result": "1 passed; desktop and 390 px mobile captures; 67 visible controls named; no horizontal overflow or page errors",
+      "command": "npx --offline playwright test e2e/usability-audit.spec.ts (local scripted fixture)"
+    },
+    "usability_artifact_validation": {
+      "status": "pass",
+      "result": "3 passed",
+      "command": "python -m pytest -q tests/test_usability_audit_artifacts.py tests/test_playwright_manifest.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check tests/test_usability_audit_artifacts.py tests/test_playwright_manifest.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "files already formatted",
+      "command": "python -m ruff format --check tests/test_usability_audit_artifacts.py tests/test_playwright_manifest.py"
+    },
+    "heuristic_audit_coverage": {
+      "status": "pass",
+      "result": "Validated by tests/test_usability_audit_artifacts.py"
+    }
+  },
+  "result": {
+    "check": "heuristic_audit_coverage",
+    "detail": "All six requested heuristic dimensions were documented with scripted evidence and bounded limitations."
+  },
+  "limitations": [
+    "This audit is a scripted local synthetic review, not a human usability study or clinician validation.",
+    "No formal WCAG conformance certification or third-party accessibility audit was performed.",
+    "The source playback finding describes the observed synthetic demo path; root cause and remediation are not yet verified."
+  ],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "runtime_sha256": "c415f974aa98f14ebb0c239c1bf1ad3280d88670145a944679791eb08a15b5b5"
+}

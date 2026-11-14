@@ -8276,22 +8276,59 @@
       "id": "MTA-16-05",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Run a usability heuristic audit across learnability, discoverability, consistency, feedback, error recovery and accessibility.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "apps/clinician-web/e2e/usability-audit.spec.ts",
+        "docs/product/usability-heuristic-audit-v1.md",
+        "tests/test_usability_audit_artifacts.py",
+        "evaluation/usability/heuristic-audit-v1.json",
+        "evaluation/usability/artifacts/browser-observations.json",
+        "evaluation/usability/artifacts/login-desktop.png",
+        "evaluation/usability/artifacts/workspace-desktop.png",
+        "evaluation/usability/artifacts/source-mobile.png",
+        "apps/clinician-web/playwright.synthetic.json",
+        "tests/test_playwright_manifest.py"
+      ],
+      "source_commit": "b893c99589f8409af524b4bee6117bd167dd16cb",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-05-b893c99.json",
+          "report_sha256": "a1bea3a64b7aedb2a589249a2cb03db1540c79c1ef3dc5882a187bae7c176d47",
+          "check": "heuristic_audit_coverage",
+          "status": "pass",
+          "detail": "All six requested heuristic dimensions documented with scripted evidence."
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-16-06",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Generate usability issue backlog with severity, reproduction steps, impacted user story, screenshots and acceptance tests.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "apps/clinician-web/e2e/usability-audit.spec.ts",
+        "docs/product/usability-heuristic-audit-v1.md",
+        "tests/test_usability_audit_artifacts.py",
+        "evaluation/usability/heuristic-audit-v1.json",
+        "evaluation/usability/artifacts/browser-observations.json",
+        "evaluation/usability/artifacts/login-desktop.png",
+        "evaluation/usability/artifacts/workspace-desktop.png",
+        "evaluation/usability/artifacts/source-mobile.png",
+        "evaluation/usability/issue-backlog-v1.json"
+      ],
+      "source_commit": "b893c99589f8409af524b4bee6117bd167dd16cb",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-06-b893c99.json",
+          "report_sha256": "f7fd783de60ed7ce6ac55c0284e99b6abb08977fb56da526257bbc758fd5b4e6",
+          "check": "usability_issue_backlog",
+          "status": "pass",
+          "detail": "Three actionable issues include severity, user story, reproduction, screenshots, and acceptance checks."
+        }
+      ],
       "blocker": null
     },
     {

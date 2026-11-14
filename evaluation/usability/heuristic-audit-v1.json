@@ -1,0 +1,100 @@
+{
+  "schema_version": "usability_heuristic_audit_v1",
+  "source_commit": "b893c99589f8409af524b4bee6117bd167dd16cb",
+  "captured_at_utc": "2026-11-14T14:48:41+00:00",
+  "method": {
+    "evidence_class": "scripted_local_synthetic_review",
+    "human_participants": 0,
+    "automated_browser_run": "apps/clinician-web/e2e/usability-audit.spec.ts",
+    "viewports_px": [
+      {
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "scope": "Source inspection and scripted browser observation. No user interviews, clinician observations, or clinical validation."
+  },
+  "screenshots": [
+    "evaluation/usability/artifacts/login-desktop.png",
+    "evaluation/usability/artifacts/workspace-desktop.png",
+    "evaluation/usability/artifacts/source-mobile.png"
+  ],
+  "screenshot_sha256": {
+    "evaluation/usability/artifacts/login-desktop.png": "2ebe7e45214a8346ef5d77b9a6f27cbad96174f6a9d5475a3d041168034ce674",
+    "evaluation/usability/artifacts/workspace-desktop.png": "5802bedb4ee27696547fd2590c75c0dadaf0da1ced99c48aaf511bc574f5062d",
+    "evaluation/usability/artifacts/source-mobile.png": "d334afdd1c2b77bdb23c63c9f8b9cf03259270f89973ea18e8e246c1e9315636"
+  },
+  "browser_observations_path": "evaluation/usability/artifacts/browser-observations.json",
+  "browser_observations_sha256": "4bd01fd267d3fd7db44ac8ca2ea56cb1aed782057a00fd793f07dabb10c320f3",
+  "observations": [
+    {
+      "heuristic": "learnability",
+      "rating": "strength",
+      "observation": "The encounter header shows a three-step source, note, and approval flow; a guided walkthrough is available.",
+      "evidence": [
+        "apps/clinician-web/src/App.tsx",
+        "evaluation/usability/artifacts/workspace-desktop.png"
+      ],
+      "finding_ids": []
+    },
+    {
+      "heuristic": "discoverability",
+      "rating": "needs_improvement",
+      "observation": "On mobile the source turn cards, correction controls, source review form, and preparation panels form a long single-column page; finding UX-002 requests shorter paths to the current review action.",
+      "evidence": [
+        "evaluation/usability/artifacts/source-mobile.png"
+      ],
+      "finding_ids": [
+        "UX-002"
+      ]
+    },
+    {
+      "heuristic": "consistency",
+      "rating": "strength",
+      "observation": "Source and note versions are identified, the workflow step labels remain visible, and approval is presented as a separate step.",
+      "evidence": [
+        "apps/clinician-web/src/App.tsx",
+        "evaluation/usability/artifacts/workspace-desktop.png"
+      ],
+      "finding_ids": []
+    },
+    {
+      "heuristic": "feedback",
+      "rating": "needs_improvement",
+      "observation": "The demo clearly reports that source playback is unavailable, but this prevents an investor or reviewer from validating the transcript against audio in this synthetic encounter.",
+      "evidence": [
+        "evaluation/usability/artifacts/workspace-desktop.png"
+      ],
+      "finding_ids": [
+        "UX-001"
+      ]
+    },
+    {
+      "heuristic": "error_recovery",
+      "rating": "strength",
+      "observation": "The recovery banner announces offline, permission, partial-result, and unsaved-edit states using status or alert semantics and provides recovery actions.",
+      "evidence": [
+        "apps/clinician-web/src/RecoveryBanner.tsx"
+      ],
+      "finding_ids": []
+    },
+    {
+      "heuristic": "accessibility",
+      "rating": "needs_improvement",
+      "observation": "The scripted audit found 67 visible controls, zero unnamed controls, no mobile horizontal overflow, and no page errors. Source order begins with the sidebar before main content, and no skip-to-main link was found in the reviewed shell.",
+      "evidence": [
+        "evaluation/usability/artifacts/browser-observations.json",
+        "apps/clinician-web/src/App.tsx"
+      ],
+      "finding_ids": [
+        "UX-003"
+      ]
+    }
+  ],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false
+}
