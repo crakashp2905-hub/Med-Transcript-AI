@@ -142,5 +142,7 @@ def test_matched_ablation_rejects_model_or_compute_budget_changes():
 
     over_budget = _arms()
     over_budget[0]["wall_seconds"] = 3601
-    with pytest.raises(ValueError, match="ablation_arm_wall_time_outside_common_budget"):
+    with pytest.raises(
+        ValueError, match="ablation_arm_wall_time_outside_common_budget"
+    ):
         summarize_matched_ablation(COHORT, over_budget)

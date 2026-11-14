@@ -133,7 +133,10 @@ def test_stitch_fails_closed_when_source_coverage_ledger_is_missing_or_forged():
         {"window_id": window["window_id"], "text": "spoken words"}
         for window in plan["windows"]
     ]
-    incomplete = {**plan, "coverage_ledger": {**plan["coverage_ledger"], "complete": False}}
+    incomplete = {
+        **plan,
+        "coverage_ledger": {**plan["coverage_ledger"], "complete": False},
+    }
     with pytest.raises(ValueError, match="complete_source_coverage_ledger_required"):
         stitch_window_outputs(incomplete, outputs)
 

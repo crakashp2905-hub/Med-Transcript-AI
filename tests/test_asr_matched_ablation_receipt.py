@@ -10,8 +10,7 @@ REPORT_SHA256 = "12c074f9029f68f4882aa455b320e05e9c182b0e1928185275942a26e6a702c
 
 def _reference(case):
     return " ".join(
-        re.sub(r"<[^>]+>", "", turn["reference"])
-        for turn in case["reference_turns"]
+        re.sub(r"<[^>]+>", "", turn["reference"]) for turn in case["reference_turns"]
     )
 
 
@@ -26,9 +25,14 @@ def test_matched_ablation_receipt_recomputes_all_arms_and_failure_deletions():
     assert report["clinical_acceptance"] is False
     assert report["automatic_promotion"] is False
     assert report["bindings"]["manifest_sha256"] == suite["manifest_sha256"]
-    assert report["bindings"]["runner_sha256"] == report["bindings"][
-        "source_sha256"
-    ][str((ROOT / "services/asr/matched_ablation_runner.py").resolve()).replace("\\", "/")]
+    assert (
+        report["bindings"]["runner_sha256"]
+        == report["bindings"]["source_sha256"][
+            str((ROOT / "services/asr/matched_ablation_runner.py").resolve()).replace(
+                "\\", "/"
+            )
+        ]
+    )
     assert report["comparison"]["sample_count"] == 16
     assert set(report["arm_outputs"]) == set(report["comparison"]["arms"])
     expected_cases = {case["group_id"]: case for case in manifest["cases"]}
@@ -54,17 +58,15 @@ def test_matched_ablation_receipt_recomputes_all_arms_and_failure_deletions():
         assert summary["normalized_edits"] == sum(
             row["normalized_edits"] for row in rows
         )
-        assert summary["reference_words"] == sum(
-            row["reference_words"] for row in rows
+        assert summary["reference_words"] == sum(row["reference_words"] for row in rows)
+        assert (
+            summary["normalized_wer"]
+            == summary["normalized_edits"] / summary["reference_words"]
         )
-        assert summary["normalized_wer"] == summary["normalized_edits"] / summary[
-            "reference_words"
-        ]
     assert report["comparison"]["arms"]["vad_only"]["failed_samples"] == 2
     assert report["comparison"]["arms"]["repair_only"]["failed_samples"] == 1
     assert all(
-        arm["normalized_wer"] > 0.05
-        for arm in report["comparison"]["arms"].values()
+        arm["normalized_wer"] > 0.05 for arm in report["comparison"]["arms"].values()
     )
 
 
@@ -81,11 +83,11 @@ def test_matched_terminology_arm_records_positive_and_negative_term_outcomes():
     )
     term = lexicon["entries"][0]["term"]
     pattern = re.compile(rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])", re.I)
-    references = {
-        case["group_id"]: _reference(case) for case in manifest["cases"]
-    }
+    references = {case["group_id"]: _reference(case) for case in manifest["cases"]}
     positive_ids = {
-        group_id for group_id, reference in references.items() if pattern.search(reference)
+        group_id
+        for group_id, reference in references.items()
+        if pattern.search(reference)
     }
     negative_ids = set(references) - positive_ids
     rows = {

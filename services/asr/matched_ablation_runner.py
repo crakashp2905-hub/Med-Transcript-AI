@@ -48,8 +48,7 @@ ENERGY_VAD_CONFIG = {
 
 def _reference(case):
     return " ".join(
-        re.sub(r"<[^>]+>", "", turn["reference"])
-        for turn in case["reference_turns"]
+        re.sub(r"<[^>]+>", "", turn["reference"]) for turn in case["reference_turns"]
     )
 
 
@@ -111,7 +110,9 @@ def _decode(model, pcm, start_frame, end_frame, *, beam_size, hotwords=None):
 
 
 def _risk_repair(model, pcm, segments, *, beam_size):
-    risk_segments = [segment for segment in segments if REPAIR_RISK.search(segment["text"])]
+    risk_segments = [
+        segment for segment in segments if REPAIR_RISK.search(segment["text"])
+    ]
     selected = risk_segments[:MAX_REPAIRS_PER_CASE]
     replaced = []
     for segment in selected:
@@ -176,7 +177,9 @@ def _run_case(model, case, audio_path, arm_id, beam_size, hotwords, vad_profile)
     return {
         "group_id": case["group_id"],
         "audio_sha256": case["audio_sha256"],
-        "reference_sha256": hashlib.sha256(_reference(case).encode("utf-8")).hexdigest(),
+        "reference_sha256": hashlib.sha256(
+            _reference(case).encode("utf-8")
+        ).hexdigest(),
         "condition": case["condition"],
         "foreground_id": case["foreground_id"],
         "donor_id": case.get("donor_id"),
@@ -200,9 +203,10 @@ def _profile_and_manifest(suite_path, profile_file, profile_id):
     if file_sha256(manifest_path) != suite["manifest_sha256"]:
         raise ValueError("ablation_manifest_hash_mismatch")
     lock_path = manifest_path.parent / "lock.json"
-    if json.loads(lock_path.read_text(encoding="utf-8"))["manifest_sha256"] != suite[
-        "manifest_sha256"
-    ]:
+    if (
+        json.loads(lock_path.read_text(encoding="utf-8"))["manifest_sha256"]
+        != suite["manifest_sha256"]
+    ):
         raise ValueError("ablation_manifest_lock_mismatch")
     reservation = json.loads(
         Path("evaluation/acceptance-reservation-v1.json").read_text(encoding="utf-8")
@@ -422,9 +426,17 @@ def run_matched_ablation(
 
     try:
         peak_bytes, peak_method = process_peak_resident_bytes()
-        resource = {"status": "measured", "peak_resident_bytes": peak_bytes, "method": peak_method}
+        resource = {
+            "status": "measured",
+            "peak_resident_bytes": peak_bytes,
+            "method": peak_method,
+        }
     except (OSError, ImportError, AttributeError):
-        resource = {"status": "unavailable", "peak_resident_bytes": None, "method": None}
+        resource = {
+            "status": "unavailable",
+            "peak_resident_bytes": None,
+            "method": None,
+        }
     summary = summarize_matched_ablation(
         [
             {

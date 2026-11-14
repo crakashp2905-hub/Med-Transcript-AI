@@ -17,13 +17,19 @@ def test_asset_rights_inventory_binds_all_frozen_evaluation_assets():
 
     assert inventory["schema_version"] == "asr_asset_rights_inventory_v1"
     assert file_sha256(suite_path) == inventory["bindings"]["suite_sha256"]
-    assert file_sha256(manifest_path) == inventory["bindings"]["dataset_manifest_sha256"]
+    assert (
+        file_sha256(manifest_path) == inventory["bindings"]["dataset_manifest_sha256"]
+    )
     assert set(model_rows) == {job["candidate_id"] for job in suite["jobs"]}
     assert manifest["rights_reviewed"] is True
     assert manifest["license"] == "CC-BY-4.0"
 
     for dataset in inventory["datasets"]:
-        bound = json.loads(Path(dataset["manifest"]).read_text(encoding="utf-8")) if dataset.get("manifest") else manifest
+        bound = (
+            json.loads(Path(dataset["manifest"]).read_text(encoding="utf-8"))
+            if dataset.get("manifest")
+            else manifest
+        )
         assert dataset["rights_reviewed_in_manifest"] is True
         assert dataset["license_declared"] in {"CC-BY-4.0", "MIT", "Apache-2.0"}
         assert dataset["manifest_sha256"] == file_sha256(
@@ -39,7 +45,9 @@ def test_asset_rights_inventory_binds_all_frozen_evaluation_assets():
         if job.get("profile_id"):
             profile_path = Path(row["profile_file"])
             profile_file = json.loads(profile_path.read_text(encoding="utf-8"))
-            profile = next(p for p in profile_file if p["profile_id"] == job["profile_id"])
+            profile = next(
+                p for p in profile_file if p["profile_id"] == job["profile_id"]
+            )
             assert file_sha256(profile_path) == row["profile_file_sha256"]
             assert profile["source"] == row["model_repository"]
             assert profile["revision"] == row["source_revision"]
