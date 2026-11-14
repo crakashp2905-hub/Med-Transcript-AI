@@ -1,0 +1,48 @@
+{
+  "schema_version": "ruff_format_gate_acceptance_v1",
+  "run_id": "ruff-gate-35882aa-r1",
+  "source_commit": "35882aabf36d050d77ec7f80bd5ca3bb13df7c7b",
+  "source_tree_oid": "0c3a6454718e2f2028846b186d6787d282584155",
+  "recorded_at_utc": "2026-11-14T20:21:05.529954Z",
+  "changes": "Mechanical formatting across services/tests; formatting-only semantics reviewed. Committed separately.",
+  "checks": {
+    "ruff_format_gate": {
+      "status": "pass",
+      "command": "python -m ruff format --check services tests",
+      "result": "702 files already formatted",
+      "ruff_version": "0.15.13"
+    },
+    "ruff_lint": {
+      "status": "pass",
+      "command": "python -m ruff check services tests",
+      "result": "All checks passed.",
+      "ruff_version": "0.15.13"
+    },
+    "mypy": {
+      "status": "pass_unpinned",
+      "command": "python -m mypy services --ignore-missing-imports",
+      "result": "Success: no issues found in 334 source files.",
+      "executed_version": "2.1.0",
+      "workflow_pinned_version": "1.18.2"
+    },
+    "related_regression_tests": {
+      "status": "pass",
+      "command": "pytest -q tests/test_asr_segmentation_candidate_receipts.py tests/test_beccsv_experiment_lock.py tests/test_demo_evidence_card.py tests/test_job_state.py tests/test_maintenance.py tests/test_offline_diagnostics.py tests/test_offline_onboarding.py tests/test_product_governance.py tests/test_product_operations.py tests/test_product_strategy.py tests/test_runtime_support_matrix.py tests/test_worker_recovery.py tests/test_worst_case_audio_resources.py",
+      "passed": 41,
+      "failed": 0
+    },
+    "hosted_ci": {
+      "status": "not_observed",
+      "note": "No live GitHub Actions run was queried under the local-tools-only constraint."
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows 11",
+    "ruff": "0.15.13 (CI-pinned)",
+    "mypy": "2.1.0 (not CI-pinned; workflow specifies 1.18.2)",
+    "network_policy": "local tools only; hosted CI not queried"
+  },
+  "runtime_sha256": "1560e9f2f3869b51a97bf9d149ef4e2e7336b8813065963a3502fad47d59681d",
+  "clinical_release_authorized": false
+}

@@ -393,22 +393,26 @@
       "id": "MTA-01-01",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "description": "Fix latest GitHub Actions Ruff format gate: run the pinned Ruff version locally, format services/tests, review semantics, and commit mechanical changes separately.",
       "evidence": [
         ".github/workflows/ci.yml",
-        "evaluation/reports/master-task-mta-01-01-6be0b1e.json"
+        "evaluation/reports/master-task-mta-01-01-6be0b1e.json",
+        "evaluation/reports/ruff-format-gate-35882aa.json"
       ],
-      "source_commit": "6be0b1e8075064a8d369c077dfc6ba5b9a9fe80c",
+      "source_commit": "35882aabf36d050d77ec7f80bd5ca3bb13df7c7b",
       "test_results": [
         {
+          "report": "evaluation/reports/ruff-format-gate-35882aa.json",
+          "report_sha256": "d1b70b6ed49a834cf10bf1f2e6cf3d08eb3c95c180852f028f2c332054ec8892",
+          "check": "ruff_format_gate",
           "status": "pass",
-          "report": "evaluation/reports/master-task-mta-01-01-6be0b1e.json",
-          "report_sha256": "8b0cda99f34364d12851580991d19bcb1197d40e918dcf343a8c01d086549d37",
-          "check": "pinned_ruff_format_gate"
+          "test_command": "python -m ruff format --check services tests",
+          "test_result": "702 Python files formatted; full repository pinned Ruff check passed.",
+          "tested_source_commit": "35882aabf36d050d77ec7f80bd5ca3bb13df7c7b"
         }
       ],
-      "blocker": "Formatter, Ruff lint, frontend provenance, and focused provenance tests pass on the recorded commit. Full CI remained red on test collection for absent optional dependencies, later addressed separately."
+      "blocker": null
     },
     {
       "id": "MTA-01-02",
