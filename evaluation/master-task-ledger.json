@@ -6562,12 +6562,12 @@
       "id": "MTA-13-09",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Ensure recording authorization and consent revocation cancel future processing and prevent new publications.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-09-637348a.json", "tests/test_worker_consent_revocation.py"],
+      "source_commit": "637348af3a608948c06ace6dc319c8596b526ef9",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-09-637348a.json", "report_sha256": "8a9f9b3cd4a9b7f719846977b2836608de3c6b1a520ff41eb058f148280cec4a", "check": "worker_consent_revocation_pre_and_post_processing", "status": "pass"}],
+      "blocker": "Authenticated consent API route workflow remains unverified because TestClient hangs in Windows Proactor socketpair initialization; tests seed synthetic authorization directly."
     },
     {
       "id": "MTA-13-10",

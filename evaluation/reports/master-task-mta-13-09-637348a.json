@@ -1,0 +1,34 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-09"
+  ],
+  "source_commit": "637348af3a608948c06ace6dc319c8596b526ef9",
+  "captured_at_utc": "2026-11-14T08:11:16.176964+00:00",
+  "source_files": {
+    "services/api/ingest.py": "005a563d6a92461b710b4daec3adfb28edafc6d14bbb677f3b1105844053bd0c",
+    "services/api/storage.py": "019c7ed13bfd96325f428eb886ae61abfa1af98fabc9cc4e0f1ec3bbf101debe",
+    "tests/test_worker_consent_revocation.py": "2f375f6cf6c1d25e0486b0217235c8f65ded890f446cce0d8bc5ebf70d60184e"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_worker_consent_revocation.py",
+      "status": "pass",
+      "result": "2 passed"
+    },
+    {
+      "command": "ruff check tests/test_worker_consent_revocation.py; ruff format --check tests/test_worker_consent_revocation.py",
+      "status": "pass",
+      "result": "all checks passed; test file formatted"
+    }
+  ],
+  "supported_claims": [
+    "A queued audio-ingest job is cancelled when recording/local-processing authorization is already revoked; the worker does not read audio or publish a result.",
+    "If authorization is withdrawn during audio processing, the worker checks again before committing the result, cancels the job, and leaves the result and transcript-version table empty."
+  ],
+  "limitations": [
+    "Tests seed synthetic authorization rows directly; they do not exercise the authenticated consent API route.",
+    "The broad TestClient consent/revocation workflow cannot currently run on this Windows host: a minimal FastAPI TestClient blocks in asyncio Windows Proactor _fallback_socketpair."
+  ],
+  "clinical_release_authorized": false
+}
