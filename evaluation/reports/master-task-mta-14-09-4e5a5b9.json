@@ -1,0 +1,35 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-09",
+  "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+  "source_files": {
+    "docs/operations-migration-and-incident-playbook.md": "48d1409816b10a02e6caaf60e267ee5cc4d80a82ef8405eb179b0fe606dd80e7",
+    "tests/test_maintenance.py": "98f74440eb10082fce0e64a93491f99ad49d45d13ef9d5df4f1e8eeb338b6602",
+    "tests/test_operations_playbook.py": "c95f64396c93ee89be8364222eefc838b49d780ba82e0efd57334af6d5635f31"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_maintenance.py tests/test_operations_playbook.py"
+  },
+  "runtime_sha256": "88af45d9d5ec7b0708b907e90647a757af9a70a6520400d76cd2ed76a0169ba2",
+  "checks": {
+    "synthetic_restore_and_recovery_targets": {
+      "status": "pass",
+      "detail": "6 passed. A verified snapshot restored 10/10 baseline synthetic encounters in 0.025862 seconds against a 60-second local RTO target. A post-snapshot record was not present after restore, demonstrating that recovery returns to the last verified snapshot. Modified backup bytes were rejected by integrity verification."
+    },
+    "operations_playbook_contract": {
+      "status": "pass",
+      "detail": "RTO and snapshot-scoped RPO targets, failure handling, paired database/media recovery, and hardware scope are documented and structurally checked."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "Measurements use a small synthetic SQLite database on this Windows 11 workstation; they do not generalize to production hardware or databases.",
+    "No automated backup schedule exists, so the prototype has no bounded wall-clock RPO. The RPO statement applies only to records included in the latest completed hash-verified snapshot.",
+    "The 60-second target is an engineering test target, not a production service-level commitment."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}

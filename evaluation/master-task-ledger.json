@@ -7080,12 +7080,30 @@
       "id": "MTA-14-09",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define RTO/RPO as local engineering targets, measure restore success/failure on synthetic data and label hardware scope.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/operations-migration-and-incident-playbook.md",
+        "tests/test_maintenance.py",
+        "tests/test_operations_playbook.py",
+        "evaluation/reports/master-task-mta-14-09-4e5a5b9.json"
+      ],
+      "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "report_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa",
+          "check": "synthetic_restore_and_recovery_targets",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "report_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa",
+          "check": "operations_playbook_contract",
+          "status": "pass"
+        }
+      ],
+      "blocker": "RPO has no wall-clock bound because no automated backup schedule exists; measured RTO applies only to a small synthetic SQLite database on the recorded workstation."
     },
     {
       "id": "MTA-14-10",
