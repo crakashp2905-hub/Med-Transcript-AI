@@ -8185,11 +8185,23 @@
       "id": "MTA-16-04",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Publish which actions were scripted versus genuine human interactions; never label scripts observed clinician behavior.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/browser-offline-regression.md",
+        "docs/product/product-operations-v1.md",
+        "tests/test_scripted_evidence_labels.py"
+      ],
+      "source_commit": "7e61134df195e0f8327a008a10bc32138c3bae91",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-04-16-09-7e61134.json",
+          "report_sha256": "c124d3e13718da7fdfdf6941b1377981136e6377090068e77b0f3a237148ddc5",
+          "check": "scripted_evidence_and_productivity_null",
+          "status": "pass",
+          "detail": "Browser evidence labels scripted fixture actions and states no clinician study was performed; test prevents conflating simulated and clinician-observed evidence."
+        }
+      ],
       "blocker": null
     },
     {
@@ -8240,11 +8252,23 @@
       "id": "MTA-16-09",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Do not infer actual time saved from scripted actions; keep clinical productivity metric null.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/study_dashboard.py",
+        "tests/test_study_dashboard.py",
+        "tests/test_scripted_evidence_labels.py"
+      ],
+      "source_commit": "7e61134df195e0f8327a008a10bc32138c3bae91",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-04-16-09-7e61134.json",
+          "report_sha256": "c124d3e13718da7fdfdf6941b1377981136e6377090068e77b0f3a237148ddc5",
+          "check": "scripted_evidence_and_productivity_null",
+          "status": "pass",
+          "detail": "Study dashboard now emits null for clinical productivity and time-saved claims; test verifies both remain unknown without clinician observation."
+        }
+      ],
       "blocker": null
     },
     {

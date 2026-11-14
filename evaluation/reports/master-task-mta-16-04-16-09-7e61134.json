@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-16-04",
+    "MTA-16-09"
+  ],
+  "status": "pass",
+  "source_commit": "7e61134df195e0f8327a008a10bc32138c3bae91",
+  "captured_at_utc": "2026-11-14T13:48:58+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    "services/study_dashboard.py": "87a395d67e77b476650e0c08d60e5c71c6ac47a759f9cce65d9b8e368fca502b",
+    "tests/test_study_dashboard.py": "53a4f735d87dd92f0b4e5d92f0ff78faa9db85371610f25292ea1efc2229952f",
+    "tests/test_scripted_evidence_labels.py": "ced1ce5777b48f4964b98d8aa60caad75df28277b438d62dc9270d6e19bd3781",
+    "docs/browser-offline-regression.md": "92a3c061f4dadf46560f6e13fcf955c5e3f92447925b9e9f7a93ad2e68f21c22",
+    "docs/product/product-operations-v1.md": "195eb08d43562d8c4ddb96badfbfbdac24ce6372e76872b298a6d0f7036d82ec"
+  },
+  "checks": {
+    "scripted_evidence_and_productivity_null": {
+      "status": "pass",
+      "result": "3 passed",
+      "command": "python -m pytest -q tests/test_scripted_evidence_labels.py tests/test_study_dashboard.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check services/study_dashboard.py tests/test_study_dashboard.py tests/test_scripted_evidence_labels.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "all files already formatted",
+      "command": "python -m ruff format --check services/study_dashboard.py tests/test_study_dashboard.py tests/test_scripted_evidence_labels.py"
+    }
+  },
+  "limitations": [
+    "Usability actions in the cited browser workflow are scripted; no genuine clinician observations or productivity study are claimed."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "70fa82eb99516afe99c8fc5d13ad1a73a882e6c56c7ee2a369e94b92304beda4"
+}
