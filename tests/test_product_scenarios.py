@@ -93,3 +93,17 @@ def test_scenario_generation_is_byte_deterministic_for_same_local_inputs(tmp_pat
             assert (first / scenario["audio_asset"]).read_bytes() == (
                 second / scenario["audio_asset"]
             ).read_bytes()
+
+
+def test_checked_in_scenario_assets_match_local_regeneration(tmp_path):
+    regenerated = tmp_path / "regenerated"
+    document = build_scenarios(".", regenerated)
+    checked_in = Path("evaluation/scenarios/offline-encounters-v1")
+    assert (regenerated / "manifest.json").read_bytes() == (
+        checked_in / "manifest.json"
+    ).read_bytes()
+    for scenario in document["scenarios"]:
+        if "audio_asset" in scenario:
+            assert (regenerated / scenario["audio_asset"]).read_bytes() == (
+                checked_in / scenario["audio_asset"]
+            ).read_bytes()
