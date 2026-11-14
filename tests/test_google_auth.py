@@ -316,6 +316,33 @@ def test_clinician_cookie_writes_require_csrf_and_persist_across_restart(google_
     assert fresh.get("/v1/session").status_code == 401
 
 
+def test_role_downgrade_applies_to_an_existing_session(google_app):
+    client, _, path, member = google_app
+    member["role"] = "clinician"
+    path.write_text(json.dumps({"users": [member]}))
+    assert sign_in(client).status_code == 303
+    csrf = client.get("/v1/auth/session").json()["csrf_token"]
+
+    member["role"] = "viewer"
+    path.write_text(json.dumps({"users": [member]}))
+    response = client.post(
+        "/v1/encounters",
+        json={
+            "patient_reference_id": str(uuid4()),
+            "patient_identifiers_confirmed": True,
+            "synthetic_data": True,
+        },
+        headers={
+            "Origin": "https://scribe.example.org",
+            "X-CSRF-Token": csrf,
+            "Idempotency-Key": str(uuid4()),
+        },
+    )
+
+    assert response.status_code == 403
+    assert response.json()["code"] == "read_only_account"
+
+
 def test_oversized_json_is_rejected_with_and_without_content_length(google_app):
     client, _, _, _ = google_app
     response = client.post(
