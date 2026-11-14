@@ -14,6 +14,7 @@ test('default encounter review presents the source and clinical note side by sid
  await expect(source).toBeVisible();
  await expect(note).toBeVisible();
  await expect(review.getByRole('search',{name:'Search transcript'})).toBeVisible();
+ const savedText=await page.getByLabel('Transcript segment 1').inputValue();
  const [sourceBox,noteBox]=await Promise.all([source.boundingBox(),note.boundingBox()]);
  expect(sourceBox).not.toBeNull();expect(noteBox).not.toBeNull();
  expect(noteBox!.x).toBeGreaterThan(sourceBox!.x);
@@ -33,4 +34,17 @@ test('default encounter review presents the source and clinical note side by sid
  await expect(page.getByRole('heading',{name:'Source transcript'})).toHaveCount(0);
  await page.keyboard.press('Alt+0');
  await expect(page.getByRole('region',{name:'Unified source and note review'})).toBeVisible();
+ const encounterLabel=await page.locator('.encounter-item.active strong').innerText();
+ const changedText='Synthetic wording recovered after a browser reload.';
+ await page.getByLabel('Transcript segment 1').fill(changedText);
+ await expect(page.getByRole('status').filter({hasText:'Unsaved changes are saved in this browser.'})).toBeVisible();
+ await page.reload();
+ await page.getByLabel('Access key').fill(localTestKey);
+ await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+ await page.getByRole('button').filter({has:page.getByText(encounterLabel,{exact:true})}).click();
+ await expect(page.getByLabel('Transcript segment 1')).toHaveValue(changedText);
+ await expect(page.getByRole('status').filter({hasText:/Recovered unsaved changes|Unsaved changes are saved in this browser/})).toBeVisible();
+ await page.getByRole('button',{name:'Discard local changes'}).click();
+ await expect(page.getByLabel('Transcript segment 1')).toHaveValue(savedText);
+ await expect(page.locator('.notice')).toContainText('Local changes discarded.');
 });

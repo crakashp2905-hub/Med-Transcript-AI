@@ -5,6 +5,10 @@ import {sealCapture} from '../CaptureSync';
 import {type Fact,cleanFact} from '../facts';
 import type {Segment,Transcript,Evidence,Finding,Note,Workspace,Encounter,Session,RetranscriptionComparison} from '../workspaceTypes';
 import {request} from '../client/api';
+import {deleteClinicalDraft,readClinicalDraft,writeClinicalDraft} from '../ClinicalDraftVault';
+
+const localDraftMaxAgeMs=30*24*60*60*1000;
+const clinicalDraftKey=(scope:string,transcript:string,note:string|null)=>`${scope}:${transcript}:${note||'new'}`;
 export function useEncounterWorkspace(){
 
  const [authMode,setAuthMode]=useState('loading'),[csrf,setCsrf]=useState(''),[authLabel,setAuthLabel]=useState('Google');
@@ -16,8 +20,10 @@ export function useEncounterWorkspace(){
  const [facts,setFacts]=useState<Fact[]>([]),[audioUrl,setAudioUrl]=useState(''),[waveformPeaks,setWaveformPeaks]=useState<number[]|null>(null),[playback,setPlayback]=useState(0),[history,setHistory]=useState<Record<string,string>[]>([]);
  const [confirmed,setConfirmed]=useState(false),[patientRef,setPatientRef]=useState(''),[newOpen,setNewOpen]=useState(false),[upload,setUpload]=useState<File|null>(null),[authorization,setAuthorization]=useState(false),[reconfirmed,setReconfirmed]=useState(false),[profile,setProfile]=useState(''),[manualText,setManualText]=useState(''),[manualRole,setManualRole]=useState('unknown');
  const [retranscription,setRetranscription]=useState<RetranscriptionComparison|null>(null);
+ const [localDraftStatus,setLocalDraftStatus]=useState(''),[localDraftError,setLocalDraftError]=useState(''),[localDraftDirty,setLocalDraftDirty]=useState(false);
  const audio=useRef<HTMLAudioElement>(null), fileInput=useRef<HTMLInputElement>(null);
  const currentEncounter=useRef(selected);currentEncounter.current=selected;
+ const hydratedClinicalDraft=useRef('');
  const [dictating,setDictating]=useState(false),[selectedCitation,setSelectedCitation]=useState('');
  const [playbackChannel,setPlaybackChannel]=useState<number|undefined>(undefined);
  const pendingSeek=useRef<number|null>(null);
@@ -35,8 +41,64 @@ export function useEncounterWorkspace(){
  useEffect(()=>{const protect=(event:BeforeUnloadEvent)=>{const dirtySource=!!ws?.transcript&&JSON.stringify(segments)!==JSON.stringify(ws.transcript.segments);const dirtyNote=ws?.note?JSON.stringify(facts)!==JSON.stringify(ws.note.facts.map(cleanFact)):facts.length>0;if(dirtySource||dirtyNote){event.preventDefault();event.returnValue='';}};window.addEventListener('beforeunload',protect);return()=>window.removeEventListener('beforeunload',protect);},[ws,segments,facts]);
  async function act(label:string,fn:()=>Promise<void>){setBusy(label);setError('');setNotice('');try{await fn();}catch(e){setError(e instanceof Error?e.message:'The request could not be completed.');}finally{setBusy('');}}
  async function list(key=token){const result=await json('/v1/encounters',{},key);setEncounters(result.items);}
- async function load(eid=selected,keepEdits=false){if(!eid)return;const result:Workspace=await json(`/v1/encounters/${eid}/workspace`);if(currentEncounter.current!==eid)return result;setWs(result);if(!keepEdits){setSegments(result.transcript?.segments||[]);setEnglish(result.transcript?.review?.english_confirmed||false);setComplete(result.transcript?.review?.source_completeness_reviewed||false);setReviewReason(result.transcript?.review?.source_review_reason||'');setFacts((result.note?.facts||[]).map(cleanFact));setReconfirmed(false);}return result;}
- useEffect(()=>{if(!session||!selected)return;setAudioUrl('');setWs(null);setPlaybackChannel(undefined);pendingSeek.current=null;void act('Loading encounter',async()=>{await load();});},[selected]);
+ async function load(eid=selected,keepEdits=false){
+  if(!eid)return;
+  const result:Workspace=await json(`/v1/encounters/${eid}/workspace`);
+  if(currentEncounter.current!==eid)return result;
+  setWs(result);
+  if(!keepEdits){
+   const scope=session?`${session.tenant_id}:${session.clinician_id}:${eid}`:'';
+   const transcriptId=result.transcript?.id||'',noteId=result.note?.id||null;
+   let cached=null,storageError=false;
+   try{if(scope)cached=await readClinicalDraft(scope);}catch{storageError=true;setLocalDraftError('Browser storage is unavailable; use Save in the encounter before leaving this page.');}
+   const age=cached?Date.now()-cached.updated_at:-1;
+   const recover=!!cached&&!!transcriptId&&cached.transcript_id===transcriptId&&cached.note_id===noteId&&age>=0&&age<localDraftMaxAgeMs;
+   if(recover&&cached){
+    setSegments(cached.segments);setEnglish(cached.english);setComplete(cached.complete);setReviewReason(cached.reviewReason);setCorrection(cached.correction);setFacts(cached.facts.map(cleanFact));
+    setLocalDraftStatus('Recovered unsaved changes from this browser. Save them to the encounter to create a new version.');setLocalDraftDirty(true);
+   }else{
+    if(cached&&scope){
+     void deleteClinicalDraft(scope).catch(()=>{});
+     setLocalDraftStatus(cached.transcript_id!==transcriptId||cached.note_id!==noteId?'A local draft did not match the saved encounter version and was discarded.':'A local draft expired after 30 days and was discarded.');
+    }else setLocalDraftStatus('');
+    setSegments(result.transcript?.segments||[]);setEnglish(result.transcript?.review?.english_confirmed||false);setComplete(result.transcript?.review?.source_completeness_reviewed||false);setReviewReason(result.transcript?.review?.source_review_reason||'');setCorrection('');setFacts((result.note?.facts||[]).map(cleanFact));
+    setLocalDraftDirty(false);
+   }
+   hydratedClinicalDraft.current=transcriptId&&scope?clinicalDraftKey(scope,transcriptId,noteId):'';
+   if(!storageError)setLocalDraftError('');setReconfirmed(false);
+  }
+  return result;
+ }
+ useEffect(()=>{hydratedClinicalDraft.current='';setAudioUrl('');setWs(null);setPlaybackChannel(undefined);pendingSeek.current=null;if(!session||!selected)return;void act('Loading encounter',async()=>{await load();});},[selected,session?.tenant_id,session?.clinician_id]);
+ useEffect(()=>{
+  if(!session||!selected||!ws?.transcript||session.role==='viewer')return;
+  const scope=`${session.tenant_id}:${session.clinician_id}:${selected}`;
+  const transcriptId=ws.transcript.id,noteId=ws.note?.id||null;
+  if(hydratedClinicalDraft.current!==clinicalDraftKey(scope,transcriptId,noteId))return;
+  const sourceReview=ws.transcript.review;
+  const dirtySource=JSON.stringify(segments)!==JSON.stringify(ws.transcript.segments)||english!==(sourceReview?.english_confirmed||false)||complete!==(sourceReview?.source_completeness_reviewed||false)||reviewReason!==(sourceReview?.source_review_reason||'')||!!correction;
+  const dirtyNote=ws.note?JSON.stringify(facts)!==JSON.stringify(ws.note.facts.map(cleanFact)):facts.length>0;
+  if(!dirtySource&&!dirtyNote){
+   setLocalDraftDirty(false);if(localDraftDirty)setLocalDraftStatus('');
+   void deleteClinicalDraft(scope).catch(()=>{});
+   return;
+  }
+  if(ws.approval)return;
+  setLocalDraftDirty(true);
+  let disposed=false;
+  const timer=window.setTimeout(()=>{
+   void writeClinicalDraft({scope,transcript_id:transcriptId,note_id:noteId,segments,facts,english,complete,reviewReason,correction,updated_at:Date.now()}).then(()=>{
+    if(!disposed&&currentEncounter.current===selected){setLocalDraftStatus('Unsaved changes are saved in this browser.');setLocalDraftError('');}
+   }).catch(()=>{if(!disposed)setLocalDraftError('Local autosave failed. Save to the encounter and keep this page open.');});
+  },500);
+  return ()=>{disposed=true;window.clearTimeout(timer);};
+ },[selected,session?.tenant_id,session?.clinician_id,session?.role,ws?.transcript?.id,ws?.note?.id,ws?.approval?.id,segments,facts,english,complete,reviewReason,correction,localDraftDirty]);
+ async function discardLocalDraft(){
+  if(!selected||!session||!ws)return;
+  const scope=`${session.tenant_id}:${session.clinician_id}:${selected}`;
+  try{await deleteClinicalDraft(scope);setLocalDraftError('');setLocalDraftStatus('Local changes discarded. The saved encounter version is still available.');setLocalDraftDirty(false);setSegments(ws.transcript?.segments||[]);setEnglish(ws.transcript?.review?.english_confirmed||false);setComplete(ws.transcript?.review?.source_completeness_reviewed||false);setReviewReason(ws.transcript?.review?.source_review_reason||'');setCorrection('');setFacts((ws.note?.facts||[]).map(cleanFact));}
+  catch{setLocalDraftError('Local changes could not be removed from this browser.');}
+ }
  useEffect(()=>{let live=true;setProcessingPermission(null);if(!session||!selected)return;json(`/v1/encounters/${selected}/processing-permission`).then((value:{recording_authorized:boolean;local_processing_authorized:boolean})=>{if(live)setProcessingPermission(value);}).catch(()=>{if(live)setProcessingPermission(null);});return()=>{live=false;};},[selected,session?.clinician_id]);
  useEffect(()=>{setRetranscription(null);},[selected,ws?.transcript?.id]);
  useEffect(()=>{setSavedNoteSource(null);if(!selected||!ws?.note||ws.note.transcript_version_id===ws.transcript?.id)return;let disposed=false;json(`/v1/encounters/${selected}/transcripts/${ws.note.transcript_version_id}`).then((result:Transcript)=>{if(!disposed)setSavedNoteSource(result);}).catch(()=>{if(!disposed)setError('The saved note source is unavailable. Citation playback is disabled until its exact source can be loaded.');});return()=>{disposed=true;};},[selected,ws?.note?.transcript_version_id,ws?.transcript?.id]);
@@ -57,12 +119,13 @@ export function useEncounterWorkspace(){
  async function requestASR(){await act('Queueing transcription',async()=>{const ingest=ws?.jobs.find(j=>j.stage==='audio_ingest'&&j.status==='succeeded');if(!ingest)throw new Error('Wait for audio inspection to finish.');const job=await json(`/v1/jobs/${ingest.id}`);const workspace=await json(`/v1/encounters/${selected}/uploads`);const input=workspace.items.find((u:{ingest_job_id:string})=>u.ingest_job_id===ingest.id);await json(`/v1/encounters/${selected}/transcriptions`,{method:'POST',headers:{'Idempotency-Key':crypto.randomUUID()},body:JSON.stringify({audio_asset_id:input.id,inference_profile_id:profile})});await load();});}
  async function requestRetranscription(segment:Segment){if(!ws?.transcript)return;await act('Retranscribing source span',async()=>{const source=ws.transcript!;if(source.channels&&source.channels.length>1&&segment.channel_index===undefined)throw new Error('Choose a verified audio channel before retranscribing this span.');const queued=await json(`/v1/encounters/${selected}/retranscriptions`,{method:'POST',headers:{'Idempotency-Key':crypto.randomUUID()},body:JSON.stringify({audio_asset_id:source.audio_asset_id,transcript_version_id:source.id,inference_profile_id:profile,start_ms:segment.start_ms,end_ms:segment.end_ms,...(segment.channel_index===undefined?{}:{channel_index:segment.channel_index})})});const job=await waitForJob(queued.status_url);const result=job.result;if(!result||result.adopted!==false||result.source_transcript_version!==source.id||typeof result.candidate_text!=='string')throw new Error('The retranscription result was not a valid candidate bound to this source version.');setRetranscription({transcript_version_id:source.id,segment_id:segment.segment_id,source_text:segment.text,start_ms:segment.start_ms,end_ms:segment.end_ms,channel_index:segment.channel_index,candidate_text:result.candidate_text,candidate_segments:result.candidate_segments||[],span_audio_sha256:result.span_audio_sha256});});}
  function stageRetranscription(segmentId:string,text:string){const candidate=retranscription;if(!candidate||candidate.segment_id!==segmentId||candidate.transcript_version_id!==ws?.transcript?.id){setError('This candidate no longer matches the current source version. Request a new candidate.');return;}const source=segments.find(segment=>segment.segment_id===segmentId);if(!source||source.text!==candidate.source_text){setError('The source span changed after retranscription. Review it and request a fresh candidate.');return;}setSegments(items=>items.map(segment=>segment.segment_id===segmentId?{...segment,text,edit_parent_segment_ids:Array.from(new Set([...(segment.edit_parent_segment_ids||[]),segment.segment_id]))}:segment));setCorrection(`Clinician reviewed the audio and explicitly staged a localized retranscription candidate for source interval ${candidate.start_ms}-${candidate.end_ms} ms. Save to create a new transcript version.`);setRetranscription(null);setNotice('Candidate staged as an unsaved clinician correction. Save source review to create the new transcript version.');}
+ async function clearLocalDraft(eid=selected){if(!session)return;try{await deleteClinicalDraft(`${session.tenant_id}:${session.clinician_id}:${eid}`);setLocalDraftDirty(false);setLocalDraftStatus('');}catch{setLocalDraftError('The saved encounter version is safe, but the browser draft could not be cleared.');}}
  async function saveManual(){await act('Saving manual transcript',async()=>{const uploads=await json(`/v1/encounters/${selected}/uploads`);const input=uploads.items.find((u:{ingest_job_id:string})=>ws?.jobs.some(j=>j.id===u.ingest_job_id&&j.status==='succeeded'));if(!input)throw new Error('Successful audio inspection is required.');const job=await json(`/v1/jobs/${input.ingest_job_id}`);await json(`/v1/encounters/${selected}/manual-transcripts`,{method:'POST',body:JSON.stringify({audio_asset_id:input.id,segments:[{start_ms:0,end_ms:job.result.duration_ms,text:manualText,role:manualRole}]})});setManualText('');await load();});}
- async function saveTranscript(){if(!ws?.transcript)return;await act('Saving source review',async()=>{await json(`/v1/encounters/${selected}/transcripts/${ws.transcript!.id}`,{method:'PATCH',headers:{'If-Match':`"${ws.transcript!.sha256}"`},body:JSON.stringify({segments:segments.map(s=>({segment_id:s.edit_parent_segment_ids?undefined:s.segment_id,parent_segment_ids:s.edit_parent_segment_ids||[],start_ms:s.start_ms,end_ms:s.end_ms,text:s.text,role:s.role,channel_index:s.channel_index})),english_confirmed:english,source_completeness_reviewed:complete,source_review_reason:reviewReason,correction_reason:correction||'Clinician reviewed the full source and speaker attribution.'})});setNotice('Saved as a new source version. Drafts must use this version.');await load();});}
+ async function saveTranscript(){if(!ws?.transcript)return;await act('Saving source review',async()=>{await json(`/v1/encounters/${selected}/transcripts/${ws.transcript!.id}`,{method:'PATCH',headers:{'If-Match':`"${ws.transcript!.sha256}"`},body:JSON.stringify({segments:segments.map(s=>({segment_id:s.edit_parent_segment_ids?undefined:s.segment_id,parent_segment_ids:s.edit_parent_segment_ids||[],start_ms:s.start_ms,end_ms:s.end_ms,text:s.text,role:s.role,channel_index:s.channel_index})),english_confirmed:english,source_completeness_reviewed:complete,source_review_reason:reviewReason,correction_reason:correction||'Clinician reviewed the full source and speaker attribution.'})});await clearLocalDraft();setNotice('Saved as a new source version. Drafts must use this version.');await load();});}
  async function propose(){await act('Preparing facts',async()=>{const result=await json(`/v1/encounters/${selected}/facts`);setFacts(result.facts.map((fact:Fact)=>cleanFact({...fact,excluded:false})));setTab('note');});}
  const updateFact=(index:number,patch:Partial<Fact>)=>setFacts(items=>items.map((fact,i)=>i===index?{...fact,...patch,...(Object.keys(patch).some(key=>key!=='reviewed'&&key!=='critical_reviewed')?{reviewed:false,critical_reviewed:false}:{})}:fact));
  async function clinicianCorrection(findingId:string,fact:Fact){if(!ws?.note)return;const eid=selected,note=ws.note;await act('Recording clinician addition',async()=>{await json(`/v1/encounters/${eid}/findings/${findingId}/resolve`,{method:'POST',body:JSON.stringify({expected_note_sha256:note.sha256,fact_id:fact.fact_id,action:'clinician_correction',corrected_text:fact.text,reason:fact.clarification})});await load(eid);if(currentEncounter.current===eid)setNotice('A new unapproved note version records the original source as excluded and the correction as a separate clinician addition.');});}
- async function saveNote(){if(!ws?.transcript)return;await act('Saving note and checking findings',async()=>{const existing=ws.note&&!ws.stale&&!ws.approval;await json(`/v1/encounters/${selected}/${existing?`notes/${ws.note!.id}`:'drafts'}`,{method:existing?'PATCH':'POST',headers:existing?{'If-Match':`"${ws.note!.sha256}"`}:{},body:JSON.stringify({transcript_version_id:ws.transcript!.id,facts:facts.map(cleanFact)})});setNotice('Saved a new note version and verification report.');await load();});}
+ async function saveNote(){if(!ws?.transcript)return;await act('Saving note and checking findings',async()=>{const existing=ws.note&&!ws.stale&&!ws.approval;await json(`/v1/encounters/${selected}/${existing?`notes/${ws.note!.id}`:'drafts'}`,{method:existing?'PATCH':'POST',headers:existing?{'If-Match':`"${ws.note!.sha256}"`}:{},body:JSON.stringify({transcript_version_id:ws.transcript!.id,facts:facts.map(cleanFact)})});await clearLocalDraft();setNotice('Saved a new note version and verification report.');await load();});}
  async function approve(){if(!ws?.note)return;await act('Approving exact version',async()=>{await json(`/v1/encounters/${selected}/approvals`,{method:'POST',body:JSON.stringify({note_version_id:ws.note!.id,expected_note_sha256:ws.note!.sha256,verification_report_id:ws.note!.verification_report_id,patient_identifiers_reconfirmed:reconfirmed})});setNotice('This exact note version is approved.');await load();await list();});}
  async function download(format:string){if(!ws?.approval)return;await act('Preparing approved export',async()=>{const result=await json(`/v1/encounters/${selected}/exports`,{method:'POST',body:JSON.stringify({approval_id:ws.approval!.id,format})});const blob=await(await api(result.download_url)).blob();const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`approved-note-${selected}.${format==='markdown'?'md':format==='text'?'txt':'json'}`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);await load();});}
  async function downloadAuditBundle(){if(!selected)return;await act('Preparing redacted synthetic audit bundle',async()=>{const response=await api(`/v1/encounters/${selected}/audit-bundle`);const blob=await response.blob(),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='synthetic-case-audit-bundle.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});}
@@ -71,6 +134,6 @@ export function useEncounterWorkspace(){
  async function detailedSample(id:string){await act('Loading public consultation',async()=>{const result=await json('/v1/demo?public_case='+encodeURIComponent(id),{method:'POST'});await list();setSelected(result.encounter_id);setTab('review');});}
  async function sample(){await act('Loading synthetic consultation',async()=>{const result=await json('/v1/demo',{method:'POST'});await list();setSelected(result.encounter_id);setTab('review');});}
 
-return {authMode,authLabel,access,setAccess,session,sessionExpired,online,processingPermission,encounters,selected,setSelected,ws,setWs,tab,setTab,busy,error,setError,notice,segments,setSegments,english,setEnglish,complete,setComplete,reviewReason,setReviewReason,correction,setCorrection,facts,setFacts,audioUrl,waveformPeaks,playback,setPlayback,history,confirmed,setConfirmed,patientRef,setPatientRef,newOpen,setNewOpen,upload,setUpload,authorization,setAuthorization,reconfirmed,setReconfirmed,profile,setProfile,manualText,setManualText,manualRole,setManualRole,retranscription,setRetranscription,audio,fileInput,dictating,setDictating,selectedCitation,setSelectedCitation,playbackChannel,setPlaybackChannel,pendingSeek,sourceForNote,playbackSource,api,json,signOut,act,list,load,play,login,createEncounter,authorize,previewDictation,uploadFile,retryJob,cancelJob,requestASR,requestRetranscription,stageRetranscription,saveManual,saveTranscript,propose,updateFact,clinicianCorrection,saveNote,approve,download,downloadAuditBundle,amend,getHistory,detailedSample,sample};
+return {authMode,authLabel,access,setAccess,session,sessionExpired,online,processingPermission,encounters,selected,setSelected,ws,setWs,tab,setTab,busy,error,setError,notice,segments,setSegments,english,setEnglish,complete,setComplete,reviewReason,setReviewReason,correction,setCorrection,facts,setFacts,audioUrl,waveformPeaks,playback,setPlayback,history,confirmed,setConfirmed,patientRef,setPatientRef,newOpen,setNewOpen,upload,setUpload,authorization,setAuthorization,reconfirmed,setReconfirmed,profile,setProfile,manualText,setManualText,manualRole,setManualRole,retranscription,setRetranscription,audio,fileInput,dictating,setDictating,selectedCitation,setSelectedCitation,playbackChannel,setPlaybackChannel,pendingSeek,sourceForNote,playbackSource,api,json,signOut,act,list,load,play,login,createEncounter,authorize,previewDictation,uploadFile,retryJob,cancelJob,requestASR,requestRetranscription,stageRetranscription,saveManual,saveTranscript,propose,updateFact,clinicianCorrection,saveNote,approve,download,downloadAuditBundle,amend,getHistory,detailedSample,sample,localDraftStatus,localDraftError,localDraftDirty,discardLocalDraft};
 }
 export type EncounterController=ReturnType<typeof useEncounterWorkspace>;
