@@ -6828,12 +6828,21 @@
       "id": "MTA-13-20",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Check data minimization and exposure surface for every browser endpoint and investor viewer role.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-20-88fdbb5.json"
+      ],
+      "source_commit": "88fdbb539c0f9fe580b9c6c725bf08dff6193bab",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-20-88fdbb5.json",
+          "report_sha256": "17207091e5f587b379401cc23fbfce170857bf6876a8cfc4ed880fa2d3467fe1",
+          "check": "viewer_minimized_endpoint_scope",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Independent privacy review and production identity deployment remain external dependencies; viewer list filtering currently scans actor-scoped rows in application memory."
     },
     {
       "id": "MTA-13-21",

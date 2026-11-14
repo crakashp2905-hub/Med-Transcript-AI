@@ -1,0 +1,60 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-20"
+  ],
+  "source_commit": "88fdbb539c0f9fe580b9c6c725bf08dff6193bab",
+  "captured_at_utc": "2026-11-14T08:47:30.431576+00:00",
+  "source_files": {
+    "services/api/main.py": "af48c1cca630dc58232a97751e1559bdb1b574ffd859a1a4c78f2a87304a2ae6",
+    "services/review/routers/workspace.py": "187b6e2e3254ce3fdb85510175cec6a3b2b067257f6777ad90030f692e2552d6",
+    "services/review/routers/history.py": "538804b448d6fb121b92beb0608230b779e5a23046f8b2335f29dcc4f3ee8dfc",
+    "apps/clinician-web/src/workspaceTypes.ts": "72acd3873197cd4d87ea1749d4e2e6aa043aee51ffc9b7d7ea170bca94e71e08",
+    "tests/test_viewer_data_minimization.py": "7f255ccc6660a403d1fe8c55f2d2834ee5334fa229f4afc82fe1f1b57799f0be",
+    "tests/test_router_contracts.py": "00ffa4ff834c561b48bb619efd31fa9d90d55b962da8ad721991bf2d4f52394f",
+    "tests/test_investor_demo_static.py": "cef17d1f0919bfae457a64e39a38ab128f4fe0feb009f3d5fed7b2636aa16f22",
+    "services/api/authorization_policy.py": "e0e1ace3e21b723db353a95064f27286e9326ebf475e084c8531213835c9d7cd"
+  },
+  "checks": {
+    "viewer_minimized_endpoint_scope": {
+      "status": "pass",
+      "evidence": "The viewer boundary suite, full identity-route policy sweep, and static investor-preview checks passed."
+    }
+  },
+  "check_details": [
+    {
+      "command": "python -m pytest -q tests/test_router_contracts.py::test_all_identity_routes_reject_missing_auth_and_viewer_writes tests/test_router_contracts.py::test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail tests/test_viewer_data_minimization.py tests/test_investor_demo_static.py",
+      "status": "pass",
+      "result": "6 passed"
+    },
+    {
+      "command": "npm run build",
+      "status": "pass",
+      "result": "TypeScript check and Vite production build passed"
+    },
+    {
+      "command": "python -m ruff check services/api/main.py services/review/routers/workspace.py services/review/routers/history.py tests/test_viewer_data_minimization.py",
+      "status": "pass",
+      "result": "All checks passed"
+    },
+    {
+      "command": "python -m ruff format --check services/api/main.py services/review/routers/workspace.py services/review/routers/history.py tests/test_viewer_data_minimization.py",
+      "status": "pass",
+      "result": "Files are formatted"
+    }
+  ],
+  "supported_claims": [
+    "Viewer session responses omit tenant and clinician identifiers and do not expose configured ASR profiles or local clinical-model availability.",
+    "Viewer encounter lists and encounter-scoped reads are restricted to records explicitly marked synthetic; non-synthetic legacy records fail closed as not found.",
+    "Deletion-request status responses apply the same synthetic-only viewer boundary and omit the joined encounter body.",
+    "Every registered route remains covered by explicit authorization policy; identity routes reject missing authentication and viewer writes.",
+    "The public investor preview remains static synthetic content with no API calls."
+  ],
+  "limitations": [
+    "No real-patient data or production Google Workspace deployment was available for testing.",
+    "Viewer list filtering is applied after the actor-scoped database query because the persisted encounter body is cross-backend JSON text; very large histories may need a normalized synthetic flag/index.",
+    "The study dashboard and public demo-case endpoints expose only development evaluation metadata and public synthetic references, but independent privacy review has not been performed.",
+    "Clinical release remains unauthorized."
+  ],
+  "clinical_release_authorized": false
+}
