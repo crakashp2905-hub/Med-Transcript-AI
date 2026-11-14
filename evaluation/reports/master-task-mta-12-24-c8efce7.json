@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-24"
+  ],
+  "source_commit": "c8efce793bbb7eb7da2748b72c7689f21d5a17c6",
+  "captured_at_utc": "2026-11-14T07:22:02.033593+00:00",
+  "source_files": {
+    "evaluation/contracts/clinical-evidence-boundary-v1.json": "238e7b41550a51ae1cdd20bd33bc0b6c6827b19d546b2211368060390eacd12f",
+    "tests/test_clinical_evidence_boundary.py": "ebcb7123f25f2f96211833a35b09f6938606ecd3629de42a5d235446f3a7a1ba"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_clinical_evidence_boundary.py",
+      "status": "pass",
+      "result": "1 passed"
+    },
+    {
+      "command": "ruff check tests/test_clinical_evidence_boundary.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check tests/test_clinical_evidence_boundary.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "The project explicitly records clinical sensitivity, clinician productivity improvement and safety as not estimable with current evidence.",
+    "Each claim lists the missing independent human evidence and keeps the estimate null.",
+    "Synthetic and software tests are explicitly prohibited from establishing these claims."
+  ],
+  "limitations": [
+    "This records evidence limits; it does not supply the missing reviewers, cohort or pilot approvals."
+  ],
+  "clinical_release_authorized": false
+}

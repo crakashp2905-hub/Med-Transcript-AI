@@ -6000,12 +6000,12 @@
       "id": "MTA-12-24",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Explicitly report inability to estimate real clinical sensitivity, clinician productivity and safety without external evidence.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-24-c8efce7.json", "evaluation/contracts/clinical-evidence-boundary-v1.json"],
+      "source_commit": "c8efce793bbb7eb7da2748b72c7689f21d5a17c6",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-24-c8efce7.json", "report_sha256": "2525972c30829e70946b41ec86768a7b3f0f987ba98e45ab55bc992e5e31881e", "check": "explicit_clinical_evidence_boundary", "status": "pass"}],
+      "blocker": "Qualified reviewers, independent clinical annotations and a prospective clinician pilot are not available."
     },
     {
       "id": "MTA-13-01",
