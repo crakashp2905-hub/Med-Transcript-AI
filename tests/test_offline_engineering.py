@@ -131,6 +131,12 @@ def test_one_command_status_report_is_read_only_and_keeps_release_blocked(
     report = build(".")
     assert report["schema_version"] == "local_status_v1"
     assert report["offline_mode"] is True
+    assert report["readiness_checks"]["overall"]["status"] == "BLOCKED"
+    assert report["readiness_checks"]["clinical_validation"]["status"] == "BLOCKED"
+    assert report["missing_checks"]
+    assert all(
+        item["status"] in {"BLOCKED", "UNKNOWN"} for item in report["missing_checks"]
+    )
     assert report["test_status"]["inference_executed"] is False
     assert report["clinical_release"] == "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED"
     assert report["real_patient_release_authorized"] is False

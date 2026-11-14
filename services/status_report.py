@@ -13,6 +13,74 @@ from services.master_release import assess
 from services.capability_manifest import build as capability_manifest
 
 
+def readiness_checks(
+    *,
+    offline_mode,
+    acceptance_present,
+    current_demo_pass,
+    engineering_evidence_valid,
+    production_model_selected=False,
+):
+    checks = {
+        "offline_mode": {
+            "status": "PASS" if offline_mode else "UNKNOWN",
+            "reason": "Offline environment flag is enabled."
+            if offline_mode
+            else "Offline mode was not confirmed in this process.",
+        },
+        "latest_acceptance": {
+            "status": "PASS"
+            if current_demo_pass
+            else "BLOCKED"
+            if acceptance_present
+            else "UNKNOWN",
+            "reason": "Current-source offline acceptance receipt is valid."
+            if current_demo_pass
+            else "Saved receipt is stale, invalid, incomplete, or failed."
+            if acceptance_present
+            else "No saved offline acceptance receipt is available.",
+        },
+        "engineering_evidence": {
+            "status": "PASS" if engineering_evidence_valid else "BLOCKED",
+            "reason": "Engineering evidence ledger passed local hash validation."
+            if engineering_evidence_valid
+            else "Engineering evidence is stale or failed local hash validation.",
+        },
+        "asr_model_admission": {
+            "status": "BLOCKED" if not production_model_selected else "UNKNOWN",
+            "reason": "No qualifying model is admitted; the 5% normalized-WER gate remains unmet."
+            if not production_model_selected
+            else "Model selection exists but this read-only CLI does not re-evaluate benchmark eligibility.",
+        },
+        "clinical_validation": {
+            "status": "BLOCKED",
+            "reason": "Independent clinical validation and qualified review are not available.",
+        },
+        "identity_provider_activation": {
+            "status": "UNKNOWN",
+            "reason": "Institution identity-provider registration and credentials are not confirmed by this local check.",
+        },
+        "physical_audio_hardware": {
+            "status": "UNKNOWN",
+            "reason": "No named microphone/interface and physical channel test are recorded.",
+        },
+        "ehr_receiver_validation": {
+            "status": "UNKNOWN",
+            "reason": "No receiver-specific profile or authorized EHR sandbox validation is recorded.",
+        },
+    }
+    status = [check["status"] for check in checks.values()]
+    checks["overall"] = {
+        "status": "BLOCKED"
+        if "BLOCKED" in status
+        else "UNKNOWN"
+        if "UNKNOWN" in status
+        else "PASS",
+        "reason": "One or more release prerequisites are blocked or unknown.",
+    }
+    return checks
+
+
 def build(root="."):
     root = Path(root).resolve()
     ledger = json.loads(
@@ -30,6 +98,9 @@ def build(root="."):
             "error_code": str(exc),
             "real_patient_release_authorized": False,
         }
+    engineering_evidence_valid = counts.get("verified") is not None and not counts.get(
+        "error_code"
+    )
     acceptance_path = root / "data/offline-acceptance-summary.json"
     acceptance = (
         json.loads(acceptance_path.read_text(encoding="utf-8"))
@@ -66,6 +137,30 @@ def build(root="."):
                     )
                 except (OSError, ValueError):
                     pass
+    model_registry_path = root / "evaluation/model-registry.json"
+    production_model_selected = False
+    if model_registry_path.is_file():
+        try:
+            production_model_selected = bool(
+                json.loads(model_registry_path.read_text(encoding="utf-8")).get(
+                    "production_model_selected"
+                )
+            )
+        except (OSError, ValueError):
+            production_model_selected = False
+    offline_mode = os.getenv("MED_TRANSCRIPT_OFFLINE") == "1"
+    required_checks = readiness_checks(
+        offline_mode=offline_mode,
+        acceptance_present=isinstance(acceptance, dict),
+        current_demo_pass=current_demo_pass,
+        engineering_evidence_valid=engineering_evidence_valid,
+        production_model_selected=production_model_selected,
+    )
+    missing_checks = [
+        {"check": name, **value}
+        for name, value in required_checks.items()
+        if value["status"] in {"BLOCKED", "UNKNOWN"}
+    ]
     source_files = (
         "pyproject.toml",
         "constraints-ci.txt",
@@ -78,7 +173,9 @@ def build(root="."):
     return {
         "schema_version": "local_status_v1",
         "git_commit": commit,
-        "offline_mode": os.getenv("MED_TRANSCRIPT_OFFLINE") == "1",
+        "offline_mode": offline_mode,
+        "readiness_checks": required_checks,
+        "missing_checks": missing_checks,
         "test_status": {
             "latest_acceptance": {
                 k: v.get("status") if isinstance(v, dict) else v
@@ -86,6 +183,7 @@ def build(root="."):
             },
             "source": "saved_acceptance_only",
             "inference_executed": False,
+            "receipt_status": required_checks["latest_acceptance"]["status"],
         },
         "model_availability": inspect(root)["models"],
         "subsystem_capabilities": capability_manifest(),

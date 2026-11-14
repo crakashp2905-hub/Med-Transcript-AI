@@ -14,6 +14,7 @@ The [247-task engineering scorecard](docs/engineering-scorecard.md) records veri
 
 For a read-only local snapshot of checklist counts, saved test receipts, model
 availability, source hashes and release safeguards, run `python -m services.status_report`.
+The CLI never runs inference and labels every prerequisite `PASS`, `BLOCKED`, or `UNKNOWN`; absent evidence such as a qualifying ASR model, named audio device, identity-provider configuration, or receiver EHR profile remains visible as blocked or unknown.
 
 The [cached-artifact preflight](docs/local-artifact-preflight.md) hashes existing weights without loading or downloading models. The [release roadmap](docs/release-roadmap.md) separates offline engineering, local research and independent clinical acceptance. The [candidate method](docs/candidate-method.md) is explicitly a hypothesis; [historical drafting failures](docs/drafting-screen-diagnosis.md) remain visible.
 
