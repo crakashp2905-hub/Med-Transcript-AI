@@ -8601,13 +8601,21 @@
     },
     {
       "id": "MTA-17-03",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Publish benchmark tables generated automatically from frozen reports with negative results and limitations.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/publication_bundle.py",
+        "tests/test_publication_bundle.py",
+        "evaluation/publications/mta-17-03-benchmark-tables-v1.json",
+        "evaluation/publications/mta-17-03-benchmark-tables-v1.md",
+        "evaluation/reports/mta-17-03-benchmark-publication-v1.json"
+      ],
+      "source_commit": "eb80d9767bc04527674b67dcfb85d364b564e13c",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-17-03-benchmark-publication-v1.json","report_sha256":"f5595d452d794d6eac9dce9f1c9c4c8a288d08ea0bff7462e8801311361fee10","check":"publication_bundle","runtime_sha256":"c88a3cfd5df870d2c6fddec3f327de4810baf40454c2df0014e08ef9c5cd275b"}
+      ],
       "blocker": null
     },
     {

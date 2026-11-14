@@ -1,0 +1,35 @@
+{
+  "schema_version": "benchmark_publication_validation_v1",
+  "task_id": "MTA-17-03",
+  "source_commit": "eb80d9767bc04527674b67dcfb85d364b564e13c",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "generator": "services.publication_bundle",
+    "publication_path": "evaluation/publications/mta-17-03-benchmark-tables-v1.json",
+    "publication_sha256": "da418a67cb4739f910ed2b2686a918d59aa5c45c9703bdcc0fd77da44a25e668",
+    "test_runner": "services.safe_pytest",
+    "test_path": "tests/test_publication_bundle.py",
+    "test_summary": "1 passed, 1 warning",
+    "ranked_models": 7,
+    "unranked_candidates": 7,
+    "ranked_gate_failures": 7,
+    "failed_clips": 0,
+    "inference_performed": false
+  },
+  "runtime_sha256": "c88a3cfd5df870d2c6fddec3f327de4810baf40454c2df0014e08ef9c5cd275b",
+  "checks": {
+    "publication_bundle": {
+      "status": "pass",
+      "summary": "Frozen reports rendered to ranked and stratified tables; all seven 5% gate failures, seven unranked candidates, source hashes, and limitations retained."
+    }
+  },
+  "publication_path": "evaluation/publications/mta-17-03-benchmark-tables-v1.json",
+  "publication_sha256": "da418a67cb4739f910ed2b2686a918d59aa5c45c9703bdcc0fd77da44a25e668",
+  "limitations": [
+    "Tables are regenerated from frozen development benchmark reports; no new model inference is performed.",
+    "All seven candidates use text-only adapters; WER does not establish valid application timestamps or clinical safety.",
+    "The 5% gate remains unchanged and candidate failures are retained.",
+    "Clinical adjudication remains pending and no production model is selected."
+  ]
+}
