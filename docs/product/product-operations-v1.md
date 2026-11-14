@@ -27,6 +27,10 @@ Modes are capability and data-flow boundaries, not a claim that all modes are cu
 6. Use the synthetic tutorial before the first real encounter; require a separate institutional decision before any patient data is entered.
 7. If capture or inference is unavailable, use the manual workflow: create a note in the institution’s existing approved system, use only institution-approved transcription tools, and do not upload patient material to this prototype. A user may enter a manually prepared synthetic test case for product exploration.
 
+### Guided first-run tutorial
+
+The workspace walkthrough uses a synthetic amoxicillin consultation with a deliberate `250 mg` to `25 mg` draft error. It asks the user to compare the source and proposal, requires a correction before proceeding to the approval step, and states that completing the tutorial does not approve a note. The tutorial is for product navigation only; it does not estimate medication-safety performance or clinician skill.
+
 ## Product success metric dictionary
 
 | Metric | Definition | Evidence class | Guard against |
