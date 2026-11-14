@@ -6626,12 +6626,12 @@
       "id": "MTA-13-14",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Test purge and legal-hold retention separately with a fake operator-approved policy (not real patient policy).",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-14-b4dce59.json", "tests/test_purge_retention_gates.py"],
+      "source_commit": "b4dce59f448460c2f0a906fe20b5e58fe1961725",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-14-b4dce59.json", "report_sha256": "037dc1c28d2df291f5860ab0756e94a9e3997ba89f03b989c21df4317b385bc4", "check": "synthetic_legal_hold_and_approval_purge_gates", "status": "pass"}],
+      "blocker": "Institution-approved retention policy, backup lifecycle and external legal sign-off are unavailable; broader maintenance integration suite stalled."
     },
     {
       "id": "MTA-13-15",

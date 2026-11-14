@@ -1,0 +1,35 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-14"
+  ],
+  "source_commit": "b4dce59f448460c2f0a906fe20b5e58fe1961725",
+  "captured_at_utc": "2026-11-14T07:47:33.721081+00:00",
+  "source_files": {
+    "services/maintenance.py": "a83e71ca8337285f50535df7db3be3d01199cf061a6d800d893efe93365cccf8",
+    "tests/test_purge_retention_gates.py": "d054b74f08d9e4b663d63ecde1a55f0a023d87a16f3dde0efdcbd546e550dd46",
+    "evaluation/contracts/asset-deletion-graph-v1.json": "6ede1df9a398433fead7c6dc6dc37e944f2c6b141aa8cc60de98c77119341882"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_purge_retention_gates.py",
+      "status": "pass",
+      "result": "2 passed"
+    },
+    {
+      "command": "ruff check tests/test_purge_retention_gates.py; ruff format --check tests/test_purge_retention_gates.py",
+      "status": "pass",
+      "result": "all checks passed; file formatted"
+    }
+  ],
+  "supported_claims": [
+    "Synthetic local purge requests remain pending when a legal hold or existing approval is present.",
+    "Tests verify protected audio remains present for both retention gates."
+  ],
+  "limitations": [
+    "Tests use synthetic local records and do not define an institution-approved retention policy.",
+    "Backup expiration, offsite copies, key destruction, and legal sign-off remain external dependencies.",
+    "The broader maintenance integration suite stalled on Windows."
+  ],
+  "clinical_release_authorized": false
+}
