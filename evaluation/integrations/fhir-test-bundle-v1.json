@@ -1,0 +1,51 @@
+{
+  "resourceType": "Bundle",
+  "id": "00000000-0000-4000-8000-000000000010",
+  "type": "collection",
+  "timestamp": "2026-11-14T00:00:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:00000000-0000-4000-8000-000000000011",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "00000000-0000-4000-8000-000000000012",
+        "identifier": [
+          {
+            "system": "urn:med-transcript:note-sha256",
+            "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "status": "current",
+        "docStatus": "final",
+        "date": "2026-11-14T00:00:00Z",
+        "description": "Synthetic approved note; integration prototype. Validate against receiving-system profiles before import.",
+        "context": {
+          "encounter": [
+            {
+              "identifier": {
+                "system": "urn:med-transcript:encounter",
+                "value": "00000000-0000-4000-8000-000000000013"
+              }
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "application/json",
+              "title": "Approved evidence-linked note",
+              "data": "eyJub3RlIjogeyJpZCI6ICIwMDAwMDAwMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMTIiLCAiZW5jb3VudGVyX2lkIjogIjAwMDAwMDAwLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMDAxMyIsICJkZW1vIjogInN5bnRoZXRpYyJ9LCAiYXBwcm92YWwiOiB7InN0YXR1cyI6ICJhcHByb3ZlZCIsICJub3RlX3NoYTI1NiI6ICJhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhIiwgImFwcHJvdmVkX2F0IjogIjIwMjYtMTEtMTRUMDA6MDA6MDBaIn19"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "_validationBoundary": {
+    "fixtureOnly": true,
+    "externalFhirValidator": "not run",
+    "receiverProfile": "not validated",
+    "containsPatientData": false,
+    "notAConformanceClaim": true
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Med-Transcript local export mock API",
+    "version": "1.0.0-mock",
+    "description": "Implementation-oriented mock contract for the authenticated local export endpoints. It is not an EHR receiver contract, interoperability certification, or authorization to send patient data."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000",
+      "description": "Local development only; use the configured local origin."
+    }
+  ],
+  "paths": {
+    "/v1/encounters/{eid}/exports": {
+      "post": {
+        "operationId": "createApprovedExport",
+        "summary": "Create/retrieve an export for an existing clinician-approved version",
+        "description": "Requires authenticated encounter access and an existing current approval. This endpoint creates a local artifact; it does not submit a FHIR transaction or write to an EHR.",
+        "parameters": [
+          {"name": "eid", "in": "path", "required": true, "schema": {"type": "string", "format": "uuid"}},
+          {"name": "Idempotency-Key", "in": "header", "required": true, "schema": {"type": "string", "minLength": 1, "maxLength": 128}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ExportRequest"}}}
+        },
+        "responses": {
+          "201": {"description": "Local export receipt", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ExportReceipt"}}}},
+          "401": {"description": "Authentication required"},
+          "404": {"description": "Encounter or approval not found"},
+          "409": {"description": "Approval is stale, revoked, or fails current safety/integrity checks"},
+          "422": {"description": "Invalid export request"}
+        }
+      }
+    },
+    "/v1/encounters/{eid}/exports/{xid}": {
+      "get": {
+        "operationId": "downloadApprovedExport",
+        "summary": "Download a previously created local export artifact",
+        "description": "Rechecks encounter access, approval integrity, safety state and artifact digest. FHIR format is returned as JSON containing a DocumentReference resource.",
+        "parameters": [
+          {"name": "eid", "in": "path", "required": true, "schema": {"type": "string", "format": "uuid"}},
+          {"name": "xid", "in": "path", "required": true, "schema": {"type": "string", "format": "uuid"}}
+        ],
+        "responses": {
+          "200": {"description": "Verified export bytes; content type depends on export format"},
+          "401": {"description": "Authentication required"},
+          "404": {"description": "Encounter or export not found"},
+          "409": {"description": "Approval, current safety state, or artifact integrity check failed"}
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ExportRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["approval_id", "format"],
+        "properties": {
+          "approval_id": {"type": "string", "format": "uuid"},
+          "format": {"type": "string", "enum": ["markdown", "text", "json", "fhir"]}
+        }
+      },
+      "ExportReceipt": {
+        "type": "object",
+        "required": ["id", "sha256", "evidence_graph_sha256", "download_url"],
+        "properties": {
+          "id": {"type": "string", "format": "uuid"},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "evidence_graph_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "download_url": {"type": "string"}
+        }
+      }
+    }
+  },
+  "x-validation-boundary": {
+    "receiver_profile": "not validated",
+    "external_fhir_validator": "not run",
+    "ehr_write": false,
+    "patient_data_authorized": false,
+    "fhir_resource_scope": "single DocumentReference; not a transaction Bundle"
+  }
+}
