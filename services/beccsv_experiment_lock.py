@@ -178,5 +178,7 @@ def validate_lock(document, root="."):
     }
 
 
-def load_lock(path="evaluation/experiments/beccsv-deterministic-lock-v1.json", root="."):
+def load_lock(
+    path="evaluation/experiments/beccsv-deterministic-lock-v1.json", root="."
+):
     return validate_lock(_read(path), root=root)

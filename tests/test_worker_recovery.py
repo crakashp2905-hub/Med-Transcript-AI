@@ -141,9 +141,7 @@ def test_expired_ingest_lease_is_recovered_and_published_once(tmp_path):
             (upload,),
         )
     with ThreadPoolExecutor(max_workers=2) as pool:
-        outcomes = list(
-            pool.map(lambda _: ingest_once(db_path, asset_root), range(2))
-        )
+        outcomes = list(pool.map(lambda _: ingest_once(db_path, asset_root), range(2)))
 
     with Store(db_path).transaction() as con:
         job = con.execute(

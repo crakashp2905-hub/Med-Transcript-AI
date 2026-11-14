@@ -29,16 +29,19 @@ def test_product_modes_onboarding_metrics_and_slos_are_explicit():
         "read_only_investor",
         "institution_pilot_candidate",
     ]
-    assert all(section in document for section in (
-        "## Product promise",
-        "## Packaged modes",
-        "## Zero-assumption onboarding and manual fallback",
-        "### Guided first-run tutorial",
-        "## Product success metric dictionary",
-        "## Dashboard measurement classes",
-        "## Guardrail metrics and stop conditions",
-        "## Hypothesis SLOs by hardware tier",
-    ))
+    assert all(
+        section in document
+        for section in (
+            "## Product promise",
+            "## Packaged modes",
+            "## Zero-assumption onboarding and manual fallback",
+            "### Guided first-run tutorial",
+            "## Product success metric dictionary",
+            "## Dashboard measurement classes",
+            "## Guardrail metrics and stop conditions",
+            "## Hypothesis SLOs by hardware tier",
+        )
+    )
     assert "not guarantees" in document
     assert "manual workflow" in document
     assert "5% normalized WER admission gate remains unchanged" in document

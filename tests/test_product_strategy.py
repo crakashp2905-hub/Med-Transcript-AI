@@ -48,7 +48,10 @@ def test_user_story_set_has_twenty_given_when_then_acceptance_examples():
         if line[:1].isdigit() and ". **As " in line
     ]
     assert len(numbered) == 20
-    assert all("**Given**" in row and "**when**" in row and "**then**" in row for row in numbered)
+    assert all(
+        "**Given**" in row and "**when**" in row and "**then**" in row
+        for row in numbered
+    )
 
 
 def test_prioritization_and_roadmap_remain_explicitly_hypothetical():

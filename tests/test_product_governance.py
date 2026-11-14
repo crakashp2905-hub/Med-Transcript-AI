@@ -51,7 +51,9 @@ def test_fhir_r4_serialization_keeps_approval_and_identifier_integrity():
             {
                 "fact_id": "fact-1",
                 "statement": "Synthetic reviewed statement.",
-                "evidence": [{"segment_id": "segment-1", "start_ms": 500, "end_ms": 900}],
+                "evidence": [
+                    {"segment_id": "segment-1", "start_ms": 500, "end_ms": 900}
+                ],
             }
         ],
     }

@@ -24,9 +24,7 @@ def test_local_onboarding_needs_no_email_or_oauth_activation(environment):
     assert session.json()["data_mode"] == "synthetic_only"
     assert session.json()["clinical_models_enabled"] is False
 
-    encounter = client.post(
-        "/v1/encounters", json=payload(), headers=headers(token)
-    )
+    encounter = client.post("/v1/encounters", json=payload(), headers=headers(token))
     assert encounter.status_code == 201
     encounter_id = encounter.json()["id"]
     rows = client.get("/v1/encounters", headers=headers(token))

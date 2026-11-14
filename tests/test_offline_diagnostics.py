@@ -15,8 +15,14 @@ def test_model_directory_inventory_distinguishes_missing_and_unconfigured(tmp_pa
         json.dumps(
             {
                 "jobs": [
-                    {"candidate_id": "present-model", "model_dir": "data/models/present"},
-                    {"candidate_id": "missing-model", "model_dir": "data/models/missing"},
+                    {
+                        "candidate_id": "present-model",
+                        "model_dir": "data/models/present",
+                    },
+                    {
+                        "candidate_id": "missing-model",
+                        "model_dir": "data/models/missing",
+                    },
                     {"candidate_id": "cached-runtime"},
                 ]
             }
@@ -86,7 +92,9 @@ def test_latest_acceptance_rejects_report_hash_mismatch(tmp_path):
     (tmp_path / "evaluation/reports").mkdir(parents=True)
     (tmp_path / "evaluation/reports/acceptance.json").write_text("{}", encoding="utf-8")
     (tmp_path / "data/offline-acceptance-summary.json").write_text(
-        json.dumps({"report": "evaluation/reports/acceptance.json", "sha256": "0" * 64}),
+        json.dumps(
+            {"report": "evaluation/reports/acceptance.json", "sha256": "0" * 64}
+        ),
         encoding="utf-8",
     )
 

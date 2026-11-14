@@ -37,10 +37,18 @@ def test_beccsv_lock_binds_same_source_facts_cases_and_protocol_across_arms():
 @pytest.mark.parametrize(
     ("path", "value", "error"),
     [
-        (("shared_protocol", "resource_budget", "max_case_wall_seconds"), 11, "resource_budget"),
+        (
+            ("shared_protocol", "resource_budget", "max_case_wall_seconds"),
+            11,
+            "resource_budget",
+        ),
         (("shared_protocol", "prompt_policy", "length_chars"), 100, "prompt_policy"),
         (("shared_protocol", "retry_policy", "retries"), 1, "retry_policy"),
-        (("shared_protocol", "model_digests", "verifier"), "model-sha256", "model_digests"),
+        (
+            ("shared_protocol", "model_digests", "verifier"),
+            "model-sha256",
+            "model_digests",
+        ),
         (("arms", "no_relation_edges", "temporal_edges"), False, "arm_must_remove"),
     ],
 )

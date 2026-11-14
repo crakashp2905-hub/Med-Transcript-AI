@@ -6,9 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_runtime_support_matrix_only_claims_source_audited_combinations():
-    document = (ROOT / "docs/runtime-support-matrix.md").read_text(
-        encoding="utf-8"
-    )
+    document = (ROOT / "docs/runtime-support-matrix.md").read_text(encoding="utf-8")
     visual = json.loads(
         (ROOT / "evaluation/reports/master-task-mta-09-20-4304b85.json").read_text(
             encoding="utf-8"

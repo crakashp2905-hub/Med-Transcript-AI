@@ -92,9 +92,7 @@ def test_terminal_jobs_are_not_rewritten_by_cancellation():
 def test_api_cancellation_keeps_queued_transcription_unpublishable(environment):
     queued = enqueue(environment)
     job_id = queued.job["job_id"]
-    response = environment.client.post(
-        f"/v1/jobs/{job_id}/cancel", headers=headers()
-    )
+    response = environment.client.post(f"/v1/jobs/{job_id}/cancel", headers=headers())
 
     assert response.status_code == 200
     assert response.json() == {"job_id": job_id, "status": "cancelled"}

@@ -139,7 +139,10 @@ def stitch_window_outputs(plan, outputs):
         recomputed = build_coverage_ledger(source_spans, source_windows)
     except (TypeError, ValueError):
         raise ValueError("valid_source_coverage_ledger_required") from None
-    normalize = lambda spans: [tuple(span) for span in spans]
+
+    def normalize(spans):
+        return [tuple(span) for span in spans]
+
     if (
         not recomputed["complete"]
         or normalize(ledger.get("windows", [])) != recomputed["windows"]

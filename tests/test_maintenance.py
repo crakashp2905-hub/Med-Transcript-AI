@@ -79,9 +79,7 @@ def test_local_restore_recovery_target_and_snapshot_rpo(tmp_path, capsys):
     result = restore(str(snapshot), str(target), path)
     elapsed = time.perf_counter() - started
     with Store(str(target / "database.sqlite3")).transaction() as con:
-        restored = {
-            row[0] for row in con.execute("SELECT id FROM encounters")
-        }
+        restored = {row[0] for row in con.execute("SELECT id FROM encounters")}
 
     assert result["status"] == "restored_for_operator_review"
     assert set(baseline) <= restored

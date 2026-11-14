@@ -44,9 +44,7 @@ def test_matched_segmentation_receipts_are_immutable_and_gate_inclusive():
         assert report["resource_measurement"]["status"] == "measured"
         assert len({case["audio_sha256"] for case in report["cases"]}) == 16
         assert all(case["reference_sha256"] for case in report["cases"])
-        assert matrix["modes"][mode]["sha256"] == EXPECTED[
-            f"tiny-en-{mode}.json"
-        ]
+        assert matrix["modes"][mode]["sha256"] == EXPECTED[f"tiny-en-{mode}.json"]
 
     first = reports[modes[0]]["cases"]
     for mode in modes[1:]:

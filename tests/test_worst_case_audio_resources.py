@@ -88,9 +88,7 @@ def test_concurrent_long_recording_intake_preserves_failures_and_resource_trace(
 ):
     valid = tmp_path / "long-form-30m-8ch.wav"
     invalid = tmp_path / "over-byte-cap.wav"
-    _sparse_pcm_wav(
-        valid, channels=8, sample_rate=16000, frames=16000 * 30 * 60
-    )
+    _sparse_pcm_wav(valid, channels=8, sample_rate=16000, frames=16000 * 30 * 60)
     with invalid.open("wb") as output:
         output.write(b"RIFF" + struct.pack("<I", 512_000_000 - 8) + b"WAVE")
         output.seek(512_000_000)
