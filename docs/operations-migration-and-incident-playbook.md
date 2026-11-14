@@ -2,6 +2,12 @@
 
 This playbook covers local synthetic development and rehearsals. It does not authorize deployment with patient data, replace an institution's incident process, or establish recovery targets for untested hardware.
 
+## Local recovery objectives
+
+- **RTO target:** restore a small synthetic SQLite snapshot and pass integrity validation within 60 seconds on the development workstation. Record the measured restore duration and the workstation/OS with each rehearsal. This is a local engineering threshold, not a service guarantee.
+- **RPO target:** recover every acknowledged record present in the last completed, hash-verified backup. Writes after that snapshot are outside the recovery point and may be lost. The prototype has no scheduled backup cadence, so it does not claim a bounded wall-clock RPO for a running deployment.
+- Rehearsals must include a successful synthetic restore and a rejected corrupted/incomplete backup. Record the snapshot manifest hash, recovered record counts, restore duration, and failure code. Hardware performance is not generalized beyond the machine measured.
+
 ## Roles and incident record
 
 Assign an incident lead, an engineering operator, and a recorder before a rehearsal. One person may hold multiple roles in a local exercise, but the record must name each role. Use synthetic encounters only. Do not copy transcripts, audio, access keys, tokens, or raw provider errors into incident notes.

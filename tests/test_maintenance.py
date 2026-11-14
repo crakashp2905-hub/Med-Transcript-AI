@@ -1,5 +1,7 @@
+import json
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
+import time
 from uuid import uuid4
 
 import pytest
@@ -49,6 +51,54 @@ def test_restore_rejects_modified_backup(setup, tmp_path):
     (source / "database.sqlite3").write_bytes(b"corrupt")
     with pytest.raises(ValueError, match="integrity"):
         restore(str(source), str(tmp_path / "restore"), path)
+
+
+def test_local_restore_recovery_target_and_snapshot_rpo(tmp_path, capsys):
+    path = str(tmp_path / "source.sqlite3")
+    assets = tmp_path / "source-assets"
+    assets.mkdir()
+    now = datetime.now(timezone.utc).isoformat()
+    baseline = [str(uuid4()) for _ in range(10)]
+    with Store(path).transaction() as con:
+        con.executemany(
+            "INSERT INTO encounters(id,tenant,clinician,body,created_at) VALUES(?,?,?,?,?)",
+            [(eid, "tenant", "clinician", "{}", now) for eid in baseline],
+        )
+
+    snapshot = tmp_path / "snapshot"
+    assert backup(path, str(assets), str(snapshot))["status"] == "backed_up"
+    post_snapshot = str(uuid4())
+    with Store(path).transaction() as con:
+        con.execute(
+            "INSERT INTO encounters(id,tenant,clinician,body,created_at) VALUES(?,?,?,?,?)",
+            (post_snapshot, "tenant", "clinician", "{}", now),
+        )
+
+    target = tmp_path / "restored"
+    started = time.perf_counter()
+    result = restore(str(snapshot), str(target), path)
+    elapsed = time.perf_counter() - started
+    with Store(str(target / "database.sqlite3")).transaction() as con:
+        restored = {
+            row[0] for row in con.execute("SELECT id FROM encounters")
+        }
+
+    assert result["status"] == "restored_for_operator_review"
+    assert set(baseline) <= restored
+    assert post_snapshot not in restored
+    assert elapsed < 60
+    print(
+        json.dumps(
+            {
+                "restore_rto_seconds": round(elapsed, 6),
+                "local_engineering_rto_target_seconds": 60,
+                "baseline_records_recovered": len(baseline),
+                "post_snapshot_records_recovered": int(post_snapshot in restored),
+                "snapshot_rpo_semantics": "all acknowledged records inside the last verified snapshot recovered",
+            },
+            sort_keys=True,
+        )
+    )
 
 
 def test_reconcile_is_dry_run_and_does_not_delete_unrelated_files(setup, tmp_path):
