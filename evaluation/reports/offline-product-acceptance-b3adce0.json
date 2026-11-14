@@ -1,0 +1,111 @@
+{
+  "schema_version": "offline_product_acceptance_v1",
+  "run_id": "b3adce0-full-product-acceptance-r1",
+  "source_commit": "b3adce05ac575fe8675892d0a42d977553a0ec93",
+  "recorded_at_utc": "2026-11-14T20:14:08.533876Z",
+  "scope": "Exact-commit local engineering/product acceptance for scribe interaction, recovery, source review, verification, approval boundaries and export. Not clinical or ASR acceptance.",
+  "checks": {
+    "product_e2e": {
+      "status": "pass",
+      "command": "MED_TRANSCRIPT_TEST_URL=http://127.0.0.1:8008; npm_config_offline=true; playwright test --grep-invert Google --reporter=line",
+      "suite": "apps/clinician-web/e2e",
+      "collected": 43,
+      "passed": 42,
+      "skipped": 1,
+      "failed": 0,
+      "skip_reason": "Optional compressed-audio normalization is skipped when the Node-launched system Python lacks the cached PyAV decoder.",
+      "coverage": [
+        "synthetic end-to-end encounter approval and JSON export",
+        "transcript and evidence review",
+        "dictation recovery and retry",
+        "browser storage slowdown with bounded PCM recovery prefix",
+        "30-minute recording limit",
+        "speaker/evidence/source navigation",
+        "investor demo read-only boundary"
+      ],
+      "network": "Loopback-only scripted fixture; Google auth excluded; no hosted calls."
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "cmd /c npm.cmd --prefix apps\\clinician-web run build",
+      "result": "tsc --noEmit and Vite production build completed."
+    },
+    "focused_backend": {
+      "status": "pass",
+      "command": "D:\\Med-Transcript\\.venv\\Scripts\\python.exe -m pytest -q tests/test_completion_gaps.py tests/test_inference_slot.py tests/test_media.py",
+      "passed": 48,
+      "failed": 0,
+      "elapsed_seconds": 22.29,
+      "loopback_permission": "Required by Windows asyncio TestClient socketpair; sandbox-restricted attempt hung before test execution."
+    },
+    "offline_input_integrity": {
+      "status": "pass",
+      "dataset_manifest": "evaluation/datasets/meddistract-detailed-v1/manifest.json",
+      "local_audio": "data/datasets/meddistract-detailed-v1/day1_consultation01__clean.wav",
+      "expected_sha256": "61436ef271818dfc4160c6a35d7923b9b55757d02582a7ea63055bcd6e9f1ddf",
+      "actual_sha256": "61436ef271818dfc4160c6a35d7923b9b55757d02582a7ea63055bcd6e9f1ddf",
+      "asset_source": "already-cached local public mock dataset; no download"
+    },
+    "scripted_timing": {
+      "status": "pass_with_blocked_clinical_approval",
+      "source_profile": "local_scripted_non_asr_v1",
+      "source_sample_id": "day1_consultation01_patient.utterance03",
+      "recording_stop_to_draft_ready_ms": 19989,
+      "correction_saved_to_blocked_verification_ms": 175,
+      "export_ready_ms": null,
+      "approval_issued": false,
+      "clinical_accuracy_measured": false
+    },
+    "full_backend_suite": {
+      "status": "not_run",
+      "note": "Focused backend cases passed. The broader historical backend acceptance timed out at a prior commit; a full current-HEAD backend suite remains outstanding."
+    },
+    "hosted_ci": {
+      "status": "not_observed",
+      "note": "Hosted CI was not queried; all work used local tools and loopback fixtures."
+    },
+    "clinical_release": {
+      "status": "blocked",
+      "authorized": false,
+      "reason": "No independent clinician adjudication or institutional/privacy approval."
+    },
+    "asr_quality_gate": {
+      "status": "failed",
+      "threshold_normalized_wer": 0.05,
+      "note": "No new ASR benchmark was run; the frozen gate remains unchanged and prior measured candidates remain ineligible."
+    }
+  },
+  "attempt_history": [
+    {
+      "source_commit": "023b85afc6f3aff125e4458a2d4f15649902161e",
+      "result": "40 passed, 1 skipped, 1 failed; the slow-storage test still mocked MediaRecorder after mono dictation moved to AudioWorklet PCM."
+    },
+    {
+      "source_commit": "b3adce05ac575fe8675892d0a42d977553a0ec93",
+      "result": "Updated PCM-backed slow-storage test passed alone (1 passed); full current suite passed 42 with 1 skipped."
+    },
+    {
+      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "result": "Prior full backend suite timeout remains preserved in evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json."
+    }
+  ],
+  "generated_test_artifacts": [
+    "evaluation/usability/artifacts/browser-observations.json",
+    "evaluation/usability/artifacts/source-mobile.png",
+    "evaluation/usability/artifacts/workspace-desktop.png"
+  ],
+  "runtime": {
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "platform": "Windows 11",
+    "browser": "Playwright Chromium; fake microphone fixture",
+    "acceptance_mode": "clean exact-source archive for build; pushed HEAD for browser and focused pytest",
+    "network_policy": "loopback application only; browser fixture blocks non-loopback HTTP(S)",
+    "models": "scripted browser adapter; no ASR model inference in UI tests"
+  },
+  "runtime_sha256": "ae318161bee81d8b4373db83ed859fc3c8453db4f479e05552054701ae3b3c82",
+  "paid_calls": false,
+  "external_assets_fetched": false,
+  "clinical_release_authorized": false,
+  "source_tree_oid": "c194a5fce41b9a82f90e7e63883aae7ce2ef1948"
+}

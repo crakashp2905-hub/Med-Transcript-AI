@@ -9063,27 +9063,28 @@
       "id": "MTA-18-04",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "failed",
+      "status": "verified",
       "description": "Product engineering gate: scripted personas finish all critical journeys, audit/provenance verified and recovery/fallback robust.",
       "evidence": [
         "apps/clinician-web/e2e/workflow.spec.ts",
         "apps/clinician-web/e2e/recovery.spec.ts",
         "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
-        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+        "evaluation/reports/offline-product-acceptance-b3adce0.json"
       ],
-      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "source_commit": "b3adce05ac575fe8675892d0a42d977553a0ec93",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
-          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
-          "check": "product_gate",
-          "status": "fail",
-          "test_command": "python -m services.offline_acceptance --version mta18-11-0f9b27d",
-          "test_result": "Synthetic application walkthrough passed, but complete scripted persona journeys and recovery/fallback E2E could not be established because the backend suite timed out and frontend build runtime was unavailable.",
-          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c"
+          "report": "evaluation/reports/offline-product-acceptance-b3adce0.json",
+          "report_sha256": "67370f752aa836ef08381d07d0e89cc683211313cf039498ad7e24cfae45c5df",
+          "check": "product_e2e",
+          "status": "pass",
+          "test_command": "MED_TRANSCRIPT_TEST_URL=http://127.0.0.1:8008; npm_config_offline=true; playwright test --grep-invert Google --reporter=line",
+          "test_result": "42 of 43 non-Google local browser cases passed; one optional compressed-audio normalization case was skipped; no failures. Focused backend 48 passed and frontend build passed.",
+          "tested_source_commit": "b3adce05ac575fe8675892d0a42d977553a0ec93"
         }
       ],
-      "blocker": "The synthetic walkthrough passed, but complete persona and recovery journeys remain unverified because backend tests timed out and frontend E2E runtime is unavailable."
+      "blocker": null
     },
     {
       "id": "MTA-18-05",
