@@ -1,0 +1,165 @@
+{
+  "schema_version": "milestone1_synthetic_browser_evidence_v1",
+  "run_id": "m1-browser-2026-11-15-97036c9",
+  "source_commit": "97036c972152572d27ff24e37436243c3426eaad",
+  "worktree_dirty": true,
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/src/Dictation.tsx",
+      "sha256": "ad3504a30bba6185f99ea2b63e1315b9cb9717e6102b2564ffc4966a65ce3c9a"
+    },
+    {
+      "path": "apps/clinician-web/src/CaptureSync.ts",
+      "sha256": "9b36f09d5958f53a6008d357c3890b98423ceff8849f5033e0a51b9c5741a0d2"
+    },
+    {
+      "path": "apps/clinician-web/src/SpeakerTurnEditor.tsx",
+      "sha256": "703cb1bb09640e9f9f922c7a58618a555dbd41533161ce8098c3c0c68a01cbf4"
+    },
+    {
+      "path": "apps/clinician-web/e2e/presentation.spec.ts",
+      "sha256": "6b98f3e1232ada53d858f51b32ba56754025c903bb040ae04a2887835ef6f72f"
+    },
+    {
+      "path": "apps/clinician-web/e2e/recovery.spec.ts",
+      "sha256": "c385b8287c5f9d4453f5e81486c88d7781e7cf75401c408297fc0b6ef6a6037f"
+    },
+    {
+      "path": "apps/clinician-web/e2e/fixtures/offline.ts",
+      "sha256": "77f21ec35945ec8bd809d3d68c84441c1b127dc8107132de366eaab68dd7e251"
+    },
+    {
+      "path": "apps/clinician-web/package-lock.json",
+      "sha256": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27"
+    },
+    {
+      "path": "tests/offline_browser_server.py",
+      "sha256": "a5b81c3f43650d0183d6c2d297112273e5f301cc529fbd885a18a5631b99fdbd"
+    },
+    {
+      "path": "evaluation/datasets/primock57-smoke-v1/manifest.json",
+      "sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd"
+    },
+    {
+      "path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav",
+      "sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c"
+    }
+  ],
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "@playwright/test from locked local node_modules",
+    "browser_channel": "chrome",
+    "network": "loopback synthetic server only; browser fixture denies non-loopback HTTP(S)"
+  },
+  "fixture": {
+    "kind": "public mock audio used only by scripted non-ASR browser fixture",
+    "sample_id": "day1_consultation01_patient.utterance03",
+    "reserved_acceptance_inference": false,
+    "model_inference_executed": false
+  },
+  "checks": [
+    {
+      "command": "npm run build",
+      "status": "pass",
+      "summary": "TypeScript check and Vite production build completed."
+    },
+    {
+      "suite": "e2e/presentation.spec.ts",
+      "selected": "4 non-overwriting journeys",
+      "status": "pass",
+      "passed": 4,
+      "failed": 0,
+      "test_ids": [
+        "current correction comparison and uncertainty queue retain unreviewed proposals",
+        "encounter review summary separates verifier flags from unmeasured false alerts",
+        "detailed demo, review tools and measured dashboard preserve approval boundaries",
+        "ASR uncertain-span queue exposes original text, supplied alternatives, reasons, and keyboard review"
+      ]
+    },
+    {
+      "suite": "e2e/recovery.spec.ts",
+      "status": "partial_failure",
+      "passed": 8,
+      "failed": 1,
+      "failed_test_id": "server-backed recording seals the final source instead of uploading it twice",
+      "failure": "Local scripted server reported Media dependency missing during audio ingestion; transcript was not produced. This is a failed journey, not a pass.",
+      "passed_test_ids": [
+        "reload recovers committed audio only in its encounter, with explicit retry and deletion",
+        "storage quota failure stops capture and retains previously committed audio",
+        "large upload resumes after a lost chunk response without retransmitting committed bytes",
+        "the same source file can be uploaded to separate encounters",
+        "live local preview is labelled provisional and does not prepare or approve a note",
+        "late rejection from cancelled microphone request cannot stop a newer capture",
+        "revoked recording permission stops capture and requires fresh confirmation",
+        "server backup recovers an acknowledged prefix after local draft loss"
+      ]
+    },
+    {
+      "suite": "e2e/presentation.spec.ts",
+      "selected": "approved summary keeps source references and requires separate confirmation; used temporary copy with unique output filename to preserve existing file",
+      "status": "pass",
+      "passed": 1,
+      "failed": 0,
+      "coverage": [
+        "manual source transcript",
+        "clinician approval",
+        "source-linked reviewed summary",
+        "separate confirmation",
+        "download export",
+        "FHIR JSON export"
+      ]
+    },
+    {
+      "suite": "e2e/presentation.spec.ts",
+      "selected": "detailed demo, review tools and measured dashboard preserve approval boundaries",
+      "status": "pass",
+      "passed": 1,
+      "failed": 0,
+      "note": "Duplicate execution in addition to the four-test presentation run."
+    }
+  ],
+  "output_artifacts": [
+    {
+      "path": "data/browser-test-m1-presentation-2026-11-15/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/browser-test-m1-recovery-2026-11-15/.last-run.json",
+      "sha256": "149edf97d9d22f59e803d9fbd1715fc6634e50cb8ea43b60ce9ca6664c7ba55b",
+      "bytes": 96
+    },
+    {
+      "path": "data/browser-test-m1-recovery-2026-11-15/recovery-server-backed-rec-e3887-stead-of-uploading-it-twice/error-context.md",
+      "sha256": "f3f7e9797fce97fa0c180579f022239cbfc1a43acbb24d941f712d3189e2bf9c",
+      "bytes": 21301
+    },
+    {
+      "path": "data/browser-test-m1-recovery-2026-11-15/recovery-server-backed-rec-e3887-stead-of-uploading-it-twice/test-failed-1.png",
+      "sha256": "0d0a035ee3508ae485e5f0aa948dac66eee8194bce078c7f8b03383aa0c07304",
+      "bytes": 146088
+    },
+    {
+      "path": "data/browser-test-m1-recovery-2026-11-15/recovery-server-backed-rec-e3887-stead-of-uploading-it-twice/trace.zip",
+      "sha256": "5a797a5d4443ac602504befb7c27c584aa3f12f795a95577eaa68c4125014d0f",
+      "bytes": 3853517
+    },
+    {
+      "path": "data/browser-test-m1-export-2026-11-15/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/browser-test-m1-loopback-2026-11-15-r2/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    }
+  ],
+  "limitations": [
+    "No full 20\u201330-minute capture was attempted.",
+    "The local media dependency is missing, so the end-to-end captured-audio transcription journey failed.",
+    "No independent clinical validation, institutional approval, or production readiness is established."
+  ]
+}
