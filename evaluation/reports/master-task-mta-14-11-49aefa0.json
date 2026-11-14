@@ -1,0 +1,35 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-11",
+  "source_commit": "49aefa07421eef5a1907f4af6c98a06cf00861f2",
+  "source_files": {
+    "tests/test_foundation.py": "4631987a3209138578ecf4ff466b159ab554f2f26af190bcd473789ef2823807",
+    "tests/test_recovery.py": "70d3803a56a03f59218d6aadaafedc77455a8364a5aed3b323db62d14e5fddb7",
+    "tests/test_maintenance.py": "98f74440eb10082fce0e64a93491f99ad49d45d13ef9d5df4f1e8eeb338b6602"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_foundation.py::test_legacy_database_migrates_without_losing_encounters tests/test_foundation.py::test_failed_schema_migration_rolls_back_schema_and_version tests/test_recovery.py::test_additive_preview_migration_preserves_resumable_upload_offsets tests/test_maintenance.py::test_backup_restore_and_post_backup_tombstone tests/test_maintenance.py::test_restore_rejects_modified_backup"
+  },
+  "runtime_sha256": "74694a4fdb4d58d26654d086f1187186d158a6f09ed3ab2a0661ac48442c5923",
+  "checks": {
+    "historical_migration_rollback_and_backup_restore": {
+      "status": "pass",
+      "detail": "5 passed. An early SQLite schema migrates repeatably to the latest version without losing its encounter; an injected SQL error rolls back every DDL change and user_version; a historical upload migration preserves resumable offsets and current indexes; backup restore applies tombstones and restores integrity; modified backup content is rejected."
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "ruff check tests/test_foundation.py",
+      "detail": "All checks passed."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "Migration and restore tests use synthetic SQLite data and the local development implementation.",
+    "No PostgreSQL schema migration or production rollback was exercised."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}

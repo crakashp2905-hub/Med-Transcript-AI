@@ -7120,12 +7120,30 @@
       "id": "MTA-14-11",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Build transactional migration tests from historical SQLite schema to latest, including rollback and backup restore.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "tests/test_foundation.py",
+        "tests/test_recovery.py",
+        "tests/test_maintenance.py",
+        "evaluation/reports/master-task-mta-14-11-49aefa0.json"
+      ],
+      "source_commit": "49aefa07421eef5a1907f4af6c98a06cf00861f2",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-11-49aefa0.json",
+          "report_sha256": "d3359542f0ba4764c0f9eae51bd2c5acd72d8bc6a82e5306110afa33f5f6dbc9",
+          "check": "historical_migration_rollback_and_backup_restore",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-11-49aefa0.json",
+          "report_sha256": "d3359542f0ba4764c0f9eae51bd2c5acd72d8bc6a82e5306110afa33f5f6dbc9",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Verified only for the local SQLite implementation; PostgreSQL migration and production rollback remain untested."
     },
     {
       "id": "MTA-14-12",
