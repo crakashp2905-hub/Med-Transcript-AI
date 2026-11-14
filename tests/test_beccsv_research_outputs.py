@@ -16,6 +16,10 @@ def test_negative_results_index_retains_failures_and_not_run_states():
     )
     assert report["success_claim"] is False
     assert report["clinical_gold"] is False
+    assert report["dataset_changes"][0]["policy"].startswith("Do not edit in place")
+    assert any(
+        "contamination" in item["experiment"] for item in report["not_run_or_blocked"]
+    )
 
 
 def test_paper_is_labeled_as_method_hypothesis_with_explicit_limitations():
@@ -25,3 +29,6 @@ def test_paper_is_labeled_as_method_hypothesis_with_explicit_limitations():
     assert "frozen-baseline comparison" in normalized
     assert "or independent clinical evaluation has been run" in normalized
     assert "no model promotion or real-patient release" in normalized
+    assert "```mermaid" in normalized
+    assert "planned baselines" in normalized
+    assert "limitations" in normalized
