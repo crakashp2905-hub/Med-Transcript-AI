@@ -16,7 +16,7 @@ def test_scoring_preserves_clinically_material_tokens():
     assert (
         score("No fever. Dose 0.5 mg.", "Fever. Dose 5 mcg.")["normalized_edits"] == 3
     )
-    metrics = score("Take 5 mg, not 10 mg", "Take 5 mg")
+    metrics = score("Take 5 mg, not 10 mg", "Take 5 mg", include_extended=True)
     assert metrics["deletions"] == 3
     assert metrics["substitutions"] == metrics["insertions"] == 0
     assert metrics["cer"] > 0

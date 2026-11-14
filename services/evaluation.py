@@ -54,23 +54,30 @@ def distance(reference, hypothesis):
     return previous[-1]
 
 
-def score(reference, hypothesis):
-    metrics = score_text(reference, hypothesis)
-    return {
-        "reference_words": metrics["reference_words"],
-        "hypothesis_words": metrics["hypothesis_words"],
-        "normalized_edits": metrics["word_edits"],
-        "normalized_wer": metrics["wer"],
-        "substitutions": metrics["substitutions"],
-        "deletions": metrics["deletions"],
-        "insertions": metrics["insertions"],
-        "reference_characters": metrics["reference_characters"],
-        "character_edits": metrics["character_edits"],
-        "cer": metrics["cer"],
-        "normalization": metrics["normalization"],
+def score(reference, hypothesis, *, include_extended=False):
+    reference_tokens, hypothesis_tokens = tokens(reference), tokens(hypothesis)
+    if len(reference_tokens) > 10000 or len(hypothesis_tokens) > 10000:
+        raise ValueError("Scoring token limit exceeded")
+    result = {
+        "reference_words": len(reference_tokens),
+        "hypothesis_words": len(hypothesis_tokens),
+        "normalized_edits": distance(reference_tokens, hypothesis_tokens),
         "raw_edits": distance(tokens(reference, False), tokens(hypothesis, False)),
         "raw_reference_words": len(tokens(reference, False)),
     }
+    if include_extended:
+        metrics = score_text(reference, hypothesis)
+        result.update(
+            normalized_wer=metrics["wer"],
+            substitutions=metrics["substitutions"],
+            deletions=metrics["deletions"],
+            insertions=metrics["insertions"],
+            reference_characters=metrics["reference_characters"],
+            character_edits=metrics["character_edits"],
+            cer=metrics["cer"],
+            normalization=metrics["normalization"],
+        )
+    return result
 
 
 def classify_output(error, raw, hypothesis):
@@ -191,7 +198,7 @@ def run(
             error = "evaluation_sample_failed"
         if error:
             failures += 1
-        metrics = score(sample["reference"], hypothesis)
+        metrics = score(sample["reference"], hypothesis, include_extended=True)
         uncertainty_label = (
             "uncertain" if sample.get("reference_uncertain", False) else "not_flagged"
         )
