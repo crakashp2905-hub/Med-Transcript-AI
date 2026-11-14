@@ -1,0 +1,71 @@
+{
+  "schema_version": "prospective_human_study_protocol_skeleton_v1",
+  "protocol_id": "MTA-16-16",
+  "title": "Clinician-supervised evaluation of a local English consultation documentation assistant",
+  "status": "draft_not_for_recruitment",
+  "guidance_basis": {
+    "name": "DECIDE-AI",
+    "mapping_status": "provisional_domain_mapping",
+    "local_checklist_available": false,
+    "exact_item_level_alignment_verified": false,
+    "note": "This skeleton covers early-stage system description, intended use, workflow, evaluation, safety, and reporting domains. Obtain and map the canonical checklist locally before protocol approval; no compliance claim is made."
+  },
+  "study": {
+    "design": null,
+    "setting": null,
+    "intended_use": "English outpatient consultation documentation assistance under clinician supervision; the system does not independently diagnose, prescribe, or sign a medical record.",
+    "primary_objective": null,
+    "secondary_objectives": [],
+    "comparator": null,
+    "registration_or_protocol_repository": null
+  },
+  "participants": {
+    "clinician_reviewer_qualifications": null,
+    "number_of_clinicians": null,
+    "patient_participation": null,
+    "recruitment_method": null,
+    "eligibility_criteria": [],
+    "exclusion_criteria": [],
+    "consent_and_compensation": null,
+    "status": "not_recruited"
+  },
+  "system_and_workflow": {
+    "software_version_and_commit": null,
+    "asr_model_revision": null,
+    "drafting_and_verification_versions": null,
+    "hardware_and_audio_setup": null,
+    "training_or_familiarization": null,
+    "clinician_role_and_override": "Clinician reviews audio, transcript, evidence-linked facts, warnings, and note; clinician may edit or reject every proposal. Only clinician-approved content is treated as approved.",
+    "failure_and_fallback_workflow": null,
+    "workflow_deviations_to_record": []
+  },
+  "outcomes_and_analysis": {
+    "primary_outcome_definition": null,
+    "secondary_outcomes": [],
+    "clinical_critical_error_taxonomy": null,
+    "independent_reference_and_adjudication": null,
+    "sample_size_rationale": null,
+    "statistical_analysis_plan": null,
+    "missing_data_and_protocol_deviations": null,
+    "participant_results": null,
+    "participant_level_results": [],
+    "aggregate_results": null
+  },
+  "safety_and_governance": {
+    "ethics_or_institutional_approval": null,
+    "data_protection_and_retention": null,
+    "adverse_event_and_near_miss_capture": null,
+    "independent_safety_review": null,
+    "stopping_rules": null,
+    "clinical_release_authorized": false
+  },
+  "readiness_gates": [
+    "Obtain the canonical DECIDE-AI checklist locally and complete an item-level crosswalk.",
+    "Name an institution and accountable clinical owner.",
+    "Recruit appropriately qualified independent reviewers and document qualifications.",
+    "Obtain ethics, privacy, and institutional approvals before any recruitment or patient-data collection.",
+    "Freeze the system, comparator, outcomes, adjudication rules, and statistical plan before enrollment.",
+    "Complete a dry run using synthetic data and verify safety escalation and fallback procedures."
+  ],
+  "evidence_boundary": "Protocol planning only. No participants, clinical observations, adjudicated outcomes, or study results are represented."
+}
