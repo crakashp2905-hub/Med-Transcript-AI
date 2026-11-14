@@ -1,0 +1,230 @@
+{
+  "schema_version": "security_assurance_report_v1",
+  "as_of_commit": "72a6f0fd1d60bfd86d8941d2c5877ce559e059aa",
+  "captured_at_utc": "2026-11-14T08:51:19.113701+00:00",
+  "assessment_scope": "Local synthetic/public-mock development prototype; not an external security audit, production authorization, or patient-data processing approval.",
+  "deployment_status": "DEVELOPMENT ONLY \u2014 clinical release unauthorized",
+  "controls": [
+    {
+      "area": "API authorization and request boundaries",
+      "status": "tested in local synthetic suites",
+      "evidence_task_ids": [
+        "MTA-13-05",
+        "MTA-13-06"
+      ],
+      "limits": [
+        "No independent penetration test or production identity-provider validation."
+      ]
+    },
+    {
+      "area": "Investor viewer privacy",
+      "status": "implemented and tested",
+      "evidence_task_ids": [
+        "MTA-13-20"
+      ],
+      "limits": [
+        "No real-patient corpus or production Google Workspace configuration was available."
+      ]
+    },
+    {
+      "area": "Audio storage permissions and path checks",
+      "status": "partially implemented and tested",
+      "evidence_task_ids": [
+        "MTA-13-07",
+        "MTA-13-08"
+      ],
+      "limits": [
+        "POSIX 0700/0600 checks skipped on Windows; Windows ACLs are not provisioned; hostile concurrent local path mutation is not race-free."
+      ]
+    },
+    {
+      "area": "Worker consent revocation",
+      "status": "tested at worker boundary",
+      "evidence_task_ids": [
+        "MTA-13-09"
+      ],
+      "limits": [
+        "Authenticated consent API route workflow was not covered by the focused worker tests."
+      ]
+    },
+    {
+      "area": "Audit, approval, source and export integrity",
+      "status": "tested against local database tampering",
+      "evidence_task_ids": [
+        "MTA-13-17"
+      ],
+      "limits": [
+        "No external immutable audit sink; a privileged database operator is outside the local chain trust boundary; PostgreSQL parity was not exercised in this focused suite."
+      ]
+    },
+    {
+      "area": "Network egress",
+      "status": "container runner implemented; runtime isolation unverified",
+      "evidence_task_ids": [
+        "MTA-13-18"
+      ],
+      "limits": [
+        "Docker is unavailable on the assessment host; host firewall policy was not applied or verified; Python socket guards are not a firewall."
+      ]
+    },
+    {
+      "area": "Operating-system and database least privilege",
+      "status": "incomplete",
+      "evidence_task_ids": [],
+      "limits": [
+        "Migration/application database role separation has not been implemented or verified."
+      ]
+    },
+    {
+      "area": "Encryption, key lifecycle and retention",
+      "status": "incomplete / external dependency",
+      "evidence_task_ids": [],
+      "limits": [
+        "Local encryption package/API required by the pinned plan is unavailable; institution-managed keys, retention policy, backup deletion and external copy reconciliation require operators and policy owners."
+      ]
+    }
+  ],
+  "known_check_failures": [
+    {
+      "check": "Repository-wide Ruff format check",
+      "status": "fail",
+      "detail": "Four concurrent ASR benchmark files require formatting; they were left untouched."
+    },
+    {
+      "check": "Master ledger audit test",
+      "status": "fail",
+      "detail": "MTA-01-02 is marked verified but its immutable evidence report lacks the runtime receipt required by the auditor."
+    },
+    {
+      "check": "Egress-denied container execution",
+      "status": "blocked",
+      "detail": "Docker executable is not installed locally; only runner/static tests and Python offline suites were executed."
+    }
+  ],
+  "external_dependencies": [
+    "Named clinical owner and independent qualified reviewers",
+    "Security/privacy/legal approval and deployment region",
+    "Production SSO registration and access-lifecycle ownership",
+    "Windows ACL setup or deployment on a supported POSIX platform",
+    "External audit sink, managed encryption keys and verified backup/restore custody",
+    "Host/container egress policy provisioning and verification",
+    "Separate least-privilege migration/runtime database roles"
+  ],
+  "evidence_artifacts": [
+    {
+      "task_id": "MTA-13-05",
+      "path": "evaluation/reports/master-task-mta-13-05-8dcc73d.json",
+      "sha256": "f02ada34bfbc22b3cff8b7847e415e665fa9e474a3f81493605a72887eeda8f0",
+      "source_commit": "8dcc73d9599fb11cda7f7b2df89c3de1b90be887",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-05",
+      "path": "tests/test_google_auth.py",
+      "sha256": "2c399b89749ba1e751442d2649f1c4398c4919b87c9b777bf33fa85d55a4a355",
+      "source_commit": "8dcc73d9599fb11cda7f7b2df89c3de1b90be887",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-05",
+      "path": "tests/test_review_workflow.py",
+      "sha256": "8e8edc2a8e0ebbd0bd0f20d5281687ec263b8f1cdcf74b6bb2eaaa1f842d297a",
+      "source_commit": "8dcc73d9599fb11cda7f7b2df89c3de1b90be887",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-06",
+      "path": "evaluation/reports/master-task-mta-13-06-05e1262.json",
+      "sha256": "7253e844e4d98091f1031878975ffec91d472606348e4f1dfd55ca9b84fb9d30",
+      "source_commit": "05e1262168a9385dca76c0d012d25a60be1100d8",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-06",
+      "path": "services/api/request_limits.py",
+      "sha256": "46b9c4829edc8e35f2ec0663f023eda973602ff15810a21d5e7483676fdd7a6e",
+      "source_commit": "05e1262168a9385dca76c0d012d25a60be1100d8",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-06",
+      "path": "services/strict_json.py",
+      "sha256": "fe7450877d0e7d3374751950b26a0aef392621a1eb30aac9fc249214cfa4d1c0",
+      "source_commit": "05e1262168a9385dca76c0d012d25a60be1100d8",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-07",
+      "path": "evaluation/reports/master-task-mta-13-07-0c6998d.json",
+      "sha256": "9d90fa5bdacd48b2ef5b58fa785fe4778de23a5f0badfd8cdcbe15ec8b69aa89",
+      "source_commit": "0c6998d7b6523945d7693d0b48b87e36f449f67f",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-07",
+      "path": "tests/test_maintenance_path_confinement.py",
+      "sha256": "f7cee6861a4c9bac6c191b53f7d830c37caeba3c38ef2fcf9c709c0e2fa53b49",
+      "source_commit": "0c6998d7b6523945d7693d0b48b87e36f449f67f",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-08",
+      "path": "evaluation/reports/master-task-mta-13-08-5169656.json",
+      "sha256": "3b9d30b8bb4153bcfdbad84ece86afd41b436c41df79587e3e13f6ff81ea3a6d",
+      "source_commit": "5169656ef53a353000c1a367e1f9d4523ab32951",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-09",
+      "path": "evaluation/reports/master-task-mta-13-09-637348a.json",
+      "sha256": "8a9f9b3cd4a9b7f719846977b2836608de3c6b1a520ff41eb058f148280cec4a",
+      "source_commit": "637348af3a608948c06ace6dc319c8596b526ef9",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-09",
+      "path": "tests/test_worker_consent_revocation.py",
+      "sha256": "2f375f6cf6c1d25e0486b0217235c8f65ded890f446cce0d8bc5ebf70d60184e",
+      "source_commit": "637348af3a608948c06ace6dc319c8596b526ef9",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-17",
+      "path": "evaluation/reports/master-task-mta-13-17-fb8047d.json",
+      "sha256": "a2ea7544baaf14351ff47c53d1073b1649971a8114b7bcdbd8a8f1237e3c8b4d",
+      "source_commit": "fb8047d9d48f0ad1a788b8a766fc90c2f82a46df",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-18",
+      "path": "evaluation/reports/master-task-mta-13-18-79c97d3.json",
+      "sha256": "b2e59c41580343a3fe299a583f1f10eb3cf462dd2dd3e307f90306e886632307",
+      "source_commit": "79c97d30f6285a043e93dc32986efa811725c999",
+      "status": "implemented"
+    },
+    {
+      "task_id": "MTA-13-20",
+      "path": "evaluation/reports/master-task-mta-13-20-88fdbb5.json",
+      "sha256": "17207091e5f587b379401cc23fbfce170857bf6876a8cfc4ed880fa2d3467fe1",
+      "source_commit": "88fdbb539c0f9fe580b9c6c725bf08dff6193bab",
+      "status": "implemented"
+    }
+  ],
+  "source_file_sha256": {
+    "services/api/main.py": "af48c1cca630dc58232a97751e1559bdb1b574ffd859a1a4c78f2a87304a2ae6",
+    "services/api/authorization_policy.py": "e0e1ace3e21b723db353a95064f27286e9326ebf475e084c8531213835c9d7cd",
+    "services/strict_json.py": "fe7450877d0e7d3374751950b26a0aef392621a1eb30aac9fc249214cfa4d1c0",
+    "services/api/live_uploads.py": "30d43634fb662117727997c2e208253ae693c797dc75ccb4823ec48aa9f68251",
+    "services/secure_storage.py": "db8fcf7b02685dd1ecc695d1ae8c63c6638d937aca33085614f363281954a78d",
+    "services/audit_integrity.py": "cd32c997eb3adbf788fb89eb2f5c37d52cc12875303595a3356c8301c06f8df6",
+    "services/offline.py": "495df48ddaefd46482fc0b842c1912c09cf05ba4fdbd647afad430e2ecba6785",
+    "compose.yaml": "aad1f808a2f98e8c2d6d81a9fa3981dd83d738d0bb058d4a948256013eb40736",
+    "compose.production.yaml": "a27ebcd37ded839045cb7157de59242583cb2b7fa25911ba8ef50158a63a19b7",
+    "Dockerfile": "24a03201ea8c290295f21a14b9c2e91e417f3dd1a0864376da126b18325a397d",
+    "docs/local-threat-model.md": "808a4fb23be87a3fe776d8a0c05ef196fa2a1427db912b576cc3c093c61967f1",
+    "docs/pilot-security-requirements.md": "a9d700c48223a84305f0379499275ef42b8da62fd336704fb3dd6bd084145e41",
+    "docs/container-security.md": "201696517f185a7bf7a6f3821b6c239c6a43e5c50ca1af0e8afd49b668169bab"
+  },
+  "real_patient_release_authorized": false,
+  "clinical_release_authorized": false
+}
