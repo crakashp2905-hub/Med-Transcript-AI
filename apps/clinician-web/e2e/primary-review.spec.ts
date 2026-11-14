@@ -29,6 +29,7 @@ test('default encounter review presents the source and clinical note side by sid
  await page.getByLabel('Review basis').fill('Synthetic end-to-end keyboard review.');
  await page.keyboard.press('Control+s');
  await expect(page.locator('.notice')).toContainText('Saved as a new source version.');
+ await expect(page.getByRole('button',{name:'Facts & SOAP note'})).toBeEnabled();
  await page.keyboard.press('Alt+2');
  await expect(page.getByRole('heading',{name:'Clinical facts'})).toBeVisible();
  await expect(page.getByRole('heading',{name:'Source transcript'})).toHaveCount(0);
