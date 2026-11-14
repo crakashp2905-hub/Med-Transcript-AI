@@ -8638,13 +8638,22 @@
     },
     {
       "id": "MTA-17-05",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Prepare supplementary material with error taxonomy, sample-level anonymous results and failure policy.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/supplementary_bundle.py",
+        "tests/test_supplementary_bundle.py",
+        "evaluation/supplementary/mta-17-05-sample-results-v1.json",
+        "evaluation/supplementary/mta-17-05-sample-results-v1.csv",
+        "evaluation/supplementary/mta-17-05-sample-results-v1.md",
+        "evaluation/reports/mta-17-05-supplement-v1.json"
+      ],
+      "source_commit": "a0bc1c77749fea2285350a6b4367e5f76b6c542e",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-17-05-supplement-v1.json","report_sha256":"13c00ad710746e3863b4e87a9b10f0fb9b4fc81d257f52aec582af4c3a3cc5e3","check":"sample_level_supplement","runtime_sha256":"535ac569b5f1812f2f8cfe5ad20d53ac1ad0a1e038e858887af01e746e3721a4"}
+      ],
       "blocker": null
     },
     {
