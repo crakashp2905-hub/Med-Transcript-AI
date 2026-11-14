@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-06"
+  ],
+  "source_commit": "05e1262168a9385dca76c0d012d25a60be1100d8",
+  "captured_at_utc": "2026-11-14T08:18:30.271414+00:00",
+  "source_files": {
+    "services/strict_json.py": "fe7450877d0e7d3374751950b26a0aef392621a1eb30aac9fc249214cfa4d1c0",
+    "services/api/request_limits.py": "46b9c4829edc8e35f2ec0663f023eda973602ff15810a21d5e7483676fdd7a6e",
+    "tests/test_domain_integrity.py": "3a89959c866d2d3771bd7ef7f02146d8d9cecbe2d96acd667128f2a109bf27eb",
+    "tests/test_google_auth.py": "2c399b89749ba1e751442d2649f1c4398c4919b87c9b777bf33fa85d55a4a355"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_domain_integrity.py::test_api_boundary_rejects_malformed_json_and_missing_required_fields tests/test_domain_integrity.py::test_request_duplicate_keys_are_rejected_before_mutation tests/test_domain_integrity.py::test_untrusted_json_rejects_duplicates_confusable_keys_depth_and_surrogates tests/test_domain_integrity.py::test_strict_json_preserves_valid_unicode_and_quoted_brackets tests/test_google_auth.py::test_oversized_json_is_rejected_with_and_without_content_length",
+      "status": "pass",
+      "result": "11 passed using local loopback test execution"
+    },
+    {
+      "command": "ruff check tests/test_domain_integrity.py; ruff format --check tests/test_domain_integrity.py",
+      "status": "pass",
+      "result": "all checks passed; test file formatted"
+    }
+  ],
+  "supported_claims": [
+    "HTTP boundary rejects malformed and duplicate-key JSON before mutation.",
+    "Missing required request fields produce a sanitized 422 response without creating an encounter.",
+    "Oversized JSON is rejected both when Content-Length exceeds the cap and when streamed bytes exceed the cap without Content-Length.",
+    "Invalid Unicode surrogates, duplicate/confusable schema keys and excessive nesting are rejected; valid composed and decomposed Unicode values remain distinct and unchanged."
+  ],
+  "limitations": [
+    "The maximum body-size check is bounded by the configured middleware limit; this does not replace infrastructure-level request limits."
+  ],
+  "clinical_release_authorized": false
+}
