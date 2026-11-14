@@ -6604,12 +6604,12 @@
       "id": "MTA-13-12",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Run repository secret scanning and fixture canary test; synthetic canaries must not appear in forbidden artifacts.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-12-96b34e1.json", "evaluation/reports/secret-scan-mta13-v5.json"],
+      "source_commit": "96b34e1abf002ce6ce6565ff44e8ef109e968331",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-12-96b34e1.json", "report_sha256": "338b7a955e6114e1fce65f121ae4bc19d582931b3252d90e149081aab78d7ba4", "check": "secret_scan_fixture_guard_and_current_scan", "status": "pass"}],
+      "blocker": "Current repository scan is incomplete because two 32,511,413-byte benchmark CSV files exceeded the 16 MiB scan cap; pattern scanning is not a comprehensive secrets audit."
     },
     {
       "id": "MTA-13-13",

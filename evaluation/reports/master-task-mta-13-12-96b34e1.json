@@ -1,0 +1,56 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-12"
+  ],
+  "source_commit": "96b34e1abf002ce6ce6565ff44e8ef109e968331",
+  "captured_at_utc": "2026-11-14T07:42:30.012373+00:00",
+  "source_files": {
+    "services/secret_scan.py": "887dc4df09be1b712a689cb97a8bf72ef3dd850fecf0ea3b61e90fda05484de9",
+    "tests/test_secret_scan_limits.py": "98cf3309bd3b792fb80ae9cb921016074b09378b3ae3c5181d1e60401547d013",
+    "tests/test_offline_engineering.py": "7adc4898d569de8291bc6529b63c96685eda58bf966abca28a5a5ba0954702d0"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_secret_scan_limits.py tests/test_offline_engineering.py -k \"secret_scanner or oversized\"",
+      "status": "pass",
+      "result": "3 passed"
+    },
+    {
+      "command": "ruff check services/secret_scan.py tests/test_secret_scan_limits.py; ruff format --check services/secret_scan.py tests/test_secret_scan_limits.py",
+      "status": "pass",
+      "result": "All checks passed; 2 files already formatted"
+    },
+    {
+      "command": "python -m services.secret_scan --out evaluation/reports/secret-scan-mta13-v5.json",
+      "status": "incomplete",
+      "result": "1438 files scanned; 0 pattern findings; 2 oversized files skipped"
+    }
+  ],
+  "scan_report": {
+    "path": "evaluation/reports/secret-scan-mta13-v5.json",
+    "sha256": "3b93b6352504978138a0c50becbac049a0c2cb7b365c9299639f7f8e0d3792ff",
+    "skipped_files": [
+      {
+        "path": "evaluation/reports/error-taxonomy-v1/all-errors.csv",
+        "size_bytes": 32511413,
+        "reason": "size_limit"
+      },
+      {
+        "path": "evaluation/reports/error-taxonomy-v2/all-errors.csv",
+        "size_bytes": 32511413,
+        "reason": "size_limit"
+      }
+    ]
+  },
+  "supported_claims": [
+    "Synthetic secret-canary fixtures are redacted from finding output.",
+    "The bounded scanner inspected 1,438 files and returned zero configured-pattern matches."
+  ],
+  "limitations": [
+    "Scan remains incomplete because two 32,511,413-byte CSV artifacts exceed the 16 MiB cap.",
+    "Pattern scanning cannot prove absence of secrets or patient identifiers.",
+    "No external security review."
+  ],
+  "clinical_release_authorized": false
+}
