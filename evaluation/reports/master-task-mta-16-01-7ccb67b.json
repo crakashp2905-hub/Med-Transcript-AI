@@ -1,0 +1,87 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-16-01",
+  "status": "pass",
+  "source_commit": "7ccb67b0ed209051c2ac97c2ae275b76c9eeb7f0",
+  "captured_at_utc": "2026-11-14T14:21:22+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    ".gitignore": "88147391edf14ab6b222bb06d9d7a28e99e11edafb57c246b164015905e0b6e7",
+    "services/product_scenarios.py": "37626b2d5eccd221648a19b00c052b8cb2e3338612884536ecff99252879f836",
+    "tests/test_product_scenarios.py": "b5d911407063369a27064b7eb15c47acbe99d79d7de2cfae26d43f152c96073d",
+    "evaluation/datasets/primock57-expanded-v1/manifest.json": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+    "evaluation/scenarios/offline-encounters-v1/README.md": "52f3dbed1b3e500ee8b59aec25f11721f6d1a2c9da0ce70f68c7b929557123ef",
+    "evaluation/scenarios/offline-encounters-v1/manifest.json": "71a9f9eb8ed2c9d96761ff43885a26ac6cc03659438a1a0cd98adc9409e6ae86",
+    "evaluation/scenarios/offline-encounters-v1/assets/deterministic-background-noise.wav": "5c779439f8ac9c209b5001dd879748e05b97c20df03a5687f81232949fdc6b52",
+    "evaluation/scenarios/offline-encounters-v1/assets/short-two-speaker-consultation.wav": "b812ccc495e651556f8683001bb7e11ccd80759175b0d13f18938840d6648ee1",
+    "evaluation/scenarios/offline-encounters-v1/assets/two-channel-multi-speaker.wav": "09ff1fb006ceef44946d59c41611656447bdbfbea0bbcdd11e209dc2b11954f7",
+    "evaluation/scenarios/offline-encounters-v1/assets/two-speaker-overlap.wav": "4514ad44ba7a8c14045240aae7ac891bcd110a69b3c270bf842a4ed6526a4b88"
+  },
+  "checks": {
+    "scenario_pack_determinism_and_coverage": {
+      "status": "pass",
+      "result": "3 passed",
+      "command": "python -m pytest -q tests/test_product_scenarios.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check services/product_scenarios.py tests/test_product_scenarios.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "both files already formatted",
+      "command": "python -m ruff format --check services/product_scenarios.py tests/test_product_scenarios.py"
+    }
+  },
+  "scenario_set": {
+    "scenario_count": 5,
+    "scenario_types": [
+      "short",
+      "noisy",
+      "overlapping",
+      "medication_heavy",
+      "multi_speaker"
+    ],
+    "audio_fixture_count": 4,
+    "text_only_scenario_count": 1,
+    "audio_assets": [
+      {
+        "path": "assets/short-two-speaker-consultation.wav",
+        "sha256": "b812ccc495e651556f8683001bb7e11ccd80759175b0d13f18938840d6648ee1",
+        "duration_ms": 42509,
+        "channels": 1
+      },
+      {
+        "path": "assets/deterministic-background-noise.wav",
+        "sha256": "5c779439f8ac9c209b5001dd879748e05b97c20df03a5687f81232949fdc6b52",
+        "duration_ms": 50970,
+        "channels": 1
+      },
+      {
+        "path": "assets/two-speaker-overlap.wav",
+        "sha256": "4514ad44ba7a8c14045240aae7ac891bcd110a69b3c270bf842a4ed6526a4b88",
+        "duration_ms": 6571,
+        "channels": 1
+      },
+      {
+        "path": "assets/two-channel-multi-speaker.wav",
+        "sha256": "09ff1fb006ceef44946d59c41611656447bdbfbea0bbcdd11e209dc2b11954f7",
+        "duration_ms": 43073,
+        "channels": 2
+      }
+    ]
+  },
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "limitations": [
+    "Audio scenario fixtures are derived from locally included CC-BY public mock utterance clips; they are not newly recorded synthetic speech.",
+    "The medication-heavy case is text-only and makes no ASR claim.",
+    "Speaker roles are upstream references, not diarization predictions.",
+    "No inference or clinician evaluation was performed."
+  ],
+  "runtime_sha256": "70fa82eb99516afe99c8fc5d13ad1a73a882e6c56c7ee2a369e94b92304beda4"
+}

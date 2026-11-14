@@ -8179,12 +8179,25 @@
       "id": "MTA-16-01",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Build offline synthetic encounter scenarios across short, noisy, overlapping, medication-heavy and multi-speaker consultations.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/scenarios/offline-encounters-v1/README.md",
+        "evaluation/scenarios/offline-encounters-v1/manifest.json",
+        "services/product_scenarios.py",
+        "tests/test_product_scenarios.py"
+      ],
+      "source_commit": "7ccb67b0ed209051c2ac97c2ae275b76c9eeb7f0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-01-7ccb67b.json",
+          "report_sha256": "f0233f62db50f36c8ef574d61c96d5b4fafb31815714a767141ddfc0e551ec29",
+          "check": "scenario_pack_determinism_and_coverage",
+          "status": "pass",
+          "detail": "Five scripted scenarios cover short, noisy, overlapping, medication-heavy and multi-speaker conditions; four deterministic local audio fixtures and one typed synthetic medication script are hash-verified."
+        }
+      ],
+      "blocker": "Scenario speech assets are derived from public mock utterances; no newly recorded synthetic speech or clinical acceptance is claimed."
     },
     {
       "id": "MTA-16-02",
