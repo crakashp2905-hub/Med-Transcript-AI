@@ -1,0 +1,28 @@
+{
+  "schema_version": "product_management_bundle_v1",
+  "task_id": "MTA-17-09",
+  "source_commit": "22d71b698218c573f159ec9956effc03369f75f9",
+  "runtime": {
+    "source_commit": "22d71b698218c573f159ec9956effc03369f75f9",
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "checks": {
+      "product_tests": "tests/test_product_management_bundle.py tests/test_product_strategy.py tests/test_product_scenarios.py tests/test_product_governance.py: 10 passed, 1 warning",
+      "ruff_check": "tests/test_product_management_bundle.py: passed",
+      "ruff_format": "tests/test_product_management_bundle.py: already formatted"
+    },
+    "scope": "Product planning artifacts and contract checks only; no customer or clinical validation."
+  },
+  "runtime_sha256": "21ffcb397c5742fdf2029692eef3fa9ef7198ea52f6b8e26857c755e39c9a63b",
+  "checks": {
+    "product_management_artifacts_and_evidence_boundaries": {
+      "status": "pass",
+      "summary": "Backlog, rubric, gated roadmap, technical-debt register, existing risk register and release note are present, cross-linked and explicitly bounded to engineering evidence."
+    }
+  },
+  "limitations": [
+    "Priorities are engineering triage, not customer research or a clinical risk assessment.",
+    "No customer interviews, clinician study, independent clinical review, device validation, institutional approval, or real-patient use is represented.",
+    "Current ASR candidates remain outside the unchanged 5% normalized-WER gate."
+  ]
+}

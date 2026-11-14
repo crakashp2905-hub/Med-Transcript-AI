@@ -7458,7 +7458,7 @@
     },
     {
       "id": "MTA-14-19",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "failed",
       "description": "Run 3 consecutive clean end-to-end release candidates from identical artifact digests; no false green from stale receipts.",
@@ -8484,7 +8484,7 @@
     },
     {
       "id": "MTA-16-13",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "verified",
       "description": "Add offline scripted onboarding acceptance with no external email or OAuth activation.",
@@ -8506,7 +8506,7 @@
     },
     {
       "id": "MTA-16-14",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "implemented",
       "description": "Create separate demo evidence card showing synthetic scope, source hash and system limitations.",
@@ -8518,14 +8518,24 @@
       ],
       "source_commit": "667463680fff60184e9a26fa85baace714803001",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-16-14-demo-evidence-card-v1.json","report_sha256":"df2c771f2c660f30aa375cd638ba36416b8721f067b95e184afb5740298e14db","check":"frontend_build"},
-        {"status":"pass","report":"evaluation/reports/mta-16-14-demo-evidence-card-v1.json","report_sha256":"df2c771f2c660f30aa375cd638ba36416b8721f067b95e184afb5740298e14db","check":"api_source_hash"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-16-14-demo-evidence-card-v1.json",
+          "report_sha256": "df2c771f2c660f30aa375cd638ba36416b8721f067b95e184afb5740298e14db",
+          "check": "frontend_build"
+        },
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-16-14-demo-evidence-card-v1.json",
+          "report_sha256": "df2c771f2c660f30aa375cd638ba36416b8721f067b95e184afb5740298e14db",
+          "check": "api_source_hash"
+        }
       ],
       "blocker": "Browser visual/E2E check could not complete because loopback browser navigation is blocked in this environment."
     },
     {
       "id": "MTA-16-15",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "verified",
       "description": "Use synthetic workload Monte Carlo scenarios for throughput/cost sensitivity; do not infer patient outcome or product-market fit.",
@@ -8548,7 +8558,7 @@
     },
     {
       "id": "MTA-16-16",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "implemented",
       "description": "Write future human-study protocol skeleton aligned to DECIDE-AI and keep all participant results blank.",
@@ -8560,13 +8570,18 @@
       ],
       "source_commit": "75179694db6cf6994c22604baeeb415d96fd2411",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-16-16-human-study-protocol-v1.json","report_sha256":"d80c157949e25ea07332a0c7c96d04bee511f77107430788f7584522fca79a4b","check":"blank_results_and_gate_test"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-16-16-human-study-protocol-v1.json",
+          "report_sha256": "d80c157949e25ea07332a0c7c96d04bee511f77107430788f7584522fca79a4b",
+          "check": "blank_results_and_gate_test"
+        }
       ],
       "blocker": "Canonical DECIDE-AI checklist is unavailable in local files, so item-level alignment cannot be confirmed; clinical owner, qualified reviewers, and institutional approval are also pending."
     },
     {
       "id": "MTA-17-01",
-      "section": "17 \u2014 Complete engineering/research/product handoff artifacts",
+      "section": "17 — Complete engineering/research/product handoff artifacts",
       "priority": "P1",
       "status": "verified",
       "description": "Write comprehensive architecture specification with module map and data contracts.",
@@ -8577,13 +8592,19 @@
       ],
       "source_commit": "499ed302d2f5cb50be60e1fe36184847098fa632",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-17-01-architecture-spec-v1.json","report_sha256":"2d1957362f3fdea2753d10f4e99e20ed7e19ab0d980a7e5f094cd307d1167a45","check":"architecture_contracts","runtime_sha256":"7b867820dea3b58b5990154bdc213913c4020bd1e1ec61b0373f485141806c35"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-17-01-architecture-spec-v1.json",
+          "report_sha256": "2d1957362f3fdea2753d10f4e99e20ed7e19ab0d980a7e5f094cd307d1167a45",
+          "check": "architecture_contracts",
+          "runtime_sha256": "7b867820dea3b58b5990154bdc213913c4020bd1e1ec61b0373f485141806c35"
+        }
       ],
       "blocker": null
     },
     {
       "id": "MTA-17-02",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "verified",
       "description": "Produce reproducibility manifest with source SHA, frozen datasets, licenses, model digests, scripts and environment.",
@@ -8595,13 +8616,19 @@
       ],
       "source_commit": "6b1f05901d4996da09d6ff047e669bed6ba3ccfe",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-17-02-reproducibility-pack-v3.json","report_sha256":"9d43916e850bcfed8cb4ede402d0a33c28134f475f02c4af2e3b3fd031e6b97a","check":"repro_pack_v3","runtime_sha256":"b2768f27c842ef8b1bbc06aa513c7aea6251a5b881e71246ef60d0a86491e17f"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-17-02-reproducibility-pack-v3.json",
+          "report_sha256": "9d43916e850bcfed8cb4ede402d0a33c28134f475f02c4af2e3b3fd031e6b97a",
+          "check": "repro_pack_v3",
+          "runtime_sha256": "b2768f27c842ef8b1bbc06aa513c7aea6251a5b881e71246ef60d0a86491e17f"
+        }
       ],
       "blocker": "One manifest omits license metadata and five completed candidate reports lack model artifact digests; the pack reports each gap rather than filling it by inference."
     },
     {
       "id": "MTA-17-03",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "verified",
       "description": "Publish benchmark tables generated automatically from frozen reports with negative results and limitations.",
@@ -8614,13 +8641,19 @@
       ],
       "source_commit": "eb80d9767bc04527674b67dcfb85d364b564e13c",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-17-03-benchmark-publication-v1.json","report_sha256":"f5595d452d794d6eac9dce9f1c9c4c8a288d08ea0bff7462e8801311361fee10","check":"publication_bundle","runtime_sha256":"c88a3cfd5df870d2c6fddec3f327de4810baf40454c2df0014e08ef9c5cd275b"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-17-03-benchmark-publication-v1.json",
+          "report_sha256": "f5595d452d794d6eac9dce9f1c9c4c8a288d08ea0bff7462e8801311361fee10",
+          "check": "publication_bundle",
+          "runtime_sha256": "c88a3cfd5df870d2c6fddec3f327de4810baf40454c2df0014e08ef9c5cd275b"
+        }
       ],
       "blocker": null
     },
     {
       "id": "MTA-17-04",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "implemented",
       "description": "Prepare research paper sections: motivation, related work, precise method, experimental setup, baselines, ablations, results, threats to validity.",
@@ -8632,13 +8665,18 @@
       ],
       "source_commit": "56b516f962e5e2f5d2a140858794cccc9513a957",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-17-04-research-paper-draft-v1.json","report_sha256":"1e5b0eaa62352e3627bb8abf0f55c54201b86b94e06fdb25eb266dee5e219a60","check":"required_sections_and_results"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-17-04-research-paper-draft-v1.json",
+          "report_sha256": "1e5b0eaa62352e3627bb8abf0f55c54201b86b94e06fdb25eb266dee5e219a60",
+          "check": "required_sections_and_results"
+        }
       ],
       "blocker": "Systematic related-work search, independent scholarly review, and planned verification ablations remain incomplete; no external sources were fetched under the local-only constraint."
     },
     {
       "id": "MTA-17-05",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "verified",
       "description": "Prepare supplementary material with error taxonomy, sample-level anonymous results and failure policy.",
@@ -8652,13 +8690,19 @@
       ],
       "source_commit": "a0bc1c77749fea2285350a6b4367e5f76b6c542e",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-17-05-supplement-v1.json","report_sha256":"13c00ad710746e3863b4e87a9b10f0fb9b4fc81d257f52aec582af4c3a3cc5e3","check":"sample_level_supplement","runtime_sha256":"535ac569b5f1812f2f8cfe5ad20d53ac1ad0a1e038e858887af01e746e3721a4"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-17-05-supplement-v1.json",
+          "report_sha256": "13c00ad710746e3863b4e87a9b10f0fb9b4fc81d257f52aec582af4c3a3cc5e3",
+          "check": "sample_level_supplement",
+          "runtime_sha256": "535ac569b5f1812f2f8cfe5ad20d53ac1ad0a1e038e858887af01e746e3721a4"
+        }
       ],
       "blocker": null
     },
     {
       "id": "MTA-17-06",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "verified",
       "description": "Generate algorithm pseudocode diagrams and graph invariants from real code, not claims alone.",
@@ -8671,13 +8715,19 @@
       ],
       "source_commit": "6323e2c3c2d6388145166564a74f2bfc0104f68a",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-17-06-algorithm-reference-v1.json","report_sha256":"62ca3760590bfd730e8b2266f65d1fe6ebd7b073d13765f4ae1c1d14757461ff","check":"source_checked_algorithms","runtime_sha256":"3b21034d808bb8435e0c58d5951fb06b27dc004022d93c9baffb7000e22f09c2"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-17-06-algorithm-reference-v1.json",
+          "report_sha256": "62ca3760590bfd730e8b2266f65d1fe6ebd7b073d13765f4ae1c1d14757461ff",
+          "check": "source_checked_algorithms",
+          "runtime_sha256": "3b21034d808bb8435e0c58d5951fb06b27dc004022d93c9baffb7000e22f09c2"
+        }
       ],
       "blocker": null
     },
     {
       "id": "MTA-17-07",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "verified",
       "description": "Package complete local demo from existing artifacts with one-command verification and explanatory runbook.",
@@ -8691,13 +8741,19 @@
       ],
       "source_commit": "9f1914feced211a964affb6ef857f2979a987514",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-17-07-offline-demo-v1.json","report_sha256":"f06312f7d3986d7e14f88cef2bce01f6b830ab77fa4733d9b3a10c977c0c1aa1","check":"one_command_demo_workflow","runtime_sha256":"fad0502ee769c3ca928962cbcc9d2ef44493e1cf39296d7e7c335969cf86dd28"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-17-07-offline-demo-v1.json",
+          "report_sha256": "f06312f7d3986d7e14f88cef2bce01f6b830ab77fa4733d9b3a10c977c0c1aa1",
+          "check": "one_command_demo_workflow",
+          "runtime_sha256": "fad0502ee769c3ca928962cbcc9d2ef44493e1cf39296d7e7c335969cf86dd28"
+        }
       ],
       "blocker": null
     },
     {
       "id": "MTA-17-08",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "verified",
       "description": "Produce a second investor-only synthetic showcase with a visible not-clinically-approved banner.",
@@ -8708,7 +8764,13 @@
       ],
       "source_commit": "9d9fb792624276db93cc80369a33f572e4a6e00e",
       "test_results": [
-        {"status":"pass","report":"evaluation/reports/mta-17-08-investor-showcase-v1.json","report_sha256":"38d4e97f7f9bc23677b5088a4381dc20b6cd38e3d9414f05c948e7bd1ee9b762","check":"investor_synthetic_readonly_showcase","runtime_sha256":"b0d253a906772a68f628d8f818c9fa7a076e2e683e84fd788fd0a14a9b10e98b"}
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-17-08-investor-showcase-v1.json",
+          "report_sha256": "38d4e97f7f9bc23677b5088a4381dc20b6cd38e3d9414f05c948e7bd1ee9b762",
+          "check": "investor_synthetic_readonly_showcase",
+          "runtime_sha256": "b0d253a906772a68f628d8f818c9fa7a076e2e683e84fd788fd0a14a9b10e98b"
+        }
       ],
       "blocker": null
     },
@@ -8716,12 +8778,29 @@
       "id": "MTA-17-09",
       "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Build product requirements, backlog, scoring rubric, roadmap, risk register, technical debt ledger and release notes in `docs/product/`.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "docs/product/product-backlog-v1.md",
+        "docs/product/prioritization-rubric-v1.md",
+        "docs/product/roadmap-v1.md",
+        "docs/product/risk-register.md",
+        "docs/product/technical-debt-v1.md",
+        "docs/product/release-notes-v0.4.1.md",
+        "tests/test_product_management_bundle.py",
+        "evaluation/reports/mta-17-09-product-management-v1.json"
+      ],
+      "source_commit": "22d71b698218c573f159ec9956effc03369f75f9",
+      "test_results": [
+        {
+          "status": "pass",
+          "check": "product_management_artifacts_and_evidence_boundaries",
+          "report": "evaluation/reports/mta-17-09-product-management-v1.json",
+          "report_sha256": "675ee1fdb1cc8cd273d5bba7aad64904e6ca9e4841d7cff4aac222a670b28ccd"
+        }
+      ],
+      "blocker": "Customer, independent clinical, hardware, and institutional evidence remain external dependencies; product planning artifacts are engineering hypotheses only."
     },
     {
       "id": "MTA-17-10",
