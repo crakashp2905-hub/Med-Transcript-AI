@@ -5846,12 +5846,12 @@
       "id": "MTA-12-10",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Report worst-slice results and distribution quantiles; overall mean alone is insufficient.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-10-013a31d.json"],
+      "source_commit": "013a31d8547df7bf3da580990e650d5a8e0f655e",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-10-013a31d.json", "report_sha256": "b9b9f81e3e00efe592b13b216778f8bec1aec8214e3a6c59a38aefa891bad654", "check": "evaluation_distribution_metrics", "status": "pass"}],
+      "blocker": "No independent acceptance cohort or adjudicated role/noise labels are available."
     },
     {
       "id": "MTA-12-11",

@@ -1,0 +1,37 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-10"
+  ],
+  "source_commit": "013a31d8547df7bf3da580990e650d5a8e0f655e",
+  "captured_at_utc": "2026-11-14T06:55:22.554483+00:00",
+  "source_files": {
+    "services/evaluation.py": "d8a3ee17ec6797ce48b495db591cfac6623878381478ff825e9cdcbe9960e63a",
+    "services/evaluation_distribution.py": "6842d9e9815c33623ee33e9e85f21aa5875d580bc86137a40b774d78789bda80",
+    "tests/test_evaluation_distribution.py": "dbef760b7c6b139bffc12e52624535bc65b755ce5251670b0d5816749723601b"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_evaluation_distribution.py tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py tests/test_asr_subgroup_metrics.py tests/test_asr_evaluation_contract.py",
+      "status": "pass",
+      "result": "34 passed"
+    },
+    {
+      "command": "ruff check services/evaluation_distribution.py services/evaluation.py tests/test_evaluation_distribution.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/evaluation_distribution.py services/evaluation.py tests/test_evaluation_distribution.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "Offline ASR reports can include pooled WER, consultation-level WER p50/p95 with type-7 quantiles, failure counts and worst labeled slices.",
+    "Role, noise and uncertainty slice data are included when manifest labels exist; unlabeled values remain visible."
+  ],
+  "limitations": [
+    "Quantiles summarize the supplied development cases and do not imply independent clinical acceptance.",
+    "Slice labels depend on available manifest metadata; missing annotations are reported as unlabeled."
+  ],
+  "clinical_release_authorized": false
+}
