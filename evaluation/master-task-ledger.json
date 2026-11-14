@@ -8525,13 +8525,25 @@
     },
     {
       "id": "MTA-16-15",
-      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Use synthetic workload Monte Carlo scenarios for throughput/cost sensitivity; do not infer patient outcome or product-market fit.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/workload_sensitivity.py",
+        "tests/test_workload_sensitivity.py",
+        "evaluation/reports/mta-16-15-workload-sensitivity-v1.json"
+      ],
+      "source_commit": "a811869d58b3d307d95bbde9ada51df24cff0ed0",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-16-15-workload-sensitivity-v1.json",
+          "report_sha256": "a1acf1d2e61c8cc55541ae8cb503fdf66ecb7c5d465c11549c449418fab3f8bc",
+          "check": "workload_sensitivity",
+          "runtime_sha256": "e6565b3f40a67246134787ad8486862e26ab2c9c0e3b898d0b67e520dc6bcc69"
+        }
+      ],
       "blocker": null
     },
     {

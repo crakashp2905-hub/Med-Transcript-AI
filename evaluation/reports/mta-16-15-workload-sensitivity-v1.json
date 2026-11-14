@@ -1,0 +1,271 @@
+{
+  "schema_version": "master_task_simulation_report_v1",
+  "task_id": "MTA-16-15",
+  "source_commit": "a811869d58b3d307d95bbde9ada51df24cff0ed0",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "iterations_per_scenario": 10000,
+    "seed": 20261114,
+    "scenario_count": 3,
+    "input_basis": "assumed_triangular_distributions_only"
+  },
+  "runtime_sha256": "e6565b3f40a67246134787ad8486862e26ab2c9c0e3b898d0b67e520dc6bcc69",
+  "checks": {
+    "workload_sensitivity": {
+      "status": "pass",
+      "test": "tests/test_workload_sensitivity.py",
+      "test_summary": "2 passed, 1 warning",
+      "ruff": "check and format passed"
+    }
+  },
+  "simulation": {
+    "schema_version": "synthetic_workload_sensitivity_v1",
+    "evidence_class": "hypothetical_assumption_only_monte_carlo",
+    "iterations_per_scenario": 10000,
+    "seed": 20261114,
+    "operating_hours_per_day_assumption": 8,
+    "results": [
+      {
+        "scenario_id": "conservative_assumptions",
+        "input_distributions": {
+          "runtime_seconds": {
+            "low": 60,
+            "mode": 120,
+            "high": 300
+          },
+          "system_watts": {
+            "low": 30,
+            "mode": 60,
+            "high": 120
+          },
+          "electricity_price_per_kwh": {
+            "low": 4,
+            "mode": 8,
+            "high": 16
+          },
+          "hardware_capital_cost": {
+            "low": 300,
+            "mode": 900,
+            "high": 1800
+          },
+          "amortization_months": {
+            "low": 24,
+            "mode": 36,
+            "high": 48
+          },
+          "scheduled_hours_per_month": {
+            "low": 80,
+            "mode": 140,
+            "high": 176
+          },
+          "availability_fraction": {
+            "low": 0.65,
+            "mode": 0.8,
+            "high": 0.95
+          },
+          "encounters_per_active_hour": {
+            "low": 0.5,
+            "mode": 1,
+            "high": 1.5
+          },
+          "daily_demand_encounters": {
+            "low": 2,
+            "mode": 6,
+            "high": 12
+          }
+        },
+        "outputs": {
+          "capacity_encounters_per_day": {
+            "p05": 4.195197905265084,
+            "p50": 6.391999728102931,
+            "p95": 8.7945540379949
+          },
+          "demand_encounters_per_day": {
+            "p05": 3.4542765227511207,
+            "p50": 6.527375216944289,
+            "p95": 10.237122687511002
+          },
+          "completed_encounters_per_day": {
+            "p05": 3.3970696676391436,
+            "p50": 5.528642671813817,
+            "p95": 7.836368169581014
+          },
+          "unserved_demand_encounters_per_day": {
+            "p05": 0.0,
+            "p50": 0.2379817265520323,
+            "p95": 4.411871135467491
+          },
+          "estimated_compute_cost_per_encounter": {
+            "p05": 0.1489723409729474,
+            "p50": 0.2912225936540849,
+            "p95": 0.5624611586998698
+          }
+        }
+      },
+      {
+        "scenario_id": "middle_assumptions",
+        "input_distributions": {
+          "runtime_seconds": {
+            "low": 60,
+            "mode": 120,
+            "high": 300
+          },
+          "system_watts": {
+            "low": 30,
+            "mode": 60,
+            "high": 120
+          },
+          "electricity_price_per_kwh": {
+            "low": 4,
+            "mode": 8,
+            "high": 16
+          },
+          "hardware_capital_cost": {
+            "low": 300,
+            "mode": 900,
+            "high": 1800
+          },
+          "amortization_months": {
+            "low": 24,
+            "mode": 36,
+            "high": 48
+          },
+          "scheduled_hours_per_month": {
+            "low": 80,
+            "mode": 140,
+            "high": 176
+          },
+          "availability_fraction": {
+            "low": 0.65,
+            "mode": 0.8,
+            "high": 0.95
+          },
+          "encounters_per_active_hour": {
+            "low": 1,
+            "mode": 2,
+            "high": 3
+          },
+          "daily_demand_encounters": {
+            "low": 8,
+            "mode": 16,
+            "high": 28
+          }
+        },
+        "outputs": {
+          "capacity_encounters_per_day": {
+            "p05": 8.244066345796282,
+            "p50": 12.68524178848578,
+            "p95": 17.64984148823645
+          },
+          "demand_encounters_per_day": {
+            "p05": 10.76819372578879,
+            "p50": 17.078130456927607,
+            "p95": 24.443368069295758
+          },
+          "completed_encounters_per_day": {
+            "p05": 8.244066345796282,
+            "p50": 12.255450016887693,
+            "p95": 16.64922493471992
+          },
+          "unserved_demand_encounters_per_day": {
+            "p05": 0.0,
+            "p50": 4.39925324264547,
+            "p95": 12.907510091939589
+          },
+          "estimated_compute_cost_per_encounter": {
+            "p05": 0.08590393809618153,
+            "p50": 0.1617496621922217,
+            "p95": 0.3034975054399159
+          }
+        }
+      },
+      {
+        "scenario_id": "higher_load_assumptions",
+        "input_distributions": {
+          "runtime_seconds": {
+            "low": 60,
+            "mode": 120,
+            "high": 300
+          },
+          "system_watts": {
+            "low": 30,
+            "mode": 60,
+            "high": 120
+          },
+          "electricity_price_per_kwh": {
+            "low": 4,
+            "mode": 8,
+            "high": 16
+          },
+          "hardware_capital_cost": {
+            "low": 300,
+            "mode": 900,
+            "high": 1800
+          },
+          "amortization_months": {
+            "low": 24,
+            "mode": 36,
+            "high": 48
+          },
+          "scheduled_hours_per_month": {
+            "low": 80,
+            "mode": 140,
+            "high": 176
+          },
+          "availability_fraction": {
+            "low": 0.65,
+            "mode": 0.8,
+            "high": 0.95
+          },
+          "encounters_per_active_hour": {
+            "low": 1.5,
+            "mode": 3,
+            "high": 5
+          },
+          "daily_demand_encounters": {
+            "low": 20,
+            "mode": 40,
+            "high": 70
+          }
+        },
+        "outputs": {
+          "capacity_encounters_per_day": {
+            "p05": 12.679539652084083,
+            "p50": 19.90490490911273,
+            "p95": 28.72456529465793
+          },
+          "demand_encounters_per_day": {
+            "p05": 27.270690115314007,
+            "p50": 42.71187725211457,
+            "p95": 61.196577117798434
+          },
+          "completed_encounters_per_day": {
+            "p05": 12.679539652084083,
+            "p50": 19.90490490911273,
+            "p95": 28.486647316797306
+          },
+          "unserved_demand_encounters_per_day": {
+            "p05": 4.850979242165738,
+            "p50": 22.868896213090142,
+            "p95": 42.31697353781486
+          },
+          "estimated_compute_cost_per_encounter": {
+            "p05": 0.06242428191154459,
+            "p50": 0.11404416744602629,
+            "p95": 0.20809720594120432
+          }
+        }
+      }
+    ],
+    "measured_inputs": false,
+    "clinical_outcomes_inferred": false,
+    "product_market_fit_inferred": false,
+    "limitations": [
+      "All distributions are invented sensitivity assumptions, not observed customer, hardware, or workload data.",
+      "Inputs are sampled independently; correlations, queues, outages, staffing, support, taxes, and non-compute costs are not modeled.",
+      "Capacity and cost outputs are not clinical performance, staffing recommendations, forecasts, or evidence of product-market fit."
+    ]
+  },
+  "interpretation": "Synthetic scenario sensitivity only. No patient, staffing, measured hardware, or market evidence."
+}
