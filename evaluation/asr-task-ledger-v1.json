@@ -476,7 +476,7 @@
       "priority": "P1",
       "requirement": "Run full 16-recording paired benchmark for each predeclared segmentation candidate with fixed resource budget. **",
       "acceptance": "** Failure-inclusive results and latency/peak RAM published per mode; no unscored samples.",
-      "status": "PARTIAL",
+      "status": "EVIDENCE_RECORDED",
       "progress_evidence": [
         {
           "line": 663,
@@ -577,6 +577,11 @@
           "line": 869,
           "text": "Suite v7 Omi-pinned refresh ran all 16 manifest cases with full coverage and zero failed cases/chunks. It exactly reproduces the immutable speech-aware receipt: clean 3,211/13,683 (23.4671%) and distracted 3,293/13,683 (24.0664%). Fresh condition wall times were 5,788.3/5,393.2 seconds after 26.8-second model load. Full-process peak working set was 3,445,174,272 bytes and CPU was 42,952.1 seconds, within 16 GiB. Both WERs fail the unchanged <=5% gate. Report SHA-256 is 41b68807596ebde555b023a4194b0c2416a30f0a37e09a321c3db9f832d3b69b. A focused regression binds refreshed suite, full coverage, historical speech-aware counts, gate, and resources. C10 remains partial pending other ASR pipeline gaps.",
           "status_basis": "Suite v7 Omi-pinned refresh ran all 16 manifest cases with full coverage and zero failed cases/chunks. It exactly reproduces the immutable speech-aware receipt: clean 3,211/13,683 (23.4671%) and distracted 3,293/13,683 (24.0664%). Fresh condition wall times were 5,788.3/5,393.2 seconds after 26.8-second model load. Full-process peak working set was 3,445,174,272 bytes and CPU was 42,952.1 seconds, within 16 GiB. Both WERs fail the unchanged <=5% gate. Report SHA-256 is 41b68807596ebde555b023a4194b0c2416a30f0a37e09a321c3db9f832d3b69b. A focused regression binds refreshed suite, full coverage, historical speech-aware counts, gate, and resources. C10 remains partial pending other ASR pipeline gaps."
+        },
+        {
+          "line": 871,
+          "text": "Completed the predeclared full 16-recording segmentation matrix for the two finalists (native-empty Omi and faster-whisper-large-v3): fixed, overlap-aware, and speech-aware for each. Every receipt records all 16 cases, full input coverage, zero failed cases/chunks, per-condition latency, and full-process memory within 16 GiB. The six focused receipt regressions passed together. All six WERs fail the unchanged <=5% admission gate; benchmark completion does not qualify either model for inference-mode promotion.",
+          "status_basis": "Completed the predeclared full 16-recording segmentation matrix for the two finalists (native-empty Omi and faster-whisper-large-v3): fixed, overlap-aware, and speech-aware for each. Every receipt records all 16 cases, full input coverage, zero failed cases/chunks, per-condition latency, and full-process memory within 16 GiB. The six focused receipt regressions passed together. All six WERs fail the unchanged <=5% admission gate; benchmark completion does not qualify either model for inference-mode promotion."
         }
       ],
       "completion_claim": false
@@ -1588,11 +1593,10 @@
     }
   ],
   "status_counts": {
-    "EVIDENCE_RECORDED": 21,
-    "PARTIAL": 66,
+    "EVIDENCE_RECORDED": 22,
+    "PARTIAL": 65,
     "NOT_RUN": 2,
     "BLOCKED_MISSING_RESOURCE": 5,
-    "NOT_IMPLEMENTED": 0,
     "FAIL": 1
   }
 }
