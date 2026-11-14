@@ -1,0 +1,45 @@
+{
+  "schema_version": "scripted_correction_tasks_v1",
+  "scenario_set_id": "offline-encounters-v1",
+  "execution": "deterministic_script_replay",
+  "human_observations": 0,
+  "clinical_acceptance": false,
+  "tasks": [
+    {
+      "task_id": "dose-swap",
+      "correction_kind": "medication_dose",
+      "source_ref": "source:medication:1",
+      "source_text": "Patient takes metformin 500 mg twice daily.",
+      "before_text": "Patient takes metformin 5000 mg twice daily.",
+      "after_text": "Patient takes metformin 500 mg twice daily.",
+      "instruction": "Correct the transposed dose using the cited source."
+    },
+    {
+      "task_id": "source-omission",
+      "correction_kind": "add_omitted_source_fact",
+      "source_ref": "source:allergy:1",
+      "source_text": "Patient reports penicillin causes a rash.",
+      "before_text": "No allergy information recorded.",
+      "after_text": "Patient reports penicillin causes a rash.",
+      "instruction": "Add the source-supported allergy that the note omitted."
+    },
+    {
+      "task_id": "negation-flip",
+      "correction_kind": "assertion_negation",
+      "source_ref": "source:symptom:2",
+      "source_text": "Patient denies shortness of breath.",
+      "before_text": "Patient reports shortness of breath.",
+      "after_text": "Patient denies shortness of breath.",
+      "instruction": "Restore the negation stated in the source."
+    },
+    {
+      "task_id": "speaker-correction",
+      "correction_kind": "speaker_attribution",
+      "source_ref": "audio:channel-2:12000-16800",
+      "source_text": "A clinician asks about the current medication.",
+      "before_text": "speaker-2 is unknown",
+      "after_text": "speaker-2 is clinician",
+      "instruction": "Assign speaker-2 the source-reviewed clinician role."
+    }
+  ]
+}
