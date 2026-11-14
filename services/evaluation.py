@@ -23,6 +23,7 @@ from services.asr.evaluation_contract import (
     validate_manifest,
     validate_contract,
 )
+from services.evaluation_metrics import score_text
 
 
 PROJECT_MAX_NORMALIZED_WER = 0.05
@@ -52,13 +53,19 @@ def distance(reference, hypothesis):
 
 
 def score(reference, hypothesis):
-    reference_tokens, hypothesis_tokens = tokens(reference), tokens(hypothesis)
-    if len(reference_tokens) > 10000 or len(hypothesis_tokens) > 10000:
-        raise ValueError("Scoring token limit exceeded")
+    metrics = score_text(reference, hypothesis)
     return {
-        "reference_words": len(reference_tokens),
-        "hypothesis_words": len(hypothesis_tokens),
-        "normalized_edits": distance(reference_tokens, hypothesis_tokens),
+        "reference_words": metrics["reference_words"],
+        "hypothesis_words": metrics["hypothesis_words"],
+        "normalized_edits": metrics["word_edits"],
+        "normalized_wer": metrics["wer"],
+        "substitutions": metrics["substitutions"],
+        "deletions": metrics["deletions"],
+        "insertions": metrics["insertions"],
+        "reference_characters": metrics["reference_characters"],
+        "character_edits": metrics["character_edits"],
+        "cer": metrics["cer"],
+        "normalization": metrics["normalization"],
         "raw_edits": distance(tokens(reference, False), tokens(hypothesis, False)),
         "raw_reference_words": len(tokens(reference, False)),
     }
