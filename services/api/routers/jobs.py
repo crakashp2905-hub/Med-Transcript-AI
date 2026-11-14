@@ -14,6 +14,7 @@ from services.api.job_state import (
     retryable as job_retryable,
 )
 from services.api.idempotency import idempotent
+from services.api.job_attempt_replay import build_attempt_replay
 
 
 def register(app, services: ApiServices):
@@ -38,6 +39,20 @@ def register(app, services: ApiServices):
             if row is None:
                 raise HTTPException(404, "job_not_found")
             audit(con, actor, "job_read", str(job_id))
+            attempts = [
+                dict(attempt)
+                for attempt in con.execute(
+                    "SELECT attempt,status,error_code,finished_at FROM job_attempts WHERE job=? ORDER BY attempt",
+                    (str(job_id),),
+                )
+            ]
+            retry_events = [
+                dict(event)
+                for event in con.execute(
+                    "SELECT id,action,time FROM audit WHERE resource=? AND action='transcription_retry_queued' ORDER BY time,id",
+                    (str(job_id),),
+                )
+            ]
             return {
                 "id": row["id"],
                 "encounter_id": row["encounter"],
@@ -50,13 +65,8 @@ def register(app, services: ApiServices):
                 "preview_only": bool(row["preview_only"]),
                 "preview_session_id": row["preview_session_id"],
                 "progress": job_progress(con, row),
-                "attempt_history": [
-                    dict(r)
-                    for r in con.execute(
-                        "SELECT attempt,status,error_code,finished_at FROM job_attempts WHERE job=? ORDER BY attempt",
-                        (str(job_id),),
-                    )
-                ],
+                "attempt_history": attempts,
+                "attempt_replay": build_attempt_replay(attempts, retry_events),
                 "created_at": row["created_at"],
                 "updated_at": row["updated_at"],
                 "result": json.loads(row["result"]) if row["result"] else None,

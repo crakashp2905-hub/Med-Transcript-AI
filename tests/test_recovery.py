@@ -126,6 +126,14 @@ def test_channel_retry_uses_verified_completed_channels_and_retains_failed_attem
             ("failed", "asr_failed"),
             ("succeeded", None),
         ]
+    job_state = env.client.get(f"/v1/jobs/{first['id']}", headers=headers()).json()
+    assert [
+        event["event_type"] for event in job_state["attempt_replay"]["timeline"]
+    ] == ["attempt_finished", "manual_retry_queued", "attempt_finished"]
+    assert (
+        job_state["attempt_replay"]["retry_policy"]["automatic_backoff_configured"]
+        is False
+    )
     assert (
         env.client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()[
             "note"
