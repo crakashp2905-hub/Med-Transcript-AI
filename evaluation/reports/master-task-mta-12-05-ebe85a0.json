@@ -1,0 +1,38 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-05"
+  ],
+  "source_commit": "ebe85a05edf9c61f36e183ebd6d5c07223c3d105",
+  "captured_at_utc": "2026-11-14T06:41:20.571893+00:00",
+  "source_files": {
+    "services/evaluation.py": "d71e6544c4fda6227aa9ab61fa062cf35e9335a4a1176b5af1caaa6d86412ee5",
+    "services/asr/subgroup_metrics.py": "d45ab48dc681810aade0c8a95aaff4417ee26aad65b98147e85a2a7de09993f0",
+    "tests/test_asr_subgroup_metrics.py": "f38ef36f861918cac2a6f71df93247c9192d2481a4627512719709a6ef790880"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_asr_subgroup_metrics.py tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py tests/test_asr_evaluation_contract.py",
+      "status": "pass",
+      "result": "32 passed"
+    },
+    {
+      "command": "ruff check services/asr/subgroup_metrics.py services/evaluation.py tests/test_asr_subgroup_metrics.py tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/asr/subgroup_metrics.py services/evaluation.py tests/test_asr_subgroup_metrics.py tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "ASR evaluation reports normalized WER by consultation, reference role, explicit noise condition and reference uncertainty.",
+    "Explicitly labeled clinical terms receive occurrence recall/error counts, with labeled versus unlabeled case coverage reported.",
+    "Failed cases remain in subgroup denominators and are treated as empty hypotheses."
+  ],
+  "limitations": [
+    "Clinical-term scoring is available only where the manifest explicitly supplies clinical_terms; current general datasets may have zero coverage.",
+    "No independent annotation or clinical validity is established."
+  ],
+  "clinical_release_authorized": false
+}

@@ -5791,12 +5791,12 @@
       "id": "MTA-12-05",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Score ASR by consultation, reference speaker role, noise condition, drug/dose/negation tokens and uncertainty region.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-05-ebe85a0.json"],
+      "source_commit": "ebe85a05edf9c61f36e183ebd6d5c07223c3d105",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-05-ebe85a0.json", "report_sha256": "fbc30320ab68179f847857ad67d7db66d7177d06a8ab91df4c95afabd0bb862b", "check": "asr_subgroup_metrics", "status": "pass"}],
+      "blocker": "Clinical-term score coverage depends on explicitly annotated manifest terms; independent clinical validity is not established."
     },
     {
       "id": "MTA-12-06",
