@@ -6771,12 +6771,25 @@
       "id": "MTA-13-16",
       "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Document and enforce least privilege to OS and database with migration/application separation where possible.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "compose.yaml",
+        "deploy/postgres/010-create-app-role.sh",
+        "docs/runbooks/operations.md",
+        "tests/test_database_privilege_contract.py"
+      ],
+      "source_commit": "a930d05d328cad675137b91bcdeea1db7e5195f6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-16-a930d05.json",
+          "report_sha256": "f0bbfe2388085d33ce7ce7fe09e8a684d3ccc85ac720ed5f1e52b07e3e881027",
+          "check": "least_privilege_compose_contract",
+          "status": "pass",
+          "detail": "Static contract tests passed for separate non-superuser app credentials and existing container OS controls. Docker runtime validation unavailable."
+        }
+      ],
+      "blocker": "Application startup still runs migrations using the app role, which therefore retains schema CREATE; Docker CLI is unavailable for runtime validation. A one-shot migration job and operator migration of existing volumes are still required for full privilege separation."
     },
     {
       "id": "MTA-13-17",

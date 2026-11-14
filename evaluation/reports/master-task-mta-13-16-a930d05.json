@@ -1,0 +1,53 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-13-16",
+  "status": "pass",
+  "source_commit": "a930d05d328cad675137b91bcdeea1db7e5195f6",
+  "captured_at_utc": "2026-11-14T13:46:29+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "docker_available": false
+  },
+  "source_files": {
+    "compose.yaml": "be9d00a0e93e5c4b4bb200c016d989dd941c41212c32e0fd1a2d471828e33ee6",
+    ".env.production.example": "09e9d584f7b3e32ee84a573df2805247c878b71ec5af54b031ad77dd95eafb08",
+    ".github/workflows/ci.yml": "caa896b2f91f635d35c8b9a177c6bb43aa4b61b8a2a6400038c2d50bdf176d5c",
+    "deploy/postgres/010-create-app-role.sh": "3df0e369ae5771db10c52aeb92e79124db23a7cbad96af51a042bcc8a689e750",
+    "docs/runbooks/operations.md": "d3ea01bf723504db5551499c510fecc7baa997f7b2e62b0ce7d634610a5f4f09",
+    "tests/test_database_privilege_contract.py": "c1a38aaa7ff79e0c15be8b387df80e546934541928e2265866613017671b4117"
+  },
+  "checks": {
+    "least_privilege_compose_contract": {
+      "status": "pass",
+      "result": "3 tests passed",
+      "command": "python -m pytest -q tests/test_database_privilege_contract.py tests/test_environment_contract.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check tests/test_database_privilege_contract.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "1 file already formatted",
+      "command": "python -m ruff format --check tests/test_database_privilege_contract.py"
+    },
+    "docker_compose_config": {
+      "status": "blocked",
+      "result": "Docker CLI is unavailable on this workstation",
+      "command": "docker compose config --quiet"
+    }
+  },
+  "implemented_controls": [
+    "API and worker use a dedicated medscribe_app role, not the PostgreSQL bootstrap superuser.",
+    "Application role has no superuser, database creation, role creation, or replication privileges.",
+    "Container continues to run as non-root with read-only root filesystem and dropped capabilities."
+  ],
+  "limitations": [
+    "The app role retains CREATE on public because the current app startup runs migrations; migration/application role separation is not yet implemented.",
+    "The PostgreSQL init script only runs for a new data volume. Existing deployments require a planned operator role/password migration.",
+    "No live PostgreSQL/Docker runtime validation was possible; Compose runtime result remains blocked."
+  ],
+  "clinical_release_authorized": false
+}
