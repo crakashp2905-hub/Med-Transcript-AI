@@ -1,0 +1,52 @@
+{
+  "schema_version": "local_unit_economics_v1",
+  "scenario_id": "local-cpu-illustrative-v1",
+  "currency_unit": "DEMO_CURRENCY_UNIT",
+  "inputs": {
+    "system_watts": {
+      "value": 45.0,
+      "basis": "assumed"
+    },
+    "runtime_seconds": {
+      "value": 120.0,
+      "basis": "assumed"
+    },
+    "electricity_price_per_kwh": {
+      "value": 5.0,
+      "basis": "assumed"
+    },
+    "model_availability_fraction": {
+      "value": 0.8,
+      "basis": "assumed"
+    },
+    "hardware_capital_cost": {
+      "value": 800.0,
+      "basis": "assumed"
+    },
+    "amortization_months": {
+      "value": 36.0,
+      "basis": "assumed"
+    },
+    "scheduled_hours_per_month": {
+      "value": 160.0,
+      "basis": "assumed"
+    },
+    "encounters_per_active_hour": {
+      "value": 2.0,
+      "basis": "assumed"
+    }
+  },
+  "missing_measurements": [],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "status": "estimated",
+  "evidence_status": "assumption_only",
+  "effective_encounters_over_amortization_period": 9216.0,
+  "energy_cost_per_encounter": 0.0075,
+  "hardware_amortization_per_encounter": 0.08680555555555555,
+  "estimated_cost_per_encounter": 0.09430555555555556,
+  "formula": {
+    "energy": "system_watts * runtime_seconds / 3_600_000 * electricity_price_per_kwh",
+    "hardware": "hardware_capital_cost / (amortization_months * scheduled_hours_per_month * model_availability_fraction * encounters_per_active_hour)"
+  }
+}

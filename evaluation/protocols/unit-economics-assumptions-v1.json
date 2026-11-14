@@ -1,0 +1,16 @@
+{
+  "scenario_id": "local-cpu-illustrative-v1",
+  "currency_unit": "DEMO_CURRENCY_UNIT",
+  "scope": "Illustrative local CPU per-encounter estimate; no tariff, device meter, runtime, or hardware invoice was measured.",
+  "inputs": {
+    "system_watts": { "value": 45.0, "basis": "assumed" },
+    "runtime_seconds": { "value": 120.0, "basis": "assumed" },
+    "electricity_price_per_kwh": { "value": 5.0, "basis": "assumed" },
+    "model_availability_fraction": { "value": 0.8, "basis": "assumed" },
+    "hardware_capital_cost": { "value": 800.0, "basis": "assumed" },
+    "amortization_months": { "value": 36.0, "basis": "assumed" },
+    "scheduled_hours_per_month": { "value": 160.0, "basis": "assumed" },
+    "encounters_per_active_hour": { "value": 2.0, "basis": "assumed" }
+  },
+  "interpretation": "Scenario arithmetic only. Replace each assumption with a sourced local measurement before using this estimate for a business case."
+}
