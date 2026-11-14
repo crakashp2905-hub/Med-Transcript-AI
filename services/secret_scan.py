@@ -17,6 +17,7 @@ PATTERNS = {
         r"""(?i)(?:access_key|client_secret|api_key|password)["']?\s*[:=]\s*["']([A-Za-z0-9_+/=-]{24,})["']"""
     ),
 }
+MAX_TEXT_BYTES = 16 * 1024 * 1024
 
 
 def inspect_text(text, path, known_secrets=()):
@@ -64,7 +65,7 @@ def scan(root="."):
     if local.is_file():
         body = json.loads(local.read_text(encoding="utf-8"))
         known = [body.get("access_key", "")]
-    results, files = [], []
+    results, files, skipped = [], [], []
     for name in sorted(names):
         path = (root / name).resolve()
         if (
@@ -72,6 +73,10 @@ def scan(root="."):
             or not path.is_file()
             or path.suffix.lower() in (".wav", ".flac", ".mp3", ".png", ".jpg", ".zip")
         ):
+            continue
+        size = path.stat().st_size
+        if size > MAX_TEXT_BYTES:
+            skipped.append({"path": name, "size_bytes": size, "reason": "size_limit"})
             continue
         raw = path.read_bytes()
         try:
@@ -83,10 +88,11 @@ def scan(root="."):
     return {
         "schema_version": "redacted_secret_scan_v1",
         "files": files,
+        "skipped_files": skipped,
         "findings": results,
-        "status": "pass" if not results else "fail",
+        "status": "fail" if results else "incomplete" if skipped else "pass",
         "secret_values_included": False,
-        "limitations": "Pattern and known-local-key scanning is not proof that no secret or patient identifier exists.",
+        "limitations": "Pattern and known-local-key scanning is not proof that no secret or patient identifier exists. Oversized files are listed as skipped and make the scan incomplete.",
         "real_patient_release_authorized": False,
     }
 
@@ -98,5 +104,5 @@ if __name__ == "__main__":
     report = scan()
     with Path(args.out).open("x", encoding="utf-8") as output:
         json.dump(report, output, indent=2)
-    if report["findings"]:
+    if report["findings"] or report["status"] == "incomplete":
         raise SystemExit(1)
