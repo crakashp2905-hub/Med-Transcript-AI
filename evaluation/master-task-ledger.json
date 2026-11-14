@@ -7914,11 +7914,27 @@
       "id": "MTA-15-20",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Construct synthetic pricing/unit-economics workbook with configurable hardware amortization, local electricity, support and per-consultation costs.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "outputs/med-transcript-unit-economics/unit-economics.xlsx",
+        "evaluation/reports/master-task-mta-15-20-126e2a2.json"
+      ],
+      "source_commit": "126e2a2055ba990941b7665c6538e4e29017a338",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-20-126e2a2.json",
+          "report_sha256": "a8de3138c0201c8354f18219a8bdc9f62b60f89c8dfff764fd782d8500dbabf9",
+          "check": "scenario_formula_reconciliation",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-15-20-126e2a2.json",
+          "report_sha256": "a8de3138c0201c8354f18219a8bdc9f62b60f89c8dfff764fd782d8500dbabf9",
+          "check": "xlsx_round_trip_and_formula_scan",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

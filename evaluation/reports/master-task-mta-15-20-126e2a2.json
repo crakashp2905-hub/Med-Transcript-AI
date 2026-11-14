@@ -1,0 +1,55 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-15-20",
+  "source_commit": "126e2a2055ba990941b7665c6538e4e29017a338",
+  "artifact": {
+    "path": "outputs/med-transcript-unit-economics/unit-economics.xlsx",
+    "sha256": "e693b5bad83d8aa1bc4a34b88559e1dfc703d57911b7cb28d4f6ed7f1ce91fe9"
+  },
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "node_version": "v22.16.0",
+    "spreadsheet_runtime": "@oai/artifact-tool 2.8.58+",
+    "formula_recalculation": "pass",
+    "scenario_formula_reconciliation": "3 scenarios matched independent arithmetic",
+    "selector_checks": "3 scenario changes passed",
+    "input_sensitivity": "provider cost change flowed to monthly and per-consultation costs",
+    "zero_volume": "returned n.a. unit cost without division error",
+    "formula_error_scan": "0 matches",
+    "visual_render_review": "pass",
+    "xlsx_round_trip": "selected case summary preserved after import",
+    "external_calls": "none"
+  },
+  "runtime_sha256": "23d4acc4e65cf8a3a34146394792376c2c8a3509988766cb907ce59f3885aa29",
+  "checks": {
+    "scenario_cost_model": {
+      "status": "pass",
+      "detail": "The model contains editable hardware, amortization, power, usage, electricity, support and per-consultation provider costs for individual, clinic and institution scenarios."
+    },
+    "scenario_formula_reconciliation": {
+      "status": "pass",
+      "detail": "All three formula results reconcile to independent arithmetic."
+    },
+    "selector_input_sensitivity_and_zero_volume": {
+      "status": "pass",
+      "detail": "All case selections and provider-cost sensitivity updated outputs; zero consult volume returns n.a. for unit cost."
+    },
+    "xlsx_round_trip_and_formula_scan": {
+      "status": "pass",
+      "detail": "Saved XLSX reopened with selected-case formulas and values preserved; formula error search matched zero entries."
+    },
+    "visual_render_review": {
+      "status": "pass",
+      "detail": "Rendered single-sheet output reviewed for clipping and readability."
+    }
+  },
+  "result": "verified",
+  "assumption_limitations": [
+    "Scenario inputs are illustrative only, with no sourced hardware quote, electricity tariff, support rate, or demand estimate.",
+    "Currency is an editable consistent unit basis, not a market/FX claim.",
+    "Provider/model cost defaults to zero because paid calls were not authorized; users should enter only a measured or quoted amount.",
+    "This workbook models cost only and does not assert revenue, willingness to pay, or market size."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}
