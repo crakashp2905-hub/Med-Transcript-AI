@@ -18,8 +18,18 @@ def now():
 
 
 def checked(root, relative):
-    target = (root / relative).resolve()
-    if not target.is_relative_to(root.resolve()) or target == root.resolve():
+    root = Path(root)
+    relative = Path(relative)
+    if root.is_symlink() or relative.is_absolute() or ".." in relative.parts:
+        raise ValueError("Backup path escapes its root")
+    resolved_root = root.resolve()
+    candidate = root
+    for part in relative.parts:
+        candidate = candidate / part
+        if candidate.is_symlink():
+            raise ValueError("Backup path contains a symlink")
+    target = (resolved_root / relative).resolve()
+    if not target.is_relative_to(resolved_root) or target == resolved_root:
         raise ValueError("Backup path escapes its root")
     return target
 
