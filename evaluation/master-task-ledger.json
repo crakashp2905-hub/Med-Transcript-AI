@@ -5989,12 +5989,12 @@
       "id": "MTA-12-23",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Publish a reproducibility pack with benchmark manifests, source code hashes, exact commands and limitations.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-23-a7553b2.json", "evaluation/reproducibility-pack-v2.json"],
+      "source_commit": "a61086de6c225fd8efc2c84074c542fe0014e955",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-23-a7553b2.json", "report_sha256": "265d9cf563efc3e5bab36f2eb51f9902567522acca0849d660b696a2b02f9c5d", "check": "reproducibility_pack_hash_integrity_and_coverage", "status": "pass"}],
+      "blocker": "The reproducibility capture was made from a worktree with concurrent outstanding changes; the exact source commit and artifact hashes are recorded."
     },
     {
       "id": "MTA-12-24",

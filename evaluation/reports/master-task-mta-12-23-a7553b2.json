@@ -1,0 +1,65 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-23"
+  ],
+  "source_commit": "a61086de6c225fd8efc2c84074c542fe0014e955",
+  "artifact_commit": "bf62ddc054bb876333475673c5fb58336a315707",
+  "captured_at_utc": "2026-11-14T07:20:39.467943+00:00",
+  "source_files": {
+    "services/repro_bundle.py": "a9bc250735f510fcc6fa0f528f1006950c728260187ae6a2c9c976ec33f2dfce",
+    "tests/test_repro_bundle.py": "2557ba29a62e0a0745f73fbc0abc020aa77faff5e2d3eb374e626b6bc999f23a"
+  },
+  "artifacts": {
+    "evaluation/reproducibility-pack-v2.json": "494c6d42d5c4ba3a69c1f2ff0ccd2e35af244955f26f1de0aeec470cf1c12cad"
+  },
+  "pack_summary": {
+    "dataset_manifests": 7,
+    "artifact_hashes": 16,
+    "source_code_hashes": 6,
+    "completed_model_reports": 7,
+    "commands": [
+      "python -m pytest -q tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py tests/test_asr_subgroup_metrics.py tests/test_benchmark_ranking.py",
+      "python -m services.offline_acceptance",
+      "python -m services.engineering_status",
+      "python -m services.benchmark_ranking --out evaluation/leaderboard-refresh-vN.json --supersedes evaluation/leaderboard-eval-v2.json",
+      "python -m services.repro_bundle --output evaluation/reproducibility-pack-vN.json"
+    ],
+    "worktree_clean_at_capture": false,
+    "uncommitted_path_count_at_capture": 14
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_repro_bundle.py",
+      "status": "pass",
+      "result": "2 passed"
+    },
+    {
+      "command": "ruff check services/repro_bundle.py tests/test_repro_bundle.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/repro_bundle.py tests/test_repro_bundle.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m services.repro_bundle --output evaluation/reproducibility-pack-v2.json",
+      "status": "pass"
+    },
+    {
+      "command": "validate source/artifact/dataset/lock hashes and all completed benchmark-ledger report references",
+      "status": "pass",
+      "result": "all verified"
+    }
+  ],
+  "supported_claims": [
+    "The pack freezes seven dataset manifest hashes and each available lock hash, six source-code hashes, nine base artifacts, and every completed smoke-benchmark candidate report.",
+    "Exact replay commands and explicit evidence/clinical limitations are included.",
+    "The pack preserves no-download/no-paid-call policy and marks clinical release blocked."
+  ],
+  "limitations": [
+    "The pack records an unclean worktree at capture, with 14 outstanding local paths; it hashes a declared artifact set rather than asserting a clean checkout.",
+    "Dataset/model outputs are development evidence only; no independent clinical study or real-patient acceptance is included."
+  ],
+  "clinical_release_authorized": false
+}
