@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 980 608">
+<title id="title">Development ASR benchmark normalized WER</title>
+<desc id="desc">Ranked candidates are plotted from JSON metrics. Unavailable candidates are listed without a quality rank.</desc>
+<style>text{font:14px system-ui,sans-serif;fill:#173c39}.title{font-size:22px;font-weight:700}.muted{fill:#607875}.bar{fill:#287c70}.axis{stroke:#aac0bc;stroke-width:1}</style>
+<text class="title" x="24" y="34">Development ASR benchmark · normalized WER</text>
+<text class="muted" x="24" y="56">Lower is better · no clinical approval · exact JSON values in data-wer</text>
+<line class="axis" x1="340" y1="66" x2="840" y2="66"/>
+<text x="24" y="91">1. parakeet-tdt-0.6b-v2</text>
+<rect class="bar" data-candidate="parakeet-tdt-0.6b-v2" data-wer="0.052238805970149252" x="340" y="74" width="63.64" height="20" rx="4"/>
+<text x="413.64" y="90">5.22%</text>
+<text x="24" y="125">2. omi-med-stt-v1</text>
+<rect class="bar" data-candidate="omi-med-stt-v1" data-wer="0.067164179104477612" x="340" y="108" width="81.82" height="20" rx="4"/>
+<text x="431.82" y="124">6.72%</text>
+<text x="24" y="159">3. faster-whisper-large-v3</text>
+<rect class="bar" data-candidate="faster-whisper-large-v3" data-wer="0.074626865671641784" x="340" y="142" width="90.91" height="20" rx="4"/>
+<text x="440.91" y="158">7.46%</text>
+<text x="24" y="193">4. distil-whisper-large-v3</text>
+<rect class="bar" data-candidate="distil-whisper-large-v3" data-wer="0.097014925373134331" x="340" y="176" width="118.18" height="20" rx="4"/>
+<text x="468.18" y="192">9.70%</text>
+<text x="24" y="227">5. whisper-small</text>
+<rect class="bar" data-candidate="whisper-small" data-wer="0.097014925373134331" x="340" y="210" width="118.18" height="20" rx="4"/>
+<text x="468.18" y="226">9.70%</text>
+<text x="24" y="261">6. faster-whisper-tiny.en</text>
+<rect class="bar" data-candidate="faster-whisper-tiny.en" data-wer="0.16417910447761194" x="340" y="244" width="200.00" height="20" rx="4"/>
+<text x="550.00" y="260">16.42%</text>
+<text x="24" y="295">7. multimed-whisper-small-english</text>
+<rect class="bar" data-candidate="multimed-whisper-small-english" data-wer="0.41044776119402987" x="340" y="278" width="500.00" height="20" rx="4"/>
+<text x="850.00" y="294">41.04%</text>
+<text x="24" y="326" font-weight="700">Unavailable / unranked</text>
+<text class="muted" data-status="access_pending" x="40" y="362">google-medasr-greedy · access_pending</text>
+<text class="muted" data-status="access_pending" x="40" y="396">google-medasr-approved-decoder · access_pending</text>
+<text class="muted" data-status="access_pending" x="40" y="430">eka-parrotlet-a-en-5b · access_pending</text>
+<text class="muted" data-status="resource_preflight_blocked" x="40" y="464">eka-parrotlet-a-2.5-pro-english · resource_preflight_blocked</text>
+<text class="muted" data-status="resource_preflight_blocked" x="40" y="498">canary-qwen-2.5b · resource_preflight_blocked</text>
+<text class="muted" data-status="disabled_by_user" x="40" y="532">amazon-transcribe-medical · disabled_by_user</text>
+<text class="muted" data-status="disabled_by_user" x="40" y="566">deepgram-nova-3-medical · disabled_by_user</text>
+</svg>
