@@ -1,0 +1,29 @@
+{
+  "schema_version": "encounter_warning_review_v1",
+  "task_id": "MTA-16-12",
+  "source_commit": "f00a371cb52cc64c068ab251e80643c1ce545a69",
+  "scope": "Frontend review summary for current encounter verifier findings and fact review state.",
+  "measures": {
+    "warning_load": "Counts by deterministic verifier severity for the current note.",
+    "source_omission_flags": "Counts source_omission, critical_source_omission, unaccounted_source_content, and omitted_source_terms verifier findings; flags require clinician review and are not adjudicated omissions.",
+    "clinician_required_actions": "Counts approval-blocking or critical findings plus facts in the uncertainty queue; totals may overlap.",
+    "false_alerts_per_note": null,
+    "false_alerts_unavailable_reason": "No independent adjudication labels are available."
+  },
+  "checks": {
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "result": "TypeScript check and Vite production build passed."
+    },
+    "browser_e2e": {
+      "status": "blocked",
+      "command": "npx playwright test e2e/presentation.spec.ts --grep \"encounter review summary\"",
+      "result": "Browser could not navigate to local loopback server; Chromium returned ERR_NETWORK_ACCESS_DENIED. Test assertion did not run."
+    }
+  },
+  "limitations": [
+    "No independent adjudication or clinical outcome validation.",
+    "Focused browser test remains unverified because local loopback navigation was denied by the environment."
+  ]
+}

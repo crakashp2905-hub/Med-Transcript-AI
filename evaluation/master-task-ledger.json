@@ -8464,12 +8464,23 @@
       "id": "MTA-16-12",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Build visual review of warning load, false alerts per note, unresolved source omissions and clinician-required actions.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/presentation.spec.ts",
+        "evaluation/reports/mta-16-12-warning-load-v1.json"
+      ],
+      "source_commit": "f00a371cb52cc64c068ab251e80643c1ce545a69",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-16-12-warning-load-v1.json",
+          "report_sha256": "b1feeba45a4e0fe633402b52d5c405263b9af7c133956de0c156f54abf542ea5",
+          "check": "frontend_build"
+        }
+      ],
+      "blocker": "Independent false-alert labels are unavailable; focused browser E2E could not run because Chromium loopback navigation returned ERR_NETWORK_ACCESS_DENIED."
     },
     {
       "id": "MTA-16-13",
