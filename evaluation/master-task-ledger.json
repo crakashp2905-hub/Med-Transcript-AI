@@ -8832,12 +8832,27 @@
       "id": "MTA-17-11",
       "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create evidence provenance ledger mapping each 10/10 claim to test ID, commit SHA and output artifact.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/claim_provenance.py",
+        "docs/plans/zero-external-checklist.md",
+        "evaluation/claim-provenance/10of10-provenance-v1.json",
+        "docs/research/claim-provenance-10of10-v1.md",
+        "tests/test_10of10_claim_provenance.py",
+        "evaluation/reports/mta-17-11-claim-provenance-v1.json"
+      ],
+      "source_commit": "1e66e2048d994ce31a3f1258e0d117b748fde590",
+      "test_results": [
+        {
+          "status": "pass",
+          "check": "claim_provenance_contract",
+          "report": "evaluation/reports/mta-17-11-claim-provenance-v1.json",
+          "report_sha256": "67c35aece361dda6c4fb71589c70d0ce67b1a22e02639f42e05aefe8d08a3021",
+          "runtime_sha256": "9ec162df931cc083438669b16a4563dffa70b84ec319491ebd8709224528088a"
+        }
+      ],
+      "blocker": "The engineering 10/10 and 100/100 rubric targets are not awarded; clinical validation and release remain unclaimed."
     },
     {
       "id": "MTA-17-12",

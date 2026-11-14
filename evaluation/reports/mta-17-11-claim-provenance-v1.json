@@ -1,0 +1,39 @@
+{
+  "schema_version": "claim_provenance_validation_v1",
+  "task_id": "MTA-17-11",
+  "source_commit": "1e66e2048d994ce31a3f1258e0d117b748fde590",
+  "runtime": {
+    "source_commit": "1e66e2048d994ce31a3f1258e0d117b748fde590",
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "checks": {
+      "provenance_tests": "tests/test_10of10_claim_provenance.py: 2 passed, 1 warning",
+      "ruff": "check passed; format check passed",
+      "generation": "python -m services.claim_provenance --source-commit 1e66e2048d994ce31a3f1258e0d117b748fde590"
+    },
+    "claim_count": 11,
+    "scope": "Canonical 10/10 checklist rubric and narrow historical synthetic restore count; no clinical claim."
+  },
+  "runtime_sha256": "9ec162df931cc083438669b16a4563dffa70b84ec319491ebd8709224528088a",
+  "checks": {
+    "claim_provenance_contract": {
+      "status": "pass",
+      "summary": "11 explicit claim records regenerate deterministically; every record links source lines, test IDs, exact commits and SHA-256 report artifacts; overall 10/10 and 100/100 remain unawarded."
+    }
+  },
+  "outputs": [
+    {
+      "path": "evaluation/claim-provenance/10of10-provenance-v1.json",
+      "sha256": "05fa86a180b3383a195c7a5748b09308600f684665d549b8571948d519d7c286"
+    },
+    {
+      "path": "docs/research/claim-provenance-10of10-v1.md",
+      "sha256": "bfc153c7bd2053d4424753d00e04735dcaaed92ee036775358be60fb342c9b65"
+    }
+  ],
+  "limitations": [
+    "No engineering rubric score is calculated.",
+    "No clinical accuracy or deployment score is claimed.",
+    "Historical evidence remains bound to prior exact source commits and only supports the scoped tests recorded in those reports."
+  ]
+}
