@@ -1,0 +1,34 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-15"
+  ],
+  "source_commit": "837d8c1ee1dfd577b9bae764e5aaf72b9e7701f8",
+  "captured_at_utc": "2026-11-14T07:48:49.103463+00:00",
+  "source_files": {
+    "services/encrypted_backup.py": "7be3a75d3f81740237106e01898b64fdedd87151ecf23777be131ccdc7677a70",
+    "tests/test_encrypted_backup.py": "147f53a7fa729fc0ae79be9635ed45ccdab078702186948e2c0abe92e0d50135",
+    "pyproject.toml": "19b98099bf412671a533fc8656001ae39fdb0d87dd85189e473290c44c5d291e"
+  },
+  "checks": {
+    "encrypted_backup_stream_test": {
+      "command": "pytest -q tests/test_encrypted_backup.py::test_authenticated_stream_rejects_tamper_truncation_and_wrong_key",
+      "status": "blocked",
+      "result": "cryptography.cobblestone unavailable; pytest skipped test (no collectors)"
+    }
+  },
+  "runtime": {
+    "cryptography_version": "45.0.4",
+    "cryptography_cobblestone_available": false
+  },
+  "runtime_sha256": "1789d2f268f982efb15b8498ac65672c57fd2cee049436af0f1c3118555fc6f1",
+  "supported_claims": [
+    "Encrypted backup acceptance cannot be exercised in the current local environment."
+  ],
+  "limitations": [
+    "The project pins cryptography 50.0.2 with Cobblestone support, but only cryptography 45.0.4 is installed and the cobblestone module is unavailable.",
+    "No dependency was downloaded or installed.",
+    "Institution-managed key custody, rotation, backup restore operations and external audit are unverified."
+  ],
+  "clinical_release_authorized": false
+}

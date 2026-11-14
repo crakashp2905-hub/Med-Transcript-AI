@@ -6637,12 +6637,12 @@
       "id": "MTA-13-15",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "blocked_missing_asset",
       "description": "Encrypt locally stored test backups with verified key lifecycle and restore; distinguish demo keys from institution-managed keys.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-15-837d8c1.json"],
+      "source_commit": "837d8c1ee1dfd577b9bae764e5aaf72b9e7701f8",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-15-837d8c1.json", "report_sha256": "7060c10c5387d8cccecfbaf167438c72e716e52df498f4da6d3c32df686d034f", "check": "encrypted_backup_stream_test", "status": "blocked"}],
+      "blocker": "The local environment has cryptography 45.0.4 without cryptography.cobblestone; the project pin requiring 50.0.2 is unavailable locally and must not be fetched under the current constraint."
     },
     {
       "id": "MTA-13-16",
