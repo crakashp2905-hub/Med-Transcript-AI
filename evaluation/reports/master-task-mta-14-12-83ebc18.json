@@ -1,0 +1,21 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-12",
+  "source_commit": "83ebc188e18a07f5cb42dd3a8d30df486ab7d64f",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "preflight_command": "Get-Command pg_isready, psql, docker; check standard PostgreSQL and Docker Desktop paths; inspect psycopg/psycopg2 availability"
+  },
+  "runtime_sha256": "bc330d226ed27e8b5a1ec8b8a6bdc79b65035acc1c203ac08e13a7c219119f4c",
+  "checks": {
+    "local_postgresql_integration_availability": {
+      "status": "blocked",
+      "detail": "No pg_isready, psql or docker commands were available; standard PostgreSQL and Docker Desktop paths were absent; psycopg and psycopg2 were not installed. PostgreSQL service inspection was denied by Windows service-manager permissions, so no claim is made that no server is running outside these checks. No hosted tests or external services were accessed."
+    }
+  },
+  "result": "blocked",
+  "blocker": "No local PostgreSQL client/container tooling or Python driver is available in the authorized environment. Install or expose an existing local service and driver to run integration tests.",
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}

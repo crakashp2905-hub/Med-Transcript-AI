@@ -7149,12 +7149,21 @@
       "id": "MTA-14-12",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "blocked_missing_asset",
       "description": "Run PostgreSQL integration on an existing local/container service when available; otherwise retain hosted tests and note missing local evidence.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-14-12-83ebc18.json"
+      ],
+      "source_commit": "83ebc188e18a07f5cb42dd3a8d30df486ab7d64f",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-12-83ebc18.json",
+          "report_sha256": "bbd7a52b6311b2984b5488be36534c7696825e1bdabeca9a8fa0990ea5f61c63",
+          "check": "local_postgresql_integration_availability",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "No local PostgreSQL client/container tooling or Python driver is available in the authorized environment; service-manager inspection was also denied."
     },
     {
       "id": "MTA-14-13",
