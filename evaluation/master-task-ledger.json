@@ -8414,22 +8414,50 @@
       "id": "MTA-16-10",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Implement unit-economics estimates under explicit CPU wattage, electricity price, model availability and amortization assumptions.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/unit_economics.py",
+        "tests/test_unit_economics.py",
+        "docs/product/local-unit-economics-v1.md",
+        "evaluation/protocols/unit-economics-assumptions-v1.json",
+        "evaluation/protocols/unit-economics-estimate-v1.json"
+      ],
+      "source_commit": "d210563a8c0ce502e95a0e4a27776e64cc8ccd51",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-10-d210563.json",
+          "report_sha256": "92b4de541cdd9d7b99c4ef767d95b9abca7aefa4ea73cbe166aeedc82079feea",
+          "check": "unit_economics_estimate",
+          "status": "pass",
+          "detail": "Explicit assumption-only estimate and formula are hash-bound."
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-16-11",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Add test verifying cost never defaults to zero for missing measurements.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/unit_economics.py",
+        "tests/test_unit_economics.py",
+        "docs/product/local-unit-economics-v1.md",
+        "evaluation/protocols/unit-economics-assumptions-v1.json",
+        "evaluation/protocols/unit-economics-estimate-v1.json"
+      ],
+      "source_commit": "d210563a8c0ce502e95a0e4a27776e64cc8ccd51",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-11-d210563.json",
+          "report_sha256": "6473b15b2e342ae112da263bf96271cc6a6ebe8073b46547bb5c1091ab42ee99",
+          "check": "missing_cost_never_defaults_zero",
+          "status": "pass",
+          "detail": "Missing required measurement returns null costs rather than zero."
+        }
+      ],
       "blocker": null
     },
     {

@@ -1,0 +1,55 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-16-10",
+  "status": "pass",
+  "source_commit": "d210563a8c0ce502e95a0e4a27776e64cc8ccd51",
+  "captured_at_utc": "2026-11-14T15:20:04+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    "services/unit_economics.py": "f6fa9b0d84ba0b96552209efe1a42cc87baf8571a34328ca560a27b272c07faa",
+    "tests/test_unit_economics.py": "03fd7fce1fd8b102db988e3870fdcf2b360dcc740f4f6ad58746b1589498237b",
+    "docs/product/local-unit-economics-v1.md": "86fd17ccb190e59f2f36bad38fe6a279ec963baba68731fada3c879eac7d80f4",
+    "evaluation/protocols/unit-economics-assumptions-v1.json": "4997d4bc2005174ad411c98d06b71c1ac90d777158d6ca2f5cc09f9f27e41027",
+    "evaluation/protocols/unit-economics-estimate-v1.json": "1db0a14705dfd32ac8a0a95660e40116b611e23eb85ace90d8861481cdfa613b"
+  },
+  "checks": {
+    "full_unit_economics_tests": {
+      "status": "pass",
+      "result": "4 passed",
+      "command": "python -m pytest -q tests/test_unit_economics.py"
+    },
+    "missing_cost_null_test": {
+      "status": "pass",
+      "result": "1 passed",
+      "command": "python -m pytest -q tests/test_unit_economics.py -k missing_cost_measurements"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check services/unit_economics.py tests/test_unit_economics.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "both files already formatted",
+      "command": "python -m ruff format --check services/unit_economics.py tests/test_unit_economics.py"
+    },
+    "unit_economics_estimate": {
+      "status": "pass",
+      "result": "The explicit illustrative scenario estimates 0.0943055556 DEMO_CURRENCY_UNIT per encounter; every input is marked assumed."
+    }
+  },
+  "result": {
+    "check": "unit_economics_estimate",
+    "detail": "The explicit illustrative scenario estimates 0.0943055556 DEMO_CURRENCY_UNIT per encounter; every input is marked assumed."
+  },
+  "limitations": [
+    "All numerical economics values in the checked-in scenario are illustrative assumptions; no local tariff, wattage, hardware cost, availability, or model runtime was measured.",
+    "This estimate is not a business forecast or deployment cost quote."
+  ],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "runtime_sha256": "70fa82eb99516afe99c8fc5d13ad1a73a882e6c56c7ee2a369e94b92304beda4"
+}
