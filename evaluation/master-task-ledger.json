@@ -6945,12 +6945,25 @@
       "id": "MTA-14-02",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Inject disk full, DB lock, DB crash, missing media, disconnect, slow storage, revoked consent and model timeout at every stage.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "tests/test_live_uploads.py",
+        "tests/test_worker_consent_revocation.py",
+        "tests/test_foundation.py",
+        "evaluation/reports/master-task-mta-14-02-94c7291.json"
+      ],
+      "source_commit": "94c7291d7be85ba223f8edf1a57babf6fada6c4c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-02-94c7291.json",
+          "report_sha256": "f0bfb08160c982c95649f430f43108209016f5cff194dd672af9321beeb0010d",
+          "check": "local_fault_injection_matrix",
+          "status": "pass",
+          "detail": "Ten exact-commit tests inject ENOSPC, SQLite lock, slow fsync, client disconnect, missing media, transaction process crash, consent withdrawal, and ASR/decoder timeouts."
+        }
+      ],
+      "blocker": "Representative failure seams pass, but the requested every-stage matrix is incomplete for drafting, verification, approval and export; real host power loss, physical disk exhaustion, real network failure and PostgreSQL faults were not exercised."
     },
     {
       "id": "MTA-14-03",

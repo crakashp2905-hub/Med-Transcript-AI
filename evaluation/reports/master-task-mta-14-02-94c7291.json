@@ -1,0 +1,52 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-02",
+  "status": "pass",
+  "source_commit": "94c7291d7be85ba223f8edf1a57babf6fada6c4c",
+  "captured_at_utc": "2026-11-14T14:05:19+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    "tests/test_live_uploads.py": "8e34e0022ef4431bd10e316263c73f8cd0d93a6b996c59c64da583c153cbc08d",
+    "tests/test_worker_consent_revocation.py": "2838fc0b74b9b0c293f8279c19085858308045af59505b2124f3209633a4599b",
+    "tests/test_foundation.py": "0b3a4998e66def0068741f1efb91285f1d87dcb8eb5b20ef723dd33c042dd51d",
+    "tests/test_asr_backend_contract.py": "e204a42c24628bcb2265d5b75e554529da723329720d6b629b45c0007f3dd55d",
+    "tests/test_media.py": "952e8fa968eb8321b25fa0cb51000cedc3469794a1751ba870cd98a8fe13baef"
+  },
+  "checks": {
+    "local_fault_injection_matrix": {
+      "status": "pass",
+      "result": "10 passed",
+      "command": "python -m pytest -q [10 named fault-injection tests]"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check tests/test_live_uploads.py tests/test_worker_consent_revocation.py tests/test_foundation.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "all three files already formatted",
+      "command": "python -m ruff format --check tests/test_live_uploads.py tests/test_worker_consent_revocation.py tests/test_foundation.py"
+    }
+  },
+  "faults_exercised": [
+    "ENOSPC during upload fsync; offset remains uncommitted and retry succeeds.",
+    "SQLite writer lock during upload commit; request maps to retryable storage error.",
+    "Delayed fsync; the upload offset remains unchanged until durable flush completes.",
+    "Client disconnect while streaming a chunk; partial bytes are not committed.",
+    "Missing source media; ingest job fails without result/transcript publication.",
+    "Abrupt process exit inside an open SQLite transaction; database integrity recovers and uncommitted row is absent.",
+    "Consent withdrawal before and during ingest; processing is cancelled and no result is published.",
+    "ASR backend and media decoder timeouts; failures remain typed and fail closed."
+  ],
+  "limitations": [
+    "The eight requested fault classes are covered at representative application seams, not injected at every lifecycle stage.",
+    "No physical disk exhaustion, host power loss, real network disconnect, or production/PostgreSQL fault test was performed.",
+    "Drafting, verification, approval, and export need a complete cross-stage fault matrix; some individual fail-closed tests exist elsewhere but are not a full matrix."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "70fa82eb99516afe99c8fc5d13ad1a73a882e6c56c7ee2a369e94b92304beda4"
+}
