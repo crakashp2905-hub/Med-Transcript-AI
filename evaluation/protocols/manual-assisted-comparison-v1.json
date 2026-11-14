@@ -1,0 +1,131 @@
+{
+  "schema_version": "paired_synthetic_flow_comparison_v1",
+  "scenario_set_id": "offline-encounters-v1",
+  "source_truth": "evaluation/scenarios/offline-encounters-v1/scripted-correction-tasks.json",
+  "comparison_unit": "same_task_id_and_source_state_paired_across_both_arms",
+  "arms": [
+    "manual_only",
+    "assisted_scripted_stimulus"
+  ],
+  "timing_policy": {
+    "simulated_agent_profile": "fixed_demo_profile_v1",
+    "simulated_stage_ms": {
+      "transcription": 900,
+      "fact_extraction": 500,
+      "drafting": 300
+    },
+    "measured_model_runtime_ms": null,
+    "clinician_active_time_ms": null,
+    "clinical_productivity_estimate": null,
+    "time_saved_claim": null
+  },
+  "outcomes_to_record": [
+    "task_completion",
+    "source_evidence_preserved",
+    "correction_matches_expected_source",
+    "interaction_errors",
+    "script_wall_time_ms",
+    "observed_agent_runtime_ms_when_a_real_candidate_is_used"
+  ],
+  "human_observations": 0,
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "tasks": [
+    {
+      "task_id": "dose-swap",
+      "correction_kind": "medication_dose",
+      "source_ref": "source:medication:1",
+      "source_text": "Patient takes metformin 500 mg twice daily.",
+      "shared_initial_note_state": "Patient takes metformin 5000 mg twice daily.",
+      "expected_correction": "Patient takes metformin 500 mg twice daily.",
+      "manual_only": {
+        "assistive_proposal": null,
+        "agent_time_ms": null,
+        "scripted_agent_time_ms": 0
+      },
+      "assisted": {
+        "assistive_proposal": "Patient takes metformin 500 mg twice daily.",
+        "proposal_class": "pre_scripted_ideal_stimulus_not_model_output",
+        "scripted_agent_time_ms": {
+          "transcription": 900,
+          "fact_extraction": 500,
+          "drafting": 300
+        },
+        "total_scripted_agent_time_ms": 1700,
+        "observed_agent_time_ms": null
+      }
+    },
+    {
+      "task_id": "source-omission",
+      "correction_kind": "add_omitted_source_fact",
+      "source_ref": "source:allergy:1",
+      "source_text": "Patient reports penicillin causes a rash.",
+      "shared_initial_note_state": "No allergy information recorded.",
+      "expected_correction": "Patient reports penicillin causes a rash.",
+      "manual_only": {
+        "assistive_proposal": null,
+        "agent_time_ms": null,
+        "scripted_agent_time_ms": 0
+      },
+      "assisted": {
+        "assistive_proposal": "Patient reports penicillin causes a rash.",
+        "proposal_class": "pre_scripted_ideal_stimulus_not_model_output",
+        "scripted_agent_time_ms": {
+          "transcription": 900,
+          "fact_extraction": 500,
+          "drafting": 300
+        },
+        "total_scripted_agent_time_ms": 1700,
+        "observed_agent_time_ms": null
+      }
+    },
+    {
+      "task_id": "negation-flip",
+      "correction_kind": "assertion_negation",
+      "source_ref": "source:symptom:2",
+      "source_text": "Patient denies shortness of breath.",
+      "shared_initial_note_state": "Patient reports shortness of breath.",
+      "expected_correction": "Patient denies shortness of breath.",
+      "manual_only": {
+        "assistive_proposal": null,
+        "agent_time_ms": null,
+        "scripted_agent_time_ms": 0
+      },
+      "assisted": {
+        "assistive_proposal": "Patient denies shortness of breath.",
+        "proposal_class": "pre_scripted_ideal_stimulus_not_model_output",
+        "scripted_agent_time_ms": {
+          "transcription": 900,
+          "fact_extraction": 500,
+          "drafting": 300
+        },
+        "total_scripted_agent_time_ms": 1700,
+        "observed_agent_time_ms": null
+      }
+    },
+    {
+      "task_id": "speaker-correction",
+      "correction_kind": "speaker_attribution",
+      "source_ref": "audio:channel-2:12000-16800",
+      "source_text": "A clinician asks about the current medication.",
+      "shared_initial_note_state": "speaker-2 is unknown",
+      "expected_correction": "speaker-2 is clinician",
+      "manual_only": {
+        "assistive_proposal": null,
+        "agent_time_ms": null,
+        "scripted_agent_time_ms": 0
+      },
+      "assisted": {
+        "assistive_proposal": "speaker-2 is clinician",
+        "proposal_class": "pre_scripted_ideal_stimulus_not_model_output",
+        "scripted_agent_time_ms": {
+          "transcription": 900,
+          "fact_extraction": 500,
+          "drafting": 300
+        },
+        "total_scripted_agent_time_ms": 1700,
+        "observed_agent_time_ms": null
+      }
+    }
+  ]
+}
