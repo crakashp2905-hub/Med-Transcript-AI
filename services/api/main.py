@@ -335,6 +335,14 @@ def create_app(
         def investor_demo():
             return FileResponse(frontend / "index.html")
 
+        if (frontend / "favicon.svg").is_file():
+
+            @app.get("/favicon.svg", include_in_schema=False)
+            def favicon():
+                return FileResponse(
+                    frontend / "favicon.svg", media_type="image/svg+xml"
+                )
+
     return app
 
 
