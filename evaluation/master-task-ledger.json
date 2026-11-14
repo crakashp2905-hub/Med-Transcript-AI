@@ -8484,13 +8484,24 @@
     },
     {
       "id": "MTA-16-13",
-      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Add offline scripted onboarding acceptance with no external email or OAuth activation.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "tests/test_offline_onboarding.py",
+        "evaluation/reports/mta-16-13-offline-onboarding-v1.json"
+      ],
+      "source_commit": "45a5910c27302d8d8dc03e1bd62987ceeb53ba47",
+      "test_results": [
+        {
+          "status": "pass",
+          "report": "evaluation/reports/mta-16-13-offline-onboarding-v1.json",
+          "report_sha256": "394abe3c9b0a2e691e728f2bd2d84ca66646db50bf777628e3b1aacdc6e888f8",
+          "check": "onboarding_offline",
+          "runtime_sha256": "8dab763c274f6bf4f6949a29d8ceeb355b45c5726a8475848e7cfb108cac4be8"
+        }
+      ],
       "blocker": null
     },
     {
