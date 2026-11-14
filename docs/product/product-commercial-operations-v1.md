@@ -10,7 +10,7 @@ This document supports internal planning. The scenarios, workflows, and feedback
 | Small clinic | Five clinicians share three workstations and an administrator supports setup | Shared hardware, local energy, support/training, retention and identity controls | Whether shared-device operations and clinic governance are acceptable |
 | Institution | Fifty clinicians use twenty-five managed workstations under institutional IT and clinical governance | Managed hardware, support staffing, security assessment, retention, integration and monitoring | Whether procurement, privacy, security, clinical, and operational owners approve a scoped pilot |
 
-The unit-economics workbook uses illustrative cost inputs for these configurations. No scenario includes revenue, an assumed price, market-size estimate, paying-demand claim, or expected return. Replace assumptions only with quotes, measured usage, or institution-provided data, and label the source and date.
+The [commercial scenarios](commercial-scenarios-v1.md) use illustrative price inputs and the [local unit-economics note](local-unit-economics-v1.md) uses illustrative cost inputs for these configurations. Neither is a quote, market-size estimate, paying-demand claim, cost measurement, or expected return. Replace assumptions only with sourced prices, measured usage, or institution-provided data, and label the source and date.
 
 ## 22. Release notes, change log, FAQ, and escalation
 
@@ -96,7 +96,7 @@ Operators configure the approved mode, verify the exact hardware/model inventory
 6. **What is measured:** exact-commit software checks, synthetic cases, available benchmark reports, costs under stated assumptions.
 7. **What is not measured:** independent clinical accuracy, clinician time savings, physical hardware coverage, purchasing demand, and EHR certification.
 8. **Roadmap and dependencies:** full-length ASR, independent annotation, speaker attribution, hardware, security, and institution approvals.
-9. **Hypothetical economics:** use the unit-economics workbook’s three editable scenarios; inputs are not quotes or demand forecasts.
+9. **Hypothetical economics:** use the commercial scenario document’s three price ladders and the local unit-economics note; inputs are not quotes or demand forecasts.
 10. **Ask and open questions:** identify the specific reviewer, institution, device, and approval dependencies sought; do not imply pilot authorization.
 
 Use only reproducible synthetic material and source-audited evidence. Label every simulation, research result, external validation item, and open dependency separately.
