@@ -1,6 +1,6 @@
 {
   "schema_version": "master_milestone_verification_v1",
-  "source_commit": "cd84af0",
+  "source_commit": "7e7a3113d0a1ac42c362dc255ca8298a0f621b53",
   "clinical_release_authorized": false,
   "checks": {
     "readiness_scorecard_and_master_ledger": {
@@ -40,6 +40,18 @@
     "request_level_api_regressions": {
       "status": "blocked",
       "reason": "Windows socket.socketpair startup stalled in this sandbox before the affected TestClient request assertions completed."
+    },
+    "milestone_results_bundle": {
+      "status": "pass",
+      "command": "python -m pytest -q tests/test_master_milestone_results.py",
+      "result": "1 passed",
+      "tested_source_commit": "7e7a3113d0a1ac42c362dc255ca8298a0f621b53"
+    },
+    "milestone_execution_record": {
+      "status": "pass",
+      "command": "python -m pytest -q tests/test_master_milestone_results.py",
+      "result": "1 passed",
+      "tested_source_commit": "7e7a3113d0a1ac42c362dc255ca8298a0f621b53"
     }
   },
   "clinical_release_authorized": false

@@ -7924,23 +7924,51 @@
       "id": "MTA-18-12",
       "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Publish `results/done.json`, `results/blockers.json`, `results/research.json`, `results/product.json` and `results/verification.json` for every attempted milestone.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "results/done.json",
+        "results/blockers.json",
+        "results/research.json",
+        "results/product.json",
+        "results/verification.json",
+        "tests/test_master_milestone_results.py"
+      ],
+      "source_commit": "7e7a3113d0a1ac42c362dc255ca8298a0f621b53",
+      "test_results": [
+        {
+          "report": "results/verification.json",
+          "report_sha256": "8568ba5b44ffba1af560eb1ea4acf791bddbaa38c7932dc3edad563807d3a50b",
+          "check": "milestone_results_bundle",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-18-13",
       "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Record changed files, new tests, test counts, failures, skipped checks, performance, conclusions and unresolved risks.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "results/done.json",
+        "results/blockers.json",
+        "results/research.json",
+        "results/product.json",
+        "results/verification.json",
+        "tests/test_master_milestone_results.py"
+      ],
+      "source_commit": "7e7a3113d0a1ac42c362dc255ca8298a0f621b53",
+      "test_results": [
+        {
+          "report": "results/verification.json",
+          "report_sha256": "8568ba5b44ffba1af560eb1ea4acf791bddbaa38c7932dc3edad563807d3a50b",
+          "check": "milestone_execution_record",
+          "status": "pass"
+        }
+      ],
+      "blocker": "The source-bound offline acceptance summary records failure counts and skips but does not preserve failed test IDs or raw failure details."
     },
     {
       "id": "MTA-18-14",
