@@ -71,6 +71,31 @@ def test_overlap_scored_reports_reference_overlap_and_overlap_error_budget():
     assert result["overlap_error_speaker_ms"] == 2000
 
 
+def test_explicit_predicted_roles_report_role_misattribution_separately_from_clusters():
+    reference = [{"start_ms": 0, "end_ms": 1000, "role": "clinician"}]
+    predicted = [
+        {
+            "start_ms": 0,
+            "end_ms": 1000,
+            "speaker_id": "cluster-a",
+            "role": "patient",
+        }
+    ]
+    result = score_turns(reference, predicted)
+    assert result["diarization_error_rate"] == 0
+    assert result["role_attribution_scored"] is True
+    assert result["role_misattributed_ms"] == 1000
+    assert result["role_attribution_error_rate"] == 1
+
+
+def test_anonymous_clusters_do_not_claim_role_accuracy():
+    reference = [{"start_ms": 0, "end_ms": 1000, "role": "clinician"}]
+    predicted = [{"start_ms": 0, "end_ms": 1000, "speaker_id": "cluster-a"}]
+    result = score_turns(reference, predicted)
+    assert result["role_attribution_scored"] is False
+    assert result["role_attribution_error_rate"] is None
+
+
 @pytest.mark.parametrize(
     ("kwargs", "message"),
     [

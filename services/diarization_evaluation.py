@@ -69,7 +69,7 @@ def score_turns(
         if overlap_policy == "ignore_reference_overlap" and len(rs) > 1:
             ignored_overlap_ms += b - a
             continue
-        intervals.append((b - a, rs, hs))
+        intervals.append((b - a, rs, hs, a, b))
         for r in rs:
             for h in hs:
                 intersections[r, h] += b - a
@@ -83,10 +83,12 @@ def score_turns(
     mapping = {h: r for r, h in zip(refs, assignment)}
     total = miss = false = confusion = 0
     reference_overlap_ms = overlap_error_speaker_ms = 0
+    role_reference_ms = role_misattributed_ms = role_false_attribution_ms = 0
+    role_scored = any(isinstance(segment.get("role"), str) for segment in predicted)
     reference_ms = {r: 0 for r in refs}
     predicted_ms = {h: 0 for h in hyps}
     speaker_intersections = {(r, h): 0 for r in refs for h in hyps}
-    for ms, rs, hs in intervals:
+    for ms, rs, hs, start_ms, end_ms in intervals:
         total += len(rs) * ms
         miss += max(0, len(rs) - len(hs)) * ms
         false += max(0, len(hs) - len(rs)) * ms
@@ -99,6 +101,18 @@ def score_turns(
                 + max(0, len(hs) - len(rs))
                 + (min(len(rs), len(hs)) - correct)
             ) * ms
+        declared_roles = {
+            segment["role"]
+            for segment in predicted
+            if isinstance(segment.get("role"), str)
+            and segment["start_ms"] < end_ms
+            and segment["end_ms"] > start_ms
+        }
+        # The interval-level scorer remains authoritative for speaker turns.
+        if role_scored:
+            role_reference_ms += len(rs) * ms
+            role_misattributed_ms += len(rs - declared_roles) * ms
+            role_false_attribution_ms += len(declared_roles - rs) * ms
         for role in rs:
             reference_ms[role] += ms
             for speaker in hs:
@@ -133,6 +147,16 @@ def score_turns(
         "ignored_collar_ms": ignored_collar_ms,
         "ignored_reference_overlap_ms": ignored_overlap_ms,
         "overlap_scored": True,
+        "role_attribution_scored": role_scored,
+        "role_reference_ms": role_reference_ms,
+        "role_misattributed_ms": role_misattributed_ms,
+        "role_false_attribution_ms": role_false_attribution_ms,
+        "role_attribution_error_rate": (
+            (role_misattributed_ms + role_false_attribution_ms)
+            / (role_reference_ms + role_false_attribution_ms)
+            if role_reference_ms + role_false_attribution_ms
+            else None
+        ),
         "optimal_scoring_mapping": mapping,
         "predicted_clusters": len(hyps),
         "reference_speakers": len(refs),
