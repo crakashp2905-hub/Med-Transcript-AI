@@ -8677,13 +8677,22 @@
     },
     {
       "id": "MTA-17-07",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Package complete local demo from existing artifacts with one-command verification and explanatory runbook.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/offline_demo.py",
+        "services/offline_acceptance.py",
+        "docs/demo-runbook-offline.md",
+        "docs/runtime-support-matrix.md",
+        "tests/test_offline_engineering.py",
+        "evaluation/reports/mta-17-07-offline-demo-v1.json"
+      ],
+      "source_commit": "9f1914feced211a964affb6ef857f2979a987514",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-17-07-offline-demo-v1.json","report_sha256":"f06312f7d3986d7e14f88cef2bce01f6b830ab77fa4733d9b3a10c977c0c1aa1","check":"one_command_demo_workflow","runtime_sha256":"fad0502ee769c3ca928962cbcc9d2ef44493e1cf39296d7e7c335969cf86dd28"}
+      ],
       "blocker": null
     },
     {

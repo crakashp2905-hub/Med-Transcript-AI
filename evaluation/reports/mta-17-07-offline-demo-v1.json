@@ -1,0 +1,56 @@
+{
+  "schema_version": "offline_demo_acceptance_v1",
+  "task_id": "MTA-17-07",
+  "source_commit": "9f1914feced211a964affb6ef857f2979a987514",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "source_commit": "9f1914feced211a964affb6ef857f2979a987514",
+    "command": "python -m services.offline_demo --self-test",
+    "test_runner": "services.safe_pytest",
+    "test_path": "tests/test_offline_engineering.py",
+    "test_summary": "23 passed, 1 warning",
+    "unsafe_synthetic_dose_blocked": true,
+    "unsafe_approval_http_status": 409,
+    "corrected_exact_version_approved": true,
+    "viewer_write_denied": true,
+    "provider_calls": 0,
+    "exports": [
+      {
+        "format": "markdown",
+        "sha256": "170ace56284a560e8660907191d7c45b7ea501189f9eb426c5f064e4709d5bae"
+      },
+      {
+        "format": "text",
+        "sha256": "ef70843ef3a522ac04ccc0eea10b7c5208e2b84418c85ba049138e35c8b24838"
+      },
+      {
+        "format": "json",
+        "sha256": "561e8b731f9fe20a011d0cbf0cea66a829143d5e3d299f7b2cded27c3e2b6341"
+      },
+      {
+        "format": "fhir",
+        "sha256": "1661ebfc565958b408b0ff69873bde6ff69480e0164ec4fa8ab50ca1882bc6c5"
+      }
+    ],
+    "unavailable_stages": [
+      "recording",
+      "asr",
+      "diarization"
+    ],
+    "stage_timing_is_clinical_measurement": false
+  },
+  "runtime_sha256": "fad0502ee769c3ca928962cbcc9d2ef44493e1cf39296d7e7c335969cf86dd28",
+  "checks": {
+    "one_command_demo_workflow": {
+      "status": "pass",
+      "summary": "Scripted mismatch blocked, corrected exact version approved, four export hashes verified, viewer write denied."
+    }
+  },
+  "limitations": [
+    "Silent transport WAV and developer-scripted reference text; no ASR or speech recognition tested.",
+    "Synthetic programmatic review is not a clinician usability study or clinical evidence.",
+    "Recording, ASR and diarization stages are explicitly unavailable.",
+    "Run creates isolated local credentials; access keys were not logged or committed."
+  ]
+}
