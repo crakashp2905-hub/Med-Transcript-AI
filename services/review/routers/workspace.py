@@ -70,11 +70,12 @@ def register(app, services: ReviewService):
                 {
                     "id": c["group_id"],
                     "duration_ms": c["duration_ms"],
+                    "source_sha256": c["audio_sha256"],
                     "attribution": c["attribution"],
                 }
                 for c in public_demo_cases()
             ],
-            "scope": "Public mock consultation development references, not ASR output or independent acceptance.",
+            "scope": "Public mock consultation development references; source hashes bind the selected audio to the local manifest. These are not ASR output or independent clinical acceptance.",
         }
 
     @app.post("/v1/demo", status_code=201)
