@@ -1,0 +1,51 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-01",
+    "MTA-13-02",
+    "MTA-13-03",
+    "MTA-13-19",
+    "MTA-13-21"
+  ],
+  "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
+  "captured_at_utc": "2026-11-14T07:25:55.152460+00:00",
+  "source_files": {
+    "docs/local-threat-model.md": "808a4fb23be87a3fe776d8a0c05ef196fa2a1427db912b576cc3c093c61967f1",
+    "services/untrusted_input.py": "a0fcffd1b81974c6f6374ce222d193085b9828e3b4ca93d8c416a03b9f3891a3",
+    "evaluation/clinical-prompt-injection-v1.json": "cb81256f9b32d7b3b3efc664f9e4ea715a2d0fb8fe78ab497fdb39b7e8e5da60",
+    "tests/test_local_threat_model_coverage.py": "e90a4dbffc455d03643bb9bbe893766db3919f543e350841491dac042f28b888",
+    "tests/test_prompt_injection.py": "8144b39234548be34f91c0584d038b8f21a818a6226a44d288fc63cdd70f89e9",
+    "tests/test_untrusted_input.py": "fa276c589a1bd0635dc988f2c2ca70a21f4732a6d3b174ad1cbad299a3a11927",
+    "evaluation/contracts/owasp-llm-risk-crosswalk-v1.json": "1a672f7ca7615b55f09f56580940e596ff9cd9fd97d8ef93e13257c91f8c78b1",
+    "tests/test_owasp_llm_risk_crosswalk.py": "07dd6de44dfb622140112ec85e6004c7bde75296cd1e61345ec6c983bb254af1",
+    "services/artifact_scope.py": "003708b8cc1f591b41f317635fce1309db8a162288f83f8dc7395515d61b6d8a",
+    "tests/test_artifact_scope.py": "a7dbd44d0dde2288d6499062ced665569e9d4c13346690a43bda4dc5a49a2144"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_local_threat_model_coverage.py tests/test_owasp_llm_risk_crosswalk.py tests/test_prompt_injection.py tests/test_untrusted_input.py tests/test_clinical_model_authority.py tests/test_clinical_model_failure_mapping.py tests/test_artifact_scope.py",
+      "status": "pass",
+      "result": "40 passed"
+    },
+    {
+      "command": "ruff check tests/test_local_threat_model_coverage.py tests/test_owasp_llm_risk_crosswalk.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check tests/test_local_threat_model_coverage.py tests/test_owasp_llm_risk_crosswalk.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "The local threat model covers browser capture/storage, upload/API, worker, model prompt, note/approval, export, audit/log and backup/deletion boundaries.",
+    "Transcript content, spoken quotes and filenames are treated as untrusted data; deterministic checks and proposals do not establish safety.",
+    "A crosswalk maps all ten OWASP GenAI LLM Top 10 2026 risks to local evidence, partial/not-applicable status and an explicit gap.",
+    "The current project scope restricts benchmark and clinical evaluation content to synthetic/public mock data pending institutional permission and independent review."
+  ],
+  "limitations": [
+    "Crosswalk status is developer-maintained control mapping, not OWASP certification or external security audit.",
+    "Prompt-injection tests are static synthetic cases and do not establish adaptive, hidden Unicode or multimodal robustness.",
+    "No real-patient data, qualified external security reviewer or institutional release approval is claimed."
+  ],
+  "clinical_release_authorized": false
+}

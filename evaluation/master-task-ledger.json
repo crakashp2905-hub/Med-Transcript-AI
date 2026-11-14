@@ -6011,34 +6011,34 @@
       "id": "MTA-13-01",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Threat-model upload, browser storage, local API, worker, model prompt, clinical note, audit and export flows.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
       "id": "MTA-13-02",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add explicit untrusted-transcript policy; spoken instructions to the model cannot override rules or become tool execution.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
       "id": "MTA-13-03",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Test prompt injection and hidden instruction in audio transcript, quoted doctor-patient text and filenames.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
       "id": "MTA-13-04",
@@ -6209,12 +6209,12 @@
       "id": "MTA-13-19",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Map threats and test cases to the current OWASP LLM Top 10 risk classes without claiming OWASP certification.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
       "id": "MTA-13-20",
@@ -6231,12 +6231,12 @@
       "id": "MTA-13-21",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Use synthetic patient material only until institutional permissions and independent review exist.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
       "id": "MTA-13-22",
