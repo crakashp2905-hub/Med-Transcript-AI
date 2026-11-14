@@ -1,0 +1,21 @@
+{
+  "schema_version": "future_human_study_protocol_receipt_v1",
+  "task_id": "MTA-16-16",
+  "source_commit": "75179694db6cf6994c22604baeeb415d96fd2411",
+  "checks": {
+    "blank_results_and_gate_test": {
+      "status": "pass",
+      "test": "tests/test_human_study_protocol_skeleton.py",
+      "summary": "1 passed, 1 warning; participant, aggregate, and approval fields remain blank/false."
+    }
+  },
+  "protocol_artifact": "evaluation/protocols/decide-ai-human-study-skeleton-v1.json",
+  "alignment_boundary": "Provisional DECIDE-AI domain mapping only. Exact item-level alignment is unverified because the canonical checklist is not present in local files and external input is not authorized.",
+  "participant_results": null,
+  "recruitment_started": false,
+  "limitations": [
+    "No institution/clinical owner or qualified reviewers have been identified.",
+    "Ethics and institutional approvals are not obtained.",
+    "No participants or results are represented."
+  ]
+}

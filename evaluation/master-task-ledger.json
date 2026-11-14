@@ -8548,14 +8548,21 @@
     },
     {
       "id": "MTA-16-16",
-      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Write future human-study protocol skeleton aligned to DECIDE-AI and keep all participant results blank.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/research/human-study-protocol-skeleton.md",
+        "evaluation/protocols/decide-ai-human-study-skeleton-v1.json",
+        "tests/test_human_study_protocol_skeleton.py",
+        "evaluation/reports/mta-16-16-human-study-protocol-v1.json"
+      ],
+      "source_commit": "75179694db6cf6994c22604baeeb415d96fd2411",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-16-16-human-study-protocol-v1.json","report_sha256":"d80c157949e25ea07332a0c7c96d04bee511f77107430788f7584522fca79a4b","check":"blank_results_and_gate_test"}
+      ],
+      "blocker": "Canonical DECIDE-AI checklist is unavailable in local files, so item-level alignment cannot be confirmed; clinical owner, qualified reviewers, and institutional approval are also pending."
     },
     {
       "id": "MTA-17-01",
