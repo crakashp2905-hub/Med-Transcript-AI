@@ -1,0 +1,61 @@
+{
+  "schema_version": "focused_browser_acceptance_v1",
+  "run_id": "primary-review-browser-acceptance-2026-11-15-1becabf-r1",
+  "recorded_at_utc": "2026-11-14T23:11:40.820908+00:00",
+  "source_commit": "1becabfc51598a1f70522cdd8d486a8ee0378d47",
+  "scope": "Focused synthetic browser assertion for the default unified review workspace. No clinical accuracy, clinician usability or production claim.",
+  "command": "npx --no-install playwright test e2e/primary-review.spec.ts --reporter=line --output <versioned-output-dir>",
+  "result": {
+    "status": "pass",
+    "collected": 1,
+    "passed": 1,
+    "skipped": 0,
+    "failed": 0,
+    "assertions": [
+      "default encounter view shows source transcript and clinical facts simultaneously",
+      "transcript search and source audio are visible",
+      "the note panel appears to the right of the source panel at the tested desktop viewport"
+    ]
+  },
+  "output_marker": {
+    "path": "data/browser-acceptance-m1-review-20261115-01/primary-review-playwright/.last-run.json",
+    "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+  },
+  "related_full_browser_run": {
+    "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-1308bca-r1.json",
+    "source_commit": "1308bcae55a7cb35ef26b6af0c7357376e550134",
+    "result": "42 passed, 1 skipped, 0 failed across 43 collected offline non-Google browser journeys; includes synthetic capture through approved JSON export."
+  },
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/src/App.tsx",
+      "sha256": "ac6d8073e16fbfb10dd3f6f54ff5f5d5526d4ef5dc57de10d620820be2b8fd3f"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "cb828991634ab1ba2d24df5fea59805600dcabd1cbec387c764b3258849c7f6f"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+      "sha256": "1878448b99b72ed249849be75f289e577ee051c37d4630ad6661399d8cda1388"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "aa31dc18e0cb29e2a5f250fddbb78a24a9a51d526680464b35500f2d6fdfe3cd"
+    },
+    {
+      "path": "apps/clinician-web/src/style.css",
+      "sha256": "1c8b297309e01abe4a7a0ac3b5a060ca3b2b172f08cf2ddc0f495990ca98a6c0"
+    },
+    {
+      "path": "apps/clinician-web/e2e/primary-review.spec.ts",
+      "sha256": "3cb60695e6b1c8a8f6404cec170d75565a19191a5a60054dca3ee434834b6d3f"
+    }
+  ],
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "limitations": [
+    "Synthetic data and a local scripted non-ASR fixture only.",
+    "Desktop layout placement is asserted at the configured 1440px viewport; responsive and clinician usability studies remain separate."
+  ]
+}

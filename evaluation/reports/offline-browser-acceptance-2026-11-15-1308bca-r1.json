@@ -1,0 +1,411 @@
+{
+  "schema_version": "offline_browser_acceptance_v1",
+  "run_id": "offline-browser-acceptance-2026-11-15-1308bca-r1",
+  "recorded_at_utc": "2026-11-14T23:07:06.448876+00:00",
+  "source_commit": "1308bcae55a7cb35ef26b6af0c7357376e550134",
+  "scope": "Fresh local scripted non-ASR browser acceptance after the unified clinician review workspace change. Synthetic application paths only; no ASR accuracy, clinical validation or production claim.",
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome, headless, fake microphone input",
+    "network": "Offline profile; app requests constrained to loopback; no hosted services or paid APIs."
+  },
+  "checks": {
+    "browser_e2e": {
+      "status": "pass",
+      "command": "npx --no-install playwright test --grep-invert \"Google|google\" --output <versioned-output-dir>",
+      "suite": "apps/clinician-web/e2e",
+      "collected": 43,
+      "passed": 42,
+      "skipped": 1,
+      "failed": 0,
+      "skip_reason": "Compressed-audio normalization is skipped because cached PyAV is unavailable on this host.",
+      "coverage": [
+        "synthetic consultation capture, source review, correction, approval UI and retained JSON export",
+        "microphone/device readiness and cancellation/release checks",
+        "upload retry and recovery paths, lost response and slow browser storage",
+        "configured 30-minute capture ceiling via simulated clock",
+        "source citations, keyboard navigation, note review, audit and visual journeys",
+        "scripted critical-verification scenario remains blocked without approval or export",
+        "default unified review workspace presents source audio/transcript and note review together"
+      ],
+      "inference_executed": false,
+      "human_observations": 0,
+      "clinical_accuracy_measured": false,
+      "output_dir": "data/browser-acceptance-m1-review-20261115-01/playwright"
+    },
+    "complete_synthetic_export": {
+      "status": "pass",
+      "output_path": "data/browser-acceptance-m1-review-20261115-01/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "output_sha256": "43ec73db57eacab06f9fa230236eb3b010796136ebfe7235873b313f37baf268",
+      "asserted": "Synthetic note JSON contains note and approval; browser run has no failed tests."
+    },
+    "scripted_timing": {
+      "status": "pass_with_expected_approval_block",
+      "output_path": "data/browser-acceptance-m1-review-20261115-01/artifacts/timing-report.json",
+      "output_sha256": "175e5df2799986c43f2a282253f408e68f00a41cc81eda77b7cbf65c837fda21",
+      "recording_stop_to_draft_ready_ms": 16890,
+      "correction_saved_to_blocked_verification_ms": 178,
+      "approval_issued": false,
+      "export_ready_ms": null
+    },
+    "interaction_metrics": {
+      "status": "pass_scripted_only",
+      "output_path": "data/browser-acceptance-m1-review-20261115-01/artifacts/metrics-report.json",
+      "output_sha256": "aba6810ef197aadefe617f9b3f86a80b1f41a581557424ed908c8991d26e431d",
+      "task_completed": true,
+      "human_observations": 0
+    },
+    "playwright_result_marker": {
+      "path": "data/browser-acceptance-m1-review-20261115-01/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/e2e/clinical-batches.spec.ts",
+      "sha256": "26a32b9d77d2f03a3457669523da40f42adcd1a1af69ff4eb482533fc06f67a3"
+    },
+    {
+      "path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+      "sha256": "267229506375c5391c3b32ce5ab58abfd5f0ada06a05d6bf86a8bd0988110c66"
+    },
+    {
+      "path": "apps/clinician-web/e2e/device-check.spec.ts",
+      "sha256": "2a11788d333ae1c8a6443da6af40f14dbbd4940a6e4070cfb3c4473d2d698233"
+    },
+    {
+      "path": "apps/clinician-web/e2e/dictation.spec.ts",
+      "sha256": "17bb6a1dd9f5a50de6cea0cfa811810d976204a24c9f51b16e1842083ca37d28"
+    },
+    {
+      "path": "apps/clinician-web/e2e/evidence-channel.spec.ts",
+      "sha256": "bd29bbfa9b99999952f15a1abfe758430ac35f7c02d76c5631d1ae823c9595aa"
+    },
+    {
+      "path": "apps/clinician-web/e2e/fixtures/offline.ts",
+      "sha256": "44ae984e36cae3bcb2c17b0ef82a220a634ecfb67653c19bbc5b97ff52c9e3ad"
+    },
+    {
+      "path": "apps/clinician-web/e2e/google-auth.spec.ts",
+      "sha256": "a4e552a66864541fd0764c5befc527356927664b577241465fdcd868c1ce6d42"
+    },
+    {
+      "path": "apps/clinician-web/e2e/investor-demo.spec.ts",
+      "sha256": "fe5004bb70009caf230c43bfa55941b770582af81927107954092e5b3fc9abff"
+    },
+    {
+      "path": "apps/clinician-web/e2e/presentation.spec.ts",
+      "sha256": "800e3a39040ed2cfe29e2e538215534b39f2e2893ac61ce2c713ffc77acad5eb"
+    },
+    {
+      "path": "apps/clinician-web/e2e/recovery.spec.ts",
+      "sha256": "7173c9cfdda08f95eb6a6fd9c5002c7492dbf71f2f1d70b2d68bd8a7ceecaf30"
+    },
+    {
+      "path": "apps/clinician-web/e2e/scripted-metrics.spec.ts",
+      "sha256": "fafb5649bf18cad7c9fa11fb605216b7cede9b408a29643155e58250ddf124a1"
+    },
+    {
+      "path": "apps/clinician-web/e2e/timing.spec.ts",
+      "sha256": "5b0fbdfb4f9ba851cef31a736525bb586ec757b8da4e49f41ce6fc493ec4a61d"
+    },
+    {
+      "path": "apps/clinician-web/e2e/tutorial.spec.ts",
+      "sha256": "b1850c9152a941fbb001719a12bf26dd87fd5c5b7243e79fb717256ac0209e89"
+    },
+    {
+      "path": "apps/clinician-web/e2e/uncertain-span-waveform.spec.ts",
+      "sha256": "ccf74a115fba2448f0573d2baf9d1e9cb832931b1de2df2a28760131649b7944"
+    },
+    {
+      "path": "apps/clinician-web/e2e/usability-audit.spec.ts",
+      "sha256": "b011724a9a3b35b576f038b9d521e9644fa8ef82a4c48eb3a20e0c599e441c09"
+    },
+    {
+      "path": "apps/clinician-web/e2e/visual-regression.spec.ts",
+      "sha256": "67dab77a3e9d96f5d8f5c4cf4dd8c8340ebb6012f3e858fc1c9fdf533d2480d8"
+    },
+    {
+      "path": "apps/clinician-web/e2e/workflow.spec.ts",
+      "sha256": "2e9b1cb2cfbf4d5878e7b3675727ca04e057b889381aed76ad7fe695350c69c0"
+    },
+    {
+      "path": "apps/clinician-web/package-lock.json",
+      "sha256": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27"
+    },
+    {
+      "path": "apps/clinician-web/package.json",
+      "sha256": "c48961e28e3a1fa3abe593a93ccd7d0127df528714c4dd372b1ae9bda13e19e9"
+    },
+    {
+      "path": "apps/clinician-web/playwright.config.ts",
+      "sha256": "e483e7c866c0c9be9d0623e783a2d23b3271c33a85332017bab714e5a39ec797"
+    },
+    {
+      "path": "apps/clinician-web/src/App.tsx",
+      "sha256": "df70c34cf20d2a96e86d6b1e4c1398cc49a95e51429b061dcebe5839993e2231"
+    },
+    {
+      "path": "apps/clinician-web/src/CaptureSync.ts",
+      "sha256": "9b36f09d5958f53a6008d357c3890b98423ceff8849f5033e0a51b9c5741a0d2"
+    },
+    {
+      "path": "apps/clinician-web/src/ClinicalBatch.tsx",
+      "sha256": "990cbc01022fc1061829d5b90faf355a9dc7d4886be67cb5408229a7e87c6963"
+    },
+    {
+      "path": "apps/clinician-web/src/ClinicalFields.tsx",
+      "sha256": "8208384db65fb6c5606713de478941bdebc278a80a1c060cef63cab297fe4eb4"
+    },
+    {
+      "path": "apps/clinician-web/src/ClinicalProposals.tsx",
+      "sha256": "9b51532fd1f3e5403edf12116a39d543fcada73fbd4882d55bd728c3e821a4a0"
+    },
+    {
+      "path": "apps/clinician-web/src/ClinicianCorrection.tsx",
+      "sha256": "62d7da8b0a58bf94fd7a83c0e87a581497192a8027439c47c2154cda519b41ae"
+    },
+    {
+      "path": "apps/clinician-web/src/DetailedDemo.tsx",
+      "sha256": "7a00ed172e2db1b33c5590ac41e3715e2f6c75f4aeb202ef760cc4a46423681b"
+    },
+    {
+      "path": "apps/clinician-web/src/DeviceCheck.tsx",
+      "sha256": "0fdaa60251ab65e34cf55ba9e5cfc0189e6e92ca22de4abc3050a7daf7c668e5"
+    },
+    {
+      "path": "apps/clinician-web/src/Dictation.tsx",
+      "sha256": "52277cb591ebbb5b6e5084ea139e76b18819063d8a927a92339ebce4dbefa4b3"
+    },
+    {
+      "path": "apps/clinician-web/src/DraftProposal.tsx",
+      "sha256": "37b49aab0c7a39162a9ee27fabec29fcbdf2d3a8086fc8dc74f2102819ee0d76"
+    },
+    {
+      "path": "apps/clinician-web/src/ExecutionMetrics.tsx",
+      "sha256": "a9afeaa46bda0941302012b012e2f0a12ffd1f076712a708a89c5ecdf4315073"
+    },
+    {
+      "path": "apps/clinician-web/src/InvestorDemo.tsx",
+      "sha256": "6b08b854b144e798a25f16cac5b52c4c890dce52f48d759e5c118ddf8007980b"
+    },
+    {
+      "path": "apps/clinician-web/src/JobState.tsx",
+      "sha256": "5b64480f8fcd0e1615d958f619ffa0dc5ca969a4441cd5d5ce272a028a60524c"
+    },
+    {
+      "path": "apps/clinician-web/src/PcmCapture.ts",
+      "sha256": "e8743ec5ef51883ba9cf77c867cfff3715e7ac4b5763450aa8da04ad8f5cc2aa"
+    },
+    {
+      "path": "apps/clinician-web/src/PersonaJourneys.tsx",
+      "sha256": "02e47e3830def78bbfcee5eff8efb78b848bb0f452a11f565ad2b5b1aced43d0"
+    },
+    {
+      "path": "apps/clinician-web/src/PresentationTools.tsx",
+      "sha256": "8cfb4d6f653189f78d2c7f658f8e6762a893d47cdec3e99a14b97a83dd8120cb"
+    },
+    {
+      "path": "apps/clinician-web/src/RecordingVault.ts",
+      "sha256": "c86140c43b327bc3ee78f847b309796f3f1c9bb3d59a43b20589e45af30de659"
+    },
+    {
+      "path": "apps/clinician-web/src/RecoveryBanner.tsx",
+      "sha256": "dde19d39770763e468e8e64fa93d74265f8686a8222ba27b701f7d74ce4d1f51"
+    },
+    {
+      "path": "apps/clinician-web/src/RetranscriptionCompare.tsx",
+      "sha256": "91ceb2c1270f83d484f6ca37065fa5ac5a422365b117f2219956ef74602b3981"
+    },
+    {
+      "path": "apps/clinician-web/src/ReviewTiming.tsx",
+      "sha256": "e3004d961a71e60f59477cb87d6ee5b53013c5b09c2dde75ebc8c5012f101ae0"
+    },
+    {
+      "path": "apps/clinician-web/src/ServerRecovery.tsx",
+      "sha256": "071f115e560cd3d55442e844dafbd8dad31613c6eb16d7d5e5ae92fc36158f1a"
+    },
+    {
+      "path": "apps/clinician-web/src/SourceContext.tsx",
+      "sha256": "698d1c4c6e275e2fa883b38ddbf9355c23ab958b7933702bf5bee7807f124c2f"
+    },
+    {
+      "path": "apps/clinician-web/src/SourceCoverage.tsx",
+      "sha256": "60b8c539f5808d4506ab2534ff19e7dcbbed73366ff9b6f8d177056df6d521de"
+    },
+    {
+      "path": "apps/clinician-web/src/SpeakerRoles.tsx",
+      "sha256": "87dd567feb4503f599ea55f4774b6b2d6470634f08362bf6791858ad63e6d0e6"
+    },
+    {
+      "path": "apps/clinician-web/src/SpeakerTurnEditor.tsx",
+      "sha256": "703cb1bb09640e9f9f922c7a58618a555dbd41533161ce8098c3c0c68a01cbf4"
+    },
+    {
+      "path": "apps/clinician-web/src/UncertainSpanQueue.tsx",
+      "sha256": "ad737270b5e21212cbe23220da1b7a9710b0dcb56665505973bdaeff7ff25090"
+    },
+    {
+      "path": "apps/clinician-web/src/VerificationWarnings.tsx",
+      "sha256": "f4011bf7477e3dfb041a220311f5ad67c964e1b7403083b5d4728acf31d568da"
+    },
+    {
+      "path": "apps/clinician-web/src/VersionComparison.tsx",
+      "sha256": "dfdfde703ad1ea7079d0466ac8d1eec0f7d9650115e19908de4445f5a9a8ac34"
+    },
+    {
+      "path": "apps/clinician-web/src/client/api.ts",
+      "sha256": "0d5034a26df72834e0fb875e3f801d411bcc81f1dc660ac5b74497226f88ef3f"
+    },
+    {
+      "path": "apps/clinician-web/src/client/errorCodes.ts",
+      "sha256": "418384e350d2efff3cad2c4619b06fa11ee50fa7e8848c0485c48497dd452143"
+    },
+    {
+      "path": "apps/clinician-web/src/components/Icon.tsx",
+      "sha256": "148a4fec7ce363e09f5cfb192962a5e6dd13ab50e4f4ea0352073bbd58642bc1"
+    },
+    {
+      "path": "apps/clinician-web/src/facts.ts",
+      "sha256": "7500f381f639f861649751dc1764cd900bdd4a50c754c18dcc7a56f73b555e7d"
+    },
+    {
+      "path": "apps/clinician-web/src/fileHash.ts",
+      "sha256": "22ee32632aa2f2cbffc5fd02ca600cac3609f4d222fd9f64a6fb44963082dc57"
+    },
+    {
+      "path": "apps/clinician-web/src/format.ts",
+      "sha256": "6441fa78890e9c634435ce1efa6ccfcfc19832c73baea3be07e84791450f2227"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "cb828991634ab1ba2d24df5fea59805600dcabd1cbec387c764b3258849c7f6f"
+    },
+    {
+      "path": "apps/clinician-web/src/main.tsx",
+      "sha256": "8408c0e3ad379d6d52454512fee39fd3d054874c4a311f215ebefac7509e0be6"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/AdminUsersScreen.tsx",
+      "sha256": "72cfbc91d001bb48b99b0a3366f056d8891336fa092bf755a5b0ff8ff28af02a"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/LoginScreen.tsx",
+      "sha256": "1efd7b4f6fb5474a7aa2f296dc452464402d9d178d04990ce610e9417161de17"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "aa31dc18e0cb29e2a5f250fddbb78a24a9a51d526680464b35500f2d6fdfe3cd"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+      "sha256": "1878448b99b72ed249849be75f289e577ee051c37d4630ad6661399d8cda1388"
+    },
+    {
+      "path": "apps/clinician-web/src/style.css",
+      "sha256": "1c8b297309e01abe4a7a0ac3b5a060ca3b2b172f08cf2ddc0f495990ca98a6c0"
+    },
+    {
+      "path": "apps/clinician-web/src/vite-env.d.ts",
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "apps/clinician-web/src/workspaceTypes.ts",
+      "sha256": "167052ccf13e7567b2f80e777287c37588dd1dd3abfc78ef485226135f4c9d55"
+    },
+    {
+      "path": "apps/clinician-web/vite.config.ts",
+      "sha256": "ab206fa054331b1693c7d96706878fb44cc11d300fd1e831c12fd48cf2911ea0"
+    },
+    {
+      "path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav",
+      "sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c"
+    },
+    {
+      "path": "evaluation/datasets/primock57-smoke-v1/manifest.json",
+      "sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd"
+    },
+    {
+      "path": "services/offline.py",
+      "sha256": "495df48ddaefd46482fc0b842c1912c09cf05ba4fdbd647afad430e2ecba6785"
+    },
+    {
+      "path": "tests/offline_browser_server.py",
+      "sha256": "a5b81c3f43650d0183d6c2d297112273e5f301cc529fbd885a18a5631b99fdbd"
+    },
+    {
+      "path": "tests/test_offline_browser_adapter.py",
+      "sha256": "1ef49ed1cc71cc748ddf8e7cc1bf7042559444947e5b4c6cb6f57e4dc08fbd2c"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/browser-acceptance-m1-review-20261115-01/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": "data/browser-acceptance-m1-review-20261115-01/artifacts/timing-report.json",
+      "sha256": "175e5df2799986c43f2a282253f408e68f00a41cc81eda77b7cbf65c837fda21"
+    },
+    {
+      "path": "data/browser-acceptance-m1-review-20261115-01/artifacts/metrics-report.json",
+      "sha256": "aba6810ef197aadefe617f9b3f86a80b1f41a581557424ed908c8991d26e431d"
+    },
+    {
+      "path": "data/browser-acceptance-m1-review-20261115-01/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "43ec73db57eacab06f9fa230236eb3b010796136ebfe7235873b313f37baf268"
+    },
+    {
+      "path": "data/browser-acceptance-m1-review-20261115-01/artifacts/data/ui-screenshots/approved-note.json",
+      "sha256": "163a8e099842229caa07e04bf33790683ad8e9a107f8c22935b73ce08a9f9594"
+    },
+    {
+      "path": "data/browser-acceptance-m1-review-20261115-01/artifacts/usability/browser-observations.json",
+      "sha256": "aa8ede3aa0dc05d177a84712dc4bb2d1aad8318e7f2ec56f8b6f93add5d9b573"
+    }
+  ],
+  "related_python_verification": {
+    "report": "evaluation/reports/milestone3-role-verification-2026-11-15-934bb2a-r1.json",
+    "source_commit": "934bb2a97e5d0d90a989921b1eaf4896670a6638",
+    "result": "1341 passed, 10 skipped; separate source commit before browser-only fixture changes"
+  },
+  "limitations": [
+    "The browser microphone is simulated. The 30-minute ceiling uses a simulated clock, not real-time hardware endurance.",
+    "One optional compressed-audio case remained skipped; PyAV was not installed or fetched.",
+    "The fixed scripted adapter ignores input audio and executes no ASR. Software tests do not establish clinical accuracy, clinician benefit, independent sign-off, institutional approval, EHR delivery or deployment readiness.",
+    "Unrelated acceptance clones and partial benchmark artifacts were left unstaged.",
+    "The unified review layout passed the scripted desktop/tablet/mobile regression suite; these viewport checks are emulated and are not independent clinician usability testing."
+  ],
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "frontend_build_artifacts": [
+    {
+      "path": "apps/clinician-web/dist/index.html",
+      "sha256": "bcea8dd457c6eb478d5a3ac70eb080d8314f18383d43a777d570b95a70d1b7b0"
+    },
+    {
+      "path": "apps/clinician-web/dist/favicon.svg",
+      "sha256": "88841a3c98ca0527e6a2ac6a3d5c7d2b46bdaaa378338d55470d354c4f10b91b"
+    },
+    {
+      "path": "apps/clinician-web/dist/assets/index-D9_8X65C.css",
+      "sha256": "bc6a1160f4cf001bab0d7c7effa112d3b834b183960a1ac9b01e826b257366a5"
+    },
+    {
+      "path": "apps/clinician-web/dist/assets/index-wmoeOXbA.js",
+      "sha256": "463645acf4e01ef24003b021a3eca98f846b5ce08efb05c6a52ae1551443b4f7"
+    },
+    {
+      "path": "apps/clinician-web/dist/assets/pcm-worklet.js",
+      "sha256": "c4d79d737c317d0c26d6ae8711602f8d82e9875ee8fc258749f2bb10d77fb1bf"
+    },
+    {
+      "path": "apps/clinician-web/dist/assets/THIRD_PARTY_NOTICES.txt",
+      "sha256": "d1d3e5633ffc0999f283fca5ba980ef3aa455c6398ed9ab805e894dc30dba8de"
+    }
+  ]
+}
