@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-06"
+  ],
+  "source_commit": "c7756d6855f23b1a8644ffbecd84a0a9ea17f997",
+  "captured_at_utc": "2026-11-14T06:48:24.450689+00:00",
+  "source_files": {
+    "services/diarization_evaluation.py": "321caf310e47f8432a3c9b3732512a8726260b544545244daa6cd36681013c4f",
+    "tests/test_diarization_evaluation.py": "c43483588f20b20614b547262f20f1bd90e91f7c7c8454a8b16b8219861bd354"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_diarization_evaluation.py tests/test_diarization_metrics.py tests/test_diarization_adversarial.py",
+      "status": "pass",
+      "result": "12 passed"
+    },
+    {
+      "command": "ruff check services/diarization_evaluation.py tests/test_diarization_evaluation.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/diarization_evaluation.py tests/test_diarization_evaluation.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "Diarization scoring reports DER, JER, missed/false/confused speaker time, overlap errors and explicit predicted-role misattribution.",
+    "Anonymous cluster mapping is kept separate from clinician-confirmed role attribution."
+  ],
+  "limitations": [
+    "The currently selected diarizer emits anonymous clusters, so role attribution rate is unavailable for those model outputs.",
+    "Reference speaker labels are upstream public/mock labels and not independently clinician-adjudicated."
+  ],
+  "clinical_release_authorized": false
+}

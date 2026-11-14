@@ -5802,12 +5802,12 @@
       "id": "MTA-12-06",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Score diarization with DER, JER, missed speech, confusion, overlap and role misattribution.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-06-c7756d6.json"],
+      "source_commit": "c7756d6855f23b1a8644ffbecd84a0a9ea17f997",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-06-c7756d6.json", "report_sha256": "c7aff20476938c54fff691d176f1f9a77272fdff5f9093136f4a9221605ad387", "check": "diarization_error_metrics", "status": "pass"}],
+      "blocker": "Current diarizer outputs anonymous clusters; role labels and independent adjudication remain unavailable."
     },
     {
       "id": "MTA-12-07",
