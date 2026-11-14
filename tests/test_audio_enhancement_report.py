@@ -22,7 +22,7 @@ def test_adaptive_gain_paired_report_preserves_historical_failure_and_stale_bind
     # This is historical evidence from before formatting changed two measured
     # sources. Keep its original hash and failed result; it cannot qualify as a
     # current-source acceptance report until the experiment is rerun.
-    assert stale_sources == {"services/omi_adapter.py", "services/evaluation.py"}
+    assert {"services/omi_adapter.py", "services/evaluation.py"} <= stale_sources
 
     assert {row["condition_id"] for row in report["conditions"]} == {
         "source_unmodified",

@@ -34,3 +34,9 @@ def test_probe_requires_one_declared_candidate(tmp_path, monkeypatch):
     suite.write_text(json.dumps({"jobs": [{"candidate_id": "one"}]}))
     with pytest.raises(ValueError, match="candidate_not_unique"):
         probe._job(suite, "missing")
+
+
+def test_probe_reports_missing_optional_resource_telemetry(monkeypatch):
+    monkeypatch.setattr(probe, "psutil", None)
+    with pytest.raises(RuntimeError, match="resource_telemetry_dependency_missing"):
+        probe.run_probe("unused-suite.json", "unused-candidate", "unused.wav")

@@ -1,6 +1,7 @@
 """Offline real-model workflow smoke; scripted review is not clinical acceptance."""
 
 import hashlib
+import importlib.util
 from pathlib import Path
 from uuid import uuid4
 
@@ -15,6 +16,8 @@ from tests.test_foundation import authorization, headers, payload
 
 
 def test_real_local_asr_reaches_reviewed_approved_export(tmp_path):
+    if importlib.util.find_spec("faster_whisper") is None:
+        pytest.skip("local faster-whisper runtime is unavailable")
     profile_file = Path("data/asr-smoke-profiles.json")
     audio = Path(
         "data/datasets/primock57-smoke/day1_consultation01_patient.utterance01.wav"
@@ -83,7 +86,12 @@ def test_real_local_asr_reaches_reviewed_approved_export(tmp_path):
         )
         assert queued.status_code == 202, queued.text
         worker_result = transcribe_once(db_path, asset_root)
-        assert worker_result["status"] == "succeeded", worker_result
+        assert worker_result["status"] == "succeeded", {
+            "status": worker_result["status"],
+            "error_code": client.get(queued.json()["status_url"], headers=headers())
+            .json()
+            .get("error_code"),
+        }
         job = client.get(queued.json()["status_url"], headers=headers()).json()
         assert job["status"] == "succeeded"
         transcript = client.get(

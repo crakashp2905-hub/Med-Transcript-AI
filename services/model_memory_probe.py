@@ -10,7 +10,10 @@ import time
 import wave
 from pathlib import Path
 
-import psutil
+try:
+    import psutil
+except ImportError:  # Optional local resource telemetry dependency.
+    psutil = None
 
 from services.api.ingest import file_sha256
 from services.detailed_benchmark import load, process_peak_resident_bytes
@@ -18,6 +21,12 @@ from services.inference_slot import estimate_model_request_bytes, local_inferenc
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _require_psutil():
+    if psutil is None:
+        raise RuntimeError("resource_telemetry_dependency_missing")
+    return psutil
 
 
 def _inside_root(path):
@@ -75,9 +84,10 @@ def _model_artifacts(job):
 
 
 def _memory_snapshot(process):
+    runtime = _require_psutil()
     return {
         "process_rss_bytes": process.memory_info().rss,
-        "system_available_bytes": psutil.virtual_memory().available,
+        "system_available_bytes": runtime.virtual_memory().available,
     }
 
 
@@ -90,11 +100,12 @@ def _cuda_available():
 
 
 def run_probe(suite_file, candidate_id, audio_file):
+    runtime = _require_psutil()
     suite_path, suite, job = _job(suite_file, candidate_id)
     audio = _audio_metadata(audio_file)
     artifacts = _model_artifacts(job)
     request_bytes = estimate_model_request_bytes(artifacts)
-    process = psutil.Process()
+    process = runtime.Process()
     receipt = {
         "schema_version": "local_model_memory_probe_v1",
         "candidate_id": candidate_id,
@@ -105,7 +116,7 @@ def run_probe(suite_file, candidate_id, audio_file):
         "host": {
             "platform": platform.platform(),
             "processor": platform.processor(),
-            "physical_ram_bytes": psutil.virtual_memory().total,
+            "physical_ram_bytes": runtime.virtual_memory().total,
             "cuda_available": _cuda_available(),
         },
         "admission": {
