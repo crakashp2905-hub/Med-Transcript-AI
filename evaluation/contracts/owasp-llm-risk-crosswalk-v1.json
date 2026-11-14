@@ -1,0 +1,21 @@
+{
+  "schema_version": "owasp_llm_risk_crosswalk_v1",
+  "framework": "OWASP GenAI LLM Top 10 2026",
+  "framework_version": "2026",
+  "source_url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+  "scope": "local clinician-supervised prototype; control mapping only",
+  "certification_claim": false,
+  "risks": [
+    {"id":"LLM01:2026","name":"Prompt Injection","coverage":"partial","evidence":["docs/local-threat-model.md","services/untrusted_input.py","tests/test_prompt_injection.py","tests/test_untrusted_input.py"],"gap":"Static synthetic payload tests do not demonstrate resistance to adaptive or invisible multimodal attacks."},
+    {"id":"LLM02:2026","name":"Sensitive Information Disclosure","coverage":"partial","evidence":["docs/local-threat-model.md","services/secret_scan.py"],"gap":"No independent red-team assessment of all logs, traces, browser storage and host-level artifacts."},
+    {"id":"LLM03:2026","name":"Excessive Agency","coverage":"partial","evidence":["services/review/clinical_models.py","tests/test_clinical_model_authority.py","tests/test_clinical_model_failure_mapping.py"],"gap":"Model outputs remain proposals; privileged production integrations and institutional authorization are not validated."},
+    {"id":"LLM04:2026","name":"Supply Chain","coverage":"partial","evidence":["evaluation/contracts/artifact-scope-v1.json","services/artifact_scope.py","constraints-ci.txt"],"gap":"Local hashes and pinned dependencies do not constitute an external supply-chain audit."},
+    {"id":"LLM05:2026","name":"Data and Model Poisoning","coverage":"partial","evidence":["services/asr/evaluation_contract.py","evaluation/reports/asr-lexicon-bias-pilot-v1.json"],"gap":"No training pipeline is in scope; development data provenance and lexicon bias require continued review."},
+    {"id":"LLM06:2026","name":"Unbounded Consumption","coverage":"partial","evidence":["services/resource_arbiter.py","services/asr/profiles.py","tests/test_resource_arbiter.py"],"gap":"OS-level quotas, host egress policy and full deployment resource envelopes are not established."},
+    {"id":"LLM07:2026","name":"Misinformation","coverage":"partial","evidence":["services/draft_grounding_metrics.py","services/clinical_metrics.py","tests/test_draft_grounding_metrics.py"],"gap":"Automated source agreement does not establish factual or clinical correctness."},
+    {"id":"LLM08:2026","name":"Hidden Context Exposure","coverage":"partial","evidence":["services/untrusted_input.py","tests/test_prompt_injection.py","docs/local-threat-model.md"],"gap":"Prompt secrecy and hidden context confidentiality are not guaranteed; no external disclosure red-team was run."},
+    {"id":"LLM09:2026","name":"Vector and Embedding Weaknesses","coverage":"not_applicable","evidence":["docs/local-threat-model.md"],"gap":"No vector database or retrieval-augmented generation store is used; reassess before adding one."},
+    {"id":"LLM10:2026","name":"Improper Output Handling","coverage":"partial","evidence":["services/review/clinical_models.py","services/draft_grounding_metrics.py","tests/test_prompt_injection.py"],"gap":"Application validation and escaping tests do not replace deployment-specific output-sink review."}
+  ],
+  "interpretation": "This crosswalk identifies current code evidence and gaps; it is not OWASP certification or an external security audit."
+}
