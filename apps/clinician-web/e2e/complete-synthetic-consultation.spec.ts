@@ -123,6 +123,7 @@ test('one synthetic consultation completes capture, review, approval, and JSON e
   const exportPath = testInfo.outputPath('approved-note.json');
   mkdirSync(resolve(exportPath, '..'), { recursive: true });
   await download.saveAs(exportPath);
+  await testInfo.attach('approved-note.json', { path: exportPath, contentType: 'application/json' });
   const exported = JSON.parse(readFileSync(exportPath, 'utf8'));
   expect(exported.approval).toBeDefined();
   expect(exported.note).toBeDefined();
