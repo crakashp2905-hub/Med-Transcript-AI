@@ -5824,12 +5824,12 @@
       "id": "MTA-12-08",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Score verification critical miss rate, safe-case false alert rate, timeouts, abstentions and coverage.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-08-8f7c8ca.json"],
+      "source_commit": "8f7c8cab582ebd7ce726fbf426092c6fc5565f72",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-08-8f7c8ca.json", "report_sha256": "a8ebcba892197f2bf8a031e49b54a7ca1904a80b9e3f8dfe7d74d2e8b0a6d542", "check": "verification_metrics", "status": "pass"}],
+      "blocker": "Independent clinical operating characteristics remain unmeasured."
     },
     {
       "id": "MTA-12-09",

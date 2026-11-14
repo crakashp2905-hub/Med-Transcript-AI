@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-08"
+  ],
+  "source_commit": "8f7c8cab582ebd7ce726fbf426092c6fc5565f72",
+  "captured_at_utc": "2026-11-14T06:45:36.683435+00:00",
+  "source_files": {
+    "services/verification_metrics.py": "827c9797129668dd0fa946d995ad43dbfa9c06dae23fc894cddc46759c3d038f",
+    "tests/test_verification_metrics.py": "4d55a71799e3a15a56b09ef78794b3699f37bd43b85e4e8501a3fe4cfa11151e"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_verification_metrics.py tests/test_note_quality_metrics.py tests/test_clinical_metrics_report.py tests/test_diarization_metrics.py",
+      "status": "pass",
+      "result": "5 passed"
+    },
+    {
+      "command": "ruff check services/verification_metrics.py tests/test_verification_metrics.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/verification_metrics.py tests/test_verification_metrics.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "Per-class critical miss and safe-case false-alert rates are computed from explicit confusion counts.",
+    "Abstentions, timeouts, malformed outputs and incomplete checks remain separately reported.",
+    "Optional explicit checked/total counts expose coverage without deriving clinical sensitivity claims."
+  ],
+  "limitations": [
+    "No independent clinical labels or operational verifier outputs are included."
+  ],
+  "clinical_release_authorized": false
+}
