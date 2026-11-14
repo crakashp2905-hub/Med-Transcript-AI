@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-17"
+  ],
+  "source_commit": "96cf84fc80e431d1e395b35c1a873827413d9e38",
+  "captured_at_utc": "2026-11-14T07:04:25.304966+00:00",
+  "source_files": {
+    "services/storage_metrics.py": "3ba3d9564db47ed314f289a677a6477195905b42bc056fa5c05a0aa9c57e6add",
+    "tests/test_storage_metrics.py": "093eea380ebac86a6a3160b34f5678100c72682e0870bfd7a66a3c7df8f145d9"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_storage_metrics.py",
+      "status": "pass",
+      "result": "1 passed"
+    },
+    {
+      "command": "ruff check services/storage_metrics.py tests/test_storage_metrics.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/storage_metrics.py tests/test_storage_metrics.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "Snapshots compute per-encounter total bytes and retained audio bytes from local files.",
+    "Comparisons report growth, changed files, removed file count and deleted byte footprint without recording content."
+  ],
+  "limitations": [
+    "The helper is not yet wired to every product encounter lifecycle or retention worker.",
+    "Filesystem-level deletion does not prove secure erasure from backups, journals or storage media."
+  ],
+  "clinical_release_authorized": false
+}

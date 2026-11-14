@@ -5923,12 +5923,12 @@
       "id": "MTA-12-17",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Record separate per-encounter storage growth, retained audio size and deletion footprint.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-17-96cf84f.json"],
+      "source_commit": "96cf84fc80e431d1e395b35c1a873827413d9e38",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-17-96cf84f.json", "report_sha256": "a829b71b03e7fc31b5b556206b0ccb76ec33b90de60786834eb0d050bce6be5b", "check": "local_storage_snapshot_and_deletion_metrics", "status": "pass"}],
+      "blocker": "Lifecycle instrumentation, retention-worker integration and secure-erasure evidence remain outstanding."
     },
     {
       "id": "MTA-12-18",
