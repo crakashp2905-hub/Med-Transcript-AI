@@ -1,0 +1,131 @@
+{
+  "schema_version": "internal_architecture_control_matrix_v1",
+  "source_commit": "30011c5e3c7cc558329aef9a638ca3aae15424c9",
+  "frameworks": [],
+  "regulatory_conformance_claim": false,
+  "scope": "Internal architecture and evidence crosswalk only; no regulatory, security certification, clinical safety, or interoperability compliance conclusion.",
+  "controls": [
+    {
+      "control": "Version-bound clinician approval and no automatic signing",
+      "state": "prototype_control_tested",
+      "implementation": [
+        "services/review/routers/approvals.py",
+        "services/review/presentation.py"
+      ],
+      "tests": [
+        "tests/test_presentation_tools.py",
+        "tests/test_review_workflow.py"
+      ],
+      "limitation": "Synthetic workflow tests do not establish clinical authorization or identity assurance."
+    },
+    {
+      "control": "Evidence graph and source integrity checks",
+      "state": "prototype_control_tested",
+      "implementation": [
+        "services/evidence_graph.py",
+        "services/review/engine.py"
+      ],
+      "tests": [
+        "tests/test_evidence_graph.py",
+        "tests/test_review_workflow.py"
+      ],
+      "limitation": "Test coverage does not establish clinical correctness of source statements."
+    },
+    {
+      "control": "Authentication, authorization, and encounter access boundaries",
+      "state": "prototype_control_tested",
+      "implementation": [
+        "services/review/service.py",
+        "services/review/routers/workspace.py"
+      ],
+      "tests": [
+        "tests/test_foundation.py",
+        "tests/test_offline_onboarding.py"
+      ],
+      "limitation": "Institution identity provider, deployment configuration, and production access review are not approved."
+    },
+    {
+      "control": "Audit events and tamper detection",
+      "state": "prototype_control_tested",
+      "implementation": [
+        "services/audit_integrity.py",
+        "services/review/routers/exports.py"
+      ],
+      "tests": [
+        "tests/test_audit_integrity.py",
+        "tests/test_presentation_tools.py"
+      ],
+      "limitation": "Production log retention, monitoring, key custody, and incident operations are unvalidated."
+    },
+    {
+      "control": "Offline mode and explicit provider boundaries",
+      "state": "prototype_control_tested",
+      "implementation": [
+        "services/offline_demo.py",
+        "services/offline_acceptance.py"
+      ],
+      "tests": [
+        "tests/test_offline_engineering.py",
+        "tests/test_offline_onboarding.py"
+      ],
+      "limitation": "A local synthetic test does not certify a deployed host's network isolation."
+    },
+    {
+      "control": "Retention, backup, and recovery paths",
+      "state": "prototype_control_tested",
+      "implementation": [
+        "services/maintenance.py",
+        "services/encrypted_backup.py"
+      ],
+      "tests": [
+        "tests/test_maintenance.py",
+        "tests/test_retention_coverage.py"
+      ],
+      "limitation": "Institutional retention policy and real key custody remain unapproved."
+    },
+    {
+      "control": "Clinical quality, independent verification, and human review",
+      "state": "external_evidence_blocked",
+      "implementation": [
+        "services/clinical_limitations.py",
+        "services/review/engine.py"
+      ],
+      "tests": [
+        "tests/test_clinical_limitations.py",
+        "tests/test_publication_bundle.py"
+      ],
+      "limitation": "Independent clinical annotations and qualified reviewers are unavailable; the ASR gate remains unmet."
+    },
+    {
+      "control": "Receiver-specific FHIR profile and EHR transaction",
+      "state": "external_integration_blocked",
+      "implementation": [
+        "services/review/presentation.py",
+        "services/review/routers/exports.py"
+      ],
+      "tests": [
+        "tests/test_presentation_tools.py"
+      ],
+      "limitation": "No external FHIR validator, receiver profile, EHR sandbox, transaction, or certification was used."
+    },
+    {
+      "control": "Model and dependency license review",
+      "state": "metadata_inventory_only_review_required",
+      "implementation": [
+        "evaluation/model-registry.json",
+        "pyproject.toml",
+        "apps/clinician-web/package-lock.json"
+      ],
+      "tests": [
+        "tests/test_model_cards.py",
+        "tests/test_offline_sbom.py"
+      ],
+      "limitation": "Metadata collection is not a legal terms review; missing declarations remain unknown."
+    }
+  ],
+  "open_gates": [
+    "independent_clinical_review",
+    "institutional_security_and_privacy_approval",
+    "receiver_specific_ehr_validation"
+  ]
+}

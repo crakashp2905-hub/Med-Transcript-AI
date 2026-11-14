@@ -8858,12 +8858,29 @@
       "id": "MTA-17-12",
       "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create machine-readable SBOM, open-source license register, model card and architecture compliance matrix.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/supply_chain_bundle.py",
+        "tests/test_supply_chain_bundle.py",
+        "docs/supply-chain-inventory.md",
+        "evaluation/supply-chain/sbom-v1.json",
+        "evaluation/supply-chain/license-register-v1.json",
+        "evaluation/supply-chain/model-cards-v2.json",
+        "evaluation/supply-chain/architecture-compliance-matrix-v1.json",
+        "evaluation/reports/mta-17-12-supply-chain-v1.json"
+      ],
+      "source_commit": "30011c5e3c7cc558329aef9a638ca3aae15424c9",
+      "test_results": [
+        {
+          "status": "pass",
+          "check": "supply_chain_artifacts_and_boundaries",
+          "report": "evaluation/reports/mta-17-12-supply-chain-v1.json",
+          "report_sha256": "73bbacc62ab929c22115891d645e22669b9536113b498d49bb0fea2d2b42c352",
+          "runtime_sha256": "4b74b63740d011c888ce0b94c67e6fcaac1934535b47412ee24c72a901dc6fbd"
+        }
+      ],
+      "blocker": "No vulnerability scanner or legal review was performed; unknown model/dataset license metadata and institutional/regulatory review remain open."
     },
     {
       "id": "MTA-17-13",
