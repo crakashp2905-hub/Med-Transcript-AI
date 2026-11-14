@@ -6868,12 +6868,22 @@
       "id": "MTA-13-22",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Publish security assurance report with tested controls, limitations and remaining external infrastructure dependencies.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/security-assurance-report.md",
+        "evaluation/reports/security-assurance-2026-11-14.json"
+      ],
+      "source_commit": "0639044ee4f68af4f159bc03b5a73a9e2d8dc6e7",
+      "test_results": [
+        {
+          "report": "evaluation/reports/security-assurance-2026-11-14.json",
+          "report_sha256": "8ab75cc5b1118abb0d054240aa88eccd3e42b518377aa658b72634571455e598",
+          "check": "assurance_report_and_doc_integrity",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Report documents unresolved external assurance and operating dependencies; it is not an external audit or authorization for clinical deployment."
     },
     {
       "id": "MTA-14-01",

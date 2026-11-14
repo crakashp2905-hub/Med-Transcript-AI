@@ -1,7 +1,7 @@
 {
   "schema_version": "security_assurance_report_v1",
-  "as_of_commit": "72a6f0fd1d60bfd86d8941d2c5877ce559e059aa",
-  "captured_at_utc": "2026-11-14T08:51:19.113701+00:00",
+  "as_of_commit": "0639044ee4f68af4f159bc03b5a73a9e2d8dc6e7",
+  "captured_at_utc": "2026-11-14T08:52:17.300021+00:00",
   "assessment_scope": "Local synthetic/public-mock development prototype; not an external security audit, production authorization, or patient-data processing approval.",
   "deployment_status": "DEVELOPMENT ONLY \u2014 clinical release unauthorized",
   "controls": [
@@ -223,8 +223,23 @@
     "Dockerfile": "24a03201ea8c290295f21a14b9c2e91e417f3dd1a0864376da126b18325a397d",
     "docs/local-threat-model.md": "808a4fb23be87a3fe776d8a0c05ef196fa2a1427db912b576cc3c093c61967f1",
     "docs/pilot-security-requirements.md": "a9d700c48223a84305f0379499275ef42b8da62fd336704fb3dd6bd084145e41",
-    "docs/container-security.md": "201696517f185a7bf7a6f3821b6c239c6a43e5c50ca1af0e8afd49b668169bab"
+    "docs/container-security.md": "201696517f185a7bf7a6f3821b6c239c6a43e5c50ca1af0e8afd49b668169bab",
+    "docs/engineering-scorecard.md": "88ab02eccd59c042c7c1f8447e4d73d9aa369ce5a8af915a0f2a9d613e8515f8",
+    "docs/security-assurance-report.md": "21196c9270684088549c340e9d0b5518879e6d87af0611eacbca204fa536ec7a"
   },
   "real_patient_release_authorized": false,
-  "clinical_release_authorized": false
+  "clinical_release_authorized": false,
+  "checks": {
+    "assurance_report_and_doc_integrity": {
+      "status": "pass",
+      "evidence": "tests/test_doc_integrity.py passes on this source snapshot; details are listed in test_checks."
+    }
+  },
+  "test_checks": [
+    {
+      "command": "python -m pytest -q tests/test_doc_integrity.py",
+      "status": "pass",
+      "result": "2 passed"
+    }
+  ]
 }

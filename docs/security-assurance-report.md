@@ -1,6 +1,6 @@
 # Security assurance report — 2026-11-14
 
-**Assessment source commit:** `72a6f0fd1d60bfd86d8941d2c5877ce559e059aa`  
+**Assessment source commit:** `0639044ee4f68af4f159bc03b5a73a9e2d8dc6e7`  
 **Disposition:** **DEVELOPMENT ONLY. Clinical release is unauthorized.**
 
 ## Scope
