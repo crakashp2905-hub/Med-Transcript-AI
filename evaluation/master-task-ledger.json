@@ -7839,12 +7839,31 @@
       "id": "MTA-18-06",
       "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Ensure ASR WER admission gate is unchanged and remains failed until actual measured result meets it.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/asr/admission.py",
+        "tests/test_asr_admission.py",
+        "tests/test_fixed_window_baseline.py",
+        "evaluation/reports/master-task-mta-18-06-3d172d1.json",
+        "evaluation/runs/meddistract-detailed-v7/omi-med-stt-v1-native-empty.fixed-pinned-refresh.json"
+      ],
+      "source_commit": "3d172d125e4f5973f093fc2be234dd23ee325ddd",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-06-3d172d1.json",
+          "report_sha256": "3818caf4404e3da5c5b6dba7b6a5dd99cfa888a5d270b1623791c4225cacb3bf",
+          "check": "five_percent_gate_preserved",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-18-06-3d172d1.json",
+          "report_sha256": "3818caf4404e3da5c5b6dba7b6a5dd99cfa888a5d270b1623791c4225cacb3bf",
+          "check": "measured_candidate_remains_ineligible",
+          "status": "pass"
+        }
+      ],
+      "blocker": "The best refreshed fixed-window candidate remains at 16.4072% clean and 17.2184% distracted WER; model promotion stays denied."
     },
     {
       "id": "MTA-18-07",

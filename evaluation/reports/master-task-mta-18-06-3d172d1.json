@@ -1,0 +1,68 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-18-06",
+  "source_commit": "3d172d125e4f5973f093fc2be234dd23ee325ddd",
+  "maximum_normalized_wer": 0.05,
+  "promotion_allowed": false,
+  "checks": {
+    "five_percent_gate_preserved": {
+      "status": "pass",
+      "maximum_normalized_wer": 0.05,
+      "test_command": "python -m pytest -q tests/test_asr_admission.py tests/test_fixed_window_baseline.py",
+      "test_result": "13 passed",
+      "tested_source_commit": "3d172d125e4f5973f093fc2be234dd23ee325ddd"
+    },
+    "measured_candidate_remains_ineligible": {
+      "status": "pass",
+      "gate": 0.05,
+      "promotion_allowed": false,
+      "clean": {
+        "reference_words": 13683,
+        "normalized_edits": 2245,
+        "normalized_wer": 0.16407220638748812,
+        "failed_samples": 0,
+        "samples": 8,
+        "wall_seconds": 1195.2769770998857,
+        "wer_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "distracted": {
+        "reference_words": 13683,
+        "normalized_edits": 2356,
+        "normalized_wer": 0.17218446247168018,
+        "failed_samples": 0,
+        "samples": 8,
+        "wall_seconds": 1178.3099673000397,
+        "wer_gate": {
+          "maximum_normalized_wer": 0.05,
+          "scope": "aggregate_evaluation_dataset",
+          "status": "fail",
+          "reasons": [
+            "normalized_wer_exceeds_maximum"
+          ],
+          "clinical_approval": "not_established_by_wer"
+        }
+      },
+      "basis_report": "evaluation/runs/meddistract-detailed-v7/omi-med-stt-v1-native-empty.fixed-pinned-refresh.json",
+      "basis_report_sha256": "5262a13217a2735476058683bf1405bee8662c9a1aa512635a410ebaa1e4a0f9",
+      "tested_source_commit": "3d172d125e4f5973f093fc2be234dd23ee325ddd"
+    }
+  },
+  "source_sha256": {
+    "services/asr/admission.py": "f8cee565fb3d1218bc7125d82d3aa292a69322c77a54142f5f783601b0c4e8e4",
+    "services/evaluation.py": "055d95a46640662980c5c7fd833c6d7fb0379ede85aebf292d5bf2b1cc98e913",
+    "tests/test_asr_admission.py": "83d9a5df24d013c98da554b533228269535163e84fa7b47c45f665bb47d0a87a",
+    "tests/test_fixed_window_baseline.py": "bd591936dce828b4d85fc96fdd6e59a337593a997a853613ea1f8cb5c2b56215"
+  },
+  "limitations": [
+    "Current pinned Omi candidate clean/distracted WERs are 16.4072% and 17.2184%; both fail the unchanged 5% gate.",
+    "WER alone does not establish clinical acceptance."
+  ]
+}
