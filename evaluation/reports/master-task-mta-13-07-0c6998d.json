@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-07"
+  ],
+  "source_commit": "0c6998d7b6523945d7693d0b48b87e36f449f67f",
+  "captured_at_utc": "2026-11-14T08:22:04.314121+00:00",
+  "source_files": {
+    "services/maintenance.py": "486d28dd57a06693668ef407ec9fabcd2f5f33f22edfe817a797f499fd2f059e",
+    "services/media_decoder.py": "fe2545009c71ad70effad1f9bb458a8c9e12b33070b201d2ffb390212ff69e59",
+    "services/api/routers/audio.py": "beace75d67e6d6434dc8794f35c4c106438b643110c202a4854e20a3ead33ef6",
+    "tests/test_maintenance_path_confinement.py": "f7cee6861a4c9bac6c191b53f7d830c37caeba3c38ef2fcf9c709c0e2fa53b49",
+    "tests/test_foundation.py": "4cb6a0295ccf2b6736837867ffd7f9f26779783c3324491c61c3bd89ecf9de23",
+    "tests/test_media.py": "952e8fa968eb8321b25fa0cb51000cedc3469794a1751ba870cd98a8fe13baef",
+    "tests/test_model_inventory.py": "222a16587a9867607109bfd341265b546b4021cd35845ee14a27432e6bc5d3a0",
+    "tests/test_prompt_injection.py": "8144b39234548be34f91c0584d038b8f21a818a6226a44d288fc63cdd70f89e9"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_maintenance_path_confinement.py tests/test_artifact_scope.py tests/test_model_inventory.py::test_cache_inventory_rejects_symlinks tests/test_prompt_injection.py::test_local_extractor_treats_filename_as_metadata_not_model_evidence tests/test_foundation.py::test_upload_requires_authorization_and_valid_limits tests/test_foundation.py::test_malformed_audio_fails_without_partial_publication tests/test_media.py",
+      "status": "pass",
+      "result": "24 passed, 4 skipped"
+    },
+    {
+      "command": "ruff check services/maintenance.py tests/test_maintenance_path_confinement.py; ruff format --check services/maintenance.py tests/test_maintenance_path_confinement.py",
+      "status": "pass",
+      "result": "all checks passed; files formatted"
+    }
+  ],
+  "supported_claims": [
+    "Maintenance path checking rejects traversal and absolute paths, rejects a symlink root, and rejects existing symlink components.",
+    "Upload validation rejects traversal-like client filenames and unsupported media types before storage.",
+    "Malformed media and decoder failure paths retain bounded failure reporting and do not publish partial normalized audio.",
+    "Model cache inventory rejects symlinks and hostile filenames remain metadata, not model evidence."
+  ],
+  "limitations": [
+    "The test host cannot create directory symlinks, so the symlink rejection test is skipped.",
+    "The code does not provide an atomic no-follow open/delete primitive; concurrent symlink replacement races are not proven safe.",
+    "Three media tests were skipped by the local media/tool availability guards."
+  ],
+  "clinical_release_authorized": false
+}

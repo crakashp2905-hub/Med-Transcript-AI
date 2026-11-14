@@ -6540,12 +6540,12 @@
       "id": "MTA-13-07",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Reject path traversal, symlink races, unsafe file extensions and malicious media metadata.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-07-0c6998d.json", "tests/test_maintenance_path_confinement.py"],
+      "source_commit": "0c6998d7b6523945d7693d0b48b87e36f449f67f",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-07-0c6998d.json", "report_sha256": "9d90fa5bdacd48b2ef5b58fa785fe4778de23a5f0badfd8cdcbe15ec8b69aa89", "check": "path_media_filename_and_symlink_controls", "status": "pass"}],
+      "blocker": "Directory symlink checks were skipped because this host cannot create directory symlinks; atomic defense against concurrent symlink replacement is not implemented or verified."
     },
     {
       "id": "MTA-13-08",
