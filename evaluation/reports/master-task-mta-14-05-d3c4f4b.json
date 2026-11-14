@@ -1,0 +1,46 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-05",
+  "status": "pass",
+  "source_commit": "d3c4f4b5f31e1fc000fb66d932f42bc9950e0c0f",
+  "captured_at_utc": "2026-11-14T14:11:06+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    "services/api/job_attempt_replay.py": "81a2e11aa18ee6f49e19adbf93c925eaddd20a4733bc6036a7802d3f5410edbb",
+    "services/api/routers/jobs.py": "6e7cb4ab1bdaaef26d6f54d1e94796b66e5ec0bd295dc9bec94a33b501dc68f0",
+    "tests/test_job_attempt_replay.py": "557462eabec6277378d680094b9ffd04306930915ec3c1e0ee1d36041f43e700",
+    "tests/test_recovery.py": "9539ea23e9ac33fc312f1b5faec58bfe80e0e1782102db9267a5d128ab66b458"
+  },
+  "checks": {
+    "attempt_replay_unit_and_api": {
+      "status": "pass",
+      "result": "8 passed",
+      "command": "python -m pytest -q tests/test_job_attempt_replay.py tests/test_recovery.py::test_channel_retry_uses_verified_completed_channels_and_retains_failed_attempt"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check services/api/job_attempt_replay.py services/api/routers/jobs.py tests/test_job_attempt_replay.py tests/test_recovery.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "all files already formatted",
+      "command": "python -m ruff format --check services/api/job_attempt_replay.py services/api/routers/jobs.py tests/test_job_attempt_replay.py tests/test_recovery.py"
+    }
+  },
+  "properties": [
+    "Retry timeline is deterministic across input ordering and content-hashed.",
+    "Unlinked retry events and attempt-number gaps remain visible and mark persisted history noncontiguous.",
+    "Manual retry queue delay since prior failure is recorded when events can be linked.",
+    "The API exposes the replay timeline with existing job state."
+  ],
+  "limitations": [
+    "No automatic backoff scheduler exists; replay reports an empty automatic backoff history.",
+    "Attempt start times and full lease-recovery scheduling events are not persisted; full timing replay is explicitly unavailable."
+  ],
+  "clinical_release_authorized": false,
+  "runtime_sha256": "70fa82eb99516afe99c8fc5d13ad1a73a882e6c56c7ee2a369e94b92304beda4"
+}

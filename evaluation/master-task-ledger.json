@@ -7015,12 +7015,26 @@
       "id": "MTA-14-05",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Create deterministic replay of job attempts and backoff history to audit retries and failed recovery.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/api/job_attempt_replay.py",
+        "services/api/routers/jobs.py",
+        "tests/test_job_attempt_replay.py",
+        "tests/test_recovery.py",
+        "evaluation/reports/master-task-mta-14-05-d3c4f4b.json"
+      ],
+      "source_commit": "d3c4f4b5f31e1fc000fb66d932f42bc9950e0c0f",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-05-d3c4f4b.json",
+          "report_sha256": "171a6d6f79806ec0394a5b52c9f2ef698541373423fe6256f46fa9554def6658",
+          "check": "attempt_replay_unit_and_api",
+          "status": "pass",
+          "detail": "Eight exact-commit tests validate deterministic job attempt replay and the application GET job endpoint, including stable hashes, manual retry ordering, queue delay, gaps and unlinked-event handling."
+        }
+      ],
+      "blocker": "Automatic backoff is not configured; full timing replay remains unavailable because attempt start and lease-recovery scheduling timestamps are not persisted. The report preserves this limitation instead of inferring a schedule."
     },
     {
       "id": "MTA-14-06",
