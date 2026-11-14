@@ -1,0 +1,18 @@
+{
+  "schema_version": "master_milestone_product_v1",
+  "source_commit": "cd84af0",
+  "clinical_release_authorized": false,
+  "readiness": {
+    "research_weighted_percent": 74.74,
+    "engineering_weighted_percent": 42.32,
+    "product_weighted_percent": 0.0,
+    "scorecard": "evaluation/reports/readiness-scorecard-2026-11-14.json",
+    "interpretation": "Weighted task-ledger completion signal only; not user validation, clinical validation, or a launch score."
+  },
+  "product_gaps": [
+    "No independent clinician timing or usability study has been conducted.",
+    "No institution-approved clinical pilot or privacy review is documented.",
+    "Google Workspace OAuth activation still needs an owned domain, HTTPS callback URL, and locally configured app credentials.",
+    "The 5% ASR quality gate currently fails for available full-consultation candidates."
+  ]
+}

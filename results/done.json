@@ -1,0 +1,38 @@
+{
+  "schema_version": "master_milestone_done_v1",
+  "source_commit": "cd84af0",
+  "scope": "local-only execution of selected master checklist tasks",
+  "completed_items": [
+    {
+      "id": "MTA-18-01",
+      "status": "implemented",
+      "evidence": "evaluation/reports/readiness-scorecard-2026-11-14.json",
+      "result": "Separate weighted research, engineering, and product axes; no combined score or clinical authorization."
+    },
+    {
+      "id": "MTA-18-06",
+      "status": "implemented",
+      "evidence": "evaluation/reports/master-task-mta-18-06-3d172d1.json",
+      "result": "The 5% maximum remains unchanged; refreshed Omi fixed-window WER remains above the gate."
+    },
+    {
+      "area": "ASR segmentation research tooling",
+      "status": "implemented",
+      "evidence": [
+        "services/asr/segmentation_candidate_runner.py",
+        "evaluation/detailed-suite-v7-segmentation-planner.json"
+      ],
+      "result": "Added a same-cohort runner for fixed, overlap-aware, VAD cut-and-merge, and pause-aware windows. No new model-performance result is claimed."
+    },
+    {
+      "area": "Clinical API error handling and API compatibility",
+      "status": "implemented",
+      "evidence": [
+        "services/review/clinical_routes.py",
+        "evaluation/contracts/api-v1-compatible-v13.json"
+      ],
+      "result": "Provider unavailability uses the catalogued public model_unavailable error; API contract v13 preserves existing routes."
+    }
+  ],
+  "clinical_release_authorized": false
+}

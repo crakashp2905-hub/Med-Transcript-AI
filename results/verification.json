@@ -1,0 +1,46 @@
+{
+  "schema_version": "master_milestone_verification_v1",
+  "source_commit": "cd84af0",
+  "clinical_release_authorized": false,
+  "checks": {
+    "readiness_scorecard_and_master_ledger": {
+      "status": "pass",
+      "source_commit": "f9e4f3ec4fbc59768cd7cbd78c205377fd03e97e",
+      "command": "python -m pytest -q tests/test_readiness_scorecard.py tests/test_master_ledger.py",
+      "result": "4 passed"
+    },
+    "asr_candidate_admission_and_fixed_baseline": {
+      "status": "pass",
+      "source_commit": "3d172d125e4f5973f093fc2be234dd23ee325ddd",
+      "command": "python -m pytest -q tests/test_asr_admission.py tests/test_fixed_window_baseline.py",
+      "result": "13 passed"
+    },
+    "asr_segmentation_runner": {
+      "status": "pass",
+      "source_commit": "a555b98",
+      "command": "python -m pytest -q tests/test_asr_segmentation_candidate_runner.py",
+      "result": "7 passed"
+    },
+    "clinical_error_mapping_and_api_contract": {
+      "status": "pass",
+      "source_commit": "7560ae5bb955363f2c5ec39e61c5cd484a18b641",
+      "command": "python -m pytest -q tests/test_clinical_model_failure_mapping.py tests/test_error_codes.py tests/test_router_contracts.py::test_api_contract_survives_router_and_service_extraction",
+      "result": "10 passed"
+    },
+    "offline_acceptance": {
+      "status": "fail",
+      "source_commit": "ce14d19e67503974063e7a213d9bc9bc3573047d",
+      "evidence": "evaluation/reports/offline-acceptance-master-v2-2026-11-14-ce14d19.json",
+      "result": "5 failed, 1208 passed, 9 skipped; source integrity failed; test IDs/raw failure text unavailable"
+    },
+    "asr_segmentation_performance": {
+      "status": "blocked",
+      "reason": "No matching faster-whisper 1.2.1 distribution is installed in the current Python interpreter; no candidate score is fabricated."
+    },
+    "request_level_api_regressions": {
+      "status": "blocked",
+      "reason": "Windows socket.socketpair startup stalled in this sandbox before the affected TestClient request assertions completed."
+    }
+  },
+  "clinical_release_authorized": false
+}

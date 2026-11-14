@@ -1,0 +1,31 @@
+{
+  "schema_version": "master_milestone_blockers_v1",
+  "source_commit": "cd84af0",
+  "clinical_release_authorized": false,
+  "blockers": [
+    {
+      "id": "local_socketpair_startup",
+      "status": "blocked_environment",
+      "evidence": "Request-level TestClient runs and a direct Python socket.socketpair() probe stalled in Windows socketpair startup. No result is claimed for the affected integration tests.",
+      "smallest_remedy": "Run the affected tests in an environment where loopback socket-pair creation works, then capture the exact test results."
+    },
+    {
+      "id": "faster_whisper_runtime_metadata",
+      "status": "blocked_missing_local_runtime",
+      "evidence": "The current Python interpreter has no faster-whisper distribution metadata; segmentation suite unit tests pass, but the full candidate run cannot start in this interpreter.",
+      "smallest_remedy": "Use an already-installed local runtime matching the frozen faster-whisper 1.2.1 specification; do not download dependencies for this milestone."
+    },
+    {
+      "id": "offline_acceptance",
+      "status": "failed",
+      "evidence": "evaluation/reports/offline-acceptance-master-v2-2026-11-14-ce14d19.json reports 5 failed, 1208 passed, 9 skipped and source_integrity=fail because tracked source changed during the run. Failed test IDs and raw failure text were not captured.",
+      "smallest_remedy": "After shared worktree changes settle, run acceptance against an unchanged exact commit and preserve detailed failure IDs."
+    },
+    {
+      "id": "independent_clinical_evidence",
+      "status": "blocked_external_evidence",
+      "evidence": "No qualified independent reviewers, adjudicated acceptance cohort, institutional sign-off, or privacy approval are available in the repository evidence.",
+      "smallest_remedy": "Obtain qualified reviewers and institution-approved study governance before making clinical acceptance claims."
+    }
+  ]
+}
