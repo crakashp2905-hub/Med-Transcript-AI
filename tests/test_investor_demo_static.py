@@ -16,6 +16,8 @@ def test_investor_preview_uses_synthetic_source_fixture_without_api_calls():
     assert fixture["segments"]
     assert "../../../data/demo-sample.json" in component
     assert "Investor preview · read only · no sign-in" in component
+    assert "NOT CLINICALLY APPROVED" in component
+    assert 'aria-label="Not clinically approved investor demo"' in component
     assert "does not process audio" in component
     assert "fetch(" not in component and "/v1/" not in component
     assert "window.location.pathname==='/investor-demo'" in entrypoint
