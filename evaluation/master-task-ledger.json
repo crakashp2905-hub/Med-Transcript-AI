@@ -8203,12 +8203,25 @@
       "id": "MTA-16-02",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Simulate script-driven clinician correction tasks including drug-dose swap, source omission, negation and speaker correction.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/product/scripted-correction-task-simulation-v1.md",
+        "evaluation/scenarios/offline-encounters-v1/scripted-correction-tasks.json",
+        "services/scripted_correction_tasks.py",
+        "tests/test_scripted_correction_tasks.py"
+      ],
+      "source_commit": "f21e50251e36c6eaa116a556762bc5f9e33dd4be",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-02-f21e502.json",
+          "report_sha256": "7bcf5e1b35f8fc657de089105910abfa541c31e5a3ddc1f4455ed0a9781eca2a",
+          "check": "scripted_correction_replay",
+          "status": "pass",
+          "detail": "Four scripted data-level correction tasks replayed and all proposals remained unapproved."
+        }
+      ],
+      "blocker": "Interactive browser behavior is not exercised by this data-level harness; human clinician observations and clinical acceptance remain unavailable."
     },
     {
       "id": "MTA-16-03",

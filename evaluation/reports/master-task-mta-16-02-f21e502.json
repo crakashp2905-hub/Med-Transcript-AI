@@ -1,0 +1,113 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-16-02",
+  "status": "pass",
+  "source_commit": "f21e50251e36c6eaa116a556762bc5f9e33dd4be",
+  "captured_at_utc": "2026-11-14T14:26:03+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "win32"
+  },
+  "source_files": {
+    "docs/product/scripted-correction-task-simulation-v1.md": "367d1937de9ba35aeef294bea614e044aaf652eff53136d40e85cdce90843f43",
+    "evaluation/scenarios/offline-encounters-v1/scripted-correction-tasks.json": "45048bf3ac376c5b80dc9eb2bce7602891a20bcb64b5947363e995ac9423fa46",
+    "services/scripted_correction_tasks.py": "fa5fb68872d9b194d6323f5722a10ab5551181778f0cc92b1d7ffa74db5e9f79",
+    "tests/test_scripted_correction_tasks.py": "92e4abacb540f76a54edfc45ca7dd1a131628b7c6085753adbf77a25a51f19d0"
+  },
+  "checks": {
+    "scripted_correction_replay": {
+      "status": "pass",
+      "result": "4 passed",
+      "command": "python -m pytest -q tests/test_scripted_correction_tasks.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check services/scripted_correction_tasks.py tests/test_scripted_correction_tasks.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "both files already formatted",
+      "command": "python -m ruff format --check services/scripted_correction_tasks.py tests/test_scripted_correction_tasks.py"
+    },
+    "git_diff_check": {
+      "status": "pass",
+      "result": "passed",
+      "command": "git diff --check"
+    }
+  },
+  "simulation": {
+    "schema_version": "scripted_correction_task_replay_v1",
+    "task_count": 4,
+    "passed": 4,
+    "all_proposals_unapproved": true,
+    "outcomes": [
+      {
+        "task_id": "dose-swap",
+        "correction_kind": "medication_dose",
+        "instruction": "Correct the transposed dose using the cited source.",
+        "source_ref": "source:medication:1",
+        "before_text": "Patient takes metformin 5000 mg twice daily.",
+        "after_text": "Patient takes metformin 500 mg twice daily.",
+        "source_text": "Patient takes metformin 500 mg twice daily.",
+        "correction_matches_source": true,
+        "source_evidence_linked": true,
+        "proposal_status": "unapproved",
+        "approval_granted": false,
+        "execution_kind": "deterministic_script_replay"
+      },
+      {
+        "task_id": "source-omission",
+        "correction_kind": "add_omitted_source_fact",
+        "instruction": "Add the source-supported allergy that the note omitted.",
+        "source_ref": "source:allergy:1",
+        "before_text": "No allergy information recorded.",
+        "after_text": "Patient reports penicillin causes a rash.",
+        "source_text": "Patient reports penicillin causes a rash.",
+        "correction_matches_source": true,
+        "source_evidence_linked": true,
+        "proposal_status": "unapproved",
+        "approval_granted": false,
+        "execution_kind": "deterministic_script_replay"
+      },
+      {
+        "task_id": "negation-flip",
+        "correction_kind": "assertion_negation",
+        "instruction": "Restore the negation stated in the source.",
+        "source_ref": "source:symptom:2",
+        "before_text": "Patient reports shortness of breath.",
+        "after_text": "Patient denies shortness of breath.",
+        "source_text": "Patient denies shortness of breath.",
+        "correction_matches_source": true,
+        "source_evidence_linked": true,
+        "proposal_status": "unapproved",
+        "approval_granted": false,
+        "execution_kind": "deterministic_script_replay"
+      },
+      {
+        "task_id": "speaker-correction",
+        "correction_kind": "speaker_attribution",
+        "instruction": "Assign speaker-2 the source-reviewed clinician role.",
+        "source_ref": "audio:channel-2:12000-16800",
+        "before_text": "speaker-2 is unknown",
+        "after_text": "speaker-2 is clinician",
+        "source_text": "A clinician asks about the current medication.",
+        "correction_matches_source": true,
+        "source_evidence_linked": true,
+        "proposal_status": "unapproved",
+        "approval_granted": false,
+        "execution_kind": "deterministic_script_replay"
+      }
+    ],
+    "human_observations": 0,
+    "clinical_acceptance": false
+  },
+  "limitations": [
+    "Only deterministic task replay was evaluated; browser interaction was not driven by this harness.",
+    "No human clinician behavior, completion time, clinical validity, or acceptance was observed.",
+    "All proposals remain unapproved and clinical release is not authorized."
+  ],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "runtime_sha256": "be0abb5ea89735c723dbff0955973698d3aed56c765a773163ab3531822e5302"
+}
