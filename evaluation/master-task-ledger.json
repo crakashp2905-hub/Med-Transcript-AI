@@ -8806,12 +8806,27 @@
       "id": "MTA-17-10",
       "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create a mock API specification and FHIR test bundle for EHR integration readiness, without asserting external conformance.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/integrations/mock-ehr-api-v1.json",
+        "evaluation/integrations/fhir-test-bundle-v1.json",
+        "tests/test_fhir_mock_bundle.py",
+        "tests/test_presentation_tools.py",
+        "services/review/presentation.py",
+        "services/review/routers/exports.py",
+        "evaluation/reports/mta-17-10-mock-ehr-fhir-v1.json"
+      ],
+      "source_commit": "0b8b534df2828001a502921285028bcbb8a0c067",
+      "test_results": [
+        {
+          "status": "pass",
+          "check": "mock_api_and_fhir_fixture_contract",
+          "report": "evaluation/reports/mta-17-10-mock-ehr-fhir-v1.json",
+          "report_sha256": "d93f464d6b79d9d8c6af466be75e2401a57e41f10a72961a86f3b871fb7d345a"
+        }
+      ],
+      "blocker": "External receiver-profile validation and EHR sandbox integration remain unperformed and are not claimed."
     },
     {
       "id": "MTA-17-11",
