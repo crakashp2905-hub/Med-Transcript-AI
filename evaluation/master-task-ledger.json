@@ -5890,12 +5890,12 @@
       "id": "MTA-12-14",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add power/sensitivity simulation for eventual human study without pretending such a study occurred.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-14-2aa42ca.json"],
+      "source_commit": "2aa42ca3f5b21db1558144111cf1e92449ca09e6",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-14-2aa42ca.json", "report_sha256": "b8bf45947ebc048ece012cc2bccdfef284df89d54d1d28462e4cc6f96af248ce", "check": "hypothetical_paired_sensitivity_simulation", "status": "pass"}],
+      "blocker": "Scenario probabilities are assumptions, not independently estimated clinical rates."
     },
     {
       "id": "MTA-12-15",

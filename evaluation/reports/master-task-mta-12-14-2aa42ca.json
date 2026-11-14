@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-14"
+  ],
+  "source_commit": "2aa42ca3f5b21db1558144111cf1e92449ca09e6",
+  "captured_at_utc": "2026-11-14T06:58:59.628565+00:00",
+  "source_files": {
+    "services/study_sensitivity.py": "2360f466a7c9d38295da6cbea3af182a62895c66ae6dd89b599aea63d94224d6",
+    "tests/test_study_sensitivity.py": "17a73f510a165305c8d599051b9620a1ee772fa16167ab99704b71d3f19f8801"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_study_sensitivity.py",
+      "status": "pass",
+      "result": "3 passed"
+    },
+    {
+      "command": "ruff check services/study_sensitivity.py tests/test_study_sensitivity.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/study_sensitivity.py tests/test_study_sensitivity.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "A seeded paired binary-outcome simulation reports sensitivity across assumed consultation counts.",
+    "The output explicitly labels the probabilities hypothetical and states that no study was performed."
+  ],
+  "limitations": [
+    "All joint outcome probabilities are scenario inputs rather than observed estimates.",
+    "Normal-approximation significance does not replace a preregistered clinical analysis or reviewer-approved design."
+  ],
+  "clinical_release_authorized": false
+}
