@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-16"
+  ],
+  "source_commit": "4dcf8ab07fc7263c0ddf7dff079a46f6f5899cd3",
+  "captured_at_utc": "2026-11-14T07:02:38.040444+00:00",
+  "source_files": {
+    "services/energy_metrics.py": "4eb98a09c7a9a5643b4a72117622ea696e9416bb9f8d9b2038f3c7ee5d3e0f9d",
+    "tests/test_energy_metrics.py": "ffe97949ea07fd8dbc065c9f4c25d9ac102220e914f27ffc0f977d8f0de58f27"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_energy_metrics.py",
+      "status": "pass",
+      "result": "2 passed"
+    },
+    {
+      "command": "ruff check services/energy_metrics.py tests/test_energy_metrics.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/energy_metrics.py tests/test_energy_metrics.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "Energy accounting separates power-input observations, documented wattage scenarios and unknown values.",
+    "Unknown wattage remains null and measured/estimated totals are reported separately."
+  ],
+  "limitations": [
+    "No real meter or verified system telemetry reading was captured for this host or ASR workload.",
+    "Meter references and assumptions must be supplied and independently checked by the operator."
+  ],
+  "clinical_release_authorized": false
+}

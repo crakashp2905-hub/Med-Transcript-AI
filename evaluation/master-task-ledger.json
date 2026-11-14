@@ -5912,12 +5912,12 @@
       "id": "MTA-12-16",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Measure local electricity/hardware estimates with real power assumptions and annotate unknown values.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-16-4dcf8ab.json"],
+      "source_commit": "4dcf8ab07fc7263c0ddf7dff079a46f6f5899cd3",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-16-4dcf8ab.json", "report_sha256": "cd3cbbe9febec2a8c3ef1ead78248bdb723555c6e80f79dc40d915c9f5ec3a4d", "check": "energy_evidence_class_and_unknown_handling", "status": "pass"}],
+      "blocker": "No on-device wattmeter or verified telemetry was available; actual workload energy remains unmeasured."
     },
     {
       "id": "MTA-12-17",
