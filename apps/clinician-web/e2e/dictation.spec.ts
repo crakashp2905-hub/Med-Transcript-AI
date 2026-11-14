@@ -1,15 +1,17 @@
-import { test, expect, type Page } from './fixtures/offline';
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import {test, expect, type Page, localTestKey, testOutputPath} from './fixtures/offline';
+import { readFileSync, writeFileSync, mkdirSync, unlinkSync } from 'node:fs';
+import { randomUUID } from 'node:crypto';
 import { resolve } from 'node:path';
 
 const root=resolve('../..');
-const token=process.env.MED_TRANSCRIPT_TEST_KEY||JSON.parse(readFileSync(resolve(root,'data/local-config.json'),'utf8')).access_key;
-const fixture=resolve(root,'data/browser-fixtures/dictation.wav');
-mkdirSync(resolve(root,'data/browser-fixtures'),{recursive:true});
+const token=localTestKey;
+const fixture=testOutputPath(`data/browser-fixtures/dictation-${randomUUID()}.wav`);
+mkdirSync(resolve(fixture,'..'),{recursive:true});
 // Public simulated speech, followed by silence. Chrome never accesses a real microphone.
 const source=readFileSync(resolve(root,'evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav'));
 const padded=Buffer.concat([source,Buffer.alloc(16000*2*3)]);
 padded.writeUInt32LE(padded.length-8,4);padded.writeUInt32LE(padded.length-44,40);writeFileSync(fixture,padded);
+test.afterAll(()=>unlinkSync(fixture));
 test.use({permissions:['microphone'],launchOptions:{args:[
  '--use-fake-ui-for-media-stream','--use-fake-device-for-media-stream',`--use-file-for-fake-audio-capture=${fixture}`
 ]}});
@@ -43,8 +45,8 @@ test('microphone dictation records, uploads, transcribes locally and leaves sour
  await expect(page.getByLabel('I reviewed source completeness.')).not.toBeChecked();
  await page.setViewportSize({width:390,height:844});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
- mkdirSync(resolve(root,'data/ui-screenshots'),{recursive:true});
- await page.screenshot({path:resolve(root,'data/ui-screenshots/dictation-result.png'),fullPage:true});
+ mkdirSync(testOutputPath('data/ui-screenshots'),{recursive:true});
+ await page.screenshot({path:testOutputPath('data/ui-screenshots/dictation-result.png'),fullPage:true});
  expect(failures).toEqual([]);
 });
 
@@ -64,7 +66,7 @@ test('discarding stops microphone tracks and sends no audio upload',async({page}
  await expect(page.locator('input[type=file]')).toBeDisabled();
  await expect(page.getByRole('button',{name:'New encounter',exact:false})).toBeDisabled();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
- await page.screenshot({path:resolve(root,'data/ui-screenshots/dictation-recording.png'),fullPage:true});
+ await page.screenshot({path:testOutputPath('data/ui-screenshots/dictation-recording.png'),fullPage:true});
  await page.getByRole('button',{name:'Discard recording',exact:true}).click();
  await expect(page.getByText('The microphone is off.',{exact:true})).toBeVisible();
  expect(await page.evaluate(()=>(window as unknown as {testStream:MediaStream}).testStream.getTracks().every(track=>track.readyState==='ended'))).toBe(true);

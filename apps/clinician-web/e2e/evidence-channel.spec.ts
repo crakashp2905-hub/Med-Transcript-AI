@@ -1,9 +1,9 @@
-import {test,expect} from './fixtures/offline';
+import {test, expect, localTestKey} from './fixtures/offline';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash,randomUUID} from 'node:crypto';
 
-const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
+const token=localTestKey;
 
 test('fact source navigation requests the exact cited audio channel',async({page})=>{
  const headers={Authorization:`Bearer ${token}`,'Idempotency-Key':randomUUID()};

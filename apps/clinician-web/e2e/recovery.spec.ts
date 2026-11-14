@@ -1,8 +1,8 @@
-import {test,expect,type Page} from './fixtures/offline';
+import {test, expect, type Page, localTestKey} from './fixtures/offline';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 const root=resolve('../..');
-const token=process.env.MED_TRANSCRIPT_TEST_KEY||JSON.parse(readFileSync(resolve(root,'data/local-config.json'),'utf8')).access_key;
+const token=localTestKey;
 const fixture=resolve(root,'evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav');
 test.use({permissions:['microphone'],launchOptions:{args:['--use-fake-ui-for-media-stream','--use-fake-device-for-media-stream',`--use-file-for-fake-audio-capture=${fixture}`]}});
 async function login(page:Page){await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();}

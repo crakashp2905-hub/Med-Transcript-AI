@@ -1,7 +1,7 @@
-import {test,expect} from './fixtures/offline';
+import {test, expect, localTestKey} from './fixtures/offline';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
-const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
+const token=localTestKey;
 test.use({permissions:['microphone'],launchOptions:{args:['--use-fake-ui-for-media-stream','--use-fake-device-for-media-stream']}});
 test('device identification releases tracks and stores or uploads no audio',async({page})=>{
  await page.addInitScript(()=>{const original=navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);navigator.mediaDevices.getUserMedia=async constraints=>{const stream=await original(constraints);(window as unknown as {probeStream:MediaStream}).probeStream=stream;return stream;};});

@@ -1,10 +1,10 @@
-import { test, expect } from './fixtures/offline';
+import {test, expect, localTestKey, testOutputPath} from './fixtures/offline';
 import { readFileSync, mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const root=resolve('../..');
-const token=process.env.MED_TRANSCRIPT_TEST_KEY||JSON.parse(readFileSync(resolve(root,'data/local-config.json'),'utf8')).access_key;
+const token=localTestKey;
 
 test('clinician reviews evidence, corrects a blocking medication, approves and exports',async({page})=>{
   const failures:string[]=[];
@@ -155,7 +155,7 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   const downloadPromise=page.waitForEvent('download');
   await page.getByRole('button',{name:'↓ Json',exact:true}).click();
   const download=await downloadPromise;
-  const dir=resolve(root,'data/ui-screenshots');mkdirSync(dir,{recursive:true});
+  const dir=testOutputPath('data/ui-screenshots');mkdirSync(dir,{recursive:true});
   const target=resolve(dir,'approved-note.json');await download.saveAs(target);
   expect(JSON.parse(readFileSync(target,'utf8')).status).toBe('approved');
   await page.screenshot({path:resolve(dir,'approved-workspace.png'),fullPage:true});

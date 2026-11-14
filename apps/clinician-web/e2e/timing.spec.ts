@@ -1,13 +1,12 @@
-import { test, expect, type Page } from './fixtures/offline';
-import { createHash } from 'node:crypto';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import {test, expect, type Page, localTestKey, testOutputPath} from './fixtures/offline';
+import { createHash, randomUUID } from 'node:crypto';
+import { mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = resolve('../..');
-const token = process.env.MED_TRANSCRIPT_TEST_KEY ||
-  JSON.parse(readFileSync(resolve(root, 'data/local-config.json'), 'utf8')).access_key;
-const fixture = resolve(root, 'data/browser-fixtures/dictation-timing.wav');
-mkdirSync(resolve(root, 'data/browser-fixtures'), { recursive: true });
+const token=localTestKey;
+const fixture = testOutputPath(`data/browser-fixtures/dictation-timing-${randomUUID()}.wav`);
+mkdirSync(resolve(fixture, '..'), { recursive: true });
 const source = readFileSync(resolve(
   root,
   'evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav',
@@ -22,6 +21,7 @@ const padded = Buffer.concat([source, Buffer.alloc(16000 * 2 * 3)]);
 padded.writeUInt32LE(padded.length - 8, 4);
 padded.writeUInt32LE(padded.length - 44, 40);
 writeFileSync(fixture, padded);
+test.afterAll(() => unlinkSync(fixture));
 
 test.use({
   permissions: ['microphone'],

@@ -1,8 +1,8 @@
-import {test,expect} from './fixtures/offline';
-import {readFileSync} from 'node:fs';
+import {test, expect, localTestKey, testOutputPath} from './fixtures/offline';
+import {mkdirSync,readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {randomUUID} from 'node:crypto';
-const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
+const token=localTestKey;
 const root=resolve('../..');
 test('current correction comparison and uncertainty queue retain unreviewed proposals',async({page})=>{
  await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
@@ -55,7 +55,7 @@ test('approved summary keeps source references and requires separate confirmatio
  await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();await page.locator('.encounter-item').first().click();await page.getByRole('button',{name:'Facts & SOAP note',exact:false}).click();
  await page.getByRole('button',{name:'Prepare summary from approved note'}).click();const summary=page.getByLabel('Source-linked summary for clinician review');await expect(summary).toHaveValue(/Patient reports cough/);await expect(summary).toHaveValue(/Source turn 1/);await expect(summary).toHaveJSProperty('readOnly',true);
  const download=page.getByRole('button',{name:'Download reviewed patient summary'});await expect(download).toBeDisabled();const confirmation=page.getByLabel('I separately reviewed this summary',{exact:false});await confirmation.check();await expect(download).toBeEnabled();await confirmation.uncheck();await expect(download).toBeDisabled();
- await confirmation.check();const event=page.waitForEvent('download');await download.click();const summaryDownload=await event;expect(summaryDownload.suggestedFilename()).toBe('reviewed-visit-summary.txt');const summaryPath=resolve(root,'data/ui-screenshots/reviewed-visit-summary.txt');await summaryDownload.saveAs(summaryPath);expect(readFileSync(summaryPath,'utf8')).toContain('Source turn 1');
+ await confirmation.check();const event=page.waitForEvent('download');await download.click();const summaryDownload=await event;expect(summaryDownload.suggestedFilename()).toBe('reviewed-visit-summary.txt');const summaryPath=testOutputPath('data/ui-screenshots/reviewed-visit-summary.txt');mkdirSync(resolve(summaryPath,'..'),{recursive:true});await summaryDownload.saveAs(summaryPath);expect(readFileSync(summaryPath,'utf8')).toContain('Source turn 1');
  await page.route(`**/v1/encounters/${eid}/workspace`,async route=>{const response=await route.fetch();const body=await response.json();await route.fulfill({status:response.status(),headers:response.headers(),json:{...body,stale:true}});});
  await download.click();await expect(page.getByText('The approved source changed. Reload and review a new summary.')).toBeVisible();await expect(download).toBeDisabled();
  const exported=page.waitForEvent('download');await page.getByRole('button',{name:'↓ Fhir',exact:true}).click();expect((await exported).suggestedFilename()).toContain('.json');await page.unrouteAll({behavior:'wait'});

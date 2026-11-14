@@ -1,8 +1,8 @@
-import {test,expect} from './fixtures/offline';
+import {test, expect, localTestKey} from './fixtures/offline';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {randomUUID} from 'node:crypto';
-const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
+const token=localTestKey;
 test('long source proposal batches preserve earlier editor selections and require review',async({page})=>{
  const headers={Authorization:`Bearer ${token}`,'Idempotency-Key':randomUUID()};
  const demo=await page.request.post('/v1/demo',{headers});expect(demo.ok()).toBe(true);const eid=(await demo.json()).encounter_id;

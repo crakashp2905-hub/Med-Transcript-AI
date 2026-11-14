@@ -1,4 +1,11 @@
 import {test as base,expect,type Route} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+import {dirname,resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
+
+const repositoryRoot=resolve(dirname(fileURLToPath(import.meta.url)),'../../../..');
+export const localTestKey=process.env.MED_TRANSCRIPT_TEST_KEY||JSON.parse(readFileSync(resolve(repositoryRoot,'data/local-config.json'),'utf8')).access_key;
+export const testOutputPath=(path:string)=>resolve(process.env.MED_TRANSCRIPT_TEST_OUTPUT_DIR||repositoryRoot,path);
 
 export const test=base.extend<{offlineNetwork:void}>({
  offlineNetwork:[async({context,baseURL},use)=>{

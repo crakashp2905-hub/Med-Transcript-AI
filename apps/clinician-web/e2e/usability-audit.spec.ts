@@ -1,11 +1,10 @@
-import { test, expect } from './fixtures/offline';
+import {test, expect, localTestKey, testOutputPath} from './fixtures/offline';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = resolve('../..');
-const token = process.env.MED_TRANSCRIPT_TEST_KEY ||
-  JSON.parse(readFileSync(resolve(root, 'data/local-config.json'), 'utf8')).access_key;
-const artifactDir = resolve(root, 'evaluation/usability/artifacts');
+const token=localTestKey;
+const artifactDir = process.env.MTA_BROWSER_ARTIFACT_DIR || testOutputPath('evaluation/usability/artifacts');
 
 test('capture local synthetic desktop and mobile states for heuristic review', async ({ page }) => {
   const pageErrors: string[] = [];

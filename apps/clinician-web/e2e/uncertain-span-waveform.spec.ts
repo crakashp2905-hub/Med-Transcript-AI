@@ -1,8 +1,8 @@
-import {test,expect} from './fixtures/offline';
+import {test, expect, localTestKey} from './fixtures/offline';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
-const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
+const token=localTestKey;
 
 test('uncertain source queue renders a source-bound waveform and selected interval',async({page})=>{
  await page.route('**/waveform**',route=>route.fulfill({json:{peaks:Array.from({length:160},(_,index)=>0.2+(index%7)/10)}}));

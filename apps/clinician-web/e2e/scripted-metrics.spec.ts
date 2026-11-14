@@ -1,10 +1,9 @@
-import { test, expect } from './fixtures/offline';
+import {test, expect, localTestKey} from './fixtures/offline';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
 const root = resolve('../..');
-const token = process.env.MED_TRANSCRIPT_TEST_KEY ||
-  JSON.parse(readFileSync(resolve(root, 'data/local-config.json'), 'utf8')).access_key;
+const token=localTestKey;
 
 test('record scripted workspace access interaction metrics', async ({ page }, testInfo) => {
   const errors: string[] = [];

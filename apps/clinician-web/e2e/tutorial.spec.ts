@@ -1,10 +1,8 @@
-import { expect, test } from './fixtures/offline';
+import {expect, test, localTestKey} from './fixtures/offline';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const accessKey = JSON.parse(
-  readFileSync(resolve('../..', 'data/local-config.json'), 'utf8'),
-).access_key;
+const accessKey=localTestKey;
 
 test('synthetic first-run tutorial requires correction of its deliberate dose error', async ({ page }) => {
   await page.goto('/');
