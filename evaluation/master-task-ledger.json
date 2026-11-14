@@ -7941,88 +7941,185 @@
       "id": "MTA-15-21",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Build explicit hypothetical business scenarios for individual clinician, small clinic and institution; do not assert market size or paying demand.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-commercial-operations-v1.md",
+        "evaluation/contracts/product-commercial-operations-v1.json",
+        "tests/test_product_governance.py",
+        "evaluation/reports/master-task-mta-15-21-28-96f43ea.json"
+      ],
+      "source_commit": "96f43ea04be50b53398b95dd141e3e471ee15fa0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-21-28-96f43ea.json",
+          "report_sha256": "20a029541f45373ff7ffdcd4523532694ad1283f4c3e83b9f13535a2b79300bb",
+          "check": "hypothetical_business_scenarios",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-22",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create release notes, changelog, support FAQ, escalation playbook and user-visible model limitation statements.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-commercial-operations-v1.md",
+        "evaluation/contracts/product-commercial-operations-v1.json",
+        "tests/test_product_governance.py",
+        "evaluation/reports/master-task-mta-15-21-28-96f43ea.json"
+      ],
+      "source_commit": "96f43ea04be50b53398b95dd141e3e471ee15fa0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-21-28-96f43ea.json",
+          "report_sha256": "20a029541f45373ff7ffdcd4523532694ad1283f4c3e83b9f13535a2b79300bb",
+          "check": "release_support_and_model_limitations",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-23",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Map export interfaces to available FHIR R4 DocumentReference and test serialization and identifier integrity without claiming EHR certification.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-commercial-operations-v1.md",
+        "evaluation/contracts/product-commercial-operations-v1.json",
+        "tests/test_product_governance.py",
+        "services/review/presentation.py",
+        "evaluation/reports/master-task-mta-15-21-28-96f43ea.json"
+      ],
+      "source_commit": "96f43ea04be50b53398b95dd141e3e471ee15fa0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-21-28-96f43ea.json",
+          "report_sha256": "20a029541f45373ff7ffdcd4523532694ad1283f4c3e83b9f13535a2b79300bb",
+          "check": "fhir_r4_documentreference",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-24",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define privacy and security buyer checklist, deployment dependencies, data flow diagram and operator responsibilities.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-commercial-operations-v1.md",
+        "evaluation/contracts/product-commercial-operations-v1.json",
+        "tests/test_product_governance.py",
+        "evaluation/reports/master-task-mta-15-21-28-96f43ea.json"
+      ],
+      "source_commit": "96f43ea04be50b53398b95dd141e3e471ee15fa0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-21-28-96f43ea.json",
+          "report_sha256": "20a029541f45373ff7ffdcd4523532694ad1283f4c3e83b9f13535a2b79300bb",
+          "check": "buyer_security_checklist_and_data_flow",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-25",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create sales/investor demo deck outline with reproducible synthetic walkthrough and honest unknowns.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-commercial-operations-v1.md",
+        "evaluation/contracts/product-commercial-operations-v1.json",
+        "tests/test_product_governance.py",
+        "evaluation/reports/master-task-mta-15-21-28-96f43ea.json"
+      ],
+      "source_commit": "96f43ea04be50b53398b95dd141e3e471ee15fa0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-21-28-96f43ea.json",
+          "report_sha256": "20a029541f45373ff7ffdcd4523532694ad1283f4c3e83b9f13535a2b79300bb",
+          "check": "investor_demo_outline",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-26",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define simulated feedback log and roadmap reprioritization rules, while leaving real customer validation explicitly undone.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-commercial-operations-v1.md",
+        "evaluation/contracts/product-commercial-operations-v1.json",
+        "tests/test_product_governance.py",
+        "evaluation/reports/master-task-mta-15-21-28-96f43ea.json"
+      ],
+      "source_commit": "96f43ea04be50b53398b95dd141e3e471ee15fa0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-21-28-96f43ea.json",
+          "report_sha256": "20a029541f45373ff7ffdcd4523532694ad1283f4c3e83b9f13535a2b79300bb",
+          "check": "simulated_feedback_and_reprioritization",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-27",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create roadmap scorecard separating feature maturity, measured usage simulation, research evidence and external clinical/purchaser validation.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-commercial-operations-v1.md",
+        "evaluation/contracts/product-commercial-operations-v1.json",
+        "tests/test_product_governance.py",
+        "evaluation/reports/master-task-mta-15-21-28-96f43ea.json"
+      ],
+      "source_commit": "96f43ea04be50b53398b95dd141e3e471ee15fa0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-21-28-96f43ea.json",
+          "report_sha256": "20a029541f45373ff7ffdcd4523532694ad1283f4c3e83b9f13535a2b79300bb",
+          "check": "roadmap_evidence_scorecard",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-28",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Formalize launch decision: AI agents can recommend pilot readiness, but cannot authorize real patient processing or certify clinical benefit.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-commercial-operations-v1.md",
+        "evaluation/contracts/product-commercial-operations-v1.json",
+        "tests/test_product_governance.py",
+        "evaluation/reports/master-task-mta-15-21-28-96f43ea.json"
+      ],
+      "source_commit": "96f43ea04be50b53398b95dd141e3e471ee15fa0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-21-28-96f43ea.json",
+          "report_sha256": "20a029541f45373ff7ffdcd4523532694ad1283f4c3e83b9f13535a2b79300bb",
+          "check": "launch_authorization_boundary",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

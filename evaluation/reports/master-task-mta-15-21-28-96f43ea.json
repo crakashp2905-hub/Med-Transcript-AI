@@ -1,0 +1,73 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_group": [
+    "MTA-15-21",
+    "MTA-15-22",
+    "MTA-15-23",
+    "MTA-15-24",
+    "MTA-15-25",
+    "MTA-15-26",
+    "MTA-15-27",
+    "MTA-15-28"
+  ],
+  "source_commit": "96f43ea04be50b53398b95dd141e3e471ee15fa0",
+  "source_files": {
+    "docs/product/product-commercial-operations-v1.md": "0d084228f433452174610c3a1f032ab5a7e924cf2920cf3ac5662aefd851d798",
+    "evaluation/contracts/product-commercial-operations-v1.json": "87b4fbbf71e10a48dc27b6ba1d4dd1729661577f7b6282db3b3ba29be0c3688d",
+    "tests/test_product_governance.py": "33c0432605c35efdacfa4264828bb26272a9407c6319b5a283192cab23437a8f",
+    "services/review/presentation.py": "a0a784e087bcf50173e2c6822030099d5dbbaa5ad3589338e56421821b8bded8"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_command": "python -m pytest -q tests/test_product_governance.py tests/test_product_operations.py tests/test_product_strategy.py",
+    "tests": "7 passed",
+    "lint_command": "ruff check tests/test_product_governance.py tests/test_product_operations.py tests/test_product_strategy.py",
+    "lint": "All checks passed",
+    "external_sources": "none"
+  },
+  "runtime_sha256": "4c034e925566b670904b8da5a9ae49fe6e3a3cc1f4bb85cd823afb4b56275f96",
+  "checks": {
+    "hypothetical_business_scenarios": {
+      "status": "pass",
+      "detail": "Individual, small-clinic, and institution cases are explicitly hypothetical and make no market-size, revenue, pricing, or demand claims."
+    },
+    "release_support_and_model_limitations": {
+      "status": "pass",
+      "detail": "Release-note template, changelog policy, support FAQ, escalation steps, and user-visible model limitations are present."
+    },
+    "fhir_r4_documentreference": {
+      "status": "pass",
+      "detail": "Direct serializer test verifies DocumentReference type, note ID, approval digest identifier, encounter, attachment content, and approval binding. No EHR certification is claimed."
+    },
+    "buyer_security_checklist_and_data_flow": {
+      "status": "pass",
+      "detail": "Buyer checklist, deployment owners/dependencies, logical data flow, and operator responsibilities are documented."
+    },
+    "investor_demo_outline": {
+      "status": "pass",
+      "detail": "Ten-slide outline uses synthetic reproducible material and separates measured evidence from unknowns."
+    },
+    "simulated_feedback_and_reprioritization": {
+      "status": "pass",
+      "detail": "Five records are labeled simulated, not customer quotes; reprioritization rules require evidence class and owner."
+    },
+    "roadmap_evidence_scorecard": {
+      "status": "pass",
+      "detail": "Feature maturity, simulated usage, research evidence, and external validation are shown in separate columns."
+    },
+    "launch_authorization_boundary": {
+      "status": "pass",
+      "detail": "Agent recommendation is explicitly separated from institutional authorization and real-patient release remains blocked."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "Commercial scenarios and feedback are simulated, not customer findings.",
+    "FHIR output is a prototype serializer, not an EHR integration or certification.",
+    "No clinical or purchaser validation was performed.",
+    "Real-patient processing remains unauthorized."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}
