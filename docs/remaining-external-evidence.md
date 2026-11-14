@@ -2,7 +2,7 @@
 
 Clinical release is `BLOCKED_EXTERNAL_EVIDENCE_REQUIRED` and real-patient release is unauthorized. This programme does not request or invent the following:
 
-- Qualified independent reviewers, their qualifications, independent labels or blinded adjudication outcomes.
+- Qualified independent reviewers, human credential review, independent labels or blinded adjudication outcomes.
 - Actual clinician correction-time observations, paired clinical study results or clinical usefulness claims.
 - Institution, deployment country, patient-data permission, clinical owner, pilot governance or legal/security approvals.
 - Real microphone routing/cross-talk observations, additional audio hardware, GPU purchases or cloud processing.

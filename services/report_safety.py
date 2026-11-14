@@ -13,6 +13,14 @@ def validate(report):
         raise ValueError("clinical_gold_flag_required")
     if release is not False and acceptance is not False:
         raise ValueError("clinical_release_flag_required")
+    unsupported_claims = (
+        "independent_clinician_evaluation_performed",
+        "user_satisfaction_observed",
+        "live_oauth_registration_completed",
+        "regulatory_review_completed",
+    )
+    if any(report.get(claim) is True for claim in unsupported_claims):
+        raise ValueError("unsupported_external_validation_claim")
     return {
         "safe": True,
         "independent_clinical_gold": False,
