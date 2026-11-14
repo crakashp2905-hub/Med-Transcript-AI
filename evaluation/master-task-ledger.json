@@ -8517,11 +8517,22 @@
       "id": "MTA-17-16",
       "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Publish explicit list of remaining external prerequisites for real-world validation, including human credential review and patient permissions.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/remaining-external-evidence.md",
+        "tests/test_external_prerequisite_register.py"
+      ],
+      "source_commit": "59d0751118a2458031910e76826c2cfc4cb020b6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-17-16-18-16-59d0751.json",
+          "report_sha256": "632da9b550f2f277996a1ee4ec267f8daa6819d261ca89af6841d33f96f02348",
+          "check": "external_prerequisite_and_claim_safety",
+          "status": "pass",
+          "detail": "The external prerequisite register explicitly lists qualified reviewer credentials, patient permission, institutional owners, deployment and infrastructure requirements; no external prerequisite is represented as satisfied."
+        }
+      ],
       "blocker": null
     },
     {
@@ -8835,11 +8846,23 @@
       "id": "MTA-18-16",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Never claim the coding agent ran independent clinician evaluation, observed user satisfaction, live OAuth registration or regulatory review.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/report_safety.py",
+        "tests/test_external_prerequisite_register.py",
+        "docs/remaining-external-evidence.md"
+      ],
+      "source_commit": "59d0751118a2458031910e76826c2cfc4cb020b6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-17-16-18-16-59d0751.json",
+          "report_sha256": "632da9b550f2f277996a1ee4ec267f8daa6819d261ca89af6841d33f96f02348",
+          "check": "external_prerequisite_and_claim_safety",
+          "status": "pass",
+          "detail": "Report validation rejects explicit claims of independent clinician evaluation, observed user satisfaction, completed live OAuth registration, or regulatory review; release labels remain false."
+        }
+      ],
       "blocker": null
     }
   ]

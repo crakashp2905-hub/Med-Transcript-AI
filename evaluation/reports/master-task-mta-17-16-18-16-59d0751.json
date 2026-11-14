@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-17-16",
+    "MTA-18-16"
+  ],
+  "status": "pass",
+  "source_commit": "59d0751118a2458031910e76826c2cfc4cb020b6",
+  "captured_at_utc": "2026-11-14T13:52:10+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    "tests/test_external_prerequisite_register.py": "2da0195c0497693cf36786be695b344f99590f17bc8cf108e97dabf377e95678",
+    "tests/test_report_safety.py": "fca71d8301f9bef767abaf39a815cb5cc2f9267251efcd7adad1e6c6e6e87c21",
+    "docs/remaining-external-evidence.md": "d120e1573a506c9151bb74ad48fd7bc86c42e5d57a8de8cdde3e53d37ea201b2",
+    "services/report_safety.py": "a4594f4b9af5452cdd7fa0cce66ed88a751fc1cb28bdf2e167ca9fdeacd79656"
+  },
+  "checks": {
+    "external_prerequisite_and_claim_safety": {
+      "status": "pass",
+      "result": "10 passed",
+      "command": "python -m pytest -q tests/test_external_prerequisite_register.py tests/test_report_safety.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check services/report_safety.py tests/test_external_prerequisite_register.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "all files already formatted",
+      "command": "python -m ruff format --check services/report_safety.py tests/test_external_prerequisite_register.py"
+    }
+  },
+  "clinical_release_authorized": false,
+  "limitations": [
+    "The report guard rejects explicit unsupported validation claims and requires nonclinical release labels; external prerequisites remain unmet."
+  ],
+  "runtime_sha256": "70fa82eb99516afe99c8fc5d13ad1a73a882e6c56c7ee2a369e94b92304beda4"
+}
