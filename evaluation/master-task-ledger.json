@@ -8886,12 +8886,27 @@
       "id": "MTA-17-13",
       "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Implement local read-only health and readiness CLI; all missing checks must display as BLOCKED/UNKNOWN.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/status_report.py",
+        "tests/test_readiness_cli.py",
+        "tests/test_offline_engineering.py",
+        "README.md",
+        "evaluation/reports/mta-17-13-readiness-cli-output-v1.json",
+        "evaluation/reports/mta-17-13-readiness-cli-v1.json"
+      ],
+      "source_commit": "1456977882121602d3157ef80b40a8b68c362334",
+      "test_results": [
+        {
+          "status": "pass",
+          "check": "readiness_cli_missing_checks_explicit",
+          "report": "evaluation/reports/mta-17-13-readiness-cli-v1.json",
+          "report_sha256": "04a0a7999f7a747e3f1291ed11c02f6865f2057a0012d2dd540389aa606d22cc",
+          "runtime_sha256": "39141f166843aae3e25dd97239dbbff0f1216b5d8ca17c6e045be9cec87a3b6c"
+        }
+      ],
+      "blocker": "The CLI accurately reports overall BLOCKED with nine unavailable or incomplete checks; physical hardware, identity provider and EHR receiver inputs remain unknown."
     },
     {
       "id": "MTA-17-14",

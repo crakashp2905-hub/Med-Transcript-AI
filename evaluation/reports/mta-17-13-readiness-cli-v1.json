@@ -1,0 +1,29 @@
+{
+  "schema_version": "local_readiness_cli_evidence_v1",
+  "task_id": "MTA-17-13",
+  "source_commit": "1456977882121602d3157ef80b40a8b68c362334",
+  "runtime": {
+    "source_commit": "1456977882121602d3157ef80b40a8b68c362334",
+    "python": "3.13.5",
+    "checks": {
+      "focused_tests": "tests/test_readiness_cli.py tests/test_offline_engineering.py::test_one_command_status_report_is_read_only_and_keeps_release_blocked tests/test_master_release.py: 6 passed, 1 warning",
+      "ruff": "check passed; format check passed",
+      "cli": "python -m services.status_report: invoked read-only; overall BLOCKED; 9 missing checks explicitly listed"
+    },
+    "cli_output_sha256": "f1bea637af19bde6c98671c9149fff2d5bd0a2e55b197293429dd057cdbf5d30",
+    "inference_executed": false
+  },
+  "runtime_sha256": "39141f166843aae3e25dd97239dbbff0f1216b5d8ca17c6e045be9cec87a3b6c",
+  "checks": {
+    "readiness_cli_missing_checks_explicit": {
+      "status": "pass",
+      "summary": "Every readiness dimension is present and labeled PASS, BLOCKED, or UNKNOWN; the current local snapshot correctly remains BLOCKED."
+    }
+  },
+  "output_path": "evaluation/reports/mta-17-13-readiness-cli-output-v1.json",
+  "output_sha256": "f1bea637af19bde6c98671c9149fff2d5bd0a2e55b197293429dd057cdbf5d30",
+  "limitations": [
+    "Read-only snapshot; it does not run tests, load a model, test physical audio hardware, activate identity, validate an EHR receiver, or authorize clinical use.",
+    "Current saved acceptance evidence is not a fresh run."
+  ]
+}

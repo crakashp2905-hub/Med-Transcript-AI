@@ -1,0 +1,272 @@
+{
+  "schema_version": "local_status_v1",
+  "git_commit": "1456977882121602d3157ef80b40a8b68c362334",
+  "offline_mode": false,
+  "readiness_checks": {
+    "offline_mode": {
+      "status": "UNKNOWN",
+      "reason": "Offline mode was not confirmed in this process."
+    },
+    "latest_acceptance": {
+      "status": "BLOCKED",
+      "reason": "Saved receipt is stale, invalid, incomplete, or failed."
+    },
+    "engineering_evidence": {
+      "status": "BLOCKED",
+      "reason": "Engineering evidence is stale or failed local hash validation."
+    },
+    "asr_model_admission": {
+      "status": "BLOCKED",
+      "reason": "No qualifying model is admitted; the 5% normalized-WER gate remains unmet."
+    },
+    "clinical_validation": {
+      "status": "BLOCKED",
+      "reason": "Independent clinical validation and qualified review are not available."
+    },
+    "identity_provider_activation": {
+      "status": "UNKNOWN",
+      "reason": "Institution identity-provider registration and credentials are not confirmed by this local check."
+    },
+    "physical_audio_hardware": {
+      "status": "UNKNOWN",
+      "reason": "No named microphone/interface and physical channel test are recorded."
+    },
+    "ehr_receiver_validation": {
+      "status": "UNKNOWN",
+      "reason": "No receiver-specific profile or authorized EHR sandbox validation is recorded."
+    },
+    "overall": {
+      "status": "BLOCKED",
+      "reason": "One or more release prerequisites are blocked or unknown."
+    }
+  },
+  "missing_checks": [
+    {
+      "check": "offline_mode",
+      "status": "UNKNOWN",
+      "reason": "Offline mode was not confirmed in this process."
+    },
+    {
+      "check": "latest_acceptance",
+      "status": "BLOCKED",
+      "reason": "Saved receipt is stale, invalid, incomplete, or failed."
+    },
+    {
+      "check": "engineering_evidence",
+      "status": "BLOCKED",
+      "reason": "Engineering evidence is stale or failed local hash validation."
+    },
+    {
+      "check": "asr_model_admission",
+      "status": "BLOCKED",
+      "reason": "No qualifying model is admitted; the 5% normalized-WER gate remains unmet."
+    },
+    {
+      "check": "clinical_validation",
+      "status": "BLOCKED",
+      "reason": "Independent clinical validation and qualified review are not available."
+    },
+    {
+      "check": "identity_provider_activation",
+      "status": "UNKNOWN",
+      "reason": "Institution identity-provider registration and credentials are not confirmed by this local check."
+    },
+    {
+      "check": "physical_audio_hardware",
+      "status": "UNKNOWN",
+      "reason": "No named microphone/interface and physical channel test are recorded."
+    },
+    {
+      "check": "ehr_receiver_validation",
+      "status": "UNKNOWN",
+      "reason": "No receiver-specific profile or authorized EHR sandbox validation is recorded."
+    },
+    {
+      "check": "overall",
+      "status": "BLOCKED",
+      "reason": "One or more release prerequisites are blocked or unknown."
+    }
+  ],
+  "test_status": {
+    "latest_acceptance": {
+      "baseline_integrity": "pass",
+      "saved_metrics_replay": "pass",
+      "backend_tests": "fail",
+      "frontend_build": "pass",
+      "synthetic_walkthrough": "pass",
+      "clinical_binding_development": "pass",
+      "source_integrity": "fail"
+    },
+    "source": "saved_acceptance_only",
+    "inference_executed": false,
+    "receipt_status": "BLOCKED"
+  },
+  "model_availability": [
+    {
+      "path": "data/models/faster-distil-whisper-large-v3",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/faster-whisper-large-v3",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/faster-whisper-small",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/faster-whisper-tiny.en",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/multimed-small-int8",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/multimed-source",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/multimed-transformers",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/omi-med-stt-v1-gguf",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/parakeet-tdt-v2-onnx",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/public-diarization-v1",
+      "status": "directory_present_not_a_weight_verification"
+    },
+    {
+      "path": "data/models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25",
+      "status": "directory_present_not_a_weight_verification"
+    }
+  ],
+  "subsystem_capabilities": {
+    "schema_version": "subsystem_capability_manifest_v1",
+    "manifest_kind": "declared_capabilities_not_runtime_measurements",
+    "asr": {
+      "real_model_inference": {
+        "availability": "conditional_on_registered_local_model",
+        "runtime_marker": "transcript.provenance.inference_mode=real_model_inference",
+        "inference_executed": true
+      },
+      "synthetic_transcript_replay": {
+        "availability": "synthetic_fixture_only",
+        "adapter_marker": "provider_mode=synthetic_fixture",
+        "inference_executed": false,
+        "text_may_be_predeclared": true
+      },
+      "silent_audio_transport": {
+        "availability": "measured_pcm_silence_short_circuit",
+        "runtime_marker": "digital_silence=true",
+        "inference_executed": false,
+        "transcript_text_generated": false
+      },
+      "timestamped_output": "backend_dependent; only validated native or declared timestamps are exposed"
+    },
+    "drafting": {
+      "default": "deterministic",
+      "optional_model_processing": "explicit_opt_in_synthetic_sources_only",
+      "clinician_approval": "required; model output is never an approved note"
+    },
+    "extraction": {
+      "default": "deterministic_rules",
+      "optional_local_model": "explicit_opt_in_synthetic_sources_only",
+      "clinical_validation": "not_established"
+    },
+    "verification": {
+      "deterministic_rules": "available",
+      "optional_local_model": "synthetic_only_proposal",
+      "model_can_clear_approval_gate": false
+    },
+    "diarization": {
+      "availability": "conditional_on_registered_local_artifacts",
+      "speaker_role_assignment": "clinician_confirmation_required"
+    },
+    "limitations": [
+      "The manifest describes declared behavior and is not proof that a model artifact is installed or that inference ran.",
+      "Runtime inference provenance is recorded per transcript; fixture replay and measured digital silence are separately labeled.",
+      "No entry establishes clinical accuracy, qualification, or deployment approval."
+    ],
+    "clinical_release_authorized": false
+  },
+  "source_hashes": [
+    {
+      "path": "pyproject.toml",
+      "sha256": "19b98099bf412671a533fc8656001ae39fdb0d87dd85189e473290c44c5d291e",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "constraints-ci.txt",
+      "sha256": "7a095076353b028d4c3d282fe9665ad5c2fd50dfbecbfc8f92cffa755070cc2e",
+      "hash_mode": "bytes"
+    },
+    {
+      "path": "services/engineering_status.py",
+      "sha256": "d5b6c6c0831fa0b1872c275678272ceb23b3b8c2b653e04151bf3f0bf169d3fe",
+      "hash_mode": "normalized_source_text"
+    },
+    {
+      "path": "services/offline_preflight.py",
+      "sha256": "2b8b0a33e24edea34fbbbab9f07e2f422205eda671c0d67a1885cbbb50ba31f3",
+      "hash_mode": "normalized_source_text"
+    },
+    {
+      "path": "services/capability_manifest.py",
+      "sha256": "4665b401ffc650ec5b7d471b2fb8f8155f6152006e60905fb8b26d7e55c5fb82",
+      "hash_mode": "normalized_source_text"
+    },
+    {
+      "path": "services/asr/provenance.py",
+      "sha256": "6498be53972cce8fba35fe9bb3a8bbe363270c90a71bc63917b050d533985e58",
+      "hash_mode": "normalized_source_text"
+    },
+    {
+      "path": "services/release_policy.py",
+      "sha256": "b5a96a9795a3cf5294a9fa74647e92f6a1f950082518fc5260ace6ec205633a3",
+      "hash_mode": "normalized_source_text"
+    }
+  ],
+  "engineering": {
+    "total": 247,
+    "verified": null,
+    "status": "evidence_requires_revalidation",
+    "error_code": "verified_evidence_missing_or_changed",
+    "real_patient_release_authorized": false
+  },
+  "master_release": {
+    "schema_version": "master_release_tiers_v1",
+    "tiers": {
+      "local_demo": {
+        "status": "not_established",
+        "reason": "current_source_demo_required"
+      },
+      "engineering_verified": {
+        "status": "not_established",
+        "reason": "exact_commit_ci_required"
+      },
+      "research_supported": {
+        "status": "not_established",
+        "reason": "independent_clinical_gold_and_five_percent_asr_required"
+      },
+      "pilot_candidate": {
+        "status": "not_established",
+        "reason": "institutional_pilot_signoff_required"
+      },
+      "clinical_approved": {
+        "status": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
+        "reason": "external_clinical_and_regulatory_review_not_performed"
+      }
+    },
+    "real_patient_release_authorized": false
+  },
+  "clinical_release": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
+  "real_patient_release_authorized": false,
+  "limitations": "Read-only diagnostics; a saved test receipt is not a fresh test run and model presence is not model eligibility."
+}
