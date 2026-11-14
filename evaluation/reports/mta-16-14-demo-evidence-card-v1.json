@@ -1,0 +1,30 @@
+{
+  "schema_version": "demo_evidence_card_v1",
+  "task_id": "MTA-16-14",
+  "source_commit": "667463680fff60184e9a26fa85baace714803001",
+  "checks": {
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "summary": "TypeScript and Vite production build passed."
+    },
+    "api_source_hash": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_demo_evidence_card.py",
+      "summary": "1 passed, 1 warning; public case audio hashes match the local dataset manifest."
+    },
+    "browser_visual": {
+      "status": "blocked",
+      "summary": "Browser navigation to the local app is blocked by the environment loopback restriction; UI visual state was not observed."
+    }
+  },
+  "displayed_evidence": [
+    "Selected public audio SHA-256 from manifest",
+    "Public mock reference transcript attribution",
+    "Synthetic/public development scope",
+    "No independent clinical adjudication or patient outcome evidence"
+  ],
+  "limitations": [
+    "Frontend compiles, but a browser screenshot/E2E observation could not be completed in this environment."
+  ]
+}

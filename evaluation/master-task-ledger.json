@@ -8506,14 +8506,22 @@
     },
     {
       "id": "MTA-16-14",
-      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Create separate demo evidence card showing synthetic scope, source hash and system limitations.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/src/DetailedDemo.tsx",
+        "services/review/routers/workspace.py",
+        "tests/test_demo_evidence_card.py",
+        "evaluation/reports/mta-16-14-demo-evidence-card-v1.json"
+      ],
+      "source_commit": "667463680fff60184e9a26fa85baace714803001",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-16-14-demo-evidence-card-v1.json","report_sha256":"df2c771f2c660f30aa375cd638ba36416b8721f067b95e184afb5740298e14db","check":"frontend_build"},
+        {"status":"pass","report":"evaluation/reports/mta-16-14-demo-evidence-card-v1.json","report_sha256":"df2c771f2c660f30aa375cd638ba36416b8721f067b95e184afb5740298e14db","check":"api_source_hash"}
+      ],
+      "blocker": "Browser visual/E2E check could not complete because loopback browser navigation is blocked in this environment."
     },
     {
       "id": "MTA-16-15",
