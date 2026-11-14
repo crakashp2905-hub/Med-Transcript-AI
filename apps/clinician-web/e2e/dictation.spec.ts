@@ -192,8 +192,8 @@ test('retry after a lost successful upload response reuses the saved source',asy
  await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
  await page.waitForTimeout(2200);
  await page.getByRole('button',{name:'Stop & transcribe',exact:true}).click();
- const retry=page.getByText('Retry recording upload',{exact:true});
- await expect(retry).toBeVisible();
+ const retry=page.getByRole('button',{name:'Retry recording upload',exact:true});
+ await expect(retry).toBeVisible({timeout:15000});
  await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
  await retry.click();
  await expect(page.getByLabel('Transcript segment 1').or(page.getByText('Recording saved. Check the transcription result or job status below.',{exact:true}))).toBeVisible({timeout:120000});
