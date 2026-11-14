@@ -5717,11 +5717,24 @@
       "id": "MTA-11-11",
       "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Freeze same source facts, same cases, same resource budgets, same prompt lengths, same retry policies and same model digests.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "evaluation/experiments/beccsv-deterministic-lock-v1.json",
+        "services/beccsv_experiment_lock.py",
+        "tests/test_beccsv_experiment_lock.py"
+      ],
+      "source_commit": "f04aca74c02ad6b1964cd8b1a8c76e54c79bac47",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-11-f04aca7.json",
+          "report_sha256": "9bd83a725642d35b5edee5935fe8fb062b798ac13dddee179f128de61ebf9d17",
+          "status": "pass",
+          "detail": "Exact source-commit validation passed: 48 cases across three local datasets are bound to the same six deterministic arms, with common resource, prompt, retry and model policies; protocol lock is frozen and no arms were executed.",
+          "legacy_check_label": "frozen_paired_inputs_resource_prompt_retry_and_model_policy",
+          "check": "beccsv_lock_tests"
+        }
+      ],
       "blocker": null
     },
     {
