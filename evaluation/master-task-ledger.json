@@ -6987,12 +6987,30 @@
       "id": "MTA-14-06",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Check original/normalized/cropped audio cleanup and stale tempfile reclamation after process termination.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "tests/test_maintenance.py",
+        "tests/test_media.py",
+        "tests/test_recovery.py",
+        "evaluation/reports/master-task-mta-14-06-09a3290.json"
+      ],
+      "source_commit": "09a329090abd3d60c581e9738cd4f7ed3ed0c3a4",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-06-09a3290.json",
+          "report_sha256": "fb1aaf5c7b3633bd7b69b9e24e8d1c7693e813bf8be4d1416a87e3c9e2e18dca",
+          "check": "temporary_audio_cleanup_and_source_retention",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-06-09a3290.json",
+          "report_sha256": "fb1aaf5c7b3633bd7b69b9e24e8d1c7693e813bf8be4d1416a87e3c9e2e18dca",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Expired leases model abandoned workers; no force-kill test or crop cleanup test ran because the current pipeline creates no cropped audio artifacts."
     },
     {
       "id": "MTA-14-07",
