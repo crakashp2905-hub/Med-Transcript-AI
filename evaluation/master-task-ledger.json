@@ -7947,12 +7947,37 @@
       "id": "MTA-18-09",
       "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Prove complete evidence graph for approved synthetic export, including hash check and historical amendment.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/evidence_graph.py",
+        "services/review/routers/exports.py",
+        "tests/test_evidence_graph.py",
+        "tests/test_review_workflow.py",
+        "evaluation/reports/master-task-mta-18-09-267f415.json"
+      ],
+      "source_commit": "267f415380304708b729106d400def37e8e66f73",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-09-267f415.json",
+          "report_sha256": "28f3df4e8ed570ef4a1cbf50de32efd45506494704a531cb816613ed6636728a",
+          "check": "approved_export_hash_chain_and_complete_source_graph",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-18-09-267f415.json",
+          "report_sha256": "28f3df4e8ed570ef4a1cbf50de32efd45506494704a531cb816613ed6636728a",
+          "check": "amendment_parent_hash_and_reason_bound",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-18-09-267f415.json",
+          "report_sha256": "28f3df4e8ed570ef4a1cbf50de32efd45506494704a531cb816613ed6636728a",
+          "check": "export_route_end_to_end_amendment_flow",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "Unit evidence-graph and OpenAPI contract checks pass. End-to-end amendment, approval, export and download requests remain unverified because Windows socketpair startup stalls in this environment."
     },
     {
       "id": "MTA-18-10",

@@ -1,0 +1,35 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-18-09",
+  "source_commit": "267f415380304708b729106d400def37e8e66f73",
+  "complete_evidence_graph_to_export": true,
+  "amendment_parent_included": true,
+  "clinical_release_authorized": false,
+  "checks": {
+    "approved_export_hash_chain_and_complete_source_graph": {
+      "status": "pass",
+      "test_command": "python -m pytest -q tests/test_evidence_graph.py tests/test_router_contracts.py::test_api_contract_survives_router_and_service_extraction",
+      "test_result": "9 passed",
+      "tested_source_commit": "267f415380304708b729106d400def37e8e66f73"
+    },
+    "amendment_parent_hash_and_reason_bound": {
+      "status": "pass",
+      "test_command": "python -m pytest -q tests/test_evidence_graph.py tests/test_router_contracts.py::test_api_contract_survives_router_and_service_extraction",
+      "test_result": "9 passed",
+      "tested_source_commit": "267f415380304708b729106d400def37e8e66f73"
+    },
+    "export_route_end_to_end_amendment_flow": {
+      "status": "blocked",
+      "reason": "Windows socketpair startup stalled before TestClient requests; route-level amendment/export integration was not executed."
+    }
+  },
+  "source_sha256": {
+    "services/evidence_graph.py": "bde2cb9b540308a8d96c90f90131a00661412517f45074df253e742548914e55",
+    "services/review/routers/exports.py": "41d37658c646e4415fb6c108e6d3edbb0a8676cb89f77570b88dc67ca1ff755e",
+    "tests/test_evidence_graph.py": "b5543dd20f516bd04ccbb06c532bdfc6683baa64dba672275dbc12ec7c7ceb05",
+    "tests/test_review_workflow.py": "8e8edc2a8e0ebbd0bd0f20d5281687ec263b8f1cdcf74b6bb2eaaa1f842d297a"
+  },
+  "limitations": [
+    "Graph builder and API contract tests pass; real request-level amend, approve, export, download integration was blocked by this environment."
+  ]
+}
