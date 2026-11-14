@@ -12,6 +12,7 @@ from services.api.time_utils import now
 from services.domain_contracts import validate_record
 from services.encounter_state import Stage, advance_persisted
 from services.api.idempotency import idempotent
+from services.secure_storage import open_private_file
 
 
 def register(app, services: ApiServices):
@@ -129,7 +130,7 @@ def register(app, services: ApiServices):
         digest, received = hashlib.sha256(), 0
         published = False
         try:
-            with temporary.open("xb") as target:
+            with open_private_file(temporary) as target:
                 async for chunk in request.stream():
                     received += len(chunk)
                     if received > row["expected_bytes"]:

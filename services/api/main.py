@@ -28,6 +28,7 @@ from services.api.contracts import (
     Identity,
 )
 from services.api.time_utils import now
+from services.secure_storage import ensure_private_directory
 
 
 def create_app(
@@ -60,8 +61,7 @@ def create_app(
                 "INSERT OR IGNORE INTO asr_profiles VALUES (?,?)",
                 (profile.sha256, profile.model_dump_json()),
             )
-    assets = Path(asset_root or default_asset_root(db_path))
-    assets.mkdir(parents=True, exist_ok=True)
+    assets = ensure_private_directory(asset_root or default_asset_root(db_path))
 
     app = FastAPI(
         title="Med Transcript AI",

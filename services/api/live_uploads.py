@@ -11,6 +11,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from services.api.ingest import MAX_UPLOAD_BYTES, file_sha256
 from services.api.idempotency import idempotent
 from services.api.contracts import IdempotencyKey
+from services.secure_storage import open_private_file
 
 
 class StreamInput(BaseModel):
@@ -94,7 +95,7 @@ def register(
                 if previous:
                     return previous
                 received = 44 if body.format == "pcm" else 0
-                with partial.open("xb") as output:
+                with open_private_file(partial) as output:
                     if received:
                         output.write(header(0, body.channels))
                     output.flush()
