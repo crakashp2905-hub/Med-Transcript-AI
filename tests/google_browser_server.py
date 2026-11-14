@@ -31,11 +31,15 @@ def main():
             "sub": subject,
             "role": role,
             "tenant_id": tenant,
-            "clinician_id": clinician,
+            "clinician_id": (
+                clinician if role in {"physician", "viewer"} else str(uuid4())
+            ),
+            "user_id": str(uuid4()),
         }
         for email, subject, role in [
-            ("clinician@example.org", "clinician-sub", "clinician"),
+            ("clinician@example.org", "clinician-sub", "physician"),
             ("investor@example.org", "viewer-sub", "viewer"),
+            ("administrator@example.org", "administrator-sub", "administrator"),
         ]
     ]
     path = root / "members.json"
@@ -54,12 +58,18 @@ def main():
         {},
         str(Path("data") / f"google-test-assets-{uuid4()}"),
     )
-    app.state.auth_sessions.exchange = lambda code, verifier, nonce: {
-        "email": "investor@example.org"
-        if code == "viewer"
-        else "clinician@example.org",
-        "sub": "viewer-sub" if code == "viewer" else "clinician-sub",
+    identities = {
+        "viewer": ("investor@example.org", "viewer-sub"),
+        "clinician": ("clinician@example.org", "clinician-sub"),
+        "administrator": ("administrator@example.org", "administrator-sub"),
+        "scribe": ("scribe@example.org", "scribe-sub"),
     }
+
+    def exchange(code, verifier, nonce):
+        email, subject = identities.get(code, identities["clinician"])
+        return {"email": email, "sub": subject}
+
+    app.state.auth_sessions.exchange = exchange
     uvicorn.run(app, host="127.0.0.1", port=args.port, access_log=False)
 
 
