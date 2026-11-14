@@ -42,7 +42,7 @@ async function createEncounter(page: Page) {
   await expect(page.getByRole('heading', { name: 'Microphone dictation' })).toBeVisible();
 }
 
-test('measure synthetic recording-to-draft and corrected-note-to-export latency', async ({ page }, testInfo) => {
+test('measure synthetic draft latency and retain the critical approval block', async ({ page }, testInfo) => {
   test.setTimeout(180000);
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -57,6 +57,7 @@ test('measure synthetic recording-to-draft and corrected-note-to-export latency'
   await expect(page.getByLabel('Transcript segment 1')).toHaveValue(/vomit/i);
 
   await page.getByLabel('Speaker role 1').selectOption('patient');
+  await expect(page.getByLabel('Speaker role 1')).toHaveValue('patient');
 
   await page.getByLabel('I confirmed supported English.').check();
   await page.getByLabel('I reviewed source completeness.').check();
@@ -70,6 +71,8 @@ test('measure synthetic recording-to-draft and corrected-note-to-export latency'
   const count = await cards.count();
   for (let index = 0; index < count; index++) {
     const card = cards.nth(index);
+    await card.getByRole('combobox', { name: 'Subject', exact: true }).selectOption('patient');
+    await card.getByRole('combobox', { name: 'Temporality', exact: true }).selectOption('current');
     await card.getByLabel('Content and attribution reviewed').check();
     await card.getByLabel('Critical details checked').check();
   }
@@ -88,6 +91,8 @@ test('measure synthetic recording-to-draft and corrected-note-to-export latency'
   );
   for (let index = 0; index < count; index++) {
     const card = cards.nth(index);
+    await card.getByRole('combobox', { name: 'Subject', exact: true }).selectOption('patient');
+    await card.getByRole('combobox', { name: 'Temporality', exact: true }).selectOption('current');
     await card.getByLabel('Content and attribution reviewed').check();
     await card.getByLabel('Critical details checked').check();
   }
@@ -96,19 +101,8 @@ test('measure synthetic recording-to-draft and corrected-note-to-export latency'
   const correctedNoteSavedAt = Date.now();
   await page.getByLabel('I rechecked the patient identifiers and the exact saved note.').check();
   const approve = page.getByRole('button', { name: 'Approve saved version', exact: false });
-  await expect(approve).toBeEnabled();
-  await approve.click();
-  await expect(page.getByRole('heading', { name: 'Approved record' })).toBeVisible();
-  const exportStartAt = Date.now();
-  const downloadPromise = page.waitForEvent('download');
-  await page.getByRole('button', { name: '↓ Json', exact: true }).click();
-  const download = await downloadPromise;
-  const exportPath = testInfo.outputPath('approved-note.json');
-  mkdirSync(resolve(exportPath, '..'), { recursive: true });
-  await download.saveAs(exportPath);
-  const exportReadyAt = Date.now();
-  const exportContent = readFileSync(exportPath);
-  const exportDocument = JSON.parse(exportContent.toString('utf8'));
+  await expect(page.locator('.review-side')).toContainText('structured field disagreement');
+  await expect(approve).toBeDisabled();
   const metrics = {
     schema_version: 'synthetic_encounter_latency_metrics_v1',
     source_profile: 'local_scripted_non_asr_v1',
@@ -116,14 +110,16 @@ test('measure synthetic recording-to-draft and corrected-note-to-export latency'
     source_sample_id: sourceSample.sample_id,
     source_audio_sha256: sourceSample.audio_sha256,
     captured_fixture_sha256: createHash('sha256').update(padded).digest('hex'),
-    task_completed: true,
+    task_completed: false,
+    workflow_status: 'blocked_by_critical_verification',
+    approval_issued: false,
     recording_stop_to_draft_ready_ms: recordStopToDraftReadyMs,
-    corrected_note_saved_to_export_ready_ms: exportReadyAt - correctedNoteSavedAt,
-    export_click_to_download_ready_ms: exportReadyAt - exportStartAt,
+    correction_saved_to_blocked_verification_ms: Date.now() - correctedNoteSavedAt,
+    export_ready_ms: null,
     transcript_fact_count: count,
-    export_filename: download.suggestedFilename(),
-    export_status: exportDocument.status,
-    export_sha256: createHash('sha256').update(exportContent).digest('hex'),
+    export_filename: null,
+    export_status: null,
+    export_sha256: null,
     interaction_errors: errors,
     human_observations: 0,
     clinical_accuracy_measured: false,
@@ -139,10 +135,11 @@ test('measure synthetic recording-to-draft and corrected-note-to-export latency'
     writeFileSync(output, serialized, 'utf8');
   }
   console.log(`MTA_SYNTHETIC_TIMINGS ${JSON.stringify(metrics)}`);
-  expect(metrics.task_completed).toBe(true);
+  expect(metrics.task_completed).toBe(false);
+  expect(metrics.workflow_status).toBe('blocked_by_critical_verification');
+  expect(metrics.approval_issued).toBe(false);
   expect(metrics.recording_stop_to_draft_ready_ms).toBeGreaterThanOrEqual(0);
-  expect(metrics.corrected_note_saved_to_export_ready_ms).toBeGreaterThanOrEqual(0);
-  expect(metrics.export_filename).toMatch(/^approved-note-[0-9a-f-]+\.json$/);
-  expect(metrics.export_status).toBe('approved');
+  expect(metrics.correction_saved_to_blocked_verification_ms).toBeGreaterThanOrEqual(0);
+  expect(metrics.export_ready_ms).toBeNull();
   expect(errors).toEqual([]);
 });

@@ -25,6 +25,8 @@ test('encounter review summary separates verifier flags from unmeasured false al
   await route.fulfill({response,json:body});
  });
  await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
+ await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();
+ await page.getByRole('button',{name:'Facts & SOAP note',exact:false}).click();
  const summary=page.getByRole('region',{name:'Encounter review tools'}).getByRole('region',{name:'Warning and action summary'});
  await expect(summary).toContainText('critical: 1 warning');await expect(summary).toContainText('Source omission flags: 1');
  await expect(summary).toContainText('Clinician review actions: 1 verifier findings');await expect(summary).toContainText('False alerts per note: Not measured.');
