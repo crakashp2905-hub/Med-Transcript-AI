@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-19",
+    "MTA-12-20"
+  ],
+  "source_commit": "808d2c0aeddb8c45d5ac6e31c7571bd58f09c9c6",
+  "captured_at_utc": "2026-11-14T07:11:00.301593+00:00",
+  "source_files": {
+    "services/asr/evaluation_contract.py": "5a70d8435ab606facc9a60bfcf4ef59e8e0ba1fc22f444f5d90ec52ffc0edf75",
+    "services/evaluation.py": "055d95a46640662980c5c7fd833c6d7fb0379ede85aebf292d5bf2b1cc98e913",
+    "tests/test_evaluation.py": "b375c13549915ac4f0f4cb46663bb9af38bf9dc9ba08cffa9d25e0c4d7cf14be",
+    "services/statistical_acceptance.py": "879335228966d3b413f5e1f9ed50ce28e8ccab539c97a048a3f9b2dce0253758",
+    "tests/test_statistical_acceptance.py": "7ab861dd4ef5872858fbf761f36c40033d9e3d9c6c609583e5ded28a84da41ae",
+    "services/paired_asr_bootstrap.py": "a36227bb805bead91e3094eea90730ed30389476a1c08f1499c6236c0d682334",
+    "tests/test_paired_asr_bootstrap.py": "7b38790042824118eb0266f402a33e0dcec22daf3edd9c407f70df0300b14abd"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_statistical_acceptance.py tests/test_evaluation.py tests/test_paired_asr_bootstrap.py",
+      "status": "pass",
+      "result": "18 passed"
+    },
+    {
+      "command": "ruff check services/statistical_acceptance.py tests/test_statistical_acceptance.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/statistical_acceptance.py tests/test_statistical_acceptance.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "WER policy cannot be relaxed beyond 5%; gate comparisons use unrounded integer edit/word counts and reject a 3.0003% result against a 3% threshold.",
+    "Paired inferential outcomes fail closed on inadequate caller-declared sample size, missing/invalid confidence bounds, or outcome id/hash drift.",
+    "The gate does not authorize clinical release."
+  ],
+  "limitations": [
+    "The minimum paired consultation count is supplied by the registered policy owner and must not be inferred from the helper.",
+    "The gate\u2019s statistical result is not a clinical safety or efficacy approval."
+  ],
+  "clinical_release_authorized": false
+}

@@ -5945,23 +5945,23 @@
       "id": "MTA-12-19",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add test that any 5% WER policy relaxation or result rounding triggers hard failure.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-19-20-808d2c0.json"],
+      "source_commit": "808d2c0aeddb8c45d5ac6e31c7571bd58f09c9c6",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-19-20-808d2c0.json", "report_sha256": "d91ddf3a86734667e767cd171a872288f3f74d1951ed0615056cecf47b23eb41", "check": "strict_wer_and_paired_statistical_gate", "status": "pass"}],
+      "blocker": "Qualified clinical/statistical review is still needed to set the actual adequacy threshold and interpret outcomes."
     },
     {
       "id": "MTA-12-20",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add fail-closed statistical endpoint if no adequate paired sample, missing CI bounds, or outcome definition drift.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-19-20-808d2c0.json"],
+      "source_commit": "808d2c0aeddb8c45d5ac6e31c7571bd58f09c9c6",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-19-20-808d2c0.json", "report_sha256": "d91ddf3a86734667e767cd171a872288f3f74d1951ed0615056cecf47b23eb41", "check": "strict_wer_and_paired_statistical_gate", "status": "pass"}],
+      "blocker": "Qualified clinical/statistical review is still needed to set the actual adequacy threshold and interpret outcomes."
     },
     {
       "id": "MTA-12-21",
