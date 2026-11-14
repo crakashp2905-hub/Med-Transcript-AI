@@ -2,6 +2,59 @@
 
 This page is the investor-demo architecture map for the local-first prototype.
 
+## Implementation module map and contracts
+
+This table names current implementation boundaries. The cited Python and
+TypeScript modules are authoritative; the architecture diagrams above describe
+intended flow, not proof that every optional model path is enabled in a given
+deployment.
+
+| Boundary | Current implementation | Responsibility and key contract |
+|---|---|---|
+| Browser workspace | `apps/clinician-web/src/hooks/useEncounterWorkspace.ts`, `apps/clinician-web/src/screens/` | Authenticated encounter state, source playback, proposed facts/notes, clinician edits and approval actions. `workspaceTypes.ts` mirrors the API response shape. |
+| API composition and identity | `services/api/main.py`, `services/api/auth.py`, `services/api/contracts.py` | `create_app` composes routes and storage. Identity is tenant/clinician scoped. `EncounterInput`, `AuthorizationInput`, `UploadInput`, and `TranscriptionInput` reject unknown fields and constrain supported workflow. |
+| Encounter and audio routes | `services/api/routers/encounters.py`, `services/api/routers/authorizations.py`, `services/api/routers/audio.py`, `services/api/routers/jobs.py` | Create synthetic-only encounters, record scoped processing permission, reserve/upload/seal audio, enqueue work, and expose bounded job status/retry/cancel operations. |
+| ASR worker and transcript | `services/asr/worker.py`, `services/asr/profiles.py`, `services/asr/adapter.py`, `services/asr/transcripts.py`, `services/api/routers/transcripts.py` | Admits a configured local profile, processes an authorized sealed asset, and appends a timestamped transcript version with provenance. Provider failures remain explicit. |
+| Review composition | `services/review/routes.py`, `services/review/service.py`, `services/review/routers/` | Registers workspace, proposal, note, verification, approval, amendment, export and history routes over shared scoped services. |
+| Clinical facts and evidence | `services/review/models.py`, `services/review/clinical.py`, `services/review/relationships.py` | `Evidence` binds a quote to exact character offsets in a segment; `Fact` carries clinical assertion, subject, temporality, status and optional relations. `FactRelation` names the typed relationship. Unknown/uncertain fields remain explicit. |
+| Drafting and verification | `services/review/providers.py`, `services/review/engine.py`, `services/review/clinical_models.py` | Deterministic drafting is the baseline. Optional local or hosted providers create proposals. Verification emits findings and gates; a model verdict cannot approve a note. |
+| Approval, export and history | `services/review/routers/approvals.py`, `services/review/routers/exports.py`, `services/review/routers/history.py` | `ApprovalInput` binds approval to exact note/transcript/verification state. `ExportInput` requires that approval. Amendments and audit events preserve version history. |
+| Persistence and integrity | `services/api/storage.py`, `services/api/postgres.py`, `services/api/record_integrity.py`, `services/audit_integrity.py` | SQLite is the local store; PostgreSQL is an optional configured backend. Database metadata and file/audio content have separate integrity and retention paths. |
+| Evaluation and admission | `services/master_ledger.py`, `services/offline_acceptance.py`, `services/asr/admission.py`, `evaluation/` | Frozen dataset manifests and report hashes are kept separately from application inference. Admission and release status require evidence; benchmark rank alone does not select or clinically authorize a model. |
+
+### Core data-contract transitions
+
+1. **Encounter request:** `EncounterInput` carries an opaque patient reference,
+   explicit identifier confirmation, English language, timezone, supported
+   workflow/mode and `synthetic_data=true`.
+2. **Processing permission:** `AuthorizationInput` records allowed scopes,
+   policy version, method and timezone-aware expiry. Revocation blocks later
+   processing.
+3. **Audio source:** `UploadInput` binds declared byte count, media type and
+   SHA-256. Sealing verifies received bytes before a job can process the asset.
+4. **Transcript:** immutable transcript versions reference the audio asset and
+   selected profile; segments carry source text, role and millisecond bounds.
+   Edits create new versions, so downstream evidence can become stale.
+5. **Fact/evidence:** `Fact` has a stable ID, category, section, assertion,
+   subject, uncertainty, temporality, action, origin and review state. A
+   source-linked fact requires `Evidence(segment_id, start_char, end_char,
+   quote)` whose exact quoted width is validated. Fact relations carry typed
+   relationship kinds and related fact IDs.
+6. **Note proposal:** `DraftProposalInput` references the selected transcript
+   and facts. The deterministic template remains available. Model text is a
+   separate proposal and does not alter approval state.
+7. **Verification and approval:** findings reference the versions reviewed.
+   `ApprovalInput` must match current exact hashes and a passing gate; edits or
+   new source versions invalidate stale approval eligibility.
+8. **Export:** `ExportInput` selects a format for an already approved version.
+   Export rechecks provenance and returns a digest; it does not write to an EHR.
+
+The contracts are intentionally stricter than the presentation types. For an
+API change, update the Pydantic model and its route tests first, then update the
+browser mirror. The supported route implementations are under
+`services/api/routers/` and `services/review/routers/`; examples below are not
+an exhaustive OpenAPI listing.
+
 ```mermaid
 flowchart LR
   A[Loopback browser audio] --> B[Scoped ingest + hash]
