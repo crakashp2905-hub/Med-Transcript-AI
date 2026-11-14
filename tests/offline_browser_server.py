@@ -11,7 +11,9 @@ from uuid import uuid4
 
 
 class ScriptedAdapter:
-    """Return a fixed test sentence regardless of audio. No model is executed."""
+    """Return a fixed local reference string regardless of audio; execute no model."""
+
+    SCRIPTED_REFERENCE = "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting."
 
     def __init__(self, profile):
         self.profile = profile
@@ -27,7 +29,7 @@ class ScriptedAdapter:
                 {
                     "start_seconds": 0,
                     "end_seconds": min(duration, 2),
-                    "text": "Developer scripted fixture: patient reports vomiting. Patient denies fever.",
+                    "text": self.SCRIPTED_REFERENCE,
                 }
             ],
         }
