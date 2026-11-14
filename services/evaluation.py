@@ -15,6 +15,7 @@ from services.asr.provenance import evaluation_evidence_class, execution_mode
 from services.asr.profiles import load_profiles
 from services.asr.transcripts import build_transcript
 from services.asr.subgroup_metrics import build_subgroup_analysis
+from services.evaluation_distribution import summarize as summarize_distribution
 from services.asr.evaluation_contract import (
     FAILURE_POLICY,
     NORMALIZATION_POLICY,
@@ -205,6 +206,8 @@ def run(
         row = {
             "sample_id": sample["sample_id"],
             "group_id": sample["group_id"],
+            "speaker_role": sample.get("speaker_role", "unknown"),
+            "noise_condition": sample.get("noise_condition", "unspecified"),
             "audio_path": sample["audio"],
             "audio_sha256": sample["audio_sha256"],
             "audio_integrity_verified": audio_integrity_verified,
@@ -267,6 +270,7 @@ def run(
         "clinical_release_gate": "not_evaluated",
         "samples": rows,
         "subgroup_analysis": build_subgroup_analysis(samples, subgroup_rows),
+        "distribution_analysis": summarize_distribution(rows),
     }
     if reference_uncertainty_policy == "all_words_with_uncertainty_strata_v1":
         for stratum in uncertainty_strata.values():
