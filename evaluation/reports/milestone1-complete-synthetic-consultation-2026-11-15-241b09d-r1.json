@@ -1,0 +1,73 @@
+{
+  "schema_version": "milestone1_complete_synthetic_consultation_v1",
+  "run_id": "m1-complete-approved-export-2026-11-15-r1",
+  "source_commit": "241b09d438a1cf468f09ad28907a6c37794fbee8",
+  "worktree_dirty": true,
+  "test": {
+    "suite": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+    "test_id": "one synthetic consultation completes capture, review, approval, and JSON export",
+    "status": "pass",
+    "passed": 1,
+    "failed": 0,
+    "browser_result_sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+  },
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+      "sha256": "d8ccf483e7cce66095193880b62479c5e807e9926cb64dce8879ba7bcc26a97e"
+    },
+    {
+      "path": "evaluation/datasets/primock57-smoke-v1/manifest.json",
+      "sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd"
+    },
+    {
+      "path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav",
+      "sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c"
+    }
+  ],
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "browser": "Playwright Chromium with fake microphone device; scripted local non-ASR server",
+    "network": "loopback local app only"
+  },
+  "fixture": {
+    "kind": "manifest-verified public-mock synthetic dataset audio, padded to enable scripted browser capture",
+    "sample_id": "day1_consultation01_patient.utterance03",
+    "model_inference_executed": false,
+    "reserved_acceptance_inference": false
+  },
+  "journey": [
+    "create isolated synthetic encounter",
+    "record fixture through fake microphone and transcribe with scripted adapter",
+    "review source and attribution",
+    "prepare structured draft",
+    "verify unresolved structured-field disagreement blocks approval",
+    "correct the fact, attribute manual addition, and reach final review",
+    "reconfirm identifiers, approve exact saved version, and export JSON"
+  ],
+  "output_artifacts": [
+    {
+      "path": "data/browser-test-m1-complete-approved-export-2026-11-15-r1/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "0436d73636421c02a0bb23a21581b4c3851a6a56d6cae327b85aa88530df753e",
+      "bytes": 11877
+    },
+    {
+      "path": "data/browser-test-m1-complete-approved-export-2026-11-15-r1/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    }
+  ],
+  "limitations": [
+    "This scripted test uses prerecorded public-mock audio and a non-ASR browser adapter; it is not a live clinical speech-model evaluation.",
+    "The capture is a short browser journey, not a continuous 20–30-minute recording or hardware endurance test.",
+    "The approval event is generated in an isolated synthetic test workspace and is not clinical sign-off.",
+    "The test does not establish clinical accuracy, clinician time savings, privacy approval, EHR certification, or production readiness.",
+    "Two exploratory runs against earlier revisions of this new test failed on brittle test assertions; the committed revision passed this fresh run. Earlier attempts are preserved under separate ignored data output paths."
+  ],
+  "summary": {
+    "synthetic_capture_to_approved_json_export": "pass",
+    "clinical_release_authorized": false
+  }
+}
