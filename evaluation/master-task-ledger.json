@@ -7045,12 +7045,36 @@
       "id": "MTA-14-08",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Implement bounded API/server queue, backpressure, worker admission and cancellation semantics under load.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/api/job_state.py",
+        "services/api/routers/jobs.py",
+        "services/inference_slot.py",
+        "services/asr/resource_router.py",
+        "services/error_catalog.json",
+        "tests/test_job_state.py",
+        "tests/test_asr_resource_router.py",
+        "tests/test_inference_slot.py",
+        "tests/test_error_codes.py",
+        "evaluation/reports/master-task-mta-14-08-4e4cd50.json"
+      ],
+      "source_commit": "4e4cd5007bdf6c572f286cfa699306673e29e3df",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-08-4e4cd50.json",
+          "report_sha256": "07012e7a51e70b53fcecaf0418bdc1622fcd299bf2a1686199bdbb1efe7a2df8",
+          "check": "bounded_queue_backpressure_admission_and_cancellation",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-08-4e4cd50.json",
+          "report_sha256": "07012e7a51e70b53fcecaf0418bdc1622fcd299bf2a1686199bdbb1efe7a2df8",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Tests exercise bounded synthetic local contention; production throughput, multi-host database locking and deployment-wide worker behavior require separate load testing."
     },
     {
       "id": "MTA-14-09",

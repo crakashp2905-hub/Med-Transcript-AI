@@ -1,0 +1,41 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-08",
+  "source_commit": "4e4cd5007bdf6c572f286cfa699306673e29e3df",
+  "source_files": {
+    "services/error_catalog.json": "f001f1517c7287a60a905632e00267174176e24496b9010f44cdd6366afce7b8",
+    "services/api/job_state.py": "fe9f59c18f547d7410c8d71b2b47becd266442ddf9bb56a633bda0af375df5be",
+    "services/api/routers/jobs.py": "f017665354dc8d415235880ce3eb578cd91cf0db9dedc9bc060c1bc5eb746ca8",
+    "services/inference_slot.py": "fe17aa5535e95f1243760576433ae123c1b94a2bfc8192af48f1e64ca43c26dd",
+    "services/asr/resource_router.py": "a2012652f285a7a8c997c1f8122ebf9fd61992033a82a278e4b273300838c741",
+    "tests/test_job_state.py": "c279164b31fd47c3ab5f48ee4d0372b09d82297d8b6b2cc6d8ab911e84a0f4c3",
+    "tests/test_asr_resource_router.py": "6d3d45b1e36d04f6c0dbc4e2b789bd38dffe6462870e0c3e07633834fb4d0c7f",
+    "tests/test_inference_slot.py": "1e5fe24c14bed64d01b74fea83716cc7f233688426765089d0adfa019ed7e6b7",
+    "tests/test_error_codes.py": "096479786f6dfe8e8ffebed2a2cb829aadc73b0051d08afd84dd566aec80f079"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_job_state.py tests/test_asr_resource_router.py tests/test_inference_slot.py tests/test_error_codes.py"
+  },
+  "runtime_sha256": "17d9daf15bc1ccf9c60f36e331558c95300e645bdaa25a5acba6b51d4d15dd8f",
+  "checks": {
+    "bounded_queue_backpressure_admission_and_cancellation": {
+      "status": "pass",
+      "detail": "19 passed. Verifies per-tenant pending-job limits, API 429 backpressure with local_inference_queue_full, no second job publication when capacity is exhausted, cancellation of queued work, cancellation idempotency and terminal-state stability, concurrent backend admission timeout, memory exhaustion handling, process-shared inference lock and stable public error mapping."
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "ruff check tests/test_job_state.py tests/test_error_codes.py",
+      "detail": "All checks passed."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "Load coverage uses bounded synthetic thread/process contention, not a production throughput or saturation benchmark.",
+    "Queue admission is SQLite per tenant in this development scope; production database concurrency and deployment-wide worker policy need separate validation."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}
