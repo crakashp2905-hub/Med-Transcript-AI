@@ -21,6 +21,8 @@ def test_repro_bundle_has_hashes_commands_and_negative_results():
         "independent clinical" in item for item in value["limitations"]
     )
     assert any("benchmark_ranking" in command for command in value["commands"])
+    paths = {item["path"] for item in value["artifacts"]}
+    assert "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json" in paths
 
 
 def test_repro_bundle_cli_writes_once_and_includes_provenance(tmp_path, monkeypatch):

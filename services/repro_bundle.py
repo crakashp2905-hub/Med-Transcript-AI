@@ -28,6 +28,24 @@ def build(root="."):
         artifacts.append(
             {"path": name, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
         )
+    benchmark_ledger = root / "evaluation/benchmark-ledger.json"
+    ledger_body = json.loads(benchmark_ledger.read_text(encoding="utf-8"))
+    recorded = {item["path"] for item in artifacts}
+    for candidate in ledger_body.get("candidates", []):
+        report_name = candidate.get("report")
+        if candidate.get("status") != "completed" or not isinstance(report_name, str):
+            continue
+        report_path = (root / report_name).resolve()
+        if not report_path.is_relative_to(root) or not report_path.is_file():
+            raise ValueError("reproducibility_benchmark_report_missing_or_outside_root")
+        if report_name not in recorded:
+            artifacts.append(
+                {
+                    "path": report_name,
+                    "sha256": hashlib.sha256(report_path.read_bytes()).hexdigest(),
+                }
+            )
+            recorded.add(report_name)
     dataset_names = [
         "evaluation/datasets/primock57-smoke-v1/manifest.json",
         "evaluation/datasets/primock57-expanded-v1/manifest.json",
