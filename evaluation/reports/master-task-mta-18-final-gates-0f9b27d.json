@@ -1,0 +1,82 @@
+{
+  "schema_version": "master_task_final_gate_evidence_v1",
+  "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+  "recorded_at_local": "2026-11-14T23:06:00+05:30",
+  "scope": "Audited the remaining Section 18 gates against committed local evidence and a fresh offline acceptance run. No paid calls or asset downloads were used.",
+  "acceptance_report": {
+    "path": "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
+    "sha256": "bfc9dac32e2ba9741277d521aef54bb61dbc82bb0a630d270e568ae871cbfea7",
+    "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+    "worktree": "isolated clean detached worktree",
+    "duration_seconds": 1221.99,
+    "checks": {
+      "baseline_integrity": "pass",
+      "saved_metrics_replay": "pass",
+      "backend_tests": "fail: TimeoutExpired at the configured 1200-second suite timeout",
+      "frontend_build": "fail: FileNotFoundError; Node/npm runtime unavailable",
+      "synthetic_walkthrough": "pass",
+      "clinical_binding_development": "pass",
+      "source_integrity": "pass"
+    },
+    "hosted_ci": "not observed; not queried under the local-tools-only constraint",
+    "external_connection_telemetry": "not instrumented by the acceptance runner; offline profile and source_integrity were used"
+  },
+  "checks": {
+    "research_gate": {
+      "status": "blocked",
+      "result": "BECCSV full baseline and six ablations remain declared_not_executed. The local Ollama manifests/blobs are inventoried, but the Ollama loopback service was inaccessible and the repository has no BECCSV inference/ablation executor. The available ASR matched-ablation report is a different experiment and is not counted as BECCSV evidence.",
+      "remedy": "Provide an available local inference runtime and implement/run the frozen BECCSV baseline and ablation executor; preserve all failures and calculate consultation-level uncertainty."
+    },
+    "engineering_gate": {
+      "status": "fail",
+      "result": "Fresh acceptance failed: backend suite timed out and frontend build could not start. Hosted CI exact-commit result was not observed.",
+      "remedy": "Resolve the backend suite timeout, provide Node/npm locally, rerun clean exact-commit acceptance, then obtain hosted CI status."
+    },
+    "product_gate": {
+      "status": "fail",
+      "result": "Synthetic application walkthrough passed, but complete scripted persona journeys and recovery/fallback E2E could not be established because the backend suite timed out and frontend build runtime was unavailable.",
+      "remedy": "Run the complete product E2E suite with the local browser toolchain and preserve per-journey receipts."
+    },
+    "clinical_evidence_gate": {
+      "status": "blocked",
+      "result": "No qualified independent reviewers, independently accepted labels, institutional owner, or privacy approvals are available in this workspace.",
+      "remedy": "Qualified reviewers and institutional/privacy approvals must be supplied by the project owner; no clinical release is authorized."
+    },
+    "provenance_binding_implementation": {
+      "status": "pass",
+      "test_command": "python -m pytest -q tests/test_experiment_contract.py tests/test_experiment_receipts.py tests/test_beccsv_experiment_lock.py tests/test_artifact_provenance.py",
+      "test_result": "15 passed",
+      "result": "Receipt and acceptance helpers validate commit, dataset, model/config digest fields and locked experiment inputs. This does not prove every repository experiment/test has a complete receipt."
+    },
+    "fresh_unmodified_acceptance": {
+      "status": "fail",
+      "result": "The required clean exact-commit run was performed from unmodified inputs with offline profile and source hashes; the acceptance did not finish green because backend tests timed out and frontend build runtime was absent."
+    },
+    "prototype_score_gate": {
+      "status": "fail",
+      "result": "No 10/10 internal prototype label is issued: engineering and product gates are not green. Clinical 10/10 is not claimed."
+    },
+    "missing_evidence_fail_closed": {
+      "status": "pass",
+      "test_command": "python -m pytest -q tests/test_external_prerequisite_register.py tests/test_report_safety.py tests/test_master_ledger.py tests/test_master_release.py",
+      "test_result": "15 passed",
+      "result": "Missing evidence is represented as blocked/unknown, and the clinical release gate remains closed."
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows 11",
+    "acceptance_mode": "offline; clean detached worktree",
+    "network_policy": "local loopback only for application tests; hosted CI not queried"
+  },
+  "clinical_release_authorized": false,
+  "claims": {
+    "research_gate_passed": false,
+    "engineering_gate_passed": false,
+    "product_gate_passed": false,
+    "independent_clinical_validation": false,
+    "10_of_10_engineering_label_issued": false,
+    "10_of_10_clinical_claim": false
+  },
+  "runtime_sha256": "52648126d509f9e34c290b1e7264b2bab302632bace752f19506517c437d0c78"
+}

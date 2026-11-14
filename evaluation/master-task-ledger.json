@@ -9010,45 +9010,106 @@
       "id": "MTA-18-02",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "not_started",
+      "status": "blocked_missing_asset",
       "description": "Research gate: method is formally specified, frozen baselines replay, complete ablations run, uncertainty quantified and claims are proportional.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/contracts/beccsv-ablation-matrix-v1.json",
+        "services/beccsv_ablations.py",
+        "evaluation/reports/local-ollama-artifact-inventory-v1.json",
+        "evaluation/runs/meddistract-detailed-v7/matched-ablation-v3.json",
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+      ],
+      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
+          "check": "research_gate",
+          "status": "blocked",
+          "test_command": "python -m services.offline_acceptance --version mta18-11-0f9b27d",
+          "test_result": "BECCSV full baseline and six ablations remain declared_not_executed. The local Ollama manifests/blobs are inventoried, but the Ollama loopback service was inaccessible and the repository has no BECCSV inference/ablation executor. The available ASR matched-ablation report is a different experiment and is not counted as BECCSV evidence.",
+          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c"
+        }
+      ],
+      "blocker": "Local Ollama service and BECCSV experiment executor are unavailable; ASR ablations do not satisfy the BECCSV gate."
     },
     {
       "id": "MTA-18-03",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "not_started",
+      "status": "failed",
       "description": "Engineering gate: exact-commit hosted CI all green, local acceptance green, no unresolved P0, current sources hash-bound.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "services/offline_acceptance.py",
+        "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+      ],
+      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
+          "check": "engineering_gate",
+          "status": "fail",
+          "test_command": "python -m services.offline_acceptance --version mta18-11-0f9b27d",
+          "test_result": "Fresh acceptance failed: backend suite timed out and frontend build could not start. Hosted CI exact-commit result was not observed.",
+          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c"
+        }
+      ],
+      "blocker": "Fresh exact-commit acceptance failed: backend suite timed out at 1200 seconds and frontend build could not start because Node/npm is missing; hosted CI was not observed."
     },
     {
       "id": "MTA-18-04",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "not_started",
+      "status": "failed",
       "description": "Product engineering gate: scripted personas finish all critical journeys, audit/provenance verified and recovery/fallback robust.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/e2e/workflow.spec.ts",
+        "apps/clinician-web/e2e/recovery.spec.ts",
+        "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+      ],
+      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
+          "check": "product_gate",
+          "status": "fail",
+          "test_command": "python -m services.offline_acceptance --version mta18-11-0f9b27d",
+          "test_result": "Synthetic application walkthrough passed, but complete scripted persona journeys and recovery/fallback E2E could not be established because the backend suite timed out and frontend build runtime was unavailable.",
+          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c"
+        }
+      ],
+      "blocker": "The synthetic walkthrough passed, but complete persona and recovery journeys remain unverified because backend tests timed out and frontend E2E runtime is unavailable."
     },
     {
       "id": "MTA-18-05",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "not_started",
+      "status": "blocked_external_evidence",
       "description": "Clinical evidence gate: NO independent clinical release without qualified reviewers, accepted labels, institutional and privacy approvals.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/remaining-external-evidence.md",
+        "evaluation/annotation-source/acceptance-v1/source-audit.json",
+        "tests/test_external_prerequisite_register.py",
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+      ],
+      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
+          "check": "clinical_evidence_gate",
+          "status": "blocked",
+          "test_command": "python -m services.offline_acceptance --version mta18-11-0f9b27d",
+          "test_result": "No qualified independent reviewers, independently accepted labels, institutional owner, or privacy approvals are available in this workspace.",
+          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c"
+        }
+      ],
+      "blocker": "Qualified independent reviewers, accepted clinical labels, institutional owner and privacy approvals are unavailable; clinical release remains unauthorized."
     },
     {
       "id": "MTA-18-06",
@@ -9198,23 +9259,57 @@
       "id": "MTA-18-10",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Ensure all experiments and tests bind exact commit, dataset and model digests; stale acceptance fails closed.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/experiment_contract.py",
+        "services/experiment_receipts.py",
+        "services/artifact_provenance.py",
+        "tests/test_experiment_contract.py",
+        "tests/test_experiment_receipts.py",
+        "tests/test_beccsv_experiment_lock.py",
+        "tests/test_artifact_provenance.py",
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+      ],
+      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
+          "check": "provenance_binding_implementation",
+          "status": "pass",
+          "test_command": "python -m pytest -q tests/test_experiment_contract.py tests/test_experiment_receipts.py tests/test_beccsv_experiment_lock.py tests/test_artifact_provenance.py",
+          "test_result": "15 passed",
+          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c"
+        }
+      ],
+      "blocker": "Binding helpers and locked input tests exist, but repository-wide receipt coverage is not complete and the full acceptance timed out."
     },
     {
       "id": "MTA-18-11",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
-      "status": "not_started",
+      "status": "failed",
       "description": "Require fresh end-to-end test from unmodified inputs and no hidden external connections.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/offline_acceptance.py",
+        "services/source_change_detector.py",
+        "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+      ],
+      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
+          "check": "fresh_unmodified_acceptance",
+          "status": "fail",
+          "test_command": "python -m services.offline_acceptance --version mta18-11-0f9b27d",
+          "test_result": "The required clean exact-commit run was performed from unmodified inputs with offline profile and source hashes; the acceptance did not finish green because backend tests timed out and frontend build runtime was absent.",
+          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c"
+        }
+      ],
+      "blocker": "Clean exact-commit offline acceptance was run; it did not pass because backend tests timed out and frontend build runtime was missing."
     },
     {
       "id": "MTA-18-12",
@@ -9270,22 +9365,61 @@
       "id": "MTA-18-14",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
-      "status": "not_started",
+      "status": "failed",
       "description": "Issue final `10/10 self-contained engineering prototype` label only when all INTERNAL gates pass; no 10/10 clinical claim.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/readiness_scorecard.py",
+        "services/master_release.py",
+        "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+      ],
+      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
+          "check": "prototype_score_gate",
+          "status": "fail",
+          "test_command": "python -m services.offline_acceptance --version mta18-11-0f9b27d",
+          "test_result": "No 10/10 internal prototype label is issued: engineering and product gates are not green. Clinical 10/10 is not claimed.",
+          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c"
+        }
+      ],
+      "blocker": "No 10/10 label is issued because engineering and product gates are not green; no clinical 10/10 claim is made."
     },
     {
       "id": "MTA-18-15",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "If input assets, runtime or required evidence are absent, explicitly output BLOCKED with smallest necessary remedy rather than fake completion.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/status_report.py",
+        "docs/remaining-external-evidence.md",
+        "tests/test_external_prerequisite_register.py",
+        "tests/test_report_safety.py",
+        "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+      ],
+      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
+          "check": "missing_evidence_fail_closed",
+          "status": "pass",
+          "test_command": "python -m pytest -q tests/test_external_prerequisite_register.py tests/test_report_safety.py tests/test_master_ledger.py tests/test_master_release.py",
+          "test_result": "15 passed",
+          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+          "runtime": {
+            "python": "3.13.5",
+            "platform": "Windows 11",
+            "acceptance_mode": "offline; clean detached worktree",
+            "network_policy": "local loopback only for application tests; hosted CI not queried"
+          },
+          "runtime_sha256": "52648126d509f9e34c290b1e7264b2bab302632bace752f19506517c437d0c78"
+        }
+      ],
       "blocker": null
     },
     {
