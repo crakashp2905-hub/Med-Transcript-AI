@@ -1,11 +1,12 @@
 from pathlib import Path
+from datetime import datetime, timedelta, timezone
 from uuid import uuid4
 
 import pytest
 
 from services.api.storage import Store
 from services.maintenance import backup, restore, purge, reconcile
-from tests.test_foundation import headers
+from tests.test_foundation import headers, queue_upload
 from tests.test_review_workflow import prepare
 
 
@@ -62,3 +63,34 @@ def test_reconcile_is_dry_run_and_does_not_delete_unrelated_files(setup, tmp_pat
     assert orphan.exists()
     reconcile(path, str(assets), apply=True)
     assert not orphan.exists() and unrelated.exists()
+
+
+def test_reconcile_protects_live_normalization_and_reclaims_abandoned_temp(setup):
+    client, path, _ = setup
+    _, upload, _, _ = queue_upload(client)
+    assets = Path(path).parent / "assets"
+    source = assets / f"{upload['id']}.wav"
+    temporary = assets / f"{upload['id']}.{uuid4()}.normalized.wav"
+    temporary.write_bytes(b"staged normalized audio")
+    expires = (datetime.now(timezone.utc) + timedelta(minutes=5)).isoformat()
+    with Store(path).transaction() as con:
+        job_id = con.execute(
+            "SELECT id FROM jobs WHERE upload=? AND stage='audio_ingest'",
+            (upload["id"],),
+        ).fetchone()[0]
+        con.execute(
+            "UPDATE jobs SET status='running', lease_token=?, lease_expires_at=? WHERE id=?",
+            (str(uuid4()), expires, job_id),
+        )
+
+    assert reconcile(path, str(assets), apply=True)["candidates"] == []
+    assert temporary.exists() and source.exists()
+    with Store(path).transaction() as con:
+        con.execute(
+            "UPDATE jobs SET lease_expires_at='2000-01-01T00:00:00+00:00' WHERE id=?",
+            (job_id,),
+        )
+    report = reconcile(path, str(assets), apply=True)
+    assert temporary.name in report["candidates"]
+    assert not temporary.exists()
+    assert source.exists()
