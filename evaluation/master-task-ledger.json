@@ -6593,12 +6593,12 @@
       "id": "MTA-13-11",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Redact secrets, identifiers, audio text and model prompt content from logs, traces and errors.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-11-6d9e531.json"],
+      "source_commit": "6d9e5318d503d5c78a1bb1369e027a0deabcbb6d",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-11-6d9e531.json", "report_sha256": "f6feeb663255526cd5558c02dfc2a4c8c5707ea14ae113057891ffd12ff0b05d", "check": "focused_log_redaction_unit_test", "status": "pass"}],
+      "blocker": "Coverage is limited to the tested redactor paths; complete logger/trace/crash-dump inventory and external security review remain open."
     },
     {
       "id": "MTA-13-12",

@@ -1,0 +1,27 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-11"
+  ],
+  "source_commit": "6d9e5318d503d5c78a1bb1369e027a0deabcbb6d",
+  "captured_at_utc": "2026-11-14T07:37:15.838200+00:00",
+  "source_files": {
+    "services/log_redaction.py": "c80b1fa1ee70161b7a5549a8be91e00d586c2207740252894713ba8c01d11834",
+    "tests/test_log_redaction.py": "58fad5ac2c0cf63ddc904961f0280632e32629b51ec5c345ffbb003757ad5932"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_log_redaction.py",
+      "status": "pass",
+      "result": "1 passed"
+    }
+  ],
+  "supported_claims": [
+    "The tested logging redactor removes configured sensitive payload patterns from the tested log surface."
+  ],
+  "limitations": [
+    "One focused unit test does not prove complete redaction across all loggers, traces, crash dumps, browser storage or future instrumentation.",
+    "No external security audit."
+  ],
+  "clinical_release_authorized": false
+}
