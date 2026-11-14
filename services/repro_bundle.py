@@ -1,6 +1,8 @@
 """Build a model-free reproducibility manifest from committed artifacts."""
 
+import argparse
 import hashlib
+import json
 import subprocess
 from pathlib import Path
 
@@ -81,6 +83,7 @@ def build(root="."):
             "python -m services.offline_acceptance",
             "python -m services.engineering_status",
             "python -m services.benchmark_ranking --out evaluation/leaderboard-refresh-vN.json --supersedes evaluation/leaderboard-eval-v2.json",
+            "python -m services.repro_bundle --output evaluation/reproducibility-pack-vN.json",
         ],
         "artifacts": artifacts,
         "negative_results_preserved": True,
@@ -96,3 +99,19 @@ def build(root="."):
             "Worktree changes are reported by count; this bundle hashes only the listed committed and tracked artifacts.",
         ],
     }
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", default="evaluation/reproducibility-pack-v1.json")
+    args = parser.parse_args()
+    output = Path(args.output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("x", encoding="utf-8", newline="\n") as stream:
+        json.dump(build("."), stream, indent=2)
+        stream.write("\n")
+    print(json.dumps({"output": output.as_posix(), "status": "written"}))
+
+
+if __name__ == "__main__":
+    main()

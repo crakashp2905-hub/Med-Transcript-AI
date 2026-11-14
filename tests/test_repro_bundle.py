@@ -1,4 +1,7 @@
+import pytest
+
 from services.repro_bundle import build
+from services.repro_bundle import main
 
 
 def test_repro_bundle_has_hashes_commands_and_negative_results():
@@ -18,3 +21,19 @@ def test_repro_bundle_has_hashes_commands_and_negative_results():
         "independent clinical" in item for item in value["limitations"]
     )
     assert any("benchmark_ranking" in command for command in value["commands"])
+
+
+def test_repro_bundle_cli_writes_once_and_includes_provenance(tmp_path, monkeypatch):
+    import json
+    import sys
+    from pathlib import Path
+
+    monkeypatch.chdir(Path(__file__).resolve().parents[1])
+    output = tmp_path / "pack.json"
+    monkeypatch.setattr(sys, "argv", ["repro_bundle", "--output", str(output)])
+    main()
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    assert payload["source_commit"]
+    assert payload["datasets"]
+    with pytest.raises(FileExistsError):
+        main()
