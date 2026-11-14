@@ -6507,12 +6507,12 @@
       "id": "MTA-13-04",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Enforce authorization by tenant/clinician/encounter/resource/version for every GET/POST/PATCH/DELETE and background worker.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-13-04-2b175c9.json", "evaluation/contracts/authorization-policy-v3.json"],
+      "source_commit": "2b175c946a1b4ec9dd86b89651e3801fd9e2a45c",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-04-2b175c9.json", "report_sha256": "3da286b43687c5e04fa9e21154c53d86d2747ee31135bdc98551eced22a2c09b", "check": "route_policy_inventory_and_scope_helpers", "status": "pass"}],
+      "blocker": "Full per-route resource/version and worker authorization matrix remains unverified; the broad missing-auth/viewer-write sweep stalled on Windows."
     },
     {
       "id": "MTA-13-05",

@@ -1,0 +1,44 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-04"
+  ],
+  "source_commit": "2b175c946a1b4ec9dd86b89651e3801fd9e2a45c",
+  "captured_at_utc": "2026-11-14T07:55:22.046130+00:00",
+  "source_files": {
+    "services/api/authorization_policy.py": "e0e1ace3e21b723db353a95064f27286e9326ebf475e084c8531213835c9d7cd",
+    "evaluation/contracts/authorization-policy-v3.json": "86708c2d055b11304c9721b9c628fd0c8aa3f42755311ba1d80fdab244906006",
+    "evaluation/contracts/authorization-policy-v3.provenance.json": "3dbb7d3faa204a574cd05eb7e6ec4e7c39481f42b38acc7e458dddc2ec7ccb0b",
+    "services/api/main.py": "a6418f86c21a15914f95571c9d84b03ce937417eba0a54ad3c96d9859a9dfa64",
+    "services/route_authorization.py": "abb4c7ec5ec5d313098679a9f6df714a2693049fc672909326f955c0ff2ac1e6",
+    "tests/test_route_authorization.py": "cdd4c4f2f0f10a2582e567d1bcb146983777507db49393a182ef959a96c69710",
+    "tests/test_router_contracts.py": "00ffa4ff834c561b48bb619efd31fa9d90d55b962da8ad721991bf2d4f52394f"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_route_authorization.py tests/test_router_contracts.py::test_all_routes_have_explicit_policies_and_new_unguarded_routes_fail",
+      "status": "pass",
+      "result": "4 passed; explicit policy inventory covers all registered routes and 63 documented operations"
+    },
+    {
+      "command": "ruff check services/api/authorization_policy.py tests/test_router_contracts.py; ruff format --check services/api/authorization_policy.py tests/test_router_contracts.py",
+      "status": "pass",
+      "result": "all checks passed; both files formatted"
+    },
+    {
+      "command": "pytest -q tests/test_router_contracts.py::test_all_identity_routes_reject_missing_auth_and_viewer_writes",
+      "status": "incomplete",
+      "result": "process emitted no terminal result and was interrupted after stalling; no pass claimed"
+    }
+  ],
+  "supported_claims": [
+    "Every registered route now has an explicit public/static/schema/cookie/authenticated policy.",
+    "Route helper tests reject tenant, role and proposal-owner mismatches.",
+    "The registered route inventory and OpenAPI operation set are checked for parity, including the previously unclassified investor-demo shell and three omitted API operations."
+  ],
+  "limitations": [
+    "A full per-method cross-tenant/resource/version authorization matrix, background worker authorization matrix and missing-auth/viewer-write sweep have not completed.",
+    "Route inventory proves policy classification and identity dependency presence, not each handler\u2019s resource-level enforcement."
+  ],
+  "clinical_release_authorized": false
+}
