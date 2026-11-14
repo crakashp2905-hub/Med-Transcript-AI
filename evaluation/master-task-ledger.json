@@ -8227,12 +8227,27 @@
       "id": "MTA-16-03",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Measure programmatic click counts, keyboard steps, page load latency, interaction errors and task completion for scripts.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "apps/clinician-web/e2e/scripted-metrics.spec.ts",
+        "apps/clinician-web/playwright.synthetic.json",
+        "docs/product/scripted-browser-metrics-v1.md",
+        "evaluation/runs/mta-16-03-scripted-browser-metrics.json",
+        "services/api/main.py",
+        "tests/test_playwright_manifest.py"
+      ],
+      "source_commit": "73df9f0fb17dc6487f21ae790b2cd65417ca633e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-03-73df9f0.json",
+          "report_sha256": "8d13a7576fb90063e4035173baa56513309ab6fb1a17c30ff595ea48df6415a2",
+          "check": "scripted_browser_metrics",
+          "status": "pass",
+          "detail": "One local-only Playwright workflow measured 2 clicks, 1 keyboard step, 421 ms navigation load, task completion, and 0 interaction errors."
+        }
+      ],
+      "blocker": "Metrics currently cover one workspace-opening script. Browser measurements for the four clinical correction scripts and controlled latency runs remain outstanding."
     },
     {
       "id": "MTA-16-04",

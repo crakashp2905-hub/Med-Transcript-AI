@@ -1,0 +1,79 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-16-03",
+  "status": "pass",
+  "source_commit": "73df9f0fb17dc6487f21ae790b2cd65417ca633e",
+  "captured_at_utc": "2026-11-14T14:40:16+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright_test": "1.64.1",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    "apps/clinician-web/e2e/scripted-metrics.spec.ts": "898c737073c38c37f2bb40a90ab421140cf375d42488cb85fa034eef5f662bfa",
+    "apps/clinician-web/index.html": "403dee79c9f2a458606d4f242c237eb1622dad583da4a9d9aa9984472195cd10",
+    "apps/clinician-web/playwright.synthetic.json": "c79d5ea79443c32c67cd434dddc7a6f7c3155b8ce8a0fd96f9085074251e2e9f",
+    "apps/clinician-web/public/favicon.svg": "88841a3c98ca0527e6a2ac6a3d5c7d2b46bdaaa378338d55470d354c4f10b91b",
+    "docs/product/scripted-browser-metrics-v1.md": "66d27e3e4232190e8cc7b71f5e4fcb0f0f0340410816b2c0387f5dd5fb816808",
+    "services/api/main.py": "933434cc555f74bdcd17acd61e451725435d933538b0cc06f0c0d3448f4f2de6",
+    "tests/test_playwright_manifest.py": "27335159c1d886e371509572b19e15255e25a0cc21acc2c4f7193ddea74e55f9",
+    "evaluation/runs/mta-16-03-scripted-browser-metrics.json": "3a355814ab6a00d79707d1c7bfced486b25457ed60bb82fa06d99fd538555c2a"
+  },
+  "checks": {
+    "scripted_browser_metrics": {
+      "status": "pass",
+      "result": "1 passed; task completed; 2 clicks; 1 keyboard step; 421 ms load; 0 interaction errors",
+      "command": "npx --offline playwright test e2e/scripted-metrics.spec.ts (local-only fixture, port 8006)"
+    },
+    "python_regressions": {
+      "status": "pass",
+      "result": "5 passed",
+      "command": "python -m pytest -q tests/test_playwright_manifest.py tests/test_scripted_correction_tasks.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check services/api/main.py tests/test_playwright_manifest.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "both files already formatted",
+      "command": "python -m ruff format --check services/api/main.py tests/test_playwright_manifest.py"
+    },
+    "frontend_build": {
+      "status": "pass",
+      "result": "TypeScript check and Vite build passed",
+      "command": "npm run build"
+    },
+    "git_diff_check": {
+      "status": "pass",
+      "result": "passed",
+      "command": "git diff --check"
+    }
+  },
+  "metrics": {
+    "schema_version": "scripted_browser_interaction_metrics_v1",
+    "execution_kind": "playwright_script",
+    "task_id": "open-synthetic-workspace",
+    "task_completed": true,
+    "clicks": 2,
+    "keyboard_steps": 1,
+    "page_load_latency_ms": 421,
+    "script_wall_time_ms": 3702,
+    "interaction_errors": [],
+    "error_count": 0,
+    "resource_errors": [],
+    "human_observations": 0,
+    "clinical_acceptance": false
+  },
+  "limitations": [
+    "One scripted workspace-opening flow was measured; this is not a usability study.",
+    "Page load and script wall time are single-run observations, not controlled latency benchmarks.",
+    "No clinician task-time, productivity, clinical accuracy, or acceptance outcome was observed.",
+    "The offline browser fixture uses scripted non-ASR data and no model inference."
+  ],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "runtime_sha256": "489f7019beac688d54873df73bba6dd1ef5ae82448e41a2fc4468dca60faf7ac"
+}
