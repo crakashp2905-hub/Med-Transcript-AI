@@ -1,0 +1,44 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-01",
+    "MTA-12-02",
+    "MTA-12-03",
+    "MTA-12-04"
+  ],
+  "source_commit": "e1e14ab3ca09939f7aedd1100df8f66b43906cac",
+  "captured_at_utc": "2026-11-14T06:36:26.772357+00:00",
+  "source_files": {
+    "services/evaluation.py": "254256414a4b5ab7dea3289437041913743bff0291c0b3d1ab464b58ec8c33a2",
+    "services/evaluation_envelope.py": "25a831ff30d3aed04696f5c5133ebf98f501a434f9c295691636393ed669f10f",
+    "services/evaluation_metrics.py": "5f5447886256633112f25a9f7e5f1a0e133ca874eb45493968c2450deac0293b",
+    "tests/test_evaluation.py": "5db5df1bcbcedfb7b53199b7dd4c46c8c0c178fc697119d54fcee058269a8454",
+    "tests/test_evaluation_envelope.py": "245ca2eaee36d38b18cb1be6b9afe97f8facdec1ac5667cca0c6b9c396e9c513",
+    "tests/test_evaluation_metrics.py": "9ff27ab689ce15528e54f3c524074f863927321de39b7815f0b3a033aac27334"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py tests/test_asr_evaluation_contract.py",
+      "status": "pass",
+      "result": "30 passed"
+    },
+    {
+      "command": "ruff check services/evaluation.py services/evaluation_envelope.py services/evaluation_metrics.py tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/evaluation.py services/evaluation_envelope.py services/evaluation_metrics.py tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "Evaluation runs carry typed provenance, runtime/hardware context, evidence class, wall time and limitations.",
+    "Manifest case identities are counted exactly once; failed and timed-out cases remain in the denominator.",
+    "The ASR scorer reports fixed-normalization WER, CER, substitutions, deletions and insertions while preserving the 5% gate."
+  ],
+  "limitations": [
+    "Synthetic and software tests do not establish clinical accuracy or independent annotation.",
+    "The generic runner captures evaluator exceptions as failed cases without exception details; it is not a model orchestration backend."
+  ],
+  "clinical_release_authorized": false
+}
