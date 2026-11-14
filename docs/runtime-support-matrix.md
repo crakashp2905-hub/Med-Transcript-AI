@@ -2,6 +2,10 @@
 
 This matrix lists only combinations with repository evidence. It is a record of tested scope, not a general support or clinical-use claim.
 
+Package metadata declares Python `>=3.11`; the minimum is a compatibility
+declaration, not a tested runtime. The current evidence below covers CPython
+`3.13.5` only.
+
 | Component | Tested combination | Evidence | Boundary |
 | --- | --- | --- | --- |
 | Python backend and local synthetic workflows | Windows 11 build `10.0.26200`; CPython `3.13.5` | Hash-bound reports identify this runtime across backend, recovery and workflow tests. | No second OS or production server configuration is covered. |
@@ -9,6 +13,8 @@ This matrix lists only combinations with repository evidence. It is a record of 
 | Audio-transform resource sample | Windows 11 build `10.0.26200`; CPython `3.13.5`; Intel64 Family 6 Model 140, 8 logical CPUs | `evaluation/reports/audio-filter-resource-v1.json` | Six short public clips, maximum 10.426 seconds; enhancement transforms only. RAM capacity, microphone/interface, ASR memory and longer real consultations were not measured. |
 | TypeScript | `7.0.2` | `apps/clinician-web/package.json`; pinned frontend build | The version is pinned; the matrix does not imply compatibility with untested TypeScript versions. |
 | Web toolchain inventory | Node `22.16.0`; npm `10.9.2`; Playwright package `1.64.1` | Local tool version output on 2026-11-14 | Versions are an inventory, not a cross-platform compatibility guarantee. |
+| GitHub Actions action runtime | Node.js `24` for pinned checkout/setup actions | `.github/workflows/ci.yml`; immutable action revisions | This is the action runtime, not a frontend test under Node 24. The frontend build was measured under Node `22.16.0`. |
+| PostgreSQL CI service | PostgreSQL `17` | `.github/workflows/ci.yml`; dedicated service-backed tests | CI service evidence only; no local/institutional deployment qualification. |
 
 ## Not established
 

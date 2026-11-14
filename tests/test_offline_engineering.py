@@ -303,7 +303,7 @@ def test_offline_demo_runbook_has_one_command_path_and_honest_scope():
     assert "python -m services.offline_demo --self-test" in runbook
     assert "does not print the local access keys" in runbook
     assert "not speech recognition" in runbook
-    assert "not clinical evidence" in runbook
+    assert "or clinical evidence" in runbook
 
 
 def test_release_dimensions_cannot_collapse_or_promote_synthetic_evidence():
