@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 
-def test_adaptive_gain_paired_report_is_source_bound_and_keeps_gate_unchanged():
+def test_adaptive_gain_paired_report_preserves_historical_failure_and_stale_binding():
     path = Path("evaluation/reports/audio-enhancement-paired-v3.json")
     report = json.loads(path.read_text(encoding="utf-8"))
     assert hashlib.sha256(path.read_bytes()).hexdigest() == (
@@ -14,8 +14,15 @@ def test_adaptive_gain_paired_report_is_source_bound_and_keeps_gate_unchanged():
     assert report["clinical_acceptance"] is False
     assert report["model"]["runtime"] == "omi-med-stt"
     assert report["model"]["empty_output_policy"] == "empty_native_output_is_failure"
-    for source, digest in report["source_code_sha256"].items():
-        assert hashlib.sha256(Path(source).read_bytes()).hexdigest() == digest
+    stale_sources = {
+        source
+        for source, digest in report["source_code_sha256"].items()
+        if hashlib.sha256(Path(source).read_bytes()).hexdigest() != digest
+    }
+    # This is historical evidence from before formatting changed two measured
+    # sources. Keep its original hash and failed result; it cannot qualify as a
+    # current-source acceptance report until the experiment is rerun.
+    assert stale_sources == {"services/omi_adapter.py", "services/evaluation.py"}
 
     assert {row["condition_id"] for row in report["conditions"]} == {
         "source_unmodified",

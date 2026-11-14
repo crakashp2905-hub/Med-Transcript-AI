@@ -66,7 +66,13 @@ class RequestLimits:
 
         async def bounded_receive():
             nonlocal size
-            message = await receive()
+            try:
+                message = await receive()
+            except Exception:
+                # A transport can fail while the body is streaming. Treat it
+                # like an ASGI disconnect so endpoints cannot commit a partial
+                # upload or turn the client-side disconnect into a 500.
+                return {"type": "http.disconnect"}
             size += len(message.get("body", b""))
             if size > limit:
                 raise HTTPException(413, "request_too_large")

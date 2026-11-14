@@ -7,6 +7,7 @@ import threading
 import wave
 
 import httpx
+from starlette.requests import ClientDisconnect
 
 from tests.test_foundation import (
     create,
@@ -133,7 +134,7 @@ def test_client_disconnect_during_chunk_body_leaves_upload_uncommitted(setup):
                     content=disconnecting_body(),
                     headers=request_headers,
                 )
-            except httpx.ReadError:
+            except (httpx.ReadError, ClientDisconnect):
                 pass
 
     asyncio.run(send_request())

@@ -72,6 +72,18 @@ def test_retry_replay_keeps_unlinked_retry_event_visible_and_incomplete():
     assert replay["persisted_history_contiguous"] is False
 
 
+def test_cancelled_attempt_is_retained_in_replay():
+    attempt = {
+        "attempt": 1,
+        "status": "cancelled",
+        "error_code": "transcript_changed",
+        "finished_at": "2026-11-14T10:00:00+00:00",
+    }
+    replay = build_attempt_replay([attempt], [])
+    assert replay["timeline"][0]["status"] == "cancelled"
+    assert replay["timeline"][0]["error_code"] == "transcript_changed"
+
+
 @pytest.mark.parametrize(
     ("attempts", "retries", "error"),
     [

@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 
-ATTEMPT_STATUSES = {"abandoned", "failed", "succeeded"}
+ATTEMPT_STATUSES = {"abandoned", "cancelled", "failed", "succeeded"}
 
 
 def _time(value):
