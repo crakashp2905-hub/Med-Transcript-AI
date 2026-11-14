@@ -1,0 +1,36 @@
+{
+  "schema_version": "asset_deletion_graph_v1",
+  "scope": "local synthetic/public-mock application data",
+  "clinical_release_authorized": false,
+  "primary_purge": {
+    "entry_point": "authenticated deletion request",
+    "holds": ["legal_hold", "existing approval"],
+    "success_state": "primary_purged_backups_pending",
+    "backup_expiry": "requires_operator_confirmation",
+    "clinical_release_authorized": false
+  },
+  "assets": [
+    {"id": "original_audio", "storage": "uploads plus <upload>.wav", "purge": "remove file and upload row", "backup": "encrypted snapshot; restore tombstone required"},
+    {"id": "normalized_audio", "storage": "<upload>.normalized.wav", "purge": "remove file with original audio", "backup": "encrypted snapshot; restore tombstone required"},
+    {"id": "live_audio_prefix", "storage": "<upload>.resume.part", "purge": "remove file and upload row", "backup": "committed prefix may be snapshotted; restore tombstone required"},
+    {"id": "transcript", "storage": "encounters.current_transcript and transcript_versions", "purge": "clear current pointer and delete version rows", "backup": "encrypted snapshot; restore tombstone required"},
+    {"id": "clinical_note", "storage": "encounters.current_note and documents", "purge": "clear current pointer and delete document rows", "backup": "encrypted snapshot; restore tombstone required"},
+    {"id": "asr_checkpoints", "storage": "asr_checkpoints", "purge": "delete encounter rows", "backup": "encrypted snapshot; restore tombstone required"},
+    {"id": "model_proposals", "storage": "model_proposals", "purge": "delete encounter rows", "backup": "encrypted snapshot; restore tombstone required"},
+    {"id": "exports", "storage": "exports", "purge": "delete encounter rows and referenced primary assets", "backup": "encrypted snapshot; restore tombstone required"},
+    {"id": "preview_cache", "storage": "preview-only job/cache artifacts", "purge": "TTL cleanup unless saved version references source", "backup": "operator backup lifecycle applies"},
+    {"id": "authorizations", "storage": "authorizations", "purge": "delete encounter rows after hold checks", "backup": "encrypted snapshot; restore tombstone required"},
+    {"id": "idempotency", "storage": "idempotency records", "purge": "delete matching operation/response references", "backup": "encrypted snapshot; restore tombstone required"},
+    {"id": "audit_metadata", "storage": "append-only audit chain", "purge": "retained as minimal audit metadata", "backup": "operator retention policy applies"}
+  ],
+  "edges": [
+    {"from": "deletion_request", "to": "primary_purge", "condition": "authenticated and no legal hold or existing approval"},
+    {"from": "primary_purge", "to": "backup_tombstone", "condition": "restore must apply committed deletion tombstone"},
+    {"from": "preview_cache", "to": "saved_source", "condition": "TTL cleanup preserves sources referenced by saved transcript versions"}
+  ],
+  "limitations": [
+    "This is a local application lifecycle map, not proof that every physical copy has been erased.",
+    "Backup expiry and external/cloud copies require operator-controlled retention and key lifecycle.",
+    "Audit metadata follows a separate retention policy and may retain non-content identifiers."
+  ]
+}
