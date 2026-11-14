@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-11",
+    "MTA-12-12",
+    "MTA-12-13"
+  ],
+  "source_commit": "a9242c101f6ecda5aa1c147a7e68df40b8c94a22",
+  "captured_at_utc": "2026-11-14T06:57:02.940648+00:00",
+  "source_files": {
+    "docs/research/beccsv-protocol-v1.md": "c9a10edf62697e2ae88eadeae6002631585f30c575aecaaff643653d4172916c",
+    "tests/test_beccsv_protocol_preregistration.py": "cd9e911fe82773f613a6bdc7a06b4b3faa250257aa753bd4c2e27f9cdce8d9f0",
+    "services/paired_asr_bootstrap.py": "a36227bb805bead91e3094eea90730ed30389476a1c08f1499c6236c0d682334",
+    "tests/test_paired_asr_bootstrap.py": "7b38790042824118eb0266f402a33e0dcec22daf3edd9c407f70df0300b14abd",
+    "services/uncertainty_report.py": "22c71ae0a2c2261351a9c66216d69d7987442ec47484a28f2a8f70c4ee17ff19",
+    "tests/test_uncertainty_report.py": "d390d0d6fdfa5eb53d61529ff86a74d8c7724f46814e91d9a8033153a11762b7"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_beccsv_protocol_preregistration.py tests/test_paired_asr_bootstrap.py tests/test_uncertainty_report.py",
+      "status": "pass",
+      "result": "8 passed"
+    },
+    {
+      "command": "ruff check services/paired_asr_bootstrap.py services/uncertainty_report.py tests/test_beccsv_protocol_preregistration.py tests/test_paired_asr_bootstrap.py tests/test_uncertainty_report.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/paired_asr_bootstrap.py services/uncertainty_report.py tests/test_beccsv_protocol_preregistration.py tests/test_paired_asr_bootstrap.py tests/test_uncertainty_report.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "The BECCSV research protocol preregisters primary critical-miss outcome, minimum 20% relative reduction, false-alarm increase limit of 5 percentage points, catastrophe guard, abstention policy, paired consultation comparison and confidence interval plan.",
+    "ASR paired bootstrap resamples distinct consultation foregrounds with both arms intact and includes failed pairs.",
+    "Current uncertainty summaries explicitly report descriptive intervals only and leave probability/calibration unset."
+  ],
+  "limitations": [
+    "A qualified clinical/statistical reviewer must approve severity mapping and false-alarm tolerance before acceptance evaluation.",
+    "Current development cohorts are small and do not establish clinical performance; no calibration reliability curve is valid without genuine labeled probabilities."
+  ],
+  "clinical_release_authorized": false
+}
