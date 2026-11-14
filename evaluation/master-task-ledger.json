@@ -5813,12 +5813,12 @@
       "id": "MTA-12-07",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Score clinical extraction fact precision/recall/F1, subject/negation/temporal/medication-attribute exact match and omission count.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-07-62615b1.json"],
+      "source_commit": "62615b1fc43c98043682aa85547d94ac3eb7474a",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-07-62615b1.json", "report_sha256": "88e42f473948c3ccb360bc57b009045913df4307e86fce33bce8ca11b7e690a4", "check": "clinical_fact_and_medication_attribute_metrics", "status": "pass"}],
+      "blocker": "Independent clinical fact annotations and performance evidence remain unavailable."
     },
     {
       "id": "MTA-12-08",

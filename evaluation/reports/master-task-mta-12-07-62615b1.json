@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-07"
+  ],
+  "source_commit": "62615b1fc43c98043682aa85547d94ac3eb7474a",
+  "captured_at_utc": "2026-11-14T06:50:37.226323+00:00",
+  "source_files": {
+    "services/clinical_metrics.py": "eb9847d7018189d1e3e753aee906f918fd544f7d0064802fe0a57ae6422ecfe5",
+    "tests/test_fact_evaluation_synthetic.py": "bac59dd568333d27dee56137fd6241532bff5397cad726f66996201e296d8b14"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_fact_evaluation_synthetic.py tests/test_clinical_metrics_report.py tests/test_clinical_weighted_metrics.py",
+      "status": "pass",
+      "result": "10 passed"
+    },
+    {
+      "command": "ruff check services/clinical_metrics.py tests/test_fact_evaluation_synthetic.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/clinical_metrics.py tests/test_fact_evaluation_synthetic.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "Exact clinical fact precision/recall/F1, omissions and explicit subject/assertion/temporality fields are scored by canonical full-fact matching.",
+    "Medication attribute exact match separately compares dose, unit, route, frequency, and other supplied structured attributes; mismatches appear as omission plus unsupported attribute fact."
+  ],
+  "limitations": [
+    "Current automated tests use synthetic/developer-authored facts, not independently adjudicated clinical annotations.",
+    "Unspecified medication attributes cannot be evaluated; no real clinical performance claim is made."
+  ],
+  "clinical_release_authorized": false
+}
