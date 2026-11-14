@@ -1,0 +1,31 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-03",
+  "source_commit": "762805a34fb25e3e0d7d25a7a2391a97aee497f7",
+  "source_files": {
+    "tests/test_channels.py": "42fb3fe93cabe833bdcfb4967eb44a6a015cd5a7fe5de1b7499364bb02bf690c",
+    "tests/test_drafting_provider_failures.py": "742f5c38d1be4f7cb42c87957623d2c54f5e17b544c890209190c71b5fd0e1a2",
+    "tests/test_audit_integrity.py": "ff35a0a975356e320878866743b27576850c680270469ddd7ee270db5ff6f156",
+    "tests/test_foundation.py": "4cb6a0295ccf2b6736837867ffd7f9f26779783c3324491c61c3bd89ecf9de23"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_channels.py::test_failed_channel_never_publishes_partial_transcript tests/test_drafting_provider_failures.py::test_provider_failure_returns_no_partial_draft tests/test_audit_integrity.py tests/test_foundation.py::test_malformed_audio_fails_without_partial_publication tests/test_foundation.py::test_revocation_during_worker_prevents_result_publication"
+  },
+  "runtime_sha256": "a4cd104ab3e5a649a03995acd0a8f71bb8ede411f83b563318cc370bedd3985e",
+  "checks": {
+    "failed_and_transient_result_publication_guards": {
+      "status": "pass",
+      "detail": "21 passed. Covers failed channel ASR leaving no transcript, timeout/malformed/empty provider outputs yielding no partial draft, malformed audio leaving no partial publication, consent revocation preventing worker publication, and audit tampering blocking approval and export."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "All test fixtures are synthetic. This verifies application safety guards, not clinical accuracy or production fault recovery.",
+    "Coverage does not establish safety for every storage, process, or infrastructure failure mode."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}

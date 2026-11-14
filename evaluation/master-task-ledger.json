@@ -6930,12 +6930,25 @@
       "id": "MTA-14-03",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Preserve invariant: no failed/partial/transient result becomes an approved note or completed encounter silently.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "tests/test_channels.py",
+        "tests/test_drafting_provider_failures.py",
+        "tests/test_audit_integrity.py",
+        "tests/test_foundation.py",
+        "evaluation/reports/master-task-mta-14-03-762805a.json"
+      ],
+      "source_commit": "762805a34fb25e3e0d7d25a7a2391a97aee497f7",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-03-762805a.json",
+          "report_sha256": "7c4919e3425d34bce14c9febbe0c5ad14a6a0b0489ede8d464f22ecfbda58d34",
+          "check": "failed_and_transient_result_publication_guards",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Evidence covers synthetic application faults and selected failure paths; it does not cover every infrastructure or production failure mode."
     },
     {
       "id": "MTA-14-04",
