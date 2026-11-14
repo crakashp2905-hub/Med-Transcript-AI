@@ -49,8 +49,14 @@ def test_untrusted_json_rejects_duplicates_confusable_keys_depth_and_surrogates(
 
 
 def test_strict_json_preserves_valid_unicode_and_quoted_brackets():
-    value = {"text": "Literal { [ source ] } café β", "dose": "0.5 mg"}
+    value = {
+        "text": "Literal { [ source ] } café β",
+        "dose": "0.5 mg",
+        "composed": "café",
+        "decomposed": "cafe\u0301",
+    }
     assert loads(json.dumps(value, ensure_ascii=False)) == value
+    assert value["composed"] != value["decomposed"]
     with pytest.raises(ValueError):
         loads('"large"', max_bytes=2)
 
