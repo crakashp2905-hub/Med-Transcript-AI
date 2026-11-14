@@ -5967,23 +5967,23 @@
       "id": "MTA-12-21",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Write machine-readable leaderboard for development only, with all no-result models still visible as unavailable.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-21-22-dc3755d.json", "evaluation/leaderboard-eval-v2.json", "evaluation/leaderboard-eval-v2.svg"],
+      "source_commit": "72ee203b1db56450b1e00c1f95dfabf8b0670588",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-21-22-dc3755d.json", "report_sha256": "0e3e9a6fc442f9bd129b306839524787e3261c84c4e998e0469a7faaa2a557c0", "check": "development_leaderboard_and_chart_json_parity", "status": "pass"}],
+      "blocker": "Development evidence only; no independent clinical cohort or eligible model meeting the 5% gate."
     },
     {
       "id": "MTA-12-22",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Generate tables and plots reproducibly from raw reports and validate chart numbers against JSON.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-21-22-dc3755d.json", "evaluation/leaderboard-eval-v2.json", "evaluation/leaderboard-eval-v2.svg"],
+      "source_commit": "72ee203b1db56450b1e00c1f95dfabf8b0670588",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-21-22-dc3755d.json", "report_sha256": "0e3e9a6fc442f9bd129b306839524787e3261c84c4e998e0469a7faaa2a557c0", "check": "development_leaderboard_and_chart_json_parity", "status": "pass"}],
+      "blocker": "Development evidence only; no independent clinical cohort or eligible model meeting the 5% gate."
     },
     {
       "id": "MTA-12-23",

@@ -1,0 +1,67 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-21",
+    "MTA-12-22"
+  ],
+  "source_commit": "72ee203b1db56450b1e00c1f95dfabf8b0670588",
+  "artifact_commit": "f55948d5f3707ac76a342650343b9aa231486bd5",
+  "captured_at_utc": "2026-11-14T07:15:02.404229+00:00",
+  "source_files": {
+    "services/benchmark_ranking.py": "7e67918f19fd0a8aff8bb9b1ae38600546a2bd4011e0848503473bf3642ecb75",
+    "tests/test_benchmark_ranking.py": "cd2c59f206f991878907ac0c24f5c0dd9ee42032f3c31b88482f151cb4ef9b72",
+    "tests/test_benchmark_provenance.py": "df0c58c742c5d2242ec213b3d2c768390a3513f506f7be15b34d22e431111ab5",
+    "tests/test_comparison_scope.py": "69a36d9e1ef5ebbae791137d1423015cf008f31627a74e3f59cbea0cf1d8e192",
+    "evaluation/benchmark-ledger.json": "125092be4ddbc833e4b9badac96d964c72597e26bd327c2678429e0797b87430",
+    "evaluation/datasets/primock57-smoke-v1/manifest.json": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+    "evaluation/datasets/primock57-smoke-v1/lock.json": "f6a0e4a7388b2ae84f3da7818a118a4f1c57e255537a325fb8eb650ecc7bb214"
+  },
+  "artifacts": {
+    "evaluation/leaderboard-eval-v2.json": "e6a85d08929fb82904bb44ef0f3dfa80dcf246eef3ca5450924abc236222dfad",
+    "evaluation/leaderboard-eval-v2.md": "198cc8b1f273a2e119aed7f4217f578fb7330e8a4eb811740b3c9ef04c81f50f",
+    "evaluation/leaderboard-eval-v2.html": "060dd01f9eb233f1b10d9b92faa7b7c04ad368283088ad2821a4c3d0317b4cc8",
+    "evaluation/leaderboard-eval-v2.svg": "fa1b1e1d4ec76f4e30aab67ce616fe3eec46832b2ebed7ec2968f1521f790018"
+  },
+  "leaderboard_summary": {
+    "ranked_count": 7,
+    "unranked_count": 7,
+    "dataset_id": "primock57-consultation01-six-utterance-smoke-v1",
+    "manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+    "failed_candidate_samples": 2
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_benchmark_ranking.py tests/test_benchmark_provenance.py tests/test_comparison_scope.py",
+      "status": "pass",
+      "result": "17 passed"
+    },
+    {
+      "command": "ruff check services/benchmark_ranking.py tests/test_benchmark_ranking.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/benchmark_ranking.py tests/test_benchmark_ranking.py",
+      "status": "pass"
+    },
+    {
+      "command": "python -m services.benchmark_ranking --out evaluation/leaderboard-eval-v2.json --supersedes evaluation/leaderboard.json",
+      "status": "pass",
+      "result": "7 ranked; 7 unranked"
+    },
+    {
+      "command": "parse SVG and compare data-wer/candidate inventory against JSON",
+      "status": "pass",
+      "result": "all 7 plotted values matched exact JSON floats; all 7 unranked candidates visible"
+    }
+  ],
+  "supported_claims": [
+    "The development leaderboard is machine-readable and keeps all unavailable/access-blocked candidates visible without assigning quality ranks.",
+    "Markdown, HTML and SVG were generated from the JSON rank result sourced from the unchanged local reports and frozen manifest.",
+    "Every SVG bar has an exact machine-readable WER value matching the JSON candidate entry."
+  ],
+  "limitations": [
+    "No new ASR inference was run; this refresh only renders existing benchmark evidence.",
+    "All measured candidates fail the 3% threshold on this six-utterance single-consultation smoke set; this is not clinical acceptance evidence."
+  ],
+  "clinical_release_authorized": false
+}
