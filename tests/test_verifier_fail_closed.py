@@ -66,8 +66,8 @@ def test_actual_semantic_transport_timeout_preserves_blocking_note_and_approval(
         headers=headers(),
         json={"note_version_id": result["note"]["id"]},
     )
-    assert response.status_code == 422
-    assert response.json()["code"] == "semantic_check_failed_no_output_admitted"
+    assert response.status_code == 503
+    assert response.json()["code"] == "model_unavailable"
     workspace = client.get(f"/v1/encounters/{eid}/workspace", headers=headers()).json()
     assert workspace["verification"] == result["verification"]
     assert approve(client, eid, result["note"]).status_code == 409

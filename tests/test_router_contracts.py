@@ -15,9 +15,9 @@ def contract_matches(actual, expected):
 
 def test_api_contract_survives_router_and_service_extraction(setup):
     client, _, _ = setup
-    previous_path = Path("evaluation/contracts/api-v1-compatible-v11.json")
+    previous_path = Path("evaluation/contracts/api-v1-compatible-v12.json")
     successor = json.loads(
-        Path("evaluation/contracts/api-v1-compatible-v12.json").read_text(
+        Path("evaluation/contracts/api-v1-compatible-v13.json").read_text(
             encoding="utf-8"
         )
     )
@@ -26,12 +26,21 @@ def test_api_contract_survives_router_and_service_extraction(setup):
         successor["supersedes"]["sha256"]
         == hashlib.sha256(previous_path.read_bytes()).hexdigest()
     )
-    assert successor["schema_version"] == "api_contract_successor_v12"
+    assert successor["schema_version"] == "api_contract_successor_v13"
     expected = successor["contract"]
     verifier_limit = expected["components"]["schemas"]["VerifyRequest"]["properties"][
         "fact_ids"
     ]["anyOf"][0]
     assert verifier_limit["maxItems"] == 300
+    assert {
+        ("post", "/v1/jobs/{job_id}/cancel"),
+        ("post", "/v1/encounters/{eid}/approvals/{aid}/revoke"),
+        ("get", "/v1/encounters/{eid}/audit-bundle"),
+    } <= {
+        (method, path)
+        for path, methods in expected["paths"].items()
+        for method in methods
+    }
     actual = deepcopy(client.app.openapi())
     extension = actual["paths"].pop("/v1/encounters/{eid}/retranscriptions")
     schema = actual["components"]["schemas"].pop("RetranscribeRequest")

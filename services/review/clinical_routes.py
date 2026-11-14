@@ -54,7 +54,7 @@ def clinical_provider_http_error(error):
     if isinstance(error, ClinicalModelFailure) or (
         isinstance(error, ProviderFailure) and error.kind in {"unavailable", "timeout"}
     ):
-        return HTTPException(503, "clinical_model_unavailable")
+        return HTTPException(503, "model_unavailable")
     return HTTPException(422, "clinical_extraction_failed_no_output_admitted")
 
 
@@ -63,7 +63,7 @@ def semantic_provider_http_error(error):
     if isinstance(error, ClinicalModelFailure) or (
         isinstance(error, ProviderFailure) and error.kind in {"unavailable", "timeout"}
     ):
-        return HTTPException(503, "clinical_model_unavailable")
+        return HTTPException(503, "model_unavailable")
     return HTTPException(422, "semantic_check_failed_no_output_admitted")
 
 
