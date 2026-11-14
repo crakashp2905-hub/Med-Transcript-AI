@@ -1,0 +1,35 @@
+{
+  "schema_version": "report_reproducibility_validation_v1",
+  "task_id": "MTA-17-14",
+  "source_commit": "7aef1464fcad528a0830c156ed506e3c020d5a38",
+  "runtime": {
+    "source_commit": "7aef1464fcad528a0830c156ed506e3c020d5a38",
+    "python": "3.13.5",
+    "checks": {
+      "reproducibility_tests": "tests/test_report_reproducibility.py: 3 passed, 1 warning",
+      "ruff": "check passed; format check passed",
+      "manifest_generation": "python -m services.report_reproducibility --source-commit 7aef1464fcad528a0830c156ed506e3c020d5a38"
+    },
+    "manifest_sha256": "a30c43b3bb299f73a7afd6bc4cad2898660807ac5b2a7312904de8ebea360ba7",
+    "artifact_count": 11,
+    "byte_for_byte_generators": 5,
+    "versioned_snapshots": 6
+  },
+  "runtime_sha256": "cdc798e8b1d6ee6d74079d6ed79900918fc489e1d8c387134213f6548f149eb5",
+  "checks": {
+    "report_reproducibility_policy_and_tests": {
+      "status": "pass",
+      "summary": "11 outputs cataloged; deterministic generator pairs compare equal; runtime/environment-specific fields are documented and artifact hashes/source revisions are recorded."
+    }
+  },
+  "outputs": [
+    {
+      "path": "evaluation/reports/report-reproducibility-v1.json",
+      "sha256": "a30c43b3bb299f73a7afd6bc4cad2898660807ac5b2a7312904de8ebea360ba7"
+    }
+  ],
+  "limitations": [
+    "Manifest covers listed report generators and snapshots, not every runtime log or transient test artifact.",
+    "Byte reproducibility and hashes do not establish correctness or clinical validity."
+  ]
+}

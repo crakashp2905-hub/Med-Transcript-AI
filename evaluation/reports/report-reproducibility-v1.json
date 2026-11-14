@@ -1,0 +1,194 @@
+{
+  "schema_version": "report_reproducibility_manifest_v1",
+  "source_commit": "7aef1464fcad528a0830c156ed506e3c020d5a38",
+  "artifact_count": 11,
+  "byte_for_byte_outputs": 5,
+  "versioned_snapshot_outputs": 6,
+  "artifacts": [
+    {
+      "path": "evaluation/publications/mta-17-03-benchmark-tables-v1.json",
+      "generator": "services.publication_bundle.build",
+      "inputs": [
+        "evaluation/datasets/primock57-expanded-v1/manifest.json",
+        "evaluation/expanded-ledger.json",
+        "completed frozen source reports"
+      ],
+      "variable_fields": [
+        "/source_commit",
+        "source report hashes change only when frozen inputs change"
+      ],
+      "rebuild_rule": "Byte-for-byte stable on the same source commit and frozen input bytes.",
+      "artifact_source_commit": "eb80d9767bc04527674b67dcfb85d364b564e13c",
+      "artifact_sha256": "da418a67cb4739f910ed2b2686a918d59aa5c45c9703bdcc0fd77da44a25e668",
+      "bytes": 71353,
+      "artifact_version": "mta-17-03-benchmark-tables-v1.json"
+    },
+    {
+      "path": "evaluation/supplementary/mta-17-05-sample-results-v1.json",
+      "generator": "services.supplementary_bundle.build",
+      "inputs": [
+        "evaluation/datasets/primock57-expanded-v1/manifest.json",
+        "evaluation/datasets/primock57-expanded-v1/lock.json",
+        "evaluation/expanded-ledger.json",
+        "completed frozen source reports"
+      ],
+      "variable_fields": [
+        "/source_commit",
+        "source report hashes change only when frozen inputs change"
+      ],
+      "rebuild_rule": "Byte-for-byte stable on the same source commit and frozen input bytes.",
+      "artifact_source_commit": "a0bc1c77749fea2285350a6b4367e5f76b6c542e",
+      "artifact_sha256": "59ce546d5d68ca90827da6ad1972523f9ad24867dfc19e3a977fb45224bae742",
+      "bytes": 334661,
+      "artifact_version": "mta-17-05-sample-results-v1.json"
+    },
+    {
+      "path": "evaluation/architecture/algorithm-reference-v1.json",
+      "generator": "services.algorithm_reference.build",
+      "inputs": [
+        "services/evidence_graph.py",
+        "services/review/engine.py"
+      ],
+      "variable_fields": [
+        "/source_commit",
+        "/source_sha256"
+      ],
+      "rebuild_rule": "Byte-for-byte stable on the same source commit and source-file bytes.",
+      "artifact_source_commit": "6323e2c3c2d6388145166564a74f2bfc0104f68a",
+      "artifact_sha256": "a0770394a9ec7b0348113b2e8e8d22c455d33e3b532aaa5735befa690731e0da",
+      "bytes": 5034,
+      "artifact_version": "algorithm-reference-v1.json"
+    },
+    {
+      "path": "evaluation/claim-provenance/10of10-provenance-v1.json",
+      "generator": "services.claim_provenance.build",
+      "inputs": [
+        "evaluation/master-task-ledger.json",
+        "each anchored source and evidence report"
+      ],
+      "variable_fields": [
+        "/source_commit",
+        "source file/report hashes change only with their inputs"
+      ],
+      "rebuild_rule": "Byte-for-byte stable for a fixed source commit, ledger and referenced evidence bytes.",
+      "artifact_source_commit": "1e66e2048d994ce31a3f1258e0d117b748fde590",
+      "artifact_sha256": "05fa86a180b3383a195c7a5748b09308600f684665d549b8571948d519d7c286",
+      "bytes": 26511,
+      "artifact_version": "10of10-provenance-v1.json"
+    },
+    {
+      "path": "evaluation/supply-chain/model-cards-v2.json",
+      "generator": "services.supply_chain_bundle.build_bundle",
+      "inputs": [
+        "evaluation/model-registry.json",
+        "candidate benchmark reports",
+        "evaluation/candidate-access-audit.json"
+      ],
+      "variable_fields": [
+        "/source_commit",
+        "/source_hashes"
+      ],
+      "rebuild_rule": "Byte-for-byte stable on the same source commit and referenced report/registry bytes.",
+      "artifact_source_commit": "30011c5e3c7cc558329aef9a638ca3aae15424c9",
+      "artifact_sha256": "0f6a357f46b97901d81f12212932165362ebeafa17b531aafe6af4a2f3c78bb8",
+      "bytes": 23896,
+      "artifact_version": "model-cards-v2.json"
+    },
+    {
+      "path": "evaluation/supply-chain/sbom-v1.json",
+      "generator": "services.supply_chain_bundle.build_bundle",
+      "variable_fields": [
+        "/source_commit",
+        "/metadata/timestamp",
+        "/components (installed Python environment snapshot)",
+        "/offline_dependency_inventory"
+      ],
+      "versioning_rule": "Immutable versioned snapshot; byte-for-byte comparison requires the same source commit, installed Python distributions, local npm lockfile, and recorded timestamp.",
+      "artifact_source_commit": "30011c5e3c7cc558329aef9a638ca3aae15424c9",
+      "artifact_sha256": "1785b6f607ef21dee3c121d4d6dc933618cecab38e726b26fe9fb3b8642b09ea",
+      "bytes": 207531,
+      "artifact_version": "sbom-v1.json"
+    },
+    {
+      "path": "evaluation/supply-chain/license-register-v1.json",
+      "generator": "services.supply_chain_bundle.build_bundle",
+      "variable_fields": [
+        "/source_commit",
+        "/python_packages (installed distribution metadata)"
+      ],
+      "versioning_rule": "Immutable versioned metadata snapshot; missing license declarations remain unknown.",
+      "artifact_source_commit": "30011c5e3c7cc558329aef9a638ca3aae15424c9",
+      "artifact_sha256": "95b9932250a8929f480dac3962c5472cf084ce75854572cd93c4701ec52d0db5",
+      "bytes": 380742,
+      "artifact_version": "license-register-v1.json"
+    },
+    {
+      "path": "evaluation/supply-chain/architecture-compliance-matrix-v1.json",
+      "generator": "services.supply_chain_bundle.build_bundle",
+      "variable_fields": [
+        "/source_commit"
+      ],
+      "versioning_rule": "Immutable source-commit-bound engineering crosswalk; not a regulatory compliance result.",
+      "artifact_source_commit": "30011c5e3c7cc558329aef9a638ca3aae15424c9",
+      "artifact_sha256": "ee9d130e6c9296511976a768ba68254c07607494523be226fe88c5ad25e937a9",
+      "bytes": 4797,
+      "artifact_version": "architecture-compliance-matrix-v1.json"
+    },
+    {
+      "path": "evaluation/reports/mta-17-13-readiness-cli-output-v1.json",
+      "generator": "python -m services.status_report",
+      "variable_fields": [
+        "/git_commit",
+        "/offline_mode",
+        "/model_availability",
+        "/source_hashes",
+        "/engineering",
+        "/readiness_checks"
+      ],
+      "versioning_rule": "Immutable local environment snapshot; changes require a new report version and exact source/environment context.",
+      "artifact_source_commit": "1456977882121602d3157ef80b40a8b68c362334",
+      "artifact_sha256": "f1bea637af19bde6c98671c9149fff2d5bd0a2e55b197293429dd057cdbf5d30",
+      "bytes": 9834,
+      "artifact_version": "mta-17-13-readiness-cli-output-v1.json"
+    },
+    {
+      "path": "evaluation/reports/mta-17-12-supply-chain-v1.json",
+      "generator": "MTA-17-12 evidence receipt",
+      "variable_fields": [
+        "/source_commit",
+        "/runtime/python",
+        "/runtime/node",
+        "/outputs"
+      ],
+      "versioning_rule": "Immutable test receipt bound to source commit, tool versions and generated artifact digests.",
+      "artifact_source_commit": "30011c5e3c7cc558329aef9a638ca3aae15424c9",
+      "artifact_sha256": "73bbacc62ab929c22115891d645e22669b9536113b498d49bb0fea2d2b42c352",
+      "bytes": 2690,
+      "artifact_version": "mta-17-12-supply-chain-v1.json"
+    },
+    {
+      "path": "evaluation/reports/mta-17-13-readiness-cli-v1.json",
+      "generator": "MTA-17-13 evidence receipt",
+      "variable_fields": [
+        "/source_commit",
+        "/runtime/python",
+        "/runtime/cli_output_sha256"
+      ],
+      "versioning_rule": "Immutable test receipt bound to source commit and captured CLI output hash.",
+      "artifact_source_commit": "1456977882121602d3157ef80b40a8b68c362334",
+      "artifact_sha256": "04a0a7999f7a747e3f1291ed11c02f6865f2057a0012d2dd540389aa606d22cc",
+      "bytes": 1561,
+      "artifact_version": "mta-17-13-readiness-cli-v1.json"
+    }
+  ],
+  "policy": [
+    "Never overwrite a prior benchmark or acceptance artifact; create a new versioned output path.",
+    "Deterministic generators must compare equal on identical source and frozen input bytes.",
+    "Runtime, environment, installed-package, source-revision, timestamp and output-digest fields are version tags when they vary by run.",
+    "A field omitted from a generated artifact is not implicitly stable; record it in that generator's policy before relying on cross-run equality."
+  ],
+  "limitations": [
+    "This manifest covers the listed research/product report generators and snapshots, not every runtime log or transient test file in the repository.",
+    "A byte-stable report does not establish correctness, clinical validity, licensing rights, or release approval."
+  ]
+}

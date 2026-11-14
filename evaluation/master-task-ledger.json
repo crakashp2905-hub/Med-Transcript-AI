@@ -8912,12 +8912,26 @@
       "id": "MTA-17-14",
       "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Ensure generated reports can be reproduced byte-for-byte or version-tagged with documented nondeterministic fields.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/report_reproducibility.py",
+        "tests/test_report_reproducibility.py",
+        "docs/report-reproducibility.md",
+        "evaluation/reports/report-reproducibility-v1.json",
+        "evaluation/reports/mta-17-14-report-reproducibility-v1.json"
+      ],
+      "source_commit": "7aef1464fcad528a0830c156ed506e3c020d5a38",
+      "test_results": [
+        {
+          "status": "pass",
+          "check": "report_reproducibility_policy_and_tests",
+          "report": "evaluation/reports/mta-17-14-report-reproducibility-v1.json",
+          "report_sha256": "5b738b684d5c8a776e06a029ca4a007c060346f5aa3e8cd44e00c523b634f543",
+          "runtime_sha256": "cdc798e8b1d6ee6d74079d6ed79900918fc489e1d8c387134213f6548f149eb5"
+        }
+      ],
+      "blocker": "Manifest covers 11 named research/product outputs; transient logs and all unrelated reports are outside this manifest."
     },
     {
       "id": "MTA-17-15",
