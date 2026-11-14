@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import hashlib
 import json
 from pathlib import Path
 
@@ -31,6 +32,12 @@ def test_combined_sbom_includes_local_python_and_npm_inputs_without_audit_claim(
         "safe_to_use": None,
         "reason": "An SBOM is not a vulnerability scan; no package is represented as audited or safe.",
     }
+    digest = hashlib.sha256(
+        json.dumps(first["components"], sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    assert {"name": "packageInventorySha256", "value": digest} in first["metadata"][
+        "properties"
+    ]
 
 
 def test_license_register_preserves_unknowns_and_separates_models_and_datasets():

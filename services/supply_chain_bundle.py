@@ -297,6 +297,11 @@ def _license_register(root, source_commit, sbom, node_lock):
             ),
         },
         "inputs": {
+            "sbom_component_inventory_sha256": next(
+                prop["value"]
+                for prop in sbom["metadata"]["properties"]
+                if prop["name"] == "packageInventorySha256"
+            ),
             "python_constraints_sha256": _sha(root / "constraints-ci.txt"),
             "pyproject_sha256": _sha(root / "pyproject.toml"),
             "npm_lock_sha256": _sha(root / "apps/clinician-web/package-lock.json"),
