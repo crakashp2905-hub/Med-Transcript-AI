@@ -6,9 +6,9 @@ Generated from the Python source tree. Runtime reachability is a static import a
 
 | Classification | Modules |
 | --- | ---: |
-| integrated-in-production-flow | 89 |
+| integrated-in-production-flow | 93 |
 | candidate-only | 12 |
-| test-only | 191 |
+| test-only | 202 |
 | documentation-only | 11 |
 
 ## Service modules
@@ -49,6 +49,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/artifact_scope.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/artifact_summary.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/__init__.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
+| `services/asr/ablation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/adapter.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/admission.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/adversarial_cases.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
@@ -70,6 +71,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/evaluation_contract.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/hypothesis_disagreement.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/lexicon_bias_eval.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/matched_ablation_runner.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/metamorphic.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/number_format.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/offline_smoke.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
@@ -87,6 +89,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/rover.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/segmentation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/subgroup_diagnostics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/subgroup_metrics.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/timeline.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/timestamps.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/transcripts.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -99,6 +102,9 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/audio_waveform.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/audit_integrity.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/baseline_summary.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/beccsv_ablations.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/beccsv_dataset.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/beccsv_metamorphic.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/benchmark_integrity.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/benchmark_progress.py` | `candidate-only` | not reachable from configured runtime roots or test imports |
 | `services/benchmark_provenance.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
@@ -151,14 +157,19 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/diarization_policy.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/doc_integrity.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/domain_contracts.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
+| `services/draft_grounding_metrics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/encounter_state.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/encrypted_backup.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/endpoint_policy.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/energy_metrics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/engineering_status.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/error_codes.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/error_taxonomy.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/evaluation.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
+| `services/evaluation_distribution.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
+| `services/evaluation_envelope.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/evaluation_method.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/evaluation_metrics.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/evidence_graph.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/evidence_io.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/expanded_summary.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
@@ -286,18 +297,22 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/safe_pytest.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/sbom.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/secret_scan.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/secure_storage.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/source_change_detector.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/source_coverage.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/speaker_comparison.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/speaker_results.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/speaker_review.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/stage_timing.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/statistical_acceptance.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/status_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/storage_lifecycle.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/storage_metrics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/stress_scenario.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/strict_json.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/study_analysis.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/study_dashboard.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/study_sensitivity.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/terminology_hints.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/throughput_measurement.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/turn_diagnostics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
