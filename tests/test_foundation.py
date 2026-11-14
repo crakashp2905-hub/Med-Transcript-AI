@@ -387,6 +387,33 @@ def test_legacy_database_migrates_without_losing_encounters(tmp_path):
         assert con.execute("SELECT id FROM encounters").fetchone()[0] == "legacy"
 
 
+def test_failed_schema_migration_rolls_back_schema_and_version(tmp_path, monkeypatch):
+    from services.api import storage
+
+    path = str(tmp_path / "failed-migration.sqlite3")
+    monkeypatch.setattr(
+        storage,
+        "MIGRATIONS",
+        (
+            MIGRATIONS[0],
+            "CREATE TABLE migration_partial (id INTEGER);\nINSERT INTO missing_table VALUES (1);",
+        ),
+    )
+    with pytest.raises(sqlite3.OperationalError):
+        Store(path)
+
+    with sqlite3.connect(path) as con:
+        assert con.execute("PRAGMA user_version").fetchone()[0] == 0
+        tables = {
+            row[0]
+            for row in con.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"
+            )
+        }
+    assert "migration_partial" not in tables
+    assert "encounters" not in tables
+
+
 def test_upload_ingest_end_to_end_and_duplicate_completion(setup):
     client, path, tokens = setup
     resource, upload, _, queued = queue_upload(client)
