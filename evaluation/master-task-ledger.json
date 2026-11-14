@@ -5507,9 +5507,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Select one falsifiable novel hypothesis: Bidirectional Evidence-Constrained Clinical State Verification (BECCSV), not generic \u201cmulti-agent medical AI\u201d.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "3f70a63b745cfc4396baabccdb85c97a2aa4e94f",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json", "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a", "check": "preregistered_falsifiable_beccsv_hypothesis", "status": "pass", "detail": "Protocol structure and deterministic graph tests passed. Empirical support is not established."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
+          "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
+          "check": "preregistered_falsifiable_beccsv_hypothesis",
+          "status": "pass",
+          "detail": "Protocol structure and deterministic graph tests passed. Empirical support is not established."
+        }
+      ],
       "blocker": "Independent acceptance cohort and qualified adjudication are unavailable; the protocol makes no efficacy claim."
     },
     {
@@ -5518,9 +5528,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Precisely specify the method: source-fact coverage, forward note entailment, relation consistency, temporal state and uncertainty-aware abstention.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "3f70a63b745cfc4396baabccdb85c97a2aa4e94f",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json", "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a", "check": "typed_bidirectional_method_specification", "status": "pass", "detail": "Source coverage, forward support, relation/state consistency and abstention rules are specified."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
+          "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
+          "check": "typed_bidirectional_method_specification",
+          "status": "pass",
+          "detail": "Source coverage, forward support, relation/state consistency and abstention rules are specified."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5529,9 +5549,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Differentiate BECCSV from ordinary rule checks and LLM self-checking by its typed graph and dual-direction completeness requirement.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "3f70a63b745cfc4396baabccdb85c97a2aa4e94f",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json", "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a", "check": "typed_graph_and_dual_direction_distinction", "status": "pass", "detail": "Protocol distinguishes omission coverage, unsupported-claim checks and typed state relations from rule-only or self-critique baselines."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
+          "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
+          "check": "typed_graph_and_dual_direction_distinction",
+          "status": "pass",
+          "detail": "Protocol distinguishes omission coverage, unsupported-claim checks and typed state relations from rule-only or self-critique baselines."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5540,9 +5570,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Write algorithm pseudocode, complexity, invariants, expected failure modes and testable mathematical predictions.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "3f70a63b745cfc4396baabccdb85c97a2aa4e94f",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json", "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a", "check": "algorithm_complexity_invariants_and_predictions", "status": "pass", "detail": "Pseudocode, expected linear graph complexity, invariants and falsifiable predictions are documented."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
+          "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
+          "check": "algorithm_complexity_invariants_and_predictions",
+          "status": "pass",
+          "detail": "Pseudocode, expected linear graph complexity, invariants and falsifiable predictions are documented."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5551,9 +5591,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Formalize source facts S, note claims N, support edges E and uncovered source/unsupported claim penalties.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "3f70a63b745cfc4396baabccdb85c97a2aa4e94f",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json", "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a", "check": "formal_source_note_graph_and_loss", "status": "pass", "detail": "S, N, typed E, uncovered-source penalty, unsupported-claim penalty and consistency mismatch terms are defined."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
+          "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
+          "check": "formal_source_note_graph_and_loss",
+          "status": "pass",
+          "detail": "S, N, typed E, uncovered-source penalty, unsupported-claim penalty and consistency mismatch terms are defined."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5562,9 +5612,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Define severity-weighted mismatch loss with explicit non-probabilistic weights and predeclared calibration plan.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "3f70a63b745cfc4396baabccdb85c97a2aa4e94f",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json", "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a", "check": "severity_weighted_loss_and_calibration_plan", "status": "pass", "detail": "Ordinal development weights are explicit, non-probabilistic and subject to pre-acceptance reviewer calibration."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
+          "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
+          "check": "severity_weighted_loss_and_calibration_plan",
+          "status": "pass",
+          "detail": "Ordinal development weights are explicit, non-probabilistic and subject to pre-acceptance reviewer calibration."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5573,9 +5633,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Define conservative abstention policy when evidence ambiguous, speakers conflict or model unavailable.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "3f70a63b745cfc4396baabccdb85c97a2aa4e94f",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json", "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a", "check": "conservative_abstention_policy", "status": "pass", "detail": "Ambiguity, conflicting speakers, stale evidence and provider failure remain findings; no verdict can clear approval gates."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
+          "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
+          "check": "conservative_abstention_policy",
+          "status": "pass",
+          "detail": "Ambiguity, conflicting speakers, stale evidence and provider failure remain findings; no verdict can clear approval gates."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5584,9 +5654,20 @@
       "priority": "P1",
       "status": "verified",
       "description": "Build deterministic graph-only implementation before adding LLM judgments to isolate mechanism.",
-      "evidence": ["services/evidence_graph.py", "services/review/relationships.py"],
+      "evidence": [
+        "services/evidence_graph.py",
+        "services/review/relationships.py"
+      ],
       "source_commit": "3f70a63b745cfc4396baabccdb85c97a2aa4e94f",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json", "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a", "check": "deterministic_graph_only_layer_before_llm", "status": "pass", "detail": "40 protocol, evidence-graph and relationship tests passed; graph validation does not require an LLM."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
+          "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
+          "check": "deterministic_graph_only_layer_before_llm",
+          "status": "pass",
+          "detail": "40 protocol, evidence-graph and relationship tests passed; graph validation does not require an LLM."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5595,9 +5676,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Introduce graph ablations: no inverse coverage, no temporal edge, no relation edge, no uncertainty, no rules, no local verifier.",
-      "evidence": ["evaluation/contracts/beccsv-ablation-matrix-v1.json"],
+      "evidence": [
+        "evaluation/contracts/beccsv-ablation-matrix-v1.json"
+      ],
       "source_commit": "3123c0e753bc54befaeb9ae5d534425e9dbc1f33",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-09-3123c0e.json", "report_sha256": "a155208d30049613f3ebecce5ed3d8133f0aaa75c27b992566c27c4f7e8cc823", "check": "single_feature_graph_ablation_matrix", "status": "pass", "detail": "Seven arms validate; six remove exactly one declared feature. No comparative model or clinical outcome was run."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-09-3123c0e.json",
+          "report_sha256": "a155208d30049613f3ebecce5ed3d8133f0aaa75c27b992566c27c4f7e8cc823",
+          "check": "single_feature_graph_ablation_matrix",
+          "status": "pass",
+          "detail": "Seven arms validate; six remove exactly one declared feature. No comparative model or clinical outcome was run."
+        }
+      ],
       "blocker": "Comparative ablation execution requires local verifier inference and an independent acceptance cohort; matrix remains declared_not_executed."
     },
     {
@@ -5606,9 +5697,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Keep standard baselines: plain SOAP template, ordinary LLM prompting, deterministic checks only, LLM-only self-critique and combined current approach.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "c9a668ef108e68ed304f6c7345722cc81d23be6e",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-10-c9a668e.json", "report_sha256": "baa5f876cc62d07e83ba477a1fcac334745586648d0b0ddd3863e6a53b465664", "check": "five_standard_clinical_note_baselines_preregistered", "status": "pass", "detail": "Protocol check asserts the SOAP, ordinary prompt, deterministic-only, LLM self-critique and combined baselines; no matched experiment has been run."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-10-c9a668e.json",
+          "report_sha256": "baa5f876cc62d07e83ba477a1fcac334745586648d0b0ddd3863e6a53b465664",
+          "check": "five_standard_clinical_note_baselines_preregistered",
+          "status": "pass",
+          "detail": "Protocol check asserts the SOAP, ordinary prompt, deterministic-only, LLM self-critique and combined baselines; no matched experiment has been run."
+        }
+      ],
       "blocker": "Matched empirical baseline comparisons require a frozen evaluation cohort and local model runtime; no result or superiority claim is available."
     },
     {
@@ -5628,9 +5729,20 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Use no test-case modifications after inspecting errors for final locked comparison; new development set is versioned.",
-      "evidence": ["evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json", "evaluation/datasets/beccsv-synthetic-dev-v1/lock.json"],
+      "evidence": [
+        "evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json",
+        "evaluation/datasets/beccsv-synthetic-dev-v1/lock.json"
+      ],
       "source_commit": "2a7ed32668f158cf17912cb28c81b95dfe150336",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-12-13-2a7ed32.json", "report_sha256": "4a4bc3b4777804c736dcf76ea9fdcd51b7bc606b6a972da56fe3822230162e98", "check": "versioned_locked_synthetic_development_set", "status": "pass", "detail": "Eight cases, source facts and expected mismatch labels are bound to an immutable manifest digest; edits require a new version."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-12-13-2a7ed32.json",
+          "report_sha256": "4a4bc3b4777804c736dcf76ea9fdcd51b7bc606b6a972da56fe3822230162e98",
+          "check": "versioned_locked_synthetic_development_set",
+          "status": "pass",
+          "detail": "Eight cases, source facts and expected mismatch labels are bound to an immutable manifest digest; edits require a new version."
+        }
+      ],
       "blocker": "This is a development cohort only. Independent acceptance cases and qualified adjudication are not available."
     },
     {
@@ -5639,9 +5751,20 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Construct synthetic scenario generator over clinically plausible entities but explicitly synthetic labels and no actual patient information.",
-      "evidence": ["services/beccsv_dataset.py", "evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json"],
+      "evidence": [
+        "services/beccsv_dataset.py",
+        "evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json"
+      ],
       "source_commit": "2a7ed32668f158cf17912cb28c81b95dfe150336",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-12-13-2a7ed32.json", "report_sha256": "4a4bc3b4777804c736dcf76ea9fdcd51b7bc606b6a972da56fe3822230162e98", "check": "deterministic_synthetic_scenario_generator", "status": "pass", "detail": "Five repeatable counterexamples cover medication-dose relations, polarity, subject attribution and temporality; all declare synthetic=true and clinical_gold=false."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-12-13-2a7ed32.json",
+          "report_sha256": "4a4bc3b4777804c736dcf76ea9fdcd51b7bc606b6a972da56fe3822230162e98",
+          "check": "deterministic_synthetic_scenario_generator",
+          "status": "pass",
+          "detail": "Five repeatable counterexamples cover medication-dose relations, polarity, subject attribution and temporality; all declare synthetic=true and clinical_gold=false."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5650,9 +5773,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Apply metamorphic testing: unit conversion, faithful paraphrase, clause order, temporal flip, swapped drug/dose, negation reversal and subject swap.",
-      "evidence": ["evaluation/reports/master-task-mta-11-14-d54a09f.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-11-14-d54a09f.json"
+      ],
       "source_commit": "d54a09fccd47b2554d722b3423f5251d81b6f45c",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-14-d54a09f.json", "report_sha256": "6a940ec3a405cf033d4f63efa701b9889f57dcff59cd136b0621247d1486fd38", "check": "seven_synthetic_metamorphic_transformations", "status": "pass", "detail": "14 focused tests passed; 5/7 metamorphic cases passed, with 2 semantics-preserving false alarms retained and zero missed semantic flips in this development set."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-14-d54a09f.json",
+          "report_sha256": "6a940ec3a405cf033d4f63efa701b9889f57dcff59cd136b0621247d1486fd38",
+          "check": "seven_synthetic_metamorphic_transformations",
+          "status": "pass",
+          "detail": "14 focused tests passed; 5/7 metamorphic cases passed, with 2 semantics-preserving false alarms retained and zero missed semantic flips in this development set."
+        }
+      ],
       "blocker": "The synthetic rule checker flags a faithful paraphrase and clause reordering; these false alarms remain open. The seven-case set does not establish clinical performance."
     },
     {
@@ -5661,9 +5794,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Pre-register primary outcome as critical unsafe-claim miss rate with false-alarm bound and full error denominators.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "64583c1d445b8cc667c5284cbb4583b58326c4af",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json", "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1", "check": "preregistered_primary_critical_miss_and_false_alarm_outcome", "status": "pass", "detail": "Primary paired consultation endpoint, false-alarm bound and failure-inclusive denominators are fixed in the protocol."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json",
+          "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1",
+          "check": "preregistered_primary_critical_miss_and_false_alarm_outcome",
+          "status": "pass",
+          "detail": "Primary paired consultation endpoint, false-alarm bound and failure-inclusive denominators are fixed in the protocol."
+        }
+      ],
       "blocker": "Outcome is preregistered but not measured; acceptance cohort and qualified reviewer approval are not available."
     },
     {
@@ -5672,9 +5815,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Pre-register a secondary outcome for source omission coverage and note claim provenance completeness.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "64583c1d445b8cc667c5284cbb4583b58326c4af",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json", "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1", "check": "preregistered_secondary_coverage_and_provenance_outcomes", "status": "pass", "detail": "Source omission coverage and note-claim provenance completeness are named secondary outcomes."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json",
+          "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1",
+          "check": "preregistered_secondary_coverage_and_provenance_outcomes",
+          "status": "pass",
+          "detail": "Source omission coverage and note-claim provenance completeness are named secondary outcomes."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5683,9 +5836,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Use uncertainty intervals clustered at original consultation, not at correlated clips or contaminated sibling perturbations.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "64583c1d445b8cc667c5284cbb4583b58326c4af",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json", "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1", "check": "consultation_clustered_uncertainty_plan", "status": "pass", "detail": "Original consultations are the resampling unit; clips and perturbation siblings remain within their consultation cluster."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json",
+          "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1",
+          "check": "consultation_clustered_uncertainty_plan",
+          "status": "pass",
+          "detail": "Original consultations are the resampling unit; clips and perturbation siblings remain within their consultation cluster."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5694,9 +5857,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Perform paired bootstrap or appropriate exact paired test; never claim significance from 6\u201312 developer cases.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md"
+      ],
       "source_commit": "64583c1d445b8cc667c5284cbb4583b58326c4af",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json", "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1", "check": "paired_consultation_bootstrap_and_small_n_rule", "status": "pass", "detail": "Paired consultation bootstrap and descriptive-only policy for 6–12 developer cases are specified."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json",
+          "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1",
+          "check": "paired_consultation_bootstrap_and_small_n_rule",
+          "status": "pass",
+          "detail": "Paired consultation bootstrap and descriptive-only policy for 6\u201312 developer cases are specified."
+        }
+      ],
       "blocker": "No independent acceptance cohort exists for the paired inferential analysis."
     },
     {
@@ -5705,9 +5878,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Include negative results, timeouts, aborted runs, changed datasets and potential contamination in research tables.",
-      "evidence": ["evaluation/reports/beccsv-negative-results-index-v1.json"],
+      "evidence": [
+        "evaluation/reports/beccsv-negative-results-index-v1.json"
+      ],
       "source_commit": "a76b56cbef20d67a771f4fb5e7af1166eff9171d",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json", "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373", "check": "failure_inclusive_research_results_index", "status": "pass", "detail": "Two synthetic false alarms are retained; not-run comparisons, timeouts and contamination-audit availability are explicitly distinguished from measured zero failures."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json",
+          "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373",
+          "check": "failure_inclusive_research_results_index",
+          "status": "pass",
+          "detail": "Two synthetic false alarms are retained; not-run comparisons, timeouts and contamination-audit availability are explicitly distinguished from measured zero failures."
+        }
+      ],
       "blocker": "No full baseline or ablation run has been executed; independent cohort contamination remains unaudited."
     },
     {
@@ -5716,9 +5899,20 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Do not introduce a novel-method success claim until it beats frozen baselines with predefined criteria and no increased false block burden.",
-      "evidence": ["docs/research/beccsv-protocol-v1.md", "evaluation/reports/beccsv-negative-results-index-v1.json"],
+      "evidence": [
+        "docs/research/beccsv-protocol-v1.md",
+        "evaluation/reports/beccsv-negative-results-index-v1.json"
+      ],
       "source_commit": "a76b56cbef20d67a771f4fb5e7af1166eff9171d",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json", "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373", "check": "success_claim_fail_closed_until_predefined_criteria", "status": "pass", "detail": "The report explicitly sets success_claim=false until frozen baselines, thresholds and false-block constraints are met."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json",
+          "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373",
+          "check": "success_claim_fail_closed_until_predefined_criteria",
+          "status": "pass",
+          "detail": "The report explicitly sets success_claim=false until frozen baselines, thresholds and false-block constraints are met."
+        }
+      ],
       "blocker": "No BECCSV baseline comparison exists, so no success criterion has been achieved."
     },
     {
@@ -5727,9 +5921,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Produce a reproducible technical paper draft with method diagrams, baselines, protocol, implementation and limitations.",
-      "evidence": ["docs/research/BECCSV-paper-draft-v0.1.md"],
+      "evidence": [
+        "docs/research/BECCSV-paper-draft-v0.1.md"
+      ],
       "source_commit": "a76b56cbef20d67a771f4fb5e7af1166eff9171d",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json", "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373", "check": "reproducible_systems_method_hypothesis_draft", "status": "pass", "detail": "Draft contains abstract, method diagram, baselines, implementation, protocol, synthetic result table and limitations."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json",
+          "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373",
+          "check": "reproducible_systems_method_hypothesis_draft",
+          "status": "pass",
+          "detail": "Draft contains abstract, method diagram, baselines, implementation, protocol, synthetic result table and limitations."
+        }
+      ],
       "blocker": "Systematic external literature review and independent acceptance results are not available; this is an internal draft, not a publication-ready efficacy paper."
     },
     {
@@ -5738,9 +5942,19 @@
       "priority": "P1",
       "status": "verified",
       "description": "Keep paper type clearly labelled systems/benchmark/method hypothesis; clinical efficacy requires independent subsequent studies.",
-      "evidence": ["docs/research/BECCSV-paper-draft-v0.1.md"],
+      "evidence": [
+        "docs/research/BECCSV-paper-draft-v0.1.md"
+      ],
       "source_commit": "a76b56cbef20d67a771f4fb5e7af1166eff9171d",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json", "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373", "check": "paper_type_and_clinical_efficacy_boundary", "status": "pass", "detail": "Draft identifies itself as a systems/method-hypothesis report and requires independent later studies for clinical efficacy."}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json",
+          "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373",
+          "check": "paper_type_and_clinical_efficacy_boundary",
+          "status": "pass",
+          "detail": "Draft identifies itself as a systems/method-hypothesis report and requires independent later studies for clinical efficacy."
+        }
+      ],
       "blocker": null
     },
     {
@@ -5749,9 +5963,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Build a central evaluation runner with provenance envelope: SHA, dataset, split, model, config, source code, runtime, hardware, status, wall time and limitations.",
-      "evidence": ["evaluation/reports/master-task-mta-12-01-04-e1e14ab.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json"
+      ],
       "source_commit": "e1e14ab3ca09939f7aedd1100df8f66b43906cac",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json", "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621", "check": "evaluation_envelope_and_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json",
+          "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621",
+          "check": "evaluation_envelope_and_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
     },
     {
@@ -5760,9 +5983,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Distinguish transport tests, model inference results, synthetic rule tests, public-mock ASR tests and independent clinical annotations.",
-      "evidence": ["evaluation/reports/master-task-mta-12-01-04-e1e14ab.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json"
+      ],
       "source_commit": "e1e14ab3ca09939f7aedd1100df8f66b43906cac",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json", "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621", "check": "evaluation_envelope_and_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json",
+          "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621",
+          "check": "evaluation_envelope_and_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
     },
     {
@@ -5771,9 +6003,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Validate every case in a manifest appears exactly once (or a declared failed sample) in metric denominators.",
-      "evidence": ["evaluation/reports/master-task-mta-12-01-04-e1e14ab.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json"
+      ],
       "source_commit": "e1e14ab3ca09939f7aedd1100df8f66b43906cac",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json", "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621", "check": "evaluation_envelope_and_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json",
+          "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621",
+          "check": "evaluation_envelope_and_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
     },
     {
@@ -5782,9 +6023,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Implement WER, CER, substitutions, deletions and insertions; use explicit word normalization frozen before testing.",
-      "evidence": ["evaluation/reports/master-task-mta-12-04-18-68c0368.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-04-18-68c0368.json"
+      ],
       "source_commit": "68c03686d2af1f2d1b53afb7eb16fcfe290df272",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-04-18-68c0368.json", "report_sha256": "fd35b6779c6e3b149de3ab7542a8d424c7a6f68aed84592a33d4af3ad5a68e6b", "check": "frozen_benchmark_comparison_and_extended_text_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-04-18-68c0368.json",
+          "report_sha256": "fd35b6779c6e3b149de3ab7542a8d424c7a6f68aed84592a33d4af3ad5a68e6b",
+          "check": "frozen_benchmark_comparison_and_extended_text_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "No independent clinical annotation; metrics do not establish clinical accuracy."
     },
     {
@@ -5793,9 +6043,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Score ASR by consultation, reference speaker role, noise condition, drug/dose/negation tokens and uncertainty region.",
-      "evidence": ["evaluation/reports/master-task-mta-12-05-ebe85a0.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-05-ebe85a0.json"
+      ],
       "source_commit": "ebe85a05edf9c61f36e183ebd6d5c07223c3d105",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-05-ebe85a0.json", "report_sha256": "fbc30320ab68179f847857ad67d7db66d7177d06a8ab91df4c95afabd0bb862b", "check": "asr_subgroup_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-05-ebe85a0.json",
+          "report_sha256": "fbc30320ab68179f847857ad67d7db66d7177d06a8ab91df4c95afabd0bb862b",
+          "check": "asr_subgroup_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Clinical-term score coverage depends on explicitly annotated manifest terms; independent clinical validity is not established."
     },
     {
@@ -5804,9 +6063,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Score diarization with DER, JER, missed speech, confusion, overlap and role misattribution.",
-      "evidence": ["evaluation/reports/master-task-mta-12-06-c7756d6.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-06-c7756d6.json"
+      ],
       "source_commit": "c7756d6855f23b1a8644ffbecd84a0a9ea17f997",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-06-c7756d6.json", "report_sha256": "c7aff20476938c54fff691d176f1f9a77272fdff5f9093136f4a9221605ad387", "check": "diarization_error_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-06-c7756d6.json",
+          "report_sha256": "c7aff20476938c54fff691d176f1f9a77272fdff5f9093136f4a9221605ad387",
+          "check": "diarization_error_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Current diarizer outputs anonymous clusters; role labels and independent adjudication remain unavailable."
     },
     {
@@ -5815,9 +6083,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Score clinical extraction fact precision/recall/F1, subject/negation/temporal/medication-attribute exact match and omission count.",
-      "evidence": ["evaluation/reports/master-task-mta-12-07-62615b1.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-07-62615b1.json"
+      ],
       "source_commit": "62615b1fc43c98043682aa85547d94ac3eb7474a",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-07-62615b1.json", "report_sha256": "88e42f473948c3ccb360bc57b009045913df4307e86fce33bce8ca11b7e690a4", "check": "clinical_fact_and_medication_attribute_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-07-62615b1.json",
+          "report_sha256": "88e42f473948c3ccb360bc57b009045913df4307e86fce33bce8ca11b7e690a4",
+          "check": "clinical_fact_and_medication_attribute_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Independent clinical fact annotations and performance evidence remain unavailable."
     },
     {
@@ -5826,9 +6103,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Score verification critical miss rate, safe-case false alert rate, timeouts, abstentions and coverage.",
-      "evidence": ["evaluation/reports/master-task-mta-12-08-8f7c8ca.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-08-8f7c8ca.json"
+      ],
       "source_commit": "8f7c8cab582ebd7ce726fbf426092c6fc5565f72",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-08-8f7c8ca.json", "report_sha256": "a8ebcba892197f2bf8a031e49b54a7ca1904a80b9e3f8dfe7d74d2e8b0a6d542", "check": "verification_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-08-8f7c8ca.json",
+          "report_sha256": "a8ebcba892197f2bf8a031e49b54a7ca1904a80b9e3f8dfe7d74d2e8b0a6d542",
+          "check": "verification_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Independent clinical operating characteristics remain unmeasured."
     },
     {
@@ -5837,9 +6123,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Score grounded drafts with factual precision, material source recall, number of unsupported claims, and dangerous transformation count.",
-      "evidence": ["evaluation/reports/master-task-mta-12-09-9719e79.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-09-9719e79.json"
+      ],
       "source_commit": "9719e79d90ffb6c9d26ce76a314c09f5f51b7023",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-09-9719e79.json", "report_sha256": "e164efda11fb3022b83a47777f1afa6ce7ab4f1dc611be289996f2f4dcfad189", "check": "grounded_draft_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-09-9719e79.json",
+          "report_sha256": "e164efda11fb3022b83a47777f1afa6ce7ab4f1dc611be289996f2f4dcfad189",
+          "check": "grounded_draft_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Independent human judgments of grounded note quality and dangerous changes remain unavailable."
     },
     {
@@ -5848,9 +6143,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Report worst-slice results and distribution quantiles; overall mean alone is insufficient.",
-      "evidence": ["evaluation/reports/master-task-mta-12-10-013a31d.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-10-013a31d.json"
+      ],
       "source_commit": "013a31d8547df7bf3da580990e650d5a8e0f655e",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-10-013a31d.json", "report_sha256": "b9b9f81e3e00efe592b13b216778f8bec1aec8214e3a6c59a38aefa891bad654", "check": "evaluation_distribution_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-10-013a31d.json",
+          "report_sha256": "b9b9f81e3e00efe592b13b216778f8bec1aec8214e3a6c59a38aefa891bad654",
+          "check": "evaluation_distribution_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "No independent acceptance cohort or adjudicated role/noise labels are available."
     },
     {
@@ -5859,9 +6163,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Define primary outcome, minimum effect size, false-block limit and abstention expectations before new runs.",
-      "evidence": ["evaluation/reports/master-task-mta-12-11-13-a9242c1.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-11-13-a9242c1.json"
+      ],
       "source_commit": "a9242c101f6ecda5aa1c147a7e68df40b8c94a22",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-11-13-a9242c1.json", "report_sha256": "9ef5524c6c883a0cad62ce617c27520286fbbbfcc76db424de5b273e35f46844", "check": "preregistered_outcomes_paired_intervals_and_calibration_policy", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-11-13-a9242c1.json",
+          "report_sha256": "9ef5524c6c883a0cad62ce617c27520286fbbbfcc76db424de5b273e35f46844",
+          "check": "preregistered_outcomes_paired_intervals_and_calibration_policy",
+          "status": "pass"
+        }
+      ],
       "blocker": "Independent reviewer approval and adequately sized acceptance data remain unavailable."
     },
     {
@@ -5870,9 +6183,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Use paired confidence intervals when comparing systems on same original consultation; bootstrap over distinct consultations.",
-      "evidence": ["evaluation/reports/master-task-mta-12-11-13-a9242c1.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-11-13-a9242c1.json"
+      ],
       "source_commit": "a9242c101f6ecda5aa1c147a7e68df40b8c94a22",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-11-13-a9242c1.json", "report_sha256": "9ef5524c6c883a0cad62ce617c27520286fbbbfcc76db424de5b273e35f46844", "check": "preregistered_outcomes_paired_intervals_and_calibration_policy", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-11-13-a9242c1.json",
+          "report_sha256": "9ef5524c6c883a0cad62ce617c27520286fbbbfcc76db424de5b273e35f46844",
+          "check": "preregistered_outcomes_paired_intervals_and_calibration_policy",
+          "status": "pass"
+        }
+      ],
       "blocker": "Independent reviewer approval and adequately sized acceptance data remain unavailable."
     },
     {
@@ -5881,9 +6203,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Include reliability curves only if probability-like confidence outputs are genuine and independently labeled.",
-      "evidence": ["evaluation/reports/master-task-mta-12-11-13-a9242c1.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-11-13-a9242c1.json"
+      ],
       "source_commit": "a9242c101f6ecda5aa1c147a7e68df40b8c94a22",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-11-13-a9242c1.json", "report_sha256": "9ef5524c6c883a0cad62ce617c27520286fbbbfcc76db424de5b273e35f46844", "check": "preregistered_outcomes_paired_intervals_and_calibration_policy", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-11-13-a9242c1.json",
+          "report_sha256": "9ef5524c6c883a0cad62ce617c27520286fbbbfcc76db424de5b273e35f46844",
+          "check": "preregistered_outcomes_paired_intervals_and_calibration_policy",
+          "status": "pass"
+        }
+      ],
       "blocker": "Independent reviewer approval and adequately sized acceptance data remain unavailable."
     },
     {
@@ -5892,9 +6223,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Add power/sensitivity simulation for eventual human study without pretending such a study occurred.",
-      "evidence": ["evaluation/reports/master-task-mta-12-14-2aa42ca.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-14-2aa42ca.json"
+      ],
       "source_commit": "2aa42ca3f5b21db1558144111cf1e92449ca09e6",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-14-2aa42ca.json", "report_sha256": "b8bf45947ebc048ece012cc2bccdfef284df89d54d1d28462e4cc6f96af248ce", "check": "hypothetical_paired_sensitivity_simulation", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-14-2aa42ca.json",
+          "report_sha256": "b8bf45947ebc048ece012cc2bccdfef284df89d54d1d28462e4cc6f96af248ce",
+          "check": "hypothetical_paired_sensitivity_simulation",
+          "status": "pass"
+        }
+      ],
       "blocker": "Scenario probabilities are assumptions, not independently estimated clinical rates."
     },
     {
@@ -5903,9 +6243,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Measure p50/p95 stages and successful completion rate; failed runs counted separately and excluded from speed averages only with explicit denominator.",
-      "evidence": ["evaluation/reports/master-task-mta-12-15-9b7f285.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-15-9b7f285.json"
+      ],
       "source_commit": "9b7f285175a9bfcd77ff76dcc987a37f9e7f39cb",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-15-9b7f285.json", "report_sha256": "7d4e24ed5cae39fa189327ccdb0526dbb9bc10fe6a821372abed3113ca94bd5f", "check": "workflow_latency_and_completion_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-15-9b7f285.json",
+          "report_sha256": "7d4e24ed5cae39fa189327ccdb0526dbb9bc10fe6a821372abed3113ca94bd5f",
+          "check": "workflow_latency_and_completion_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Product-stage instrumentation and actual encounter timing data remain to be connected."
     },
     {
@@ -5914,9 +6263,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Measure local electricity/hardware estimates with real power assumptions and annotate unknown values.",
-      "evidence": ["evaluation/reports/master-task-mta-12-16-4dcf8ab.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-16-4dcf8ab.json"
+      ],
       "source_commit": "4dcf8ab07fc7263c0ddf7dff079a46f6f5899cd3",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-16-4dcf8ab.json", "report_sha256": "cd3cbbe9febec2a8c3ef1ead78248bdb723555c6e80f79dc40d915c9f5ec3a4d", "check": "energy_evidence_class_and_unknown_handling", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-16-4dcf8ab.json",
+          "report_sha256": "cd3cbbe9febec2a8c3ef1ead78248bdb723555c6e80f79dc40d915c9f5ec3a4d",
+          "check": "energy_evidence_class_and_unknown_handling",
+          "status": "pass"
+        }
+      ],
       "blocker": "No on-device wattmeter or verified telemetry was available; actual workload energy remains unmeasured."
     },
     {
@@ -5925,9 +6283,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Record separate per-encounter storage growth, retained audio size and deletion footprint.",
-      "evidence": ["evaluation/reports/master-task-mta-12-17-96cf84f.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-17-96cf84f.json"
+      ],
       "source_commit": "96cf84fc80e431d1e395b35c1a873827413d9e38",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-17-96cf84f.json", "report_sha256": "a829b71b03e7fc31b5b556206b0ccb76ec33b90de60786834eb0d050bce6be5b", "check": "local_storage_snapshot_and_deletion_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-17-96cf84f.json",
+          "report_sha256": "a829b71b03e7fc31b5b556206b0ccb76ec33b90de60786834eb0d050bce6be5b",
+          "check": "local_storage_snapshot_and_deletion_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "Lifecycle instrumentation, retention-worker integration and secure-erasure evidence remain outstanding."
     },
     {
@@ -5936,9 +6303,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Compare unchanged frozen benchmark and candidate methods without cross-benchmark ranking shortcuts.",
-      "evidence": ["evaluation/reports/master-task-mta-12-04-18-68c0368.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-04-18-68c0368.json"
+      ],
       "source_commit": "68c03686d2af1f2d1b53afb7eb16fcfe290df272",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-04-18-68c0368.json", "report_sha256": "fd35b6779c6e3b149de3ab7542a8d424c7a6f68aed84592a33d4af3ad5a68e6b", "check": "frozen_benchmark_comparison_and_extended_text_metrics", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-04-18-68c0368.json",
+          "report_sha256": "fd35b6779c6e3b149de3ab7542a8d424c7a6f68aed84592a33d4af3ad5a68e6b",
+          "check": "frozen_benchmark_comparison_and_extended_text_metrics",
+          "status": "pass"
+        }
+      ],
       "blocker": "No new matched candidate runs were produced; comparator tests validate the boundary only."
     },
     {
@@ -5947,9 +6323,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Add test that any 5% WER policy relaxation or result rounding triggers hard failure.",
-      "evidence": ["evaluation/reports/master-task-mta-12-19-20-808d2c0.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-19-20-808d2c0.json"
+      ],
       "source_commit": "808d2c0aeddb8c45d5ac6e31c7571bd58f09c9c6",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-19-20-808d2c0.json", "report_sha256": "d91ddf3a86734667e767cd171a872288f3f74d1951ed0615056cecf47b23eb41", "check": "strict_wer_and_paired_statistical_gate", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-19-20-808d2c0.json",
+          "report_sha256": "d91ddf3a86734667e767cd171a872288f3f74d1951ed0615056cecf47b23eb41",
+          "check": "strict_wer_and_paired_statistical_gate",
+          "status": "pass"
+        }
+      ],
       "blocker": "Qualified clinical/statistical review is still needed to set the actual adequacy threshold and interpret outcomes."
     },
     {
@@ -5958,9 +6343,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Add fail-closed statistical endpoint if no adequate paired sample, missing CI bounds, or outcome definition drift.",
-      "evidence": ["evaluation/reports/master-task-mta-12-19-20-808d2c0.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-19-20-808d2c0.json"
+      ],
       "source_commit": "808d2c0aeddb8c45d5ac6e31c7571bd58f09c9c6",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-19-20-808d2c0.json", "report_sha256": "d91ddf3a86734667e767cd171a872288f3f74d1951ed0615056cecf47b23eb41", "check": "strict_wer_and_paired_statistical_gate", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-19-20-808d2c0.json",
+          "report_sha256": "d91ddf3a86734667e767cd171a872288f3f74d1951ed0615056cecf47b23eb41",
+          "check": "strict_wer_and_paired_statistical_gate",
+          "status": "pass"
+        }
+      ],
       "blocker": "Qualified clinical/statistical review is still needed to set the actual adequacy threshold and interpret outcomes."
     },
     {
@@ -5969,9 +6363,20 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Write machine-readable leaderboard for development only, with all no-result models still visible as unavailable.",
-      "evidence": ["evaluation/reports/master-task-mta-12-21-22-dc3755d.json", "evaluation/leaderboard-eval-v2.json", "evaluation/leaderboard-eval-v2.svg"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-21-22-dc3755d.json",
+        "evaluation/leaderboard-eval-v2.json",
+        "evaluation/leaderboard-eval-v2.svg"
+      ],
       "source_commit": "72ee203b1db56450b1e00c1f95dfabf8b0670588",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-21-22-dc3755d.json", "report_sha256": "0e3e9a6fc442f9bd129b306839524787e3261c84c4e998e0469a7faaa2a557c0", "check": "development_leaderboard_and_chart_json_parity", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-21-22-dc3755d.json",
+          "report_sha256": "0e3e9a6fc442f9bd129b306839524787e3261c84c4e998e0469a7faaa2a557c0",
+          "check": "development_leaderboard_and_chart_json_parity",
+          "status": "pass"
+        }
+      ],
       "blocker": "Development evidence only; no independent clinical cohort or eligible model meeting the 5% gate."
     },
     {
@@ -5980,9 +6385,20 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Generate tables and plots reproducibly from raw reports and validate chart numbers against JSON.",
-      "evidence": ["evaluation/reports/master-task-mta-12-21-22-dc3755d.json", "evaluation/leaderboard-eval-v2.json", "evaluation/leaderboard-eval-v2.svg"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-21-22-dc3755d.json",
+        "evaluation/leaderboard-eval-v2.json",
+        "evaluation/leaderboard-eval-v2.svg"
+      ],
       "source_commit": "72ee203b1db56450b1e00c1f95dfabf8b0670588",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-21-22-dc3755d.json", "report_sha256": "0e3e9a6fc442f9bd129b306839524787e3261c84c4e998e0469a7faaa2a557c0", "check": "development_leaderboard_and_chart_json_parity", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-21-22-dc3755d.json",
+          "report_sha256": "0e3e9a6fc442f9bd129b306839524787e3261c84c4e998e0469a7faaa2a557c0",
+          "check": "development_leaderboard_and_chart_json_parity",
+          "status": "pass"
+        }
+      ],
       "blocker": "Development evidence only; no independent clinical cohort or eligible model meeting the 5% gate."
     },
     {
@@ -5991,9 +6407,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Publish a reproducibility pack with benchmark manifests, source code hashes, exact commands and limitations.",
-      "evidence": ["evaluation/reports/master-task-mta-12-23-a7553b2.json", "evaluation/reproducibility-pack-v2.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-23-a7553b2.json",
+        "evaluation/reproducibility-pack-v2.json"
+      ],
       "source_commit": "a61086de6c225fd8efc2c84074c542fe0014e955",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-23-a7553b2.json", "report_sha256": "265d9cf563efc3e5bab36f2eb51f9902567522acca0849d660b696a2b02f9c5d", "check": "reproducibility_pack_hash_integrity_and_coverage", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-23-a7553b2.json",
+          "report_sha256": "265d9cf563efc3e5bab36f2eb51f9902567522acca0849d660b696a2b02f9c5d",
+          "check": "reproducibility_pack_hash_integrity_and_coverage",
+          "status": "pass"
+        }
+      ],
       "blocker": "The reproducibility capture was made from a worktree with concurrent outstanding changes; the exact source commit and artifact hashes are recorded."
     },
     {
@@ -6002,9 +6428,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Explicitly report inability to estimate real clinical sensitivity, clinician productivity and safety without external evidence.",
-      "evidence": ["evaluation/reports/master-task-mta-12-24-c8efce7.json", "evaluation/contracts/clinical-evidence-boundary-v1.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-12-24-c8efce7.json",
+        "evaluation/contracts/clinical-evidence-boundary-v1.json"
+      ],
       "source_commit": "c8efce793bbb7eb7da2748b72c7689f21d5a17c6",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-24-c8efce7.json", "report_sha256": "2525972c30829e70946b41ec86768a7b3f0f987ba98e45ab55bc992e5e31881e", "check": "explicit_clinical_evidence_boundary", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-12-24-c8efce7.json",
+          "report_sha256": "2525972c30829e70946b41ec86768a7b3f0f987ba98e45ab55bc992e5e31881e",
+          "check": "explicit_clinical_evidence_boundary",
+          "status": "pass"
+        }
+      ],
       "blocker": "Qualified reviewers, independent clinical annotations and a prospective clinician pilot are not available."
     },
     {
@@ -6013,9 +6449,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Threat-model upload, browser storage, local API, worker, model prompt, clinical note, audit and export flows.",
-      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"
+      ],
       "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
+          "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
+          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
+          "status": "pass"
+        }
+      ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
@@ -6024,9 +6469,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Add explicit untrusted-transcript policy; spoken instructions to the model cannot override rules or become tool execution.",
-      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"
+      ],
       "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
+          "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
+          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
+          "status": "pass"
+        }
+      ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
@@ -6035,9 +6489,18 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Test prompt injection and hidden instruction in audio transcript, quoted doctor-patient text and filenames.",
-      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"
+      ],
       "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
+          "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
+          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
+          "status": "pass"
+        }
+      ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
@@ -6110,12 +6573,21 @@
       "id": "MTA-13-10",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Ensure model outputs cannot force approval, suppress critical warnings or change immutable source hashes.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-10-963c619.json"
+      ],
+      "source_commit": "45b29e5696f068b61d26d1c5b66c84bb25f7a97f",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-10-963c619.json",
+          "report_sha256": "ba39bc01976b06a42e4c0523003e1ee572226e6d62f91b5e6ef4090d060ae1e4",
+          "check": "model_authority_capability_scope_and_evidence_integrity",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Full endpoint/background-worker matrix and the Windows verifier fail-closed integration run remain unverified; no external security audit."
     },
     {
       "id": "MTA-13-11",
@@ -6211,9 +6683,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Map threats and test cases to the current OWASP LLM Top 10 risk classes without claiming OWASP certification.",
-      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"
+      ],
       "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
+          "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
+          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
+          "status": "pass"
+        }
+      ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
@@ -6233,9 +6714,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Use synthetic patient material only until institutional permissions and independent review exist.",
-      "evidence": ["evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json"
+      ],
       "source_commit": "b7a5d9caf886ae0d3a594e163bd963e855d97084",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json", "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f", "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
+          "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
+          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
+          "status": "pass"
+        }
+      ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
     },
     {
