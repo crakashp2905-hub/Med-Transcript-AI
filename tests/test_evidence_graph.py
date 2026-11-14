@@ -298,3 +298,97 @@ def test_approved_export_graph_rejects_hash_chain_and_source_mismatches():
                 "note_sha256": content_sha256(changed_note),
             }
         )
+
+
+def test_amended_export_graph_binds_parent_note_hash_and_amendment_reason():
+    transcript = {
+        "id": "transcript-v1",
+        "encounter_id": "encounter-1",
+        "audio_asset_id": "audio-1",
+        "input_sha256": "a" * 64,
+        "segments": [{"segment_id": "segment-1", "text": "Patient reports cough."}],
+    }
+    evidence = {
+        "segment_id": "segment-1",
+        "start_char": 0,
+        "end_char": 22,
+        "quote": "Patient reports cough.",
+    }
+    fact = {
+        "fact_id": "fact-1",
+        "origin": "source_linked",
+        "evidence": evidence,
+        "excluded": False,
+    }
+    statement = {
+        "statement_id": "statement-1",
+        "fact_ids": ["fact-1"],
+        "origin": "source_linked",
+        "source_version_id": transcript["id"],
+        "evidence": evidence,
+    }
+    parent_note = {
+        "id": "note-v1",
+        "version": 1,
+        "encounter_id": "encounter-1",
+        "parent_version_id": None,
+        "transcript_version_id": transcript["id"],
+        "transcript_sha256": content_sha256(transcript),
+        "amendment_reason": "",
+        "facts": [fact],
+        "sections": [{"key": "subjective", "statements": [statement]}],
+    }
+    parent_sha256 = content_sha256(parent_note)
+    amended_note = {
+        **parent_note,
+        "id": "note-v2",
+        "version": 2,
+        "parent_version_id": parent_note["id"],
+        "amendment_reason": "Correct the source-linked symptom statement.",
+    }
+    note_sha256 = content_sha256(amended_note)
+    transcript_sha256 = content_sha256(transcript)
+    approval = {
+        "id": "approval-v2",
+        "note_version_id": amended_note["id"],
+        "note_sha256": note_sha256,
+        "transcript_version_id": transcript["id"],
+        "transcript_sha256": transcript_sha256,
+    }
+
+    graph = validate_approved_export(
+        transcript=transcript,
+        transcript_sha256=transcript_sha256,
+        note=amended_note,
+        note_sha256=note_sha256,
+        approval=approval,
+        export_id="export-v2",
+        artifact_sha256="b" * 64,
+        amendment_parent=parent_note,
+        amendment_parent_sha256=parent_sha256,
+    )
+
+    assert {
+        "from": "note-v1",
+        "to": "note-v2",
+        "type": "parent_note_to_amendment",
+    } in graph["edges"]
+    assert graph["amendment"]["parent_note_sha256"] == parent_sha256
+    assert graph["amendment"]["reason_sha256"] == content_sha256(
+        {"reason": amended_note["amendment_reason"]}
+    )
+    assert graph["hashes"]["note_sha256"] == note_sha256
+    assert graph["complete_to_export"] is True
+
+    with pytest.raises(ValueError, match="evidence_graph_amendment_parent_invalid"):
+        validate_approved_export(
+            transcript=transcript,
+            transcript_sha256=transcript_sha256,
+            note=amended_note,
+            note_sha256=note_sha256,
+            approval=approval,
+            export_id="export-v2",
+            artifact_sha256="b" * 64,
+            amendment_parent=parent_note,
+            amendment_parent_sha256="c" * 64,
+        )

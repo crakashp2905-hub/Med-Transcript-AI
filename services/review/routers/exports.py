@@ -33,6 +33,28 @@ def register(app, services: ReviewService):
     current = services.current
     replay = services.replay
 
+    def evidence_graph(con, eid, tx, tr, note, nr, approval, export_id, digest):
+        parent_id = note.get("parent_version_id")
+        parent_row = parent_note = None
+        if parent_id is not None:
+            try:
+                parent_row, parent_note = document(con, eid, parent_id)
+            except HTTPException:
+                raise HTTPException(
+                    409, "approved_artifact_integrity_failure"
+                ) from None
+        return validate_approved_export(
+            transcript=tx,
+            transcript_sha256=tr["sha256"],
+            note=note,
+            note_sha256=nr["sha256"],
+            approval=approval,
+            export_id=export_id,
+            artifact_sha256=digest,
+            amendment_parent=parent_note,
+            amendment_parent_sha256=parent_row["sha256"] if parent_row else None,
+        )
+
     @app.post("/v1/encounters/{eid}/exports", status_code=201)
     @idempotent(database, replay, "POST:/v1/encounters/{eid}/exports")
     def export(
@@ -77,14 +99,16 @@ def register(app, services: ReviewService):
                 ):
                     raise HTTPException(409, "approved_artifact_integrity_failure")
                 try:
-                    graph = validate_approved_export(
-                        transcript=tx,
-                        transcript_sha256=tr["sha256"],
-                        note=note,
-                        note_sha256=nr["sha256"],
-                        approval=approval,
-                        export_id=existing["id"],
-                        artifact_sha256=existing["sha256"],
+                    graph = evidence_graph(
+                        con,
+                        eid,
+                        tx,
+                        tr,
+                        note,
+                        nr,
+                        approval,
+                        existing["id"],
+                        existing["sha256"],
                     )
                 except ValueError:
                     raise HTTPException(
@@ -108,14 +132,8 @@ def register(app, services: ReviewService):
             artifact = render_export(note, approval, body.format, source)
             digest = hashlib.sha256(artifact.encode("utf-8")).hexdigest()
             try:
-                graph = validate_approved_export(
-                    transcript=tx,
-                    transcript_sha256=tr["sha256"],
-                    note=note,
-                    note_sha256=nr["sha256"],
-                    approval=approval,
-                    export_id=xid,
-                    artifact_sha256=digest,
+                graph = evidence_graph(
+                    con, eid, tx, tr, note, nr, approval, xid, digest
                 )
             except ValueError:
                 raise HTTPException(
@@ -182,14 +200,16 @@ def register(app, services: ReviewService):
                 recheck = current_safety_recheck(note, tx, verification)
                 if recheck and recheck["gate"] == "blocked":
                     raise HTTPException(409, "current_safety_review_required")
-                graph = validate_approved_export(
-                    transcript=tx,
-                    transcript_sha256=tr["sha256"],
-                    note=note,
-                    note_sha256=nr["sha256"],
-                    approval=approval_body(con, sealed),
-                    export_id=row["id"],
-                    artifact_sha256=row["sha256"],
+                graph = evidence_graph(
+                    con,
+                    eid,
+                    tx,
+                    tr,
+                    note,
+                    nr,
+                    approval_body(con, sealed),
+                    row["id"],
+                    row["sha256"],
                 )
             except HTTPException:
                 raise

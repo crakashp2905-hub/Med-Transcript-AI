@@ -166,6 +166,8 @@ def validate_approved_export(
     approval,
     export_id,
     artifact_sha256,
+    amendment_parent=None,
+    amendment_parent_sha256=None,
 ):
     """Validate source→fact→note→export edges and their immutable hash chain."""
     if (
@@ -183,6 +185,20 @@ def validate_approved_export(
     ):
         raise ValueError("evidence_graph_hash_chain_invalid")
 
+    parent_id = note.get("parent_version_id")
+    if parent_id is None:
+        if amendment_parent is not None or amendment_parent_sha256 is not None:
+            raise ValueError("evidence_graph_unexpected_amendment_parent")
+    elif (
+        amendment_parent is None
+        or not isinstance(amendment_parent_sha256, str)
+        or amendment_parent.get("id") != parent_id
+        or content_sha256(amendment_parent) != amendment_parent_sha256
+        or amendment_parent.get("encounter_id") != note.get("encounter_id")
+        or amendment_parent.get("id") == note.get("id")
+    ):
+        raise ValueError("evidence_graph_amendment_parent_invalid")
+
     facts = {str(fact.get("fact_id")): fact for fact in note.get("facts", [])}
     if len(facts) != len(note.get("facts", [])):
         raise ValueError("evidence_graph_duplicate_fact")
@@ -191,6 +207,14 @@ def validate_approved_export(
     ]
     graph = validate_proposal(transcript, source_facts)
     edges = list(graph["edges"])
+    if parent_id is not None:
+        edges.append(
+            {
+                "from": str(parent_id),
+                "to": str(note["id"]),
+                "type": "parent_note_to_amendment",
+            }
+        )
     seen_facts = set()
     clinician_entered_fact_ids = []
     manual_no_audio_evidence_fact_ids = []
@@ -279,6 +303,15 @@ def validate_approved_export(
         "note_version_id": note["id"],
         "approval_id": approval["id"],
         "export_id": str(export_id),
+        "amendment": None
+        if parent_id is None
+        else {
+            "parent_note_version_id": str(parent_id),
+            "parent_note_sha256": amendment_parent_sha256,
+            "reason_sha256": content_sha256(
+                {"reason": note.get("amendment_reason", "")}
+            ),
+        },
         "clinician_entered_fact_ids": sorted(set(clinician_entered_fact_ids)),
         "manual_no_audio_evidence_fact_ids": sorted(
             set(manual_no_audio_evidence_fact_ids)
