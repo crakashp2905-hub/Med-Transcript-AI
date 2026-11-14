@@ -7462,110 +7462,230 @@
       "id": "MTA-15-01",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Write PRD v1 with target job-to-be-done: clinician reviews an evidence-linked English encounter note faster and safer.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "product_strategy_contract",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-02",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define explicit non-goals: autonomous diagnosis, prescriptions, unsupervised patient deployment, radiology, MRI/X-ray, multilingual and TTS.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "product_strategy_contract",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-03",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create synthetic persona profiles: general physician, clinical scribe, practice administrator, compliance officer and patient records recipient.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "product_strategy_contract",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-04",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Construct end-to-end job maps for pre-visit, recording, during visit, correction, sign-off and EHR handoff.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "product_strategy_contract",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-05",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define user problem statements with testable hypotheses; mark all statements derived from internal assumptions.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "product_strategy_contract",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-06",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create customer journey map with where latency, transcription noise, uncertainty and missing source impede trust.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "product_strategy_contract",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-07",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "List top 20 user stories as `As a ... I need ... so that ...`, with Given/When/Then acceptance tests.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "user_story_acceptance_examples",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-08",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create comprehensive product feature inventory: must-have, should-have, could-have, excluded.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "product_strategy_contract",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-09",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Use RICE or weighted scoring with transparent hypothetical inputs; label prioritization scores as simulations.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "prioritization_roadmap_boundaries",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-10",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Publish risk-adjusted roadmap based on clinical harm, product value, effort and dependency rather than number of agents.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "evaluation/contracts/product-strategy-v1.json",
+        "tests/test_product_strategy.py",
+        "evaluation/reports/master-task-mta-15-01-10-b1a721c.json"
+      ],
+      "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-01-10-b1a721c.json",
+          "report_sha256": "54273e070a1ee4c3300efa6bceb0f71ecab1b7e60b2e717b45804991fbad7f55",
+          "check": "prioritization_roadmap_boundaries",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

@@ -1,0 +1,51 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_group": [
+    "MTA-15-01",
+    "MTA-15-02",
+    "MTA-15-03",
+    "MTA-15-04",
+    "MTA-15-05",
+    "MTA-15-06",
+    "MTA-15-07",
+    "MTA-15-08",
+    "MTA-15-09",
+    "MTA-15-10"
+  ],
+  "source_commit": "b1a721c50359586709d41e0d6dd9a04eb855fb00",
+  "source_files": {
+    "docs/product/product-requirements-v1.md": "fc94174883e92afcf160d35f81ed8baaf3aaf935cf4c1e68d103e54904d872da",
+    "evaluation/contracts/product-strategy-v1.json": "250185d884bab55e966588321bb4b8fd93a6435d9286f9428d17e59df72a9c27",
+    "tests/test_product_strategy.py": "4eaf67e753ca3e473b27b6d0ab5f1d41e450d7c6b925cd6ccad20489670a63f7"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_command": "python -m pytest -q tests/test_product_strategy.py",
+    "test_result": "3 passed",
+    "lint_command": "ruff check tests/test_product_strategy.py",
+    "lint_result": "All checks passed"
+  },
+  "runtime_sha256": "f3b22c6276577ade6624e453f15b5d967e46973d5c7fad9bf8d69a8718576f0d",
+  "checks": {
+    "product_strategy_contract": {
+      "status": "pass",
+      "detail": "The PRD contract covers JTBD, non-goals, five synthetic personas, seven workflow stages, five explicitly assumed hypotheses, journey frictions, and first ten task IDs."
+    },
+    "user_story_acceptance_examples": {
+      "status": "pass",
+      "detail": "20 user stories include Given/When/Then prototype acceptance examples."
+    },
+    "prioritization_roadmap_boundaries": {
+      "status": "pass",
+      "detail": "RICE inputs are labeled hypothetical; roadmap uses clinical harm, product value, effort and dependency and does not claim patient authorization."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "Product assumptions are synthetic/internal; no interviews, clinical observations, independent review, purchase-intent evidence, or market validation were performed.",
+    "No real-patient processing is authorized."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}
