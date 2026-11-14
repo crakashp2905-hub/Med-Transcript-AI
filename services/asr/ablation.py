@@ -1,6 +1,7 @@
 """Failure-inclusive matched-input validation for ASR ablation arms."""
 
 import hashlib
+import math
 
 from services.canonical import content_sha256
 from services.evaluation import score
@@ -70,6 +71,7 @@ def summarize_matched_ablation(cohort, arms):
     config_digests = {}
     base_model_digests = set()
     compute_budgets = set()
+    arm_wall_seconds = {}
     for arm in arms:
         if not isinstance(arm, dict):
             raise ValueError("invalid_matched_ablation_arm")
@@ -104,6 +106,16 @@ def summarize_matched_ablation(cohort, arms):
             raise ValueError("invalid_matched_ablation_configuration")
         base_model_digests.add(base_model_sha)
         compute_budgets.add(compute_budget)
+        wall_seconds = arm.get("wall_seconds")
+        if (
+            not isinstance(wall_seconds, (int, float))
+            or isinstance(wall_seconds, bool)
+            or not math.isfinite(wall_seconds)
+            or wall_seconds <= 0
+            or wall_seconds > compute_budget
+        ):
+            raise ValueError("ablation_arm_wall_time_outside_common_budget")
+        arm_wall_seconds[arm_id] = float(wall_seconds)
         rows_by_arm[arm_id] = rows
         train_groups_by_arm[arm_id] = frozenset(train_groups)
         config_digests[arm_id] = content_sha256(configuration)
@@ -170,6 +182,7 @@ def summarize_matched_ablation(cohort, arms):
             failures += int(failed)
         summaries[arm_id] = {
             "configuration_sha256": config_digests[arm_id],
+            "wall_seconds": arm_wall_seconds[arm_id],
             "sample_count": len(by_id),
             "failed_samples": failures,
             "reference_words": words,
@@ -198,7 +211,8 @@ def summarize_matched_ablation(cohort, arms):
         "sample_count": len(expected),
         "input_equivalence": "all_six_arms_same_audio_reference_and_case_ids",
         "failure_policy": "failed_case_empty_hypothesis_full_reference_deletions",
-        "training_group_overlap": "none_detected",
+        "training_group_overlap": "none_detected_in_declared_project_training_groups",
+        "upstream_pretraining_overlap": "not_audited",
         "base_model_sha256": next(iter(base_model_digests)),
         "compute_budget_seconds": next(iter(compute_budgets)),
         "arms": summaries,

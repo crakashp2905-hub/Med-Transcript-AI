@@ -59,6 +59,7 @@ def _arms():
                 "compute_budget_seconds": 3600,
             },
             "training_group_ids": ["training-consultation"],
+            "wall_seconds": 10.0,
             "cases": [
                 _row(COHORT[0], "no fever today"),
                 _row(COHORT[1], "", failed=True),
@@ -78,7 +79,10 @@ def test_matched_ablation_reconciles_cohort_and_counts_failures_as_deletions():
     assert report["failure_policy"] == (
         "failed_case_empty_hypothesis_full_reference_deletions"
     )
-    assert report["training_group_overlap"] == "none_detected"
+    assert report["training_group_overlap"] == (
+        "none_detected_in_declared_project_training_groups"
+    )
+    assert report["upstream_pretraining_overlap"] == "not_audited"
     assert report["base_model_sha256"] == "d" * 64
     assert report["compute_budget_seconds"] == 3600
     assert set(report["arms"]) == REQUIRED_ABLATION_ARMS
@@ -135,3 +139,8 @@ def test_matched_ablation_rejects_model_or_compute_budget_changes():
     changed_budget[0]["configuration"]["compute_budget_seconds"] = 1800
     with pytest.raises(ValueError, match="compute_budget_changed_across_arms"):
         summarize_matched_ablation(COHORT, changed_budget)
+
+    over_budget = _arms()
+    over_budget[0]["wall_seconds"] = 3601
+    with pytest.raises(ValueError, match="ablation_arm_wall_time_outside_common_budget"):
+        summarize_matched_ablation(COHORT, over_budget)
