@@ -286,3 +286,7 @@ or original fixtures. The receipt
 also retains a broader two-module isolated run that hit the 180-second timeout;
 the full test suite is therefore not claimed as passing. `--all-tests` exposes
 that longer run with a 1,200-second cap.
+
+## Browser journey rerun on 9c245b1
+
+`MTA-09-19` now records 32 passed, 1 skipped, and 0 failed from the complete non-Google offline Playwright suite. The skipped compressed-upload case requires unavailable cached PyAV. Fake-device, interruption, retry, three-channel PCM, approval, export, and source-playback journeys passed. The source-bound report is `evaluation/reports/master-task-mta-09-19-9c245b1.json` (SHA-256 `3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952). This is synthetic application-path evidence; the scripted adapter is not ASR and does not validate audio accuracy or clinician performance.

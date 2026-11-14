@@ -1,0 +1,54 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-09-19",
+  "source_commit": "9c245b1679425a7c4c4801df2dd702da888a4c57",
+  "source_files": {
+    "apps/clinician-web/package.json": "c48961e28e3a1fa3abe593a93ccd7d0127df528714c4dd372b1ae9bda13e19e9",
+    "apps/clinician-web/package-lock.json": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27",
+    "apps/clinician-web/playwright.config.ts": "e483e7c866c0c9be9d0623e783a2d23b3271c33a85332017bab714e5a39ec797",
+    "apps/clinician-web/playwright.synthetic.json": "59794ff7b1c1d1c20dd083d4c8d545c16c4041a41561d65654d586964bb731a6",
+    "apps/clinician-web/src/App.tsx": "f41ddaf9de07cab11a06337b8fb02326761eedad12e6fc52e05eef1c755f6f98",
+    "apps/clinician-web/src/InvestorDemo.tsx": "e91d7a898287fb4d9b5b4475b340ef8176e0b08ab6343c6cd5a2f2d13ea968ad",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "ff307becb4541f7075a214dbcb0d0caf63d08c1cb3a59a60ee1ff9a2c22dd8ba",
+    "apps/clinician-web/e2e/dictation.spec.ts": "658e4e7757f9dc553293702101918a6acb021d6235079d35ce10b4f7e8cf6716",
+    "apps/clinician-web/e2e/device-check.spec.ts": "88eade7f63686bb7d314e374b51b30cb65f8940712c3eaffa59903b1adff1314",
+    "apps/clinician-web/e2e/evidence-channel.spec.ts": "89aaa3e181a8db932d6983ca6402a88541a76e3ab5a58e43a460ba144f8d50b6",
+    "apps/clinician-web/e2e/investor-demo.spec.ts": "fe5004bb70009caf230c43bfa55941b770582af81927107954092e5b3fc9abff",
+    "apps/clinician-web/e2e/presentation.spec.ts": "0ad821fa4b8c8dc45b2e4fd87041c36b0f1fd7110793b3c6ae879e9650706dff",
+    "apps/clinician-web/e2e/recovery.spec.ts": "c385b8287c5f9d4453f5e81486c88d7781e7cf75401c408297fc0b6ef6a6037f",
+    "apps/clinician-web/e2e/uncertain-span-waveform.spec.ts": "50a9e8a69b5ca9ba08d1b94e93739bffa091f6d9480e952f1c9b0caed4205530",
+    "apps/clinician-web/e2e/workflow.spec.ts": "9f147f5c9f782c2518ea50aa3254014f65612cf75f0369db95f0489e3290d90e",
+    "apps/clinician-web/e2e/fixtures/offline.ts": "77f21ec35945ec8bd809d3d68c84441c1b127dc8107132de366eaab68dd7e251",
+    "tests/offline_browser_server.py": "749565ba7f1561b09154fb3b34d7892c8ecebdb0beea7900a15e584f102c5b02",
+    "data/demo-sample.json": "0f8b1b59b7677360429ec86db46a8869388f45523ad3e9d29f9673ae8cdabdf8",
+    "data/demo-sample.wav": "13467a709a22e66cfe1356da359a6e6bc2b98186358fee1c911ecad36dfac289"
+  },
+  "checks": {
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "detail": "TypeScript and Vite production build passed."
+    },
+    "complete_non_google_browser_suite": {
+      "status": "pass",
+      "command": "npx --offline playwright test --grep-invert \"Google|google\"",
+      "detail": "32 passed, 1 optional skip, 0 failed across 33 discovered cases."
+    },
+    "compressed_audio_normalization": {
+      "status": "blocked",
+      "detail": "Optional PyAV codec dependency is not cached; one compressed-upload test skipped."
+    },
+    "speech_accuracy": {
+      "status": "blocked",
+      "detail": "Browser adapter is developer-scripted and returns fixed text regardless of audio; no ASR quality result."
+    }
+  },
+  "result": "implemented_browser_journeys_with_one_optional_codec_skip",
+  "limitations": [
+    "All audio and browser cases are synthetic/developer fixtures; this is not real-microphone validation or clinical evidence.",
+    "The optional compressed-media case remains blocked on cached PyAV.",
+    "The fixture server makes no external calls and uses local loopback only."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}

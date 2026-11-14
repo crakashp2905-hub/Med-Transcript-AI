@@ -9,7 +9,7 @@
   "tasks": [
     {
       "id": "MTA-00-01",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
       "status": "implemented",
       "description": "Capture HEAD SHA, clean git status, build environment, dataset/model digests, last CI run and current task ledger in an immutable baseline receipt.",
@@ -30,7 +30,7 @@
     },
     {
       "id": "MTA-00-02",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
       "status": "implemented",
       "description": "Freeze Version 1 as English-only, documentation-assistance only, clinician-supervised, no independent diagnosis or prescribing.",
@@ -52,7 +52,7 @@
     },
     {
       "id": "MTA-00-03",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
       "status": "implemented",
       "description": "Declare exactly which artifacts may be used: committed synthetic/public-mock audio, existing frozen benchmark results, verified local model weights, installed libraries and cached dependencies.",
@@ -82,7 +82,7 @@
     },
     {
       "id": "MTA-00-04",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
       "status": "implemented",
       "description": "Create STRICT_OFFLINE=1 mode that rejects remote inference, remote telemetry, downloads, online OAuth and non-loopback sockets; document native-process limitations.",
@@ -104,7 +104,7 @@
     },
     {
       "id": "MTA-00-05",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
       "status": "implemented",
       "description": "Define release tiers: local_demo, engineering_verified, research_supported, pilot_candidate and clinical_approved; prevent synthetic tests from promoting later tiers.",
@@ -126,7 +126,7 @@
     },
     {
       "id": "MTA-00-06",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
       "status": "implemented",
       "description": "Create machine-readable acceptance matrix with owner=AI agent, priority, dependencies, executable evidence, last run SHA and failure/blocked reasons.",
@@ -149,7 +149,7 @@
     },
     {
       "id": "MTA-00-07",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
       "status": "implemented",
       "description": "Add risk register listing source corruption, missed critical facts, incorrect medication bindings, speaker swaps, secrets exposure, export leakage, stale approvals and deployment failure.",
@@ -171,7 +171,7 @@
     },
     {
       "id": "MTA-00-08",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
       "status": "implemented",
       "description": "Freeze the maximum 5% normalized WER admission threshold; forbid lowering, relabelling, rounding or changing the denominator.",
@@ -197,7 +197,7 @@
     },
     {
       "id": "MTA-00-09",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P0",
       "status": "implemented",
       "description": "Distinguish developer-authored rules or mock labels from actual independent clinician gold everywhere, including the UI and paper.",
@@ -220,7 +220,7 @@
     },
     {
       "id": "MTA-00-10",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
       "status": "implemented",
       "description": "Keep the untouched reserved acceptance cohort untouched: no inference, prompt tuning, manual peeking or repeated model selection against it.",
@@ -239,7 +239,7 @@
     },
     {
       "id": "MTA-00-11",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
       "status": "implemented",
       "description": "Create explicit severity taxonomy P0 fatal/P1 significant/P2 minor; no P0 can be waived by a model or agent.",
@@ -261,7 +261,7 @@
     },
     {
       "id": "MTA-00-12",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
       "status": "implemented",
       "description": "Make every task require tests and a source- and runtime-hash evidence receipt before mark verified.",
@@ -283,7 +283,7 @@
     },
     {
       "id": "MTA-00-13",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
       "status": "implemented",
       "description": "Introduce a `blocked_missing_asset` state; no agent may install, silently download or fabricate absent weights, audio, credentials or infrastructure.",
@@ -308,7 +308,7 @@
     },
     {
       "id": "MTA-00-14",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
       "status": "implemented",
       "description": "Use a feature flag to preserve the deterministic legacy workflow throughout all experimentation.",
@@ -331,7 +331,7 @@
     },
     {
       "id": "MTA-00-15",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
       "status": "implemented",
       "description": "Forbid editing historical benchmark outputs in place; create versioned report successors with auditable links.",
@@ -356,7 +356,7 @@
     },
     {
       "id": "MTA-00-16",
-      "section": "00 \u2014 Governance, scope and honest 10/10 definition",
+      "section": "00 — Governance, scope and honest 10/10 definition",
       "priority": "P1",
       "status": "implemented",
       "description": "Document all limitations in README, product UI, exports and model cards in consistent language.",
@@ -391,7 +391,7 @@
     },
     {
       "id": "MTA-01-01",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
       "status": "implemented",
       "description": "Fix latest GitHub Actions Ruff format gate: run the pinned Ruff version locally, format services/tests, review semantics, and commit mechanical changes separately.",
@@ -412,7 +412,7 @@
     },
     {
       "id": "MTA-01-02",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
       "status": "implemented",
       "description": "Run Ruff check and mypy after formatting; fix genuine diagnostics rather than disabling rules or excluding large trees.",
@@ -442,7 +442,7 @@
     },
     {
       "id": "MTA-01-03",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
       "status": "verified",
       "description": "Run all existing pytest lanes: core, optional ASR, security, PostgreSQL and container integration using frozen constraints.",
@@ -527,7 +527,7 @@
     },
     {
       "id": "MTA-01-04",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
       "status": "blocked_missing_asset",
       "description": "Run frontend build, TypeScript type check, lint and browser tests with the existing locked frontend dependency tree.",
@@ -570,7 +570,7 @@
     },
     {
       "id": "MTA-01-05",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
       "status": "implemented",
       "description": "Ensure exact HEAD branch run passes all five hosted CI jobs; do not count a previous commit or cancelled test job as success.",
@@ -622,7 +622,7 @@
     },
     {
       "id": "MTA-01-06",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
       "status": "implemented",
       "description": "Add fail-fast CI step that detects unformatted source before heavyweight jobs begin.",
@@ -661,7 +661,7 @@
     },
     {
       "id": "MTA-01-07",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
       "status": "implemented",
       "description": "Add exact SHA binding between CI logs, acceptance JSON, dataset manifests, code manifests and each release candidate.",
@@ -712,7 +712,7 @@
     },
     {
       "id": "MTA-01-08",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
       "status": "implemented",
       "description": "Validate docs links, source path references, API examples and test names against the repository tree.",
@@ -746,7 +746,7 @@
     },
     {
       "id": "MTA-01-09",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
       "status": "blocked_missing_asset",
       "description": "Pin runtime/compiler/dependency/tool versions and record checksums for every locally cached artifact.",
@@ -773,7 +773,7 @@
     },
     {
       "id": "MTA-01-10",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "implemented",
       "description": "Add clean-directory repro script which never mutates developer data, old evidence or production-like fixtures.",
@@ -795,7 +795,7 @@
     },
     {
       "id": "MTA-01-11",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "implemented",
       "description": "Record skipped tests with reason and consequence; prevent counting a skipped critical regression as green admission.",
@@ -835,7 +835,7 @@
     },
     {
       "id": "MTA-01-12",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "implemented",
       "description": "Add mutation tests for critical approval, auth, evidence, and retention rules; publish mutation score and surviving mutations.",
@@ -856,7 +856,7 @@
     },
     {
       "id": "MTA-01-13",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "implemented",
       "description": "Create minimum per-module coverage report with branch coverage on critical pathways, but do not let high line coverage substitute for behavioral tests.",
@@ -877,7 +877,7 @@
     },
     {
       "id": "MTA-01-14",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "verified",
       "description": "Ensure CI detects stale generated API contracts and malformed schema migration assets.",
@@ -920,7 +920,7 @@
     },
     {
       "id": "MTA-01-15",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "implemented",
       "description": "Add source-change detector: acceptance report invalidated whenever hashed source or toolchain differs.",
@@ -942,7 +942,7 @@
     },
     {
       "id": "MTA-01-16",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "implemented",
       "description": "Implement deterministic `make verify` (or equivalent) that runs checks in correct dependency order and exits nonzero on failure.",
@@ -965,7 +965,7 @@
     },
     {
       "id": "MTA-01-17",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "implemented",
       "description": "Generate redacted SBOM, offline dependency inventory and cached advisory age; never report unaudited packages as safe.",
@@ -987,7 +987,7 @@
     },
     {
       "id": "MTA-01-18",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "blocked_missing_asset",
       "description": "Complete fail-closed dependency audit on installed third-party requirements when cached data permits; otherwise explicit BLOCKED.",
@@ -1007,7 +1007,7 @@
     },
     {
       "id": "MTA-01-19",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "implemented",
       "description": "Enforce no secret-containing fixture/audio/case text in CI logs, reports, tracebacks or archived artifacts.",
@@ -1032,7 +1032,7 @@
     },
     {
       "id": "MTA-01-20",
-      "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P1",
       "status": "implemented",
       "description": "Publish a one-page exact-commit CI and offline acceptance summary for each release attempt.",
@@ -1056,10 +1056,10 @@
     },
     {
       "id": "MTA-02-01",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
       "status": "implemented",
-      "description": "Draw a sequence diagram of ingest \u2192 immutable transcript \u2192 source-grounded fact \u2192 draft \u2192 verification \u2192 manual review \u2192 approval \u2192 export.",
+      "description": "Draw a sequence diagram of ingest → immutable transcript → source-grounded fact → draft → verification → manual review → approval → export.",
       "evidence": [
         "evaluation/reports/master-task-mta-02-01-5001f9c.json",
         "docs/product-architecture.md",
@@ -1077,7 +1077,7 @@
     },
     {
       "id": "MTA-02-02",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
       "status": "implemented",
       "description": "Catalog services and endpoints; label each helper as integrated-in-production-flow, candidate-only, test-only or documentation-only.",
@@ -1099,7 +1099,7 @@
     },
     {
       "id": "MTA-02-03",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
       "status": "implemented",
       "description": "Consolidate Pydantic/typed schemas for source, transcript, evidence, fact, relationship, note, approval, export, model receipt and processing consent.",
@@ -1125,7 +1125,7 @@
     },
     {
       "id": "MTA-02-04",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
       "status": "implemented",
       "description": "Keep schema versions and explicit migration functions; test forward/backward compatibility against historical saved records.",
@@ -1147,7 +1147,7 @@
     },
     {
       "id": "MTA-02-05",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
       "status": "implemented",
       "description": "Integrate `services/application_pipeline.py` through actual API routes rather than only direct unit tests.",
@@ -1169,7 +1169,7 @@
     },
     {
       "id": "MTA-02-06",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
       "status": "implemented",
       "description": "Integrate validated source-to-fact graph and extend coverage through fact-to-note and note-to-export with exact immutable hashes.",
@@ -1192,7 +1192,7 @@
     },
     {
       "id": "MTA-02-07",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
       "status": "implemented",
       "description": "Prove every approved statement has an explicit source origin or a visibly flagged clinician-entered annotation, never a fabricated citation.",
@@ -1216,7 +1216,7 @@
     },
     {
       "id": "MTA-02-08",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
       "status": "implemented",
       "description": "Enforce referential integrity for transcript segments, evidence spans, fact IDs, note statement IDs, amendments and exports.",
@@ -1239,7 +1239,7 @@
     },
     {
       "id": "MTA-02-09",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
       "status": "implemented",
       "description": "Enforce state machine transitions at persistence/transaction boundaries, not only standalone helper functions.",
@@ -1266,7 +1266,7 @@
     },
     {
       "id": "MTA-02-10",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "implemented",
       "description": "Add idempotency keys for all user-facing mutating requests; deny incompatible replay and double approval.",
@@ -1291,7 +1291,7 @@
     },
     {
       "id": "MTA-02-11",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "implemented",
       "description": "Implement optimistic concurrency and stale-source fences for each ASR, extraction, draft, review, amendment, verification and export path.",
@@ -1321,7 +1321,7 @@
     },
     {
       "id": "MTA-02-12",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "implemented",
       "description": "Implement a single domain error taxonomy with safe API/UI mapping; errors must not leak audio, PHI, prompts or secrets.",
@@ -1341,7 +1341,7 @@
     },
     {
       "id": "MTA-02-13",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "implemented",
       "description": "Ensure model adapters obey provider-neutral interfaces without adding paid-provider dependencies.",
@@ -1361,7 +1361,7 @@
     },
     {
       "id": "MTA-02-14",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "implemented",
       "description": "Preserve deterministic baseline as default, optional local LLM only on explicitly authorized synthetic/mock sources.",
@@ -1381,7 +1381,7 @@
     },
     {
       "id": "MTA-02-15",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "implemented",
       "description": "Keep `unknown` and `not stated` distinct from affirmative and negative claims in every serialized contract.",
@@ -1401,7 +1401,7 @@
     },
     {
       "id": "MTA-02-16",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "implemented",
       "description": "Validate notes and exports under original historical versions, including post-rule-change rechecks and safety quarantine.",
@@ -1421,7 +1421,7 @@
     },
     {
       "id": "MTA-02-17",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "implemented",
       "description": "Add subsystem capability manifest which differentiates real inference from replayed transcript text and silent-audio synthetic transport.",
@@ -1441,7 +1441,7 @@
     },
     {
       "id": "MTA-02-18",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "verified",
       "description": "Create contract tests for every HTTP endpoint, including tenant scoping, role, consent, schema and stale version.",
@@ -1461,10 +1461,10 @@
     },
     {
       "id": "MTA-02-19",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "verified",
-      "description": "Create full transaction-level e2e test of recorded/audio fixture \u2192 exact approved export, plus every major failure fork.",
+      "description": "Create full transaction-level e2e test of recorded/audio fixture → exact approved export, plus every major failure fork.",
       "evidence": [
         "evaluation/reports/master-task-mta-02-19-failure-d6d3595.json",
         "evaluation/reports/master-task-mta-02-19-6d1819a.json"
@@ -1482,7 +1482,7 @@
     },
     {
       "id": "MTA-02-20",
-      "section": "02 \u2014 Cohesive end-to-end application architecture",
+      "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P1",
       "status": "verified",
       "description": "Separate offline demo artifact generation from runtime schema upgrades and clinical release management.",
@@ -1502,7 +1502,7 @@
     },
     {
       "id": "MTA-03-01",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
       "status": "verified",
       "description": "Validate declared WAV encoding, dimensions, sample rate, channels, duration, size and CRC/hash before processing.",
@@ -1522,7 +1522,7 @@
     },
     {
       "id": "MTA-03-02",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
       "status": "verified",
       "description": "Reject malicious container files, forged metadata, huge headers, malformed frames and channel-count inconsistencies.",
@@ -1542,7 +1542,7 @@
     },
     {
       "id": "MTA-03-03",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
       "status": "verified",
       "description": "Enforce original audio immutability; normalization produces separate hashed working assets.",
@@ -1562,7 +1562,7 @@
     },
     {
       "id": "MTA-03-04",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
       "status": "verified",
       "description": "Keep original-to-working timeline mappings and exact channel provenance for all ASR windows.",
@@ -1582,7 +1582,7 @@
     },
     {
       "id": "MTA-03-05",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
       "status": "implemented",
       "description": "Test browser capture at minimum, medium, near-30-minute and interrupted durations with bounded chunks and backpressure.",
@@ -1605,7 +1605,7 @@
     },
     {
       "id": "MTA-03-06",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
       "status": "verified",
       "description": "Exercise 1/2/8 channel ingest; identify channel meaning or mark unknown instead of assuming doctor/patient.",
@@ -1625,7 +1625,7 @@
     },
     {
       "id": "MTA-03-07",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
       "status": "verified",
       "description": "Add cross-talk and channel-swap synthetic tests, including asymmetric mic gains and swapped channel ordering.",
@@ -1645,7 +1645,7 @@
     },
     {
       "id": "MTA-03-08",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
       "status": "verified",
       "description": "Ensure resume retries neither duplicate nor omit committed chunks and compare final sealed digest to original input.",
@@ -1665,7 +1665,7 @@
     },
     {
       "id": "MTA-03-09",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
       "status": "implemented",
       "description": "Simulate network/tab/storage failure, permission revocation, device unplug, quota exhaustion and reload recovery.",
@@ -1688,7 +1688,7 @@
     },
     {
       "id": "MTA-03-10",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
       "status": "verified",
       "description": "Never auto-publish partial/truncated audio as a complete transcript.",
@@ -1708,7 +1708,7 @@
     },
     {
       "id": "MTA-03-11",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
       "status": "verified",
       "description": "Test worst-case resource footprint and input rejection on hardware-constrained CPU/16-GB environment.",
@@ -1729,7 +1729,7 @@
     },
     {
       "id": "MTA-03-12",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
       "status": "verified",
       "description": "Generate audio-to-segment timeline trace with total coverage, gaps and uncertainty flags.",
@@ -1750,7 +1750,7 @@
     },
     {
       "id": "MTA-03-13",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
       "status": "verified",
       "description": "Preserve full failure/timeout reports for media decoding instead of silently removing bad files.",
@@ -1770,7 +1770,7 @@
     },
     {
       "id": "MTA-03-14",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
       "status": "verified",
       "description": "Provide an offline public-mock audio real-inference smoke path only when an admitted installed adapter is available.",
@@ -1800,7 +1800,7 @@
     },
     {
       "id": "MTA-03-15",
-      "section": "03 \u2014 Audio ingestion, duration, channel integrity and transcription provenance",
+      "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P1",
       "status": "verified",
       "description": "Create clean separation between software transport test receipts and actual transcription-quality evidence.",
@@ -1832,7 +1832,7 @@
     },
     {
       "id": "MTA-04-01",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
       "status": "verified",
       "description": "Preserve frozen PriMock57 short-clip, 3 full-consultation, and MedDistractAudio paired-speech baselines as distinct strata.",
@@ -1864,7 +1864,7 @@
     },
     {
       "id": "MTA-04-02",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
       "status": "verified",
       "description": "Reproduce 8.70% short-clip, 13.05% three-consultation and 16.41%/17.22% paired long-consultation historical WER before running new experiments.",
@@ -1893,7 +1893,7 @@
     },
     {
       "id": "MTA-04-03",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
       "status": "verified",
       "description": "Replay all hypotheses with immutable reference hashes and failure-inclusive denominator; treat crashed cases according to the frozen rule.",
@@ -1931,7 +1931,7 @@
     },
     {
       "id": "MTA-04-04",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
       "status": "verified",
       "description": "Construct error corpus of substitutions/deletions/insertions aligned to timestamps where available, by consultation and role.",
@@ -1968,7 +1968,7 @@
     },
     {
       "id": "MTA-04-05",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
       "status": "implemented",
       "description": "Rank errors by clinical impact: name/identity attribution, medications, strengths, dosing frequency, allergies, numbers, units, negations and chronology.",
@@ -1999,7 +1999,7 @@
     },
     {
       "id": "MTA-04-06",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
       "status": "implemented",
       "description": "Separate ASR lexical accuracy from punctuation/casing and from clinical concept accuracy.",
@@ -2040,7 +2040,7 @@
     },
     {
       "id": "MTA-04-07",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
       "status": "implemented",
       "description": "Evaluate VAD-based chunking with overlapping context, explicit offsets, deduplication and preserved complete coverage.",
@@ -2090,7 +2090,7 @@
     },
     {
       "id": "MTA-04-08",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
       "status": "implemented",
       "description": "Diagnose Omi native empty-output and window-edge failures; test correct empty-output semantics without hiding missed speech.",
@@ -2145,7 +2145,7 @@
     },
     {
       "id": "MTA-04-09",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P0",
       "status": "implemented",
       "description": "Test audio normalization, adaptive gain, noise suppression and speech enhancement only through frozen paired comparisons.",
@@ -2165,7 +2165,7 @@
     },
     {
       "id": "MTA-04-10",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Test conservative clinical vocabulary hints as decoding aids only; prohibit injecting unknown diagnoses or drug names into outputs.",
@@ -2221,7 +2221,7 @@
     },
     {
       "id": "MTA-04-11",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Build candidate word/phrase lattice from existing local model outputs when multiple models are truly present; never invent alternative model inference.",
@@ -2276,7 +2276,7 @@
     },
     {
       "id": "MTA-04-12",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Test targeted low-confidence retranscription with end-to-end persisted job and non-adopted candidate review, retaining original audio and transcript.",
@@ -2333,7 +2333,7 @@
     },
     {
       "id": "MTA-04-13",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "blocked_external_evidence",
       "description": "Measure whether span retranscription decreases clinically important errors versus no correction, not merely WER on cherry-picked spans.",
@@ -2379,7 +2379,7 @@
     },
     {
       "id": "MTA-04-14",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Build calibrated ASR uncertainty reporting only if calibration data exist; otherwise label heuristic confidence, not probabilities.",
@@ -2436,7 +2436,7 @@
     },
     {
       "id": "MTA-04-15",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Compare fixed, overlap, speech-aware and channel-first approaches on identical locked data with equal failure policy.",
@@ -2485,7 +2485,7 @@
     },
     {
       "id": "MTA-04-16",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Add real-time preview versus final pass divergence metrics, keeping preview unapprovable.",
@@ -2517,7 +2517,7 @@
     },
     {
       "id": "MTA-04-17",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Validate native timestamp ordering, segment bounds, overlap constraints and mapping through cropping/normalization.",
@@ -2549,7 +2549,7 @@
     },
     {
       "id": "MTA-04-18",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Report speed/quality Pareto points, measured peak memory, CPU time, p50/p95 runtime and cost for each installed candidate.",
@@ -2572,7 +2572,7 @@
     },
     {
       "id": "MTA-04-19",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Set promotion gate: all frozen cases accounted for; WER <=0.05 on the specified admission benchmark; no critical safety regression; valid timestamps; zero fabricated outcomes.",
@@ -2592,7 +2592,7 @@
     },
     {
       "id": "MTA-04-20",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "If no candidate meets 5% WER, leave ASR status FAIL and document what new model/hardware/evidence would be needed; do not mark it completed.",
@@ -2612,7 +2612,7 @@
     },
     {
       "id": "MTA-04-21",
-      "section": "04 \u2014 ASR quality, algorithm experimentation and repair",
+      "section": "04 — ASR quality, algorithm experimentation and repair",
       "priority": "P1",
       "status": "implemented",
       "description": "Create one hypothesis per experiment and record success, null result or harmful regression with an experiment receipt.",
@@ -2632,7 +2632,7 @@
     },
     {
       "id": "MTA-05-01",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Preserve fixed-window speaker baseline and two-channel VAD results separately; do not mix different capture modalities.",
@@ -2653,7 +2653,7 @@
     },
     {
       "id": "MTA-05-02",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Reimplement a deterministic DER and JER evaluation on identical frozen reference turns with configurable collar and overlap policy.",
@@ -2680,7 +2680,7 @@
     },
     {
       "id": "MTA-05-03",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "implemented",
       "description": "Separate speaker cluster identity from role identity; never map first speaker to doctor automatically.",
@@ -2700,7 +2700,7 @@
     },
     {
       "id": "MTA-05-04",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "blocked_missing_asset",
       "description": "Test one-channel versus synchronized two-channel versus 8-channel grouping when matching audio exists.",
@@ -2720,7 +2720,7 @@
     },
     {
       "id": "MTA-05-05",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Create cross-talk detector using energy/correlation and explicit unknown status when ambiguous.",
@@ -2742,7 +2742,7 @@
     },
     {
       "id": "MTA-05-06",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Add VAD postprocessing, turn-smoothing and duplicate-channel speech suppression with source-aligned logs.",
@@ -2766,7 +2766,7 @@
     },
     {
       "id": "MTA-05-07",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Measure missed speech, false alarm speech, speaker confusion, role swaps, overlap handling and turn boundary F1.",
@@ -2787,7 +2787,7 @@
     },
     {
       "id": "MTA-05-08",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "implemented",
       "description": "Add role-confidence triage (known doctor, known patient, other, unknown); ensure uncertainty does not turn into asserted source attribution.",
@@ -2807,7 +2807,7 @@
     },
     {
       "id": "MTA-05-09",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Prevent family history statements from acquiring patient attribution due to diarization role mistakes.",
@@ -2830,7 +2830,7 @@
     },
     {
       "id": "MTA-05-10",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Add clinician review tooling for swapping, splitting and merging speaker turns; preserve immutable correction lineage.",
@@ -2850,7 +2850,7 @@
     },
     {
       "id": "MTA-05-11",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Use a channel-first route only when hardware/input channel semantics are established; otherwise safe manual correction.",
@@ -2870,7 +2870,7 @@
     },
     {
       "id": "MTA-05-12",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Expose separate error budget per role and prioritize patient utterances and short responses.",
@@ -2890,7 +2890,7 @@
     },
     {
       "id": "MTA-05-13",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "implemented",
       "description": "Build synthetic turn-swap, interruption and two-person-overlap adversarial tests.",
@@ -2910,7 +2910,7 @@
     },
     {
       "id": "MTA-05-14",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "implemented",
       "description": "Show exact audio interval and original channel on every corrected role action.",
@@ -2930,7 +2930,7 @@
     },
     {
       "id": "MTA-05-15",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Require valid authorizations and stale-version invalidation after a speaker correction.",
@@ -2950,7 +2950,7 @@
     },
     {
       "id": "MTA-05-16",
-      "section": "05 \u2014 Diarization, speaker safety and attribution",
+      "section": "05 — Diarization, speaker safety and attribution",
       "priority": "P1",
       "status": "verified",
       "description": "Keep speaker quality gate blocked if independent labels absent and report DER only as development evidence.",
@@ -2970,7 +2970,7 @@
     },
     {
       "id": "MTA-06-01",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
       "status": "verified",
       "description": "Define canonical fact object with concept, text, subject, assertion, uncertainty, temporality, action, relations, evidence, review status and source modality.",
@@ -2990,10 +2990,10 @@
     },
     {
       "id": "MTA-06-02",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
       "status": "verified",
-      "description": "Extract atomic clauses from compound utterances without borrowing another clause\u2019s negation or medication dosage.",
+      "description": "Extract atomic clauses from compound utterances without borrowing another clause’s negation or medication dosage.",
       "evidence": [
         "evaluation/reports/master-task-mta-06-02-404f794.json"
       ],
@@ -3010,7 +3010,7 @@
     },
     {
       "id": "MTA-06-03",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
       "status": "verified",
       "description": "Extract medications with drug, dose, unit, route, frequency, start/stop/hold/continue status and explicit uncertainty.",
@@ -3030,7 +3030,7 @@
     },
     {
       "id": "MTA-06-04",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
       "status": "verified",
       "description": "Distinguish historical regimen, current regimen, clinician recommendation and future plan for a medication.",
@@ -3050,7 +3050,7 @@
     },
     {
       "id": "MTA-06-05",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
       "status": "verified",
       "description": "Capture explicit allergies and reactions with severity only when spoken; never infer absence of allergies from silence.",
@@ -3070,7 +3070,7 @@
     },
     {
       "id": "MTA-06-06",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
       "status": "verified",
       "description": "Model symptom present/denied/possible/questioned, location, onset, duration, severity and course separately.",
@@ -3090,7 +3090,7 @@
     },
     {
       "id": "MTA-06-07",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
       "status": "verified",
       "description": "Distinguish patient, family member, caregiver and clinician assertions; unknown pronouns require review.",
@@ -3110,7 +3110,7 @@
     },
     {
       "id": "MTA-06-08",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
       "status": "verified",
       "description": "Extract measurements with value, units, time and source confidence; do not normalize ambiguous units silently.",
@@ -3130,7 +3130,7 @@
     },
     {
       "id": "MTA-06-09",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P0",
       "status": "verified",
       "description": "Split assessment labels into explicitly said versus suggested versus unknown; never generate a new diagnosis.",
@@ -3150,7 +3150,7 @@
     },
     {
       "id": "MTA-06-10",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "verified",
       "description": "Prevent undocumented clinical plan text from appearing as confirmed medication orders.",
@@ -3170,7 +3170,7 @@
     },
     {
       "id": "MTA-06-11",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "verified",
       "description": "Provide stable IDs and evidence pointers to every extracted atom.",
@@ -3190,7 +3190,7 @@
     },
     {
       "id": "MTA-06-12",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "implemented",
       "description": "Add clinician-entered facts as `manual_no_audio_evidence`, requiring separate source and ownership labels.",
@@ -3210,10 +3210,10 @@
     },
     {
       "id": "MTA-06-13",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "verified",
-      "description": "Build relation graph for medication\u2194dose\u2194route\u2194frequency\u2194time and symptom\u2194negation\u2194subject\u2194time.",
+      "description": "Build relation graph for medication↔dose↔route↔frequency↔time and symptom↔negation↔subject↔time.",
       "evidence": [
         "evaluation/reports/master-task-mta-06-12-through-16-85b6442.json"
       ],
@@ -3230,7 +3230,7 @@
     },
     {
       "id": "MTA-06-14",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "verified",
       "description": "Test drug-dose swaps, allergy swaps, temporal flips, yes/no reversals, abbreviations, unit conversions and paraphrases.",
@@ -3250,7 +3250,7 @@
     },
     {
       "id": "MTA-06-15",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "verified",
       "description": "Validate per-case concept precision, recall, micro/macro F1 and clinically critical false-negative count on developer fixtures.",
@@ -3270,7 +3270,7 @@
     },
     {
       "id": "MTA-06-16",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "implemented",
       "description": "Run deterministic extractor and installed local-Qwen extraction side-by-side when models are verifiably present.",
@@ -3290,10 +3290,10 @@
     },
     {
       "id": "MTA-06-17",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "verified",
-      "description": "Provide missing/unsupported model outputs as unavailable\u2014not `[]`, not success, not zero cost.",
+      "description": "Provide missing/unsupported model outputs as unavailable—not `[]`, not success, not zero cost.",
       "evidence": [
         "evaluation/reports/master-task-mta-06-17-d99e180.json"
       ],
@@ -3310,7 +3310,7 @@
     },
     {
       "id": "MTA-06-18",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "verified",
       "description": "Use frozen clinical state snapshots to detect contradictions across successive transcript versions.",
@@ -3330,7 +3330,7 @@
     },
     {
       "id": "MTA-06-19",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "verified",
       "description": "Ensure extraction updates can never silently alter a reviewed or approved fact.",
@@ -3350,7 +3350,7 @@
     },
     {
       "id": "MTA-06-20",
-      "section": "06 \u2014 Atomic clinical fact extraction and temporal medical state",
+      "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
       "status": "verified",
       "description": "Keep all newly extracted facts `unreviewed` until explicit clinician action.",
@@ -3370,10 +3370,10 @@
     },
     {
       "id": "MTA-07-01",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
       "status": "verified",
-      "description": "Persist audio\u2192transcript\u2192span\u2192fact\u2192statement\u2192note-version\u2192approved-export graph with type-checked immutable references.",
+      "description": "Persist audio→transcript→span→fact→statement→note-version→approved-export graph with type-checked immutable references.",
       "evidence": [
         "evaluation/reports/master-task-mta-07-01-through-13-4ea9da9.json"
       ],
@@ -3390,7 +3390,7 @@
     },
     {
       "id": "MTA-07-02",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
       "status": "verified",
       "description": "Enforce exact segment ID, character offsets, quote bytes and source SHA at proposal creation.",
@@ -3410,7 +3410,7 @@
     },
     {
       "id": "MTA-07-03",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
       "status": "verified",
       "description": "Implement inverse coverage: for each clinically material source fact, verify note contains its meaning or an explicitly reviewed omission.",
@@ -3430,7 +3430,7 @@
     },
     {
       "id": "MTA-07-04",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
       "status": "verified",
       "description": "Implement forward grounding: for every note claim, verify the cited source supports the complete statement.",
@@ -3450,7 +3450,7 @@
     },
     {
       "id": "MTA-07-05",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
       "status": "verified",
       "description": "Model many-to-many source facts and note statements while detecting merged claims that hide contradictory details.",
@@ -3470,7 +3470,7 @@
     },
     {
       "id": "MTA-07-06",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
       "status": "verified",
       "description": "Detect medication-dose, route, frequency and recipient swaps even when the bag of words remains unchanged.",
@@ -3490,7 +3490,7 @@
     },
     {
       "id": "MTA-07-07",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
       "status": "verified",
       "description": "Detect negation scope, family attribution, temporal action-status and uncertainty polarity inversions.",
@@ -3510,7 +3510,7 @@
     },
     {
       "id": "MTA-07-08",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
       "status": "verified",
       "description": "Allow equivalent unit conversions and faithful paraphrases without creating excessive false alerts.",
@@ -3530,7 +3530,7 @@
     },
     {
       "id": "MTA-07-09",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P0",
       "status": "verified",
       "description": "Create bounded deterministic rule engine and optional local semantic verifier; never let semantic verdict clear deterministic blockers.",
@@ -3550,7 +3550,7 @@
     },
     {
       "id": "MTA-07-10",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Reject extra, missing or duplicate verdict IDs, blank supported citations, unsupported evidence spans, and malformed model payloads.",
@@ -3570,7 +3570,7 @@
     },
     {
       "id": "MTA-07-11",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "All verification calls must be bounded and either wholly accepted or wholly failed with no partial publication.",
@@ -3590,7 +3590,7 @@
     },
     {
       "id": "MTA-07-12",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Ensure note revisions invalidate prior verification receipts, approval and export authority as required by policy.",
@@ -3610,7 +3610,7 @@
     },
     {
       "id": "MTA-07-13",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Extend historical recheck to export requests; preserve original signed historical bytes and flag potentially unsafe distributed copies.",
@@ -3630,7 +3630,7 @@
     },
     {
       "id": "MTA-07-14",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Add adversarial suite for prompt injection embedded in spoken content, transcript text, medication labels and filenames.",
@@ -3650,7 +3650,7 @@
     },
     {
       "id": "MTA-07-15",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Add coverage report for `source not in note` and `note not in source`, with separate clinical materiality grades.",
@@ -3670,7 +3670,7 @@
     },
     {
       "id": "MTA-07-16",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Compare deterministic-only, model-only, combined review and evidence-graph method on the same held-out development cases.",
@@ -3691,7 +3691,7 @@
     },
     {
       "id": "MTA-07-17",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Report per-category confusion matrix, critical miss, false alarm, abstention, timeout and unsupported source rates.",
@@ -3712,7 +3712,7 @@
     },
     {
       "id": "MTA-07-18",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Ensure false-block rate is measured; never optimize for detecting everything by blocking every note.",
@@ -3733,7 +3733,7 @@
     },
     {
       "id": "MTA-07-19",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Add graph traversal invariants and property-based/fuzz tests for tampering, cycles, missing nodes and cross-tenant edges.",
@@ -3753,7 +3753,7 @@
     },
     {
       "id": "MTA-07-20",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Prove model cannot modify approval flags, review attestations, evidence hashes or clinician identities.",
@@ -3773,7 +3773,7 @@
     },
     {
       "id": "MTA-07-21",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Keep egress-limited redacted audit receipts for each detection without including sensitive source text.",
@@ -3793,7 +3793,7 @@
     },
     {
       "id": "MTA-07-22",
-      "section": "07 \u2014 Bidirectional evidence graph and safety verification",
+      "section": "07 — Bidirectional evidence graph and safety verification",
       "priority": "P1",
       "status": "verified",
       "description": "Label synthetic `0 critical misses` as internal development result, not clinical sensitivity or zero risk.",
@@ -3814,7 +3814,7 @@
     },
     {
       "id": "MTA-08-01",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Keep deterministic, reviewed-fact SOAP generation as the safety baseline and independently benchmark optional local drafting.",
@@ -3835,7 +3835,7 @@
     },
     {
       "id": "MTA-08-02",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Generate one clinical assertion per statement where possible; avoid conflating symptoms, allergies and plans.",
@@ -3855,10 +3855,10 @@
     },
     {
       "id": "MTA-08-03",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
-      "description": "Explicitly mark not stated/unknown; prohibit auto-writing \u201cno allergies\u201d and \u201cnormal examination\u201d without evidence.",
+      "description": "Explicitly mark not stated/unknown; prohibit auto-writing “no allergies” and “normal examination” without evidence.",
       "evidence": [
         "evaluation/reports/master-task-mta-08-03-9fbbd68.json"
       ],
@@ -3875,7 +3875,7 @@
     },
     {
       "id": "MTA-08-04",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Produce high-fidelity English SOAP structured note with sections and optional specialty templates, avoiding fabricated differentials.",
@@ -3895,7 +3895,7 @@
     },
     {
       "id": "MTA-08-05",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "implemented",
       "description": "Add alternate summaries only if all relevant claims and caveats remain source-linked.",
@@ -3943,7 +3943,7 @@
     },
     {
       "id": "MTA-08-06",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Ensure every generated statement has a reversible path to source and original audio timeline.",
@@ -3963,7 +3963,7 @@
     },
     {
       "id": "MTA-08-07",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Implement medication, negation, unit, temporal and subject-preservation tests for all drafting styles.",
@@ -3983,7 +3983,7 @@
     },
     {
       "id": "MTA-08-08",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Compare deterministic, Qwen 1.5B and Qwen 7B with identical reviewed source facts where the models are available.",
@@ -4004,7 +4004,7 @@
     },
     {
       "id": "MTA-08-09",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Treat call timeout, model version mismatch, malformed JSON, empty output and output length exceedance as a visible failure, not a partial draft.",
@@ -4024,7 +4024,7 @@
     },
     {
       "id": "MTA-08-10",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Deduplicate repeated facts without losing the source or suppressing distinct time points.",
@@ -4044,7 +4044,7 @@
     },
     {
       "id": "MTA-08-11",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Preserve conflicts as unresolved questions requiring human action, not smooth them into a coherent but false narrative.",
@@ -4067,7 +4067,7 @@
     },
     {
       "id": "MTA-08-12",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Provide diff of each draft against previous version, showing added/removed clinically critical claims.",
@@ -4091,7 +4091,7 @@
     },
     {
       "id": "MTA-08-13",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Protect approved notes from silent modification; amendments create a new version and maintain provenance.",
@@ -4115,7 +4115,7 @@
     },
     {
       "id": "MTA-08-14",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Keep audit events for review, clarification, correction, signature, revocation, export and deletion.",
@@ -4151,7 +4151,7 @@
     },
     {
       "id": "MTA-08-15",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Create complete synthetic encounter test covering prior history, complaint, negations, multiple drugs and a revised plan.",
@@ -4172,7 +4172,7 @@
     },
     {
       "id": "MTA-08-16",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Add clinically labelled draft-preservation table with failure-inclusive counts; keep clinician accuracy unmeasured without independent gold.",
@@ -4195,7 +4195,7 @@
     },
     {
       "id": "MTA-08-17",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Provide explicitly safe manual-only fallback when local models are absent or busy.",
@@ -4217,7 +4217,7 @@
     },
     {
       "id": "MTA-08-18",
-      "section": "08 \u2014 Clinical note generation, editing and lifecycle",
+      "section": "08 — Clinical note generation, editing and lifecycle",
       "priority": "P1",
       "status": "verified",
       "description": "Prevent unreviewed drafted plans from being exported as clinician-authorized orders.",
@@ -4238,7 +4238,7 @@
     },
     {
       "id": "MTA-09-01",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Implement a single encounter workspace with synchronized waveform/time bar, speaker transcript, atomic facts, SOAP note and warning list.",
@@ -4269,7 +4269,7 @@
     },
     {
       "id": "MTA-09-02",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Enable click-to-source playback for each note statement, including exact time, channel and transcript span where available.",
@@ -4299,7 +4299,7 @@
     },
     {
       "id": "MTA-09-03",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Show current versus historical transcript and note version, owner, model lineage and approval status.",
@@ -4341,7 +4341,7 @@
     },
     {
       "id": "MTA-09-04",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Surface critical findings before lower-risk drafting suggestions and display why the system is uncertain.",
@@ -4370,7 +4370,7 @@
     },
     {
       "id": "MTA-09-05",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Allow clinician to split or merge facts and speaker turns without destroying original provenance.",
@@ -4406,7 +4406,7 @@
     },
     {
       "id": "MTA-09-06",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Provide side-by-side comparison of original transcript, localized retranscription candidate and accepted correction.",
@@ -4453,7 +4453,7 @@
     },
     {
       "id": "MTA-09-07",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Prevent accepting candidate retranscription without explicit confirmation and a new version.",
@@ -4499,7 +4499,7 @@
     },
     {
       "id": "MTA-09-08",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Display source coverage: unreviewed significant source statements, unsupported note claims and manual additions.",
@@ -4543,7 +4543,7 @@
     },
     {
       "id": "MTA-09-09",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Make playback, keyboard navigation, transcript search, editing, save and export possible without mouse-only actions.",
@@ -4573,7 +4573,7 @@
     },
     {
       "id": "MTA-09-10",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Test contrast, focus order, screen reader labels, error announcements, mobile width and long text wrapping.",
@@ -4610,7 +4610,7 @@
     },
     {
       "id": "MTA-09-11",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Use local synthetic persona journeys for general practitioner, specialist, documentation reviewer and read-only auditor.",
@@ -4651,7 +4651,7 @@
     },
     {
       "id": "MTA-09-12",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Make upload/preprocessing/model queues visibly distinct from stalled/failed/missing model states.",
@@ -4694,7 +4694,7 @@
     },
     {
       "id": "MTA-09-13",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Never show confidence as a numeric probability unless calibrated; use transparent review priorities.",
@@ -4731,7 +4731,7 @@
     },
     {
       "id": "MTA-09-14",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Implement recovery banner for partial recordings, unsaved edits, lost network, missing permission and session expiration.",
@@ -4769,7 +4769,7 @@
     },
     {
       "id": "MTA-09-15",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Show costs, time consumed and model label only when measured; unavailable remains unavailable.",
@@ -4806,7 +4806,7 @@
     },
     {
       "id": "MTA-09-16",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Present read-only synthetic investor demo with prominent non-clinical disclaimer, no live OAuth requirement.",
@@ -4857,7 +4857,7 @@
     },
     {
       "id": "MTA-09-17",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Enforce preview/draft/proposal/approved visual differentiation and block export of unapproved versions.",
@@ -4910,7 +4910,7 @@
     },
     {
       "id": "MTA-09-18",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "implemented",
       "description": "Provide one-click downloadable synthetic case audit bundle with redacted evidence summary.",
@@ -4960,9 +4960,9 @@
     },
     {
       "id": "MTA-09-19",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Run complete browser automated journeys with deterministic fake devices, plus real audio only if local fixtures exist.",
       "evidence": [
         "apps/clinician-web/playwright.synthetic.json",
@@ -4971,40 +4971,41 @@
         "apps/clinician-web/e2e/workflow.spec.ts",
         "apps/clinician-web/e2e/device-check.spec.ts",
         "data/demo-sample.wav",
-        "evaluation/reports/master-task-mta-09-19-f8cad5f.json"
+        "evaluation/reports/master-task-mta-09-19-f8cad5f.json",
+        "evaluation/reports/master-task-mta-09-19-9c245b1.json"
       ],
-      "source_commit": "f8cad5fd81fc0d99fdf2cd2a39cd47ad5c9aa30e",
+      "source_commit": "9c245b1679425a7c4c4801df2dd702da888a4c57",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-09-19-f8cad5f.json",
-          "report_sha256": "18d6c378fdc8e11cb65f0567926aafa26e05f9a9c12cc474e4d646faad6f99bc",
+          "report": "evaluation/reports/master-task-mta-09-19-9c245b1.json",
+          "report_sha256": "3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952",
           "check": "frontend_build",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/master-task-mta-09-19-f8cad5f.json",
-          "report_sha256": "18d6c378fdc8e11cb65f0567926aafa26e05f9a9c12cc474e4d646faad6f99bc",
-          "check": "browser_suite_discovery",
+          "report": "evaluation/reports/master-task-mta-09-19-9c245b1.json",
+          "report_sha256": "3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952",
+          "check": "complete_non_google_browser_suite",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/master-task-mta-09-19-f8cad5f.json",
-          "report_sha256": "18d6c378fdc8e11cb65f0567926aafa26e05f9a9c12cc474e4d646faad6f99bc",
-          "check": "local_synthetic_audio_fixture",
-          "status": "pass"
+          "report": "evaluation/reports/master-task-mta-09-19-9c245b1.json",
+          "report_sha256": "3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952",
+          "check": "compressed_audio_normalization",
+          "status": "blocked"
         },
         {
-          "report": "evaluation/reports/master-task-mta-09-19-f8cad5f.json",
-          "report_sha256": "18d6c378fdc8e11cb65f0567926aafa26e05f9a9c12cc474e4d646faad6f99bc",
-          "check": "fake_device_browser_journey",
+          "report": "evaluation/reports/master-task-mta-09-19-9c245b1.json",
+          "report_sha256": "3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952",
+          "check": "speech_accuracy",
           "status": "blocked"
         }
       ],
-      "blocker": "The deterministic browser journeys are present but could not be executed because local loopback navigation is denied. The available synthetic WAV is not claimed as processed or validated. Rerun the complete browser suite in a local-socket-enabled environment."
+      "blocker": "The complete deterministic browser suite passed except for one optional compressed-media case skipped because PyAV is not cached. All tests use synthetic fixtures and a scripted non-ASR adapter; they do not validate speech accuracy, real microphone behavior, or clinical performance."
     },
     {
       "id": "MTA-09-20",
-      "section": "09 \u2014 Clinician-facing interface and functional product excellence",
+      "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
       "status": "not_started",
       "description": "Generate screenshots and visual diffs on predefined viewport set, marking absent browser runtimes as blocked.",
@@ -5045,7 +5046,7 @@
     },
     {
       "id": "MTA-10-01",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Inventory local ASR/diarization/LLM model artifacts by full digest, actual file presence, license, runtime compatibility and VRAM/RAM requirements.",
@@ -5076,7 +5077,7 @@
     },
     {
       "id": "MTA-10-02",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Prohibit network downloads, dynamic remote code, unsigned model swapping or silent inference-provider fallback.",
@@ -5106,7 +5107,7 @@
     },
     {
       "id": "MTA-10-03",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Define one interface each for ASR, diarization, extraction, drafting and verification; include explicit unavailable/timeout/failure errors.",
@@ -5139,7 +5140,7 @@
     },
     {
       "id": "MTA-10-04",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Integrate memory admission into actual worker scheduling with conservative reserve and process serialization.",
@@ -5167,7 +5168,7 @@
     },
     {
       "id": "MTA-10-05",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Measure peak RSS and allocation behavior on CPU-only 16GB and other already available hardware; never invent machine specs.",
@@ -5205,7 +5206,7 @@
     },
     {
       "id": "MTA-10-06",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Schedule ASR ahead of optional drafting when preserving consultation source processing requires it.",
@@ -5232,7 +5233,7 @@
     },
     {
       "id": "MTA-10-07",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Apply bounded backpressure, cancellation and idempotent retries to all model tasks.",
@@ -5262,7 +5263,7 @@
     },
     {
       "id": "MTA-10-08",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Implement model init/cold-start versus warm-start latency traces with model hash and operating environment.",
@@ -5288,7 +5289,7 @@
     },
     {
       "id": "MTA-10-09",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Deny model responses if source transcript was edited or processing permission revoked during inference.",
@@ -5315,7 +5316,7 @@
     },
     {
       "id": "MTA-10-10",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Use strict JSON/schema outputs with duplicate-key detection, size cap and timeouts.",
@@ -5344,7 +5345,7 @@
     },
     {
       "id": "MTA-10-11",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Store only approved minimal local inference metadata; do not persist prompts with sensitive transcript contents by default.",
@@ -5377,7 +5378,7 @@
     },
     {
       "id": "MTA-10-12",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Provide deterministic model-free path that runs whenever heavier optional inference is impossible.",
@@ -5398,7 +5399,7 @@
     },
     {
       "id": "MTA-10-13",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Test model busy, OOM preflight, cache missing, wrong hash, malformed response, denied permission and worker crash.",
@@ -5419,7 +5420,7 @@
     },
     {
       "id": "MTA-10-14",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "blocked_external_evidence",
       "description": "Compare CPU/RAM/energy latency per successful consultation rather than vendor model advertised performance.",
@@ -5440,7 +5441,7 @@
     },
     {
       "id": "MTA-10-15",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Test that simulated completed inferences cannot be promoted as real model results.",
@@ -5461,7 +5462,7 @@
     },
     {
       "id": "MTA-10-16",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Include resource contention tests across concurrent browser/API workers and local Ollama.",
@@ -5482,7 +5483,7 @@
     },
     {
       "id": "MTA-10-17",
-      "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
+      "section": "10 — Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
       "status": "implemented",
       "description": "Declare reproducible runtime profiles for low-end CPU, Apple Silicon if present and NVIDIA GPU only if locally available.",
@@ -5504,10 +5505,10 @@
     },
     {
       "id": "MTA-11-01",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
-      "description": "Select one falsifiable novel hypothesis: Bidirectional Evidence-Constrained Clinical State Verification (BECCSV), not generic \u201cmulti-agent medical AI\u201d.",
+      "description": "Select one falsifiable novel hypothesis: Bidirectional Evidence-Constrained Clinical State Verification (BECCSV), not generic “multi-agent medical AI”.",
       "evidence": [
         "docs/research/beccsv-protocol-v1.md"
       ],
@@ -5525,7 +5526,7 @@
     },
     {
       "id": "MTA-11-02",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Precisely specify the method: source-fact coverage, forward note entailment, relation consistency, temporal state and uncertainty-aware abstention.",
@@ -5546,7 +5547,7 @@
     },
     {
       "id": "MTA-11-03",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Differentiate BECCSV from ordinary rule checks and LLM self-checking by its typed graph and dual-direction completeness requirement.",
@@ -5567,7 +5568,7 @@
     },
     {
       "id": "MTA-11-04",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Write algorithm pseudocode, complexity, invariants, expected failure modes and testable mathematical predictions.",
@@ -5588,7 +5589,7 @@
     },
     {
       "id": "MTA-11-05",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Formalize source facts S, note claims N, support edges E and uncovered source/unsupported claim penalties.",
@@ -5609,7 +5610,7 @@
     },
     {
       "id": "MTA-11-06",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Define severity-weighted mismatch loss with explicit non-probabilistic weights and predeclared calibration plan.",
@@ -5630,7 +5631,7 @@
     },
     {
       "id": "MTA-11-07",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Define conservative abstention policy when evidence ambiguous, speakers conflict or model unavailable.",
@@ -5651,7 +5652,7 @@
     },
     {
       "id": "MTA-11-08",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Build deterministic graph-only implementation before adding LLM judgments to isolate mechanism.",
@@ -5673,7 +5674,7 @@
     },
     {
       "id": "MTA-11-09",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Introduce graph ablations: no inverse coverage, no temporal edge, no relation edge, no uncertainty, no rules, no local verifier.",
@@ -5694,7 +5695,7 @@
     },
     {
       "id": "MTA-11-10",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Keep standard baselines: plain SOAP template, ordinary LLM prompting, deterministic checks only, LLM-only self-critique and combined current approach.",
@@ -5715,7 +5716,7 @@
     },
     {
       "id": "MTA-11-11",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "not_started",
       "description": "Freeze same source facts, same cases, same resource budgets, same prompt lengths, same retry policies and same model digests.",
@@ -5726,7 +5727,7 @@
     },
     {
       "id": "MTA-11-12",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Use no test-case modifications after inspecting errors for final locked comparison; new development set is versioned.",
@@ -5748,7 +5749,7 @@
     },
     {
       "id": "MTA-11-13",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Construct synthetic scenario generator over clinically plausible entities but explicitly synthetic labels and no actual patient information.",
@@ -5770,7 +5771,7 @@
     },
     {
       "id": "MTA-11-14",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Apply metamorphic testing: unit conversion, faithful paraphrase, clause order, temporal flip, swapped drug/dose, negation reversal and subject swap.",
@@ -5791,7 +5792,7 @@
     },
     {
       "id": "MTA-11-15",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Pre-register primary outcome as critical unsafe-claim miss rate with false-alarm bound and full error denominators.",
@@ -5812,7 +5813,7 @@
     },
     {
       "id": "MTA-11-16",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Pre-register a secondary outcome for source omission coverage and note claim provenance completeness.",
@@ -5833,7 +5834,7 @@
     },
     {
       "id": "MTA-11-17",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Use uncertainty intervals clustered at original consultation, not at correlated clips or contaminated sibling perturbations.",
@@ -5854,10 +5855,10 @@
     },
     {
       "id": "MTA-11-18",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
-      "description": "Perform paired bootstrap or appropriate exact paired test; never claim significance from 6\u201312 developer cases.",
+      "description": "Perform paired bootstrap or appropriate exact paired test; never claim significance from 6–12 developer cases.",
       "evidence": [
         "docs/research/beccsv-protocol-v1.md"
       ],
@@ -5867,7 +5868,7 @@
           "report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json",
           "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1",
           "status": "pass",
-          "detail": "Paired consultation bootstrap and descriptive-only policy for 6\u201312 developer cases are specified.",
+          "detail": "Paired consultation bootstrap and descriptive-only policy for 6–12 developer cases are specified.",
           "legacy_check_label": "paired_consultation_bootstrap_and_small_n_rule"
         }
       ],
@@ -5875,7 +5876,7 @@
     },
     {
       "id": "MTA-11-19",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Include negative results, timeouts, aborted runs, changed datasets and potential contamination in research tables.",
@@ -5896,7 +5897,7 @@
     },
     {
       "id": "MTA-11-20",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Do not introduce a novel-method success claim until it beats frozen baselines with predefined criteria and no increased false block burden.",
@@ -5918,7 +5919,7 @@
     },
     {
       "id": "MTA-11-21",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Produce a reproducible technical paper draft with method diagrams, baselines, protocol, implementation and limitations.",
@@ -5939,7 +5940,7 @@
     },
     {
       "id": "MTA-11-22",
-      "section": "11 \u2014 Distinct research contribution and formal experimental programme",
+      "section": "11 — Distinct research contribution and formal experimental programme",
       "priority": "P1",
       "status": "implemented",
       "description": "Keep paper type clearly labelled systems/benchmark/method hypothesis; clinical efficacy requires independent subsequent studies.",
@@ -5960,7 +5961,7 @@
     },
     {
       "id": "MTA-12-01",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
       "status": "implemented",
       "description": "Build a central evaluation runner with provenance envelope: SHA, dataset, split, model, config, source code, runtime, hardware, status, wall time and limitations.",
@@ -5980,7 +5981,7 @@
     },
     {
       "id": "MTA-12-02",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
       "status": "implemented",
       "description": "Distinguish transport tests, model inference results, synthetic rule tests, public-mock ASR tests and independent clinical annotations.",
@@ -6000,7 +6001,7 @@
     },
     {
       "id": "MTA-12-03",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
       "status": "implemented",
       "description": "Validate every case in a manifest appears exactly once (or a declared failed sample) in metric denominators.",
@@ -6020,7 +6021,7 @@
     },
     {
       "id": "MTA-12-04",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
       "status": "implemented",
       "description": "Implement WER, CER, substitutions, deletions and insertions; use explicit word normalization frozen before testing.",
@@ -6040,7 +6041,7 @@
     },
     {
       "id": "MTA-12-05",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
       "status": "implemented",
       "description": "Score ASR by consultation, reference speaker role, noise condition, drug/dose/negation tokens and uncertainty region.",
@@ -6060,7 +6061,7 @@
     },
     {
       "id": "MTA-12-06",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
       "status": "implemented",
       "description": "Score diarization with DER, JER, missed speech, confusion, overlap and role misattribution.",
@@ -6080,7 +6081,7 @@
     },
     {
       "id": "MTA-12-07",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
       "status": "implemented",
       "description": "Score clinical extraction fact precision/recall/F1, subject/negation/temporal/medication-attribute exact match and omission count.",
@@ -6100,7 +6101,7 @@
     },
     {
       "id": "MTA-12-08",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
       "status": "implemented",
       "description": "Score verification critical miss rate, safe-case false alert rate, timeouts, abstentions and coverage.",
@@ -6120,7 +6121,7 @@
     },
     {
       "id": "MTA-12-09",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P0",
       "status": "implemented",
       "description": "Score grounded drafts with factual precision, material source recall, number of unsupported claims, and dangerous transformation count.",
@@ -6140,7 +6141,7 @@
     },
     {
       "id": "MTA-12-10",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Report worst-slice results and distribution quantiles; overall mean alone is insufficient.",
@@ -6160,7 +6161,7 @@
     },
     {
       "id": "MTA-12-11",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Define primary outcome, minimum effect size, false-block limit and abstention expectations before new runs.",
@@ -6180,7 +6181,7 @@
     },
     {
       "id": "MTA-12-12",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Use paired confidence intervals when comparing systems on same original consultation; bootstrap over distinct consultations.",
@@ -6200,7 +6201,7 @@
     },
     {
       "id": "MTA-12-13",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Include reliability curves only if probability-like confidence outputs are genuine and independently labeled.",
@@ -6220,7 +6221,7 @@
     },
     {
       "id": "MTA-12-14",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Add power/sensitivity simulation for eventual human study without pretending such a study occurred.",
@@ -6240,7 +6241,7 @@
     },
     {
       "id": "MTA-12-15",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Measure p50/p95 stages and successful completion rate; failed runs counted separately and excluded from speed averages only with explicit denominator.",
@@ -6260,7 +6261,7 @@
     },
     {
       "id": "MTA-12-16",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Measure local electricity/hardware estimates with real power assumptions and annotate unknown values.",
@@ -6280,7 +6281,7 @@
     },
     {
       "id": "MTA-12-17",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Record separate per-encounter storage growth, retained audio size and deletion footprint.",
@@ -6300,7 +6301,7 @@
     },
     {
       "id": "MTA-12-18",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Compare unchanged frozen benchmark and candidate methods without cross-benchmark ranking shortcuts.",
@@ -6320,7 +6321,7 @@
     },
     {
       "id": "MTA-12-19",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Add test that any 5% WER policy relaxation or result rounding triggers hard failure.",
@@ -6340,7 +6341,7 @@
     },
     {
       "id": "MTA-12-20",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Add fail-closed statistical endpoint if no adequate paired sample, missing CI bounds, or outcome definition drift.",
@@ -6360,7 +6361,7 @@
     },
     {
       "id": "MTA-12-21",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Write machine-readable leaderboard for development only, with all no-result models still visible as unavailable.",
@@ -6382,7 +6383,7 @@
     },
     {
       "id": "MTA-12-22",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Generate tables and plots reproducibly from raw reports and validate chart numbers against JSON.",
@@ -6404,7 +6405,7 @@
     },
     {
       "id": "MTA-12-23",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Publish a reproducibility pack with benchmark manifests, source code hashes, exact commands and limitations.",
@@ -6425,7 +6426,7 @@
     },
     {
       "id": "MTA-12-24",
-      "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
+      "section": "12 — Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
       "status": "implemented",
       "description": "Explicitly report inability to estimate real clinical sensitivity, clinician productivity and safety without external evidence.",
@@ -6446,7 +6447,7 @@
     },
     {
       "id": "MTA-13-01",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
       "status": "implemented",
       "description": "Threat-model upload, browser storage, local API, worker, model prompt, clinical note, audit and export flows.",
@@ -6466,7 +6467,7 @@
     },
     {
       "id": "MTA-13-02",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
       "status": "implemented",
       "description": "Add explicit untrusted-transcript policy; spoken instructions to the model cannot override rules or become tool execution.",
@@ -6486,7 +6487,7 @@
     },
     {
       "id": "MTA-13-03",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
       "status": "implemented",
       "description": "Test prompt injection and hidden instruction in audio transcript, quoted doctor-patient text and filenames.",
@@ -6506,7 +6507,7 @@
     },
     {
       "id": "MTA-13-04",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
       "status": "implemented",
       "description": "Enforce authorization by tenant/clinician/encounter/resource/version for every GET/POST/PATCH/DELETE and background worker.",
@@ -6527,7 +6528,7 @@
     },
     {
       "id": "MTA-13-05",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
       "status": "implemented",
       "description": "Add adversarial horizontal/vertical privilege escalation, token replay, revoked session, role downgrade and cross-tenant export tests.",
@@ -6549,7 +6550,7 @@
     },
     {
       "id": "MTA-13-06",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
       "status": "implemented",
       "description": "Test missing, duplicate, oversized and malformed JSON fields and Unicode normalization at API boundaries.",
@@ -6571,7 +6572,7 @@
     },
     {
       "id": "MTA-13-07",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
       "status": "implemented",
       "description": "Reject path traversal, symlink races, unsafe file extensions and malicious media metadata.",
@@ -6592,7 +6593,7 @@
     },
     {
       "id": "MTA-13-08",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
       "status": "implemented",
       "description": "Enforce safe file permissions and sandboxed paths for audio, transient excerpts, caches, model files and exports.",
@@ -6612,7 +6613,7 @@
     },
     {
       "id": "MTA-13-09",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
       "status": "implemented",
       "description": "Ensure recording authorization and consent revocation cancel future processing and prevent new publications.",
@@ -6633,7 +6634,7 @@
     },
     {
       "id": "MTA-13-10",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Ensure model outputs cannot force approval, suppress critical warnings or change immutable source hashes.",
@@ -6653,7 +6654,7 @@
     },
     {
       "id": "MTA-13-11",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Redact secrets, identifiers, audio text and model prompt content from logs, traces and errors.",
@@ -6673,7 +6674,7 @@
     },
     {
       "id": "MTA-13-12",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Run repository secret scanning and fixture canary test; synthetic canaries must not appear in forbidden artifacts.",
@@ -6694,7 +6695,7 @@
     },
     {
       "id": "MTA-13-13",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Create comprehensive asset-deletion graph across original/normalized/cropped audio, transcript, note, cache, export, live prefix and backup.",
@@ -6715,7 +6716,7 @@
     },
     {
       "id": "MTA-13-14",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Test purge and legal-hold retention separately with a fake operator-approved policy (not real patient policy).",
@@ -6736,7 +6737,7 @@
     },
     {
       "id": "MTA-13-15",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "blocked_missing_asset",
       "description": "Encrypt locally stored test backups with verified key lifecycle and restore; distinguish demo keys from institution-managed keys.",
@@ -6756,7 +6757,7 @@
     },
     {
       "id": "MTA-13-16",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "not_started",
       "description": "Document and enforce least privilege to OS and database with migration/application separation where possible.",
@@ -6767,7 +6768,7 @@
     },
     {
       "id": "MTA-13-17",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Create tamper-detection test for audit chain, export digest, source link, model receipt and approval version.",
@@ -6787,7 +6788,7 @@
     },
     {
       "id": "MTA-13-18",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Add no-network test runner and egress deny-by-default host configuration guidance; Python socket monkeypatch alone is not a system firewall.",
@@ -6807,7 +6808,7 @@
     },
     {
       "id": "MTA-13-19",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Map threats and test cases to the current OWASP LLM Top 10 risk classes without claiming OWASP certification.",
@@ -6827,7 +6828,7 @@
     },
     {
       "id": "MTA-13-20",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Check data minimization and exposure surface for every browser endpoint and investor viewer role.",
@@ -6847,7 +6848,7 @@
     },
     {
       "id": "MTA-13-21",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Use synthetic patient material only until institutional permissions and independent review exist.",
@@ -6867,7 +6868,7 @@
     },
     {
       "id": "MTA-13-22",
-      "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
+      "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
       "status": "implemented",
       "description": "Publish security assurance report with tested controls, limitations and remaining external infrastructure dependencies.",
@@ -6888,7 +6889,7 @@
     },
     {
       "id": "MTA-14-01",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Exercise multi-tab and multi-process concurrency, exactly-once ingest publication, worker lease expiry and recovery races.",
@@ -6899,7 +6900,7 @@
     },
     {
       "id": "MTA-14-02",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Inject disk full, DB lock, DB crash, missing media, disconnect, slow storage, revoked consent and model timeout at every stage.",
@@ -6910,7 +6911,7 @@
     },
     {
       "id": "MTA-14-03",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Preserve invariant: no failed/partial/transient result becomes an approved note or completed encounter silently.",
@@ -6921,7 +6922,7 @@
     },
     {
       "id": "MTA-14-04",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Prove successful resumption uses original digest and cannot reuse checkpoint from a changed transcript/model/profile.",
@@ -6932,7 +6933,7 @@
     },
     {
       "id": "MTA-14-05",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Create deterministic replay of job attempts and backoff history to audit retries and failed recovery.",
@@ -6943,7 +6944,7 @@
     },
     {
       "id": "MTA-14-06",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Check original/normalized/cropped audio cleanup and stale tempfile reclamation after process termination.",
@@ -6954,7 +6955,7 @@
     },
     {
       "id": "MTA-14-07",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Test zero-length, truncated, overlong, multichannel and maximum permitted input against defined memory caps.",
@@ -6965,7 +6966,7 @@
     },
     {
       "id": "MTA-14-08",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Implement bounded API/server queue, backpressure, worker admission and cancellation semantics under load.",
@@ -6976,7 +6977,7 @@
     },
     {
       "id": "MTA-14-09",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Define RTO/RPO as local engineering targets, measure restore success/failure on synthetic data and label hardware scope.",
@@ -6987,7 +6988,7 @@
     },
     {
       "id": "MTA-14-10",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Run long-form concurrent synthetic stress tests with disk, memory and resource traces and preserved failures.",
@@ -6998,7 +6999,7 @@
     },
     {
       "id": "MTA-14-11",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Build transactional migration tests from historical SQLite schema to latest, including rollback and backup restore.",
@@ -7009,7 +7010,7 @@
     },
     {
       "id": "MTA-14-12",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Run PostgreSQL integration on an existing local/container service when available; otherwise retain hosted tests and note missing local evidence.",
@@ -7020,7 +7021,7 @@
     },
     {
       "id": "MTA-14-13",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Instrument stage timing for recording, transfer, normalization, ASR, diarization, extraction, drafting, review and export.",
@@ -7031,7 +7032,7 @@
     },
     {
       "id": "MTA-14-14",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Distinguish p50/p95 latency, throughput, cache hit and wait time from actual clinician task time.",
@@ -7042,7 +7043,7 @@
     },
     {
       "id": "MTA-14-15",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Ensure errors return actionable non-sensitive codes; make UI recovery states specific.",
@@ -7053,7 +7054,7 @@
     },
     {
       "id": "MTA-14-16",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Build offline diagnostic command that reports source freshness, missing models, disk headroom, permissions and blocked tests.",
@@ -7064,7 +7065,7 @@
     },
     {
       "id": "MTA-14-17",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Generate migration and incident playbooks with synthetic examples, rollback steps and release stop criteria.",
@@ -7075,7 +7076,7 @@
     },
     {
       "id": "MTA-14-18",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Define supported runtime matrix only for tested device/OS/browser/hardware combinations.",
@@ -7086,7 +7087,7 @@
     },
     {
       "id": "MTA-14-19",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Run 3 consecutive clean end-to-end release candidates from identical artifact digests; no false green from stale receipts.",
@@ -7097,7 +7098,7 @@
     },
     {
       "id": "MTA-14-20",
-      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
+      "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
       "status": "not_started",
       "description": "Treat missing tools/weights as incomplete, never as fast, successful or safe.",
@@ -7108,7 +7109,7 @@
     },
     {
       "id": "MTA-15-01",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
       "status": "not_started",
       "description": "Write PRD v1 with target job-to-be-done: clinician reviews an evidence-linked English encounter note faster and safer.",
@@ -7119,7 +7120,7 @@
     },
     {
       "id": "MTA-15-02",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
       "status": "not_started",
       "description": "Define explicit non-goals: autonomous diagnosis, prescriptions, unsupervised patient deployment, radiology, MRI/X-ray, multilingual and TTS.",
@@ -7130,7 +7131,7 @@
     },
     {
       "id": "MTA-15-03",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
       "status": "not_started",
       "description": "Create synthetic persona profiles: general physician, clinical scribe, practice administrator, compliance officer and patient records recipient.",
@@ -7141,7 +7142,7 @@
     },
     {
       "id": "MTA-15-04",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
       "status": "not_started",
       "description": "Construct end-to-end job maps for pre-visit, recording, during visit, correction, sign-off and EHR handoff.",
@@ -7152,7 +7153,7 @@
     },
     {
       "id": "MTA-15-05",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
       "status": "not_started",
       "description": "Define user problem statements with testable hypotheses; mark all statements derived from internal assumptions.",
@@ -7163,7 +7164,7 @@
     },
     {
       "id": "MTA-15-06",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P1",
       "status": "not_started",
       "description": "Create customer journey map with where latency, transcription noise, uncertainty and missing source impede trust.",
@@ -7174,7 +7175,7 @@
     },
     {
       "id": "MTA-15-07",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "List top 20 user stories as `As a ... I need ... so that ...`, with Given/When/Then acceptance tests.",
@@ -7185,7 +7186,7 @@
     },
     {
       "id": "MTA-15-08",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Create comprehensive product feature inventory: must-have, should-have, could-have, excluded.",
@@ -7196,7 +7197,7 @@
     },
     {
       "id": "MTA-15-09",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Use RICE or weighted scoring with transparent hypothetical inputs; label prioritization scores as simulations.",
@@ -7207,7 +7208,7 @@
     },
     {
       "id": "MTA-15-10",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Publish risk-adjusted roadmap based on clinical harm, product value, effort and dependency rather than number of agents.",
@@ -7218,7 +7219,7 @@
     },
     {
       "id": "MTA-15-11",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Define differentiated product promise: traceable evidence, immutable versioning, conservative safety, local-first privacy and human approval.",
@@ -7229,7 +7230,7 @@
     },
     {
       "id": "MTA-15-12",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Write competitive positioning matrix from verified public feature claims only; no fabricated competitor pricing or trials.",
@@ -7240,7 +7241,7 @@
     },
     {
       "id": "MTA-15-13",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Define packaged personas/modes: local demo, clinician workstation, read-only investor and institution pilot candidate.",
@@ -7251,7 +7252,7 @@
     },
     {
       "id": "MTA-15-14",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Create zero-assumption onboarding path on preinstalled supported hardware and a fallback manual workflow.",
@@ -7262,7 +7263,7 @@
     },
     {
       "id": "MTA-15-15",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Build guided first-run tutorial using synthetic consultation and deliberate correctable error.",
@@ -7273,7 +7274,7 @@
     },
     {
       "id": "MTA-15-16",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Define product success metrics: case completion, time to first reviewed draft, correction burden, critical warning acknowledgment and export success.",
@@ -7284,7 +7285,7 @@
     },
     {
       "id": "MTA-15-17",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Distinguish simulated user action metrics from actual clinician-observed metrics in dashboard schema.",
@@ -7295,7 +7296,7 @@
     },
     {
       "id": "MTA-15-18",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Define guardrail metrics: incorrect critical note claims, unsafe export, silent truncation, source citation failure, false alerts and model timeouts.",
@@ -7306,7 +7307,7 @@
     },
     {
       "id": "MTA-15-19",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Define SLO targets as hypotheses per hardware tier and test feasibility rather than assert production guarantees.",
@@ -7317,7 +7318,7 @@
     },
     {
       "id": "MTA-15-20",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Construct synthetic pricing/unit-economics workbook with configurable hardware amortization, local electricity, support and per-consultation costs.",
@@ -7328,7 +7329,7 @@
     },
     {
       "id": "MTA-15-21",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Build explicit hypothetical business scenarios for individual clinician, small clinic and institution; do not assert market size or paying demand.",
@@ -7339,7 +7340,7 @@
     },
     {
       "id": "MTA-15-22",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Create release notes, changelog, support FAQ, escalation playbook and user-visible model limitation statements.",
@@ -7350,7 +7351,7 @@
     },
     {
       "id": "MTA-15-23",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Map export interfaces to available FHIR R4 DocumentReference and test serialization and identifier integrity without claiming EHR certification.",
@@ -7361,7 +7362,7 @@
     },
     {
       "id": "MTA-15-24",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Define privacy and security buyer checklist, deployment dependencies, data flow diagram and operator responsibilities.",
@@ -7372,7 +7373,7 @@
     },
     {
       "id": "MTA-15-25",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Create sales/investor demo deck outline with reproducible synthetic walkthrough and honest unknowns.",
@@ -7383,7 +7384,7 @@
     },
     {
       "id": "MTA-15-26",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Define simulated feedback log and roadmap reprioritization rules, while leaving real customer validation explicitly undone.",
@@ -7394,7 +7395,7 @@
     },
     {
       "id": "MTA-15-27",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Create roadmap scorecard separating feature maturity, measured usage simulation, research evidence and external clinical/purchaser validation.",
@@ -7405,7 +7406,7 @@
     },
     {
       "id": "MTA-15-28",
-      "section": "15 \u2014 Product management: strategy, market hypotheses and prioritization",
+      "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
       "status": "not_started",
       "description": "Formalize launch decision: AI agents can recommend pilot readiness, but cannot authorize real patient processing or certify clinical benefit.",
@@ -7416,7 +7417,7 @@
     },
     {
       "id": "MTA-16-01",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
       "status": "not_started",
       "description": "Build offline synthetic encounter scenarios across short, noisy, overlapping, medication-heavy and multi-speaker consultations.",
@@ -7427,7 +7428,7 @@
     },
     {
       "id": "MTA-16-02",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
       "status": "not_started",
       "description": "Simulate script-driven clinician correction tasks including drug-dose swap, source omission, negation and speaker correction.",
@@ -7438,7 +7439,7 @@
     },
     {
       "id": "MTA-16-03",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
       "status": "not_started",
       "description": "Measure programmatic click counts, keyboard steps, page load latency, interaction errors and task completion for scripts.",
@@ -7449,7 +7450,7 @@
     },
     {
       "id": "MTA-16-04",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
       "status": "not_started",
       "description": "Publish which actions were scripted versus genuine human interactions; never label scripts observed clinician behavior.",
@@ -7460,7 +7461,7 @@
     },
     {
       "id": "MTA-16-05",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
       "status": "not_started",
       "description": "Run a usability heuristic audit across learnability, discoverability, consistency, feedback, error recovery and accessibility.",
@@ -7471,7 +7472,7 @@
     },
     {
       "id": "MTA-16-06",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P1",
       "status": "not_started",
       "description": "Generate usability issue backlog with severity, reproduction steps, impacted user story, screenshots and acceptance tests.",
@@ -7482,7 +7483,7 @@
     },
     {
       "id": "MTA-16-07",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Measure latency from record stop to draft ready and from corrected note to export on deterministic synthetic profiles.",
@@ -7493,7 +7494,7 @@
     },
     {
       "id": "MTA-16-08",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Define comparison of baseline/manual-only versus assisted flows using identical synthetic tasks and clearly simulated agent timings.",
@@ -7504,7 +7505,7 @@
     },
     {
       "id": "MTA-16-09",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Do not infer actual time saved from scripted actions; keep clinical productivity metric null.",
@@ -7515,7 +7516,7 @@
     },
     {
       "id": "MTA-16-10",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Implement unit-economics estimates under explicit CPU wattage, electricity price, model availability and amortization assumptions.",
@@ -7526,7 +7527,7 @@
     },
     {
       "id": "MTA-16-11",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Add test verifying cost never defaults to zero for missing measurements.",
@@ -7537,7 +7538,7 @@
     },
     {
       "id": "MTA-16-12",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Build visual review of warning load, false alerts per note, unresolved source omissions and clinician-required actions.",
@@ -7548,7 +7549,7 @@
     },
     {
       "id": "MTA-16-13",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Add offline scripted onboarding acceptance with no external email or OAuth activation.",
@@ -7559,7 +7560,7 @@
     },
     {
       "id": "MTA-16-14",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Create separate demo evidence card showing synthetic scope, source hash and system limitations.",
@@ -7570,7 +7571,7 @@
     },
     {
       "id": "MTA-16-15",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Use synthetic workload Monte Carlo scenarios for throughput/cost sensitivity; do not infer patient outcome or product-market fit.",
@@ -7581,7 +7582,7 @@
     },
     {
       "id": "MTA-16-16",
-      "section": "16 \u2014 UX and PM simulations with measurable, non-fabricated outcomes",
+      "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
       "status": "not_started",
       "description": "Write future human-study protocol skeleton aligned to DECIDE-AI and keep all participant results blank.",
@@ -7592,7 +7593,7 @@
     },
     {
       "id": "MTA-17-01",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "not_started",
       "description": "Write comprehensive architecture specification with module map and data contracts.",
@@ -7603,7 +7604,7 @@
     },
     {
       "id": "MTA-17-02",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "not_started",
       "description": "Produce reproducibility manifest with source SHA, frozen datasets, licenses, model digests, scripts and environment.",
@@ -7614,7 +7615,7 @@
     },
     {
       "id": "MTA-17-03",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "not_started",
       "description": "Publish benchmark tables generated automatically from frozen reports with negative results and limitations.",
@@ -7625,7 +7626,7 @@
     },
     {
       "id": "MTA-17-04",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "not_started",
       "description": "Prepare research paper sections: motivation, related work, precise method, experimental setup, baselines, ablations, results, threats to validity.",
@@ -7636,7 +7637,7 @@
     },
     {
       "id": "MTA-17-05",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "not_started",
       "description": "Prepare supplementary material with error taxonomy, sample-level anonymous results and failure policy.",
@@ -7647,7 +7648,7 @@
     },
     {
       "id": "MTA-17-06",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
       "status": "not_started",
       "description": "Generate algorithm pseudocode diagrams and graph invariants from real code, not claims alone.",
@@ -7658,7 +7659,7 @@
     },
     {
       "id": "MTA-17-07",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Package complete local demo from existing artifacts with one-command verification and explanatory runbook.",
@@ -7669,7 +7670,7 @@
     },
     {
       "id": "MTA-17-08",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Produce a second investor-only synthetic showcase with a visible not-clinically-approved banner.",
@@ -7680,7 +7681,7 @@
     },
     {
       "id": "MTA-17-09",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Build product requirements, backlog, scoring rubric, roadmap, risk register, technical debt ledger and release notes in `docs/product/`.",
@@ -7691,7 +7692,7 @@
     },
     {
       "id": "MTA-17-10",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Create a mock API specification and FHIR test bundle for EHR integration readiness, without asserting external conformance.",
@@ -7702,7 +7703,7 @@
     },
     {
       "id": "MTA-17-11",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Create evidence provenance ledger mapping each 10/10 claim to test ID, commit SHA and output artifact.",
@@ -7713,7 +7714,7 @@
     },
     {
       "id": "MTA-17-12",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Create machine-readable SBOM, open-source license register, model card and architecture compliance matrix.",
@@ -7724,7 +7725,7 @@
     },
     {
       "id": "MTA-17-13",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Implement local read-only health and readiness CLI; all missing checks must display as BLOCKED/UNKNOWN.",
@@ -7735,7 +7736,7 @@
     },
     {
       "id": "MTA-17-14",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Ensure generated reports can be reproduced byte-for-byte or version-tagged with documented nondeterministic fields.",
@@ -7746,7 +7747,7 @@
     },
     {
       "id": "MTA-17-15",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Document how any AI coding agent can run tests, preserve fixtures and avoid modifying protected acceptance materials.",
@@ -7757,7 +7758,7 @@
     },
     {
       "id": "MTA-17-16",
-      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
       "status": "not_started",
       "description": "Publish explicit list of remaining external prerequisites for real-world validation, including human credential review and patient permissions.",
@@ -7768,7 +7769,7 @@
     },
     {
       "id": "MTA-18-01",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
       "status": "implemented",
       "description": "Create machine-readable weighted scorecard for research, engineering and product readiness separately; never one average hides clinical blockers.",
@@ -7793,7 +7794,7 @@
     },
     {
       "id": "MTA-18-02",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
       "status": "not_started",
       "description": "Research gate: method is formally specified, frozen baselines replay, complete ablations run, uncertainty quantified and claims are proportional.",
@@ -7804,7 +7805,7 @@
     },
     {
       "id": "MTA-18-03",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
       "status": "not_started",
       "description": "Engineering gate: exact-commit hosted CI all green, local acceptance green, no unresolved P0, current sources hash-bound.",
@@ -7815,7 +7816,7 @@
     },
     {
       "id": "MTA-18-04",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
       "status": "not_started",
       "description": "Product engineering gate: scripted personas finish all critical journeys, audit/provenance verified and recovery/fallback robust.",
@@ -7826,7 +7827,7 @@
     },
     {
       "id": "MTA-18-05",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
       "status": "not_started",
       "description": "Clinical evidence gate: NO independent clinical release without qualified reviewers, accepted labels, institutional and privacy approvals.",
@@ -7837,7 +7838,7 @@
     },
     {
       "id": "MTA-18-06",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
       "status": "implemented",
       "description": "Ensure ASR WER admission gate is unchanged and remains failed until actual measured result meets it.",
@@ -7867,7 +7868,7 @@
     },
     {
       "id": "MTA-18-07",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
       "status": "implemented",
       "description": "Ensure any one critical missed assertion, unsourced approved statement or cross-tenant leak blocks candidate promotion.",
@@ -7904,7 +7905,7 @@
     },
     {
       "id": "MTA-18-08",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
       "status": "implemented",
       "description": "Ensure model fallback does not grant approval and all contradictory/unknown medical statements remain review-required.",
@@ -7945,7 +7946,7 @@
     },
     {
       "id": "MTA-18-09",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
       "status": "implemented",
       "description": "Prove complete evidence graph for approved synthetic export, including hash check and historical amendment.",
@@ -7981,7 +7982,7 @@
     },
     {
       "id": "MTA-18-10",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
       "status": "not_started",
       "description": "Ensure all experiments and tests bind exact commit, dataset and model digests; stale acceptance fails closed.",
@@ -7992,7 +7993,7 @@
     },
     {
       "id": "MTA-18-11",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
       "status": "not_started",
       "description": "Require fresh end-to-end test from unmodified inputs and no hidden external connections.",
@@ -8003,7 +8004,7 @@
     },
     {
       "id": "MTA-18-12",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
       "status": "implemented",
       "description": "Publish `results/done.json`, `results/blockers.json`, `results/research.json`, `results/product.json` and `results/verification.json` for every attempted milestone.",
@@ -8028,7 +8029,7 @@
     },
     {
       "id": "MTA-18-13",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
       "status": "implemented",
       "description": "Record changed files, new tests, test counts, failures, skipped checks, performance, conclusions and unresolved risks.",
@@ -8053,7 +8054,7 @@
     },
     {
       "id": "MTA-18-14",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
       "status": "not_started",
       "description": "Issue final `10/10 self-contained engineering prototype` label only when all INTERNAL gates pass; no 10/10 clinical claim.",
@@ -8064,7 +8065,7 @@
     },
     {
       "id": "MTA-18-15",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
       "status": "not_started",
       "description": "If input assets, runtime or required evidence are absent, explicitly output BLOCKED with smallest necessary remedy rather than fake completion.",
@@ -8075,7 +8076,7 @@
     },
     {
       "id": "MTA-18-16",
-      "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
+      "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P1",
       "status": "not_started",
       "description": "Never claim the coding agent ran independent clinician evaluation, observed user satisfaction, live OAuth registration or regulatory review.",
