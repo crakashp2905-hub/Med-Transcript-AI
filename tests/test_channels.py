@@ -222,7 +222,7 @@ def test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job(
         "inference_executed": True,
         "isolated_channel_pcm_sha256": "b" * 64,
         "timing": {
-            "model_cache_hit": False,
+            "model_cache_hit": True,
             "model_load_seconds": 2,
             "inference_seconds": 3,
         },
@@ -244,6 +244,8 @@ def test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job(
     assert value["channels"][0]["provenance"]["inference_executed"] is False
     assert value["channels"][0]["provenance"]["timing"] == {}
     assert value["provenance"]["timing"]["summed_channel_inference_seconds"] == 3
+    assert value["provenance"]["timing"]["cached_channels"] == 1
+    assert value["provenance"]["timing"]["summed_model_load_seconds"] == 2
     assert "isolated_channel_pcm_sha256" not in value["provenance"]
     trace = value["timeline_trace"]
     assert trace["duration_ms"] == 100

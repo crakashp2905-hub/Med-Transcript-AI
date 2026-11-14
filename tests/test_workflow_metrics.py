@@ -42,6 +42,7 @@ def test_stage_latency_uses_successful_measured_denominator_and_counts_failures(
     assert result["attempt_count"] == 4
     assert result["successful_completion_rate"] == 0.5
     assert result["stages"]["asr"]["p50_seconds"] == 3.0
+    assert result["stages"]["asr"]["p95_seconds"] == 3.9
     assert result["stages"]["asr"]["successful_measured_denominator"] == 2
     assert result["stages"]["asr"]["failed_attempts_excluded_from_latency"] == 2
 
