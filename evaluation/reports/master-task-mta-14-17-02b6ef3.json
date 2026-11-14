@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-17",
+  "source_commit": "02b6ef3179a39df20bc79a16959b74a9bd297d8f",
+  "source_files": {
+    "docs/operations-migration-and-incident-playbook.md": "a48cba6ff45c74ad8c24f39b3d1b02b0387b2c8254d362dd60e7e1e1d76fffdd",
+    "tests/test_operations_playbook.py": "c95f64396c93ee89be8364222eefc838b49d780ba82e0efd57334af6d5635f31"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_operations_playbook.py tests/test_master_ledger.py"
+  },
+  "runtime_sha256": "8584675624da1fee2c3821780074a1868aa32588f5e9be82ad5f3c8894ab8f00",
+  "checks": {
+    "migration_and_rollback_playbook": {
+      "status": "pass",
+      "detail": "Playbook defines preflight, backups, migration apply/validation, paired database/media restore, and stop-on-failure behavior."
+    },
+    "synthetic_incident_scenarios": {
+      "status": "pass",
+      "detail": "Covers missing model, lost upload response, disk full, stale source approval, and failed migration with containment and recovery evidence."
+    },
+    "release_stop_criteria": {
+      "status": "pass",
+      "detail": "Explicitly blocks on stale evidence, failed backups/migrations, partial publication, security/consent/retention failures, unmet 5% gate, and unresolved qualified/institutional ownership."
+    },
+    "playbook_regression_test": {
+      "status": "pass",
+      "command": "pytest tests/test_operations_playbook.py tests/test_master_ledger.py",
+      "detail": "3 passed."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "The playbook is an engineering artifact; no live database migration, backup restore, or institutional incident rehearsal was performed.",
+    "Examples are synthetic and provide no clinical or deployment approval."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}

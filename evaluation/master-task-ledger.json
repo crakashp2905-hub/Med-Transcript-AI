@@ -7139,11 +7139,40 @@
       "id": "MTA-14-17",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Generate migration and incident playbooks with synthetic examples, rollback steps and release stop criteria.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/operations-migration-and-incident-playbook.md",
+        "tests/test_operations_playbook.py",
+        "evaluation/reports/master-task-mta-14-17-02b6ef3.json"
+      ],
+      "source_commit": "02b6ef3179a39df20bc79a16959b74a9bd297d8f",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-17-02b6ef3.json",
+          "report_sha256": "8ada5af57eeccb2da86f5c966c4f28f8df738cba66518da084389a704d33ca40",
+          "check": "migration_and_rollback_playbook",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-17-02b6ef3.json",
+          "report_sha256": "8ada5af57eeccb2da86f5c966c4f28f8df738cba66518da084389a704d33ca40",
+          "check": "synthetic_incident_scenarios",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-17-02b6ef3.json",
+          "report_sha256": "8ada5af57eeccb2da86f5c966c4f28f8df738cba66518da084389a704d33ca40",
+          "check": "release_stop_criteria",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-17-02b6ef3.json",
+          "report_sha256": "8ada5af57eeccb2da86f5c966c4f28f8df738cba66518da084389a704d33ca40",
+          "check": "playbook_regression_test",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

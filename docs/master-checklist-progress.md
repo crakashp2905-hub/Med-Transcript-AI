@@ -302,3 +302,7 @@ that longer run with a 1,200-second cap.
 ## Error and recovery behavior on 0bed9d0
 
 `MTA-14-15` is verified. The shared API/UI error catalog has a non-empty fallback, stable public mappings do not echo arbitrary input, and the mapped error is visible and dismissible. Browser recovery retains recordings after a lost response and retries with the original idempotency key. Tests: 3 Python error-code tests and 2 focused Playwright journeys passed; frontend build passed. Evidence: `evaluation/reports/master-task-mta-14-15-0bed9d0.json` (SHA-256 `e3b31358d0b955d607c7fce554c7dd5a356f4a7265069a118329ef4ad2b5ff26`). Synthetic browser fixtures do not establish clinical safety.
+
+## Migration and incident playbook on 02b6ef3
+
+`MTA-14-17` is verified as a documentation deliverable. The playbook contains synthetic incident scenarios, database/media backup and rollback steps, and explicit release-stop criteria; its structural regression test passed. Evidence: `evaluation/reports/master-task-mta-14-17-02b6ef3.json` (SHA-256 `8ada5af57eeccb2da86f5c966c4f28f8df738cba66518da084389a704d33ca40`). No real migration or restore was performed.
