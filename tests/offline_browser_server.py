@@ -13,6 +13,7 @@ from uuid import uuid4
 class ScriptedAdapter:
     """Return a fixed local reference string regardless of audio; execute no model."""
 
+    requested_memory_bytes = 0
     SCRIPTED_REFERENCE = "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting."
 
     def __init__(self, profile):

@@ -1,5 +1,6 @@
 import subprocess
 import sys
+from contextlib import contextmanager
 from services.inference_slot import (
     MIN_FREE_MEMORY_RESERVE_BYTES,
     admission_capacity_bytes,
@@ -30,6 +31,86 @@ def test_model_memory_estimate_uses_artifact_bytes_and_fixed_overhead(tmp_path):
     assert estimate_model_request_bytes([first, second]) == 12 + 512 * 1024**2
 
 
+def test_adapter_can_declare_no_model_memory_for_non_inference_fixture(monkeypatch):
+    from services.asr.worker import run_once
+
+    requested = []
+
+    @contextmanager
+    def slot(*, requested_bytes, priority):
+        requested.append((requested_bytes, priority))
+        yield True
+
+    class ScriptedAdapter:
+        requested_memory_bytes = 0
+
+    monkeypatch.setattr("services.inference_slot.local_inference_slot", slot)
+    monkeypatch.setattr(
+        "services.asr.worker._run_once",
+        lambda *args: {"status": "scripted_fixture"},
+    )
+
+    result = run_once("fixture.db", "assets", adapter_factory=ScriptedAdapter)
+
+    assert result == {"status": "scripted_fixture"}
+    assert requested == [(0, "source")]
+
+
+def test_model_adapter_keeps_default_memory_reservation(monkeypatch):
+    from services.asr.worker import FasterWhisperAdapter, run_once
+
+    requested = []
+
+    @contextmanager
+    def slot(*, requested_bytes, priority):
+        requested.append((requested_bytes, priority))
+        yield True
+
+    monkeypatch.setattr("services.inference_slot.local_inference_slot", slot)
+    monkeypatch.setattr(
+        "services.asr.worker._run_once", lambda *args: {"status": "default"}
+    )
+
+    run_once("fixture.db", "assets", adapter_factory=FasterWhisperAdapter)
+
+    assert requested == [(512 * 1024**2, "source")]
+
+
+def test_model_memory_estimate_is_preserved_and_fixture_can_declare_zero(
+    tmp_path, monkeypatch
+):
+    from services.asr.worker import _adapter_memory_requirement
+
+    model = tmp_path / "tiny-model.bin"
+    model.write_bytes(b"model-bytes")
+
+    class ScriptedAdapter:
+        requested_memory_bytes = 0
+
+    class ModelAdapter:
+        pass
+
+    assert _adapter_memory_requirement(ScriptedAdapter, [model]) == 0
+    monkeypatch.setattr(
+        "services.inference_slot.available_memory_bytes", lambda: 16 * 1024**3
+    )
+    assert _adapter_memory_requirement(ModelAdapter, [model]) == (
+        len(b"model-bytes") * 2 + 512 * 1024**2
+    )
+
+
+def test_adapter_memory_requirement_rejects_invalid_override():
+    import pytest
+
+    from services.asr.worker import _adapter_memory_requirement
+
+    class InvalidAdapter:
+        requested_memory_bytes = -1
+
+    with pytest.raises(ValueError, match="invalid_adapter_memory_request"):
+        _adapter_memory_requirement(InvalidAdapter, [])
+
+
 def test_process_slot_denies_requests_outside_the_configured_budget(
     tmp_path, monkeypatch
 ):
@@ -47,10 +128,16 @@ def test_second_process_cannot_admit_inference_until_slot_is_released(
 ):
     path = str(tmp_path / "admission.lock")
     monkeypatch.setenv("MED_TRANSCRIPT_INFERENCE_LOCK", path)
+    monkeypatch.setattr(
+        "services.inference_slot.available_memory_bytes", lambda: 16 * 1024**3
+    )
     command = [
         sys.executable,
         "-c",
-        "from services.inference_slot import local_inference_slot; c=local_inference_slot(requested_bytes=1); print(c.__enter__()); c.__exit__(None,None,None)",
+        "import services.inference_slot as m; "
+        "m.available_memory_bytes=lambda:16*1024**3; "
+        "c=m.local_inference_slot(requested_bytes=1); "
+        "print(c.__enter__()); c.__exit__(None,None,None)",
     ]
     with local_inference_slot() as ready:
         assert ready
@@ -104,8 +191,9 @@ def test_asr_source_admission_defers_optional_ollama_across_processes(
     command = [
         sys.executable,
         "-c",
-        "from services.inference_slot import local_inference_slot; "
-        "ctx=local_inference_slot(requested_bytes=1, priority='optional'); "
+        "import services.inference_slot as m; "
+        "m.available_memory_bytes=lambda:16*1024**3; "
+        "ctx=m.local_inference_slot(requested_bytes=1, priority='optional'); "
         "print(ctx.__enter__()); ctx.__exit__(None,None,None)",
     ]
 

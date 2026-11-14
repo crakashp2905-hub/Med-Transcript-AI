@@ -73,7 +73,12 @@ def test_google_session_cookie_csrf_roles_logout_and_replay(google_app):
     assert cookie
     session = client.get("/v1/auth/session").json()
     assert session["role"] == "viewer"
-    assert client.get("/v1/session").json()["tenant_id"] == member["tenant_id"]
+    workspace_session = client.get("/v1/session").json()
+    assert workspace_session["role"] == "viewer"
+    assert "tenant_id" not in workspace_session
+    assert "clinician_id" not in workspace_session
+    assert workspace_session["asr_profiles"] == []
+    assert workspace_session["clinical_models_enabled"] is False
     assert client.post("/v1/demo").status_code == 403
     h = {"Origin": "https://scribe.example.org", "X-CSRF-Token": session["csrf_token"]}
     assert client.post("/v1/demo", headers=h).json()["code"] == "read_only_account"

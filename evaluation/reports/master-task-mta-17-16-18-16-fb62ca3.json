@@ -1,0 +1,42 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-17-16",
+    "MTA-18-16"
+  ],
+  "status": "pass",
+  "source_commit": "fb62ca368a86489715dd53f8eb57590bee4e7630",
+  "captured_at_utc": "2026-11-14T13:51:15+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    "tests/test_external_prerequisite_register.py": "9cbe69fae6df4db145d0cf1f537a58389e6746ec10e1d2b7ec551951afa2f074",
+    "tests/test_report_safety.py": "fca71d8301f9bef767abaf39a815cb5cc2f9267251efcd7adad1e6c6e6e87c21",
+    "docs/remaining-external-evidence.md": "ca0982283a8606b13f8800b6d81a87069913682a413de4182bc7bdd0213bb884",
+    "services/report_safety.py": "b38052135e6015e91c298d6970eb0c42c2c53cbf195c86e0dea52974a011420b"
+  },
+  "checks": {
+    "external_prerequisite_and_claim_safety": {
+      "status": "pass",
+      "result": "6 passed",
+      "command": "python -m pytest -q tests/test_external_prerequisite_register.py tests/test_report_safety.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check tests/test_external_prerequisite_register.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "1 file already formatted",
+      "command": "python -m ruff format --check tests/test_external_prerequisite_register.py"
+    }
+  },
+  "clinical_release_authorized": false,
+  "limitations": [
+    "This verifies explicit documentation and report-label enforcement only; it does not satisfy any external prerequisite listed."
+  ],
+  "runtime_sha256": "70fa82eb99516afe99c8fc5d13ad1a73a882e6c56c7ee2a369e94b92304beda4"
+}

@@ -37,6 +37,17 @@ LEASE_SECONDS = 300
 MAX_ATTEMPTS = 3
 
 
+def _adapter_memory_requirement(adapter_factory, model_artifacts):
+    declared = getattr(adapter_factory, "requested_memory_bytes", None)
+    if declared is None:
+        from services.inference_slot import estimate_model_request_bytes
+
+        return estimate_model_request_bytes(model_artifacts)
+    if type(declared) is not int or declared < 0:
+        raise ValueError("invalid_adapter_memory_request")
+    return declared
+
+
 class Lease:
     def __init__(self, store, job_id, token, encounter_id):
         self.store, self.job_id, self.token, self.encounter_id = (
@@ -113,8 +124,11 @@ def run_once(
 ):
     from services.inference_slot import local_inference_slot
 
+    requested_bytes = getattr(adapter_factory, "requested_memory_bytes", 512 * 1024**2)
+    if type(requested_bytes) is not int or requested_bytes < 0:
+        raise ValueError("invalid_adapter_memory_request")
     with local_inference_slot(
-        requested_bytes=512 * 1024**2, priority="source"
+        requested_bytes=requested_bytes, priority="source"
     ) as ready:
         if not ready:
             return {"status": "deferred", "error_code": "local_inference_busy"}
@@ -303,13 +317,11 @@ def _run_once(db_path, asset_root, adapter_factory, diarization_manifest):
                     "audio_provenance": span_provenance,
                 }
             lease.checkpoint()
-            from services.inference_slot import (
-                estimate_model_request_bytes,
-                memory_admission,
-            )
+            from services.inference_slot import memory_admission
 
-            required = estimate_model_request_bytes(
-                Path(profile.model_dir) / name for name in profile.artifacts
+            required = _adapter_memory_requirement(
+                adapter_factory,
+                (Path(profile.model_dir) / name for name in profile.artifacts),
             )
             memory_admission_receipt = memory_admission(required)
             if memory_admission_receipt["status"] != "admit":
