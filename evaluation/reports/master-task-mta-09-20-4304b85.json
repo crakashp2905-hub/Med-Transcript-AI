@@ -1,0 +1,47 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-09-20",
+  "source_commit": "4304b8554af97f75c4f01ca5c4c4348b0390fdc0",
+  "source_files": {
+    "apps/clinician-web/package.json": "c48961e28e3a1fa3abe593a93ccd7d0127df528714c4dd372b1ae9bda13e19e9",
+    "apps/clinician-web/playwright.config.ts": "e483e7c866c0c9be9d0623e783a2d23b3271c33a85332017bab714e5a39ec797",
+    "apps/clinician-web/visual-regression.synthetic.json": "2bac28229522af8467fce61779ae04145f54e36de574206be7096dae01412223",
+    "apps/clinician-web/e2e/visual-regression.spec.ts": "67dab77a3e9d96f5d8f5c4cf4dd8c8340ebb6012f3e858fc1c9fdf533d2480d8",
+    "apps/clinician-web/src/InvestorDemo.tsx": "e91d7a898287fb4d9b5b4475b340ef8176e0b08ab6343c6cd5a2f2d13ea968ad",
+    "apps/clinician-web/e2e/visual-regression.spec.ts-snapshots/investor-preview-desktop-win32.png": "6e48e058b7d1a9109e69a57c6f5bc5ef574a197c8b0ce4e6d708951f7fa0195b",
+    "apps/clinician-web/e2e/visual-regression.spec.ts-snapshots/investor-preview-tablet-win32.png": "fd318e36d63742aa24235322da0cbc8e72fc5bcaae4097c7dcd90ac9249476a2",
+    "apps/clinician-web/e2e/visual-regression.spec.ts-snapshots/investor-preview-mobile-win32.png": "8c46f645d72cbbd3115c90583e1edac3a69ace401a0a2c99532d225fb86eb514"
+  },
+  "runtime": {
+    "platform": "windows win32",
+    "playwright": "1.64.1",
+    "browser": "Google Chrome 157.0.0.0",
+    "headless": true,
+    "visual_test": "investor-preview full-page screenshot comparison",
+    "viewport_manifest": "desktop 1440x900; tablet 1024x768; mobile 390x844",
+    "diff_tolerance_max_pixel_ratio": 0.005
+  },
+  "runtime_sha256": "51593a3b5f386fc74ae042f859f587757f281a1d76d4261a6e8b6e65c591c273",
+  "checks": {
+    "visual_viewport_manifest": {
+      "status": "pass",
+      "detail": "Test uses the declared synthetic desktop, tablet and mobile viewports."
+    },
+    "fresh_screenshot_capture_and_visual_diffs": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/visual-regression.spec.ts",
+      "detail": "3 passed; all three fresh screenshots matched source-bound baselines within configured 0.5% pixel-ratio tolerance."
+    },
+    "baseline_artifacts": {
+      "status": "pass",
+      "detail": "Three PNG baselines are hashed in source_files and committed."
+    }
+  },
+  "result": "verified_three_viewport_visual_regression",
+  "clinical_release_authorized": false,
+  "limitations": [
+    "Screenshots cover the static synthetic investor preview only.",
+    "Pixel comparison is tied to the pinned local Windows/Chrome environment; it does not imply clinical validation."
+  ],
+  "recorded_utc_date": "2026-11-14"
+}

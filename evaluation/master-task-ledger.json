@@ -5007,42 +5007,41 @@
       "id": "MTA-09-20",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Generate screenshots and visual diffs on predefined viewport set, marking absent browser runtimes as blocked.",
       "evidence": [
         "apps/clinician-web/visual-regression.synthetic.json",
         "apps/clinician-web/e2e/workflow.spec.ts",
         "apps/clinician-web/playwright.config.ts",
-        "evaluation/reports/master-task-mta-09-20-f8cad5f.json"
+        "evaluation/reports/master-task-mta-09-20-f8cad5f.json",
+        "evaluation/reports/master-task-mta-09-20-4304b85.json",
+        "apps/clinician-web/e2e/visual-regression.spec.ts",
+        "apps/clinician-web/src/InvestorDemo.tsx",
+        "apps/clinician-web/e2e/visual-regression.spec.ts-snapshots/investor-preview-desktop-win32.png",
+        "apps/clinician-web/e2e/visual-regression.spec.ts-snapshots/investor-preview-tablet-win32.png",
+        "apps/clinician-web/e2e/visual-regression.spec.ts-snapshots/investor-preview-mobile-win32.png"
       ],
-      "source_commit": "f8cad5fd81fc0d99fdf2cd2a39cd47ad5c9aa30e",
+      "source_commit": "4304b8554af97f75c4f01ca5c4c4348b0390fdc0",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-09-20-f8cad5f.json",
-          "report_sha256": "fb0a638dcdc9c8f8c4887b276d270898f98790776ca882f3699c12538b905811",
-          "check": "frontend_build",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-20-f8cad5f.json",
-          "report_sha256": "fb0a638dcdc9c8f8c4887b276d270898f98790776ca882f3699c12538b905811",
+          "report": "evaluation/reports/master-task-mta-09-20-4304b85.json",
+          "report_sha256": "502595cc753150d4016654145b04f6f02b3f9dfef892ff1bf489b34952b554fe",
           "check": "visual_viewport_manifest",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/master-task-mta-09-20-f8cad5f.json",
-          "report_sha256": "fb0a638dcdc9c8f8c4887b276d270898f98790776ca882f3699c12538b905811",
-          "check": "screenshot_journey_discovery",
+          "report": "evaluation/reports/master-task-mta-09-20-4304b85.json",
+          "report_sha256": "502595cc753150d4016654145b04f6f02b3f9dfef892ff1bf489b34952b554fe",
+          "check": "fresh_screenshot_capture_and_visual_diffs",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/master-task-mta-09-20-f8cad5f.json",
-          "report_sha256": "fb0a638dcdc9c8f8c4887b276d270898f98790776ca882f3699c12538b905811",
-          "check": "fresh_screenshots_and_visual_diffs",
-          "status": "blocked"
+          "report": "evaluation/reports/master-task-mta-09-20-4304b85.json",
+          "report_sha256": "502595cc753150d4016654145b04f6f02b3f9dfef892ff1bf489b34952b554fe",
+          "check": "baseline_artifacts",
+          "status": "pass"
         }
-      ],
-      "blocker": "Fresh screenshots and visual diffs for the three declared viewports remain ungenerated. Existing ignored screenshots are stale/unbound evidence. Browser access to the loopback application is denied in this environment; rerun screenshot capture and visual comparison where local browser networking is enabled."
+      ]
     },
     {
       "id": "MTA-10-01",

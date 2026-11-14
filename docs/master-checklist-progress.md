@@ -290,3 +290,7 @@ that longer run with a 1,200-second cap.
 ## Browser journey rerun on 9c245b1
 
 `MTA-09-19` now records 32 passed, 1 skipped, and 0 failed from the complete non-Google offline Playwright suite. The skipped compressed-upload case requires unavailable cached PyAV. Fake-device, interruption, retry, three-channel PCM, approval, export, and source-playback journeys passed. The source-bound report is `evaluation/reports/master-task-mta-09-19-9c245b1.json` (SHA-256 `3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952). This is synthetic application-path evidence; the scripted adapter is not ASR and does not validate audio accuracy or clinician performance.
+
+## Three-viewport visual comparison on 4304b85
+
+`MTA-09-20` is verified with three fresh Playwright full-page comparisons: desktop 1440×900, tablet 1024×768, and mobile 390×844 (3 passed). Source-bound screenshot baselines and the test are committed. Evidence report: `evaluation/reports/master-task-mta-09-20-4304b85.json` (SHA-256 `502595cc753150d4016654145b04f6f02b3f9dfef892ff1bf489b34952b554fe`). This visual check covers the static synthetic investor preview on Windows/Chrome; it does not establish clinical validation.
