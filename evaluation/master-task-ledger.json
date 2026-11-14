@@ -8620,14 +8620,21 @@
     },
     {
       "id": "MTA-17-04",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Prepare research paper sections: motivation, related work, precise method, experimental setup, baselines, ablations, results, threats to validity.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/research/med-transcript-engineering-paper-draft-v0.1.md",
+        "tests/test_research_paper_draft.py",
+        "evaluation/publications/mta-17-03-benchmark-tables-v1.json",
+        "evaluation/reports/mta-17-04-research-paper-draft-v1.json"
+      ],
+      "source_commit": "56b516f962e5e2f5d2a140858794cccc9513a957",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-17-04-research-paper-draft-v1.json","report_sha256":"1e5b0eaa62352e3627bb8abf0f55c54201b86b94e06fdb25eb266dee5e219a60","check":"required_sections_and_results"}
+      ],
+      "blocker": "Systematic related-work search, independent scholarly review, and planned verification ablations remain incomplete; no external sources were fetched under the local-only constraint."
     },
     {
       "id": "MTA-17-05",

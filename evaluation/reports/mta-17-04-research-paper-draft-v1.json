@@ -1,0 +1,21 @@
+{
+  "schema_version": "research_manuscript_draft_receipt_v1",
+  "task_id": "MTA-17-04",
+  "source_commit": "56b516f962e5e2f5d2a140858794cccc9513a957",
+  "checks": {
+    "required_sections_and_results": {
+      "status": "pass",
+      "test": "tests/test_research_paper_draft.py",
+      "summary": "1 passed, 1 warning; required sections and all seven frozen WER values reconcile."
+    }
+  },
+  "sources": {
+    "benchmark_publication": "evaluation/publications/mta-17-03-benchmark-tables-v1.json",
+    "benchmark_publication_sha256": "da418a67cb4739f910ed2b2686a918d59aa5c45c9703bdcc0fd77da44a25e668"
+  },
+  "completion_boundary": "Draft contains all requested section headings and available local evidence. Related-work search, independent review, and planned verification ablations are explicitly incomplete.",
+  "limitations": [
+    "No external literature was fetched or cited under the local-only constraint.",
+    "No independent clinical evaluation or efficacy claim."
+  ]
+}
