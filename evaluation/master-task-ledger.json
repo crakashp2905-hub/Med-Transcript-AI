@@ -8365,11 +8365,26 @@
       "id": "MTA-16-08",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define comparison of baseline/manual-only versus assisted flows using identical synthetic tasks and clearly simulated agent timings.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/flow_comparison.py",
+        "tests/test_flow_comparison.py",
+        "tests/test_scripted_correction_tasks.py",
+        "docs/product/manual-assisted-comparison-protocol-v1.md",
+        "evaluation/protocols/manual-assisted-comparison-v1.json",
+        "evaluation/scenarios/offline-encounters-v1/scripted-correction-tasks.json"
+      ],
+      "source_commit": "0c067d8aba88ce5343737135da5faa18579723d6",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-08-0c067d8.json",
+          "report_sha256": "7f2d20da828a6e7d4f6061ba97c4d1d1db3f05c7254278d4de0c45360ae5babc",
+          "check": "paired_comparison_protocol",
+          "status": "pass",
+          "detail": "The same four task IDs and source states are paired; assisted timing constants and ideal proposal stimuli are explicitly simulated, with human/productivity metrics null."
+        }
+      ],
       "blocker": null
     },
     {

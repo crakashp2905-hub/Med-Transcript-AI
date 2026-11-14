@@ -1,0 +1,61 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-16-08",
+  "status": "pass",
+  "source_commit": "0c067d8aba88ce5343737135da5faa18579723d6",
+  "captured_at_utc": "2026-11-14T15:15:24+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    "services/flow_comparison.py": "bc7101357ec0d14bf1863ff9cde8c2a70953fd3d34728a366340464ffbf42598",
+    "tests/test_flow_comparison.py": "4c0d582a218bd91d80159d782fa91cf00da30795f27f529932d948ba32552854",
+    "tests/test_scripted_correction_tasks.py": "92e4abacb540f76a54edfc45ca7dd1a131628b7c6085753adbf77a25a51f19d0",
+    "docs/product/manual-assisted-comparison-protocol-v1.md": "6e0800b90b6eb346188a2d13a9e9ba65bb0f9f687d33ed897f88a137f627851a",
+    "evaluation/protocols/manual-assisted-comparison-v1.json": "0b2171ee2bcd4ac3c83af6faa19034b2291b8a834b975ef3d22adf523cc2f271",
+    "evaluation/scenarios/offline-encounters-v1/scripted-correction-tasks.json": "45048bf3ac376c5b80dc9eb2bce7602891a20bcb64b5947363e995ac9423fa46"
+  },
+  "checks": {
+    "paired_comparison_protocol": {
+      "status": "pass",
+      "result": "2 passed; four identical source tasks are paired across manual-only and assisted-scripted arms.",
+      "command": "python -m pytest -q tests/test_flow_comparison.py tests/test_scripted_correction_tasks.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check services/flow_comparison.py tests/test_flow_comparison.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "both files already formatted",
+      "command": "python -m ruff format --check services/flow_comparison.py tests/test_flow_comparison.py"
+    },
+    "git_diff_check": {
+      "status": "pass",
+      "result": "passed",
+      "command": "git diff --check"
+    }
+  },
+  "protocol_summary": {
+    "paired_task_count": 4,
+    "simulated_stage_ms": {
+      "transcription": 900,
+      "fact_extraction": 500,
+      "drafting": 300
+    },
+    "simulated_total_agent_ms_per_task": 1700,
+    "observed_agent_time_ms": null,
+    "clinician_active_time_ms": null,
+    "time_saved_claim": null
+  },
+  "limitations": [
+    "The assisted proposal is a pre-scripted ideal stimulus, not ASR/LLM output.",
+    "Agent timing values are explicit demonstration constants, not measured runtime.",
+    "No human participants, clinical accuracy result, productivity estimate, or time-saved claim."
+  ],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "runtime_sha256": "70fa82eb99516afe99c8fc5d13ad1a73a882e6c56c7ee2a369e94b92304beda4"
+}
