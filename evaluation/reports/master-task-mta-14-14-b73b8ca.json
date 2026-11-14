@@ -1,0 +1,40 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-14",
+  "source_commit": "b73b8cacf021b389d9e068a635a2b8f52813ad00",
+  "source_files": {
+    "services/throughput_measurement.py": "320d09e8ff901564c98c7d4874fb8b6421e0c211742bf9e73de3e3856ecf94b5",
+    "services/workflow_metrics.py": "33c04d520bb74d28fd820d00a0eb612a931c28b81690cd9fdb81e53a584edd3a",
+    "services/usability_metrics.py": "1b542215b9b9601dd32ab3ffd445ace75d5f0ebc6dc636f43bb5320ca8453ae3",
+    "tests/test_throughput_measurement.py": "4c0b76d9a225a27b394818a5bd4ae4979645bcb469377a4d73ead7991952588d",
+    "tests/test_workflow_metrics.py": "1e517cfbe47571d2b9982716ea83778facb00399b6fd84e6a404842b81a404ff",
+    "tests/test_channels.py": "c4804420a0ac2b7a3cbca431bd8671040810b0853accecd17c112ee13f093b81",
+    "tests/test_completion_gaps.py": "cfb6287ca4b2e85582fd4376c5885002b46ca2a022119c5bb29eb1941ab56729"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_workflow_metrics.py tests/test_throughput_measurement.py tests/test_channels.py::test_multichannel_provenance_does_not_relabel_first_channel_as_whole_job tests/test_completion_gaps.py::test_timing_retry_creates_one_session_and_history_contains_no_note_text tests/test_completion_gaps.py::test_timing_captures_structured_edits_and_rejects_conflicting_replay"
+  },
+  "runtime_sha256": "74cf7cd7abdf9ed9005769c720796e8ca512f2278166e7db2560b63268674aa1",
+  "checks": {
+    "latency_throughput_cache_wait_and_clinician_time_separation": {
+      "status": "pass",
+      "detail": "10 passed. Reports p50 and p95 for successful measured stages with explicit denominators; computes throughput units per second separately from queue wait; carries per-channel model-cache hit, model-load and inference timing; records review wall/active durations while explicitly marking active time unverified."
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "ruff check services/throughput_measurement.py tests/test_throughput_measurement.py tests/test_workflow_metrics.py tests/test_channels.py",
+      "detail": "All checks passed."
+    }
+  },
+  "result": "implemented",
+  "limitations": [
+    "Metric values are synthetic test fixtures and do not establish production throughput or measured clinical latency.",
+    "Clinician active task time remains self-reported and explicitly unverified; independent timing study data is unavailable.",
+    "Cache-hit, wait-time and throughput fields are recorded separately, but this is not a production telemetry rollout."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}

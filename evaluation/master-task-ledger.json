@@ -7209,12 +7209,34 @@
       "id": "MTA-14-14",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Distinguish p50/p95 latency, throughput, cache hit and wait time from actual clinician task time.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/throughput_measurement.py",
+        "services/workflow_metrics.py",
+        "services/usability_metrics.py",
+        "tests/test_throughput_measurement.py",
+        "tests/test_workflow_metrics.py",
+        "tests/test_channels.py",
+        "tests/test_completion_gaps.py",
+        "evaluation/reports/master-task-mta-14-14-b73b8ca.json"
+      ],
+      "source_commit": "b73b8cacf021b389d9e068a635a2b8f52813ad00",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-14-b73b8ca.json",
+          "report_sha256": "c5afc75256555741786bd366863eba8dad0d2aa6a4aaf9accccc113b2a6efc5e",
+          "check": "latency_throughput_cache_wait_and_clinician_time_separation",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-14-b73b8ca.json",
+          "report_sha256": "c5afc75256555741786bd366863eba8dad0d2aa6a4aaf9accccc113b2a6efc5e",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Only synthetic metric fixtures are available; production throughput and independently measured clinician active task time remain outstanding."
     },
     {
       "id": "MTA-14-15",
