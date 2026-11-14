@@ -1,0 +1,25 @@
+{
+  "schema_version": "ai_agent_workflow_documentation_v1",
+  "task_id": "MTA-17-15",
+  "source_commit": "eb2708d3d96649c3920bc8244ca58c455a57be50",
+  "runtime": {
+    "source_commit": "eb2708d3d96649c3920bc8244ca58c455a57be50",
+    "python": "3.13.5",
+    "checks": {
+      "agent_workflow_doc_test": "tests/test_ai_agent_workflow_docs.py: 1 passed, 1 warning",
+      "ruff": "check passed; format check passed"
+    },
+    "scope": "Instructions and protected-material documentation contract only; no acceptance assets or benchmark data modified."
+  },
+  "runtime_sha256": "3842e03d9a180394bee0d1cf6002a2628f898a5604f0b3c26a4c22eafb029dde",
+  "checks": {
+    "agent_workflow_and_fixture_preservation_docs": {
+      "status": "pass",
+      "summary": "Root agent instructions and detailed workflow cover baseline capture, safe local tests, protected acceptance inputs, versioned outputs, narrow staging and release boundaries."
+    }
+  },
+  "limitations": [
+    "Documentation does not technically prevent all external coding agents from violating the policy; tests assert the documented contract.",
+    "No external assets, acceptance materials, or benchmark source files were changed."
+  ]
+}

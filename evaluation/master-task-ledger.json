@@ -8937,12 +8937,27 @@
       "id": "MTA-17-15",
       "section": "17 — Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Document how any AI coding agent can run tests, preserve fixtures and avoid modifying protected acceptance materials.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "AGENTS.md",
+        "docs/ai-agent-workflow.md",
+        "tests/test_ai_agent_workflow_docs.py",
+        "evaluation/acceptance-reservation-v1.json",
+        "evaluation/annotation-source/acceptance-v1/lock.json",
+        "evaluation/reports/mta-17-15-agent-workflow-v1.json"
+      ],
+      "source_commit": "eb2708d3d96649c3920bc8244ca58c455a57be50",
+      "test_results": [
+        {
+          "status": "pass",
+          "check": "agent_workflow_and_fixture_preservation_docs",
+          "report": "evaluation/reports/mta-17-15-agent-workflow-v1.json",
+          "report_sha256": "f937780592794cad6247142ce6c166523d6158ee3a3d0a91cb10b1984129c9c0",
+          "runtime_sha256": "3842e03d9a180394bee0d1cf6002a2628f898a5604f0b3c26a4c22eafb029dde"
+        }
+      ],
+      "blocker": "Documentation and tests establish repository expectations but cannot technically prevent an external agent from disregarding them."
     },
     {
       "id": "MTA-17-16",
