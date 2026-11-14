@@ -1,11 +1,12 @@
 import sqlite3
 
+from services.api.ingest import run_once as ingest_once
 from services.api.storage import Store
 from services.api.job_state import (
     pending_transcription_capacity,
     request_cancellation,
 )
-from tests.test_foundation import headers
+from tests.test_foundation import headers, queue_upload
 from tests.test_transcription import enqueue
 
 
@@ -105,3 +106,31 @@ def test_api_cancellation_keeps_queued_transcription_unpublishable(environment):
     assert row["status"] == "cancelled"
     assert row["error_code"] == "cancelled_by_user"
     assert row["result"] is None and row["lease_token"] is None
+
+
+def test_transcription_api_applies_backpressure_at_tenant_capacity(
+    environment, monkeypatch
+):
+    monkeypatch.setenv("MED_TRANSCRIPT_MAX_PENDING_ASR_JOBS", "1")
+    enqueue(environment)
+    encounter, upload, _, _ = queue_upload(environment.client)
+    assert ingest_once(environment.path, environment.assets)["status"] == "succeeded"
+
+    response = environment.client.post(
+        f"/v1/encounters/{encounter}/transcriptions",
+        json={
+            "audio_asset_id": upload["id"],
+            "inference_profile_id": environment.profile.profile_id,
+        },
+        headers=headers(),
+    )
+
+    assert response.status_code == 429
+    assert response.json()["code"] == "local_inference_queue_full"
+    with Store(environment.path).transaction() as con:
+        assert (
+            con.execute(
+                "SELECT COUNT(*) FROM jobs WHERE stage='transcription'"
+            ).fetchone()[0]
+            == 1
+        )
