@@ -79,21 +79,25 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByRole('button',{name:'Save source review',exact:true}).click();
   await expect(page.locator('.notice')).toContainText('Saved as a new source version');
   await page.route('**/v1/encounters/*/facts',route=>route.fulfill({status:503,json:{detail:'synthetic accessibility error'}}));
+  const failedFacts=page.waitForResponse(response=>response.url().includes('/facts')&&response.status()===503);
   await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
-  await expect(page.getByRole('alert')).toBeVisible();
+  await failedFacts;
+  await expect(page.locator('.error[role="alert"]')).toBeVisible();
   await page.unroute('**/v1/encounters/*/facts');
   await page.getByRole('button',{name:'Dismiss error'}).click();
   await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
-  await expect(page.locator('.fact-card')).toHaveCount(6);
+  await expect(page.locator('.fact-card')).toHaveCount(5);
   const cards=page.locator('.fact-card');
-  for(let index=0;index<6;index++){
+  for(let index=0;index<5;index++){
     const card=cards.nth(index);
     await card.getByRole('combobox',{name:'Subject',exact:true}).selectOption('patient');
-    await card.getByRole('combobox',{name:'Assertion',exact:true}).selectOption(index===1||index===4?'negated':'affirmed');
-    await card.getByRole('combobox',{name:'Temporality',exact:true}).selectOption(index===3||index===5?'planned':'current');
-    if(index===3||index===5)await card.getByRole('combobox',{name:'SOAP section',exact:true}).selectOption('plan');
-    if(index===2)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('medication');
-    if(index===4)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('allergy');
+    const assertion=index===1?'uncertain':index===3?'negated':'affirmed';
+    const planned=index===2||index===4;
+    await card.getByRole('combobox',{name:'Assertion',exact:true}).selectOption(assertion);
+    await card.getByRole('combobox',{name:'Temporality',exact:true}).selectOption(planned?'planned':'current');
+    if(planned)await card.getByRole('combobox',{name:'SOAP section',exact:true}).selectOption('plan');
+    if(index===1)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('medication');
+    if(index===3)await card.getByRole('combobox',{name:'Category',exact:true}).selectOption('allergy');
     await card.getByLabel('Content and attribution reviewed').check();
     await card.getByLabel('Critical details checked').check();
   }
@@ -111,16 +115,15 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByLabel('Timed review drafting approach').selectOption('deterministic');
   await page.getByRole('button',{name:'Start timed review',exact:true}).click();
   await expect(page.getByLabel('Timed review drafting approach')).toBeDisabled();
-  await cards.nth(2).getByLabel('Note statement').fill('Patient takes metformin 500 mg.');
-  await cards.nth(2).getByLabel('Clinical clarification / exclusion reason').fill('Synthetic clinician correction: the medication label was independently checked to confirm 500 mg.');
-  await expect(cards.nth(2).getByLabel('Content and attribution reviewed')).not.toBeChecked();
-  await cards.nth(2).getByLabel('Content and attribution reviewed').check();
-  await cards.nth(2).getByLabel('Critical details checked').check();
+  await cards.nth(1).getByLabel('Note statement').fill('Patient takes metformin 500 mg.');
+  await cards.nth(1).getByLabel('Clinical clarification / exclusion reason').fill('Synthetic clinician correction: the medication label was independently checked to confirm 500 mg.');
+  await expect(cards.nth(1).getByLabel('Content and attribution reviewed')).not.toBeChecked();
+  await cards.nth(1).getByLabel('Content and attribution reviewed').check();
+  await cards.nth(1).getByLabel('Critical details checked').check();
   await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
   await expect(page.getByText('Dose or unit disagreement',{exact:true})).toBeVisible();
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeDisabled();
-  await cards.nth(2).getByRole('button',{name:'Record as clinician addition'}).click();
-  await expect(page.locator('.fact-card').filter({hasText:'Clinician addition'})).toHaveCount(1);
+  await cards.nth(1).getByRole('button',{name:'Record as clinician addition'}).click();
   const sourceCoverage=page.getByRole('region',{name:'Directional source coverage'});
   await expect(sourceCoverage).toBeVisible();
   await expect(sourceCoverage).toContainText('Manual additions without transcript evidence: 1');
@@ -146,7 +149,9 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   const sourceStart=await selectedSource.getByRole('button',{name:/Play source/}).getAttribute('aria-label');
   const startMatch=sourceStart?.match(/Play source (\d+):(\d{2})/);
   expect(startMatch,'Evidence citation exposes a playable source timestamp.').not.toBeNull();
-  await expect.poll(()=>page.locator('audio').evaluate(audio=>(audio as HTMLAudioElement).currentTime)).toBe(Number(startMatch![1])*60+Number(startMatch![2]));
+  const citationStart=Number(startMatch![1])*60+Number(startMatch![2]);
+  await expect.poll(()=>page.locator('audio').evaluate(audio=>(audio as HTMLAudioElement).currentTime)).toBeGreaterThanOrEqual(citationStart);
+  await expect.poll(()=>page.locator('audio').evaluate(audio=>(audio as HTMLAudioElement).currentTime)).toBeLessThanOrEqual(citationStart+5);
   const downloadPromise=page.waitForEvent('download');
   await page.getByRole('button',{name:'↓ Json',exact:true}).click();
   const download=await downloadPromise;

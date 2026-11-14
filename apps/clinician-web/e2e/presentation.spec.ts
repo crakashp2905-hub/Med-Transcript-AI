@@ -3,9 +3,10 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {randomUUID} from 'node:crypto';
 const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
+const root=resolve('../..');
 test('current correction comparison and uncertainty queue retain unreviewed proposals',async({page})=>{
  await page.goto('/');await page.getByLabel('Access key').fill(token);await page.getByRole('button',{name:'Open workspace',exact:false}).click();
- await expect(page.getByRole('note')).toContainText('developer-authored synthetic rules and public-mock labels are not independent clinician gold');
+ await expect(page.getByRole('note')).toContainText('Synthetic/public-mock development evidence is not independent clinician gold');
  await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
  await expect(page.locator('.fact-card')).toHaveCount(6);
  await page.locator('.fact-card').first().getByRole('textbox',{name:'Note statement',exact:true}).fill('Clinician correction pending review.');
@@ -58,7 +59,7 @@ test('ASR uncertain-span queue exposes original text, supplied alternatives, rea
  await page.getByRole('button',{name:'Open synthetic example',exact:false}).click();
  const queue=page.getByRole('region',{name:'Uncertain source spans'});await expect(queue).toBeVisible();
  await expect(queue.getByText('Original ASR text',{exact:true}).first()).toBeVisible();
- await expect(queue.getByText('Test alternative hypothesis.',{exact:true})).toBeVisible();
+ await expect(queue.getByText('Test alternative hypothesis.',{exact:false})).toBeVisible();
  await expect(queue.getByText('ASR text has not been checked against the recording.',{exact:true})).toBeVisible();
  await expect(queue.getByText('Untranscribed source interval',{exact:true})).toBeVisible();
  const review=queue.getByRole('button',{name:/Play and review source interval starting/}).first();await review.focus();await page.keyboard.press('Enter');

@@ -2,6 +2,10 @@
   "schema_version": "med_transcript_error_catalog_v1",
   "fallback": "request_failed",
   "errors": {
+    "request_failed": {
+      "category": "availability",
+      "message": "The request could not be completed. Review the current encounter and try again."
+    },
     "active_time_exceeds_observed_session": {
       "category": "validation",
       "message": "The request could not be completed. Review the current encounter and try again."

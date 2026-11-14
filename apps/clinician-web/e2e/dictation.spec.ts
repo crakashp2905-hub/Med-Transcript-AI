@@ -38,7 +38,7 @@ test('microphone dictation records, uploads, transcribes locally and leaves sour
  await page.getByRole('button',{name:'Stop & transcribe',exact:true}).click();
  await expect(page.getByLabel('Transcript segment 1')).toBeVisible({timeout:120000});
  await expect(page.getByLabel('Transcript segment 1')).toHaveValue(/vomit/i);
- await expect(page.getByRole('status')).toContainText('Dictation transcript ready');
+ await expect(page.locator('.notice[role="status"]')).toContainText('Dictation transcript ready');
  await expect(page.getByLabel('I confirmed supported English.')).not.toBeChecked();
  await expect(page.getByLabel('I reviewed source completeness.')).not.toBeChecked();
  await page.setViewportSize({width:390,height:844});
@@ -189,9 +189,10 @@ test('retry after a lost successful upload response reuses the saved source',asy
  await expect(page.getByText('Recording · microphone is on',{exact:true})).toBeVisible();
  await page.waitForTimeout(2200);
  await page.getByRole('button',{name:'Stop & transcribe',exact:true}).click();
- await expect(page.getByRole('button',{name:'Retry recording upload',exact:true})).toBeVisible();
+ const retry=page.getByText('Retry recording upload',{exact:true});
+ await expect(retry).toBeVisible();
  await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
- await page.getByRole('button',{name:'Retry recording upload',exact:true}).click();
+ await retry.click();
  await expect(page.getByLabel('Transcript segment 1').or(page.getByText('Recording saved. Check the transcription result or job status below.',{exact:true}))).toBeVisible({timeout:120000});
  expect(puts).toBe(1);expect(keys).toHaveLength(2);expect(keys[0]).toBe(keys[1]);
  const response=await page.request.get(creationUrl.replace('/audio-uploads','/uploads'),{headers:{Authorization:`Bearer ${token}`}});

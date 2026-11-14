@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 const token=JSON.parse(readFileSync(resolve('../..','data/local-config.json'),'utf8')).access_key;
 
 test('uncertain source queue renders a source-bound waveform and selected interval',async({page})=>{
+ await page.route('**/waveform**',route=>route.fulfill({json:{peaks:Array.from({length:160},(_,index)=>0.2+(index%7)/10)}}));
  await page.route('**/v1/encounters/*/workspace',async route=>{
   const response=await route.fetch();const body=await response.json();
   if(body.transcript?.segments?.length)body.transcript.segments[0].uncertainties=['unreviewed_asr'];
