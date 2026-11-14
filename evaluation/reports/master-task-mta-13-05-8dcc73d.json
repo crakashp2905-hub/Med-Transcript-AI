@@ -1,0 +1,39 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-05"
+  ],
+  "source_commit": "8dcc73d9599fb11cda7f7b2df89c3de1b90be887",
+  "captured_at_utc": "2026-11-14T08:15:58.507511+00:00",
+  "source_files": {
+    "services/api/auth.py": "f7680de1b97bd359f2a6521978bd35b3e24a1e08af8e2b6cc76c5cfd8275a96a",
+    "services/api/authorization_policy.py": "e0e1ace3e21b723db353a95064f27286e9326ebf475e084c8531213835c9d7cd",
+    "services/review/routers/exports.py": "ecae580701ceccce9f0b0719251841ba5dae39f72a1f0a7178d9020c9376bd2e",
+    "tests/test_google_auth.py": "2c399b89749ba1e751442d2649f1c4398c4919b87c9b777bf33fa85d55a4a355",
+    "tests/test_review_workflow.py": "8e8edc2a8e0ebbd0bd0f20d5281687ec263b8f1cdcf74b6bb2eaaa1f842d297a",
+    "tests/test_router_contracts.py": "00ffa4ff834c561b48bb619efd31fa9d90d55b962da8ad721991bf2d4f52394f"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_router_contracts.py::test_all_identity_routes_reject_missing_auth_and_viewer_writes tests/test_review_workflow.py::test_review_resources_are_tenant_and_clinician_scoped tests/test_google_auth.py::test_google_session_cookie_csrf_roles_logout_and_replay tests/test_google_auth.py::test_invitation_revocation_idle_expiry_and_subject_pinning tests/test_google_auth.py::test_role_downgrade_applies_to_an_existing_session tests/test_google_auth.py::test_oversized_json_is_rejected_with_and_without_content_length tests/test_domain_integrity.py::test_request_duplicate_keys_are_rejected_before_mutation tests/test_foundation.py::test_withdrawal_cancels_pending_job tests/test_foundation.py::test_revocation_during_worker_prevents_result_publication",
+      "status": "pass",
+      "result": "9 passed using local loopback test execution"
+    },
+    {
+      "command": "ruff check tests/test_google_auth.py; ruff format --check tests/test_google_auth.py",
+      "status": "pass",
+      "result": "all checks passed; test file formatted"
+    }
+  ],
+  "supported_claims": [
+    "Unauthenticated access and viewer writes are rejected across the registered identity routes.",
+    "Existing session logout/replay, invitation revocation, expiry and subject pinning are tested.",
+    "A clinician-to-viewer role downgrade is enforced on an existing session.",
+    "Cross-tenant and wrong-clinician access to workspace, note, exported artifact and audit routes returns not found.",
+    "Authorization withdrawal cancels queued and in-flight processing before result publication."
+  ],
+  "limitations": [
+    "These are synthetic local tests; they do not establish a full external penetration test or production deployment assurance."
+  ],
+  "clinical_release_authorized": false
+}

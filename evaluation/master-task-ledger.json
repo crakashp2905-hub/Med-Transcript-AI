@@ -6518,11 +6518,11 @@
       "id": "MTA-13-05",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Add adversarial horizontal/vertical privilege escalation, token replay, revoked session, role downgrade and cross-tenant export tests.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": ["evaluation/reports/master-task-mta-13-05-8dcc73d.json", "tests/test_google_auth.py", "tests/test_review_workflow.py"],
+      "source_commit": "8dcc73d9599fb11cda7f7b2df89c3de1b90be887",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-13-05-8dcc73d.json", "report_sha256": "f02ada34bfbc22b3cff8b7847e415e665fa9e474a3f81493605a72887eeda8f0", "check": "auth_replay_revocation_role_downgrade_and_cross_tenant_export", "status": "pass"}],
       "blocker": null
     },
     {
