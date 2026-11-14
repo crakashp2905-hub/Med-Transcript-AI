@@ -25,6 +25,7 @@ def test_runtime_support_matrix_only_claims_source_audited_combinations():
     assert audio["environment"]["logical_cpu_count"] == 8
     assert audio["environment"]["python"] == "3.13.5"
     assert audio["summary"]["maximum_tested_duration_seconds"] < 11
+    assert "TypeScript | `7.0.2`" in document
     assert "Not established" in document
     assert "not physical tablets or phones" in document
     assert "RAM capacity" in document
