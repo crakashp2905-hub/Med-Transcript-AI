@@ -1,0 +1,143 @@
+{
+  "schema_version": "repro_bundle_v1",
+  "source_commit": "a61086de6c225fd8efc2c84074c542fe0014e955",
+  "worktree_clean": false,
+  "uncommitted_path_count": 14,
+  "datasets": [
+    {
+      "manifest": "evaluation/datasets/primock57-smoke-v1/manifest.json",
+      "manifest_sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+      "lock": "evaluation/datasets/primock57-smoke-v1/lock.json",
+      "lock_sha256": "f6a0e4a7388b2ae84f3da7818a118a4f1c57e255537a325fb8eb650ecc7bb214"
+    },
+    {
+      "manifest": "evaluation/datasets/primock57-expanded-v1/manifest.json",
+      "manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+      "lock": "evaluation/datasets/primock57-expanded-v1/lock.json",
+      "lock_sha256": "946943146b44065304edf86f53276475e849f88fd60e171113cea4d5d56eceda"
+    },
+    {
+      "manifest": "evaluation/datasets/primock57-validation-v1/manifest.json",
+      "manifest_sha256": "39e123830ba2dcff73b5621f1a4f10cbf76cd1eb8a7c56654c6d3d40e4cdbac7",
+      "lock": "evaluation/datasets/primock57-validation-v1/lock.json",
+      "lock_sha256": "79677a08c2a1db2c9540a995ad9d97b8138734c28ff1601625195318393a1835"
+    },
+    {
+      "manifest": "evaluation/datasets/primock57-full-v1/manifest.json",
+      "manifest_sha256": "8f647ea439fe733745d4a2842342d343fbc949d6e1f68297c38fe1a24031b59a",
+      "lock": "evaluation/datasets/primock57-full-v1/lock.json",
+      "lock_sha256": "92421644ce4d8319bfa31c620b3c3e7087faac80012d4333c5749d0b65e98900"
+    },
+    {
+      "manifest": "evaluation/datasets/primock57-full-expansion-v1/manifest.json",
+      "manifest_sha256": "712f0ced8a18523e93941f5ec92f5a6ef0e8617aff4e55c509c5964ff82698bf",
+      "lock": "evaluation/datasets/primock57-full-expansion-v1/lock.json",
+      "lock_sha256": "0f2959ab96233426f411d706be9153b9ac2dced54b64d216e5d7d5715048ddef"
+    },
+    {
+      "manifest": "evaluation/datasets/meddistract-detailed-v1/manifest.json",
+      "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+      "lock": "evaluation/datasets/meddistract-detailed-v1/lock.json",
+      "lock_sha256": "e4b672ef43ecedf3a77bab7d32fd81e8f3605960ada47bb5acd959186c79b303"
+    },
+    {
+      "manifest": "evaluation/datasets/beccsv-synthetic-dev-v1/manifest.json",
+      "manifest_sha256": "86e8046c377202194f2d8a11d7c2362611956ff435b31741594dec22a5e22901",
+      "lock": "evaluation/datasets/beccsv-synthetic-dev-v1/lock.json",
+      "lock_sha256": "cb7b7f574f60a307daa35159c27dbfc5f0845d4f5a0f557c47131d9e54472b6f"
+    }
+  ],
+  "source_code_sha256": {
+    "services/evaluation.py": "055d95a46640662980c5c7fd833c6d7fb0379ede85aebf292d5bf2b1cc98e913",
+    "services/evaluation_envelope.py": "25a831ff30d3aed04696f5c5133ebf98f501a434f9c295691636393ed669f10f",
+    "services/evaluation_metrics.py": "5f5447886256633112f25a9f7e5f1a0e133ca874eb45493968c2450deac0293b",
+    "services/asr/subgroup_metrics.py": "d45ab48dc681810aade0c8a95aaff4417ee26aad65b98147e85a2a7de09993f0",
+    "services/asr/pareto.py": "da0075291db3b389674c22848b8f4132dcc9cf9d5ffb8fac72a759191f274bb7",
+    "services/benchmark_ranking.py": "7e67918f19fd0a8aff8bb9b1ae38600546a2bd4011e0848503473bf3642ecb75"
+  },
+  "commands": [
+    "python -m pytest -q tests/test_evaluation.py tests/test_evaluation_envelope.py tests/test_evaluation_metrics.py tests/test_asr_subgroup_metrics.py tests/test_benchmark_ranking.py",
+    "python -m services.offline_acceptance",
+    "python -m services.engineering_status",
+    "python -m services.benchmark_ranking --out evaluation/leaderboard-refresh-vN.json --supersedes evaluation/leaderboard-eval-v2.json",
+    "python -m services.repro_bundle --output evaluation/reproducibility-pack-vN.json"
+  ],
+  "artifacts": [
+    {
+      "path": "pyproject.toml",
+      "sha256": "19b98099bf412671a533fc8656001ae39fdb0d87dd85189e473290c44c5d291e"
+    },
+    {
+      "path": "constraints-ci.txt",
+      "sha256": "7a095076353b028d4c3d282fe9665ad5c2fd50dfbecbfc8f92cffa755070cc2e"
+    },
+    {
+      "path": "evaluation/reports/engineering-baseline.json",
+      "sha256": "69682620f146583a1b1c7d747ae990b0412485876d53c63fd6d68e0cdd8890b3"
+    },
+    {
+      "path": "evaluation/reports/engineering-task-status.json",
+      "sha256": "49ea0a8d553cc9f19d968a184569aa0f98b7239d437e80dc86e163b7c864f383"
+    },
+    {
+      "path": "docs/demo-runbook-offline.md",
+      "sha256": "d07baa4b3652e43efb1b1416096ccd65536f1e09730b11fe838b94af4ad37303"
+    },
+    {
+      "path": "evaluation/master-task-ledger.json",
+      "sha256": "20f5fa17b75678c02690641c2debf14711caa9bdc433e9caaf6c2c5554eeacd7"
+    },
+    {
+      "path": "evaluation/benchmark-ledger.json",
+      "sha256": "125092be4ddbc833e4b9badac96d964c72597e26bd327c2678429e0797b87430"
+    },
+    {
+      "path": "evaluation/detailed-suite-v7.json",
+      "sha256": "288de63609ad125c5f034a6bccdc968e1dcd52313f6f7cc85f4b146acda8e8c4"
+    },
+    {
+      "path": "evaluation/leaderboard-eval-v2.json",
+      "sha256": "e6a85d08929fb82904bb44ef0f3dfa80dcf246eef3ca5450924abc236222dfad"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/faster-whisper-large-v3.json",
+      "sha256": "aeff2c6fb8637c280229939fd7e3889ec8d8e543b6d3cfa08817ebcf5c9a0ffa"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/omi-med-stt-v1.json",
+      "sha256": "0fa6873aeafe66abeba5990e7502282953ce68c15dffdf99765a45874bdbe61f"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/multimed-whisper-small-english.json",
+      "sha256": "ea7473ae73bbadffe0a1d90de7ed6d51426692c11ecc5ab53c3218db92209f94"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/whisper-small.json",
+      "sha256": "624bcabe1bb40c4ae4f429d50e042d61f26eeae43db2ef912652e5120089210b"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/distil-whisper-large-v3.json",
+      "sha256": "ca26b72a0ecf0f8efb1d682d220048e9f33d5205071d14890d4d0a33eb4f6c3e"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/parakeet-tdt-0.6b-v2.json",
+      "sha256": "a5fecf5ef78df7956eafc99a7c0453875faf6cd6ac060c6a1dfd37e31fbeae43"
+    },
+    {
+      "path": "evaluation/runs/primock57-smoke-v1/faster-whisper-tiny.en.json",
+      "sha256": "f2ce3f0172957f05acd3c2c67115ce2fc276f16288194997f02f11c438c9882c"
+    }
+  ],
+  "negative_results_preserved": true,
+  "model_free": true,
+  "downloads_attempted": 0,
+  "paid_calls": 0,
+  "clinical_release": "BLOCKED_EXTERNAL_EVIDENCE_REQUIRED",
+  "real_patient_release_authorized": false,
+  "limitations": [
+    "Benchmark manifests and report hashes reproduce development evidence only.",
+    "No independent clinical annotation cohort, qualified human study, or safety validation is included.",
+    "Missing, gated, paid and resource-blocked model results remain unavailable and are not imputed.",
+    "Worktree changes are reported by count; this bundle hashes only the listed committed and tracked artifacts."
+  ]
+}
