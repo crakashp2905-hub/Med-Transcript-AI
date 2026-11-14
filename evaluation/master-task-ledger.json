@@ -7869,12 +7869,38 @@
       "id": "MTA-18-07",
       "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Ensure any one critical missed assertion, unsourced approved statement or cross-tenant leak blocks candidate promotion.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/regression_gate.py",
+        "tests/test_regression_gate.py",
+        "services/evidence_graph.py",
+        "tests/test_evidence_graph.py",
+        "tests/test_turn_swap_guard.py",
+        "evaluation/reports/master-task-mta-18-07-f765567.json"
+      ],
+      "source_commit": "f76556712046042f9b33f6f760d93530db24d07f",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-07-f765567.json",
+          "report_sha256": "34e7d92340ea1f3b129dfe01be97cf7e0bea260d932c45bf1377f1d7b7563c4f",
+          "check": "any_critical_or_provenance_finding_blocks",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-18-07-f765567.json",
+          "report_sha256": "34e7d92340ea1f3b129dfe01be97cf7e0bea260d932c45bf1377f1d7b7563c4f",
+          "check": "cross_tenant_evidence_edges_rejected",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-18-07-f765567.json",
+          "report_sha256": "34e7d92340ea1f3b129dfe01be97cf7e0bea260d932c45bf1377f1d7b7563c4f",
+          "check": "role_swap_requires_review",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Guard contracts pass unit tests; a production cross-tenant penetration test and independent clinical validation are not established by this evidence."
     },
     {
       "id": "MTA-18-08",
