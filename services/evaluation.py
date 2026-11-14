@@ -14,6 +14,7 @@ from services.asr.adapter import ASRFailure, FasterWhisperAdapter
 from services.asr.provenance import evaluation_evidence_class, execution_mode
 from services.asr.profiles import load_profiles
 from services.asr.transcripts import build_transcript
+from services.asr.subgroup_metrics import build_subgroup_analysis
 from services.asr.evaluation_contract import (
     FAILURE_POLICY,
     NORMALIZATION_POLICY,
@@ -149,7 +150,8 @@ def run(
             raise ValueError("Evaluation audio must be inside the manifest directory")
         sample_paths[sample["sample_id"]] = audio
     profile.verify_artifacts()
-    rows, total_words, total_edits, raw_words, raw_edits, failures = [], 0, 0, 0, 0, 0
+    rows, subgroup_rows = [], []
+    total_words, total_edits, raw_words, raw_edits, failures = 0, 0, 0, 0, 0
     uncertainty_strata = {
         "uncertain": {"reference_words": 0, "normalized_edits": 0, "samples": 0},
         "not_flagged": {"reference_words": 0, "normalized_edits": 0, "samples": 0},
@@ -225,6 +227,13 @@ def run(
         if retain_hypotheses:
             row.update(reference=sample["reference"], hypothesis=hypothesis)
         rows.append(row)
+        subgroup_rows.append(
+            {
+                "sample_id": sample["sample_id"],
+                "status": row["status"],
+                "hypothesis": hypothesis,
+            }
+        )
     report = {
         "schema_version": "1.0",
         "dataset_id": manifest["dataset_id"],
@@ -257,6 +266,7 @@ def run(
         "critical_error_adjudication": "pending_clinician_review",
         "clinical_release_gate": "not_evaluated",
         "samples": rows,
+        "subgroup_analysis": build_subgroup_analysis(samples, subgroup_rows),
     }
     if reference_uncertainty_policy == "all_words_with_uncertainty_strata_v1":
         for stratum in uncertainty_strata.values():
