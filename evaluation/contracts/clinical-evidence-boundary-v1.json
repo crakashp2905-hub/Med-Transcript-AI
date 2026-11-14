@@ -1,0 +1,39 @@
+{
+  "schema_version": "clinical_evidence_boundary_v1",
+  "evidence_scope": "local_public_and_synthetic_development_only",
+  "clinical_release_authorized": false,
+  "claims": {
+    "clinical_sensitivity": {
+      "estimable": false,
+      "estimate": null,
+      "required_evidence": [
+        "independent_source_audited_clinical_annotations",
+        "qualified_reviewer_adjudication",
+        "predefined_acceptance_cohort",
+        "adequately_sized_paired_evaluation"
+      ]
+    },
+    "clinician_productivity_improvement": {
+      "estimable": false,
+      "estimate": null,
+      "required_evidence": [
+        "qualified_clinician_participants",
+        "paired_manual_and_assisted_encounter_tasks",
+        "verified_active_correction_time",
+        "independent_note_quality_assessment"
+      ]
+    },
+    "clinical_safety": {
+      "estimable": false,
+      "estimate": null,
+      "required_evidence": [
+        "independently_adjudicated_safety_outcomes",
+        "prospective_incident_monitoring",
+        "qualified_clinical_oversight",
+        "approved_pilot_protocol"
+      ]
+    }
+  },
+  "interpretation": "Missing evidence is unknown, not zero risk or proof of no benefit.",
+  "prohibited_inference": "Synthetic, public-mock, transport, model-replay, or software tests cannot establish these claims."
+}
