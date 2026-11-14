@@ -1,9 +1,12 @@
 import sqlite3
 
+from services.api.storage import Store
 from services.api.job_state import (
     pending_transcription_capacity,
     request_cancellation,
 )
+from tests.test_foundation import headers
+from tests.test_transcription import enqueue
 
 
 def _database():
@@ -83,3 +86,22 @@ def test_terminal_jobs_are_not_rewritten_by_cancellation():
     assert (
         con.execute("SELECT updated_at FROM jobs WHERE id='j1'").fetchone()[0] == "done"
     )
+
+
+def test_api_cancellation_keeps_queued_transcription_unpublishable(environment):
+    queued = enqueue(environment)
+    job_id = queued.job["job_id"]
+    response = environment.client.post(
+        f"/v1/jobs/{job_id}/cancel", headers=headers()
+    )
+
+    assert response.status_code == 200
+    assert response.json() == {"job_id": job_id, "status": "cancelled"}
+    with Store(environment.path).transaction() as con:
+        row = con.execute(
+            "SELECT status,error_code,result,lease_token FROM jobs WHERE id=?",
+            (job_id,),
+        ).fetchone()
+    assert row["status"] == "cancelled"
+    assert row["error_code"] == "cancelled_by_user"
+    assert row["result"] is None and row["lease_token"] is None
