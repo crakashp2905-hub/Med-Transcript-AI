@@ -1,0 +1,28 @@
+{
+  "schema_version": "scripted_latency_attempt_v1",
+  "task_id": "MTA-16-07",
+  "attempt": 2,
+  "captured_at_utc": "2026-11-14T15:08:48+00:00",
+  "source_commit": "4dfc5d5f47ba3f81371736f4939966607d999fcf",
+  "result": "flow_completed_test_assertion_failed",
+  "failure": "test expected a fixed export filename; application includes the synthetic encounter ID in the filename.",
+  "metrics": {
+    "schema_version": "synthetic_encounter_latency_metrics_v1",
+    "source_profile": "local_scripted_non_asr_v1",
+    "task_completed": true,
+    "recording_stop_to_draft_ready_ms": 17311,
+    "corrected_note_saved_to_export_ready_ms": 6413,
+    "export_click_to_download_ready_ms": 3693,
+    "transcript_fact_count": 1,
+    "export_filename": "approved-note-825163e2-e957-4988-adce-ea691cb0cf02.json",
+    "interaction_errors": [],
+    "human_observations": 0,
+    "clinical_accuracy_measured": false,
+    "clinical_acceptance": false
+  },
+  "workflow_completed": true,
+  "downloaded_export_status": "approved",
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "export_sha256": "19f540f3b7870d485e48fcb3659c39ed0d27924c5fb04569385f7a35caf0a064"
+}

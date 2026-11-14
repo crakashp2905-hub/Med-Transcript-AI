@@ -1,0 +1,24 @@
+{
+  "schema_version": "scripted_latency_attempt_v1",
+  "task_id": "MTA-16-07",
+  "attempt": 1,
+  "captured_at_utc": "2026-11-14T15:01:44+00:00",
+  "source_commit": "4dfc5d5f47ba3f81371736f4939966607d999fcf",
+  "test": "apps/clinician-web/e2e/timing.spec.ts",
+  "result": "fail",
+  "elapsed_timeout_ms": 180000,
+  "failure_stage": "approval_before_export",
+  "observed_state": {
+    "audio_reference": "Yeah, so um, I vomited at the start of the symptoms but now um I've stopped vomiting.",
+    "scripted_transcript": "Developer scripted fixture: patient reports vomiting. Patient denies fever.",
+    "verification_findings": [
+      "speaker_roles_unconfirmed",
+      "fact_review_required"
+    ],
+    "approval_button_enabled": false,
+    "export_created": false
+  },
+  "interpretation": "The scripted adapter output did not match the locally supplied speech reference, and required speaker/fact review was incomplete. The approval gate remained blocked; no export was produced. This failure is retained and no approval bypass was used.",
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false
+}

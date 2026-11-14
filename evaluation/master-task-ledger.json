@@ -8335,11 +8335,30 @@
       "id": "MTA-16-07",
       "section": "16 — UX and PM simulations with measurable, non-fabricated outcomes",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Measure latency from record stop to draft ready and from corrected note to export on deterministic synthetic profiles.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "apps/clinician-web/e2e/timing.spec.ts",
+        "apps/clinician-web/playwright.synthetic.json",
+        "docs/browser-offline-regression.md",
+        "tests/offline_browser_server.py",
+        "tests/test_offline_browser_adapter.py",
+        "tests/test_playwright_manifest.py",
+        "evaluation/datasets/primock57-smoke-v1/manifest.json",
+        "evaluation/runs/mta-16-07-corrected-note-timings.json",
+        "evaluation/runs/mta-16-07-correction-export-blocked-attempt-01.json",
+        "evaluation/runs/mta-16-07-export-name-assertion-attempt-02.json"
+      ],
+      "source_commit": "dfbe049d815e2a900786cc8b4a40c57c83f0b3be",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-16-07-dfbe049.json",
+          "report_sha256": "0b2e67aa62a7234fefd861069470c02c007af91e03a8db052787576813ce91f7",
+          "check": "latency_metrics",
+          "status": "pass",
+          "detail": "Scripted run measured stop-to-SOAP-draft at 19,912 ms and corrected-note-save-to-approved-export at 5,606 ms; export hash recorded. Earlier approval-blocked and assertion failures are preserved."
+        }
+      ],
       "blocker": null
     },
     {

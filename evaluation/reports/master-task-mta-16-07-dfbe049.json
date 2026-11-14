@@ -1,0 +1,85 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-16-07",
+  "status": "pass",
+  "source_commit": "dfbe049d815e2a900786cc8b4a40c57c83f0b3be",
+  "captured_at_utc": "2026-11-14T15:11:31+00:00",
+  "runtime": {
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright_test": "1.64.1",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_files": {
+    "apps/clinician-web/e2e/timing.spec.ts": "5f3de48c669c5049215ceda08f80c088d4c4d1478e3f2d331544494dfb875b6d",
+    "apps/clinician-web/playwright.synthetic.json": "bef150f77ba81ba7a313669ef4e77544d7ae29492bfdb58fbf665ca94273e288",
+    "docs/browser-offline-regression.md": "0fb996b9585452986f3433b3fab2785b8c1c070cc2cac9de173647ae56eba604",
+    "tests/offline_browser_server.py": "4438ab4b026a47b2959b5262710ce9606e9cc7fe1e3b058e7460af1ee769712b",
+    "tests/test_offline_browser_adapter.py": "1ef49ed1cc71cc748ddf8e7cc1bf7042559444947e5b4c6cb6f57e4dc08fbd2c",
+    "tests/test_playwright_manifest.py": "61bf53661feaad4421d51bf79bb53b6e6dc662a3ef87a17d5f649590c58b8c9d",
+    "evaluation/datasets/primock57-smoke-v1/manifest.json": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd",
+    "evaluation/runs/mta-16-07-corrected-note-timings.json": "aa0824688ae211d9cde9da2bba7e466d99bf480f08b79dbff4e7830bf3811a61",
+    "evaluation/runs/mta-16-07-correction-export-blocked-attempt-01.json": "fefcbb9d6acce5cc186c321bfbe0e7f162a5f051018c432e7dddc54bbd60dfd0",
+    "evaluation/runs/mta-16-07-export-name-assertion-attempt-02.json": "6bb8c9fc11fd7876da602c334e6678602662cb8b376f763841a4139f3d6b4e45"
+  },
+  "checks": {
+    "latency_metrics": {
+      "status": "pass",
+      "result": "1 passed; stop-to-draft and corrected-note-to-export timings captured; approved JSON download hash recorded; no page errors.",
+      "command": "npx --offline playwright test e2e/timing.spec.ts (loopback synthetic fixture)"
+    },
+    "scripted_adapter_reference": {
+      "status": "pass",
+      "result": "1 passed; fixed scripted text matches the checked-in public mock reference, inference_executed=false.",
+      "command": "python -m pytest -q tests/test_offline_browser_adapter.py"
+    },
+    "playwright_manifest": {
+      "status": "pass",
+      "result": "1 passed; timing flow is in synthetic fixture manifest.",
+      "command": "python -m pytest -q tests/test_playwright_manifest.py"
+    },
+    "ruff": {
+      "status": "pass",
+      "result": "All checks passed",
+      "command": "python -m ruff check tests/offline_browser_server.py tests/test_offline_browser_adapter.py tests/test_playwright_manifest.py"
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "files already formatted",
+      "command": "python -m ruff format --check tests/offline_browser_server.py tests/test_offline_browser_adapter.py tests/test_playwright_manifest.py"
+    }
+  },
+  "metrics": {
+    "schema_version": "synthetic_encounter_latency_metrics_v1",
+    "source_profile": "local_scripted_non_asr_v1",
+    "dataset_id": "primock57-consultation01-six-utterance-smoke-v1",
+    "source_sample_id": "day1_consultation01_patient.utterance03",
+    "source_audio_sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c",
+    "captured_fixture_sha256": "1b0ad8990bfcd7f6b58122a86292ca7be4a6548974fcad5258896c46e3dfe760",
+    "task_completed": true,
+    "recording_stop_to_draft_ready_ms": 19912,
+    "corrected_note_saved_to_export_ready_ms": 5606,
+    "export_click_to_download_ready_ms": 3280,
+    "transcript_fact_count": 1,
+    "export_filename": "approved-note-043a9020-dbca-4df8-9dbd-a54dd04460af.json",
+    "export_status": "approved",
+    "export_sha256": "48e515778c4aae3d7e26ba718dcd3e4eb17f11c5f5552ec38293e18ac7d95d47",
+    "interaction_errors": [],
+    "human_observations": 0,
+    "clinical_accuracy_measured": false,
+    "clinical_acceptance": false
+  },
+  "preserved_failed_attempts": [
+    "evaluation/runs/mta-16-07-correction-export-blocked-attempt-01.json",
+    "evaluation/runs/mta-16-07-export-name-assertion-attempt-02.json"
+  ],
+  "limitations": [
+    "Single scripted local browser run; times include automated UI review actions and are not controlled service-latency benchmarks.",
+    "The transcription adapter executes no ASR model; it returns a fixed local public-mock reference. This run measures workflow timing only.",
+    "An automated test clicked through synthetic speaker/fact review and approval gates; it is not a human clinician approval or clinical acceptance.",
+    "No clinical accuracy, human task time, or productivity benefit was measured."
+  ],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false,
+  "runtime_sha256": "489f7019beac688d54873df73bba6dd1ef5ae82448e41a2fc4468dca60faf7ac"
+}
