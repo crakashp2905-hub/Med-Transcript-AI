@@ -127,6 +127,27 @@ def test_stitch_rejects_missing_or_duplicate_window_outputs():
         stitch_window_outputs(plan, [first])
 
 
+def test_stitch_fails_closed_when_source_coverage_ledger_is_missing_or_forged():
+    plan = plan_segments(8000, 1000, "fixed_window", max_window_ms=4000)
+    outputs = [
+        {"window_id": window["window_id"], "text": "spoken words"}
+        for window in plan["windows"]
+    ]
+    incomplete = {**plan, "coverage_ledger": {**plan["coverage_ledger"], "complete": False}}
+    with pytest.raises(ValueError, match="complete_source_coverage_ledger_required"):
+        stitch_window_outputs(incomplete, outputs)
+
+    forged = {
+        **plan,
+        "coverage_ledger": {
+            **plan["coverage_ledger"],
+            "missing_source_spans": [(0, 1)],
+        },
+    }
+    with pytest.raises(ValueError, match="source_coverage_ledger_mismatch"):
+        stitch_window_outputs(forged, outputs)
+
+
 def test_boundary_diagnostics_separate_short_misses_clips_roles_and_unknowns():
     report = diagnose_boundaries(
         [

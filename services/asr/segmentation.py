@@ -123,6 +123,32 @@ def stitch_window_outputs(plan, outputs):
     expected = {row["window_id"]: row for row in plan.get("windows", [])}
     if not expected or len(outputs) != len(expected):
         raise ValueError("complete_window_output_set_required")
+    ledger = plan.get("coverage_ledger")
+    if not isinstance(ledger, dict) or ledger.get("complete") is not True:
+        raise ValueError("complete_source_coverage_ledger_required")
+    source_spans = ledger.get("source_spans")
+    if not isinstance(source_spans, list) or not source_spans:
+        raise ValueError("valid_source_coverage_ledger_required")
+    source_windows = sorted(
+        {
+            (row.get("start_frame"), row.get("end_frame_exclusive"))
+            for row in expected.values()
+        }
+    )
+    try:
+        recomputed = build_coverage_ledger(source_spans, source_windows)
+    except (TypeError, ValueError):
+        raise ValueError("valid_source_coverage_ledger_required") from None
+    normalize = lambda spans: [tuple(span) for span in spans]
+    if (
+        not recomputed["complete"]
+        or normalize(ledger.get("windows", [])) != recomputed["windows"]
+        or normalize(ledger.get("missing_source_spans", []))
+        != recomputed["missing_source_spans"]
+        or normalize(ledger.get("duplicated_source_spans", []))
+        != recomputed["duplicated_source_spans"]
+    ):
+        raise ValueError("source_coverage_ledger_mismatch")
     received = {}
     for output in outputs:
         window_id = output.get("window_id")
