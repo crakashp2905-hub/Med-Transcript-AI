@@ -7418,12 +7418,34 @@
       "id": "MTA-14-20",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Treat missing tools/weights as incomplete, never as fast, successful or safe.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/offline_diagnostics.py",
+        "services/offline_preflight.py",
+        "services/artifact_scope.py",
+        "tests/test_model_availability.py",
+        "tests/test_model_inventory.py",
+        "tests/test_offline_diagnostics.py",
+        "tests/test_artifact_scope.py",
+        "evaluation/reports/master-task-mta-14-20-0748593.json"
+      ],
+      "source_commit": "07485931c58045c7d6b7c2f53293ff457b5c72dd",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-20-0748593.json",
+          "report_sha256": "ff356dfcd54d04214ec6a1fccdada00a6de1ff97dead065cf09d9d6223427830",
+          "check": "missing_assets_remain_incomplete",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-20-0748593.json",
+          "report_sha256": "ff356dfcd54d04214ec6a1fccdada00a6de1ff97dead065cf09d9d6223427830",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Missing-asset handling is verified for local synthetic workflows; deployment-specific model paths and OS-level safety controls require local operator validation."
     },
     {
       "id": "MTA-15-01",
