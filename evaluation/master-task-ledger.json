@@ -7405,14 +7405,25 @@
     },
     {
       "id": "MTA-14-19",
-      "section": "14 — Fault tolerance, operations, performance and lifecycle",
+      "section": "14 \u2014 Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "failed",
       "description": "Run 3 consecutive clean end-to-end release candidates from identical artifact digests; no false green from stale receipts.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-14-19-10c7592.json",
+        "evaluation/reports/offline-acceptance-mta-14-19-rc1-10c7592.json",
+        "evaluation/reports/offline-acceptance-mta-14-19-rc1-local-runtime-10c7592.json"
+      ],
+      "source_commit": "10c75927babfb4d6e2de481285d6750d36a828a2",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-19-10c7592.json",
+          "report_sha256": "a52dbf764ed7f7a47b2c0136ebcbe19c51a92c4b5e2f94e338560b318816b9fa",
+          "check": "three_consecutive_clean_release_candidates",
+          "status": "fail"
+        }
+      ],
+      "blocker": "The required three consecutive passes are not achievable on this local checkout: the final full suite has 15 failures and critical skips (channels, encrypted backup, media, PostgreSQL); the clean checkout also lacks ignored data/asr-smoke-profiles.json. Missing assets were not fetched or synthesized."
     },
     {
       "id": "MTA-14-20",

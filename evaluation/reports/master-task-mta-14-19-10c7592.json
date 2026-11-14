@@ -1,0 +1,179 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-19",
+  "source_commit": "10c75927babfb4d6e2de481285d6750d36a828a2",
+  "source_manifest_sha256": "82e973d5e5985ae012ee5775a65bcb43eeab01788b7b6864a1701c43563433a8",
+  "dataset_sha256": "e36f6b68ea7e1db77b7d07bf87c2d090f61ca6a693320d5487a60bf9223ff592",
+  "runtime": {
+    "python_version": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "node_version": "v22.16.0",
+    "npm_version": "10.9.2",
+    "dependency_policy": "existing local installs and cache only; no downloads"
+  },
+  "runtime_sha256": "976cf3078c128be7df9e702e0e3cc69bccbf0163da357b9c7246df67ab3791fb",
+  "acceptance_receipts": [
+    {
+      "path": "evaluation/reports/offline-acceptance-mta-14-19-rc1-10c7592.json",
+      "sha256": "8ffd137e539ceb13af771aa21eb13b901eff63d353a55ee0c0ad728ff2bfc19e",
+      "version": "mta-14-19-rc1-10c7592",
+      "source_commit": "10c75927babfb4d6e2de481285d6750d36a828a2",
+      "source_sha256": "82e973d5e5985ae012ee5775a65bcb43eeab01788b7b6864a1701c43563433a8",
+      "dataset_sha": "e36f6b68ea7e1db77b7d07bf87c2d090f61ca6a693320d5487a60bf9223ff592",
+      "status": "fail",
+      "backend_tests": {
+        "status": "fail",
+        "result": {
+          "exit_code": 2,
+          "summary": "2 skipped, 1 error in 7.91s",
+          "failed_test_ids": [],
+          "skipped_tests": [
+            {
+              "path": "tests/test_asr_pareto.py",
+              "line": 6,
+              "reason_category": "optional_dependency_unavailable",
+              "consequence": "tests using this dependency were not executed"
+            },
+            {
+              "path": "tests/test_rover.py",
+              "line": 6,
+              "reason_category": "optional_dependency_unavailable",
+              "consequence": "tests using this dependency were not executed"
+            }
+          ],
+          "critical_skipped_test_paths": [],
+          "raw_failure_text_included": false
+        }
+      },
+      "frontend_build": {
+        "status": "fail",
+        "error_type": "ValueError"
+      },
+      "recorded_at": "2026-11-14T12:28:32.356057+00:00"
+    },
+    {
+      "path": "evaluation/reports/offline-acceptance-mta-14-19-rc1-local-runtime-10c7592.json",
+      "sha256": "275a93f8cac80893ada2f250fa34d7e9efe88b07b74101ab32c4ef1c9cc6ba1f",
+      "version": "mta-14-19-rc1-local-runtime-10c7592",
+      "source_commit": "10c75927babfb4d6e2de481285d6750d36a828a2",
+      "source_sha256": "82e973d5e5985ae012ee5775a65bcb43eeab01788b7b6864a1701c43563433a8",
+      "dataset_sha": "e36f6b68ea7e1db77b7d07bf87c2d090f61ca6a693320d5487a60bf9223ff592",
+      "status": "fail",
+      "backend_tests": {
+        "status": "fail",
+        "result": {
+          "exit_code": 1,
+          "summary": "15 failed, 1231 passed, 10 skipped, 3 warnings in 889.09s",
+          "failed_test_ids": [],
+          "skipped_tests": [
+            {
+              "path": "tests/test_encrypted_backup.py",
+              "line": 4,
+              "reason_category": "optional_dependency_unavailable",
+              "consequence": "tests using this dependency were not executed"
+            },
+            {
+              "path": "tests/test_channels.py",
+              "line": 192,
+              "reason_category": "optional_dependency_unavailable",
+              "consequence": "tests using this dependency were not executed"
+            },
+            {
+              "path": "tests/test_maintenance_path_confinement.py",
+              "line": 26,
+              "reason_category": "pytest_skip_reason_requires_review",
+              "consequence": "test behavior was not exercised"
+            },
+            {
+              "path": "tests/test_media.py",
+              "line": 24,
+              "reason_category": "optional_dependency_unavailable",
+              "consequence": "tests using this dependency were not executed"
+            },
+            {
+              "path": "tests/test_media.py",
+              "line": 42,
+              "reason_category": "optional_dependency_unavailable",
+              "consequence": "tests using this dependency were not executed"
+            },
+            {
+              "path": "tests/test_media.py",
+              "line": 60,
+              "reason_category": "optional_dependency_unavailable",
+              "consequence": "tests using this dependency were not executed"
+            },
+            {
+              "path": "tests/test_postgres.py",
+              "line": 40,
+              "reason_category": "integration_service_not_configured",
+              "consequence": "service integration behavior was not exercised"
+            },
+            {
+              "path": "tests/test_real_local_asr_workflow.py",
+              "line": 23,
+              "reason_category": "pytest_skip_reason_requires_review",
+              "consequence": "test behavior was not exercised"
+            },
+            {
+              "path": "tests/test_secure_storage.py",
+              "line": 15,
+              "reason_category": "pytest_skip_reason_requires_review",
+              "consequence": "test behavior was not exercised"
+            },
+            {
+              "path": "tests/test_secure_storage.py",
+              "line": 20,
+              "reason_category": "pytest_skip_reason_requires_review",
+              "consequence": "test behavior was not exercised"
+            }
+          ],
+          "critical_skipped_test_paths": [
+            "tests/test_channels.py",
+            "tests/test_encrypted_backup.py",
+            "tests/test_media.py",
+            "tests/test_postgres.py"
+          ],
+          "raw_failure_text_included": false
+        }
+      },
+      "frontend_build": {
+        "status": "pass",
+        "result": {
+          "exit_code": 0,
+          "dependency_installation": false,
+          "built_index_sha256": "ea04450ac0107c521e1c30bf1ca83e2eeec6296946657f0f893b58e87a9a52c7"
+        }
+      },
+      "recorded_at": "2026-11-14T12:50:14.976544+00:00"
+    }
+  ],
+  "checks": {
+    "same_source_and_artifact_digests": {
+      "status": "pass",
+      "detail": "Both fresh receipts bind to the same source commit, code digest and dataset digest."
+    },
+    "offline_acceptance_local_venv": {
+      "status": "fail",
+      "detail": "Backend collection failed (2 skipped, 1 error) because psutil was absent from the project virtual environment; cached frontend build also failed because ignored data/demo-sample.json was absent from the clean checkout."
+    },
+    "offline_acceptance_local_python": {
+      "status": "fail",
+      "detail": "Full suite: 15 failed, 1231 passed, 10 skipped in 889.09s. Four critical test paths were skipped. Failure identifiers are not present in the privacy-filtered acceptance receipt. Frontend build, integrity checks, synthetic walkthrough and clinical binding checks passed."
+    },
+    "three_consecutive_clean_release_candidates": {
+      "status": "fail",
+      "detail": "No clean candidate passed. Only failed candidates were recorded; three consecutive successful receipts were not established."
+    }
+  },
+  "result": "failed",
+  "blocker": "The required three consecutive passes are not achievable on this local checkout: the final full suite has 15 failures and critical skips (channels, encrypted backup, media, PostgreSQL); the clean checkout also lacks ignored data/asr-smoke-profiles.json. Missing assets were not fetched or synthesized.",
+  "limitations": [
+    "One complete candidate was run using the installed system Python and local synthetic fixtures; a separate venv attempt exposed missing local dependencies/assets.",
+    "The acceptance runner intentionally suppresses individual failed test identifiers; only its aggregate summary is available.",
+    "No external services, paid APIs or downloads were used.",
+    "No release candidate is declared successful and no clinical release is implied."
+  ],
+  "recorded_utc_date": "2026-11-14",
+  "clinical_release_authorized": false
+}
