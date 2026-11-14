@@ -1,0 +1,51 @@
+{
+  "schema_version": "product_strategy_v1",
+  "status": "internal_hypotheses_not_customer_validated",
+  "product_document": "docs/product/product-requirements-v1.md",
+  "task_coverage": [
+    "MTA-15-01",
+    "MTA-15-02",
+    "MTA-15-03",
+    "MTA-15-04",
+    "MTA-15-05",
+    "MTA-15-06",
+    "MTA-15-07",
+    "MTA-15-08",
+    "MTA-15-09",
+    "MTA-15-10"
+  ],
+  "research_status": {
+    "customer_interviews": "not_performed",
+    "clinical_observation": "not_performed",
+    "independent_clinical_review": "not_performed",
+    "purchase_intent": "unknown",
+    "competitive_claims": "not_evaluated"
+  },
+  "persona_ids": [
+    "general_physician",
+    "clinical_scribe",
+    "practice_administrator",
+    "compliance_officer",
+    "patient_records_recipient"
+  ],
+  "journey_stages": [
+    "pre_visit",
+    "recording",
+    "during_visit",
+    "review",
+    "correction",
+    "sign_off",
+    "ehr_handoff"
+  ],
+  "hypothesis_ids": ["H1", "H2", "H3", "H4", "H5"],
+  "user_story_count": 20,
+  "feature_priorities": ["must_have", "should_have", "could_have", "excluded"],
+  "prioritization": {
+    "method": "simulated_rice",
+    "formula": "reach * impact * confidence / effort",
+    "inputs_are_hypothetical": true,
+    "customer_demand_claimed": false
+  },
+  "roadmap_axes": ["clinical_harm", "product_value", "effort", "dependency"],
+  "clinical_release_authorized": false
+}
