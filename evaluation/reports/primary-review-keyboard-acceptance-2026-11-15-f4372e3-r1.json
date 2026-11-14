@@ -1,0 +1,62 @@
+{
+  "schema_version": "focused_browser_acceptance_v1",
+  "run_id": "primary-review-keyboard-acceptance-2026-11-15-f4372e3-r1",
+  "recorded_at_utc": "2026-11-14T23:18:19.989691+00:00",
+  "source_commit": "f4372e35d0b02012a99d6c7c124ea7d14cc7aaa2",
+  "scope": "Synthetic browser verification for unified review and keyboard controls; no clinical or production claim.",
+  "command": "npx --no-install playwright test e2e/primary-review.spec.ts --reporter=line --output <versioned-output-dir>",
+  "result": {
+    "status": "pass",
+    "collected": 1,
+    "passed": 1,
+    "skipped": 0,
+    "failed": 0,
+    "assertions": [
+      "source and clinical facts are visible side by side by default",
+      "source audio and transcript search are available in the primary review region",
+      "Alt+1 opens source-only, Alt+2 opens note-only, Alt+0 restores unified review",
+      "Ctrl+S saves the current source review and announces the new version"
+    ]
+  },
+  "output_marker": {
+    "path": "data/browser-acceptance-m1-review-20261115-01/keyboard-review-playwright-r3/.last-run.json",
+    "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+  },
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/src/App.tsx",
+      "sha256": "db56869f33c117941935f34c62c7eca5dbfa055673be325ae03bb3b68d622215"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "cb828991634ab1ba2d24df5fea59805600dcabd1cbec387c764b3258849c7f6f"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
+      "sha256": "1878448b99b72ed249849be75f289e577ee051c37d4630ad6661399d8cda1388"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "aa31dc18e0cb29e2a5f250fddbb78a24a9a51d526680464b35500f2d6fdfe3cd"
+    },
+    {
+      "path": "apps/clinician-web/src/style.css",
+      "sha256": "f4a6179a3139dba2981853ee85f6063be6116fe5104c1e112ca1f1b2158ea321"
+    },
+    {
+      "path": "apps/clinician-web/e2e/primary-review.spec.ts",
+      "sha256": "3b180bfe145ba7a4d4562a0d1b4195151a0d14614d2aa1dd2c6c7829b00bb8a0"
+    }
+  ],
+  "related_full_browser_run": {
+    "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-1308bca-r1.json",
+    "source_commit": "1308bcae55a7cb35ef26b6af0c7357376e550134",
+    "result": "42 passed, 1 skipped, 0 failed on the offline non-Google browser suite."
+  },
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "limitations": [
+    "Synthetic data and local scripted non-ASR fixture only.",
+    "Shortcut behavior was exercised on the configured Windows/Chrome browser; platform-wide browser compatibility is not established."
+  ]
+}
