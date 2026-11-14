@@ -1,0 +1,3421 @@
+{
+  "schema_version": "readiness_scorecard_v1",
+  "source_commit": "f9e4f3ec4fbc59768cd7cbd78c205377fd03e97e",
+  "ledger_sha256": "7c3ddb7709e38f8448552dd73798d61e746610d679f81277571758b31e1514d2",
+  "ledger_hash_representation": "raw_source_bytes",
+  "weighting": {
+    "priority": {
+      "P0": 3,
+      "P1": 2,
+      "P2": 1
+    },
+    "status_credit": {
+      "verified": 1.0,
+      "implemented": 0.5,
+      "not_started": 0.0,
+      "blocked_missing_asset": 0.0,
+      "blocked_external_evidence": 0.0,
+      "failed": 0.0
+    },
+    "axis_section_ids": {
+      "research": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "engineering": [
+        0,
+        1,
+        2,
+        12,
+        13,
+        16,
+        17
+      ],
+      "product": [
+        14,
+        15,
+        18
+      ]
+    },
+    "interpretation": "weighted ledger completion signal; not clinical validity, deployment readiness, or release authorization"
+  },
+  "axes": {
+    "research": {
+      "task_count": 171,
+      "priority_weight_total": 378,
+      "priority_weight_earned": 282.5,
+      "weighted_readiness_percent": 74.74,
+      "status_counts": {
+        "verified": 85,
+        "implemented": 80,
+        "not_started": 3,
+        "blocked_missing_asset": 1,
+        "blocked_external_evidence": 2
+      },
+      "tasks": [
+        {
+          "id": "MTA-03-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "No physical microphone run or 30-minute wall-clock capture; browser tests used synthetic audio and accelerated elapsed time."
+        },
+        {
+          "id": "MTA-03-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "OS-level permission revocation and physical device unplug remain unvalidated; corresponding Chromium tests are synthetic."
+        },
+        {
+          "id": "MTA-03-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-03-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-04-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-04-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-04-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-04-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-04-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Qualified clinical review of priority ordering and independently adjudicated harm labels are unavailable; current tiers are provisional."
+        },
+        {
+          "id": "MTA-04-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Independent clinical concept and surface-form evaluation data are unavailable; implementation is recorded without clinical validation."
+        },
+        {
+          "id": "MTA-04-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "A trained VAD package and weights are unavailable in the permitted local environment. The implemented energy proxy has synthetic invariant tests only; no ASR quality run or production promotion is supported. Existing full-corpus overlap is worse than fixed chunking and both modes fail the unchanged 5% gate."
+        },
+        {
+          "id": "MTA-04-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "The Omi empty-output wrapper behavior is isolated and tested, and its blank predictions remain in the full-reference WER denominator. Window-edge error attribution remains unavailable because Omi provides no native timestamps and the corpus has no word-level aligned reference. All Omi candidates fail the unchanged 5% WER gate."
+        },
+        {
+          "id": "MTA-04-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Only a six-utterance smoke cohort was measured; this is not evidence of improvement on full consultations or clinical accuracy."
+        },
+        {
+          "id": "MTA-04-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The local faster-whisper and ctranslate2 packages are missing, so the exact-commit paired run preserves eight failures per arm and provides no efficacy estimate. Terms remain opt-in, allowlisted, candidate-only, and non-mutating; no clinical validation or admission is supported."
+        },
+        {
+          "id": "MTA-04-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The text-level ROVER lattice is implemented from saved local hypotheses and preserves original failures, but it fails the 5% WER gate and cannot infer clinical truth or use audio evidence. It is not eligible for production or clinical promotion."
+        },
+        {
+          "id": "MTA-04-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The end-to-end persisted candidate path is covered by exact-source CI and source files remain unchanged through current HEAD. The local Windows TestClient attempt stalled, and accuracy benefit remains unmeasured on synthetic fixtures."
+        },
+        {
+          "id": "MTA-04-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "blocked_external_evidence",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": "Independent qualified clinical reviewers and source-audited gold labels are unavailable. No paired span-retranscription effect estimate for clinically important errors can be produced from the developer-authored synthetic set or unadjudicated mock references."
+        },
+        {
+          "id": "MTA-04-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "No source-audited calibration cohort or labels exist locally; all supported ASR outputs remain explicitly uncalibrated or unavailable, with no probability claims."
+        },
+        {
+          "id": "MTA-04-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The existing fixed/overlap/speech-aware/two-channel comparison is complete on the same locked consultation cohort with equal failure-inclusive denominators, but two-channel audio is a distinct source-track modality and all conditions fail the 5% gate. The results are development evidence only."
+        },
+        {
+          "id": "MTA-04-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The end-to-end app test is unverified because the Windows TestClient stalls before request dispatch; rerun on a working app-test runner before claiming complete integration."
+        },
+        {
+          "id": "MTA-04-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Acoustic alignment accuracy and validated word-level timing remain unmeasured; this closes structural integrity and coordinate-mapping checks only."
+        },
+        {
+          "id": "MTA-04-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Only OMI was measured in this run; remaining installed candidates require fresh locked full-cohort runs. No paid calls or fetched assets."
+        },
+        {
+          "id": "MTA-04-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Gate enforces engineering evidence and the 5% admission condition; independent clinical review remains a separate release prerequisite."
+        },
+        {
+          "id": "MTA-04-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The ASR qualification status correctly remains FAIL at the 5% gate; a materially better local candidate and independent clinical acceptance evidence are still needed."
+        },
+        {
+          "id": "MTA-04-21",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-05-01",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": "No independent speaker adjudication; modality comparisons remain separate development evidence."
+        },
+        {
+          "id": "MTA-05-02",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": "No independent adjudication; results are software verification against upstream labels only."
+        },
+        {
+          "id": "MTA-05-03",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Role accuracy remains unmeasured; this implementation ensures anonymous cluster IDs cannot be silently interpreted as clinician/patient roles."
+        },
+        {
+          "id": "MTA-05-04",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "blocked_missing_asset",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": "No synchronized two/eight-channel matching recording is present in the local dataset. 154 available WAVs are mono."
+        },
+        {
+          "id": "MTA-05-05",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": "Hardware and clinical calibration remain unvalidated; ambiguous channels fail safe to unknown."
+        },
+        {
+          "id": "MTA-05-06",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": "No independent acoustic duplicate confirmer or physical channel data; ambiguous duplicates stay visible and require clinician review."
+        },
+        {
+          "id": "MTA-05-07",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": "The report measures upstream-labeled development cases only; no independently adjudicated clinical cohort is available."
+        },
+        {
+          "id": "MTA-05-08",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Role triage uses categorical confirmation states, not calibrated probabilistic role confidence; independent role performance remains unavailable."
+        },
+        {
+          "id": "MTA-05-09",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": "Ambiguous family references and clinical acceptance still require qualified human review."
+        },
+        {
+          "id": "MTA-05-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-05-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-05-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-05-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-05-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-05-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-05-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Windows route-persistence integration test stalled; do not claim route-level verification."
+        },
+        {
+          "id": "MTA-06-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Only 1/9 batches completed; 8 local Qwen requests timed out under current local runtime load."
+        },
+        {
+          "id": "MTA-06-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-06-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-21",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-07-22",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-01",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-02",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-03",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-04",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-05",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The summary is generated only from the exact approved note and bound transcript, includes a source turn/quote for evidence-backed facts, labels clinician-entered statements, retains subject/assertion/time caveats, documents excluded facts and source coverage gaps, and is read-only. Browser integration remains to be rerun where loopback access is enabled."
+        },
+        {
+          "id": "MTA-08-06",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-07",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-08",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-09",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-08-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-09-01",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The offline browser fixture returned no waveform peaks; the UI displayed its explicit fallback. The rendered waveform needs an interactive check with an audio fixture that returns peaks."
+        },
+        {
+          "id": "MTA-09-02",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Browser validation is blocked because Chromium could not access the isolated loopback fixture (ERR_NETWORK_ACCESS_DENIED) before application load; rerun E2E in an environment permitting the documented local fixture."
+        },
+        {
+          "id": "MTA-09-03",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "API integration test is blocked by the managed Windows sandbox denying the local socket pair required by Starlette TestClient. The direct metadata serializer test passes; rerun integration tests in a local-socket-enabled environment."
+        },
+        {
+          "id": "MTA-09-04",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Browser priority and uncertainty-detail assertions are blocked because the managed environment denies loopback access to the local fixture. Production build passes; rerun E2E where local fixture networking is allowed."
+        },
+        {
+          "id": "MTA-09-05",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Browser interaction validation is blocked because the sandbox denies the loopback socket required to load the local test fixture; backend provenance and interval-preservation unit tests pass."
+        },
+        {
+          "id": "MTA-09-06",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The browser/API end-to-end route is blocked by the sandbox denying loopback sockets. Candidate-only API/worker integration exists in the repository but could not be exercised here; the TypeScript build and pure retranscription span tests pass."
+        },
+        {
+          "id": "MTA-09-07",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The browser/API integration is blocked by sandbox loopback/socket denial. Static build and candidate-only service tests pass; rerun browser and API tests in an environment permitting local fixture sockets."
+        },
+        {
+          "id": "MTA-09-08",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Browser and API integration is blocked by managed socket restrictions. Directional coverage rules, manual-addition count, and build/discovery checks pass; rerun E2E/API checks with local sockets enabled."
+        },
+        {
+          "id": "MTA-09-09",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The browser keyboard interaction check is blocked because managed loopback networking denies loading the local fixture. Build and E2E discovery pass; run the browser assertions where local fixture networking is enabled."
+        },
+        {
+          "id": "MTA-09-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Rendered accessibility validation is blocked by loopback restrictions. Static contrast checks and build/discovery pass; run the browser accessibility assertions on a host that can access the local fixture."
+        },
+        {
+          "id": "MTA-09-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The local browser fixture is unreachable under managed loopback restrictions, so interactive persona navigation is not browser-verified. Build and E2E compilation pass."
+        },
+        {
+          "id": "MTA-09-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Rendered queue-state and stale-worker browser checks are blocked by loopback restrictions. Build and backend lint pass; rerun UI checks in a local-socket-enabled environment."
+        },
+        {
+          "id": "MTA-09-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Rendered review-priority order could not be browser-checked because the local fixture is unreachable under loopback restrictions. Static regression test and production build pass."
+        },
+        {
+          "id": "MTA-09-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "This execution environment denies loopback browser navigation; rerun the workflow in a local-socket-enabled environment to exercise offline, permission, unsaved-edit, partial-job, and expired-session UI states."
+        },
+        {
+          "id": "MTA-09-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Loopback browser navigation is denied in this environment. Run the workflow in a local-socket-enabled environment to verify rendered measurements against fixtures. Missing model/cost/time fields are explicitly displayed as unavailable; no estimates or cost calculations are fabricated."
+        },
+        {
+          "id": "MTA-09-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The public path serves a static, bundled synthetic preview and does not invoke authentication or API routes. Loopback browser navigation is denied in this environment; execute the E2E journey in a local-socket-enabled environment to confirm rendered behavior."
+        },
+        {
+          "id": "MTA-09-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The application distinguishes provisional preview, unapproved proposal/draft and approved record states. Export routes require a real approval ID and revalidate exact hashes and current safety findings. Socket-dependent integration and rendered browser checks must be rerun in an environment permitting local test sockets."
+        },
+        {
+          "id": "MTA-09-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The redacted synthetic bundle helper and API route are covered by socket-free unit tests; real route/download integration must be exercised in a local-socket-enabled environment. The route is authenticated and returns 404 for non-synthetic cases."
+        },
+        {
+          "id": "MTA-09-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": "The deterministic browser journeys are present but could not be executed because local loopback navigation is denied. The available synthetic WAV is not claimed as processed or validated. Rerun the complete browser suite in a local-socket-enabled environment."
+        },
+        {
+          "id": "MTA-09-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": "Fresh screenshots and visual diffs for the three declared viewports remain ungenerated. Existing ignored screenshots are stale/unbound evidence. Browser access to the loopback application is denied in this environment; rerun screenshot capture and visual comparison where local browser networking is enabled."
+        },
+        {
+          "id": "MTA-10-01",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Inventory is complete, but application inference cannot be exercised in this environment because faster-whisper, sherpa-onnx, onnx-asr and omi-med-stt are absent; configured Ollama Qwen manifests are unavailable. RAM/VRAM minimums are not documented locally, and license eligibility remains unverified where local profile/manifest evidence is absent. These are recorded as gaps, not passed claims. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-10-02",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Application inference was not run because local candidate runtime packages are missing. The profile SHA allowlist is an integrity pin rather than a cryptographic signature; deployment source integrity remains part of the trust boundary. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-10-03",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Expanded socket-dependent route tests were not used for acceptance because they can hang in this Windows environment; focused adapter and contract tests passed. Native model execution remains constrained by unavailable runtime packages. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-10-04",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The worker API-state TestClient check hung in this Windows environment. The focused lock, budget, model estimate, unavailable-model and backend-serialization tests passed. Model peak memory remains an estimate rather than measured runtime telemetry. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-10-05",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "No GPU or other hardware was available. Fresh exact-source measurement covers the local Parakeet CPU runtime using synthetic demo audio. Other completed model figures are preserved prior 16-case measurements bound to suite/model hashes; the fresh large Whisper report remains incomplete and the historical Omi receipt predates current loader hardening. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-10-06",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Priority is advisory and nonpreemptive; queued ASR progresses ahead of optional work after the current local inference finishes. No full runtime orchestration latency benchmark is included. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-10-07",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Cooperative cancellation currently covers durable ASR jobs only. Synchronous LLM drafting/extraction/verification have bounded timeouts and late-publication fences but cannot stop provider compute on client disconnect. Full route integration tests are constrained by the Windows TestClient socketpair hang; exact-current hosted CI has not been observed."
+        },
+        {
+          "id": "MTA-10-08",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The trace is exercised with a deterministic runtime stub because the local Faster Whisper runtime/model profile is unavailable; local Ollama cold/warm residency is also unmeasured. No runtime assets were fetched."
+        },
+        {
+          "id": "MTA-10-09",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Three new source-edit race tests and existing revocation race tests are collected but not executed in this Windows environment. Require exact-commit hosted/Linux test execution before verified status."
+        },
+        {
+          "id": "MTA-10-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-10-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Application persistence is covered. Local inference server internal logs/retention are operator-managed and not observable from this codebase. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-10-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Windows TestClient integration execution stalls before route dispatch; local mypy invocation did not finish."
+        },
+        {
+          "id": "MTA-10-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Route-level authorization, missing-model publication and worker-crash recovery remain unexecuted in this Windows environment; the suite requires a local TestClient run where asyncio socketpair setup completes. No real OOM was induced."
+        },
+        {
+          "id": "MTA-10-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "blocked_external_evidence",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": "Per-consultation CPU and peak RAM attribution are absent from source runs, and no compatible local energy telemetry was recorded. Do not apportion process totals or infer energy. A fresh matched run with per-case resource sampling and a supported power meter is required."
+        },
+        {
+          "id": "MTA-10-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-10-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Real Ollama daemon/model and browser/API end-to-end concurrent requests were not exercised; the deterministic subprocess test validates only shared-lock contention and deferral."
+        },
+        {
+          "id": "MTA-10-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-11-01",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Independent acceptance cohort and qualified adjudication are unavailable; the protocol makes no efficacy claim."
+        },
+        {
+          "id": "MTA-11-02",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-03",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-04",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-05",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-06",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-07",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-08",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        },
+        {
+          "id": "MTA-11-09",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Comparative ablation execution requires local verifier inference and an independent acceptance cohort; matrix remains declared_not_executed."
+        },
+        {
+          "id": "MTA-11-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Matched empirical baseline comparisons require a frozen evaluation cohort and local model runtime; no result or superiority claim is available."
+        },
+        {
+          "id": "MTA-11-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "This is a development cohort only. Independent acceptance cases and qualified adjudication are not available."
+        },
+        {
+          "id": "MTA-11-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The synthetic rule checker flags a faithful paraphrase and clause reordering; these false alarms remain open. The seven-case set does not establish clinical performance."
+        },
+        {
+          "id": "MTA-11-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Outcome is preregistered but not measured; acceptance cohort and qualified reviewer approval are not available."
+        },
+        {
+          "id": "MTA-11-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-11-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "No independent acceptance cohort exists for the paired inferential analysis."
+        },
+        {
+          "id": "MTA-11-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "No full baseline or ablation run has been executed; independent cohort contamination remains unaudited."
+        },
+        {
+          "id": "MTA-11-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "No BECCSV baseline comparison exists, so no success criterion has been achieved."
+        },
+        {
+          "id": "MTA-11-21",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Systematic external literature review and independent acceptance results are not available; this is an internal draft, not a publication-ready efficacy paper."
+        },
+        {
+          "id": "MTA-11-22",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
+        }
+      ]
+    },
+    "engineering": {
+      "task_count": 134,
+      "priority_weight_total": 293,
+      "priority_weight_earned": 124.0,
+      "weighted_readiness_percent": 42.32,
+      "status_counts": {
+        "verified": 5,
+        "implemented": 92,
+        "not_started": 33,
+        "blocked_missing_asset": 4
+      },
+      "tasks": [
+        {
+          "id": "MTA-00-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-00-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-00-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-00-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Python socket and provider guards do not constitute an operating-system or native-process network sandbox; this limitation is documented."
+        },
+        {
+          "id": "MTA-00-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-00-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Task-level dependency edges remain unmapped; current section-order suggestions are planning hints, not an audited dependency graph."
+        },
+        {
+          "id": "MTA-00-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-00-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-00-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Browser-level assertion could not run because the managed environment denied Chromium access to the loopback fixture; the UI build passed and the failed navigation is retained in the receipt."
+        },
+        {
+          "id": "MTA-00-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Tests verify synthetic refusal paths only; reserved cohort was deliberately not inspected, and guardrails cannot establish prevention of all manual or out-of-process access."
+        },
+        {
+          "id": "MTA-00-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The policy gate blocks P0 regardless of model/agent verdict and fails closed on unknown severity; release authorization still requires external evidence."
+        },
+        {
+          "id": "MTA-00-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Runtime metadata is hash-bound but is not cryptographically attested by an external runner; no task is marked verified solely from the current work."
+        },
+        {
+          "id": "MTA-00-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Fail-closed checks cover the application tooling path; they do not sandbox arbitrary host processes or manual filesystem access."
+        },
+        {
+          "id": "MTA-00-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The targeted feature-gate and strict-offline tests pass. A broader clinical-intelligence test invocation stalled after 14 progress dots and was interrupted without a completed result; this attempt remains disclosed in the receipt."
+        },
+        {
+          "id": "MTA-00-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Only benchmark_text and benchmark_ranking writers use the write-once publication helper so far. Remaining report-producing workflows need migration before the rule is repository-wide."
+        },
+        {
+          "id": "MTA-00-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The isolated copy/model-card tests and web production build pass. Existing end-to-end HTTP export workflow was blocked by this Windows environment stalling TestClient socketpair setup; no route-level loopback assertion ran."
+        },
+        {
+          "id": "MTA-01-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Formatter, Ruff lint, frontend provenance, and focused provenance tests pass on the recorded commit. Full CI remained red on test collection for absent optional dependencies, later addressed separately."
+        },
+        {
+          "id": "MTA-01-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "No runtime fingerprint or hosted-CI confirmation exists in the original report; task remains implemented, not verified."
+        },
+        {
+          "id": "MTA-01-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 3.0,
+          "blocker": "Historical superseded CI failure receipts are retained in test_results_history. Exact-source hosted CI passed all required jobs; skipped tests and the absence of independent clinical validation remain documented in the receipt."
+        },
+        {
+          "id": "MTA-01-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "blocked_missing_asset",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": "Frontend lint is not configured or present in the locked local dependency tree; compressed audio normalization browser test is skipped because PyAV is missing."
+        },
+        {
+          "id": "MTA-01-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "The recorded five-job hosted run is bound to historical commit 55de56e, not current HEAD; exact-current-commit hosted CI has not been observed."
+        },
+        {
+          "id": "MTA-01-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Hosted CI execution has not been observed for the source commit."
+        },
+        {
+          "id": "MTA-01-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "No actual hosted CI logs or successful full acceptance report are available for this source. The provenance pipeline is implemented and locally tested, but no release candidate is eligible."
+        },
+        {
+          "id": "MTA-01-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "External links are not fetched; API examples are checked against static route declarations and not live request/response behavior."
+        },
+        {
+          "id": "MTA-01-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "blocked_missing_asset",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": "Local Python/npm package caches, optional Ollama cache and Docker image digests remain unenumerated or unavailable; the local wheelhouse is absent. The runtime inventory does not yet cover every locally cached artifact."
+        },
+        {
+          "id": "MTA-01-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The broader isolated test attempt timed out at 180 seconds; a full isolated test-suite pass remains unestablished."
+        },
+        {
+          "id": "MTA-01-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-01-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Source-code mutation score remains unmeasured because no mutation engine is installed; the measured score covers synthetic adversarial input scenarios only, and independent clinical validation is not available."
+        },
+        {
+          "id": "MTA-01-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Coverage baseline is diagnostic only; it has no enforced percentage threshold and does not establish behavioral correctness or clinical safety."
+        },
+        {
+          "id": "MTA-01-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": "Hosted CI validates the current API contract and SQLite migration assets. This is engineering evidence only; it does not establish clinical validation."
+        },
+        {
+          "id": "MTA-01-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-01-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-01-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Vulnerability assessment remains unperformed because advisory cache data and an offline scanner are unavailable; package inventory does not establish package safety."
+        },
+        {
+          "id": "MTA-01-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "blocked_missing_asset",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": "No local offline vulnerability scanner or cached advisory database is available. Do not infer packages are safe; do not make a network call or fetch advisory assets."
+        },
+        {
+          "id": "MTA-01-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-01-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Each CI attempt now publishes an exact-source summary. Current exact-commit offline acceptance is unavailable and explicitly shown as such; clinical release remains unauthorized."
+        },
+        {
+          "id": "MTA-02-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Static import classification does not prove production execution; production-path behavioral proof is tracked separately."
+        },
+        {
+          "id": "MTA-02-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Historical compatibility fixture is synthetic; no historical production records were present in the repository."
+        },
+        {
+          "id": "MTA-02-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-02-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "verified",
+          "credit": 1.0,
+          "weighted_credit": 2.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-12-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
+        },
+        {
+          "id": "MTA-12-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
+        },
+        {
+          "id": "MTA-12-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
+        },
+        {
+          "id": "MTA-12-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "No independent clinical annotation; metrics do not establish clinical accuracy."
+        },
+        {
+          "id": "MTA-12-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Clinical-term score coverage depends on explicitly annotated manifest terms; independent clinical validity is not established."
+        },
+        {
+          "id": "MTA-12-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Current diarizer outputs anonymous clusters; role labels and independent adjudication remain unavailable."
+        },
+        {
+          "id": "MTA-12-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Independent clinical fact annotations and performance evidence remain unavailable."
+        },
+        {
+          "id": "MTA-12-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Independent clinical operating characteristics remain unmeasured."
+        },
+        {
+          "id": "MTA-12-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Independent human judgments of grounded note quality and dangerous changes remain unavailable."
+        },
+        {
+          "id": "MTA-12-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "No independent acceptance cohort or adjudicated role/noise labels are available."
+        },
+        {
+          "id": "MTA-12-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Independent reviewer approval and adequately sized acceptance data remain unavailable."
+        },
+        {
+          "id": "MTA-12-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Independent reviewer approval and adequately sized acceptance data remain unavailable."
+        },
+        {
+          "id": "MTA-12-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Independent reviewer approval and adequately sized acceptance data remain unavailable."
+        },
+        {
+          "id": "MTA-12-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Scenario probabilities are assumptions, not independently estimated clinical rates."
+        },
+        {
+          "id": "MTA-12-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Product-stage instrumentation and actual encounter timing data remain to be connected."
+        },
+        {
+          "id": "MTA-12-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "No on-device wattmeter or verified telemetry was available; actual workload energy remains unmeasured."
+        },
+        {
+          "id": "MTA-12-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Lifecycle instrumentation, retention-worker integration and secure-erasure evidence remain outstanding."
+        },
+        {
+          "id": "MTA-12-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "No new matched candidate runs were produced; comparator tests validate the boundary only."
+        },
+        {
+          "id": "MTA-12-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Qualified clinical/statistical review is still needed to set the actual adequacy threshold and interpret outcomes."
+        },
+        {
+          "id": "MTA-12-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Qualified clinical/statistical review is still needed to set the actual adequacy threshold and interpret outcomes."
+        },
+        {
+          "id": "MTA-12-21",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Development evidence only; no independent clinical cohort or eligible model meeting the 5% gate."
+        },
+        {
+          "id": "MTA-12-22",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Development evidence only; no independent clinical cohort or eligible model meeting the 5% gate."
+        },
+        {
+          "id": "MTA-12-23",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "The reproducibility capture was made from a worktree with concurrent outstanding changes; the exact source commit and artifact hashes are recorded."
+        },
+        {
+          "id": "MTA-12-24",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Qualified reviewers, independent clinical annotations and a prospective clinician pilot are not available."
+        },
+        {
+          "id": "MTA-13-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
+        },
+        {
+          "id": "MTA-13-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
+        },
+        {
+          "id": "MTA-13-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
+        },
+        {
+          "id": "MTA-13-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Full per-route resource/version and worker authorization matrix remains unverified; the broad missing-auth/viewer-write sweep stalled on Windows."
+        },
+        {
+          "id": "MTA-13-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-13-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": null
+        },
+        {
+          "id": "MTA-13-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Directory symlink checks were skipped because this host cannot create directory symlinks; atomic defense against concurrent symlink replacement is not implemented or verified."
+        },
+        {
+          "id": "MTA-13-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Windows ACLs for database, exports, model caches and asset directories remain unprovisioned/unverified; POSIX mode and symlink checks were skipped on this host; concurrent local filesystem mutation is not race-free."
+        },
+        {
+          "id": "MTA-13-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.5,
+          "blocker": "Authenticated consent API route workflow remains unverified because TestClient hangs in Windows Proactor socketpair initialization; tests seed synthetic authorization directly."
+        },
+        {
+          "id": "MTA-13-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Full endpoint/background-worker matrix and the Windows verifier fail-closed integration run remain unverified; no external security audit."
+        },
+        {
+          "id": "MTA-13-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Coverage is limited to the tested redactor paths; complete logger/trace/crash-dump inventory and external security review remain open."
+        },
+        {
+          "id": "MTA-13-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Current repository scan is incomplete because two 32,511,413-byte benchmark CSV files exceeded the 16 MiB scan cap; pattern scanning is not a comprehensive secrets audit."
+        },
+        {
+          "id": "MTA-13-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Backup/external-copy deletion cannot be proven locally; maintenance integration suite stalled and requires a clean rerun."
+        },
+        {
+          "id": "MTA-13-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Institution-approved retention policy, backup lifecycle and external legal sign-off are unavailable; broader maintenance integration suite stalled."
+        },
+        {
+          "id": "MTA-13-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "blocked_missing_asset",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": "The local environment has cryptography 45.0.4 without cryptography.cobblestone; the project pin requiring 50.0.2 is unavailable locally and must not be fetched under the current constraint."
+        },
+        {
+          "id": "MTA-13-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-13-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "PostgreSQL adapter parity and external database-administrator tamper resistance are not established by local SQLite tests."
+        },
+        {
+          "id": "MTA-13-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Container isolation was not executed because Docker is unavailable locally; host-level deny-by-default firewall configuration is documented but not applied or independently verified."
+        },
+        {
+          "id": "MTA-13-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
+        },
+        {
+          "id": "MTA-13-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Independent privacy review and production identity deployment remain external dependencies; viewer list filtering currently scans actor-scoped rows in application memory."
+        },
+        {
+          "id": "MTA-13-21",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
+        },
+        {
+          "id": "MTA-13-22",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "implemented",
+          "credit": 0.5,
+          "weighted_credit": 1.0,
+          "blocker": "Report documents unresolved external assurance and operating dependencies; it is not an external audit or authorization for clinical deployment."
+        },
+        {
+          "id": "MTA-16-01",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-02",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-03",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-04",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-05",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-06",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-07",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-08",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-09",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-10",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-11",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-12",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-13",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-14",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-15",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-16-16",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-01",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-02",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-03",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-04",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-05",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-06",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-07",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-08",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-09",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-10",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-11",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-12",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-13",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-14",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-15",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-17-16",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        }
+      ]
+    },
+    "product": {
+      "task_count": 64,
+      "priority_weight_total": 115,
+      "priority_weight_earned": 0.0,
+      "weighted_readiness_percent": 0.0,
+      "status_counts": {
+        "not_started": 64
+      },
+      "tasks": [
+        {
+          "id": "MTA-14-01",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-02",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-03",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-04",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-05",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-06",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-07",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-08",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-09",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-17",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-18",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-19",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-14-20",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-01",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-02",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-03",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-04",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-05",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-06",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-07",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-08",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-09",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-10",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-11",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-12",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-13",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-14",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-15",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-16",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-17",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-18",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-19",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-20",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-21",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-22",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-23",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-24",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-25",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-26",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-27",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-15-28",
+          "priority": "P2",
+          "priority_weight": 1,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-01",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-02",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-03",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-04",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-05",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-06",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-07",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-08",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-09",
+          "priority": "P0",
+          "priority_weight": 3,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-10",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-11",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-12",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-13",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-14",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-15",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        },
+        {
+          "id": "MTA-18-16",
+          "priority": "P1",
+          "priority_weight": 2,
+          "status": "not_started",
+          "credit": 0.0,
+          "weighted_credit": 0.0,
+          "blocker": null
+        }
+      ]
+    }
+  },
+  "clinical_release_authorized": false,
+  "checks": {
+    "weighted_three_axis_scorecard": {
+      "status": "pass",
+      "test_command": "python -m pytest -q tests/test_readiness_scorecard.py tests/test_master_ledger.py",
+      "test_result": "4 passed",
+      "tested_source_commit": "f9e4f3ec4fbc59768cd7cbd78c205377fd03e97e"
+    }
+  }
+}

@@ -7770,12 +7770,26 @@
       "id": "MTA-18-01",
       "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Create machine-readable weighted scorecard for research, engineering and product readiness separately; never one average hides clinical blockers.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/readiness_scorecard.py",
+        "tests/test_readiness_scorecard.py",
+        "evaluation/reports/readiness-scorecard-2026-11-14.json"
+      ],
+      "source_commit": "f9e4f3ec4fbc59768cd7cbd78c205377fd03e97e",
+      "test_results": [
+        {
+          "report": "evaluation/reports/readiness-scorecard-2026-11-14.json",
+          "report_sha256": "46309bbbda458c7b71dec5175dd8a35bd327f09ae705834dbdddc4bafcbb6d43",
+          "check": "weighted_three_axis_scorecard",
+          "status": "pass",
+          "test_command": "python -m pytest -q tests/test_readiness_scorecard.py tests/test_master_ledger.py",
+          "test_result": "4 passed",
+          "tested_source_commit": "f9e4f3ec4fbc59768cd7cbd78c205377fd03e97e"
+        }
+      ],
+      "blocker": "Weighted scores report task-ledger completion only. They do not establish clinical correctness, operational release readiness, or authorization; engineering and product axes remain materially incomplete."
     },
     {
       "id": "MTA-18-02",
