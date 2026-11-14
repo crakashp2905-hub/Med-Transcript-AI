@@ -7692,99 +7692,222 @@
       "id": "MTA-15-11",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define differentiated product promise: traceable evidence, immutable versioning, conservative safety, local-first privacy and human approval.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "docs/product/product-operations-v1.md",
+        "evaluation/contracts/product-operations-v1.json",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/tutorial.spec.ts",
+        "evaluation/reports/master-task-mta-15-11-19-63b95c5.json"
+      ],
+      "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-11-19-63b95c5.json",
+          "report_sha256": "1765d98b10ed6bf8af634afe19ad80252d7b8384da87878435a162ff7b708664",
+          "check": "product_operating_requirements",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-12",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "blocked_external_evidence",
       "description": "Write competitive positioning matrix from verified public feature claims only; no fabricated competitor pricing or trials.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "docs/product/product-operations-v1.md",
+        "evaluation/contracts/product-operations-v1.json",
+        "evaluation/reports/master-task-mta-15-11-19-63b95c5.json"
+      ],
+      "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-11-19-63b95c5.json",
+          "report_sha256": "1765d98b10ed6bf8af634afe19ad80252d7b8384da87878435a162ff7b708664",
+          "check": "competitive_claims",
+          "status": "blocked"
+        }
+      ],
+      "blocker": "A current source-audited public competitor claim pack is not present locally. External research was excluded by the local-only constraint; no feature, price, trial, or market comparison was fabricated."
     },
     {
       "id": "MTA-15-13",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define packaged personas/modes: local demo, clinician workstation, read-only investor and institution pilot candidate.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "docs/product/product-operations-v1.md",
+        "evaluation/contracts/product-operations-v1.json",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/tutorial.spec.ts",
+        "evaluation/reports/master-task-mta-15-11-19-63b95c5.json"
+      ],
+      "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-11-19-63b95c5.json",
+          "report_sha256": "1765d98b10ed6bf8af634afe19ad80252d7b8384da87878435a162ff7b708664",
+          "check": "product_operating_requirements",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-14",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Create zero-assumption onboarding path on preinstalled supported hardware and a fallback manual workflow.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "docs/product/product-operations-v1.md",
+        "evaluation/contracts/product-operations-v1.json",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/tutorial.spec.ts",
+        "evaluation/reports/master-task-mta-15-11-19-63b95c5.json"
+      ],
+      "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-11-19-63b95c5.json",
+          "report_sha256": "1765d98b10ed6bf8af634afe19ad80252d7b8384da87878435a162ff7b708664",
+          "check": "product_operating_requirements",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-15",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Build guided first-run tutorial using synthetic consultation and deliberate correctable error.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "docs/product/product-operations-v1.md",
+        "evaluation/contracts/product-operations-v1.json",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/tutorial.spec.ts",
+        "evaluation/reports/master-task-mta-15-11-19-63b95c5.json"
+      ],
+      "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-11-19-63b95c5.json",
+          "report_sha256": "1765d98b10ed6bf8af634afe19ad80252d7b8384da87878435a162ff7b708664",
+          "check": "guided_tutorial_e2e",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-16",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define product success metrics: case completion, time to first reviewed draft, correction burden, critical warning acknowledgment and export success.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "docs/product/product-operations-v1.md",
+        "evaluation/contracts/product-operations-v1.json",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/tutorial.spec.ts",
+        "evaluation/reports/master-task-mta-15-11-19-63b95c5.json"
+      ],
+      "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-11-19-63b95c5.json",
+          "report_sha256": "1765d98b10ed6bf8af634afe19ad80252d7b8384da87878435a162ff7b708664",
+          "check": "product_operating_requirements",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-17",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Distinguish simulated user action metrics from actual clinician-observed metrics in dashboard schema.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "docs/product/product-operations-v1.md",
+        "evaluation/contracts/product-operations-v1.json",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/tutorial.spec.ts",
+        "evaluation/reports/master-task-mta-15-11-19-63b95c5.json"
+      ],
+      "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-11-19-63b95c5.json",
+          "report_sha256": "1765d98b10ed6bf8af634afe19ad80252d7b8384da87878435a162ff7b708664",
+          "check": "product_operating_requirements",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-18",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define guardrail metrics: incorrect critical note claims, unsafe export, silent truncation, source citation failure, false alerts and model timeouts.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "docs/product/product-operations-v1.md",
+        "evaluation/contracts/product-operations-v1.json",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/tutorial.spec.ts",
+        "evaluation/reports/master-task-mta-15-11-19-63b95c5.json"
+      ],
+      "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-11-19-63b95c5.json",
+          "report_sha256": "1765d98b10ed6bf8af634afe19ad80252d7b8384da87878435a162ff7b708664",
+          "check": "product_operating_requirements",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
       "id": "MTA-15-19",
       "section": "15 — Product management: strategy, market hypotheses and prioritization",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Define SLO targets as hypotheses per hardware tier and test feasibility rather than assert production guarantees.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "docs/product/product-requirements-v1.md",
+        "docs/product/product-operations-v1.md",
+        "evaluation/contracts/product-operations-v1.json",
+        "apps/clinician-web/src/PresentationTools.tsx",
+        "apps/clinician-web/e2e/tutorial.spec.ts",
+        "evaluation/reports/master-task-mta-15-11-19-63b95c5.json"
+      ],
+      "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-15-11-19-63b95c5.json",
+          "report_sha256": "1765d98b10ed6bf8af634afe19ad80252d7b8384da87878435a162ff7b708664",
+          "check": "product_operating_requirements",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

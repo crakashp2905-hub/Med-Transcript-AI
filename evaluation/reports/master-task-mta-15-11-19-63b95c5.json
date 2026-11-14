@@ -1,0 +1,58 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_group": [
+    "MTA-15-11",
+    "MTA-15-13",
+    "MTA-15-14",
+    "MTA-15-15",
+    "MTA-15-16",
+    "MTA-15-17",
+    "MTA-15-18",
+    "MTA-15-19",
+    "MTA-15-12"
+  ],
+  "source_commit": "63b95c55b90cca76154342c751b8a7246d5d8273",
+  "source_files": {
+    "apps/clinician-web/src/PresentationTools.tsx": "ecced67e31e3f426e08ae1070d75a9ccd07ee18b900aa88d97646322bb7eb853",
+    "apps/clinician-web/e2e/tutorial.spec.ts": "37090ab3987945c785b4f6ec477b6cb13ab81018ddcdbeace717d949332eb4fd",
+    "docs/product/product-operations-v1.md": "195eb08d43562d8c4ddb96badfbfbdac24ce6372e76872b298a6d0f7036d82ec",
+    "evaluation/contracts/product-operations-v1.json": "4171af632346ef3b9a237709e0495b493e34bf1465dfb26c05855ac7f3029097",
+    "tests/test_product_operations.py": "b84f31f9fd51cf66dfc4d71022936fe6b0e47bfa77dc91a79a11cca56e0cee65",
+    "tests/test_product_strategy.py": "4eaf67e753ca3e473b27b6d0ab5f1d41e450d7c6b925cd6ccad20489670a63f7"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "backend_test_command": "python -m pytest -q tests/test_product_operations.py tests/test_product_strategy.py tests/test_master_ledger.py",
+    "backend_tests": "7 passed",
+    "ruff": "All checks passed",
+    "frontend_build": "pass",
+    "browser_test_command": "npx playwright test e2e/tutorial.spec.ts",
+    "browser_test": "1 passed against tests.offline_browser_server scripted non-ASR loopback fixture",
+    "external_traffic": "blocked by fixture"
+  },
+  "runtime_sha256": "2de8fcf62eb89304831593435ef12b0e8cd6dbba4659b4a2f55fac156903afdd",
+  "checks": {
+    "product_operating_requirements": {
+      "status": "pass",
+      "detail": "Product promise, package modes, onboarding/manual fallback, measurement classes, success and guardrail metrics, and hypothesis SLOs are explicit and labeled unvalidated."
+    },
+    "guided_tutorial_e2e": {
+      "status": "pass",
+      "detail": "Walkthrough presents a synthetic 250 mg versus 25 mg mismatch, disables continuation until correction, preserves the source, and does not imply approval."
+    },
+    "competitive_claims": {
+      "status": "blocked",
+      "detail": "Competitive matrix is not authored because the task requires current verified public claims and the user constrained this run to local tools and data; no local source pack was available."
+    }
+  },
+  "result": "partially_verified_with_external_evidence_blocker",
+  "limitations": [
+    "All product targets and modes are internal hypotheses, not observed user or clinician evidence.",
+    "The tutorial is synthetic and does not validate medication safety or clinical skill.",
+    "No competitor, pricing, trial, or market claims are made.",
+    "No clinical release is authorized."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}
