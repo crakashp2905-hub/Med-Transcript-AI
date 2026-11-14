@@ -5901,12 +5901,12 @@
       "id": "MTA-12-15",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Measure p50/p95 stages and successful completion rate; failed runs counted separately and excluded from speed averages only with explicit denominator.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-15-9b7f285.json"],
+      "source_commit": "9b7f285175a9bfcd77ff76dcc987a37f9e7f39cb",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-15-9b7f285.json", "report_sha256": "7d4e24ed5cae39fa189327ccdb0526dbb9bc10fe6a821372abed3113ca94bd5f", "check": "workflow_latency_and_completion_metrics", "status": "pass"}],
+      "blocker": "Product-stage instrumentation and actual encounter timing data remain to be connected."
     },
     {
       "id": "MTA-12-16",

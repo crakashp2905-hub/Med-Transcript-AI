@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-15"
+  ],
+  "source_commit": "9b7f285175a9bfcd77ff76dcc987a37f9e7f39cb",
+  "captured_at_utc": "2026-11-14T07:00:47.829133+00:00",
+  "source_files": {
+    "services/workflow_metrics.py": "33c04d520bb74d28fd820d00a0eb612a931c28b81690cd9fdb81e53a584edd3a",
+    "tests/test_workflow_metrics.py": "2f6b164cc1cc9b38651f3331eb87a00ec8b0b612f4c8b12ab7bc6dceee4576cf"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_workflow_metrics.py",
+      "status": "pass",
+      "result": "4 passed"
+    },
+    {
+      "command": "ruff check services/workflow_metrics.py tests/test_workflow_metrics.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/workflow_metrics.py tests/test_workflow_metrics.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "The workflow summary reports attempt count and success rate with explicit status counts.",
+    "Stage p50/p95 use only successful measured runs; failures/timeouts and missing measurements are separately counted."
+  ],
+  "limitations": [
+    "No end-to-end product latency measurements are included in this software metric test.",
+    "Stage names and durations must be supplied by the calling workflow; this helper does not instrument stages."
+  ],
+  "clinical_release_authorized": false
+}
