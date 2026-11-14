@@ -223,6 +223,51 @@ def render_html(result, manifest, dataset_path="datasets/primock57-smoke-v1"):
 <p><small>Source: PriMock57, Babylon Health; Papadopoulos Korfiatis, Moramarco, Sarac and Savkov (2022), CC BY 4.0. Normalized and cropped from simulated consultation recordings. See the dataset directory for license and attribution.</small></p></main></html>"""
 
 
+def render_svg(result):
+    """Render a standalone WER chart from the same values used in JSON."""
+    ranked, unranked = result.get("ranked", []), result.get("unranked", [])
+    width, row_height, top = 980, 34, 74
+    height = top + row_height * (len(ranked) + len(unranked) + bool(unranked)) + 24
+    max_wer = max([row["normalized_wer"] for row in ranked] + [0.05])
+    chart_width = 500
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 {width} {height}">',
+        '<title id="title">Development ASR benchmark normalized WER</title>',
+        '<desc id="desc">Ranked candidates are plotted from JSON metrics. Unavailable candidates are listed without a quality rank.</desc>',
+        "<style>text{font:14px system-ui,sans-serif;fill:#173c39}.title{font-size:22px;font-weight:700}.muted{fill:#607875}.bar{fill:#287c70}.axis{stroke:#aac0bc;stroke-width:1}</style>",
+        '<text class="title" x="24" y="34">Development ASR benchmark · normalized WER</text>',
+        '<text class="muted" x="24" y="56">Lower is better · no clinical approval · exact JSON values in data-wer</text>',
+        f'<line class="axis" x1="340" y1="{top - 8}" x2="{340 + chart_width}" y2="{top - 8}"/>',
+    ]
+    for index, row in enumerate(ranked):
+        y = top + index * row_height
+        label = html.escape(str(row["candidate_id"]), quote=True)
+        value = row["normalized_wer"]
+        bar_width = chart_width * value / max_wer if max_wer else 0
+        parts.extend(
+            [
+                f'<text x="24" y="{y + 17}">{index + 1}. {label}</text>',
+                f'<rect class="bar" data-candidate="{label}" data-wer="{value:.17g}" x="340" y="{y}" width="{bar_width:.2f}" height="20" rx="4"/>',
+                f'<text x="{350 + bar_width:.2f}" y="{y + 16}">{value:.2%}</text>',
+            ]
+        )
+    start = top + len(ranked) * row_height
+    if unranked:
+        parts.append(
+            f'<text x="24" y="{start + 14}" font-weight="700">Unavailable / unranked</text>'
+        )
+        start += row_height
+        for index, row in enumerate(unranked):
+            y = start + index * row_height
+            label = html.escape(str(row["candidate_id"]))
+            status = html.escape(str(row.get("status", "unavailable")))
+            parts.append(
+                f'<text class="muted" data-status="{status}" x="40" y="{y + 16}">{label} · {status}</text>'
+            )
+    parts.append("</svg>")
+    return "\n".join(parts)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -255,6 +300,7 @@ def main():
         path.with_suffix(".html"),
         render_html(result, json.loads(Path(args.manifest).read_text()), dataset_path),
     )
+    write_text_once(path.with_suffix(".svg"), render_svg(result))
     print(
         json.dumps(
             {

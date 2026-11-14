@@ -5,7 +5,8 @@ import wave
 
 import pytest
 
-from services.benchmark_ranking import rank, SCORING
+from services.benchmark_ranking import rank, SCORING, render_svg
+import xml.etree.ElementTree as ET
 
 
 @pytest.fixture
@@ -83,6 +84,31 @@ def test_equal_scores_share_rank_and_unavailable_models_are_not_ranked(corpus):
         root,
     )
     assert blocked["ranked"] == [] and "rank" not in blocked["unranked"][0]
+
+
+def test_svg_chart_values_match_json_and_unavailable_candidates_remain_visible(corpus):
+    _, _, report, _ = corpus
+    result = execute(corpus, {"available": report})
+    result["unranked"] = [
+        {
+            "candidate_id": "gated-model",
+            "status": "access_pending",
+            "reason": "approval required",
+        }
+    ]
+    svg = ET.fromstring(render_svg(result))
+    ns = {"svg": "http://www.w3.org/2000/svg"}
+    bars = svg.findall(".//svg:rect[@data-candidate]", ns)
+    assert len(bars) == len(result["ranked"])
+    for bar in bars:
+        row = next(
+            item
+            for item in result["ranked"]
+            if item["candidate_id"] == bar.attrib["data-candidate"]
+        )
+        assert float(bar.attrib["data-wer"]) == row["normalized_wer"]
+    labels = " ".join(node.text or "" for node in svg.findall(".//svg:text", ns))
+    assert "gated-model" in labels and "access_pending" in labels
 
 
 @pytest.mark.parametrize(
