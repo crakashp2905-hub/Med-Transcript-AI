@@ -7906,12 +7906,42 @@
       "id": "MTA-18-08",
       "section": "18 \u2014 Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Ensure model fallback does not grant approval and all contradictory/unknown medical statements remain review-required.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/review/routers/proposals.py",
+        "services/review/providers.py",
+        "services/review/clinical.py",
+        "services/review/engine.py",
+        "tests/test_drafting_provider_failures.py",
+        "tests/test_scribe_workflow.py",
+        "tests/test_clinical_subject_attribution.py",
+        "tests/test_unmapped_terms.py",
+        "tests/test_fact_evaluation_synthetic.py",
+        "evaluation/reports/master-task-mta-18-08-cf776ed.json"
+      ],
+      "source_commit": "cf776edab4b98192577ad9549e77ed6af9e9038d",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-18-08-cf776ed.json",
+          "report_sha256": "961aad75839ee68ae30b818d1f35271a8299c62993548a4f079c721958e91334",
+          "check": "provider_failure_has_no_partial_draft",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-18-08-cf776ed.json",
+          "report_sha256": "961aad75839ee68ae30b818d1f35271a8299c62993548a4f079c721958e91334",
+          "check": "fallback_stays_review_required_without_approval",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-18-08-cf776ed.json",
+          "report_sha256": "961aad75839ee68ae30b818d1f35271a8299c62993548a4f079c721958e91334",
+          "check": "uncertain_unknown_and_conflicting_facts_remain_reviewed",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Evidence covers deterministic/provider-failure paths and synthetic clinical rules; end-to-end clinician review and clinical validation remain outside this result."
     },
     {
       "id": "MTA-18-09",
