@@ -110,6 +110,29 @@ def test_withdrawn_consent_cancels_queued_worker_before_audio_processing(
         )
 
 
+def test_missing_source_media_fails_job_without_publishing_result(tmp_path):
+    database = tmp_path / "missing-source.sqlite3"
+    assets = tmp_path / "assets"
+    assets.mkdir()
+    _, _, upload_id, job_id = seed_queued_audio_job(database, assets)
+    (assets / f"{upload_id}.wav").unlink()
+
+    assert run_once(str(database), str(assets)) == {
+        "id": job_id,
+        "status": "failed",
+    }
+    with Store(str(database)).transaction() as con:
+        job = con.execute(
+            "SELECT status,error_code,result FROM jobs WHERE id=?", (job_id,)
+        ).fetchone()
+        assert job["status"] == "failed"
+        assert job["error_code"] == "asset_unavailable"
+        assert job["result"] is None
+        assert (
+            con.execute("SELECT COUNT(*) FROM transcript_versions").fetchone()[0] == 0
+        )
+
+
 def test_revocation_during_worker_processing_blocks_result_publication(
     tmp_path, monkeypatch
 ):

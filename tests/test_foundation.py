@@ -2,6 +2,8 @@ import sqlite3
 import hashlib
 import io
 import json
+import subprocess
+import sys
 import wave
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -406,12 +408,38 @@ def test_failed_schema_migration_rolls_back_schema_and_version(tmp_path, monkeyp
         assert con.execute("PRAGMA user_version").fetchone()[0] == 0
         tables = {
             row[0]
-            for row in con.execute(
-                "SELECT name FROM sqlite_master WHERE type='table'"
-            )
+            for row in con.execute("SELECT name FROM sqlite_master WHERE type='table'")
         }
     assert "migration_partial" not in tables
     assert "encounters" not in tables
+
+
+def test_process_crash_inside_sqlite_transaction_recovers_without_partial_row(
+    tmp_path,
+):
+    path = str(tmp_path / "crashed-transaction.sqlite3")
+    Store(path)
+    with sqlite3.connect(path) as con:
+        con.execute(
+            "CREATE TABLE crash_probe (id INTEGER PRIMARY KEY, value TEXT NOT NULL)"
+        )
+    script = """
+import os, sqlite3, sys
+connection = sqlite3.connect(sys.argv[1])
+connection.execute('BEGIN IMMEDIATE')
+connection.execute('INSERT INTO crash_probe(value) VALUES (?)', ('uncommitted',))
+os._exit(73)
+"""
+    child = subprocess.run(
+        [sys.executable, "-c", script, path],
+        capture_output=True,
+        timeout=10,
+        check=False,
+    )
+    assert child.returncode == 73
+    with sqlite3.connect(path) as con:
+        assert con.execute("PRAGMA integrity_check").fetchone()[0] == "ok"
+        assert con.execute("SELECT COUNT(*) FROM crash_probe").fetchone()[0] == 0
 
 
 def test_upload_ingest_end_to_end_and_duplicate_completion(setup):
