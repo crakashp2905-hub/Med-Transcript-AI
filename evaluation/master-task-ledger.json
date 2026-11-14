@@ -7109,12 +7109,28 @@
       "id": "MTA-14-10",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Run long-form concurrent synthetic stress tests with disk, memory and resource traces and preserved failures.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "tests/test_worst_case_audio_resources.py",
+        "evaluation/reports/master-task-mta-14-10-bcf0a87.json"
+      ],
+      "source_commit": "bcf0a87ea3c10c42aff4bbcffc071cb30da76aa5",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-10-bcf0a87.json",
+          "report_sha256": "b19cd49f1cfe7760cd96dbcb402402d6b448085d83b5a89bfcab16a9d6a55766",
+          "check": "concurrent_long_form_audio_intake_stress",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-10-bcf0a87.json",
+          "report_sha256": "b19cd49f1cfe7760cd96dbcb402402d6b448085d83b5a89bfcab16a9d6a55766",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Stress evidence covers concurrent long-form audio inspection and hashing only; concurrent ASR-to-note workflow and total-process RSS tracing remain outstanding."
     },
     {
       "id": "MTA-14-11",

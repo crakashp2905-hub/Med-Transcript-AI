@@ -1,0 +1,48 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-10",
+  "source_commit": "bcf0a87ea3c10c42aff4bbcffc071cb30da76aa5",
+  "source_files": {
+    "tests/test_worst_case_audio_resources.py": "c7560b54e6947039628bb53f3283d43c25d8d01d7c95051bc1a93c8168cc01e0"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_worst_case_audio_resources.py",
+    "scenario": {
+      "valid_recordings": 2,
+      "failed_recordings": 1,
+      "duration_per_valid_recording_ms": 1800000,
+      "channels": 8,
+      "bytes_per_valid_recording": 460800044,
+      "logical_fixture_bytes": 972800045,
+      "preserved_failure_codes": ["invalid_media"],
+      "elapsed_seconds": 0.873046,
+      "process_cpu_seconds": 1.6875,
+      "peak_python_allocation_bytes": 4235070,
+      "disk_free_before_bytes": 70379966464,
+      "disk_free_after_bytes": 70379888640
+    }
+  },
+  "runtime_sha256": "86f0a871239ad675d5e2903c4f084f98c3cf292648b3f4b6f3c3e51405b87000",
+  "checks": {
+    "concurrent_long_form_audio_intake_stress": {
+      "status": "pass",
+      "detail": "4 passed. Two concurrent 30-minute, 8-channel source recordings were inspected and fully hashed; an over-byte-cap recording remained as an explicit invalid_media failure. The run recorded process CPU, elapsed time, peak Python allocation and disk-free readings."
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "ruff check tests/test_worst_case_audio_resources.py",
+      "detail": "All checks passed."
+    }
+  },
+  "result": "implemented",
+  "limitations": [
+    "The large PCM fixtures are sparse synthetic files. Resource and disk observations are specific to this Windows workstation.",
+    "The stress path covers audio inspection and hashing, not ASR, diarization, extraction, drafting, or export under concurrent load.",
+    "Peak memory is Python allocation measured by tracemalloc; it is not total process RSS."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}
