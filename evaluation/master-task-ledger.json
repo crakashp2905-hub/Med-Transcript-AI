@@ -7185,12 +7185,25 @@
       "id": "MTA-14-13",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Instrument stage timing for recording, transfer, normalization, ASR, diarization, extraction, drafting, review and export.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "services/stage_timing.py",
+        "services/offline_demo.py",
+        "tests/test_stage_timing.py",
+        "tests/test_offline_engineering.py",
+        "evaluation/reports/master-task-mta-14-13-aaed8ae.json"
+      ],
+      "source_commit": "aaed8aef49749e573e5ddbd1562e0a1a03fea504",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-13-aaed8ae.json",
+          "report_sha256": "7a45366ea58c394331277b8aee592f0179cedfe69e2dc353d9adb07c9afd5155",
+          "check": "failure_inclusive_stage_timing_demo",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Timing is integrated only into the scripted offline demo; recording, live transfer, ASR, diarization and real worker-stage instrumentation remain unavailable or unimplemented."
     },
     {
       "id": "MTA-14-14",

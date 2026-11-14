@@ -1,0 +1,32 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-13",
+  "source_commit": "aaed8aef49749e573e5ddbd1562e0a1a03fea504",
+  "source_files": {
+    "services/stage_timing.py": "33e8f14f203a82a627802bdfebeef4cfdb4a6ca9970b9f3c9557e742179441e0",
+    "services/offline_demo.py": "b632820898b667e57fd0e41ae652a470942e868b20a3d56a8e2caa9589b1e3f0",
+    "tests/test_stage_timing.py": "56d0adc063527912daccf4b2d0a32ffef677197c971debd09020ab906081dfd3",
+    "tests/test_offline_engineering.py": "7adc4898d569de8291bc6529b63c96685eda58bf966abca28a5a5ba0954702d0"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_stage_timing.py tests/test_offline_engineering.py::test_offline_scripted_workflow_blocks_dose_error_and_viewer_write"
+  },
+  "runtime_sha256": "7494ec22d007f7aa068b5583529d2e5e88eb182884315bfda8d605e495ba1249",
+  "checks": {
+    "failure_inclusive_stage_timing_demo": {
+      "status": "pass",
+      "detail": "3 passed. StageTimer records successful and failed software wall time, preserves unavailable stages with reasons, and is used by the end-to-end isolated FastAPI demo across transfer, normalization/readback, extraction, drafting, verification, clinician approval and export. Recording, ASR and diarization are explicitly marked unavailable for the silent scripted fixture."
+    }
+  },
+  "result": "implemented",
+  "limitations": [
+    "Measurements are from a scripted synthetic demo; they do not instrument production recording, transfer, normalization, ASR, diarization, review or export workers.",
+    "Recording, ASR and diarization are intentionally unavailable in the demo, so this does not complete stage timing across a real audio-to-note workflow.",
+    "Timing covers software wall time only and does not measure clinician active task time or hardware-equivalent performance."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}
