@@ -1,0 +1,29 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-04",
+  "source_commit": "24be9d82a2a0a8dddb34bedad70d841dcec236b0",
+  "source_files": {
+    "tests/test_recovery.py": "70d3803a56a03f59218d6aadaafedc77455a8364a5aed3b323db62d14e5fddb7",
+    "tests/test_asr_offline_smoke.py": "df3ff12cd6309fdad0021110795f68fc1e98411d16de7b7f6d3dad18229a2229"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_recovery.py::test_channel_retry_uses_verified_completed_channels_and_retains_failed_attempt tests/test_recovery.py::test_changed_checkpoint_is_rejected tests/test_recovery.py::test_model_cache_reuses_weights_but_still_checks_artifact_integrity tests/test_asr_offline_smoke.py::test_profile_digest_change_blocks_inference"
+  },
+  "runtime_sha256": "123c484298b086270d3e2be8c148e6ad37da4bca7522b6bf0a94c6f35b2c4c2e",
+  "checks": {
+    "digest_bound_retry_and_checkpoint_integrity": {
+      "status": "pass",
+      "detail": "4 passed. Successful retry reuses verified completed channels from the original audio; a tampered checkpoint is rejected; changing a model artifact invalidates cached inference; and a profile digest change blocks inference."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "All cases use synthetic audio and model fixtures. They verify integrity and recovery logic, not ASR accuracy.",
+    "No production database or distributed worker cluster was exercised."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}

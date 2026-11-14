@@ -6954,12 +6954,23 @@
       "id": "MTA-14-04",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Prove successful resumption uses original digest and cannot reuse checkpoint from a changed transcript/model/profile.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "tests/test_recovery.py",
+        "tests/test_asr_offline_smoke.py",
+        "evaluation/reports/master-task-mta-14-04-24be9d8.json"
+      ],
+      "source_commit": "24be9d82a2a0a8dddb34bedad70d841dcec236b0",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-04-24be9d8.json",
+          "report_sha256": "28f3ef49915bcb4af95b918ea23e6669b4d5579a5c4f962173a1930d8860a9a4",
+          "check": "digest_bound_retry_and_checkpoint_integrity",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Synthetic fixtures validate input, checkpoint, and model artifact digest fencing; no production distributed worker deployment was evaluated."
     },
     {
       "id": "MTA-14-05",
