@@ -11,7 +11,7 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
     result = audit()
     assert result["total"] == 369
     assert sum(result["statuses"].values()) == 369
-    assert result["statuses"]["blocked_missing_asset"] == 3
+    assert result["statuses"]["blocked_missing_asset"] == 5
     # The verified count grows as exact-commit receipts are recorded; preserve
     # the original three baseline receipts without freezing future progress.
     assert result["statuses"]["verified"] >= 3
@@ -70,7 +70,7 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
     exact_head_task = next(
         item for item in document["tasks"] if item["id"] == "MTA-01-05"
     )
-    assert exact_head_task["status"] == "verified"
+    assert exact_head_task["status"] == "implemented"
     assert exact_head_task["source_commit"] != ci_task["source_commit"]
     ci_receipt_path = exact_head_task["test_results"][0]["report"]
     ci_receipt = json.loads(

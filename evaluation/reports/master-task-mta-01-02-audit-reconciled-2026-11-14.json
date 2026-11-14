@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-01-02"
+  ],
+  "source_commit": "6b4a3040e80ddcae120bf832717a2f83bff4c8d5",
+  "captured_at_utc": "2026-11-14T08:54:41.378435+00:00",
+  "checks": {
+    "ruff_mypy_and_audit_route_tests": {
+      "status": "pass",
+      "evidence_report": "evaluation/reports/master-task-mta-01-02-6b4a304.json",
+      "evidence_report_sha256": "dbce552a722f7480b5374520769e2ed0e41020cdf795e6e22977813a6a119393"
+    }
+  },
+  "check_details": [
+    {
+      "command": "python -m ruff format --check services tests",
+      "status": "pass",
+      "result": "603 files already formatted"
+    },
+    {
+      "command": "python -m ruff check services tests",
+      "status": "pass"
+    },
+    {
+      "command": "python -m mypy services --ignore-missing-imports",
+      "status": "pass",
+      "result": "303 source files"
+    },
+    {
+      "command": "python -m pytest tests/test_synthetic_case_audit_bundle.py -q",
+      "status": "pass",
+      "result": "4 passed"
+    }
+  ],
+  "reconciliation": "Preserves the original report and its exact-commit command results; task status is implemented because the ledger auditor requires a runtime fingerprint before accepting verified status, and the original report contains none.",
+  "limitations": [
+    "No runtime receipt exists in the original report.",
+    "Hosted CI for the historical source commit was not independently confirmed.",
+    "The original report is preserved byte-for-byte."
+  ],
+  "clinical_release_authorized": false
+}

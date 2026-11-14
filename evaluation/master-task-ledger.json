@@ -414,7 +414,7 @@
       "id": "MTA-01-02",
       "section": "01 \u2014 CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "verified",
+      "status": "implemented",
       "description": "Run Ruff check and mypy after formatting; fix genuine diagnostics rather than disabling rules or excluding large trees.",
       "evidence": [
         ".github/workflows/ci.yml",
@@ -425,19 +425,20 @@
         "tests/test_patient_summary_source_link.py",
         "tests/test_synthetic_case_audit_bundle.py",
         "tests/test_ui_review_priority.py",
-        "evaluation\\reports\\master-task-mta-01-02-6b4a304.json"
+        "evaluation\\reports\\master-task-mta-01-02-6b4a304.json",
+        "evaluation/reports/master-task-mta-01-02-audit-reconciled-2026-11-14.json"
       ],
       "source_commit": "6b4a3040e80ddcae120bf832717a2f83bff4c8d5",
       "test_results": [
         {
-          "report": "evaluation\\reports\\master-task-mta-01-02-6b4a304.json",
-          "report_sha256": "dbce552a722f7480b5374520769e2ed0e41020cdf795e6e22977813a6a119393",
+          "report": "evaluation/reports/master-task-mta-01-02-audit-reconciled-2026-11-14.json",
+          "report_sha256": "63f06242b55bb84d76b616571247122881ed489392a3980342b6492675fd5729",
           "check": "ruff_mypy_and_audit_route_tests",
           "status": "pass",
-          "detail": "Ruff format and lint across services/tests, mypy across 303 source files, and 4 synthetic audit-bundle route tests passed on exact source commit."
+          "detail": "Original exact-commit command results preserved; status downgraded because runtime receipt is absent."
         }
       ],
-      "blocker": "Full repository pytest sequence did not complete locally: Windows asyncio TestClient setup blocked on socketpair in test_partial_noncritical_source_span_cannot_hide_an_omitted_symptom. Hosted CI for this source SHA has not yet been observed."
+      "blocker": "No runtime fingerprint or hosted-CI confirmation exists in the original report; task remains implemented, not verified."
     },
     {
       "id": "MTA-01-03",
@@ -3910,32 +3911,32 @@
         {
           "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
           "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
-          "check": "source_linked_summary_regression",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "source_linked_summary_regression"
         },
         {
           "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
           "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
-          "check": "ruff",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "ruff"
         },
         {
           "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
           "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
-          "check": "frontend_build",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "frontend_build"
         },
         {
           "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
           "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
-          "check": "summary_browser_test_discovery",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "summary_browser_test_discovery"
         },
         {
           "report": "evaluation/reports/master-task-mta-08-05-1b9b7d8.json",
           "report_sha256": "092b6dd00279914dab498805e8d8cf9368048f7949d27b5c450ca1bc779fcb16",
-          "check": "summary_browser_integration",
-          "status": "blocked"
+          "status": "blocked",
+          "legacy_check_label": "summary_browser_integration"
         }
       ],
       "blocker": "The summary is generated only from the exact approved note and bound transcript, includes a source turn/quote for evidence-backed facts, labels clinician-entered statements, retains subject/assertion/time caveats, documents excluded facts and source coverage gaps, and is read-only. Browser integration remains to be rerun where loopback access is enabled."
@@ -4748,20 +4749,20 @@
         {
           "report": "evaluation/reports/master-task-mta-09-14-caf2433.json",
           "report_sha256": "4637ba56f05839cd492191133662ca06ce2e8d255a1c82d9e91a7efe53bcccb2",
-          "check": "frontend_build",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "frontend_build"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-14-caf2433.json",
           "report_sha256": "4637ba56f05839cd492191133662ca06ce2e8d255a1c82d9e91a7efe53bcccb2",
-          "check": "workflow_e2e_discovery",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "workflow_e2e_discovery"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-14-caf2433.json",
           "report_sha256": "4637ba56f05839cd492191133662ca06ce2e8d255a1c82d9e91a7efe53bcccb2",
-          "check": "recovery_banner_browser_workflow",
-          "status": "blocked"
+          "status": "blocked",
+          "legacy_check_label": "recovery_banner_browser_workflow"
         }
       ],
       "blocker": "This execution environment denies loopback browser navigation; rerun the workflow in a local-socket-enabled environment to exercise offline, permission, unsaved-edit, partial-job, and expired-session UI states."
@@ -4785,20 +4786,20 @@
         {
           "report": "evaluation/reports/master-task-mta-09-15-985412f.json",
           "report_sha256": "e2a5cadd6422c85855205c04aa6209152ed7f83d5b9ca89d9002097946821ce5",
-          "check": "frontend_build",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "frontend_build"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-15-985412f.json",
           "report_sha256": "e2a5cadd6422c85855205c04aa6209152ed7f83d5b9ca89d9002097946821ce5",
-          "check": "workflow_e2e_discovery",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "workflow_e2e_discovery"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-15-985412f.json",
           "report_sha256": "e2a5cadd6422c85855205c04aa6209152ed7f83d5b9ca89d9002097946821ce5",
-          "check": "execution_metrics_browser_assertions",
-          "status": "blocked"
+          "status": "blocked",
+          "legacy_check_label": "execution_metrics_browser_assertions"
         }
       ],
       "blocker": "Loopback browser navigation is denied in this environment. Run the workflow in a local-socket-enabled environment to verify rendered measurements against fixtures. Missing model/cost/time fields are explicitly displayed as unavailable; no estimates or cost calculations are fabricated."
@@ -4824,32 +4825,32 @@
         {
           "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
           "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "check": "frontend_build",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "frontend_build"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
           "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "check": "static_investor_demo_regression",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "static_investor_demo_regression"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
           "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "check": "ruff",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "ruff"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
           "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "check": "investor_demo_e2e_discovery",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "investor_demo_e2e_discovery"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
           "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "check": "investor_demo_browser_render",
-          "status": "blocked"
+          "status": "blocked",
+          "legacy_check_label": "investor_demo_browser_render"
         }
       ],
       "blocker": "The public path serves a static, bundled synthetic preview and does not invoke authentication or API routes. Loopback browser navigation is denied in this environment; execute the E2E journey in a local-socket-enabled environment to confirm rendered behavior."
@@ -4877,32 +4878,32 @@
         {
           "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
           "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "check": "frontend_build",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "frontend_build"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
           "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "check": "preview_state_regressions",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "preview_state_regressions"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
           "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "check": "review_journey_e2e_discovery",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "review_journey_e2e_discovery"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
           "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "check": "unapproved_export_api_integration",
-          "status": "blocked"
+          "status": "blocked",
+          "legacy_check_label": "unapproved_export_api_integration"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
           "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "check": "rendered_state_and_export_journey",
-          "status": "blocked"
+          "status": "blocked",
+          "legacy_check_label": "rendered_state_and_export_journey"
         }
       ],
       "blocker": "The application distinguishes provisional preview, unapproved proposal/draft and approved record states. Export routes require a real approval ID and revalidate exact hashes and current safety findings. Socket-dependent integration and rendered browser checks must be rerun in an environment permitting local test sockets."
@@ -4927,32 +4928,32 @@
         {
           "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
           "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
-          "check": "redacted_bundle_unit_tests",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "redacted_bundle_unit_tests"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
           "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
-          "check": "ruff",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "ruff"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
           "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
-          "check": "frontend_build",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "frontend_build"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
           "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
-          "check": "download_journey_e2e_discovery",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "download_journey_e2e_discovery"
         },
         {
           "report": "evaluation/reports/master-task-mta-09-18-44b5e90.json",
           "report_sha256": "ba492be257ec1e641d464dfffba78d5998e64af9fd332de213c8b127229d3afe",
-          "check": "download_journey_browser_execution",
-          "status": "blocked"
+          "status": "blocked",
+          "legacy_check_label": "download_journey_browser_execution"
         }
       ],
       "blocker": "The redacted synthetic bundle helper and API route are covered by socket-free unit tests; real route/download integration must be exercised in a local-socket-enabled environment. The route is authenticated and returns 404 for non-synthetic cases."
@@ -5046,7 +5047,7 @@
       "id": "MTA-10-01",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Inventory local ASR/diarization/LLM model artifacts by full digest, actual file presence, license, runtime compatibility and VRAM/RAM requirements.",
       "evidence": [
         "services/offline_preflight.py",
@@ -5066,18 +5067,18 @@
         {
           "report": "evaluation/reports/master-task-mta-10-01-local-inventory-20261114.json",
           "report_sha256": "5105b59d0faf834690ed666469b8ef66a469dbfd83f33828006c785a030d77a5",
-          "check": "model_artifact_inventory_tests",
           "status": "pass",
-          "detail": "5 passed; inventory contains full SHA-256 for 93 files across 11 model directories and verifies all 5 local ASR profile artifact hashes and 2 diarization manifest hashes."
+          "detail": "5 passed; inventory contains full SHA-256 for 93 files across 11 model directories and verifies all 5 local ASR profile artifact hashes and 2 diarization manifest hashes.",
+          "legacy_check_label": "model_artifact_inventory_tests"
         }
       ],
-      "blocker": "Inventory is complete, but application inference cannot be exercised in this environment because faster-whisper, sherpa-onnx, onnx-asr and omi-med-stt are absent; configured Ollama Qwen manifests are unavailable. RAM/VRAM minimums are not documented locally, and license eligibility remains unverified where local profile/manifest evidence is absent. These are recorded as gaps, not passed claims."
+      "blocker": "Inventory is complete, but application inference cannot be exercised in this environment because faster-whisper, sherpa-onnx, onnx-asr and omi-med-stt are absent; configured Ollama Qwen manifests are unavailable. RAM/VRAM minimums are not documented locally, and license eligibility remains unverified where local profile/manifest evidence is absent. These are recorded as gaps, not passed claims. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-10-02",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Prohibit network downloads, dynamic remote code, unsigned model swapping or silent inference-provider fallback.",
       "evidence": [
         "services/omi_adapter.py",
@@ -5096,18 +5097,18 @@
         {
           "report": "evaluation/reports/master-task-mta-10-02-offline-runtime-20261114.json",
           "report_sha256": "93634c2113021efe04f70271cde798552f9356cb2c8e31e7cb3cdaf64da3c813",
-          "check": "offline_runtime_and_provider_tests",
           "status": "pass",
-          "detail": "21 passed; Ruff and format checks passed; search found no unsafe dynamic model-loading/download resolver calls in application services."
+          "detail": "21 passed; Ruff and format checks passed; search found no unsafe dynamic model-loading/download resolver calls in application services.",
+          "legacy_check_label": "offline_runtime_and_provider_tests"
         }
       ],
-      "blocker": "Application inference was not run because local candidate runtime packages are missing. The profile SHA allowlist is an integrity pin rather than a cryptographic signature; deployment source integrity remains part of the trust boundary."
+      "blocker": "Application inference was not run because local candidate runtime packages are missing. The profile SHA allowlist is an integrity pin rather than a cryptographic signature; deployment source integrity remains part of the trust boundary. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-10-03",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Define one interface each for ASR, diarization, extraction, drafting and verification; include explicit unavailable/timeout/failure errors.",
       "evidence": [
         "services/provider_interfaces.py",
@@ -5129,18 +5130,18 @@
         {
           "report": "evaluation/reports/master-task-mta-10-03-provider-contracts-20261114.json",
           "report_sha256": "60ea5ee07f7bd1b1cd88eeef0456aa5112dc50e156fa84d5f0bb02187540c441",
-          "check": "provider_contract_and_failure_tests",
           "status": "pass",
-          "detail": "34 passed; Ruff and format checks passed."
+          "detail": "34 passed; Ruff and format checks passed.",
+          "legacy_check_label": "provider_contract_and_failure_tests"
         }
       ],
-      "blocker": "Expanded socket-dependent route tests were not used for acceptance because they can hang in this Windows environment; focused adapter and contract tests passed. Native model execution remains constrained by unavailable runtime packages."
+      "blocker": "Expanded socket-dependent route tests were not used for acceptance because they can hang in this Windows environment; focused adapter and contract tests passed. Native model execution remains constrained by unavailable runtime packages. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-10-04",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Integrate memory admission into actual worker scheduling with conservative reserve and process serialization.",
       "evidence": [
         "services/inference_slot.py",
@@ -5157,18 +5158,18 @@
         {
           "report": "evaluation/reports/master-task-mta-10-04-memory-admission-20261114.json",
           "report_sha256": "8df03e6606bea7311fa236df34624f9fc4f70166a6a43c3d9761b6372e0c4bd3",
-          "check": "memory_admission_and_serialization_tests",
           "status": "pass",
-          "detail": "11 passed; Ruff passed."
+          "detail": "11 passed; Ruff passed.",
+          "legacy_check_label": "memory_admission_and_serialization_tests"
         }
       ],
-      "blocker": "The worker API-state TestClient check hung in this Windows environment. The focused lock, budget, model estimate, unavailable-model and backend-serialization tests passed. Model peak memory remains an estimate rather than measured runtime telemetry."
+      "blocker": "The worker API-state TestClient check hung in this Windows environment. The focused lock, budget, model estimate, unavailable-model and backend-serialization tests passed. Model peak memory remains an estimate rather than measured runtime telemetry. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-10-05",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Measure peak RSS and allocation behavior on CPU-only 16GB and other already available hardware; never invent machine specs.",
       "evidence": [
         "services/model_memory_probe.py",
@@ -5195,18 +5196,18 @@
         {
           "report": "evaluation/reports/master-task-mta-10-05-memory-20261114.json",
           "report_sha256": "e539e993426443505cfeb8de5c623d7ed0525d571646aada23287df52c6eec76",
-          "check": "model_memory_probe_and_admission_tests",
           "status": "pass",
-          "detail": "11 passed; Ruff and format checks passed. Fresh Parakeet probe measured current process peak working set under the shared memory admission lock."
+          "detail": "11 passed; Ruff and format checks passed. Fresh Parakeet probe measured current process peak working set under the shared memory admission lock.",
+          "legacy_check_label": "model_memory_probe_and_admission_tests"
         }
       ],
-      "blocker": "No GPU or other hardware was available. Fresh exact-source measurement covers the local Parakeet CPU runtime using synthetic demo audio. Other completed model figures are preserved prior 16-case measurements bound to suite/model hashes; the fresh large Whisper report remains incomplete and the historical Omi receipt predates current loader hardening."
+      "blocker": "No GPU or other hardware was available. Fresh exact-source measurement covers the local Parakeet CPU runtime using synthetic demo audio. Other completed model figures are preserved prior 16-case measurements bound to suite/model hashes; the fresh large Whisper report remains incomplete and the historical Omi receipt predates current loader hardening. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-10-06",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Schedule ASR ahead of optional drafting when preserving consultation source processing requires it.",
       "evidence": [
         "services/inference_slot.py",
@@ -5222,12 +5223,12 @@
         {
           "report": "evaluation\\reports\\master-task-mta-10-06-asr-priority-20261114.json",
           "report_sha256": "c35e45e6646804ff3712158f6eebd603f6f9c93b8b308931f649da55eb51a0c4",
-          "check": "source_priority_and_optional_deferral",
           "status": "pass",
-          "detail": "17 focused tests passed on exact source commit; Ruff lint and format checks passed."
+          "detail": "17 focused tests passed on exact source commit; Ruff lint and format checks passed.",
+          "legacy_check_label": "source_priority_and_optional_deferral"
         }
       ],
-      "blocker": "Priority is advisory and nonpreemptive; queued ASR progresses ahead of optional work after the current local inference finishes. No full runtime orchestration latency benchmark is included."
+      "blocker": "Priority is advisory and nonpreemptive; queued ASR progresses ahead of optional work after the current local inference finishes. No full runtime orchestration latency benchmark is included. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-10-07",
@@ -5252,9 +5253,9 @@
         {
           "report": "evaluation\\reports\\master-task-mta-10-07-ace4223.json",
           "report_sha256": "e202a60fbc841bf11cf13f79579599cf111c5af038385b09a51f48b168886b87",
-          "check": "bounded_asr_queue_cancel_retry_and_ui",
           "status": "pass",
-          "detail": "10 focused tests, Ruff format/lint, mypy (303 files) and frontend production build passed on exact source commit."
+          "detail": "10 focused tests, Ruff format/lint, mypy (303 files) and frontend production build passed on exact source commit.",
+          "legacy_check_label": "bounded_asr_queue_cancel_retry_and_ui"
         }
       ],
       "blocker": "Cooperative cancellation currently covers durable ASR jobs only. Synchronous LLM drafting/extraction/verification have bounded timeouts and late-publication fences but cannot stop provider compute on client disconnect. Full route integration tests are constrained by the Windows TestClient socketpair hang; exact-current hosted CI has not been observed."
@@ -5278,9 +5279,9 @@
         {
           "report": "evaluation\\reports\\master-task-mta-10-08-32d7f54.json",
           "report_sha256": "457eae532a8a72bc29ed442a58f027fb8fbe08f878ca8f049299dc972c214541",
-          "check": "application_asr_cold_warm_trace_contract",
           "status": "pass",
-          "detail": "15 focused tests, Ruff format/lint and mypy (303 files) passed on exact source commit; test confirms distinct cold/warm cache states and hash/environment binding."
+          "detail": "15 focused tests, Ruff format/lint and mypy (303 files) passed on exact source commit; test confirms distinct cold/warm cache states and hash/environment binding.",
+          "legacy_check_label": "application_asr_cold_warm_trace_contract"
         }
       ],
       "blocker": "The trace is exercised with a deterministic runtime stub because the local Faster Whisper runtime/model profile is unavailable; local Ollama cold/warm residency is also unmeasured. No runtime assets were fetched."
@@ -5305,9 +5306,9 @@
         {
           "report": "evaluation\\reports\\master-task-mta-10-09-95d619c.json",
           "report_sha256": "cbc1cb106d9b18e91d4749622a1f8ddfea3f6ef854d7ed441e9273dff9c674f4",
-          "check": "late_publication_source_permission_fences",
           "status": "blocked",
-          "detail": "Implementation review, Ruff, mypy and 45-test collection pass. Integration execution is blocked locally before route dispatch by Windows TestClient asyncio socketpair setup; do not treat as a runtime pass."
+          "detail": "Implementation review, Ruff, mypy and 45-test collection pass. Integration execution is blocked locally before route dispatch by Windows TestClient asyncio socketpair setup; do not treat as a runtime pass.",
+          "legacy_check_label": "late_publication_source_permission_fences"
         }
       ],
       "blocker": "Three new source-edit race tests and existing revocation race tests are collected but not executed in this Windows environment. Require exact-commit hosted/Linux test execution before verified status."
@@ -5316,7 +5317,7 @@
       "id": "MTA-10-10",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Use strict JSON/schema outputs with duplicate-key detection, size cap and timeouts.",
       "evidence": [
         "services/strict_json.py",
@@ -5334,18 +5335,18 @@
         {
           "report": "evaluation\\reports\\master-task-mta-10-10-35c230c.json",
           "report_sha256": "fa433702e8edc57262e2b262a60e3f2e1dde121a35add545d5fa629b3680b05c",
-          "check": "strict_json_schema_duplicate_size_timeout_contract",
           "status": "pass",
-          "detail": "23 targeted tests, Ruff format/lint and mypy (303 files) passed on exact source commit."
+          "detail": "23 targeted tests, Ruff format/lint and mypy (303 files) passed on exact source commit.",
+          "legacy_check_label": "strict_json_schema_duplicate_size_timeout_contract"
         }
       ],
-      "blocker": null
+      "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-10-11",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Store only approved minimal local inference metadata; do not persist prompts with sensitive transcript contents by default.",
       "evidence": [
         "services/review/providers.py",
@@ -5367,12 +5368,12 @@
         {
           "report": "evaluation\\reports\\master-task-mta-10-11-19d4fc3.json",
           "report_sha256": "c6e00dd5eef7581e37f52945af189e527a13244da2563e5bb7f38663537aa2a1",
-          "check": "minimal_local_inference_metadata_and_no_prompt_persistence",
           "status": "pass",
-          "detail": "19 focused metadata, transport, timeout and privacy checks plus Ruff and mypy passed on exact source commit."
+          "detail": "19 focused metadata, transport, timeout and privacy checks plus Ruff and mypy passed on exact source commit.",
+          "legacy_check_label": "minimal_local_inference_metadata_and_no_prompt_persistence"
         }
       ],
-      "blocker": "Application persistence is covered. Local inference server internal logs/retention are operator-managed and not observable from this codebase."
+      "blocker": "Application persistence is covered. Local inference server internal logs/retention are operator-managed and not observable from this codebase. Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-10-12",
@@ -5388,9 +5389,9 @@
         {
           "report": "evaluation/reports/master-task-mta-10-12-5ad4f7a.json",
           "report_sha256": "1fcadfada026c1ad2e214acbb335410ed592ae7788d9d20f86816e79424be521",
-          "check": "deterministic_model_free_fallback_on_optional_inference_failure",
           "status": "pass",
-          "detail": "Two focused helper tests pass for provider-unavailable and busy-slot fallback; route-level persistence validation remains blocked by local Windows TestClient setup."
+          "detail": "Two focused helper tests pass for provider-unavailable and busy-slot fallback; route-level persistence validation remains blocked by local Windows TestClient setup.",
+          "legacy_check_label": "deterministic_model_free_fallback_on_optional_inference_failure"
         }
       ],
       "blocker": "Windows TestClient integration execution stalls before route dispatch; local mypy invocation did not finish."
@@ -5409,9 +5410,9 @@
         {
           "report": "evaluation/reports/master-task-mta-10-13-33aed1d.json",
           "report_sha256": "d3983788c27cec7b562a12bbbdb3f2c6fbd5308d68e5ff3b9a62ea3b838902a2",
-          "check": "local_model_failure_modes_and_resource_admission",
           "status": "pass",
-          "detail": "22 focused tests passed. Route-level authorization and worker recovery cases were identified but not run because local Windows TestClient setup may stall before dispatch."
+          "detail": "22 focused tests passed. Route-level authorization and worker recovery cases were identified but not run because local Windows TestClient setup may stall before dispatch.",
+          "legacy_check_label": "local_model_failure_modes_and_resource_admission"
         }
       ],
       "blocker": "Route-level authorization, missing-model publication and worker-crash recovery remain unexecuted in this Windows environment; the suite requires a local TestClient run where asyncio socketpair setup completes. No real OOM was induced."
@@ -5430,9 +5431,9 @@
         {
           "report": "evaluation/reports/asr-resource-consultation-v1.json",
           "report_sha256": "8eaf800577593fb07c5a2d827608275464028e56c400b5184b618cb4d6adf822",
-          "check": "hash_bound_full_consultation_resource_comparison",
           "status": "pass",
-          "detail": "Nine saved full-consultation candidate runs have case latency and run-level CPU/RAM summarized with accuracy and the unchanged 5% gate. All nine fail the gate."
+          "detail": "Nine saved full-consultation candidate runs have case latency and run-level CPU/RAM summarized with accuracy and the unchanged 5% gate. All nine fail the gate.",
+          "legacy_check_label": "hash_bound_full_consultation_resource_comparison"
         }
       ],
       "blocker": "Per-consultation CPU and peak RAM attribution are absent from source runs, and no compatible local energy telemetry was recorded. Do not apportion process totals or infer energy. A fresh matched run with per-case resource sampling and a supported power meter is required."
@@ -5441,7 +5442,7 @@
       "id": "MTA-10-15",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Test that simulated completed inferences cannot be promoted as real model results.",
       "evidence": [
         "evaluation/reports/master-task-mta-10-15-e4be20f.json"
@@ -5451,12 +5452,12 @@
         {
           "report": "evaluation/reports/master-task-mta-10-15-e4be20f.json",
           "report_sha256": "68271cb88e8f9c5dbaf17c191a82caf7ded4ab62fac98648d245e5dd446d4f7c",
-          "check": "synthetic_inference_cannot_be_promoted_as_real_quality_evidence",
           "status": "pass",
-          "detail": "23 provenance, transcript capability and benchmark-ranking tests passed on the exact source commit."
+          "detail": "23 provenance, transcript capability and benchmark-ranking tests passed on the exact source commit.",
+          "legacy_check_label": "synthetic_inference_cannot_be_promoted_as_real_quality_evidence"
         }
       ],
-      "blocker": null
+      "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-10-16",
@@ -5472,9 +5473,9 @@
         {
           "report": "evaluation/reports/master-task-mta-10-16-c2dd15f.json",
           "report_sha256": "8c5d74fb22b2186acb59238d4f563ac246c5bacdfce246053f3ca8a5ccfc607f",
-          "check": "cross_process_source_priority_vs_optional_local_inference_contention",
           "status": "pass",
-          "detail": "11 focused inference-slot, resource-arbiter and Ollama-cache integrity tests passed."
+          "detail": "11 focused inference-slot, resource-arbiter and Ollama-cache integrity tests passed.",
+          "legacy_check_label": "cross_process_source_priority_vs_optional_local_inference_contention"
         }
       ],
       "blocker": "Real Ollama daemon/model and browser/API end-to-end concurrent requests were not exercised; the deterministic subprocess test validates only shared-lock contention and deferral."
@@ -5483,7 +5484,7 @@
       "id": "MTA-10-17",
       "section": "10 \u2014 Local model lifecycle and compute/resource scheduling",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Declare reproducible runtime profiles for low-end CPU, Apple Silicon if present and NVIDIA GPU only if locally available.",
       "evidence": [
         "evaluation/contracts/asr-runtime-profiles-v1.json",
@@ -5494,12 +5495,12 @@
         {
           "report": "evaluation/reports/master-task-mta-10-17-af3c71d.json",
           "report_sha256": "112a51d6355d89c771fe3e1410bd110595d995af13dfc8feed4d1de30e806f83",
-          "check": "reproducible_local_runtime_profile_matrix",
           "status": "pass",
-          "detail": "2 profile and device declaration tests passed. CPU profile binds to the local manifest digest; Apple Silicon and NVIDIA are explicitly unavailable on this host."
+          "detail": "2 profile and device declaration tests passed. CPU profile binds to the local manifest digest; Apple Silicon and NVIDIA are explicitly unavailable on this host.",
+          "legacy_check_label": "reproducible_local_runtime_profile_matrix"
         }
       ],
-      "blocker": null
+      "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-11-01",
@@ -5515,9 +5516,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
           "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
-          "check": "preregistered_falsifiable_beccsv_hypothesis",
           "status": "pass",
-          "detail": "Protocol structure and deterministic graph tests passed. Empirical support is not established."
+          "detail": "Protocol structure and deterministic graph tests passed. Empirical support is not established.",
+          "legacy_check_label": "preregistered_falsifiable_beccsv_hypothesis"
         }
       ],
       "blocker": "Independent acceptance cohort and qualified adjudication are unavailable; the protocol makes no efficacy claim."
@@ -5536,9 +5537,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
           "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
-          "check": "typed_bidirectional_method_specification",
           "status": "pass",
-          "detail": "Source coverage, forward support, relation/state consistency and abstention rules are specified."
+          "detail": "Source coverage, forward support, relation/state consistency and abstention rules are specified.",
+          "legacy_check_label": "typed_bidirectional_method_specification"
         }
       ],
       "blocker": null
@@ -5557,9 +5558,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
           "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
-          "check": "typed_graph_and_dual_direction_distinction",
           "status": "pass",
-          "detail": "Protocol distinguishes omission coverage, unsupported-claim checks and typed state relations from rule-only or self-critique baselines."
+          "detail": "Protocol distinguishes omission coverage, unsupported-claim checks and typed state relations from rule-only or self-critique baselines.",
+          "legacy_check_label": "typed_graph_and_dual_direction_distinction"
         }
       ],
       "blocker": null
@@ -5578,9 +5579,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
           "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
-          "check": "algorithm_complexity_invariants_and_predictions",
           "status": "pass",
-          "detail": "Pseudocode, expected linear graph complexity, invariants and falsifiable predictions are documented."
+          "detail": "Pseudocode, expected linear graph complexity, invariants and falsifiable predictions are documented.",
+          "legacy_check_label": "algorithm_complexity_invariants_and_predictions"
         }
       ],
       "blocker": null
@@ -5599,9 +5600,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
           "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
-          "check": "formal_source_note_graph_and_loss",
           "status": "pass",
-          "detail": "S, N, typed E, uncovered-source penalty, unsupported-claim penalty and consistency mismatch terms are defined."
+          "detail": "S, N, typed E, uncovered-source penalty, unsupported-claim penalty and consistency mismatch terms are defined.",
+          "legacy_check_label": "formal_source_note_graph_and_loss"
         }
       ],
       "blocker": null
@@ -5620,9 +5621,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
           "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
-          "check": "severity_weighted_loss_and_calibration_plan",
           "status": "pass",
-          "detail": "Ordinal development weights are explicit, non-probabilistic and subject to pre-acceptance reviewer calibration."
+          "detail": "Ordinal development weights are explicit, non-probabilistic and subject to pre-acceptance reviewer calibration.",
+          "legacy_check_label": "severity_weighted_loss_and_calibration_plan"
         }
       ],
       "blocker": null
@@ -5641,9 +5642,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
           "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
-          "check": "conservative_abstention_policy",
           "status": "pass",
-          "detail": "Ambiguity, conflicting speakers, stale evidence and provider failure remain findings; no verdict can clear approval gates."
+          "detail": "Ambiguity, conflicting speakers, stale evidence and provider failure remain findings; no verdict can clear approval gates.",
+          "legacy_check_label": "conservative_abstention_policy"
         }
       ],
       "blocker": null
@@ -5652,7 +5653,7 @@
       "id": "MTA-11-08",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Build deterministic graph-only implementation before adding LLM judgments to isolate mechanism.",
       "evidence": [
         "services/evidence_graph.py",
@@ -5663,12 +5664,12 @@
         {
           "report": "evaluation/reports/master-task-mta-11-01-08-3f70a63.json",
           "report_sha256": "455d6a8f8b762940576fcf29132853fc87609b9f3973d9cc8b24bda2424f424a",
-          "check": "deterministic_graph_only_layer_before_llm",
           "status": "pass",
-          "detail": "40 protocol, evidence-graph and relationship tests passed; graph validation does not require an LLM."
+          "detail": "40 protocol, evidence-graph and relationship tests passed; graph validation does not require an LLM.",
+          "legacy_check_label": "deterministic_graph_only_layer_before_llm"
         }
       ],
-      "blocker": null
+      "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-11-09",
@@ -5684,9 +5685,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-09-3123c0e.json",
           "report_sha256": "a155208d30049613f3ebecce5ed3d8133f0aaa75c27b992566c27c4f7e8cc823",
-          "check": "single_feature_graph_ablation_matrix",
           "status": "pass",
-          "detail": "Seven arms validate; six remove exactly one declared feature. No comparative model or clinical outcome was run."
+          "detail": "Seven arms validate; six remove exactly one declared feature. No comparative model or clinical outcome was run.",
+          "legacy_check_label": "single_feature_graph_ablation_matrix"
         }
       ],
       "blocker": "Comparative ablation execution requires local verifier inference and an independent acceptance cohort; matrix remains declared_not_executed."
@@ -5705,9 +5706,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-10-c9a668e.json",
           "report_sha256": "baa5f876cc62d07e83ba477a1fcac334745586648d0b0ddd3863e6a53b465664",
-          "check": "five_standard_clinical_note_baselines_preregistered",
           "status": "pass",
-          "detail": "Protocol check asserts the SOAP, ordinary prompt, deterministic-only, LLM self-critique and combined baselines; no matched experiment has been run."
+          "detail": "Protocol check asserts the SOAP, ordinary prompt, deterministic-only, LLM self-critique and combined baselines; no matched experiment has been run.",
+          "legacy_check_label": "five_standard_clinical_note_baselines_preregistered"
         }
       ],
       "blocker": "Matched empirical baseline comparisons require a frozen evaluation cohort and local model runtime; no result or superiority claim is available."
@@ -5738,9 +5739,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-12-13-2a7ed32.json",
           "report_sha256": "4a4bc3b4777804c736dcf76ea9fdcd51b7bc606b6a972da56fe3822230162e98",
-          "check": "versioned_locked_synthetic_development_set",
           "status": "pass",
-          "detail": "Eight cases, source facts and expected mismatch labels are bound to an immutable manifest digest; edits require a new version."
+          "detail": "Eight cases, source facts and expected mismatch labels are bound to an immutable manifest digest; edits require a new version.",
+          "legacy_check_label": "versioned_locked_synthetic_development_set"
         }
       ],
       "blocker": "This is a development cohort only. Independent acceptance cases and qualified adjudication are not available."
@@ -5760,9 +5761,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-12-13-2a7ed32.json",
           "report_sha256": "4a4bc3b4777804c736dcf76ea9fdcd51b7bc606b6a972da56fe3822230162e98",
-          "check": "deterministic_synthetic_scenario_generator",
           "status": "pass",
-          "detail": "Five repeatable counterexamples cover medication-dose relations, polarity, subject attribution and temporality; all declare synthetic=true and clinical_gold=false."
+          "detail": "Five repeatable counterexamples cover medication-dose relations, polarity, subject attribution and temporality; all declare synthetic=true and clinical_gold=false.",
+          "legacy_check_label": "deterministic_synthetic_scenario_generator"
         }
       ],
       "blocker": null
@@ -5781,9 +5782,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-14-d54a09f.json",
           "report_sha256": "6a940ec3a405cf033d4f63efa701b9889f57dcff59cd136b0621247d1486fd38",
-          "check": "seven_synthetic_metamorphic_transformations",
           "status": "pass",
-          "detail": "14 focused tests passed; 5/7 metamorphic cases passed, with 2 semantics-preserving false alarms retained and zero missed semantic flips in this development set."
+          "detail": "14 focused tests passed; 5/7 metamorphic cases passed, with 2 semantics-preserving false alarms retained and zero missed semantic flips in this development set.",
+          "legacy_check_label": "seven_synthetic_metamorphic_transformations"
         }
       ],
       "blocker": "The synthetic rule checker flags a faithful paraphrase and clause reordering; these false alarms remain open. The seven-case set does not establish clinical performance."
@@ -5802,9 +5803,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json",
           "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1",
-          "check": "preregistered_primary_critical_miss_and_false_alarm_outcome",
           "status": "pass",
-          "detail": "Primary paired consultation endpoint, false-alarm bound and failure-inclusive denominators are fixed in the protocol."
+          "detail": "Primary paired consultation endpoint, false-alarm bound and failure-inclusive denominators are fixed in the protocol.",
+          "legacy_check_label": "preregistered_primary_critical_miss_and_false_alarm_outcome"
         }
       ],
       "blocker": "Outcome is preregistered but not measured; acceptance cohort and qualified reviewer approval are not available."
@@ -5823,9 +5824,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json",
           "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1",
-          "check": "preregistered_secondary_coverage_and_provenance_outcomes",
           "status": "pass",
-          "detail": "Source omission coverage and note-claim provenance completeness are named secondary outcomes."
+          "detail": "Source omission coverage and note-claim provenance completeness are named secondary outcomes.",
+          "legacy_check_label": "preregistered_secondary_coverage_and_provenance_outcomes"
         }
       ],
       "blocker": null
@@ -5844,9 +5845,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json",
           "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1",
-          "check": "consultation_clustered_uncertainty_plan",
           "status": "pass",
-          "detail": "Original consultations are the resampling unit; clips and perturbation siblings remain within their consultation cluster."
+          "detail": "Original consultations are the resampling unit; clips and perturbation siblings remain within their consultation cluster.",
+          "legacy_check_label": "consultation_clustered_uncertainty_plan"
         }
       ],
       "blocker": null
@@ -5865,9 +5866,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-15-18-64583c1.json",
           "report_sha256": "4b54cb1dd4c611ad07da1308055bb58bb54bfc87b97722bf542fcb16ce91bed1",
-          "check": "paired_consultation_bootstrap_and_small_n_rule",
           "status": "pass",
-          "detail": "Paired consultation bootstrap and descriptive-only policy for 6\u201312 developer cases are specified."
+          "detail": "Paired consultation bootstrap and descriptive-only policy for 6\u201312 developer cases are specified.",
+          "legacy_check_label": "paired_consultation_bootstrap_and_small_n_rule"
         }
       ],
       "blocker": "No independent acceptance cohort exists for the paired inferential analysis."
@@ -5886,9 +5887,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json",
           "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373",
-          "check": "failure_inclusive_research_results_index",
           "status": "pass",
-          "detail": "Two synthetic false alarms are retained; not-run comparisons, timeouts and contamination-audit availability are explicitly distinguished from measured zero failures."
+          "detail": "Two synthetic false alarms are retained; not-run comparisons, timeouts and contamination-audit availability are explicitly distinguished from measured zero failures.",
+          "legacy_check_label": "failure_inclusive_research_results_index"
         }
       ],
       "blocker": "No full baseline or ablation run has been executed; independent cohort contamination remains unaudited."
@@ -5908,9 +5909,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json",
           "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373",
-          "check": "success_claim_fail_closed_until_predefined_criteria",
           "status": "pass",
-          "detail": "The report explicitly sets success_claim=false until frozen baselines, thresholds and false-block constraints are met."
+          "detail": "The report explicitly sets success_claim=false until frozen baselines, thresholds and false-block constraints are met.",
+          "legacy_check_label": "success_claim_fail_closed_until_predefined_criteria"
         }
       ],
       "blocker": "No BECCSV baseline comparison exists, so no success criterion has been achieved."
@@ -5929,9 +5930,9 @@
         {
           "report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json",
           "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373",
-          "check": "reproducible_systems_method_hypothesis_draft",
           "status": "pass",
-          "detail": "Draft contains abstract, method diagram, baselines, implementation, protocol, synthetic result table and limitations."
+          "detail": "Draft contains abstract, method diagram, baselines, implementation, protocol, synthetic result table and limitations.",
+          "legacy_check_label": "reproducible_systems_method_hypothesis_draft"
         }
       ],
       "blocker": "Systematic external literature review and independent acceptance results are not available; this is an internal draft, not a publication-ready efficacy paper."
@@ -5940,7 +5941,7 @@
       "id": "MTA-11-22",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "verified",
+      "status": "implemented",
       "description": "Keep paper type clearly labelled systems/benchmark/method hypothesis; clinical efficacy requires independent subsequent studies.",
       "evidence": [
         "docs/research/BECCSV-paper-draft-v0.1.md"
@@ -5950,12 +5951,12 @@
         {
           "report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json",
           "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373",
-          "check": "paper_type_and_clinical_efficacy_boundary",
           "status": "pass",
-          "detail": "Draft identifies itself as a systems/method-hypothesis report and requires independent later studies for clinical efficacy."
+          "detail": "Draft identifies itself as a systems/method-hypothesis report and requires independent later studies for clinical efficacy.",
+          "legacy_check_label": "paper_type_and_clinical_efficacy_boundary"
         }
       ],
-      "blocker": null
+      "blocker": "Original evidence lacks the canonical runtime receipt required for verified status; historical report preserved."
     },
     {
       "id": "MTA-12-01",
@@ -5971,8 +5972,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json",
           "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621",
-          "check": "evaluation_envelope_and_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "evaluation_envelope_and_metrics"
         }
       ],
       "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
@@ -5991,8 +5992,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json",
           "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621",
-          "check": "evaluation_envelope_and_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "evaluation_envelope_and_metrics"
         }
       ],
       "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
@@ -6011,8 +6012,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json",
           "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621",
-          "check": "evaluation_envelope_and_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "evaluation_envelope_and_metrics"
         }
       ],
       "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
@@ -6031,8 +6032,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-04-18-68c0368.json",
           "report_sha256": "fd35b6779c6e3b149de3ab7542a8d424c7a6f68aed84592a33d4af3ad5a68e6b",
-          "check": "frozen_benchmark_comparison_and_extended_text_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "frozen_benchmark_comparison_and_extended_text_metrics"
         }
       ],
       "blocker": "No independent clinical annotation; metrics do not establish clinical accuracy."
@@ -6051,8 +6052,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-05-ebe85a0.json",
           "report_sha256": "fbc30320ab68179f847857ad67d7db66d7177d06a8ab91df4c95afabd0bb862b",
-          "check": "asr_subgroup_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "asr_subgroup_metrics"
         }
       ],
       "blocker": "Clinical-term score coverage depends on explicitly annotated manifest terms; independent clinical validity is not established."
@@ -6071,8 +6072,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-06-c7756d6.json",
           "report_sha256": "c7aff20476938c54fff691d176f1f9a77272fdff5f9093136f4a9221605ad387",
-          "check": "diarization_error_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "diarization_error_metrics"
         }
       ],
       "blocker": "Current diarizer outputs anonymous clusters; role labels and independent adjudication remain unavailable."
@@ -6091,8 +6092,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-07-62615b1.json",
           "report_sha256": "88e42f473948c3ccb360bc57b009045913df4307e86fce33bce8ca11b7e690a4",
-          "check": "clinical_fact_and_medication_attribute_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "clinical_fact_and_medication_attribute_metrics"
         }
       ],
       "blocker": "Independent clinical fact annotations and performance evidence remain unavailable."
@@ -6111,8 +6112,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-08-8f7c8ca.json",
           "report_sha256": "a8ebcba892197f2bf8a031e49b54a7ca1904a80b9e3f8dfe7d74d2e8b0a6d542",
-          "check": "verification_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "verification_metrics"
         }
       ],
       "blocker": "Independent clinical operating characteristics remain unmeasured."
@@ -6131,8 +6132,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-09-9719e79.json",
           "report_sha256": "e164efda11fb3022b83a47777f1afa6ce7ab4f1dc611be289996f2f4dcfad189",
-          "check": "grounded_draft_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "grounded_draft_metrics"
         }
       ],
       "blocker": "Independent human judgments of grounded note quality and dangerous changes remain unavailable."
@@ -6151,8 +6152,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-10-013a31d.json",
           "report_sha256": "b9b9f81e3e00efe592b13b216778f8bec1aec8214e3a6c59a38aefa891bad654",
-          "check": "evaluation_distribution_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "evaluation_distribution_metrics"
         }
       ],
       "blocker": "No independent acceptance cohort or adjudicated role/noise labels are available."
@@ -6171,8 +6172,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-11-13-a9242c1.json",
           "report_sha256": "9ef5524c6c883a0cad62ce617c27520286fbbbfcc76db424de5b273e35f46844",
-          "check": "preregistered_outcomes_paired_intervals_and_calibration_policy",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "preregistered_outcomes_paired_intervals_and_calibration_policy"
         }
       ],
       "blocker": "Independent reviewer approval and adequately sized acceptance data remain unavailable."
@@ -6191,8 +6192,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-11-13-a9242c1.json",
           "report_sha256": "9ef5524c6c883a0cad62ce617c27520286fbbbfcc76db424de5b273e35f46844",
-          "check": "preregistered_outcomes_paired_intervals_and_calibration_policy",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "preregistered_outcomes_paired_intervals_and_calibration_policy"
         }
       ],
       "blocker": "Independent reviewer approval and adequately sized acceptance data remain unavailable."
@@ -6211,8 +6212,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-11-13-a9242c1.json",
           "report_sha256": "9ef5524c6c883a0cad62ce617c27520286fbbbfcc76db424de5b273e35f46844",
-          "check": "preregistered_outcomes_paired_intervals_and_calibration_policy",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "preregistered_outcomes_paired_intervals_and_calibration_policy"
         }
       ],
       "blocker": "Independent reviewer approval and adequately sized acceptance data remain unavailable."
@@ -6231,8 +6232,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-14-2aa42ca.json",
           "report_sha256": "b8bf45947ebc048ece012cc2bccdfef284df89d54d1d28462e4cc6f96af248ce",
-          "check": "hypothetical_paired_sensitivity_simulation",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "hypothetical_paired_sensitivity_simulation"
         }
       ],
       "blocker": "Scenario probabilities are assumptions, not independently estimated clinical rates."
@@ -6251,8 +6252,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-15-9b7f285.json",
           "report_sha256": "7d4e24ed5cae39fa189327ccdb0526dbb9bc10fe6a821372abed3113ca94bd5f",
-          "check": "workflow_latency_and_completion_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "workflow_latency_and_completion_metrics"
         }
       ],
       "blocker": "Product-stage instrumentation and actual encounter timing data remain to be connected."
@@ -6271,8 +6272,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-16-4dcf8ab.json",
           "report_sha256": "cd3cbbe9febec2a8c3ef1ead78248bdb723555c6e80f79dc40d915c9f5ec3a4d",
-          "check": "energy_evidence_class_and_unknown_handling",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "energy_evidence_class_and_unknown_handling"
         }
       ],
       "blocker": "No on-device wattmeter or verified telemetry was available; actual workload energy remains unmeasured."
@@ -6291,8 +6292,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-17-96cf84f.json",
           "report_sha256": "a829b71b03e7fc31b5b556206b0ccb76ec33b90de60786834eb0d050bce6be5b",
-          "check": "local_storage_snapshot_and_deletion_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "local_storage_snapshot_and_deletion_metrics"
         }
       ],
       "blocker": "Lifecycle instrumentation, retention-worker integration and secure-erasure evidence remain outstanding."
@@ -6311,8 +6312,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-04-18-68c0368.json",
           "report_sha256": "fd35b6779c6e3b149de3ab7542a8d424c7a6f68aed84592a33d4af3ad5a68e6b",
-          "check": "frozen_benchmark_comparison_and_extended_text_metrics",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "frozen_benchmark_comparison_and_extended_text_metrics"
         }
       ],
       "blocker": "No new matched candidate runs were produced; comparator tests validate the boundary only."
@@ -6331,8 +6332,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-19-20-808d2c0.json",
           "report_sha256": "d91ddf3a86734667e767cd171a872288f3f74d1951ed0615056cecf47b23eb41",
-          "check": "strict_wer_and_paired_statistical_gate",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "strict_wer_and_paired_statistical_gate"
         }
       ],
       "blocker": "Qualified clinical/statistical review is still needed to set the actual adequacy threshold and interpret outcomes."
@@ -6351,8 +6352,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-19-20-808d2c0.json",
           "report_sha256": "d91ddf3a86734667e767cd171a872288f3f74d1951ed0615056cecf47b23eb41",
-          "check": "strict_wer_and_paired_statistical_gate",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "strict_wer_and_paired_statistical_gate"
         }
       ],
       "blocker": "Qualified clinical/statistical review is still needed to set the actual adequacy threshold and interpret outcomes."
@@ -6373,8 +6374,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-21-22-dc3755d.json",
           "report_sha256": "0e3e9a6fc442f9bd129b306839524787e3261c84c4e998e0469a7faaa2a557c0",
-          "check": "development_leaderboard_and_chart_json_parity",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "development_leaderboard_and_chart_json_parity"
         }
       ],
       "blocker": "Development evidence only; no independent clinical cohort or eligible model meeting the 5% gate."
@@ -6395,8 +6396,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-21-22-dc3755d.json",
           "report_sha256": "0e3e9a6fc442f9bd129b306839524787e3261c84c4e998e0469a7faaa2a557c0",
-          "check": "development_leaderboard_and_chart_json_parity",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "development_leaderboard_and_chart_json_parity"
         }
       ],
       "blocker": "Development evidence only; no independent clinical cohort or eligible model meeting the 5% gate."
@@ -6416,8 +6417,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-23-a7553b2.json",
           "report_sha256": "265d9cf563efc3e5bab36f2eb51f9902567522acca0849d660b696a2b02f9c5d",
-          "check": "reproducibility_pack_hash_integrity_and_coverage",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "reproducibility_pack_hash_integrity_and_coverage"
         }
       ],
       "blocker": "The reproducibility capture was made from a worktree with concurrent outstanding changes; the exact source commit and artifact hashes are recorded."
@@ -6437,8 +6438,8 @@
         {
           "report": "evaluation/reports/master-task-mta-12-24-c8efce7.json",
           "report_sha256": "2525972c30829e70946b41ec86768a7b3f0f987ba98e45ab55bc992e5e31881e",
-          "check": "explicit_clinical_evidence_boundary",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "explicit_clinical_evidence_boundary"
         }
       ],
       "blocker": "Qualified reviewers, independent clinical annotations and a prospective clinician pilot are not available."
@@ -6457,8 +6458,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
           "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
-          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope"
         }
       ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
@@ -6477,8 +6478,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
           "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
-          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope"
         }
       ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
@@ -6497,8 +6498,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
           "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
-          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope"
         }
       ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
@@ -6518,8 +6519,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-04-2b175c9.json",
           "report_sha256": "3da286b43687c5e04fa9e21154c53d86d2747ee31135bdc98551eced22a2c09b",
-          "check": "route_policy_inventory_and_scope_helpers",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "route_policy_inventory_and_scope_helpers"
         }
       ],
       "blocker": "Full per-route resource/version and worker authorization matrix remains unverified; the broad missing-auth/viewer-write sweep stalled on Windows."
@@ -6540,8 +6541,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-05-8dcc73d.json",
           "report_sha256": "f02ada34bfbc22b3cff8b7847e415e665fa9e474a3f81493605a72887eeda8f0",
-          "check": "auth_replay_revocation_role_downgrade_and_cross_tenant_export",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "auth_replay_revocation_role_downgrade_and_cross_tenant_export"
         }
       ],
       "blocker": null
@@ -6562,8 +6563,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-06-05e1262.json",
           "report_sha256": "7253e844e4d98091f1031878975ffec91d472606348e4f1dfd55ca9b84fb9d30",
-          "check": "http_json_boundary_size_duplicate_unicode_and_required_fields",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "http_json_boundary_size_duplicate_unicode_and_required_fields"
         }
       ],
       "blocker": null
@@ -6583,8 +6584,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-07-0c6998d.json",
           "report_sha256": "9d90fa5bdacd48b2ef5b58fa785fe4778de23a5f0badfd8cdcbe15ec8b69aa89",
-          "check": "path_media_filename_and_symlink_controls",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "path_media_filename_and_symlink_controls"
         }
       ],
       "blocker": "Directory symlink checks were skipped because this host cannot create directory symlinks; atomic defense against concurrent symlink replacement is not implemented or verified."
@@ -6603,8 +6604,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-08-5169656.json",
           "report_sha256": "3b9d30b8bb4153bcfdbad84ece86afd41b436c41df79587e3e13f6ff81ea3a6d",
-          "check": "private_sensitive_storage_and_upload_integration",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "private_sensitive_storage_and_upload_integration"
         }
       ],
       "blocker": "Windows ACLs for database, exports, model caches and asset directories remain unprovisioned/unverified; POSIX mode and symlink checks were skipped on this host; concurrent local filesystem mutation is not race-free."
@@ -6624,8 +6625,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-09-637348a.json",
           "report_sha256": "8a9f9b3cd4a9b7f719846977b2836608de3c6b1a520ff41eb058f148280cec4a",
-          "check": "worker_consent_revocation_pre_and_post_processing",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "worker_consent_revocation_pre_and_post_processing"
         }
       ],
       "blocker": "Authenticated consent API route workflow remains unverified because TestClient hangs in Windows Proactor socketpair initialization; tests seed synthetic authorization directly."
@@ -6644,8 +6645,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-10-963c619.json",
           "report_sha256": "ba39bc01976b06a42e4c0523003e1ee572226e6d62f91b5e6ef4090d060ae1e4",
-          "check": "model_authority_capability_scope_and_evidence_integrity",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "model_authority_capability_scope_and_evidence_integrity"
         }
       ],
       "blocker": "Full endpoint/background-worker matrix and the Windows verifier fail-closed integration run remain unverified; no external security audit."
@@ -6664,8 +6665,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-11-6d9e531.json",
           "report_sha256": "f6feeb663255526cd5558c02dfc2a4c8c5707ea14ae113057891ffd12ff0b05d",
-          "check": "focused_log_redaction_unit_test",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "focused_log_redaction_unit_test"
         }
       ],
       "blocker": "Coverage is limited to the tested redactor paths; complete logger/trace/crash-dump inventory and external security review remain open."
@@ -6685,8 +6686,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-12-96b34e1.json",
           "report_sha256": "338b7a955e6114e1fce65f121ae4bc19d582931b3252d90e149081aab78d7ba4",
-          "check": "secret_scan_fixture_guard_and_current_scan",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "secret_scan_fixture_guard_and_current_scan"
         }
       ],
       "blocker": "Current repository scan is incomplete because two 32,511,413-byte benchmark CSV files exceeded the 16 MiB scan cap; pattern scanning is not a comprehensive secrets audit."
@@ -6706,8 +6707,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-13-eeb304f.json",
           "report_sha256": "3fed1f0e424ea1af07a572f0e5aac0484b1f3a3d8a2dbe5e5ecfc54da052960f",
-          "check": "local_asset_deletion_graph_contract",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "local_asset_deletion_graph_contract"
         }
       ],
       "blocker": "Backup/external-copy deletion cannot be proven locally; maintenance integration suite stalled and requires a clean rerun."
@@ -6727,8 +6728,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-14-b4dce59.json",
           "report_sha256": "037dc1c28d2df291f5860ab0756e94a9e3997ba89f03b989c21df4317b385bc4",
-          "check": "synthetic_legal_hold_and_approval_purge_gates",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "synthetic_legal_hold_and_approval_purge_gates"
         }
       ],
       "blocker": "Institution-approved retention policy, backup lifecycle and external legal sign-off are unavailable; broader maintenance integration suite stalled."
@@ -6778,8 +6779,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-17-fb8047d.json",
           "report_sha256": "a2ea7544baaf14351ff47c53d1073b1649971a8114b7bcdbd8a8f1237e3c8b4d",
-          "check": "multi_surface_tamper_detection",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "multi_surface_tamper_detection"
         }
       ],
       "blocker": "PostgreSQL adapter parity and external database-administrator tamper resistance are not established by local SQLite tests."
@@ -6818,8 +6819,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
           "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
-          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope"
         }
       ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
@@ -6858,8 +6859,8 @@
         {
           "report": "evaluation/reports/master-task-mta-13-01-03-19-21-b7a5d9c.json",
           "report_sha256": "2f420c7fbda6980a0f7a625be53dfe76be9f8554ff4f2472102d4b12dc6e6d6f",
-          "check": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope",
-          "status": "pass"
+          "status": "pass",
+          "legacy_check_label": "threat_model_prompt_injection_owasp_mapping_and_synthetic_scope"
         }
       ],
       "blocker": "Static tests do not establish adaptive model robustness or external security assurance."
@@ -6878,7 +6879,7 @@
       "test_results": [
         {
           "report": "evaluation/reports/security-assurance-2026-11-14.json",
-          "report_sha256": "8ab75cc5b1118abb0d054240aa88eccd3e42b518377aa658b72634571455e598",
+          "report_sha256": "271dbee79ced11397494f9e0609d6031ecb32f5417814929f29d271076619ab8",
           "check": "assurance_report_and_doc_integrity",
           "status": "pass"
         }
