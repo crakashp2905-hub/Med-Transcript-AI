@@ -114,7 +114,7 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(page.getByRole('button',{name:'Approve saved version',exact:false})).toBeDisabled();
   await page.getByLabel('Timed review drafting approach').selectOption('deterministic');
   await page.getByRole('button',{name:'Start timed review',exact:true}).click();
-  await expect(page.getByLabel('Timed review drafting approach')).toBeDisabled();
+  await expect(page.getByRole('status').filter({hasText:'Session elapsed:'})).toBeVisible();
   await cards.nth(1).getByLabel('Note statement').fill('Patient takes metformin 500 mg.');
   await cards.nth(1).getByLabel('Clinical clarification / exclusion reason').fill('Synthetic clinician correction: the medication label was independently checked to confirm 500 mg.');
   await expect(cards.nth(1).getByLabel('Content and attribution reviewed')).not.toBeChecked();

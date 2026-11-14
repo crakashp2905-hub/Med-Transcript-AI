@@ -6,11 +6,11 @@ type Request=(path:string,options?:RequestInit)=>Promise<any>;
 
 export function ReviewTiming({encounter,note,dirty,disabled,request}:{encounter:string;note:string;dirty:boolean;disabled:boolean;request:Request}){
  const [items,setItems]=useState<Review[]>([]),[busy,setBusy]=useState(false),[error,setError]=useState(''),[now,setNow]=useState(Date.now());
- const requestId=useRef(crypto.randomUUID()),inflight=useRef(false);
+ const requestId=useRef(crypto.randomUUID()),inflight=useRef(false),loadSequence=useRef(0);
  const [arm,setArm]=useState('unspecified');
  const base=`/v1/encounters/${encounter}/review-sessions`;
- async function refresh(){setItems((await request(base)).items);}
- useEffect(()=>{let live=true;request(base).then(r=>{if(live)setItems(r.items);}).catch(()=>{if(live)setError('Review timing history could not be loaded.');});return()=>{live=false;};},[encounter]);
+ async function refresh(){const sequence=++loadSequence.current;const result=await request(base);if(sequence===loadSequence.current)setItems(result.items);}
+ useEffect(()=>{let live=true;const sequence=++loadSequence.current;request(base).then(r=>{if(live&&sequence===loadSequence.current)setItems(r.items);}).catch(()=>{if(live&&sequence===loadSequence.current)setError('Review timing history could not be loaded.');});return()=>{live=false;if(loadSequence.current===sequence)loadSequence.current++;};},[encounter]);
  const active=items.find(s=>!s.completion);
  useEffect(()=>{if(!active)return;const timer=window.setInterval(()=>setNow(Date.now()),1000);return()=>clearInterval(timer);},[active?.id]);
  async function act(finish:boolean){if(inflight.current)return;inflight.current=true;setBusy(true);setError('');try{
