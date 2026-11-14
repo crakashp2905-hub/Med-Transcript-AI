@@ -1,10 +1,12 @@
 """Declared PCM/WAV dimensions are checked before ingest publishes a result."""
 
 import wave
+import struct
+import tracemalloc
 
 import pytest
 
-from services.api.ingest import InvalidAudio, inspect_pcm_wav
+from services.api.ingest import MAX_UPLOAD_BYTES, InvalidAudio, inspect_pcm_wav
 
 
 def make_wav(path, *, channels=1, sample_rate=16000, sample_width=2, frames=32):
@@ -76,3 +78,46 @@ def test_forged_pcm_wav_dimensions_fail_closed(tmp_path, offset, value, code):
 
     with pytest.raises(InvalidAudio, match=code):
         inspect_pcm_wav(source)
+
+
+def test_zero_frame_recording_is_rejected(tmp_path):
+    source = tmp_path / "empty-audio.wav"
+    make_wav(source, frames=0)
+    with pytest.raises(InvalidAudio, match="invalid_media"):
+        inspect_pcm_wav(source)
+
+
+def test_overlong_sparse_recording_is_rejected_before_audio_read(tmp_path):
+    source = tmp_path / "overlong.wav"
+    body = make_wav(source, frames=1)
+    data_bytes = (16000 * 3600 + 1) * 2
+    struct.pack_into("<I", body, 4, 36 + data_bytes)
+    struct.pack_into("<I", body, 40, data_bytes)
+    source.write_bytes(body)
+    with source.open("r+b") as target:
+        target.truncate(44 + data_bytes)
+
+    with pytest.raises(InvalidAudio, match="duration_limit_exceeded"):
+        inspect_pcm_wav(source)
+
+
+def test_maximum_permitted_sparse_upload_stays_within_small_memory_cap(tmp_path):
+    source = tmp_path / "maximum-size.wav"
+    body = make_wav(source, frames=32)
+    junk_bytes = MAX_UPLOAD_BYTES - len(body) - 8
+    assert junk_bytes % 2 == 0
+    struct.pack_into("<I", body, 4, MAX_UPLOAD_BYTES - 8)
+    source.write_bytes(body + b"JUNK" + struct.pack("<I", junk_bytes))
+    with source.open("r+b") as target:
+        target.truncate(MAX_UPLOAD_BYTES)
+
+    tracemalloc.start()
+    try:
+        inspected = inspect_pcm_wav(source)
+        _, peak = tracemalloc.get_traced_memory()
+    finally:
+        tracemalloc.stop()
+
+    assert source.stat().st_size == MAX_UPLOAD_BYTES
+    assert inspected["frames"] == 32
+    assert peak < 8 * 1024 * 1024
