@@ -1,0 +1,150 @@
+{
+  "schema_version": "milestone_role_verification_v1",
+  "run_id": "milestone3-roles-2026-11-15-934bb2a-r1",
+  "recorded_at_utc": "2026-11-14T21:52:12.463439+00:00",
+  "source_commit": "934bb2a97e5d0d90a989921b1eaf4896670a6638",
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/src/App.tsx",
+      "sha256": "ed5bc35941ff12077518a09c29b81e28164ecf5bcb925b80458f6ac54bc320df"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "f3d4cfed8e04ac5c7eff738daae9d39220ea15ee87de986912418a1c31de645b"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/AdminUsersScreen.tsx",
+      "sha256": "72cfbc91d001bb48b99b0a3366f056d8891336fa092bf755a5b0ff8ff28af02a"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "394029960cf928d89074703b83927539de93a21e87f994f535c7c648ffe6b6aa"
+    },
+    {
+      "path": "apps/clinician-web/src/workspaceTypes.ts",
+      "sha256": "167052ccf13e7567b2f80e777287c37588dd1dd3abfc78ef485226135f4c9d55"
+    },
+    {
+      "path": "compose.production.yaml",
+      "sha256": "e5b2823335da8ea9a087f8744b9f4d3bdd68e144f5a0889210e05658727b3608"
+    },
+    {
+      "path": "config/members.example.json",
+      "sha256": "f0f5ee8ae3d852ee4dfa0f6465e2ad3b60d1b95b76f2b0e0076ea44bc35cf506"
+    },
+    {
+      "path": "docs/google-workspace-investor-release.md",
+      "sha256": "e62b50baff43ad535512564e14cd3cbd1e03474ad2b5d227fdc15cb44fe21202"
+    },
+    {
+      "path": "docs/runbooks/workspace-accounts.md",
+      "sha256": "37eea692ae6b6b9dca43d60d7dbc6a7cb4b0e2f127822c236478f0f9cb6985de"
+    },
+    {
+      "path": "docs/service-catalog.md",
+      "sha256": "a3908fa040c1a3489f5212b24c7f3976bdc971b10023bcad10073f0907b97812"
+    },
+    {
+      "path": "evaluation/contracts/api-v1-compatible-v14.json",
+      "sha256": "cc39a0065348938f0f8612305225305453c4766d98bf1a872a6fd92c7db44363"
+    },
+    {
+      "path": "evaluation/contracts/authorization-policy-v5.json",
+      "sha256": "ca65ae14398e4e11fb6ab8cd8cf39be6b3bbd03bcaf36c80af3d5074e491934b"
+    },
+    {
+      "path": "evaluation/contracts/authorization-policy-v5.provenance.json",
+      "sha256": "56283c6d90c0bff1669e46d4b92f5a742f716c730a4d40cbbd42e2dd3c182415"
+    },
+    {
+      "path": "services/api/auth.py",
+      "sha256": "06e0a5b28710a69339c79e931e6b41c3933c83ac9ab9372c3ae5825b7a8b2a9c"
+    },
+    {
+      "path": "services/api/authorization_policy.py",
+      "sha256": "eefe5a3051caa8d3a6e03764ce0be04af727915b08565bbf83c6b6ceb21e0694"
+    },
+    {
+      "path": "services/api/contracts.py",
+      "sha256": "7cb3be6f21c3174a1aff161be782c344991cbe80b44e3da6ce360554c48221e6"
+    },
+    {
+      "path": "services/api/main.py",
+      "sha256": "9c4d818ac14224b0b40eadfcda762864b7d9fb0f36a65425cbe5d99e301d1dc7"
+    },
+    {
+      "path": "services/error_catalog.json",
+      "sha256": "d6c5b0164adc3a6853c46e7703997a0074436cc16b52fdf6ba8de433348e48b9"
+    },
+    {
+      "path": "services/review/metrics_routes.py",
+      "sha256": "9f611df8973d94c1d2d09da3ee0079f303207cd76460f7fb77889556e01b1108"
+    },
+    {
+      "path": "services/review/routers/workspace.py",
+      "sha256": "7a4aa7f7696904fb8e53b9ed444f73bb325ff259cec0356ad36dd6f4007dc779"
+    },
+    {
+      "path": "tests/test_api_roles.py",
+      "sha256": "6db50063d2c47982d873107796d8ee3e3915e7282644582a6341c2cc0e31ada8"
+    },
+    {
+      "path": "tests/test_google_auth.py",
+      "sha256": "0794eb6e4ec736e949a70fddbfaf02f2fffc8ba1323acc91c024e7ebe256dc72"
+    },
+    {
+      "path": "tests/test_router_contracts.py",
+      "sha256": "7cf4ecce782218cf198e1239c67a628aa6120cecf47130c64c75acb08e8c0058"
+    },
+    {
+      "path": "tests/test_module_catalog.py",
+      "sha256": "d5d2b8e1a67b329d55db3e95e93e70e7e564f83bdd0b1b95073823f66ea61b9f"
+    }
+  ],
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "network": "local-only; API tests used loopback"
+  },
+  "checks": [
+    {
+      "name": "full_python_verification",
+      "status": "pass",
+      "command": "python -m services.verify --python-only",
+      "result": "1341 passed, 10 skipped, 1 warning; format, lint, type checks and Python tests passed"
+    },
+    {
+      "name": "role_auth_contract_catalog_tests",
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_module_catalog.py tests/test_api_roles.py tests/test_google_auth.py tests/test_router_contracts.py",
+      "result": "29 passed, 1 warning"
+    },
+    {
+      "name": "frontend_build",
+      "status": "pass",
+      "command": "npm run build",
+      "result": "TypeScript check and Vite production build passed"
+    },
+    {
+      "name": "fresh_browser_acceptance",
+      "status": "failed_incomplete",
+      "command": "Playwright 43-test synthetic suite against isolated local launcher",
+      "result": "Fixture key was rejected by the UI; the suite was interrupted after failures and is not counted as acceptance. The isolated app/server and output directory were used. No hosted traffic."
+    },
+    {
+      "name": "prior_browser_acceptance",
+      "status": "pass_different_source_commit",
+      "report": "evaluation/reports/offline-product-acceptance-b3adce0.json",
+      "source_commit": "b3adce05ac575fe8675892d0a42d977553a0ec93",
+      "result": "42 passed, 1 skipped; does not certify current-source browser acceptance"
+    }
+  ],
+  "limitations": [
+    "Membership administration uses an atomically replaced file with process-local update serialization; it requires one API worker and has no cross-process lock or tamper-proof audit sink.",
+    "Ten full-suite skips remain; hosted CI, PostgreSQL service CI, container CI and security audit jobs were not queried or run locally.",
+    "This report and the tests do not establish clinician usability, clinical accuracy, institutional approval, production readiness or authorization to process real-patient information."
+  ],
+  "real_patient_processing_authorized": false,
+  "clinical_approval_claimed": false
+}
