@@ -43,3 +43,5 @@
  .primary-review-layout>*{min-width:0}
  .primary-review-layout .note-grid>section>.audio-player{display:none}
  @media(max-width:700px){.primary-review-layout{grid-template-columns:1fr}}
+ .keyboard-hint{align-self:center;color:var(--muted);font-size:10px;white-space:nowrap}
+ @media(max-width:900px){.keyboard-hint{display:none}}
