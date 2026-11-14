@@ -1,0 +1,33 @@
+{
+  "schema_version": "product_operations_v1",
+  "status": "requirements_and_hypotheses_not_pilot_approved",
+  "document": "docs/product/product-operations-v1.md",
+  "verified_task_ids": [
+    "MTA-15-11",
+    "MTA-15-13",
+    "MTA-15-14",
+    "MTA-15-16",
+    "MTA-15-17",
+    "MTA-15-18",
+    "MTA-15-19"
+  ],
+  "blocked_task_ids": ["MTA-15-12"],
+  "mode_ids": [
+    "local_synthetic_demo",
+    "clinician_workstation_candidate",
+    "read_only_investor",
+    "institution_pilot_candidate"
+  ],
+  "measurement_classes": [
+    "simulated",
+    "software_observed",
+    "clinician_observed",
+    "independently_adjudicated"
+  ],
+  "research_constraints": {
+    "external_sources_consulted": false,
+    "competitive_claims_verified": false,
+    "clinical_release_authorized": false
+  },
+  "hypothesis_slo_tiers": ["workstation_candidate", "cpu_only_constrained", "unsupported_unknown"]
+}
