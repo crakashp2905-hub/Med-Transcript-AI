@@ -1,0 +1,43 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-11-19",
+    "MTA-11-20",
+    "MTA-11-21",
+    "MTA-11-22"
+  ],
+  "source_commit": "a76b56cbef20d67a771f4fb5e7af1166eff9171d",
+  "captured_at_utc": "2026-11-13T22:56:37+00:00",
+  "source_files": {
+    "evaluation/reports/beccsv-negative-results-index-v1.json": "0a1073962e5fea6e0e4e04c2b7e200159a6d870224d3ea30e38ad234163edb71",
+    "docs/research/BECCSV-paper-draft-v0.1.md": "f3a69c5bfd87176c73e70fbed56aeb625d27ecc89144d0229fba3ff450970124",
+    "tests/test_beccsv_research_outputs.py": "d8cb8bd38758480144733b6349f854d3cc0488faa2490596381790c2bfc1b1c6",
+    "docs/research/beccsv-protocol-v1.md": "c9a10edf62697e2ae88eadeae6002631585f30c575aecaaff643653d4172916c"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_beccsv_research_outputs.py -q",
+      "status": "pass",
+      "result": "2 passed"
+    },
+    {
+      "command": "ruff format --check tests/test_beccsv_research_outputs.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff check tests/test_beccsv_research_outputs.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "Negative and false-alarm results are preserved; experiments not run are labeled not_run rather than reported as zero failures.",
+    "The paper is labeled as an internal systems/method-hypothesis draft, includes a method diagram, baselines, protocol and limitations.",
+    "A BECCSV success claim is explicitly false until predefined comparisons are completed."
+  ],
+  "limitations": [
+    "There is no independent cohort, qualified adjudication, full baseline run, or measured ablation result.",
+    "The draft is not a peer-reviewed paper or clinical efficacy report.",
+    "No clinical release or model promotion is authorized."
+  ],
+  "clinical_release_authorized": false
+}

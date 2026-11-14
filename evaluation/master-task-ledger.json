@@ -5703,44 +5703,44 @@
       "id": "MTA-11-19",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Include negative results, timeouts, aborted runs, changed datasets and potential contamination in research tables.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/beccsv-negative-results-index-v1.json"],
+      "source_commit": "a76b56cbef20d67a771f4fb5e7af1166eff9171d",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json", "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373", "check": "failure_inclusive_research_results_index", "status": "pass", "detail": "Two synthetic false alarms are retained; not-run comparisons, timeouts and contamination-audit availability are explicitly distinguished from measured zero failures."}],
+      "blocker": "No full baseline or ablation run has been executed; independent cohort contamination remains unaudited."
     },
     {
       "id": "MTA-11-20",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Do not introduce a novel-method success claim until it beats frozen baselines with predefined criteria and no increased false block burden.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["docs/research/beccsv-protocol-v1.md", "evaluation/reports/beccsv-negative-results-index-v1.json"],
+      "source_commit": "a76b56cbef20d67a771f4fb5e7af1166eff9171d",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json", "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373", "check": "success_claim_fail_closed_until_predefined_criteria", "status": "pass", "detail": "The report explicitly sets success_claim=false until frozen baselines, thresholds and false-block constraints are met."}],
+      "blocker": "No BECCSV baseline comparison exists, so no success criterion has been achieved."
     },
     {
       "id": "MTA-11-21",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Produce a reproducible technical paper draft with method diagrams, baselines, protocol, implementation and limitations.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["docs/research/BECCSV-paper-draft-v0.1.md"],
+      "source_commit": "a76b56cbef20d67a771f4fb5e7af1166eff9171d",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json", "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373", "check": "reproducible_systems_method_hypothesis_draft", "status": "pass", "detail": "Draft contains abstract, method diagram, baselines, implementation, protocol, synthetic result table and limitations."}],
+      "blocker": "Systematic external literature review and independent acceptance results are not available; this is an internal draft, not a publication-ready efficacy paper."
     },
     {
       "id": "MTA-11-22",
       "section": "11 \u2014 Distinct research contribution and formal experimental programme",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Keep paper type clearly labelled systems/benchmark/method hypothesis; clinical efficacy requires independent subsequent studies.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": ["docs/research/BECCSV-paper-draft-v0.1.md"],
+      "source_commit": "a76b56cbef20d67a771f4fb5e7af1166eff9171d",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-11-19-22-a76b56c.json", "report_sha256": "116bef1b01ce1e7f8fc92da2975d2aea1ddaa440b6c3ffafac5dc9d11db1a373", "check": "paper_type_and_clinical_efficacy_boundary", "status": "pass", "detail": "Draft identifies itself as a systems/method-hypothesis report and requires independent later studies for clinical efficacy."}],
       "blocker": null
     },
     {
