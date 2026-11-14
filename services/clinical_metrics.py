@@ -126,6 +126,47 @@ def concept_key(item):
     )
 
 
+def medication_attribute_metrics(expected, observed):
+    """Compare medication attributes after exact medication/subject/assertion matching."""
+    core_fields = {"category", "concept", "subject", "assertion", "temporality"}
+
+    def split(item):
+        if item.get("category") != "medication":
+            return None
+        core = tuple(
+            item[key]
+            for key in ("category", "concept", "subject", "assertion", "temporality")
+        )
+        attrs = {
+            key: value
+            for key, value in item.items()
+            if key not in core_fields | {"evidence", "annotation_id"}
+        }
+        return json.dumps(core, ensure_ascii=False, separators=(",", ":")), json.dumps(
+            attrs, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        )
+
+    gold = Counter(value for item in expected if (value := split(item)) is not None)
+    actual = Counter(value for item in observed if (value := split(item)) is not None)
+    matches = sum((gold & actual).values())
+    expected_count, observed_count = sum(gold.values()), sum(actual.values())
+    omissions, insertions = expected_count - matches, observed_count - matches
+    return {
+        "expected_medication_facts": expected_count,
+        "observed_medication_facts": observed_count,
+        "exact_attribute_matches": matches,
+        "attribute_omissions_or_mismatches": omissions,
+        "unsupported_attribute_facts_or_mismatches": insertions,
+        "exact_attribute_precision": matches / observed_count
+        if observed_count
+        else None,
+        "exact_attribute_recall": matches / expected_count if expected_count else None,
+        "exact_attribute_match_rate": matches / expected_count
+        if expected_count
+        else None,
+    }
+
+
 def weighted_concepts(expected, observed, impact_weights, failed=False):
     """Score weighted concept errors using explicit, caller-supplied weights.
 
@@ -251,6 +292,9 @@ def evaluate(
             for c in categories
         },
         "clinical_adjudication": "not_established_by_automated_metrics",
+        "medication_attribute_metrics": medication_attribute_metrics(
+            expected, observed
+        ),
     }
     if impact_weights is not None:
         result["weighted_secondary_endpoint"] = weighted_concepts(

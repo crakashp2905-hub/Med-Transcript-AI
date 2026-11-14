@@ -109,3 +109,34 @@ def test_critical_categories_must_be_explicit():
             [{"case_id": "empty", "expected": [], "observed": []}],
             critical_categories=None,
         )
+
+
+def test_medication_attributes_require_exact_dose_route_and_frequency():
+    from services.clinical_metrics import evaluate
+
+    expected = [
+        {
+            "category": "medication",
+            "concept": "amoxicillin",
+            "subject": "patient",
+            "assertion": "affirmed",
+            "temporality": "current",
+            "dose": "500",
+            "unit": "mg",
+            "route": "oral",
+            "frequency": "twice_daily",
+        }
+    ]
+    changed = [{**expected[0], "dose": "250"}]
+    result = evaluate(
+        "Amoxicillin 500 mg twice daily",
+        "Amoxicillin 250 mg twice daily",
+        expected,
+        changed,
+    )
+    metrics = result["medication_attribute_metrics"]
+    assert metrics["expected_medication_facts"] == 1
+    assert metrics["exact_attribute_matches"] == 0
+    assert metrics["attribute_omissions_or_mismatches"] == 1
+    assert metrics["unsupported_attribute_facts_or_mismatches"] == 1
+    assert metrics["exact_attribute_recall"] == 0
