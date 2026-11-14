@@ -1,0 +1,52 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-08"
+  ],
+  "source_commit": "5169656ef53a353000c1a367e1f9d4523ab32951",
+  "captured_at_utc": "2026-11-14T08:28:10.620027+00:00",
+  "source_files": {
+    "services/secure_storage.py": "db8fcf7b02685dd1ecc695d1ae8c63c6638d937aca33085614f363281954a78d",
+    "services/api/main.py": "4eb8385eba8cdf4e1a78d2f43f9696383786657564efead725728aa2c9a3a8b2",
+    "services/api/live_uploads.py": "30d43634fb662117727997c2e208253ae693c797dc75ccb4823ec48aa9f68251",
+    "services/api/routers/audio.py": "e9dec62db499583dff7f8681513b96541d62e179956514679a70dcad1bf32846",
+    "tests/test_secure_storage.py": "13852f636d09bb84fdd5ad18c13456a1ab4c1ea7403cc7f6ad416c6b6393005b",
+    "docs/container-security.md": "c095e127fc904903f35fa8be789e4c8d40b5b54694278c1cb563c2b2c46c5f93"
+  },
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_secure_storage.py tests/test_maintenance_path_confinement.py",
+      "status": "pass",
+      "result": "2 passed, 3 skipped; Windows host skipped POSIX mode assertions and directory symlink tests"
+    },
+    {
+      "command": "python -m pytest -q tests/test_audio_router.py tests/test_live_uploads.py",
+      "status": "pass",
+      "result": "7 passed (local loopback enabled with authorized elevated execution)"
+    },
+    {
+      "command": "python -m ruff check services/secure_storage.py services/api/main.py services/api/live_uploads.py services/api/routers/audio.py tests/test_secure_storage.py",
+      "status": "pass",
+      "result": "All checks passed"
+    },
+    {
+      "command": "python -m ruff format --check services tests",
+      "status": "fail",
+      "result": "4 concurrent ASR benchmark files would reformat; none are part of this task or were edited"
+    }
+  ],
+  "supported_claims": [
+    "Configured audio asset roots reject a symlink at the root and are chmod 0700 on POSIX.",
+    "New upload part files created through the secure helper use exclusive creation and POSIX mode 0600.",
+    "Buffered and live upload integration tests pass with the private file creation helper.",
+    "Storage limitations are documented for Windows ACL provisioning and hostile concurrent local filesystem mutation."
+  ],
+  "limitations": [
+    "This Windows host cannot establish POSIX mode-bit behavior, so the mode test is skipped here.",
+    "Directory symlink tests were skipped because the host does not permit creating directory symlinks.",
+    "Windows ACLs are not provisioned or verified for database, exports, model caches, or asset storage.",
+    "The helper does not provide race-free no-follow semantics against a hostile process concurrently changing the storage root.",
+    "The repository-wide formatter check remains red due to four concurrent ASR benchmark files."
+  ],
+  "clinical_release_authorized": false
+}

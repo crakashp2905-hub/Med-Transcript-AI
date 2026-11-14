@@ -6509,9 +6509,19 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Enforce authorization by tenant/clinician/encounter/resource/version for every GET/POST/PATCH/DELETE and background worker.",
-      "evidence": ["evaluation/reports/master-task-mta-13-04-2b175c9.json", "evaluation/contracts/authorization-policy-v3.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-04-2b175c9.json",
+        "evaluation/contracts/authorization-policy-v3.json"
+      ],
       "source_commit": "2b175c946a1b4ec9dd86b89651e3801fd9e2a45c",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-04-2b175c9.json", "report_sha256": "3da286b43687c5e04fa9e21154c53d86d2747ee31135bdc98551eced22a2c09b", "check": "route_policy_inventory_and_scope_helpers", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-04-2b175c9.json",
+          "report_sha256": "3da286b43687c5e04fa9e21154c53d86d2747ee31135bdc98551eced22a2c09b",
+          "check": "route_policy_inventory_and_scope_helpers",
+          "status": "pass"
+        }
+      ],
       "blocker": "Full per-route resource/version and worker authorization matrix remains unverified; the broad missing-auth/viewer-write sweep stalled on Windows."
     },
     {
@@ -6520,9 +6530,20 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Add adversarial horizontal/vertical privilege escalation, token replay, revoked session, role downgrade and cross-tenant export tests.",
-      "evidence": ["evaluation/reports/master-task-mta-13-05-8dcc73d.json", "tests/test_google_auth.py", "tests/test_review_workflow.py"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-05-8dcc73d.json",
+        "tests/test_google_auth.py",
+        "tests/test_review_workflow.py"
+      ],
       "source_commit": "8dcc73d9599fb11cda7f7b2df89c3de1b90be887",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-05-8dcc73d.json", "report_sha256": "f02ada34bfbc22b3cff8b7847e415e665fa9e474a3f81493605a72887eeda8f0", "check": "auth_replay_revocation_role_downgrade_and_cross_tenant_export", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-05-8dcc73d.json",
+          "report_sha256": "f02ada34bfbc22b3cff8b7847e415e665fa9e474a3f81493605a72887eeda8f0",
+          "check": "auth_replay_revocation_role_downgrade_and_cross_tenant_export",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
@@ -6531,9 +6552,20 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Test missing, duplicate, oversized and malformed JSON fields and Unicode normalization at API boundaries.",
-      "evidence": ["evaluation/reports/master-task-mta-13-06-05e1262.json", "services/api/request_limits.py", "services/strict_json.py"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-06-05e1262.json",
+        "services/api/request_limits.py",
+        "services/strict_json.py"
+      ],
       "source_commit": "05e1262168a9385dca76c0d012d25a60be1100d8",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-06-05e1262.json", "report_sha256": "7253e844e4d98091f1031878975ffec91d472606348e4f1dfd55ca9b84fb9d30", "check": "http_json_boundary_size_duplicate_unicode_and_required_fields", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-06-05e1262.json",
+          "report_sha256": "7253e844e4d98091f1031878975ffec91d472606348e4f1dfd55ca9b84fb9d30",
+          "check": "http_json_boundary_size_duplicate_unicode_and_required_fields",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {
@@ -6542,21 +6574,40 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Reject path traversal, symlink races, unsafe file extensions and malicious media metadata.",
-      "evidence": ["evaluation/reports/master-task-mta-13-07-0c6998d.json", "tests/test_maintenance_path_confinement.py"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-07-0c6998d.json",
+        "tests/test_maintenance_path_confinement.py"
+      ],
       "source_commit": "0c6998d7b6523945d7693d0b48b87e36f449f67f",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-07-0c6998d.json", "report_sha256": "9d90fa5bdacd48b2ef5b58fa785fe4778de23a5f0badfd8cdcbe15ec8b69aa89", "check": "path_media_filename_and_symlink_controls", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-07-0c6998d.json",
+          "report_sha256": "9d90fa5bdacd48b2ef5b58fa785fe4778de23a5f0badfd8cdcbe15ec8b69aa89",
+          "check": "path_media_filename_and_symlink_controls",
+          "status": "pass"
+        }
+      ],
       "blocker": "Directory symlink checks were skipped because this host cannot create directory symlinks; atomic defense against concurrent symlink replacement is not implemented or verified."
     },
     {
       "id": "MTA-13-08",
       "section": "13 \u2014 Security, privacy, threat modeling and defense in depth",
       "priority": "P0",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Enforce safe file permissions and sandboxed paths for audio, transient excerpts, caches, model files and exports.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-08-5169656.json"
+      ],
+      "source_commit": "5169656ef53a353000c1a367e1f9d4523ab32951",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-08-5169656.json",
+          "report_sha256": "3b9d30b8bb4153bcfdbad84ece86afd41b436c41df79587e3e13f6ff81ea3a6d",
+          "check": "private_sensitive_storage_and_upload_integration",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Windows ACLs for database, exports, model caches and asset directories remain unprovisioned/unverified; POSIX mode and symlink checks were skipped on this host; concurrent local filesystem mutation is not race-free."
     },
     {
       "id": "MTA-13-09",
@@ -6564,9 +6615,19 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Ensure recording authorization and consent revocation cancel future processing and prevent new publications.",
-      "evidence": ["evaluation/reports/master-task-mta-13-09-637348a.json", "tests/test_worker_consent_revocation.py"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-09-637348a.json",
+        "tests/test_worker_consent_revocation.py"
+      ],
       "source_commit": "637348af3a608948c06ace6dc319c8596b526ef9",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-09-637348a.json", "report_sha256": "8a9f9b3cd4a9b7f719846977b2836608de3c6b1a520ff41eb058f148280cec4a", "check": "worker_consent_revocation_pre_and_post_processing", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-09-637348a.json",
+          "report_sha256": "8a9f9b3cd4a9b7f719846977b2836608de3c6b1a520ff41eb058f148280cec4a",
+          "check": "worker_consent_revocation_pre_and_post_processing",
+          "status": "pass"
+        }
+      ],
       "blocker": "Authenticated consent API route workflow remains unverified because TestClient hangs in Windows Proactor socketpair initialization; tests seed synthetic authorization directly."
     },
     {
@@ -6595,9 +6656,18 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Redact secrets, identifiers, audio text and model prompt content from logs, traces and errors.",
-      "evidence": ["evaluation/reports/master-task-mta-13-11-6d9e531.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-11-6d9e531.json"
+      ],
       "source_commit": "6d9e5318d503d5c78a1bb1369e027a0deabcbb6d",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-11-6d9e531.json", "report_sha256": "f6feeb663255526cd5558c02dfc2a4c8c5707ea14ae113057891ffd12ff0b05d", "check": "focused_log_redaction_unit_test", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-11-6d9e531.json",
+          "report_sha256": "f6feeb663255526cd5558c02dfc2a4c8c5707ea14ae113057891ffd12ff0b05d",
+          "check": "focused_log_redaction_unit_test",
+          "status": "pass"
+        }
+      ],
       "blocker": "Coverage is limited to the tested redactor paths; complete logger/trace/crash-dump inventory and external security review remain open."
     },
     {
@@ -6606,9 +6676,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Run repository secret scanning and fixture canary test; synthetic canaries must not appear in forbidden artifacts.",
-      "evidence": ["evaluation/reports/master-task-mta-13-12-96b34e1.json", "evaluation/reports/secret-scan-mta13-v5.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-12-96b34e1.json",
+        "evaluation/reports/secret-scan-mta13-v5.json"
+      ],
       "source_commit": "96b34e1abf002ce6ce6565ff44e8ef109e968331",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-12-96b34e1.json", "report_sha256": "338b7a955e6114e1fce65f121ae4bc19d582931b3252d90e149081aab78d7ba4", "check": "secret_scan_fixture_guard_and_current_scan", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-12-96b34e1.json",
+          "report_sha256": "338b7a955e6114e1fce65f121ae4bc19d582931b3252d90e149081aab78d7ba4",
+          "check": "secret_scan_fixture_guard_and_current_scan",
+          "status": "pass"
+        }
+      ],
       "blocker": "Current repository scan is incomplete because two 32,511,413-byte benchmark CSV files exceeded the 16 MiB scan cap; pattern scanning is not a comprehensive secrets audit."
     },
     {
@@ -6617,9 +6697,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Create comprehensive asset-deletion graph across original/normalized/cropped audio, transcript, note, cache, export, live prefix and backup.",
-      "evidence": ["evaluation/contracts/asset-deletion-graph-v1.json", "evaluation/reports/master-task-mta-13-13-eeb304f.json"],
+      "evidence": [
+        "evaluation/contracts/asset-deletion-graph-v1.json",
+        "evaluation/reports/master-task-mta-13-13-eeb304f.json"
+      ],
       "source_commit": "eeb304fefddd10c1a4eec0720fd0d40292901ca8",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-13-eeb304f.json", "report_sha256": "3fed1f0e424ea1af07a572f0e5aac0484b1f3a3d8a2dbe5e5ecfc54da052960f", "check": "local_asset_deletion_graph_contract", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-13-eeb304f.json",
+          "report_sha256": "3fed1f0e424ea1af07a572f0e5aac0484b1f3a3d8a2dbe5e5ecfc54da052960f",
+          "check": "local_asset_deletion_graph_contract",
+          "status": "pass"
+        }
+      ],
       "blocker": "Backup/external-copy deletion cannot be proven locally; maintenance integration suite stalled and requires a clean rerun."
     },
     {
@@ -6628,9 +6718,19 @@
       "priority": "P1",
       "status": "implemented",
       "description": "Test purge and legal-hold retention separately with a fake operator-approved policy (not real patient policy).",
-      "evidence": ["evaluation/reports/master-task-mta-13-14-b4dce59.json", "tests/test_purge_retention_gates.py"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-14-b4dce59.json",
+        "tests/test_purge_retention_gates.py"
+      ],
       "source_commit": "b4dce59f448460c2f0a906fe20b5e58fe1961725",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-14-b4dce59.json", "report_sha256": "037dc1c28d2df291f5860ab0756e94a9e3997ba89f03b989c21df4317b385bc4", "check": "synthetic_legal_hold_and_approval_purge_gates", "status": "pass"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-14-b4dce59.json",
+          "report_sha256": "037dc1c28d2df291f5860ab0756e94a9e3997ba89f03b989c21df4317b385bc4",
+          "check": "synthetic_legal_hold_and_approval_purge_gates",
+          "status": "pass"
+        }
+      ],
       "blocker": "Institution-approved retention policy, backup lifecycle and external legal sign-off are unavailable; broader maintenance integration suite stalled."
     },
     {
@@ -6639,9 +6739,18 @@
       "priority": "P1",
       "status": "blocked_missing_asset",
       "description": "Encrypt locally stored test backups with verified key lifecycle and restore; distinguish demo keys from institution-managed keys.",
-      "evidence": ["evaluation/reports/master-task-mta-13-15-837d8c1.json"],
+      "evidence": [
+        "evaluation/reports/master-task-mta-13-15-837d8c1.json"
+      ],
       "source_commit": "837d8c1ee1dfd577b9bae764e5aaf72b9e7701f8",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-13-15-837d8c1.json", "report_sha256": "7060c10c5387d8cccecfbaf167438c72e716e52df498f4da6d3c32df686d034f", "check": "encrypted_backup_stream_test", "status": "blocked"}],
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-13-15-837d8c1.json",
+          "report_sha256": "7060c10c5387d8cccecfbaf167438c72e716e52df498f4da6d3c32df686d034f",
+          "check": "encrypted_backup_stream_test",
+          "status": "blocked"
+        }
+      ],
       "blocker": "The local environment has cryptography 45.0.4 without cryptography.cobblestone; the project pin requiring 50.0.2 is unavailable locally and must not be fetched under the current constraint."
     },
     {
