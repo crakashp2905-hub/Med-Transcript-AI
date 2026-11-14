@@ -39,7 +39,8 @@ def pytest_basetemp(version):
     return root / f"pytest-acceptance-{version}-{uuid4()}"
 
 
-def source_inventory():
+def source_inventory(root="."):
+    root = Path(root)
     patterns = (
         "services/**/*.py",
         "tests/**/*.py",
@@ -58,9 +59,9 @@ def source_inventory():
         "compose*.yaml",
     )
     return {
-        p.as_posix(): sha256(p)
+        p.relative_to(root).as_posix(): sha256(p)
         for pattern in patterns
-        for p in Path(".").glob(pattern)
+        for p in root.glob(pattern)
         if p.is_file() and "__pycache__" not in p.parts
     }
 

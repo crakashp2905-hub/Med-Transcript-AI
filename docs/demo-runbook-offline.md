@@ -5,6 +5,7 @@ From the repository root, with the existing Python environment and cached web de
 ```powershell
 $offlineRunId='local-'+[DateTime]::UtcNow.ToString('yyyyMMdd-HHmmss')
 .venv/Scripts/python.exe scripts/offline_preflight --out "data/offline-preflight-$offlineRunId.json"
+.venv/Scripts/python.exe -m services.offline_diagnostics
 .venv/Scripts/python.exe -m services.offline_acceptance --version $offlineRunId
 .venv/Scripts/python.exe -m services.offline_demo
 ```
