@@ -1,0 +1,329 @@
+{
+  "schema_version": "offline_product_scenarios_v1",
+  "scenario_set_id": "offline-encounters-v1",
+  "generated_from_local_assets_only": true,
+  "source_manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+  "source_license": "CC-BY-4.0",
+  "attribution": "PriMock57: A Dataset Of Primary Care Mock Consultations, Alex Papadopoulos Korfiatis, Francesco Moramarco, Radmila Sarac and Aleksandar Savkov (2022), Babylon Health. CC BY 4.0. Source: https://github.com/babylonhealth/primock57",
+  "scenario_count": 5,
+  "scenarios": [
+    {
+      "scenario_id": "short-two-speaker-consultation",
+      "scenario_type": "short",
+      "goal": "Review a short source, inspect the transcript and complete a simulated note correction.",
+      "scenario_authorship": "developer_scripted_product_workflow",
+      "source_data_class": "approved_public_mock_speech",
+      "source_dataset": "primock57-20consultations-120clips-v1",
+      "source_dataset_manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+      "source_group_id": "day2_consultation01",
+      "source_license": "CC-BY-4.0",
+      "speaker_roles_are_reference_only": true,
+      "clinical_acceptance": false,
+      "clinical_release_authorized": false,
+      "transcript_turns": [
+        {
+          "start_ms": 0,
+          "end_ms": 7285,
+          "speaker_role_reference": "doctor",
+          "reference": "Yeah, OK, great. Well, nice to see you this morning. Um, before we start your appointment, could I confirm your full name and date of birth please?",
+          "source_sample_id": "day2_consultation01_doctor.utterance01",
+          "source_audio_sha256": "06ba981334432eae576d75a743077b05f5566c4f33ec932d097ec004287426b4"
+        },
+        {
+          "start_ms": 7585,
+          "end_ms": 12627,
+          "speaker_role_reference": "doctor",
+          "reference": "That's perfect, thank you, John. Um, are you in a private place where you're OK to speak at the moment?",
+          "source_sample_id": "day2_consultation01_doctor.utterance02",
+          "source_audio_sha256": "e081cc23afbbe4f68564d4975e7cfbf2d610659188a5653dff918d973072bcfd"
+        },
+        {
+          "start_ms": 12927,
+          "end_ms": 18420,
+          "speaker_role_reference": "patient",
+          "reference": "Yeah, so I just feel I can't really hear as well as I used to, like my hearing is kind of deteriorating in some way.",
+          "source_sample_id": "day2_consultation01_patient.utterance01",
+          "source_audio_sha256": "aece20a67e1daaaf06fa77ee7e0693d4ed36545a8eb510f8e78de396869fdde9"
+        },
+        {
+          "start_ms": 18720,
+          "end_ms": 23838,
+          "speaker_role_reference": "doctor",
+          "reference": "Six weeks, OK. Um, and before that have you had any hearing problem at all?",
+          "source_sample_id": "day2_consultation01_doctor.utterance03",
+          "source_audio_sha256": "af4efd4832516636684c0cfa2e0ef4b78560edc469788dd825c111a501c858ee"
+        },
+        {
+          "start_ms": 24138,
+          "end_ms": 30844,
+          "speaker_role_reference": "patient",
+          "reference": "Um I had something maybe, about a year ago, but it only lasted a couple of days, it wasn't anything as long as this.",
+          "source_sample_id": "day2_consultation01_patient.utterance02",
+          "source_audio_sha256": "e4f4cb14ebd62a561154412610bf8735773bf6a27893e6a25eddeb81935dc85b"
+        },
+        {
+          "start_ms": 31144,
+          "end_ms": 42209,
+          "speaker_role_reference": "patient",
+          "reference": "Uh nothing major it's just kind of uh it's, it's not the kind of dizziness you get with nausea, like uh not, not proper room spinning or anything like that but just, just a little bit kind of off balance.",
+          "source_sample_id": "day2_consultation01_patient.utterance03",
+          "source_audio_sha256": "63c8db49defd02e3c399d7d4bfddf846cba334a702d00a07dd25327e9c3a4abd"
+        }
+      ],
+      "audio_asset": "assets/short-two-speaker-consultation.wav",
+      "audio_sha256": "b812ccc495e651556f8683001bb7e11ccd80759175b0d13f18938840d6648ee1",
+      "duration_ms": 42509,
+      "channels": 1,
+      "audio_transform": {
+        "method": "sequential_public_clip_composition_v1"
+      },
+      "inference_executed": false
+    },
+    {
+      "scenario_id": "deterministic-background-noise",
+      "scenario_type": "noisy",
+      "goal": "Review a noisy synthetic derivative; every transcript error remains in the fixture and is not a model score.",
+      "scenario_authorship": "developer_scripted_product_workflow",
+      "source_data_class": "approved_public_mock_speech",
+      "source_dataset": "primock57-20consultations-120clips-v1",
+      "source_dataset_manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+      "source_group_id": "day1_consultation07",
+      "source_license": "CC-BY-4.0",
+      "speaker_roles_are_reference_only": true,
+      "clinical_acceptance": false,
+      "clinical_release_authorized": false,
+      "transcript_turns": [
+        {
+          "start_ms": 0,
+          "end_ms": 5291,
+          "speaker_role_reference": "doctor",
+          "reference": "Well I will certainly try my best, for you. Um, can you tell me a bit more about what's been going on?",
+          "source_sample_id": "day1_consultation07_doctor.utterance01",
+          "source_audio_sha256": "96ad266e58f24fffd5b929bc8d31995afc75be8b014a2a939e1e48de7c5e23d2"
+        },
+        {
+          "start_ms": 5591,
+          "end_ms": 13488,
+          "speaker_role_reference": "patient",
+          "reference": "Uh, I just feel a bit, run-down, you know I've got, a cough, a cold.",
+          "source_sample_id": "day1_consultation07_patient.utterance01",
+          "source_audio_sha256": "5168b735789834f9c62cf61e2f2fdff9416e81c33c3d1d2c4a80508c20f3bdc1"
+        },
+        {
+          "start_ms": 13788,
+          "end_ms": 26353,
+          "speaker_role_reference": "patient",
+          "reference": "And they're in the, they're not even in the top division, uh, of the Scottish, league. They're actually in the, the, the championship, which is the league below that, and they're, bottom of the table.",
+          "source_sample_id": "day1_consultation07_patient.utterance02",
+          "source_audio_sha256": "bab6301edd40081ebbe0c00965672ff61bfa3ff7aa4820c8713d0279f060ad3f"
+        },
+        {
+          "start_ms": 26653,
+          "end_ms": 33925,
+          "speaker_role_reference": "doctor",
+          "reference": "OK, OK. Fine. Um, moving down to your chest. Um, how's your breathing been?",
+          "source_sample_id": "day1_consultation07_doctor.utterance02",
+          "source_audio_sha256": "ffad68cbb58de7ea123186854ff208cd8546c5adcacfb1beb09cc7178dad5e76"
+        },
+        {
+          "start_ms": 34225,
+          "end_ms": 42769,
+          "speaker_role_reference": "doctor",
+          "reference": "No pain, OK, OK. Have you noticed yourself, any, any, any temperatures or fevers? Um, feeling hot and cold? Sweaty?",
+          "source_sample_id": "day1_consultation07_doctor.utterance03",
+          "source_audio_sha256": "5a482dbc95710bb8786b2fc747fff8bea533072af671d18feee65e876dfcf9a8"
+        },
+        {
+          "start_ms": 43069,
+          "end_ms": 50670,
+          "speaker_role_reference": "patient",
+          "reference": "It it's, just kinda, like you know when you're, when you're bending like, elbows and knees and just, just a wee bit, kinda stiff, you know?",
+          "source_sample_id": "day1_consultation07_patient.utterance03",
+          "source_audio_sha256": "b2f15b78cbd32036cfdce0f0984bd18e7bbacdcfc49d409499e7a7d48cd785ea"
+        }
+      ],
+      "audio_asset": "assets/deterministic-background-noise.wav",
+      "audio_sha256": "5c779439f8ac9c209b5001dd879748e05b97c20df03a5687f81232949fdc6b52",
+      "duration_ms": 50970,
+      "channels": 1,
+      "audio_transform": {
+        "method": "lcg_uniform_demeaned_white_noise_v1",
+        "seed": 160101,
+        "target_snr_db": 12,
+        "realized_snr_db_before_pcm_clipping": 12.0
+      },
+      "inference_executed": false
+    },
+    {
+      "scenario_id": "two-speaker-overlap",
+      "scenario_type": "overlapping",
+      "goal": "Review a two-voice synthetic overlap and verify that both source spans remain represented.",
+      "scenario_authorship": "developer_scripted_product_workflow",
+      "source_data_class": "approved_public_mock_speech",
+      "source_dataset": "primock57-20consultations-120clips-v1",
+      "source_dataset_manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+      "source_group_id": "day1_consultation08",
+      "source_license": "CC-BY-4.0",
+      "speaker_roles_are_reference_only": true,
+      "clinical_acceptance": false,
+      "clinical_release_authorized": false,
+      "transcript_turns": [
+        {
+          "start_ms": 0,
+          "end_ms": 4847,
+          "speaker_role_reference": "doctor",
+          "reference": "So, uh, did it, did it come about quite suddenly, or was it more, kind of a gradual thing?",
+          "source_sample_id": "day1_consultation08_doctor.utterance03",
+          "source_audio_sha256": "378c52cf56b58632d3b651ce3315df5ccfa38d1c492f9cb48d57e7392f633e1b"
+        },
+        {
+          "start_ms": 2000,
+          "end_ms": 6571,
+          "speaker_role_reference": "patient",
+          "reference": "All over my arms, um, and my hands mainly.",
+          "source_sample_id": "day1_consultation08_patient.utterance03",
+          "source_audio_sha256": "d6abff24c9cf00dc44d76cfc9ae2a743bd9e3f49746a262cf0058c5155bf60e1"
+        }
+      ],
+      "audio_asset": "assets/two-speaker-overlap.wav",
+      "audio_sha256": "4514ad44ba7a8c14045240aae7ac891bcd110a69b3c270bf842a4ed6526a4b88",
+      "duration_ms": 6571,
+      "channels": 1,
+      "audio_transform": {
+        "method": "two_public_utterances_summed_with_synthetic_offset_v1",
+        "overlap_ms": 2847
+      },
+      "inference_executed": false
+    },
+    {
+      "scenario_id": "medication-history-script",
+      "scenario_type": "medication_heavy",
+      "goal": "Exercise dose, frequency, allergy-reaction, negation and order-versus-history corrections without audio or inference.",
+      "scenario_authorship": "developer_scripted_product_workflow",
+      "source_data_class": "developer_authored_synthetic_text",
+      "source_dataset": null,
+      "source_dataset_manifest_sha256": null,
+      "source_group_id": null,
+      "source_license": null,
+      "speaker_roles_are_reference_only": true,
+      "clinical_acceptance": false,
+      "clinical_release_authorized": false,
+      "input_mode": "typed_synthetic_script_no_audio",
+      "synthetic_script": {
+        "input_mode": "typed_synthetic_script_no_audio",
+        "turns": [
+          {
+            "speaker_role_reference": "clinician",
+            "text": "Please tell me the medicines you currently take and how you take them."
+          },
+          {
+            "speaker_role_reference": "patient",
+            "text": "I take metformin 500 mg twice daily and lisinopril 10 mg each morning. I sometimes miss the evening metformin dose."
+          },
+          {
+            "speaker_role_reference": "clinician",
+            "text": "Any medication allergies or reactions?"
+          },
+          {
+            "speaker_role_reference": "patient",
+            "text": "Amoxicillin gave me a rash. I have never had breathing trouble from it. I am not taking warfarin."
+          },
+          {
+            "speaker_role_reference": "clinician",
+            "text": "I will record those details for review. I am not changing or prescribing any medication in this scenario."
+          }
+        ],
+        "review_targets": [
+          "Bind dose and frequency to metformin, not lisinopril.",
+          "Preserve the amoxicillin rash and the explicit absence of breathing trouble.",
+          "Preserve the negated warfarin statement.",
+          "Keep current medication history separate from a medication order."
+        ]
+      }
+    },
+    {
+      "scenario_id": "two-channel-multi-speaker",
+      "scenario_type": "multi_speaker",
+      "goal": "Navigate two source channels while keeping source reference roles separate from predicted speaker roles.",
+      "scenario_authorship": "developer_scripted_product_workflow",
+      "source_data_class": "approved_public_mock_speech",
+      "source_dataset": "primock57-20consultations-120clips-v1",
+      "source_dataset_manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+      "source_group_id": "day3_consultation04",
+      "source_license": "CC-BY-4.0",
+      "speaker_roles_are_reference_only": true,
+      "clinical_acceptance": false,
+      "clinical_release_authorized": false,
+      "transcript_turns": [
+        {
+          "start_ms": 0,
+          "end_ms": 10442,
+          "speaker_role_reference": "doctor",
+          "reference": "Hi, hello. I'm Doctor Jacob and welcome to Babylon. Hello. Hi. So just before we start, is it alright if you could confirm your name for me please?",
+          "source_sample_id": "day3_consultation04_doctor.utterance01",
+          "source_audio_sha256": "f363c69832ef4d5f1609972b4221583edc52d7c367fbf6bcf2306c784e42b5a1"
+        },
+        {
+          "start_ms": 10742,
+          "end_ms": 17061,
+          "speaker_role_reference": "doctor",
+          "reference": "That's correct. And just to confirm that you're in a secure location, and we can have a confidential conversation.",
+          "source_sample_id": "day3_consultation04_doctor.utterance02",
+          "source_audio_sha256": "8350af26f262d3db4d96ca146c84899df243a83ebcd9c0ef6cb2dd6fe7a1e0e9"
+        },
+        {
+          "start_ms": 17361,
+          "end_ms": 24013,
+          "speaker_role_reference": "patient",
+          "reference": "Um, ohh yeah, so I'm having, I'm just wheezing a bit, and coughing and just generally a bit short of breath",
+          "source_sample_id": "day3_consultation04_patient.utterance01",
+          "source_audio_sha256": "bfb0a0746e19ff7cbdb56ab7947eb53f3021932105fa3dea653c297546016282"
+        },
+        {
+          "start_ms": 24313,
+          "end_ms": 31934,
+          "speaker_role_reference": "doctor",
+          "reference": "Wheezing and coughing, OK. And you've mentioned you're using the blue inhaler. So, how often are you using the blue inhaler?",
+          "source_sample_id": "day3_consultation04_doctor.utterance03",
+          "source_audio_sha256": "bd7c71cb3624365eaebd15f0f861f1427013ae956ce5899feab83a529dd5e0b0"
+        },
+        {
+          "start_ms": 32234,
+          "end_ms": 36915,
+          "speaker_role_reference": "patient",
+          "reference": "Um, yeah, and morning or evening to kinda prevent it as well.",
+          "source_sample_id": "day3_consultation04_patient.utterance02",
+          "source_audio_sha256": "f8e1c728c7691c67a37d7ca99e7cddc2c15169d1aa5cc763bf211892af322aec"
+        },
+        {
+          "start_ms": 37215,
+          "end_ms": 42773,
+          "speaker_role_reference": "patient",
+          "reference": "Um, I think I'm using that every day and the Salbutamol just like as and when",
+          "source_sample_id": "day3_consultation04_patient.utterance03",
+          "source_audio_sha256": "62aa0a66a06604e8655f39fb680f3f4cde56caf33c457ad5d5730bb66a730686"
+        }
+      ],
+      "audio_asset": "assets/two-channel-multi-speaker.wav",
+      "audio_sha256": "09ff1fb006ceef44946d59c41611656447bdbfbea0bbcdd11e209dc2b11954f7",
+      "duration_ms": 43073,
+      "channels": 2,
+      "audio_transform": {
+        "method": "sequential_public_clips_routed_to_stereo_channels_v1",
+        "channel_roles": {
+          "0": "doctor_reference",
+          "1": "patient_reference"
+        }
+      },
+      "inference_executed": false
+    }
+  ],
+  "limitations": [
+    "Audio scenarios are developer-composed derivatives of public mock utterance clips; the source speech is not newly recorded synthetic speech.",
+    "The medication-heavy case is developer-authored text only and has no audio or ASR result.",
+    "Reference speaker roles come from upstream annotations and are not diarization predictions.",
+    "This scenario set is for scripted product workflow coverage, not clinical acceptance or model accuracy scoring."
+  ],
+  "clinical_acceptance": false,
+  "clinical_release_authorized": false
+}
