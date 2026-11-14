@@ -93,7 +93,8 @@ cover the real PostgreSQL create/authorization/review/approval path in GitHub CI
 Use PostgreSQL-native `pg_dump`/restore, protected asset snapshots and tombstone
 reconciliation for that deployment, not the SQLite maintenance backup command.
 
-With Docker installed, set a random URL-safe `POSTGRES_PASSWORD` and run
+With Docker installed, set separate random URL-safe `POSTGRES_PASSWORD` and
+`MED_TRANSCRIPT_APP_DB_PASSWORD` values and run
 `docker compose up --build`. The database port is not published; the UI is bound
 to host loopback. App state and PostgreSQL use separate named volumes on an
 internal network. Read the local access key from API startup logs. Models are
@@ -102,3 +103,15 @@ set `MED_TRANSCRIPT_CONTAINER_ASR_PROFILES` to its container path before restart
 Containers are a development deployment, not an automatic compliance assertion.
 Docker was unavailable on the authoring workstation; the image build is checked
 in CI, while runtime host/GPU hardening remains an operator acceptance task.
+
+The PostgreSQL container initializes a `medscribe_owner` bootstrap account and a
+separate `medscribe_app` login. The API and worker use the latter, which is not a
+superuser and cannot create roles or databases. It has schema `CREATE` access
+because the current application initializes database migrations during startup.
+The role-creation script runs only when PostgreSQL initializes an empty data
+volume; changing passwords or upgrading an existing volume requires a deliberate
+operator-managed role/password migration. The bootstrap password remains available
+to the database container for initialization and must be protected accordingly.
+Application and migration privileges are therefore reduced from superuser, but
+they are not fully separated: move migrations into a one-shot privileged job and
+revoke runtime schema `CREATE` before claiming migration/application isolation.

@@ -2,12 +2,15 @@ services:
   db:
     image: postgres:17
     environment:
-      POSTGRES_USER: medscribe
+      POSTGRES_USER: medscribe_owner
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a random local PostgreSQL password}
       POSTGRES_DB: medscribe
-    volumes: [postgres-data:/var/lib/postgresql/data]
+      MED_TRANSCRIPT_APP_DB_PASSWORD: ${MED_TRANSCRIPT_APP_DB_PASSWORD:?Set a separate random application database password}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./deploy/postgres/010-create-app-role.sh:/docker-entrypoint-initdb.d/010-create-app-role.sh:ro
     healthcheck:
-      test: [CMD-SHELL, pg_isready -U medscribe]
+      test: [CMD-SHELL, pg_isready -U medscribe_owner]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -16,7 +19,7 @@ services:
     build: .
     ports: ['127.0.0.1:8000:8000']
     environment: &runtime
-      MED_TRANSCRIPT_DB: postgresql://medscribe:${POSTGRES_PASSWORD}@db:5432/medscribe
+      MED_TRANSCRIPT_DB: postgresql://medscribe_app:${MED_TRANSCRIPT_APP_DB_PASSWORD}@db:5432/medscribe
       MED_TRANSCRIPT_ASSETS: /app/data/assets
       MED_TRANSCRIPT_ASR_PROFILES: ${MED_TRANSCRIPT_CONTAINER_ASR_PROFILES:-}
     volumes: [app-data:/app/data]

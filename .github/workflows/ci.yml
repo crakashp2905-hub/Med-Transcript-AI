@@ -117,6 +117,7 @@ jobs:
       - run: docker compose config --quiet
         env:
           POSTGRES_PASSWORD: synthetic-ci-password
+          MED_TRANSCRIPT_APP_DB_PASSWORD: synthetic-app-ci-password
       - run: docker build -t med-transcript-ci .
       - name: Validate hosted Google sign-in configuration
         run: |
@@ -124,6 +125,7 @@ jobs:
           docker compose --env-file .env.production.example -f compose.yaml -f compose.production.yaml config --quiet
         env:
           POSTGRES_PASSWORD: synthetic-ci-password
+          MED_TRANSCRIPT_APP_DB_PASSWORD: synthetic-app-ci-password
           GOOGLE_CLIENT_ID: synthetic-ci-client
           GOOGLE_CLIENT_SECRET_FILE: /tmp/med-google-secret
           GOOGLE_WORKSPACE_DOMAIN: example.org
