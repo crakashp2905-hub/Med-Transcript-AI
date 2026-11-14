@@ -66,3 +66,57 @@ def test_matched_ablation_receipt_recomputes_all_arms_and_failure_deletions():
         arm["normalized_wer"] > 0.05
         for arm in report["comparison"]["arms"].values()
     )
+
+
+def test_matched_terminology_arm_records_positive_and_negative_term_outcomes():
+    report = json.loads(REPORT_PATH.read_text(encoding="utf-8"))
+    suite = json.loads(
+        (ROOT / "evaluation/detailed-suite-v7.json").read_text(encoding="utf-8")
+    )
+    manifest = json.loads((ROOT / suite["manifest"]).read_text(encoding="utf-8"))
+    lexicon = json.loads(
+        (ROOT / "evaluation/lexicons/clinical-english-v1-e01.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    term = lexicon["entries"][0]["term"]
+    pattern = re.compile(rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])", re.I)
+    references = {
+        case["group_id"]: _reference(case) for case in manifest["cases"]
+    }
+    positive_ids = {
+        group_id for group_id, reference in references.items() if pattern.search(reference)
+    }
+    negative_ids = set(references) - positive_ids
+    rows = {
+        arm_id: {row["group_id"]: row for row in arm["cases"]}
+        for arm_id, arm in report["arm_outputs"].items()
+    }
+
+    def counts(arm_id):
+        arm_rows = rows[arm_id]
+        return {
+            "positive_recall": sum(
+                bool(pattern.search(arm_rows[group_id]["hypothesis"]))
+                for group_id in positive_ids
+            ),
+            "negative_false_insertions": sum(
+                bool(pattern.search(arm_rows[group_id]["hypothesis"]))
+                for group_id in negative_ids
+            ),
+        }
+
+    assert len(positive_ids) == 12
+    assert len(negative_ids) == 4
+    assert counts("fixed_baseline") == {
+        "positive_recall": 6,
+        "negative_false_insertions": 0,
+    }
+    assert counts("terminology_only") == {
+        "positive_recall": 12,
+        "negative_false_insertions": 0,
+    }
+    assert (
+        report["comparison"]["arms"]["terminology_only"]["normalized_wer"]
+        > report["comparison"]["arms"]["fixed_baseline"]["normalized_wer"]
+    )
