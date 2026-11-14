@@ -1,0 +1,107 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-16",
+  "source_commit": "d3ac8ba646b867271c30259513713f15b70f37db",
+  "source_files": {
+    "services/offline_diagnostics.py": "6da248262407a41681e9ed096454243397048d0bab184c27d70dc55d19573f54",
+    "services/offline_acceptance.py": "55b3d1529ce777969f7a873d47abd086eea3ab771f1934dfbfcc228c0287e945",
+    "services/offline_preflight.py": "2b8b0a33e24edea34fbbbab9f07e2f422205eda671c0d67a1885cbbb50ba31f3",
+    "services/source_change_detector.py": "449f7c044c58d0849fbdefac7585d121e2ad7be74daa783a9f5c32b741ddb19f",
+    "tests/test_offline_diagnostics.py": "2a45992c8cb0a69bbce853f5a4c7d2b6e7302b43f6670d68995af3dbf571eca4",
+    "docs/offline-diagnostics.md": "c931b20cf3fa89bd344d12c2c1652b7b398c22891fd9e124c6242a4cca6dce6d",
+    "docs/demo-runbook-offline.md": "b0dd9d972f8c0babbda8b8c3de34fc5c77baaa7faec8a4a51fb00d253155ffbc"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "command": "python -m services.offline_diagnostics",
+    "external_calls_attempted": 0,
+    "installations_attempted": 0,
+    "data_root_write_probe": true,
+    "reports_root_write_probe": true
+  },
+  "runtime_sha256": "ef25fcd2d94e6afc90743bfabe73447e96771e184d2770818750b7bd23649157",
+  "diagnostic_observations": {
+    "reported_head": "d3ac8ba646b867271c30259513713f15b70f37db",
+    "tracked_worktree_clean": false,
+    "source_freshness": {
+      "schema_version": "acceptance_freshness_v1",
+      "status": "invalidated",
+      "invalidated": true,
+      "reasons": [
+        "source_hash_mismatch",
+        "toolchain_changed"
+      ],
+      "source_files_compared": 760,
+      "toolchain_sha256": "abbd2c2840fff2848e8ac2f082a10c14caa700a646701e2be71d46156d6d4518"
+    },
+    "configured_model_directory_missing": [],
+    "model_candidates_without_directory_configuration": [
+      "distil-whisper-large-v3",
+      "faster-whisper-large-v3",
+      "faster-whisper-tiny.en",
+      "multimed-whisper-small-english",
+      "whisper-small"
+    ],
+    "disk": {
+      "total_bytes": 580755910656,
+      "free_bytes": 199191502848,
+      "used_percent": 65.7
+    },
+    "permissions": [
+      {
+        "path": "D:/Med-Transcript/data",
+        "exists": true,
+        "readable": true,
+        "writable_probe": true
+      },
+      {
+        "path": "D:/Med-Transcript/evaluation/reports",
+        "exists": true,
+        "readable": true,
+        "writable_probe": true
+      }
+    ],
+    "latest_acceptance": {
+      "status": "available",
+      "report": "evaluation/reports/offline-acceptance-master-v2-2026-11-14-ce14d19.json",
+      "report_sha256": "d0b06b6064547f568c9dbc6983baee8180a79200db1a741624ba59c5fe96d219",
+      "blocked_checks": [
+        "backend_tests",
+        "source_integrity"
+      ],
+      "failed_tests": [],
+      "skipped_tests": []
+    },
+    "external_calls_attempted": 0,
+    "installations_attempted": 0
+  },
+  "checks": {
+    "diagnostic_command": {
+      "status": "pass",
+      "command": "python -m services.offline_diagnostics",
+      "detail": "Emits a structured JSON diagnostics report without external calls or installation."
+    },
+    "source_freshness_and_test_blockers": {
+      "status": "pass",
+      "detail": "Detects the available prior acceptance snapshot as invalidated and reports backend_tests and source_integrity as blocked."
+    },
+    "model_disk_and_permission_inventory": {
+      "status": "pass",
+      "detail": "Reports configured candidate directories and unconfigured candidates separately, measures disk headroom, and probes data/report-directory read/write access."
+    },
+    "offline_diagnostics_unit_tests": {
+      "status": "pass",
+      "command": "pytest tests/test_offline_diagnostics.py tests/test_acceptance_reporting.py tests/test_master_ledger.py",
+      "detail": "10 passed."
+    }
+  },
+  "result": "verified",
+  "clinical_release_authorized": false,
+  "limitations": [
+    "Model directories are not verified model weights.",
+    "Acceptance freshness reports stale source/toolchain snapshots instead of turning them into passes.",
+    "Tracked worktree contains unrelated concurrent edits; the command reports this state accurately."
+  ],
+  "recorded_utc_date": "2026-11-14"
+}

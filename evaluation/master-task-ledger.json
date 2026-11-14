@@ -7055,11 +7055,45 @@
       "id": "MTA-14-16",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Build offline diagnostic command that reports source freshness, missing models, disk headroom, permissions and blocked tests.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "services/offline_diagnostics.py",
+        "services/offline_acceptance.py",
+        "services/offline_preflight.py",
+        "services/source_change_detector.py",
+        "tests/test_offline_diagnostics.py",
+        "docs/offline-diagnostics.md",
+        "docs/demo-runbook-offline.md",
+        "evaluation/reports/master-task-mta-14-16-d3ac8ba.json"
+      ],
+      "source_commit": "d3ac8ba646b867271c30259513713f15b70f37db",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-16-d3ac8ba.json",
+          "report_sha256": "720f67aeaa10de9bbe8e99da19898807147008160e1aa2ae201911d98f9b037c",
+          "check": "diagnostic_command",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-16-d3ac8ba.json",
+          "report_sha256": "720f67aeaa10de9bbe8e99da19898807147008160e1aa2ae201911d98f9b037c",
+          "check": "source_freshness_and_test_blockers",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-16-d3ac8ba.json",
+          "report_sha256": "720f67aeaa10de9bbe8e99da19898807147008160e1aa2ae201911d98f9b037c",
+          "check": "model_disk_and_permission_inventory",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-16-d3ac8ba.json",
+          "report_sha256": "720f67aeaa10de9bbe8e99da19898807147008160e1aa2ae201911d98f9b037c",
+          "check": "offline_diagnostics_unit_tests",
+          "status": "pass"
+        }
+      ],
       "blocker": null
     },
     {

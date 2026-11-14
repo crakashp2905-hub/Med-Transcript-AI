@@ -294,3 +294,7 @@ that longer run with a 1,200-second cap.
 ## Three-viewport visual comparison on 4304b85
 
 `MTA-09-20` is verified with three fresh Playwright full-page comparisons: desktop 1440×900, tablet 1024×768, and mobile 390×844 (3 passed). Source-bound screenshot baselines and the test are committed. Evidence report: `evaluation/reports/master-task-mta-09-20-4304b85.json` (SHA-256 `502595cc753150d4016654145b04f6f02b3f9dfef892ff1bf489b34952b554fe`). This visual check covers the static synthetic investor preview on Windows/Chrome; it does not establish clinical validation.
+
+## Offline diagnostics on d3ac8ba
+
+`MTA-14-16` is verified with the new `services.offline_diagnostics` command. It reports Git/source freshness, configured and unconfigured model candidates, disk headroom, temporary directory permission probes, blocked checks and failed/skipped test IDs from the hash-checked latest acceptance report. Tests passed: 10. The prior acceptance snapshot is correctly reported invalidated for source and toolchain changes; this is a diagnostic finding, not a pass. Evidence report: `evaluation/reports/master-task-mta-14-16-d3ac8ba.json` (SHA-256 `720f67aeaa10de9bbe8e99da19898807147008160e1aa2ae201911d98f9b037c`). No network calls or installations were made.
