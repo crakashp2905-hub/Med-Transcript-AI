@@ -6890,12 +6890,30 @@
       "id": "MTA-14-01",
       "section": "14 — Fault tolerance, operations, performance and lifecycle",
       "priority": "P1",
-      "status": "not_started",
+      "status": "verified",
       "description": "Exercise multi-tab and multi-process concurrency, exactly-once ingest publication, worker lease expiry and recovery races.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": [
+        "tests/test_worker_recovery.py",
+        "tests/test_foundation.py",
+        "tests/test_transcription.py",
+        "evaluation/reports/master-task-mta-14-01-a118c04.json"
+      ],
+      "source_commit": "a118c042a5ad78864e8ca82324921cbd66b12c60",
+      "test_results": [
+        {
+          "report": "evaluation/reports/master-task-mta-14-01-a118c04.json",
+          "report_sha256": "a3be9ec341b257766fd849ca90ebda0ca6e2ed9442fa7d0c705e7aff15fc29b1",
+          "check": "focused_concurrency_and_recovery_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/master-task-mta-14-01-a118c04.json",
+          "report_sha256": "a3be9ec341b257766fd849ca90ebda0ca6e2ed9442fa7d0c705e7aff15fc29b1",
+          "check": "ruff",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Only synthetic SQLite fixtures and competing TestClient instances were exercised; a real browser-tab workflow and production multi-host database remain outside this evidence."
     },
     {
       "id": "MTA-14-02",

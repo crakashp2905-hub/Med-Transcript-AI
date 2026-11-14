@@ -1,0 +1,36 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_id": "MTA-14-01",
+  "source_commit": "a118c042a5ad78864e8ca82324921cbd66b12c60",
+  "source_files": {
+    "tests/test_worker_recovery.py": "ced5f630e692ef745e3d0156eba0c82bafc0cd0cdaffbaa1697ff1d9ddf2ab1c",
+    "tests/test_foundation.py": "4cb6a0295ccf2b6736837867ffd7f9f26779783c3324491c61c3bd89ecf9de23",
+    "tests/test_transcription.py": "c47e3d8215e84e259a2520a83d7bc1817e2daf2b2b6ae5f1426c10d6e2582861"
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "test_runner": "pytest",
+    "test_command": "pytest tests/test_worker_recovery.py tests/test_foundation.py::test_concurrent_completion_commits_one_job tests/test_transcription.py::test_asr_abandoned_worker_is_recovered tests/test_transcription.py::test_superseded_lease_cannot_publish_transcript"
+  },
+  "runtime_sha256": "bbae81e53c76deb7684fc72c0d05e4730b749f21f1a00ed7f709562fda15f11c",
+  "checks": {
+    "focused_concurrency_and_recovery_tests": {
+      "status": "pass",
+      "detail": "7 passed, 1 existing Pydantic warning. Covers two OS processes claiming one ingest job, exactly one successful ingest and audit, simultaneous recovery of an expired ingest lease, competing upload-completion clients creating one job, expired ASR lease retry, and stale ASR lease fencing that prevents transcript publication."
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "ruff check tests/test_worker_recovery.py",
+      "detail": "All checks passed."
+    }
+  },
+  "result": "verified",
+  "limitations": [
+    "All audio and database fixtures are synthetic. These tests establish application concurrency and recovery behavior, not clinical quality.",
+    "Competing TestClient instances exercise separate concurrent API clients; no real browser-tab workflow or production multi-host database was exercised.",
+    "The test command required local loopback socketpair access for TestClient; no external network calls were made."
+  ],
+  "clinical_release_authorized": false,
+  "recorded_utc_date": "2026-11-14"
+}
