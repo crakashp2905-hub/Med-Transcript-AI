@@ -109,3 +109,20 @@ def test_request_duplicate_keys_are_rejected_before_mutation(setup):
         response.status_code == 422
         and response.json()["code"] == "invalid_json_structure"
     )
+
+
+def test_api_boundary_rejects_malformed_json_and_missing_required_fields(setup):
+    client, path, _ = setup
+    malformed = client.post(
+        "/v1/encounters",
+        headers={**headers(), "Content-Type": "application/json"},
+        content=b'{"synthetic_data":',
+    )
+    missing = client.post("/v1/encounters", headers=headers(), json={})
+
+    assert malformed.status_code == 422
+    assert malformed.json()["code"] == "invalid_json_structure"
+    assert missing.status_code == 422
+    assert missing.json()["code"] == "invalid_request"
+    with sqlite3.connect(path) as con:
+        assert con.execute("SELECT COUNT(*) FROM encounters").fetchone()[0] == 0
