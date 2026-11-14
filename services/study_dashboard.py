@@ -10,5 +10,7 @@ def build(*, datasets, variants):
         "visible_failures": True,
         "cost_claim": None,
         "accuracy_claim": None,
+        "clinical_productivity_estimate": None,
+        "clinician_time_saved_claim": None,
         "model_not_admitted_banner": True,
     }
