@@ -170,6 +170,13 @@ def create_app(
         ).fetchone()
         if row is None or row["deleted_at"]:
             raise HTTPException(404, "encounter_not_found")
+        if actor.role == "viewer":
+            try:
+                synthetic = json.loads(row["body"]).get("synthetic_data") is True
+            except (TypeError, ValueError):
+                synthetic = False
+            if not synthetic:
+                raise HTTPException(404, "encounter_not_found")
         return row
 
     def audit(con, actor, action, resource):

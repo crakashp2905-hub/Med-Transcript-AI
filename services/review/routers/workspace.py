@@ -43,6 +43,14 @@ def register(app, services: ReviewService):
 
     @app.get("/v1/session")
     def session(actor=Depends(identity)):
+        if actor.role == "viewer":
+            return {
+                "role": "viewer",
+                "data_mode": "synthetic_only",
+                "asr_profiles": [],
+                "demo_available": (assets.parent / "demo-sample.json").is_file(),
+                "clinical_models_enabled": False,
+            }
         return {
             "clinician_id": str(actor.clinician_id),
             "tenant_id": str(actor.tenant_id),
@@ -240,9 +248,19 @@ def register(app, services: ReviewService):
         with database() as con:
             rows = con.execute(
                 """SELECT * FROM encounters WHERE tenant=? AND clinician=? AND deleted_at IS NULL
-                ORDER BY created_at DESC,id LIMIT ? OFFSET ?""",
-                (str(actor.tenant_id), str(actor.clinician_id), limit, offset),
+                ORDER BY created_at DESC,id""",
+                (str(actor.tenant_id), str(actor.clinician_id)),
             ).fetchall()
+            if actor.role == "viewer":
+
+                def viewer_safe(row):
+                    try:
+                        return json.loads(row["body"]).get("synthetic_data") is True
+                    except (TypeError, ValueError):
+                        return False
+
+                rows = [row for row in rows if viewer_safe(row)]
+            page = rows[offset : offset + limit]
             return {
                 "items": [
                     {
@@ -254,9 +272,11 @@ def register(app, services: ReviewService):
                         "current_transcript_id": row["current_transcript"],
                         "current_note_id": row["current_note"],
                     }
-                    for row in rows
+                    for row in page
                 ],
-                "next_offset": offset + limit if len(rows) == limit else None,
+                "next_offset": offset + len(page)
+                if len(rows) > offset + limit
+                else None,
             }
 
     @app.get("/v1/encounters/{eid}/workspace")

@@ -347,11 +347,22 @@ def register(app, services: ReviewService):
     def deletion_status(rid: UUID, actor=Depends(identity)):
         with database() as con:
             row = con.execute(
-                """SELECT deletion_requests.* FROM deletion_requests JOIN encounters
+                """SELECT deletion_requests.*,encounters.body AS encounter_body
+                FROM deletion_requests JOIN encounters
                 ON encounters.id=deletion_requests.encounter WHERE deletion_requests.id=?
                 AND encounters.tenant=? AND encounters.clinician=?""",
                 (str(rid), str(actor.tenant_id), str(actor.clinician_id)),
             ).fetchone()
-            if not row:
+            try:
+                synthetic = (
+                    json.loads(row["encounter_body"]).get("synthetic_data") is True
+                    if row
+                    else False
+                )
+            except (TypeError, ValueError):
+                synthetic = False
+            if not row or (actor.role == "viewer" and not synthetic):
                 raise HTTPException(404, "deletion_request_not_found")
-            return {**dict(row), "backup_expiry": "requires_operator_confirmation"}
+            result = dict(row)
+            result.pop("encounter_body", None)
+            return {**result, "backup_expiry": "requires_operator_confirmation"}
