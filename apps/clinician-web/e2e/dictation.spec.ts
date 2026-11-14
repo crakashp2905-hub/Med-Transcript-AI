@@ -157,14 +157,15 @@ test('slow browser persistence stops capture with a bounded recovery prefix',asy
    const handler=this.objectStoreNames.contains('parts')?((event:Event)=>setTimeout(()=>callback?.call(this,event),1200)):callback;
    descriptor?.set?.call(this,handler);
   }});
-  class SyntheticRecorder extends EventTarget {
-   static isTypeSupported(){return true;}
-   state:'inactive'|'recording'='inactive';mimeType='audio/webm';ondataavailable:((event:BlobEvent)=>void)|null=null;onstop:(()=>void)|null=null;onerror:(()=>void)|null=null;private timer:number|undefined;
-   constructor(_stream:MediaStream,_options?:MediaRecorderOptions){super();}
-   start(){this.state='recording';this.timer=window.setInterval(()=>this.ondataavailable?.({data:new Blob([new Uint8Array(4*1024*1024+1)],{type:this.mimeType})} as BlobEvent),50);}
-   stop(){if(this.state!=='recording')return;this.state='inactive';if(this.timer!==undefined)clearInterval(this.timer);queueMicrotask(()=>this.onstop?.());}
+  class SyntheticWorklet extends EventTarget {
+   port:{onmessage:((event:MessageEvent)=>void)|null}={onmessage:null};private timer:number|undefined;
+   constructor(){super();}
+   connect(){this.timer=window.setInterval(()=>this.port.onmessage?.({data:[new Float32Array(524288)]} as MessageEvent),50);}
+   disconnect(){if(this.timer!==undefined)clearInterval(this.timer);}
   }
-  Object.defineProperty(window,'MediaRecorder',{configurable:true,value:SyntheticRecorder});
+  Object.defineProperty(window,'AudioWorkletNode',{configurable:true,value:SyntheticWorklet});
+  Object.defineProperty(AudioContext.prototype,'createMediaStreamSource',{configurable:true,value:()=>({connect(){},disconnect(){}})});
+  Object.defineProperty(AudioContext.prototype,'createGain',{configurable:true,value:()=>({gain:{value:1},connect(){}})});
  });
  await encounter(page);
  await page.getByLabel('I am dictating synthetic test speech, and recording and local-processing authorization is documented.').check();
