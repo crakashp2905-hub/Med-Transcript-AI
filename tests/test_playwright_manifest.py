@@ -16,4 +16,5 @@ def test_playwright_manifest_covers_synthetic_demo_flows_without_cloud_dependenc
         "role-correction",
         "local-demo",
         "scripted-metrics",
+        "usability-audit",
     }
