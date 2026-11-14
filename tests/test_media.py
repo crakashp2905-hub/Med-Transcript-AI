@@ -20,6 +20,35 @@ def stereo_wav():
     return buffer.getvalue()
 
 
+def test_normalized_pcm_wav_uses_standard_library_without_pyav(tmp_path, monkeypatch):
+    import builtins
+
+    from services.media_decoder import decode_child
+
+    source, target = tmp_path / "source.wav", tmp_path / "normalized.wav"
+    samples = b"\x01\x00\xff\xff" * 1600
+    with wave.open(str(source), "wb") as audio:
+        audio.setparams((2, 2, 16000, 0, "NONE", "not compressed"))
+        audio.writeframes(samples)
+    original_import = builtins.__import__
+
+    def without_pyav(name, *args, **kwargs):
+        if name == "av":
+            raise AssertionError("normalized PCM WAV must not require PyAV")
+        return original_import(name, *args, **kwargs)
+
+    monkeypatch.setattr(builtins, "__import__", without_pyav)
+    result = decode_child(source, target, "audio/wav")
+
+    assert result["error_code"] is None
+    assert result["frames"] == 1600
+    assert result["output_channels"] == 2
+    with wave.open(str(target), "rb") as audio:
+        assert audio.getframerate() == 16000
+        assert audio.getnchannels() == 2
+        assert audio.readframes(1600) == samples
+
+
 def test_separate_decoder_normalizes_stereo_48k(tmp_path):
     pytest.importorskip("av")
     source, target = tmp_path / "source.wav", tmp_path / "normalized.wav"

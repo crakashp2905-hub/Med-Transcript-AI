@@ -124,3 +124,22 @@ test('server-backed recording seals the final source instead of uploading it twi
  await expect(page.locator('.notice')).toContainText('Dictation transcript ready',{timeout:60000});
  expect(regular).toBe(0);
 });
+
+test('recording stops at the configured thirty-minute limit and submits saved audio',async({page})=>{
+ await page.addInitScript(()=>{
+  const originalNow=performance.now.bind(performance);let offset=0;
+  Object.defineProperty(performance,'now',{configurable:true,value:()=>originalNow()+offset});
+  Object.defineProperty(window,'advanceCaptureClock',{value:()=>{offset=30*60*1000;}});
+ });
+ let uploads=0;page.on('request',request=>{if(request.method()==='POST'&&/\/audio-uploads$/.test(request.url()))uploads++;});
+ await login(page);await create(page);await record(page);
+ await expect.poll(()=>page.evaluate(async()=>new Promise<number>(resolve=>{
+  const request=indexedDB.open('med-transcript-recordings-v1');
+  request.onsuccess=()=>{const db=request.result,query=db.transaction('drafts').objectStore('drafts').getAll();
+   query.onsuccess=()=>{resolve(query.result.reduce((sum,row)=>sum+row.bytes,0));db.close();};};
+ }))).toBeGreaterThan(0);
+ await page.evaluate(()=>(window as unknown as {advanceCaptureClock:()=>void}).advanceCaptureClock());
+ await expect(page.getByText('Recording · microphone is on',{exact:true})).not.toBeVisible();
+ await expect(page.locator('.notice')).toContainText('Dictation transcript ready',{timeout:60000});
+ expect(uploads).toBe(1);
+});

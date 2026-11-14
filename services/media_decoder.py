@@ -98,6 +98,9 @@ def decode_child(source, destination, media_type):
         resource.setrlimit(resource.RLIMIT_AS, (1024**3, 1024**3))
         resource.setrlimit(resource.RLIMIT_CPU, (90, 90))
         resource.setrlimit(resource.RLIMIT_FSIZE, (512_000_000, 512_000_000))
+    pcm_result = _copy_normalized_pcm_wav(source, destination, media_type)
+    if pcm_result is not None:
+        return pcm_result
     try:
         import av
     except ImportError:
@@ -176,6 +179,53 @@ def decode_child(source, destination, media_type):
         )
     except Exception:
         return {"error_code": "invalid_media"}
+
+
+def _copy_normalized_pcm_wav(source, destination, media_type):
+    """Copy already normalized PCM WAV using the standard library alone."""
+    if media_type != "audio/wav":
+        return None
+    try:
+        with wave.open(str(source), "rb") as original:
+            channels = original.getnchannels()
+            frames = original.getnframes()
+            if (
+                original.getcomptype() != "NONE"
+                or original.getsampwidth() != 2
+                or original.getframerate() != 16000
+                or not 1 <= channels <= 8
+            ):
+                return None
+            if frames == 0:
+                return {"error_code": "empty_audio"}
+            if frames > 16000 * 3600:
+                return {"error_code": "duration_limit_exceeded"}
+            if frames * channels * 2 + 44 > 512_000_000:
+                return {"error_code": "decoded_size_limit_exceeded"}
+            remaining = frames
+            with wave.open(str(destination), "wb") as normalized:
+                normalized.setparams((channels, 2, 16000, 0, "NONE", "not compressed"))
+                while remaining:
+                    count = min(8192, remaining)
+                    data = original.readframes(count)
+                    expected = count * channels * 2
+                    if len(data) != expected:
+                        return {"error_code": "invalid_media"}
+                    normalized.writeframesraw(data)
+                    remaining -= count
+            return {
+                "frames": frames,
+                "error_code": None,
+                "source_sample_rate": 16000,
+                "source_channels": channels,
+                "source_origin_ms": None,
+                "source_container": "wav",
+                "output_sample_rate": 16000,
+                "output_channels": channels,
+                "output_encoding": "pcm_s16le",
+            }
+    except (OSError, wave.Error, EOFError):
+        return None
 
 
 def normalize(source, destination, media_type):
