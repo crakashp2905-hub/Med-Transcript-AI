@@ -8697,13 +8697,19 @@
     },
     {
       "id": "MTA-17-08",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "section": "17 \u2014 Research paper, reproducibility, product deliverables and packaging",
       "priority": "P2",
-      "status": "not_started",
+      "status": "verified",
       "description": "Produce a second investor-only synthetic showcase with a visible not-clinically-approved banner.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
+      "evidence": [
+        "apps/clinician-web/src/InvestorDemo.tsx",
+        "tests/test_investor_demo_static.py",
+        "evaluation/reports/mta-17-08-investor-showcase-v1.json"
+      ],
+      "source_commit": "9d9fb792624276db93cc80369a33f572e4a6e00e",
+      "test_results": [
+        {"status":"pass","report":"evaluation/reports/mta-17-08-investor-showcase-v1.json","report_sha256":"38d4e97f7f9bc23677b5088a4381dc20b6cd38e3d9414f05c948e7bd1ee9b762","check":"investor_synthetic_readonly_showcase","runtime_sha256":"b0d253a906772a68f628d8f818c9fa7a076e2e683e84fd788fd0a14a9b10e98b"}
+      ],
       "blocker": null
     },
     {
