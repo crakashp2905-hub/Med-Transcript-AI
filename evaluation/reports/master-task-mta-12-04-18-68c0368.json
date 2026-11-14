@@ -1,0 +1,46 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-12-04",
+    "MTA-12-18"
+  ],
+  "source_commit": "68c03686d2af1f2d1b53afb7eb16fcfe290df272",
+  "captured_at_utc": "2026-11-14T07:08:44.073172+00:00",
+  "source_files": {
+    "services/evaluation.py": "055d95a46640662980c5c7fd833c6d7fb0379ede85aebf292d5bf2b1cc98e913",
+    "services/evaluation_metrics.py": "5f5447886256633112f25a9f7e5f1a0e133ca874eb45493968c2450deac0293b",
+    "services/detailed_benchmark.py": "1147d81c040c0e98bd1c4fed7d503a73b2fec16479787fd875be77b47b03be61",
+    "services/asr/pareto.py": "da0075291db3b389674c22848b8f4132dcc9cf9d5ffb8fac72a759191f274bb7",
+    "tests/test_evaluation.py": "b375c13549915ac4f0f4cb46663bb9af38bf9dc9ba08cffa9d25e0c4d7cf14be",
+    "tests/test_detailed_benchmark.py": "df2b5c740107f35078bcefc8fe6db565e8f1a43423d991c0d8776091a400a237",
+    "tests/test_asr_pareto.py": "23d8edb37f1267d9afcb887eefdf6ba98b1dd79f52f7be9d3473c1ca57795a31",
+    "tests/test_benchmark_ranking.py": "4debe4017428817a8da4b6b11a14057385688db96016a305d72341eb90645f5c",
+    "tests/test_comparison_scope.py": "69a36d9e1ef5ebbae791137d1423015cf008f31627a74e3f59cbea0cf1d8e192"
+  },
+  "checks": [
+    {
+      "command": "pytest -q tests/test_asr_pareto.py tests/test_detailed_benchmark.py tests/test_benchmark_ranking.py tests/test_comparison_scope.py tests/test_evaluation.py tests/test_evaluation_metrics.py",
+      "status": "pass",
+      "result": "62 passed"
+    },
+    {
+      "command": "ruff check services/evaluation.py tests/test_evaluation.py",
+      "status": "pass"
+    },
+    {
+      "command": "ruff format --check services/evaluation.py tests/test_evaluation.py",
+      "status": "pass"
+    }
+  ],
+  "supported_claims": [
+    "The primary evaluation runner includes CER and S/D/I while legacy score consumers retain their prior metric shape.",
+    "The detailed v7 benchmark source-text lock and scorer equivalence checks pass unchanged.",
+    "Candidate benchmark reports are compared only when they share the same frozen suite digest, manifest, case identities, audio hashes, references, foregrounds, conditions and input coverage.",
+    "Pareto candidate ranking is based on matched benchmark suite evidence; cross-benchmark comparison is rejected."
+  ],
+  "limitations": [
+    "This validates comparison contracts and code paths, not new matched model runs or a candidate ranking result.",
+    "Historical frozen benchmark failures remain untouched."
+  ],
+  "clinical_release_authorized": false
+}

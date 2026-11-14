@@ -5782,10 +5782,10 @@
       "priority": "P0",
       "status": "implemented",
       "description": "Implement WER, CER, substitutions, deletions and insertions; use explicit word normalization frozen before testing.",
-      "evidence": ["evaluation/reports/master-task-mta-12-01-04-e1e14ab.json"],
-      "source_commit": "e1e14ab3ca09939f7aedd1100df8f66b43906cac",
-      "test_results": [{"report": "evaluation/reports/master-task-mta-12-01-04-e1e14ab.json", "report_sha256": "eff3510201682e56acc43bc956ae1bae87f6781cc6f8722515f1bcb58c09d621", "check": "evaluation_envelope_and_metrics", "status": "pass"}],
-      "blocker": "Clinical validity and independent annotation are not established by software/synthetic tests."
+      "evidence": ["evaluation/reports/master-task-mta-12-04-18-68c0368.json"],
+      "source_commit": "68c03686d2af1f2d1b53afb7eb16fcfe290df272",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-04-18-68c0368.json", "report_sha256": "fd35b6779c6e3b149de3ab7542a8d424c7a6f68aed84592a33d4af3ad5a68e6b", "check": "frozen_benchmark_comparison_and_extended_text_metrics", "status": "pass"}],
+      "blocker": "No independent clinical annotation; metrics do not establish clinical accuracy."
     },
     {
       "id": "MTA-12-05",
@@ -5934,12 +5934,12 @@
       "id": "MTA-12-18",
       "section": "12 \u2014 Evaluation design, statistics and quantitative release criteria",
       "priority": "P1",
-      "status": "not_started",
+      "status": "implemented",
       "description": "Compare unchanged frozen benchmark and candidate methods without cross-benchmark ranking shortcuts.",
-      "evidence": [],
-      "source_commit": null,
-      "test_results": [],
-      "blocker": null
+      "evidence": ["evaluation/reports/master-task-mta-12-04-18-68c0368.json"],
+      "source_commit": "68c03686d2af1f2d1b53afb7eb16fcfe290df272",
+      "test_results": [{"report": "evaluation/reports/master-task-mta-12-04-18-68c0368.json", "report_sha256": "fd35b6779c6e3b149de3ab7542a8d424c7a6f68aed84592a33d4af3ad5a68e6b", "check": "frozen_benchmark_comparison_and_extended_text_metrics", "status": "pass"}],
+      "blocker": "No new matched candidate runs were produced; comparator tests validate the boundary only."
     },
     {
       "id": "MTA-12-19",
