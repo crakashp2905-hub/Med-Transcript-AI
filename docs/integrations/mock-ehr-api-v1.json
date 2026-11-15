@@ -60,7 +60,7 @@
         "required": ["approval_id", "format"],
         "properties": {
           "approval_id": {"type": "string", "format": "uuid"},
-          "format": {"type": "string", "enum": ["markdown", "text", "json", "fhir"]}
+          "format": {"type": "string", "enum": ["markdown", "text", "json", "fhir", "pdf", "docx"]}
         }
       },
       "ExportReceipt": {

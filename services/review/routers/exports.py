@@ -2,6 +2,8 @@
 
 from services.audit_integrity import approval_body
 import hashlib
+import base64
+import binascii
 from uuid import UUID, uuid4
 
 from fastapi import Depends, HTTPException
@@ -12,6 +14,7 @@ from services.review.engine import (
     findings_for,
     render_export,
 )
+from services.review.document_exports import render_document_export
 from services.review.models import ExportInput
 
 
@@ -55,6 +58,18 @@ def register(app, services: ReviewService):
             amendment_parent_sha256=parent_row["sha256"] if parent_row else None,
         )
 
+    def stored_artifact_bytes(format, artifact):
+        if format in {"pdf", "docx"}:
+            return base64.b64decode(artifact, validate=True)
+        return artifact.encode("utf-8")
+
+    def render_artifact(note, approval, format, source):
+        rendered = render_export(note, approval, format, source)
+        if format in {"pdf", "docx"}:
+            raw = render_document_export(format, rendered)
+            return base64.b64encode(raw).decode("ascii"), raw
+        return rendered, rendered.encode("utf-8")
+
     @app.post("/v1/encounters/{eid}/exports", status_code=201)
     @idempotent(database, replay, "POST:/v1/encounters/{eid}/exports")
     def export(
@@ -93,10 +108,15 @@ def register(app, services: ReviewService):
                 (ar["id"], body.format),
             ).fetchone()
             if existing:
-                if (
-                    hashlib.sha256(existing["artifact"].encode("utf-8")).hexdigest()
-                    != existing["sha256"]
-                ):
+                try:
+                    existing_bytes = stored_artifact_bytes(
+                        existing["format"], existing["artifact"]
+                    )
+                except (ValueError, binascii.Error):
+                    raise HTTPException(
+                        409, "approved_artifact_integrity_failure"
+                    ) from None
+                if hashlib.sha256(existing_bytes).hexdigest() != existing["sha256"]:
                     raise HTTPException(409, "approved_artifact_integrity_failure")
                 try:
                     graph = evidence_graph(
@@ -129,8 +149,13 @@ def register(app, services: ReviewService):
                 "limitations": list(CLINICAL_LIMITATIONS),
             }
             xid = str(uuid4())
-            artifact = render_export(note, approval, body.format, source)
-            digest = hashlib.sha256(artifact.encode("utf-8")).hexdigest()
+            try:
+                artifact, artifact_bytes = render_artifact(
+                    note, approval, body.format, source
+                )
+            except UnicodeEncodeError:
+                raise HTTPException(422, "pdf_contains_unsupported_character") from None
+            digest = hashlib.sha256(artifact_bytes).hexdigest()
             try:
                 graph = evidence_graph(
                     con, eid, tx, tr, note, nr, approval, xid, digest
@@ -186,10 +211,13 @@ def register(app, services: ReviewService):
             if sealed is None:
                 raise HTTPException(409, "approved_artifact_integrity_failure")
             approval_body(con, sealed)
-            if (
-                hashlib.sha256(row["artifact"].encode("utf-8")).hexdigest()
-                != row["sha256"]
-            ):
+            try:
+                artifact_bytes = stored_artifact_bytes(row["format"], row["artifact"])
+            except (ValueError, binascii.Error):
+                raise HTTPException(
+                    409, "approved_artifact_integrity_failure"
+                ) from None
+            if hashlib.sha256(artifact_bytes).hexdigest() != row["sha256"]:
                 raise HTTPException(409, "approved_artifact_integrity_failure")
             try:
                 nr, note = document(con, eid, sealed["note"])
@@ -223,12 +251,18 @@ def register(app, services: ReviewService):
                 "text": "txt",
                 "json": "json",
                 "fhir": "json",
+                "pdf": "pdf",
+                "docx": "docx",
             }[row["format"]]
             return Response(
-                row["artifact"],
-                media_type="application/json"
-                if extension == "json"
-                else "text/plain; charset=utf-8",
+                artifact_bytes,
+                media_type={
+                    "json": "application/json",
+                    "txt": "text/plain; charset=utf-8",
+                    "md": "text/markdown; charset=utf-8",
+                    "pdf": "application/pdf",
+                    "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                }[extension],
                 headers={
                     "Content-Disposition": f'attachment; filename="approved-note-{xid}.{extension}"',
                     "ETag": f'"{row["sha256"]}"',

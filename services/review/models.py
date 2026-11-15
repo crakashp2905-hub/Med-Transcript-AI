@@ -270,7 +270,7 @@ class ApprovalInput(Strict):
 
 class ExportInput(Strict):
     approval_id: UUID
-    format: Literal["markdown", "text", "json", "fhir"]
+    format: Literal["markdown", "text", "json", "fhir", "pdf", "docx"]
 
 
 class AmendmentInput(Strict):

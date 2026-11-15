@@ -242,7 +242,7 @@ class ExportRecord(StableRecord):
     note_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     transcript_version_id: UUID
     transcript_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
-    format: Literal["markdown", "text", "json", "fhir"]
+    format: Literal["markdown", "text", "json", "fhir", "pdf", "docx"]
     artifact_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     created_at: datetime
 

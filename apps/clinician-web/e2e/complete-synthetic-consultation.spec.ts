@@ -126,5 +126,22 @@ test('one synthetic consultation completes capture, review, approval, and JSON e
   const exported = JSON.parse(readFileSync(exportPath, 'utf8'));
   expect(exported.approval).toBeDefined();
   expect(exported.note).toBeDefined();
+
+  for (const format of ['pdf', 'docx'] as const) {
+    const event = page.waitForEvent('download');
+    await page.getByRole('button', { name: `↓ ${format.toUpperCase()}`, exact: true }).click();
+    const documentDownload = await event;
+    expect(documentDownload.suggestedFilename()).toContain(`.${format}`);
+    const documentPath = testInfo.outputPath(`approved-note.${format}`);
+    await documentDownload.saveAs(documentPath);
+    const bytes = readFileSync(documentPath);
+    expect(format === 'pdf' ? bytes.subarray(0, 8).toString() : bytes.subarray(0, 2).toString()).toBe(
+      format === 'pdf' ? '%PDF-1.4' : 'PK',
+    );
+    await testInfo.attach(`approved-note.${format}`, {
+      path: documentPath,
+      contentType: format === 'pdf' ? 'application/pdf' : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    });
+  }
   expect(errors).toEqual([]);
 });

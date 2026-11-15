@@ -22,7 +22,7 @@ def test_mock_api_spec_matches_local_export_routes_and_limits_claims():
     ]
     assert spec["components"]["schemas"]["ExportRequest"]["properties"]["format"][
         "enum"
-    ] == ["markdown", "text", "json", "fhir"]
+    ] == ["markdown", "text", "json", "fhir", "pdf", "docx"]
     assert spec["x-validation-boundary"]["ehr_write"] is False
     assert spec["x-validation-boundary"]["receiver_profile"] == "not validated"
     assert spec["x-validation-boundary"]["external_fhir_validator"] == "not run"

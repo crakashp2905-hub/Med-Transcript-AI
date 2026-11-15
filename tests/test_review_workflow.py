@@ -1,4 +1,6 @@
 import hashlib
+from io import BytesIO
+import zipfile
 import sqlite3
 from datetime import datetime, timedelta, timezone
 import pytest
@@ -147,7 +149,7 @@ def test_full_review_approval_export_and_amendment(setup):
             ).fetchone()[0]
             == 1
         )
-    for format in ("markdown", "text", "json"):
+    for format in ("markdown", "text", "json", "pdf", "docx"):
         response = client.post(
             f"/v1/encounters/{eid}/exports",
             headers=headers(),
@@ -163,7 +165,17 @@ def test_full_review_approval_export_and_amendment(setup):
             == receipt["evidence_graph_sha256"]
         )
         assert hashlib.sha256(downloaded.content).hexdigest() == receipt["sha256"]
-        assert "approved" in downloaded.text.lower()
+        if format == "pdf":
+            assert downloaded.content.startswith(b"%PDF-1.4")
+            assert b"APPROVED CLINICAL NOTE" in downloaded.content
+        elif format == "docx":
+            with zipfile.ZipFile(BytesIO(downloaded.content)) as archive:
+                assert archive.testzip() is None
+                assert "APPROVED CLINICAL NOTE" in archive.read(
+                    "word/document.xml"
+                ).decode("utf-8")
+        else:
+            assert "approved" in downloaded.text.lower()
         if format in ("markdown", "text"):
             assert source_citation in downloaded.text
         elif format == "json":
