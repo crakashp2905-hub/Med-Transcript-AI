@@ -9448,36 +9448,37 @@
         "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
         "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
         "evaluation/contracts/api-v1-compatible-v16.json",
-        "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json"
+        "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
+        "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json"
       ],
-      "source_commit": "1e239ac010a91bd5c20ee07c5d37974d07ed5094",
+      "source_commit": "12646947060474f195d38ed449e01afeb45c3310",
       "test_results": [
         {
-          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
-          "report_sha256": "00efbe9b641bd6a5c168145ced325147d7ae62e890d4954bfdef1e1d0a11cd2b",
+          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
+          "report_sha256": "1e12edbe54101e978b29f0d301ae226cb5aa01b9c5ad237cc9180ab7f9a4ca7e",
           "check": "browser_e2e",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
-          "report_sha256": "00efbe9b641bd6a5c168145ced325147d7ae62e890d4954bfdef1e1d0a11cd2b",
+          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
+          "report_sha256": "1e12edbe54101e978b29f0d301ae226cb5aa01b9c5ad237cc9180ab7f9a4ca7e",
           "check": "backend_review_export",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
-          "report_sha256": "00efbe9b641bd6a5c168145ced325147d7ae62e890d4954bfdef1e1d0a11cd2b",
-          "check": "document_export_unit",
+          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
+          "report_sha256": "1e12edbe54101e978b29f0d301ae226cb5aa01b9c5ad237cc9180ab7f9a4ca7e",
+          "check": "document_export_and_error_unit",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
-          "report_sha256": "00efbe9b641bd6a5c168145ced325147d7ae62e890d4954bfdef1e1d0a11cd2b",
+          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
+          "report_sha256": "1e12edbe54101e978b29f0d301ae226cb5aa01b9c5ad237cc9180ab7f9a4ca7e",
           "check": "frontend_build",
           "status": "pass"
         }
       ],
-      "blocker": "PDF text outside the built-in WinAnsi encoding fails closed; a packaged Unicode font path remains future work. Cross-viewer office/PDF rendering and external EHR conformance are not verified."
+      "blocker": "PDF characters outside WinAnsi fail closed with a recovery message; full Unicode font packaging remains future work. Cross-viewer rendering and external EHR conformance are unverified."
     }
   ]
 }
