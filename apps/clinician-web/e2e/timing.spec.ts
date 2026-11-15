@@ -42,6 +42,11 @@ async function createEncounter(page: Page) {
   await expect(page.getByRole('heading', { name: 'Microphone dictation' })).toBeVisible();
 }
 
+async function waitForLocalDraftBanner(page: Page) {
+  await expect(page.getByRole('status', { name: 'Encounter recovery status' }))
+    .toContainText('Clinical fact edits are unsaved.');
+}
+
 test('measure synthetic draft latency and retain the critical approval block', async ({ page }, testInfo) => {
   test.setTimeout(180000);
   const errors: string[] = [];
@@ -73,6 +78,7 @@ test('measure synthetic draft latency and retain the critical approval block', a
     const card = cards.nth(index);
     await card.getByRole('combobox', { name: 'Subject', exact: true }).selectOption('patient');
     await card.getByRole('combobox', { name: 'Temporality', exact: true }).selectOption('current');
+    await waitForLocalDraftBanner(page);
     await card.getByLabel('Content and attribution reviewed').check();
     await card.getByLabel('Critical details checked').check();
   }
@@ -89,6 +95,7 @@ test('measure synthetic draft latency and retain the critical approval block', a
   await correctionCard.getByLabel('Clinical clarification / exclusion reason').fill(
     'Synthetic punctuation-only correction; clinical meaning is unchanged.',
   );
+  await waitForLocalDraftBanner(page);
   for (let index = 0; index < count; index++) {
     const card = cards.nth(index);
     await card.getByRole('combobox', { name: 'Subject', exact: true }).selectOption('patient');
