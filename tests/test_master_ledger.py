@@ -78,8 +78,10 @@ def test_supplied_ledger_has_unique_tasks_and_audited_statuses():
         (LEDGER.parent.parent / ci_receipt_path).read_text(encoding="utf-8")
     )
     assert ci_receipt["source_commit"] == exact_head_task["source_commit"]
-    assert ci_receipt["runtime"]["offline_mode"] is True
-    assert ci_receipt["checks"]["python_tests"]["status"] == "blocked"
+    assert ci_receipt["runtime"]["network"] == (
+        "Local-only socketpair enabled; no external calls or inference"
+    )
+    assert ci_receipt["checks"]["python_tests"]["status"] == "pass"
     assert ci_receipt["checks"]["hosted_ci"]["status"] == "blocked"
     contract_task = next(
         item for item in document["tasks"] if item["id"] == "MTA-01-14"
