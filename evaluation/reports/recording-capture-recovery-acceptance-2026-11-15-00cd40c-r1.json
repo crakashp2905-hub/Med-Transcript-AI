@@ -1,0 +1,64 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-03-05",
+    "MTA-03-09"
+  ],
+  "source_commit": "00cd40cc9754018040dbda436060e84f2c6599c2",
+  "captured_at_utc": "2026-11-15T05:46:10+00:00",
+  "source_files": {
+    "apps/clinician-web/e2e/dictation.spec.ts": "12aa65660e47b43acecf4a0c74bb6545c5b26bb07aa6b3e167b762f0dc7dba78",
+    "apps/clinician-web/e2e/recovery.spec.ts": "7173c9cfdda08f95eb6a6fd9c5002c7492dbf71f2f1d70b2d68bd8a7ceecaf30",
+    "apps/clinician-web/src/Dictation.tsx": "8e6f33432193a9b28a4b82f44edbe9dbd221b3e493832275b8e862d33ae0f7bd",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "c9259696b7754380a0a5116d93ffebe3f4d1760ad5d0b9d52e5ee1ad63a581e0",
+    "apps/clinician-web/src/RecordingVault.ts": "c86140c43b327bc3ee78f847b309796f3f1c9bb3d59a43b20589e45af30de659",
+    "services/api/resumable.py": "88ef348386cf29f73b10e11eaf3ff0067d8350fffdb7efca6f9d23324126e78a"
+  },
+  "checks": {
+    "dictation_browser_suite": {
+      "status": "pass",
+      "summary": "12 passed: microphone capture, discard/no-upload, late permission grant, denial messaging, disconnected device partial retention, five-to-thirty-minute simulated clock, sub-second rejection, slow persistence, lost upload response retry, three-channel PCM, and channel-count mismatch."
+    },
+    "recovery_browser_suite": {
+      "status": "pass",
+      "summary": "10 passed: reload recovery scoped to encounter, quota failure retention, lost chunk response resume without retransmit, cross-encounter isolation, provisional preview, late permission rejection, permission revocation, server-prefix recovery, server seal without duplicate upload, and thirty-minute simulated stop."
+    }
+  },
+  "runtime": {
+    "platform": "Windows",
+    "python": "Python 3.13.5",
+    "node": "v22.16.0",
+    "npm": "10.9.2",
+    "playwright": "Version 1.64.1",
+    "browser": "Playwright channel chrome; installed version not separately captured",
+    "network": "loopback-only isolated fixture",
+    "provider": "scripted non-ASR adapter; inference_executed=false",
+    "data": "synthetic/public mock audio only"
+  },
+  "runtime_sha256": "1eb1f8c48b0e70d405366ef596e5c8147ddd446e8b6c4f537ce0e245df02f296",
+  "attempts": [
+    {
+      "suite": "recovery_browser_suite",
+      "attempt": 1,
+      "status": "fail",
+      "summary": "Ten cases failed immediately with ERR_CONNECTION_REFUSED because the loopback fixture server was stopped before the suite started. No application scenario ran. Logs and traces remain in the ignored first-attempt run directory."
+    },
+    {
+      "suite": "recovery_browser_suite",
+      "attempt": 2,
+      "status": "pass",
+      "summary": "All 10 application recovery scenarios passed after restarting the isolated loopback fixture; output captured separately."
+    }
+  ],
+  "supported_claims": [
+    "Synthetic browser capture and recovery flows exercised chunk persistence, reload recovery, storage quota handling, interrupted upload retry, device track disconnection, permission denial/revocation, server-prefix recovery and final sealing.",
+    "A simulated capture clock exercised five-minute progress and automatic stop at the configured thirty-minute limit; this was not a thirty-minute wall-clock recording.",
+    "Final local upload retry resumed committed offsets without retransmitting already committed bytes."
+  ],
+  "limitations": [
+    "Fake browser microphone and public mock WAV data do not validate a physical microphone, actual device unplug behavior, OS permission dialogs, or real-time capture over thirty minutes.",
+    "The adapter is scripted non-ASR; no model inference or accuracy test was performed.",
+    "This is software recovery evidence, not clinician validation or clinical release authorization."
+  ],
+  "clinical_release_authorized": false
+}

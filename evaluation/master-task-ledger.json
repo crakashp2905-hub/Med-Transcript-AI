@@ -1641,7 +1641,7 @@
       "id": "MTA-03-05",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "description": "Test browser capture at minimum, medium, near-30-minute and interrupted durations with bounded chunks and backpressure.",
       "evidence": [
         "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
@@ -1651,18 +1651,33 @@
         "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
         "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
-        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+        "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json"
       ],
-      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
+      "source_commit": "00cd40cc9754018040dbda436060e84f2c6599c2",
       "test_results": [
+        {
+          "report": "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json",
+          "report_sha256": "f46b523a67bec019c9eb138414f25e540f2b5dc3e085f4252d4c5176fc4c7b06",
+          "check": "dictation_browser_suite",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json",
+          "report_sha256": "f46b523a67bec019c9eb138414f25e540f2b5dc3e085f4252d4c5176fc4c7b06",
+          "check": "recovery_browser_suite",
+          "status": "pass"
+        }
+      ],
+      "blocker": null,
+      "test_results_history": [
         {
           "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
           "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "recording_duration",
           "status": "pass"
         }
-      ],
-      "blocker": "Synthetic browser duration and backpressure cases pass; physical microphone and wall-clock capture remain unvalidated."
+      ]
     },
     {
       "id": "MTA-03-06",
@@ -1728,7 +1743,7 @@
       "id": "MTA-03-09",
       "section": "03 — Audio ingestion, duration, channel integrity and transcription provenance",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "description": "Simulate network/tab/storage failure, permission revocation, device unplug, quota exhaustion and reload recovery.",
       "evidence": [
         "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
@@ -1738,18 +1753,33 @@
         "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
         "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
-        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+        "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json"
       ],
-      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
+      "source_commit": "00cd40cc9754018040dbda436060e84f2c6599c2",
       "test_results": [
+        {
+          "report": "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json",
+          "report_sha256": "f46b523a67bec019c9eb138414f25e540f2b5dc3e085f4252d4c5176fc4c7b06",
+          "check": "recovery_browser_suite",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json",
+          "report_sha256": "f46b523a67bec019c9eb138414f25e540f2b5dc3e085f4252d4c5176fc4c7b06",
+          "check": "dictation_browser_suite",
+          "status": "pass"
+        }
+      ],
+      "blocker": null,
+      "test_results_history": [
         {
           "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
           "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "failure_recovery",
           "status": "pass"
         }
-      ],
-      "blocker": "Synthetic browser recovery cases pass; OS-level device removal and physical permission revocation remain unvalidated."
+      ]
     },
     {
       "id": "MTA-03-10",
