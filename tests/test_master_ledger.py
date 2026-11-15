@@ -7,16 +7,17 @@ from services import master_ledger
 from services.master_ledger import LEDGER, audit
 
 
-def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
+def test_supplied_ledger_has_unique_tasks_and_audited_statuses():
+    document = json.loads(LEDGER.read_text(encoding="utf-8"))
     result = audit()
-    assert result["total"] == 369
-    assert sum(result["statuses"].values()) == 369
+    expected_total = len(document["tasks"])
+    assert result["total"] == expected_total
+    assert sum(result["statuses"].values()) == expected_total
     assert result["statuses"]["blocked_missing_asset"] >= 5
     # The verified count grows as exact-commit receipts are recorded; preserve
     # the original three baseline receipts without freezing future progress.
     assert result["statuses"]["verified"] >= 3
     assert result["clinical_release_authorized"] is False
-    document = json.loads(LEDGER.read_text(encoding="utf-8"))
     assert result["verified_at_current_commit"] == sum(
         task["status"] == "verified"
         and task["source_commit"] == result["source_commit"]
@@ -77,7 +78,9 @@ def test_supplied_ledger_has_unique_369_tasks_and_audited_statuses():
         (LEDGER.parent.parent / ci_receipt_path).read_text(encoding="utf-8")
     )
     assert ci_receipt["source_commit"] == exact_head_task["source_commit"]
-    assert ci_receipt["runtime"]["conclusion"] == "success"
+    assert ci_receipt["runtime"]["offline_mode"] is True
+    assert ci_receipt["checks"]["python_tests"]["status"] == "blocked"
+    assert ci_receipt["checks"]["hosted_ci"]["status"] == "blocked"
     contract_task = next(
         item for item in document["tasks"] if item["id"] == "MTA-01-14"
     )

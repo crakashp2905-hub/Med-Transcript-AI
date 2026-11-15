@@ -1070,6 +1070,28 @@
       "blocker": "Each CI attempt now publishes an exact-source summary. Current exact-commit offline acceptance is unavailable and explicitly shown as such; clinical release remains unauthorized."
     },
     {
+      "id": "MTA-01-21",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
+      "priority": "P0",
+      "status": "implemented",
+      "description": "Exercise the synthetic clinician journey and failure/recovery variants in a fresh local browser acceptance run.",
+      "evidence": [
+        "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json",
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
+      ],
+      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
+      "test_results": [
+        {
+          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "check": "offline_browser_suite",
+          "status": "pass"
+        }
+      ],
+      "blocker": "The compressed-upload browser case is skipped because cached PyAV is unavailable; exact-commit hosted CI remains open."
+    },
+    {
       "id": "MTA-02-01",
       "section": "02 — Cohesive end-to-end application architecture",
       "priority": "P0",
@@ -4257,6 +4279,39 @@
         }
       ],
       "blocker": null
+    },
+    {
+      "id": "MTA-08-19",
+      "section": "08 — Clinical note generation, editing and lifecycle",
+      "priority": "P1",
+      "status": "implemented",
+      "description": "Support reusable note section layouts and clinician-defined custom sections through saved notes, amendments and approved exports.",
+      "evidence": [
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "services/review/models.py",
+        "services/review/engine.py",
+        "services/domain_contracts.py",
+        "evaluation/contracts/api-v1-compatible-v18.json",
+        "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
+        "evaluation/reports/custom-note-sections-full-stack-2026-11-15-2755b62-r1.json"
+      ],
+      "source_commit": "2755b6209a1f1645ce20e201d8ebabe9204b7eb5",
+      "test_results": [
+        {
+          "report": "evaluation/reports/custom-note-sections-full-stack-2026-11-15-2755b62-r1.json",
+          "report_sha256": "bd6450878edc1ad8feaa2ddc836caf215a0da8fa624a3bfc016a2d6cb1284fb3",
+          "check": "custom_sections_backend_pytest",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/custom-note-sections-full-stack-2026-11-15-2755b62-r1.json",
+          "report_sha256": "bd6450878edc1ad8feaa2ddc836caf215a0da8fa624a3bfc016a2d6cb1284fb3",
+          "check": "custom_sections_browser_e2e",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Backend and browser checks pass at the recorded source commit. Clinic-specific template governance and independent clinician validation remain open."
     },
     {
       "id": "MTA-09-01",
@@ -8949,6 +9004,102 @@
       "blocker": null
     },
     {
+      "id": "MTA-17-17",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "priority": "P1",
+      "status": "implemented",
+      "description": "Provide approved-note PDF and DOCX downloads alongside Markdown and structured exports, with binary integrity and limitations preserved.",
+      "evidence": [
+        "services/review/document_exports.py",
+        "services/review/routers/exports.py",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+        "evaluation/contracts/api-v1-compatible-v16.json",
+        "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
+        "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
+        "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json"
+      ],
+      "source_commit": "6f20e7ce53da2aeeae8866e8fa86e2e2922ae572",
+      "test_results": [
+        {
+          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
+          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
+          "check": "browser_e2e",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
+          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
+          "check": "backend_export_and_contracts",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
+          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
+          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
+          "check": "local_artifact_parsing",
+          "status": "pass"
+        }
+      ],
+      "blocker": "PDF characters outside WinAnsi fail closed with a recovery message; full Unicode font packaging remains future work. Cross-viewer rendering and external EHR conformance are unverified."
+    },
+    {
+      "id": "MTA-17-18",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "priority": "P1",
+      "status": "implemented",
+      "description": "Provide workspace administrators a read-only installation diagnostics and support interface with actionable backup and restore guidance.",
+      "evidence": [
+        "services/api/auth.py",
+        "services/api/authorization_policy.py",
+        "apps/clinician-web/src/screens/AdminUsersScreen.tsx",
+        "apps/clinician-web/e2e/google-auth.spec.ts",
+        "docs/runbooks/operations.md",
+        "evaluation/contracts/api-v1-compatible-v17.json",
+        "evaluation/contracts/authorization-policy-v7.json",
+        "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json"
+      ],
+      "source_commit": "59195bd7fb0cc1682747223875c816ef6f95a0bd",
+      "test_results": [
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "admin_browser_journey",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "admin_auth_and_api_contract",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "ci_offline_safety_lane",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "python_quality",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "frontend_build",
+          "status": "pass"
+        }
+      ],
+      "blocker": "The interface does not verify storage permissions, backup integrity, restore success, update/rollback state, or failure alerts; backup/restore commands remain manually operated. Live identity-provider and deployment behavior are unverified."
+    },
+    {
       "id": "MTA-18-01",
       "section": "18 — Final multi-axis scoring, gates and agent handoff",
       "priority": "P0",
@@ -9412,157 +9563,6 @@
         }
       ],
       "blocker": null
-    },
-    {
-      "id": "MTA-17-17",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
-      "priority": "P1",
-      "status": "implemented",
-      "description": "Provide approved-note PDF and DOCX downloads alongside Markdown and structured exports, with binary integrity and limitations preserved.",
-      "evidence": [
-        "services/review/document_exports.py",
-        "services/review/routers/exports.py",
-        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
-        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
-        "evaluation/contracts/api-v1-compatible-v16.json",
-        "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
-        "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
-        "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json"
-      ],
-      "source_commit": "6f20e7ce53da2aeeae8866e8fa86e2e2922ae572",
-      "test_results": [
-        {
-          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
-          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
-          "check": "browser_e2e",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
-          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
-          "check": "backend_export_and_contracts",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
-          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
-          "check": "frontend_build",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
-          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
-          "check": "local_artifact_parsing",
-          "status": "pass"
-        }
-      ],
-      "blocker": "PDF characters outside WinAnsi fail closed with a recovery message; full Unicode font packaging remains future work. Cross-viewer rendering and external EHR conformance are unverified."
-    },
-    {
-      "id": "MTA-17-18",
-      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
-      "priority": "P1",
-      "status": "implemented",
-      "description": "Provide workspace administrators a read-only installation diagnostics and support interface with actionable backup and restore guidance.",
-      "evidence": [
-        "services/api/auth.py",
-        "services/api/authorization_policy.py",
-        "apps/clinician-web/src/screens/AdminUsersScreen.tsx",
-        "apps/clinician-web/e2e/google-auth.spec.ts",
-        "docs/runbooks/operations.md",
-        "evaluation/contracts/api-v1-compatible-v17.json",
-        "evaluation/contracts/authorization-policy-v7.json",
-        "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json"
-      ],
-      "source_commit": "59195bd7fb0cc1682747223875c816ef6f95a0bd",
-      "test_results": [
-        {
-          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
-          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
-          "check": "admin_browser_journey",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
-          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
-          "check": "admin_auth_and_api_contract",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
-          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
-          "check": "ci_offline_safety_lane",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
-          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
-          "check": "python_quality",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
-          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
-          "check": "frontend_build",
-          "status": "pass"
-        }
-      ],
-      "blocker": "The interface does not verify storage permissions, backup integrity, restore success, update/rollback state, or failure alerts; backup/restore commands remain manually operated. Live identity-provider and deployment behavior are unverified."
-    },
-    {
-      "id": "MTA-08-19",
-      "section": "08 — Clinical note generation, editing and lifecycle",
-      "priority": "P1",
-      "status": "implemented",
-      "description": "Support reusable note section layouts and clinician-defined custom sections through saved notes, amendments and approved exports.",
-      "evidence": [
-        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
-        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
-        "services/review/models.py",
-        "services/review/engine.py",
-        "services/domain_contracts.py",
-        "evaluation/contracts/api-v1-compatible-v18.json",
-        "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
-        "evaluation/reports/custom-note-sections-full-stack-2026-11-15-2755b62-r1.json"
-      ],
-      "source_commit": "2755b6209a1f1645ce20e201d8ebabe9204b7eb5",
-      "test_results": [
-        {
-          "report": "evaluation/reports/custom-note-sections-full-stack-2026-11-15-2755b62-r1.json",
-          "report_sha256": "bd6450878edc1ad8feaa2ddc836caf215a0da8fa624a3bfc016a2d6cb1284fb3",
-          "check": "custom_sections_backend_pytest",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/custom-note-sections-full-stack-2026-11-15-2755b62-r1.json",
-          "report_sha256": "bd6450878edc1ad8feaa2ddc836caf215a0da8fa624a3bfc016a2d6cb1284fb3",
-          "check": "custom_sections_browser_e2e",
-          "status": "pass"
-        }
-      ],
-      "blocker": "Backend and browser checks pass at the recorded source commit. Clinic-specific template governance and independent clinician validation remain open."
-    },
-    {
-      "id": "MTA-01-21",
-      "section": "01 — CI, code quality, reproducibility and source integrity",
-      "priority": "P0",
-      "status": "implemented",
-      "description": "Exercise the synthetic clinician journey and failure/recovery variants in a fresh local browser acceptance run.",
-      "evidence": [
-        "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json",
-        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
-      ],
-      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
-      "test_results": [
-        {
-          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
-          "check": "offline_browser_suite",
-          "status": "pass"
-        }
-      ],
-      "blocker": "The compressed-upload browser case is skipped because cached PyAV is unavailable; exact-commit hosted CI remains open."
     }
   ]
 }

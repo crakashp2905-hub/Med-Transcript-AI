@@ -58,12 +58,11 @@ def test_api_contract_survives_router_and_service_extraction(setup):
         ]["maxItems"]
         == 16
     )
-    assert (
-        expected["components"]["schemas"]["NoteSection"]["properties"]["key"][
-            "maxLength"
-        ]
-        == 40
-    )
+    custom_section_key = expected["components"]["schemas"]["DraftInput"]["properties"][
+        "custom_sections"
+    ]["items"]
+    assert custom_section_key["maxLength"] == 40
+    assert custom_section_key["pattern"] == "^[a-z][a-z0-9_]*$"
     assert contract_matches(actual, expected)
     mutated = deepcopy(expected)
     mutated["paths"].pop("/v1/encounters")

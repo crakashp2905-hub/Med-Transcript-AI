@@ -12,7 +12,9 @@ def test_scorecard_keeps_three_weighted_axes_separate_and_bound_to_ledger():
 
     assert result["clinical_release_authorized"] is False
     assert set(result["axes"]) == {"research", "engineering", "product"}
-    assert sum(axis["task_count"] for axis in result["axes"].values()) == 369
+    assert sum(axis["task_count"] for axis in result["axes"].values()) == len(
+        ledger["tasks"]
+    )
     assert all(
         0 <= axis["weighted_readiness_percent"] <= 100
         for axis in result["axes"].values()

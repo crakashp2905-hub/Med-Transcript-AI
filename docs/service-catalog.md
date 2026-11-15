@@ -6,7 +6,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 
 | Classification | Modules |
 | --- | ---: |
-| integrated-in-production-flow | 95 |
+| integrated-in-production-flow | 96 |
 | candidate-only | 12 |
 | test-only | 216 |
 | documentation-only | 11 |
@@ -280,6 +280,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/review/clinical_routes.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/clinical_state.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/comparison.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
+| `services/review/document_exports.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/engine.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/metrics_routes.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/review/models.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -358,10 +359,12 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `GET` | `/favicon.svg` | `favicon` | `services.api.main` |
 | `GET` | `/health` | `health` | `services.api.routers.encounters` |
 | `GET` | `/investor-demo` | `investor_demo` | `services.api.main` |
+| `GET` | `/v1/admin/diagnostics` | `admin_diagnostics` | `services.api.auth` |
 | `GET` | `/v1/admin/users` | `admin_users` | `services.api.auth` |
 | `POST` | `/v1/admin/users` | `add_admin_user` | `services.api.auth` |
 | `GET` | `/v1/admin/users/audit` | `admin_user_audit` | `services.api.auth` |
 | `DELETE` | `/v1/admin/users/{user_id}` | `remove_admin_user` | `services.api.auth` |
+| `GET` | `/v1/asr-profiles/{profile_id}/readiness` | `asr_profile_readiness` | `services.review.routers.workspace` |
 | `GET` | `/v1/auth/callback` | `callback` | `services.api.auth` |
 | `GET` | `/v1/auth/config` | `config` | `services.api.auth` |
 | `GET` | `/v1/auth/login` | `login` | `services.api.auth` |

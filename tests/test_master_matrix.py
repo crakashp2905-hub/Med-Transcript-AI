@@ -6,8 +6,8 @@ from services.master_matrix import LEDGER, build
 def test_matrix_covers_every_ledger_task_and_declares_unmapped_edges():
     ledger = json.loads(LEDGER.read_text(encoding="utf-8"))
     matrix = build(ledger, source_commit="a" * 40)
-    assert matrix["total"] == 369
-    assert len(matrix["tasks"]) == 369
+    assert matrix["total"] == len(ledger["tasks"])
+    assert len(matrix["tasks"]) == len(ledger["tasks"])
     assert [row["id"] for row in matrix["tasks"]] == [
         task["id"] for task in ledger["tasks"]
     ]
