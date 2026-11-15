@@ -4976,36 +4976,25 @@
         "apps/clinician-web/e2e/device-check.spec.ts",
         "data/demo-sample.wav",
         "evaluation/reports/master-task-mta-09-19-f8cad5f.json",
-        "evaluation/reports/master-task-mta-09-19-9c245b1.json"
+        "evaluation/reports/master-task-mta-09-19-9c245b1.json",
+        "evaluation/reports/offline-browser-acceptance-2026-11-15-3e738a8-r1.json"
       ],
-      "source_commit": "9c245b1679425a7c4c4801df2dd702da888a4c57",
+      "source_commit": "3e738a82198521ce3c3996cfb80a2ef962ffa279",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-09-19-9c245b1.json",
-          "report_sha256": "3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952",
-          "check": "frontend_build",
+          "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-3e738a8-r1.json",
+          "report_sha256": "449e17cd022b40114ca2fa566f0a2f6b2090fd8073f07fb177808258bf9dced1",
+          "check": "browser_e2e",
+          "status": "fail"
+        },
+        {
+          "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-3e738a8-r1.json",
+          "report_sha256": "449e17cd022b40114ca2fa566f0a2f6b2090fd8073f07fb177808258bf9dced1",
+          "check": "focused_timing_diagnostic",
           "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-19-9c245b1.json",
-          "report_sha256": "3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952",
-          "check": "complete_non_google_browser_suite",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-19-9c245b1.json",
-          "report_sha256": "3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952",
-          "check": "compressed_audio_normalization",
-          "status": "blocked"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-19-9c245b1.json",
-          "report_sha256": "3e87fca9abdca7b15157956b1be210e96d0df9d6c59367651b25c5048ee73952",
-          "check": "speech_accuracy",
-          "status": "blocked"
         }
       ],
-      "blocker": "The complete deterministic browser suite passed except for one optional compressed-media case skipped because PyAV is not cached. All tests use synthetic fixtures and a scripted non-ASR adapter; they do not validate speech accuracy, real microphone behavior, or clinical performance."
+      "blocker": "Fresh full browser run at source commit 3e738a82198521ce3c3996cfb80a2ef962ffa279 failed 1 of 44 tests: timing.spec.ts could not persist the Critical details checked checkbox after its click. A focused run passed 1/1 but does not supersede the full-suite failure. The compressed-audio normalization case was skipped because cached PyAV is unavailable. Scripted non-ASR fixtures do not validate speech accuracy, physical microphone behavior, or clinical performance."
     },
     {
       "id": "MTA-09-20",
