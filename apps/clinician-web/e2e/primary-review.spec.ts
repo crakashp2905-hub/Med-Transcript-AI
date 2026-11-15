@@ -26,7 +26,9 @@ test('default encounter review presents the source and clinical note side by sid
  await expect(page.getByRole('heading',{name:'Clinical facts'})).toHaveCount(0);
  await page.getByLabel('I confirmed supported English.').check();
  await page.getByLabel('I reviewed source completeness.').check();
- await page.getByLabel('Review basis').fill('Synthetic end-to-end keyboard review.');
+ const reviewBasis=page.getByLabel('Review basis');
+ await reviewBasis.focus();
+ await page.keyboard.type('Synthetic end-to-end keyboard review.');
  await page.keyboard.press('Control+s');
  await expect(page.locator('.notice')).toContainText('Saved as a new source version.');
  await expect(page.getByRole('button',{name:'Facts & SOAP note'})).toBeEnabled();
@@ -37,7 +39,10 @@ test('default encounter review presents the source and clinical note side by sid
  await expect(page.getByRole('region',{name:'Unified source and note review'})).toBeVisible();
  const encounterLabel=await page.locator('.encounter-item.active strong').innerText();
  const changedText='Synthetic wording recovered after a browser reload.';
- await page.getByLabel('Transcript segment 1').fill(changedText);
+ const transcript=page.getByLabel('Transcript segment 1');
+ await transcript.focus();
+ await page.keyboard.press('Control+a');
+ await page.keyboard.type(changedText);
  await expect(page.getByRole('status').filter({hasText:'Unsaved changes are saved in this browser.'})).toBeVisible();
  await page.reload();
  await page.getByLabel('Access key').fill(localTestKey);

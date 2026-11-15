@@ -36,7 +36,8 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(personaJourney).toContainText('Review the complete source and speaker turns');
   const search=page.getByRole('search',{name:'Search transcript'});
   const searchInput=search.getByLabel('Transcript search terms');
-  await searchInput.fill('cough');
+  await searchInput.focus();
+  await page.keyboard.type('cough');
   await expect(search.getByRole('status')).toContainText('matching transcript turns');
   await searchInput.press('Tab');
   expect(await page.evaluate(()=>document.activeElement?.textContent)).toContain('Focus next match');
