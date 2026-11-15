@@ -9,6 +9,11 @@ const token=localTestKey;
 test('clinician reviews evidence, corrects a blocking medication, approves and exports',async({page})=>{
   const failures:string[]=[];
   page.on('pageerror',error=>failures.push(error.message));
+  await page.route('**/waveform**',route=>route.fulfill({json:{
+    schema_version:'source_waveform_v1',source_sha256:'a'.repeat(64),duration_ms:22000,
+    sample_rate:16000,channels:1,selected_channel:null,
+    peaks:Array.from({length:160},(_,index)=>0.2+(index%7)/10),
+  }}));
   await page.goto('/');
   await expect(page.getByRole('heading',{name:'Welcome to your workspace'})).toBeVisible();
   await page.getByLabel('Access key').fill(token);
@@ -137,8 +142,9 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   const sourceContext=page.getByRole('region',{name:'Source alongside note'});
   await expect(sourceContext).toBeVisible();
   const waveform=sourceContext.getByRole('img',{name:/Synchronized audio waveform/});
-  if(await waveform.count())await expect(waveform).toBeVisible();
-  else await expect(sourceContext).toContainText('Waveform unavailable');
+  await expect(waveform).toBeVisible();
+  await expect(waveform.locator('line.waveform-peak')).toHaveCount(160);
+  await expect(waveform.locator('line.waveform-cursor')).toHaveCount(1);
   await expect(sourceContext).toContainText('patient');
   await expect(page.getByRole('heading',{name:'Clinical facts'})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Note preview'})).toBeVisible();
