@@ -21,3 +21,10 @@ def test_catalog_is_the_source_for_every_public_error():
             "error_code": code,
             "message": entry["message"],
         }
+
+
+def test_pdf_unicode_failure_has_a_preserving_recovery_action():
+    result = public_error("pdf_contains_unsupported_character")
+    assert result["error_code"] == "pdf_contains_unsupported_character"
+    assert "saved note and approval are unchanged" in result["message"]
+    assert "DOCX or Markdown" in result["message"]

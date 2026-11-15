@@ -342,6 +342,10 @@
       "category": "conflict",
       "message": "This record failed an integrity check. Editing and approval are blocked."
     },
+    "pdf_contains_unsupported_character": {
+      "category": "validation",
+      "message": "PDF export could not safely render one or more characters in this note. The saved note and approval are unchanged. Use DOCX or Markdown to preserve all text."
+    },
     "preview_already_pending": {
       "category": "conflict",
       "message": "The request could not be completed. Review the current encounter and try again."
