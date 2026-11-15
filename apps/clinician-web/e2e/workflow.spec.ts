@@ -107,6 +107,12 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
     await card.getByLabel('Content and attribution reviewed').check();
     await card.getByLabel('Critical details checked').check();
   }
+  await page.route('**/v1/encounters/*/draft-proposals',route=>route.fulfill({status:503,json:{code:'model_unavailable'}}));
+  await page.getByRole('button',{name:'Generate proposal from reviewed facts'}).click();
+  const draftFailure=page.getByRole('alert').filter({hasText:'configured drafting model is unavailable'});
+  await expect(draftFailure).toContainText('Nothing was saved.');
+  await expect(draftFailure).toContainText('manual note editor');
+  await page.unroute('**/v1/encounters/*/draft-proposals');
   await page.getByRole('button',{name:'Save & verify note',exact:true}).click();
   await expect(page.getByText('Ambiguous statement',{exact:true})).toBeVisible();
   await expect(page.getByRole('region',{name:'critical verification issues'})).toBeVisible();
