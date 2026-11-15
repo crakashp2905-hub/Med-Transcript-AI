@@ -41,8 +41,6 @@ test('workspace administrator provisions a scribe without encounter access and r
  });
  await page.goto('/');await page.getByRole('button',{name:'Sign in with Google Workspace'}).click();
  await expect(page.getByRole('heading',{name:'Workspace accounts'})).toBeVisible();
- // Keep UI guidance deterministic; the diagnostics API contract has its own saved acceptance receipt.
- await page.route('**/v1/admin/diagnostics',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({schema_version:'clinic_operator_diagnostics_v1',runtime:{python:'3.12',platform:'Windows',node:false,npm:false,docker:false,psql:false},storage:{status:'unavailable',free_bytes:null,backup_restore:'not_checked'},frontend_dependencies:'missing',offline_mode:'not_confirmed',model_inference_performed:false,external_services_contacted:false,patient_or_encounter_data_included:false})}));
  await page.getByRole('button',{name:'Run local diagnostics'}).click();
  const diagnostics=page.getByRole('status',{name:'Local diagnostic results'});
  await expect(diagnostics).toContainText('Patient or encounter data: not included.');
