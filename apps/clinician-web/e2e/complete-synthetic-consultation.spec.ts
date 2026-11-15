@@ -127,6 +127,34 @@ test('one synthetic consultation completes capture, review, approval, and JSON e
   expect(exported.approval).toBeDefined();
   expect(exported.note).toBeDefined();
 
+  for (const format of ['markdown', 'text', 'fhir'] as const) {
+    const labels = { markdown: 'Markdown', text: 'Text', fhir: 'Fhir' } as const;
+    const extensions = { markdown: 'md', text: 'txt', fhir: 'json' } as const;
+    const event = page.waitForEvent('download');
+    await page.getByRole('button', { name: `↓ ${labels[format]}`, exact: true }).click();
+    const documentDownload = await event;
+    expect(documentDownload.suggestedFilename()).toContain(`.${extensions[format]}`);
+    const documentPath = testInfo.outputPath(`approved-note.${format}.${extensions[format]}`);
+    await documentDownload.saveAs(documentPath);
+    if (format === 'markdown') {
+      const rendered = readFileSync(documentPath, 'utf8');
+      expect(rendered).toContain('# Approved clinical note');
+      expect(rendered).toContain('Source transcript:');
+    } else if (format === 'text') {
+      const rendered = readFileSync(documentPath, 'utf8');
+      expect(rendered).toContain('APPROVED CLINICAL NOTE');
+      expect(rendered).toContain('Source transcript:');
+    } else {
+      const rendered = JSON.parse(readFileSync(documentPath, 'utf8'));
+      expect(rendered.resourceType).toBe('DocumentReference');
+      expect(rendered.docStatus).toBe('final');
+    }
+    await testInfo.attach(`approved-note.${format}`, {
+      path: documentPath,
+      contentType: format === 'markdown' ? 'text/markdown' : format === 'text' ? 'text/plain' : 'application/fhir+json',
+    });
+  }
+
   for (const format of ['pdf', 'docx'] as const) {
     const event = page.waitForEvent('download');
     await page.getByRole('button', { name: `↓ ${format.toUpperCase()}`, exact: true }).click();
