@@ -6800,21 +6800,21 @@
       "id": "MTA-13-15",
       "section": "13 — Security, privacy, threat modeling and defense in depth",
       "priority": "P1",
-      "status": "blocked_missing_asset",
+      "status": "implemented",
       "description": "Encrypt locally stored test backups with verified key lifecycle and restore; distinguish demo keys from institution-managed keys.",
       "evidence": [
-        "evaluation/reports/master-task-mta-13-15-837d8c1.json"
+        "evaluation/reports/encrypted-backup-aesgcm-synthetic-2026-11-15-7156064-r1.json"
       ],
-      "source_commit": "837d8c1ee1dfd577b9bae764e5aaf72b9e7701f8",
+      "source_commit": "71560644ffabfdf95b762801f73fbd93e38bd181",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-13-15-837d8c1.json",
-          "report_sha256": "7060c10c5387d8cccecfbaf167438c72e716e52df498f4da6d3c32df686d034f",
-          "check": "encrypted_backup_stream_test",
+          "report": "evaluation/reports/encrypted-backup-aesgcm-synthetic-2026-11-15-7156064-r1.json",
+          "report_sha256": "da5241a11c165545d79240c070d28acd572d6e6a62b151d968dd233cb7f26137",
+          "check": "pytest_integration",
           "status": "blocked"
         }
       ],
-      "blocker": "The local environment has cryptography 45.0.4 without cryptography.cobblestone; the project pin requiring 50.0.2 is unavailable locally and must not be fetched under the current constraint."
+      "blocker": "AES-GCM multi-chunk round-trip and tamper checks pass locally, but focused pytest integration stalled in the Windows sandbox; managed key custody, rotation and Windows ACL protection remain unverified."
     },
     {
       "id": "MTA-13-16",

@@ -1,0 +1,54 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-13-15"
+  ],
+  "source_commit": "71560644ffabfdf95b762801f73fbd93e38bd181",
+  "captured_at_utc": "2026-11-15T04:44:51+00:00",
+  "source_files": {
+    "services/encrypted_backup.py": "e325ab57e8b8e12e6257a2c84010d5b2117afbf9247cec6966b9bda5da31b08f",
+    "tests/test_encrypted_backup.py": "ad0c1aafb32c63798289896d7252de02044280f1a3ea5a45b995634fdc252683",
+    "docs/development-delivery-2026-10-27.md": "dbb86dce2e10d68a05639d17c4e94992459b0a70fffbf89d29f69225dfba8c45",
+    "pyproject.toml": "19b98099bf412671a533fc8656001ae39fdb0d87dd85189e473290c44c5d291e"
+  },
+  "checks": {
+    "multi_chunk_roundtrip": {
+      "status": "pass",
+      "result": "Synthetic 2.2 MB multi-chunk AES-GCM encrypt/decrypt round-trip passed."
+    },
+    "tamper_rejection": {
+      "status": "pass",
+      "result": "Modified ciphertext rejected; no plaintext destination was published."
+    },
+    "ruff_check": {
+      "status": "pass",
+      "result": "ruff check passed for changed Python files."
+    },
+    "ruff_format": {
+      "status": "pass",
+      "result": "ruff format --check passed for changed Python files."
+    },
+    "pytest_integration": {
+      "status": "blocked",
+      "result": "Both direct pytest and services.safe_pytest stalled without output in the Windows sandbox and were interrupted; no integration-test result established."
+    }
+  },
+  "runtime": {
+    "python": "Python 3.13.5",
+    "cryptography": "45.0.4",
+    "platform": "Windows sandbox",
+    "inference": "none",
+    "data": "synthetic only"
+  },
+  "runtime_sha256": "931ae01f083fefa34a738d9771ec78ebe3b1fe193ee1c6fcf9bbaf397334860f",
+  "supported_claims": [
+    "The installed AES-GCM implementation performs authenticated multi-chunk synthetic backup encryption and decryption.",
+    "Tampered ciphertext is rejected before an output destination is published."
+  ],
+  "limitations": [
+    "Focused pytest integration could not be completed because both test invocations stalled in the Windows sandbox.",
+    "Institution-managed key custody and rotation, Windows ACL protections, full encrypted database restore integration, and external audit remain unverified.",
+    "No real-patient data was processed; clinical release is unauthorized."
+  ],
+  "clinical_release_authorized": false
+}

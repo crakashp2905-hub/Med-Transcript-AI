@@ -1,17 +1,16 @@
 from pathlib import Path
+import os
 import pytest
 
-pytest.importorskip("cryptography.cobblestone")
-from cryptography.cobblestone import Cobblestone128Encryptor
 from cryptography.exceptions import InvalidTag
 from services.encrypted_backup import crypt_file, encrypted_backup, encrypted_restore
 from tests.test_foundation import queue_upload
 
 
 def test_authenticated_stream_rejects_tamper_truncation_and_wrong_key(tmp_path):
-    key = Cobblestone128Encryptor.generate_key()
+    key = os.urandom(32)
     source = tmp_path / "source"
-    source.write_bytes(b"synthetic private content" * 5000)
+    source.write_bytes(b"synthetic private content" * 50000)
     encrypted = tmp_path / "encrypted"
     crypt_file(source, encrypted, key)
     assert b"synthetic private content" not in encrypted.read_bytes()
@@ -34,7 +33,7 @@ def test_authenticated_stream_rejects_tamper_truncation_and_wrong_key(tmp_path):
         crypt_file(
             encrypted,
             tmp_path / "wrong-key",
-            Cobblestone128Encryptor.generate_key(),
+            os.urandom(32),
             decrypt=True,
         )
     with pytest.raises(FileExistsError):
@@ -44,7 +43,7 @@ def test_authenticated_stream_rejects_tamper_truncation_and_wrong_key(tmp_path):
 def test_encrypted_database_backup_restore_roundtrip(setup, tmp_path):
     client, db, _ = setup
     eid, upload, _, _ = queue_upload(client)
-    key = Cobblestone128Encryptor.generate_key()
+    key = os.urandom(32)
     destination = tmp_path / "archive.mtenc"
     receipt = encrypted_backup(db, Path(db).parent / "assets", destination, key)
     assert (
