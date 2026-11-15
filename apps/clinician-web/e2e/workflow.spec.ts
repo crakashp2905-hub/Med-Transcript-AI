@@ -149,7 +149,9 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(page.getByRole('heading',{name:'Clinical facts'})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Note preview'})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Verification'})).toBeVisible();
-  await page.getByRole('button',{name:'▷ Evidence',exact:true}).first().click();
+  const evidenceButton=page.getByRole('button',{name:'▷ Evidence',exact:true}).first();
+  await evidenceButton.focus();
+  await page.keyboard.press('Enter');
   await expect(page.locator('.citation-selected')).toHaveCount(1);
   const selectedSource=page.locator('.citation-selected');
   const sourceStart=await selectedSource.getByRole('button',{name:/Play source/}).getAttribute('aria-label');
@@ -158,8 +160,10 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   const citationStart=Number(startMatch![1])*60+Number(startMatch![2]);
   await expect.poll(()=>page.locator('audio').evaluate(audio=>(audio as HTMLAudioElement).currentTime)).toBeGreaterThanOrEqual(citationStart);
   await expect.poll(()=>page.locator('audio').evaluate(audio=>(audio as HTMLAudioElement).currentTime)).toBeLessThanOrEqual(citationStart+5);
+  const jsonExport=page.getByRole('button',{name:'↓ Json',exact:true});
+  await jsonExport.focus();
   const downloadPromise=page.waitForEvent('download');
-  await page.getByRole('button',{name:'↓ Json',exact:true}).click();
+  await page.keyboard.press('Enter');
   const download=await downloadPromise;
   const dir=testOutputPath('data/ui-screenshots');mkdirSync(dir,{recursive:true});
   const target=resolve(dir,'approved-note.json');await download.saveAs(target);
