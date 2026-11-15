@@ -597,26 +597,39 @@
         ".github/workflows/ci.yml",
         "services/verify.py",
         "evaluation/reports/master-task-mta-01-05-55de56e.json",
-        "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json"
+        "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
+        "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json"
       ],
-      "source_commit": "926ed2352e642d817005facd6a53cbca46b2252a",
+      "source_commit": "20bf39cb8b748f8c2d15c15c3042076a36457da9",
       "test_results": [
         {
-          "report": "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
-          "report_sha256": "322e51db468e4150e8e71e1ecf95a43dc37accb2698c7b113bf75acd37c9cdf8",
-          "check": "offline_safety_lane",
+          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
+          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
+          "check": "python_format",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
-          "report_sha256": "322e51db468e4150e8e71e1ecf95a43dc37accb2698c7b113bf75acd37c9cdf8",
-          "check": "frontend_build",
+          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
+          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
+          "check": "python_lint",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
-          "report_sha256": "322e51db468e4150e8e71e1ecf95a43dc37accb2698c7b113bf75acd37c9cdf8",
-          "check": "hosted_ci_exact_commit",
+          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
+          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
+          "check": "python_types",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
+          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
+          "check": "python_tests",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
+          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
+          "check": "hosted_ci",
           "status": "blocked"
         }
       ],

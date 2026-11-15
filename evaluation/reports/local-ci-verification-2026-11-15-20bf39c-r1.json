@@ -1,0 +1,63 @@
+{
+  "schema_version": "local_ci_verification_v1",
+  "run_id": "local-ci-verification-2026-11-15-20bf39c-r1",
+  "recorded_at_utc": "2026-11-15",
+  "source_commit": "20bf39cb8b748f8c2d15c15c3042076a36457da9",
+  "scope": "Local Python-only verification sequence; no hosted CI, PostgreSQL service, Docker build, npm install, or browser socket workflow.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "network": "no network calls requested",
+    "offline_mode": true
+  },
+  "checks": {
+    "python_format": {
+      "status": "pass",
+      "command": "python -m services.verify --python-only",
+      "summary": "Repository Python formatting check passed."
+    },
+    "python_lint": {
+      "status": "pass",
+      "command": "python -m services.verify --python-only",
+      "summary": "Repository Python lint check passed."
+    },
+    "python_types": {
+      "status": "pass",
+      "command": "python -m services.verify --python-only",
+      "summary": "Repository Python type check passed."
+    },
+    "python_tests": {
+      "status": "blocked",
+      "command": "python -m services.verify --python-only",
+      "summary": "Verification process produced no further output during the test phase and was interrupted; no Python test pass is claimed."
+    },
+    "hosted_ci": {
+      "status": "blocked",
+      "summary": "Exact-commit hosted jobs were not run. PostgreSQL/container services require hosted runners; push has not occurred."
+    },
+    "browser_e2e": {
+      "status": "blocked",
+      "summary": "Loopback server connection was denied by the environment socket policy. Separate earlier browser receipt remains bound to its recorded source commit."
+    }
+  },
+  "source_hashes": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "caa896b2f91f635d35c8b9a177c6bb43aa4b61b8a2a6400038c2d50bdf176d5c"
+    },
+    {
+      "path": "services/verify.py",
+      "sha256": "b49a205c7e5a9ad9250b1c4e7fe74da0b2353c71c339c795fefa75412c6cfaca"
+    }
+  ],
+  "limitations": [
+    "This receipt records local checks only and does not replace hosted CI.",
+    "No inference executed.",
+    "No acceptance cohort or patient data used.",
+    "A blocked check is not a pass."
+  ],
+  "inference_executed": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false
+}
