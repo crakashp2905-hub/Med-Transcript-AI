@@ -71,9 +71,9 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(page.getByLabel('Encounter recovery status')).toContainText('Network is unavailable');
   await page.context().setOffline(false);
   await expect(page.getByLabel('Encounter recovery status')).not.toContainText('Network is unavailable');
-  await expect(page.locator('.notice')).toContainText('Save source review to create the new transcript version');
+  await expect(page.getByRole('status').filter({hasText:'Save source review to create the new transcript version'})).toBeVisible();
   await page.getByRole('button',{name:'Save source review',exact:true}).click();
-  await expect(page.locator('.notice')).toContainText('Saved as a new source version');
+  await expect(page.getByRole('status').filter({hasText:'Saved as a new source version'})).toBeVisible();
   await expect(page.getByLabel('Encounter recovery status')).toHaveCount(0);
   await page.unroute('**/v1/encounters/*/retranscriptions');
   await page.unroute('**/v1/jobs/retranscription-e2e');
@@ -83,7 +83,7 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByLabel('Review basis').fill('Reviewed every audible interval and the complete synthetic recording.');
   await page.getByLabel('Correction reason').fill('Confirmed the scripted speaker roles and reviewed all source statements.');
   await page.getByRole('button',{name:'Save source review',exact:true}).click();
-  await expect(page.locator('.notice')).toContainText('Saved as a new source version');
+  await expect(page.getByRole('status').filter({hasText:'Saved as a new source version'})).toBeVisible();
   await page.route('**/v1/encounters/*/facts',route=>route.fulfill({status:503,json:{detail:'synthetic accessibility error'}}));
   const failedFacts=page.waitForResponse(response=>response.url().includes('/facts')&&response.status()===503);
   await page.getByRole('button',{name:'Prepare facts',exact:false}).click();
