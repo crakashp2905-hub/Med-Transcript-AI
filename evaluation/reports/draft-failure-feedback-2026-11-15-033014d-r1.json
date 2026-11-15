@@ -1,0 +1,51 @@
+{
+  "schema_version": "focused_synthetic_browser_evidence_v1",
+  "report_id": "draft-failure-feedback-2026-11-15-033014d-r1",
+  "source_commit": "033014da4c1b0d541587b18b034bd1ae5d227eda",
+  "source_files": [
+    {
+      "path": "apps/clinician-web/src/DraftProposal.tsx",
+      "sha256": "a432c749d560aaa84a70a4d8ba1ba4dd1741b32a82fcc3b75e6705a519452df4"
+    },
+    {
+      "path": "apps/clinician-web/e2e/workflow.spec.ts",
+      "sha256": "7d793d9728cb46a2de2a3a6cbd37d50a51026e32161b29513436d84a27008c64"
+    }
+  ],
+  "checks": [
+    {
+      "name": "frontend_build",
+      "command": "npm run build",
+      "status": "pass",
+      "detail": "TypeScript check and Vite production build succeeded."
+    },
+    {
+      "name": "clinician_reviews_evidence_corrects_approves_and_exports",
+      "command": "npx --offline playwright test e2e/workflow.spec.ts -g \"clinician reviews evidence, corrects a blocking medication, approves and exports\"",
+      "status": "pass",
+      "result": "1 passed",
+      "detail": "Injected model_unavailable error displayed specific recovery text and preserved manual note editing; synthetic journey continued through approved export."
+    }
+  ],
+  "mode": {
+    "application": "local loopback synthetic fixture",
+    "asr": "scripted non-ASR fixture; inference_executed=false",
+    "network": "browser fixture denies non-loopback HTTP(S) requests",
+    "patient_data_used": false
+  },
+  "attempts": [
+    {
+      "status": "blocked_by_sandbox",
+      "detail": "Two initial browser invocations could not navigate to loopback; rerun against the same local fixture with loopback permission passed."
+    }
+  ],
+  "limitations": [
+    "Focused regression only; not a fresh full-suite acceptance run.",
+    "Scripted fixture does not evaluate speech recognition or clinical accuracy.",
+    "Synthetic workflow evidence does not establish clinician usability, approval, or production readiness."
+  ],
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}
