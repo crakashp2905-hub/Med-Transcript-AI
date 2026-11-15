@@ -6,6 +6,16 @@ type Diagnostics={schema_version:string;runtime:{python:string;platform:string;n
 type Role='physician'|'scribe'|'administrator'|'viewer';
 type Props={request:(path:string,init?:RequestInit)=>Promise<any>;logout:()=>Promise<void>;userId:string};
 
+function diagnosticFollowUps(diagnostics:Diagnostics){
+ const actions:string[]=[];
+ if(diagnostics.offline_mode!=='enabled')actions.push('Offline mode is not confirmed. Set MED_TRANSCRIPT_OFFLINE=1 in the local service configuration, restart it, then rerun diagnostics.');
+ if(diagnostics.frontend_dependencies!=='available')actions.push('Browser dependencies are missing. Restore the approved offline application package or ask the installer to repair this installation.');
+ if(diagnostics.storage.status!=='measured'||diagnostics.storage.free_bytes===null)actions.push('Disk headroom could not be measured. Check the application volume and its permissions using the operating system tools.');
+ if(diagnostics.storage.backup_restore!=='validated')actions.push('Backup and restore have not been validated here. Follow the operator runbook to create a new backup and test restore in a separate recovery directory.');
+ if(!diagnostics.runtime.python)actions.push('Python runtime details are unavailable. Ask the installer to verify the application runtime.');
+ return actions;
+}
+
 export function AdminUsersScreen({request,logout,userId}:Props){
  const [users,setUsers]=useState<WorkspaceUser[]>([]),[events,setEvents]=useState<AuditEvent[]>([]);
  const [email,setEmail]=useState(''),[role,setRole]=useState<Role>('physician'),[assigned,setAssigned]=useState('');
@@ -43,7 +53,7 @@ export function AdminUsersScreen({request,logout,userId}:Props){
   <section className="panel" aria-label="Clinic operator diagnostics">
    <div className="panel-heading"><div><h2>Clinic operator diagnostics</h2><p className="muted">Read-only local checks. They do not inspect encounter content, run models, or contact external services.</p></div><button disabled={diagnosticsBusy} onClick={()=>void runDiagnostics()}>{diagnosticsBusy?'Checking…':'Run local diagnostics'}</button></div>
    {diagnosticsError&&<p role="alert" className="error">{diagnosticsError}</p>}
-   {diagnostics&&<div role="status" aria-label="Local diagnostic results"><p>Python {diagnostics.runtime.python} · {diagnostics.runtime.platform}</p><p>Browser dependencies: {diagnostics.frontend_dependencies} · offline mode: {diagnostics.offline_mode}</p><p>Disk headroom: {diagnostics.storage.status==='measured'&&diagnostics.storage.free_bytes!==null?`${(diagnostics.storage.free_bytes/1024**3).toFixed(1)} GB available`:'unavailable'}</p><p>Optional tools: Node {diagnostics.runtime.node?'available':'missing'}, npm {diagnostics.runtime.npm?'available':'missing'}, Docker {diagnostics.runtime.docker?'available':'missing'}, PostgreSQL client {diagnostics.runtime.psql?'available':'missing'}.</p><p>Backup/restore validation: {diagnostics.storage.backup_restore}. Model inference: not run. External services: not contacted. Patient or encounter data: not included.</p></div>}
+   {diagnostics&&<div role="status" aria-label="Local diagnostic results"><p>Python {diagnostics.runtime.python} · {diagnostics.runtime.platform}</p><p>Browser dependencies: {diagnostics.frontend_dependencies} · offline mode: {diagnostics.offline_mode}</p><p>Disk headroom: {diagnostics.storage.status==='measured'&&diagnostics.storage.free_bytes!==null?`${(diagnostics.storage.free_bytes/1024**3).toFixed(1)} GB available`:'unavailable'}</p><p>Optional tools: Node {diagnostics.runtime.node?'available':'missing'}, npm {diagnostics.runtime.npm?'available':'missing'}, Docker {diagnostics.runtime.docker?'available':'missing'}, PostgreSQL client {diagnostics.runtime.psql?'available':'missing'}.</p><p>Backup/restore validation: {diagnostics.storage.backup_restore}. Model inference: not run. External services: not contacted. Patient or encounter data: not included.</p><h3>Recommended follow-up</h3><ul>{diagnosticFollowUps(diagnostics).map(action=><li key={action}>{action}</li>)}</ul></div>}
    <details><summary>Support and recovery commands</summary><p>Run commands from the installed application directory. Keep output local and remove identifiers before sharing support details.</p><p><strong>Read-only readiness report</strong><br/><code>python -m services.status_report</code></p><p><strong>Backup to a new destination</strong><br/><code>python -m services.maintenance backup --destination data/backups/snapshot-UNIQUE</code></p><p><strong>Restore into a separate recovery directory</strong><br/><code>python -m services.maintenance restore --source data/backups/snapshot-UNIQUE --destination data/recovery-UNIQUE --tombstones-from data/development.sqlite3</code></p><p>Restore checks do not run from this screen. Use a separate destination and consult the operator runbook before replacing a live workspace.</p></details>
   </section>
    {error&&<p role="alert" className="error">{error}</p>}{notice&&<p role="status" className="verified">{notice}</p>}
