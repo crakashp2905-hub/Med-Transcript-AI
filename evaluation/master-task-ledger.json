@@ -1097,18 +1097,19 @@
       "evidence": [
         "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json",
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
       ],
-      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
+      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
       "test_results": [
         {
-          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "offline_browser_suite",
           "status": "pass"
         }
       ],
-      "blocker": "The compressed-upload browser case is skipped because cached PyAV is unavailable; exact-commit hosted CI remains open."
+      "blocker": "Fresh exact-source browser suite passed 45/46; one compressed upload case is skipped because cached PyAV is unavailable. Exact-commit hosted CI remains open."
     },
     {
       "id": "MTA-02-01",
@@ -1649,13 +1650,14 @@
         "evaluation/reports/master-task-mta-03-05-4db62a0.json",
         "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
       ],
-      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
+      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
       "test_results": [
         {
-          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "recording_duration",
           "status": "pass"
         }
@@ -1735,13 +1737,14 @@
         "evaluation/reports/master-task-mta-03-09-4db62a0.json",
         "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
       ],
-      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
+      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
       "test_results": [
         {
-          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "failure_recovery",
           "status": "pass"
         }
@@ -4375,14 +4378,15 @@
         "apps/clinician-web/src/SourceContext.tsx",
         "apps/clinician-web/e2e/workflow.spec.ts",
         "evaluation/reports/master-task-mta-09-02-44262d1.json",
-        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
       ],
-      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
+      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
       "test_results": [
         {
-          "report": "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
-          "report_sha256": "22522716d9db63b10f785ed28ec6837f6964aeacca1a9b3b6099be1a7fe3bb5d",
-          "check": "click_to_exact_source_audio",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
+          "check": "evidence_channel_navigation",
           "status": "pass"
         }
       ],
@@ -4441,13 +4445,14 @@
         "apps/clinician-web/src/UncertainSpanQueue.tsx",
         "apps/clinician-web/e2e/workflow.spec.ts",
         "evaluation/reports/master-task-mta-09-04-24790d6.json",
-        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
       ],
-      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
+      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
       "test_results": [
         {
-          "report": "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
-          "report_sha256": "22522716d9db63b10f785ed28ec6837f6964aeacca1a9b3b6099be1a7fe3bb5d",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "critical_findings_and_uncertainty",
           "status": "pass"
         }
@@ -4901,13 +4906,14 @@
         "data/demo-sample.json",
         "evaluation/reports/master-task-mta-09-16-cc01afe.json",
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
       ],
-      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
+      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
       "test_results": [
         {
-          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "read_only_investor_demo",
           "status": "pass"
         }
@@ -4931,31 +4937,32 @@
         "tests/test_preview_divergence.py",
         "tests/test_presentation_tools.py",
         "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
-        "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json"
+        "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
       ],
-      "source_commit": "3b31021cf6337f4cdda9cd0c2b3f9bbf8e800031",
+      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
       "test_results": [
         {
-          "report": "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json",
-          "report_sha256": "d5f3d5fd4f2bc922f6f818c026a803507879c3e8f45b8bbc7aa1269e8191b844",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "review_workflow_backend",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json",
-          "report_sha256": "d5f3d5fd4f2bc922f6f818c026a803507879c3e8f45b8bbc7aa1269e8191b844",
-          "check": "approval_and_format_browser_journeys",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
+          "check": "approval_state_workflow",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json",
-          "report_sha256": "d5f3d5fd4f2bc922f6f818c026a803507879c3e8f45b8bbc7aa1269e8191b844",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "provisional_preview_state",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json",
-          "report_sha256": "d5f3d5fd4f2bc922f6f818c026a803507879c3e8f45b8bbc7aa1269e8191b844",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "unreviewed_proposal_state",
           "status": "pass"
         }
@@ -5031,18 +5038,19 @@
         "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json",
         "evaluation/reports/offline-browser-acceptance-2026-11-15-3ca404f-r1.json",
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
       ],
-      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
+      "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
       "test_results": [
         {
-          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
-          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "report": "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+          "report_sha256": "c259021d8a6a686e06c4889df13e0bc9cca20d9b1e488bb0ffe09c384eefbb93",
           "check": "offline_browser_suite",
           "status": "pass"
         }
       ],
-      "blocker": "Fresh exact-source browser suite passed 45/46; one compressed-audio case is skipped because cached PyAV is unavailable. No inference or clinical validation was performed."
+      "blocker": "Fresh exact-source browser suite passed 45/46; one compressed-audio case is skipped because cached PyAV is unavailable. All executed journeys are synthetic and non-ASR."
     },
     {
       "id": "MTA-09-20",

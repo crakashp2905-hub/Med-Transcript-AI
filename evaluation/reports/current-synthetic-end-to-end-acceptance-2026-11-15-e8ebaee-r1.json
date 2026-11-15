@@ -1,0 +1,405 @@
+{
+  "schema_version": "current_synthetic_end_to_end_acceptance_v1",
+  "run_id": "full-browser-and-review-acceptance-2026-11-15-e8ebaee-r1",
+  "recorded_at_utc": "2026-11-15T04:37:33Z",
+  "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
+  "scope": "Fresh current-tree synthetic capture, review, approval, export, recovery, local OIDC role lifecycle, and review-route acceptance.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "npm": "10.9.2",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone",
+    "network": "Loopback-only offline scripted server and local simulated OIDC; no external requests or inference"
+  },
+  "runtime_sha256": "f8bce9668572349e1072bc05ba85a642a3f9455e7904cb5d0c4c511cdfe267f9",
+  "checks": {
+    "offline_browser_suite": {
+      "status": "pass",
+      "collected": 46,
+      "passed": 45,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reason": "Compressed upload requires optional cached PyAV, unavailable on this host.",
+      "command": "npx --offline playwright test --grep-invert 'Google session bootstrap|workspace administrator provisions'"
+    },
+    "simulated_oidc_browser_suite": {
+      "status": "pass",
+      "collected": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "test_ids": [
+        "google-auth.spec.ts:6",
+        "google-auth.spec.ts:34"
+      ]
+    },
+    "read_only_investor_demo": {
+      "status": "pass",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "test_id": "investor-demo.spec.ts:3",
+      "asserted": [
+        "synthetic read-only label",
+        "no sign-in",
+        "no API request",
+        "unapproved demonstration disclosure"
+      ]
+    },
+    "recording_duration": {
+      "status": "pass",
+      "collected": 12,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "test_file": "dictation.spec.ts"
+    },
+    "failure_recovery": {
+      "status": "pass",
+      "collected": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "test_file": "recovery.spec.ts"
+    },
+    "evidence_channel_navigation": {
+      "status": "pass",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "test_id": "evidence-channel.spec.ts:8",
+      "asserted": [
+        "statement to cited transcript span and exact channel audio playback"
+      ]
+    },
+    "critical_findings_and_uncertainty": {
+      "status": "pass",
+      "collected": 2,
+      "passed": 2,
+      "failed": 0,
+      "test_ids": [
+        "presentation.spec.ts:21",
+        "presentation.spec.ts:63"
+      ]
+    },
+    "manual_fallback_readiness": {
+      "status": "pass",
+      "collected": 2,
+      "passed": 2,
+      "failed": 0,
+      "test_file": "model-readiness.spec.ts"
+    },
+    "custom_section_capture_export": {
+      "status": "pass",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "test_id": "complete-synthetic-consultation.spec.ts:49",
+      "formats": [
+        "JSON",
+        "Markdown",
+        "text",
+        "FHIR",
+        "PDF",
+        "DOCX"
+      ]
+    },
+    "approval_state_workflow": {
+      "status": "pass",
+      "collected": 2,
+      "passed": 2,
+      "failed": 0,
+      "test_ids": [
+        "workflow.spec.ts:9",
+        "complete-synthetic-consultation.spec.ts:49"
+      ]
+    },
+    "provisional_preview_state": {
+      "status": "pass",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "test_id": "recovery.spec.ts:66"
+    },
+    "unreviewed_proposal_state": {
+      "status": "pass",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "test_id": "clinical-batches.spec.ts:6"
+    },
+    "review_workflow_backend": {
+      "status": "pass",
+      "collected": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "command": "python -m services.safe_pytest tests/test_review_workflow.py",
+      "asserted": [
+        "manual correction provenance",
+        "custom note section validation and amendment preservation",
+        "draft export denied without approval",
+        "approval idempotency and export integrity"
+      ]
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "services/review/routers/exports.py",
+      "sha256": "895497ff99c32665f3576a095dd0a3d8b9a679cdaad0ba0263a70586eb24bd20"
+    },
+    {
+      "path": "services/review/routers/notes.py",
+      "sha256": "044a2e19685f8c47e58b019f894e09832ae9ea5c540dbc015ce30e9165c7d4a3"
+    },
+    {
+      "path": "services/review/engine.py",
+      "sha256": "9f4d28007cfcfb645eee3dc2d12a1e5f7245562ac554faed2c52fc70ba48c8c8"
+    },
+    {
+      "path": "services/review/models.py",
+      "sha256": "a41206a9ed7af20bc10278fe32b60a28a964fc90164b2e2e37f9e17952125f3c"
+    },
+    {
+      "path": "services/review/clinical_routes.py",
+      "sha256": "8aa2c4e8966520b56d2e65a49e0d4da1e8d0fe13b9a3ab48a1238134621ab4d8"
+    },
+    {
+      "path": "services/api/auth.py",
+      "sha256": "a5c870b785c86f4ea3e4c000b8977511ee30c1b56a01dd6fe8151788b039f623"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "3194f1958f7f28d9df829028d7f850bc0054bcef5288eccfe07a79a8d1a09310"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "c9259696b7754380a0a5116d93ffebe3f4d1760ad5d0b9d52e5ee1ad63a581e0"
+    },
+    {
+      "path": "apps/clinician-web/src/Dictation.tsx",
+      "sha256": "8e6f33432193a9b28a4b82f44edbe9dbd221b3e493832275b8e862d33ae0f7bd"
+    },
+    {
+      "path": "apps/clinician-web/src/JobState.tsx",
+      "sha256": "5b64480f8fcd0e1615d958f619ffa0dc5ca969a4441cd5d5ce272a028a60524c"
+    },
+    {
+      "path": "apps/clinician-web/src/DraftProposal.tsx",
+      "sha256": "37b49aab0c7a39162a9ee27fabec29fcbdf2d3a8086fc8dc74f2102819ee0d76"
+    },
+    {
+      "path": "apps/clinician-web/e2e/investor-demo.spec.ts",
+      "sha256": "fe5004bb70009caf230c43bfa55941b770582af81927107954092e5b3fc9abff"
+    },
+    {
+      "path": "apps/clinician-web/e2e/evidence-channel.spec.ts",
+      "sha256": "bd29bbfa9b99999952f15a1abfe758430ac35f7c02d76c5631d1ae823c9595aa"
+    },
+    {
+      "path": "apps/clinician-web/e2e/model-readiness.spec.ts",
+      "sha256": "0ac8bcd2da6fe80070802002c87927982ea173af7281c4860562d3feee2595dd"
+    },
+    {
+      "path": "apps/clinician-web/e2e/presentation.spec.ts",
+      "sha256": "800e3a39040ed2cfe29e2e538215534b39f2e2893ac61ce2c713ffc77acad5eb"
+    },
+    {
+      "path": "apps/clinician-web/e2e/primary-review.spec.ts",
+      "sha256": "02ba702de53d9a9e70d469bb82ff5a399794640289d2815ded2c06797ea529ee"
+    },
+    {
+      "path": "apps/clinician-web/e2e/workflow.spec.ts",
+      "sha256": "0e4872024cf5a20fcb56fda1db823569fc71e6b56779836b61383dad910a26d8"
+    },
+    {
+      "path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+      "sha256": "b3e5ea0a4b0c05892f46160c29269545afe70d419fe072ca3235ede5e74189bd"
+    },
+    {
+      "path": "apps/clinician-web/e2e/dictation.spec.ts",
+      "sha256": "12aa65660e47b43acecf4a0c74bb6545c5b26bb07aa6b3e167b762f0dc7dba78"
+    },
+    {
+      "path": "apps/clinician-web/e2e/recovery.spec.ts",
+      "sha256": "7173c9cfdda08f95eb6a6fd9c5002c7492dbf71f2f1d70b2d68bd8a7ceecaf30"
+    },
+    {
+      "path": "apps/clinician-web/e2e/usability-audit.spec.ts",
+      "sha256": "b011724a9a3b35b576f038b9d521e9644fa8ef82a4c48eb3a20e0c599e441c09"
+    },
+    {
+      "path": "apps/clinician-web/e2e/timing.spec.ts",
+      "sha256": "19118fe71db73f67d4962ebe8e97443b02b48f9cb766b4275f6dd4430e969ab6"
+    },
+    {
+      "path": "apps/clinician-web/e2e/google-auth.spec.ts",
+      "sha256": "03b21d06faa378c91c0ce37c140fc0a8352306c625ef253f3fcd1ed0b841d35d"
+    },
+    {
+      "path": "tests/test_review_workflow.py",
+      "sha256": "9ae697e9c08a0009ac2e0be0698d7822a3982c4adffacc9c438afbc9298cbe33"
+    },
+    {
+      "path": "apps/clinician-web/package.json",
+      "sha256": "c48961e28e3a1fa3abe593a93ccd7d0127df528714c4dd372b1ae9bda13e19e9"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/browser-fixtures/complete-consultation-112d84c4-2430-49d5-b97c-eb516b9c95a2.wav",
+      "sha256": "1b0ad8990bfcd7f6b58122a86292ca7be4a6548974fcad5258896c46e3dfe760",
+      "bytes": 338552
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/browser-fixtures/dictation-1eb955b0-a41c-42a8-89a5-2d231654d441.wav",
+      "sha256": "1b0ad8990bfcd7f6b58122a86292ca7be4a6548974fcad5258896c46e3dfe760",
+      "bytes": 338552
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/browser-fixtures/dictation-timing-626be5b4-59c2-463a-b08f-0c0f5ed50788.wav",
+      "sha256": "1b0ad8990bfcd7f6b58122a86292ca7be4a6548974fcad5258896c46e3dfe760",
+      "bytes": 338552
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/ui-screenshots/approved-note.json",
+      "sha256": "f919026482f43a1d872741fe65420b39e73b74ce5905b7ae72483596701b5816",
+      "bytes": 17387
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/ui-screenshots/approved-workspace.png",
+      "sha256": "31303d3ec874a0a870aabfc6ca17bec591087c9f400a497c364dac565ee277bf",
+      "bytes": 549234
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/ui-screenshots/dictation-recording.png",
+      "sha256": "01abc593a072b5f29028e7b24c0dd71204c9217a96b7ee8b1625fb0cc46c8150",
+      "bytes": 278165
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/ui-screenshots/dictation-result.png",
+      "sha256": "f5fb77d2865040503ec97f8488e74fc003f48fc297deebb5490cfdc1de90bb66",
+      "bytes": 343806
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/ui-screenshots/historical-citation-mobile.png",
+      "sha256": "24bac5c1e853e9d53d102ff22b73759ec0ce7b15f54a253e778e55bf04a44907",
+      "bytes": 486289
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/ui-screenshots/mobile-source.png",
+      "sha256": "71f98ec508092d13486ba81b1400eca7e39fcc6745e1365486e8e030011f8170",
+      "bytes": 276216
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/data/ui-screenshots/reviewed-visit-summary.txt",
+      "sha256": "cc2d974edaef11d0dfdb698cd6cb9a70194c7d161d08d5aa118f4278b580d940",
+      "bytes": 1024
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/google-auth-playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.docx",
+      "sha256": "0ae8e2857aac1dca6ce8eb95902850f8970f9bf5152e5014232688db315b13b3",
+      "bytes": 2374
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.fhir.json",
+      "sha256": "87d9a79ff619c34c1aeef5256576dd2a3f6e8873ba2f84273e238a38050be3c8",
+      "bytes": 13230
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "331e5b9ae07558ad86198e139e2b0f5a4644c37192671bf51e4e3a5829daba7f",
+      "bytes": 12035
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.markdown.md",
+      "sha256": "fe0e859a56b859e4c0101c34e1c5b1c58519c79be43ff7aac305355eba977313",
+      "bytes": 1210
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.pdf",
+      "sha256": "82aad259e227054a8a2bd7a0b63fd35ef8fa9f67ad8c1f7df4a93913efccdb23",
+      "bytes": 2105
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.text.txt",
+      "sha256": "0babe8b00cefa92b43eb990683eb2cef286d860c6c2b0d121b20b804e1baa8e8",
+      "bytes": 1188
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-docx-c029c96dc851983602e22cbb74a67d3bacfdbf61.docx",
+      "sha256": "0ae8e2857aac1dca6ce8eb95902850f8970f9bf5152e5014232688db315b13b3",
+      "bytes": 2374
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-fhir-388f4adbf181dfbdf909385607e5fe3ef4d35254.json",
+      "sha256": "87d9a79ff619c34c1aeef5256576dd2a3f6e8873ba2f84273e238a38050be3c8",
+      "bytes": 13230
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-json-1c7a448f81d80ad58c0ad2fcc19a104f5ba1ce36.json",
+      "sha256": "331e5b9ae07558ad86198e139e2b0f5a4644c37192671bf51e4e3a5829daba7f",
+      "bytes": 12035
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-markdown-dadf18a8a8024c830ee1d905111e1d9636dbb4c1.md",
+      "sha256": "fe0e859a56b859e4c0101c34e1c5b1c58519c79be43ff7aac305355eba977313",
+      "bytes": 1210
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-pdf-ce5b41822b76cbf18be7c5a2d8f6063d69cd13c5.pdf",
+      "sha256": "82aad259e227054a8a2bd7a0b63fd35ef8fa9f67ad8c1f7df4a93913efccdb23",
+      "bytes": 2105
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-text-020d695d25f1008df7d0b5bef5817e906e534d2a.txt",
+      "sha256": "0babe8b00cefa92b43eb990683eb2cef286d860c6c2b0d121b20b804e1baa8e8",
+      "bytes": 1188
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/usability-artifacts/browser-observations.json",
+      "sha256": "1715655c69ec6e5068b692aecbf057375b1864c3240e3b5375164a661e4cec3a",
+      "bytes": 290
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/usability-artifacts/login-desktop.png",
+      "sha256": "2ebe7e45214a8346ef5d77b9a6f27cbad96174f6a9d5475a3d041168034ce674",
+      "bytes": 478034
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/usability-artifacts/source-mobile.png",
+      "sha256": "26ef29d9fa9afc89dafaa497d9948ad6b0465b7f89ad9cf90ee913df7496d861",
+      "bytes": 278871
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-e8ebaee/usability-artifacts/workspace-desktop.png",
+      "sha256": "2849b883aa99a6ac40ce94e9f5b89f0961684ae404a5e3f9320723bf1ee9e676",
+      "bytes": 573739
+    }
+  ],
+  "inference_executed": false,
+  "human_observations": 0,
+  "clinical_accuracy_measured": false,
+  "physical_microphone_tested": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "limitations": [
+    "One compressed-upload case is skipped because cached PyAV is unavailable.",
+    "Fake microphone and scripted fixture transcript were used; no ASR or note inference ran.",
+    "No independent clinician usability or clinical accuracy assessment was performed.",
+    "OS-level audio hardware behavior, hosted CI, and real identity-provider deployment remain unvalidated."
+  ]
+}
