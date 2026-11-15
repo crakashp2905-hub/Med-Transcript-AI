@@ -1,0 +1,58 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-09-01"
+  ],
+  "source_commit": "abbb6c98fde69ecc54e04691dc57d4df618ff1c4",
+  "captured_at_utc": "2026-11-15T05:38:44+00:00",
+  "source_files": {
+    "apps/clinician-web/e2e/workflow.spec.ts": "ada141b637e9056b570adea6f212f2f8f79fcce8f6e528be9c0f847d078064f7",
+    "tests/test_audio_waveform.py": "cdb38c9531bced5591f180871b571dbc0f519547dcadf5209c510d774d4eef3c",
+    "services/audio_waveform.py": "d56e33747677b5cc32349f7381b14937889adbde7fa4f9d3a7e1f03730b2d3b6",
+    "services/review/routers/workspace.py": "8f32ee7925e7767f3960afa3b32946fea862afc80ebe4ccb011c11e64e4fb21b",
+    "apps/clinician-web/src/SourceContext.tsx": "698d1c4c6e275e2fa883b38ddbf9355c23ab958b7933702bf5bee7807f124c2f",
+    "apps/clinician-web/src/hooks/useEncounterWorkspace.ts": "c9259696b7754380a0a5116d93ffebe3f4d1760ad5d0b9d52e5ee1ad63a581e0"
+  },
+  "checks": {
+    "primary_review_waveform": {
+      "status": "pass",
+      "summary": "Playwright workflow showed 160 waveform peaks, one synchronized cursor, source transcript, clinical facts, note preview, verification warnings, citation playback, approval and JSON export."
+    },
+    "source_waveform_endpoint": {
+      "status": "pass",
+      "summary": "Synthetic ingested WAV endpoint returned 160 peaks bound to the original source SHA-256."
+    },
+    "frontend_build": {
+      "status": "pass",
+      "summary": "TypeScript check and Vite production build passed."
+    },
+    "python_static": {
+      "status": "pass",
+      "summary": "Ruff lint and format checks passed for the waveform test."
+    }
+  },
+  "runtime": {
+    "platform": "Windows",
+    "python": "Python 3.13.5",
+    "node": "v22.16.0",
+    "npm": "10.9.2",
+    "playwright": "Version 1.64.1",
+    "browser": "Playwright channel chrome; installed browser version not separately captured",
+    "network": "isolated loopback synthetic fixture; external application requests blocked",
+    "inference": "none; scripted non-ASR fixture",
+    "data": "synthetic local WAV only"
+  },
+  "runtime_sha256": "39a0b19c9306c954fc3abbc73f0d45d1f1826a7f4b1eafa6e2af9267486ba48f",
+  "supported_claims": [
+    "The encounter review workspace renders the note alongside source audio, transcript, waveform, fact cards and verification panel.",
+    "Clicking a source-supported evidence citation starts playback at its transcript interval in the scripted synthetic browser workflow.",
+    "The actual local waveform endpoint returns bounded peaks tied to the ingested source digest."
+  ],
+  "limitations": [
+    "The browser visual workflow used deterministic synthetic waveform peaks; source binding was independently checked against the actual API endpoint using generated PCM WAV data.",
+    "The audio test provider is a scripted non-ASR fixture; no speech recognition or clinical accuracy was tested.",
+    "The compressed upload Playwright case was skipped because PyAV is unavailable locally.",
+    "Independent clinician usability and clinical validation remain unperformed; clinical release is unauthorized."
+  ],
+  "clinical_release_authorized": false
+}

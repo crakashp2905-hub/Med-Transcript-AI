@@ -4339,7 +4339,7 @@
       "id": "MTA-09-01",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "implemented",
+      "status": "verified",
       "description": "Implement a single encounter workspace with synchronized waveform/time bar, speaker transcript, atomic facts, SOAP note and warning list.",
       "evidence": [
         "apps/clinician-web/src/SourceContext.tsx",
@@ -4347,10 +4347,38 @@
         "apps/clinician-web/src/style.css",
         "apps/clinician-web/e2e/workflow.spec.ts",
         "tests/test_audio_waveform.py",
-        "evaluation/reports/master-task-mta-09-01-32a071a.json"
+        "evaluation/reports/master-task-mta-09-01-32a071a.json",
+        "evaluation/reports/primary-review-waveform-acceptance-2026-11-15-abbb6c9-r1.json"
       ],
-      "source_commit": "32a071a5317854f59565dd0705f0343040147d5a",
+      "source_commit": "abbb6c98fde69ecc54e04691dc57d4df618ff1c4",
       "test_results": [
+        {
+          "report": "evaluation/reports/primary-review-waveform-acceptance-2026-11-15-abbb6c9-r1.json",
+          "report_sha256": "c0a9443b27097541f4478d2a8677c730f59a9ca7ee6e34c0a50dde06a21bd962",
+          "check": "primary_review_waveform",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/primary-review-waveform-acceptance-2026-11-15-abbb6c9-r1.json",
+          "report_sha256": "c0a9443b27097541f4478d2a8677c730f59a9ca7ee6e34c0a50dde06a21bd962",
+          "check": "source_waveform_endpoint",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/primary-review-waveform-acceptance-2026-11-15-abbb6c9-r1.json",
+          "report_sha256": "c0a9443b27097541f4478d2a8677c730f59a9ca7ee6e34c0a50dde06a21bd962",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/primary-review-waveform-acceptance-2026-11-15-abbb6c9-r1.json",
+          "report_sha256": "c0a9443b27097541f4478d2a8677c730f59a9ca7ee6e34c0a50dde06a21bd962",
+          "check": "python_static",
+          "status": "pass"
+        }
+      ],
+      "blocker": null,
+      "test_results_history": [
         {
           "report": "evaluation/reports/master-task-mta-09-01-32a071a.json",
           "report_sha256": "5697b8be9b4c7a74fed6cca9c60ed0d525dc5ed68af02e196a45ec30c99fbddc",
@@ -4363,8 +4391,7 @@
           "check": "source_waveform_endpoint_produces_hash_bound_peaks",
           "status": "pass"
         }
-      ],
-      "blocker": "The offline browser fixture returned no waveform peaks; the UI displayed its explicit fallback. The rendered waveform needs an interactive check with an audio fixture that returns peaks."
+      ]
     },
     {
       "id": "MTA-09-02",
