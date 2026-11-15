@@ -598,42 +598,61 @@
         "services/verify.py",
         "evaluation/reports/master-task-mta-01-05-55de56e.json",
         "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
-        "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json"
+        "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
+        "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json"
       ],
-      "source_commit": "20bf39cb8b748f8c2d15c15c3042076a36457da9",
+      "source_commit": "57c60defe488b309e9b3f5d44567c1f5001fed24",
       "test_results": [
         {
-          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
-          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
+          "report": "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json",
+          "report_sha256": "176fa3ee3189d983ff4bdc74934540aabd3831a0a30cb2248c32f3a4183cee9b",
           "check": "python_format",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
-          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
+          "report": "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json",
+          "report_sha256": "176fa3ee3189d983ff4bdc74934540aabd3831a0a30cb2248c32f3a4183cee9b",
           "check": "python_lint",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
-          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
+          "report": "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json",
+          "report_sha256": "176fa3ee3189d983ff4bdc74934540aabd3831a0a30cb2248c32f3a4183cee9b",
           "check": "python_types",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
-          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
+          "report": "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json",
+          "report_sha256": "176fa3ee3189d983ff4bdc74934540aabd3831a0a30cb2248c32f3a4183cee9b",
           "check": "python_tests",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json",
+          "report_sha256": "176fa3ee3189d983ff4bdc74934540aabd3831a0a30cb2248c32f3a4183cee9b",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json",
+          "report_sha256": "176fa3ee3189d983ff4bdc74934540aabd3831a0a30cb2248c32f3a4183cee9b",
+          "check": "hosted_ci",
           "status": "blocked"
         },
         {
-          "report": "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
-          "report_sha256": "049ee0b65d02d09a2d62bab03a6926c030a7de8a449c30512dd45a6880f76f15",
-          "check": "hosted_ci",
+          "report": "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json",
+          "report_sha256": "176fa3ee3189d983ff4bdc74934540aabd3831a0a30cb2248c32f3a4183cee9b",
+          "check": "postgresql_container_jobs",
+          "status": "blocked"
+        },
+        {
+          "report": "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json",
+          "report_sha256": "176fa3ee3189d983ff4bdc74934540aabd3831a0a30cb2248c32f3a4183cee9b",
+          "check": "release_summary",
           "status": "blocked"
         }
       ],
-      "blocker": "The local offline safety lane and frontend build pass on this source. Exact-commit hosted Python matrix, PostgreSQL, container, and release-summary jobs are not observed."
+      "blocker": "Local Python format, lint, type, and full pytest lanes pass at this exact source. Exact-commit hosted GitHub Actions, PostgreSQL, container, and release-summary jobs remain unobserved."
     },
     {
       "id": "MTA-01-06",

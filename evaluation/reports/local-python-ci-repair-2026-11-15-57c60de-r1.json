@@ -1,0 +1,127 @@
+{
+  "schema_version": "local_python_ci_repair_v1",
+  "run_id": "local-python-ci-repair-2026-11-15-57c60de-r1",
+  "recorded_at_utc": "2026-11-15T04:25:14Z",
+  "source_commit": "57c60defe488b309e9b3f5d44567c1f5001fed24",
+  "scope": "Dependency-ordered local Python CI verification after repairing stale task-count, service-catalog, and API-contract expectations.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "verification": "services.verify --python-only",
+    "network": "Local-only socketpair enabled; no external calls or inference",
+    "node": "v22.16.0",
+    "npm": "10.9.2"
+  },
+  "runtime_sha256": "70f51b5a7790a7f3fb2d22e0439556b4bf97ee4e4f2a4cc0c0c5d1d18ee963d8",
+  "checks": {
+    "python_format": {
+      "status": "pass",
+      "command": "python -m services.verify --python-only",
+      "summary": "Repository Python formatting check passed at exact source commit."
+    },
+    "python_lint": {
+      "status": "pass",
+      "command": "python -m services.verify --python-only",
+      "summary": "Repository Python lint check passed at exact source commit."
+    },
+    "python_types": {
+      "status": "pass",
+      "command": "python -m services.verify --python-only",
+      "summary": "Repository Python type check passed at exact source commit."
+    },
+    "python_tests": {
+      "status": "pass",
+      "command": "python -m services.verify --python-only",
+      "summary": "1,349 passed, 10 skipped, no failures."
+    },
+    "pre_fix_python_tests": {
+      "status": "fail",
+      "source_commit": "980dfb21e190e79af21042a08c8a47094eff6b95",
+      "summary": "1,344 passed, 10 skipped, 5 failures; the failing assertions were stale task counts, generated catalog, readiness ledger count, and API schema name. Fixed in this source revision."
+    },
+    "hosted_ci": {
+      "status": "blocked",
+      "summary": "Exact-commit hosted jobs were not run."
+    },
+    "postgresql_container_jobs": {
+      "status": "blocked",
+      "summary": "PostgreSQL and container CI services were not run locally."
+    },
+    "release_summary": {
+      "status": "blocked",
+      "summary": "Exact-commit release summary job was not run."
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "summary": "TypeScript check and Vite production build passed at the exact source commit."
+    }
+  },
+  "source_hashes": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "caa896b2f91f635d35c8b9a177c6bb43aa4b61b8a2a6400038c2d50bdf176d5c"
+    },
+    {
+      "path": "services/verify.py",
+      "sha256": "b49a205c7e5a9ad9250b1c4e7fe74da0b2353c71c339c795fefa75412c6cfaca"
+    },
+    {
+      "path": "services/master_ledger.py",
+      "sha256": "467a3353fb2dd39b43648efa2bfc5c0c968bc41e1b69ffa9049e5b3c7430f8db"
+    },
+    {
+      "path": "services/master_matrix.py",
+      "sha256": "816a577ef81394470db6c82bb0db267b722549b3eb47075bb5c3c250ca3cb099"
+    },
+    {
+      "path": "services/module_catalog.py",
+      "sha256": "36f1e7fbbafcf8ffd4875dea8a8c7c93eada5c0d53ee952e096b2bd99edc8916"
+    },
+    {
+      "path": "services/readiness_scorecard.py",
+      "sha256": "3ccd1f2665befe738b5ce114fe26ac2ffba3150f725b80018534f62a044a5d51"
+    },
+    {
+      "path": "docs/service-catalog.md",
+      "sha256": "8fe40bff27c6da4be30e43528759c51fc1d991d2a1dfac27795ef8bc1488df57"
+    },
+    {
+      "path": "evaluation/master-task-ledger.json",
+      "sha256": "d329550153c4815d433a551fdb099a843192f3f28a971e25662e065c8beef29c"
+    },
+    {
+      "path": "tests/test_master_ledger.py",
+      "sha256": "f92f684ec90ec25f25613a81efaeefc17cadf9cc66e5452c8b98d0e5c49f094f"
+    },
+    {
+      "path": "tests/test_master_matrix.py",
+      "sha256": "3bfb36a5da9d29c1ba606c075add2ca229e600b6390a8fa0b15ef14e4605cbdc"
+    },
+    {
+      "path": "tests/test_module_catalog.py",
+      "sha256": "d5d2b8e1a67b329d55db3e95e93e70e7e564f83bdd0b1b95073823f66ea61b9f"
+    },
+    {
+      "path": "tests/test_readiness_scorecard.py",
+      "sha256": "12654195cfe735186be4b9e5f977b873132e29d3e7fe9637ea976f2f8a9a3af0"
+    },
+    {
+      "path": "tests/test_router_contracts.py",
+      "sha256": "f2ad479d60f5d059c08a6504d89242f39e224a4becfbf6f521ee48909a006cb0"
+    },
+    {
+      "path": "apps/clinician-web/package.json",
+      "sha256": "c48961e28e3a1fa3abe593a93ccd7d0127df528714c4dd372b1ae9bda13e19e9"
+    }
+  ],
+  "inference_executed": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "limitations": [
+    "Ten tests were skipped by the existing local test policy; their identities and reasons are retained in the pytest collection policy.",
+    "Hosted GitHub Actions, PostgreSQL, container and release-summary checks remain unobserved.",
+    "No clinical correctness or deployment validation is implied."
+  ]
+}
