@@ -1,0 +1,102 @@
+{
+  "schema_version": "local_ci_safety_receipt_v1",
+  "run_id": "offline-ci-safety-2026-11-15-926ed23-r1",
+  "recorded_at_utc": "2026-11-15T01:32:30Z",
+  "source_commit": "926ed2352e642d817005facd6a53cbca46b2252a",
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "ruff": "0.15.13",
+    "mypy": "2.1.0",
+    "network": "MED_TRANSCRIPT_OFFLINE=1 for safety lane; no package installs",
+    "node": "22.16.0",
+    "frontend_build": "TypeScript 7.0.2; Vite 8.3.5"
+  },
+  "runtime_sha256": "b9df602f42fa325a7f11c4c68ed6927e285d232283862dfd06c6732d479ea99c",
+  "offline_mode_confirmed": true,
+  "scope": "Exact repository CI offline safety lane plus full local Python static checks and frontend production build; this does not represent hosted CI.",
+  "checks": {
+    "ruff_format": {
+      "status": "pass",
+      "command": "python -m ruff format --check services tests",
+      "summary": "706 files already formatted."
+    },
+    "ruff_check": {
+      "status": "pass",
+      "command": "python -m ruff check services tests",
+      "summary": "All checks passed."
+    },
+    "mypy": {
+      "status": "pass",
+      "command": "python -m mypy services --ignore-missing-imports",
+      "summary": "335 source files; no issues."
+    },
+    "offline_safety_lane": {
+      "status": "pass",
+      "command": "MED_TRANSCRIPT_OFFLINE=1 python -m services.safe_pytest tests/test_offline_engineering.py tests/test_domain_integrity.py tests/test_audit_integrity.py tests/test_router_contracts.py tests/test_safety_properties.py tests/test_error_taxonomy.py tests/test_timestamp_registry.py",
+      "summary": "62 passed, 1 warning; no failures; output redacted by safe test wrapper."
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "summary": "TypeScript check and Vite production build passed."
+    },
+    "hosted_ci_exact_commit": {
+      "status": "blocked",
+      "reason": "No hosted Actions run on this exact source commit was observed; local checks cannot substitute for hosted matrix, PostgreSQL, container, or release-summary jobs."
+    }
+  },
+  "source_hashes": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "caa896b2f91f635d35c8b9a177c6bb43aa4b61b8a2a6400038c2d50bdf176d5c"
+    },
+    {
+      "path": "services/verify.py",
+      "sha256": "b49a205c7e5a9ad9250b1c4e7fe74da0b2353c71c339c795fefa75412c6cfaca"
+    },
+    {
+      "path": "services/safe_pytest.py",
+      "sha256": "aed933e423ba5a26e247d89041c75807e85154cffb81825adc41448d5af940c3"
+    },
+    {
+      "path": "tests/test_offline_engineering.py",
+      "sha256": "0249e61ec04b6cb56a05acb395db70d91813a8d3b4742303c42cd20c28d211ec"
+    },
+    {
+      "path": "tests/test_domain_integrity.py",
+      "sha256": "3a89959c866d2d3771bd7ef7f02146d8d9cecbe2d96acd667128f2a109bf27eb"
+    },
+    {
+      "path": "tests/test_audit_integrity.py",
+      "sha256": "ff35a0a975356e320878866743b27576850c680270469ddd7ee270db5ff6f156"
+    },
+    {
+      "path": "tests/test_router_contracts.py",
+      "sha256": "6ee1d1cb2dcbd244b2e82f5c96e255e45a68d105d7e38bfde4d9222505efe0ec"
+    },
+    {
+      "path": "tests/test_safety_properties.py",
+      "sha256": "a4506c453597509117fee22596ff09868e9afa53c96ab03b52a616918e0edf40"
+    },
+    {
+      "path": "tests/test_error_taxonomy.py",
+      "sha256": "58db9125f583f201b538ccb341e75067ce346e48bb5e64f1b99a802eacb571b3"
+    },
+    {
+      "path": "tests/test_timestamp_registry.py",
+      "sha256": "b7b8bfa8c637fc08e91fb09e7080d2a6f0210974a0f3adbe9e8cf523f805f049"
+    },
+    {
+      "path": "apps/clinician-web/package-lock.json",
+      "sha256": "93b4e0972ee242f3cd08ff9616717dd907981e204cebb48ca26b2b685dc38c27"
+    }
+  ],
+  "limitations": [
+    "The broad full pytest suite did not complete within the prior 20-minute local run window; its test stage was interrupted without counts.",
+    "PostgreSQL and container CI jobs were not run locally.",
+    "Hosted CI exact-commit status remains unobserved.",
+    "The single CI safety lane warning details were redacted by the safe test wrapper.",
+    "No clinical validation or production readiness is established."
+  ]
+}

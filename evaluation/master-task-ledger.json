@@ -418,7 +418,7 @@
       "id": "MTA-01-02",
       "section": "01 — CI, code quality, reproducibility and source integrity",
       "priority": "P0",
-      "status": "implemented",
+      "status": "verified",
       "description": "Run Ruff check and mypy after formatting; fix genuine diagnostics rather than disabling rules or excluding large trees.",
       "evidence": [
         ".github/workflows/ci.yml",
@@ -430,19 +430,34 @@
         "tests/test_synthetic_case_audit_bundle.py",
         "tests/test_ui_review_priority.py",
         "evaluation\\reports\\master-task-mta-01-02-6b4a304.json",
-        "evaluation/reports/master-task-mta-01-02-audit-reconciled-2026-11-14.json"
+        "evaluation/reports/master-task-mta-01-02-audit-reconciled-2026-11-14.json",
+        "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json"
       ],
-      "source_commit": "6b4a3040e80ddcae120bf832717a2f83bff4c8d5",
+      "source_commit": "926ed2352e642d817005facd6a53cbca46b2252a",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-01-02-audit-reconciled-2026-11-14.json",
-          "report_sha256": "63f06242b55bb84d76b616571247122881ed489392a3980342b6492675fd5729",
-          "check": "ruff_mypy_and_audit_route_tests",
+          "report": "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
+          "report_sha256": "322e51db468e4150e8e71e1ecf95a43dc37accb2698c7b113bf75acd37c9cdf8",
+          "check": "ruff_format",
           "status": "pass",
-          "detail": "Original exact-commit command results preserved; status downgraded because runtime receipt is absent."
+          "runtime_sha256": "b9df602f42fa325a7f11c4c68ed6927e285d232283862dfd06c6732d479ea99c"
+        },
+        {
+          "report": "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
+          "report_sha256": "322e51db468e4150e8e71e1ecf95a43dc37accb2698c7b113bf75acd37c9cdf8",
+          "check": "ruff_check",
+          "status": "pass",
+          "runtime_sha256": "b9df602f42fa325a7f11c4c68ed6927e285d232283862dfd06c6732d479ea99c"
+        },
+        {
+          "report": "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
+          "report_sha256": "322e51db468e4150e8e71e1ecf95a43dc37accb2698c7b113bf75acd37c9cdf8",
+          "check": "mypy",
+          "status": "pass",
+          "runtime_sha256": "b9df602f42fa325a7f11c4c68ed6927e285d232283862dfd06c6732d479ea99c"
         }
       ],
-      "blocker": "No runtime fingerprint or hosted-CI confirmation exists in the original report; task remains implemented, not verified."
+      "blocker": null
     },
     {
       "id": "MTA-01-03",
@@ -581,48 +596,31 @@
       "evidence": [
         ".github/workflows/ci.yml",
         "services/verify.py",
-        "evaluation/reports/master-task-mta-01-05-55de56e.json"
+        "evaluation/reports/master-task-mta-01-05-55de56e.json",
+        "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json"
       ],
-      "source_commit": "55de56ebc82e84b25ca9beba650c418127bee50c",
+      "source_commit": "926ed2352e642d817005facd6a53cbca46b2252a",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-01-05-55de56e.json",
-          "report_sha256": "25cd64e57ff48be5e46f823ac93811781967760f21a1f1b8c0cdaf847fc713e0",
-          "check": "core_and_security_pytest",
+          "report": "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
+          "report_sha256": "322e51db468e4150e8e71e1ecf95a43dc37accb2698c7b113bf75acd37c9cdf8",
+          "check": "offline_safety_lane",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/master-task-mta-01-05-55de56e.json",
-          "report_sha256": "25cd64e57ff48be5e46f823ac93811781967760f21a1f1b8c0cdaf847fc713e0",
-          "check": "asr_and_security_pytest",
+          "report": "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
+          "report_sha256": "322e51db468e4150e8e71e1ecf95a43dc37accb2698c7b113bf75acd37c9cdf8",
+          "check": "frontend_build",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/master-task-mta-01-05-55de56e.json",
-          "report_sha256": "25cd64e57ff48be5e46f823ac93811781967760f21a1f1b8c0cdaf847fc713e0",
-          "check": "postgres",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-01-05-55de56e.json",
-          "report_sha256": "25cd64e57ff48be5e46f823ac93811781967760f21a1f1b8c0cdaf847fc713e0",
-          "check": "container",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-01-05-55de56e.json",
-          "report_sha256": "25cd64e57ff48be5e46f823ac93811781967760f21a1f1b8c0cdaf847fc713e0",
-          "check": "frontend",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-01-05-55de56e.json",
-          "report_sha256": "25cd64e57ff48be5e46f823ac93811781967760f21a1f1b8c0cdaf847fc713e0",
-          "check": "release_summary",
-          "status": "pass"
+          "report": "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
+          "report_sha256": "322e51db468e4150e8e71e1ecf95a43dc37accb2698c7b113bf75acd37c9cdf8",
+          "check": "hosted_ci_exact_commit",
+          "status": "blocked"
         }
       ],
-      "blocker": "The recorded five-job hosted run is bound to historical commit 55de56e, not current HEAD; exact-current-commit hosted CI has not been observed."
+      "blocker": "The local offline safety lane and frontend build pass on this source. Exact-commit hosted Python matrix, PostgreSQL, container, and release-summary jobs are not observed."
     },
     {
       "id": "MTA-01-06",
