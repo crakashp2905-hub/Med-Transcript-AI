@@ -3,7 +3,7 @@
   "generated_from": "Med_Transcript_AI_InHouse_10of10_Master_Implementation_and_Validation_Checklist.md",
   "baseline_commit": "b93937756427d1ae86adf847c680ed52c187b9ed",
   "scope": "english_only_local_first_synthetic_public_mock",
-  "total": 372,
+  "total": 373,
   "status_policy": "A task is verified only with exact commit tests and hash-bound evidence. No clinical release implication.",
   "clinical_release_authorized": false,
   "tasks": [
@@ -9598,6 +9598,26 @@
         }
       ],
       "blocker": "Automated backend pytest coverage for custom section validation and amendment persistence did not complete; clinic-specific template governance and clinician validation remain open."
+    },
+    {
+      "id": "MTA-01-21",
+      "section": "01 — CI, code quality, reproducibility and source integrity",
+      "priority": "P0",
+      "status": "implemented",
+      "description": "Exercise the synthetic clinician journey and failure/recovery variants in a fresh local browser acceptance run.",
+      "evidence": [
+        "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json"
+      ],
+      "source_commit": "48816343dd8474dbf9672acaaf5ff8fb4e47870f",
+      "test_results": [
+        {
+          "report": "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json",
+          "report_sha256": "bba73dd8ac44d495ccdbc6d14dbc92ec6b233d6edbaa8d816762ddb05b7f5ea4",
+          "check": "offline_browser_and_simulated_oidc_acceptance",
+          "status": "pass"
+        }
+      ],
+      "blocker": "One compressed-upload browser case is skipped because cached PyAV is unavailable; exact-commit hosted CI remains open."
     }
   ]
 }

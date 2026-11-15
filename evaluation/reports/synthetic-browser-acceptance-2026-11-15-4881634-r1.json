@@ -1,0 +1,166 @@
+{
+  "schema_version": "synthetic_browser_acceptance_v1",
+  "run_id": "synthetic-browser-acceptance-2026-11-15-4881634-r1",
+  "recorded_at_utc": "2026-11-15T03:26:28Z",
+  "source_commit": "48816343dd8474dbf9672acaaf5ff8fb4e47870f",
+  "scope": "Fresh loopback-only synthetic browser acceptance for the committed clinician workflow, recovery variants, responsive screens, and simulated local OIDC role lifecycle.",
+  "runtime": {
+    "platform": "Windows 11",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone",
+    "network": "Loopback only; npm offline; scripted non-ASR adapter; no hosted APIs"
+  },
+  "checks": {
+    "offline_browser_suite": {
+      "status": "pass",
+      "command": "npx --offline playwright test --grep-invert 'Google session bootstrap|workspace administrator provisions'",
+      "collected": 46,
+      "passed": 45,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reason": "Compressed upload needs optional cached PyAV, unavailable in this environment.",
+      "coverage": [
+        "synthetic capture through review, approval, and six-format export",
+        "device permission, cancellation, disconnect and late-grant recovery",
+        "autosave, retry, lost responses, partial upload resume and backup recovery",
+        "30-minute maximum capture",
+        "manual transcription fallback",
+        "responsive usability captures"
+      ]
+    },
+    "simulated_oidc_browser_suite": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/google-auth.spec.ts",
+      "collected": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "coverage": [
+        "session bootstrap and sign-out",
+        "scribe provisioning without encounter access",
+        "account removal revokes session"
+      ]
+    },
+    "usability_capture": {
+      "status": "pass",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "summary": "Synthetic desktop and mobile screenshots saved to versioned artifact directory; no clinician observations."
+    },
+    "offline_browser_and_simulated_oidc_acceptance": {
+      "status": "pass",
+      "summary": "45 of 46 offline journeys passed; 1 optional PyAV path skipped; 2 of 2 local simulated OIDC journeys passed."
+    }
+  },
+  "artifact_hashes": [
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.docx",
+      "sha256": "cd52017c52ece4b5327d1654c0abd92ead39778f1a2598046d5468a262a44e04",
+      "bytes": 2375
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.fhir.json",
+      "sha256": "3491f4482f45dceed39e8a64c9454fb875fe153ea7a3be0e137a2b8e9beff41e",
+      "bytes": 13234
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "4fd573f2b35a26f62f7810b8d1978b7615120cc799201b5a068bf9c2ca22b1b8",
+      "bytes": 12038
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.markdown.md",
+      "sha256": "be84c050a962209b7cc081cf30daa6a905ac7e80ab335de2ba9b8b4a11c60da4",
+      "bytes": 1210
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.pdf",
+      "sha256": "bbe3998142437c0a2c2c83e4bc5e567dab116358118391baf9b81eb5a3303eba",
+      "bytes": 2105
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.text.txt",
+      "sha256": "a03fa231a24f20c2f05cb0b92a36595070b73d4f07129e8e17e555dbf140a05c",
+      "bytes": 1188
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-docx-4bd89dd23cfe546efedd4ccb6e000ea1836a5413.docx",
+      "sha256": "cd52017c52ece4b5327d1654c0abd92ead39778f1a2598046d5468a262a44e04",
+      "bytes": 2375
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-fhir-522dc4c7278991837bb84d5b5cbb28998cf147b6.json",
+      "sha256": "3491f4482f45dceed39e8a64c9454fb875fe153ea7a3be0e137a2b8e9beff41e",
+      "bytes": 13234
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-json-d122724c1f0ba099da00eecdf76ad2cfd9ffb81c.json",
+      "sha256": "4fd573f2b35a26f62f7810b8d1978b7615120cc799201b5a068bf9c2ca22b1b8",
+      "bytes": 12038
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-markdown-bd52e8a9fff36ec6e6f888638398af67c88a87fb.md",
+      "sha256": "be84c050a962209b7cc081cf30daa6a905ac7e80ab335de2ba9b8b4a11c60da4",
+      "bytes": 1210
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-pdf-7eeae4d2d865991aab0028b8ceba072ca9535531.pdf",
+      "sha256": "bbe3998142437c0a2c2c83e4bc5e567dab116358118391baf9b81eb5a3303eba",
+      "bytes": 2105
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-text-bc6221ff3a1ccecd84d13bfdfa4e969a66d6b2ab.txt",
+      "sha256": "a03fa231a24f20c2f05cb0b92a36595070b73d4f07129e8e17e555dbf140a05c",
+      "bytes": 1188
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/usability-artifacts/browser-observations.json",
+      "sha256": "1715655c69ec6e5068b692aecbf057375b1864c3240e3b5375164a661e4cec3a",
+      "bytes": 290
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/usability-artifacts/login-desktop.png",
+      "sha256": "2ebe7e45214a8346ef5d77b9a6f27cbad96174f6a9d5475a3d041168034ce674",
+      "bytes": 478034
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/usability-artifacts/source-mobile.png",
+      "sha256": "454e48c4ccc34b65323cfc7431c2da735ac02abb58414acdcc5c2a32cd1d4a09",
+      "bytes": 278955
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/usability-artifacts/workspace-desktop.png",
+      "sha256": "d784482117f05e9b43e5caae223d3b18583cbd26f0780370f847d2a7f97509a8",
+      "bytes": 568902
+    },
+    {
+      "path": "data/full-browser-milestone-20261115-03/usability-playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/google-auth-browser-20261115-01/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    }
+  ],
+  "inference_executed": false,
+  "human_observations": 0,
+  "clinical_accuracy_measured": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "limitations": [
+    "Compressed-upload path remains unverified because cached PyAV is missing.",
+    "Browser adapter supplies fixture transcript text and does not run speech recognition or note inference.",
+    "One skipped browser case remains; backend pytest and hosted CI blockers in prior evidence remain.",
+    "Synthetic browser evidence does not establish clinician usability, medical accuracy, benefit, deployment readiness, or approval."
+  ]
+}
