@@ -1607,7 +1607,8 @@
         "apps/clinician-web/e2e/recovery.spec.ts",
         "evaluation/reports/master-task-mta-03-05-4db62a0.json",
         "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
-        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
       ],
       "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
@@ -1692,7 +1693,8 @@
         "apps/clinician-web/e2e/recovery.spec.ts",
         "evaluation/reports/master-task-mta-03-09-4db62a0.json",
         "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
-        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
       ],
       "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
@@ -4291,31 +4293,26 @@
       "id": "MTA-09-02",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "implemented",
+      "status": "verified",
       "description": "Enable click-to-source playback for each note statement, including exact time, channel and transcript span where available.",
       "evidence": [
         "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
         "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
         "apps/clinician-web/src/SourceContext.tsx",
         "apps/clinician-web/e2e/workflow.spec.ts",
-        "evaluation/reports/master-task-mta-09-02-44262d1.json"
+        "evaluation/reports/master-task-mta-09-02-44262d1.json",
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
       ],
-      "source_commit": "44262d1b69ab8b7d0fd182aba6c9600fc4137dbd",
+      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-09-02-44262d1.json",
-          "report_sha256": "1d11279c76a3ce912f268b9bbe3dac9e54b443329356ca72616445d694da6390",
-          "check": "frontend_typescript_and_production_build",
+          "report": "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
+          "report_sha256": "22522716d9db63b10f785ed28ec6837f6964aeacca1a9b3b6099be1a7fe3bb5d",
+          "check": "click_to_exact_source_audio",
           "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-02-44262d1.json",
-          "report_sha256": "1d11279c76a3ce912f268b9bbe3dac9e54b443329356ca72616445d694da6390",
-          "check": "citation_click_seeks_to_source_timestamp",
-          "status": "fail"
         }
       ],
-      "blocker": "Browser validation is blocked because Chromium could not access the isolated loopback fixture (ERR_NETWORK_ACCESS_DENIED) before application load; rerun E2E in an environment permitting the documented local fixture."
+      "blocker": null
     },
     {
       "id": "MTA-09-03",
@@ -4363,30 +4360,25 @@
       "id": "MTA-09-04",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "implemented",
+      "status": "verified",
       "description": "Surface critical findings before lower-risk drafting suggestions and display why the system is uncertain.",
       "evidence": [
         "apps/clinician-web/src/VerificationWarnings.tsx",
         "apps/clinician-web/src/UncertainSpanQueue.tsx",
         "apps/clinician-web/e2e/workflow.spec.ts",
-        "evaluation/reports/master-task-mta-09-04-24790d6.json"
+        "evaluation/reports/master-task-mta-09-04-24790d6.json",
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
       ],
-      "source_commit": "24790d68b16d33f2e4ffc3cc6c9ecc0cbe49413e",
+      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-09-04-24790d6.json",
-          "report_sha256": "5f9ec81e42824924512b564e1d5d22a95834a3e62aeb8f7d38b7658f2807905d",
-          "check": "critical_findings_precede_lower_severity_and_explain_evidence",
-          "status": "blocked"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-04-24790d6.json",
-          "report_sha256": "5f9ec81e42824924512b564e1d5d22a95834a3e62aeb8f7d38b7658f2807905d",
-          "check": "typescript_production_build",
+          "report": "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
+          "report_sha256": "22522716d9db63b10f785ed28ec6837f6964aeacca1a9b3b6099be1a7fe3bb5d",
+          "check": "critical_findings_and_uncertainty",
           "status": "pass"
         }
       ],
-      "blocker": "Browser priority and uncertainty-detail assertions are blocked because the managed environment denies loopback access to the local fixture. Production build passes; rerun E2E where local fixture networking is allowed."
+      "blocker": null
     },
     {
       "id": "MTA-09-05",
@@ -4834,7 +4826,8 @@
         "tests/test_investor_demo_static.py",
         "data/demo-sample.json",
         "evaluation/reports/master-task-mta-09-16-cc01afe.json",
-        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
       ],
       "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
@@ -4963,7 +4956,8 @@
         "evaluation/reports/offline-browser-acceptance-2026-11-15-3e738a8-r1.json",
         "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json",
         "evaluation/reports/offline-browser-acceptance-2026-11-15-3ca404f-r1.json",
-        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
       ],
       "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
@@ -9556,7 +9550,8 @@
       "description": "Exercise the synthetic clinician journey and failure/recovery variants in a fresh local browser acceptance run.",
       "evidence": [
         "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json",
-        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+        "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json"
       ],
       "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [

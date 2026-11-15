@@ -1,0 +1,373 @@
+{
+  "schema_version": "focused_clinical_review_browser_acceptance_v1",
+  "run_id": "clinical-review-browser-acceptance-2026-11-15-16e28ba-r2",
+  "recorded_at_utc": "2026-11-15T04:10:19Z",
+  "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
+  "scope": "Fresh 46-case offline synthetic browser suite plus two simulated local OIDC cases at the current source commit.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone",
+    "network": "Loopback-only offline scripted server; local simulated OIDC; npm offline"
+  },
+  "runtime_sha256": "18257f266f0c7f7fd327538bbffc8072b02bae8fe2f1a2869d792efd8ae423d4",
+  "checks": {
+    "offline_browser_suite": {
+      "status": "pass",
+      "command": "npx --offline playwright test --grep-invert 'Google session bootstrap|workspace administrator provisions'",
+      "collected": 46,
+      "passed": 45,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reason": "Compressed upload requires optional cached PyAV, unavailable on this host.",
+      "specs": [
+        "clinical-batches.spec.ts",
+        "evidence-channel.spec.ts",
+        "investor-demo.spec.ts",
+        "model-readiness.spec.ts",
+        "presentation.spec.ts",
+        "primary-review.spec.ts",
+        "scripted-metrics.spec.ts",
+        "tutorial.spec.ts",
+        "uncertain-span-waveform.spec.ts",
+        "usability-audit.spec.ts",
+        "visual-regression.spec.ts",
+        "workflow.spec.ts",
+        "complete-synthetic-consultation.spec.ts",
+        "device-check.spec.ts",
+        "dictation.spec.ts",
+        "recovery.spec.ts",
+        "timing.spec.ts"
+      ]
+    },
+    "simulated_oidc_browser_suite": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/google-auth.spec.ts",
+      "collected": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "test_ids": [
+        "google-auth.spec.ts:6",
+        "google-auth.spec.ts:34"
+      ]
+    },
+    "read_only_investor_demo": {
+      "status": "pass",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "test_id": "investor-demo.spec.ts:3",
+      "asserted": [
+        "read-only synthetic label",
+        "no sign-in required",
+        "no /v1 API requests",
+        "unapproved demonstration label"
+      ]
+    },
+    "recording_duration": {
+      "status": "pass",
+      "collected": 12,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "test_file": "dictation.spec.ts",
+      "asserted": [
+        "capture/upload path",
+        "cancel/discard/permission denial",
+        "partial recording retention",
+        "five-minute and thirty-minute capture bounds",
+        "minimum duration rejection",
+        "bounded persistence and upload retry",
+        "multichannel validation"
+      ]
+    },
+    "failure_recovery": {
+      "status": "pass",
+      "collected": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "test_file": "recovery.spec.ts",
+      "asserted": [
+        "reload and backup recovery",
+        "quota failure",
+        "lost chunk response resume",
+        "permission revocation",
+        "late cancellation",
+        "provisional preview gate",
+        "thirty-minute limit"
+      ]
+    },
+    "evidence_channel_navigation": {
+      "status": "pass",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "test_id": "evidence-channel.spec.ts:8"
+    },
+    "custom_section_capture_export": {
+      "status": "pass",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "test_id": "complete-synthetic-consultation.spec.ts:49",
+      "formats": [
+        "JSON",
+        "Markdown",
+        "text",
+        "FHIR",
+        "PDF",
+        "DOCX"
+      ]
+    },
+    "manual_fallback_readiness": {
+      "status": "pass",
+      "collected": 2,
+      "passed": 2,
+      "failed": 0,
+      "test_file": "model-readiness.spec.ts",
+      "asserted": [
+        "model failure explains manual transcript fallback",
+        "retry remains available"
+      ]
+    },
+    "click_to_exact_source_audio": {
+      "status": "pass",
+      "test_id": "evidence-channel.spec.ts:8",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "asserted": [
+        "source statement maps to the cited transcript segment",
+        "play request targets the exact cited channel",
+        "audio begins playing after statement selection"
+      ]
+    },
+    "critical_findings_and_uncertainty": {
+      "status": "pass",
+      "test_ids": [
+        "presentation.spec.ts:21",
+        "presentation.spec.ts:63"
+      ],
+      "collected": 2,
+      "passed": 2,
+      "failed": 0,
+      "asserted": [
+        "critical verifier findings appear in review summary and their clinical truth is not presumed",
+        "uncertain source displays original ASR text, alternative, reason, and source-review action"
+      ]
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/e2e/investor-demo.spec.ts",
+      "sha256": "fe5004bb70009caf230c43bfa55941b770582af81927107954092e5b3fc9abff"
+    },
+    {
+      "path": "apps/clinician-web/e2e/evidence-channel.spec.ts",
+      "sha256": "bd29bbfa9b99999952f15a1abfe758430ac35f7c02d76c5631d1ae823c9595aa"
+    },
+    {
+      "path": "apps/clinician-web/e2e/model-readiness.spec.ts",
+      "sha256": "0ac8bcd2da6fe80070802002c87927982ea173af7281c4860562d3feee2595dd"
+    },
+    {
+      "path": "apps/clinician-web/e2e/presentation.spec.ts",
+      "sha256": "800e3a39040ed2cfe29e2e538215534b39f2e2893ac61ce2c713ffc77acad5eb"
+    },
+    {
+      "path": "apps/clinician-web/e2e/primary-review.spec.ts",
+      "sha256": "02ba702de53d9a9e70d469bb82ff5a399794640289d2815ded2c06797ea529ee"
+    },
+    {
+      "path": "apps/clinician-web/e2e/workflow.spec.ts",
+      "sha256": "0e4872024cf5a20fcb56fda1db823569fc71e6b56779836b61383dad910a26d8"
+    },
+    {
+      "path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+      "sha256": "b3e5ea0a4b0c05892f46160c29269545afe70d419fe072ca3235ede5e74189bd"
+    },
+    {
+      "path": "apps/clinician-web/e2e/dictation.spec.ts",
+      "sha256": "12aa65660e47b43acecf4a0c74bb6545c5b26bb07aa6b3e167b762f0dc7dba78"
+    },
+    {
+      "path": "apps/clinician-web/e2e/recovery.spec.ts",
+      "sha256": "7173c9cfdda08f95eb6a6fd9c5002c7492dbf71f2f1d70b2d68bd8a7ceecaf30"
+    },
+    {
+      "path": "apps/clinician-web/e2e/usability-audit.spec.ts",
+      "sha256": "b011724a9a3b35b576f038b9d521e9644fa8ef82a4c48eb3a20e0c599e441c09"
+    },
+    {
+      "path": "apps/clinician-web/e2e/timing.spec.ts",
+      "sha256": "19118fe71db73f67d4962ebe8e97443b02b48f9cb766b4275f6dd4430e969ab6"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "c9259696b7754380a0a5116d93ffebe3f4d1760ad5d0b9d52e5ee1ad63a581e0"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "3194f1958f7f28d9df829028d7f850bc0054bcef5288eccfe07a79a8d1a09310"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/browser-fixtures/complete-consultation-8c81e2d2-b0aa-4d2a-af96-5b5b7e160a70.wav",
+      "sha256": "1b0ad8990bfcd7f6b58122a86292ca7be4a6548974fcad5258896c46e3dfe760",
+      "bytes": 338552
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/browser-fixtures/dictation-d4ef3600-108c-4d49-a9fc-8e7d22c25773.wav",
+      "sha256": "1b0ad8990bfcd7f6b58122a86292ca7be4a6548974fcad5258896c46e3dfe760",
+      "bytes": 338552
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/browser-fixtures/dictation-timing-a2e9ba40-4d68-4b63-9cd7-1f26fc6702f2.wav",
+      "sha256": "1b0ad8990bfcd7f6b58122a86292ca7be4a6548974fcad5258896c46e3dfe760",
+      "bytes": 338552
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/ui-screenshots/approved-note.json",
+      "sha256": "c24531ceaf7e824b3bb9efac859820f08a39998b0d720b894f1759c71e4a4f04",
+      "bytes": 17387
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/ui-screenshots/approved-workspace.png",
+      "sha256": "0554c044fc23a1f22f8f28f7166bf09cd2cc2da740e15117019b2abe5c8952e7",
+      "bytes": 549341
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/ui-screenshots/dictation-recording.png",
+      "sha256": "8789949ce99103ee1aff342f62d55a2d2cc763a836786a2ea6ab7fbb3d39cb44",
+      "bytes": 278101
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/ui-screenshots/dictation-result.png",
+      "sha256": "1d2cb43e32f834b12c1dd5b22be4465419c02d7c58d18a70b6deced097705c77",
+      "bytes": 343991
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/ui-screenshots/historical-citation-mobile.png",
+      "sha256": "201c79c9f5e099254ac33b978617af72c2312de958da3b52b3b5baad8d7fc47c",
+      "bytes": 487393
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/ui-screenshots/mobile-source.png",
+      "sha256": "2d47473daf93bf6fcb4b0e45782f9bc2e292b39b25424c6232f78191d877acd5",
+      "bytes": 276291
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/data/ui-screenshots/reviewed-visit-summary.txt",
+      "sha256": "5cb8844eaf0c9e756898ba308c590ea33362f26b6bd3803e4b74c3e539aec5a9",
+      "bytes": 1024
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/google-auth-playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.docx",
+      "sha256": "6f1ad766d0c48defd811f38c636a1d047e6161f79839da4cdfce2bd46a6a412e",
+      "bytes": 2376
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.fhir.json",
+      "sha256": "f302517fd87a9b4c10a955234beadfc4f815342611b124dd2ab39afd9a2d997f",
+      "bytes": 13230
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "4acdf1af143e188e42594c4fd5af5a8f9641b9f3b68483a7546a94ffb93f6ae2",
+      "bytes": 12035
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.markdown.md",
+      "sha256": "fe80a6ff804b48c8926eb5c4ae4ecedf72668846b5e842e1951a9146e45dd31d",
+      "bytes": 1210
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.pdf",
+      "sha256": "e31ba3d1fcc45c01c690e252d7dcde4cea05d213f5da0cc78357cc0144d34e14",
+      "bytes": 2105
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.text.txt",
+      "sha256": "9b912a651bff18173a47424130aaa438c115995dc04504b9c44f6f00907dbbdc",
+      "bytes": 1188
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-docx-2cf95debb51da599200700c078e7c93565d04c3a.docx",
+      "sha256": "6f1ad766d0c48defd811f38c636a1d047e6161f79839da4cdfce2bd46a6a412e",
+      "bytes": 2376
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-fhir-ec8c840416ba86fcc8b824c9eea865c6afe600f3.json",
+      "sha256": "f302517fd87a9b4c10a955234beadfc4f815342611b124dd2ab39afd9a2d997f",
+      "bytes": 13230
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-json-23dbfdbee782c82d92ab7a3159536f44737c377c.json",
+      "sha256": "4acdf1af143e188e42594c4fd5af5a8f9641b9f3b68483a7546a94ffb93f6ae2",
+      "bytes": 12035
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-markdown-ed4f2b77dc47e0954ee76ccd60249e48c143865f.md",
+      "sha256": "fe80a6ff804b48c8926eb5c4ae4ecedf72668846b5e842e1951a9146e45dd31d",
+      "bytes": 1210
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-pdf-9c9244527e4627176d576f30f653c5823154e22e.pdf",
+      "sha256": "e31ba3d1fcc45c01c690e252d7dcde4cea05d213f5da0cc78357cc0144d34e14",
+      "bytes": 2105
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-text-228696dc95c6d57603ae1b342a67bd526ce6d669.txt",
+      "sha256": "9b912a651bff18173a47424130aaa438c115995dc04504b9c44f6f00907dbbdc",
+      "bytes": 1188
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/usability-artifacts/browser-observations.json",
+      "sha256": "1715655c69ec6e5068b692aecbf057375b1864c3240e3b5375164a661e4cec3a",
+      "bytes": 290
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/usability-artifacts/login-desktop.png",
+      "sha256": "2ebe7e45214a8346ef5d77b9a6f27cbad96174f6a9d5475a3d041168034ce674",
+      "bytes": 478034
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/usability-artifacts/source-mobile.png",
+      "sha256": "338f4305cd7e58b190d84063ea17b954c71b551e61b7fe25b2f0ff372188c571",
+      "bytes": 279005
+    },
+    {
+      "path": "data/full-browser-acceptance-20261115-16e28ba/usability-artifacts/workspace-desktop.png",
+      "sha256": "c1880a86ca3e1146a7973a1791f0b0a8f93d668ab84610399e1fadac02b4898f",
+      "bytes": 568181
+    }
+  ],
+  "inference_executed": false,
+  "human_observations": 0,
+  "clinical_accuracy_measured": false,
+  "physical_microphone_tested": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "limitations": [
+    "One compressed-upload case is skipped because cached PyAV is unavailable.",
+    "Fake microphone and scripted fixture transcript are used; no ASR or note inference ran.",
+    "No independent clinician or accessibility review was performed.",
+    "Hosted CI and physical hardware validation remain outstanding."
+  ]
+}
