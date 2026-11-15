@@ -9556,48 +9556,25 @@
         "services/review/engine.py",
         "services/domain_contracts.py",
         "evaluation/contracts/api-v1-compatible-v18.json",
-        "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json"
+        "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
+        "evaluation/reports/custom-note-sections-full-stack-2026-11-15-2755b62-r1.json"
       ],
-      "source_commit": "0152c96e5826879efec1ef1d1445f66b8b117308",
+      "source_commit": "2755b6209a1f1645ce20e201d8ebabe9204b7eb5",
       "test_results": [
         {
-          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
-          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
-          "check": "browser_e2e",
+          "report": "evaluation/reports/custom-note-sections-full-stack-2026-11-15-2755b62-r1.json",
+          "report_sha256": "bd6450878edc1ad8feaa2ddc836caf215a0da8fa624a3bfc016a2d6cb1284fb3",
+          "check": "custom_sections_backend_pytest",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
-          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
-          "check": "frontend_build",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
-          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
-          "check": "ruff",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
-          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
-          "check": "mypy_changed_modules",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
-          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
-          "check": "api_contract_snapshot",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
-          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
-          "check": "domain_validation_smoke",
+          "report": "evaluation/reports/custom-note-sections-full-stack-2026-11-15-2755b62-r1.json",
+          "report_sha256": "bd6450878edc1ad8feaa2ddc836caf215a0da8fa624a3bfc016a2d6cb1284fb3",
+          "check": "custom_sections_browser_e2e",
           "status": "pass"
         }
       ],
-      "blocker": "Automated backend pytest coverage for custom section validation and amendment persistence did not complete; clinic-specific template governance and clinician validation remain open."
+      "blocker": "Backend and browser checks pass at the recorded source commit. Clinic-specific template governance and independent clinician validation remain open."
     },
     {
       "id": "MTA-01-21",

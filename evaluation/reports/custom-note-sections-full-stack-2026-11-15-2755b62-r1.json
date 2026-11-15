@@ -1,0 +1,159 @@
+{
+  "schema_version": "custom_note_sections_full_stack_acceptance_v1",
+  "run_id": "custom-note-sections-full-stack-2026-11-15-2755b62-r1",
+  "recorded_at_utc": "2026-11-15T03:44:28Z",
+  "source_commit": "2755b6209a1f1645ce20e201d8ebabe9204b7eb5",
+  "scope": "Synthetic custom note sections exercised through backend review lifecycle and browser capture-to-approved-export flow.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "backend_harness": "services.safe_pytest with loopback socketpair access",
+    "browser": "Installed Chrome headless; offline scripted adapter",
+    "network": "Loopback only; npm offline; no hosted APIs or inference"
+  },
+  "checks": {
+    "custom_sections_backend_pytest": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_review_workflow.py",
+      "collected": 21,
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "summary": "21 passed, 1 warning",
+      "asserted": [
+        "custom section with source facts is saved",
+        "exact source evidence is retained",
+        "custom section is included in approved Markdown export",
+        "amendment preserves custom section",
+        "undeclared custom section is rejected with sanitized 422 response and no key disclosure"
+      ]
+    },
+    "custom_sections_browser_e2e": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/complete-synthetic-consultation.spec.ts",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "asserted": [
+        "synthetic consultation capture through review and exact-version approval",
+        "custom note layout and named section",
+        "approved JSON, Markdown, text, FHIR, PDF, and DOCX exports"
+      ]
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "3194f1958f7f28d9df829028d7f850bc0054bcef5288eccfe07a79a8d1a09310"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "c9259696b7754380a0a5116d93ffebe3f4d1760ad5d0b9d52e5ee1ad63a581e0"
+    },
+    {
+      "path": "services/review/models.py",
+      "sha256": "a41206a9ed7af20bc10278fe32b60a28a964fc90164b2e2e37f9e17952125f3c"
+    },
+    {
+      "path": "services/review/engine.py",
+      "sha256": "9f4d28007cfcfb645eee3dc2d12a1e5f7245562ac554faed2c52fc70ba48c8c8"
+    },
+    {
+      "path": "services/review/service.py",
+      "sha256": "831ce8346fe91bdac07c104a6d113f9cf011be3a35869db0ea29c632ae02aeaf"
+    },
+    {
+      "path": "services/review/routers/notes.py",
+      "sha256": "044a2e19685f8c47e58b019f894e09832ae9ea5c540dbc015ce30e9165c7d4a3"
+    },
+    {
+      "path": "services/review/routers/amendments.py",
+      "sha256": "426f0674d54916d09a341a255f342e6bc9c01f2fba0c255a09063dfe8c0c0cc2"
+    },
+    {
+      "path": "tests/test_review_workflow.py",
+      "sha256": "b9b96905100f9b4c6deaf6068249f144f411badb1e676b5552c3e08f106d1810"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.docx",
+      "sha256": "a135f54582a2657bcd7b673ab9d265f108bf20dfbde64cfb5e9aa09faf4e26d7",
+      "bytes": 2374
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.fhir.json",
+      "sha256": "3c2322f67599ddf6eed209ce08d0b8e477c00dc738443153a508b98213b979f1",
+      "bytes": 13230
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "c9f22d14551d9e0b47a32cbb533818a467de9aa902dac8dc2b09684d9f9b12ad",
+      "bytes": 12035
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.markdown.md",
+      "sha256": "edc8b05f82740964f3b0261217f7bb945064ab6bcd13e47e02079e35c004d533",
+      "bytes": 1210
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.pdf",
+      "sha256": "3f4d7d6a7baeb6582e5400f40f8cdaee5425e612c253661d7e8065ce06203a93",
+      "bytes": 2105
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.text.txt",
+      "sha256": "a9b7276a2aeea2a8816ec107599c3e3de079e89d010f1e3665650163f4f6db70",
+      "bytes": 1188
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-docx-3ef8850978eccc8ea1451a6e9de2ca74f28d5bae.docx",
+      "sha256": "a135f54582a2657bcd7b673ab9d265f108bf20dfbde64cfb5e9aa09faf4e26d7",
+      "bytes": 2374
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-fhir-450cf1ab0b8740312522c30625ebafd5a89f1493.json",
+      "sha256": "3c2322f67599ddf6eed209ce08d0b8e477c00dc738443153a508b98213b979f1",
+      "bytes": 13230
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-json-6a1a2b68072c8eb197dc4d3fbdd51cf16c945149.json",
+      "sha256": "c9f22d14551d9e0b47a32cbb533818a467de9aa902dac8dc2b09684d9f9b12ad",
+      "bytes": 12035
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-markdown-d08b2b342de9597070a9faa35144ed7ffdc1b5ac.md",
+      "sha256": "edc8b05f82740964f3b0261217f7bb945064ab6bcd13e47e02079e35c004d533",
+      "bytes": 1210
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-pdf-7ddeb063b98aae7a6ade34b90ca96a88b39e22e0.pdf",
+      "sha256": "3f4d7d6a7baeb6582e5400f40f8cdaee5425e612c253661d7e8065ce06203a93",
+      "bytes": 2105
+    },
+    {
+      "path": "data/custom-sections-acceptance-20261115-2755b62/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-text-6e69c229dc574fdc81507b15d6a606d9ebe38415.txt",
+      "sha256": "a9b7276a2aeea2a8816ec107599c3e3de079e89d010f1e3665650163f4f6db70",
+      "bytes": 1188
+    }
+  ],
+  "inference_executed": false,
+  "human_observations": 0,
+  "clinical_accuracy_measured": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "limitations": [
+    "Scripted browser adapter supplies fixture transcript content; no ASR or note inference ran.",
+    "No clinician or clinic administrator validated the template workflow.",
+    "CI hosted checks and release readiness remain separate gates."
+  ]
+}
