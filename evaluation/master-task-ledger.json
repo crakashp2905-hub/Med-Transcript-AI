@@ -1606,18 +1606,19 @@
         "apps/clinician-web/e2e/dictation.spec.ts",
         "apps/clinician-web/e2e/recovery.spec.ts",
         "evaluation/reports/master-task-mta-03-05-4db62a0.json",
-        "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json"
+        "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
       ],
-      "source_commit": "56e2ab9348a65871c64c7fbc03afca2586736397",
+      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
         {
-          "report": "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
-          "report_sha256": "a58f2bddca2f6a9aa2b289308d9f4535e0a4aa0fcdf8388c426552a0fc6eced7",
-          "check": "browser_capture_duration_backpressure",
+          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "check": "recording_duration",
           "status": "pass"
         }
       ],
-      "blocker": "Synthetic browser duration and backpressure checks pass; physical microphone and wall-clock capture have not been validated."
+      "blocker": "Synthetic browser duration and backpressure cases pass; physical microphone and wall-clock capture remain unvalidated."
     },
     {
       "id": "MTA-03-06",
@@ -1690,18 +1691,19 @@
         "apps/clinician-web/e2e/dictation.spec.ts",
         "apps/clinician-web/e2e/recovery.spec.ts",
         "evaluation/reports/master-task-mta-03-09-4db62a0.json",
-        "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json"
+        "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
       ],
-      "source_commit": "56e2ab9348a65871c64c7fbc03afca2586736397",
+      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
         {
-          "report": "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
-          "report_sha256": "a58f2bddca2f6a9aa2b289308d9f4535e0a4aa0fcdf8388c426552a0fc6eced7",
-          "check": "browser_failure_recovery_matrix",
+          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "check": "failure_recovery",
           "status": "pass"
         }
       ],
-      "blocker": "Synthetic browser recovery checks pass; OS-level device removal and permission revocation remain unvalidated."
+      "blocker": "Synthetic browser recovery cases pass; OS-level device removal and physical permission revocation remain unvalidated."
     },
     {
       "id": "MTA-03-10",
@@ -4821,7 +4823,7 @@
       "id": "MTA-09-16",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "implemented",
+      "status": "verified",
       "description": "Present read-only synthetic investor demo with prominent non-clinical disclaimer, no live OAuth requirement.",
       "evidence": [
         "apps/clinician-web/src/InvestorDemo.tsx",
@@ -4831,42 +4833,19 @@
         "services/api/main.py",
         "tests/test_investor_demo_static.py",
         "data/demo-sample.json",
-        "evaluation/reports/master-task-mta-09-16-cc01afe.json"
+        "evaluation/reports/master-task-mta-09-16-cc01afe.json",
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
       ],
-      "source_commit": "cc01afeccf4235a4fc9a8340171107b1adb4141e",
+      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
-          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "status": "pass",
-          "legacy_check_label": "frontend_build"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
-          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "status": "pass",
-          "legacy_check_label": "static_investor_demo_regression"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
-          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "status": "pass",
-          "legacy_check_label": "ruff"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
-          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "status": "pass",
-          "legacy_check_label": "investor_demo_e2e_discovery"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-16-cc01afe.json",
-          "report_sha256": "8ee03b8608c2ffe3a356bf3e4141c31a63822d76201ec4e6c5b2467457dafed4",
-          "status": "blocked",
-          "legacy_check_label": "investor_demo_browser_render"
+          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "check": "read_only_investor_demo",
+          "status": "pass"
         }
       ],
-      "blocker": "The public path serves a static, bundled synthetic preview and does not invoke authentication or API routes. Loopback browser navigation is denied in this environment; execute the E2E journey in a local-socket-enabled environment to confirm rendered behavior."
+      "blocker": null
     },
     {
       "id": "MTA-09-17",
@@ -4988,24 +4967,19 @@
         "evaluation/reports/master-task-mta-09-19-9c245b1.json",
         "evaluation/reports/offline-browser-acceptance-2026-11-15-3e738a8-r1.json",
         "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json",
-        "evaluation/reports/offline-browser-acceptance-2026-11-15-3ca404f-r1.json"
+        "evaluation/reports/offline-browser-acceptance-2026-11-15-3ca404f-r1.json",
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
       ],
-      "source_commit": "3ca404ff3c9b8b133379f37fb7f0fe4085ef7933",
+      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
         {
-          "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-3ca404f-r1.json",
-          "report_sha256": "c75e68b6b6f40758f01b8d9d46faf52e34f1272385e754f9561f0a98504cdda0",
-          "check": "browser_e2e",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-3ca404f-r1.json",
-          "report_sha256": "c75e68b6b6f40758f01b8d9d46faf52e34f1272385e754f9561f0a98504cdda0",
-          "check": "frontend_build",
+          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "check": "offline_browser_suite",
           "status": "pass"
         }
       ],
-      "blocker": "Fresh exact-source browser suite passed 45/46 with one compressed-audio case skipped because cached PyAV is unavailable. All journeys use a fixed scripted non-ASR adapter and fake microphone; they do not validate speech accuracy, physical microphone behavior, independent clinical performance, or deployment."
+      "blocker": "Fresh exact-source browser suite passed 45/46; one compressed-audio case is skipped because cached PyAV is unavailable. No inference or clinical validation was performed."
     },
     {
       "id": "MTA-09-20",
@@ -9586,18 +9560,19 @@
       "status": "implemented",
       "description": "Exercise the synthetic clinician journey and failure/recovery variants in a fresh local browser acceptance run.",
       "evidence": [
-        "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json"
+        "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json",
+        "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json"
       ],
-      "source_commit": "48816343dd8474dbf9672acaaf5ff8fb4e47870f",
+      "source_commit": "16e28ba71dd3424c75d55e3e2b113c5f83624d7d",
       "test_results": [
         {
-          "report": "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json",
-          "report_sha256": "bba73dd8ac44d495ccdbc6d14dbc92ec6b233d6edbaa8d816762ddb05b7f5ea4",
-          "check": "offline_browser_and_simulated_oidc_acceptance",
+          "report": "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
+          "report_sha256": "d5b8114d13b96aee9255fff09926c152350b609e0c9df5da58fb65cce4b3a0ac",
+          "check": "offline_browser_suite",
           "status": "pass"
         }
       ],
-      "blocker": "One compressed-upload browser case is skipped because cached PyAV is unavailable; exact-commit hosted CI remains open."
+      "blocker": "The compressed-upload browser case is skipped because cached PyAV is unavailable; exact-commit hosted CI remains open."
     }
   ]
 }
