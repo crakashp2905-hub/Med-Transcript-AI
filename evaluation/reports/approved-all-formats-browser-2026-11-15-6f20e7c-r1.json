@@ -1,0 +1,179 @@
+{
+  "schema_version": "approved_all_formats_browser_acceptance_v1",
+  "run_id": "approved-all-formats-browser-2026-11-15-6f20e7c-r1",
+  "recorded_at_utc": "2026-11-15T01:59:08Z",
+  "source_commit": "6f20e7ce53da2aeeae8866e8fa86e2e2922ae572",
+  "scope": "Fresh UUID-scoped synthetic capture, source review, note correction, approval, and download of every advertised local export format.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone",
+    "network": "Loopback-only app requests, npm offline mode; no hosted APIs or inference"
+  },
+  "checks": {
+    "browser_e2e": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/complete-synthetic-consultation.spec.ts --output <versioned-output-dir>",
+      "test_id": "complete-synthetic-consultation.spec.ts:49",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "output_dir": "data/browser-acceptance-all-formats-20261115-02/playwright",
+      "result_marker_sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "formats": [
+        "json",
+        "markdown",
+        "text",
+        "fhir",
+        "pdf",
+        "docx"
+      ],
+      "asserted": [
+        "synthetic capture, review, correction, and approval",
+        "download of each advertised format",
+        "Markdown/text source attribution",
+        "FHIR DocumentReference resource and final document status",
+        "PDF and DOCX file signatures"
+      ]
+    },
+    "backend_export_and_contracts": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_review_workflow.py::test_full_review_approval_export_and_amendment tests/test_document_exports.py tests/test_fhir_mock_bundle.py tests/test_router_contracts.py",
+      "summary": "11 passed, 1 warning",
+      "asserted": [
+        "approved export authorization",
+        "artifact hashes match receipts",
+        "DOCX package integrity",
+        "FHIR mock bundle and API/policy contracts"
+      ]
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "summary": "TypeScript check and Vite production build passed."
+    },
+    "local_artifact_parsing": {
+      "status": "pass",
+      "pdf_parser": "PyMuPDF 1.26.7",
+      "docx_parser": "python-docx 1.2.0",
+      "pdf_pages": 1,
+      "docx_paragraphs": 28,
+      "fhir_json_resource": "DocumentReference",
+      "fhir_doc_status": "final"
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+      "sha256": "f48342c7ac2b982ae988567c5d757cdacede01733501da09e834b8b464775c6f"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "6d835906860829cd786a6f30435328a1909b6e2ae116c1b4e6ec1564fdfd30e2"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "898746891af2a6b1fbe952556b6ef6d962dd6921bc02135a23b8ea38d604d6d0"
+    },
+    {
+      "path": "services/review/routers/exports.py",
+      "sha256": "895497ff99c32665f3576a095dd0a3d8b9a679cdaad0ba0263a70586eb24bd20"
+    },
+    {
+      "path": "services/review/document_exports.py",
+      "sha256": "551e1b58218cbe984460d0f7a3895bb3a0a2d324d60c27e4a6b57242caea5e79"
+    },
+    {
+      "path": "services/review/models.py",
+      "sha256": "f58c81fda4e383beefd5488b711c1f9b0e6c730333e85b9bcf8de2e00213dc27"
+    },
+    {
+      "path": "services/domain_contracts.py",
+      "sha256": "943fdebc66a156487a26313ad9265f25d712ab10fb3a91b35efda24ee0a617a8"
+    },
+    {
+      "path": "tests/test_document_exports.py",
+      "sha256": "e65f99d73aeda17d9fa82dddaf52bde37216de2b43feef9649fc837a0490bb44"
+    },
+    {
+      "path": "tests/test_review_workflow.py",
+      "sha256": "e839856887aeddfda55f57c339bc2caf9c691632528f1d6d9aa613981a5f0d7c"
+    },
+    {
+      "path": "tests/test_fhir_mock_bundle.py",
+      "sha256": "ba9078717adaf2bd5e2daddee9cc7e6807cfa9d86ed1b74b061e425b354cc882"
+    },
+    {
+      "path": "tests/test_router_contracts.py",
+      "sha256": "5eb1c65b7011899332aba2e5f32c6b0467a02fda3538b0f06b90f298e5df0e1b"
+    },
+    {
+      "path": "evaluation/contracts/api-v1-compatible-v17.json",
+      "sha256": "c6404defd5e66d359bf12008f916367392063f7a3f87ff0b9204302e8a2c578b"
+    },
+    {
+      "path": "evaluation/contracts/authorization-policy-v7.json",
+      "sha256": "8b5fb6532683d685c4b8fed72014d1e3cd03e1ee0812801a66d04f8ed0a92125"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/browser-acceptance-all-formats-20261115-02/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/browser-acceptance-all-formats-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "0ee78c82e6bd3c77fa855184b67a0297485b09ba43040a8ca569f5e8f5ee5da1",
+      "bytes": 11886
+    },
+    {
+      "path": "data/browser-acceptance-all-formats-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.markdown.md",
+      "sha256": "dc9ec8b7675fd2f3d5d331948ed1323f36716fd134222d3aadf52cd09a1b50f5",
+      "bytes": 1140
+    },
+    {
+      "path": "data/browser-acceptance-all-formats-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.text.txt",
+      "sha256": "fe4f73bf0ee04d032fca4c5a9e7cbb1f6f78631637501728da6ad461bb1ae178",
+      "bytes": 1124
+    },
+    {
+      "path": "data/browser-acceptance-all-formats-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.fhir.json",
+      "sha256": "8b64c587fca07ad7adfc90f4b1feb50a38c11888331e4ebb74948be35257fcca",
+      "bytes": 13114
+    },
+    {
+      "path": "data/browser-acceptance-all-formats-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.pdf",
+      "sha256": "0eb43caabe4437416e4490230805548bc3b1db15028d95837fd9911c50e86797",
+      "bytes": 1993
+    },
+    {
+      "path": "data/browser-acceptance-all-formats-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.docx",
+      "sha256": "6b361831156127f7212177aabe7955793129cb5e5f518fa4eabfd7c1c40c9d2a",
+      "bytes": 2345
+    }
+  ],
+  "attempt_history": [
+    {
+      "run": "data/browser-acceptance-all-formats-20261115-01",
+      "status": "failed_test_assertion",
+      "reason": "The test expected the wrong transcript attribution label; the product returned its correct \"Source transcript\" label. This run is retained unchanged."
+    }
+  ],
+  "limitations": [
+    "The scripted adapter ignores microphone input; inference_executed is false.",
+    "The synthetic approval is fixture confirmation, not human clinical sign-off.",
+    "PDF characters outside WinAnsi fail closed; DOCX preserves Unicode.",
+    "FHIR receiver profile conformance, external EHR delivery, and recipient acknowledgments were not tested.",
+    "No clinical accuracy, independent clinician usability, medical benefit, institutional approval, or production readiness is established."
+  ],
+  "inference_executed": false,
+  "human_observations": 0,
+  "clinical_accuracy_measured": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false
+}

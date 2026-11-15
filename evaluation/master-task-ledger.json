@@ -9447,32 +9447,33 @@
         "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
         "evaluation/contracts/api-v1-compatible-v16.json",
         "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
-        "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json"
+        "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
+        "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json"
       ],
-      "source_commit": "12646947060474f195d38ed449e01afeb45c3310",
+      "source_commit": "6f20e7ce53da2aeeae8866e8fa86e2e2922ae572",
       "test_results": [
         {
-          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
-          "report_sha256": "1e12edbe54101e978b29f0d301ae226cb5aa01b9c5ad237cc9180ab7f9a4ca7e",
+          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
+          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
           "check": "browser_e2e",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
-          "report_sha256": "1e12edbe54101e978b29f0d301ae226cb5aa01b9c5ad237cc9180ab7f9a4ca7e",
-          "check": "backend_review_export",
+          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
+          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
+          "check": "backend_export_and_contracts",
           "status": "pass"
         },
         {
-          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
-          "report_sha256": "1e12edbe54101e978b29f0d301ae226cb5aa01b9c5ad237cc9180ab7f9a4ca7e",
-          "check": "document_export_and_error_unit",
-          "status": "pass"
-        },
-        {
-          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1264694-r1.json",
-          "report_sha256": "1e12edbe54101e978b29f0d301ae226cb5aa01b9c5ad237cc9180ab7f9a4ca7e",
+          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
+          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
           "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/approved-all-formats-browser-2026-11-15-6f20e7c-r1.json",
+          "report_sha256": "e605fa9606547bf7b6e9d1c6b9079c2d266aa795221f1de95384faeea84dc28d",
+          "check": "local_artifact_parsing",
           "status": "pass"
         }
       ],
