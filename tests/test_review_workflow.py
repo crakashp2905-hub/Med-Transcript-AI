@@ -115,7 +115,8 @@ def test_custom_note_sections_are_bounded_and_must_be_declared(setup):
         json={"transcript_version_id": tx["id"], "facts": facts},
     )
     assert response.status_code == 422
-    assert "fact_section_not_in_note_template" in response.text
+    assert response.json()["code"] == "invalid_request"
+    assert "additional_findings" not in response.text
 
 
 def approve(client, eid, note):
