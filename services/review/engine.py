@@ -415,7 +415,15 @@ def current_safety_recheck(note, transcript, report):
     }
 
 
-def render_sections(facts, transcript_version_id=None):
+def render_sections(facts, transcript_version_id=None, custom_sections=None):
+    standard = ("subjective", "objective", "assessment", "plan")
+    custom = list(custom_sections or [])
+    if custom_sections is None:
+        custom = list(
+            dict.fromkeys(
+                fact["section"] for fact in facts if fact["section"] not in standard
+            )
+        )
     return [
         {
             "key": key,
@@ -437,7 +445,7 @@ def render_sections(facts, transcript_version_id=None):
                 if fact["section"] == key and not fact.get("excluded")
             ],
         }
-        for key in ("subjective", "objective", "assessment", "plan")
+        for key in (*standard, *custom)
     ]
 
 
@@ -484,7 +492,8 @@ def render_export(note, approval, format, source=None):
             ]
         )
     for section in note["sections"]:
-        lines.append(("## " if format == "markdown" else "") + section["key"].title())
+        section_title = section["key"].replace("_", " ").title()
+        lines.append(("## " if format == "markdown" else "") + section_title)
         for statement in section["statements"]:
             lines.append(
                 escape_markdown(statement["text"])

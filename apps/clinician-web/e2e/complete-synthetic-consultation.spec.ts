@@ -70,6 +70,11 @@ test('one synthetic consultation completes capture, review, approval, and JSON e
   await page.getByRole('button', { name: 'Prepare facts', exact: false }).click();
   const cards = page.locator('.fact-card');
   await expect(cards.first()).toBeVisible();
+  await page.getByLabel('Note template').selectOption({ label: 'SOAP with follow-up' });
+  await expect(page.getByRole('heading', { name: 'Follow Up' })).toBeVisible();
+  await page.getByLabel('Add a note section').fill('Additional findings');
+  await page.getByRole('button', { name: 'Add section', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Additional Findings' })).toBeVisible();
   const correctionCard = cards.first();
   for (let index = 0; index < await cards.count(); index++) {
     const card = cards.nth(index);
@@ -79,7 +84,7 @@ test('one synthetic consultation completes capture, review, approval, and JSON e
     await card.getByLabel('Critical details checked').check();
   }
   await page.getByRole('button', { name: 'Save & verify note', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'SOAP preview' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Note preview' })).toBeVisible();
 
   const noteField = correctionCard.getByLabel('Note statement');
   const initialDraft = await noteField.inputValue();
@@ -140,6 +145,8 @@ test('one synthetic consultation completes capture, review, approval, and JSON e
       const rendered = readFileSync(documentPath, 'utf8');
       expect(rendered).toContain('# Approved clinical note');
       expect(rendered).toContain('Source transcript:');
+      expect(rendered).toContain('## Follow Up');
+      expect(rendered).toContain('## Additional Findings');
     } else if (format === 'text') {
       const rendered = readFileSync(documentPath, 'utf8');
       expect(rendered).toContain('APPROVED CLINICAL NOTE');

@@ -1,9 +1,21 @@
-from typing import Literal
+import re
+from typing import Annotated, Literal
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StringConstraints,
+    field_validator,
+    model_validator,
+)
 
 ClinicalAssertion = Literal["affirmed", "negated", "uncertain", "not_stated"]
+SectionKey = Annotated[
+    str,
+    StringConstraints(min_length=1, max_length=40, pattern=r"^[a-z][a-z0-9_]*$"),
+]
 
 
 class Strict(BaseModel):
@@ -56,7 +68,7 @@ class Fact(Strict):
         "symptom", "medication", "allergy", "measurement", "assessment", "plan", "other"
     ] = "other"
     assessment_status: Literal["explicitly_said", "suggested", "unknown"] = "unknown"
-    section: Literal["subjective", "objective", "assessment", "plan"] = "subjective"
+    section: SectionKey = "subjective"
     text: str = Field(min_length=1, max_length=4000)
     subject: Literal["patient", "family", "caregiver", "other", "unknown"] = "unknown"
     assertion: ClinicalAssertion = "uncertain"
@@ -184,9 +196,20 @@ class Fact(Strict):
 class DraftInput(Strict):
     transcript_version_id: UUID
     facts: list[Fact] = Field(min_length=1, max_length=300)
+    custom_sections: list[SectionKey] = Field(default_factory=list, max_length=16)
 
     @model_validator(mode="after")
     def validate_fact_relations(self):
+        standard_sections = {"subjective", "objective", "assessment", "plan"}
+        if len(set(self.custom_sections)) != len(self.custom_sections) or any(
+            section in standard_sections
+            or re.fullmatch(r"[a-z][a-z0-9_]{0,39}", section) is None
+            for section in self.custom_sections
+        ):
+            raise ValueError("invalid_custom_note_sections")
+        allowed_sections = standard_sections.union(self.custom_sections)
+        if any(fact.section not in allowed_sections for fact in self.facts):
+            raise ValueError("fact_section_not_in_note_template")
         fact_ids = [fact.fact_id for fact in self.facts]
         if len(set(fact_ids)) != len(fact_ids):
             raise ValueError("duplicate_fact_id")

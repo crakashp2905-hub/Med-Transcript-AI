@@ -117,7 +117,7 @@ class NoteStatement(BaseModel):
 
 class NoteSection(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    key: Literal["subjective", "objective", "assessment", "plan"]
+    key: str = Field(min_length=1, max_length=40, pattern=r"^[a-z][a-z0-9_]*$")
     statements: list[NoteStatement] = Field(max_length=300)
 
 
@@ -130,7 +130,7 @@ class NoteVersion(StableRecord):
     transcript_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     verification_report_id: UUID
     facts: list[ClinicalFact] = Field(min_length=1, max_length=300)
-    sections: list[NoteSection] = Field(max_length=4)
+    sections: list[NoteSection] = Field(max_length=20)
 
     @model_validator(mode="after")
     def unique_note_sections(self):
@@ -147,13 +147,15 @@ class NoteVersion(StableRecord):
         if len(facts) != len(self.facts):
             raise ValueError("duplicate_note_fact_id")
         statements = [
-            statement for section in self.sections for statement in section.statements
+            (section.key, statement)
+            for section in self.sections
+            for statement in section.statements
         ]
-        statement_ids = [statement.statement_id for statement in statements]
+        statement_ids = [statement.statement_id for _, statement in statements]
         if len(statement_ids) != len(set(statement_ids)):
             raise ValueError("duplicate_note_statement_id")
         linked_facts = []
-        for statement in statements:
+        for section_key, statement in statements:
             if len(statement.fact_ids) != len(set(statement.fact_ids)):
                 raise ValueError("duplicate_statement_fact_reference")
             referenced = [facts.get(fact_id) for fact_id in statement.fact_ids]
@@ -165,6 +167,8 @@ class NoteVersion(StableRecord):
                 or statement.text != referenced[0].text
             ):
                 raise ValueError("note_statement_fact_text_mismatch")
+            if referenced[0].section != section_key:
+                raise ValueError("note_statement_section_mismatch")
             origins = {fact.origin for fact in referenced if fact is not None}
             if len(origins) != 1 or statement.origin not in origins:
                 raise ValueError("note_statement_origin_mismatch")
@@ -273,7 +277,7 @@ class BoundProposal(ModelProposal):
 
 class ProposedStatement(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    section: Literal["subjective", "objective", "assessment", "plan"]
+    section: str = Field(min_length=1, max_length=40, pattern=r"^[a-z][a-z0-9_]*$")
     text: str = Field(min_length=1, max_length=4000)
     fact_ids: list[UUID] = Field(min_length=1, max_length=20)
 

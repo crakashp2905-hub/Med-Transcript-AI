@@ -45,3 +45,4 @@
  @media(max-width:700px){.primary-review-layout{grid-template-columns:1fr}}
  .keyboard-hint{align-self:center;color:var(--muted);font-size:10px;white-space:nowrap}
  @media(max-width:900px){.keyboard-hint{display:none}}
+.custom-section-form{display:flex;align-items:end;gap:8px}.custom-section-form label{display:grid;gap:5px;font-size:10px;color:var(--muted)}.custom-section-form input{min-width:160px;padding:8px;border:1px solid var(--border);border-radius:5px}@media(max-width:700px){.custom-section-form{align-items:stretch;flex-wrap:wrap}.custom-section-form label{flex:1;min-width:180px}}

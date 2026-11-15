@@ -21,7 +21,7 @@ PROMPT = "Draft SOAP statements solely from supplied reviewed facts. Return JSON
 
 class Statement(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    section: Literal["subjective", "objective", "assessment", "plan"]
+    section: str = Field(min_length=1, max_length=40, pattern=r"^[a-z][a-z0-9_]*$")
     text: str = Field(min_length=1, max_length=4000)
     fact_ids: list[str] = Field(min_length=1, max_length=20)
 

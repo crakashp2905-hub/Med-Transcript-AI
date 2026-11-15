@@ -54,7 +54,16 @@ def register(app, services: ReviewService):
             ):
                 raise HTTPException(409, "amendment_required")
             tr, tx = get_tx(con, eid, body.transcript_version_id)
-            return save_note(con, eid, tr, tx, body.facts, actor, row["current_note"])
+            return save_note(
+                con,
+                eid,
+                tr,
+                tx,
+                body.facts,
+                actor,
+                row["current_note"],
+                custom_sections=body.custom_sections,
+            )
 
     @app.get("/v1/encounters/{eid}/notes/{nid}")
     def note(eid: UUID, nid: UUID, actor=Depends(identity)):
@@ -98,4 +107,5 @@ def register(app, services: ReviewService):
                 actor,
                 str(nid),
                 body.amendment_reason or old["amendment_reason"],
+                body.custom_sections,
             )

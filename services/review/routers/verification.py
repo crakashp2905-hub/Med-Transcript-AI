@@ -126,7 +126,20 @@ def register(app, services: ReviewService):
                 raise HTTPException(422, "too_many_facts_split_review")
             tr, tx = get_tx(con, eid, old["transcript_version_id"])
             result = save_note(
-                con, eid, tr, tx, values, actor, nr["id"], old["amendment_reason"]
+                con,
+                eid,
+                tr,
+                tx,
+                values,
+                actor,
+                nr["id"],
+                old["amendment_reason"],
+                [
+                    section["key"]
+                    for section in old["sections"]
+                    if section["key"]
+                    not in {"subjective", "objective", "assessment", "plan"}
+                ],
             )
             audit(con, actor, "finding_corrected_new_version", result["note"]["id"])
             return result

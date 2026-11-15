@@ -58,4 +58,20 @@ def register(app, services: ReviewService):
                     )
                     for value in old["facts"]
                 ]
-            return save_note(con, eid, tr, tx, values, actor, old["id"], body.reason)
+            standard = {"subjective", "objective", "assessment", "plan"}
+            custom_sections = [
+                section["key"]
+                for section in old["sections"]
+                if section["key"] not in standard
+            ]
+            return save_note(
+                con,
+                eid,
+                tr,
+                tx,
+                values,
+                actor,
+                old["id"],
+                body.reason,
+                custom_sections,
+            )

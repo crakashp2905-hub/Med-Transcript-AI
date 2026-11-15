@@ -59,6 +59,65 @@ def draft(client, eid, tx, facts):
     return response.json()
 
 
+def test_custom_note_section_is_saved_exported_and_preserved_by_amendment(setup):
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path)
+    custom_key = "additional_findings"
+    facts[-1]["section"] = custom_key
+    result = client.post(
+        f"/v1/encounters/{eid}/drafts",
+        headers=headers(),
+        json={
+            "transcript_version_id": tx["id"],
+            "facts": facts,
+            "custom_sections": [custom_key],
+        },
+    )
+    assert result.status_code == 201, result.text
+    note = result.json()["note"]
+    section = next(row for row in note["sections"] if row["key"] == custom_key)
+    assert section["statements"][0]["fact_ids"] == [facts[-1]["fact_id"]]
+    assert (
+        section["statements"][0]["evidence"]["quote"] == facts[-1]["evidence"]["quote"]
+    )
+
+    approval = approve(client, eid, note)
+    assert approval.status_code == 201, approval.text
+    exported = client.post(
+        f"/v1/encounters/{eid}/exports",
+        headers=headers(),
+        json={"approval_id": approval.json()["id"], "format": "markdown"},
+    )
+    assert exported.status_code == 201, exported.text
+    markdown = client.get(exported.json()["download_url"], headers=headers())
+    assert markdown.status_code == 200
+    assert "## Additional Findings" in markdown.text
+
+    amendment = client.post(
+        f"/v1/encounters/{eid}/amendments",
+        headers=headers(),
+        json={
+            "approval_id": approval.json()["id"],
+            "reason": "Preserve custom section structure for review.",
+        },
+    )
+    assert amendment.status_code == 201, amendment.text
+    assert custom_key in [row["key"] for row in amendment.json()["note"]["sections"]]
+
+
+def test_custom_note_sections_are_bounded_and_must_be_declared(setup):
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path)
+    facts[-1]["section"] = "additional_findings"
+    response = client.post(
+        f"/v1/encounters/{eid}/drafts",
+        headers=headers(),
+        json={"transcript_version_id": tx["id"], "facts": facts},
+    )
+    assert response.status_code == 422
+    assert "fact_section_not_in_note_template" in response.text
+
+
 def approve(client, eid, note):
     return client.post(
         f"/v1/encounters/{eid}/approvals",

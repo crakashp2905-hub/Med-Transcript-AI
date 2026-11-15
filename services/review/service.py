@@ -131,7 +131,16 @@ class ReviewService:
         return {**body, "sha256": digest}
 
     def save_note(
-        self, con, eid, tx_row, tx, facts, actor, parent=None, amendment_reason=""
+        self,
+        con,
+        eid,
+        tx_row,
+        tx,
+        facts,
+        actor,
+        parent=None,
+        amendment_reason="",
+        custom_sections=None,
     ):
         audit = self.audit
         stamp = self.stamp
@@ -163,7 +172,7 @@ class ReviewService:
             "transcript_version_id": tx_row["id"],
             "transcript_sha256": tx_row["sha256"],
             "facts": values,
-            "sections": render_sections(values, tx_row["id"]),
+            "sections": render_sections(values, tx_row["id"], custom_sections),
             "verification_report_id": rid,
             "creator": str(actor.clinician_id),
             "created_at": created,

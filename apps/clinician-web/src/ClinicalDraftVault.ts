@@ -7,6 +7,7 @@ export type ClinicalDraftSnapshot={
  note_id:string|null;
  segments:Segment[];
  facts:Fact[];
+ custom_sections?:string[];
  english:boolean;
  complete:boolean;
  reviewReason:string;
