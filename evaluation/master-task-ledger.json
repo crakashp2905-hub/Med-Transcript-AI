@@ -1605,18 +1605,19 @@
         "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
         "apps/clinician-web/e2e/dictation.spec.ts",
         "apps/clinician-web/e2e/recovery.spec.ts",
-        "evaluation/reports/master-task-mta-03-05-4db62a0.json"
+        "evaluation/reports/master-task-mta-03-05-4db62a0.json",
+        "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json"
       ],
-      "source_commit": "4db62a0593f3c64b5f1804f47015ee9c279322d7",
+      "source_commit": "56e2ab9348a65871c64c7fbc03afca2586736397",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-03-05-4db62a0.json",
-          "report_sha256": "642c0e517c9f090f5380de6513ae7af223db69f0deea0de78fd64878c4e6be65",
+          "report": "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
+          "report_sha256": "a58f2bddca2f6a9aa2b289308d9f4535e0a4aa0fcdf8388c426552a0fc6eced7",
           "check": "browser_capture_duration_backpressure",
           "status": "pass"
         }
       ],
-      "blocker": "No physical microphone run or 30-minute wall-clock capture; browser tests used synthetic audio and accelerated elapsed time."
+      "blocker": "Synthetic browser duration and backpressure checks pass; physical microphone and wall-clock capture have not been validated."
     },
     {
       "id": "MTA-03-06",
@@ -1688,18 +1689,19 @@
         "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
         "apps/clinician-web/e2e/dictation.spec.ts",
         "apps/clinician-web/e2e/recovery.spec.ts",
-        "evaluation/reports/master-task-mta-03-09-4db62a0.json"
+        "evaluation/reports/master-task-mta-03-09-4db62a0.json",
+        "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json"
       ],
-      "source_commit": "4db62a0593f3c64b5f1804f47015ee9c279322d7",
+      "source_commit": "56e2ab9348a65871c64c7fbc03afca2586736397",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-03-09-4db62a0.json",
-          "report_sha256": "9ba5bd94c084f14f7b62b817805231c25a9cd8862f34a342070704ea2d5308f7",
+          "report": "evaluation/reports/recording-recovery-acceptance-2026-11-15-56e2ab9-r1.json",
+          "report_sha256": "a58f2bddca2f6a9aa2b289308d9f4535e0a4aa0fcdf8388c426552a0fc6eced7",
           "check": "browser_failure_recovery_matrix",
           "status": "pass"
         }
       ],
-      "blocker": "OS-level permission revocation and physical device unplug remain unvalidated; corresponding Chromium tests are synthetic."
+      "blocker": "Synthetic browser recovery checks pass; OS-level device removal and permission revocation remain unvalidated."
     },
     {
       "id": "MTA-03-10",

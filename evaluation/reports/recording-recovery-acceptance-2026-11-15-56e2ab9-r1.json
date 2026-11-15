@@ -1,0 +1,85 @@
+{
+  "schema_version": "synthetic_recording_recovery_acceptance_v1",
+  "run_id": "recording-recovery-acceptance-2026-11-15-56e2ab9-r1",
+  "recorded_at_utc": "2026-11-15T03:48:56Z",
+  "source_commit": "56e2ab9348a65871c64c7fbc03afca2586736397",
+  "scope": "Fresh synthetic browser checks for 20\u201330-minute capture bounds, bounded chunk persistence, interruption, retries and recovery.",
+  "runtime": {
+    "platform": "Windows 11",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone",
+    "network": "Loopback-only offline scripted server; npm offline; no inference"
+  },
+  "checks": {
+    "browser_capture_duration_backpressure": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/dictation.spec.ts",
+      "collected": 12,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "asserted": [
+        "microphone capture and submission",
+        "discard and late permission grant cancellation",
+        "permission denial and disconnected microphone preserve recovery state",
+        "simulated five-minute capture and thirty-minute maximum",
+        "sub-second capture rejection",
+        "bounded persistence prefix",
+        "lost upload response reuses saved source",
+        "multichannel input and channel consistency"
+      ]
+    },
+    "browser_failure_recovery_matrix": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/recovery.spec.ts",
+      "collected": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "asserted": [
+        "reload recovery, explicit retry and deletion",
+        "storage quota exhaustion preserves committed audio",
+        "chunk upload resume avoids retransmitting committed bytes",
+        "local preview remains provisional",
+        "permission revocation requires fresh confirmation",
+        "server backup prefix recovery",
+        "final source seals without duplicate upload",
+        "thirty-minute capture limit submits saved audio"
+      ]
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/e2e/dictation.spec.ts",
+      "sha256": "12aa65660e47b43acecf4a0c74bb6545c5b26bb07aa6b3e167b762f0dc7dba78"
+    },
+    {
+      "path": "apps/clinician-web/e2e/recovery.spec.ts",
+      "sha256": "7173c9cfdda08f95eb6a6fd9c5002c7492dbf71f2f1d70b2d68bd8a7ceecaf30"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "c9259696b7754380a0a5116d93ffebe3f4d1760ad5d0b9d52e5ee1ad63a581e0"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/recording-recovery-acceptance-20261115-56e2ab9/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    }
+  ],
+  "inference_executed": false,
+  "human_observations": 0,
+  "physical_microphone_tested": false,
+  "clinical_accuracy_measured": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "limitations": [
+    "Fake microphone and accelerated clock were used; no thirty-minute wall-clock capture or named physical interface was tested.",
+    "OS-level microphone revocation and physical unplug remain unvalidated.",
+    "The local scripted adapter does not run ASR or note drafting."
+  ]
+}
