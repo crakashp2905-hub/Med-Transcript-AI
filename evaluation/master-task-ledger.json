@@ -1098,7 +1098,8 @@
         "evaluation/reports/synthetic-browser-acceptance-2026-11-15-4881634-r1.json",
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
         "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
-        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json"
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-c3dbd2b-r1.json"
       ],
       "source_commit": "e8ebaee4d173406f12f51883b3734a077983f15f",
       "test_results": [
@@ -1109,7 +1110,7 @@
           "status": "pass"
         }
       ],
-      "blocker": "Fresh exact-source browser suite passed 45/46; one compressed upload case is skipped because cached PyAV is unavailable. Exact-commit hosted CI remains open."
+      "blocker": "Fresh exact-source scripted full browser suite at c3dbd2b passed 45 tests and skipped one compressed-upload case because PyAV is unavailable. Synthetic capture through approved JSON export and recording recovery journeys passed. The timing journey intentionally retains its critical approval block. One blob URL requestfailed remains recorded in scripted interaction metrics with no HTTP resource errors. Exact-commit hosted CI remains unobserved."
     },
     {
       "id": "MTA-02-01",
@@ -1652,7 +1653,8 @@
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
         "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
         "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
-        "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json"
+        "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-c3dbd2b-r1.json"
       ],
       "source_commit": "00cd40cc9754018040dbda436060e84f2c6599c2",
       "test_results": [
@@ -1754,7 +1756,8 @@
         "evaluation/reports/full-synthetic-browser-acceptance-2026-11-15-16e28ba-r1.json",
         "evaluation/reports/clinical-review-browser-acceptance-2026-11-15-16e28ba-r2.json",
         "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-e8ebaee-r1.json",
-        "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json"
+        "evaluation/reports/recording-capture-recovery-acceptance-2026-11-15-00cd40c-r1.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-c3dbd2b-r1.json"
       ],
       "source_commit": "00cd40cc9754018040dbda436060e84f2c6599c2",
       "test_results": [
@@ -4736,7 +4739,8 @@
         "apps/clinician-web/e2e/workflow.spec.ts",
         "tests/test_ui_contrast.py",
         "evaluation/reports/master-task-mta-09-10-87b04d5.json",
-        "evaluation/reports/master-task-mta-09-10-interactive-2026-11-15-9a52e7b-r1.json"
+        "evaluation/reports/master-task-mta-09-10-interactive-2026-11-15-9a52e7b-r1.json",
+        "evaluation/reports/current-synthetic-end-to-end-acceptance-2026-11-15-c3dbd2b-r1.json"
       ],
       "source_commit": "87b04d5a2b0ceaa404203d889bf6d2ac0c4dcb7e",
       "test_results": [
@@ -4759,7 +4763,7 @@
           "status": "blocked"
         }
       ],
-      "blocker": "Static contrast and the synthetic Playwright journey now pass for keyboard search focus, semantic labels and error alerts, 390x844 overflow, and long-token wrapping. The browser journey uses the scripted non-ASR adapter. Compressed upload remains skipped because PyAV is unavailable; actual screen-reader use and a broader physical-device matrix remain unverified."
+      "blocker": "Static contrast and interactive synthetic Playwright checks cover keyboard search and review, semantic labels, error announcements, mobile overflow, and long-token wrapping. The full current-source browser suite passed these executable cases. Actual screen-reader use, a broader physical-device matrix, and the PyAV-dependent upload case remain unverified."
     },
     {
       "id": "MTA-09-11",

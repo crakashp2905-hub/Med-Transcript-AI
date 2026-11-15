@@ -1,0 +1,117 @@
+{
+  "schema_version": "synthetic_browser_acceptance_v1",
+  "run_id": "current-synthetic-end-to-end-acceptance-2026-11-15-c3dbd2b-r1",
+  "source_commit": "c3dbd2b831b500af0029491c372425f96ce5a13f",
+  "execution_kind": "fresh local scripted non-ASR end-to-end acceptance",
+  "fixture": {
+    "workspace": "data/browser-acceptance-milestone1-final-831f7a517d7c4264bac3b25017b6d72f",
+    "server": "127.0.0.1:48023",
+    "network": "Playwright loopback-only request guard; offline profile enabled",
+    "transcription_adapter": "scripted_non_asr_v1; fixed local reference output; no model inference"
+  },
+  "command": "npx --offline playwright test --grep-invert \"Google|google\"",
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "browser": "installed Chrome via Playwright",
+    "workers": 1
+  },
+  "checks": {
+    "offline_browser_suite": {
+      "status": "pass",
+      "discovered": 46,
+      "passed": 45,
+      "skipped": 1,
+      "failed": 0,
+      "result_file_sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "complete_synthetic_consultation": {
+      "status": "pass",
+      "journey": "capture, source review, structured note review, approval, JSON export"
+    },
+    "device_and_recording_recovery": {
+      "status": "pass",
+      "cases": [
+        "device check releases tracks and uploads no audio",
+        "late microphone grant cancellation",
+        "permission denial and revocation",
+        "partial capture retention",
+        "chunk retry after response loss",
+        "quota failure prefix retention",
+        "reload recovery",
+        "same-source uploads to separate encounters",
+        "simulated-clock 30-minute stop; actual 30-minute wall-clock capture not exercised"
+      ]
+    },
+    "timing_gate": {
+      "status": "pass",
+      "recording_stop_to_draft_ready_ms": 6096,
+      "correction_saved_to_blocked_verification_ms": 234,
+      "approval_issued": false,
+      "task_completed": false,
+      "workflow_status": "blocked_by_critical_verification"
+    },
+    "compressed_upload": {
+      "status": "skipped",
+      "reason": "PyAV is unavailable in the local installed environment."
+    }
+  },
+  "observations": {
+    "scripted_metrics": {
+      "schema_version": "scripted_browser_interaction_metrics_v1",
+      "execution_kind": "playwright_script",
+      "task_id": "open-synthetic-workspace",
+      "task_completed": true,
+      "clicks": 2,
+      "keyboard_steps": 1,
+      "page_load_latency_ms": 311,
+      "script_wall_time_ms": 1591,
+      "interaction_errors": [
+        "requestfailed:blob:http://127.0.0.1:48023/41c8f5ac-6a27-4da8-ba38-92adf53e4bbe"
+      ],
+      "error_count": 1,
+      "resource_errors": [],
+      "human_observations": 0,
+      "clinical_acceptance": false
+    },
+    "output_hashes": {
+      "playwright/.last-run.json": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "artifacts/metrics-report.json": "e2e814f34ac7fc8c04472222cb1afefab375e165d54a1c72a30f3806cd82bd3b",
+      "artifacts/timing-report.json": "d592131f8e8773cb530f6b4a70690711fcf0cf20405efa5511eac3fc0dcf8d70"
+    }
+  },
+  "attempt_history": [
+    {
+      "source_commit": "1ba4a3e0430136f070e2c40528cd6d31bb27d57f",
+      "result": "44 passed, 1 failed, 1 skipped",
+      "failure": "Playwright strict locator matched both saved-source and local-draft status messages; test was narrowed to the intended status."
+    },
+    {
+      "source_commit": "88d9821058cc20d4b41aad8aefb3cb50260eb3da",
+      "result": "44 passed, 1 failed, 1 skipped",
+      "failure": "Pointer checkbox action failed to change review state in the timing journey; isolated timing rerun passed, then the test was changed to keyboard input with explicit checked-state assertions."
+    },
+    {
+      "source_commit": "c3dbd2b831b500af0029491c372425f96ce5a13f",
+      "result": "45 passed, 1 skipped, 0 failed",
+      "note": "Fresh workspace and fresh output path; full suite completed."
+    }
+  ],
+  "source_sha256": {
+    "apps/clinician-web/e2e/workflow.spec.ts": "436af552dd3a9f85149244928ef039f2f138b679fe0fba29069deb6692b7e851",
+    "apps/clinician-web/e2e/timing.spec.ts": "86fa3ad0d689e270a1226de097105430ba2a8328228c5af910591db6ca259874",
+    "apps/clinician-web/e2e/dictation.spec.ts": "12aa65660e47b43acecf4a0c74bb6545c5b26bb07aa6b3e167b762f0dc7dba78",
+    "apps/clinician-web/e2e/recovery.spec.ts": "7173c9cfdda08f95eb6a6fd9c5002c7492dbf71f2f1d70b2d68bd8a7ceecaf30",
+    "tests/offline_browser_server.py": "a5b81c3f43650d0183d6c2d297112273e5f301cc529fbd885a18a5631b99fdbd",
+    "services/demo_fixture.py": "625d7601d096c0cc25a34409b27c8541c1bed5685a1711580f5a4a3bee53c57c"
+  },
+  "limitations": [
+    "Browser interactions use synthetic fixtures and scripted non-ASR output; no transcription accuracy or clinical benefit is measured.",
+    "Compressed audio normalization did not run because PyAV is missing.",
+    "The timing test intentionally ends blocked by a critical verification finding and does not approve/export.",
+    "The scripted interaction metric recorded one requestfailed blob URL while reporting no HTTP resource errors; the full suite passed, but the blob cancellation remains an observed anomaly.",
+    "Thirty-minute stop is simulated-clock behavior; no physical 30-minute microphone session was performed.",
+    "Hosted CI, live provider authentication, real hardware, independent clinical review, and production deployment are unverified.",
+    "clinical_release_authorized=false"
+  ]
+}
