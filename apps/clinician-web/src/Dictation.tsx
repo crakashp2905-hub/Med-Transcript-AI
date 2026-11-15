@@ -10,6 +10,7 @@ type Props = {
   preview:(file:File,startMs:number)=>Promise<{start_ms:number;end_ms:number;text:string;channel_index?:number}[]>;
   disabled:boolean;
   profile:string;
+  checkModel:(profileId:string)=>Promise<{profile_id:string;status:string;reason_code:string|null;automatic_download:boolean;admission:string;inference_executed:boolean;model_loaded:boolean;clinical_validation:string;device:string;compute_type:string}>;
   authorize:()=>Promise<void>;
   submit:(file:File)=>Promise<boolean>;
   onActiveChange:(active:boolean)=>void;
@@ -17,12 +18,14 @@ type Props = {
 const formatTime=(seconds:number)=>`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;
 const MAX_SECONDS=30*60, MAX_BYTES=511999956;
 
-export function Dictation({backup,permission,preview,storageScope,disabled,profile,authorize,submit,onActiveChange}:Props){
+export function Dictation({backup,permission,preview,storageScope,disabled,profile,checkModel,authorize,submit,onActiveChange}:Props){
  const [deviceChecking,setDeviceChecking]=useState(false);
+ const [modelChecking,setModelChecking]=useState(false),[modelReadiness,setModelReadiness]=useState<Awaited<ReturnType<Props['checkModel']>>|null>(null),[modelReadinessError,setModelReadinessError]=useState('');
  const [confirmed,setConfirmed]=useState(false),[phase,setPhase]=useState<'idle'|'starting'|'recording'|'sending'|'saved'|'retry'>('idle');
  const [seconds,setSeconds]=useState(0),[error,setError]=useState(''),[draft,setDraft]=useState<File|null>(null),[url,setUrl]=useState('');
  const [channelCount,setChannelCount]=useState(1),[device,setDevice]=useState(''),[devices,setDevices]=useState<MediaDeviceInfo[]>([]);
  async function findDevices(){try{setDevices((await navigator.mediaDevices.enumerateDevices()).filter(d=>d.kind==='audioinput'));}catch{setError('Could not list audio devices. Check browser permissions.');}}
+ async function inspectModel(){if(!profile)return;setModelChecking(true);setModelReadiness(null);setModelReadinessError('');try{setModelReadiness(await checkModel(profile));}catch{setModelReadinessError('Could not verify local model files. Check the local service and retry. You can still upload a recording and use manual transcription after audio inspection.');}finally{setModelChecking(false);}}
  const recorder=useRef<Capture|null>(null),stream=useRef<MediaStream|null>(null),bytes=useRef(0);
  const recordingId=useRef(''),writes=useRef<Promise<void>>(Promise.resolve()),queuedBytes=useRef(0),persistenceFailed=useRef(false);
  const [livePreview,setLivePreview]=useState(false),[previewRows,setPreviewRows]=useState<{start_ms:number;end_ms:number;text:string;channel_index?:number}[]>([]),[previewNotice,setPreviewNotice]=useState('');
@@ -104,9 +107,10 @@ export function Dictation({backup,permission,preview,storageScope,disabled,profi
  <label className="check"><input type="checkbox" checked={confirmed} disabled={deviceChecking||active||phase==='sending'} onChange={event=>setConfirmed(event.target.checked)}/>I am dictating synthetic test speech, and recording and local-processing authorization is documented.</label>
  <DeviceCheck device={device} channels={channelCount} disabled={disabled||!confirmed||active||phase==='sending'||phase==='retry'} authorize={authorize} onChecking={setDeviceChecking}/>
  <p className="dictation-model">Local ASR: <strong>{profile||'No model configured'}</strong> · Development model; 5% WER requirement not met.</p>
+ <section className="panel" aria-label="Local ASR model readiness"><h4>Local model readiness</h4><p>Check that the configured model files match their pinned hashes. This does not load the model, run transcription, or establish accuracy.</p>{profile?<button type="button" disabled={disabled||modelChecking||active} onClick={()=>void inspectModel()}>{modelChecking?'Checking model files…':'Check local model files'}</button>:<p role="status">No local ASR profile is configured. No download will be attempted; you can upload audio and use manual transcription after inspection.</p>}{modelReadiness&&<p role="status">{modelReadiness.status==='available_not_admitted'?'Model files and SHA-256 hashes verified. The model was not loaded; ASR accuracy admission is not established.':modelReadiness.status==='unavailable'?'Model files are unavailable. Check the local installation; no download was attempted.':modelReadiness.status==='integrity_failed'?'Model file integrity check failed. Do not use this profile until the local installation is repaired.':'Model file status: '+modelReadiness.status+'.'}</p>}{modelReadinessError&&<p role="alert">{modelReadinessError}</p>}</section>
  {!supported&&<p role="alert">Microphone capture requires a supported browser on localhost or HTTPS. You can still upload audio.</p>}
  {error&&<p role="alert" className="dictation-error">{error}</p>}
- <div className="dictation-controls">{active?<><button className="primary" disabled={phase==='starting'} onClick={()=>{if(recorder.current?.state==='recording')recorder.current.stop();}}>Stop & transcribe</button><button onClick={cancel}>Discard recording</button></>:<button className="primary" disabled={deviceChecking||disabled||!confirmed||!supported||!profile||phase==='sending'||phase==='retry'} onClick={()=>void start()}>Start dictation</button>}
+ <div className="dictation-controls">{active?<><button className="primary" disabled={phase==='starting'} onClick={()=>{if(recorder.current?.state==='recording')recorder.current.stop();}}>Stop & transcribe</button><button onClick={cancel}>Discard recording</button></>:<button className="primary" disabled={deviceChecking||modelChecking||disabled||!confirmed||!supported||!profile||phase==='sending'||phase==='retry'} onClick={()=>void start()}>Start dictation</button>}
  {phase==='retry'&&draft&&<><button disabled={disabled||!confirmed} onClick={()=>void send(draft,true)}>Retry recording upload</button><button disabled={disabled} onClick={cancel}>Discard partial recording</button></>}</div>
  <p className="dictation-status" role="status" aria-live="polite">{phase==='starting'?'Authorizing and requesting microphone permission…':phase==='recording'?'Recording · microphone is on':phase==='sending'?'Processing your recording locally…':phase==='saved'?'Recording saved. Check the transcription result or job status below.':'The microphone is off.'}</p>
  <p className="muted">Committed recovery audio: {(savedBytes/1024/1024).toFixed(1)} MiB. Recovery is local to this browser and encounter; it may omit the last uncommitted chunk. Local drafts are unencrypted synthetic audio and remain until uploaded or explicitly deleted.</p>

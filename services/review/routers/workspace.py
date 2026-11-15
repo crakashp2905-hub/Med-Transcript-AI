@@ -62,6 +62,23 @@ def register(app, services: ReviewService):
             "clinical_models_enabled": bool(app.state.clinical_models.enabled),
         }
 
+    @app.get("/v1/asr-profiles/{profile_id}/readiness")
+    def asr_profile_readiness(profile_id: str, actor=Depends(identity)):
+        if actor.role == "viewer":
+            raise HTTPException(403, "profile_readiness_forbidden")
+        profile = profiles.get(profile_id)
+        if profile is None:
+            raise HTTPException(404, "asr_profile_not_found")
+        return {
+            "profile_id": profile.profile_id,
+            **profile.availability(),
+            "inference_executed": False,
+            "model_loaded": False,
+            "clinical_validation": profile.clinical_validation,
+            "device": profile.device,
+            "compute_type": profile.compute_type,
+        }
+
     @app.get("/v1/demo-cases")
     def demo_cases(actor=Depends(identity)):
         from services.review.presentation import public_demo_cases
