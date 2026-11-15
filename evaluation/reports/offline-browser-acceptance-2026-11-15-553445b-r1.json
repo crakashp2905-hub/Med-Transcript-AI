@@ -1,0 +1,94 @@
+{
+  "schema_version": "offline_browser_acceptance_v1",
+  "run_id": "offline-browser-acceptance-2026-11-15-553445b-r1",
+  "recorded_at_utc": "2026-11-15T00:21:01+00:00",
+  "source_commit": "553445b88c217f666db7b1c97ec738735ae24a5a",
+  "scope": "Fresh isolated scripted non-ASR browser acceptance after synchronizing the timing journey on the local draft recovery banner.",
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone input",
+    "network": "Application requests constrained to loopback; offline npm mode; no hosted services or paid APIs"
+  },
+  "checks": {
+    "browser_e2e": {
+      "status": "pass",
+      "command": "npx --offline playwright test --grep-invert 'Google|google' --output <versioned-output-dir>",
+      "suite": "apps/clinician-web/e2e",
+      "collected": 44,
+      "passed": 43,
+      "skipped": 1,
+      "failed": 0,
+      "test_catalog_path": "data/browser-acceptance-m1-autosave-20261115-05/artifacts/test-catalog.txt",
+      "test_catalog_sha256": "e576bc8867832f6741032195dbaed0b46cfaa170cc02621a073152689c91c8de",
+      "skip_reason": "Compressed-audio normalization is skipped because cached PyAV is unavailable; no package was installed.",
+      "output_dir": "data/browser-acceptance-m1-autosave-20261115-05/playwright",
+      "inference_executed": false,
+      "human_observations": 0,
+      "clinical_accuracy_measured": false
+    },
+    "complete_synthetic_export": {
+      "status": "pass",
+      "output_path": "data/browser-acceptance-m1-autosave-20261115-05/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "output_sha256": "c7903277942e37b54685e77f96e65995cd40b35fda7f43b74b88de7245281a85",
+      "asserted": "Scripted capture, source review, note correction, fixture approval, and JSON export completed. Fixture confirmation is not human clinical sign-off."
+    },
+    "scripted_timing": {
+      "status": "pass_with_expected_approval_block",
+      "output_path": "data/browser-acceptance-m1-autosave-20261115-05/artifacts/timing-report.json",
+      "output_sha256": "99872cd4e303c4a57a4f2ae5c9e11cd1601240371fead7cfcb992f0fa3883e3f",
+      "recording_stop_to_draft_ready_ms": 22194,
+      "approval_issued": false,
+      "export_ready_ms": null,
+      "interaction_errors": []
+    },
+    "scripted_interaction_metrics": {
+      "status": "task_passed_with_blob_request_failure_signal",
+      "output_path": "data/browser-acceptance-m1-autosave-20261115-05/artifacts/metrics-report.json",
+      "output_sha256": "aa372570624204b49503b948c153af966ff6921c86f729372d669193dc92e922",
+      "task_completed": true,
+      "error_count": 1,
+      "resource_errors": [],
+      "interaction_errors": ["requestfailed:blob:<ephemeral-local-object-url>"]
+    },
+    "playwright_result_marker": {
+      "path": "data/browser-acceptance-m1-autosave-20261115-05/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "result": "TypeScript check and Vite production build completed successfully."
+    }
+  },
+  "source_hashes": [
+    {"path": "apps/clinician-web/e2e/timing.spec.ts", "sha256": "e72e237124d6a3793035e1ad20aaa226fb45c2fbb7187aa3b2386b358ab06688"},
+    {"path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts", "sha256": "267229506375c5391c3b32ce5ab58abfd5f0ada06a05d6bf86a8bd0988110c66"},
+    {"path": "apps/clinician-web/e2e/scripted-metrics.spec.ts", "sha256": "fafb5649bf18cad7c9fa11fb605216b7cede9b408a29643155e58250ddf124a1"},
+    {"path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts", "sha256": "7ab1c162057a1d6ef34aed74b50c26265d5ae4ba6b7ad1310830f550e5a84f21"},
+    {"path": "tests/offline_browser_server.py", "sha256": "a5b81c3f43650d0183d6c2d297112273e5f301cc529fbd885a18a5631b99fdbd"},
+    {"path": "apps/clinician-web/playwright.config.ts", "sha256": "e483e7c866c0c9be9d0623e783a2d23b3271c33a85332017bab714e5a39ec797"},
+    {"path": "evaluation/datasets/primock57-smoke-v1/manifest.json", "sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd"},
+    {"path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav", "sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423921c69891832c"}
+  ],
+  "artifact_hashes": [
+    {"path": "data/browser-acceptance-m1-autosave-20261115-05/playwright/.last-run.json", "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"},
+    {"path": "data/browser-acceptance-m1-autosave-20261115-05/artifacts/timing-report.json", "sha256": "99872cd4e303c4a57a4f2ae5c9e11cd1601240371fead7cfcb992f0fa3883e3f"},
+    {"path": "data/browser-acceptance-m1-autosave-20261115-05/artifacts/metrics-report.json", "sha256": "aa372570624204b49503b948c153af966ff6921c86f729372d669193dc92e922"},
+    {"path": "data/browser-acceptance-m1-autosave-20261115-05/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json", "sha256": "c7903277942e37b54685e77f96e65995cd40b35fda7f43b74b88de7245281a85"},
+    {"path": "data/browser-acceptance-m1-autosave-20261115-05/artifacts/usability/browser-observations.json", "sha256": "a99bbed78f51bbe79d24d1a06bc85c98da7f28abe96c172c6dbd02845d3ae1f7"},
+    {"path": "data/browser-acceptance-m1-autosave-20261115-05/artifacts/test-catalog.txt", "sha256": "e576bc8867832f6741032195dbaed0b46cfaa170cc02621a073152689c91c8de"}
+  ],
+  "limitations": [
+    "The browser uses fake microphone input. The scripted non-ASR adapter returns fixed reference text regardless of audio.",
+    "The configured 30-minute capture limit is simulated, not a physical 30-minute endurance test.",
+    "The interaction-metrics probe completed but recorded one requestfailed blob URL; HTTP resource errors were zero. This signal remains visible and is not counted as a clean interaction-metrics result.",
+    "No speech accuracy, independent clinician usability, medical benefit, institutional approval, live EHR conformance, or deployment readiness is established.",
+    "The run used a fresh isolated fixture; existing user acceptance clones and partial benchmark files were left untouched."
+  ],
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false
+}

@@ -4977,24 +4977,25 @@
         "data/demo-sample.wav",
         "evaluation/reports/master-task-mta-09-19-f8cad5f.json",
         "evaluation/reports/master-task-mta-09-19-9c245b1.json",
-        "evaluation/reports/offline-browser-acceptance-2026-11-15-3e738a8-r1.json"
+        "evaluation/reports/offline-browser-acceptance-2026-11-15-3e738a8-r1.json",
+        "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json"
       ],
-      "source_commit": "3e738a82198521ce3c3996cfb80a2ef962ffa279",
+      "source_commit": "553445b88c217f666db7b1c97ec738735ae24a5a",
       "test_results": [
         {
-          "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-3e738a8-r1.json",
-          "report_sha256": "449e17cd022b40114ca2fa566f0a2f6b2090fd8073f07fb177808258bf9dced1",
+          "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json",
+          "report_sha256": "949de2f2e4c30d1992f2dadf13ce37050686594c9e0b8cb74edc00979e953916",
           "check": "browser_e2e",
-          "status": "fail"
+          "status": "pass"
         },
         {
-          "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-3e738a8-r1.json",
-          "report_sha256": "449e17cd022b40114ca2fa566f0a2f6b2090fd8073f07fb177808258bf9dced1",
-          "check": "focused_timing_diagnostic",
+          "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json",
+          "report_sha256": "949de2f2e4c30d1992f2dadf13ce37050686594c9e0b8cb74edc00979e953916",
+          "check": "frontend_build",
           "status": "pass"
         }
       ],
-      "blocker": "Fresh full browser run at source commit 3e738a82198521ce3c3996cfb80a2ef962ffa279 failed 1 of 44 tests: timing.spec.ts could not persist the Critical details checked checkbox after its click. A focused run passed 1/1 but does not supersede the full-suite failure. The compressed-audio normalization case was skipped because cached PyAV is unavailable. Scripted non-ASR fixtures do not validate speech accuracy, physical microphone behavior, or clinical performance."
+      "blocker": "The exact-source browser suite passed 43/44 with one compressed-audio normalization case skipped because cached PyAV is unavailable. The scripted interaction probe also recorded one requestfailed blob URL despite zero HTTP resource errors. All tests use a fixed scripted non-ASR adapter and fake microphone; they do not validate speech accuracy, physical microphone behavior, independent clinical performance, or deployment."
     },
     {
       "id": "MTA-09-20",
