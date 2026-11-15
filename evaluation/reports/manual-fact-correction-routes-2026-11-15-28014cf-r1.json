@@ -1,0 +1,56 @@
+{
+  "schema_version": "manual_fact_correction_route_acceptance_v1",
+  "run_id": "manual-fact-correction-routes-2026-11-15-28014cf-r1",
+  "recorded_at_utc": "2026-11-15T03:50:44Z",
+  "source_commit": "28014cf322ba161e142ae8536e57b3c5ef6e6f2e",
+  "scope": "Synthetic route-level proof that clinician corrections create a new immutable note version and no-audio clinician facts retain required source and authenticated-owner provenance.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "test_runner": "services.safe_pytest",
+    "network": "Loopback-only socketpair enabled; no external requests or inference"
+  },
+  "checks": {
+    "manual_fact_origin_and_ownership": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_review_workflow.py::test_ambiguous_medication_blocks_and_correction_creates_new_version tests/test_review_workflow.py::test_manual_fact_owner_is_bound_to_authenticated_clinician",
+      "collected": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "asserted": [
+        "clinician correction creates a distinct note version",
+        "original evidence remains bound to original text and is not overwritten",
+        "manual correction is explicitly marked manual_no_audio_evidence with authenticated clinician owner and no invented evidence",
+        "a manual fact with a mismatched owner is rejected"
+      ]
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "services/review/clinical_routes.py",
+      "sha256": "8aa2c4e8966520b56d2e65a49e0d4da1e8d0fe13b9a3ab48a1238134621ab4d8"
+    },
+    {
+      "path": "services/review/routers/verification.py",
+      "sha256": "bd09060b24545ba4ea034f944af26041ac10bdf5aa20a2498f0dca6c2702edae"
+    },
+    {
+      "path": "services/review/models.py",
+      "sha256": "a41206a9ed7af20bc10278fe32b60a28a964fc90164b2e2e37f9e17952125f3c"
+    },
+    {
+      "path": "tests/test_review_workflow.py",
+      "sha256": "b9b96905100f9b4c6deaf6068249f144f411badb1e676b5552c3e08f106d1810"
+    }
+  ],
+  "inference_executed": false,
+  "synthetic_only": true,
+  "human_observations": 0,
+  "clinical_signoff_claimed": false,
+  "real_patient_processing_authorized": false,
+  "limitations": [
+    "These cases verify route and persistence behavior using synthetic fixtures; they do not establish clinician usability or clinical accuracy."
+  ],
+  "runtime_sha256": "3302fc0b484dbbfa23670aaee5480493215578e2eebfce592023f3e8208c4b4a"
+}

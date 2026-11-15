@@ -3209,21 +3209,22 @@
       "id": "MTA-06-12",
       "section": "06 — Atomic clinical fact extraction and temporal medical state",
       "priority": "P1",
-      "status": "implemented",
+      "status": "verified",
       "description": "Add clinician-entered facts as `manual_no_audio_evidence`, requiring separate source and ownership labels.",
       "evidence": [
-        "evaluation/reports/master-task-mta-06-12-through-16-85b6442.json"
+        "evaluation/reports/master-task-mta-06-12-through-16-85b6442.json",
+        "evaluation/reports/manual-fact-correction-routes-2026-11-15-28014cf-r1.json"
       ],
-      "source_commit": "85b644207131a411011ace11bb027e44343be8c5",
+      "source_commit": "28014cf322ba161e142ae8536e57b3c5ef6e6f2e",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-06-12-through-16-85b6442.json",
-          "report_sha256": "dda2c79a0bc2ea2b8b72f66f7c7a731cb844e678ec8c4a46cdbdc5f3defeb827",
-          "check": "manual_fact_provenance_unit_and_export_checks",
+          "report": "evaluation/reports/manual-fact-correction-routes-2026-11-15-28014cf-r1.json",
+          "report_sha256": "51f8648d8b3025ab272fcc56cca73ad654cdb3aa86644c118c9cd0c04c85efd5",
+          "check": "manual_fact_origin_and_ownership",
           "status": "pass"
         }
       ],
-      "blocker": "Windows route-persistence integration test stalled; do not claim route-level verification."
+      "blocker": null
     },
     {
       "id": "MTA-06-13",
