@@ -9441,21 +9441,39 @@
         "services/offline_acceptance.py",
         "services/source_change_detector.py",
         "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
-        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json"
+        "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
+        "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json"
       ],
-      "source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c",
+      "source_commit": "d8df1df811359131991bc150293fe2f3c18f4952",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
-          "report_sha256": "cbad6703e1f5aefba5c7e657350b76b017a6d565e1a1681b9e761bc853e234ba",
-          "check": "fresh_unmodified_acceptance",
+          "report": "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json",
+          "report_sha256": "2bc65945eb4cec8dc6ff14592caeb6c4f8db636431ab0ecf0abb925ad6bcfffc",
+          "check": "backend_tests",
           "status": "fail",
-          "test_command": "python -m services.offline_acceptance --version mta18-11-0f9b27d",
-          "test_result": "The required clean exact-commit run was performed from unmodified inputs with offline profile and source hashes; the acceptance did not finish green because backend tests timed out and frontend build runtime was absent.",
-          "tested_source_commit": "0f9b27d5f5a7f5011d3c227f75f96ebc4cad0a8c"
+          "test_command": "python -m services.offline_acceptance --version local-milestone-cont-20261115-r3",
+          "test_result": "Exact-commit run: 1351 passed, 9 skipped; acceptance gate failed because critical channel, media, and PostgreSQL lanes were skipped."
+        },
+        {
+          "report": "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json",
+          "report_sha256": "2bc65945eb4cec8dc6ff14592caeb6c4f8db636431ab0ecf0abb925ad6bcfffc",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json",
+          "report_sha256": "2bc65945eb4cec8dc6ff14592caeb6c4f8db636431ab0ecf0abb925ad6bcfffc",
+          "check": "synthetic_walkthrough",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json",
+          "report_sha256": "2bc65945eb4cec8dc6ff14592caeb6c4f8db636431ab0ecf0abb925ad6bcfffc",
+          "check": "source_integrity",
+          "status": "pass"
         }
       ],
-      "blocker": "Clean exact-commit offline acceptance was run; it did not pass because backend tests timed out and frontend build runtime was missing."
+      "blocker": "Fresh exact-commit acceptance verified source integrity, frontend build, and the model-free synthetic workflow, with 1351 tests passing. The overall gate remains failed because channel/media tests require unavailable PyAV and PostgreSQL integration requires an unconfigured DSN; the acceptance policy correctly treats those skips as critical."
     },
     {
       "id": "MTA-18-12",
