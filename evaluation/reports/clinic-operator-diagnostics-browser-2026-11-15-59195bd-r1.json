@@ -1,0 +1,129 @@
+{
+  "schema_version": "clinic_operator_diagnostics_acceptance_v1",
+  "run_id": "clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1",
+  "recorded_at_utc": "2026-11-15T01:49:27Z",
+  "source_commit": "59195bd7fb0cc1682747223875c816ef6f95a0bd",
+  "scope": "Admin-only read-only runtime/storage diagnostics and operator support guidance, verified through a simulated OIDC admin journey.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless",
+    "identity": "Simulated Google OIDC provider; no external identity service",
+    "network": "Loopback-only browser/server; offline package mode"
+  },
+  "checks": {
+    "admin_browser_journey": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/google-auth.spec.ts --grep \"workspace administrator provisions a scribe\" --output <versioned-output-dir>",
+      "test_id": "google-auth.spec.ts:34",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "result_marker": "data/browser-acceptance-admin-diagnostics-20261115-01/playwright/.last-run.json",
+      "result_marker_sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "asserted": [
+        "administrator signs in",
+        "read-only diagnostics panel displays",
+        "no patient/encounter content included",
+        "no inference run",
+        "no external services contacted",
+        "administrator cannot open encounter content"
+      ]
+    },
+    "admin_auth_and_api_contract": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_google_auth.py tests/test_router_contracts.py",
+      "summary": "24 passed, 1 warning",
+      "asserted": [
+        "admin endpoint success",
+        "non-administrator denied",
+        "API v17 snapshot matches",
+        "authorization policy v7 covers route"
+      ]
+    },
+    "ci_offline_safety_lane": {
+      "status": "pass",
+      "summary": "62 passed, 1 warning",
+      "command": "python -m services.safe_pytest tests/test_offline_engineering.py tests/test_domain_integrity.py tests/test_audit_integrity.py tests/test_router_contracts.py tests/test_safety_properties.py tests/test_error_taxonomy.py tests/test_timestamp_registry.py"
+    },
+    "python_quality": {
+      "status": "pass",
+      "checks": {
+        "ruff_format": "706 files formatted",
+        "ruff_lint": "pass",
+        "mypy": "335 source files; no issues"
+      }
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "summary": "TypeScript check and Vite production build passed."
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "services/api/auth.py",
+      "sha256": "a5c870b785c86f4ea3e4c000b8977511ee30c1b56a01dd6fe8151788b039f623"
+    },
+    {
+      "path": "services/api/authorization_policy.py",
+      "sha256": "9df19dda44aec65eed1e5cfe0f0229cfac678a83a7f82623395dfa4f4ce93a48"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/AdminUsersScreen.tsx",
+      "sha256": "542c2724c8c35c2c0e5a426b0744ca2b3ad9205407a387b43ba41b3ae81e022a"
+    },
+    {
+      "path": "apps/clinician-web/e2e/google-auth.spec.ts",
+      "sha256": "03b21d06faa378c91c0ce37c140fc0a8352306c625ef253f3fcd1ed0b841d35d"
+    },
+    {
+      "path": "docs/runbooks/operations.md",
+      "sha256": "eb437503ec0535a677a924223d9a9c6a9753ea824b73de10e121a332c5c27f27"
+    },
+    {
+      "path": "tests/test_google_auth.py",
+      "sha256": "a26ad6fe60de00edbc017bbf5c4f9d69a67b9ffb365aca01c0086a781ef7b4f3"
+    },
+    {
+      "path": "tests/test_router_contracts.py",
+      "sha256": "5eb1c65b7011899332aba2e5f32c6b0467a02fda3538b0f06b90f298e5df0e1b"
+    },
+    {
+      "path": "evaluation/contracts/api-v1-compatible-v17.json",
+      "sha256": "c6404defd5e66d359bf12008f916367392063f7a3f87ff0b9204302e8a2c578b"
+    },
+    {
+      "path": "evaluation/contracts/authorization-policy-v7.json",
+      "sha256": "8b5fb6532683d685c4b8fed72014d1e3cd03e1ee0812801a66d04f8ed0a92125"
+    },
+    {
+      "path": "evaluation/contracts/authorization-policy-v7.provenance.json",
+      "sha256": "07de8e1ca273017ab353fdcadf7d6ccea6fdcf5b26e17396d1688f0d55f49919"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/browser-acceptance-admin-diagnostics-20261115-01/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    }
+  ],
+  "diagnostic_response_boundary": {
+    "filesystem_paths_included": false,
+    "package_inventory_included": false,
+    "membership_data_included": false,
+    "patient_or_encounter_content_included": false,
+    "model_inference_performed": false,
+    "external_services_contacted": false
+  },
+  "limitations": [
+    "The screen measures free disk space and tool availability only; it does not verify permissions, backups, restore success, alerts, or service health beyond the running API.",
+    "Backup and restore remain explicit operator commands and must be rehearsed in a separate destination.",
+    "Google identity was simulated locally; live identity-provider activation is not established.",
+    "No clinical validation, production readiness, or deployment authorization is established."
+  ]
+}

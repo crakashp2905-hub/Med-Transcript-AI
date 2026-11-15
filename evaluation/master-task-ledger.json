@@ -3,7 +3,7 @@
   "generated_from": "Med_Transcript_AI_InHouse_10of10_Master_Implementation_and_Validation_Checklist.md",
   "baseline_commit": "b93937756427d1ae86adf847c680ed52c187b9ed",
   "scope": "english_only_local_first_synthetic_public_mock",
-  "total": 370,
+  "total": 371,
   "status_policy": "A task is verified only with exact commit tests and hash-bound evidence. No clinical release implication.",
   "clinical_release_authorized": false,
   "tasks": [
@@ -9477,6 +9477,57 @@
         }
       ],
       "blocker": "PDF characters outside WinAnsi fail closed with a recovery message; full Unicode font packaging remains future work. Cross-viewer rendering and external EHR conformance are unverified."
+    },
+    {
+      "id": "MTA-17-18",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "priority": "P1",
+      "status": "implemented",
+      "description": "Provide workspace administrators a read-only installation diagnostics and support interface with actionable backup and restore guidance.",
+      "evidence": [
+        "services/api/auth.py",
+        "services/api/authorization_policy.py",
+        "apps/clinician-web/src/screens/AdminUsersScreen.tsx",
+        "apps/clinician-web/e2e/google-auth.spec.ts",
+        "docs/runbooks/operations.md",
+        "evaluation/contracts/api-v1-compatible-v17.json",
+        "evaluation/contracts/authorization-policy-v7.json",
+        "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json"
+      ],
+      "source_commit": "59195bd7fb0cc1682747223875c816ef6f95a0bd",
+      "test_results": [
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "admin_browser_journey",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "admin_auth_and_api_contract",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "ci_offline_safety_lane",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "python_quality",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/clinic-operator-diagnostics-browser-2026-11-15-59195bd-r1.json",
+          "report_sha256": "f8c992496edfbbea39cefa3f8212dd0a9f207bdcf11c7d3381163e6a3b6f40da",
+          "check": "frontend_build",
+          "status": "pass"
+        }
+      ],
+      "blocker": "The interface does not verify storage permissions, backup integrity, restore success, update/rollback state, or failure alerts; backup/restore commands remain manually operated. Live identity-provider and deployment behavior are unverified."
     }
   ]
 }
