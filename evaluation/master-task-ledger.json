@@ -4735,7 +4735,8 @@
         "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
         "apps/clinician-web/e2e/workflow.spec.ts",
         "tests/test_ui_contrast.py",
-        "evaluation/reports/master-task-mta-09-10-87b04d5.json"
+        "evaluation/reports/master-task-mta-09-10-87b04d5.json",
+        "evaluation/reports/master-task-mta-09-10-interactive-2026-11-15-9a52e7b-r1.json"
       ],
       "source_commit": "87b04d5a2b0ceaa404203d889bf6d2ac0c4dcb7e",
       "test_results": [
@@ -4758,7 +4759,7 @@
           "status": "blocked"
         }
       ],
-      "blocker": "Rendered accessibility validation is blocked by loopback restrictions. Static contrast checks and build/discovery pass; run the browser accessibility assertions on a host that can access the local fixture."
+      "blocker": "Static contrast and the synthetic Playwright journey now pass for keyboard search focus, semantic labels and error alerts, 390x844 overflow, and long-token wrapping. The browser journey uses the scripted non-ASR adapter. Compressed upload remains skipped because PyAV is unavailable; actual screen-reader use and a broader physical-device matrix remain unverified."
     },
     {
       "id": "MTA-09-11",

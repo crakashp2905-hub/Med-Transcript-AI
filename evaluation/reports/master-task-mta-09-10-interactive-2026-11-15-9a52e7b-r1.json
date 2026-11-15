@@ -1,0 +1,53 @@
+{
+  "schema_version": "master_task_local_verification_receipt_v1",
+  "run_id": "master-task-mta-09-10-interactive-2026-11-15-9a52e7b-r1",
+  "source_commit": "9a52e7b982bb009056aefd802e3e667bda955ed0",
+  "tasks": [
+    "MTA-09-10"
+  ],
+  "source_hashes": {
+    "apps/clinician-web/e2e/workflow.spec.ts": "131724d6e0c4a3891c092aa03293ee67a34c5078f547a314079b6baca438259e",
+    "apps/clinician-web/src/style.css": "474a1802828d230b92d3f17bb4a7e8afc581567b75e228a85a8ed1fcb14da97e",
+    "tests/test_ui_contrast.py": "a8e30043a36748ca87803e2f0c153614812973f273d8607bdedbf69f369cf2e4"
+  },
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "browser": "installed Chrome via Playwright",
+    "fixture": "fresh isolated UUID-scoped synthetic workspace; scripted_non_asr_v1; loopback only",
+    "offline": "MED_TRANSCRIPT_OFFLINE=1; npm offline mode"
+  },
+  "checks": {
+    "interactive_accessibility_and_mobile_rendering": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/workflow.spec.ts",
+      "passed": 1,
+      "skipped": 1,
+      "assertions": [
+        "Keyboard search focus and next/previous match focus behavior",
+        "Semantic labels and roles for major review regions and controls",
+        "Synthetic API error announced in role=alert and dismissible",
+        "390x844 mobile viewport with no horizontal overflow",
+        "Long unbroken clinical token wraps within historical source context",
+        "End-to-end review, correction, approval, and export journey"
+      ]
+    },
+    "compressed_upload_normalization": {
+      "status": "blocked",
+      "reason": "Skipped because PyAV is unavailable in the installed environment."
+    },
+    "static_small_text_contrast": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_ui_contrast.py",
+      "passed": 1,
+      "warnings": 1
+    }
+  },
+  "limitations": [
+    "Browser role and live-region behavior was inspected through Playwright accessibility locators; no physical screen-reader session was used.",
+    "Mobile verification covered one 390x844 CSS viewport and the listed long-text fixture, not a device matrix.",
+    "The scripted browser adapter performs no ASR; no transcription accuracy or clinical usability claim is made.",
+    "Compressed upload was not tested because PyAV is missing.",
+    "clinical_release_authorized=false"
+  ]
+}
