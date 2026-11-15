@@ -4556,24 +4556,19 @@
         "apps/clinician-web/src/screens/SourceReviewScreen.tsx",
         "apps/clinician-web/src/style.css",
         "apps/clinician-web/e2e/workflow.spec.ts",
-        "evaluation/reports/master-task-mta-09-09-97debc1.json"
+        "evaluation/reports/master-task-mta-09-09-97debc1.json",
+        "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json"
       ],
-      "source_commit": "97debc15ee6426ffe54e2b5d9302a0a864c5820b",
+      "source_commit": "553445b88c217f666db7b1c97ec738735ae24a5a",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-09-09-97debc1.json",
-          "report_sha256": "c91de242f94430a4e099d9a457fe4f5116200bda7126451ec05176e1acd22483",
-          "check": "search_keyboard_focus_and_result_navigation",
-          "status": "blocked"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-09-97debc1.json",
-          "report_sha256": "c91de242f94430a4e099d9a457fe4f5116200bda7126451ec05176e1acd22483",
-          "check": "frontend_build_and_e2e_discovery",
+          "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json",
+          "report_sha256": "949de2f2e4c30d1992f2dadf13ce37050686594c9e0b8cb74edc00979e953916",
+          "check": "browser_e2e",
           "status": "pass"
         }
       ],
-      "blocker": "The browser keyboard interaction check is blocked because managed loopback networking denies loading the local fixture. Build and E2E discovery pass; run the browser assertions where local fixture networking is enabled."
+      "blocker": "The fresh browser suite passed the scripted Alt+0/1/2 review-view shortcuts, Ctrl+S source save, transcript edit, autosave recovery, and discard journey. Keyboard-only audio playback and export, plus independent screen-reader/focus-order validation, remain unverified."
     },
     {
       "id": "MTA-09-10",
