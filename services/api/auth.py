@@ -7,8 +7,10 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
+import platform
 from pathlib import Path
 import secrets
+import shutil
 import tempfile
 import threading
 import time
@@ -292,6 +294,46 @@ class GoogleSessions:
             if actor.role != "administrator":
                 raise HTTPException(403, "administrator_role_required")
             return actor
+
+        @app.get("/v1/admin/diagnostics")
+        def admin_diagnostics(request: Request):
+            admin_actor(request)
+            try:
+                disk_free_bytes = shutil.disk_usage(Path.cwd()).free
+                storage_status = "measured"
+            except OSError:
+                disk_free_bytes = None
+                storage_status = "unavailable"
+            root = Path.cwd()
+            return {
+                "schema_version": "clinic_operator_diagnostics_v1",
+                "runtime": {
+                    "python": platform.python_version(),
+                    "platform": platform.system(),
+                    "node": shutil.which("node") is not None,
+                    "npm": shutil.which("npm") is not None,
+                    "docker": shutil.which("docker") is not None,
+                    "psql": shutil.which("psql") is not None,
+                },
+                "storage": {
+                    "status": storage_status,
+                    "free_bytes": disk_free_bytes,
+                    "backup_restore": "not_checked",
+                },
+                "frontend_dependencies": (
+                    "available"
+                    if (root / "apps/clinician-web/node_modules/typescript").is_dir()
+                    else "missing"
+                ),
+                "offline_mode": (
+                    "enabled"
+                    if os.getenv("MED_TRANSCRIPT_OFFLINE") == "1"
+                    else "not_confirmed"
+                ),
+                "model_inference_performed": False,
+                "external_services_contacted": False,
+                "patient_or_encounter_data_included": False,
+            }
 
         def public_member(row):
             return {

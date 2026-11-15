@@ -112,6 +112,15 @@ def test_administrator_manages_same_tenant_membership_and_audit(google_app):
         "X-CSRF-Token": session["csrf_token"],
     }
 
+    diagnostics = client.get("/v1/admin/diagnostics")
+    assert diagnostics.status_code == 200
+    diagnostic_body = diagnostics.json()
+    assert diagnostic_body["storage"]["status"] in {"measured", "unavailable"}
+    assert diagnostic_body["model_inference_performed"] is False
+    assert diagnostic_body["external_services_contacted"] is False
+    assert diagnostic_body["patient_or_encounter_data_included"] is False
+    assert "packages" not in diagnostic_body and "path" not in diagnostic_body
+
     listed = client.get("/v1/admin/users")
     assert listed.status_code == 200
     assert {row["email"] for row in listed.json()["users"]} == {
@@ -163,6 +172,9 @@ def test_non_administrator_cannot_manage_membership(google_app):
     response = client.get("/v1/admin/users")
     assert response.status_code == 403
     assert response.json()["code"] == "administrator_role_required"
+    diagnostics = client.get("/v1/admin/diagnostics")
+    assert diagnostics.status_code == 403
+    assert diagnostics.json()["code"] == "administrator_role_required"
 
 
 def test_state_binding_replay_and_cookie_flags(google_app):

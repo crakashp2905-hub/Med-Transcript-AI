@@ -17,6 +17,22 @@ speech jobs. The access key is printed at startup and kept in ignored
 `data/local-config.json`; treat that file as a credential. Stop the launcher with
 Ctrl+C so it terminates its worker. Browser keys stay in memory, not local storage.
 
+## Administrator support diagnostics
+
+Workspace administrators can run a read-only local diagnostic from **Workspace
+accounts → Clinic operator diagnostics**. It reports runtime/tool availability and
+disk headroom. It does not inspect encounters, test backups, run model inference,
+or contact external services. A result of `not_confirmed` for offline mode means
+the service did not start with `MED_TRANSCRIPT_OFFLINE=1`; it is not proof of
+network isolation.
+
+For deeper local checks, run `python -m services.status_report` and
+`python -m services.offline_preflight --out data/reports/offline-preflight-RUN-ID.json`
+from the application directory, replacing `RUN-ID` with a unique value. These
+commands report missing dependencies and assets;
+they do not repair or download them. Review the output locally before sharing it.
+Use a new, empty destination for every backup or restore exercise, as shown below.
+
 The worker polls ingest and ASR queues and periodically processes eligible
 unapproved encounter deletion requests. It preserves explicit failure/cancellation
 status. A later source correction fences late ASR output. If the worker stops,

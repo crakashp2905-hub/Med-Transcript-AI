@@ -2,6 +2,7 @@ import {useEffect,useMemo,useState} from 'react';
 
 type WorkspaceUser={email:string;user_id:string;clinician_id:string;tenant_id:string;role:string};
 type AuditEvent={action:string;actor_user_id:string;target_user_id:string;time:string};
+type Diagnostics={schema_version:string;runtime:{python:string;platform:string;node:boolean;npm:boolean;docker:boolean;psql:boolean};storage:{status:string;free_bytes:number|null;backup_restore:string};frontend_dependencies:string;offline_mode:string;model_inference_performed:boolean;external_services_contacted:boolean;patient_or_encounter_data_included:boolean};
 type Role='physician'|'scribe'|'administrator'|'viewer';
 type Props={request:(path:string,init?:RequestInit)=>Promise<any>;logout:()=>Promise<void>;userId:string};
 
@@ -9,6 +10,7 @@ export function AdminUsersScreen({request,logout,userId}:Props){
  const [users,setUsers]=useState<WorkspaceUser[]>([]),[events,setEvents]=useState<AuditEvent[]>([]);
  const [email,setEmail]=useState(''),[role,setRole]=useState<Role>('physician'),[assigned,setAssigned]=useState('');
  const [busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState('');
+ const [diagnostics,setDiagnostics]=useState<Diagnostics|null>(null),[diagnosticsBusy,setDiagnosticsBusy]=useState(false),[diagnosticsError,setDiagnosticsError]=useState('');
  const physicians=useMemo(()=>users.filter(user=>user.role==='physician'||user.role==='clinician'),[users]);
  async function refresh(){
   setBusy(true);setError('');
@@ -17,6 +19,7 @@ export function AdminUsersScreen({request,logout,userId}:Props){
   finally{setBusy(false);}
  }
  useEffect(()=>{void refresh();},[]);
+ async function runDiagnostics(){setDiagnosticsBusy(true);setDiagnosticsError('');try{setDiagnostics(await request('/v1/admin/diagnostics'));}catch(reason){setDiagnosticsError(reason instanceof Error?reason.message:'Local diagnostics could not be loaded.');}finally{setDiagnosticsBusy(false);}}
  async function addUser(event:React.FormEvent){
   event.preventDefault();setBusy(true);setError('');setNotice('');
   try{
@@ -37,6 +40,12 @@ export function AdminUsersScreen({request,logout,userId}:Props){
   <section className="panel">
    <div className="panel-heading"><div><h1>Workspace accounts</h1><p className="muted">Manage invitations for this clinic. Administrator access cannot open encounter content.</p></div><button onClick={()=>void logout()}>Sign out</button></div>
    <p className="callout">Account invitations and removals are recorded in the workspace membership audit. Assign each scribe to a physician. A physician must approve every clinical note.</p>
+  <section className="panel" aria-label="Clinic operator diagnostics">
+   <div className="panel-heading"><div><h2>Clinic operator diagnostics</h2><p className="muted">Read-only local checks. They do not inspect encounter content, run models, or contact external services.</p></div><button disabled={diagnosticsBusy} onClick={()=>void runDiagnostics()}>{diagnosticsBusy?'Checking…':'Run local diagnostics'}</button></div>
+   {diagnosticsError&&<p role="alert" className="error">{diagnosticsError}</p>}
+   {diagnostics&&<div role="status" aria-label="Local diagnostic results"><p>Python {diagnostics.runtime.python} · {diagnostics.runtime.platform}</p><p>Browser dependencies: {diagnostics.frontend_dependencies} · offline mode: {diagnostics.offline_mode}</p><p>Disk headroom: {diagnostics.storage.status==='measured'&&diagnostics.storage.free_bytes!==null?`${(diagnostics.storage.free_bytes/1024**3).toFixed(1)} GB available`:'unavailable'}</p><p>Optional tools: Node {diagnostics.runtime.node?'available':'missing'}, npm {diagnostics.runtime.npm?'available':'missing'}, Docker {diagnostics.runtime.docker?'available':'missing'}, PostgreSQL client {diagnostics.runtime.psql?'available':'missing'}.</p><p>Backup/restore validation: {diagnostics.storage.backup_restore}. Model inference: not run. External services: not contacted. Patient or encounter data: not included.</p></div>}
+   <details><summary>Support and recovery commands</summary><p>Run commands from the installed application directory. Keep output local and remove identifiers before sharing support details.</p><p><strong>Read-only readiness report</strong><br/><code>python -m services.status_report</code></p><p><strong>Backup to a new destination</strong><br/><code>python -m services.maintenance backup --destination data/backups/snapshot-UNIQUE</code></p><p><strong>Restore into a separate recovery directory</strong><br/><code>python -m services.maintenance restore --source data/backups/snapshot-UNIQUE --destination data/recovery-UNIQUE --tombstones-from data/development.sqlite3</code></p><p>Restore checks do not run from this screen. Use a separate destination and consult the operator runbook before replacing a live workspace.</p></details>
+  </section>
    {error&&<p role="alert" className="error">{error}</p>}{notice&&<p role="status" className="verified">{notice}</p>}
    <div className="table-scroll"><table><thead><tr><th>Email</th><th>Role</th><th>Assigned physician</th><th>Account ID</th><th>Action</th></tr></thead><tbody>
     {users.map(user=><tr key={user.user_id}><td>{user.email}</td><td>{user.role}</td><td>{physicians.find(item=>item.clinician_id===user.clinician_id)?.email||'—'}</td><td><code>{user.user_id.slice(0,8)}</code></td><td><button disabled={busy||user.user_id===userId} onClick={()=>void removeUser(user)}>Remove</button></td></tr>)}

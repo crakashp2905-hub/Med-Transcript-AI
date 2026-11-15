@@ -22,6 +22,7 @@ def authorize_role_request(actor, method, path):
         allowed_admin_route = (method, path) in {
             ("GET", "/v1/admin/users"),
             ("GET", "/v1/admin/users/audit"),
+            ("GET", "/v1/admin/diagnostics"),
             ("POST", "/v1/admin/users"),
             ("POST", "/v1/auth/logout"),
         }

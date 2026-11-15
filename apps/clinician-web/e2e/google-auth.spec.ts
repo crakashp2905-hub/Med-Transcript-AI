@@ -41,6 +41,11 @@ test('workspace administrator provisions a scribe without encounter access and r
  });
  await page.goto('/');await page.getByRole('button',{name:'Sign in with Google Workspace'}).click();
  await expect(page.getByRole('heading',{name:'Workspace accounts'})).toBeVisible();
+ await page.getByRole('button',{name:'Run local diagnostics'}).click();
+ const diagnostics=page.getByRole('status',{name:'Local diagnostic results'});
+ await expect(diagnostics).toContainText('Patient or encounter data: not included.');
+ await expect(diagnostics).toContainText('Model inference: not run.');
+ await expect(diagnostics).toContainText('External services: not contacted.');
  const hiddenEncounters=await page.request.get('/v1/encounters');
  expect(hiddenEncounters.status()).toBe(403);
  expect((await hiddenEncounters.json()).code).toBe('administrator_scope_required');
