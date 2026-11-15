@@ -166,6 +166,27 @@ def test_approval_idempotency_replays_same_decision_and_rejects_changed_request(
         )
 
 
+def test_draft_note_cannot_be_exported_without_an_approval(setup):
+    client, path, _ = setup
+    eid, tx, facts = prepare(client, path)
+    draft(client, eid, tx, facts)
+
+    response = client.post(
+        f"/v1/encounters/{eid}/exports",
+        headers=headers(),
+        json={"approval_id": str(uuid4()), "format": "markdown"},
+    )
+
+    assert response.status_code == 404
+    with Store(path).transaction() as con:
+        assert (
+            con.execute(
+                "SELECT COUNT(*) FROM exports WHERE encounter=?", (eid,)
+            ).fetchone()[0]
+            == 0
+        )
+
+
 def test_full_review_approval_export_and_amendment(setup):
     client, path, _ = setup
     eid, tx, facts = prepare(client, path)
