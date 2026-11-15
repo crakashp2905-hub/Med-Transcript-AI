@@ -1,0 +1,130 @@
+{
+  "schema_version": "offline_browser_acceptance_v1",
+  "run_id": "offline-browser-acceptance-2026-11-15-3ca404f-r1",
+  "recorded_at_utc": "2026-11-15T00:48:58+00:00",
+  "source_commit": "3ca404ff3c9b8b133379f37fb7f0fe4085ef7933",
+  "scope": "Fresh UUID-scoped scripted non-ASR browser acceptance including authenticated local model-file readiness success and failure journeys.",
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone input",
+    "network": "Offline npm mode; app requests constrained to loopback; no hosted services or paid APIs"
+  },
+  "checks": {
+    "browser_e2e": {
+      "status": "pass",
+      "command": "npx --offline playwright test --grep-invert 'Google|google' --output <versioned-output-dir>",
+      "suite": "apps/clinician-web/e2e",
+      "collected": 46,
+      "passed": 45,
+      "skipped": 1,
+      "failed": 0,
+      "test_catalog_path": "data/browser-acceptance-model-readiness-20261115-02/artifacts/test-catalog.txt",
+      "test_catalog_sha256": "7b07b7d0f4c7635aa7553827dc9d00ce89c5afa381436003efb6754792a7c7e9",
+      "skip_reason": "Compressed-audio normalization is skipped because cached PyAV is unavailable; no dependency was installed.",
+      "model_readiness_tests": [
+        "model-readiness.spec.ts:13: first-run model readiness verifies pinned files without loading or running ASR",
+        "model-readiness.spec.ts:22: model readiness failure explains retry and manual transcription fallback"
+      ],
+      "output_dir": "data/browser-acceptance-model-readiness-20261115-02/playwright",
+      "inference_executed": false,
+      "human_observations": 0,
+      "clinical_accuracy_measured": false
+    },
+    "complete_synthetic_export": {
+      "status": "pass",
+      "output_path": "data/browser-acceptance-model-readiness-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "output_sha256": "78092b543833a5593cdf73c2b141616252813d3ed7e0b798b5f2ddd6a60b3ad9",
+      "asserted": "Scripted recording, source review, note correction, fixture approval, and JSON export completed. Fixture confirmation is not human clinical sign-off."
+    },
+    "scripted_timing": {
+      "status": "pass_with_expected_approval_block",
+      "output_path": "data/browser-acceptance-model-readiness-20261115-02/artifacts/timing-report.json",
+      "output_sha256": "009b882b9abb5ecb212f5f6de99993572730f0c51a8834a8c38218e7ffa7a1a9",
+      "recording_stop_to_draft_ready_ms": 17103,
+      "approval_issued": false,
+      "export_ready_ms": null,
+      "interaction_errors": []
+    },
+    "scripted_interaction_metrics": {
+      "status": "pass_scripted_only",
+      "output_path": "data/browser-acceptance-model-readiness-20261115-02/artifacts/metrics-report.json",
+      "output_sha256": "b55567a26838938cc481e66def3e80764fff45fc4c0c1808850d4cbe3a405dd8",
+      "task_completed": true,
+      "error_count": 0,
+      "resource_errors": [],
+      "interaction_errors": []
+    },
+    "model_readiness_unit": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_model_readiness.py",
+      "summary": "1 passed, 1 warning",
+      "assertions": [
+        "pinned file hashes accepted without model load or inference",
+        "tampered artifact reported as integrity_failed",
+        "unknown profile returned 404",
+        "viewer was denied with 403"
+      ]
+    },
+    "api_and_authorization_contracts": {
+      "status": "pass",
+      "command": "Direct app OpenAPI canonical comparison plus authorization_policy.validate against v15/v6 snapshots",
+      "openapi_matches_v15": true,
+      "route_policy_valid": true,
+      "routes_checked": 80,
+      "authenticated_operations_checked": 58
+    },
+    "ruff": {
+      "status": "pass",
+      "command": "python -m ruff check services/review/routers/workspace.py tests/test_model_readiness.py tests/test_router_contracts.py; python -m ruff format --check services/review/routers/workspace.py tests/test_model_readiness.py tests/test_router_contracts.py"
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "result": "TypeScript check and Vite production build completed successfully."
+    },
+    "playwright_result_marker": {
+      "path": "data/browser-acceptance-model-readiness-20261115-02/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    }
+  },
+  "source_hashes": [
+    {"path": "apps/clinician-web/src/Dictation.tsx", "sha256": "8e6f33432193a9b28a4b82f44edbe9dbd221b3e493832275b8e862d33ae0f7bd"},
+    {"path": "apps/clinician-web/src/screens/SourceReviewScreen.tsx", "sha256": "9a4e3551c141b85a7db82d12c6438f3ad262a7af9b497d90accfd02c83dd3f9b"},
+    {"path": "apps/clinician-web/e2e/model-readiness.spec.ts", "sha256": "0ac8bcd2da6fe80070802002c87927982ea173af7281c4860562d3feee2595dd"},
+    {"path": "apps/clinician-web/e2e/timing.spec.ts", "sha256": "e72e237124d6a3793035e1ad20aaa226fb45c2fbb7187aa3b2386b358ab06688"},
+    {"path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts", "sha256": "267229506375c5391c3b32ce5ab58abfd5f0ada06a05d6bf86a8bd0988110c66"},
+    {"path": "services/review/routers/workspace.py", "sha256": "8f32ee7925e7767f3960afa3b32946fea862afc80ebe4ccb011c11e64e4fb21b"},
+    {"path": "tests/test_model_readiness.py", "sha256": "9743105328b8ac4315df896be09e53b24ddb9657bf5e4da4699e4076a1c02ed0"},
+    {"path": "tests/test_router_contracts.py", "sha256": "3536ba1e9d872a570e66e56da73dfae7a23d322bba65f958e12d8a788ce1b38e"},
+    {"path": "evaluation/contracts/api-v1-compatible-v15.json", "sha256": "6c9ac7e06671f9d094846d4b4c6e4cee433ea3553ff4eb04d85e8361d533c962"},
+    {"path": "evaluation/contracts/authorization-policy-v6.json", "sha256": "8bc49e5a315a82f51e783f169fbb7c5ab94d707c0be30fb98d41d03f3e20eb89"},
+    {"path": "evaluation/contracts/authorization-policy-v6.provenance.json", "sha256": "cb62a02bc7d3770279e5fb8ec1ffcaba0811d575ad8d398a1538cd384be6c885"},
+    {"path": "tests/offline_browser_server.py", "sha256": "a5b81c3f43650d0183d6c2d297112273e5f301cc529fbd885a18a5631b99fdbd"},
+    {"path": "apps/clinician-web/playwright.config.ts", "sha256": "e483e7c866c0c9be9d0623e783a2d23b3271c33a85332017bab714e5a39ec797"},
+    {"path": "evaluation/datasets/primock57-smoke-v1/manifest.json", "sha256": "0705189f86bb7ec51225e8b5c4fa10fd859f3fcf2295aa3219283c1ca79bbbfd"},
+    {"path": "evaluation/datasets/primock57-smoke-v1/day1_consultation01_patient.utterance03.wav", "sha256": "cc98814b09e111a640a8b5dcf93277bec79baca5456c3c65423972c69891832c"}
+  ],
+  "artifact_hashes": [
+    {"path": "data/browser-acceptance-model-readiness-20261115-02/playwright/.last-run.json", "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"},
+    {"path": "data/browser-acceptance-model-readiness-20261115-02/artifacts/timing-report.json", "sha256": "009b882b9abb5ecb212f5f6de99993572730f0c51a8834a8c38218e7ffa7a1a9"},
+    {"path": "data/browser-acceptance-model-readiness-20261115-02/artifacts/metrics-report.json", "sha256": "b55567a26838938cc481e66def3e80764fff45fc4c0c1808850d4cbe3a405dd8"},
+    {"path": "data/browser-acceptance-model-readiness-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json", "sha256": "78092b543833a5593cdf73c2b141616252813d3ed7e0b798b5f2ddd6a60b3ad9"},
+    {"path": "data/browser-acceptance-model-readiness-20261115-02/artifacts/usability/browser-observations.json", "sha256": "60da360e62ec66ac7219950cc18b2e353644b31ff0596444b9e3c9611cc96f8f"},
+    {"path": "data/browser-acceptance-model-readiness-20261115-02/artifacts/test-catalog.txt", "sha256": "7b07b7d0f4c7635aa7553827dc9d00ce89c5afa381436003efb6754792a7c7e9"}
+  ],
+  "limitations": [
+    "Model readiness verifies pinned file hashes only. It does not load the model, execute ASR, or establish accuracy admission.",
+    "The browser uses fake microphone input and a fixed scripted non-ASR adapter that ignores audio.",
+    "The configured 30-minute capture ceiling is simulated, not a physical hardware endurance run.",
+    "Compressed-audio normalization remains skipped because the cached PyAV dependency is absent.",
+    "The single model-readiness unit test emitted one warning; warning details were redacted by the safe test wrapper.",
+    "No speech accuracy, independent clinician usability, medical benefit, institutional approval, live EHR conformance, or deployment readiness is established.",
+    "Existing user acceptance clones and partial benchmark files were left untouched."
+  ],
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false
+}
