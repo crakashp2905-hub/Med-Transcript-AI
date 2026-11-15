@@ -4851,7 +4851,7 @@
       "id": "MTA-09-17",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "implemented",
+      "status": "verified",
       "description": "Enforce preview/draft/proposal/approved visual differentiation and block export of unapproved versions.",
       "evidence": [
         "apps/clinician-web/src/JobState.tsx",
@@ -4863,42 +4863,37 @@
         "apps/clinician-web/e2e/recovery.spec.ts",
         "tests/test_preview_divergence.py",
         "tests/test_presentation_tools.py",
-        "evaluation/reports/master-task-mta-09-17-5b0e70c.json"
+        "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
+        "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json"
       ],
-      "source_commit": "5b0e70c542e56161e020f22f06fe17b9c195d96e",
+      "source_commit": "3b31021cf6337f4cdda9cd0c2b3f9bbf8e800031",
       "test_results": [
         {
-          "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
-          "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "status": "pass",
-          "legacy_check_label": "frontend_build"
+          "report": "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json",
+          "report_sha256": "d5f3d5fd4f2bc922f6f818c026a803507879c3e8f45b8bbc7aa1269e8191b844",
+          "check": "review_workflow_backend",
+          "status": "pass"
         },
         {
-          "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
-          "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "status": "pass",
-          "legacy_check_label": "preview_state_regressions"
+          "report": "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json",
+          "report_sha256": "d5f3d5fd4f2bc922f6f818c026a803507879c3e8f45b8bbc7aa1269e8191b844",
+          "check": "approval_and_format_browser_journeys",
+          "status": "pass"
         },
         {
-          "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
-          "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "status": "pass",
-          "legacy_check_label": "review_journey_e2e_discovery"
+          "report": "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json",
+          "report_sha256": "d5f3d5fd4f2bc922f6f818c026a803507879c3e8f45b8bbc7aa1269e8191b844",
+          "check": "provisional_preview_state",
+          "status": "pass"
         },
         {
-          "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
-          "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "status": "blocked",
-          "legacy_check_label": "unapproved_export_api_integration"
-        },
-        {
-          "report": "evaluation/reports/master-task-mta-09-17-5b0e70c.json",
-          "report_sha256": "2105dec81ac4af1e9e040b20ab56c2b2bc5dba75cd6c864dae0937b92e2598a9",
-          "status": "blocked",
-          "legacy_check_label": "rendered_state_and_export_journey"
+          "report": "evaluation/reports/approval-export-acceptance-2026-11-15-3b31021-r1.json",
+          "report_sha256": "d5f3d5fd4f2bc922f6f818c026a803507879c3e8f45b8bbc7aa1269e8191b844",
+          "check": "unreviewed_proposal_state",
+          "status": "pass"
         }
       ],
-      "blocker": "The application distinguishes provisional preview, unapproved proposal/draft and approved record states. Export routes require a real approval ID and revalidate exact hashes and current safety findings. Socket-dependent integration and rendered browser checks must be rerun in an environment permitting local test sockets."
+      "blocker": null
     },
     {
       "id": "MTA-09-18",

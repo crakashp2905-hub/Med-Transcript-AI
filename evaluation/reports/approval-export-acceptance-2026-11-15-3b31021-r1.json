@@ -1,0 +1,230 @@
+{
+  "schema_version": "approval_gated_export_acceptance_v1",
+  "run_id": "approval-export-acceptance-2026-11-15-3b31021-r1",
+  "recorded_at_utc": "2026-11-15T04:08:45Z",
+  "source_commit": "3b31021cf6337f4cdda9cd0c2b3f9bbf8e800031",
+  "scope": "Provisional preview, unreviewed proposal, draft rejection, approved record and export gating checked with synthetic API and browser journeys.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone",
+    "network": "Loopback-only offline scripted server; no inference or external requests"
+  },
+  "runtime_sha256": "352a66b4fc77d0939d1bd4b483d34abfdc61fc4578dc9a040c3c59e2c4c1b3f4",
+  "checks": {
+    "review_workflow_backend": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_review_workflow.py",
+      "collected": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "includes": "test_draft_note_cannot_be_exported_without_an_approval"
+    },
+    "approval_and_format_browser_journeys": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/workflow.spec.ts e2e/complete-synthetic-consultation.spec.ts",
+      "collected": 3,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reason": "Compressed upload requires unavailable cached PyAV.",
+      "asserted": [
+        "critical finding blocks approval until corrected",
+        "approved note renders and downloads six formats",
+        "exact saved note version is approved"
+      ]
+    },
+    "provisional_preview_state": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/recovery.spec.ts:66",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "asserted": [
+        "local preview visibly labelled provisional",
+        "preview does not prepare or approve a note"
+      ]
+    },
+    "unreviewed_proposal_state": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/clinical-batches.spec.ts",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "asserted": [
+        "proposal batches preserve earlier selections",
+        "proposal remains pending review"
+      ]
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "services/review/routers/exports.py",
+      "sha256": "895497ff99c32665f3576a095dd0a3d8b9a679cdaad0ba0263a70586eb24bd20"
+    },
+    {
+      "path": "services/review/routers/notes.py",
+      "sha256": "044a2e19685f8c47e58b019f894e09832ae9ea5c540dbc015ce30e9165c7d4a3"
+    },
+    {
+      "path": "services/review/engine.py",
+      "sha256": "9f4d28007cfcfb645eee3dc2d12a1e5f7245562ac554faed2c52fc70ba48c8c8"
+    },
+    {
+      "path": "services/review/clinical_routes.py",
+      "sha256": "8aa2c4e8966520b56d2e65a49e0d4da1e8d0fe13b9a3ab48a1238134621ab4d8"
+    },
+    {
+      "path": "apps/clinician-web/src/JobState.tsx",
+      "sha256": "5b64480f8fcd0e1615d958f619ffa0dc5ca969a4441cd5d5ce272a028a60524c"
+    },
+    {
+      "path": "apps/clinician-web/src/Dictation.tsx",
+      "sha256": "8e6f33432193a9b28a4b82f44edbe9dbd221b3e493832275b8e862d33ae0f7bd"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "3194f1958f7f28d9df829028d7f850bc0054bcef5288eccfe07a79a8d1a09310"
+    },
+    {
+      "path": "apps/clinician-web/src/DraftProposal.tsx",
+      "sha256": "37b49aab0c7a39162a9ee27fabec29fcbdf2d3a8086fc8dc74f2102819ee0d76"
+    },
+    {
+      "path": "apps/clinician-web/e2e/workflow.spec.ts",
+      "sha256": "0e4872024cf5a20fcb56fda1db823569fc71e6b56779836b61383dad910a26d8"
+    },
+    {
+      "path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+      "sha256": "b3e5ea0a4b0c05892f46160c29269545afe70d419fe072ca3235ede5e74189bd"
+    },
+    {
+      "path": "apps/clinician-web/e2e/recovery.spec.ts",
+      "sha256": "7173c9cfdda08f95eb6a6fd9c5002c7492dbf71f2f1d70b2d68bd8a7ceecaf30"
+    },
+    {
+      "path": "apps/clinician-web/e2e/clinical-batches.spec.ts",
+      "sha256": "26a32b9d77d2f03a3457669523da40f42adcd1a1af69ff4eb482533fc06f67a3"
+    },
+    {
+      "path": "tests/test_review_workflow.py",
+      "sha256": "9ae697e9c08a0009ac2e0be0698d7822a3982c4adffacc9c438afbc9298cbe33"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/data/browser-fixtures/complete-consultation-83fa2574-929c-471a-ae49-c2358c922b1a.wav",
+      "sha256": "1b0ad8990bfcd7f6b58122a86292ca7be4a6548974fcad5258896c46e3dfe760",
+      "bytes": 338552
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/data/ui-screenshots/approved-note.json",
+      "sha256": "6e97eef1cd874c22660c4769e0cfda17e37774a93e783976c410ddabb20091da",
+      "bytes": 17387
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/data/ui-screenshots/approved-workspace.png",
+      "sha256": "235f64e8fd85f7de2f7de8f04c632922ad019adfb5fd0a3f64a2b9c9d9430063",
+      "bytes": 549467
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/data/ui-screenshots/historical-citation-mobile.png",
+      "sha256": "14cab5eddf1337dcd970d6eebb83340f3f6cef963774d82e12ccdc33845137a1",
+      "bytes": 487191
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/data/ui-screenshots/mobile-source.png",
+      "sha256": "5b572bb1212e13de1ed37de8f307f1b5d36a990b508e6fb1c15bc6a4048adab3",
+      "bytes": 276013
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.docx",
+      "sha256": "9afdae5445db700860bbc0654763e09224122f8f40f58611ccf74b289c2878e9",
+      "bytes": 2377
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.fhir.json",
+      "sha256": "744f39ee9eae42e3b2224b5879ac4051085e230b45d3d1be176f3de87513ebac",
+      "bytes": 13234
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "df9250f03aad0521014b33608bd25006b3be18ed753d445db489f2e129d35015",
+      "bytes": 12036
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.markdown.md",
+      "sha256": "e13f764ab927b6eef1a4710d434821db1b18f68df6129c1ecb7f0ca7a3cf78dc",
+      "bytes": 1210
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.pdf",
+      "sha256": "06dedcbff9faf34c2b747bc4165dd1004477ac24d7e82d30a7b0feb2638109b3",
+      "bytes": 2105
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.text.txt",
+      "sha256": "fd0d5faced598546bf7b70fa08485dc56113acac05607f8b123e529a71b714a4",
+      "bytes": 1188
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-docx-bc4097564f485ef5223c18e07de2856643031891.docx",
+      "sha256": "9afdae5445db700860bbc0654763e09224122f8f40f58611ccf74b289c2878e9",
+      "bytes": 2377
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-fhir-c13c1acd374ec4d8a1e0d1b1617727f706b19b44.json",
+      "sha256": "744f39ee9eae42e3b2224b5879ac4051085e230b45d3d1be176f3de87513ebac",
+      "bytes": 13234
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-json-4d5bf9a5805b99410445354e8f56f811bd521657.json",
+      "sha256": "df9250f03aad0521014b33608bd25006b3be18ed753d445db489f2e129d35015",
+      "bytes": 12036
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-markdown-69b1115ced0553287680d94d77440304592b292b.md",
+      "sha256": "e13f764ab927b6eef1a4710d434821db1b18f68df6129c1ecb7f0ca7a3cf78dc",
+      "bytes": 1210
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-pdf-f5619903d0c41531f92a8fd2eb6778e181ccf64f.pdf",
+      "sha256": "06dedcbff9faf34c2b747bc4165dd1004477ac24d7e82d30a7b0feb2638109b3",
+      "bytes": 2105
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/attachments/approved-note-text-89a36d90e7f015021384e75f96d9ab06e0071d4d.txt",
+      "sha256": "fd0d5faced598546bf7b70fa08485dc56113acac05607f8b123e529a71b714a4",
+      "bytes": 1188
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/preview-playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/approval-export-acceptance-20261115-3b31021/proposal-playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    }
+  ],
+  "inference_executed": false,
+  "human_observations": 0,
+  "clinical_accuracy_measured": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false,
+  "limitations": [
+    "Compressed upload is skipped because cached PyAV is unavailable.",
+    "All transcript content and browser audio are synthetic fixtures; no ASR or draft inference was run.",
+    "No independent clinician usability or clinical correctness assessment was performed."
+  ]
+}
