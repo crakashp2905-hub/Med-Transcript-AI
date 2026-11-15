@@ -1,0 +1,81 @@
+{
+  "schema_version": "offline_browser_acceptance_v1",
+  "run_id": "offline-browser-acceptance-2026-11-15-3e738a8-r1",
+  "recorded_at_utc": "2026-11-15T00:03:47+00:00",
+  "source_commit": "3e738a82198521ce3c3996cfb80a2ef962ffa279",
+  "scope": "Fresh UUID-scoped scripted non-ASR browser acceptance after local draft recovery and single-player review changes.",
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone input",
+    "network": "Loopback fixture only; no paid or hosted API calls"
+  },
+  "checks": {
+    "browser_e2e": {
+      "status": "fail",
+      "command": "npx --offline playwright test --grep-invert 'Google|google' --output <versioned-output-dir>",
+      "suite": "apps/clinician-web/e2e",
+      "collected": 44,
+      "passed": 42,
+      "skipped": 1,
+      "failed": 1,
+      "failure": "e2e/timing.spec.ts:97: Critical details checked checkbox remained unchecked after Playwright click in full-suite run. Same failure reproduced in the prior full run; one focused run on the same fixture passed 1/1.",
+      "skip_reason": "Compressed-audio normalization requires cached PyAV, unavailable locally; no dependency was installed.",
+      "output_dir": "data/browser-acceptance-m1-autosave-20261115-04/playwright",
+      "inference_executed": false,
+      "human_observations": 0,
+      "clinical_accuracy_measured": false
+    },
+    "complete_synthetic_export": {
+      "status": "pass",
+      "output_path": "data/browser-acceptance-m1-autosave-20261115-04/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "output_sha256": "e27b3776f3886a0087e4aa5177ee5a7c53233a93097dd59ff1beb4d2dd07e069",
+      "asserted": "Synthetic capture, review, programmatic fixture approval path and JSON export completed; does not establish human sign-off."
+    },
+    "focused_timing_diagnostic": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/timing.spec.ts --output <versioned-output-dir>",
+      "passed": 1,
+      "failed": 0,
+      "output_path": "data/browser-acceptance-m1-autosave-20261115-04/timing-diagnostic-r2/timing-report.json",
+      "output_sha256": "926bebc0c3bfd661903a2335d74724b3d3f183dca79395cc19b07118574a88e1",
+      "recording_stop_to_draft_ready_ms": 20190,
+      "approval_issued": false,
+      "interaction_errors": []
+    },
+    "scripted_interaction_metrics": {
+      "status": "pass_with_recorded_resource_error",
+      "output_path": "data/browser-acceptance-m1-autosave-20261115-04/artifacts/metrics-report.json",
+      "output_sha256": "3d71dfbec51d5c2a23eb0dfad037fd82810746a5a9d9a261d46019e300a0243f",
+      "task_completed": true,
+      "error_count": 1,
+      "interaction_errors": ["requestfailed:blob:<ephemeral-local-object-url>"]
+    },
+    "playwright_result_marker": {
+      "path": "data/browser-acceptance-m1-autosave-20261115-04/playwright/.last-run.json",
+      "sha256": "b6834732664bbd967ada89ffa14757c80bb9c1a752b7588c7ea02de4f78b670a"
+    }
+  },
+  "source_hashes": [
+    {"path": "apps/clinician-web/e2e/timing.spec.ts", "sha256": "5b0fbdfb4f9ba851cef31a736525bb586ec757b8da4e49f41ce6fc493ec4a61d"},
+    {"path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts", "sha256": "267229506375c5391c3b32ce5ab58abfd5f0ada06a05d6bf86a8bd0988110c66"},
+    {"path": "apps/clinician-web/e2e/scripted-metrics.spec.ts", "sha256": "fafb5649bf18cad7c9fa11fb605216b7cede9b408a29643155e58250ddf124a1"},
+    {"path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts", "sha256": "7ab1c162057a1d6ef34aed74b50c26265d5ae4ba6b7ad1310830f550e5a84f21"},
+    {"path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx", "sha256": "207aecf2dbe2555770c6c9c36900abcce54f721a11be507c259e3f079dfb9255"},
+    {"path": "tests/offline_browser_server.py", "sha256": "a5b81c3f43650d0183d6c2d297112273e5f301cc529fbd885a18a5631b99fdbd"},
+    {"path": "apps/clinician-web/playwright.config.ts", "sha256": "e483e7c866c0c9be9d0623e783a2d23b3271c33a85332017bab714e5a39ec797"}
+  ],
+  "limitations": [
+    "The browser used a fake microphone and fixed scripted non-ASR adapter; transcript output ignored the audio input.",
+    "30-minute capture was simulated, not a 30-minute physical hardware endurance run.",
+    "The suite is not clinical accuracy, clinician usability, production, EHR, or real-device validation.",
+    "A full-suite timing checkbox failure recurred; focused execution passed and does not supersede the failure.",
+    "Existing user acceptance clones and partial benchmark files were left untouched and unstaged."
+  ],
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false
+}
+
