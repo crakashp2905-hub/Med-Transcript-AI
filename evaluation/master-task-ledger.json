@@ -4693,7 +4693,7 @@
       "id": "MTA-09-09",
       "section": "09 — Clinician-facing interface and functional product excellence",
       "priority": "P1",
-      "status": "implemented",
+      "status": "verified",
       "description": "Make playback, keyboard navigation, transcript search, editing, save and export possible without mouse-only actions.",
       "evidence": [
         "apps/clinician-web/src/SpeakerTurnEditor.tsx",
@@ -4701,18 +4701,27 @@
         "apps/clinician-web/src/style.css",
         "apps/clinician-web/e2e/workflow.spec.ts",
         "evaluation/reports/master-task-mta-09-09-97debc1.json",
-        "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json"
+        "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json",
+        "evaluation/reports/keyboard-review-playback-export-acceptance-2026-11-15-369ce50-r1.json"
       ],
-      "source_commit": "553445b88c217f666db7b1c97ec738735ae24a5a",
+      "source_commit": "369ce50f78b14f7bcc263b02890477fe9a04329d",
       "test_results": [
+        {
+          "report": "evaluation/reports/keyboard-review-playback-export-acceptance-2026-11-15-369ce50-r1.json",
+          "report_sha256": "b7e5bb36ce09d7a9a78690fdd2c4194614024a79f709ecbabbd6e033afb48d33",
+          "check": "keyboard_review_navigation_playback_save_export",
+          "status": "pass"
+        }
+      ],
+      "blocker": null,
+      "test_results_history": [
         {
           "report": "evaluation/reports/offline-browser-acceptance-2026-11-15-553445b-r1.json",
           "report_sha256": "949de2f2e4c30d1992f2dadf13ce37050686594c9e0b8cb74edc00979e953916",
           "check": "browser_e2e",
           "status": "pass"
         }
-      ],
-      "blocker": "The fresh browser suite passed the scripted Alt+0/1/2 review-view shortcuts, Ctrl+S source save, transcript edit, autosave recovery, and discard journey. Keyboard-only audio playback and export, plus independent screen-reader/focus-order validation, remain unverified."
+      ]
     },
     {
       "id": "MTA-09-10",

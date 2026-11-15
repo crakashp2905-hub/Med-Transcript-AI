@@ -1,0 +1,44 @@
+{
+  "schema_version": "master_task_evidence_v1",
+  "task_ids": [
+    "MTA-09-09"
+  ],
+  "source_commit": "369ce50f78b14f7bcc263b02890477fe9a04329d",
+  "captured_at_utc": "2026-11-15T05:52:41+00:00",
+  "source_files": {
+    "apps/clinician-web/e2e/workflow.spec.ts": "131724d6e0c4a3891c092aa03293ee67a34c5078f547a314079b6baca438259e",
+    "apps/clinician-web/e2e/primary-review.spec.ts": "ec85ef10657bb21817b8cc44f93e8ece8e0439a5af22b58552a2a201394e4a90",
+    "apps/clinician-web/src/App.tsx": "cdc159c5eef06f3d6c2a6c1463b3f7e7891bd3c40b921725f341e10313687cdf",
+    "apps/clinician-web/src/SourceContext.tsx": "698d1c4c6e275e2fa883b38ddbf9355c23ab958b7933702bf5bee7807f124c2f",
+    "apps/clinician-web/src/screens/NoteReviewScreen.tsx": "3194f1958f7f28d9df829028d7f850bc0054bcef5288eccfe07a79a8d1a09310",
+    "apps/clinician-web/src/style.css": "474a1802828d230b92d3f17bb4a7e8afc581567b75e228a85a8ed1fcb14da97e"
+  },
+  "checks": {
+    "keyboard_review_navigation_playback_save_export": {
+      "status": "pass",
+      "summary": "Two Playwright journeys passed: keyboard search entry and match navigation; Alt+1/2/0 view navigation; keyboard review-basis and transcript editing; Ctrl+S source save; autosave recovery and discard; Enter activates evidence playback with audio seek assertion; Enter activates approved JSON export."
+    }
+  },
+  "runtime": {
+    "platform": "Windows",
+    "python": "Python 3.13.5",
+    "node": "v22.16.0",
+    "npm": "10.9.2",
+    "playwright": "Version 1.64.1",
+    "browser": "Playwright channel chrome; version not separately captured",
+    "network": "loopback-only isolated fixture",
+    "provider": "scripted non-ASR; inference_executed=false",
+    "data": "synthetic/public mock only"
+  },
+  "runtime_sha256": "aeccccc53d6622b6292dffe352693a517ef279355a26c4a7016ffa36b9fdcfee",
+  "supported_claims": [
+    "The tested review interactions support keyboard entry, search navigation, view shortcuts, source saving, evidence playback, local-draft recovery/discard, and JSON export.",
+    "Enter on a focused evidence control seeks playback to the linked source interval; Enter on a focused JSON export control downloads the approved note."
+  ],
+  "limitations": [
+    "Playwright programmatically focused evidence and export buttons before key activation; sequential tab-order and screen-reader review were not established by this run.",
+    "One compressed-upload case was skipped because PyAV is unavailable locally.",
+    "The fixture uses a scripted non-ASR provider and does not establish clinical usability or clinical approval."
+  ],
+  "clinical_release_authorized": false
+}
