@@ -100,8 +100,19 @@ test('measure synthetic draft latency and retain the critical approval block', a
     const card = cards.nth(index);
     await card.getByRole('combobox', { name: 'Subject', exact: true }).selectOption('patient');
     await card.getByRole('combobox', { name: 'Temporality', exact: true }).selectOption('current');
-    await card.getByLabel('Content and attribution reviewed').check();
-    await card.getByLabel('Critical details checked').check();
+    await waitForLocalDraftBanner(page);
+    const reviewed = card.getByLabel('Content and attribution reviewed');
+    if (!(await reviewed.isChecked())) {
+      await reviewed.focus();
+      await page.keyboard.press('Space');
+    }
+    await expect(reviewed).toBeChecked();
+    const critical = card.getByLabel('Critical details checked');
+    if (!(await critical.isChecked())) {
+      await critical.focus();
+      await page.keyboard.press('Space');
+    }
+    await expect(critical).toBeChecked();
   }
   await page.getByRole('button', { name: 'Save & verify note', exact: true }).click();
   await expect(page.getByText('Saved a new note version and verification report.')).toBeVisible();
