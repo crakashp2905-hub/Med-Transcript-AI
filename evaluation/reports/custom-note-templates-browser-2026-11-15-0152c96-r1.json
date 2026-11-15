@@ -1,0 +1,201 @@
+{
+  "schema_version": "custom_note_templates_browser_acceptance_v1",
+  "run_id": "custom-note-templates-browser-2026-11-15-0152c96-r1",
+  "recorded_at_utc": "2026-11-15T02:43:51Z",
+  "source_commit": "0152c96e5826879efec1ef1d1445f66b8b117308",
+  "scope": "Synthetic clinician journey selecting a reusable note layout, adding a custom section, saving, reviewing and approving the exact version, then downloading all six advertised formats.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone",
+    "network": "Loopback only; npm offline; no hosted APIs or model inference"
+  },
+  "checks": {
+    "browser_e2e": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/complete-synthetic-consultation.spec.ts --output ../../data/browser-acceptance-custom-sections-20261115-03/playwright",
+      "test_id": "complete-synthetic-consultation.spec.ts:49",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "result_marker_sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "asserted": [
+        "SOAP with follow-up layout selection",
+        "additional findings custom section added and visible",
+        "exact-version approval",
+        "downloads for JSON, Markdown, text, FHIR, PDF, and DOCX",
+        "Markdown contains both selected and custom section headings",
+        "FHIR DocumentReference final status and binary document signatures"
+      ]
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "summary": "TypeScript check and Vite production build passed on committed source."
+    },
+    "ruff": {
+      "status": "pass",
+      "commands": [
+        "python -m ruff format --check <changed Python files>",
+        "python -m ruff check <changed Python files> tests/test_review_workflow.py tests/test_router_contracts.py"
+      ]
+    },
+    "mypy_changed_modules": {
+      "status": "pass",
+      "command": "python -m mypy --follow-imports=skip <changed Python modules>",
+      "summary": "8 source files; no issues. Imported implementation details were skipped because cached optional ASR stubs are unavailable."
+    },
+    "api_contract_snapshot": {
+      "status": "pass",
+      "summary": "Fresh app OpenAPI matched api-v1-compatible-v18.json byte-canonicalized; successor hash to v17 validated; DraftInput custom_sections maxItems=16, slug constraints documented."
+    },
+    "custom_section_backend_pytest": {
+      "status": "blocked",
+      "summary": "Focused safe_pytest and direct pytest invocations produced no result during the available run and were interrupted. No unit-test pass is claimed."
+    },
+    "hosted_ci": {
+      "status": "blocked",
+      "summary": "Not pushed; exact-commit hosted CI has not run."
+    },
+    "domain_validation_smoke": {
+      "status": "pass",
+      "summary": "A synthetic typed Fact was accepted in a declared custom section; render_sections preserved its key and exact evidence quote; an undeclared custom section was rejected."
+    }
+  },
+  "persisted_sections": [
+    "subjective",
+    "objective",
+    "assessment",
+    "plan",
+    "follow_up",
+    "additional_findings"
+  ],
+  "local_artifact_checks": {
+    "status": "pass",
+    "pdf_signature": "%PDF-1.4",
+    "docx_package": "zip integrity passed; both custom layout headings present",
+    "fhir_json_resource": "DocumentReference"
+  },
+  "source_hashes": [
+    {
+      "path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+      "sha256": "b3e5ea0a4b0c05892f46160c29269545afe70d419fe072ca3235ede5e74189bd"
+    },
+    {
+      "path": "apps/clinician-web/src/ClinicalDraftVault.ts",
+      "sha256": "bf7a902bfff5cd65a49a2d17a77a1057e684a56b7f3fbb11c33176687c929c6c"
+    },
+    {
+      "path": "apps/clinician-web/src/PresentationTools.tsx",
+      "sha256": "a4c4a6f0dd7a5071d29cbc1951b7b61086d65ac2f556e03f4fd1dde057aa6a63"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "c9259696b7754380a0a5116d93ffebe3f4d1760ad5d0b9d52e5ee1ad63a581e0"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "3194f1958f7f28d9df829028d7f850bc0054bcef5288eccfe07a79a8d1a09310"
+    },
+    {
+      "path": "apps/clinician-web/src/style.css",
+      "sha256": "ebac640e5e75df355b4954b12ef5219512e812f40c68dfcdd212dc32102b20a2"
+    },
+    {
+      "path": "services/domain_contracts.py",
+      "sha256": "5d556d0deebf97466cf963740cc97232b0a6b8a8dc718e588791ee658ad3810a"
+    },
+    {
+      "path": "services/review/engine.py",
+      "sha256": "9f4d28007cfcfb645eee3dc2d12a1e5f7245562ac554faed2c52fc70ba48c8c8"
+    },
+    {
+      "path": "services/review/models.py",
+      "sha256": "a41206a9ed7af20bc10278fe32b60a28a964fc90164b2e2e37f9e17952125f3c"
+    },
+    {
+      "path": "services/review/providers.py",
+      "sha256": "bbcf3ebfa619cb31997e5a322333072f9447d01240c9046a609d21bd9b9b587f"
+    },
+    {
+      "path": "services/review/routers/amendments.py",
+      "sha256": "426f0674d54916d09a341a255f342e6bc9c01f2fba0c255a09063dfe8c0c0cc2"
+    },
+    {
+      "path": "services/review/routers/notes.py",
+      "sha256": "044a2e19685f8c47e58b019f894e09832ae9ea5c540dbc015ce30e9165c7d4a3"
+    },
+    {
+      "path": "services/review/routers/verification.py",
+      "sha256": "bd09060b24545ba4ea034f944af26041ac10bdf5aa20a2498f0dca6c2702edae"
+    },
+    {
+      "path": "services/review/service.py",
+      "sha256": "831ce8346fe91bdac07c104a6d113f9cf011be3a35869db0ea29c632ae02aeaf"
+    },
+    {
+      "path": "tests/test_review_workflow.py",
+      "sha256": "9f32793624b4f3cac0b3e3980dc2d45f510d85a7cd1165492746332d60aafa8b"
+    },
+    {
+      "path": "tests/test_router_contracts.py",
+      "sha256": "61e8c5ebe42c2f4ad251f3f990f5636fd73e08b03864784a871c492e0d9d2362"
+    },
+    {
+      "path": "evaluation/contracts/api-v1-compatible-v18.json",
+      "sha256": "a0f1e788e4c1f93257be870132a3842d82aa1e2b8a224ec5871439ca8c4114d0"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/browser-acceptance-custom-sections-20261115-03/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/browser-acceptance-custom-sections-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.docx",
+      "sha256": "39291542d5479f838b760c3600f542aa580c8a544f104ad2d283e1e933dd68bd",
+      "bytes": 2374
+    },
+    {
+      "path": "data/browser-acceptance-custom-sections-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.fhir.json",
+      "sha256": "06c72a397787e7a48677e594ca6e6e733a0707a7d75bf3d5a83a305002db2119",
+      "bytes": 13234
+    },
+    {
+      "path": "data/browser-acceptance-custom-sections-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "e2199190d6a3bc7b0c609ac693fa5841b372b533d601fdd73aae7548abb55475",
+      "bytes": 12038
+    },
+    {
+      "path": "data/browser-acceptance-custom-sections-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.markdown.md",
+      "sha256": "9e6ac83bec3b64be134225f963d32804e55d8c23894a55cd6da747bbed3b2ac7",
+      "bytes": 1210
+    },
+    {
+      "path": "data/browser-acceptance-custom-sections-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.pdf",
+      "sha256": "ce36f39de61eb2187d7ea580842248b074794170645d2d2f72b30140e5f652b8",
+      "bytes": 2105
+    },
+    {
+      "path": "data/browser-acceptance-custom-sections-20261115-03/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.text.txt",
+      "sha256": "4b3629b2fc3eee9503d6ac119761df354c166fb2e2990342337d0a02d5cb66cd",
+      "bytes": 1188
+    }
+  ],
+  "limitations": [
+    "The scripted browser adapter returns fixture transcript text and sets inference_executed=false; this measures software workflow only.",
+    "The specific backend regression test for custom section bounds and amendment preservation was not observed to complete.",
+    "No clinician usability, note accuracy, medical benefit, approval quality, regulatory status, or production readiness was measured.",
+    "The named layout selections are saved as section keys; clinic-specific template governance and administrator controls remain future work."
+  ],
+  "inference_executed": false,
+  "human_observations": 0,
+  "clinical_accuracy_measured": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false
+}

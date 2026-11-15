@@ -3,7 +3,7 @@
   "generated_from": "Med_Transcript_AI_InHouse_10of10_Master_Implementation_and_Validation_Checklist.md",
   "baseline_commit": "b93937756427d1ae86adf847c680ed52c187b9ed",
   "scope": "english_only_local_first_synthetic_public_mock",
-  "total": 371,
+  "total": 372,
   "status_policy": "A task is verified only with exact commit tests and hash-bound evidence. No clinical release implication.",
   "clinical_release_authorized": false,
   "tasks": [
@@ -9542,6 +9542,62 @@
         }
       ],
       "blocker": "The interface does not verify storage permissions, backup integrity, restore success, update/rollback state, or failure alerts; backup/restore commands remain manually operated. Live identity-provider and deployment behavior are unverified."
+    },
+    {
+      "id": "MTA-08-19",
+      "section": "08 — Clinical note generation, editing and lifecycle",
+      "priority": "P1",
+      "status": "implemented",
+      "description": "Support reusable note section layouts and clinician-defined custom sections through saved notes, amendments and approved exports.",
+      "evidence": [
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "services/review/models.py",
+        "services/review/engine.py",
+        "services/domain_contracts.py",
+        "evaluation/contracts/api-v1-compatible-v18.json",
+        "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json"
+      ],
+      "source_commit": "0152c96e5826879efec1ef1d1445f66b8b117308",
+      "test_results": [
+        {
+          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
+          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
+          "check": "browser_e2e",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
+          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
+          "check": "frontend_build",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
+          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
+          "check": "ruff",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
+          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
+          "check": "mypy_changed_modules",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
+          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
+          "check": "api_contract_snapshot",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/custom-note-templates-browser-2026-11-15-0152c96-r1.json",
+          "report_sha256": "282bc918b630c9197232e8a48dfedc6d3de482fe53e9fba287bbbf8751404bb4",
+          "check": "domain_validation_smoke",
+          "status": "pass"
+        }
+      ],
+      "blocker": "Automated backend pytest coverage for custom section validation and amendment persistence did not complete; clinic-specific template governance and clinician validation remain open."
     }
   ]
 }
