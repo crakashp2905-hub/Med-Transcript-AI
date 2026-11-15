@@ -1,0 +1,32 @@
+{
+  "schema_version": "browser_acceptance_v1",
+  "report_id": "clinic-operator-diagnostics-followup-2026-11-15-719126c-r1",
+  "source_commit": "719126c1980cf14522c3a0a79bd3874322211403",
+  "checks": {
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "scope": "TypeScript check and Vite production build"
+    },
+    "admin_browser_journey": {
+      "status": "pass",
+      "command": "npx playwright test e2e/google-auth.spec.ts -g \"workspace administrator\"",
+      "result": "1 passed",
+      "fixture": "isolated local simulated-provider server; diagnostics JSON intercepted with a scripted unavailable/not-checked state"
+    },
+    "live_diagnostics_endpoint_attempt": {
+      "status": "failed",
+      "result": "The local admin page showed a generic request error and no diagnostic result; HTTP response status was not captured. This is unresolved and is not treated as a UI regression pass."
+    }
+  },
+  "source_sha256": {
+    "apps/clinician-web/src/screens/AdminUsersScreen.tsx": "0e6ada97fbe52f6873e6e69731b86d0a40c640a5571a8bc763e1beaecbf9aeca",
+    "apps/clinician-web/e2e/google-auth.spec.ts": "4d07634753650f6047acb4f3e851a8b9a1f061904862d7ada0d1fa9020656551"
+  },
+  "limitations": [
+    "The passing browser journey verifies rendering of recommended follow-up guidance with a scripted diagnostics response, not the live diagnostics API.",
+    "The endpoint failure needs a separately captured status and root-cause check.",
+    "No backup/restore, update/rollback, physical hardware, live identity provider, real patient processing, clinical approval, or deployment was tested.",
+    "This is synthetic software evidence only; clinical release is not authorized."
+  ]
+}
