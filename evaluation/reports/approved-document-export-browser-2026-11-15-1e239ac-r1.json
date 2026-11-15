@@ -1,0 +1,174 @@
+{
+  "schema_version": "approved_document_export_browser_acceptance_v1",
+  "run_id": "approved-document-export-browser-2026-11-15-1e239ac-r1",
+  "recorded_at_utc": "2026-11-15T01:26:10Z",
+  "source_commit": "1e239ac010a91bd5c20ee07c5d37974d07ed5094",
+  "scope": "Fresh isolated scripted synthetic capture, review, approval, and approved JSON/PDF/DOCX export on exact source commit.",
+  "runtime": {
+    "platform": "Windows 11",
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "playwright": "1.64.1",
+    "browser": "Installed Chrome headless with fake microphone input",
+    "network": "Application traffic limited to loopback; npm offline mode; no hosted APIs or inference"
+  },
+  "checks": {
+    "browser_e2e": {
+      "status": "pass",
+      "command": "npx --offline playwright test e2e/complete-synthetic-consultation.spec.ts --output <versioned-output-dir>",
+      "test_id": "complete-synthetic-consultation.spec.ts:49",
+      "collected": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "output_dir": "data/browser-acceptance-pdfdocx-20261115-02/playwright",
+      "result_marker_sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "asserted": [
+        "capture and source review",
+        "note correction and approval",
+        "JSON download",
+        "PDF download with %PDF signature",
+        "DOCX download with ZIP signature"
+      ]
+    },
+    "backend_review_export": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_review_workflow.py::test_full_review_approval_export_and_amendment",
+      "summary": "1 passed, 1 warning",
+      "asserted": [
+        "approval-bound export API",
+        "binary response SHA-256 matches receipt",
+        "PDF signature and content",
+        "DOCX ZIP integrity and content"
+      ]
+    },
+    "document_export_unit": {
+      "status": "pass",
+      "command": "python -m services.safe_pytest tests/test_document_exports.py tests/test_fhir_mock_bundle.py",
+      "summary": "5 passed, 1 warning"
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "result": "TypeScript check and Vite production build passed."
+    },
+    "ruff": {
+      "status": "pass",
+      "commands": [
+        "python -m ruff check <changed Python files>",
+        "python -m ruff format --check <changed Python files>"
+      ]
+    },
+    "mypy": {
+      "status": "pass",
+      "command": "python -m mypy services/review/document_exports.py services/review/routers/exports.py services/review/models.py services/domain_contracts.py --ignore-missing-imports"
+    },
+    "api_and_authorization_contracts": {
+      "status": "pass",
+      "api_snapshot": "evaluation/contracts/api-v1-compatible-v16.json",
+      "openapi_exact_match": true,
+      "authorization_policy": "evaluation/contracts/authorization-policy-v6.json",
+      "routes_checked": 80,
+      "operations_checked": 68
+    },
+    "downloaded_artifact_parsing": {
+      "status": "pass",
+      "pdf_parser": "PyMuPDF 1.26.7",
+      "docx_parser": "python-docx 1.2.0",
+      "pdf_pages": 1,
+      "docx_paragraphs": 28,
+      "approved_content_and_limitations_preserved": true,
+      "json_approval_present": true
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "services/review/document_exports.py",
+      "sha256": "551e1b58218cbe984460d0f7a3895bb3a0a2d324d60c27e4a6b57242caea5e79"
+    },
+    {
+      "path": "services/review/routers/exports.py",
+      "sha256": "895497ff99c32665f3576a095dd0a3d8b9a679cdaad0ba0263a70586eb24bd20"
+    },
+    {
+      "path": "services/review/models.py",
+      "sha256": "f58c81fda4e383beefd5488b711c1f9b0e6c730333e85b9bcf8de2e00213dc27"
+    },
+    {
+      "path": "services/domain_contracts.py",
+      "sha256": "943fdebc66a156487a26313ad9265f25d712ab10fb3a91b35efda24ee0a617a8"
+    },
+    {
+      "path": "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+      "sha256": "6d835906860829cd786a6f30435328a1909b6e2ae116c1b4e6ec1564fdfd30e2"
+    },
+    {
+      "path": "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+      "sha256": "898746891af2a6b1fbe952556b6ef6d962dd6921bc02135a23b8ea38d604d6d0"
+    },
+    {
+      "path": "apps/clinician-web/e2e/complete-synthetic-consultation.spec.ts",
+      "sha256": "95ec9221989147d26bf12aee62d9b57a53262ca83479c5abb94495ee31279225"
+    },
+    {
+      "path": "tests/test_document_exports.py",
+      "sha256": "e65f99d73aeda17d9fa82dddaf52bde37216de2b43feef9649fc837a0490bb44"
+    },
+    {
+      "path": "tests/test_review_workflow.py",
+      "sha256": "e839856887aeddfda55f57c339bc2caf9c691632528f1d6d9aa613981a5f0d7c"
+    },
+    {
+      "path": "tests/test_fhir_mock_bundle.py",
+      "sha256": "ba9078717adaf2bd5e2daddee9cc7e6807cfa9d86ed1b74b061e425b354cc882"
+    },
+    {
+      "path": "tests/test_router_contracts.py",
+      "sha256": "6ee1d1cb2dcbd244b2e82f5c96e255e45a68d105d7e38bfde4d9222505efe0ec"
+    },
+    {
+      "path": "docs/integrations/mock-ehr-api-v1.json",
+      "sha256": "42682c369931c5e5b20c7bfd4e05dd173f34428855c095f9dce8213ee3fe3ed5"
+    },
+    {
+      "path": "evaluation/contracts/api-v1-compatible-v16.json",
+      "sha256": "6fc2836cec36ac5ae0149af506e189d768853636af37c593772c73a333b22da3"
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "data/browser-acceptance-pdfdocx-20261115-02/playwright/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "path": "data/browser-acceptance-pdfdocx-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.json",
+      "sha256": "d4d5fd71310680eb30b44f59a6815681267cc5291b10503efdd39b8412d15e25",
+      "bytes": 11884
+    },
+    {
+      "path": "data/browser-acceptance-pdfdocx-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.pdf",
+      "sha256": "a55eb23b5495fb427cd5b68c4b15e822f292c610e8f74e2b6818e9a19ecbdc87",
+      "bytes": 1993
+    },
+    {
+      "path": "data/browser-acceptance-pdfdocx-20261115-02/playwright/complete-synthetic-consult-902c6-ew-approval-and-JSON-export/approved-note.docx",
+      "sha256": "d06ef50c988b6203b6c25276d6ecdda8157561659665f9c323f20ae5270eb895",
+      "bytes": 2346
+    }
+  ],
+  "limitations": [
+    "The PDF renderer uses the standard WinAnsi Helvetica encoding; a character outside WinAnsi fails closed with pdf_contains_unsupported_character.",
+    "The browser uses fake microphone input and a fixed scripted adapter that ignores the recording; inference_executed is false.",
+    "The synthetic approval fixture is not independent clinical sign-off.",
+    "PDF/DOCX parsing is a local artifact-integrity check, not validation in every office/PDF viewer.",
+    "FHIR recipient profile validation and live EHR delivery are not established.",
+    "No clinical accuracy, independent clinician usability, medical benefit, institutional approval, or production readiness is established."
+  ],
+  "inference_executed": false,
+  "human_observations": 0,
+  "clinical_accuracy_measured": false,
+  "real_patient_processing_authorized": false,
+  "clinical_signoff_claimed": false,
+  "production_readiness_claimed": false
+}

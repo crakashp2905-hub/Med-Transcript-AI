@@ -3,7 +3,7 @@
   "generated_from": "Med_Transcript_AI_InHouse_10of10_Master_Implementation_and_Validation_Checklist.md",
   "baseline_commit": "b93937756427d1ae86adf847c680ed52c187b9ed",
   "scope": "english_only_local_first_synthetic_public_mock",
-  "total": 369,
+  "total": 370,
   "status_policy": "A task is verified only with exact commit tests and hash-bound evidence. No clinical release implication.",
   "clinical_release_authorized": false,
   "tasks": [
@@ -9435,6 +9435,49 @@
         }
       ],
       "blocker": null
+    },
+    {
+      "id": "MTA-17-17",
+      "section": "17 — Research paper, reproducibility, product deliverables and packaging",
+      "priority": "P1",
+      "status": "implemented",
+      "description": "Provide approved-note PDF and DOCX downloads alongside Markdown and structured exports, with binary integrity and limitations preserved.",
+      "evidence": [
+        "services/review/document_exports.py",
+        "services/review/routers/exports.py",
+        "apps/clinician-web/src/hooks/useEncounterWorkspace.ts",
+        "apps/clinician-web/src/screens/NoteReviewScreen.tsx",
+        "evaluation/contracts/api-v1-compatible-v16.json",
+        "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json"
+      ],
+      "source_commit": "1e239ac010a91bd5c20ee07c5d37974d07ed5094",
+      "test_results": [
+        {
+          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
+          "report_sha256": "00efbe9b641bd6a5c168145ced325147d7ae62e890d4954bfdef1e1d0a11cd2b",
+          "check": "browser_e2e",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
+          "report_sha256": "00efbe9b641bd6a5c168145ced325147d7ae62e890d4954bfdef1e1d0a11cd2b",
+          "check": "backend_review_export",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
+          "report_sha256": "00efbe9b641bd6a5c168145ced325147d7ae62e890d4954bfdef1e1d0a11cd2b",
+          "check": "document_export_unit",
+          "status": "pass"
+        },
+        {
+          "report": "evaluation/reports/approved-document-export-browser-2026-11-15-1e239ac-r1.json",
+          "report_sha256": "00efbe9b641bd6a5c168145ced325147d7ae62e890d4954bfdef1e1d0a11cd2b",
+          "check": "frontend_build",
+          "status": "pass"
+        }
+      ],
+      "blocker": "PDF text outside the built-in WinAnsi encoding fails closed; a packaged Unicode font path remains future work. Cross-viewer office/PDF rendering and external EHR conformance are not verified."
     }
   ]
 }
