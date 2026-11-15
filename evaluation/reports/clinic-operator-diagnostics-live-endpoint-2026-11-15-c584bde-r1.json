@@ -1,0 +1,60 @@
+{
+  "schema_version": "clinic_operator_diagnostics_acceptance_v1",
+  "run_id": "clinic-operator-diagnostics-live-endpoint-2026-11-15-c584bde-r1",
+  "source_commit": "c584bde7353e0b3000e9fca2126c70876290b986",
+  "scope": "Synthetic simulated-provider administrator browser journey using the real local diagnostics endpoint.",
+  "environment": {
+    "provider": "local simulated OIDC; no external provider calls",
+    "bind": "127.0.0.1:48017",
+    "MED_TRANSCRIPT_OFFLINE": "1",
+    "application_data": "fresh UUID-scoped synthetic fixture database"
+  },
+  "checks": {
+    "diagnostics_http": {
+      "status": "pass",
+      "http_status": 200,
+      "response": {
+        "schema_version": "clinic_operator_diagnostics_v1",
+        "runtime": {
+          "python": "3.13.5",
+          "platform": "Windows",
+          "node": true,
+          "npm": true,
+          "docker": false,
+          "psql": false
+        },
+        "storage": {
+          "status": "measured",
+          "backup_restore": "not_checked"
+        },
+        "frontend_dependencies": "available",
+        "offline_mode": "enabled",
+        "model_inference_performed": false,
+        "external_services_contacted": false,
+        "patient_or_encounter_data_included": false
+      }
+    },
+    "admin_browser_journey": {
+      "status": "pass",
+      "command": "npx playwright test e2e/google-auth.spec.ts",
+      "result": "2 passed"
+    },
+    "frontend_build": {
+      "status": "pass",
+      "command": "npm run build",
+      "result": "TypeScript check and Vite production build passed"
+    },
+    "previous_stale_port_attempt": {
+      "status": "superseded",
+      "detail": "A reused loopback port returned 404; a fresh elevated fixture on port 48017 returned 200. No product route change was needed."
+    }
+  },
+  "source_sha256": {
+    "apps/clinician-web/e2e/google-auth.spec.ts": "74193a09c44ba89837c7eb4c064d09954641d0f2749d812936295fb07de3b618"
+  },
+  "limitations": [
+    "Synthetic software evidence only.",
+    "The endpoint reports backup/restore not checked; this journey does not exercise backup, restore, storage permissions, update/rollback, failure alerts, live identity provider or deployment.",
+    "No real patient data, clinical approval, or production readiness is established."
+  ]
+}
