@@ -556,7 +556,8 @@
         "apps/clinician-web/tsconfig.json",
         "apps/clinician-web/e2e/evidence-channel.spec.ts",
         "apps/clinician-web/e2e/workflow.spec.ts",
-        "evaluation/reports/master-task-mta-01-04-aef2a7b.json"
+        "evaluation/reports/master-task-mta-01-04-aef2a7b.json",
+        "evaluation/reports/offline-acceptance-local-milestone1-followup-20261115-a2b4e01-r2.json"
       ],
       "source_commit": "aef2a7b25291c1900cf31e8952ab3822cec4091a",
       "test_results": [
@@ -585,7 +586,7 @@
           "status": "blocked"
         }
       ],
-      "blocker": "Frontend lint is not configured or present in the locked local dependency tree; compressed audio normalization browser test is skipped because PyAV is missing."
+      "blocker": "Current-source offline acceptance passed frontend build and the fresh browser suite passed 45 cases with one PyAV-dependent compressed upload skipped. Local full acceptance passed 1352 tests but skipped critical channel/media coverage because PyAV is unavailable and PostgreSQL integration because no DSN is configured. Frontend lint is not configured; hosted CI is unobserved."
     },
     {
       "id": "MTA-01-05",
@@ -599,7 +600,8 @@
         "evaluation/reports/master-task-mta-01-05-55de56e.json",
         "evaluation/reports/offline-ci-safety-2026-11-15-926ed23-r1.json",
         "evaluation/reports/local-ci-verification-2026-11-15-20bf39c-r1.json",
-        "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json"
+        "evaluation/reports/local-python-ci-repair-2026-11-15-57c60de-r1.json",
+        "evaluation/reports/offline-acceptance-local-milestone1-followup-20261115-a2b4e01-r2.json"
       ],
       "source_commit": "57c60defe488b309e9b3f5d44567c1f5001fed24",
       "test_results": [
@@ -652,7 +654,7 @@
           "status": "blocked"
         }
       ],
-      "blocker": "Local Python format, lint, type, and full pytest lanes pass at this exact source. Exact-commit hosted GitHub Actions, PostgreSQL, container, and release-summary jobs remain unobserved."
+      "blocker": "Fresh current-source offline acceptance: 1352 passed, 9 skipped; overall gate failed on critical PyAV channel/media and PostgreSQL skips. Frontend build, synthetic walkthrough, clinical-binding development, baseline, replay, and source integrity passed. Exact-commit hosted results for all required CI jobs remain unobserved."
     },
     {
       "id": "MTA-01-06",
@@ -707,7 +709,8 @@
         "services/release_provenance.py",
         "tests/test_release_provenance.py",
         "tests/test_acceptance_reporting.py",
-        "evaluation/reports/master-task-mta-01-07-d06fdca.json"
+        "evaluation/reports/master-task-mta-01-07-d06fdca.json",
+        "evaluation/reports/offline-acceptance-local-milestone1-followup-20261115-a2b4e01-r2.json"
       ],
       "source_commit": "d06fdca0f68168edf3019a857c8a4b55c78db375",
       "test_results": [
@@ -742,7 +745,7 @@
           "status": "blocked"
         }
       ],
-      "blocker": "No actual hosted CI logs or successful full acceptance report are available for this source. The provenance pipeline is implemented and locally tested, but no release candidate is eligible."
+      "blocker": "Provenance and local acceptance passed at a2b4e01, but exact-commit hosted CI logs and a release-candidate execution are not available; no release candidate is eligible."
     },
     {
       "id": "MTA-01-08",
@@ -7586,7 +7589,8 @@
         "evaluation/reports/master-task-mta-14-19-10c7592.json",
         "evaluation/reports/offline-acceptance-mta-14-19-rc1-10c7592.json",
         "evaluation/reports/offline-acceptance-mta-14-19-rc1-local-runtime-10c7592.json",
-        "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json"
+        "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json",
+        "evaluation/reports/offline-acceptance-local-milestone1-followup-20261115-a2b4e01-r2.json"
       ],
       "source_commit": "d8df1df811359131991bc150293fe2f3c18f4952",
       "test_results": [
@@ -7600,7 +7604,7 @@
           "tested_source_commit": "d8df1df811359131991bc150293fe2f3c18f4952"
         }
       ],
-      "blocker": "Only one fresh exact-commit acceptance was captured in this turn; its source integrity, frontend build and synthetic workflow passed, but the overall gate remains failed due critical PyAV and PostgreSQL integration skips. Three consecutive clean passes have not been established.",
+      "blocker": "One fresh exact-source offline acceptance completed at a2b4e01: 1352 passed, 9 skipped, with critical channel/media and PostgreSQL lanes skipped. Fresh full browser acceptance passed 45 cases with one PyAV skip. Three consecutive clean release candidates on identical artifacts are not established.",
       "test_results_history": [
         {
           "report": "evaluation/reports/master-task-mta-14-19-10c7592.json",
@@ -9272,7 +9276,8 @@
         "services/offline_acceptance.py",
         "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
         "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
-        "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json"
+        "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json",
+        "evaluation/reports/offline-acceptance-local-milestone1-followup-20261115-a2b4e01-r2.json"
       ],
       "source_commit": "d8df1df811359131991bc150293fe2f3c18f4952",
       "test_results": [
@@ -9286,7 +9291,7 @@
           "tested_source_commit": "d8df1df811359131991bc150293fe2f3c18f4952"
         }
       ],
-      "blocker": "Current exact-commit acceptance is not green: 1351 tests passed, but required channel/media and PostgreSQL lanes were skipped and acceptance marks those skips critical. Frontend build, source integrity and synthetic workflow passed. Exact-commit hosted CI remains unobserved.",
+      "blocker": "Current-source local acceptance remains failed: 1352 tests passed, but critical PyAV-dependent channel/media tests and PostgreSQL integration were skipped. Synthetic browser suite and offline walkthrough passed; exact-commit hosted CI remains unobserved.",
       "test_results_history": [
         {
           "report": "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
@@ -9537,7 +9542,8 @@
         "services/source_change_detector.py",
         "evaluation/reports/offline-acceptance-mta18-11-0f9b27d.json",
         "evaluation/reports/master-task-mta-18-final-gates-0f9b27d.json",
-        "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json"
+        "evaluation/reports/offline-acceptance-local-milestone-cont-20261115-r3.json",
+        "evaluation/reports/offline-acceptance-local-milestone1-followup-20261115-a2b4e01-r2.json"
       ],
       "source_commit": "d8df1df811359131991bc150293fe2f3c18f4952",
       "test_results": [
@@ -9568,7 +9574,7 @@
           "status": "pass"
         }
       ],
-      "blocker": "Fresh exact-commit acceptance verified source integrity, frontend build, and the model-free synthetic workflow, with 1351 tests passing. The overall gate remains failed because channel/media tests require unavailable PyAV and PostgreSQL integration requires an unconfigured DSN; the acceptance policy correctly treats those skips as critical."
+      "blocker": "Current-source local acceptance passed source integrity, build, and synthetic walkthrough, with 1352 tests passing. Overall gate remains failed because critical channel/media tests require unavailable PyAV and PostgreSQL integration needs a configured DSN. Exact-commit hosted CI remains unobserved."
     },
     {
       "id": "MTA-18-12",
