@@ -83,7 +83,7 @@ test('measure synthetic draft latency and retain the critical approval block', a
     await card.getByLabel('Critical details checked').check();
   }
   await page.getByRole('button', { name: 'Save & verify note', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'SOAP preview' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Note preview' })).toBeVisible();
   const draftReadyAt = Date.now();
   const recordStopToDraftReadyMs = draftReadyAt - recordStopAt;
 

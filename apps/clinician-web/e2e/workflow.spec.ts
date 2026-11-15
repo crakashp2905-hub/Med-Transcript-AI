@@ -1,4 +1,4 @@
-import {test, expect, localTestKey, testOutputPath} from './fixtures/offline';
+import {test, expect, localTestKey, testOutputPath, expectNoHorizontalOverflow} from './fixtures/offline';
 import { readFileSync, mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -141,7 +141,7 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   else await expect(sourceContext).toContainText('Waveform unavailable');
   await expect(sourceContext).toContainText('patient');
   await expect(page.getByRole('heading',{name:'Clinical facts'})).toBeVisible();
-  await expect(page.getByRole('heading',{name:'SOAP preview'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Note preview'})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Verification'})).toBeVisible();
   await page.getByRole('button',{name:'▷ Evidence',exact:true}).first().click();
   await expect(page.locator('.citation-selected')).toHaveCount(1);
@@ -162,7 +162,7 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await page.getByRole('button',{name:'Source & transcript',exact:false}).click();
   await page.setViewportSize({width:390,height:844});
   await expect(page.getByRole('heading',{name:'Source transcript'})).toBeVisible();
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await expectNoHorizontalOverflow(page);
   await page.screenshot({path:resolve(dir,'mobile-source.png'),fullPage:true});
   await page.getByLabel('Transcript segment 1').fill('The corrected synthetic source now reports headache.');
   await page.getByLabel('Correction reason').fill('Synthetic test source edit after approval; preserve the original approved version.');
@@ -182,7 +182,7 @@ test('clinician reviews evidence, corrects a blocking medication, approves and e
   await expect(page.getByRole('heading',{name:'Historical approved record',exact:true})).toBeVisible();
   await page.getByRole('button',{name:'▷ Evidence',exact:true}).first().click();
   await expect(page.locator('.citation-selected')).toHaveCount(1);
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await expectNoHorizontalOverflow(page);
   await page.screenshot({path:resolve(dir,'historical-citation-mobile.png'),fullPage:true});
   expect(failures).toEqual([]);
 });

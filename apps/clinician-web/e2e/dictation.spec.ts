@@ -1,4 +1,4 @@
-import {test, expect, type Page, localTestKey, testOutputPath} from './fixtures/offline';
+import {test, expect, type Page, localTestKey, testOutputPath, expectNoHorizontalOverflow} from './fixtures/offline';
 import { readFileSync, writeFileSync, mkdirSync, unlinkSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import { resolve } from 'node:path';
@@ -44,7 +44,7 @@ test('microphone dictation records, uploads, transcribes locally and leaves sour
  await expect(page.getByLabel('I confirmed supported English.')).not.toBeChecked();
  await expect(page.getByLabel('I reviewed source completeness.')).not.toBeChecked();
  await page.setViewportSize({width:390,height:844});
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+ await expectNoHorizontalOverflow(page);
  mkdirSync(testOutputPath('data/ui-screenshots'),{recursive:true});
  await page.screenshot({path:testOutputPath('data/ui-screenshots/dictation-result.png'),fullPage:true});
  expect(failures).toEqual([]);
@@ -65,7 +65,7 @@ test('discarding stops microphone tracks and sends no audio upload',async({page}
  await page.setViewportSize({width:390,height:844});
  await expect(page.locator('input[type=file]')).toBeDisabled();
  await expect(page.getByRole('button',{name:'New encounter',exact:false})).toBeDisabled();
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+ await expectNoHorizontalOverflow(page);
  await page.screenshot({path:testOutputPath('data/ui-screenshots/dictation-recording.png'),fullPage:true});
  await page.getByRole('button',{name:'Discard recording',exact:true}).click();
  await expect(page.getByText('The microphone is off.',{exact:true})).toBeVisible();

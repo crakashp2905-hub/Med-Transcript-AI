@@ -1,4 +1,4 @@
-import {test as base,expect,type Route} from '@playwright/test';
+import {test as base,expect,type Page,type Route} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -27,3 +27,8 @@ export const test=base.extend<{offlineNetwork:void}>({
 });
 export {expect};
 export type {Page} from '@playwright/test';
+
+export async function expectNoHorizontalOverflow(page:Page){
+ const layout=await page.evaluate(()=>({viewport:window.innerWidth,document:document.documentElement.scrollWidth,wideElements:[...document.querySelectorAll('body *')].map(element=>{const rect=element.getBoundingClientRect();return {tag:element.tagName.toLowerCase(),className:typeof element.className==='string'?element.className.slice(0,80):'',left:Math.round(rect.left),right:Math.round(rect.right),width:Math.round(rect.width),ancestors:(()=>{const rows=[];let node:Element|null=element;for(let depth=0;node&&depth<5;depth++,node=node.parentElement){const box=node.getBoundingClientRect(),css=getComputedStyle(node);rows.push({tag:node.tagName.toLowerCase(),className:typeof node.className==='string'?node.className.slice(0,60):'',left:Math.round(box.left),right:Math.round(box.right),width:Math.round(box.width),minWidth:css.minWidth,display:css.display,flex:css.flex,grid:css.gridTemplateColumns,position:css.position,right:css.right,marginRight:css.marginRight,flexShrink:css.flexShrink,transform:css.transform});}return rows;})()};}).filter(element=>element.width>0&&element.right>window.innerWidth+1&&element.right<document.documentElement.scrollWidth+1).sort((a,b)=>b.right-a.right).slice(0,12),layout:['body','.app-shell','.sidebar','main','.content','.note-review-layout','.note-grid','.scribe-grid','.source-context'].map(selector=>{const element=document.querySelector(selector);if(!element)return{selector,missing:true};const rect=element.getBoundingClientRect(),style=getComputedStyle(element);return{selector,left:Math.round(rect.left),right:Math.round(rect.right),width:Math.round(rect.width),clientWidth:element.clientWidth,scrollWidth:element.scrollWidth,minWidth:style.minWidth,overflowX:style.overflowX,marginLeft:style.marginLeft,gridColumns:style.gridTemplateColumns};})}));
+ expect(layout.document,`Horizontal overflow at ${layout.viewport}px: ${JSON.stringify({wideElements:layout.wideElements,layout:layout.layout})}`).toBeLessThanOrEqual(layout.viewport);
+}
