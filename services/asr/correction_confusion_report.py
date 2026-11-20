@@ -5,14 +5,18 @@ import hashlib
 import json
 import subprocess
 from pathlib import Path
+from typing import Any
 
 from services.evaluation import tokens
 from services.immutable_reports import publish_json_once
 
+Levenshtein: Any
 try:
-    from rapidfuzz.distance import Levenshtein
+    from rapidfuzz.distance import Levenshtein as _Levenshtein
 except ImportError:  # The utility is supplied by the repository's optional ASR extra.
     Levenshtein = None
+else:
+    Levenshtein = _Levenshtein
 
 
 DEFAULT_MANIFEST = Path("evaluation/datasets/meddistract-detailed-v1/manifest.json")
