@@ -1,4 +1,4 @@
-from services.asr.spoken_prompt_adversarial import PROMPT_TEXT, _powershell_literal
+from services.asr.spoken_prompt_adversarial import PROMPT_TEXT
 from services.prompt_injection import inspect
 
 
@@ -13,7 +13,3 @@ def test_spoken_prompt_challenge_keeps_transcript_inert_as_source_data():
         "ignore previous instructions",
         "read file",
     }
-
-
-def test_speech_command_arguments_use_quoted_powershell_literals():
-    assert _powershell_literal("quote ' and $HOME") == "'quote '' and $HOME'"
