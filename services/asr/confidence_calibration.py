@@ -285,6 +285,20 @@ def _brier(rows):
     )
 
 
+def _brier_for(rows, probability_key):
+    scored = [
+        row
+        for row in rows
+        if row.get("crossfit_probability_exact_match") is not None
+        and row.get(probability_key) is not None
+    ]
+    if not scored:
+        return None
+    return float(
+        np.mean([(row[probability_key] - row["exact_match"]) ** 2 for row in scored])
+    )
+
+
 def _selection(rows, threshold=SELECTION_THRESHOLD):
     scored = [
         row for row in rows if row["crossfit_probability_exact_match"] is not None
@@ -322,13 +336,24 @@ def _cluster_bootstrap(rows, groups):
         for group in groups
     }
     rng = np.random.default_rng(BOOTSTRAP_SEED)
-    values = {"brier": [], "coverage": [], "selected_error_rate": []}
+    values = {
+        "brier": [],
+        "prevalence_brier": [],
+        "brier_skill": [],
+        "coverage": [],
+        "selected_error_rate": [],
+    }
     for _ in range(BOOTSTRAP_ITERATIONS):
         sampled = rng.choice(groups, size=len(groups), replace=True)
         bootstrap_rows = [row for group in sampled for row in by_group[group]]
         brier = _brier(bootstrap_rows)
+        prevalence_brier = _brier_for(bootstrap_rows, "crossfit_training_prevalence")
         if brier is not None:
             values["brier"].append(brier)
+        if prevalence_brier is not None:
+            values["prevalence_brier"].append(prevalence_brier)
+            if prevalence_brier > 0 and brier is not None:
+                values["brier_skill"].append(1 - brier / prevalence_brier)
         selection = _selection(bootstrap_rows)
         if selection["coverage"] is not None:
             values["coverage"].append(selection["coverage"])
@@ -352,8 +377,40 @@ def _cluster_bootstrap(rows, groups):
         "iterations": BOOTSTRAP_ITERATIONS,
         "group_count": len(groups),
         "brier_95_percentile_interval": interval("brier"),
+        "prevalence_baseline_brier_95_percentile_interval": interval(
+            "prevalence_brier"
+        ),
+        "brier_skill_95_percentile_interval": interval("brier_skill"),
         "selection_coverage_95_percentile_interval": interval("coverage"),
         "selected_error_rate_95_percentile_interval": interval("selected_error_rate"),
+    }
+
+
+def _calibration_metrics(rows, groups):
+    brier = _brier(rows)
+    baseline = _brier_for(rows, "crossfit_training_prevalence")
+    return {
+        "sample_count": len(rows),
+        "scored_sample_count": sum(row["decoder_score"] is not None for row in rows),
+        "failed_sample_count": sum(row["status"] != "completed" for row in rows),
+        "exact_match_count": sum(
+            row["exact_match"] for row in rows if row["decoder_score"] is not None
+        ),
+        "exact_match_base_rate": (
+            sum(row["exact_match"] for row in rows if row["decoder_score"] is not None)
+            / sum(row["decoder_score"] is not None for row in rows)
+            if any(row["decoder_score"] is not None for row in rows)
+            else None
+        ),
+        "out_of_fold_brier_score": brier,
+        "out_of_fold_prevalence_baseline_brier_score": baseline,
+        "brier_skill_vs_prevalence_baseline": (
+            1 - brier / baseline if brier is not None and baseline else None
+        ),
+        "out_of_fold_selection": _selection(rows),
+        "uncertainty": _cluster_bootstrap(rows, groups),
+        "wer_admission_maximum": 0.05,
+        "wer_gate": "unchanged_and_not_evaluated_by_calibration",
     }
 
 
@@ -379,9 +436,6 @@ def build_calibration_report(
     if profile is None or profile.availability()["status"] != "available_not_admitted":
         raise ValueError("pinned_local_calibration_profile_unavailable")
     rows = _crossfit(_score_samples(prepared, profile), groups)
-    scored_rows = [row for row in rows if row["decoder_score"] is not None]
-    exact_count = sum(row["exact_match"] for row in scored_rows)
-    base_rate = exact_count / len(scored_rows) if scored_rows else None
     report = {
         "schema_version": "asr_group_crossfit_confidence_calibration_v1",
         "complete": True,
@@ -420,18 +474,7 @@ def build_calibration_report(
         },
         "score_definition": "token_weighted_mean_segment_average_logprob_from_faster_whisper_best_sequence",
         "calibration_target": "exact_normalized_utterance_match_to_public_mock_reference",
-        "metrics": {
-            "sample_count": len(rows),
-            "scored_sample_count": len(scored_rows),
-            "failed_sample_count": sum(row["status"] != "completed" for row in rows),
-            "exact_match_count": exact_count,
-            "exact_match_base_rate": base_rate,
-            "out_of_fold_brier_score": _brier(rows),
-            "out_of_fold_selection": _selection(rows),
-            "uncertainty": _cluster_bootstrap(rows, groups),
-            "wer_admission_maximum": 0.05,
-            "wer_gate": "unchanged_and_not_evaluated_by_calibration",
-        },
+        "metrics": _calibration_metrics(rows, groups),
         "rows": rows,
         "limitations": [
             "This is an exploratory calibration of one-best decoder log probability on public mock utterances, not a backend-supported or clinically calibrated confidence score.",
@@ -443,6 +486,43 @@ def build_calibration_report(
     }
     published = publish_json_once(output_path, report)
     return published
+
+
+def recalibrate_saved_scores(source_report_path, output_path):
+    """Recompute cross-fit metrics from an immutable score receipt without inference."""
+    source_report_path, output_path = Path(source_report_path), Path(output_path)
+    source_bytes = source_report_path.read_bytes()
+    source = json.loads(source_bytes)
+    if (
+        source.get("schema_version") != "asr_group_crossfit_confidence_calibration_v1"
+        or source.get("complete") is not True
+        or source.get("inference_executed") is not True
+    ):
+        raise ValueError("completed_saved_calibration_scores_required")
+    rows = [dict(row) for row in source.get("rows", [])]
+    groups = sorted({row["consultation_group_id"] for row in rows})
+    if not rows or not groups:
+        raise ValueError("saved_calibration_rows_required")
+    for row in rows:
+        for key in (
+            "crossfit_probability_exact_match",
+            "crossfit_training_groups",
+            "crossfit_held_out_group",
+            "crossfit_training_prevalence",
+            "crossfit_method",
+        ):
+            row.pop(key, None)
+    rows = _crossfit(rows, groups)
+    report = dict(source)
+    report["source_commit"] = _source_commit()
+    report["recalibration_source_report"] = {
+        "path": source_report_path.as_posix(),
+        "sha256": _sha_bytes(source_bytes),
+        "inference_rerun": False,
+    }
+    report["metrics"] = _calibration_metrics(rows, groups)
+    report["rows"] = rows
+    return publish_json_once(output_path, report)
 
 
 def main():

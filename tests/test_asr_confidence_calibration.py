@@ -9,11 +9,13 @@ def test_confidence_calibration_crossfits_whole_groups_and_bootstraps_groups():
             [
                 {
                     "consultation_group_id": group,
+                    "status": "completed",
                     "decoder_score": -0.1 - index,
                     "exact_match": index % 2 == 0,
                 },
                 {
                     "consultation_group_id": group,
+                    "status": "completed",
                     "decoder_score": -0.2 - index,
                     "exact_match": index % 2 == 1,
                 },
@@ -36,3 +38,9 @@ def test_confidence_calibration_crossfits_whole_groups_and_bootstraps_groups():
         interval["brier_95_percentile_interval"][0]
         <= interval["brier_95_percentile_interval"][1]
     )
+
+    from services.asr.confidence_calibration import _calibration_metrics
+
+    metrics = _calibration_metrics(crossfit, groups)
+    assert metrics["out_of_fold_prevalence_baseline_brier_score"] is not None
+    assert metrics["brier_skill_vs_prevalence_baseline"] is not None
