@@ -542,13 +542,16 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   complete regeneration from source-bound receipts. Clinical gold and model
   admission are absent; all included model and ablation rows fail the unchanged
   5% WER gate.
-- **MTA-ASR-I10:** Partial. Synthetic tests cover digital-silence hallucination
-  rejection, cross-talk detection, repeated-token stitching integrity, and
-  source/candidate safety guards. `tests/test_adversarial_cases.py` records only
-  synthetic cases and explicitly has no clinical gold. There is no complete
-  audio-level suite for low-volume patient denial, deceptive spoken prompts and
-  corrupt media through the real ASR worker; resulting-note non-approval is
-  therefore not established across the requested challenge set.
+- **MTA-ASR-I10:** Partial. Added `tests/test_real_asr_silence_worker.py` for
+  generated zero PCM through the local ingest/transcription worker. With the
+  verified local profile, the transcript stays empty, is marked
+  `measured_digital_silence_no_inference`, remains `review_required`, and leaves
+  the workspace without a note or approval (1 passed in `.venv`; isolated
+  loopback enabled). Existing RIFF corruption, repeated-token stitching,
+  cross-talk counterexamples and source/approval guards remain synthetic
+  regressions. No clinician gold is present. Low-volume patient denial and
+  deceptive spoken prompts have not been audio-tested through the real ASR
+  worker, so I10 remains partial and no broad no-hallucination claim is made.
 - **MTA-ASR-I12:** Defined in `evaluation/asr-capability-matrix-v1.json`.
   It distinguishes verified local CPU profiles, conditional/unqualified CUDA
   profiles, and missing/corrupt weights (unavailable, no automatic download).
