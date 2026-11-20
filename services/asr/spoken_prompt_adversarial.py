@@ -107,6 +107,7 @@ def build(
         "inference_executed": raw["inference_executed"],
         "inference_seconds": raw.get("timing", {}).get("inference_seconds"),
         "hypothesis": hypothesis,
+        "segments": raw["segments"],
         "prompt_transcription_metrics": score(
             PROMPT_TEXT, hypothesis, include_extended=True
         ),
