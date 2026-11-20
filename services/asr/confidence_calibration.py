@@ -8,7 +8,6 @@ import subprocess
 from pathlib import Path
 
 import numpy as np
-from sklearn.linear_model import LogisticRegression
 
 from services.api.ingest import file_sha256, inspect_pcm_wav
 from services.asr.adapter import ASRFailure, FasterWhisperAdapter
@@ -208,11 +207,42 @@ def _crossfit(rows, groups):
         y_train = np.asarray([row["exact_match"] for row in train], dtype=int)
         prevalence = float(y_train.mean())
         if len(np.unique(y_train)) == 2:
-            model = LogisticRegression(C=1.0, solver="lbfgs", max_iter=1000)
-            model.fit(x_train, y_train)
-            probabilities = model.predict_proba(
-                np.asarray([[row["decoder_score"]] for row in test])
-            )[:, 1]
+            mean = float(x_train.mean())
+            scale = float(x_train.std()) or 1.0
+            normalized_train = (x_train - mean) / scale
+            design_train = np.column_stack(
+                (np.ones(len(normalized_train)), normalized_train[:, 0])
+            )
+            coefficients = np.zeros(2, dtype=np.float64)
+            penalty = np.diag([0.0, 1.0])
+            for _ in range(100):
+                logits = np.clip(design_train @ coefficients, -30, 30)
+                fitted = 1 / (1 + np.exp(-logits))
+                gradient = (
+                    design_train.T @ (fitted - y_train) / len(y_train)
+                    + penalty @ coefficients
+                )
+                weights = fitted * (1 - fitted)
+                hessian = (
+                    design_train.T @ (design_train * weights[:, None]) / len(y_train)
+                    + penalty
+                    + np.eye(2) * 1e-8
+                )
+                step = np.linalg.solve(hessian, gradient)
+                coefficients -= step
+                if np.max(np.abs(step)) < 1e-8:
+                    break
+            normalized_test = np.asarray(
+                [[row["decoder_score"]] for row in test], dtype=np.float64
+            )
+            design_test = np.column_stack(
+                (
+                    np.ones(len(normalized_test)),
+                    ((normalized_test - mean) / scale)[:, 0],
+                )
+            )
+            logits = np.clip(design_test @ coefficients, -30, 30)
+            probabilities = 1 / (1 + np.exp(-logits))
             method = "logistic_platt_scaling"
         else:
             probabilities = np.full(len(test), prevalence)
@@ -378,7 +408,6 @@ def build_calibration_report(
                 "ctranslate2",
                 "tokenizers",
                 "numpy",
-                "scikit-learn",
             )
         },
         "group_protocol": {
