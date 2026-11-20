@@ -1,0 +1,42 @@
+{
+  "schema_version": "asr_training_resource_audit_v1",
+  "source_commit": "d56878c3066400dd0b8ca680c7648bb1ae2cdbbd",
+  "measured_at_utc": "2026-11-20T19:28:15.332105+00:00",
+  "clinical_acceptance": false,
+  "model_fit": false,
+  "inference_executed": false,
+  "automatic_download": false,
+  "host": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "logical_cpu_count": 8,
+    "memory_total_bytes": 16907886592,
+    "memory_available_bytes_at_measurement": 4440166400
+  },
+  "training_runtime": {
+    "torch_version": "2.13.0+cpu",
+    "torch_cuda_build": null,
+    "cuda_available": false,
+    "cuda_device_count": 0,
+    "modules_available": {
+      "transformers": true,
+      "peft": false,
+      "accelerate": false,
+      "datasets": false,
+      "bitsandbytes": false
+    }
+  },
+  "repository_model_evidence": {
+    "capability_matrix_path": "evaluation/asr-capability-matrix-v1.json",
+    "capability_matrix_sha256": "4069579436d743fb156482c51f91a6889d5540cf532d3af76d6470b63268f273",
+    "matrix_scope": "Faster Whisper inference runtime and profile capability",
+    "approved_trainable_architecture_or_checkpoint_identified": false,
+    "optimizer_recipe_identified": false
+  },
+  "decision": "BLOCKED_MISSING_RESOURCE",
+  "reason": "The installed PyTorch build is CPU-only and no CUDA device is available. The ASR capability matrix describes inference profiles; no approved trainable architecture/checkpoint or optimizer recipe is identified. Missing optional adapter/training modules were not installed. No training was simulated.",
+  "limitations": [
+    "This is an environment snapshot, not a general hardware benchmark.",
+    "The host has CPU and system RAM, but those facts alone do not qualify an ASR adaptation training recipe.",
+    "No model was fitted and no acceptance or clinical data was accessed."
+  ]
+}
