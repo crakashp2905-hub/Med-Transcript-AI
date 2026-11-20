@@ -8,7 +8,7 @@
   },
   "progress_record": {
     "path": "docs/asr-rnd-progress.md",
-    "sha256": "b1eef9a5b908314fcd138a9444e00fd169a1e59e6fd9622d520e9fa7ae7d31ca"
+    "sha256": "2a948e871259c257436a96f3931ccea7f13a4ab0c8b7936a72ddf2b8a7ef6883"
   },
   "invariants": {
     "maximum_normalized_wer": 0.05,
@@ -502,6 +502,11 @@
           "line": 888,
           "text": "- **MTA-ASR-C09 reversible segment-to-source mapping:** Reconciled the four immutable saved C01 mode receipts across all 16 development recordings and 9,875 native segments. Stable window IDs are retained; 9,328 timestamps map to source-frame bounds with zero round-trip failures, while 547 out-of-window timestamps retain null frame bounds (no clamping). The versioned report `evaluation/runs/meddistract-detailed-v7/segmentation-candidates/tiny-en-segmentation-source-maps-v1.json` is 8,065,899 bytes, SHA-256 `4ff8ccec752a799d1ed406aeba9a66aa34838ce712e9a512dc5753ed003b0cdf`, generated with mapper source commit `d8ff0897ad9e7db09622e111ce0b13963ffadfd0`; historical receipts lack source commits but match their recorded execution-source digests. Tests `tests/test_asr_segmentation.py`, `tests/test_asr_segmentation_candidate_runner.py`, `tests/test_asr_segmentation_source_map_report.py`, and `tests/test_asr_segmentation_source_map_receipts.py`: 28 passed (one warning); Ruff check and format pass. C09 remains partial because downstream transcript publication does not yet expose these mappings and the same-rate frame mapper does not establish resampler group delay. No inference was run for this report; this is development timestamp provenance, not word alignment or clinical acceptance.",
           "status_basis": "Mapped 9,328 saved native timestamps with zero round-trip failures; 547 invalid window timestamps remain explicitly unmapped. Runtime publication integration and measured resampler delay are still unmet."
+        },
+        {
+          "line": 891,
+          "text": "- **MTA-ASR-C09 production transcript source-window integration:** Native Faster Whisper segment bounds now retain a deterministic source-window ID, source recording digest, channel identity and source-frame bounds when the provenance chain proves an exact same-rate PCM, channel extraction or crop offset. Decoded media with an unmeasured resampler delay and backends with unverified timestamp semantics emit a status without source-frame bounds. Mapping is rounded to the nearest source frame and remains segment-level provenance, not word alignment. `tests/test_transcript_source_mapping.py`, `tests/test_transcript_timestamp_integrity.py`, and `tests/test_audio_provenance.py`: 14 passed at commit `8cf7313fb39c007647560469b8f9edfb9010a0f1`; Ruff check/format pass. Broader `tests/test_channels.py` did not return a result and is not counted. No inference ran. C09 remains partial because decoded/resampled timelines have no measured delay mapping and word-level alignment is not provided.",
+          "status_basis": "Exact same-rate PCM, channel, and crop ancestry now reaches transcript segments; resampled media and word-level alignment remain unresolved."
         }
       ],
       "completion_claim": false
