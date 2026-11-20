@@ -8,7 +8,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | --- | ---: |
 | integrated-in-production-flow | 96 |
 | candidate-only | 12 |
-| test-only | 222 |
+| test-only | 226 |
 | documentation-only | 11 |
 
 ## Service modules
@@ -65,6 +65,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/chunk_selection.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/clinical_entities.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/clinical_lexicon.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/confidence_calibration.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/config_inventory.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/context_biasing.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/context_handoff.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
@@ -101,6 +102,8 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/subgroup_metrics.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/timeline.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/timestamps.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
+| `services/asr/training_augmentation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/training_split.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/transcripts.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/vad_candidates.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/worker.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -327,6 +330,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/status_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/storage_lifecycle.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/storage_metrics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/stratified_asr_bootstrap.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/stress_scenario.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/strict_json.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/study_analysis.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
