@@ -1587,6 +1587,11 @@
           "line": null,
           "text": "I09 update: Added services/asr_research_publication.py and evaluation/publications/asr-i09-research-tables-v1.json plus Markdown, SHA-256 f982256a4affd98aaabd994d475aac8d368a912c24632fd892fdd1087472554b. The no-inference source-bound bundle includes 13 model cards, 10 ablation rows, 17 error receipt rows, 29 historical negative-experiment entries and 171 consultation-clustered uncertainty rows. Focused tests passed (2); all included model and ablation rows retain failure of the unchanged 5% WER gate. I09 remains PARTIAL because this selected bundle does not regenerate every historical error-category table, the negative index has bounded scope, and clinical gold/admission are absent."
         }
+        ,
+        {
+          "line": null,
+          "text": "I09 source-binding correction: Preserved publication v1 and added evaluation/publications/asr-i09-research-tables-v2.json plus Markdown, SHA-256 845ce257d8c5dda1f2192582f0d1921b023ea20be9518f782537d04c3202c939. Version 2 is generated after commit 6295ca7d9f8fbe327d723ce2067007dd6646d378; its source_commit and builder code hash both reconcile. The selected bundle and I09 status/limitations are otherwise unchanged."
+        }
       ],
       "completion_claim": false
     },

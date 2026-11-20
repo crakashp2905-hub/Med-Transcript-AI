@@ -531,9 +531,9 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
 - **MTA-ASR-I08:** Partial. `evaluation/reports/asr-i08-resource-evidence-v1.json`
   (SHA-256 `088406a84d062308f57a1443a500649be478e007a47b55ecaaf7e53e8ef4c7c8`) summarizes the historical, source-bound complete resource receipt for nine profiles across eight public development consultations in clean and distracted conditions. It records successful-case p50/p95 latency and p95 RTF, failed-case counts, and process CPU/peak RSS including model load; Omi retains its two failures. These measurements cover the ASR benchmark process, not application upload through integrity-checked export. Monetary cost is not measured because there is no energy meter or billing/amortization rate. Every candidate still fails the 5% WER gate; no inference ran for this summary.
 - **MTA-ASR-I09:** Partial. Added `services/asr_research_publication.py` and
-  `evaluation/publications/asr-i09-research-tables-v1.json` plus Markdown. The
-  deterministic bundle binds eight frozen inputs, 12 source files, model card
-  artifact digests and source report hashes. It assembles 13 model cards, 10
+  `evaluation/publications/asr-i09-research-tables-v2.json` plus Markdown. The
+  post-commit v2 bundle binds the exact builder commit and hashes eight frozen inputs, 12 source files, model card
+  artifact digests and source report hashes (SHA-256 `845ce257d8c5dda1f2192582f0d1921b023ea20be9518f782537d04c3202c939`). It assembles 13 model cards, 10
   matched/VAD ablation rows, 17 error receipt rows, the 29-entry negative
   experiment inventory and 171 consultation-clustered uncertainty rows. The
   focused regression checks same-input reproducibility and hash binding (2
