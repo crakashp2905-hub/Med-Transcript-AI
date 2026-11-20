@@ -69,7 +69,7 @@ def test_segmentation_source_map_receipt_covers_all_saved_native_segments():
 
 
 def test_source_map_progress_record_is_hash_bound_and_stays_partial():
-    ledger_path = Path("evaluation/asr-task-ledger-v3.json")
+    ledger_path = Path("evaluation/asr-task-ledger-v4.json")
     ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
     progress_path = Path(ledger["progress_record"]["path"])
     assert (
