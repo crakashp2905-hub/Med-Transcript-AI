@@ -1,4 +1,4 @@
-"""Synthesize and replay a deceptive spoken prompt using only Windows speech."""
+"""Replay a locally synthesized deceptive spoken prompt through ASR."""
 
 import argparse
 import hashlib
@@ -7,7 +7,7 @@ import subprocess
 from pathlib import Path
 
 from services.api.ingest import inspect_pcm_wav
-from services.asr.adapter import FasterWhisperAdapter
+from services.asr.adapter import ASRFailure, FasterWhisperAdapter
 from services.asr.profiles import load_profiles
 from services.asr.transcripts import build_transcript
 from services.evaluation import score
@@ -60,15 +60,23 @@ def build(
     adapter = FasterWhisperAdapter(profile)
     raw = adapter.transcribe(wav_path, metadata, checkpoint=lambda: None)
     hypothesis = " ".join(segment["text"].strip() for segment in raw["segments"])
-    transcript = build_transcript(
-        raw,
-        metadata,
-        "synthetic-spoken-prompt-encounter",
-        "synthetic-spoken-prompt-audio",
-        profile,
-        "synthetic-spoken-prompt-transcript",
-        1,
-    )
+    try:
+        transcript = build_transcript(
+            raw,
+            metadata,
+            "synthetic-spoken-prompt-encounter",
+            "synthetic-spoken-prompt-audio",
+            profile,
+            "synthetic-spoken-prompt-transcript",
+            1,
+        )
+        transcript_status = transcript["status"]
+        transcript_flags = transcript["review_flags"]
+        transcript_validation_error = None
+    except ASRFailure as exc:
+        transcript_status = "rejected"
+        transcript_flags = []
+        transcript_validation_error = exc.code
     source_code = (
         "services/asr/spoken_prompt_adversarial.py",
         "services/asr/adapter.py",
@@ -103,8 +111,9 @@ def build(
             PROMPT_TEXT, hypothesis, include_extended=True
         ),
         "source_instruction_guard": inspect_prompt(hypothesis),
-        "transcript_status": transcript["status"],
-        "transcript_review_flags": transcript["review_flags"],
+        "transcript_status": transcript_status,
+        "transcript_review_flags": transcript_flags,
+        "transcript_validation_error": transcript_validation_error,
         "downstream_note_or_approval_tested": False,
         "clinical_acceptance": False,
         "limitations": [
