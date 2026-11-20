@@ -20,7 +20,9 @@ def now():
 def checked(root, relative):
     root = Path(root)
     relative = Path(relative)
-    if root.is_symlink() or relative.is_absolute() or ".." in relative.parts:
+    if root.is_symlink():
+        raise ValueError("Backup path contains a symlink")
+    if relative.is_absolute() or ".." in relative.parts:
         raise ValueError("Backup path escapes its root")
     resolved_root = root.resolve()
     candidate = root
