@@ -1,5 +1,7 @@
 """Source-only segmentation plans with explicit source-time coverage."""
 
+import math
+
 from services.conversation_experiment import join_text
 
 STRATEGIES = frozenset(
@@ -360,6 +362,97 @@ def map_source_frame_to_window(plan, window_id, source_frame):
     ):
         raise ValueError("source_frame_out_of_window")
     return source_frame - start
+
+
+def map_native_segments_to_source(plan, window_id, segments):
+    """Map window-relative native segment times to stable source coordinates.
+
+    Invalid model timestamps retain their source window identity but do not
+    receive invented or clamped source frame bounds.
+    """
+    if not isinstance(segments, list):
+        raise ValueError("native_segment_list_required")
+    windows = [
+        row for row in plan.get("windows", []) if row.get("window_id") == window_id
+    ]
+    if len(windows) != 1:
+        raise ValueError("unique_source_window_required")
+    window = windows[0]
+    start_frame = window.get("start_frame")
+    end_frame = window.get("end_frame_exclusive")
+    sample_rate = plan.get("sample_rate")
+    if (
+        type(start_frame) is not int
+        or type(end_frame) is not int
+        or type(sample_rate) is not int
+        or start_frame < 0
+        or end_frame <= start_frame
+        or sample_rate <= 0
+    ):
+        raise ValueError("valid_source_window_and_rate_required")
+    duration_ms = (end_frame - start_frame) * 1000 / sample_rate
+    window_source_start_ms = start_frame * 1000 / sample_rate
+    mapped = []
+    for segment in segments:
+        if not isinstance(segment, dict):
+            raise ValueError("native_segment_record_required")
+        local_start_ms, local_end_ms = segment.get("start_ms"), segment.get("end_ms")
+        valid_numbers = all(
+            not isinstance(value, bool)
+            and isinstance(value, (int, float))
+            and math.isfinite(value)
+            for value in (local_start_ms, local_end_ms)
+        )
+        valid = valid_numbers and 0 <= local_start_ms < local_end_ms <= duration_ms
+        if valid:
+            local_start_frame = round(local_start_ms * sample_rate / 1000)
+            local_end_frame = round(local_end_ms * sample_rate / 1000)
+            valid = 0 <= local_start_frame < local_end_frame <= end_frame - start_frame
+        else:
+            local_start_frame = local_end_frame = None
+        mapped.append(
+            {
+                **segment,
+                "source_window_id": window_id,
+                "source_window_start_frame": start_frame,
+                "source_window_end_frame_exclusive": end_frame,
+                "source_window_channel_index": window.get("channel_index"),
+                "source_start_frame": (
+                    start_frame + local_start_frame if valid else None
+                ),
+                "source_end_frame_exclusive": (
+                    start_frame + local_end_frame if valid else None
+                ),
+                "source_start_ms": (
+                    window_source_start_ms + local_start_ms if valid_numbers else None
+                ),
+                "source_end_ms": (
+                    window_source_start_ms + local_end_ms if valid_numbers else None
+                ),
+                "source_timestamp_in_window": valid,
+                "source_mapping_kind": (
+                    "exact_sample_index_offset"
+                    if valid
+                    else "unavailable_invalid_window_timestamp"
+                ),
+                "source_round_trip_valid": valid
+                and (
+                    map_source_frame_to_window(
+                        plan,
+                        window_id,
+                        start_frame + local_start_frame,
+                    )
+                    == local_start_frame
+                    and map_source_frame_to_window(
+                        plan,
+                        window_id,
+                        start_frame + local_end_frame - 1,
+                    )
+                    == local_end_frame - 1
+                ),
+            }
+        )
+    return mapped
 
 
 def plan_segments(

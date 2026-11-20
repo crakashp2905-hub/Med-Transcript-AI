@@ -9,7 +9,6 @@ import argparse
 import hashlib
 import importlib.metadata
 import json
-import math
 import re
 import subprocess
 import tempfile
@@ -18,7 +17,11 @@ import wave
 from pathlib import Path
 
 from services.api.ingest import file_sha256
-from services.asr.segmentation import plan_segments, stitch_window_outputs
+from services.asr.segmentation import (
+    map_native_segments_to_source,
+    plan_segments,
+    stitch_window_outputs,
+)
 from services.asr.vad_candidates import ENERGY_RMS_V1, detect_file
 from services.detailed_benchmark import fast_score, load, process_peak_resident_bytes
 from services.evidence_io import atomic_json
@@ -188,24 +191,9 @@ def evaluate_case(case, audio_path, predictor, mode, mode_parameters=None):
                         for segment in native_segments
                     ):
                         raise ValueError("invalid_segmentation_decoder_segments")
-                    native_segments = [
-                        {
-                            **segment,
-                            "source_start_ms": start / 16 + segment.get("start_ms", 0),
-                            "source_end_ms": start / 16 + segment.get("end_ms", 0),
-                            "source_timestamp_in_window": (
-                                isinstance(segment.get("start_ms"), (int, float))
-                                and isinstance(segment.get("end_ms"), (int, float))
-                                and math.isfinite(segment["start_ms"])
-                                and math.isfinite(segment["end_ms"])
-                                and 0
-                                <= segment["start_ms"]
-                                <= segment["end_ms"]
-                                <= (end - start) / 16
-                            ),
-                        }
-                        for segment in native_segments
-                    ]
+                    native_segments = map_native_segments_to_source(
+                        plan, window["window_id"], native_segments
+                    )
             except Exception as exc:
                 failed = True
                 failure_code = type(exc).__name__

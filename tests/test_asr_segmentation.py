@@ -3,6 +3,7 @@ import pytest
 from services.asr.segmentation import (
     build_coverage_ledger,
     diagnose_boundaries,
+    map_native_segments_to_source,
     map_source_frame_to_window,
     map_window_frame_to_source,
     plan_segments,
@@ -196,3 +197,51 @@ def test_window_source_index_round_trips_crop_frame_and_channel(strategy):
         map_source_frame_to_window(plan, window["window_id"], source["source_frame"])
         == local_frame
     )
+
+
+@pytest.mark.parametrize(
+    "strategy",
+    ["fixed_window", "overlap_aware", "pause_aware", "vad_cut_merge", "channel_first"],
+)
+def test_native_segment_timestamps_map_to_source_window_and_round_trip(strategy):
+    kwargs = {"max_window_ms": 4000}
+    if strategy == "overlap_aware":
+        kwargs["overlap_ms"] = 1000
+    elif strategy == "pause_aware":
+        kwargs.update(pause_spans=[(4000, 5000)], speech_spans=[(0, 10000)])
+    elif strategy == "vad_cut_merge":
+        kwargs.update(
+            min_window_ms=1000,
+            padding_ms=100,
+            vad_spans=[(1000, 2000)],
+            speech_spans=[(1000, 2000)],
+        )
+    elif strategy == "channel_first":
+        kwargs["channel_count"] = 2
+    plan = plan_segments(10000, 1000, strategy, **kwargs)
+    window = plan["windows"][-1]
+    mapped = map_native_segments_to_source(
+        plan,
+        window["window_id"],
+        [{"start_ms": 100.0, "end_ms": 200.0, "text": "hello"}],
+    )[0]
+
+    assert mapped["source_window_id"] == window["window_id"]
+    assert mapped["source_window_channel_index"] == window["channel_index"]
+    assert mapped["source_start_frame"] == window["start_frame"] + 100
+    assert mapped["source_end_frame_exclusive"] == window["start_frame"] + 200
+    assert mapped["source_mapping_kind"] == "exact_sample_index_offset"
+    assert mapped["source_timestamp_in_window"] is True
+    assert mapped["source_round_trip_valid"] is True
+
+    invalid = map_native_segments_to_source(
+        plan,
+        window["window_id"],
+        [{"start_ms": -1.0, "end_ms": 200.0, "text": "invalid"}],
+    )[0]
+    assert invalid["source_window_id"] == window["window_id"]
+    assert invalid["source_start_frame"] is None
+    assert invalid["source_end_frame_exclusive"] is None
+    assert invalid["source_timestamp_in_window"] is False
+    assert invalid["source_mapping_kind"] == "unavailable_invalid_window_timestamp"
+    assert invalid["source_round_trip_valid"] is False
