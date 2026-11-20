@@ -76,11 +76,12 @@ def test_result_summary(result):
     lines = ANSI_ESCAPE.sub("", result.stdout).splitlines()
     failed = sorted(
         {
-            match.group(1)
+            match.group(1).split("[", 1)[0]
             for line in lines
             if (
                 match := re.match(
-                    r"^(?:FAILED|ERROR)\s+([a-zA-Z0-9_./\\:-]+)", line.strip()
+                    r"^(?:FAILED|ERROR)\s+(?:at setup of\s+)?([^\s]+)",
+                    line.strip(),
                 )
             )
         }
