@@ -527,14 +527,7 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   did not finish in this run, and coverage does not establish clinician review
   quality. No automatic adoption path was found in these reviewed correction
   modules.
-- **MTA-ASR-I07:** Partial. `evaluation/reports/paired-asr-bootstrap-v1.json`
-  reports paired clean-versus-distracted WER deltas using consultation-level
-  resampling (10,000 deterministic iterations, 95% percentile intervals) and
-  records both arms and failed statuses for each pair. It is a development-only
-  convenience sample. The report does not stratify paired uncertainty by
-  clinical term or speaker, and preserved failure statuses are not adjudicated
-  clinical error estimates; the requested full uncertainty analysis remains
-  incomplete.
+- **MTA-ASR-I07:** Evidence recorded for paired uncertainty stratified by recording condition, reference speaker role and literal clinical term across nine frozen candidates and eight public development consultation groups. `evaluation/reports/paired-asr-stratified-bootstrap-v2.json` SHA-256 `6d29a962427c94d8387c7230bf37819b49cf85f44ebba5fecc2697555c1cd2b7` binds the source paired bootstrap, taxonomy, manifest and all fixed-run receipts. Role-specific substitution/deletion rates and 16 term-recall strata use 10,000 consultation-cluster draws; the Omi failed pair remains included. Term intervals are withheld where fewer than two groups contain the term. `tests/test_stratified_asr_bootstrap.py` and `tests/test_stratified_asr_bootstrap_receipts.py`: passed. References are non-adjudicated; role labels come from reference turns, insertions remain unattributed, and eight groups do not support clinical subgroup claims. The primary WER and <=5% gate are unchanged.
 - **MTA-ASR-I08:** Partial. Existing compute Pareto receipts report measured
   case wall time and RTF percentiles for selected inference profiles; worker
   receipts also retain per-job wall time. The Pareto report explicitly leaves
