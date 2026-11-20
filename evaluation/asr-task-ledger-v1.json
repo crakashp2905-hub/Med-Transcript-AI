@@ -1617,6 +1617,11 @@
           "line": null,
           "text": "I10 low-volume update: Ran services.asr.low_volume_adversarial on public mock patient sample day1_consultation09_patient.utterance03, group day1_consultation09, with local tiny.en inference at 0, -12 and -20 dB. Versioned receipt evaluation/runs/asr-adversarial-low-volume-v2/report.json SHA-256 911f3cdb81613ef79ccbbcad9b08d6b962f6a0936da858e09b7e604db31e2a14 binds source commit c7395b783305e25a9f71ae0c7bee4266952c8b83, dataset/sample/model/code hashes and all outputs. The reference negation tokens not/no were retained at all three levels; each result was 21.05% WER, failing the unchanged 5% gate. The sample is one convenience-selected digitally attenuated public mock utterance, not a calibrated challenge set. I10 remains PARTIAL; deceptive prompt coverage, broad denial variants and independent clinical gold are absent. No real-patient or reserved-cohort processing occurred."
         }
+        ,
+        {
+          "line": null,
+          "text": "I10 cross-talk update: Replayed the public, developer-scripted synthetic mono-overlap scenario from day1_consultation08 through the local tiny.en adapter and real API worker. Receipt evaluation/runs/asr-adversarial-cross-talk-v2/report.json SHA-256 985e212442a07a1eebf780fba5a088f040e3c151d09008a59e14c0574e80e5d0 binds source commit 8fcbf0513abd1a7b56d5402a837f99069bdcb88f, exact scenario/audio/source-manifest/model/code hashes and raw ASR segments. On 2,847 ms overlap the hypothesis included 'Oh, ladies and gentlemen, congratulations,' tokens absent from both source reference turns; WER is not scored because simultaneous turns lack one ordered target. Transcript stays review_required, and tests/test_cross_talk_adversarial.py (2 passed with local loopback) verifies no note/approval exists after worker transcription. This is one scripted public mock case, not clinical adjudication. I10 remains PARTIAL; deceptive spoken prompts and broad acoustic challenges remain untested."
+        }
       ],
       "completion_claim": false
     },

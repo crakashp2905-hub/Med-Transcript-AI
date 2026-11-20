@@ -542,19 +542,25 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   complete regeneration from source-bound receipts. Clinical gold and model
   admission are absent; all included model and ablation rows fail the unchanged
   5% WER gate.
-- **MTA-ASR-I10:** Partial. `evaluation/runs/asr-adversarial-low-volume-v2/report.json`
-  (SHA-256 `911f3cdb81613ef79ccbbcad9b08d6b962f6a0936da858e09b7e604db31e2a14`)
-  binds local tiny.en inference to commit `c7395b783305e25a9f71ae0c7bee4266952c8b83`,
-  the public development manifest/sample hash and the committed runner/model
-  profile. On one patient denial utterance, “not” and “no” are retained at 0,
-  -12 and -20 dB with the same 21.05% WER, above the unchanged 5% gate. The
-  replay uses digitally attenuated public mock audio and is not a calibrated
-  recording condition. `tests/test_low_volume_adversarial.py`: 2 passed;
-  `tests/test_real_asr_silence_worker.py`: 1 passed. The silence worker path
-  stays empty and cannot create a note or approval. Existing corrupt-RIFF,
-  repeated-token and cross-talk tests are synthetic. There is no clinician gold;
-  deceptive spoken prompts and broader denial/audio-condition coverage remain
-  untested. No no-hallucination guarantee is made.
+- **MTA-ASR-I10:** Partial. The source-bound low-volume receipt
+  `evaluation/runs/asr-adversarial-low-volume-v2/report.json` (SHA-256
+  `911f3cdb81613ef79ccbbcad9b08d6b962f6a0936da858e09b7e604db31e2a14`)
+  retains patient denial tokens “not” and “no” on one public mock sample at
+  0, -12 and -20 dB, but has 21.05% WER at each level, above the unchanged 5%
+  gate. Cross-talk replay `evaluation/runs/asr-adversarial-cross-talk-v2/report.json`
+  (SHA-256 `985e212442a07a1eebf780fba5a088f040e3c151d09008a59e14c0574e80e5d0`,
+  source commit `8fcbf0513abd1a7b56d5402a837f99069bdcb88f`) ran tiny.en on the
+  public synthetic `day1_consultation08` overlap (2,847 ms). The output included
+  “Oh, ladies and gentlemen, congratulations,” tokens absent from both source
+  reference turns. This is an unmatched-reference diagnostic, not independent
+  clinical adjudication. The transcript remains `review_required`; the actual
+  worker regression passed and the workspace had no note or approval after
+  transcription (`tests/test_cross_talk_adversarial.py`: 2 passed with the
+  local venv and loopback enabled). Silence remains empty and cannot create a
+  note or approval (`tests/test_real_asr_silence_worker.py`: 1 passed). Corrupt
+  RIFF and repeated-token regressions also pass, but are synthetic. Deceptive
+  spoken prompts, broader denial/acoustic conditions and clinician gold remain
+  missing. No general no-hallucination guarantee is made; I10 remains partial.
 - **MTA-ASR-I12:** Defined in `evaluation/asr-capability-matrix-v1.json`.
   It distinguishes verified local CPU profiles, conditional/unqualified CUDA
   profiles, and missing/corrupt weights (unavailable, no automatic download).
