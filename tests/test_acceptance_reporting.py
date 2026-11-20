@@ -32,6 +32,23 @@ def test_acceptance_failure_report_preserves_ids_without_source_or_parameter_tex
     )
 
 
+def test_acceptance_failure_report_parses_carriage_return_summaries():
+    result = SimpleNamespace(
+        returncode=1,
+        stdout=(
+            "FAILED tests/test_media.py::test_decoder[synthetic-case] - private detail\r"
+            "ERROR tests/test_routes.py::test_guard - private setup detail\r"
+            "2 failed in 0.50s\r"
+        ),
+    )
+    report = summarize_result(result)
+    assert report["failed_test_ids"] == [
+        "tests/test_media.py::test_decoder",
+        "tests/test_routes.py::test_guard",
+    ]
+    assert "private" not in str(report)
+
+
 def test_acceptance_inventory_pins_browser_tests_ci_and_dependency_contracts():
     inventory = source_inventory()
     for path in (

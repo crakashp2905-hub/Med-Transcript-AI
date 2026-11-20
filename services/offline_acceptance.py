@@ -32,6 +32,7 @@ CRITICAL_SKIPPED_TEST_PATHS = frozenset(
     }
 )
 SKIPPED_TEST = re.compile(r"^SKIPPED \[\d+\] ([^:]+):(\d+): (.+)$", re.M)
+ANSI_ESCAPE = re.compile(r"\x1b(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
 
 
 def pytest_basetemp(version):
@@ -72,10 +73,18 @@ def source_inventory(root="."):
 
 def test_result_summary(result):
     # Do not publish assertion values, source excerpts, parameters or provider text.
+    lines = ANSI_ESCAPE.sub("", result.stdout).splitlines()
     failed = sorted(
-        set(re.findall(r"^(?:FAILED|ERROR) ([a-zA-Z0-9_./\\:-]+)", result.stdout, re.M))
+        {
+            match.group(1)
+            for line in lines
+            if (
+                match := re.match(
+                    r"^(?:FAILED|ERROR)\s+([a-zA-Z0-9_./\\:-]+)", line.strip()
+                )
+            )
+        }
     )
-    lines = result.stdout.splitlines()
     terminal = next(
         (
             line
