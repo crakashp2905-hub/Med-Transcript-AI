@@ -248,7 +248,7 @@ def build_boundary_report(
         mode_reports[mode] = {
             "receipt_path": path.as_posix(),
             "receipt_sha256": file_sha256(path),
-            "source_commit": report["source_commit"],
+            "source_commit": report.get("source_commit"),
             "summary": totals,
             "files": files,
         }

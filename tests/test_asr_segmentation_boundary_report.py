@@ -171,6 +171,7 @@ def test_boundary_report_measures_turn_edges_roles_and_short_omissions(
     pause = report["modes"]["pause_aware"]["files"][0]
     assert pause["summary"]["omitted_short_turns"] == 0
     assert pause["summary"]["clipped_turns"] == 0
+    assert report["modes"]["fixed_window"]["source_commit"] == "commit-1"
 
 
 def test_boundary_report_rejects_windows_outside_source_audio(tmp_path, monkeypatch):
