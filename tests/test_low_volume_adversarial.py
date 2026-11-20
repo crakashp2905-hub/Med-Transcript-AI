@@ -3,6 +3,10 @@ import json
 import wave
 from pathlib import Path
 
+import pytest
+
+pytest.importorskip("numpy", reason="audio replay requires the ASR extra")
+
 import numpy as np
 
 from services.asr.low_volume_adversarial import (

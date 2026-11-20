@@ -28,6 +28,7 @@ def test_postgres_migration_keeps_lifecycle_transition_guard_writable():
     assert "validate_encounter_lifecycle_update()" in sql
     assert "forbid_version_update()" not in sql
     assert "SELECT RAISE" not in sql
+    assert "DROP TRIGGER encounter_lifecycle_update_guard ON encounter_lifecycle;" in sql
 
 
 def test_postgres_cursor_exposes_rowcount_for_lifecycle_compare_and_swap():

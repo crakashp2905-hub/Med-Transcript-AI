@@ -1,3 +1,7 @@
+import pytest
+
+pytest.importorskip("numpy", reason="confidence calibration requires the ASR extra")
+
 from services.asr.confidence_calibration import _cluster_bootstrap, _crossfit
 
 

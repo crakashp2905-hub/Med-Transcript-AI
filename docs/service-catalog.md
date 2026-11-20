@@ -8,8 +8,8 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | --- | ---: |
 | integrated-in-production-flow | 96 |
 | candidate-only | 12 |
-| test-only | 229 |
-| documentation-only | 11 |
+| test-only | 231 |
+| documentation-only | 10 |
 
 ## Service modules
 
@@ -100,6 +100,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/segmentation_overlap_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/segmentation_source_map_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/segmentation_threshold_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/spoken_prompt_adversarial.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/subgroup_diagnostics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/subgroup_metrics.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/timeline.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
@@ -258,7 +259,7 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/product_scenarios.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/prompt_ablations.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/prompt_harness.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
-| `services/prompt_injection.py` | `documentation-only` | referenced by documentation but absent from runtime and test import graphs |
+| `services/prompt_injection.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/proposal_integrity.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/provider_interfaces.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/provision_benchmark.py` | `candidate-only` | not reachable from configured runtime roots or test imports |

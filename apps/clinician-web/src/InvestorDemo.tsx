@@ -1,7 +1,9 @@
-import fixture from '../../../data/demo-sample.json';
-
 type DemoFixture={fixture_id:string;synthetic:true;segments:{start_ms:number;end_ms:number;role:string;text:string}[]};
-const demo=fixture as DemoFixture;
+const demo:DemoFixture={fixture_id:'synthetic-investor-preview-v1',synthetic:true,segments:[
+ {start_ms:0,end_ms:1850,role:'patient',text:'I have had a mild headache since yesterday.'},
+ {start_ms:1940,end_ms:3320,role:'clinician',text:'Any vision changes or weakness?'},
+ {start_ms:3390,end_ms:4610,role:'patient',text:'No, neither of those.'},
+]};
 
 export function InvestorDemo(){
  return <main className="investor-demo">

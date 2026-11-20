@@ -63,6 +63,10 @@ def postgres_migration(sql):
         "DROP TRIGGER transcript_versions_immutable;",
         "DROP TRIGGER transcript_versions_immutable ON transcript_versions;",
     )
+    sql = sql.replace(
+        "DROP TRIGGER encounter_lifecycle_update_guard;",
+        "DROP TRIGGER encounter_lifecycle_update_guard ON encounter_lifecycle;",
+    )
     return sql
 
 

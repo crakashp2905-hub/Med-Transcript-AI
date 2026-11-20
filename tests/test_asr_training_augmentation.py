@@ -2,8 +2,11 @@ import hashlib
 import json
 import wave
 
-import numpy as np
 import pytest
+
+pytest.importorskip("numpy", reason="training augmentation requires the media extra")
+
+import numpy as np
 from services.offline_acceptance import pytest_basetemp
 
 from services.asr.training_augmentation import (
