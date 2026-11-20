@@ -55,6 +55,20 @@ def _paired_interval(group_metrics, *, numerator_key, denominator_key, seed):
 
     clean = aggregate(groups, "clean")
     distracted = aggregate(groups, "distracted")
+    if len(groups) < 2:
+        return {
+            "clean_rate": clean,
+            "distracted_rate": distracted,
+            "distracted_minus_clean": distracted - clean,
+            "confidence_level": 0.95,
+            "interval_method": "not_estimable_fewer_than_two_consultation_groups",
+            "iterations": ITERATIONS,
+            "seed": seed,
+            "low": None,
+            "high": None,
+            "consultation_groups": len(groups),
+            "paired_groups": groups,
+        }
     rng = random.Random(seed)
     deltas = []
     for _ in range(ITERATIONS):
@@ -310,6 +324,8 @@ def build_stratified_report(
     report = {
         "schema_version": "paired_asr_stratified_bootstrap_v1",
         "complete": True,
+        "inference_executed": False,
+        "analysis_only_replay": True,
         "scope": "retrospective_public_development_only",
         "source_commit": _source_commit(),
         "inputs": {

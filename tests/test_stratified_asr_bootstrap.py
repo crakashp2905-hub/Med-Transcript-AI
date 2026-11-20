@@ -34,3 +34,23 @@ def test_stratified_bootstrap_resamples_paired_consultation_groups():
     assert report["consultation_groups"] == 4
     assert report["paired_groups"] == sorted(groups)
     assert report["low"] <= report["high"]
+
+
+def test_stratified_bootstrap_does_not_claim_interval_from_one_consultation():
+    report = _paired_interval(
+        {
+            "single-consultation": {
+                "clean": {"errors": 1, "reference_words": 5},
+                "distracted": {"errors": 2, "reference_words": 5},
+            }
+        },
+        numerator_key="errors",
+        denominator_key="reference_words",
+        seed=17,
+    )
+    assert report["consultation_groups"] == 1
+    assert report["low"] is None
+    assert report["high"] is None
+    assert report["interval_method"] == (
+        "not_estimable_fewer_than_two_consultation_groups"
+    )
