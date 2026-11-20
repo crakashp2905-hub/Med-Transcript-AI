@@ -207,7 +207,6 @@ def build_boundary_report(
             != expected_profile_sha256
             or bindings.get("suite_sha256") != suite_sha256
             or bindings.get("manifest_sha256") != suite["manifest_sha256"]
-            or not report.get("source_commit")
             or not isinstance(bindings.get("source_sha256"), dict)
         ):
             raise ValueError("segmentation_boundary_receipt_source_mismatch")
@@ -215,7 +214,7 @@ def build_boundary_report(
             source_digests = bindings["source_sha256"]
         elif bindings["source_sha256"] != source_digests:
             raise ValueError("segmentation_boundary_execution_source_mismatch")
-        source_commits[mode] = report["source_commit"]
+        source_commits[mode] = report.get("source_commit")
         cases = {case["group_id"]: case for case in report.get("cases", [])}
         if set(cases) != set(expected):
             raise ValueError("segmentation_boundary_receipt_cohort_mismatch")
@@ -270,6 +269,11 @@ def build_boundary_report(
         "candidate_id": "faster-whisper-tiny.en",
         "profile_sha256": expected_profile_sha256,
         "source_commits": source_commits,
+        "receipt_commit_status": (
+            "recorded_per_mode"
+            if all(source_commits.values())
+            else "not_recorded_in_original_mode_receipts"
+        ),
         "execution_source_sha256": source_digests,
         "case_count": len(expected),
         "input_hash_equivalence": "same_audio_and_reference_hashes_across_all_modes",
@@ -284,6 +288,7 @@ def build_boundary_report(
         "modes": mode_reports,
         "limitations": [
             "Reference turn intervals are development annotations, not independently adjudicated clinical gold.",
+            "Original mode receipts do not record their Git commit; exact execution-source hashes are preserved instead.",
             "Clipped counts indicate turn intervals crossed by a window edge; they do not measure word-edge timing error.",
             "Joined known roles are window-level overlap indicators, not speaker diarization error rates.",
             "Window intersection does not prove that the audio contains or omits speech within each annotated interval.",

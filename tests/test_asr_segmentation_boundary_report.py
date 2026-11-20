@@ -157,6 +157,7 @@ def test_boundary_report_measures_turn_edges_roles_and_short_omissions(
     assert report["complete"] is True
     assert report["clinical_acceptance"] is False
     assert report["case_count"] == 16
+    assert report["receipt_commit_status"] == "recorded_per_mode"
     assert report["turn_time_mapping"]["short_turn_threshold_frames"] == 1600
     assert (
         report["boundary_metric_scope"]
