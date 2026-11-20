@@ -226,7 +226,7 @@ def acceptance(version, run_tests=True, run_build=True):
                     "-m",
                     "pytest",
                     "-q",
-                    "-rs",
+                    "-rFs",
                     "--basetemp",
                     str(temp),
                 ],
