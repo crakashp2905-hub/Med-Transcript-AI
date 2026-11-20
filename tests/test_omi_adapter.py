@@ -34,6 +34,8 @@ def test_native_library_handles_are_closed_even_when_model_cleanup_fails(
 def test_predictor_opens_only_the_pinned_local_gguf(monkeypatch, tmp_path):
     import sys
 
+    pytest.importorskip("numpy", reason="Omi model adapter requires NumPy")
+
     from services import omi_adapter
 
     model_dir = tmp_path / "model"
