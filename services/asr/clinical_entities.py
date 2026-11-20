@@ -8,21 +8,64 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from services.review.clinical import MEDICATION, QUANTITY
 from services.review.models import ClinicalAssertion
 
+ClinicalEntityKind = Literal[
+    "drug_name",
+    "strength",
+    "route",
+    "frequency",
+    "allergy",
+    "negation",
+    "anatomy",
+    "measurement",
+    "temporal_relation",
+]
+
+
+_ROUTE = re.compile(
+    r"\b(?:by mouth|orally|oral|PO|intravenous|IV|intramuscular|IM|"
+    r"subcutaneous|SQ|topical|inhaled|intranasal|rectal|sublingual)\b",
+    re.I,
+)
+_FREQUENCY = re.compile(
+    r"\b(?:once|twice|three times|four times) (?:a |per )?day\b|"
+    r"\b(?:daily|nightly|weekly|monthly|q\.?d\.?|b\.?i\.?d\.?|"
+    r"t\.?i\.?d\.?|q\.?i\.?d\.?|every \d+ hours?)\b",
+    re.I,
+)
+_ALLERGY = re.compile(
+    r"\b(?:allerg(?:y|ies)(?:\s+to)?|allergic\s+to)\s+"
+    r"(?P<item>penicillin|aspirin|sulfa(?:mides?)?|latex|peanuts?|"
+    r"shellfish|eggs?|pollen|adhesives?)\b|"
+    r"\b(?P<reverse>penicillin|aspirin|sulfa(?:mides?)?|latex|peanuts?|"
+    r"shellfish|eggs?|pollen|adhesives?)\s+allerg(?:y|ies)\b",
+    re.I,
+)
+_NEGATION = re.compile(
+    r"\b(?:no|not|never|without|denies|denied|negative for|rules out)\b", re.I
+)
+_ANATOMY = re.compile(
+    r"\b(?:chest|abdomen|abdominal|heart|lung|lungs|throat|neck|back|"
+    r"head|brain|left arm|right arm|left leg|right leg|knee|hip|skin|"
+    r"stomach|kidney|kidneys|liver|ankle|wrist)\b",
+    re.I,
+)
+_MEASUREMENT = re.compile(
+    r"(?<!\w)\d+(?:\.\d+)?\s*(?:mmHg|cm|mm|mL|ml|L|kg|g|lb|lbs|"
+    r"°\s?[CF]|degrees?\s+[CF]|bpm|%|percent)\b",
+    re.I,
+)
+_TEMPORAL = re.compile(
+    r"\b(?:since|for|before|after|during|until|yesterday|today|tomorrow|"
+    r"last night|this morning|onset|currently|previously|recently|"
+    r"\d+\s+(?:minutes?|hours?|days?|weeks?|months?|years?)\s+ago)\b",
+    re.I,
+)
+
 
 class ClinicalEntity(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    kind: Literal[
-        "drug_name",
-        "strength",
-        "route",
-        "frequency",
-        "allergy",
-        "negation",
-        "anatomy",
-        "measurement",
-        "temporal_relation",
-    ]
+    kind: ClinicalEntityKind
     text: str = Field(min_length=1)
     start_char: int = Field(ge=0)
     end_char: int = Field(gt=0)
@@ -89,6 +132,87 @@ def extract_medication_entities(text: str) -> list[ClinicalEntity]:
                 )
             )
     return entities
+
+
+def extract_clinical_entities(text: str) -> list[ClinicalEntity]:
+    """Return conservative, source-spanned candidates across the declared types.
+
+    These phrase rules are development aids, not a clinical parser. They do not
+    normalize text, infer unstated facts, or authorize any downstream action.
+    """
+    medication_entities = extract_medication_entities(text)
+    entities = list(medication_entities)
+    drugs = [entity for entity in medication_entities if entity.kind == "drug_name"]
+    clause_break = re.compile(r";|(?<!\d)[.!?](?!\d)|\b(?:but|however)\b", re.I)
+
+    def assertion_at(start: int) -> ClinicalAssertion:
+        preceding = max(
+            (match.end() for match in clause_break.finditer(text, 0, start)),
+            default=0,
+        )
+        clause = text[preceding:start]
+        if re.search(r"\b(?:maybe|possibly|perhaps|might)\b", clause, re.I):
+            return "uncertain"
+        if _NEGATION.search(clause):
+            return "negated"
+        return "affirmed"
+
+    def related_medication(start: int) -> str | None:
+        prior = [drug for drug in drugs if drug.end_char <= start]
+        if not prior:
+            return None
+        candidate = prior[-1]
+        boundary = max(
+            (
+                match.end()
+                for match in clause_break.finditer(text, candidate.end_char, start)
+            ),
+            default=candidate.end_char,
+        )
+        return candidate.related_to if start - boundary <= 96 else None
+
+    patterns: tuple[tuple[ClinicalEntityKind, re.Pattern[str]], ...] = (
+        ("route", _ROUTE),
+        ("frequency", _FREQUENCY),
+        ("anatomy", _ANATOMY),
+        ("measurement", _MEASUREMENT),
+        ("temporal_relation", _TEMPORAL),
+        ("negation", _NEGATION),
+    )
+    for kind, pattern in patterns:
+        for match in pattern.finditer(text):
+            entities.append(
+                ClinicalEntity(
+                    kind=kind,
+                    text=match.group(),
+                    start_char=match.start(),
+                    end_char=match.end(),
+                    assertion=(
+                        "negated" if kind == "negation" else assertion_at(match.start())
+                    ),
+                    related_to=(
+                        related_medication(match.start())
+                        if kind in {"route", "frequency"}
+                        else None
+                    ),
+                )
+            )
+
+    for match in _ALLERGY.finditer(text):
+        group = "item" if match.group("item") is not None else "reverse"
+        start, end = match.span(group)
+        entities.append(
+            ClinicalEntity(
+                kind="allergy",
+                text=text[start:end],
+                start_char=start,
+                end_char=end,
+                assertion=assertion_at(match.start()),
+            )
+        )
+    return sorted(
+        entities, key=lambda entity: (entity.start_char, entity.end_char, entity.kind)
+    )
 
 
 def compare_candidate_safety(original: str, alternative: str) -> dict:

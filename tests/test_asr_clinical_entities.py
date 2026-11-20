@@ -3,6 +3,7 @@ import pytest
 from services.asr.clinical_entities import (
     ClinicalEntity,
     compare_candidate_safety,
+    extract_clinical_entities,
     extract_medication_entities,
 )
 
@@ -58,3 +59,36 @@ def test_candidate_agreement_does_not_claim_truth_or_adopt():
     assert result["review_required"] is False
     assert result["clinical_truth_verified"] is False
     assert result["automatic_adoption"] is False
+
+
+def test_broad_typed_candidates_keep_source_spans_and_medication_relations():
+    text = (
+        "No known penicillin allergy. Take aspirin 75 mg orally twice daily. "
+        "Chest pain began yesterday; temperature 38 °C."
+    )
+    entities = extract_clinical_entities(text)
+    assert {
+        "drug_name",
+        "strength",
+        "route",
+        "frequency",
+        "allergy",
+        "negation",
+        "anatomy",
+        "measurement",
+        "temporal_relation",
+    } <= {entity.kind for entity in entities}
+    assert [
+        (item.text, item.assertion) for item in entities if item.kind == "allergy"
+    ] == [("penicillin", "negated")]
+    aspirin = next(
+        entity
+        for entity in entities
+        if entity.kind == "drug_name" and entity.text == "aspirin"
+    )
+    assert all(
+        entity.related_to == aspirin.related_to
+        for entity in entities
+        if entity.kind in {"route", "frequency"}
+    )
+    assert all(text[item.start_char : item.end_char] == item.text for item in entities)
