@@ -69,11 +69,13 @@ def test_segmentation_source_map_receipt_covers_all_saved_native_segments():
 
 
 def test_source_map_progress_record_is_hash_bound_and_stays_partial():
-    ledger_path = Path("evaluation/asr-task-ledger-v1.json")
+    ledger_path = Path("evaluation/asr-task-ledger-v2.json")
     ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
     progress_path = Path(ledger["progress_record"]["path"])
     assert (
-        hashlib.sha256(progress_path.read_bytes()).hexdigest()
+        hashlib.sha256(
+            progress_path.read_text(encoding="utf-8").encode("utf-8")
+        ).hexdigest()
         == ledger["progress_record"]["sha256"]
     )
     task = next(row for row in ledger["tasks"] if row["id"] == "MTA-ASR-C09")

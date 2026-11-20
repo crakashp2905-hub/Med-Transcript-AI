@@ -48,8 +48,10 @@ def test_vad_threshold_ablation_receipts_are_matched_and_failure_inclusive():
         "padding_600ms": "e0d0ecc365a3319818becc2ad3361f137d9ba333",
     }
 
-    progress = Path("docs/asr-rnd-progress.md").read_bytes()
-    ledger = json.loads(Path("evaluation/asr-task-ledger-v1.json").read_text())
+    progress = (
+        Path("docs/asr-rnd-progress.md").read_text(encoding="utf-8").encode("utf-8")
+    )
+    ledger = json.loads(Path("evaluation/asr-task-ledger-v2.json").read_text())
     task = next(row for row in ledger["tasks"] if row["id"] == "MTA-ASR-C05")
     assert ledger["progress_record"]["sha256"] == hashlib.sha256(progress).hexdigest()
     assert task["status"] == "EVIDENCE_RECORDED"

@@ -35,8 +35,10 @@ def test_training_resource_audit_records_missing_local_training_capability():
     )
     assert report["repository_model_evidence"]["optimizer_recipe_identified"] is False
 
-    progress_raw = Path("docs/asr-rnd-progress.md").read_bytes()
-    ledger = json.loads(Path("evaluation/asr-task-ledger-v1.json").read_text())
+    progress_raw = (
+        Path("docs/asr-rnd-progress.md").read_text(encoding="utf-8").encode("utf-8")
+    )
+    ledger = json.loads(Path("evaluation/asr-task-ledger-v2.json").read_text())
     assert (
         ledger["progress_record"]["sha256"] == hashlib.sha256(progress_raw).hexdigest()
     )

@@ -63,8 +63,10 @@ def test_confidence_calibration_is_group_disjoint_and_keeps_gate_unchanged():
         assert set(row["crossfit_training_groups"]) == used - {held_out}
         assert "reference" not in row and "hypothesis" not in row
 
-    progress = Path("docs/asr-rnd-progress.md").read_bytes()
-    ledger = json.loads(Path("evaluation/asr-task-ledger-v1.json").read_text())
+    progress = (
+        Path("docs/asr-rnd-progress.md").read_text(encoding="utf-8").encode("utf-8")
+    )
+    ledger = json.loads(Path("evaluation/asr-task-ledger-v2.json").read_text())
     assert ledger["progress_record"]["sha256"] == hashlib.sha256(progress).hexdigest()
     task = next(task for task in ledger["tasks"] if task["id"] == "MTA-ASR-H07")
     assert task["status"] == "EVIDENCE_RECORDED"

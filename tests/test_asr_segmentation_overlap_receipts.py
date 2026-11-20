@@ -49,8 +49,10 @@ def test_overlap_alignment_receipt_reconciles_same_saved_windows():
         assert row["exact_stitch_edits"] == original["normalized_edits"]
     assert sum(row["audio_review_required"] for row in report["cases"]) == 5
 
-    progress = Path("docs/asr-rnd-progress.md").read_bytes()
-    ledger = json.loads(Path("evaluation/asr-task-ledger-v1.json").read_text())
+    progress = (
+        Path("docs/asr-rnd-progress.md").read_text(encoding="utf-8").encode("utf-8")
+    )
+    ledger = json.loads(Path("evaluation/asr-task-ledger-v2.json").read_text())
     task = next(row for row in ledger["tasks"] if row["id"] == "MTA-ASR-C08")
     assert ledger["progress_record"]["sha256"] == hashlib.sha256(progress).hexdigest()
     assert task["status"] == "EVIDENCE_RECORDED"
