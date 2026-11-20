@@ -1,0 +1,503 @@
+{
+  "schema_version": "claim_provenance_v1",
+  "source_commit": "7842956bb49a60d797efd6fb0ae6e1bf4e7d09e0",
+  "source_scope": [
+    "docs/plans/zero-external-checklist.md explicit engineering rubric and clinical scope boundary",
+    "evaluation/reports/master-task-mta-14-09-4e5a5b9.json narrow synthetic recovery observation"
+  ],
+  "claims": [
+    {
+      "claim_id": "overall-self-contained-engineering-target",
+      "label": "10/10 self-contained engineering and research prototype",
+      "status": "not_awarded_target_only",
+      "assessment": "The checklist defines a target, not a current score. Representative evidence is linked by dimension; unresolved P0 risks and external/clinical gates prevent an overall 10/10 award.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 10,
+          "text": "A **10/10 self-contained engineering and research prototype** means:",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-17-01",
+          "task_status": "verified",
+          "test_id": "tests/test_architecture_spec.py::test_architecture_spec_references_existing_modules_and_typed_contracts",
+          "report_check": "architecture_contracts",
+          "source_commit": "499ed302d2f5cb50be60e1fe36184847098fa632",
+          "artifact_path": "evaluation/reports/mta-17-01-architecture-spec-v1.json",
+          "artifact_sha256": "2d1957362f3fdea2753d10f4e99e20ed7e19ab0d980a7e5f094cd307d1167a45"
+        },
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_maintenance.py::test_local_restore_recovery_target_and_snapshot_rpo",
+          "report_check": "synthetic_restore_and_recovery_targets",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        },
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_operations_playbook.py::test_operations_playbook_contains_migration_incident_and_stop_procedures",
+          "report_check": "operations_playbook_contract",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        },
+        {
+          "task_id": "MTA-16-13",
+          "task_status": "verified",
+          "test_id": "tests/test_offline_onboarding.py::test_local_onboarding_needs_no_email_or_oauth_activation",
+          "report_check": "onboarding_offline",
+          "source_commit": "45a5910c27302d8d8dc03e1bd62987ceeb53ba47",
+          "artifact_path": "evaluation/reports/mta-16-13-offline-onboarding-v1.json",
+          "artifact_sha256": "394abe3c9b0a2e691e728f2bd2d84ca66646db50bf777628e3b1aacdc6e888f8"
+        },
+        {
+          "task_id": "MTA-17-02",
+          "task_status": "verified",
+          "test_id": "tests/test_repro_bundle.py::test_repro_bundle_has_hashes_commands_and_negative_results",
+          "report_check": "repro_pack_v3",
+          "source_commit": "6b1f05901d4996da09d6ff047e669bed6ba3ccfe",
+          "artifact_path": "evaluation/reports/mta-17-02-reproducibility-pack-v3.json",
+          "artifact_sha256": "9d43916e850bcfed8cb4ede402d0a33c28134f475f02c4af2e3b3fd031e6b97a"
+        },
+        {
+          "task_id": "MTA-17-03",
+          "task_status": "verified",
+          "test_id": "tests/test_publication_bundle.py::test_publication_tables_retain_gate_failures_unranked_candidates_and_limits",
+          "report_check": "publication_bundle",
+          "source_commit": "eb80d9767bc04527674b67dcfb85d364b564e13c",
+          "artifact_path": "evaluation/reports/mta-17-03-benchmark-publication-v1.json",
+          "artifact_sha256": "f5595d452d794d6eac9dce9f1c9c4c8a288d08ea0bff7462e8801311361fee10"
+        },
+        {
+          "task_id": "MTA-17-07",
+          "task_status": "verified",
+          "test_id": "tests/test_offline_engineering.py::test_offline_scripted_workflow_blocks_dose_error_and_viewer_write",
+          "report_check": "one_command_demo_workflow",
+          "source_commit": "9f1914feced211a964affb6ef857f2979a987514",
+          "artifact_path": "evaluation/reports/mta-17-07-offline-demo-v1.json",
+          "artifact_sha256": "f06312f7d3986d7e14f88cef2bce01f6b830ab77fa4733d9b3a10c977c0c1aa1"
+        },
+        {
+          "task_id": "MTA-17-09",
+          "task_status": "verified",
+          "test_id": "tests/test_product_management_bundle.py::test_product_management_artifacts_are_present_and_cross_linked",
+          "report_check": "product_management_artifacts_and_evidence_boundaries",
+          "source_commit": "22d71b698218c573f159ec9956effc03369f75f9",
+          "artifact_path": "evaluation/reports/mta-17-09-product-management-v1.json",
+          "artifact_sha256": "675ee1fdb1cc8cd273d5bba7aad64904e6ca9e4841d7cff4aac222a670b28ccd"
+        }
+      ]
+    },
+    {
+      "claim_id": "architecture-maintainability",
+      "label": "Architecture/maintainability: typed services, compatibility, manageable modules",
+      "status": "supporting_evidence_only_not_scored",
+      "assessment": "Architecture contracts and module references are checked; this is not a comprehensive maintainability score.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 379,
+          "text": "Architecture/maintainability | 15",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-17-01",
+          "task_status": "verified",
+          "test_id": "tests/test_architecture_spec.py::test_architecture_spec_references_existing_modules_and_typed_contracts",
+          "report_check": "architecture_contracts",
+          "source_commit": "499ed302d2f5cb50be60e1fe36184847098fa632",
+          "artifact_path": "evaluation/reports/mta-17-01-architecture-spec-v1.json",
+          "artifact_sha256": "2d1957362f3fdea2753d10f4e99e20ed7e19ab0d980a7e5f094cd307d1167a45"
+        }
+      ]
+    },
+    {
+      "claim_id": "reliability-recovery",
+      "label": "Reliability and recovery: synthetic crash/retry/revocation paths tested",
+      "status": "supporting_evidence_only_not_scored",
+      "assessment": "Synthetic recovery targets and the offline demo have focused evidence; the full crash/retry/revocation matrix is not certified complete by these checks.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 380,
+          "text": "Reliability and recovery | 15",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_maintenance.py::test_local_restore_recovery_target_and_snapshot_rpo",
+          "report_check": "synthetic_restore_and_recovery_targets",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        },
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_operations_playbook.py::test_operations_playbook_contains_migration_incident_and_stop_procedures",
+          "report_check": "operations_playbook_contract",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        },
+        {
+          "task_id": "MTA-17-07",
+          "task_status": "verified",
+          "test_id": "tests/test_offline_engineering.py::test_offline_scripted_workflow_blocks_dose_error_and_viewer_write",
+          "report_check": "one_command_demo_workflow",
+          "source_commit": "9f1914feced211a964affb6ef857f2979a987514",
+          "artifact_path": "evaluation/reports/mta-17-07-offline-demo-v1.json",
+          "artifact_sha256": "f06312f7d3986d7e14f88cef2bce01f6b830ab77fa4733d9b3a10c977c0c1aa1"
+        }
+      ]
+    },
+    {
+      "claim_id": "safety-by-design",
+      "label": "Safety by design: predefined synthetic invariant violations and fail-closed approval",
+      "status": "not_met_open_p0_and_clinical_evidence",
+      "assessment": "A synthetic dose error is blocked in the offline workflow, but risk register P0 items and independent clinical misses remain unresolved.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 381,
+          "text": "Safety by design | 20",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-17-07",
+          "task_status": "verified",
+          "test_id": "tests/test_offline_engineering.py::test_offline_scripted_workflow_blocks_dose_error_and_viewer_write",
+          "report_check": "one_command_demo_workflow",
+          "source_commit": "9f1914feced211a964affb6ef857f2979a987514",
+          "artifact_path": "evaluation/reports/mta-17-07-offline-demo-v1.json",
+          "artifact_sha256": "f06312f7d3986d7e14f88cef2bce01f6b830ab77fa4733d9b3a10c977c0c1aa1"
+        }
+      ]
+    },
+    {
+      "claim_id": "research-evaluation-integrity",
+      "label": "Research/evaluation integrity: exact reproducibility, fair baselines and full failures",
+      "status": "supporting_evidence_only_not_scored",
+      "assessment": "Reproducibility and publication bundles preserve negative results; some assets/licenses and independent clinical evidence remain unavailable.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 382,
+          "text": "Research/evaluation integrity | 20",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-17-02",
+          "task_status": "verified",
+          "test_id": "tests/test_repro_bundle.py::test_repro_bundle_has_hashes_commands_and_negative_results",
+          "report_check": "repro_pack_v3",
+          "source_commit": "6b1f05901d4996da09d6ff047e669bed6ba3ccfe",
+          "artifact_path": "evaluation/reports/mta-17-02-reproducibility-pack-v3.json",
+          "artifact_sha256": "9d43916e850bcfed8cb4ede402d0a33c28134f475f02c4af2e3b3fd031e6b97a"
+        },
+        {
+          "task_id": "MTA-17-03",
+          "task_status": "verified",
+          "test_id": "tests/test_publication_bundle.py::test_publication_tables_retain_gate_failures_unranked_candidates_and_limits",
+          "report_check": "publication_bundle",
+          "source_commit": "eb80d9767bc04527674b67dcfb85d364b564e13c",
+          "artifact_path": "evaluation/reports/mta-17-03-benchmark-publication-v1.json",
+          "artifact_sha256": "f5595d452d794d6eac9dce9f1c9c4c8a288d08ea0bff7462e8801311361fee10"
+        }
+      ]
+    },
+    {
+      "claim_id": "security-privacy-simulations",
+      "label": "Security and privacy simulations: offline auth, isolation, tamper/backup tests",
+      "status": "supporting_evidence_only_not_scored",
+      "assessment": "Local onboarding and synthetic backup checks are evidenced; deployment-owner security review and key custody are not established.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 383,
+          "text": "Security and privacy simulations | 15",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-16-13",
+          "task_status": "verified",
+          "test_id": "tests/test_offline_onboarding.py::test_local_onboarding_needs_no_email_or_oauth_activation",
+          "report_check": "onboarding_offline",
+          "source_commit": "45a5910c27302d8d8dc03e1bd62987ceeb53ba47",
+          "artifact_path": "evaluation/reports/mta-16-13-offline-onboarding-v1.json",
+          "artifact_sha256": "394abe3c9b0a2e691e728f2bd2d84ca66646db50bf777628e3b1aacdc6e888f8"
+        },
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_maintenance.py::test_local_restore_recovery_target_and_snapshot_rpo",
+          "report_check": "synthetic_restore_and_recovery_targets",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        },
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_operations_playbook.py::test_operations_playbook_contains_migration_incident_and_stop_procedures",
+          "report_check": "operations_playbook_contract",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        }
+      ]
+    },
+    {
+      "claim_id": "ux-reproducibility",
+      "label": "UX and reproducibility: one-command offline workflow and inspector",
+      "status": "supporting_evidence_only_not_scored",
+      "assessment": "A model-free demo and static synthetic showcase are checked; this does not establish usability with clinicians.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 384,
+          "text": "UX and reproducibility | 10",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-17-07",
+          "task_status": "verified",
+          "test_id": "tests/test_offline_engineering.py::test_offline_scripted_workflow_blocks_dose_error_and_viewer_write",
+          "report_check": "one_command_demo_workflow",
+          "source_commit": "9f1914feced211a964affb6ef857f2979a987514",
+          "artifact_path": "evaluation/reports/mta-17-07-offline-demo-v1.json",
+          "artifact_sha256": "f06312f7d3986d7e14f88cef2bce01f6b830ab77fa4733d9b3a10c977c0c1aa1"
+        },
+        {
+          "task_id": "MTA-17-08",
+          "task_status": "verified",
+          "test_id": "tests/test_investor_demo_static.py::test_investor_preview_uses_synthetic_source_fixture_without_api_calls",
+          "report_check": "investor_synthetic_readonly_showcase",
+          "source_commit": "9d9fb792624276db93cc80369a33f572e4a6e00e",
+          "artifact_path": "evaluation/reports/mta-17-08-investor-showcase-v1.json",
+          "artifact_sha256": "38d4e97f7f9bc23677b5088a4381dc20b6cd38e3d9414f05c948e7bd1ee9b762"
+        }
+      ]
+    },
+    {
+      "claim_id": "documentation-product-clarity",
+      "label": "Documentation and product clarity: accurate claims, report links, limits and licenses",
+      "status": "supporting_evidence_only_not_scored",
+      "assessment": "Planning artifacts and reproducibility limitations are documented; this does not award the rubric points.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 385,
+          "text": "Documentation and product clarity | 5",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-17-09",
+          "task_status": "verified",
+          "test_id": "tests/test_product_management_bundle.py::test_product_management_artifacts_are_present_and_cross_linked",
+          "report_check": "product_management_artifacts_and_evidence_boundaries",
+          "source_commit": "22d71b698218c573f159ec9956effc03369f75f9",
+          "artifact_path": "evaluation/reports/mta-17-09-product-management-v1.json",
+          "artifact_sha256": "675ee1fdb1cc8cd273d5bba7aad64904e6ca9e4841d7cff4aac222a670b28ccd"
+        },
+        {
+          "task_id": "MTA-17-02",
+          "task_status": "verified",
+          "test_id": "tests/test_repro_bundle.py::test_repro_bundle_has_hashes_commands_and_negative_results",
+          "report_check": "repro_pack_v3",
+          "source_commit": "6b1f05901d4996da09d6ff047e669bed6ba3ccfe",
+          "artifact_path": "evaluation/reports/mta-17-02-reproducibility-pack-v3.json",
+          "artifact_sha256": "9d43916e850bcfed8cb4ede402d0a33c28134f475f02c4af2e3b3fd031e6b97a"
+        }
+      ]
+    },
+    {
+      "claim_id": "engineering-100-point-total",
+      "label": "100/100 engineering-prototype points",
+      "status": "target_not_scored",
+      "assessment": "No 100/100 score has been calculated or claimed.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 386,
+          "text": "**Total** | **100** | **100/100 engineering-prototype points is a target, not a guaranteed outcome**",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-17-01",
+          "task_status": "verified",
+          "test_id": "tests/test_architecture_spec.py::test_architecture_spec_references_existing_modules_and_typed_contracts",
+          "report_check": "architecture_contracts",
+          "source_commit": "499ed302d2f5cb50be60e1fe36184847098fa632",
+          "artifact_path": "evaluation/reports/mta-17-01-architecture-spec-v1.json",
+          "artifact_sha256": "2d1957362f3fdea2753d10f4e99e20ed7e19ab0d980a7e5f094cd307d1167a45"
+        },
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_maintenance.py::test_local_restore_recovery_target_and_snapshot_rpo",
+          "report_check": "synthetic_restore_and_recovery_targets",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        },
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_operations_playbook.py::test_operations_playbook_contains_migration_incident_and_stop_procedures",
+          "report_check": "operations_playbook_contract",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        },
+        {
+          "task_id": "MTA-16-13",
+          "task_status": "verified",
+          "test_id": "tests/test_offline_onboarding.py::test_local_onboarding_needs_no_email_or_oauth_activation",
+          "report_check": "onboarding_offline",
+          "source_commit": "45a5910c27302d8d8dc03e1bd62987ceeb53ba47",
+          "artifact_path": "evaluation/reports/mta-16-13-offline-onboarding-v1.json",
+          "artifact_sha256": "394abe3c9b0a2e691e728f2bd2d84ca66646db50bf777628e3b1aacdc6e888f8"
+        },
+        {
+          "task_id": "MTA-17-02",
+          "task_status": "verified",
+          "test_id": "tests/test_repro_bundle.py::test_repro_bundle_has_hashes_commands_and_negative_results",
+          "report_check": "repro_pack_v3",
+          "source_commit": "6b1f05901d4996da09d6ff047e669bed6ba3ccfe",
+          "artifact_path": "evaluation/reports/mta-17-02-reproducibility-pack-v3.json",
+          "artifact_sha256": "9d43916e850bcfed8cb4ede402d0a33c28134f475f02c4af2e3b3fd031e6b97a"
+        },
+        {
+          "task_id": "MTA-17-03",
+          "task_status": "verified",
+          "test_id": "tests/test_publication_bundle.py::test_publication_tables_retain_gate_failures_unranked_candidates_and_limits",
+          "report_check": "publication_bundle",
+          "source_commit": "eb80d9767bc04527674b67dcfb85d364b564e13c",
+          "artifact_path": "evaluation/reports/mta-17-03-benchmark-publication-v1.json",
+          "artifact_sha256": "f5595d452d794d6eac9dce9f1c9c4c8a288d08ea0bff7462e8801311361fee10"
+        },
+        {
+          "task_id": "MTA-17-07",
+          "task_status": "verified",
+          "test_id": "tests/test_offline_engineering.py::test_offline_scripted_workflow_blocks_dose_error_and_viewer_write",
+          "report_check": "one_command_demo_workflow",
+          "source_commit": "9f1914feced211a964affb6ef857f2979a987514",
+          "artifact_path": "evaluation/reports/mta-17-07-offline-demo-v1.json",
+          "artifact_sha256": "f06312f7d3986d7e14f88cef2bce01f6b830ab77fa4733d9b3a10c977c0c1aa1"
+        },
+        {
+          "task_id": "MTA-17-09",
+          "task_status": "verified",
+          "test_id": "tests/test_product_management_bundle.py::test_product_management_artifacts_are_present_and_cross_linked",
+          "report_check": "product_management_artifacts_and_evidence_boundaries",
+          "source_commit": "22d71b698218c573f159ec9956effc03369f75f9",
+          "artifact_path": "evaluation/reports/mta-17-09-product-management-v1.json",
+          "artifact_sha256": "675ee1fdb1cc8cd273d5bba7aad64904e6ca9e4841d7cff4aac222a670b28ccd"
+        }
+      ]
+    },
+    {
+      "claim_id": "clinical-10of10-explicit-nonclaim",
+      "label": "Clinical accuracy / clinical deployment readiness 10/10",
+      "status": "explicitly_not_claimed",
+      "assessment": "The checklist explicitly excludes clinical scoring. Benchmark candidates fail the 5% WER gate and independent reviewers are unavailable.",
+      "source_anchors": [
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 10,
+          "text": "It **does not** mean 10/10 clinical accuracy",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        },
+        {
+          "path": "docs/plans/zero-external-checklist.md",
+          "line": 388,
+          "text": "clinical deployment readiness into 10/10",
+          "sha256": "9177b966db2e36aab601127bf176f229ef3299fe27fd5f372511c0a856559dea"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-17-03",
+          "task_status": "verified",
+          "test_id": "tests/test_publication_bundle.py::test_publication_tables_retain_gate_failures_unranked_candidates_and_limits",
+          "report_check": "publication_bundle",
+          "source_commit": "eb80d9767bc04527674b67dcfb85d364b564e13c",
+          "artifact_path": "evaluation/reports/mta-17-03-benchmark-publication-v1.json",
+          "artifact_sha256": "f5595d452d794d6eac9dce9f1c9c4c8a288d08ea0bff7462e8801311361fee10"
+        },
+        {
+          "task_id": "MTA-16-16",
+          "task_status": "implemented",
+          "test_id": "tests/test_human_study_protocol_skeleton.py::test_future_human_study_protocol_has_no_fabricated_results_or_approval",
+          "report_check": "blank_results_and_gate_test",
+          "source_commit": "75179694db6cf6994c22604baeeb415d96fd2411",
+          "artifact_path": "evaluation/reports/mta-16-16-human-study-protocol-v1.json",
+          "artifact_sha256": "d80c157949e25ea07332a0c7c96d04bee511f77107430788f7584522fca79a4b"
+        }
+      ]
+    },
+    {
+      "claim_id": "synthetic-restore-count",
+      "label": "10/10 baseline synthetic encounters restored in the recovery test",
+      "status": "verified_narrow_synthetic_result",
+      "assessment": "This is a narrowly scoped test observation, not a 10/10 product, reliability or clinical score.",
+      "source_anchors": [
+        {
+          "path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "line": 20,
+          "text": "restored 10/10 baseline synthetic encounters",
+          "sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        }
+      ],
+      "evidence": [
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_maintenance.py::test_local_restore_recovery_target_and_snapshot_rpo",
+          "report_check": "synthetic_restore_and_recovery_targets",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        },
+        {
+          "task_id": "MTA-14-09",
+          "task_status": "verified",
+          "test_id": "tests/test_operations_playbook.py::test_operations_playbook_contains_migration_incident_and_stop_procedures",
+          "report_check": "operations_playbook_contract",
+          "source_commit": "4e5a5b99c8f65b9d843187e943970f8e25680ae0",
+          "artifact_path": "evaluation/reports/master-task-mta-14-09-4e5a5b9.json",
+          "artifact_sha256": "ae68865d11621ae9f0bd50af05480d0c9087f305b9eef0f46849ef060ef13ffa"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Evidence links are traceability, not a score or proof that an entire rubric dimension is satisfied.",
+    "The overall 10/10 and 100/100 targets are not awarded.",
+    "No clinical accuracy, safety certification, customer validation or clinical deployment claim is made."
+  ]
+}
