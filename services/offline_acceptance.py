@@ -70,7 +70,9 @@ def source_inventory(root="."):
 
 def test_result_summary(result):
     # Do not publish assertion values, source excerpts, parameters or provider text.
-    lines = ANSI_ESCAPE.sub("", result.stdout).splitlines()
+    stdout = ANSI_ESCAPE.sub("", getattr(result, "stdout", "") or "")
+    stderr = ANSI_ESCAPE.sub("", getattr(result, "stderr", "") or "")
+    lines = (stdout + "\n" + stderr).splitlines()
     failed = sorted(
         {
             match.group(1).split("[", 1)[0]
@@ -86,7 +88,7 @@ def test_result_summary(result):
     terminal = next(
         (
             line
-            for line in reversed(lines)
+            for line in reversed((stdout + "\n" + stderr).splitlines())
             if re.search(
                 r"\b\d+ (?:passed|failed|skipped|warnings?|errors?|deselected|xfailed|xpassed)\b",
                 line,

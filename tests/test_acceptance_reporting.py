@@ -48,6 +48,18 @@ def test_acceptance_failure_report_parses_carriage_return_summaries():
     assert "private" not in str(report)
 
 
+def test_acceptance_failure_report_reads_ids_from_stderr():
+    result = SimpleNamespace(
+        returncode=1,
+        stdout="1 failed, 3 passed in 0.50s\n",
+        stderr="FAILED tests\\test_media.py::test_decoder - private detail\r\n",
+    )
+    report = summarize_result(result)
+    assert report["failed_test_ids"] == ["tests\\test_media.py::test_decoder"]
+    assert report["summary"] == "1 failed, 3 passed in 0.50s"
+    assert "private" not in str(report)
+
+
 def test_acceptance_inventory_pins_browser_tests_ci_and_dependency_contracts():
     inventory = source_inventory()
     for path in (
