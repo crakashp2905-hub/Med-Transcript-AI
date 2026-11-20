@@ -38,10 +38,7 @@ ANSI_ESCAPE = re.compile(r"\x1b(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
 def pytest_basetemp(version):
     root = Path(tempfile.gettempdir()) / "mta"
     root.mkdir(parents=True, exist_ok=True)
-    path = root / f"p-{uuid4().hex[:12]}"
-    if os.name == "nt":
-        return Path(f"\\\\?\\{path.resolve()}")
-    return path
+    return root / f"p-{uuid4().hex[:12]}"
 
 
 def source_inventory(root="."):

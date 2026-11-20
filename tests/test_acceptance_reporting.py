@@ -1,5 +1,4 @@
 from pathlib import Path
-import os
 import tempfile
 from types import SimpleNamespace
 from services.offline_acceptance import (
@@ -66,11 +65,8 @@ def test_clean_checkout_bootstraps_isolated_pytest_temp_parent(tmp_path, monkeyp
     path = Path(tempfile.gettempdir()) / "mta"
     assert path.is_dir()
     assert len(temp.name) == 14
-    if os.name == "nt":
-        assert str(temp).startswith("\\\\?\\")
-        assert Path(str(temp)[4:]).parent.resolve() == path.resolve()
-    else:
-        assert temp.parent == path
+    assert not str(temp).startswith("\\\\?\\")
+    assert temp.parent.resolve() == path.resolve()
     assert not temp.exists()
     assert PYTEST_ACCEPTANCE_TIMEOUT_SECONDS == 1200
 
