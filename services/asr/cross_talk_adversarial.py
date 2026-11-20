@@ -11,6 +11,7 @@ from services.api.ingest import inspect_pcm_wav
 from services.asr.adapter import FasterWhisperAdapter
 from services.asr.profiles import load_profiles
 from services.asr.transcripts import build_transcript
+from services.evaluation import tokens
 
 
 SCENARIO_ID = "two-speaker-overlap"
@@ -81,11 +82,23 @@ def build(
         str(uuid4()),
         1,
     )
+    hypothesis = " ".join(segment["text"].strip() for segment in raw["segments"])
+    reference_token_set = {
+        token
+        for turn in scenario["transcript_turns"]
+        for token in tokens(turn["reference"])
+    }
+    unmatched_tokens = list(
+        dict.fromkeys(
+            token for token in tokens(hypothesis) if token not in reference_token_set
+        )
+    )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     source_code = (
         "services/asr/cross_talk_adversarial.py",
         "services/asr/adapter.py",
         "services/asr/profiles.py",
+        "services/evaluation.py",
     )
     report = {
         "schema_version": "synthetic_cross_talk_asr_replay_v1",
@@ -112,12 +125,14 @@ def build(
         },
         "inference_executed": raw["inference_executed"],
         "inference_seconds": raw.get("timing", {}).get("inference_seconds"),
-        "hypothesis": " ".join(segment["text"].strip() for segment in raw["segments"]),
+        "hypothesis": hypothesis,
+        "reference_unmatched_hypothesis_tokens": unmatched_tokens,
+        "reference_comparison": "normalized hypothesis tokens absent from the union of the two source reference turns; diagnostic only, not clinical adjudication",
         "segments": raw["segments"],
         "transcript_review_status": transcript["status"],
         "transcript_review_flags": transcript["review_flags"],
-        "automatic_note_approval": False,
-        "note_generation_tested": False,
+        "application_note_generation": "not_exercised_by_adapter_replay",
+        "application_approval": "not_exercised_by_adapter_replay",
         "wer_status": "not_scored: simultaneous reference turns have no single ordered transcript target",
         "clinical_acceptance": False,
         "limitations": [
