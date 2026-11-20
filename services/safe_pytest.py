@@ -5,6 +5,9 @@ import json
 import re
 import subprocess
 import sys
+import tempfile
+from pathlib import Path
+from uuid import uuid4
 
 
 SUMMARY = re.compile(
@@ -13,9 +16,24 @@ SUMMARY = re.compile(
 FAILURE = re.compile(r"^FAILED ([A-Za-z0-9_./-]+)::([A-Za-z_][A-Za-z0-9_]*)")
 
 
+def pytest_basetemp():
+    root = Path(tempfile.gettempdir()) / "mta"
+    root.mkdir(parents=True, exist_ok=True)
+    return root / f"p-{uuid4().hex[:12]}"
+
+
 def run(paths, *, runner=subprocess.run):
+    basetemp = pytest_basetemp()
     result = runner(
-        [sys.executable, "-m", "pytest", "-q", *paths],
+        [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "--basetemp",
+            str(basetemp),
+            *paths,
+        ],
         capture_output=True,
         text=True,
         check=False,
