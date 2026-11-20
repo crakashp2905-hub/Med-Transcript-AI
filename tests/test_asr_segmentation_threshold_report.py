@@ -94,7 +94,7 @@ def _receipts(tmp_path, monkeypatch, changed_input=False):
         report = {
             "schema_version": "asr_segmentation_mode_receipt_v1",
             "complete": True,
-            "source_commit": "commit-a",
+            "source_commit": "commit-b" if arm_id == "baseline" else "commit-a",
             "configuration": config,
             "bindings": {
                 "suite_sha256": hashlib.sha256(b"{}").hexdigest(),
@@ -127,6 +127,8 @@ def test_threshold_report_reconciles_single_factor_matched_arms(tmp_path, monkey
     assert report["case_count"] == 16
     assert report["reference_words"] == 32
     assert report["wer_admission_maximum"] == 0.05
+    assert report["evaluation_source_commits"]["baseline"] == "commit-b"
+    assert report["evaluation_source_commits"]["min_window_2500ms"] == "commit-a"
     assert set(report["arms"]) == {"baseline", *VAD_THRESHOLD_VARIANTS}
     assert report["arms"]["padding_600ms"]["summary"]["normalized_edits"] > 0
 

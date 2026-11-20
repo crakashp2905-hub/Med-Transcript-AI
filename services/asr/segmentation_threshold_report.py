@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 from services.api.ingest import file_sha256
@@ -44,7 +45,7 @@ def build_threshold_matrix(receipt_paths, output_path, *, suite_path):
         if row["candidate_id"] == "faster-whisper-tiny.en"
     )
     common_bindings = None
-    source_commit = None
+    source_commits = {}
     baseline_cases = None
     arms = {}
     for arm_id in expected_arm_ids:
@@ -77,9 +78,9 @@ def build_threshold_matrix(receipt_paths, output_path, *, suite_path):
             raise ValueError("vad_threshold_receipt_source_mismatch")
         if common_bindings is None:
             common_bindings = bindings
-            source_commit = report["source_commit"]
-        elif bindings != common_bindings or report["source_commit"] != source_commit:
-            raise ValueError("vad_threshold_receipt_source_commit_mismatch")
+        elif bindings != common_bindings:
+            raise ValueError("vad_threshold_receipt_execution_sources_mismatch")
+        source_commits[arm_id] = report["source_commit"]
 
         rows = {row["group_id"]: row for row in report.get("cases", [])}
         if set(rows) != set(expected_manifest):
@@ -148,7 +149,13 @@ def build_threshold_matrix(receipt_paths, output_path, *, suite_path):
         "complete": True,
         "clinical_acceptance": False,
         "automatic_promotion": False,
-        "evaluation_source_commit": source_commit,
+        "evaluation_source_commits": source_commits,
+        "generator_source_commit": subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
         "generator_source_sha256": file_sha256(Path(__file__)),
         "suite_sha256": suite_sha256,
         "manifest_sha256": suite["manifest_sha256"],
