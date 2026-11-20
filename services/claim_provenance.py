@@ -336,9 +336,11 @@ def main():
     json_path.parent.mkdir(parents=True, exist_ok=True)
     md_path.parent.mkdir(parents=True, exist_ok=True)
     json_path.write_text(
-        json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        json.dumps(value, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
-    md_path.write_text(render_markdown(value), encoding="utf-8")
+    md_path.write_text(render_markdown(value), encoding="utf-8", newline="\n")
     print(
         json.dumps(
             {
