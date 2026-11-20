@@ -80,7 +80,7 @@ def test_segmentation_boundary_receipt_is_complete_and_scope_limited():
     progress = (
         Path("docs/asr-rnd-progress.md").read_text(encoding="utf-8").encode("utf-8")
     )
-    ledger = json.loads(Path("evaluation/asr-task-ledger-v2.json").read_text())
+    ledger = json.loads(Path("evaluation/asr-task-ledger-v3.json").read_text())
     task = next(row for row in ledger["tasks"] if row["id"] == "MTA-ASR-C06")
     assert ledger["progress_record"]["sha256"] == hashlib.sha256(progress).hexdigest()
     assert task["status"] == "PARTIAL"

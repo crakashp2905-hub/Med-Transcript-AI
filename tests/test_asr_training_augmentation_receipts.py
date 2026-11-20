@@ -69,7 +69,7 @@ def test_training_augmentation_receipt_binds_outputs_to_training_split():
     progress_raw = (
         Path("docs/asr-rnd-progress.md").read_text(encoding="utf-8").encode("utf-8")
     )
-    ledger = json.loads(Path("evaluation/asr-task-ledger-v2.json").read_text())
+    ledger = json.loads(Path("evaluation/asr-task-ledger-v3.json").read_text())
     assert (
         ledger["progress_record"]["sha256"] == hashlib.sha256(progress_raw).hexdigest()
     )
