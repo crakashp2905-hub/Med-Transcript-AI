@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from uuid import uuid4
 
@@ -34,9 +35,12 @@ SKIPPED_TEST = re.compile(r"^SKIPPED \[\d+\] ([^:]+):(\d+): (.+)$", re.M)
 
 
 def pytest_basetemp(version):
-    root = Path("data") / "pa"
+    root = Path(tempfile.gettempdir()) / "mta"
     root.mkdir(parents=True, exist_ok=True)
-    return root / f"p-{uuid4().hex[:12]}"
+    path = root / f"p-{uuid4().hex[:12]}"
+    if os.name == "nt":
+        return Path(f"\\\\?\\{path.resolve()}")
+    return path
 
 
 def source_inventory(root="."):

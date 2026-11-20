@@ -1,4 +1,6 @@
 from pathlib import Path
+import os
+import tempfile
 from types import SimpleNamespace
 from services.offline_acceptance import (
     PYTEST_ACCEPTANCE_TIMEOUT_SECONDS,
@@ -44,9 +46,14 @@ def test_acceptance_inventory_pins_browser_tests_ci_and_dependency_contracts():
 def test_clean_checkout_bootstraps_isolated_pytest_temp_parent(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     temp = pytest_basetemp("clean-checkout")
-    assert temp.parent == Path("data") / "pa"
-    assert temp.parent.is_dir()
+    path = Path(tempfile.gettempdir()) / "mta"
+    assert path.is_dir()
     assert len(temp.name) == 14
+    if os.name == "nt":
+        assert str(temp).startswith("\\\\?\\")
+        assert Path(str(temp)[4:]).parent.resolve() == path.resolve()
+    else:
+        assert temp.parent == path
     assert not temp.exists()
     assert PYTEST_ACCEPTANCE_TIMEOUT_SECONDS == 1200
 
