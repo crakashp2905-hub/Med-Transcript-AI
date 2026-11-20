@@ -7,8 +7,8 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | Classification | Modules |
 | --- | ---: |
 | integrated-in-production-flow | 96 |
-| candidate-only | 12 |
-| test-only | 216 |
+| candidate-only | 13 |
+| test-only | 221 |
 | documentation-only | 11 |
 
 ## Service modules
@@ -68,11 +68,13 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/config_inventory.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/context_biasing.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/context_handoff.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/correction_confusion_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/energy_vad_chunking.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/error_review.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/evaluation_contract.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/hypothesis_disagreement.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/lexicon_bias_eval.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/lexicon_cohort_report.py` | `candidate-only` | not reachable from configured runtime roots or test imports |
 | `services/asr/matched_ablation_runner.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/metamorphic.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/number_format.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
@@ -90,7 +92,11 @@ Generated from the Python source tree. Runtime reachability is a static import a
 | `services/asr/risk_selector.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/rover.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/segmentation.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/segmentation_boundary_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/segmentation_candidate_runner.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/segmentation_overlap_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/segmentation_source_map_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
+| `services/asr/segmentation_threshold_report.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/subgroup_diagnostics.py` | `test-only` | imported by tests but not reachable from configured runtime roots |
 | `services/asr/subgroup_metrics.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |
 | `services/asr/timeline.py` | `integrated-in-production-flow` | statically reachable from configured API or worker entry point |

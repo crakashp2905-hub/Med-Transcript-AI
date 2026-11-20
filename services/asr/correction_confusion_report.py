@@ -46,6 +46,49 @@ def _contexts(reference, index, radius=2):
     return reference[start:index], reference[index + 1 : end]
 
 
+def _editops(reference, hypothesis):
+    """Return minimum token edit operations, without requiring the ASR extra."""
+    if Levenshtein is not None:
+        return [
+            (edit.tag, edit.src_pos, edit.dest_pos)
+            for edit in Levenshtein.editops(reference, hypothesis)
+        ]
+
+    # Keep this evidence-reporting path usable in the core offline environment.
+    # Equal-cost ties prefer a substitution, matching RapidFuzz's token alignment.
+    rows, columns = len(reference), len(hypothesis)
+    costs = [[0] * (columns + 1) for _ in range(rows + 1)]
+    for i in range(rows + 1):
+        costs[i][0] = i
+    for j in range(columns + 1):
+        costs[0][j] = j
+    for i in range(1, rows + 1):
+        for j in range(1, columns + 1):
+            costs[i][j] = min(
+                costs[i - 1][j] + 1,
+                costs[i][j - 1] + 1,
+                costs[i - 1][j - 1] + (reference[i - 1] != hypothesis[j - 1]),
+            )
+
+    operations = []
+    i, j = rows, columns
+    while i or j:
+        if i and j and reference[i - 1] == hypothesis[j - 1]:
+            i -= 1
+            j -= 1
+        elif i and j and costs[i][j] == costs[i - 1][j - 1] + 1:
+            operations.append(("replace", i - 1, j - 1))
+            i -= 1
+            j -= 1
+        elif i and costs[i][j] == costs[i - 1][j] + 1:
+            operations.append(("delete", i - 1, j))
+            i -= 1
+        else:
+            operations.append(("insert", i, j - 1))
+            j -= 1
+    return list(reversed(operations))
+
+
 def build_confusion_report(
     manifest_path=DEFAULT_MANIFEST, receipt_path=DEFAULT_RECEIPT
 ):
@@ -66,9 +109,6 @@ def build_confusion_report(
         raise ValueError("complete_non_acceptance_receipt_required")
     if receipt.get("manifest_sha256") != _sha(manifest_path):
         raise ValueError("receipt_manifest_hash_mismatch")
-    if Levenshtein is None:
-        raise ValueError("rapidfuzz_required_for_crossfit_alignment")
-
     source_cases = {row["group_id"]: row for row in manifest["cases"]}
     receipt_cases = receipt.get("cases")
     if not isinstance(receipt_cases, list) or len(receipt_cases) != len(source_cases):
@@ -109,18 +149,18 @@ def build_confusion_report(
             raise ValueError("textual_reference_and_hypothesis_required")
         reference = tokens(case["reference"])
         hypothesis = [] if case.get("failed") else tokens(case["hypothesis"])
-        editops = Levenshtein.editops(reference, hypothesis)
+        editops = _editops(reference, hypothesis)
         edits = [
             (
                 {
                     "replace": "substitution",
                     "delete": "deletion",
                     "insert": "insertion",
-                }[edit.tag],
-                edit.src_pos,
-                edit.dest_pos if edit.tag != "delete" else None,
+                }[tag],
+                src_pos,
+                dest_pos if tag != "delete" else None,
             )
-            for edit in editops
+            for tag, src_pos, dest_pos in editops
         ]
         if len(edits) != case.get("normalized_edits") or len(reference) != case.get(
             "reference_words"
