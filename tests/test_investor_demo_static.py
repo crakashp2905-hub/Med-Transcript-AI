@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 
 
@@ -10,11 +9,9 @@ def test_investor_preview_uses_synthetic_source_fixture_without_api_calls():
         encoding="utf-8"
     )
     entrypoint = (ROOT / "apps/clinician-web/src/main.tsx").read_text(encoding="utf-8")
-    fixture = json.loads((ROOT / "data/demo-sample.json").read_text(encoding="utf-8"))
-
-    assert fixture["synthetic"] is True
-    assert fixture["segments"]
-    assert "../../../data/demo-sample.json" in component
+    assert "synthetic-investor-preview-v1" in component
+    assert "synthetic:true" in component
+    assert "data/demo-sample.json" not in component
     assert "Investor preview · read only · no sign-in" in component
     assert "NOT CLINICALLY APPROVED" in component
     assert 'aria-label="Not clinically approved investor demo"' in component
