@@ -52,7 +52,7 @@ def test_overlap_alignment_receipt_reconciles_same_saved_windows():
     progress = (
         Path("docs/asr-rnd-progress.md").read_text(encoding="utf-8").encode("utf-8")
     )
-    ledger = json.loads(Path("evaluation/asr-task-ledger-v4.json").read_text())
+    ledger = json.loads(Path("evaluation/asr-task-ledger-v5.json").read_text())
     task = next(row for row in ledger["tasks"] if row["id"] == "MTA-ASR-C08")
     assert ledger["progress_record"]["sha256"] == hashlib.sha256(progress).hexdigest()
     assert task["status"] == "EVIDENCE_RECORDED"

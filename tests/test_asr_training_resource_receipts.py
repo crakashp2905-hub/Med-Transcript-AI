@@ -38,7 +38,7 @@ def test_training_resource_audit_records_missing_local_training_capability():
     progress_raw = (
         Path("docs/asr-rnd-progress.md").read_text(encoding="utf-8").encode("utf-8")
     )
-    ledger = json.loads(Path("evaluation/asr-task-ledger-v4.json").read_text())
+    ledger = json.loads(Path("evaluation/asr-task-ledger-v5.json").read_text())
     assert (
         ledger["progress_record"]["sha256"] == hashlib.sha256(progress_raw).hexdigest()
     )
