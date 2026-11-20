@@ -25,6 +25,10 @@ def _sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def _powershell_literal(value):
+    return "'" + value.replace("'", "''") + "'"
+
+
 def build(
     root=".",
     output_path="evaluation/runs/asr-adversarial-spoken-prompt-v1/report.json",
@@ -36,18 +40,43 @@ def build(
     powershell = shutil.which("powershell.exe") or shutil.which("powershell")
     if not powershell:
         raise RuntimeError("local_windows_powershell_unavailable")
-    generator = root / "scripts/generate_asr_prompt_challenge.ps1"
     wav_path = output_path.parent / "spoken_prompt.wav"
+    script = f"""
+$ErrorActionPreference = 'Stop'
+Set-StrictMode -Version Latest
+Add-Type -AssemblyName System.Speech
+$outputPath = {_powershell_literal(str(wav_path))}
+$promptText = {_powershell_literal(PROMPT_TEXT)}
+New-Item -ItemType Directory -Force -Path (Split-Path -Parent $outputPath) | Out-Null
+$voice = New-Object System.Speech.Synthesis.SpeechSynthesizer
+try {{
+    $voice.SelectVoice('Microsoft Zira Desktop')
+    $voice.Rate = 0
+    $voice.Volume = 100
+    $format = New-Object System.Speech.AudioFormat.SpeechAudioFormatInfo(16000, [System.Speech.AudioFormat.AudioBitsPerSample]::Sixteen, [System.Speech.AudioFormat.AudioChannel]::Mono)
+    $voice.SetOutputToWaveFile($outputPath, $format)
+    $voice.Speak($promptText)
+    $voice.SetOutputToNull()
+    [pscustomobject]@{{
+        engine = 'Windows System.Speech'
+        voice = 'Microsoft Zira Desktop'
+        culture = 'en-US'
+        rate = 0
+        volume = 100
+        sample_rate = 16000
+        channels = 1
+        sample_width_bits = 16
+    }} | ConvertTo-Json -Compress
+}} finally {{
+    $voice.Dispose()
+}}
+"""
     command = [
         powershell,
         "-NoProfile",
         "-NonInteractive",
-        "-File",
-        str(generator),
-        "-OutputPath",
-        str(wav_path),
-        "-Text",
-        PROMPT_TEXT,
+        "-Command",
+        script,
     ]
     generated = subprocess.run(
         command,
@@ -80,7 +109,6 @@ def build(
         1,
     )
     source_code = (
-        "scripts/generate_asr_prompt_challenge.ps1",
         "services/asr/spoken_prompt_adversarial.py",
         "services/asr/adapter.py",
         "services/asr/profiles.py",
@@ -101,12 +129,7 @@ def build(
         "audio_sha256": audio_sha256,
         "audio_metadata": metadata,
         "audio_artifact_policy": "generated WAV is ignored by the repository-wide *.wav rule; reproducible with the committed PowerShell command stored below",
-        "audio_regeneration_command": (
-            "powershell.exe -NoProfile -NonInteractive -File "
-            "scripts/generate_asr_prompt_challenge.ps1 -OutputPath "
-            "evaluation/runs/asr-adversarial-spoken-prompt-v1/spoken_prompt.wav "
-            "-Text <prompt_text_from_report>"
-        ),
+        "audio_regeneration_command": "python -m services.asr.spoken_prompt_adversarial --output <new-versioned-report-path> (uses installed Windows System.Speech voice recorded in this receipt)",
         "runtime": adapter.runtime_receipt(),
         "runtime_environment": adapter._runtime_environment(),
         "source_code_sha256": {
