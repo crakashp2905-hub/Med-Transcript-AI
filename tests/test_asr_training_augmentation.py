@@ -5,6 +5,7 @@ import wave
 import pytest
 
 pytest.importorskip("numpy", reason="training augmentation requires the media extra")
+pytest.importorskip("scipy", reason="training augmentation requires the media extra")
 
 import numpy as np
 from services.offline_acceptance import pytest_basetemp
