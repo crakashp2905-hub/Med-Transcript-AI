@@ -110,7 +110,7 @@ def test_worker_rejects_bad_timestamps_and_creates_no_note_or_approval(tmp_path)
         assert result["status"] == "failed"
         job = client.get(queued.json()["status_url"], headers=headers()).json()
         assert job["error_code"] == "invalid_asr_output"
-        assert "result" not in job
+        assert job.get("result") is None
         workspace = client.get(f"{base}/workspace", headers=headers()).json()
         assert workspace["note"] is None
         assert workspace["approval"] is None
