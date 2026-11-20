@@ -6,6 +6,7 @@ from uuid import uuid4
 from services.asr.adapter import ASRFailure
 from services.asr.provenance import execution_mode
 from services.asr.timeline import build_audio_segment_trace
+from services.audio_provenance import map_segment_to_source_window
 
 
 def build_transcript(
@@ -99,6 +100,31 @@ def build_transcript(
             "raw_start_seconds": start,
             "raw_end_seconds": end,
         }
+        if profile.engine == "faster-whisper":
+            source_mapping = map_segment_to_source_window(
+                metadata.get("audio_provenance"),
+                metadata.get("timeline_mapping_status", "original_pcm_timeline"),
+                start,
+                end,
+            )
+        else:
+            source_mapping = {"status": "backend_timestamp_semantics_unverified"}
+        saved_segment["source_mapping_status"] = source_mapping["status"]
+        source_fields = {
+            "window_id": "source_window_id",
+            "source_audio_sha256": "source_audio_sha256",
+            "source_sample_rate": "source_sample_rate",
+            "source_window_start_frame": "source_window_start_frame",
+            "source_window_end_frame_exclusive": "source_window_end_frame_exclusive",
+            "source_start_frame": "source_start_frame",
+            "source_end_frame_exclusive": "source_end_frame_exclusive",
+            "channel_index": "source_channel_index",
+            "mapping_kind": "source_mapping_kind",
+            "native_timestamp_quantization": "source_timestamp_quantization",
+        }
+        for source_field, transcript_field in source_fields.items():
+            if source_field in source_mapping:
+                saved_segment[transcript_field] = source_mapping[source_field]
         decoder_evidence = row.get("decoder_evidence")
         if decoder_evidence is not None:
             if (

@@ -209,6 +209,144 @@ def channel_timeline(channel_index, channel_count, sample_rate, frames):
     }
 
 
+def map_segment_to_source_window(
+    provenance, timeline_mapping_status, start_seconds, end_seconds
+):
+    """Map a native segment through only exact same-rate PCM lineage."""
+    if timeline_mapping_status != "original_pcm_timeline":
+        return {"status": "source_timeline_unverified"}
+    if (
+        isinstance(start_seconds, bool)
+        or not isinstance(start_seconds, (int, float))
+        or not math.isfinite(start_seconds)
+        or isinstance(end_seconds, bool)
+        or not isinstance(end_seconds, (int, float))
+        or not math.isfinite(end_seconds)
+        or start_seconds < 0
+        or end_seconds <= start_seconds
+    ):
+        return {"status": "invalid_native_segment_timestamps"}
+    try:
+        validate_provenance(provenance)
+        window = _resolve_exact_source_window(provenance)
+    except (TypeError, ValueError, KeyError):
+        return {"status": "source_timeline_unverified"}
+    rate = window["sample_rate"]
+    local_start = round(start_seconds * rate)
+    local_end = round(end_seconds * rate)
+    if local_start < 0 or local_end <= local_start or local_end > window["frame_count"]:
+        return {"status": "native_segment_outside_source_window"}
+    window_identity = {
+        key: window[key]
+        for key in (
+            "source_audio_sha256",
+            "sample_rate",
+            "window_start_frame",
+            "window_end_frame_exclusive",
+            "channel_index",
+        )
+    }
+    window_id = hashlib.sha256(
+        json.dumps(window_identity, sort_keys=True, separators=(",", ":")).encode(
+            "utf-8"
+        )
+    ).hexdigest()
+    return {
+        "status": "mapped_same_rate_sample_index",
+        "window_id": window_id,
+        "source_audio_sha256": window["source_audio_sha256"],
+        "source_sample_rate": rate,
+        "source_window_start_frame": window["window_start_frame"],
+        "source_window_end_frame_exclusive": window["window_end_frame_exclusive"],
+        "source_start_frame": window["window_start_frame"] + local_start,
+        "source_end_frame_exclusive": window["window_start_frame"] + local_end,
+        "channel_index": window["channel_index"],
+        "mapping_kind": window["mapping_kind"],
+        "native_timestamp_quantization": "nearest_source_frame",
+    }
+
+
+def _resolve_exact_source_window(provenance):
+    timeline = provenance["timeline_mapping"]
+    kind = timeline["kind"]
+    if kind == "source_timeline_origin":
+        asset = provenance["asset"]
+        rate, frames = asset.get("sample_rate"), asset.get("frames")
+        if (
+            timeline.get("status") != "root_coordinate_system"
+            or timeline.get("source_frame_origin") != 0
+            or type(rate) is not int
+            or type(frames) is not int
+            or rate <= 0
+            or frames <= 0
+        ):
+            raise ValueError("source_timeline_unavailable")
+        return {
+            "source_audio_sha256": provenance["asset_sha256"],
+            "sample_rate": rate,
+            "window_start_frame": 0,
+            "window_end_frame_exclusive": frames,
+            "frame_count": frames,
+            "channel_index": None,
+            "mapping_kind": "root_source_identity",
+        }
+
+    parent = provenance.get("parent")
+    if not isinstance(parent, dict):
+        raise ValueError("source_parent_timeline_required")
+    parent_window = _resolve_exact_source_window(parent)
+    if kind == "shared_sample_index_timeline":
+        rate = timeline.get("output_sample_rate")
+        frames = timeline.get("output_frames")
+        channel = timeline.get("channel_index")
+        if (
+            timeline.get("status") != "exact_pcm_frame_mapping"
+            or rate != parent_window["sample_rate"]
+            or timeline.get("parent_sample_rate") != parent_window["sample_rate"]
+            or timeline.get("parent_frames") != parent_window["frame_count"]
+            or frames != parent_window["frame_count"]
+            or type(channel) is not int
+            or channel < 0
+            or channel >= timeline.get("channel_count", 0)
+        ):
+            raise ValueError("channel_timeline_unverified")
+        return {
+            **parent_window,
+            "channel_index": channel,
+            "mapping_kind": "channel_index_sample_identity",
+        }
+
+    if kind in {"crop_sample_index_offset", "channel_crop_sample_index_offset"}:
+        offset = timeline.get("parent_start_frame")
+        frames = provenance["asset"].get("frames")
+        rate = timeline.get("output_sample_rate")
+        channel = timeline.get("channel_index", parent_window["channel_index"])
+        if (
+            timeline.get("status") != "exact_pcm_frame_mapping"
+            or type(offset) is not int
+            or type(frames) is not int
+            or rate != parent_window["sample_rate"]
+            or timeline.get("parent_sample_rate") != parent_window["sample_rate"]
+            or timeline.get("parent_end_frame_exclusive") != offset + frames
+            or type(channel) not in (int, type(None))
+            or offset < 0
+            or frames <= 0
+            or offset + frames > parent_window["frame_count"]
+        ):
+            raise ValueError("crop_timeline_unverified")
+        return {
+            **parent_window,
+            "window_start_frame": parent_window["window_start_frame"] + offset,
+            "window_end_frame_exclusive": parent_window["window_start_frame"]
+            + offset
+            + frames,
+            "frame_count": frames,
+            "channel_index": channel,
+            "mapping_kind": "crop_sample_index_offset",
+        }
+    raise ValueError("unsupported_source_timeline_mapping")
+
+
 def normalization_timeline(
     parent_sample_rate,
     output_sample_rate,

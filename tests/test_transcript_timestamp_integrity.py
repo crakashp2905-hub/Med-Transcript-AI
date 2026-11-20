@@ -34,6 +34,10 @@ def test_transcript_records_gaps_and_preserves_original_timeline():
     assert result["untranscribed_intervals"]
     assert result["provenance"]["timeline_mapping_status"] == "original_pcm_timeline"
     assert result["segments"][0]["timestamp_kind"] == "unknown"
+    assert (
+        result["segments"][0]["source_mapping_status"]
+        == "backend_timestamp_semantics_unverified"
+    )
     assert result["provenance"]["word_alignment_status"] == "not_provided"
 
 
