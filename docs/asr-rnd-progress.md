@@ -542,16 +542,19 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
   complete regeneration from source-bound receipts. Clinical gold and model
   admission are absent; all included model and ablation rows fail the unchanged
   5% WER gate.
-- **MTA-ASR-I10:** Partial. Added `tests/test_real_asr_silence_worker.py` for
-  generated zero PCM through the local ingest/transcription worker. With the
-  verified local profile, the transcript stays empty, is marked
-  `measured_digital_silence_no_inference`, remains `review_required`, and leaves
-  the workspace without a note or approval (1 passed in `.venv`; isolated
-  loopback enabled). Existing RIFF corruption, repeated-token stitching,
-  cross-talk counterexamples and source/approval guards remain synthetic
-  regressions. No clinician gold is present. Low-volume patient denial and
-  deceptive spoken prompts have not been audio-tested through the real ASR
-  worker, so I10 remains partial and no broad no-hallucination claim is made.
+- **MTA-ASR-I10:** Partial. `evaluation/runs/asr-adversarial-low-volume-v2/report.json`
+  (SHA-256 `911f3cdb81613ef79ccbbcad9b08d6b962f6a0936da858e09b7e604db31e2a14`)
+  binds local tiny.en inference to commit `c7395b783305e25a9f71ae0c7bee4266952c8b83`,
+  the public development manifest/sample hash and the committed runner/model
+  profile. On one patient denial utterance, “not” and “no” are retained at 0,
+  -12 and -20 dB with the same 21.05% WER, above the unchanged 5% gate. The
+  replay uses digitally attenuated public mock audio and is not a calibrated
+  recording condition. `tests/test_low_volume_adversarial.py`: 2 passed;
+  `tests/test_real_asr_silence_worker.py`: 1 passed. The silence worker path
+  stays empty and cannot create a note or approval. Existing corrupt-RIFF,
+  repeated-token and cross-talk tests are synthetic. There is no clinician gold;
+  deceptive spoken prompts and broader denial/audio-condition coverage remain
+  untested. No no-hallucination guarantee is made.
 - **MTA-ASR-I12:** Defined in `evaluation/asr-capability-matrix-v1.json`.
   It distinguishes verified local CPU profiles, conditional/unqualified CUDA
   profiles, and missing/corrupt weights (unavailable, no automatic download).

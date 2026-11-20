@@ -1,0 +1,285 @@
+{
+  "schema_version": "low_volume_patient_denial_replay_v1",
+  "task_id": "MTA-ASR-I10",
+  "source_commit": "c7395b783305e25a9f71ae0c7bee4266952c8b83",
+  "scope": "one public mock patient utterance from the nonreserved development split",
+  "data_class": "approved_public",
+  "dataset_manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+  "sample_id": "day1_consultation09_patient.utterance03",
+  "group_id": "day1_consultation09",
+  "speaker_role": "patient",
+  "reference": "Um, there was a little bit of blood earlier today, um, but besides that, not at all, no. Um.",
+  "source_audio_sha256": "238fd542567d474e45bb6d1a2cb7b0f0471a60b0b5fd982310f92a4bedbdca1f",
+  "source_audio_metadata": {
+    "codec": "pcm_s16le",
+    "channels": 1,
+    "sample_rate": 16000,
+    "frames": 134150,
+    "duration_ms": 8384,
+    "bytes": 268344,
+    "source_availability": "available"
+  },
+  "attack": {
+    "type": "uniform_linear_pcm_attenuation",
+    "attenuation_db": [
+      0,
+      -12,
+      -20
+    ],
+    "reference_is_original": true,
+    "parameters_predeclared_in_runner": true,
+    "inference_repeated_for_each_condition": true
+  },
+  "runtime": {
+    "backend_id": "faster-whisper",
+    "runtime_version": "1.2.1",
+    "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+    "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+    "artifact_sha256": {
+      "config.json": "14b1b421a90349bc551b881461426b561a874049cb9e4c4864f2ca384f6a7cc5",
+      "model.bin": "1a5afae06a4db91c975c9a9d78be5cc110ee4ea022ad57d55492e4550e936b2a",
+      "tokenizer.json": "929c5252409436dce1b38a75d1abbcb5e132d170d8e324e4e04ed915fa2d22df",
+      "vocabulary.txt": "ff77588746d3a2595d32ab5b69ffd7b95ce2441ac57533cb66fc3eb575a115cf"
+    },
+    "license_id": "MIT",
+    "device": "cpu",
+    "automatic_download": false
+  },
+  "runtime_environment": {
+    "os": "Windows",
+    "os_release": "11",
+    "architecture": "AMD64",
+    "python_version": "3.13.5",
+    "cpu_count": 8,
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "source_code_sha256": {
+    "services/asr/low_volume_adversarial.py": "c4d4efc550329554c2aa1a349e71e549768c5e6e2db77859dd9aa78a67e2b6db",
+    "services/asr/adapter.py": "7260f9b0875a1420050d718edfff3331cc2e64b5186b20caa5b62121a1b279b9",
+    "services/asr/profiles.py": "8f2624d085ecf6a64a8493398c04dd0abe815d53414092f02403d5567727e912",
+    "services/evaluation.py": "055d95a46640662980c5c7fd833c6d7fb0379ede85aebf292d5bf2b1cc98e913"
+  },
+  "conditions": [
+    {
+      "attenuation_db": 0,
+      "audio_path": "evaluation/runs/asr-adversarial-low-volume-v2/patient_denial_0db.wav",
+      "audio_sha256": "238fd542567d474e45bb6d1a2cb7b0f0471a60b0b5fd982310f92a4bedbdca1f",
+      "peak_absolute_pcm": 23830,
+      "inference_executed": true,
+      "inference_seconds": 1.4605568000115454,
+      "hypothesis": "It was a little bit of blood earlier today, but besides that, not at all, no.",
+      "metrics": {
+        "reference_words": 19,
+        "hypothesis_words": 16,
+        "normalized_edits": 4,
+        "raw_edits": 4,
+        "raw_reference_words": 19,
+        "normalized_wer": 0.21052631578947367,
+        "substitutions": 1,
+        "deletions": 3,
+        "insertions": 0,
+        "reference_characters": 69,
+        "character_edits": 11,
+        "cer": 0.15942028985507245,
+        "normalization": "lowercase_words_preserve_decimals_units_negation_v1"
+      },
+      "reference_negation_tokens": [
+        "no",
+        "not"
+      ],
+      "retained_reference_negation_tokens": [
+        "no",
+        "not"
+      ],
+      "segments": [
+        {
+          "start_seconds": 0.0,
+          "end_seconds": 7.0,
+          "text": " It was a little bit of blood earlier today, but besides that, not at all, no.",
+          "decoder_evidence": {
+            "kind": "faster_whisper_best_sequence_v1",
+            "token_ids": [
+              50363,
+              632,
+              373,
+              257,
+              1310,
+              1643,
+              286,
+              2910,
+              2961,
+              1909,
+              11,
+              475,
+              13769,
+              326,
+              11,
+              407,
+              379,
+              477,
+              11,
+              645,
+              13,
+              50713
+            ],
+            "average_logprob": -0.4291821640470754,
+            "n_best_supported": false,
+            "calibrated": false
+          }
+        }
+      ]
+    },
+    {
+      "attenuation_db": -12,
+      "audio_path": "evaluation/runs/asr-adversarial-low-volume-v2/patient_denial_-12db.wav",
+      "audio_sha256": "8c2896321bec8244d9783ccc0bb42093bdc0343e3e5969686b5be4244e5a1a08",
+      "peak_absolute_pcm": 5986,
+      "inference_executed": true,
+      "inference_seconds": 1.3961773000191897,
+      "hypothesis": "It was a little bit of blood earlier today, but besides that, not at all, no.",
+      "metrics": {
+        "reference_words": 19,
+        "hypothesis_words": 16,
+        "normalized_edits": 4,
+        "raw_edits": 4,
+        "raw_reference_words": 19,
+        "normalized_wer": 0.21052631578947367,
+        "substitutions": 1,
+        "deletions": 3,
+        "insertions": 0,
+        "reference_characters": 69,
+        "character_edits": 11,
+        "cer": 0.15942028985507245,
+        "normalization": "lowercase_words_preserve_decimals_units_negation_v1"
+      },
+      "reference_negation_tokens": [
+        "no",
+        "not"
+      ],
+      "retained_reference_negation_tokens": [
+        "no",
+        "not"
+      ],
+      "segments": [
+        {
+          "start_seconds": 0.0,
+          "end_seconds": 7.0,
+          "text": " It was a little bit of blood earlier today, but besides that, not at all, no.",
+          "decoder_evidence": {
+            "kind": "faster_whisper_best_sequence_v1",
+            "token_ids": [
+              50363,
+              632,
+              373,
+              257,
+              1310,
+              1643,
+              286,
+              2910,
+              2961,
+              1909,
+              11,
+              475,
+              13769,
+              326,
+              11,
+              407,
+              379,
+              477,
+              11,
+              645,
+              13,
+              50713
+            ],
+            "average_logprob": -0.43393896973651386,
+            "n_best_supported": false,
+            "calibrated": false
+          }
+        }
+      ]
+    },
+    {
+      "attenuation_db": -20,
+      "audio_path": "evaluation/runs/asr-adversarial-low-volume-v2/patient_denial_-20db.wav",
+      "audio_sha256": "6b3f0b6ad96cb002782a8eb27c2bc4c3e39f259376cdfb59a48eebf08579643b",
+      "peak_absolute_pcm": 2383,
+      "inference_executed": true,
+      "inference_seconds": 1.6070226000156254,
+      "hypothesis": "It was a little bit of blood earlier today, but besides that, not at all, no.",
+      "metrics": {
+        "reference_words": 19,
+        "hypothesis_words": 16,
+        "normalized_edits": 4,
+        "raw_edits": 4,
+        "raw_reference_words": 19,
+        "normalized_wer": 0.21052631578947367,
+        "substitutions": 1,
+        "deletions": 3,
+        "insertions": 0,
+        "reference_characters": 69,
+        "character_edits": 11,
+        "cer": 0.15942028985507245,
+        "normalization": "lowercase_words_preserve_decimals_units_negation_v1"
+      },
+      "reference_negation_tokens": [
+        "no",
+        "not"
+      ],
+      "retained_reference_negation_tokens": [
+        "no",
+        "not"
+      ],
+      "segments": [
+        {
+          "start_seconds": 0.0,
+          "end_seconds": 7.0,
+          "text": " It was a little bit of blood earlier today, but besides that, not at all, no.",
+          "decoder_evidence": {
+            "kind": "faster_whisper_best_sequence_v1",
+            "token_ids": [
+              50363,
+              632,
+              373,
+              257,
+              1310,
+              1643,
+              286,
+              2910,
+              2961,
+              1909,
+              11,
+              475,
+              13769,
+              326,
+              11,
+              407,
+              379,
+              477,
+              11,
+              645,
+              13,
+              50713
+            ],
+            "average_logprob": -0.40968922946764075,
+            "n_best_supported": false,
+            "calibrated": false
+          }
+        }
+      ]
+    }
+  ],
+  "wer_gate": {
+    "maximum": 0.05,
+    "admission": "not_claimed_for_this_single_case",
+    "primary_gate_modified": false
+  },
+  "clinical_acceptance": false,
+  "real_patient_processing_authorized": false,
+  "limitations": [
+    "One convenience-selected public mock utterance is not a representative low-volume denial challenge set.",
+    "Attenuation is a digital amplitude transform, not a calibrated acoustic recording condition.",
+    "The local tiny.en profile is not admitted and a single example cannot establish a no-hallucination guarantee.",
+    "This replay does not test deceptive spoken prompts, cross-talk, or auto-approval behavior."
+  ]
+}

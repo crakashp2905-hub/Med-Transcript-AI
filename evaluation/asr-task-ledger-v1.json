@@ -1612,6 +1612,11 @@
           "line": null,
           "text": "I10 update: Added tests/test_real_asr_silence_worker.py. The real local ingest/transcription worker processes only generated zero PCM; output remains empty with measured_digital_silence_no_inference provenance, review_required state, and no note or approval. The local venv integration test passed (1 passed) with sandbox local loopback enabled; no ASR inference or patient data was used. I10 remains PARTIAL: low-volume patient denial and deceptive spoken prompts are not tested through the real ASR worker, and there is no clinician gold."
         }
+        ,
+        {
+          "line": null,
+          "text": "I10 low-volume update: Ran services.asr.low_volume_adversarial on public mock patient sample day1_consultation09_patient.utterance03, group day1_consultation09, with local tiny.en inference at 0, -12 and -20 dB. Versioned receipt evaluation/runs/asr-adversarial-low-volume-v2/report.json SHA-256 911f3cdb81613ef79ccbbcad9b08d6b962f6a0936da858e09b7e604db31e2a14 binds source commit c7395b783305e25a9f71ae0c7bee4266952c8b83, dataset/sample/model/code hashes and all outputs. The reference negation tokens not/no were retained at all three levels; each result was 21.05% WER, failing the unchanged 5% gate. The sample is one convenience-selected digitally attenuated public mock utterance, not a calibrated challenge set. I10 remains PARTIAL; deceptive prompt coverage, broad denial variants and independent clinical gold are absent. No real-patient or reserved-cohort processing occurred."
+        }
       ],
       "completion_claim": false
     },
