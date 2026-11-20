@@ -7,6 +7,7 @@ import pytest
 
 from services.asr.segmentation_candidate_runner import (
     MODE_CONFIGS,
+    VAD_THRESHOLD_VARIANTS,
     combine_receipts,
     evaluate_case,
     validate_suite,
@@ -214,3 +215,22 @@ def test_segmentation_child_suite_preserves_frozen_cohort_and_gate():
     assert [case["audio_sha256"] for case in child_manifest["cases"]] == [
         case["audio_sha256"] for case in parent_manifest["cases"]
     ]
+
+
+def test_vad_threshold_variants_are_predeclared_single_factor_changes():
+    baseline = MODE_CONFIGS["vad_cut_merge"]
+
+    assert VAD_THRESHOLD_VARIANTS == {
+        "min_window_2500ms": {
+            **baseline,
+            "min_window_ms": 2500,
+        },
+        "max_window_20000ms": {
+            **baseline,
+            "max_window_ms": 20000,
+        },
+        "padding_600ms": {
+            **baseline,
+            "padding_ms": 600,
+        },
+    }

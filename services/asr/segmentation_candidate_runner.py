@@ -11,6 +11,7 @@ import importlib.metadata
 import json
 import math
 import re
+import subprocess
 import tempfile
 import time
 import wave
@@ -32,6 +33,23 @@ MODE_CONFIGS = {
         "padding_ms": 300,
     },
     "pause_aware": {"max_window_ms": 30000},
+}
+VAD_THRESHOLD_VARIANTS = {
+    "min_window_2500ms": {
+        "max_window_ms": 30000,
+        "min_window_ms": 2500,
+        "padding_ms": 300,
+    },
+    "max_window_20000ms": {
+        "max_window_ms": 20000,
+        "min_window_ms": 5000,
+        "padding_ms": 300,
+    },
+    "padding_600ms": {
+        "max_window_ms": 30000,
+        "min_window_ms": 5000,
+        "padding_ms": 600,
+    },
 }
 ACTIVITY_PROFILE = {
     **ENERGY_RMS_V1,
@@ -114,13 +132,13 @@ def _activity_spans(path, sample_rate):
     return activity, spans, pauses
 
 
-def build_plan(path, frames, rate, mode):
+def build_plan(path, frames, rate, mode, mode_parameters=None):
     if mode not in MODE_CONFIGS:
         raise ValueError("unsupported_segmentation_mode")
     activity, speech_spans, pauses = _activity_spans(path, rate)
     if not speech_spans:
         raise ValueError("energy_activity_candidate_has_no_spans")
-    kwargs = dict(MODE_CONFIGS[mode])
+    kwargs = dict(mode_parameters or MODE_CONFIGS[mode])
     if mode == "vad_cut_merge":
         kwargs.update(vad_spans=speech_spans, speech_spans=speech_spans)
     elif mode == "pause_aware":
@@ -138,10 +156,10 @@ def build_plan(path, frames, rate, mode):
     return plan
 
 
-def evaluate_case(case, audio_path, predictor, mode):
+def evaluate_case(case, audio_path, predictor, mode, mode_parameters=None):
     started = time.perf_counter()
     pcm, frames, rate = _read_pcm(audio_path, case["audio_sha256"])
-    plan = build_plan(audio_path, frames, rate, mode)
+    plan = build_plan(audio_path, frames, rate, mode, mode_parameters)
     predictions = []
     chunk_rows = []
     with tempfile.TemporaryDirectory(prefix="asr-segmentation-") as temporary:
@@ -236,7 +254,13 @@ def evaluate_case(case, audio_path, predictor, mode):
 
 
 def run_mode(
-    suite_path, mode, output_path, *, resume=False, compute_budget_seconds=7200
+    suite_path,
+    mode,
+    output_path,
+    *,
+    resume=False,
+    compute_budget_seconds=7200,
+    variant_id=None,
 ):
     if mode not in MODE_CONFIGS:
         raise ValueError("unsupported_segmentation_mode")
@@ -267,12 +291,17 @@ def run_mode(
         path.resolve().as_posix(): file_sha256(path) for path in source_files
     }
     profile_sha256 = job["source_profile_sha256"]
+    mode_parameters = dict(MODE_CONFIGS[mode])
+    if variant_id is not None:
+        if mode != "vad_cut_merge" or variant_id not in VAD_THRESHOLD_VARIANTS:
+            raise ValueError("unsupported_segmentation_threshold_variant")
+        mode_parameters = dict(VAD_THRESHOLD_VARIANTS[variant_id])
     config = {
         "candidate_id": "faster-whisper-tiny.en",
         "profile_sha256": profile_sha256,
         "runtime_version": "1.2.1",
         "mode": mode,
-        "mode_parameters": MODE_CONFIGS[mode],
+        "mode_parameters": mode_parameters,
         "activity_profile": ACTIVITY_PROFILE,
         "activity_profile_sha256": hashlib.sha256(
             json.dumps(ACTIVITY_PROFILE, sort_keys=True, separators=(",", ":")).encode()
@@ -281,6 +310,8 @@ def run_mode(
         "failure_policy": "any_failed_window_empty_hypothesis_full_reference_deletion",
         "training_group_scope": "same_pretrained_weights_no_project_finetuning",
     }
+    if variant_id is not None:
+        config["variant_id"] = variant_id
     bindings = {
         "suite_sha256": file_sha256(suite_path),
         "manifest_sha256": suite["manifest_sha256"],
@@ -321,7 +352,7 @@ def run_mode(
             if file_sha256(audio_path) != case["audio_sha256"]:
                 raise ValueError("segmentation_source_audio_changed")
             try:
-                row = evaluate_case(case, audio_path, predictor, mode)
+                row = evaluate_case(case, audio_path, predictor, mode, mode_parameters)
             except Exception as exc:
                 reference = _reference(case)
                 score = fast_score(reference, "")
@@ -386,6 +417,12 @@ def run_mode(
         "complete": True,
         "clinical_acceptance": False,
         "automatic_promotion": False,
+        "source_commit": subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
         "reference_status": manifest.get("clinician_adjudication", "unknown"),
         "bindings": bindings,
         "configuration": config,
@@ -534,6 +571,7 @@ def main():
     parser.add_argument("--output", required=True)
     parser.add_argument("--receipts", nargs="*")
     parser.add_argument("--compute-budget-seconds", type=int, default=7200)
+    parser.add_argument("--variant", choices=VAD_THRESHOLD_VARIANTS)
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     if args.mode == "combine":
@@ -547,6 +585,7 @@ def main():
             args.output,
             resume=args.resume,
             compute_budget_seconds=args.compute_budget_seconds,
+            variant_id=args.variant,
         )
     print(
         json.dumps(
