@@ -207,7 +207,11 @@ TEST_IDS = {
 
 
 def _sha256(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    if path.suffix.lower() == ".md" and "evaluation" not in path.parts:
+        content = path.read_text(encoding="utf-8").encode("utf-8")
+    else:
+        content = path.read_bytes()
+    return hashlib.sha256(content).hexdigest()
 
 
 def _anchor(root, relative, text):
@@ -327,8 +331,8 @@ def main():
     args = parser.parse_args()
     root = Path(args.root).resolve()
     value = build(root, args.source_commit)
-    json_path = root / "evaluation/claim-provenance/10of10-provenance-v1.json"
-    md_path = root / "docs/research/claim-provenance-10of10-v1.md"
+    json_path = root / "evaluation/claim-provenance/10of10-provenance-v2.json"
+    md_path = root / "docs/research/claim-provenance-10of10-v2.md"
     json_path.parent.mkdir(parents=True, exist_ok=True)
     md_path.parent.mkdir(parents=True, exist_ok=True)
     json_path.write_text(

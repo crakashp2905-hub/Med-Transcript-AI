@@ -17,6 +17,7 @@ import wave
 from pathlib import Path
 
 from services.api.ingest import file_sha256
+from services.engineering_status import evidence_sha256
 from services.asr.segmentation import (
     map_native_segments_to_source,
     plan_segments,
@@ -91,7 +92,10 @@ def validate_suite(suite_path):
     ):
         raise ValueError("segmentation_acceptance_group_leakage")
     for name, digest in suite.get("source_text_sha256", {}).items():
-        if file_sha256(name) != digest:
+        if (
+            evidence_sha256(name, "normalized_source_text", Path(name).as_posix())
+            != digest
+        ):
             raise ValueError("segmentation_frozen_benchmark_source_changed")
     return suite_path, suite, manifest_path, manifest
 

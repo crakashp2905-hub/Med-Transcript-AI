@@ -25,14 +25,15 @@ def test_matched_ablation_receipt_recomputes_all_arms_and_failure_deletions():
     assert report["clinical_acceptance"] is False
     assert report["automatic_promotion"] is False
     assert report["bindings"]["manifest_sha256"] == suite["manifest_sha256"]
-    assert (
-        report["bindings"]["runner_sha256"]
-        == report["bindings"]["source_sha256"][
-            str((ROOT / "services/asr/matched_ablation_runner.py").resolve()).replace(
-                "\\", "/"
-            )
-        ]
-    )
+    runner_sources = [
+        (source_path, digest)
+        for source_path, digest in report["bindings"]["source_sha256"].items()
+        if source_path.replace("\\", "/").endswith(
+            "/services/asr/matched_ablation_runner.py"
+        )
+    ]
+    assert len(runner_sources) == 1
+    assert runner_sources[0][1] == report["bindings"]["runner_sha256"]
     assert report["comparison"]["sample_count"] == 16
     assert set(report["arm_outputs"]) == set(report["comparison"]["arms"])
     expected_cases = {case["group_id"]: case for case in manifest["cases"]}

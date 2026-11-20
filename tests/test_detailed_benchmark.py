@@ -18,6 +18,7 @@ from services.evaluation import score
 from services.prepare_detailed import select
 from services.audio_provenance import validate_provenance
 from services.api.ingest import file_sha256
+from services.engineering_status import evidence_sha256
 
 
 def test_resource_receipt_records_cpu_and_honest_peak_memory(monkeypatch):
@@ -230,8 +231,12 @@ def test_detailed_suite_v7_binds_resource_runner_and_requires_fresh_runs():
     predecessor = Path("evaluation/detailed-suite-v6.json")
     assert suite["supersedes_suite"] == predecessor.as_posix()
     assert suite["supersedes_suite_sha256"] == file_sha256(predecessor)
-    assert suite["source_text_sha256"]["services/detailed_benchmark.py"] == file_sha256(
-        "services/detailed_benchmark.py"
+    assert suite["source_text_sha256"]["services/detailed_benchmark.py"] == (
+        evidence_sha256(
+            "services/detailed_benchmark.py",
+            "normalized_source_text",
+            "services/detailed_benchmark.py",
+        )
     )
     assert suite["resource_measurement_policy"]["fresh_run_required"] is True
     assert suite["resource_measurement_policy"]["historical_reuse_permitted"] is False
