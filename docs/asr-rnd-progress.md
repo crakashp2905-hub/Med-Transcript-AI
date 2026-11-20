@@ -530,12 +530,18 @@ tests do not establish ASR accuracy, clinical validity, or external acceptance.
 - **MTA-ASR-I07:** Evidence recorded for paired uncertainty stratified by recording condition, reference speaker role and literal clinical term across nine frozen candidates and eight public development consultation groups. `evaluation/reports/paired-asr-stratified-bootstrap-v2.json` SHA-256 `6d29a962427c94d8387c7230bf37819b49cf85f44ebba5fecc2697555c1cd2b7` binds the source paired bootstrap, taxonomy, manifest and all fixed-run receipts. Role-specific substitution/deletion rates and 16 term-recall strata use 10,000 consultation-cluster draws; the Omi failed pair remains included. Term intervals are withheld where fewer than two groups contain the term. `tests/test_stratified_asr_bootstrap.py` and `tests/test_stratified_asr_bootstrap_receipts.py`: passed. References are non-adjudicated; role labels come from reference turns, insertions remain unattributed, and eight groups do not support clinical subgroup claims. The primary WER and <=5% gate are unchanged.
 - **MTA-ASR-I08:** Partial. `evaluation/reports/asr-i08-resource-evidence-v1.json`
   (SHA-256 `088406a84d062308f57a1443a500649be478e007a47b55ecaaf7e53e8ef4c7c8`) summarizes the historical, source-bound complete resource receipt for nine profiles across eight public development consultations in clean and distracted conditions. It records successful-case p50/p95 latency and p95 RTF, failed-case counts, and process CPU/peak RSS including model load; Omi retains its two failures. These measurements cover the ASR benchmark process, not application upload through integrity-checked export. Monetary cost is not measured because there is no energy meter or billing/amortization rate. Every candidate still fails the 5% WER gate; no inference ran for this summary.
-- **MTA-ASR-I09:** Partial. Model cards and a negative-experiment index exist,
-  and benchmark receipts bind runs to dataset/model/source digests. However, the
-  index is a bounded historical inventory and the reporting artifacts do not
-  currently provide one reproducible publication package with every requested
-  ablation/error table regenerated from source-bound receipts. Clinical-gold
-  and admission claims remain explicitly absent.
+- **MTA-ASR-I09:** Partial. Added `services/asr_research_publication.py` and
+  `evaluation/publications/asr-i09-research-tables-v1.json` plus Markdown. The
+  deterministic bundle binds eight frozen inputs, 12 source files, model card
+  artifact digests and source report hashes. It assembles 13 model cards, 10
+  matched/VAD ablation rows, 17 error receipt rows, the 29-entry negative
+  experiment inventory and 171 consultation-clustered uncertainty rows. The
+  focused regression checks same-input reproducibility and hash binding (2
+  passed); no inference ran. I09 remains partial: this is a selected research
+  bundle, the negative index is bounded, and error-category tables still need
+  complete regeneration from source-bound receipts. Clinical gold and model
+  admission are absent; all included model and ablation rows fail the unchanged
+  5% WER gate.
 - **MTA-ASR-I10:** Partial. Synthetic tests cover digital-silence hallucination
   rejection, cross-talk detection, repeated-token stitching integrity, and
   source/candidate safety guards. `tests/test_adversarial_cases.py` records only
