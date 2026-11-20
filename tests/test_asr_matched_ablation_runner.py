@@ -3,6 +3,10 @@ import hashlib
 import wave
 from types import SimpleNamespace
 
+import pytest
+
+pytest.importorskip("numpy", reason="ASR decoding tests require the ASR extra")
+
 from services.asr.matched_ablation_runner import ENERGY_VAD_CONFIG, _decode, _run_case
 
 

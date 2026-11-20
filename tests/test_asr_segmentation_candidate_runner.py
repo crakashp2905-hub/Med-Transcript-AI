@@ -5,6 +5,8 @@ from array import array
 
 import pytest
 
+pytest.importorskip("numpy", reason="VAD candidate tests require the ASR extra")
+
 from services.asr.segmentation_candidate_runner import (
     MODE_CONFIGS,
     VAD_THRESHOLD_VARIANTS,
