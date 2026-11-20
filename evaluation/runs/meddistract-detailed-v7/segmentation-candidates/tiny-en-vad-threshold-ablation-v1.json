@@ -1,0 +1,673 @@
+{
+  "schema_version": "asr_segmentation_threshold_matrix_v1",
+  "complete": true,
+  "clinical_acceptance": false,
+  "automatic_promotion": false,
+  "evaluation_source_commits": {
+    "baseline": "e0d0ecc365a3319818becc2ad3361f137d9ba333",
+    "min_window_2500ms": "aeaac6096adea9419b49a78d15078cbc3386ed9b",
+    "max_window_20000ms": "aeaac6096adea9419b49a78d15078cbc3386ed9b",
+    "padding_600ms": "e0d0ecc365a3319818becc2ad3361f137d9ba333"
+  },
+  "generator_source_commit": "0d0755cfad61b5f2bdc275e175107bf0892227dd",
+  "generator_source_sha256": "36ecfd116735ed77b04bb7ac08487ee2a6e36e82fb764394cc7fc5afd722fe27",
+  "suite_sha256": "2e535a945a430ca5f0d1b160b88b94e23bd224db9e245ea9b37cdfcb3e8ee61d",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "candidate_id": "faster-whisper-tiny.en",
+  "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+  "activity_profile": {
+    "schema_version": "speech_activity_candidate_v1",
+    "candidate_id": "energy_rms_merge_1000ms_v1",
+    "frame_ms": 20,
+    "threshold_dbfs": -38.0,
+    "merge_silence_ms": 1000,
+    "minimum_speech_ms": 60,
+    "padding_ms": 40
+  },
+  "case_count": 16,
+  "reference_words": 27366,
+  "input_hash_equivalence": "identical_audio_and_reference_hashes_for_every_case",
+  "wer_admission_maximum": 0.05,
+  "arms": {
+    "baseline": {
+      "receipt_path": "evaluation/runs/meddistract-detailed-v7/segmentation-candidates/tiny-en-vad-threshold-baseline-v1.json",
+      "receipt_sha256": "db8942abe2a1ae3fb6ff2e6e7c7cb3042e6f353af13411d5bf56a307452884e6",
+      "configuration": {
+        "candidate_id": "faster-whisper-tiny.en",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_version": "1.2.1",
+        "mode": "vad_cut_merge",
+        "mode_parameters": {
+          "max_window_ms": 30000,
+          "min_window_ms": 5000,
+          "padding_ms": 300
+        },
+        "activity_profile": {
+          "schema_version": "speech_activity_candidate_v1",
+          "candidate_id": "energy_rms_merge_1000ms_v1",
+          "frame_ms": 20,
+          "threshold_dbfs": -38.0,
+          "merge_silence_ms": 1000,
+          "minimum_speech_ms": 60,
+          "padding_ms": 40
+        },
+        "activity_profile_sha256": "491d54b05d408ca931abb17b03e9eb90158c325c8ea789fe9cf1786303e1a40e",
+        "compute_budget_seconds": 7200,
+        "failure_policy": "any_failed_window_empty_hypothesis_full_reference_deletion",
+        "training_group_scope": "same_pretrained_weights_no_project_finetuning"
+      },
+      "summary": {
+        "sample_count": 16,
+        "failed_samples": 0,
+        "reference_words": 27366,
+        "normalized_edits": 9326,
+        "normalized_wer": 0.34078783892421255,
+        "wer_admission_maximum": 0.05,
+        "wer_admission": "fail",
+        "wall_seconds": 635.6180815998232
+      },
+      "resource_measurement": {
+        "status": "measured",
+        "peak_resident_bytes": 281436160,
+        "method": "windows_peak_working_set"
+      },
+      "cases": {
+        "day1_consultation01__audio_-10dB_d0": {
+          "audio_sha256": "7ab77ae0a44330d7793a6558c7130520280150e8f8d72bb1b696c4636445a2b5",
+          "reference_sha256": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+          "failed": false,
+          "reference_words": 1414,
+          "normalized_edits": 421
+        },
+        "day1_consultation01__clean": {
+          "audio_sha256": "61436ef271818dfc4160c6a35d7923b9b55757d02582a7ea63055bcd6e9f1ddf",
+          "reference_sha256": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+          "failed": false,
+          "reference_words": 1414,
+          "normalized_edits": 426
+        },
+        "day1_consultation02__audio_-10dB_d0": {
+          "audio_sha256": "c0b232b55f4bd9c99733610c54244f20859665a7d6ba3cef6cbb6e537f8fc6c3",
+          "reference_sha256": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+          "failed": false,
+          "reference_words": 1670,
+          "normalized_edits": 448
+        },
+        "day1_consultation02__clean": {
+          "audio_sha256": "066597ab92a0197cd3a41dc55f33f03b92dcce85fd3e251480b4f276933a71ac",
+          "reference_sha256": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+          "failed": false,
+          "reference_words": 1670,
+          "normalized_edits": 452
+        },
+        "day1_consultation03__audio_-10dB_d0": {
+          "audio_sha256": "8f7eba8c90555e99dc9eb62d189f8ee061f0761a6d39afb6813910525c0253e1",
+          "reference_sha256": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+          "failed": false,
+          "reference_words": 1561,
+          "normalized_edits": 531
+        },
+        "day1_consultation03__clean": {
+          "audio_sha256": "7d8e1d41ee043f03757733591f1a3e173231804cbfbabdb6137a611f1c3966cf",
+          "reference_sha256": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+          "failed": false,
+          "reference_words": 1561,
+          "normalized_edits": 442
+        },
+        "day1_consultation04__audio_-10dB_d0": {
+          "audio_sha256": "d9447b0fc8cbc2f57d714617b619a316d1c578a8139baa8e1fbb883ab738d010",
+          "reference_sha256": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+          "failed": false,
+          "reference_words": 1679,
+          "normalized_edits": 760
+        },
+        "day1_consultation04__clean": {
+          "audio_sha256": "d81950eaace85b6cc30613aad65e5c59e137be18f1f7bea952b55d02657c0622",
+          "reference_sha256": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+          "failed": false,
+          "reference_words": 1679,
+          "normalized_edits": 547
+        },
+        "day1_consultation05__audio_-10dB_d0": {
+          "audio_sha256": "1e62ed7b538fcd9a7ada012398f7191c41540fb0b8a049b1ae8800474c5bc1a2",
+          "reference_sha256": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+          "failed": false,
+          "reference_words": 1625,
+          "normalized_edits": 507
+        },
+        "day1_consultation05__clean": {
+          "audio_sha256": "ff4b0ac795ddd6eb6ac9807a3e67bfd78c0407b10ad06899b995ce681f374dd4",
+          "reference_sha256": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+          "failed": false,
+          "reference_words": 1625,
+          "normalized_edits": 477
+        },
+        "day1_consultation06__audio_-10dB_d0": {
+          "audio_sha256": "10c3c6de8be6f110b46f3bd69f2f9b14348978eba941c00fb00e56db4a6725aa",
+          "reference_sha256": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+          "failed": false,
+          "reference_words": 1849,
+          "normalized_edits": 618
+        },
+        "day1_consultation06__clean": {
+          "audio_sha256": "98d68e87667cafa90f4636bb11b6a3c26bebe98a5ca2f7b3175cb3d8a0155b1c",
+          "reference_sha256": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+          "failed": false,
+          "reference_words": 1849,
+          "normalized_edits": 610
+        },
+        "day1_consultation07__audio_-10dB_d0": {
+          "audio_sha256": "4dd037e87b2c6ba681192fd0243da66f7556f72a4c82b61c8f68905024257596",
+          "reference_sha256": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+          "failed": false,
+          "reference_words": 2703,
+          "normalized_edits": 1098
+        },
+        "day1_consultation07__clean": {
+          "audio_sha256": "1b003264b1d3bc081453947aa9cdd0c1bc4cf4761629a71dcfd8b92c1dfa940c",
+          "reference_sha256": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+          "failed": false,
+          "reference_words": 2703,
+          "normalized_edits": 1068
+        },
+        "day1_consultation08__audio_-10dB_d0": {
+          "audio_sha256": "a8d226a9deb671d49fa54c8a9f26f48b5dca3f09fc0278316c983d2c6b197e4b",
+          "reference_sha256": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+          "failed": false,
+          "reference_words": 1182,
+          "normalized_edits": 529
+        },
+        "day1_consultation08__clean": {
+          "audio_sha256": "28e473a8afbe3f598c96790eed265dcc52cc44e1fcad0a01474adff9271f6dc9",
+          "reference_sha256": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+          "failed": false,
+          "reference_words": 1182,
+          "normalized_edits": 392
+        }
+      }
+    },
+    "min_window_2500ms": {
+      "receipt_path": "evaluation/runs/meddistract-detailed-v7/segmentation-candidates/tiny-en-vad-threshold-min-window-2500ms-v1.json",
+      "receipt_sha256": "03094fd4bdf68763c17e2913a82739bc2cf97d683738de80a4e86cd5897013df",
+      "configuration": {
+        "candidate_id": "faster-whisper-tiny.en",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_version": "1.2.1",
+        "mode": "vad_cut_merge",
+        "mode_parameters": {
+          "max_window_ms": 30000,
+          "min_window_ms": 2500,
+          "padding_ms": 300
+        },
+        "activity_profile": {
+          "schema_version": "speech_activity_candidate_v1",
+          "candidate_id": "energy_rms_merge_1000ms_v1",
+          "frame_ms": 20,
+          "threshold_dbfs": -38.0,
+          "merge_silence_ms": 1000,
+          "minimum_speech_ms": 60,
+          "padding_ms": 40
+        },
+        "activity_profile_sha256": "491d54b05d408ca931abb17b03e9eb90158c325c8ea789fe9cf1786303e1a40e",
+        "compute_budget_seconds": 7200,
+        "failure_policy": "any_failed_window_empty_hypothesis_full_reference_deletion",
+        "training_group_scope": "same_pretrained_weights_no_project_finetuning",
+        "variant_id": "min_window_2500ms"
+      },
+      "summary": {
+        "sample_count": 16,
+        "failed_samples": 0,
+        "reference_words": 27366,
+        "normalized_edits": 9167,
+        "normalized_wer": 0.3349777095666155,
+        "wer_admission_maximum": 0.05,
+        "wer_admission": "fail",
+        "wall_seconds": 713.8887035001535
+      },
+      "resource_measurement": {
+        "status": "measured",
+        "peak_resident_bytes": 282189824,
+        "method": "windows_peak_working_set"
+      },
+      "cases": {
+        "day1_consultation01__audio_-10dB_d0": {
+          "audio_sha256": "7ab77ae0a44330d7793a6558c7130520280150e8f8d72bb1b696c4636445a2b5",
+          "reference_sha256": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+          "failed": false,
+          "reference_words": 1414,
+          "normalized_edits": 421
+        },
+        "day1_consultation01__clean": {
+          "audio_sha256": "61436ef271818dfc4160c6a35d7923b9b55757d02582a7ea63055bcd6e9f1ddf",
+          "reference_sha256": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+          "failed": false,
+          "reference_words": 1414,
+          "normalized_edits": 426
+        },
+        "day1_consultation02__audio_-10dB_d0": {
+          "audio_sha256": "c0b232b55f4bd9c99733610c54244f20859665a7d6ba3cef6cbb6e537f8fc6c3",
+          "reference_sha256": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+          "failed": false,
+          "reference_words": 1670,
+          "normalized_edits": 482
+        },
+        "day1_consultation02__clean": {
+          "audio_sha256": "066597ab92a0197cd3a41dc55f33f03b92dcce85fd3e251480b4f276933a71ac",
+          "reference_sha256": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+          "failed": false,
+          "reference_words": 1670,
+          "normalized_edits": 469
+        },
+        "day1_consultation03__audio_-10dB_d0": {
+          "audio_sha256": "8f7eba8c90555e99dc9eb62d189f8ee061f0761a6d39afb6813910525c0253e1",
+          "reference_sha256": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+          "failed": false,
+          "reference_words": 1561,
+          "normalized_edits": 452
+        },
+        "day1_consultation03__clean": {
+          "audio_sha256": "7d8e1d41ee043f03757733591f1a3e173231804cbfbabdb6137a611f1c3966cf",
+          "reference_sha256": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+          "failed": false,
+          "reference_words": 1561,
+          "normalized_edits": 464
+        },
+        "day1_consultation04__audio_-10dB_d0": {
+          "audio_sha256": "d9447b0fc8cbc2f57d714617b619a316d1c578a8139baa8e1fbb883ab738d010",
+          "reference_sha256": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+          "failed": false,
+          "reference_words": 1679,
+          "normalized_edits": 579
+        },
+        "day1_consultation04__clean": {
+          "audio_sha256": "d81950eaace85b6cc30613aad65e5c59e137be18f1f7bea952b55d02657c0622",
+          "reference_sha256": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+          "failed": false,
+          "reference_words": 1679,
+          "normalized_edits": 545
+        },
+        "day1_consultation05__audio_-10dB_d0": {
+          "audio_sha256": "1e62ed7b538fcd9a7ada012398f7191c41540fb0b8a049b1ae8800474c5bc1a2",
+          "reference_sha256": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+          "failed": false,
+          "reference_words": 1625,
+          "normalized_edits": 482
+        },
+        "day1_consultation05__clean": {
+          "audio_sha256": "ff4b0ac795ddd6eb6ac9807a3e67bfd78c0407b10ad06899b995ce681f374dd4",
+          "reference_sha256": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+          "failed": false,
+          "reference_words": 1625,
+          "normalized_edits": 492
+        },
+        "day1_consultation06__audio_-10dB_d0": {
+          "audio_sha256": "10c3c6de8be6f110b46f3bd69f2f9b14348978eba941c00fb00e56db4a6725aa",
+          "reference_sha256": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+          "failed": false,
+          "reference_words": 1849,
+          "normalized_edits": 626
+        },
+        "day1_consultation06__clean": {
+          "audio_sha256": "98d68e87667cafa90f4636bb11b6a3c26bebe98a5ca2f7b3175cb3d8a0155b1c",
+          "reference_sha256": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+          "failed": false,
+          "reference_words": 1849,
+          "normalized_edits": 616
+        },
+        "day1_consultation07__audio_-10dB_d0": {
+          "audio_sha256": "4dd037e87b2c6ba681192fd0243da66f7556f72a4c82b61c8f68905024257596",
+          "reference_sha256": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+          "failed": false,
+          "reference_words": 2703,
+          "normalized_edits": 1098
+        },
+        "day1_consultation07__clean": {
+          "audio_sha256": "1b003264b1d3bc081453947aa9cdd0c1bc4cf4761629a71dcfd8b92c1dfa940c",
+          "reference_sha256": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+          "failed": false,
+          "reference_words": 2703,
+          "normalized_edits": 1072
+        },
+        "day1_consultation08__audio_-10dB_d0": {
+          "audio_sha256": "a8d226a9deb671d49fa54c8a9f26f48b5dca3f09fc0278316c983d2c6b197e4b",
+          "reference_sha256": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+          "failed": false,
+          "reference_words": 1182,
+          "normalized_edits": 533
+        },
+        "day1_consultation08__clean": {
+          "audio_sha256": "28e473a8afbe3f598c96790eed265dcc52cc44e1fcad0a01474adff9271f6dc9",
+          "reference_sha256": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+          "failed": false,
+          "reference_words": 1182,
+          "normalized_edits": 410
+        }
+      }
+    },
+    "max_window_20000ms": {
+      "receipt_path": "evaluation/runs/meddistract-detailed-v7/segmentation-candidates/tiny-en-vad-threshold-max-window-20000ms-v1.json",
+      "receipt_sha256": "cfd55e74181a5f26712173b6e3649c8d685730df740cb9ad3bce2dc052babd01",
+      "configuration": {
+        "candidate_id": "faster-whisper-tiny.en",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_version": "1.2.1",
+        "mode": "vad_cut_merge",
+        "mode_parameters": {
+          "max_window_ms": 20000,
+          "min_window_ms": 5000,
+          "padding_ms": 300
+        },
+        "activity_profile": {
+          "schema_version": "speech_activity_candidate_v1",
+          "candidate_id": "energy_rms_merge_1000ms_v1",
+          "frame_ms": 20,
+          "threshold_dbfs": -38.0,
+          "merge_silence_ms": 1000,
+          "minimum_speech_ms": 60,
+          "padding_ms": 40
+        },
+        "activity_profile_sha256": "491d54b05d408ca931abb17b03e9eb90158c325c8ea789fe9cf1786303e1a40e",
+        "compute_budget_seconds": 7200,
+        "failure_policy": "any_failed_window_empty_hypothesis_full_reference_deletion",
+        "training_group_scope": "same_pretrained_weights_no_project_finetuning",
+        "variant_id": "max_window_20000ms"
+      },
+      "summary": {
+        "sample_count": 16,
+        "failed_samples": 0,
+        "reference_words": 27366,
+        "normalized_edits": 9602,
+        "normalized_wer": 0.3508733464883432,
+        "wer_admission_maximum": 0.05,
+        "wer_admission": "fail",
+        "wall_seconds": 639.9844855002593
+      },
+      "resource_measurement": {
+        "status": "measured",
+        "peak_resident_bytes": 276180992,
+        "method": "windows_peak_working_set"
+      },
+      "cases": {
+        "day1_consultation01__audio_-10dB_d0": {
+          "audio_sha256": "7ab77ae0a44330d7793a6558c7130520280150e8f8d72bb1b696c4636445a2b5",
+          "reference_sha256": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+          "failed": false,
+          "reference_words": 1414,
+          "normalized_edits": 628
+        },
+        "day1_consultation01__clean": {
+          "audio_sha256": "61436ef271818dfc4160c6a35d7923b9b55757d02582a7ea63055bcd6e9f1ddf",
+          "reference_sha256": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+          "failed": false,
+          "reference_words": 1414,
+          "normalized_edits": 435
+        },
+        "day1_consultation02__audio_-10dB_d0": {
+          "audio_sha256": "c0b232b55f4bd9c99733610c54244f20859665a7d6ba3cef6cbb6e537f8fc6c3",
+          "reference_sha256": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+          "failed": false,
+          "reference_words": 1670,
+          "normalized_edits": 458
+        },
+        "day1_consultation02__clean": {
+          "audio_sha256": "066597ab92a0197cd3a41dc55f33f03b92dcce85fd3e251480b4f276933a71ac",
+          "reference_sha256": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+          "failed": false,
+          "reference_words": 1670,
+          "normalized_edits": 456
+        },
+        "day1_consultation03__audio_-10dB_d0": {
+          "audio_sha256": "8f7eba8c90555e99dc9eb62d189f8ee061f0761a6d39afb6813910525c0253e1",
+          "reference_sha256": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+          "failed": false,
+          "reference_words": 1561,
+          "normalized_edits": 556
+        },
+        "day1_consultation03__clean": {
+          "audio_sha256": "7d8e1d41ee043f03757733591f1a3e173231804cbfbabdb6137a611f1c3966cf",
+          "reference_sha256": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+          "failed": false,
+          "reference_words": 1561,
+          "normalized_edits": 470
+        },
+        "day1_consultation04__audio_-10dB_d0": {
+          "audio_sha256": "d9447b0fc8cbc2f57d714617b619a316d1c578a8139baa8e1fbb883ab738d010",
+          "reference_sha256": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+          "failed": false,
+          "reference_words": 1679,
+          "normalized_edits": 567
+        },
+        "day1_consultation04__clean": {
+          "audio_sha256": "d81950eaace85b6cc30613aad65e5c59e137be18f1f7bea952b55d02657c0622",
+          "reference_sha256": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+          "failed": false,
+          "reference_words": 1679,
+          "normalized_edits": 588
+        },
+        "day1_consultation05__audio_-10dB_d0": {
+          "audio_sha256": "1e62ed7b538fcd9a7ada012398f7191c41540fb0b8a049b1ae8800474c5bc1a2",
+          "reference_sha256": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+          "failed": false,
+          "reference_words": 1625,
+          "normalized_edits": 478
+        },
+        "day1_consultation05__clean": {
+          "audio_sha256": "ff4b0ac795ddd6eb6ac9807a3e67bfd78c0407b10ad06899b995ce681f374dd4",
+          "reference_sha256": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+          "failed": false,
+          "reference_words": 1625,
+          "normalized_edits": 438
+        },
+        "day1_consultation06__audio_-10dB_d0": {
+          "audio_sha256": "10c3c6de8be6f110b46f3bd69f2f9b14348978eba941c00fb00e56db4a6725aa",
+          "reference_sha256": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+          "failed": false,
+          "reference_words": 1849,
+          "normalized_edits": 623
+        },
+        "day1_consultation06__clean": {
+          "audio_sha256": "98d68e87667cafa90f4636bb11b6a3c26bebe98a5ca2f7b3175cb3d8a0155b1c",
+          "reference_sha256": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+          "failed": false,
+          "reference_words": 1849,
+          "normalized_edits": 609
+        },
+        "day1_consultation07__audio_-10dB_d0": {
+          "audio_sha256": "4dd037e87b2c6ba681192fd0243da66f7556f72a4c82b61c8f68905024257596",
+          "reference_sha256": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+          "failed": false,
+          "reference_words": 2703,
+          "normalized_edits": 1090
+        },
+        "day1_consultation07__clean": {
+          "audio_sha256": "1b003264b1d3bc081453947aa9cdd0c1bc4cf4761629a71dcfd8b92c1dfa940c",
+          "reference_sha256": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+          "failed": false,
+          "reference_words": 2703,
+          "normalized_edits": 1373
+        },
+        "day1_consultation08__audio_-10dB_d0": {
+          "audio_sha256": "a8d226a9deb671d49fa54c8a9f26f48b5dca3f09fc0278316c983d2c6b197e4b",
+          "reference_sha256": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+          "failed": false,
+          "reference_words": 1182,
+          "normalized_edits": 436
+        },
+        "day1_consultation08__clean": {
+          "audio_sha256": "28e473a8afbe3f598c96790eed265dcc52cc44e1fcad0a01474adff9271f6dc9",
+          "reference_sha256": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+          "failed": false,
+          "reference_words": 1182,
+          "normalized_edits": 397
+        }
+      }
+    },
+    "padding_600ms": {
+      "receipt_path": "evaluation/runs/meddistract-detailed-v7/segmentation-candidates/tiny-en-vad-threshold-padding-600ms-v1.json",
+      "receipt_sha256": "9036cbff3d7a89cff4b6cae510819de48592d2c087b53666c423ade3e78f12d2",
+      "configuration": {
+        "candidate_id": "faster-whisper-tiny.en",
+        "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+        "runtime_version": "1.2.1",
+        "mode": "vad_cut_merge",
+        "mode_parameters": {
+          "max_window_ms": 30000,
+          "min_window_ms": 5000,
+          "padding_ms": 600
+        },
+        "activity_profile": {
+          "schema_version": "speech_activity_candidate_v1",
+          "candidate_id": "energy_rms_merge_1000ms_v1",
+          "frame_ms": 20,
+          "threshold_dbfs": -38.0,
+          "merge_silence_ms": 1000,
+          "minimum_speech_ms": 60,
+          "padding_ms": 40
+        },
+        "activity_profile_sha256": "491d54b05d408ca931abb17b03e9eb90158c325c8ea789fe9cf1786303e1a40e",
+        "compute_budget_seconds": 7200,
+        "failure_policy": "any_failed_window_empty_hypothesis_full_reference_deletion",
+        "training_group_scope": "same_pretrained_weights_no_project_finetuning",
+        "variant_id": "padding_600ms"
+      },
+      "summary": {
+        "sample_count": 16,
+        "failed_samples": 0,
+        "reference_words": 27366,
+        "normalized_edits": 9209,
+        "normalized_wer": 0.3365124607176789,
+        "wer_admission_maximum": 0.05,
+        "wer_admission": "fail",
+        "wall_seconds": 736.9761096999282
+      },
+      "resource_measurement": {
+        "status": "measured",
+        "peak_resident_bytes": 279687168,
+        "method": "windows_peak_working_set"
+      },
+      "cases": {
+        "day1_consultation01__audio_-10dB_d0": {
+          "audio_sha256": "7ab77ae0a44330d7793a6558c7130520280150e8f8d72bb1b696c4636445a2b5",
+          "reference_sha256": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+          "failed": false,
+          "reference_words": 1414,
+          "normalized_edits": 433
+        },
+        "day1_consultation01__clean": {
+          "audio_sha256": "61436ef271818dfc4160c6a35d7923b9b55757d02582a7ea63055bcd6e9f1ddf",
+          "reference_sha256": "aa7bbc32e5a3bc234a704e2f49080bcc4b6acfd014d9f834796746afeb542926",
+          "failed": false,
+          "reference_words": 1414,
+          "normalized_edits": 447
+        },
+        "day1_consultation02__audio_-10dB_d0": {
+          "audio_sha256": "c0b232b55f4bd9c99733610c54244f20859665a7d6ba3cef6cbb6e537f8fc6c3",
+          "reference_sha256": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+          "failed": false,
+          "reference_words": 1670,
+          "normalized_edits": 641
+        },
+        "day1_consultation02__clean": {
+          "audio_sha256": "066597ab92a0197cd3a41dc55f33f03b92dcce85fd3e251480b4f276933a71ac",
+          "reference_sha256": "7449f04e121c17f912bc5020a70b8f08fd351c9f61e502fd8180887072a4ea6a",
+          "failed": false,
+          "reference_words": 1670,
+          "normalized_edits": 442
+        },
+        "day1_consultation03__audio_-10dB_d0": {
+          "audio_sha256": "8f7eba8c90555e99dc9eb62d189f8ee061f0761a6d39afb6813910525c0253e1",
+          "reference_sha256": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+          "failed": false,
+          "reference_words": 1561,
+          "normalized_edits": 450
+        },
+        "day1_consultation03__clean": {
+          "audio_sha256": "7d8e1d41ee043f03757733591f1a3e173231804cbfbabdb6137a611f1c3966cf",
+          "reference_sha256": "148d075ad6e974d41c9d9de4b203945e54dfeb427e61c68d143ce57569cb8696",
+          "failed": false,
+          "reference_words": 1561,
+          "normalized_edits": 510
+        },
+        "day1_consultation04__audio_-10dB_d0": {
+          "audio_sha256": "d9447b0fc8cbc2f57d714617b619a316d1c578a8139baa8e1fbb883ab738d010",
+          "reference_sha256": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+          "failed": false,
+          "reference_words": 1679,
+          "normalized_edits": 570
+        },
+        "day1_consultation04__clean": {
+          "audio_sha256": "d81950eaace85b6cc30613aad65e5c59e137be18f1f7bea952b55d02657c0622",
+          "reference_sha256": "283ab8847a377b71581718238283afd62a649f967de2136328ff56b66e432bd9",
+          "failed": false,
+          "reference_words": 1679,
+          "normalized_edits": 555
+        },
+        "day1_consultation05__audio_-10dB_d0": {
+          "audio_sha256": "1e62ed7b538fcd9a7ada012398f7191c41540fb0b8a049b1ae8800474c5bc1a2",
+          "reference_sha256": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+          "failed": false,
+          "reference_words": 1625,
+          "normalized_edits": 469
+        },
+        "day1_consultation05__clean": {
+          "audio_sha256": "ff4b0ac795ddd6eb6ac9807a3e67bfd78c0407b10ad06899b995ce681f374dd4",
+          "reference_sha256": "6ff513297e1731b67cbf351e002bb81c7de64a0ff518a28820250a25e9a773b7",
+          "failed": false,
+          "reference_words": 1625,
+          "normalized_edits": 482
+        },
+        "day1_consultation06__audio_-10dB_d0": {
+          "audio_sha256": "10c3c6de8be6f110b46f3bd69f2f9b14348978eba941c00fb00e56db4a6725aa",
+          "reference_sha256": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+          "failed": false,
+          "reference_words": 1849,
+          "normalized_edits": 615
+        },
+        "day1_consultation06__clean": {
+          "audio_sha256": "98d68e87667cafa90f4636bb11b6a3c26bebe98a5ca2f7b3175cb3d8a0155b1c",
+          "reference_sha256": "90752313a8bc9f9059051ac34e795205441735c46c65a4ad7b296dc4f22888c4",
+          "failed": false,
+          "reference_words": 1849,
+          "normalized_edits": 622
+        },
+        "day1_consultation07__audio_-10dB_d0": {
+          "audio_sha256": "4dd037e87b2c6ba681192fd0243da66f7556f72a4c82b61c8f68905024257596",
+          "reference_sha256": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+          "failed": false,
+          "reference_words": 2703,
+          "normalized_edits": 1033
+        },
+        "day1_consultation07__clean": {
+          "audio_sha256": "1b003264b1d3bc081453947aa9cdd0c1bc4cf4761629a71dcfd8b92c1dfa940c",
+          "reference_sha256": "9b0782d10ed8938e391d91eefbf567c485ddb23f772d90bb2447b211119d5c8b",
+          "failed": false,
+          "reference_words": 2703,
+          "normalized_edits": 1104
+        },
+        "day1_consultation08__audio_-10dB_d0": {
+          "audio_sha256": "a8d226a9deb671d49fa54c8a9f26f48b5dca3f09fc0278316c983d2c6b197e4b",
+          "reference_sha256": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+          "failed": false,
+          "reference_words": 1182,
+          "normalized_edits": 434
+        },
+        "day1_consultation08__clean": {
+          "audio_sha256": "28e473a8afbe3f598c96790eed265dcc52cc44e1fcad0a01474adff9271f6dc9",
+          "reference_sha256": "846639d7a80d9610c5e560bcc379da8263e1215b044f809fd00588a88290e827",
+          "failed": false,
+          "reference_words": 1182,
+          "normalized_edits": 402
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Energy activity spans are uncalibrated heuristics, not annotated speech truth.",
+    "All results are development-only and do not establish clinical acceptance.",
+    "The 5% normalized-WER threshold is unchanged; no arm is promoted by this comparison."
+  ],
+  "publication": {
+    "schema_version": "immutable_report_publication_v1",
+    "supersedes": null
+  }
+}
