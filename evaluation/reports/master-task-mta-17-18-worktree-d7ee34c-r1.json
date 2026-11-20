@@ -1,0 +1,75 @@
+{
+  "schema_version": "master_task_worktree_evidence_v1",
+  "task_id": "MTA-17-18",
+  "task_description": "Workspace administrator read-only installation diagnostics with actionable storage and backup guidance.",
+  "recorded_at": "2026-11-20T18:05:48.682563+00:00",
+  "source_commit": "d7ee34cbdfb4a488bc5d4c96de433920f50d9873",
+  "origin_main_commit": "d7ee34cbdfb4a488bc5d4c96de433920f50d9873",
+  "source_commit_matches_origin": true,
+  "worktree_clean": false,
+  "worktree_status_paths": [
+    "apps/clinician-web/e2e/google-auth.spec.ts",
+    "apps/clinician-web/src/screens/AdminUsersScreen.tsx",
+    "docs/asr-rnd-progress.md",
+    "docs/offline-acceptance-summary.md",
+    "evaluation/asr-task-ledger-v1.json",
+    "services/api/auth.py",
+    "services/api/main.py",
+    "tests/test_google_auth.py",
+    ".acceptance-474e77d/",
+    ".acceptance-502c65f/",
+    ".acceptance-c15c2b8/",
+    ".acceptance-cb24c88/",
+    ".acceptance-clean-023b85a/",
+    ".acceptance-clean-502c65f/",
+    ".ci-repro-7789c94/",
+    "474e77dbe1ec0781f204fef2956701d278e55752",
+    "evaluation/reports/offline-acceptance-local-20261120-3ff0174-admin-diagnostics.json",
+    "evaluation/reports/offline-acceptance-local-20261120-45dbbb0-authdiag.json",
+    "evaluation/reports/offline-acceptance-local-20261120-5b443d3-final.json",
+    "evaluation/reports/offline-acceptance-local-20261120-c4cf340-final.json",
+    "evaluation/reports/offline-acceptance-local-20261120-c7a519a-admin-diagnostics.json",
+    "evaluation/reports/offline-acceptance-local-20261120-e0d0ecc-authdiag.json",
+    "evaluation/runs/meddistract-detailed-v7/distil-whisper-large-v3.fixed.json",
+    "evaluation/runs/meddistract-detailed-v7/matched-ablation-v1.json.partial",
+    "evaluation/runs/meddistract-detailed-v7/matched-ablation-v2.json.partial",
+    "evaluation/runs/meddistract-detailed-v7/segmentation-candidates/tiny-en-pause_aware.json.partial",
+    "evaluation/runs/meddistract-detailed-v7/segmentation-candidates/tiny-en-segmentation-source-maps-v1.json",
+    "tests/test_asr_segmentation_source_map_receipts.py"
+  ],
+  "worktree_file_manifest_sha256": "41e21867247714fe8cfd4a523035b50974d81bc37f244fd15345c255d52fc748",
+  "relevant_source_sha256": {
+    "services/api/auth.py": "620376efbf2b9a4a1bee4dd72b8cd3ab027933523f7b0d0a301f066eaa46ff99",
+    "services/api/main.py": "b4fe2b73d91c57cb51f2c0226b7a8ee8692b2ed51ec12b231e6cf82df92d3d33",
+    "tests/test_google_auth.py": "4f4162ee96144e13111262496201dc7d67a4d36e0172bfe709075bc9fe04d78a",
+    "apps/clinician-web/src/screens/AdminUsersScreen.tsx": "f368a82f6d5b4d4dae6ba80bcf272e6fb2addb7cb61476acbaa9e2009919dd41",
+    "apps/clinician-web/e2e/google-auth.spec.ts": "dd3a40d8abb9244e3161111005f5bce0565e15182393109fa537feb2dfebece5"
+  },
+  "results": [
+    {
+      "command": "python -m services.safe_pytest tests/test_google_auth.py",
+      "status": "pass",
+      "summary": "20 passed"
+    },
+    {
+      "command": "npm run build (npm_config_offline=true)",
+      "status": "pass",
+      "summary": "TypeScript check and Vite production build succeeded"
+    },
+    {
+      "command": "npx --offline playwright test e2e/google-auth.spec.ts",
+      "status": "pass",
+      "summary": "2 passed",
+      "mode": "local simulated OIDC; loopback only"
+    }
+  ],
+  "evidence_scope": "synthetic admin installation diagnostics only",
+  "ledger_status": "implemented",
+  "ledger_status_note": "Not promoted to verified: relevant source changes are uncommitted pre-existing worktree edits.",
+  "limitations": [
+    "No live Google Workspace registration or external sign-in was tested.",
+    "Database and asset permissions are reported from local filesystem access checks; backup restore remains unvalidated.",
+    "No clinical, real-patient, or production authorization is implied."
+  ],
+  "real_patient_release_authorized": false
+}
