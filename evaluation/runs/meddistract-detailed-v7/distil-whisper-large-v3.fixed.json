@@ -1,0 +1,17 @@
+{
+  "schema_version": "detailed_full_asr_v1",
+  "candidate_id": "distil-whisper-large-v3",
+  "manifest_sha256": "d0c4e960d013668d5cb21eb0d40b8a500d6fe545643564d31ffb9be13c77c262",
+  "suite_sha256": "288de63609ad125c5f034a6bccdc968e1dcd52313f6f7cc85f4b146acda8e8c4",
+  "mode": "fixed",
+  "complete": false,
+  "cases": [],
+  "scoring_profile": "lowercase_words_preserve_decimals_units_negation_v1",
+  "failure_policy": "any_failed_chunk_empty_whole_case_all_reference_deletions",
+  "maximum_normalized_wer": 0.05,
+  "clinical_acceptance": false,
+  "runtime": null,
+  "active_case": null,
+  "resource_measurement": null,
+  "initialization_failure": "ModuleNotFoundError"
+}

@@ -26,6 +26,23 @@ def digest(value):
     return hashlib.sha256(value.encode()).hexdigest()
 
 
+def storage_access_status(path, *, file_required=False):
+    """Report basic local filesystem access without exposing a configured path."""
+    if path is None:
+        return "remote_not_checked"
+    try:
+        target = Path(path)
+        parent = target.parent if file_required else target
+        accessible = parent.is_dir() and os.access(parent, os.R_OK | os.W_OK | os.X_OK)
+        if file_required:
+            accessible = (
+                accessible and target.is_file() and os.access(target, os.R_OK | os.W_OK)
+            )
+    except (OSError, ValueError):
+        accessible = False
+    return "available" if accessible else "unavailable"
+
+
 @dataclass
 class Settings:
     mode: str = "local"
@@ -298,8 +315,10 @@ class GoogleSessions:
         @app.get("/v1/admin/diagnostics")
         def admin_diagnostics(request: Request):
             admin_actor(request)
+            database_path = request.app.state.diagnostic_database_path
+            asset_path = request.app.state.diagnostic_asset_path
             try:
-                disk_free_bytes = shutil.disk_usage(Path.cwd()).free
+                disk_free_bytes = shutil.disk_usage(asset_path).free
                 storage_status = "measured"
             except OSError:
                 disk_free_bytes = None
@@ -318,6 +337,12 @@ class GoogleSessions:
                 "storage": {
                     "status": storage_status,
                     "free_bytes": disk_free_bytes,
+                    "access": {
+                        "database": storage_access_status(
+                            database_path, file_required=database_path is not None
+                        ),
+                        "assets": storage_access_status(asset_path),
+                    },
                     "backup_restore": "not_checked",
                 },
                 "frontend_dependencies": (

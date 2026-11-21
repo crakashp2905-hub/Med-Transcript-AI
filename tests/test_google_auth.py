@@ -116,6 +116,10 @@ def test_administrator_manages_same_tenant_membership_and_audit(google_app):
     assert diagnostics.status_code == 200
     diagnostic_body = diagnostics.json()
     assert diagnostic_body["storage"]["status"] in {"measured", "unavailable"}
+    assert diagnostic_body["storage"]["access"] == {
+        "database": "available",
+        "assets": "available",
+    }
     assert diagnostic_body["model_inference_performed"] is False
     assert diagnostic_body["external_services_contacted"] is False
     assert diagnostic_body["patient_or_encounter_data_included"] is False
@@ -175,6 +179,22 @@ def test_non_administrator_cannot_manage_membership(google_app):
     diagnostics = client.get("/v1/admin/diagnostics")
     assert diagnostics.status_code == 403
     assert diagnostics.json()["code"] == "administrator_role_required"
+
+
+def test_storage_access_status_is_read_only_and_does_not_disclose_paths(tmp_path):
+    from services.api.auth import storage_access_status
+
+    directory = tmp_path / "assets"
+    directory.mkdir()
+    database = tmp_path / "clinic.sqlite3"
+    database.write_bytes(b"synthetic")
+    missing = tmp_path / "missing"
+
+    assert storage_access_status(directory) == "available"
+    assert storage_access_status(database, file_required=True) == "available"
+    assert storage_access_status(missing) == "unavailable"
+    assert not missing.exists()
+    assert storage_access_status(None, file_required=True) == "remote_not_checked"
 
 
 def test_state_binding_replay_and_cookie_flags(google_app):

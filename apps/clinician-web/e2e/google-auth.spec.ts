@@ -46,6 +46,7 @@ test('workspace administrator provisions a scribe without encounter access and r
  await expect(diagnostics).toContainText('Patient or encounter data: not included.');
  await expect(diagnostics).toContainText('Model inference: not run.');
  await expect(diagnostics).toContainText('External services: not contacted.');
+ await expect(diagnostics).toContainText('Configured storage access: database available · assets available');
  await expect(diagnostics.getByRole('heading',{name:'Recommended follow-up'})).toBeVisible();
  await expect(diagnostics).toContainText('Backup and restore have not been validated here.');
  await expect(diagnostics).toContainText('test restore in a separate recovery directory.');

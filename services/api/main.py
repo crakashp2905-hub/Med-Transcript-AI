@@ -73,6 +73,12 @@ def create_app(
     )
     sessions = GoogleSessions(auth_settings, database, Identity)
     app.state.auth_sessions = sessions
+    app.state.diagnostic_database_path = (
+        None
+        if db_path.startswith(("postgresql://", "postgres://"))
+        else Path(db_path).expanduser().resolve()
+    )
+    app.state.diagnostic_asset_path = Path(assets).expanduser().resolve()
     sessions.register(app)
     from services.api.request_limits import RequestLimits
 

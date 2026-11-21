@@ -1,0 +1,152 @@
+{
+  "schema_version": "synthetic_cross_talk_asr_replay_v1",
+  "task_id": "MTA-ASR-I10",
+  "source_commit": "1f691265f9f90835b0f4086ab696bc318e2a00d4",
+  "scenario_id": "two-speaker-overlap",
+  "scope": "public mock speech, developer-scripted synthetic mono overlap; no reserved or real-patient data",
+  "source_group_id": "day1_consultation08",
+  "scenario_manifest_sha256": "71a9f9eb8ed2c9d96761ff43885a26ac6cc03659438a1a0cd98adc9409e6ae86",
+  "scenario_audio_sha256": "4514ad44ba7a8c14045240aae7ac891bcd110a69b3c270bf842a4ed6526a4b88",
+  "scenario_audio_path": "evaluation/scenarios/offline-encounters-v1/assets/two-speaker-overlap.wav",
+  "source_dataset_manifest_sha256": "d8945178c3ef0424745783c03675a5b37065682804fa60f06d33c08c5c3f2471",
+  "source_dataset_manifest_path": "evaluation/datasets/primock57-expanded-v1/manifest.json",
+  "overlap_ms": 2847,
+  "reference_turns": [
+    {
+      "start_ms": 0,
+      "end_ms": 4847,
+      "speaker_role_reference": "doctor",
+      "reference": "So, uh, did it, did it come about quite suddenly, or was it more, kind of a gradual thing?",
+      "source_sample_id": "day1_consultation08_doctor.utterance03",
+      "source_audio_sha256": "378c52cf56b58632d3b651ce3315df5ccfa38d1c492f9cb48d57e7392f633e1b"
+    },
+    {
+      "start_ms": 2000,
+      "end_ms": 6571,
+      "speaker_role_reference": "patient",
+      "reference": "All over my arms, um, and my hands mainly.",
+      "source_sample_id": "day1_consultation08_patient.utterance03",
+      "source_audio_sha256": "d6abff24c9cf00dc44d76cfc9ae2a743bd9e3f49746a262cf0058c5155bf60e1"
+    }
+  ],
+  "runtime": {
+    "backend_id": "faster-whisper",
+    "runtime_version": "1.2.1",
+    "model_revision": "0d3d19a32d3338f10357c0889762bd8d64bbdeba",
+    "profile_sha256": "26e27034d7f2820628f75d167ac4b880bfc833a1b654cd287ed9fdad73b1837f",
+    "artifact_sha256": {
+      "config.json": "14b1b421a90349bc551b881461426b561a874049cb9e4c4864f2ca384f6a7cc5",
+      "model.bin": "1a5afae06a4db91c975c9a9d78be5cc110ee4ea022ad57d55492e4550e936b2a",
+      "tokenizer.json": "929c5252409436dce1b38a75d1abbcb5e132d170d8e324e4e04ed915fa2d22df",
+      "vocabulary.txt": "ff77588746d3a2595d32ab5b69ffd7b95ce2441ac57533cb66fc3eb575a115cf"
+    },
+    "license_id": "MIT",
+    "device": "cpu",
+    "automatic_download": false
+  },
+  "runtime_environment": {
+    "os": "Windows",
+    "os_release": "11",
+    "architecture": "AMD64",
+    "python_version": "3.13.5",
+    "cpu_count": 8,
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "source_code_sha256": {
+    "services/asr/cross_talk_adversarial.py": "3d1fe59ca60b02e6840c9ef96de50ed120d0e5f4a74037bbebfa23503d218224",
+    "services/asr/adapter.py": "7260f9b0875a1420050d718edfff3331cc2e64b5186b20caa5b62121a1b279b9",
+    "services/asr/profiles.py": "8f2624d085ecf6a64a8493398c04dd0abe815d53414092f02403d5567727e912"
+  },
+  "inference_executed": true,
+  "inference_seconds": 1.2936066999100149,
+  "hypothesis": "So, did it come about quite a sudden? Oh, ladies and gentlemen, congratulations. On my hands, mainly.",
+  "segments": [
+    {
+      "start_seconds": 0.0,
+      "end_seconds": 2.56,
+      "text": " So, did it come about quite a sudden?",
+      "decoder_evidence": {
+        "kind": "faster_whisper_best_sequence_v1",
+        "token_ids": [
+          50363,
+          1406,
+          11,
+          750,
+          340,
+          1282,
+          546,
+          2407,
+          257,
+          4802,
+          30,
+          50491
+        ],
+        "average_logprob": -0.8574871093996109,
+        "n_best_supported": false,
+        "calibrated": false
+      }
+    },
+    {
+      "start_seconds": 2.56,
+      "end_seconds": 4.92,
+      "text": " Oh, ladies and gentlemen, congratulations.",
+      "decoder_evidence": {
+        "kind": "faster_whisper_best_sequence_v1",
+        "token_ids": [
+          50491,
+          3966,
+          11,
+          17308,
+          290,
+          28527,
+          11,
+          45108,
+          13,
+          50609
+        ],
+        "average_logprob": -0.8574871093996109,
+        "n_best_supported": false,
+        "calibrated": false
+      }
+    },
+    {
+      "start_seconds": 4.92,
+      "end_seconds": 6.12,
+      "text": " On my hands, mainly.",
+      "decoder_evidence": {
+        "kind": "faster_whisper_best_sequence_v1",
+        "token_ids": [
+          50609,
+          1550,
+          616,
+          2832,
+          11,
+          8384,
+          13,
+          50669
+        ],
+        "average_logprob": -0.8574871093996109,
+        "n_best_supported": false,
+        "calibrated": false
+      }
+    }
+  ],
+  "transcript_review_status": "review_required",
+  "transcript_review_flags": [
+    "clinician_review_required",
+    "language_support_unverified",
+    "clinical_coverage_unverified",
+    "untranscribed_intervals_require_review"
+  ],
+  "automatic_note_approval": false,
+  "note_generation_tested": false,
+  "wer_status": "not_scored: simultaneous reference turns have no single ordered transcript target",
+  "clinical_acceptance": false,
+  "limitations": [
+    "One short synthetic overlap does not represent natural cross-talk, competing speech levels, or clinical room acoustics.",
+    "Reference speaker roles and turn texts come from public source annotations and are not independent adjudication.",
+    "This adapter replay does not test application note generation or approval behavior.",
+    "The tiny.en profile is not admitted; output is development-only and no general cross-talk safety claim is made."
+  ]
+}
