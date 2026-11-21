@@ -81,6 +81,9 @@ def test_broad_typed_candidates_keep_source_spans_and_medication_relations():
     assert [
         (item.text, item.assertion) for item in entities if item.kind == "allergy"
     ] == [("penicillin", "negated")]
+    assert [item.text for item in entities if item.kind == "frequency"] == [
+        "twice daily"
+    ]
     aspirin = next(
         entity
         for entity in entities

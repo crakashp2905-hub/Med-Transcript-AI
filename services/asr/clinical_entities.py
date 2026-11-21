@@ -27,7 +27,8 @@ _ROUTE = re.compile(
     re.I,
 )
 _FREQUENCY = re.compile(
-    r"\b(?:once|twice|three times|four times) (?:a |per )?day\b|"
+    r"\b(?:once|twice|three times|four times) "
+    r"(?:(?:a |per )?day|daily)\b|"
     r"\b(?:daily|nightly|weekly|monthly|q\.?d\.?|b\.?i\.?d\.?|"
     r"t\.?i\.?d\.?|q\.?i\.?d\.?|every \d+ hours?)\b",
     re.I,
